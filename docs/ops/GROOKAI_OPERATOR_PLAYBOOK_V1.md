@@ -36,6 +36,12 @@ products that each have exactly one proposed existing parent. Multi-target,
 duplicate-parent, duplicate-product, and overflow rows remain measured backlog;
 they do not fail the agent or enter the review item.
 
+The checked-in reviewed-hold registry keeps already adjudicated unsafe leads
+out of later founder batches while their frozen candidate evidence is unchanged.
+The held products still count toward backlog totals. If the printed coordinate,
+source subtype, product identity, or proposed parent changes, the fingerprint no
+longer matches and the agent surfaces the lead for a new review.
+
 The founder operations page exposes the frozen proposed mappings before an
 approval can be recorded. Approval is evidence review only: it queues no writer
 and grants no mapping or price-publication authority. If work-item publication

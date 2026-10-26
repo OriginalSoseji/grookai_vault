@@ -13,6 +13,9 @@ export const TCGPLAYER_PRICING_COMPLETION_AGENT_VERSION =
 export const TCGPLAYER_POKEMON_MAPPING_REVIEW_VERSION =
   'TCGPLAYER_POKEMON_MAPPING_REVIEW_V1';
 
+export const TCGPLAYER_POKEMON_REVIEWED_HOLDS_VERSION =
+  'TCGPLAYER_POKEMON_REVIEWED_HOLDS_V1';
+
 function integer(value) {
   const parsed = Number(value);
   return Number.isFinite(parsed) ? Math.max(0, Math.trunc(parsed)) : 0;
@@ -116,6 +119,80 @@ function reviewCandidate(row) {
       candidate_score: integer(target?.candidate_score),
       candidate_evidence: target?.candidate_evidence ?? {},
     })),
+  };
+}
+
+export function pokemonPricingMappingReviewEvidenceV1(row) {
+  const candidate = reviewCandidate(row);
+  return {
+    source_product_id: candidate.source_product_id,
+    source_product_name: candidate.source_product_name,
+    source_group_id: candidate.source_group_id,
+    source_group_name: candidate.source_group_name,
+    printed_number: candidate.printed_number,
+    source_subtypes: candidate.source_subtypes,
+    review_targets: candidate.review_targets.map((target) => ({
+      card_print_id: target.card_print_id,
+      gv_id: target.gv_id,
+      set_id: target.set_id,
+      set_code: target.set_code,
+      canonical_name: target.canonical_name,
+      canonical_number: target.canonical_number,
+      variant_key: target.variant_key,
+    })),
+  };
+}
+
+export function pokemonPricingMappingReviewEvidenceFingerprintV1(row) {
+  return operationsSha256V1(pokemonPricingMappingReviewEvidenceV1(row));
+}
+
+export function applyPokemonPricingMappingReviewedHoldsV1(candidates, registry) {
+  if (!Array.isArray(candidates)) throw new Error('Pokemon mapping candidates must be an array');
+  if (registry?.version !== TCGPLAYER_POKEMON_REVIEWED_HOLDS_VERSION
+      || !Array.isArray(registry?.holds)) {
+    throw new Error('Pokemon reviewed hold registry is invalid');
+  }
+  const holds = new Map();
+  for (const hold of registry.holds) {
+    const productId = integer(hold?.source_product_id);
+    const reason = String(hold?.reason ?? '').trim();
+    const fingerprint = String(hold?.candidate_fingerprint ?? '').trim();
+    if (!productId || !reason || !/^[a-f0-9]{64}$/.test(fingerprint)) {
+      throw new Error('Pokemon reviewed hold entry is invalid');
+    }
+    if (holds.has(productId)) {
+      throw new Error(`Pokemon reviewed hold product is duplicated: ${productId}`);
+    }
+    holds.set(productId, { reason, fingerprint });
+  }
+  const eligible = [];
+  const held = [];
+  const heldByReason = {};
+  const changedEvidence = [];
+  for (const candidate of candidates) {
+    const productId = integer(candidate?.source_product_id);
+    const hold = holds.get(productId);
+    if (!hold) {
+      eligible.push(candidate);
+      continue;
+    }
+    const fingerprint = pokemonPricingMappingReviewEvidenceFingerprintV1(candidate);
+    if (fingerprint !== hold.fingerprint) {
+      changedEvidence.push(candidate);
+      eligible.push(candidate);
+      continue;
+    }
+    const reason = `reviewed_${hold.reason}`;
+    heldByReason[reason] = (heldByReason[reason] ?? 0) + 1;
+    held.push(candidate);
+  }
+  return {
+    eligible,
+    held,
+    held_count: held.length,
+    held_by_reason: Object.fromEntries(Object.entries(heldByReason).sort()),
+    changed_evidence_count: changedEvidence.length,
   };
 }
 

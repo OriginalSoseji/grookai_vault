@@ -18,6 +18,13 @@ Multi-target rows, duplicate products, duplicate proposed parents, and rows past
 the batch limit stay in the measured backlog with explicit held reasons. They do
 not turn a successful coverage measurement into a failed agent run.
 
+Founder-adjudicated unsafe leads are retained in a checked-in reviewed-hold
+registry. The scheduler suppresses a held lead only while its source product,
+printed coordinate, subtype evidence, and proposed parent identity produce the
+same frozen evidence fingerprint. A changed fingerprint reopens the lead for a
+new review. Unchanged holds remain counted in telemetry but cannot repeatedly
+occupy a new founder review batch.
+
 Repeated schedules with identical evidence reuse the same work-item key and
 fingerprint. The GitHub Actions run URI is retained as provenance but is not
 part of the fingerprint, so a new scheduler invocation cannot create a new

@@ -1,0 +1,654 @@
+{
+  "version": "TCGPLAYER_POKEMON_REVIEWED_HOLDS_V1",
+  "reviewed_at": "2026-10-26T18:51:14.390Z",
+  "source": {
+    "workflow_run_id": 40376654974,
+    "artifact_id": 12674253560,
+    "artifact_name": "tcgplayer-pricing-completion-40376654974-1",
+    "file": "pokemon_ollama_identity_candidate_queue.jsonl",
+    "sha256": "dfc9288bbe5a645245735885e68c7c0929b1f36326b028cdfb24924e91898679",
+    "prior_adjudication": "docs/audits/pokemon_tcgplayer_founder_review_batch_20261026.json",
+    "adjudication_note": "The current source artifact adds same-parent event-placement variants to the prior reviewed finish holds; every held row is frozen below."
+  },
+  "holds": [
+    {
+      "source_product_id": 90353,
+      "reason": "source_subtype_does_not_identify_reviewed_master_finish",
+      "candidate_fingerprint": "7bcd12028f1c3d81a8fb09ae910b8c597f042bcf0dc8ce314d843c92b5680265",
+      "evidence": {
+        "source_product_id": 90353,
+        "source_product_name": "Victory Cup - BW31 (Battle Road Autumn 2011) [1st Place]",
+        "source_group_id": 1407,
+        "source_group_name": "Black and White Promos",
+        "printed_number": "BW31",
+        "source_subtypes": [
+          "Holofoil"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "644215b9-ff1a-480f-9ed6-8548a47c92da",
+            "gv_id": "GV-PK-PR-BLW-BW31",
+            "set_id": "61bceb95-9799-4349-963f-d9e6f8a3c69b",
+            "set_code": "bwp",
+            "canonical_name": "Victory Cup",
+            "canonical_number": "BW31",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 90355,
+      "reason": "source_subtype_does_not_identify_reviewed_master_finish",
+      "candidate_fingerprint": "06c152a91e37d14313226eb64fed2e44d3ef4862a2c5cc666ca6e472dfc3fe65",
+      "evidence": {
+        "source_product_id": 90355,
+        "source_product_name": "Victory Cup - BW29 (Battle Road Autumn 2011) [3rd Place]",
+        "source_group_id": 1407,
+        "source_group_name": "Black and White Promos",
+        "printed_number": "BW29",
+        "source_subtypes": [
+          "Holofoil"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "db6d8a1f-4a1d-43c4-9f7d-f4f104920cd0",
+            "gv_id": "GV-PK-PR-BLW-BW29",
+            "set_id": "61bceb95-9799-4349-963f-d9e6f8a3c69b",
+            "set_code": "bwp",
+            "canonical_name": "Victory Cup",
+            "canonical_number": "BW29",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 96860,
+      "reason": "source_subtype_does_not_identify_reviewed_master_finish",
+      "candidate_fingerprint": "8b0d14bab078e0bb447b147d76bc6172ed21105f559c79bc2db0c85776ea21ee",
+      "evidence": {
+        "source_product_id": 96860,
+        "source_product_name": "Victory Cup - BW31 (Battle Road Autumn 2012) [1st Place]",
+        "source_group_id": 1407,
+        "source_group_name": "Black and White Promos",
+        "printed_number": "BW31",
+        "source_subtypes": [
+          "Holofoil"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "644215b9-ff1a-480f-9ed6-8548a47c92da",
+            "gv_id": "GV-PK-PR-BLW-BW31",
+            "set_id": "61bceb95-9799-4349-963f-d9e6f8a3c69b",
+            "set_code": "bwp",
+            "canonical_name": "Victory Cup",
+            "canonical_number": "BW31",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 96861,
+      "reason": "source_subtype_does_not_identify_reviewed_master_finish",
+      "candidate_fingerprint": "ff7edee144a1915c7b009dfc31bf3cf52adbb3dc51fcfdb4fa811328f584f695",
+      "evidence": {
+        "source_product_id": 96861,
+        "source_product_name": "Victory Cup - BW30 (Battle Road Autumn 2012) [2nd Place]",
+        "source_group_id": 1407,
+        "source_group_name": "Black and White Promos",
+        "printed_number": "BW30",
+        "source_subtypes": [
+          "Holofoil"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "3329c20b-4a1c-438d-b34c-56c7eb157b5f",
+            "gv_id": "GV-PK-PR-BLW-BW30",
+            "set_id": "61bceb95-9799-4349-963f-d9e6f8a3c69b",
+            "set_code": "bwp",
+            "canonical_name": "Victory Cup",
+            "canonical_number": "BW30",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 96862,
+      "reason": "source_subtype_does_not_identify_reviewed_master_finish",
+      "candidate_fingerprint": "697f67564eeff081ebd51be2599751dffef6c0ca48d776163ec1de3930e03f93",
+      "evidence": {
+        "source_product_id": 96862,
+        "source_product_name": "Victory Cup - BW29 (Battle Road Autumn 2012) [3rd Place]",
+        "source_group_id": 1407,
+        "source_group_name": "Black and White Promos",
+        "printed_number": "BW29",
+        "source_subtypes": [
+          "Holofoil"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "db6d8a1f-4a1d-43c4-9f7d-f4f104920cd0",
+            "gv_id": "GV-PK-PR-BLW-BW29",
+            "set_id": "61bceb95-9799-4349-963f-d9e6f8a3c69b",
+            "set_code": "bwp",
+            "canonical_name": "Victory Cup",
+            "canonical_number": "BW29",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 96863,
+      "reason": "source_subtype_does_not_identify_reviewed_master_finish",
+      "candidate_fingerprint": "04823f05ac3f94c737c6444855eb810056da21771cdb9af6163fc1583194f3ff",
+      "evidence": {
+        "source_product_id": 96863,
+        "source_product_name": "Victory Cup - BW29 (Battle Road Spring 2012) [3rd Place]",
+        "source_group_id": 1407,
+        "source_group_name": "Black and White Promos",
+        "printed_number": "BW29",
+        "source_subtypes": [
+          "Holofoil"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "db6d8a1f-4a1d-43c4-9f7d-f4f104920cd0",
+            "gv_id": "GV-PK-PR-BLW-BW29",
+            "set_id": "61bceb95-9799-4349-963f-d9e6f8a3c69b",
+            "set_code": "bwp",
+            "canonical_name": "Victory Cup",
+            "canonical_number": "BW29",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 96864,
+      "reason": "source_subtype_does_not_identify_reviewed_master_finish",
+      "candidate_fingerprint": "3643aa0c7168a5952e9e99b76833b2d999863f268f2e4491bdf2698fb78c2f80",
+      "evidence": {
+        "source_product_id": 96864,
+        "source_product_name": "Victory Cup - BW30 (Battle Road Spring 2012) [2nd Place]",
+        "source_group_id": 1407,
+        "source_group_name": "Black and White Promos",
+        "printed_number": "BW30",
+        "source_subtypes": [
+          "Holofoil"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "3329c20b-4a1c-438d-b34c-56c7eb157b5f",
+            "gv_id": "GV-PK-PR-BLW-BW30",
+            "set_id": "61bceb95-9799-4349-963f-d9e6f8a3c69b",
+            "set_code": "bwp",
+            "canonical_name": "Victory Cup",
+            "canonical_number": "BW30",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 96865,
+      "reason": "source_subtype_does_not_identify_reviewed_master_finish",
+      "candidate_fingerprint": "d02ccf418f09e19938616b0795b007663a42dfae58a6be2fd23ffd25eea55379",
+      "evidence": {
+        "source_product_id": 96865,
+        "source_product_name": "Victory Cup - BW31 (Battle Road Spring 2012) [1st Place]",
+        "source_group_id": 1407,
+        "source_group_name": "Black and White Promos",
+        "printed_number": "BW31",
+        "source_subtypes": [
+          "Holofoil"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "644215b9-ff1a-480f-9ed6-8548a47c92da",
+            "gv_id": "GV-PK-PR-BLW-BW31",
+            "set_id": "61bceb95-9799-4349-963f-d9e6f8a3c69b",
+            "set_code": "bwp",
+            "canonical_name": "Victory Cup",
+            "canonical_number": "BW31",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 96866,
+      "reason": "source_subtype_does_not_identify_reviewed_master_finish",
+      "candidate_fingerprint": "3e1a5c838875d13fc1ae2bd883ba995d158a664d6ebbdd0bf369870e98bd6122",
+      "evidence": {
+        "source_product_id": 96866,
+        "source_product_name": "Victory Cup - BW31 (Battle Road Spring 2013) [1st Place]",
+        "source_group_id": 1407,
+        "source_group_name": "Black and White Promos",
+        "printed_number": "BW31",
+        "source_subtypes": [
+          "Holofoil"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "644215b9-ff1a-480f-9ed6-8548a47c92da",
+            "gv_id": "GV-PK-PR-BLW-BW31",
+            "set_id": "61bceb95-9799-4349-963f-d9e6f8a3c69b",
+            "set_code": "bwp",
+            "canonical_name": "Victory Cup",
+            "canonical_number": "BW31",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 96867,
+      "reason": "source_subtype_does_not_identify_reviewed_master_finish",
+      "candidate_fingerprint": "b668f25d557b13a3ccd7c45013232e66228230a0eb2e7a1f311311cc80bcd68b",
+      "evidence": {
+        "source_product_id": 96867,
+        "source_product_name": "Victory Cup - BW30 (Battle Road Spring 2013) [2nd Place]",
+        "source_group_id": 1407,
+        "source_group_name": "Black and White Promos",
+        "printed_number": "BW30",
+        "source_subtypes": [
+          "Holofoil"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "3329c20b-4a1c-438d-b34c-56c7eb157b5f",
+            "gv_id": "GV-PK-PR-BLW-BW30",
+            "set_id": "61bceb95-9799-4349-963f-d9e6f8a3c69b",
+            "set_code": "bwp",
+            "canonical_name": "Victory Cup",
+            "canonical_number": "BW30",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 96868,
+      "reason": "source_subtype_does_not_identify_reviewed_master_finish",
+      "candidate_fingerprint": "e50de1d07bf6c354ee04dc649f738672df65bd895c5504e897c59adcfe74f49d",
+      "evidence": {
+        "source_product_id": 96868,
+        "source_product_name": "Victory Cup - BW29 (Battle Road Spring 2013) [3rd Place]",
+        "source_group_id": 1407,
+        "source_group_name": "Black and White Promos",
+        "printed_number": "BW29",
+        "source_subtypes": [
+          "Holofoil"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "db6d8a1f-4a1d-43c4-9f7d-f4f104920cd0",
+            "gv_id": "GV-PK-PR-BLW-BW29",
+            "set_id": "61bceb95-9799-4349-963f-d9e6f8a3c69b",
+            "set_code": "bwp",
+            "canonical_name": "Victory Cup",
+            "canonical_number": "BW29",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 127381,
+      "reason": "missing_printed_number_evidence",
+      "candidate_fingerprint": "40341dee19b90c66d7ad97de3bb7ffaad073924be8b36a731be3814b64beadc9",
+      "evidence": {
+        "source_product_id": 127381,
+        "source_product_name": "Grass Energy (2017 Unnumbered)",
+        "source_group_id": 1863,
+        "source_group_name": "SM Base Set",
+        "printed_number": "",
+        "source_subtypes": [
+          "Normal",
+          "Reverse Holofoil"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "80519969-cbd1-495c-9e56-acf1e3f466af",
+            "gv_id": "GV-PK-SUM-164",
+            "set_id": "afe1197e-4b81-42e2-afcb-50143ffba2f2",
+            "set_code": "sm1",
+            "canonical_name": "Grass Energy",
+            "canonical_number": "164",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 127382,
+      "reason": "missing_printed_number_evidence",
+      "candidate_fingerprint": "1e36de64c585fdad054989127a01a18f708dbd585fde2db7964b81e6a314fbb3",
+      "evidence": {
+        "source_product_id": 127382,
+        "source_product_name": "Fire Energy (2017 Unnumbered)",
+        "source_group_id": 1863,
+        "source_group_name": "SM Base Set",
+        "printed_number": "",
+        "source_subtypes": [
+          "Normal",
+          "Reverse Holofoil"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "2aa13126-024e-42d3-a37e-81ac352daf76",
+            "gv_id": "GV-PK-SUM-165",
+            "set_id": "afe1197e-4b81-42e2-afcb-50143ffba2f2",
+            "set_code": "sm1",
+            "canonical_name": "Fire Energy",
+            "canonical_number": "165",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 127383,
+      "reason": "missing_printed_number_evidence",
+      "candidate_fingerprint": "2e8893f53363c5de38cd608ff35c3d13839cd5ceb5343119aeedffdd66cad7bc",
+      "evidence": {
+        "source_product_id": 127383,
+        "source_product_name": "Darkness Energy (2017 Unnumbered)",
+        "source_group_id": 1863,
+        "source_group_name": "SM Base Set",
+        "printed_number": "",
+        "source_subtypes": [
+          "Normal",
+          "Reverse Holofoil"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "06a87f4c-d79b-4c79-a782-5a494b656ba6",
+            "gv_id": "GV-PK-SUM-170",
+            "set_id": "afe1197e-4b81-42e2-afcb-50143ffba2f2",
+            "set_code": "sm1",
+            "canonical_name": "Darkness Energy",
+            "canonical_number": "170",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 127384,
+      "reason": "missing_printed_number_evidence",
+      "candidate_fingerprint": "43aa164ccec812bcccfebe3fe6a27eeed97395148dda6096e67ea7c926eac5d3",
+      "evidence": {
+        "source_product_id": 127384,
+        "source_product_name": "Fairy Energy (2017 Unnumbered)",
+        "source_group_id": 1863,
+        "source_group_name": "SM Base Set",
+        "printed_number": "",
+        "source_subtypes": [
+          "Normal",
+          "Reverse Holofoil"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "b2a3b633-5fa2-4111-ade4-64ac1de0d814",
+            "gv_id": "GV-PK-SUM-172",
+            "set_id": "afe1197e-4b81-42e2-afcb-50143ffba2f2",
+            "set_code": "sm1",
+            "canonical_name": "Fairy Energy",
+            "canonical_number": "172",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 127385,
+      "reason": "missing_printed_number_evidence",
+      "candidate_fingerprint": "3cf54b509fea39a18455505ab69def70ac146c6558b508da5094753fd192064e",
+      "evidence": {
+        "source_product_id": 127385,
+        "source_product_name": "Fighting Energy (2017 Unnumbered)",
+        "source_group_id": 1863,
+        "source_group_name": "SM Base Set",
+        "printed_number": "",
+        "source_subtypes": [
+          "Normal",
+          "Reverse Holofoil"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "6ab8c723-aa84-4102-8fcd-1855113dc877",
+            "gv_id": "GV-PK-SUM-169",
+            "set_id": "afe1197e-4b81-42e2-afcb-50143ffba2f2",
+            "set_code": "sm1",
+            "canonical_name": "Fighting Energy",
+            "canonical_number": "169",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 127386,
+      "reason": "missing_printed_number_evidence",
+      "candidate_fingerprint": "27d4670277226704d0544658ed3350fb715e4db0a0de91e69f4d259c74effe5b",
+      "evidence": {
+        "source_product_id": 127386,
+        "source_product_name": "Lightning Energy (2017 Unnumbered)",
+        "source_group_id": 1863,
+        "source_group_name": "SM Base Set",
+        "printed_number": "",
+        "source_subtypes": [
+          "Normal",
+          "Reverse Holofoil"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "c04066d1-a2ae-41fa-94b3-a5ac0e6869ec",
+            "gv_id": "GV-PK-SUM-167",
+            "set_id": "afe1197e-4b81-42e2-afcb-50143ffba2f2",
+            "set_code": "sm1",
+            "canonical_name": "Lightning Energy",
+            "canonical_number": "167",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 127387,
+      "reason": "missing_printed_number_evidence",
+      "candidate_fingerprint": "0722e40679c6fc82e7c3dbc01ae6f0c348d6cbfa13a70950af9e084f0116f5ac",
+      "evidence": {
+        "source_product_id": 127387,
+        "source_product_name": "Metal Energy (2017 Unnumbered)",
+        "source_group_id": 1863,
+        "source_group_name": "SM Base Set",
+        "printed_number": "",
+        "source_subtypes": [
+          "Normal",
+          "Reverse Holofoil"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "2565d4bc-1e35-4382-8d48-1e13311dbd06",
+            "gv_id": "GV-PK-SUM-171",
+            "set_id": "afe1197e-4b81-42e2-afcb-50143ffba2f2",
+            "set_code": "sm1",
+            "canonical_name": "Metal Energy",
+            "canonical_number": "171",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 127388,
+      "reason": "missing_printed_number_evidence",
+      "candidate_fingerprint": "d7ca7b4b122f94f6e9f696760e77665572c7f076b88bb5e37c7d1cc4250d5f7d",
+      "evidence": {
+        "source_product_id": 127388,
+        "source_product_name": "Psychic Energy (2017 Unnumbered)",
+        "source_group_id": 1863,
+        "source_group_name": "SM Base Set",
+        "printed_number": "",
+        "source_subtypes": [
+          "Normal",
+          "Reverse Holofoil"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "6615d70d-d8f4-44ed-b17e-eae29b587dfd",
+            "gv_id": "GV-PK-SUM-168",
+            "set_id": "afe1197e-4b81-42e2-afcb-50143ffba2f2",
+            "set_code": "sm1",
+            "canonical_name": "Psychic Energy",
+            "canonical_number": "168",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 127389,
+      "reason": "missing_printed_number_evidence",
+      "candidate_fingerprint": "28cf1104a60966e8525a384fadad1b3898c6a31e38e4f6237f2721ea2b748b97",
+      "evidence": {
+        "source_product_id": 127389,
+        "source_product_name": "Water Energy (2017 Unnumbered)",
+        "source_group_id": 1863,
+        "source_group_name": "SM Base Set",
+        "printed_number": "",
+        "source_subtypes": [
+          "Normal",
+          "Reverse Holofoil"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "fd07ec38-99e6-456c-9799-785bb86ee33d",
+            "gv_id": "GV-PK-SUM-166",
+            "set_id": "afe1197e-4b81-42e2-afcb-50143ffba2f2",
+            "set_code": "sm1",
+            "canonical_name": "Water Energy",
+            "canonical_number": "166",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 175064,
+      "reason": "source_subtype_does_not_identify_reviewed_master_finish",
+      "candidate_fingerprint": "06c2e775aae6198e72e68d50744e17dce241227cb1ed95d9a4b902711c1899a5",
+      "evidence": {
+        "source_product_id": 175064,
+        "source_product_name": "Champions Festival - SM148 (World Championships 2018)",
+        "source_group_id": 1861,
+        "source_group_name": "SM Promos",
+        "printed_number": "SM148",
+        "source_subtypes": [
+          "Normal"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "3cf53009-c92a-4bf4-8ad8-2c446534e4f1",
+            "gv_id": "GV-PK-SM-SM148",
+            "set_id": "d1cc00ee-68d1-4f62-9a75-a2bd4f45c693",
+            "set_code": "smp",
+            "canonical_name": "Champions Festival",
+            "canonical_number": "SM148",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 199332,
+      "reason": "source_subtype_does_not_identify_reviewed_master_finish",
+      "candidate_fingerprint": "067ba91405668af49157afbeb5529eaa3bd4a246c94c872d92a6be49844a6744",
+      "evidence": {
+        "source_product_id": 199332,
+        "source_product_name": "Champions Festival - SM148 (World Championships 2018) [Top Sixteen]",
+        "source_group_id": 1861,
+        "source_group_name": "SM Promos",
+        "printed_number": "SM148",
+        "source_subtypes": [
+          "Normal"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "3cf53009-c92a-4bf4-8ad8-2c446534e4f1",
+            "gv_id": "GV-PK-SM-SM148",
+            "set_id": "d1cc00ee-68d1-4f62-9a75-a2bd4f45c693",
+            "set_code": "smp",
+            "canonical_name": "Champions Festival",
+            "canonical_number": "SM148",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 648631,
+      "reason": "source_subtype_does_not_identify_reviewed_master_finish",
+      "candidate_fingerprint": "be744f71a8d1be4403b017678d413a1e36289a346172f3fd5e1725439ace5a84",
+      "evidence": {
+        "source_product_id": 648631,
+        "source_product_name": "Pikachu - 225 (World Championship 2025)",
+        "source_group_id": 22872,
+        "source_group_name": "SV: Scarlet & Violet Promo Cards",
+        "printed_number": "225",
+        "source_subtypes": [
+          "Normal"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "987aefdb-3a1b-4959-a479-74449b8f613f",
+            "gv_id": "GV-PK-PR-SV-225",
+            "set_id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+            "set_code": "svp",
+            "canonical_name": "Pikachu",
+            "canonical_number": "225",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 681244,
+      "reason": "source_subtype_does_not_identify_reviewed_master_finish",
+      "candidate_fingerprint": "17f6e1a03a89b59368f72e73819f0a5b433797aa12abd0b3e3e1d83a4702d7a5",
+      "evidence": {
+        "source_product_id": 681244,
+        "source_product_name": "Celebratory Fanfare (Ace Trainer)",
+        "source_group_id": 24451,
+        "source_group_name": "ME: Mega Evolution Promo",
+        "printed_number": "028",
+        "source_subtypes": [
+          "Normal"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "3b88fff2-c2ab-4750-b406-71cecafc0ddc",
+            "gv_id": "GV-PK-MEP-028",
+            "set_id": "3af96ea1-8897-4bb9-aa7e-cdfb98118bbf",
+            "set_code": "mep",
+            "canonical_name": "Celebratory Fanfare",
+            "canonical_number": "028",
+            "variant_key": ""
+          }
+        ]
+      }
+    }
+  ],
+  "boundary": {
+    "reviewed_hold_count": 24,
+    "reopen_only_when_candidate_evidence_changes": true,
+    "mapping_authority": false,
+    "publication_authority": false
+  }
+}
