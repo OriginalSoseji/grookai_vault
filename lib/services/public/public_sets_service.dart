@@ -1658,21 +1658,7 @@ class PublicSetsService {
   }
 
   static String? _normalizeHttpUrl(dynamic value) {
-    final url = _cleanText(value);
-    if (url.isEmpty) {
-      return null;
-    }
-
-    final parsed = Uri.tryParse(url);
-    if (parsed == null) {
-      return null;
-    }
-
-    if (parsed.scheme != 'http' && parsed.scheme != 'https') {
-      return null;
-    }
-
-    return url;
+    return normalizeDisplayImageUrl(value);
   }
 }
 
