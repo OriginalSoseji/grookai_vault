@@ -446,8 +446,7 @@ async function buildPlan() {
   }
 }
 
-async function uploadExactAssets(supabase, rows) {
-  const uploaded = [];
+async function uploadExactAssets(supabase, rows, uploaded) {
   await mapConcurrent(rows, FETCH_CONCURRENCY, async (row) => {
     const buffer = await fs.readFile(path.join(ROOT, row.local_path));
     if (sha256(buffer) !== row.source_sha256 || buffer.length !== row.source_size_bytes) {
@@ -460,7 +459,41 @@ async function uploadExactAssets(supabase, rows) {
     if (error) throw new Error(`storage_upload_failed:${row.gv_id}:${error.message}`);
     uploaded.push(row.image_path);
   });
-  return uploaded;
+}
+
+async function readbackAppliedPlan(plan) {
+  const client = new Client({ connectionString: requireDbUrl(), ssl: { rejectUnauthorized: false } });
+  await client.connect();
+  try {
+    const readback = [];
+    const failures = [];
+    for (const expected of plan.exact_rows) {
+      const actual = await fetchCard(client, expected.gv_id);
+      readback.push(actual);
+      if (!actual
+        || actual.image_source !== expected.image_source
+        || actual.image_path !== expected.image_path
+        || actual.image_status !== expected.image_status
+        || actual.image_note !== expected.image_note) {
+        failures.push(expected.gv_id);
+      }
+    }
+    for (const expected of plan.representative_rows) {
+      const actual = await fetchCard(client, expected.gv_id);
+      readback.push(actual);
+      if (!actual
+        || actual.image_source !== expected.image_source
+        || actual.image_path !== expected.image_path
+        || clean(actual.representative_image_url)
+        || actual.image_status !== expected.image_status
+        || actual.image_note !== expected.image_note) {
+        failures.push(expected.gv_id);
+      }
+    }
+    return { readback, failures, matches: failures.length === 0 };
+  } finally {
+    await client.end();
+  }
 }
 
 async function applyPlan(plan, fingerprint) {
@@ -469,10 +502,15 @@ async function applyPlan(plan, fingerprint) {
   const supabase = createStorageClient();
   const uploaded = [];
   let committed = false;
+  let commitAttempted = false;
+  let commitResponseConfirmed = false;
+  let applyError = null;
+  let connected = false;
   const client = new Client({ connectionString: requireDbUrl(), ssl: { rejectUnauthorized: false } });
   try {
-    uploaded.push(...await uploadExactAssets(supabase, plan.exact_rows));
+    await uploadExactAssets(supabase, plan.exact_rows, uploaded);
     await client.connect();
+    connected = true;
     await client.query('begin');
     for (const row of plan.exact_rows) {
       const current = await fetchCard(client, row.gv_id);
@@ -505,59 +543,86 @@ async function applyPlan(plan, fingerprint) {
       `, [row.card_print_id, row.image_source, row.image_path, row.image_status, row.image_note]);
       if (result.rowCount !== 1) throw new Error(`apply_rep_rowcount:${row.gv_id}:${result.rowCount}`);
     }
+    commitAttempted = true;
     await client.query('commit');
     committed = true;
-
-    const readback = [];
-    for (const row of [...plan.exact_rows, ...plan.representative_rows]) {
-      readback.push(await fetchCard(client, row.gv_id));
-    }
-    const failedReadback = readback.filter((row) => !clean(row.image_path)
-      && !clean(row.image_url) && !clean(row.image_alt_url) && !clean(row.representative_image_url));
-    if (failedReadback.length) throw new Error(`post_commit_readback_failed:${failedReadback.map((r) => r.gv_id).join(',')}`);
-
-    const result = {
-      generated_at: new Date().toISOString(),
-      package_id: PACKAGE_ID,
-      mode: 'real_apply',
-      fingerprint: plan.fingerprint,
-      committed,
-      storage_bucket: STORAGE_BUCKET,
-      storage_uploaded_rows: uploaded.length,
-      exact_db_updated_rows: plan.exact_rows.length,
-      representative_db_updated_rows: plan.representative_rows.length,
-      db_updated_rows: readback.length,
-      post_commit_readback_rows: readback.length,
-      remaining_target_rows_without_display_image: failedReadback.length,
-      db_writes_performed: true,
-      storage_uploads_performed: true,
-      migrations_created: false,
-      deletes_or_merges_performed: false,
-      readback,
-      uploaded_storage_paths: uploaded.sort(),
-    };
-    result.proof_hash = proofHash({
-      package_id: result.package_id,
-      fingerprint: result.fingerprint,
-      committed: result.committed,
-      storage_uploaded_rows: result.storage_uploaded_rows,
-      exact_db_updated_rows: result.exact_db_updated_rows,
-      representative_db_updated_rows: result.representative_db_updated_rows,
-      remaining_target_rows_without_display_image: result.remaining_target_rows_without_display_image,
-    });
-    return result;
+    commitResponseConfirmed = true;
   } catch (error) {
+    applyError = error;
+    let rollbackConfirmed = false;
+    let commitReconciliation = null;
     if (!committed) {
-      try { await client.query('rollback'); } catch {}
-      if (uploaded.length) {
+      if (connected) {
+        try {
+          await client.query('rollback');
+          rollbackConfirmed = true;
+        } catch {}
+      }
+      if (commitAttempted) {
+        commitReconciliation = await readbackAppliedPlan(plan).catch(() => null);
+        if (commitReconciliation?.matches) committed = true;
+      }
+      const failedCommitWasReconciled = commitAttempted
+        && rollbackConfirmed
+        && commitReconciliation
+        && !commitReconciliation.matches;
+      if (!committed && (!commitAttempted || failedCommitWasReconciled) && uploaded.length) {
         const { error: cleanupError } = await supabase.storage.from(STORAGE_BUCKET).remove(uploaded);
         if (cleanupError) throw new AggregateError([error, cleanupError], 'apply_and_cleanup_failed');
       }
     }
-    throw error;
   } finally {
     try { await client.end(); } catch {}
   }
+
+  if (!committed) {
+    if (commitAttempted) {
+      throw new AggregateError(
+        [applyError],
+        'uncertain_commit_outcome_storage_preserved_for_reconciliation',
+      );
+    }
+    throw applyError;
+  }
+
+  const reconciliation = await readbackAppliedPlan(plan);
+  if (!reconciliation.matches) {
+    throw new Error(`post_commit_readback_failed:${reconciliation.failures.join(',')}`);
+  }
+  const result = {
+    generated_at: new Date().toISOString(),
+    package_id: PACKAGE_ID,
+    mode: 'real_apply',
+    fingerprint: plan.fingerprint,
+    committed,
+    commit_response_confirmed: commitResponseConfirmed,
+    commit_outcome_reconciled: committed && !commitResponseConfirmed,
+    storage_bucket: STORAGE_BUCKET,
+    storage_uploaded_rows: uploaded.length,
+    exact_db_updated_rows: plan.exact_rows.length,
+    representative_db_updated_rows: plan.representative_rows.length,
+    db_updated_rows: reconciliation.readback.length,
+    post_commit_readback_rows: reconciliation.readback.length,
+    remaining_target_rows_without_display_image: reconciliation.failures.length,
+    db_writes_performed: true,
+    storage_uploads_performed: true,
+    migrations_created: false,
+    deletes_or_merges_performed: false,
+    readback: reconciliation.readback,
+    uploaded_storage_paths: uploaded.sort(),
+  };
+  result.proof_hash = proofHash({
+    package_id: result.package_id,
+    fingerprint: result.fingerprint,
+    committed: result.committed,
+    commit_response_confirmed: result.commit_response_confirmed,
+    commit_outcome_reconciled: result.commit_outcome_reconciled,
+    storage_uploaded_rows: result.storage_uploaded_rows,
+    exact_db_updated_rows: result.exact_db_updated_rows,
+    representative_db_updated_rows: result.representative_db_updated_rows,
+    remaining_target_rows_without_display_image: result.remaining_target_rows_without_display_image,
+  });
+  return result;
 }
 
 function escapeCell(value) {
