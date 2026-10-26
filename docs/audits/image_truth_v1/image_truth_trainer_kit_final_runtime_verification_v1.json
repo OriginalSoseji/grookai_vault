@@ -1,0 +1,594 @@
+{
+  "package_id": "IMG-TRAINER-KIT-FINAL-RUNTIME-VERIFICATION-V1",
+  "generated_at": "2026-10-26T16:27:27.0946878Z",
+  "mode": "production_read_only_verification",
+  "production_base_url": "https://grookaivault.com",
+  "source_apply_fingerprint": "bd232ec91e3abb48a5a2f26f0fd41b2bd17aa50876e4540b4dca4eda2835d721",
+  "source_apply_proof_hash": "8a708e715e8f5fe4d2d5be38c88879900d6bd449ab6f08309c15ea86f4b4b4e2",
+  "route_repair_fingerprint": "f84b53528f4d89678e4da5ac133097bc618af2b9b05739405d444492fecd6294",
+  "route_repair_proof_hash": "bf9774c5beb4b0f2c3ba4e03ad5c0d35748b8a0df052ce031054393647cf3795",
+  "database": {
+    "pokemon_parent_rows_without_display_image": 0,
+    "by_set": [
+      {
+        "set_code": "tk-hs-g",
+        "image_status": "exact",
+        "row_count": 30
+      },
+      {
+        "set_code": "tk-hs-r",
+        "image_status": "exact",
+        "row_count": 30
+      },
+      {
+        "set_code": "tk-sm-r",
+        "image_status": "representative_shared",
+        "row_count": 30
+      }
+    ]
+  },
+  "routes": {
+    "checked": 69,
+    "passed": 69,
+    "failed": 0,
+    "minimum_bytes": 59283.0,
+    "maximum_bytes": 126829.0,
+    "checks": [
+      {
+        "gv_id": "GV-PK-TK-tk-hs-g-3",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 69625,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-g-3/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-g-7",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 68374,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-g-7/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-g-1",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 92761,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-g-1/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-g-6",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 70073,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-g-6/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-g-4",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 67108,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-g-4/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-g-2",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 70137,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-g-2/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-g-8",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 69580,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-g-8/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-g-5",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 107052,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-g-5/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-g-10",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 69608,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-g-10/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-g-14",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 92496,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-g-14/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-g-11",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 70127,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-g-11/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-g-12",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 104460,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-g-12/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-g-16",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 67755,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-g-16/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-g-9",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 71117,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-g-9/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-g-13",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 99922,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-g-13/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-g-15",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 97919,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-g-15/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-g-17",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 99977,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-g-17/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-g-18",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 108522,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-g-18/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-g-19",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 90836,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-g-19/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-g-21",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 104341,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-g-21/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-g-24",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 104720,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-g-24/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-g-25",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 113560,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-g-25/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-g-23",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 99100,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-g-23/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-g-22",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 120439,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-g-22/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-g-26",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 67961,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-g-26/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-g-28",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 97791,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-g-28/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-g-27",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 112473,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-g-27/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-g-30",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 123691,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-g-30/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-g-29",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 68649,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-g-29/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-r-1",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 102023,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-r-1/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-r-2",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 100890,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-r-2/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-r-3",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 114573,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-r-3/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-r-4",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 98734,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-r-4/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-r-5",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 60328,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-r-5/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-r-6",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 62032,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-r-6/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-r-8",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 60536,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-r-8/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-r-10",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 60330,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-r-10/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-r-9",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 59932,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-r-9/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-r-7",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 60051,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-r-7/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-r-11",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 62098,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-r-11/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-r-12",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 99561,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-r-12/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-r-14",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 59446,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-r-14/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-r-15",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 65117,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-r-15/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-r-13",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 110459,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-r-13/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-r-16",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 97299,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-r-16/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-r-17",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 116931,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-r-17/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-r-20",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 110113,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-r-20/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-r-18",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 59283,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-r-18/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-r-21",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 108994,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-r-21/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-r-22",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 118824,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-r-22/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-r-24",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 100097,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-r-24/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-r-23",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 62616,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-r-23/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-r-26",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 104957,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-r-26/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-r-25",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 102525,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-r-25/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-r-28",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 60122,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-r-28/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-r-27",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 118998,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-r-27/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-r-29",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 99544,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-r-29/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-tk-hs-r-30",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 103283,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-tk-hs-r-30/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-3",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 123554,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-3/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-5",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 123554,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-5/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-7",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 123554,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-7/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-1",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 123554,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-1/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-8",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 123554,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-8/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-9",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 123554,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-9/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-10",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 123554,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-10/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-12",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 123554,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-12/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-28",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 126829,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-28/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-24",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 126829,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-24/image?verify=20261026",
+        "error": null
+      },
+      {
+        "gv_id": "GV-PK-TK-27",
+        "status": 200,
+        "content_type": "image/jpeg",
+        "bytes": 126829,
+        "final_url": "https://grookaivault.com/api/canon/cards/GV-PK-TK-27/image?verify=20261026",
+        "error": null
+      }
+    ]
+  },
+  "db_writes_performed": false,
+  "storage_writes_performed": false,
+  "proof_hash": "151a8d3dffeb262210c1903d6f7c9831f60ebd3445ded4ff65418eb765161115"
+}
