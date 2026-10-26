@@ -96,6 +96,29 @@ test("image resolver replaces source-backed EX trainer kit aliases and blocks un
   assert.match(source, /display_image_kind: "representative"/);
   assert.match(source, /KNOWN_BROKEN_TCGDEX_IMAGE_NOTE/);
   assert.match(source, /display_image_kind: "blocked"/);
+
+  const gyaradosMap = source.match(
+    /"tk-hs-g": \{([\s\S]*?)\n  \},\n  "tk-hs-r"/,
+  )?.[1];
+  const raichuMap = source.match(
+    /"tk-hs-r": \{([\s\S]*?)\n  \},\n\};/,
+  )?.[1];
+  assert.ok(gyaradosMap, "HGSS Gyarados Trainer Kit map must exist");
+  assert.ok(raichuMap, "HGSS Raichu Trainer Kit map must exist");
+  for (const [label, mapSource] of [
+    ["Gyarados", gyaradosMap],
+    ["Raichu", raichuMap],
+  ]) {
+    const mappedNumbers = Array.from(
+      mapSource.matchAll(/^    "(\d+)": "https:\/\/static\.tcgcollector\.com\/content\/images\/[^"\n]+\.jpg",$/gm),
+      (match) => Number(match[1]),
+    );
+    assert.deepEqual(
+      mappedNumbers,
+      Array.from({ length: 30 }, (_, index) => index + 1),
+      `${label} Trainer Kit must map every numbered deck card`,
+    );
+  }
 });
 
 test("image resolver lets self-hosted image_path win over broken legacy TCGdex URLs", () => {
