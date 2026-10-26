@@ -49,8 +49,8 @@ const TCGCOLLECTOR_SOURCE_PAGES = {
 const TCGCOLLECTOR_TARGET_NUMBERS = {
   'tk-dp-l': new Set(Array.from({ length: 11 }, (_, index) => String(index + 1))),
   'tk-dp-m': new Set(Array.from({ length: 12 }, (_, index) => String(index + 1))),
-  'tk-hs-g': new Set(['20']),
-  'tk-hs-r': new Set(['19']),
+  'tk-hs-g': new Set(Array.from({ length: 30 }, (_, index) => String(index + 1))),
+  'tk-hs-r': new Set(Array.from({ length: 30 }, (_, index) => String(index + 1))),
 };
 
 function requireDbUrl() {
@@ -182,16 +182,23 @@ function parseTcgCollectorCards(html, setCode) {
 
 async function readTcgCollectorSourceRows() {
   const rows = [];
+  const preservedHtmlDir = clean(process.env.TCGCOLLECTOR_SOURCE_HTML_DIR);
   for (const [setCode, url] of Object.entries(TCGCOLLECTOR_SOURCE_PAGES)) {
     const targetNumbers = TCGCOLLECTOR_TARGET_NUMBERS[setCode];
     try {
-      const html = await fetchText(url);
+      const preservedHtmlPath = preservedHtmlDir
+        ? path.join(preservedHtmlDir, `${setCode}.html`)
+        : null;
+      const html = preservedHtmlPath
+        ? await fs.readFile(preservedHtmlPath, 'utf8')
+        : await fetchText(url);
       const sourceRows = parseTcgCollectorCards(html, setCode)
         .filter((row) => targetNumbers.has(row.number));
       rows.push({
         set_code: setCode,
         source_url: url,
-        source_probe_status: 'ok',
+        source_probe_status: preservedHtmlPath ? 'ok:preserved_html' : 'ok:live_fetch',
+        source_capture_sha256: crypto.createHash('sha256').update(html).digest('hex'),
         target_count: targetNumbers.size,
         source_match_count: sourceRows.length,
         source_rows: sourceRows,
@@ -201,6 +208,7 @@ async function readTcgCollectorSourceRows() {
         set_code: setCode,
         source_url: url,
         source_probe_status: `failed: ${error.message}`,
+        source_capture_sha256: null,
         target_count: targetNumbers.size,
         source_match_count: 0,
         source_rows: [],
