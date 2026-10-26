@@ -38,6 +38,9 @@ type Props = {
 
 const WORK_ITEM_FIELDS = "id,work_item_key,version,state,state_reason,title,summary,domain,risk_level,scope,exclusions,plan_fingerprint,requires_recent_auth,expires_at,created_at,updated_at,operations_agents(agent_key,display_name)";
 const ACTIONABLE_STATES = new Set(["ready_for_review", "deferred"]);
+const ACTIONABLE_STATE_LIST = ["ready_for_review", "deferred"];
+const CURRENT_ITEM_LIMIT = 25;
+const RECENT_ITEM_LIMIT = 12;
 
 function stateTone(state: string) {
   if (["failed", "repair_requested", "expired"].includes(state)) return "border-red-400/50 bg-red-400/10 text-red-200";
@@ -75,6 +78,19 @@ function relativeAge(value: string | null | undefined) {
   return `${Math.round(hours / 24)}d ago`;
 }
 
+function relativeExpiry(value: string | null | undefined) {
+  if (!value) return "Not reported";
+  const timestamp = Date.parse(value);
+  if (!Number.isFinite(timestamp)) return "Unknown";
+  const minutes = Math.round(Math.abs(timestamp - Date.now()) / 60_000);
+  const amount = minutes < 60 ? `${minutes}m` : minutes < 2_880 ? `${Math.round(minutes / 60)}h` : `${Math.round(minutes / 1_440)}d`;
+  return timestamp > Date.now() ? `in ${amount}` : `expired ${amount} ago`;
+}
+
+function isCurrentActionable(row: WorkItem) {
+  return ACTIONABLE_STATES.has(row.state) && Date.parse(row.expires_at) > Date.now();
+}
+
 export default async function FounderOperationsPage({ searchParams }: Props) {
   await requireFounderAccess("/founder/operations");
   const params = (await searchParams) ?? {};
@@ -82,13 +98,26 @@ export default async function FounderOperationsPage({ searchParams }: Props) {
     ? params.work_item_id[0]
     : params.work_item_id;
   const admin = createServerAdminClient();
-  const { data, error } = await admin
-    .from("founder_work_items")
-    .select(WORK_ITEM_FIELDS)
-    .order("created_at", { ascending: false })
-    .order("id", { ascending: false })
-    .limit(100);
-  let rows = (data ?? []) as unknown as WorkItem[];
+  const nowIso = new Date().toISOString();
+  const [currentResult, recentResult] = await Promise.all([
+    admin
+      .from("founder_work_items")
+      .select(WORK_ITEM_FIELDS)
+      .in("state", ACTIONABLE_STATE_LIST)
+      .gt("expires_at", nowIso)
+      .order("created_at", { ascending: false })
+      .order("id", { ascending: false })
+      .limit(CURRENT_ITEM_LIMIT),
+    admin
+      .from("founder_work_items")
+      .select(WORK_ITEM_FIELDS)
+      .order("created_at", { ascending: false })
+      .order("id", { ascending: false })
+      .limit(RECENT_ITEM_LIMIT),
+  ]);
+  const error = currentResult.error ?? recentResult.error;
+  const combined = [...(currentResult.data ?? []), ...(recentResult.data ?? [])] as unknown as WorkItem[];
+  let rows = combined.filter((row, index) => combined.findIndex((candidate) => candidate.id === row.id) === index);
   let requestedItemMessage: string | null = null;
   if (!error && requestedId && !rows.some((row) => row.id === requestedId)) {
     if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(requestedId)) {
@@ -287,11 +316,13 @@ export default async function FounderOperationsPage({ searchParams }: Props) {
                   <dl className="grid grid-cols-[auto_auto] content-start gap-x-3 gap-y-1 text-xs">
                     <dt className="text-stone-500">Agent</dt><dd className="text-right text-stone-300">{row.operations_agents?.display_name ?? "Unknown"}</dd>
                     <dt className="text-stone-500">Version</dt><dd className="text-right font-mono text-stone-300">{row.version}</dd>
-                    <dt className="text-stone-500">Expires</dt><dd className="text-right text-stone-300">{relativeAge(row.expires_at)}</dd>
+                    <dt className="text-stone-500">Expires</dt><dd className={`text-right ${Date.parse(row.expires_at) <= Date.now() ? "text-red-300" : "text-stone-300"}`}>{relativeExpiry(row.expires_at)}</dd>
                   </dl>
                 </div>
-                {ACTIONABLE_STATES.has(row.state) ? (
+                {isCurrentActionable(row) ? (
                   <FounderOperationsDecisionControls workItemId={row.id} title={row.title} />
+                ) : ACTIONABLE_STATES.has(row.state) ? (
+                  <p className="mt-4 border-t border-white/10 pt-4 text-sm text-red-300">This frozen plan expired. Run its discovery agent again to create a current version.</p>
                 ) : null}
                 <details className="mt-4 border-t border-white/10 pt-4">
                   <summary className="cursor-pointer text-sm font-bold text-stone-300">Frozen evidence</summary>

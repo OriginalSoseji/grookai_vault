@@ -117,7 +117,8 @@ export async function getFounderOperationsLiveDashboard(
     admin
       .from("founder_work_items")
       .select("id", { count: "exact", head: true })
-      .in("state", ["ready_for_review", "deferred"]),
+      .in("state", ["ready_for_review", "deferred"])
+      .gt("expires_at", new Date().toISOString()),
     admin.from("operations_commands").select("id", { count: "exact", head: true }).eq("status", "queued"),
     admin.from("operations_commands").select("id", { count: "exact", head: true }).eq("status", "running"),
     admin.from("operations_commands").select("id", { count: "exact", head: true }).eq("status", "failed"),
