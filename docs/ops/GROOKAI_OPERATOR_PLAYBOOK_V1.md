@@ -1,5 +1,29 @@
 # Grookai Operator Playbook V1
 
+## Pricing completion preparation runtime — October 26, 2026
+
+Read `docs/checkpoints/pricing_completion_agent_20261013.md`,
+`docs/contracts/PRICING_COMPLETION_RUNTIME_QUALIFICATION_V1.md`, and
+`docs/contracts/PRICING_COMPLETION_WORKER_V1.md` before operating the installed
+runtime. `grookai-pricing-completion-source.timer` starts the fixed, read-only
+source collector every 15 minutes. A successful source service starts
+`grookai-pricing-completion-preparation.service`, which receives the immutable
+data feed and a credential-free, private-network worker root. This chain prepares
+bounded review packets only. It has no mapping, approval, or price-publication
+authority.
+
+Check the timer, both oneshot services, and their journals together. The source
+service must finish successfully before preparation begins; a preparation
+success cannot repair or excuse a failed source capture. To pause safely, stop
+the timer and let any active source or preparation service reach a terminal
+state. Do not interrupt a healthy preparation cycle merely to deploy code. For
+recovery, preserve the failed journal and output generation, inspect the exact
+failure, reset only the failed unit, run the source service once, and require a
+successful preparation result plus retained queue-history readback before
+enabling the timer again. Never place database or application credentials in the
+preparation root, enable its network, increase its batch beyond the qualified
+500 items, or treat prepared packets as approved writes.
+
 ## Hosted MTG exact-finish backfill — October 23, 2026
 
 Read

@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
 
 import pg from "pg";
+import { exactMappingPlannerDatabaseConfigV1, connectExactMappingPlannerV1 } from "../../backend/pricing/exact_mapping_planner_connection_v1.mjs";
 import {
   trainerKitPilotCardV1,
   trainerKitPilotPlanningAuthorityV1,
@@ -169,12 +170,6 @@ function connectionString() {
     process.env.POSTGRES_URL ||
     ""
   );
-}
-
-function sslConfig(url) {
-  if (/localhost|127\.0\.0\.1|\[::1\]/i.test(url)) return false;
-  const ca = process.env.SUPABASE_DB_CA_CERT?.trim();
-  return ca ? { rejectUnauthorized: true, ca } : { rejectUnauthorized: true };
 }
 
 function sha256(value) {
@@ -570,6 +565,7 @@ async function main() {
   const args = parseArgs(process.argv.slice(2));
   const url = connectionString();
   if (!url) throw new Error("database URL is required");
+  exactMappingPlannerDatabaseConfigV1(url);
   const [commitSha, branch, trackedWorktreeStatus] = await Promise.all([
     git(["rev-parse", "HEAD"]),
     git(["branch", "--show-current"]),
@@ -586,12 +582,7 @@ async function main() {
     throw new Error("coverage artifact is empty or not V1.2");
   }
   const groupedGaps = groupGapRows(gaps);
-  const client = new Client({
-    connectionString: url,
-    ssl: sslConfig(url),
-    application_name: "tcgplayer-market-exact-mapping-plan-v1",
-  });
-  await client.connect();
+  const { client, databaseTarget } = await connectExactMappingPlannerV1({ Client, connectionString: url });
   try {
     await client.query("begin read only");
     await client.query("set local statement_timeout = '120s'");
@@ -650,6 +641,7 @@ async function main() {
       planner_version: PLANNER_VERSION,
       policy_version: TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_3,
       status: findings.length === 0 ? "passed" : "failed",
+      database_target: databaseTarget,
       source_run: sourceRun,
       coverage_gaps_artifact: path
         .relative(REPO_ROOT, args.coverageGaps)
@@ -685,6 +677,7 @@ async function main() {
       planner_version: PLANNER_VERSION,
       policy_version: TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_3,
       mode: "read_only_dry_run",
+      database_target: databaseTarget,
       commit_sha: commitSha,
       branch,
       tracked_worktree_clean: !trackedWorktreeStatus,

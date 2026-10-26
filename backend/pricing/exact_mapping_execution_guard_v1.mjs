@@ -1,10 +1,15 @@
 import assert from 'node:assert/strict';
 import { assertPrintingDatabaseTarget } from '../catalog/master_index_printing_execution_guard_v1.mjs';
+import { MAPPING_READER_ROLE_V1, MAPPING_READER_PROJECT_V1, mappingReaderDatabaseConfigV1,
+  assertMappingReaderSessionV1 } from './exact_mapping_reader_connection_v1.mjs';
 
 export function mappingDatabaseConfig(connectionString, { mode, env = process.env } = {}) {
   assert.ok(['apply', 'dry_run'].includes(mode), 'mapping_database_mode_required');
   assert.notEqual(env.NODE_TLS_REJECT_UNAUTHORIZED, '0', 'mapping_insecure_tls_environment');
   let url = new URL(connectionString);
+  if (url.username === `${MAPPING_READER_ROLE_V1}.${MAPPING_READER_PROJECT_V1}`) {
+    return mappingReaderDatabaseConfigV1(connectionString, { mode, env });
+  }
   assert.ok(['postgres:', 'postgresql:'].includes(url.protocol), 'mapping_database_protocol');
   const local = ['localhost', '127.0.0.1', '[::1]'].includes(url.hostname);
   if (local) {
@@ -24,9 +29,31 @@ export function mappingDatabaseConfig(connectionString, { mode, env = process.en
   };
 }
 
+// The dedicated account must authenticate directly; SET ROLE on a broad login
+// cannot qualify it. Legacy operator connections retain their separate gates.
+export async function assertMappingDatabaseSessionV1(client, databaseConfig) {
+  const url = new URL(databaseConfig.connectionString);
+  if (url.username === `${MAPPING_READER_ROLE_V1}.${MAPPING_READER_PROJECT_V1}`) {
+    return assertMappingReaderSessionV1(client);
+  }
+  return null;
+}
+
 export function mappingTransactionState() {
   return { commit_attempted: false, committed: false, commit_uncertain: false,
     rollback_attempted: false, rollback_proven: false, rollback_uncertain: false };
+}
+
+// New planner receipts distinguish captured/local fixtures from production.
+// Historical receipts retain their existing provenance gates; this guard never
+// upgrades a receipt or authorizes a write. Local fixture applies remain useful.
+export function assertMappingPlanDatabaseTargetV1(sourcePlan, { mode, databaseConfig } = {}) {
+  assert.ok(['apply', 'dry_run'].includes(mode), 'mapping_database_mode_required');
+  const target = new URL(databaseConfig.connectionString);
+  const local = ['localhost', '127.0.0.1', '[::1]'].includes(target.hostname);
+  assert.ok(!(mode === 'apply' && !local &&
+    sourcePlan?.database_target?.kind === 'isolated_local_fixture'),
+  'mapping_fixture_plan_cannot_authorize_production_apply');
 }
 
 export async function commitMappingTransaction(client, state) {
