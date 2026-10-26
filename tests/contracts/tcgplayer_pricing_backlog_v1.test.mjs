@@ -24,6 +24,19 @@ test("read-only pricing backlog audit requires verified remote database TLS", ()
   assert.doesNotMatch(BACKLOG_SCRIPT, /rejectUnauthorized:\s*false/);
 });
 
+test("Pokemon coverage measures physical English cards separately from excluded domains", () => {
+  assert.match(BACKLOG_SCRIPT, /pokemon_catalog_coverage:\s*pokemonCatalogCoverage/);
+  assert.match(BACKLOG_SCRIPT, /PROVEN_UNSTAMPED_PRODUCT_ON_STAMPED_PARENT/);
+  assert.match(BACKLOG_SCRIPT, /edition_sensitive_parents as materialized/);
+  assert.match(BACKLOG_SCRIPT, /edition_sensitive_exact_printing_count_held/);
+  assert.match(BACKLOG_SCRIPT, /coverage_is_conservative:\s*true/);
+  assert.match(BACKLOG_SCRIPT, /card\.identity_domain = 'pokemon_eng_standard'/);
+  assert.match(BACKLOG_SCRIPT, /catalog_set\.identity_domain_default = 'pokemon_eng_standard'/);
+  assert.match(BACKLOG_SCRIPT, /identity_domain in \('pokemon_jpn', 'tcg_pocket_excluded'\)/);
+  assert.match(BACKLOG_SCRIPT, /unpriced_parent_count:\s*parentCount - pricedParentCount/);
+  assert.match(BACKLOG_SCRIPT, /unpriced_exact_printing_count:\s*exactPrintingCount - pricedExactPrintingCount/);
+});
+
 const run = {
   id: "e658d577-a40c-46e8-b115-b3f9a7211507",
   run_key: "gym-release-production-20261014T0214Z",

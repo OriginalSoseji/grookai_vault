@@ -56,6 +56,28 @@ function report() {
         source_products: 25,
       }],
     },
+    pokemon_catalog_coverage: {
+      policy_version: 'POKEMON_PHYSICAL_PRICE_COVERAGE_V1',
+      physical_english: {
+        parent_count: 25792,
+        exact_printing_count: 40843,
+        parents_with_exact_printing_count: 25093,
+        parents_without_exact_printing_count: 699,
+        priced_parent_count: 19575,
+        unpriced_parent_count: 6217,
+        priced_exact_printing_count: 32316,
+        unpriced_exact_printing_count: 8527,
+        edition_sensitive_parent_count_held: 4,
+        edition_sensitive_exact_printing_count_held: 4,
+        coverage_is_conservative: true,
+      },
+      excluded_from_tcgplayer_us: {
+        japanese_parent_count: 31690,
+        japanese_exact_printing_count: 27890,
+        pocket_parent_count: 2012,
+        pocket_exact_printing_count: 6036,
+      },
+    },
   };
 }
 
@@ -118,6 +140,9 @@ test('agent heartbeat summarizes backlog and preserves the next exact group', ()
   assert.equal(summary.verified_projected_gap_rows, 50);
   assert.equal(summary.identity_repair_lanes.mtg.queued_products, 1);
   assert.equal(summary.identity_repair_lanes.mtg.source_products, 14999);
+  assert.equal(summary.pokemon_catalog_coverage.physical_english.unpriced_parent_count, 6217);
+  assert.equal(summary.pokemon_catalog_coverage.physical_english.edition_sensitive_exact_printing_count_held, 4);
+  assert.equal(summary.pokemon_catalog_coverage.excluded_from_tcgplayer_us.pocket_parent_count, 2012);
   assert.equal(summary.completion_reached, false);
   assert.equal(summary.canonical_writes, false);
   assert.equal(summary.publication_writes, false);

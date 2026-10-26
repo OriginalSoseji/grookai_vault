@@ -339,6 +339,7 @@ export function summarizeTcgplayerPricingCompletionRunV1(
   const nextCandidate = exactCandidates[0] ?? null;
   const mtgLane = categoryLane(worklist, 1, identityProductQueue);
   const pokemonLane = categoryLane(worklist, 3, identityProductQueue);
+  const pokemonCatalogCoverage = report.pokemon_catalog_coverage ?? null;
   return {
     agent_version: TCGPLAYER_PRICING_COMPLETION_AGENT_VERSION,
     completion_status: report.status,
@@ -358,6 +359,7 @@ export function summarizeTcgplayerPricingCompletionRunV1(
       mtg: mtgLane,
       pokemon: pokemonLane,
     },
+    pokemon_catalog_coverage: pokemonCatalogCoverage,
     next_group: nextCandidate
       ? {
           source_group_id: integer(nextCandidate.source_group_id),

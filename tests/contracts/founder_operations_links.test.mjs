@@ -22,6 +22,16 @@ const dashboard = {
   sourceSync: null,
   queue: { actionableWorkItems: 0, queuedCommands: 0, runningCommands: 0, failedCommands: 0, openIncidents: 0 },
   pricing: null,
+  pricingCompletion: {
+    runStatus: 'succeeded', completionStatus: 'incomplete', observedAt: '2026-10-25T00:00:00Z',
+    pokemonBacklogRows: 27118, pokemonSourceProducts: 10025, pokemonQueuedProducts: 511,
+    pokemonReviewCandidates: 15, pokemonHeldCandidates: 10, verifiedAutomaticCandidates: 0,
+    blockedMappingProducts: null, physicalPokemonParents: 25792, pricedPhysicalPokemonParents: 19575,
+    unpricedPhysicalPokemonParents: 6217, physicalPokemonExactPrintings: 40843,
+    unpricedPhysicalPokemonExactPrintings: 8527, physicalPokemonParentsWithoutPrinting: 699,
+    editionSensitivePokemonParentsHeld: 4, editionSensitivePokemonExactPrintingsHeld: 4,
+    japanesePokemonParentsExcluded: 31690, pocketParentsExcluded: 2012, nextAction: null,
+  },
   errors: [],
 };
 
@@ -121,6 +131,17 @@ test('normal queue remains bounded with no extra lookup', async () => {
   assert.equal(page.currentFilters[0].column, 'state');
   assert.deepEqual(Array.from(page.currentFilters[0].values), ['ready_for_review', 'deferred']);
   assert.equal(page.currentFilters[1].column, 'expires_at');
+});
+
+test('pricing completion shows the physical English gap and excluded domains', async () => {
+  const html = await load().render(undefined);
+  assert.ok(html.includes('Pokémon pricing completion'));
+  assert.ok(html.includes('Unpriced physical cards'));
+  assert.ok(html.includes('6,217'));
+  assert.ok(html.includes('8,527 exact printings'));
+  assert.ok(html.includes('31,690 Japanese parents'));
+  assert.ok(html.includes('2,012 Pokémon Pocket parents'));
+  assert.ok(html.includes('holds 4 edition-bound printings across 4 parents'));
 });
 
 test('expired actionable history is visible but cannot be approved', async () => {
