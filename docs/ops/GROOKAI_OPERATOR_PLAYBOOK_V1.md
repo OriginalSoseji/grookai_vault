@@ -24,6 +24,31 @@ reader capability is independently qualified and activated. A fixed
 to substitute the broad production database login. Backlog measurement,
 candidate enrichment, and review publication continue without that planner.
 
+The separate `pokemon-tcgplayer-mapping-outcome.yml` lane may convert an
+approved review into an executable founder item only when the approved payload
+also binds exact candidate records and a valid source-backed
+`MASTER_INDEX_MAPPING_AUTHORITY_V1` bundle. Identity-only legacy approvals remain
+visible as blocked evidence; the publisher paginates past them so they cannot
+starve later eligible reviews. The publisher itself performs only a read-only
+production preflight and publishes no mapping or price writes.
+
+An eligible outcome requires a second recent founder approval in Operations.
+The maintenance scheduler then checks out the frozen commit, validates the
+review and Master Index bytes before connecting, revalidates live source and
+parent state inside a serializable transaction, inserts only the exact missing
+`external_mappings` rows, and performs pre-commit plus fresh durable readback.
+The command never publishes prices. Run a later governed pricing publication
+only after the mapping outcome is reconciled and no other publication writer is
+active.
+
+For recovery, preserve the publisher artifact, outcome work item, command run,
+and maintenance artifacts. A failed or uncertain command must be reconciled by
+fresh readback before retry. Do not edit or replace an approved payload, reuse a
+review that lacks Master Index mapping assertions, approve a broadened retry, or
+resume pricing from an unreconciled mapping state. An exact already-applied
+batch is idempotent only when its authority and Master Index fingerprints match
+every durable row.
+
 ## Pricing completion preparation runtime — October 26, 2026
 
 Read `docs/checkpoints/pricing_completion_agent_20261013.md`,
