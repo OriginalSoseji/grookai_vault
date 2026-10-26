@@ -1,4 +1,4 @@
-name: MTG Catalog Supervisor
+name: MTG Frozen Baseline Watchdog
 
 on:
   schedule:

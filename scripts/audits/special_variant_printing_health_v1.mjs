@@ -74,7 +74,10 @@ export function validateHealthMetrics(metrics, expectedCount) {
 }
 
 async function queryMetrics(client, targets) {
-  const result = await client.query(`
+  const targetJson = JSON.stringify(targets);
+  const childIds = targets.map((target) => target.child_id);
+  const parentIds = [...new Set(targets.map((target) => target.card_print_id))];
+  const core = await client.query(`
     with ${targetCte()}
     select
       (select count(*)::int from target) as target_count,
@@ -124,12 +127,6 @@ async function queryMetrics(client, targets) {
         as unexpected_hidden_review_status_count,
       (select count(*)::int
          from target
-         join lateral public.get_public_card_printing_options_v1(
-           array[target.card_print_id], 1000, 0
-         ) public_option on public_option.id = target.child_id)
-        as public_printing_option_leak_count,
-      (select count(*)::int
-         from target
          join public.external_printing_mappings mapping
            on mapping.card_printing_id = target.child_id
           and mapping.active = true) as external_printing_mapping_count,
@@ -151,11 +148,6 @@ async function queryMetrics(client, targets) {
         as conflicting_parent_tcgplayer_mapping_count,
       (select count(*)::int
          from target
-         join public.v_tcgplayer_market_qualification_candidates_v1 candidate
-           on candidate.card_printing_id = target.child_id)
-        as qualification_candidate_hidden_child_count,
-      (select count(*)::int
-         from target
          join public.market_price_qualification_decisions decision
            on decision.card_printing_id = target.child_id
           and decision.eligible = true
@@ -164,14 +156,33 @@ async function queryMetrics(client, targets) {
          from target
          join public.market_price_publication_snapshots snapshot
            on snapshot.card_printing_id = target.child_id)
-        as historical_snapshot_count,
-      (select count(*)::int
-         from target
-         join public.v_market_price_current_v1 current_price
-           on current_price.card_printing_id = target.child_id)
-        as current_price_count
-  `, [JSON.stringify(targets)]);
-  return result.rows[0];
+        as historical_snapshot_count
+  `, [targetJson]);
+
+  // The public option function is intentionally evaluated once for the full
+  // parent set. Calling it laterally for every target repeated the same large
+  // read model 143 times and exhausted the production statement timeout.
+  const publicOptions = await client.query(`
+    select count(*)::int as public_printing_option_leak_count
+      from public.get_public_card_printing_options_v1($1::uuid[], 100000, 0) public_option
+     where public_option.id = any($2::uuid[])
+  `, [parentIds, childIds]);
+  const qualification = await client.query(`
+    select count(*)::int as qualification_candidate_hidden_child_count
+      from public.v_tcgplayer_market_qualification_candidates_v1 candidate
+     where candidate.card_printing_id = any($1::uuid[])
+  `, [childIds]);
+  const currentPrice = await client.query(`
+    select count(*)::int as current_price_count
+      from public.v_market_price_current_v1 current_price
+     where current_price.card_printing_id = any($1::uuid[])
+  `, [childIds]);
+  return {
+    ...core.rows[0],
+    ...publicOptions.rows[0],
+    ...qualification.rows[0],
+    ...currentPrice.rows[0],
+  };
 }
 
 async function queryParentMappingRows(client, targets) {

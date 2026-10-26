@@ -20,6 +20,8 @@ jobs:
       SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
       SUPABASE_PROJECT_REF: ycdxbpibncqcchqiihfz
       SUPABASE_ORGANIZATION_SLUG: rksadomjkuoxvrbhsmxu
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      SUPABASE_DB_CA_CERT: ${{ secrets.SUPABASE_DB_CA_CERT }}
 
     steps:
       - name: Checkout
@@ -30,8 +32,19 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Verify access token
-        run: test -n "$SUPABASE_ACCESS_TOKEN"
+      - name: Install audit dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Verify audit credentials
+        run: |
+          test -n "$SUPABASE_ACCESS_TOKEN"
+          test -n "$SUPABASE_DB_URL"
+
+      - name: Capture read-only database storage breakdown
+        run: >-
+          node scripts/audits/supabase_production_storage_breakdown_v1.mjs
+          --output-dir audit-artifacts/supabase-production-capacity
+          --limit 30
 
       - name: Run read-only capacity audit
         run: >-
@@ -44,6 +57,9 @@ jobs:
       - name: Publish workflow summary
         if: always()
         run: |
+          if [ -f audit-artifacts/supabase-production-capacity/STORAGE_BREAKDOWN.md ]; then
+            cat audit-artifacts/supabase-production-capacity/STORAGE_BREAKDOWN.md >> "$GITHUB_STEP_SUMMARY"
+          fi
           if [ -f audit-artifacts/supabase-production-capacity/SUMMARY.md ]; then
             cat audit-artifacts/supabase-production-capacity/SUMMARY.md >> "$GITHUB_STEP_SUMMARY"
           fi

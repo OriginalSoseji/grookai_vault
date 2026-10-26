@@ -2,8 +2,9 @@
 
 ## Purpose
 
-The MTG catalog supervisor is a read-only watchdog. It proves current catalog
-coverage and records the next eligible shadow candidate without dispatching
+The MTG catalog supervisor is a read-only frozen-baseline watchdog. It proves
+the retained August 2026 catalog coverage and records the next eligible shadow candidate
+from that historical manifest without dispatching
 canonical ingestion from any scheduled invocation.
 
 It is an observer, not a writer. The historical frozen writer is outside
