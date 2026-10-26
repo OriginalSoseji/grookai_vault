@@ -14,7 +14,10 @@ import { fileURLToPath } from "node:url";
 
 import pg from "pg";
 import { assertMasterMappingBatchAuthority } from "../pricing/master_index_mapping_authority_v1.mjs";
-import { mappingDatabaseConfig, mappingTransactionState, commitMappingTransaction,
+import { buildPricingCompletionMappingReleaseV1, PRICING_COMPLETION_MAPPING_RELEASE_MODE_V1 } from "../pricing/pricing_completion_mapping_release_v1.mjs";
+import {MAPPING_OPERATOR_SNAPSHOT_MODE_V1,MAPPING_OPERATOR_SCOPE_V1,buildMappingOperatorSnapshotPlanV1,
+  readMappingOperatorLiveStateV1,assertMappingOperatorLiveStateV1} from "../pricing/exact_mapping_operator_snapshot_v1.mjs";
+import { mappingDatabaseConfig, assertMappingDatabaseSessionV1, assertMappingPlanDatabaseTargetV1, mappingTransactionState, commitMappingTransaction,
   rollbackMappingTransaction } from "../pricing/exact_mapping_execution_guard_v1.mjs";
 
 import {
@@ -216,20 +219,73 @@ async function loadFrozenPlan(mode) {
   const runPlan = JSON.parse(
     await fs.readFile(path.join(planDir, "run_plan.json"), "utf8"),
   );
+  const offlineReviewed = runPlan.mode === PRICING_COMPLETION_MAPPING_RELEASE_MODE_V1;
+  const operatorSnapshot = runPlan.mode === MAPPING_OPERATOR_SNAPSHOT_MODE_V1;
+  let operatorSnapshotProof = null;
+  const operatorSnapshotFiles = [];
+  if (offlineReviewed && mode !== "dry_run") {
+    throw new Error("OFFLINE_REVIEWED_EXPORT_IS_DRY_RUN_ONLY");
+  }
   if (
     summary.status !== "passed" ||
     Number(summary.counts?.candidates) !== candidates.length ||
-    runPlan.mode !== "read_only_dry_run"
+    (runPlan.mode !== "read_only_dry_run" && !offlineReviewed && !operatorSnapshot)
   ) {
     throw new Error("SOURCE_PLAN_NOT_RECONCILED");
   }
   if (!/^[a-f0-9]{40}$/.test(text(runPlan.commit_sha))) {
     throw new Error("SOURCE_PLAN_COMMIT_INVALID");
   }
+  if (offlineReviewed) {
+    const authorityPath = resolveRepoPath(process.env[MASTER_AUTHORITY_PATH_ENV], MASTER_AUTHORITY_PATH_ENV);
+    const release = buildPricingCompletionMappingReleaseV1({
+      selectedBytes: candidateBytes,
+      authorityBytes: await fs.readFile(authorityPath),
+      originalPlanBytes: await fs.readFile(path.join(planDir, "source_plan.json")),
+      originalReceiptBytes: await fs.readFile(path.join(planDir, "source_receipt.json")),
+      expectedHashes: { selected: expectedSha, authority: text(process.env[MASTER_AUTHORITY_SHA_ENV]),
+        originalPlan: runPlan.original_plan_sha256, originalReceipt: runPlan.original_receipt_sha256 },
+      releaseRepository: runPlan.release_repository_observation,
+    });
+    for (const name of ["summary.json", "run_plan.json"]) {
+      if (!release.files[name].equals(await fs.readFile(path.join(planDir, name)))) {
+        throw new Error("OFFLINE_REVIEWED_EXPORT_METADATA_MISMATCH");
+      }
+    }
+  }
+
+  if (operatorSnapshot) {
+    if (process.env.TCGPLAYER_EXACT_MAPPING_OPERATOR_SNAPSHOT_ENABLED !== "true") throw new Error("OPERATOR_SNAPSHOT_NOT_ENABLED");
+    const trusted = {scope:MAPPING_OPERATOR_SCOPE_V1,selectedSha256:expectedSha,authoritySha256:text(process.env[MASTER_AUTHORITY_SHA_ENV])};
+    for (const [key,suffix] of Object.entries({captureSha256:"CAPTURE_SHA256",populationSha256:"POPULATION_SHA256",collectorSha256:"COLLECTOR_SHA256",
+      sqlSha256:"SQL_SHA256",caSha256:"CA_SHA256",runId:"RUN_ID",publicationSetId:"PUBLICATION_SET_ID",sourceSyncRunId:"SOURCE_SYNC_RUN_ID"})) {
+      trusted[key] = text(process.env[`TCGPLAYER_EXACT_MAPPING_OPERATOR_${suffix}`]);
+    }
+    const result = buildMappingOperatorSnapshotPlanV1({
+      captureBytes:await fs.readFile(path.join(planDir,"operator_capture.json")),populationBytes:await fs.readFile(path.join(planDir,"reviewed_population.jsonl")),
+      selectedBytes:candidateBytes,authorityBytes:await fs.readFile(resolveRepoPath(process.env[MASTER_AUTHORITY_PATH_ENV],MASTER_AUTHORITY_PATH_ENV)),trusted,
+      producer:{commitSha:runPlan.commit_sha,branch:runPlan.branch,trackedWorktreeClean:runPlan.tracked_worktree_clean,observedAt:runPlan.producer_observed_at},
+    });
+    for (const name of ["summary.json","run_plan.json"]) {
+      if (!result.files[name].equals(await fs.readFile(path.join(planDir,name)))) throw new Error("OPERATOR_SNAPSHOT_METADATA_MISMATCH");
+    }
+    operatorSnapshotProof = result.proof;
+    for (const [name,expected] of [["operator_capture.json",trusted.captureSha256],["reviewed_population.jsonl",trusted.populationSha256],
+      ["summary.json",sha256(result.files["summary.json"])],["run_plan.json",sha256(result.files["run_plan.json"])]]) {
+      operatorSnapshotFiles.push({file:path.join(planDir,name),sha256:expected});
+    }
+    operatorSnapshotFiles.push({file:candidatePath,sha256:expectedSha});
+  }
 
   const commitSha = git(["rev-parse", "HEAD"]);
   const branch = git(["branch", "--show-current"]);
   const trackedStatus = git(["status", "--porcelain", "--untracked-files=no"]);
+  if (operatorSnapshot) {
+    if (!text(process.env.TCGPLAYER_EXACT_MAPPING_EXPECTED_BRANCH) || branch !== text(process.env.TCGPLAYER_EXACT_MAPPING_EXPECTED_BRANCH) || runPlan.branch !== branch) throw new Error("OPERATOR_SNAPSHOT_BRANCH_MISMATCH");
+    if (trackedStatus) throw new Error("TRACKED_WORKTREE_NOT_CLEAN");
+    if (commitSha !== text(process.env[EXPECTED_COMMIT_ENV]) || runPlan.commit_sha !== text(process.env[EXPECTED_PLAN_COMMIT_ENV])) throw new Error("OPERATOR_SNAPSHOT_PRODUCER_COMMIT_MISMATCH");
+    try { git(["merge-base","--is-ancestor",runPlan.commit_sha,commitSha]); } catch { throw new Error("SOURCE_PLAN_COMMIT_NOT_ANCESTOR"); }
+  }
   if (mode === "apply") {
     const expectedCommitSha = text(process.env[EXPECTED_COMMIT_ENV]);
     if (!/^[a-f0-9]{40}$/.test(expectedCommitSha)) {
@@ -284,7 +340,15 @@ async function loadFrozenPlan(mode) {
     commitSha,
     branch,
     trackedWorktreeClean: !trackedStatus,
+    operatorSnapshotProof,
+    operatorSnapshotFiles,
   };
+}
+
+async function assertOperatorSnapshotFilesUnchanged(frozen) {
+  for (const item of frozen.operatorSnapshotFiles) {
+    if (sha256(await fs.readFile(item.file)) !== item.sha256) throw new Error("OPERATOR_SNAPSHOT_FILE_CHANGED");
+  }
 }
 
 async function loadInactiveRepairAuthority(selection) {
@@ -822,6 +886,7 @@ async function main() {
   const url = connectionString();
   if (!url) throw new Error("database connection string is required");
   const databaseConfig = mappingDatabaseConfig(url, { mode });
+  assertMappingPlanDatabaseTargetV1(frozen.sourcePlan, { mode, databaseConfig });
   const client = new Client(databaseConfig);
   let inserted = [];
   let repaired = [];
@@ -832,12 +897,18 @@ async function main() {
   try {
     await client.connect();
     if (databaseConfig.ssl && client.connection.stream.authorized !== true) throw new Error("MAPPING_TLS_NOT_AUTHORIZED");
+    await assertMappingDatabaseSessionV1(client, databaseConfig);
     await client.query(
       mode === "apply"
         ? "begin isolation level serializable"
         : "begin read only",
     );
     await client.query("set local statement_timeout = '120s'");
+    if (frozen.operatorSnapshotProof) {
+      await client.query("set local time zone 'UTC'");
+      await client.query("set local lock_timeout = '3s'");
+      assertMappingOperatorLiveStateV1(frozen.operatorSnapshotProof,await readMappingOperatorLiveStateV1(client,frozen.operatorSnapshotProof,{lockPointer:mode==="apply"}));
+    }
     if (mode === "apply") {
       await client.query(
         "select pg_advisory_xact_lock(hashtext('tcgplayer_market_exact_mapping_apply_v1'))",
@@ -876,6 +947,7 @@ async function main() {
       };
     }
     assertMasterMappingBatchAuthority(selection.selected, masterAuthority, { liveTargets: live.targets });
+    await assertOperatorSnapshotFilesUnchanged(frozen);
     if (sha256(await fs.readFile(masterAuthorityPath)) !== masterAuthoritySha) throw new Error("MASTER_AUTHORITY_CHANGED_DURING_PREFLIGHT");
     if (
       inactiveRepair &&
@@ -998,6 +1070,10 @@ async function main() {
           inactiveRepair.authoritySha256
       ) {
         throw new Error("INACTIVE_REPAIR_AUTHORITY_CHANGED_BEFORE_COMMIT");
+      }
+      if (frozen.operatorSnapshotProof) {
+        await assertOperatorSnapshotFilesUnchanged(frozen);
+        assertMappingOperatorLiveStateV1(frozen.operatorSnapshotProof,await readMappingOperatorLiveStateV1(client,frozen.operatorSnapshotProof));
       }
       await commitMappingTransaction(client, transaction);
       readback = await readAppliedMappings(
