@@ -1,0 +1,82 @@
+{
+  "generated_at": "2026-10-26T15:11:35.381Z",
+  "package_id": "IMG-MEP-FINAL-EXACT-HOLO-IMAGE-REPAIR-V1",
+  "mode": "real_apply",
+  "db_writes_performed": true,
+  "storage_uploads_performed": true,
+  "migrations_created": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "target_table": "card_printings",
+  "parent_overwrite_allowed": false,
+  "storage_bucket": "user-card-images",
+  "environment_sanity": {
+    "project_ref": "ycdxbpibncqcchqiihfz",
+    "database_project_ref": "ycdxbpibncqcchqiihfz",
+    "http_project_ref": "ycdxbpibncqcchqiihfz",
+    "expected_project_ref": "ycdxbpibncqcchqiihfz",
+    "project_ref_verified": true,
+    "card_prints": 172370,
+    "sets": 3409,
+    "card_print_traits": 32903,
+    "invariants_passed": true
+  },
+  "source_rows": 3,
+  "fingerprint": "b367949ddd84e4bd084a850db043c7d4994a03c05ae07c23ce76e5790b945d4a",
+  "storage_uploaded_rows": 3,
+  "db_updated_rows": 3,
+  "committed": true,
+  "uploaded_storage_paths": [
+    "warehouse-derived/image-truth-v1/mep-final-exact/mep/gv-pk-mep-072-holo/4e2efae1ee020cbb2690c698.jpg",
+    "warehouse-derived/image-truth-v1/mep-final-exact/mep/gv-pk-mep-073-holo/74ab9fbd4473c96ac343f844.jpg",
+    "warehouse-derived/image-truth-v1/mep-final-exact/mep/gv-pk-mep-088-holo/08d6d68f0bca8d75948780a8.jpg"
+  ],
+  "rows": [
+    {
+      "card_printing_id": "f788ae03-6a8e-446d-ba85-2297d9d6c7c0",
+      "card_print_id": "b51a0069-2f8c-4c6d-bae7-8ebdc34339df",
+      "parent_gv_id": "GV-PK-MEP-072",
+      "printing_gv_id": "GV-PK-MEP-072-HOLO",
+      "set_code": "mep",
+      "number": "072",
+      "card_name": "Mega Clefable ex",
+      "finish_key": "holo",
+      "variant_key": "",
+      "source_url": "https://www.tcgplayer.com/product/696607/pokemon-me-mega-evolution-promo-mega-clefable-ex-072",
+      "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/696607_in_1000x1000.jpg",
+      "image_path": "warehouse-derived/image-truth-v1/mep-final-exact/mep/gv-pk-mep-072-holo/4e2efae1ee020cbb2690c698.jpg",
+      "image_status": "exact"
+    },
+    {
+      "card_printing_id": "b93fed6a-7dce-44af-ace8-652b000364e7",
+      "card_print_id": "9e37deec-786d-4f22-bf63-28350e6dc523",
+      "parent_gv_id": "GV-PK-MEP-073",
+      "printing_gv_id": "GV-PK-MEP-073-HOLO",
+      "set_code": "mep",
+      "number": "073",
+      "card_name": "Mega Gengar ex",
+      "finish_key": "holo",
+      "variant_key": "",
+      "source_url": "https://www.tcgplayer.com/product/696608/pokemon-me-mega-evolution-promo-mega-gengar-ex-073",
+      "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/696608_in_1000x1000.jpg",
+      "image_path": "warehouse-derived/image-truth-v1/mep-final-exact/mep/gv-pk-mep-073-holo/74ab9fbd4473c96ac343f844.jpg",
+      "image_status": "exact"
+    },
+    {
+      "card_printing_id": "1a114f0e-4ac6-40b2-9420-2d393356d98f",
+      "card_print_id": "6a9d3fe6-d3b2-4f79-9eb2-b7b06eb68699",
+      "parent_gv_id": "GV-PK-MEP-088",
+      "printing_gv_id": "GV-PK-MEP-088-HOLO",
+      "set_code": "mep",
+      "number": "088",
+      "card_name": "Zarude",
+      "finish_key": "holo",
+      "variant_key": "",
+      "source_url": "https://www.tcgplayer.com/product/706193/pokemon-me-mega-evolution-promo-zarude-088",
+      "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/706193_in_1000x1000.jpg",
+      "image_path": "warehouse-derived/image-truth-v1/mep-final-exact/mep/gv-pk-mep-088-holo/08d6d68f0bca8d75948780a8.jpg",
+      "image_status": "exact"
+    }
+  ],
+  "proof_hash": "766fdfbdaa070982105e436bf6bf80dc125e496d07891ec7f94859b1b79ea398"
+}
