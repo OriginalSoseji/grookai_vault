@@ -1,6 +1,6 @@
 # English Master Index Source Agreement V1
 
-Generated: 2026-10-25T08:40:59.897Z
+Generated: 2026-10-26T09:18:32.157Z
 
 API agreement is separated from master truth. Unknown or conflicting finish truth fails closed.
 
@@ -163,7 +163,7 @@ API agreement is separated from master truth. Unknown or conflicting finish trut
 | tcgdex | 49421 |
 | tcgnav_exact_finish | 1 |
 | tcgplayer | 4 |
-| tcgplayer_price_guide | 24007 |
+| tcgplayer_price_guide | 24017 |
 | tcgplayer_pro_catalog_page | 1 |
 | tcgplayer_product_675813 | 1 |
 | tcgplayer_product_675814 | 1 |
@@ -759,8 +759,8 @@ API agreement is separated from master truth. Unknown or conflicting finish trut
 | --- | --- |
 | api_agreed | 1 |
 | candidate_unconfirmed | 141 |
-| human_source_verified | 2608 |
-| master_verified | 37897 |
+| human_source_verified | 2609 |
+| master_verified | 37896 |
 
 ## Reverse Holo Disagreement Sample
 
