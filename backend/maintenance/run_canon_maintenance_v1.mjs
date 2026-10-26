@@ -26,6 +26,7 @@ export const CANON_MAINTENANCE_FILES_V1 = [
   'backend/maintenance/energy_alias_truth_review_apply_v1.mjs',
   'backend/maintenance/residual_alias_truth_review_apply_v1.mjs',
   'backend/maintenance/master_evidence_alias_truth_review_apply_v1.mjs',
+  'backend/maintenance/pokemon_tcgplayer_mapping_outcome_apply_v1.mjs',
   'backend/maintenance/review_lead_alias_truth_review_apply_v1.mjs',
   'backend/maintenance/tcgplayer_market_exact_mapping_apply_v1.mjs',
   'backend/maintenance/wcd_team_rushdown_identity_apply_v1.mjs',

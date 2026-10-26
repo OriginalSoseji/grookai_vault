@@ -1,0 +1,63 @@
+name: Pokemon TCGPlayer Mapping Outcome
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "7,22,37,52 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pokemon-tcgplayer-mapping-outcome-v1
+  cancel-in-progress: false
+
+jobs:
+  publish-approved-outcomes:
+    if: github.event_name == 'workflow_dispatch' || vars.FOUNDER_OPERATIONS_CONTROL_PLANE_ACTIVE == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PROD_SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
+      SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
+      SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      SUPABASE_DB_CA_CERT: ${{ secrets.SUPABASE_DB_CA_CERT }}
+      PGOPTIONS: "-c default_transaction_read_only=on"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Validate Pokemon mapping outcome contracts
+        run: |
+          node --check backend/operations/pokemon_tcgplayer_mapping_outcome_v1.mjs
+          node --check backend/maintenance/pokemon_tcgplayer_mapping_outcome_apply_v1.mjs
+          node --check scripts/workers/pokemon_tcgplayer_mapping_outcome_publisher_v1.mjs
+          node --check scripts/workers/founder_outcome_workflow_executor_v1.mjs
+          node --test tests/contracts/pokemon_tcgplayer_mapping_outcome_v1.test.mjs
+
+      - name: Preflight and publish approved Pokemon mapping outcomes
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT_DIR="$RUNNER_TEMP/pokemon-tcgplayer-mapping-outcome-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+          echo "OUT_DIR=$OUT_DIR" >> "$GITHUB_ENV"
+          node scripts/workers/pokemon_tcgplayer_mapping_outcome_publisher_v1.mjs \
+            --publish \
+            --out-dir="$OUT_DIR"
+
+      - name: Preserve outcome evidence
+        if: always() && env.OUT_DIR != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: pokemon-tcgplayer-mapping-outcome-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ env.OUT_DIR }}
+          if-no-files-found: error
+          retention-days: 90

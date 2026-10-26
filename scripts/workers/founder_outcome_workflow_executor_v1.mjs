@@ -18,6 +18,11 @@ import {
   validateCatalogFounderOutcomePackageV1,
   validateCatalogWriterResultV1,
 } from "../../backend/operations/catalog_founder_outcome_v1.mjs";
+import {
+  buildPokemonTcgplayerMappingWriterInvocationV1,
+  validatePokemonTcgplayerMappingOutcomePackageV1,
+  validatePokemonTcgplayerMappingWriterResultV1,
+} from "../../backend/operations/pokemon_tcgplayer_mapping_outcome_v1.mjs";
 
 const ROOT = path.resolve(import.meta.dirname, "../..");
 
@@ -133,6 +138,69 @@ function buildStageHandlers({ headSha, outDir }) {
       const writer = CATALOG_OUTCOME_WRITER_REGISTRY_V1[outcomePackage.writer_key];
       const summary = JSON.parse(await fs.readFile(path.join(writerDir, writer.summary_file), "utf8"));
       return validateCatalogWriterResultV1(outcomePackage, summary);
+    },
+    async verify_pokemon_mapping_scope_v1({ stage, workflow }) {
+      const outcomePackage = stage.expected_effects?.pokemon_mapping_outcome_package;
+      validatePokemonTcgplayerMappingOutcomePackageV1(outcomePackage, {
+        sourceCommitSha: headSha,
+      });
+      return {
+        reconciled: true,
+        verification: "pokemon_mapping_scope_validated",
+        stage_fingerprint: stage.stage_fingerprint,
+        workflow_fingerprint: workflow.workflow_fingerprint,
+        authority_fingerprint_sha256:
+          outcomePackage.authority.authority_fingerprint_sha256,
+        master_mapping_authority_fingerprint:
+          outcomePackage.authority.master_mapping_authority.fingerprint,
+        expected_mapping_count: outcomePackage.authority.expected_mapping_count,
+        canonical_writes: false,
+      };
+    },
+    async apply_pokemon_mapping_plan_v1({ stage }) {
+      const outcomePackage = stage.expected_effects?.pokemon_mapping_outcome_package;
+      validatePokemonTcgplayerMappingOutcomePackageV1(outcomePackage, {
+        sourceCommitSha: headSha,
+      });
+      const writerDir = path.join(outDir, "pokemon_tcgplayer_mapping_writer");
+      const invocation = buildPokemonTcgplayerMappingWriterInvocationV1(
+        outcomePackage,
+        { headSha, outDir: writerDir },
+      );
+      await fs.mkdir(writerDir, { recursive: true });
+      await writeJson(path.join(writerDir, "authority.json"), invocation.authority);
+      await writeJson(path.join(writerDir, "invocation.json"), {
+        authority_fingerprint_sha256:
+          outcomePackage.authority.authority_fingerprint_sha256,
+        master_mapping_authority_fingerprint:
+          outcomePackage.authority.master_mapping_authority.fingerprint,
+        source_commit_sha: headSha,
+        expected_mapping_count: outcomePackage.authority.expected_mapping_count,
+        environment_keys: Object.keys(invocation.env).sort(),
+        secrets_excluded: true,
+      });
+      const execution = spawnSync(process.execPath, invocation.args, {
+        cwd: ROOT,
+        env: { ...process.env, ...invocation.env },
+        encoding: "utf8",
+        maxBuffer: 64 * 1024 * 1024,
+      });
+      await writeJson(path.join(writerDir, "executor_process.json"), {
+        exit_code: execution.status,
+        signal: execution.signal,
+        stdout: execution.stdout,
+        stderr: execution.stderr,
+      });
+      if (execution.status !== 0) {
+        throw new Error(
+          `Pokemon mapping writer failed (${execution.status}): ${String(execution.stderr ?? "").slice(-2000)}`,
+        );
+      }
+      const summary = JSON.parse(await fs.readFile(
+        path.join(writerDir, invocation.summary_file),
+        "utf8",
+      ));
+      return validatePokemonTcgplayerMappingWriterResultV1(outcomePackage, summary);
     },
   });
 }

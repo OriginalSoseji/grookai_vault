@@ -47,6 +47,15 @@ export const FOUNDER_OUTCOME_WORKFLOW_RECIPE_REGISTRY_V1 = Object.freeze([
     max_stages: 2,
     allowed_modes: Object.freeze(["read_only", "canonical_write"]),
   }),
+  Object.freeze({
+    workflow_key: "pokemon_tcgplayer_mapping_apply_v1",
+    stage_handlers: Object.freeze([
+      "verify_pokemon_mapping_scope_v1",
+      "apply_pokemon_mapping_plan_v1",
+    ]),
+    max_stages: 2,
+    allowed_modes: Object.freeze(["read_only", "canonical_write"]),
+  }),
 ]);
 
 function clean(value) {
