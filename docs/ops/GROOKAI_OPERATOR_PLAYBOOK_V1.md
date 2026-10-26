@@ -3547,6 +3547,25 @@ reduces contention without widening the 45-minute freshness threshold. An active
 workflow and a successful manual audit do not prove timely scheduled execution.
 Verify actual `schedule` events; report stale evidence honestly if delays persist.
 
+## Supabase production capacity audit — October 25, 2026
+
+The `Supabase Production Capacity Audit (read-only)` workflow runs every six
+hours and on manual dispatch. It requires the existing `SUPABASE_ACCESS_TOKEN`
+for the Supabase management read and `SUPABASE_DB_URL` for the database storage
+breakdown. `SUPABASE_DB_CA_CERT` supplies the production database CA when the
+connection requires it. The workflow performs read-only queries and must not be
+used to delete, vacuum, resize, or otherwise mutate production storage.
+
+Each run uploads the sanitized `supabase-production-capacity-audit` artifact for
+30 days. `audit-artifacts/supabase-production-capacity/SUMMARY.md` and its JSON
+source report managed disk utilization and the strict capacity gate.
+`audit-artifacts/supabase-production-capacity/STORAGE_BREAKDOWN.md` and
+`storage_breakdown.json` report the largest relations and database totals so an
+operator can identify the source of growth before choosing retention cleanup or
+a disk increase. Both Markdown reports are also appended to the GitHub workflow
+summary. Preserve the 85 percent gate; investigate the named relations or add
+capacity instead of weakening the threshold.
+
 ## Market Evidence Ollama scheduled review — October 15, 2026
 
 The Windows task `Grookai Market Evidence Ollama` runs hourly from

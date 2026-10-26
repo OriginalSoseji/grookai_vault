@@ -73,7 +73,10 @@ test('health implementation opens a read-only transaction and has no durable mut
   assert.match(source, /begin read only/);
   assert.match(source, /get_public_card_printing_options_v1/);
   assert.doesNotMatch(source, /join\s+lateral\s+public\.get_public_card_printing_options_v1/i);
-  assert.match(source, /get_public_card_printing_options_v1\(\$1::uuid\[\], 100000, 0\)/);
+  assert.match(source, /publicOptionPageSize = 1000/);
+  assert.match(source, /get_public_card_printing_options_v1\(\$1::uuid\[\], \$2, \$3\)/);
+  assert.match(source, /offset \+= publicOptionPageSize/);
+  assert.doesNotMatch(source, /get_public_card_printing_options_v1\([^\n]*100000/i);
   assert.match(source, /v_tcgplayer_market_qualification_candidates_v1/);
   assert.match(source, /v_market_price_current_v1/);
   assert.doesNotMatch(source, /\binsert\s+into\b/i);

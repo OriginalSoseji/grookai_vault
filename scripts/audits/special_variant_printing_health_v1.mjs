@@ -159,14 +159,24 @@ async function queryMetrics(client, targets) {
         as historical_snapshot_count
   `, [targetJson]);
 
-  // The public option function is intentionally evaluated once for the full
-  // parent set. Calling it laterally for every target repeated the same large
-  // read model 143 times and exhausted the production statement timeout.
-  const publicOptions = await client.query(`
-    select count(*)::int as public_printing_option_leak_count
-      from public.get_public_card_printing_options_v1($1::uuid[], 100000, 0) public_option
-     where public_option.id = any($2::uuid[])
-  `, [parentIds, childIds]);
+  // The public option function is intentionally evaluated once per bounded
+  // page for the full parent set. Calling it laterally for every target
+  // repeated the same large read model 143 times and exhausted the production
+  // statement timeout. Its contract caps each page at 1,000 rows.
+  const publicChildIds = new Set();
+  const publicOptionPageSize = 1000;
+  for (let offset = 0; ; offset += publicOptionPageSize) {
+    const page = await client.query(`
+      select public_option.id::text as id
+        from public.get_public_card_printing_options_v1($1::uuid[], $2, $3) public_option
+    `, [parentIds, publicOptionPageSize, offset]);
+    for (const row of page.rows) publicChildIds.add(row.id);
+    if (page.rows.length < publicOptionPageSize) break;
+  }
+  const publicPrintingOptionLeakCount = childIds.reduce(
+    (count, childId) => count + Number(publicChildIds.has(childId)),
+    0,
+  );
   const qualification = await client.query(`
     select count(*)::int as qualification_candidate_hidden_child_count
       from public.v_tcgplayer_market_qualification_candidates_v1 candidate
@@ -179,7 +189,7 @@ async function queryMetrics(client, targets) {
   `, [childIds]);
   return {
     ...core.rows[0],
-    ...publicOptions.rows[0],
+    public_printing_option_leak_count: publicPrintingOptionLeakCount,
     ...qualification.rows[0],
     ...currentPrice.rows[0],
   };
