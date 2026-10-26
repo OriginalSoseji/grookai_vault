@@ -3975,6 +3975,9 @@ export async function getExploreRowsForCombinedSearch(
   const namePagesStarted = Date.now();
   const namedRows = await fetchCompleteNamedCardRows(supabase, { ...options, gameScope });
   if (options.searchTimings) options.searchTimings.name_pages = Date.now() - namePagesStarted;
+  const explicitEditionRows = gameScope === "pokemon"
+    ? await fetchExplicitEditionParentRows(options.stampLabels ?? [])
+    : [];
   if (namedRows !== null) {
     // V4 enforces the same visibility predicates as card_prints SELECT and
     // already returns these parent fields. It omits printed_total, so fraction
@@ -3989,7 +3992,11 @@ export async function getExploreRowsForCombinedSearch(
       ? namedRows
       : await fetchCardRowsByIds(namedRows.map((row) => row.id));
     if (options.searchTimings) options.searchTimings.parent_read = Date.now() - parentReadStarted;
-    return enrichCompleteSearchParents(parents, options, supabase);
+    return enrichCompleteSearchParents(
+      mergeCardPrintLookupRows(parents, explicitEditionRows),
+      options,
+      supabase,
+    );
   }
   const parents: CardPrintLookupRow[] = [];
   const tokens = getSmartDiscoveryTextTokens(options.textQuery);
@@ -4038,7 +4045,11 @@ export async function getExploreRowsForCombinedSearch(
     if (!nextId || nextId === afterId) throw new Error("Combined search could not advance to the next catalog page");
     afterId = nextId;
   }
-  return enrichCompleteSearchParents(parents, options, supabase);
+  return enrichCompleteSearchParents(
+    mergeCardPrintLookupRows(parents, explicitEditionRows),
+    options,
+    supabase,
+  );
 }
 
 async function enrichCompleteSearchParents(
