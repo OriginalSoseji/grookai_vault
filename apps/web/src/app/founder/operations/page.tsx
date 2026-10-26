@@ -224,14 +224,27 @@ export default async function FounderOperationsPage({ searchParams }: Props) {
 
       <PageSection spacing="default">
         <SectionHeader
-          title="Pokemon pricing completion"
-          description="The automatic exact-mapping lane and the identities that still need your review are tracked separately. Counts come from the latest production completion-agent run."
+          title="Pokémon pricing completion"
+          description="Physical English card coverage, source mapping work, and founder review are tracked separately. Japanese cards and Pokémon Pocket never inflate the TCGPlayer USD gap."
         />
         {completion ? (
           <div className="grid gap-px overflow-hidden rounded-lg border border-white/10 bg-white/10 sm:grid-cols-2 xl:grid-cols-4">
             {[
-              ["Missing price rows", completion.pokemonBacklogRows, `${formatNumber(completion.pokemonSourceProducts)} Pokemon products`],
-              ["Queued for repair", completion.pokemonQueuedProducts, "mapped-source gaps"],
+              [
+                "Priced physical cards",
+                completion.pricedPhysicalPokemonParents,
+                completion.physicalPokemonParents === null
+                  ? "catalog census pending"
+                  : `${formatNumber(completion.physicalPokemonParents)} eligible parents`,
+              ],
+              [
+                "Unpriced physical cards",
+                completion.unpricedPhysicalPokemonParents,
+                completion.unpricedPhysicalPokemonExactPrintings === null
+                  ? "exact-printing census pending"
+                  : `${formatNumber(completion.unpricedPhysicalPokemonExactPrintings)} exact printings`,
+              ],
+              ["Queued mapping products", completion.pokemonQueuedProducts, `${formatNumber(completion.pokemonBacklogRows)} source rows`],
               [
                 "Ready for review",
                 completion.pokemonReviewCandidates,
@@ -239,7 +252,6 @@ export default async function FounderOperationsPage({ searchParams }: Props) {
                   ? "one proposed parent each"
                   : `${formatNumber(completion.pokemonHeldCandidates)} held for identity conflicts`,
               ],
-              ["Automatic exact", completion.verifiedAutomaticCandidates, "fully verified this cycle"],
             ].map(([label, value, detail]) => (
               <div key={String(label)} className="bg-[#171814] p-4 sm:p-5">
                 <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-stone-500">{label}</p>
@@ -254,13 +266,25 @@ export default async function FounderOperationsPage({ searchParams }: Props) {
           <div className="gv-soft-surface px-5 py-6 text-sm text-stone-400">Pricing completion has not reported a production run.</div>
         )}
         {completion ? (
-          <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-xs text-stone-400">
-            <p>
-              Agent {completion.runStatus}; backlog {completion.completionStatus}; {completion.blockedMappingProducts === null
-                ? "the automatic exact planner is held pending its dedicated reader"
-                : `${formatNumber(completion.blockedMappingProducts)} products need stronger identity evidence`}.
-            </p>
-            <p className="font-mono">Updated {relativeAge(completion.observedAt)}</p>
+          <div className="mt-4 space-y-2 text-xs text-stone-400">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <p>
+                Agent {completion.runStatus}; backlog {completion.completionStatus}; {completion.blockedMappingProducts === null
+                  ? "the automatic exact planner is held pending its dedicated reader"
+                  : `${formatNumber(completion.blockedMappingProducts)} products need stronger identity evidence`}.
+              </p>
+              <p className="font-mono">Updated {relativeAge(completion.observedAt)}</p>
+            </div>
+            {completion.japanesePokemonParentsExcluded !== null || completion.pocketParentsExcluded !== null ? (
+              <p>
+                Excluded from the TCGPlayer USD denominator: {formatNumber(completion.japanesePokemonParentsExcluded ?? 0)} Japanese parents and {formatNumber(completion.pocketParentsExcluded ?? 0)} Pokémon Pocket parents. {formatNumber(completion.physicalPokemonParentsWithoutPrinting ?? 0)} physical English parents still need exact-printing catalog repair.
+              </p>
+            ) : null}
+            {completion.editionSensitivePokemonExactPrintingsHeld ? (
+              <p>
+                Conservative coverage holds {formatNumber(completion.editionSensitivePokemonExactPrintingsHeld)} edition-bound printings across {formatNumber(completion.editionSensitivePokemonParentsHeld ?? 0)} parents outside the priced total until their live edition authority is revalidated.
+              </p>
+            ) : null}
           </div>
         ) : null}
       </PageSection>

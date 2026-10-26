@@ -52,6 +52,16 @@ export type FounderOperationsPricingCompletion = {
   pokemonHeldCandidates: number | null;
   verifiedAutomaticCandidates: number | null;
   blockedMappingProducts: number | null;
+  physicalPokemonParents: number | null;
+  pricedPhysicalPokemonParents: number | null;
+  unpricedPhysicalPokemonParents: number | null;
+  physicalPokemonExactPrintings: number | null;
+  unpricedPhysicalPokemonExactPrintings: number | null;
+  physicalPokemonParentsWithoutPrinting: number | null;
+  editionSensitivePokemonParentsHeld: number | null;
+  editionSensitivePokemonExactPrintingsHeld: number | null;
+  japanesePokemonParentsExcluded: number | null;
+  pocketParentsExcluded: number | null;
   nextAction: string | null;
 };
 
@@ -237,6 +247,9 @@ export async function getFounderOperationsLiveDashboard(
     const pokemon = (lanes.pokemon ?? {}) as Record<string, unknown>;
     const review = (summary.ollama_review_candidates ?? {}) as Record<string, unknown>;
     const pokemonReview = (summary.pokemon_mapping_review ?? {}) as Record<string, unknown>;
+    const catalogCoverage = (summary.pokemon_catalog_coverage ?? {}) as Record<string, unknown>;
+    const physicalCoverage = (catalogCoverage.physical_english ?? {}) as Record<string, unknown>;
+    const excludedCoverage = (catalogCoverage.excluded_from_tcgplayer_us ?? {}) as Record<string, unknown>;
     const selectedReviewCandidates = nullableNumberValue(pokemonReview.selected_count);
     pricingCompletion = {
       runStatus: row.status,
@@ -253,6 +266,16 @@ export async function getFounderOperationsLiveDashboard(
       pokemonHeldCandidates: nullableNumberValue(pokemonReview.held_count),
       verifiedAutomaticCandidates: nullableNumberValue(summary.verified_mapping_candidates),
       blockedMappingProducts: nullableNumberValue(summary.blocked_mapping_products),
+      physicalPokemonParents: nullableNumberValue(physicalCoverage.parent_count),
+      pricedPhysicalPokemonParents: nullableNumberValue(physicalCoverage.priced_parent_count),
+      unpricedPhysicalPokemonParents: nullableNumberValue(physicalCoverage.unpriced_parent_count),
+      physicalPokemonExactPrintings: nullableNumberValue(physicalCoverage.exact_printing_count),
+      unpricedPhysicalPokemonExactPrintings: nullableNumberValue(physicalCoverage.unpriced_exact_printing_count),
+      physicalPokemonParentsWithoutPrinting: nullableNumberValue(physicalCoverage.parents_without_exact_printing_count),
+      editionSensitivePokemonParentsHeld: nullableNumberValue(physicalCoverage.edition_sensitive_parent_count_held),
+      editionSensitivePokemonExactPrintingsHeld: nullableNumberValue(physicalCoverage.edition_sensitive_exact_printing_count_held),
+      japanesePokemonParentsExcluded: nullableNumberValue(excludedCoverage.japanese_parent_count),
+      pocketParentsExcluded: nullableNumberValue(excludedCoverage.pocket_parent_count),
       nextAction: typeof summary.next_action === "string" ? summary.next_action : null,
     };
   } else if (completionResult.status === "rejected") {

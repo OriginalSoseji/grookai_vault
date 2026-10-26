@@ -53,6 +53,208 @@ function jsonl(rows) {
     : "";
 }
 
+function integer(value) {
+  const number = Number(value ?? 0);
+  if (!Number.isSafeInteger(number) || number < 0) {
+    throw new Error(`invalid non-negative integer: ${value}`);
+  }
+  return number;
+}
+
+async function readPokemonCatalogPriceCoverageV1(client) {
+  const row = (await client.query(
+    `with current_publication as (
+       select publication_set_id, run_id
+         from public.market_price_current_publication
+        where singleton = true
+     ),
+     physical_parents as materialized (
+       select card.id
+         from public.card_prints card
+         join public.games game on game.id = card.game_id
+         join public.sets catalog_set on catalog_set.id = card.set_id
+         left join public.catalog_set_release_controls release_control
+           on release_control.set_id = catalog_set.id
+        where game.code = 'pokemon'
+          and card.identity_domain = 'pokemon_eng_standard'
+          and catalog_set.identity_domain_default = 'pokemon_eng_standard'
+          and coalesce(card.data_quality_flags #>> '{app_visibility_v1,status}', 'visible') <> 'suppressed'
+          and coalesce(release_control.release_status, 'public') in ('public', 'signed_in')
+     ),
+     physical_printings as materialized (
+       select printing.id, printing.card_print_id
+         from public.card_printings printing
+         join physical_parents parent on parent.id = printing.card_print_id
+        where not exists (
+          select 1
+            from public.card_printing_truth_reviews truth_review
+           where truth_review.card_printing_id = printing.id
+             and truth_review.active = true
+             and truth_review.public_visibility in (
+               'hidden_pending_review',
+               'hidden_unsupported'
+             )
+        )
+     ),
+     edition_sensitive_parents as materialized (
+       select snapshot.card_print_id
+         from current_publication current_state
+         join public.market_price_publication_snapshots snapshot
+           on snapshot.publication_set_id = current_state.publication_set_id
+          and snapshot.run_id = current_state.run_id
+         join physical_parents parent on parent.id = snapshot.card_print_id
+        where snapshot.gym_edition_assignment_id is not null
+           or snapshot.edition_assignment_id is not null
+       union
+       select edition_link.legacy_card_print_id
+         from public.jungle_edition_identity_links_v1 edition_link
+         join physical_parents parent
+           on parent.id = edition_link.legacy_card_print_id
+        where edition_link.state in ('active', 'retired')
+       union
+       select edition_link.card_print_id
+         from public.jungle_edition_identity_links_v1 edition_link
+         join physical_parents parent on parent.id = edition_link.card_print_id
+        where edition_link.state in ('active', 'retired')
+     ),
+     edition_sensitive_printings as materialized (
+       select printing.id, printing.card_print_id
+         from physical_printings printing
+         join edition_sensitive_parents parent
+           on parent.card_print_id = printing.card_print_id
+     ),
+     regular_current_prices as materialized (
+       select snapshot.card_printing_id, snapshot.card_print_id
+         from current_publication current_state
+         join public.market_price_publication_sets publication_set
+           on publication_set.id = current_state.publication_set_id
+          and publication_set.run_id = current_state.run_id
+          and publication_set.publication_state = 'published'
+         join public.market_price_pipeline_runs pipeline_run
+           on pipeline_run.id = current_state.run_id
+          and pipeline_run.reconciliation_state = 'reconciled'
+          and pipeline_run.state in ('published', 'verified')
+         join public.market_price_publication_snapshots snapshot
+           on snapshot.publication_set_id = current_state.publication_set_id
+          and snapshot.run_id = current_state.run_id
+         join public.market_price_qualification_decisions decision
+           on decision.id = snapshot.qualification_decision_id
+          and decision.run_id = snapshot.run_id
+          and decision.eligible = true
+          and decision.decision = 'publish'
+          and decision.publication_lane = 'current'
+         join physical_printings printing
+           on printing.id = snapshot.card_printing_id
+          and printing.card_print_id = snapshot.card_print_id
+        where not exists (
+          select 1
+            from public.external_mappings rejected_mapping
+           where rejected_mapping.id = snapshot.source_mapping_id
+             and rejected_mapping.meta->'reviewed_invalidation'->>'reason_code'
+               = 'PROVEN_UNSTAMPED_PRODUCT_ON_STAMPED_PARENT'
+        )
+          and not exists (
+            select 1
+              from edition_sensitive_parents sensitive_parent
+             where sensitive_parent.card_print_id = snapshot.card_print_id
+          )
+          and snapshot.publication_state = 'published'
+          and snapshot.freshness_state = 'fresh'
+          and snapshot.source_sync_finished_at >= now() - interval '36 hours'
+     ),
+     physical_counts as (
+       select
+         (select count(*)::integer from physical_parents) as parent_count,
+         (select count(*)::integer from physical_printings) as exact_printing_count,
+         (select count(distinct card_print_id)::integer from physical_printings)
+           as parents_with_exact_printing_count,
+         (select count(distinct card_print_id)::integer from regular_current_prices)
+           as regular_priced_parent_count,
+         (select count(distinct card_printing_id)::integer from regular_current_prices)
+           as regular_priced_exact_printing_count,
+         (select count(*)::integer from edition_sensitive_parents)
+           as edition_sensitive_parent_count,
+         (select count(*)::integer from edition_sensitive_printings)
+           as edition_sensitive_exact_printing_count
+     ),
+     excluded_printing_counts as (
+       select
+         count(printing.id) filter (
+           where card.identity_domain = 'pokemon_jpn'
+             and coalesce(card.data_quality_flags #>> '{app_visibility_v1,status}', 'visible') <> 'suppressed'
+         )::integer as japanese_exact_printing_count,
+         count(printing.id) filter (
+           where card.identity_domain = 'tcg_pocket_excluded'
+             and coalesce(card.data_quality_flags #>> '{app_visibility_v1,status}', 'visible') <> 'suppressed'
+         )::integer as pocket_exact_printing_count
+       from public.card_prints card
+       join public.games game on game.id = card.game_id
+       left join public.card_printings printing on printing.card_print_id = card.id
+       where game.code = 'pokemon'
+         and card.identity_domain in ('pokemon_jpn', 'tcg_pocket_excluded')
+     ),
+     excluded_parent_counts as (
+       select
+         count(*) filter (
+           where card.identity_domain = 'pokemon_jpn'
+             and coalesce(card.data_quality_flags #>> '{app_visibility_v1,status}', 'visible') <> 'suppressed'
+         )::integer as japanese_parent_count,
+         count(*) filter (
+           where card.identity_domain = 'tcg_pocket_excluded'
+             and coalesce(card.data_quality_flags #>> '{app_visibility_v1,status}', 'visible') <> 'suppressed'
+         )::integer as pocket_parent_count
+       from public.card_prints card
+       join public.games game on game.id = card.game_id
+       where game.code = 'pokemon'
+         and card.identity_domain in ('pokemon_jpn', 'tcg_pocket_excluded')
+     )
+     select physical_counts.*,
+            excluded_parent_counts.japanese_parent_count,
+            excluded_printing_counts.japanese_exact_printing_count,
+            excluded_parent_counts.pocket_parent_count,
+            excluded_printing_counts.pocket_exact_printing_count
+       from physical_counts
+       cross join excluded_printing_counts
+       cross join excluded_parent_counts`,
+  )).rows[0];
+  if (!row) throw new Error("Pokemon catalog price coverage query returned no row");
+  const parentCount = integer(row.parent_count);
+  const exactPrintingCount = integer(row.exact_printing_count);
+  const parentsWithExactPrintingCount = integer(row.parents_with_exact_printing_count);
+  const pricedParentCount = integer(row.regular_priced_parent_count);
+  const pricedExactPrintingCount = integer(row.regular_priced_exact_printing_count);
+  return {
+    policy_version: "POKEMON_PHYSICAL_PRICE_COVERAGE_V1",
+    scope: {
+      game: "pokemon",
+      identity_domain: "pokemon_eng_standard",
+      set_identity_domain: "pokemon_eng_standard",
+      app_visibility: "public_or_signed_in",
+      price_basis: "TCGPLAYER_MARKET",
+      currency: "USD",
+    },
+    physical_english: {
+      parent_count: parentCount,
+      exact_printing_count: exactPrintingCount,
+      parents_with_exact_printing_count: parentsWithExactPrintingCount,
+      parents_without_exact_printing_count: parentCount - parentsWithExactPrintingCount,
+      priced_parent_count: pricedParentCount,
+      unpriced_parent_count: parentCount - pricedParentCount,
+      priced_exact_printing_count: pricedExactPrintingCount,
+      unpriced_exact_printing_count: exactPrintingCount - pricedExactPrintingCount,
+      edition_sensitive_parent_count_held: integer(row.edition_sensitive_parent_count),
+      edition_sensitive_exact_printing_count_held: integer(row.edition_sensitive_exact_printing_count),
+      coverage_is_conservative: true,
+    },
+    excluded_from_tcgplayer_us: {
+      japanese_parent_count: integer(row.japanese_parent_count),
+      japanese_exact_printing_count: integer(row.japanese_exact_printing_count),
+      pocket_parent_count: integer(row.pocket_parent_count),
+      pocket_exact_printing_count: integer(row.pocket_exact_printing_count),
+    },
+  };
+}
+
 function markdown(report) {
   return [
     "# TCGPlayer Pricing Completion Backlog",
@@ -182,6 +384,7 @@ async function main() {
                  decision.source_subtype_name, decision.source_observation_id`,
       [run.id, ["missing_active_source_mapping", "missing_mapping_method"]],
     )).rows;
+    const pokemonCatalogCoverage = await readPokemonCatalogPriceCoverageV1(client);
     await client.query("rollback");
 
     const evaluated = evaluateTcgplayerPricingBacklogV1({
@@ -209,6 +412,7 @@ async function main() {
         pokemon_top_groups: identityWorklist.groups.filter((row) =>
           row.source_category_id === 3).slice(0, 30),
       },
+      pokemon_catalog_coverage: pokemonCatalogCoverage,
       generated_at: new Date().toISOString(),
       read_only: true,
     };
