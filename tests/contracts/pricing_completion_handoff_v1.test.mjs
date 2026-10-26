@@ -15,7 +15,7 @@ function fixture() {
     subtype: 'Holofoil', currency: 'USD', condition: 'NOT_CONDITION_SPECIFIC' };
   const item = { key: key(identity), identity, state: 'review_needed', reason: 'missing_active_source_mapping',
     generation: 1, sourceRunId: ID(3), sourceDigest: digest(evidence), evidence };
-  const candidate = { policy_version: 'TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_2',
+  const candidate = { policy_version: 'TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_3',
     disposition: 'candidate', source_product_id: 123, source_product_name: 'Reviewed card',
     printed_number: '1', normalized_source_name: 'reviewed card', normalized_source_number: '1',
     mapping_method: 'exact_group_set_number_name_consensus_v1', mapping_confidence: 0.99,
@@ -162,6 +162,7 @@ test('source observation, subtype, run and item count must exactly match the rev
 
 test('inactive repairs, already-mapped targets, non-base variants and dirty plans fail closed', () => {
   for (const mutate of [
+    f => changeCandidate(f, candidate => { candidate.policy_version = 'TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_2'; }),
     f => changeCandidate(f, candidate => { candidate.target.active_tcgplayer_mapping_count = 1; }),
     f => changeCandidate(f, candidate => { candidate.target.variant_key = 'first_edition'; }),
     f => { f.artifacts.inactiveRepairAuthorityJson = '{}'; },

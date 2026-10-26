@@ -99,7 +99,7 @@ function buildBinding({ items, artifacts, context, now }) {
   for (const candidate of candidates) {
     const { candidate_fingerprint: candidateHash, ...body } = candidate;
     assert(SHA.test(candidateHash) && candidateHash === pricingCompletionDigestV1(body), 'candidate_fingerprint_mismatch');
-    assert(candidate.policy_version === 'TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_2'
+    assert(candidate.policy_version === 'TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_3'
       && candidate.disposition === 'candidate', 'candidate_policy_or_disposition_unsupported');
     assert(Number.isSafeInteger(candidate.source_product_id) && candidate.source_product_id > 0, 'candidate_product_invalid');
     assert(!candidateProducts.has(candidate.source_product_id), 'duplicate_candidate_product'); candidateProducts.add(candidate.source_product_id);
