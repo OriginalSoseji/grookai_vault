@@ -277,6 +277,9 @@ async function main() {
       `${ollamaCandidateQueuePath}.summary.json`,
       'utf8',
     ));
+    const pokemonReviewBatch = selectPokemonPricingMappingReviewBatchV1(
+      pokemonOllamaCandidateQueue,
+    );
     const summary = {
       ...summarizeTcgplayerPricingCompletionRunV1(report, {
         exactPlan,
@@ -292,6 +295,12 @@ async function main() {
         mtg: mtgOllamaCandidateQueue.length,
         pokemon: pokemonOllamaCandidateQueue.length,
       },
+      pokemon_mapping_review: {
+        candidate_count: pokemonOllamaCandidateQueue.length,
+        selected_count: pokemonReviewBatch.selected_count,
+        held_count: pokemonReviewBatch.held_count,
+        held_by_reason: pokemonReviewBatch.held_by_reason,
+      },
       exact_mapping_plan: {
         status: exactPlanProcess.status,
         error_code: exactPlanProcess.error_code,
@@ -302,9 +311,6 @@ async function main() {
       && process.env.GITHUB_RUN_ID
       ? `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`
       : null;
-    const pokemonReviewBatch = selectPokemonPricingMappingReviewBatchV1(
-      pokemonOllamaCandidateQueue,
-    );
     const pokemonReviewWorkItem = buildPokemonPricingMappingReviewWorkItemV1({
       candidates: pokemonReviewBatch.selected,
       sourcePricingRunId: report.run.id,
