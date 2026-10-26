@@ -1,5 +1,24 @@
 # Grookai Operator Playbook V1
 
+## TCGPlayer Pokemon founder review lane — October 26, 2026
+
+Read `docs/contracts/TCGPLAYER_PRICING_COMPLETION_AGENT_V4.md`. The scheduled
+GitHub agent measures production every 15 minutes and may publish one review-only
+Pokemon mapping item per source-sync run. It selects at most 50 collision-free
+products that each have exactly one proposed existing parent. Multi-target,
+duplicate-parent, duplicate-product, and overflow rows remain measured backlog;
+they do not fail the agent or enter the review item.
+
+The founder operations page exposes the frozen proposed mappings before an
+approval can be recorded. Approval is evidence review only: it queues no writer
+and grants no mapping or price-publication authority. If work-item publication
+fails, preserve the workflow artifact and failed heartbeat, repair the control
+plane, and rerun the same source-sync evidence. The stable work-item key and
+fingerprint make an identical rerun idempotent. Do not hand-edit the payload,
+split collisions into separate approvals, or treat an approved review item as a
+completed mapping. Dashboard backlog counts use the latest successful measured
+run so a starting or failed run cannot replace known measurements with zeros.
+
 ## Pricing completion preparation runtime — October 26, 2026
 
 Read `docs/checkpoints/pricing_completion_agent_20261013.md`,

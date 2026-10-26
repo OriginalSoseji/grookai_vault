@@ -7,6 +7,8 @@ import { fileURLToPath } from 'node:url';
 import {
   buildTcgplayerPricingCompletionAgentV1,
   buildTcgplayerIdentityProductQueueV1,
+  buildPokemonPricingMappingReviewWorkItemV1,
+  selectPokemonPricingMappingReviewBatchV1,
   summarizeTcgplayerPricingCompletionRunV1,
   TCGPLAYER_PRICING_COMPLETION_AGENT_KEY,
 } from '../../backend/operations/tcgplayer_pricing_completion_agent_v1.mjs';
@@ -185,6 +187,96 @@ test('product queue excludes variant and unsupported product lanes', () => {
   assert.deepEqual(queue, []);
 });
 
+test('Pokemon review leads become one bounded review-only founder item', () => {
+  const item = buildPokemonPricingMappingReviewWorkItemV1({
+    candidates: [{
+      source_product_id: 90353,
+      source_product_name: 'Victory Cup - BW31 (1st Place)',
+      source_group_id: 1407,
+      source_group_name: 'Black and White Promos',
+      printed_number: 'BW31',
+      source_subtypes: ['Holofoil'],
+      supporting_gap_observation_ids: ['4998c2d8-461d-43d7-83e2-799d4547bde0'],
+      review_targets: [{
+        card_print_id: '644215b9-ff1a-480f-9ed6-8548a47c92da',
+        gv_id: 'GV-PK-PR-BLW-BW31',
+        set_id: '61bceb95-9799-4349-963f-d9e6f8a3c69b',
+        set_code: 'bwp',
+        set_name: 'BW Black Star Promos',
+        canonical_name: 'Victory Cup',
+        canonical_number: 'BW31',
+        variant_key: '',
+        candidate_score: 91,
+        candidate_evidence: { number_exact: true, name_exact: false },
+      }],
+    }],
+    sourcePricingRunId: '0ddded9d-3bdc-4ea0-8f15-40fdce61b647',
+    sourceSyncRunId: '7ca0463c-98e1-430c-9a28-aa94b23de778',
+    sourceCompletedAt: '2026-10-25T11:49:45.943Z',
+    sourceCommitSha: 'a'.repeat(40),
+    sourceRunUri: 'https://github.com/example/repo/actions/runs/1',
+    expiresAt: '2026-11-01T11:49:45.943Z',
+  });
+  assert.equal(item.work_item_key, 'pokemon-pricing-mapping-review:7ca0463c-98e1-430c-9a28-aa94b23de778');
+  assert.equal(item.scope.candidate_count, 1);
+  assert.equal(item.command_policy.execution_enabled, false);
+  assert.equal(item.plan_payload.review_candidates[0].review_targets.length, 1);
+  assert.equal(item.plan_payload.review_boundary.mapping_writes, false);
+  assert.match(item.plan_fingerprint, /^[a-f0-9]{64}$/);
+});
+
+test('Pokemon review item rejects ambiguous multi-target and oversized batches', () => {
+  const base = {
+    source_product_id: 1,
+    review_targets: [{ card_print_id: 'one' }],
+  };
+  const args = {
+    sourcePricingRunId: 'run', sourceSyncRunId: 'sync', sourceCompletedAt: '2026-10-25T11:49:45.943Z',
+  };
+  assert.throws(() => buildPokemonPricingMappingReviewWorkItemV1({
+    ...args,
+    candidates: [{ ...base, review_targets: [{ card_print_id: 'one' }, { card_print_id: 'two' }] }],
+  }), /one proposed target/);
+  assert.throws(() => buildPokemonPricingMappingReviewWorkItemV1({
+    ...args,
+    candidates: Array.from({ length: 51 }, (_, index) => ({
+      ...base, source_product_id: index + 1,
+    })),
+  }), /exceeds 50/);
+});
+
+test('Pokemon review selection holds ambiguity and collisions without failing measurement', () => {
+  const candidate = (product, parent, targetCount = 1) => ({
+    source_product_id: product,
+    review_targets: Array.from({ length: targetCount }, (_, index) => ({
+      card_print_id: index === 0 ? parent : `${parent}-${index}`,
+      gv_id: `GV-${parent}-${index}`,
+      set_id: 'set-id',
+      set_code: 'set-code',
+      canonical_name: `Card ${product}`,
+      canonical_number: String(product),
+    })),
+  });
+  const rows = [
+    candidate(4, 'parent-4', 2),
+    candidate(3, 'parent-1'),
+    candidate(2, 'parent-2'),
+    candidate(1, 'parent-1'),
+    candidate(2, 'parent-other'),
+    candidate(5, 'parent-5'),
+  ];
+  const result = selectPokemonPricingMappingReviewBatchV1(rows, 2);
+  assert.deepEqual(result.selected.map((row) => row.source_product_id), [1, 2]);
+  assert.equal(result.selected_count, 2);
+  assert.equal(result.held_count, 4);
+  assert.deepEqual(result.held_by_reason, {
+    batch_limit: 1,
+    duplicate_source_product: 1,
+    duplicate_target_parent: 1,
+    not_single_target: 1,
+  });
+});
+
 test('scheduled workflow measures production without treating backlog as a crash', () => {
   const workflow = fs.readFileSync(
     path.join(ROOT, '.github/workflows/tcgplayer-pricing-completion-agent.yml'),
@@ -206,6 +298,8 @@ test('scheduled workflow measures production without treating backlog as a crash
   assert.match(worker, /--candidate-only/);
   assert.match(worker, /mtg_ollama_identity_candidate_queue\.jsonl/);
   assert.match(worker, /pokemon_ollama_identity_candidate_queue\.jsonl/);
+  assert.match(worker, /operations_publish_work_item_v1/);
+  assert.match(worker, /buildPokemonPricingMappingReviewWorkItemV1/);
 });
 
 test('local V2 consumer uses hosted candidate evidence without database secrets', () => {
