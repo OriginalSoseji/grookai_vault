@@ -42,6 +42,10 @@ reviewed Master Index mapping bundle is preserved and reported as blocked; it
 cannot starve newer eligible approvals or become a write outcome. The publisher
 may not replace, widen, or silently version an existing outcome.
 
+An evidence-rich replacement review may share that source-sync identifier while
+using a distinct review key suffix. Only the review whose exact candidates and
+Master Index bundle validate can produce the single source-sync outcome key.
+
 ## Founder decision boundary
 
 The executable item uses the registered `founder_outcome_workflow_v1` command

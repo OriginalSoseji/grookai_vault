@@ -1,0 +1,49 @@
+name: Pokemon TCGPlayer Founder Review Authority
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pokemon-tcgplayer-founder-review-authority
+  cancel-in-progress: false
+
+jobs:
+  publish-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci --ignore-scripts
+
+      - name: Build and publish evidence-bound review
+        env:
+          SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
+          PROD_SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+        run: >-
+          node scripts/workers/pokemon_tcgplayer_founder_review_authority_publisher_v1.mjs
+          --review-queue=docs/audits/pokemon_tcgplayer_founder_review_batch_20261026_admitted.jsonl
+          --out-dir=${{ runner.temp }}/pokemon-founder-review-authority
+          --reviewed-at=2026-10-26T06:00:00.000Z
+          --source-pricing-run-id=0ddded9d-3bdc-4ea0-8f15-40fdce61b647
+          --source-sync-run-id=7ca0463c-98e1-430c-9a28-aa94b23de778
+          --source-completed-at=2026-10-25T11:49:45.943Z
+          --source-run-uri=https://github.com/OriginalSoseji/grookai_vault/actions/runs/40271141832
+          --publish
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pokemon-tcgplayer-founder-review-authority-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/pokemon-founder-review-authority
+          if-no-files-found: error
+          retention-days: 30

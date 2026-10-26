@@ -1,0 +1,32 @@
+{
+  "version": "POKEMON_TCGPLAYER_FOUNDER_REVIEW_BATCH_V1",
+  "reviewed_at": "2026-10-26T06:00:00.000Z",
+  "source": {
+    "workflow_run_id": 40271141832,
+    "artifact_id": 12628042942,
+    "artifact_name": "tcgplayer-pricing-completion-40271141832-1",
+    "file": "pokemon_ollama_identity_candidate_queue.jsonl",
+    "sha256": "a22592277d8cea8f7d05fccca8086ec69ae32f135b85b4f240cc7dfaa1197364",
+    "checked_in_admitted_rows": "docs/audits/pokemon_tcgplayer_founder_review_batch_20261026_admitted.jsonl",
+    "checked_in_admitted_rows_sha256": "0bf37dff5e0aa2b9caa5d577927903421860214e6342e8de68d9d5820ce0db76"
+  },
+  "admitted_product_ids": [87394, 162270, 246275],
+  "held": [
+    {
+      "reason": "source_subtype_does_not_identify_reviewed_master_finish",
+      "product_ids": [90353, 90355, 96861, 175064, 648631, 681244]
+    },
+    {
+      "reason": "missing_printed_number_evidence",
+      "product_ids": [127381, 127382, 127383, 127384, 127385, 127386, 127387, 127388, 127389]
+    }
+  ],
+  "boundary": {
+    "reviewed_count": 18,
+    "admitted_count": 3,
+    "held_count": 15,
+    "database_writes": false,
+    "mapping_writes": false,
+    "publication_writes": false
+  }
+}

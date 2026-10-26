@@ -30,6 +30,15 @@ empty batches, and batches larger than 50 fail closed. Exact mappings that pass
 the existing deterministic planner continue through its separately governed
 authority and apply gates.
 
+An evidence upgrade may publish a versioned review item under the same source
+sync after source adjudication. That item must bind the complete exact planner
+records and a validating `MASTER_INDEX_MAPPING_AUTHORITY_V1` bundle. Its key
+uses the `:master-authority-batch-01` suffix so the earlier identity-only review
+remains auditable. Source subtypes must identify the reviewed Master Index
+finish. Rows whose title implies a stamped or event variant while the source
+subtype would route to Normal or Holo remain held, as do unnumbered rows without
+exact printed-coordinate evidence.
+
 The production direct-reader role is not activated. If the optional exact
 planner rejects its connection or cannot produce a plan, the agent records a
 fixed error code, reports newly verified exact candidates as unavailable, and continues
