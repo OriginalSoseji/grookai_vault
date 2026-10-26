@@ -232,7 +232,13 @@ export default async function FounderOperationsPage({ searchParams }: Props) {
             {[
               ["Missing price rows", completion.pokemonBacklogRows, `${formatNumber(completion.pokemonSourceProducts)} Pokemon products`],
               ["Queued for repair", completion.pokemonQueuedProducts, "mapped-source gaps"],
-              ["Ready for review", completion.pokemonReviewCandidates, "one proposed parent each"],
+              [
+                "Ready for review",
+                completion.pokemonReviewCandidates,
+                completion.pokemonHeldCandidates === null
+                  ? "one proposed parent each"
+                  : `${formatNumber(completion.pokemonHeldCandidates)} held for identity conflicts`,
+              ],
               ["Automatic exact", completion.verifiedAutomaticCandidates, "fully verified this cycle"],
             ].map(([label, value, detail]) => (
               <div key={String(label)} className="bg-[#171814] p-4 sm:p-5">

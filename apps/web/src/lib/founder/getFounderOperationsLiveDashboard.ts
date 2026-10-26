@@ -49,6 +49,7 @@ export type FounderOperationsPricingCompletion = {
   pokemonSourceProducts: number;
   pokemonQueuedProducts: number;
   pokemonReviewCandidates: number;
+  pokemonHeldCandidates: number | null;
   verifiedAutomaticCandidates: number | null;
   blockedMappingProducts: number | null;
   nextAction: string | null;
@@ -235,6 +236,8 @@ export async function getFounderOperationsLiveDashboard(
     const lanes = (summary.identity_repair_lanes ?? {}) as Record<string, unknown>;
     const pokemon = (lanes.pokemon ?? {}) as Record<string, unknown>;
     const review = (summary.ollama_review_candidates ?? {}) as Record<string, unknown>;
+    const pokemonReview = (summary.pokemon_mapping_review ?? {}) as Record<string, unknown>;
+    const selectedReviewCandidates = nullableNumberValue(pokemonReview.selected_count);
     pricingCompletion = {
       runStatus: row.status,
       observedAt: row.heartbeat_at,
@@ -245,7 +248,9 @@ export async function getFounderOperationsLiveDashboard(
       pokemonBacklogRows: numberValue(pokemon.backlog_rows as number | null),
       pokemonSourceProducts: numberValue(pokemon.source_products as number | null),
       pokemonQueuedProducts: numberValue(pokemon.queued_products as number | null),
-      pokemonReviewCandidates: numberValue(review.pokemon as number | null),
+      pokemonReviewCandidates: selectedReviewCandidates
+        ?? numberValue(review.pokemon as number | null),
+      pokemonHeldCandidates: nullableNumberValue(pokemonReview.held_count),
       verifiedAutomaticCandidates: nullableNumberValue(summary.verified_mapping_candidates),
       blockedMappingProducts: nullableNumberValue(summary.blocked_mapping_products),
       nextAction: typeof summary.next_action === "string" ? summary.next_action : null,

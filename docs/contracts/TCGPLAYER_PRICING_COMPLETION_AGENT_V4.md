@@ -32,7 +32,7 @@ authority and apply gates.
 
 The production direct-reader role is not activated. If the optional exact
 planner rejects its connection or cannot produce a plan, the agent records a
-fixed error code, reports zero newly verified exact candidates, and continues
+fixed error code, reports newly verified exact candidates as unavailable, and continues
 the independent backlog measurement and founder-review lane. The failure does
 not weaken the planner connection policy and does not use the broad production
 credential as a substitute reader.
@@ -44,7 +44,8 @@ The operations page reads the latest `operations_agent_runs.summary` for
 
 - missing price rows and affected products;
 - products queued for identity repair;
-- single-target identities ready for founder review;
+- single-target identities selected for founder review and candidates held for
+  ambiguity or identity collisions;
 - exact candidates that passed the automatic structural gate.
 
 The dashboard is observational. Missing telemetry is shown as unavailable and
