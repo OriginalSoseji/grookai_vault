@@ -36,7 +36,6 @@ export type FounderOperationsSourceSync = {
   failedCount: number;
   startedAt: string | null;
   finishedAt: string | null;
-  updatedAt: string | null;
 };
 
 export type FounderOperationsLiveDashboard = {
@@ -88,7 +87,6 @@ type SourceSyncRow = {
   failed_count: number | null;
   started_at: string | null;
   finished_at: string | null;
-  updated_at: string | null;
 };
 
 function numberValue(value: number | null | undefined) {
@@ -112,7 +110,7 @@ export async function getFounderOperationsLiveDashboard(
     session.rpc("founder_operations_agent_health_v1"),
     admin
       .from("tcgcsv_source_sync_runs")
-      .select("run_key,status,observed_on,request_count,category_count,group_count,product_count,price_row_count,failed_count,started_at,finished_at,updated_at")
+      .select("run_key,status,observed_on,request_count,category_count,group_count,product_count,price_row_count,failed_count,started_at,finished_at")
       .order("started_at", { ascending: false })
       .limit(1)
       .maybeSingle(),
@@ -167,7 +165,6 @@ export async function getFounderOperationsLiveDashboard(
       failedCount: numberValue(row.failed_count),
       startedAt: row.started_at,
       finishedAt: row.finished_at,
-      updatedAt: row.updated_at,
     };
   } else if (sourceResult.status === "rejected") {
     errors.push(describeFailure("Source sync", sourceResult.reason));

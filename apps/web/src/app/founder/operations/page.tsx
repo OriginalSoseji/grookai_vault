@@ -42,7 +42,7 @@ const ACTIONABLE_STATES = new Set(["ready_for_review", "deferred"]);
 function stateTone(state: string) {
   if (["failed", "repair_requested", "expired"].includes(state)) return "border-red-400/50 bg-red-400/10 text-red-200";
   if (["queued", "running"].includes(state)) return "border-sky-400/50 bg-sky-400/10 text-sky-200";
-  if (["succeeded", "approved"].includes(state)) return "border-lime-300/50 bg-lime-300/10 text-lime-200";
+  if (["healthy", "succeeded", "approved"].includes(state)) return "border-lime-300/50 bg-lime-300/10 text-lime-200";
   if (ACTIONABLE_STATES.has(state)) return "border-amber-300/50 bg-amber-300/10 text-amber-100";
   return "border-stone-500/50 bg-stone-500/10 text-stone-300";
 }
