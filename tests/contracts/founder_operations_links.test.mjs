@@ -15,6 +15,15 @@ const id = (index) => `00000000-0000-0000-0000-${String(index).padStart(12, '0')
 const row = (index) => ({ id: id(index), title: `Work item ${index}`, state: 'ready_for_review',
   summary: 'Fixture', version: 1, expires_at: '2026-10-01T00:00:00Z', scope: {}, exclusions: [] });
 const window = Array.from({ length: 100 }, (_, index) => row(101 - index));
+const dashboard = {
+  generatedAt: '2026-10-25T00:00:00Z',
+  agents: [],
+  agentSummary: { total: 0, healthy: 0, running: 0, attention: 0, paused: 0 },
+  sourceSync: null,
+  queue: { actionableWorkItems: 0, queuedCommands: 0, runningCommands: 0, failedCommands: 0, openIncidents: 0 },
+  pricing: null,
+  errors: [],
+};
 
 function load({ rows = window, target = row(1), denied = false, listError = null, targetError = null } = {}) {
   let authorized = false;
@@ -26,6 +35,11 @@ function load({ rows = window, target = row(1), denied = false, listError = null
     if (name === 'react/jsx-runtime') return require(name);
     if (name === 'next/link') return { default: ({ children, href }) => React.createElement('a', { href }, children) };
     if (name.startsWith('@/components/layout/')) return { default: Container };
+    if (name === '@/components/founder/FounderOperationsDecisionControls') return { default: () => null };
+    if (name === '@/components/founder/FounderOperationsLiveRefresh') return { default: () => null };
+    if (name === '@/lib/founder/getFounderOperationsLiveDashboard') {
+      return { getFounderOperationsLiveDashboard: async () => dashboard };
+    }
     if (name === '@/lib/founder/requireFounderAccess') return { requireFounderAccess: async (path) => {
       assert.equal(path, '/founder/operations');
       if (denied) throw Error('Founder access denied');
