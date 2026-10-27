@@ -97,6 +97,18 @@ the HTTPS reads do not share one database snapshot, the artifact records that
 limit and can authorize only a transactional rollback rehearsal that rechecks
 every invariant.
 
+The manual `Pokemon Countdown Calendar Rollback Rehearsal` workflow consumes a
+fresh proposal and live plan from the same production run. Inside one
+serializable transaction it rechecks all 22 base identities, required finishes,
+target identifiers, canonical identity projections, and TCGPlayer mapping
+absences. It then simulates the 22 parent, identity, child-printing, and mapping
+inserts and proves every link before an acknowledged rollback. TCGPlayer
+mappings use explicit negative rehearsal-only IDs so the production mapping
+sequence is not advanced. The workflow compares the exact target rows and
+sequence state before and after rollback and fails unless they match. Its
+artifact grants no apply, approval, pricing-publication, or customer-state
+authority.
+
 ## Founder dashboard
 
 The operations page reads the latest `operations_agent_runs.summary` for

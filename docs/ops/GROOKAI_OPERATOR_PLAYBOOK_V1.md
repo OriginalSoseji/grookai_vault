@@ -3768,3 +3768,26 @@ PostgreSQL proof database is `grookai_parent_identity_20261001_v1` on port54330;
 preserve the source lab and its receipts. See the coverage checkpoint for the
 opt-in test and private proof location. Parent admission remains separate from
 the reviewed child printing, source mapping and image workflows.
+
+## Pokemon Countdown Calendar rollback rehearsal — October 27, 2026
+
+Use the manual GitHub Actions workflow `Pokemon Countdown Calendar Rollback
+Rehearsal` after the scheduled pricing completion agent reports a 22-row ready
+Countdown plan. The workflow generates a fresh proposal and production service
+snapshot; saved artifacts from an older run are never accepted as live input.
+
+The rehearsal opens a serializable production transaction, takes its advisory
+lock, and revalidates every parent coordinate, finish, target UUID, public GV
+ID, identity hash, and TCGPlayer product absence. It simulates four inserts per
+product: `card_prints`, `card_print_identity`, `card_printings`, and
+`external_mappings`. The mapping insert supplies the negative source product ID
+as its temporary primary key, preventing the nontransactional
+`external_mappings_id_seq` from advancing. The workflow must report 22 inserts
+in each class, 88 total simulated rows, an acknowledged rollback, an unchanged
+sequence, and identical target snapshots before and after rollback.
+
+Treat the uploaded 90-day artifact as rollback evidence only. It does not
+authorize durable catalog writes, mapping apply, price publication, visibility
+changes, or customer-state changes. A durable release must bind a separate
+immutable apply package to the exact proposal, plan, rehearsal, and code
+fingerprints and must retain its own approval and production readback.
