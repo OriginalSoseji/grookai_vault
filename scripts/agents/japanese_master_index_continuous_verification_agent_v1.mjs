@@ -1,6 +1,12 @@
 #!/usr/bin/env node
 
-import { appendFileSync, mkdirSync, writeFileSync } from 'node:fs';
+import {
+  appendFileSync,
+  mkdirSync,
+  readFileSync,
+  writeFileSync,
+} from 'node:fs';
+import { gzipSync } from 'node:zlib';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import process from 'node:process';
@@ -30,6 +36,16 @@ const REPORT_DIR = path.join(
   'japanese_master_index_v4',
   'continuous_verification',
 );
+const CURSOR_PATH = path.join(REPORT_DIR, 'container_cursors_v1.json');
+const ASSERTION_ARTIFACTS = {
+  artofpkm_jp_cards: 'artofpkm_jp_card_assertions_v1',
+  limitless_jp_cards: 'limitless_jp_card_assertions_v1',
+  official_jp_cards: 'official_jp_card_assertions_v1',
+  serebii_jp_cards: 'serebii_jp_card_assertions_v1',
+  tcgdex_ja_cards: 'tcgdex_ja_card_assertions_v1',
+  bulbapedia_jp_card_lists: 'bulbapedia_jp_card_assertions_v1',
+  pokeguardian_release_reports: 'pokeguardian_jp_card_assertions_v1',
+};
 
 function emit(event) {
   mkdirSync(path.dirname(PROGRESS_PATH), { recursive: true });
@@ -49,6 +65,33 @@ function run(command, args) {
     env: process.env,
   });
   emit({ status: 'completed', step: command });
+}
+
+function readCursors() {
+  try {
+    return JSON.parse(readFileSync(CURSOR_PATH, 'utf8'));
+  } catch {
+    return {};
+  }
+}
+
+function writeCursor(source, value) {
+  const cursors = readCursors();
+  cursors[source] = value;
+  writeFileSync(CURSOR_PATH, `${JSON.stringify(cursors, null, 2)}\n`);
+}
+
+function packageFreshAssertions(source) {
+  const stem = ASSERTION_ARTIFACTS[source];
+  if (!stem) return;
+  const jsonPath = path.join(
+    ROOT,
+    'docs', 'audits', 'japanese_master_index_v4', 'cards', `${stem}.json`,
+  );
+  const gzipPath = `${jsonPath}.gz`;
+  const raw = readFileSync(jsonPath);
+  writeFileSync(gzipPath, gzipSync(raw, { level: 9 }));
+  emit({ status: 'completed', step: `package_assertions:${source}`, artifact: path.relative(ROOT, gzipPath).replaceAll('\\', '/') });
 }
 
 mkdirSync(REPORT_DIR, { recursive: true });
@@ -78,15 +121,20 @@ try {
       error: error instanceof Error ? error.message : String(error),
     });
   }
+  const cursors = readCursors();
   for (const source of SOURCES) {
+    const offset = Number.isInteger(cursors[source]) ? cursors[source] : 0;
     run(`card_harvest:${source}`, [
       'scripts/audits/japanese_master_index_v4/card_acquisition_harvest_v1.mjs',
       '--source', source,
       '--resume',
       '--max-containers', '10',
+      '--container-offset', String(offset),
       '--source-timeout-seconds', '30',
       '--source-retry-count', '0',
     ]);
+    packageFreshAssertions(source);
+    writeCursor(source, offset + 10);
   }
   run('candidate_union', [
     'scripts/audits/japanese_master_index_v4/candidate_union_v1.mjs',

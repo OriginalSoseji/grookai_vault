@@ -140,6 +140,7 @@ export function parseCardHarvestArgs(argv = process.argv.slice(2)) {
     planPath: DEFAULT_PLAN_PATH,
     targetedQueuePath: DEFAULT_TARGETED_QUEUE_PATH,
     containerIds: [],
+    containerOffset: 0,
     maxContainers: null,
     maxCardsPerContainer: null,
     sourceTimeoutSeconds: 120,
@@ -164,6 +165,11 @@ export function parseCardHarvestArgs(argv = process.argv.slice(2)) {
       options.targetedQueuePath = argv[++index];
     } else if (token === '--container' && argv[index + 1]) {
       options.containerIds.push(argv[++index]);
+    } else if (token === '--container-offset' && argv[index + 1]) {
+      options.containerOffset = nonNegativeInteger(
+        argv[++index],
+        '--container-offset',
+      );
     } else if (token === '--max-containers' && argv[index + 1]) {
       options.maxContainers = positiveInteger(
         argv[++index],
@@ -416,6 +422,10 @@ async function selectWorkItems(plan, options, laneId) {
       { numeric: true, sensitivity: 'base' },
     ),
   );
+  if (rows.length > 0 && options.containerOffset > 0) {
+    const offset = options.containerOffset % rows.length;
+    rows = rows.slice(offset).concat(rows.slice(0, offset));
+  }
   if (options.maxContainers !== null) {
     rows = rows.slice(0, options.maxContainers);
   }
