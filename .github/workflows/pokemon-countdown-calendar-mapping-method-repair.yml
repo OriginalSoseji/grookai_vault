@@ -1,0 +1,117 @@
+name: Pokemon Countdown Calendar Mapping Method Repair
+
+on:
+  workflow_dispatch:
+    inputs:
+      operation:
+        description: Prepare the exact metadata repair or apply an approved package
+        required: true
+        type: choice
+        options:
+          - prepare_repair
+          - apply_repair
+      source_commit_sha:
+        description: Exact prepared source commit; required for apply_repair
+        required: false
+        type: string
+      approval_phrase:
+        description: Exact fingerprint-bound approval text from prepare_repair
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pokemon-countdown-calendar-mapping-method-repair-v1
+  cancel-in-progress: false
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PROD_SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
+      SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      SUPABASE_DB_CA_CERT: ${{ secrets.SUPABASE_DB_CA_CERT }}
+    steps:
+      - name: Check out the requested immutable revision
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.operation == 'apply_repair' && inputs.source_commit_sha || github.sha }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Verify repair contracts and dispatch boundary
+        shell: bash
+        env:
+          DISPATCH_OPERATION: ${{ inputs.operation }}
+          DISPATCH_SOURCE_COMMIT: ${{ inputs.source_commit_sha }}
+          DISPATCH_APPROVAL_PHRASE: ${{ inputs.approval_phrase }}
+        run: |
+          set -euo pipefail
+          test -n "$PROD_SUPABASE_URL"
+          test -n "$SUPABASE_SECRET_KEY"
+          test -n "$SUPABASE_DB_URL"
+          if [[ "$DISPATCH_OPERATION" = "apply_repair" ]]; then
+            [[ "$DISPATCH_SOURCE_COMMIT" =~ ^[a-f0-9]{40}$ ]]
+            test -n "$DISPATCH_APPROVAL_PHRASE"
+            test "$(git rev-parse HEAD)" = "$DISPATCH_SOURCE_COMMIT"
+          fi
+          test -z "$(git status --porcelain --untracked-files=no)"
+          node --check backend/catalog/pokemon_countdown_calendar_mapping_method_repair_v1.mjs
+          node --check scripts/audits/pokemon_countdown_calendar_mapping_method_repair_v1.mjs
+          node --test \
+            tests/contracts/master_index_printing_execution_v1.test.mjs \
+            tests/contracts/pokemon_countdown_calendar_mapping_method_repair_v1.test.mjs \
+            tests/contracts/pokemon_countdown_calendar_variant_release_v1.test.mjs
+
+      - name: Prepare or apply the exact metadata repair
+        shell: bash
+        env:
+          DISPATCH_OPERATION: ${{ inputs.operation }}
+          DISPATCH_SOURCE_COMMIT: ${{ inputs.source_commit_sha }}
+          COUNTDOWN_MAPPING_REPAIR_APPROVAL: ${{ inputs.approval_phrase }}
+        run: |
+          set -euo pipefail
+          OUT_DIR="$RUNNER_TEMP/pokemon-countdown-mapping-repair-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+          echo "OUT_DIR=$OUT_DIR" >> "$GITHUB_ENV"
+          mkdir -p "$OUT_DIR"
+          if [[ "$DISPATCH_OPERATION" = "apply_repair" ]]; then
+            MODE="--apply"
+            export COUNTDOWN_MAPPING_REPAIR_EXPECTED_SHA="$DISPATCH_SOURCE_COMMIT"
+          else
+            MODE="--prepare"
+            export COUNTDOWN_MAPPING_REPAIR_EXPECTED_SHA="$(git rev-parse HEAD)"
+          fi
+          node scripts/audits/pokemon_countdown_calendar_mapping_method_repair_v1.mjs \
+            "$MODE" \
+            --output="$OUT_DIR/pokemon_countdown_calendar_mapping_method_repair_v1.json"
+
+      - name: Publish repair summary
+        if: always()
+        shell: bash
+        run: |
+          if [[ -f "$OUT_DIR/pokemon_countdown_calendar_mapping_method_repair_v1.json" ]]; then
+            echo '## Pokemon Countdown Calendar mapping-method repair' >> "$GITHUB_STEP_SUMMARY"
+            echo '```json' >> "$GITHUB_STEP_SUMMARY"
+            jq '{mode, status, source_commit_sha: .package.source_commit_sha, package_fingerprint_sha256: .package.package_fingerprint_sha256, required_approval_text, durable_database_writes_performed, execution: (if .execution then {status: .execution.status, writes: .execution.writes, exact_readback: .execution.exact_readback} else null end)}' \
+              "$OUT_DIR/pokemon_countdown_calendar_mapping_method_repair_v1.json" >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Preserve immutable repair evidence
+        if: always() && env.OUT_DIR != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: pokemon-countdown-calendar-mapping-method-repair-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ env.OUT_DIR }}
+          if-no-files-found: error
+          retention-days: 90

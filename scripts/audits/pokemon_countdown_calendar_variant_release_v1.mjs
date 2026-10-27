@@ -289,6 +289,13 @@ async function insertRelease(client, proposal, plan, pkg) {
               'authority', $1::text,
               'source_group_id', 2155,
               'source_product_name', source_product_name,
+              'mapping_method', 'exact_countdown_calendar_variant_authority_v1',
+              'mapping_method_audit', jsonb_build_object(
+                'release_version', $1::text,
+                'proposal_fingerprint_sha256', $2::text,
+                'plan_fingerprint_sha256', $3::text,
+                'release_package_fingerprint_sha256', $5::text
+              ),
               'proposal_fingerprint_sha256', $2::text,
               'plan_fingerprint_sha256', $3::text,
               'rollback_proof_fingerprint_sha256', $4::text,
