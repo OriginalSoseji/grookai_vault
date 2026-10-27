@@ -130,6 +130,7 @@ test('production rehearsal workflow is manual, least-privilege, and preserves ev
   assert.doesNotMatch(workflow, /^\s+schedule:/m);
   assert.match(workflow, /permissions:\s*\n\s+contents: read/);
   assert.match(workflow, /SUPABASE_DB_URL: \$\{\{ secrets\.SUPABASE_DB_URL \}\}/);
+  assert.match(workflow, /master_index_printing_execution_v1\.test\.mjs/);
   assert.match(workflow, /pokemon_countdown_calendar_variant_rollback_rehearsal_v1\.mjs/);
   assert.match(workflow, /retention-days: 90/);
   assert.doesNotMatch(workflow, /\b(?:git push|supabase db push)\b/i);
