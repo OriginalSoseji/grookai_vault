@@ -14,6 +14,11 @@ canonical parent for a Pokemon TCGPlayer product, the agent publishes one
 bounded founder review item for the source-sync run. A batch contains at most
 50 products. It binds the source pricing run, source sync, producer commit,
 source observations, proposed parent identities, and candidate evidence.
+For mixed promo groups that cannot inherit one group-level set, enrichment may
+search the active Pokemon catalog by the exact printed coordinate and a
+base-name alias derived from the untouched source title. This search is
+review-only: it preserves source modifiers, never chooses between multiple
+cross-set targets, and grants neither mapping nor publication authority.
 Multi-target rows, duplicate products, duplicate proposed parents, and rows past
 the batch limit stay in the measured backlog with explicit held reasons. They do
 not turn a successful coverage measurement into a failed agent run.
