@@ -1,0 +1,79 @@
+name: Pokemon Countdown Calendar Rollback Rehearsal
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pokemon-countdown-calendar-rollback-rehearsal-v1
+  cancel-in-progress: false
+
+jobs:
+  rehearse-production-transaction:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PROD_SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
+      SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      SUPABASE_DB_CA_CERT: ${{ secrets.SUPABASE_DB_CA_CERT }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Verify rollback rehearsal contracts
+        run: |
+          node --check scripts/audits/pokemon_countdown_calendar_variant_rollback_rehearsal_v1.mjs
+          node --test \
+            tests/contracts/pokemon_special_printing_reference_proposal_v1.test.mjs \
+            tests/contracts/pokemon_countdown_calendar_variant_plan_v1.test.mjs \
+            tests/contracts/pokemon_countdown_calendar_variant_rollback_rehearsal_v1.test.mjs
+
+      - name: Build current production proposal and live plan
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT_DIR="$RUNNER_TEMP/pokemon-countdown-calendar-rehearsal-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+          echo "OUT_DIR=$OUT_DIR" >> "$GITHUB_ENV"
+          node scripts/workers/tcgplayer_pricing_completion_agent_v1.mjs \
+            --out-dir="$OUT_DIR" \
+            --run-key="countdown-rehearsal-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+
+      - name: Rehearse and roll back all 22 production rows
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/audits/pokemon_countdown_calendar_variant_rollback_rehearsal_v1.mjs \
+            --proposal="$OUT_DIR/pokemon_special_printing_reference_proposal_v1.json" \
+            --plan="$OUT_DIR/pokemon_countdown_calendar_variant_plan_v1.json" \
+            --output="$OUT_DIR/pokemon_countdown_calendar_variant_rollback_rehearsal_v1.json"
+
+      - name: Publish rehearsal summary
+        if: always()
+        shell: bash
+        run: |
+          if [[ -f "$OUT_DIR/pokemon_countdown_calendar_variant_rollback_rehearsal_v1.json" ]]; then
+            echo '## Pokemon Countdown Calendar rollback rehearsal' >> "$GITHUB_STEP_SUMMARY"
+            echo '```json' >> "$GITHUB_STEP_SUMMARY"
+            jq '{version, project_ref, scope, durable_database_writes_performed, transaction_writes_rolled_back, execution: {status: .execution.status, simulated_write_counts: .execution.simulated_write_counts, rollback_verified: .execution.rollback_verified, mapping_sequence_unchanged: .execution.mapping_sequence_unchanged}, fingerprint_sha256}' \
+              "$OUT_DIR/pokemon_countdown_calendar_variant_rollback_rehearsal_v1.json" >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Preserve immutable rehearsal evidence
+        if: always() && env.OUT_DIR != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: pokemon-countdown-calendar-rollback-rehearsal-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ env.OUT_DIR }}
+          if-no-files-found: error
+          retention-days: 90
