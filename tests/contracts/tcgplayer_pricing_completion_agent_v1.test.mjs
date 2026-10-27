@@ -415,6 +415,8 @@ test('scheduled workflow measures production without treating backlog as a crash
   assert.match(worker, /pokemon_special_printing_proposal/);
   assert.match(worker, /pokemon_countdown_calendar_variant_plan_v1\.json/);
   assert.match(worker, /runPokemonCountdownVariantPlan/);
+  assert.match(worker, /supabase_service_snapshot/);
+  assert.match(worker, /pricingCountdownVariantPlanFailureCodeV1/);
   assert.match(worker, /COUNTDOWN_VARIANT_PLAN_UNAVAILABLE/);
   assert.match(worker, /pokemon_tcgplayer_reviewed_holds_20261026\.json/);
   assert.match(worker, /applyPokemonPricingMappingReviewedHoldsV1/);

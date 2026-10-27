@@ -88,11 +88,14 @@ projection has no active hash collision. Passing rows are ready only for a
 transactionally rolled-back rehearsal. A plan outage is reported as
 `COUNTDOWN_VARIANT_PLAN_UNAVAILABLE` and does not erase the pricing backlog or
 weaken any gate.
-The plan reuses the pinned exact-mapping reader connection, requires verified
-TLS and the direct no-membership read-only production role, confirms project
-`ycdxbpibncqcchqiihfz`, and enforces the rulebook maturity counts before reading
-any proposed row. A broad production login or an isolated fixture cannot
-produce a production Countdown plan.
+The scheduled Countdown plan uses the agent's existing backend-only Supabase
+secret through HTTPS for a bounded read-only service snapshot. It pins project
+`ycdxbpibncqcchqiihfz`, enforces the rulebook maturity counts before reading any
+proposed row, and contains no Supabase mutation call. It does not use the broad
+database login as a substitute for the disabled exact-mapping reader. Because
+the HTTPS reads do not share one database snapshot, the artifact records that
+limit and can authorize only a transactional rollback rehearsal that rechecks
+every invariant.
 
 ## Founder dashboard
 
