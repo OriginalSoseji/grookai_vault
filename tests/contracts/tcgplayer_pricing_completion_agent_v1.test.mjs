@@ -377,8 +377,8 @@ test('checked-in Pokemon reviewed holds match their frozen evidence', () => {
     'utf8',
   ));
   assert.equal(registry.version, 'TCGPLAYER_POKEMON_REVIEWED_HOLDS_V1');
-  assert.equal(registry.holds.length, 24);
-  assert.equal(new Set(registry.holds.map((hold) => hold.source_product_id)).size, 24);
+  assert.equal(registry.holds.length, 34);
+  assert.equal(new Set(registry.holds.map((hold) => hold.source_product_id)).size, 34);
   for (const hold of registry.holds) {
     assert.equal(
       pokemonPricingMappingReviewEvidenceFingerprintV1(hold.evidence),
