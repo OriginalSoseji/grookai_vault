@@ -57,6 +57,18 @@ reader capability is independently qualified and activated. A fixed
 to substitute the broad production database login. Backlog measurement,
 candidate enrichment, and review publication continue without that planner.
 
+Each successful scheduled run also preserves
+`pokemon_special_printing_reference_proposal_v1.json` beside the Pokemon
+diagnostic queue. The artifact currently routes missing 2008 Countdown Calendar
+products to distinct snowflake-stamped variant parents, using the exact mapped
+base card, the verified printed total, and the checked-in Master Index stamped
+fact. It is review-only and grants no mapping, canonical-write, approval, or
+publication authority. Before operating on any proposed row, create a separate
+fingerprinted guarded plan, prove the parent/child delta in a rolled-back
+transaction, and require a production apply plus durable readback under its own
+authority. Never attach a Countdown Calendar product directly to the existing
+base parent or extend the frozen 143-row special-variant manifest in place.
+
 The separate `pokemon-tcgplayer-mapping-outcome.yml` lane may convert an
 approved review into an executable founder item only when the approved payload
 also binds exact candidate records and a valid source-backed
