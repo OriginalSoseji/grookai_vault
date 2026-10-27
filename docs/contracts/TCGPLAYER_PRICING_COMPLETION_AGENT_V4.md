@@ -53,6 +53,12 @@ the independent backlog measurement and founder-review lane. The failure does
 not weaken the planner connection policy and does not use the broad production
 credential as a substitute reader.
 
+Every run also preserves a credential-free Pokemon diagnostic export for all
+queued products, including source metadata, bounded catalog context, and one
+explicit no-candidate reason when no review target is found. This export has no
+mapping or publication authority. It exists so the repair agent can advance the
+entire queue without discarding products that failed candidate discovery.
+
 ## Founder dashboard
 
 The operations page reads the latest `operations_agent_runs.summary` for

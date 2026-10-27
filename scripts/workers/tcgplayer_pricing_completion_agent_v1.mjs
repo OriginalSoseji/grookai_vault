@@ -87,12 +87,13 @@ function runExactMappingPlan({ sourceRunId, coverageGaps, outRoot }) {
   });
 }
 
-function runCandidateEnrichment({ input, output }) {
+function runCandidateEnrichment({ input, output, diagnosticOutput }) {
   return new Promise((resolve, reject) => {
     const child = spawn(process.execPath, [
       'scripts/audits/tcgplayer_ollama_candidate_enrichment_v1.mjs',
       `--input=${input}`,
       `--output=${output}`,
+      `--diagnostic-output=${diagnosticOutput}`,
       '--candidate-only',
     ], {
       cwd: path.resolve('.'),
@@ -256,6 +257,7 @@ async function main() {
     const enrichmentProcess = await runCandidateEnrichment({
       input: path.join(args.outDir, 'identity_product_queue.jsonl'),
       output: ollamaCandidateQueuePath,
+      diagnosticOutput: path.join(args.outDir, 'pokemon_identity_diagnostic_queue.jsonl'),
     });
     const ollamaCandidateQueue = await readJsonl(ollamaCandidateQueuePath);
     const mtgOllamaCandidateQueue = ollamaCandidateQueue.filter((row) =>
@@ -317,6 +319,11 @@ async function main() {
         held_by_reason: pokemonReviewHeldByReason,
         reviewed_hold_count: pokemonReviewedHolds.held_count,
         reviewed_hold_changed_evidence_count: pokemonReviewedHolds.changed_evidence_count,
+      },
+      pokemon_mapping_diagnostics: {
+        queued_products: enrichmentSummary.pokemon_diagnostic_output?.rows ?? null,
+        no_candidate_reasons:
+          enrichmentSummary.pokemon_diagnostic_output?.no_candidate_reasons ?? null,
       },
       exact_mapping_plan: {
         status: exactPlanProcess.status,
@@ -383,6 +390,11 @@ async function main() {
           path: 'pokemon_ollama_identity_candidate_queue.jsonl',
           rows: pokemonOllamaCandidateQueue.length,
           sha256: sha256(pokemonOllamaCandidateQueueJsonl),
+        },
+        pokemon_diagnostic: {
+          path: 'pokemon_identity_diagnostic_queue.jsonl',
+          rows: enrichmentSummary.pokemon_diagnostic_output?.rows ?? 0,
+          sha256: enrichmentSummary.pokemon_diagnostic_output?.sha256 ?? null,
         },
       },
       audit_stdout: audit.stdout.trim(),
