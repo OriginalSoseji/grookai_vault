@@ -214,6 +214,30 @@ test('product queue excludes variant and unsupported product lanes', () => {
   assert.deepEqual(queue, []);
 });
 
+test('Pokemon product queue rechecks stale scope with V1.5 and protects numbered cards', () => {
+  const queue = buildTcgplayerIdentityProductQueueV1([{
+    source_product_id: 102, source_category_id: 3,
+    source_product_name: 'Stellar Crown Sleeved Booster Master Carton',
+    source_group_name: 'SV: Stellar Crown',
+    product_scope_result: 'in_scope',
+    has_printed_number_evidence: false,
+  }, {
+    source_product_id: 103, source_category_id: 3,
+    source_product_name: 'Box of Disaster',
+    source_group_name: 'SWSH11: Lost Origin',
+    product_scope_result: 'in_scope',
+    has_printed_number_evidence: true,
+  }]);
+
+  assert.equal(queue.length, 1);
+  assert.equal(queue[0].source_product_id, 103);
+  assert.equal(
+    queue[0].product_scope_policy_version,
+    'TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_5',
+  );
+  assert.equal(queue[0].has_printed_number_evidence, true);
+});
+
 test('Pokemon review leads become one bounded review-only founder item', () => {
   const item = buildPokemonPricingMappingReviewWorkItemV1({
     candidates: [{
