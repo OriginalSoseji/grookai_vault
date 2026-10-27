@@ -3826,3 +3826,43 @@ commits one serializable insert-only transaction, and must finish with
 `committed_and_independently_verified`. Stop on uncertain commit or readback;
 never retry blindly. Pricing publication remains a later, separately governed
 step after these new mappings are visible to the pricing pipeline.
+
+## Pokemon Countdown Calendar mapping-method repair — October 27, 2026
+
+The durable Countdown release committed and independently verified all 22
+parents, identities, children, and TCGPlayer mappings. Its first subsequent
+full pricing publication correctly quarantined those mappings because their
+metadata omitted the policy-required `mapping_method`. Nineteen products have
+a current positive TCGPlayer market value; products `153090`, `153106`, and
+`153110` currently have no positive source market value and must remain held
+even after the metadata repair. Do not weaken the publication policy or invent
+prices for those three products.
+
+Use the manual GitHub Actions workflow `Pokemon Countdown Calendar Mapping
+Method Repair`. First dispatch `operation=prepare_repair` from the merged
+commit. The workflow binds the exact 22 active TCGPlayer mappings to the
+original release package fingerprint, their unchanged canonical parent IDs,
+their complete pre-repair metadata, and the current repair code. It then opens
+a serializable transaction, writes the proposed metadata, verifies all 22 rows,
+rolls the transaction back, and proves the durable before/after snapshots are
+identical. Preserve the uploaded 90-day artifact and review its exact source
+commit, target-manifest fingerprint, rollback proof, and boundaries.
+
+The repair is metadata-only: it adds
+`mapping_method=exact_countdown_calendar_variant_authority_v1` and a bound
+`mapping_method_audit` object while retaining all prior mapping metadata. Its
+package permits exactly 22 `external_mappings.meta` updates and zero inserts,
+deletes, mapping-identity changes, card-identity changes, price writes,
+publication writes, customer-state writes, or Storage writes.
+
+Only after reviewing the prepared artifact, dispatch `operation=apply_repair`
+with the exact reported `source_commit_sha` and complete `approval_phrase`.
+The apply job repeats the live-state and rollback gates, commits one
+serializable transaction, and independently reads the 22 rows through a fresh
+database connection. Success is only
+`committed_and_independently_verified`. If commit acknowledgement or independent
+readback is uncertain, stop and inspect the retained artifact plus the exact 22
+mapping IDs; never retry blindly. A successful repair still does not publish
+prices. Run a later full governed TCGPlayer market pipeline and verify that the
+19 positive-price products publish while the three source-null products remain
+explicitly held.
