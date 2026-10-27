@@ -4,6 +4,9 @@ import {
   validateFounderWorkItemV1,
   validateOperationsAgentV1,
 } from './operations_control_plane_v1.mjs';
+import {
+  classifyTcgplayerMarketProductScopeV1_5,
+} from '../pricing/tcgplayer_market_product_scope_v1.mjs';
 
 export const TCGPLAYER_PRICING_COMPLETION_AGENT_KEY =
   'tcgplayer-pricing-completion-v1';
@@ -55,6 +58,16 @@ export function buildTcgplayerIdentityProductQueueV1(gaps = []) {
     const sourceProductId = integer(gap?.source_product_id);
     const sourceCategoryId = integer(gap?.source_category_id);
     if (!sourceProductId || !sourceCategoryId) continue;
+    const currentPokemonScope = sourceCategoryId === 3
+      ? classifyTcgplayerMarketProductScopeV1_5({
+          category_id: sourceCategoryId,
+          source_product_name: gap.source_product_name,
+          source_group_name: gap.source_group_name,
+          has_printed_number_evidence:
+            gap.has_printed_number_evidence === true,
+        })
+      : null;
+    if (currentPokemonScope && !currentPokemonScope.in_scope) continue;
     const key = `${sourceCategoryId}:${sourceProductId}`;
     const current = products.get(key) ?? {
       schema_version: 'TCGPLAYER_IDENTITY_PRODUCT_QUEUE_V1',
@@ -65,6 +78,14 @@ export function buildTcgplayerIdentityProductQueueV1(gaps = []) {
       source_group_id: integer(gap.source_group_id),
       source_group_name: String(gap.source_group_name ?? '').trim(),
       product_scope_result: String(gap.product_scope_result ?? '').trim(),
+      product_scope_policy_version:
+        currentPokemonScope?.policy_version
+        ?? (String(gap.product_scope_policy_version ?? '').trim() || null),
+      product_scope_rule_id:
+        currentPokemonScope?.rule_id
+        ?? (String(gap.product_scope_rule_id ?? '').trim() || null),
+      has_printed_number_evidence:
+        gap.has_printed_number_evidence === true,
       agent_key: String(gap.agent_key ?? '').trim(),
       primary_gap_reasons: new Set(),
       source_subtypes: new Set(),

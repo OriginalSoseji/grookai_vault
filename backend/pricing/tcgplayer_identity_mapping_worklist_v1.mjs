@@ -1,3 +1,7 @@
+import {
+  classifyTcgplayerMarketProductScopeV1_5,
+} from "./tcgplayer_market_product_scope_v1.mjs";
+
 export const TCGPLAYER_IDENTITY_MAPPING_WORKLIST_V1 =
   "TCGPLAYER_IDENTITY_MAPPING_WORKLIST_V1";
 
@@ -47,8 +51,24 @@ export function buildTcgplayerIdentityMappingWorklistV1(
     const sourceGroupName = text(row.source_group_name);
     const sourceCategoryName = text(row.source_category_name);
     const sourceSubtypeName = text(row.source_subtype_name);
-    const productScopeResult = text(row.product_scope_result) || "unknown";
-    const productScopeRuleId = text(row.product_scope_rule_id) || null;
+    const recordedProductScopeResult = text(row.product_scope_result) || "unknown";
+    const hasPrintedNumberEvidence = row.has_printed_number_evidence === true;
+    const currentPokemonScope =
+      sourceCategoryId === 3 && recordedProductScopeResult === "in_scope"
+        ? classifyTcgplayerMarketProductScopeV1_5({
+            category_id: sourceCategoryId,
+            source_product_name: sourceProductName,
+            source_group_name: sourceGroupName,
+            has_printed_number_evidence: hasPrintedNumberEvidence,
+          })
+        : null;
+    const productScopeResult =
+      currentPokemonScope?.scope_result ?? recordedProductScopeResult;
+    const productScopeRuleId =
+      currentPokemonScope?.rule_id ?? (text(row.product_scope_rule_id) || null);
+    const productScopePolicyVersion =
+      currentPokemonScope?.policy_version ??
+      (text(row.product_scope_policy_version) || null);
 
     if (!IDENTITY_REASONS.has(primaryReason)) {
       findings.push(`unexpected_primary_reason:${primaryReason || "missing"}`);
@@ -149,6 +169,8 @@ export function buildTcgplayerIdentityMappingWorklistV1(
       source_subtype_name: sourceSubtypeName,
       product_scope_result: productScopeResult,
       product_scope_rule_id: productScopeRuleId,
+      product_scope_policy_version: productScopePolicyVersion,
+      has_printed_number_evidence: hasPrintedNumberEvidence,
       agent_key: agentKey,
     });
   }

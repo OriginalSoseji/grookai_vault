@@ -268,6 +268,11 @@ cannot represent one exact single-card printing. The printed-number guard
 continues to keep numbered single cards in scope even when their card names
 contain packaging words.
 
+The pricing completion worklist and its category repair queues must replay
+current Product Scope V1.5 over older qualification evidence before assigning
+work. Stale `in_scope` evidence cannot keep a sealed or multi-card product in a
+single-card repair queue, and the replay must preserve the printed-number guard.
+
 Missing canonical mapping, identity, printed-number, or exact-finish evidence
 does not remove a row from the denominator. Those are coverage gaps.
 
