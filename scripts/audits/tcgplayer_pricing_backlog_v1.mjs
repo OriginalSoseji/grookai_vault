@@ -369,7 +369,13 @@ async function main() {
               decision.evidence ->> 'product_scope_result'
                 as product_scope_result,
               decision.evidence ->> 'product_scope_rule_id'
-                as product_scope_rule_id
+                as product_scope_rule_id,
+              decision.evidence ->> 'product_scope_policy_version'
+                as product_scope_policy_version,
+              coalesce(
+                (decision.evidence ->> 'has_printed_number_evidence')::boolean,
+                false
+              ) as has_printed_number_evidence
          from public.market_price_qualification_decisions decision
          join public.tcgcsv_source_products product
            on product.product_id = decision.source_product_id

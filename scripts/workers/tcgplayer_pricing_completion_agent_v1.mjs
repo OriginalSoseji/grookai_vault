@@ -17,6 +17,9 @@ import {
   selectPokemonPricingMappingReviewBatchV1,
   summarizeTcgplayerPricingCompletionRunV1,
 } from '../../backend/operations/tcgplayer_pricing_completion_agent_v1.mjs';
+import {
+  buildPokemonSpecialPrintingReferenceProposalV1,
+} from '../../backend/pricing/pokemon_special_printing_reference_proposal_v1.mjs';
 
 function parseArgs(argv) {
   const value = (name) => argv.find((arg) => arg.startsWith(`--${name}=`))
@@ -118,6 +121,36 @@ function runCandidateEnrichment({ input, output, diagnosticOutput }) {
   });
 }
 
+function runPokemonCountdownVariantPlan({ proposal, output }) {
+  return new Promise((resolve, reject) => {
+    const child = spawn(process.execPath, [
+      'scripts/audits/pokemon_countdown_calendar_variant_plan_v1.mjs',
+      `--proposal=${proposal}`,
+      `--output=${output}`,
+      '--transport=supabase_service_snapshot',
+    ], {
+      cwd: path.resolve('.'),
+      env: {
+        ...process.env,
+        PGOPTIONS: '-c default_transaction_read_only=on',
+      },
+      windowsHide: true,
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    let stdout = '';
+    let stderr = '';
+    child.stdout.on('data', (chunk) => { stdout += chunk; });
+    child.stderr.on('data', (chunk) => { stderr += chunk; });
+    child.on('error', reject);
+    child.on('close', (code) => {
+      if (code === 0) resolve({ stdout, stderr });
+      else reject(new Error(
+        `Pokemon Countdown variant plan failed with exit ${code}: ${stderr || stdout}`,
+      ));
+    });
+  });
+}
+
 async function readOnlyChildDirectory(root) {
   const entries = await fs.readdir(root, { withFileTypes: true });
   const directories = entries.filter((entry) => entry.isDirectory())
@@ -145,6 +178,12 @@ function pricingExactPlanFailureCodeV1(error) {
   const message = String(error?.message ?? error ?? '');
   const known = message.match(/\b(?:MAPPING_READER|PLANNER)_[A-Z_]+\b/)?.[0];
   return known ?? 'EXACT_MAPPING_PLAN_UNAVAILABLE';
+}
+
+function pricingCountdownVariantPlanFailureCodeV1(error) {
+  const message = String(error?.message ?? error ?? '');
+  const known = message.match(/\bcountdown_variant_[a-z_]+\b/)?.[0];
+  return known?.toUpperCase() ?? 'COUNTDOWN_VARIANT_PLAN_UNAVAILABLE';
 }
 
 async function heartbeat({ credentials, agent, runKey, status, summary }) {
@@ -254,10 +293,14 @@ async function main() {
       args.outDir,
       'ollama_identity_candidate_queue.jsonl',
     );
+    const pokemonDiagnosticQueuePath = path.join(
+      args.outDir,
+      'pokemon_identity_diagnostic_queue.jsonl',
+    );
     const enrichmentProcess = await runCandidateEnrichment({
       input: path.join(args.outDir, 'identity_product_queue.jsonl'),
       output: ollamaCandidateQueuePath,
-      diagnosticOutput: path.join(args.outDir, 'pokemon_identity_diagnostic_queue.jsonl'),
+      diagnosticOutput: pokemonDiagnosticQueuePath,
     });
     const ollamaCandidateQueue = await readJsonl(ollamaCandidateQueuePath);
     const mtgOllamaCandidateQueue = ollamaCandidateQueue.filter((row) =>
@@ -280,6 +323,58 @@ async function main() {
       `${ollamaCandidateQueuePath}.summary.json`,
       'utf8',
     ));
+    const [pokemonDiagnosticQueue, verifiedSetRegistry, masterPrintingRegistry] =
+      await Promise.all([
+        readJsonl(pokemonDiagnosticQueuePath),
+        fs.readFile(path.resolve(
+          'docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_sets_v1.json',
+        ), 'utf8').then(JSON.parse),
+        fs.readFile(path.resolve(
+          'docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_printings_v1.json',
+        ), 'utf8').then(JSON.parse),
+      ]);
+    const pokemonSpecialPrintingProposal = buildPokemonSpecialPrintingReferenceProposalV1({
+      diagnosticRows: pokemonDiagnosticQueue,
+      setRegistry: verifiedSetRegistry,
+      masterPrintings: masterPrintingRegistry.printings,
+    });
+    const pokemonSpecialPrintingProposalJson =
+      `${JSON.stringify(pokemonSpecialPrintingProposal, null, 2)}\n`;
+    const pokemonSpecialPrintingProposalPath = path.join(
+      args.outDir,
+      'pokemon_special_printing_reference_proposal_v1.json',
+    );
+    await fs.writeFile(
+      pokemonSpecialPrintingProposalPath,
+      pokemonSpecialPrintingProposalJson,
+    );
+    const pokemonCountdownVariantPlanPath = path.join(
+      args.outDir,
+      'pokemon_countdown_calendar_variant_plan_v1.json',
+    );
+    let pokemonCountdownVariantPlan = null;
+    let pokemonCountdownVariantPlanProcess;
+    try {
+      const result = await runPokemonCountdownVariantPlan({
+        proposal: pokemonSpecialPrintingProposalPath,
+        output: pokemonCountdownVariantPlanPath,
+      });
+      pokemonCountdownVariantPlan = JSON.parse(await fs.readFile(
+        pokemonCountdownVariantPlanPath,
+        'utf8',
+      ));
+      pokemonCountdownVariantPlanProcess = {
+        status: 'available',
+        stdout: result.stdout,
+        error_code: null,
+      };
+    } catch (error) {
+      pokemonCountdownVariantPlanProcess = {
+        status: 'unavailable',
+        stdout: '',
+        error_code: pricingCountdownVariantPlanFailureCodeV1(error),
+      };
+    }
     const pokemonReviewedHoldRegistry = JSON.parse(await fs.readFile(
       path.resolve('docs/audits/pokemon_tcgplayer_reviewed_holds_20261026.json'),
       'utf8',
@@ -325,6 +420,16 @@ async function main() {
         no_candidate_reasons:
           enrichmentSummary.pokemon_diagnostic_output?.no_candidate_reasons ?? null,
       },
+      pokemon_special_printing_proposal: pokemonSpecialPrintingProposal.summary,
+      pokemon_countdown_calendar_variant_plan: pokemonCountdownVariantPlan
+        ? {
+            status: pokemonCountdownVariantPlanProcess.status,
+            ...pokemonCountdownVariantPlan.summary,
+          }
+        : {
+            status: pokemonCountdownVariantPlanProcess.status,
+            error_code: pokemonCountdownVariantPlanProcess.error_code,
+          },
       exact_mapping_plan: {
         status: exactPlanProcess.status,
         error_code: exactPlanProcess.error_code,
@@ -396,11 +501,27 @@ async function main() {
           rows: enrichmentSummary.pokemon_diagnostic_output?.rows ?? 0,
           sha256: enrichmentSummary.pokemon_diagnostic_output?.sha256 ?? null,
         },
+        pokemon_special_printing_reference_proposal: {
+          path: 'pokemon_special_printing_reference_proposal_v1.json',
+          rows: pokemonSpecialPrintingProposal.rows.length,
+          sha256: sha256(pokemonSpecialPrintingProposalJson),
+          fingerprint_sha256: pokemonSpecialPrintingProposal.fingerprint_sha256,
+        },
+        ...(pokemonCountdownVariantPlan ? {
+          pokemon_countdown_calendar_variant_plan: {
+            path: 'pokemon_countdown_calendar_variant_plan_v1.json',
+            rows: pokemonCountdownVariantPlan.rows.length,
+            sha256: sha256(await fs.readFile(pokemonCountdownVariantPlanPath)),
+            fingerprint_sha256: pokemonCountdownVariantPlan.fingerprint_sha256,
+          },
+        } : {}),
       },
       audit_stdout: audit.stdout.trim(),
       exact_mapping_plan_stdout: exactPlanProcess.stdout.trim() || null,
       candidate_enrichment_stdout: enrichmentProcess.stdout.trim(),
       candidate_enrichment_summary: enrichmentSummary,
+      pokemon_countdown_calendar_variant_plan_stdout:
+        pokemonCountdownVariantPlanProcess.stdout.trim() || null,
       pokemon_mapping_review: {
         candidate_count: pokemonOllamaCandidateQueue.length,
         selected_count: pokemonReviewBatch.selected_count,

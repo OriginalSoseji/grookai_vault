@@ -14,6 +14,11 @@ canonical parent for a Pokemon TCGPlayer product, the agent publishes one
 bounded founder review item for the source-sync run. A batch contains at most
 50 products. It binds the source pricing run, source sync, producer commit,
 source observations, proposed parent identities, and candidate evidence.
+For mixed promo groups that cannot inherit one group-level set, enrichment may
+search the active Pokemon catalog by the exact printed coordinate and a
+base-name alias derived from the untouched source title. This search is
+review-only: it preserves source modifiers, never chooses between multiple
+cross-set targets, and grants neither mapping nor publication authority.
 Multi-target rows, duplicate products, duplicate proposed parents, and rows past
 the batch limit stay in the measured backlog with explicit held reasons. They do
 not turn a successful coverage measurement into a failed agent run.
@@ -58,6 +63,68 @@ queued products, including source metadata, bounded catalog context, and one
 explicit no-candidate reason when no review target is found. This export has no
 mapping or publication authority. It exists so the repair agent can advance the
 entire queue without discarding products that failed candidate discovery.
+When an otherwise matching parent is already mapped, is a variant, lacks unique
+identity, or remains cross-set ambiguous, the diagnostic row includes bounded
+reference targets and explicit blockers. Reference targets are evidence for a
+later child-printing repair lane and can never enter the parent-mapping review
+batch.
+
+For the 2008 Countdown Calendar source group, every run also derives a frozen,
+read-only special-printing proposal from those diagnostic references. The
+proposal resolves the underlying expansion parent by exact name, number, and
+verified printed total; ignores already-variant targets; and requires a matching
+`stamped` fact in the checked-in English Master Index. It proposes a distinct
+variant parent for the gold snowflake cards and for the silver Holo Pikachu,
+rather than attaching the source product to the already-mapped base parent.
+The proposal has no mapping, canonical-write, approval, or publication
+authority. A separate guarded plan, rollback simulation, and production
+readback remain mandatory before any database mutation.
+
+The worker then attempts a separate read-only live plan for those proposed
+Countdown Calendar rows. It verifies the base parent and finish child still
+exist, the TCGPlayer product is still unmapped, the target parent/child IDs and
+GV-ID do not collide, the finish key is active, and the canonical identity
+projection has no active hash collision. Passing rows are ready only for a
+transactionally rolled-back rehearsal. A plan outage is reported as
+`COUNTDOWN_VARIANT_PLAN_UNAVAILABLE` and does not erase the pricing backlog or
+weaken any gate.
+The scheduled Countdown plan uses the agent's existing backend-only Supabase
+secret through HTTPS for a bounded read-only service snapshot. It pins project
+`ycdxbpibncqcchqiihfz`, enforces the rulebook maturity counts before reading any
+proposed row, and contains no Supabase mutation call. It does not use the broad
+database login as a substitute for the disabled exact-mapping reader. Because
+the HTTPS reads do not share one database snapshot, the artifact records that
+limit and can authorize only a transactional rollback rehearsal that rechecks
+every invariant.
+
+The manual `Pokemon Countdown Calendar Rollback Rehearsal` workflow consumes a
+fresh proposal and live plan from the same production run. Inside one
+serializable transaction it rechecks all 22 base identities, required finishes,
+target identifiers, canonical identity projections, and TCGPlayer mapping
+absences. It then simulates the 22 parent, identity, child-printing, and mapping
+inserts and proves every link before an acknowledged rollback. TCGPlayer
+mappings use explicit negative rehearsal-only IDs so the production mapping
+sequence is not advanced. The workflow compares the exact target rows and
+sequence state before and after rollback and fails unless they match. Its
+artifact grants no apply, approval, pricing-publication, or customer-state
+authority.
+
+The separate manual `Pokemon Countdown Calendar Durable Release` workflow has
+two serial operations. `prepare_release` regenerates the proposal and live plan,
+repeats the full production rollback proof, and creates an immutable release
+package bound to the exact source commit, producer file hashes, proposal, plan,
+deterministic rollback proof, 22-row target manifest, expected insert counts, and zero-write
+boundaries outside the four catalog/mapping insert classes. It reports one exact
+fingerprint-bound approval phrase and performs no durable writes.
+
+`apply_release` must check out the exact prepared commit and receive that phrase
+unchanged. It regenerates every input and a fresh rollback proof; any source,
+code, database, target, proof, package, or approval drift stops before the durable
+transaction. A successful transaction may insert only 22 `card_prints`, 22
+`card_print_identity`, 22 `card_printings`, and 22 `external_mappings` rows.
+It then opens an independent database connection and proves the exact 88-row
+result. This release does not write or publish prices, claim exact stamped
+artwork, write Storage objects, or change customer/Vault state.
 
 ## Founder dashboard
 

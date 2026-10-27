@@ -4,7 +4,7 @@ import test from "node:test";
 import {
   buildTcgplayerIdentityMappingWorklistV1,
   escapeTcgplayerWorklistMarkdownCellV1,
-  TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2,
+  TCGPLAYER_MARKET_COVERAGE_POLICY_V1_3,
 } from "../../backend/pricing/tcgplayer_identity_mapping_worklist_v1.mjs";
 
 test("worklist Markdown cells escape backslashes, pipes, and line breaks", () => {
@@ -94,7 +94,7 @@ test("identity mapping worklist reconciles rows, products, and source groups", (
     source_groups: 2,
   }]);
   assert.ok(result.gaps.every((row) =>
-    row.policy_version === TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2));
+    row.policy_version === TCGPLAYER_MARKET_COVERAGE_POLICY_V1_3));
 });
 
 test("identity mapping worklist fails closed on duplicate or incomplete evidence", () => {
@@ -107,4 +107,44 @@ test("identity mapping worklist fails closed on duplicate or incomplete evidence
   assert.ok(result.findings.includes("duplicate_source_observation:observation-2"));
   assert.ok(result.findings.includes("incomplete_source_metadata:observation-1"));
   assert.ok(result.findings.includes("identity_mapping_partition_mismatch:3:1"));
+});
+
+test("Pokemon worklist refreshes stale in-scope products with V1.5 and protects numbered cards", () => {
+  const result = buildTcgplayerIdentityMappingWorklistV1([
+    {
+      ...rows[0],
+      source_observation_id: "packaged-observation",
+      source_product_id: 200,
+      source_product_name: "Stellar Crown Sleeved Booster Master Carton",
+      has_printed_number_evidence: false,
+    },
+    {
+      ...rows[1],
+      source_observation_id: "numbered-observation",
+      source_product_id: 201,
+      source_product_name: "Box of Disaster",
+      has_printed_number_evidence: true,
+    },
+  ], { expectedRowCount: 2 });
+
+  assert.equal(result.status, "ready");
+  assert.deepEqual(
+    result.gaps.map((row) => ({
+      id: row.source_product_id,
+      scope: row.product_scope_result,
+      rule: row.product_scope_rule_id,
+      policy: row.product_scope_policy_version,
+    })),
+    [{
+      id: 200,
+      scope: "unsupported_product_kind",
+      rule: "sealed_pack_family_v1_5",
+      policy: "TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_5",
+    }, {
+      id: 201,
+      scope: "in_scope",
+      rule: null,
+      policy: "TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_5",
+    }],
+  );
 });

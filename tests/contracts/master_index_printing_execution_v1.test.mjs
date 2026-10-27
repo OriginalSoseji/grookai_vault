@@ -176,8 +176,10 @@ test('failed rollback is reported rather than assumed successful',async()=>{
 
 test('production transport refuses local, other-project and unverified startup targets',()=>{
  const target='postgresql://postgres.ycdxbpibncqcchqiihfz:fixture-password@aws-1-us-east-2.pooler.supabase.com:5432/postgres';
+ const direct='postgresql://postgres:fixture-password@db.ycdxbpibncqcchqiihfz.supabase.co:5432/postgres';
  assert.equal(assertPrintingDatabaseTarget(target+'?sslmode=require').search,'');
- for(const bad of [target.replace('ycdxbpibncqcchqiihfz','other'),target.replace('aws-1-us-east-2.pooler.supabase.com','localhost'),target.replace('/postgres','/other'),target+'?options=-c%20search_path=other',target.replace(':5432/',':1234/')])assert.throws(()=>assertPrintingDatabaseTarget(bad));
+ assert.equal(assertPrintingDatabaseTarget(direct+'?sslmode=require').search,'');
+ for(const bad of [target.replace('ycdxbpibncqcchqiihfz','other'),target.replace('aws-1-us-east-2.pooler.supabase.com','localhost'),target.replace('/postgres','/other'),target+'?options=-c%20search_path=other',target.replace(':5432/',':1234/'),direct.replace('ycdxbpibncqcchqiihfz','other'),direct.replace('//postgres:','//postgres.ycdxbpibncqcchqiihfz:')])assert.throws(()=>assertPrintingDatabaseTarget(bad));
 });
 
 function approval(plan) {

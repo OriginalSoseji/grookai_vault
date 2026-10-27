@@ -37,10 +37,14 @@ jobs:
         run: |
           node --check backend/operations/tcgplayer_pricing_completion_agent_v1.mjs
           node --check backend/pricing/tcgplayer_ollama_candidate_enrichment_v1.mjs
+          node --check backend/pricing/pokemon_special_printing_reference_proposal_v1.mjs
           node --check scripts/audits/tcgplayer_ollama_candidate_enrichment_v1.mjs
+          node --check scripts/audits/pokemon_countdown_calendar_variant_plan_v1.mjs
           node --check scripts/workers/tcgplayer_pricing_completion_agent_v1.mjs
           node --test \
             tests/contracts/tcgplayer_pricing_completion_agent_v1.test.mjs \
+            tests/contracts/pokemon_special_printing_reference_proposal_v1.test.mjs \
+            tests/contracts/pokemon_countdown_calendar_variant_plan_v1.test.mjs \
             tests/contracts/tcgplayer_ollama_candidate_enrichment_v1.test.mjs \
             tests/contracts/tcgplayer_ollama_triage_v1.test.mjs \
             tests/contracts/tcgplayer_ollama_lead_reconciliation_v1.test.mjs

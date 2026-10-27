@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 import {
   classifyTcgplayerMarketCoverageRowV1,
   summarizeTcgplayerMarketCoverageV1,
-  TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2,
+  TCGPLAYER_MARKET_COVERAGE_POLICY_V1_3,
   tcgplayerMarketCoverageEraV1,
 } from "../../backend/pricing/tcgplayer_market_coverage_policy_v1.mjs";
 
@@ -60,11 +60,15 @@ function coverageRow(overrides = {}) {
 test("ordinary exact publish row belongs to denominator and numerator", () => {
   const result = classifyTcgplayerMarketCoverageRowV1(coverageRow());
 
-  assert.equal(result.policy_version, TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2);
+  assert.equal(result.policy_version, TCGPLAYER_MARKET_COVERAGE_POLICY_V1_3);
   assert.equal(result.category_id, 3);
   assert.equal(result.in_denominator, true);
   assert.equal(result.in_numerator, true);
   assert.equal(result.denominator_exclusion_reason, null);
+  assert.equal(
+    result.product_scope.policy_version,
+    "TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_5",
+  );
   assert.equal(result.primary_gap_reason, null);
   assert.equal(result.mapped, true);
   assert.equal(result.exact_printing, true);
@@ -156,7 +160,7 @@ test("coverage audit blocks shadow activation when a publish row is out of scope
   assert.match(AUDIT, /shadowPublicationOutOfScope/);
   assert.match(
     AUDIT,
-    /shadow_publication_contains_v1_2_scope_exclusion/,
+    /shadow_publication_contains_v1_5_scope_exclusion/,
   );
   assert.match(
     AUDIT,
@@ -165,7 +169,7 @@ test("coverage audit blocks shadow activation when a publish row is out of scope
   assert.match(AUDIT, /shadow_publication_scope\.json/);
 });
 
-test("V1.1 excludes unnumbered sealed products without excluding card names", () => {
+test("V1.3 coverage excludes V1.5 packaged products without excluding numbered card names", () => {
   for (const sourceProductName of [
     "Journey Together Booster Bundle",
     "151 Binder Collection",
@@ -174,6 +178,14 @@ test("V1.1 excludes unnumbered sealed products without excluding card names", ()
     "Surging Sparks Sleeved Booster Pack",
     "Build & Battle Box",
     "Booster Display Case",
+    "Stellar Crown Sleeved Booster Master Carton",
+    "Scarlet & Violet Three Pack Blister",
+    "Prismatic Evolutions Surprise Box Set of Four",
+    "Crown Zenith Pin Collection Set of Three",
+    "Pokémon GO V Battle Deck Bundle",
+    "Fusion Strike Build and Battle Prerelease Kit",
+    "V-UNION Special Collection Set of Four",
+    "Base Set 2-Player CD-ROM Starter Set",
   ]) {
     const result = classifyTcgplayerMarketCoverageRowV1(
       coverageRow({
@@ -414,7 +426,7 @@ test("unclassified denominator gaps fail deterministically", () => {
 });
 
 test("coverage audit is read-only and produces governed artifacts", () => {
-  assert.match(AUDIT, /TCGPLAYER_MARKET_COVERAGE_AUDIT_V1_5/);
+  assert.match(AUDIT, /TCGPLAYER_MARKET_COVERAGE_AUDIT_V1_6/);
   assert.match(AUDIT, /database_reads_only:\s*true/);
   assert.match(AUDIT, /database_writes:\s*false/);
   assert.match(AUDIT, /coverage_gaps\.jsonl/);

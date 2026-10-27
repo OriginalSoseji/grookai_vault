@@ -57,6 +57,30 @@ reader capability is independently qualified and activated. A fixed
 to substitute the broad production database login. Backlog measurement,
 candidate enrichment, and review publication continue without that planner.
 
+Each successful scheduled run also preserves
+`pokemon_special_printing_reference_proposal_v1.json` beside the Pokemon
+diagnostic queue. The artifact currently routes missing 2008 Countdown Calendar
+products to distinct snowflake-stamped variant parents, using the exact mapped
+base card, the verified printed total, and the checked-in Master Index stamped
+fact. It is review-only and grants no mapping, canonical-write, approval, or
+publication authority. Before operating on any proposed row, create a separate
+fingerprinted guarded plan, prove the parent/child delta in a rolled-back
+transaction, and require a production apply plus durable readback under its own
+authority. Never attach a Countdown Calendar product directly to the existing
+base parent or extend the frozen 143-row special-variant manifest in place.
+The adjacent `pokemon_countdown_calendar_variant_plan_v1.json` artifact is the
+live collision readback. Its `ready_for_transactional_rollback_rehearsal`
+status authorizes only the next rollback rehearsal; `unavailable` or any row
+blocker leaves the batch held. Preserve both fingerprints together because the
+live plan is invalid if its bound proposal artifact changes.
+The scheduled Countdown plan uses a bounded HTTPS service snapshot from the
+agent's existing backend-only Supabase secret. It must pin the canonical project
+ref, pass `card_prints`, `sets`, and `card_print_traits` maturity counts, and use
+only read calls. It never uses the broad production database login as a
+substitute for the unavailable exact-mapping reader. Its multi-request snapshot
+is advisory and must be revalidated inside the next transactional rollback
+rehearsal before any later authority can be considered.
+
 The separate `pokemon-tcgplayer-mapping-outcome.yml` lane may convert an
 approved review into an executable founder item only when the approved payload
 also binds exact candidate records and a valid source-backed
@@ -3750,3 +3774,55 @@ the reviewed child printing, source mapping and image workflows.
 GitHub Actions runs `scripts/agents/japanese_master_index_continuous_verification_agent_v1.mjs` every 15 minutes from `main` through `.github/workflows/japanese-master-index-continuous-verification.yml`. The worker performs a fresh read-only database baseline, harvests the governed Japanese source lanes, packages fresh assertion evidence into the compressed inputs used by the downstream union and adjudication steps, and emits Ruflo-compatible progress events to `docs/audits/ruflo_notifications/progress.jsonl`.
 
 The worker is fail-closed: it never writes production or promotion tables. A database outage produces a deferred evidence-only result; a source timeout is bounded and recorded, and the per-source cursor in `docs/audits/japanese_master_index_v4/continuous_verification/container_cursors_v1.json` rotates the next batch of containers on the following run. Review the uploaded workflow artifacts before any separately authorized promotion.
+## Pokemon Countdown Calendar rollback rehearsal — October 27, 2026
+
+Use the manual GitHub Actions workflow `Pokemon Countdown Calendar Rollback
+Rehearsal` after the scheduled pricing completion agent reports a 22-row ready
+Countdown plan. The workflow generates a fresh proposal and production service
+snapshot; saved artifacts from an older run are never accepted as live input.
+
+The rehearsal opens a serializable production transaction, takes its advisory
+lock, and revalidates every parent coordinate, finish, target UUID, public GV
+ID, identity hash, and TCGPlayer product absence. It simulates four inserts per
+product: `card_prints`, `card_print_identity`, `card_printings`, and
+`external_mappings`. The mapping insert supplies the negative source product ID
+as its temporary primary key, preventing the nontransactional
+`external_mappings_id_seq` from advancing. The workflow must report 22 inserts
+in each class, 88 total simulated rows, an acknowledged rollback, an unchanged
+sequence, and identical target snapshots before and after rollback.
+
+Treat the uploaded 90-day artifact as rollback evidence only. It does not
+authorize durable catalog writes, mapping apply, price publication, visibility
+changes, or customer-state changes. A durable release must bind a separate
+immutable apply package to the exact proposal, plan, rehearsal, and code
+fingerprints and must retain its own approval and production readback.
+
+The first production dispatch, run `40454355148`, stopped before opening a
+database session because the shared printing target guard recognized only the
+canonical pooler URL while the protected secret contained the canonical direct
+URL. It built the fresh 22-row plan successfully, performed zero transaction
+writes, and preserved its failure evidence. The target guard now accepts either
+exact transport for project `ycdxbpibncqcchqiihfz`: direct host plus `postgres`
+user, or the verified pooler host plus the project-qualified user. Foreign
+projects, mismatched host/user pairs, databases, ports, and startup options
+remain rejected.
+
+Corrected production run `40455891692` passed from merged commit
+`fbdf7a8402505764ef6128165644b8f36a1a24ea`. It rebuilt the same 22-row proposal
+and plan, simulated 22 parent, identity, child, and mapping inserts, acknowledged
+rollback, retained mapping sequence value `355513`, and matched durable
+before/after target hash
+`4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945`.
+The immutable rehearsal fingerprint is
+`643f0d92754625a1bd0187dce550d1bce6cf073adc3b18429634eef929c34bf7`.
+
+For the durable release, first dispatch `Pokemon Countdown Calendar Durable
+Release` with `operation=prepare_release`. Preserve its artifact and copy the
+reported exact source commit and complete approval phrase. Review the package's
+22-row/88-insert scope and zero pricing, publication, Storage, customer, update,
+and delete boundaries. Only then dispatch `operation=apply_release` with that
+exact source commit and phrase. The apply run repeats the fresh rollback gate,
+commits one serializable insert-only transaction, and must finish with
+`committed_and_independently_verified`. Stop on uncertain commit or readback;
+never retry blindly. Pricing publication remains a later, separately governed
+step after these new mappings are visible to the pricing pipeline.

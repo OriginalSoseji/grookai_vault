@@ -226,7 +226,7 @@ Each expansion requires its own evidence contract and rollout gate.
 ## Coverage Contract
 
 Production V1 coverage is governed by
-`TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2`.
+`TCGPLAYER_MARKET_COVERAGE_POLICY_V1_3`.
 
 The denominator unit is one current TCGCSV source product/subtype price row.
 It includes rows that:
@@ -238,7 +238,7 @@ It includes rows that:
 - are not deterministically excluded object or V1.1 special-print lanes
 
 Object and special-print scope is shared with publication through
-`TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_2`. The classifier separates:
+`TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_5`. The classifier separates:
 
 - ordinary V1 single cards: `in_scope`
 - sealed, packaged, accessory, and non-card products:
@@ -260,6 +260,18 @@ V1.1. Ordinary identity-bearing promo context such as
 `(World Championships 2018)` or `(e-League)` is not excluded merely for
 containing an event name. It requires separate visible source evidence such as
 `Staff`, `Winner`, `Prerelease`, or `Stamped`.
+
+Coverage V1.3 adopts Product Scope V1.5 for the denominator. V1.5 expands the
+deterministic unsupported-product rules to additional pack, carton, starter,
+boxed-set, prerelease, bundle, kit, deck, and multi-card product families that
+cannot represent one exact single-card printing. The printed-number guard
+continues to keep numbered single cards in scope even when their card names
+contain packaging words.
+
+The pricing completion worklist and its category repair queues must replay
+current Product Scope V1.5 over older qualification evidence before assigning
+work. Stale `in_scope` evidence cannot keep a sealed or multi-card product in a
+single-card repair queue, and the replay must preserve the printed-number guard.
 
 Missing canonical mapping, identity, printed-number, or exact-finish evidence
 does not remove a row from the denominator. Those are coverage gaps.

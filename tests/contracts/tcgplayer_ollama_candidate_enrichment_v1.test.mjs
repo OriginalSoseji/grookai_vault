@@ -3,6 +3,7 @@ import test from 'node:test';
 
 import {
   buildTcgplayerOllamaCandidateIndexV1,
+  candidateSearchNamesForTcgplayerOllamaRowV1,
   candidatePoolForTcgplayerOllamaRowV1,
   diagnoseTcgplayerOllamaCandidateGapV1,
   diagnosticPoolForTcgplayerOllamaRowV1,
@@ -12,6 +13,7 @@ import {
   normalizeTcgplayerOllamaCoordinateV1,
   normalizeTcgplayerOllamaSourceNameV1,
   rankTcgplayerOllamaCandidatesV1,
+  rankTcgplayerOllamaDiagnosticReferencesV1,
   uniqueTcgplayerExtendedNumberV1,
 } from '../../backend/pricing/tcgplayer_ollama_candidate_enrichment_v1.mjs';
 import { planTcgplayerOllamaTriageRowV1 } from '../../backend/pricing/tcgplayer_ollama_triage_v1.mjs';
@@ -28,6 +30,20 @@ test('candidate normalization preserves identity symbols and collector coordinat
   assert.equal(normalizeTcgplayerOllamaSourceNameV1('Pikachu - 005/012'), 'pikachu');
   assert.equal(normalizeTcgplayerOllamaCoordinateV1('019/123'), '19');
   assert.equal(normalizeTcgplayerOllamaCoordinateV1('AR06'), 'AR6');
+  assert.equal(normalizeTcgplayerOllamaCoordinateV1('PW 2'), 'PW2');
+});
+
+test('candidate search keeps exact identity text and adds a base-name alias', () => {
+  assert.deepEqual(candidateSearchNamesForTcgplayerOllamaRowV1({
+    source_product_name: 'Chimchar - 76/130 [Diamond & Pearl]',
+    normalized_source_name: 'chimchar 76 130 diamond pearl',
+    printed_number: '076/130',
+  }), ['chimchar 76 130 diamond pearl', 'chimchar diamond pearl', 'chimchar']);
+  assert.deepEqual(candidateSearchNamesForTcgplayerOllamaRowV1({
+    source_product_name: 'Fighting Energy (2004-2005)',
+    normalized_source_name: 'fighting energy 2004 2005',
+    printed_number: '105/109',
+  }), ['fighting energy 2004 2005', 'fighting energy']);
 });
 
 test('global candidate lookup strips only the collector coordinate suffix', () => {
@@ -45,6 +61,97 @@ test('global candidate lookup strips only the collector coordinate suffix', () =
     printed_number: '005/012',
   }, index);
   assert.deepEqual(pool.map((row) => row.card_print_id), ['pikachu-5']);
+});
+
+test('cross-set lookup uses exact coordinate plus a review-only base-name alias', () => {
+  const chimchar = {
+    ...baseCard,
+    card_print_id: 'chimchar-76',
+    canonical_name: 'Chimchar',
+    canonical_number: '76',
+    identity_domain: 'pokemon_eng_standard',
+  };
+  const index = buildTcgplayerOllamaCandidateIndexV1([chimchar]);
+  const row = {
+    source_category_id: 3,
+    source_product_name: 'Chimchar - 76/130 [Diamond & Pearl]',
+    normalized_source_name: 'chimchar 76 130 diamond pearl',
+    printed_number: '076/130',
+  };
+  const pool = candidatePoolForTcgplayerOllamaRowV1(row, index);
+  const ranked = rankTcgplayerOllamaCandidatesV1(row, pool);
+  assert.deepEqual(ranked.map((candidate) => candidate.card_print_id), ['chimchar-76']);
+  assert.equal(ranked[0].candidate_evidence.source_name_match, 'base_name_alias');
+  assert.equal(ranked[0].candidate_evidence.target_set_source, 'global_catalog_search');
+});
+
+test('cross-set lookup retains ambiguity for founder review instead of choosing a set', () => {
+  const row = {
+    source_category_id: 3,
+    source_product_name: 'Pikachu (Baby)',
+    normalized_source_name: 'pikachu baby',
+    printed_number: '27',
+  };
+  const cards = [
+    { ...baseCard, card_print_id: 'pikachu-a', set_id: 'set-a', canonical_name: 'Pikachu', canonical_number: '27', identity_domain: 'pokemon_eng_standard' },
+    { ...baseCard, card_print_id: 'pikachu-b', set_id: 'set-b', canonical_name: 'Pikachu', canonical_number: '27', identity_domain: 'pokemon_eng_standard' },
+  ];
+  const index = buildTcgplayerOllamaCandidateIndexV1(cards);
+  const pool = candidatePoolForTcgplayerOllamaRowV1(row, index);
+  const ranked = rankTcgplayerOllamaCandidatesV1(row, pool);
+  assert.equal(ranked.length, 2);
+  assert.equal(diagnoseTcgplayerOllamaCandidateGapV1(row, pool, null, []),
+    'multiple_cross_set_coordinate_targets');
+});
+
+test('cross-set diagnostics expose an already-mapped canonical parent', () => {
+  const row = {
+    source_category_id: 3,
+    source_product_name: 'Glameow 83/130',
+    normalized_source_name: 'glameow 83 130',
+    printed_number: '083/130',
+  };
+  const mapped = {
+    ...baseCard,
+    card_print_id: 'glameow-83',
+    canonical_name: 'Glameow',
+    canonical_number: '83',
+    active_tcgplayer_mapping_count: 1,
+    identity_domain: 'pokemon_eng_standard',
+    game: 'pokemon',
+  };
+  const index = buildTcgplayerOllamaCandidateIndexV1([mapped]);
+  const pool = diagnosticPoolForTcgplayerOllamaRowV1(row, index);
+  assert.equal(diagnoseTcgplayerOllamaCandidateGapV1(row, pool),
+    'canonical_parent_already_has_tcgplayer_mapping');
+  const references = rankTcgplayerOllamaDiagnosticReferencesV1(row, pool);
+  assert.equal(references.length, 1);
+  assert.equal(references[0].card_print_id, 'glameow-83');
+  assert.deepEqual(references[0].diagnostic_reference_evidence.blockers,
+    ['target_already_mapped']);
+  assert.equal(references[0].diagnostic_reference_evidence.mapping_authority, false);
+  const enriched = enrichTcgplayerOllamaRowV1(row, [], null, pool);
+  assert.equal(enriched.review_targets.length, 0);
+  assert.equal(enriched.candidate_search.diagnostic_reference_count, 1);
+  assert.equal(enriched.candidate_search.diagnostic_reference_targets[0].card_print_id,
+    'glameow-83');
+});
+
+test('diagnostic references expose cross-set ambiguity without selecting a target', () => {
+  const row = {
+    source_category_id: 3,
+    source_product_name: 'Pikachu (Ivy)',
+    normalized_source_name: 'pikachu ivy',
+    printed_number: '1',
+  };
+  const cards = [
+    { ...baseCard, card_print_id: 'pikachu-a', set_id: 'set-a', canonical_name: 'Pikachu', canonical_number: '1', game: 'pokemon' },
+    { ...baseCard, card_print_id: 'pikachu-b', set_id: 'set-b', canonical_name: 'Pikachu', canonical_number: '1', game: 'pokemon' },
+  ];
+  const references = rankTcgplayerOllamaDiagnosticReferencesV1(row, cards);
+  assert.equal(references.length, 2);
+  assert.ok(references.every((candidate) =>
+    candidate.diagnostic_reference_evidence.blockers.includes('cross_set_target_ambiguous')));
 });
 
 test('source number extraction requires one unambiguous Number value', () => {
@@ -71,6 +178,24 @@ test('candidate index keeps MTG and Pokemon identity domains separate', () => {
     printed_number: '233',
   }, index);
   assert.deepEqual(pool.map((row) => row.card_print_id), ['mtg-1']);
+});
+
+test('cross-set base-name expansion is limited to Pokemon', () => {
+  const mtg = {
+    ...baseCard,
+    card_print_id: 'mtg-promo',
+    canonical_name: 'Lightning Bolt',
+    canonical_number: '150',
+    identity_domain: 'mtg_eng_paper_print',
+  };
+  const index = buildTcgplayerOllamaCandidateIndexV1([mtg]);
+  const pool = candidatePoolForTcgplayerOllamaRowV1({
+    source_category_id: 1,
+    source_product_name: 'Lightning Bolt - 150 (Event Promo)',
+    normalized_source_name: 'lightning bolt event promo',
+    printed_number: '150',
+  }, index);
+  assert.deepEqual(pool, []);
 });
 
 test('diagnostic lookup retains identity-less catalog rows without making them candidates', () => {

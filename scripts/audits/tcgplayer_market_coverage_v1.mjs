@@ -8,7 +8,7 @@ import pg from "pg";
 import "../../backend/env.mjs";
 import {
   summarizeTcgplayerMarketCoverageV1,
-  TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2,
+  TCGPLAYER_MARKET_COVERAGE_POLICY_V1_3,
   TCGPLAYER_MARKET_MINIMUM_COVERAGE_PERCENT_V1,
 } from "../../backend/pricing/tcgplayer_market_coverage_policy_v1.mjs";
 import {
@@ -25,7 +25,7 @@ const DEFAULT_OUT_ROOT = path.join(
   "market_pricing_product_v1",
   "coverage",
 );
-const AUDIT_VERSION = "TCGPLAYER_MARKET_COVERAGE_AUDIT_V1_5";
+const AUDIT_VERSION = "TCGPLAYER_MARKET_COVERAGE_AUDIT_V1_6";
 
 function parseArgs(argv) {
   const args = {
@@ -131,7 +131,7 @@ function markdown(
     "# TCGPlayer Market Production V1 Coverage",
     "",
     `- Audit version: \`${AUDIT_VERSION}\``,
-    `- Policy version: \`${TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2}\``,
+    `- Policy version: \`${TCGPLAYER_MARKET_COVERAGE_POLICY_V1_3}\``,
     `- Source run: \`${run.run_key}\``,
     `- Source commit: \`${run.git_commit_sha}\``,
     `- Status: \`${summary.status}\``,
@@ -146,13 +146,13 @@ function markdown(
     "## Shadow Publication Boundary",
     "",
     `- Shadow publish rows: \`${shadowPublicationScope.row_count}\``,
-    `- Shadow publish rows outside V1.2 scope: \`${shadowPublicationScope.out_of_scope_count}\``,
+    `- Shadow publish rows outside V1.5 scope: \`${shadowPublicationScope.out_of_scope_count}\``,
     `- Shadow publication scope status: \`${shadowPublicationScope.status}\``,
     "",
     "## Current Publication Boundary",
     "",
     `- Current exact publication rows: \`${currentPublicationScope.row_count}\``,
-    `- Current rows outside V1.1 scope: \`${currentPublicationScope.out_of_scope_count}\``,
+    `- Current rows outside V1.5 scope: \`${currentPublicationScope.out_of_scope_count}\``,
     `- Current publication scope status: \`${currentPublicationScope.status}\``,
     "",
     "## Denominator",
@@ -308,7 +308,7 @@ async function main() {
       (row) => !row.product_scope.in_scope,
     );
     const shadowPublicationScope = {
-      policy_version: TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2,
+      policy_version: TCGPLAYER_MARKET_COVERAGE_POLICY_V1_3,
       status:
         shadowPublicationOutOfScope.length === 0 ? "passed" : "failed",
       row_count: pokemonShadowPublicationRows.length,
@@ -320,7 +320,7 @@ async function main() {
     if (shadowPublicationOutOfScope.length > 0) {
       summary.findings = [
         ...summary.findings,
-        "shadow_publication_contains_v1_2_scope_exclusion",
+        "shadow_publication_contains_v1_5_scope_exclusion",
       ];
       summary.status = "failed";
     }
@@ -416,7 +416,7 @@ async function main() {
     await fs.mkdir(runDir, { recursive: true });
     const runPlan = {
       audit_version: AUDIT_VERSION,
-      policy_version: TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2,
+      policy_version: TCGPLAYER_MARKET_COVERAGE_POLICY_V1_3,
       source_run_id: run.id,
       source_run_key: run.run_key,
       source_commit_sha: run.git_commit_sha,

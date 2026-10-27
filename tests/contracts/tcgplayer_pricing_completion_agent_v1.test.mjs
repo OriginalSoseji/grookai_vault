@@ -214,6 +214,30 @@ test('product queue excludes variant and unsupported product lanes', () => {
   assert.deepEqual(queue, []);
 });
 
+test('Pokemon product queue rechecks stale scope with V1.5 and protects numbered cards', () => {
+  const queue = buildTcgplayerIdentityProductQueueV1([{
+    source_product_id: 102, source_category_id: 3,
+    source_product_name: 'Stellar Crown Sleeved Booster Master Carton',
+    source_group_name: 'SV: Stellar Crown',
+    product_scope_result: 'in_scope',
+    has_printed_number_evidence: false,
+  }, {
+    source_product_id: 103, source_category_id: 3,
+    source_product_name: 'Box of Disaster',
+    source_group_name: 'SWSH11: Lost Origin',
+    product_scope_result: 'in_scope',
+    has_printed_number_evidence: true,
+  }]);
+
+  assert.equal(queue.length, 1);
+  assert.equal(queue[0].source_product_id, 103);
+  assert.equal(
+    queue[0].product_scope_policy_version,
+    'TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_5',
+  );
+  assert.equal(queue[0].has_printed_number_evidence, true);
+});
+
 test('Pokemon review leads become one bounded review-only founder item', () => {
   const item = buildPokemonPricingMappingReviewWorkItemV1({
     candidates: [{
@@ -353,8 +377,8 @@ test('checked-in Pokemon reviewed holds match their frozen evidence', () => {
     'utf8',
   ));
   assert.equal(registry.version, 'TCGPLAYER_POKEMON_REVIEWED_HOLDS_V1');
-  assert.equal(registry.holds.length, 24);
-  assert.equal(new Set(registry.holds.map((hold) => hold.source_product_id)).size, 24);
+  assert.equal(registry.holds.length, 34);
+  assert.equal(new Set(registry.holds.map((hold) => hold.source_product_id)).size, 34);
   for (const hold of registry.holds) {
     assert.equal(
       pokemonPricingMappingReviewEvidenceFingerprintV1(hold.evidence),
@@ -386,6 +410,14 @@ test('scheduled workflow measures production without treating backlog as a crash
   assert.match(worker, /pokemon_ollama_identity_candidate_queue\.jsonl/);
   assert.match(worker, /pokemon_identity_diagnostic_queue\.jsonl/);
   assert.match(worker, /pokemon_mapping_diagnostics/);
+  assert.match(worker, /pokemon_special_printing_reference_proposal_v1\.json/);
+  assert.match(worker, /buildPokemonSpecialPrintingReferenceProposalV1/);
+  assert.match(worker, /pokemon_special_printing_proposal/);
+  assert.match(worker, /pokemon_countdown_calendar_variant_plan_v1\.json/);
+  assert.match(worker, /runPokemonCountdownVariantPlan/);
+  assert.match(worker, /supabase_service_snapshot/);
+  assert.match(worker, /pricingCountdownVariantPlanFailureCodeV1/);
+  assert.match(worker, /COUNTDOWN_VARIANT_PLAN_UNAVAILABLE/);
   assert.match(worker, /pokemon_tcgplayer_reviewed_holds_20261026\.json/);
   assert.match(worker, /applyPokemonPricingMappingReviewedHoldsV1/);
   assert.match(worker, /operations_publish_work_item_v1/);
