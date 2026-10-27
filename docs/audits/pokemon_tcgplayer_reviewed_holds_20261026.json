@@ -1,14 +1,14 @@
 {
   "version": "TCGPLAYER_POKEMON_REVIEWED_HOLDS_V1",
-  "reviewed_at": "2026-10-26T18:51:14.390Z",
+  "reviewed_at": "2026-10-27T03:07:48.181Z",
   "source": {
-    "workflow_run_id": 40376654974,
-    "artifact_id": 12674253560,
-    "artifact_name": "tcgplayer-pricing-completion-40376654974-1",
+    "workflow_run_id": 40442118196,
+    "artifact_id": 12707071303,
+    "artifact_name": "tcgplayer-pricing-completion-40442118196-1",
     "file": "pokemon_ollama_identity_candidate_queue.jsonl",
-    "sha256": "dfc9288bbe5a645245735885e68c7c0929b1f36326b028cdfb24924e91898679",
-    "prior_adjudication": "docs/audits/pokemon_tcgplayer_founder_review_batch_20261026.json",
-    "adjudication_note": "The current source artifact adds same-parent event-placement variants to the prior reviewed finish holds; every held row is frozen below."
+    "sha256": "234262090c0505c8cba5442ed74c969789665d646ec1d2e8d464ffa53a0db830",
+    "prior_adjudication": "docs/audits/pokemon_tcgplayer_reviewed_holds_20261026.json (24-row predecessor)",
+    "adjudication_note": "Ten newly surfaced cross-set promo leads were reviewed. Unrelated same-number parents and special distribution printings without exact printing authority are frozen below."
   },
   "holds": [
     {
@@ -541,6 +541,136 @@
       }
     },
     {
+      "source_product_id": 161747,
+      "reason": "cross_set_coordinate_matches_unrelated_parent",
+      "candidate_fingerprint": "6406bb5d767f64531ba4c213d29e3ffab032b8e00757718e468c80bc3c33c2a1",
+      "evidence": {
+        "source_product_id": 161747,
+        "source_product_name": "Pikachu (Baby)",
+        "source_group_id": 2205,
+        "source_group_name": "Pikachu World Collection Promos",
+        "printed_number": "27",
+        "source_subtypes": [
+          "Normal"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "067bbc12-ce47-4e7a-bfbb-a9d1ac21f0d4",
+            "gv_id": "GV-PK-PGO-027",
+            "set_id": "f500a330-334c-405c-849a-479f5f117b40",
+            "set_code": "swsh10.5",
+            "canonical_name": "Pikachu",
+            "canonical_number": "027",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 161749,
+      "reason": "cross_set_coordinate_matches_unrelated_parent",
+      "candidate_fingerprint": "fc2b2c2cf88b4a45d36dfca48ffa8c1f5806dd4bd1641f8b765917204abcf1e8",
+      "evidence": {
+        "source_product_id": 161749,
+        "source_product_name": "Pikachu (Flying)",
+        "source_group_id": 2205,
+        "source_group_name": "Pikachu World Collection Promos",
+        "printed_number": "25",
+        "source_subtypes": [
+          "Normal"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "be9b1912-c62b-46d9-9081-acaefe8cf0c2",
+            "gv_id": "GV-PK-MCD-25",
+            "set_id": "bac42efa-9a02-476e-a0a5-228e7925371e",
+            "set_code": "2021swsh",
+            "canonical_name": "Pikachu",
+            "canonical_number": "25",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 161752,
+      "reason": "source_variant_requires_printing_authority",
+      "candidate_fingerprint": "aa9e4acce125d68a92a63fb8804ec890965dff24951a389ba98315a2320f718a",
+      "evidence": {
+        "source_product_id": 161752,
+        "source_product_name": "Pikachu (Movie)",
+        "source_group_id": 2205,
+        "source_group_name": "Pikachu World Collection Promos",
+        "printed_number": "4",
+        "source_subtypes": [
+          "Normal"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "21a0ed1b-d86e-48f1-8dc6-adb17391bcc9",
+            "gv_id": "GV-PK-PR-4",
+            "set_id": "915c6517-a6b5-418f-8bc7-c05cae51e0ff",
+            "set_code": "basep",
+            "canonical_name": "Pikachu",
+            "canonical_number": "4",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 161753,
+      "reason": "source_variant_requires_printing_authority",
+      "candidate_fingerprint": "03dda43c3963d449dc5e9817526bca31740d50603c846c1d84408d0205090272",
+      "evidence": {
+        "source_product_id": 161753,
+        "source_product_name": "Pikachu (Snap)",
+        "source_group_id": 2205,
+        "source_group_name": "Pikachu World Collection Promos",
+        "printed_number": "4",
+        "source_subtypes": [
+          "Normal"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "21a0ed1b-d86e-48f1-8dc6-adb17391bcc9",
+            "gv_id": "GV-PK-PR-4",
+            "set_id": "915c6517-a6b5-418f-8bc7-c05cae51e0ff",
+            "set_code": "basep",
+            "canonical_name": "Pikachu",
+            "canonical_number": "4",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 161754,
+      "reason": "cross_set_coordinate_matches_unrelated_parent",
+      "candidate_fingerprint": "c510da5e1d422514b1ca2d7d7510a92322d241ba409e8fc6fc8850d773b51f90",
+      "evidence": {
+        "source_product_id": 161754,
+        "source_product_name": "Pikachu (Surfing)",
+        "source_group_id": 2205,
+        "source_group_name": "Pikachu World Collection Promos",
+        "printed_number": "28",
+        "source_subtypes": [
+          "Normal"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "0eafc514-6bba-4629-ba75-1a95493bc819",
+            "gv_id": "GV-PK-PGO-028",
+            "set_id": "f500a330-334c-405c-849a-479f5f117b40",
+            "set_code": "swsh10.5",
+            "canonical_name": "Pikachu",
+            "canonical_number": "028",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
       "source_product_id": 175064,
       "reason": "source_subtype_does_not_identify_reviewed_master_finish",
       "candidate_fingerprint": "06c2e775aae6198e72e68d50744e17dce241227cb1ed95d9a4b902711c1899a5",
@@ -593,6 +723,110 @@
       }
     },
     {
+      "source_product_id": 278686,
+      "reason": "source_variant_requires_printing_authority",
+      "candidate_fingerprint": "95c39db288dc00a60c63647eba94b7dcaf27f28b1ec66ded302b696117e2db0b",
+      "evidence": {
+        "source_product_id": 278686,
+        "source_product_name": "Professor's Research [Professor Juniper] - 060/072",
+        "source_group_id": 2332,
+        "source_group_name": "Professor Program Promos",
+        "printed_number": "060/072",
+        "source_subtypes": [
+          "Reverse Holofoil"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "17cd3179-b844-47a8-a197-ae123ca4b583",
+            "gv_id": "GV-PK-SHF-60-PROFESSOR-JUNIPER",
+            "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+            "set_code": "swsh4.5",
+            "canonical_name": "Professor's Research (Professor Juniper)",
+            "canonical_number": "60",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 599458,
+      "reason": "cross_set_coordinate_matches_unrelated_trainer_kit_parent",
+      "candidate_fingerprint": "7683d6d5be54a514588183fec1b0b53e3ea4a1516ccec03e6432a99d2cc5ad36",
+      "evidence": {
+        "source_product_id": 599458,
+        "source_product_name": "Water Energy (2023)",
+        "source_group_id": 2332,
+        "source_group_name": "Professor Program Promos",
+        "printed_number": "003",
+        "source_subtypes": [
+          "Holofoil"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "90e8b29d-5955-55d0-9cc8-b8b0321ab6c0",
+            "gv_id": "GV-PK-TK-tk-hs-g-3",
+            "set_id": "958be79a-216a-4739-a65e-61feee3dc9cc",
+            "set_code": "tk-hs-g",
+            "canonical_name": "Water Energy",
+            "canonical_number": "3",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 604496,
+      "reason": "cross_set_coordinate_matches_unrelated_trainer_kit_parent",
+      "candidate_fingerprint": "161294214594999673b21dbd306dd157ad99f50359708ed4ef5f566e946e7838",
+      "evidence": {
+        "source_product_id": 604496,
+        "source_product_name": "Water Energy (2024)",
+        "source_group_id": 2332,
+        "source_group_name": "Professor Program Promos",
+        "printed_number": "011",
+        "source_subtypes": [
+          "Holofoil"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "be5d92a8-9419-58b8-8238-11263269399c",
+            "gv_id": "GV-PK-TK-tk-hs-g-11",
+            "set_id": "958be79a-216a-4739-a65e-61feee3dc9cc",
+            "set_code": "tk-hs-g",
+            "canonical_name": "Water Energy",
+            "canonical_number": "11",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 604500,
+      "reason": "cross_set_coordinate_matches_unrelated_trainer_kit_parent",
+      "candidate_fingerprint": "ffbea6fd245079e2b2a3537a92c18f91743529eae59c4ef2a4c5c258e10c14fc",
+      "evidence": {
+        "source_product_id": 604500,
+        "source_product_name": "Fire Energy (2024)",
+        "source_group_id": 2332,
+        "source_group_name": "Professor Program Promos",
+        "printed_number": "010",
+        "source_subtypes": [
+          "Holofoil"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "d8fe90e8-091d-4ba5-bc65-b7e1809b1a20",
+            "gv_id": "GV-PK-TK-tk-ex-latia-10",
+            "set_id": "1e3387cd-3f84-47b6-a111-30c6e0e569e0",
+            "set_code": "tk-ex-latia",
+            "canonical_name": "Fire Energy",
+            "canonical_number": "10",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
       "source_product_id": 648631,
       "reason": "source_subtype_does_not_identify_reviewed_master_finish",
       "candidate_fingerprint": "be744f71a8d1be4403b017678d413a1e36289a346172f3fd5e1725439ace5a84",
@@ -613,6 +847,32 @@
             "set_code": "svp",
             "canonical_name": "Pikachu",
             "canonical_number": "225",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 680955,
+      "reason": "source_variant_requires_printing_authority",
+      "candidate_fingerprint": "640a1f61569bc8cc95fabdbba2ab8980c5b06b50f62fa3f3f0a91ac9de923709",
+      "evidence": {
+        "source_product_id": 680955,
+        "source_product_name": "Latias ex - 076/191 (GYM)",
+        "source_group_id": 24864,
+        "source_group_name": "Southeast Asia Exclusives",
+        "printed_number": "076/191",
+        "source_subtypes": [
+          "Holofoil"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "232e724d-e9d2-4150-94be-cdcd08275a28",
+            "gv_id": "GV-PK-SSP-76",
+            "set_id": "2fd89c59-23c4-4fab-940b-32a4527f9890",
+            "set_code": "sv08",
+            "canonical_name": "Latias ex",
+            "canonical_number": "76",
             "variant_key": ""
           }
         ]
