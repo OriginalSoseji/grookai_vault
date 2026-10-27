@@ -13,6 +13,7 @@ import {
   normalizeTcgplayerOllamaCoordinateV1,
   normalizeTcgplayerOllamaSourceNameV1,
   rankTcgplayerOllamaCandidatesV1,
+  rankTcgplayerOllamaDiagnosticReferencesV1,
   uniqueTcgplayerExtendedNumberV1,
 } from '../../backend/pricing/tcgplayer_ollama_candidate_enrichment_v1.mjs';
 import { planTcgplayerOllamaTriageRowV1 } from '../../backend/pricing/tcgplayer_ollama_triage_v1.mjs';
@@ -123,6 +124,34 @@ test('cross-set diagnostics expose an already-mapped canonical parent', () => {
   const pool = diagnosticPoolForTcgplayerOllamaRowV1(row, index);
   assert.equal(diagnoseTcgplayerOllamaCandidateGapV1(row, pool),
     'canonical_parent_already_has_tcgplayer_mapping');
+  const references = rankTcgplayerOllamaDiagnosticReferencesV1(row, pool);
+  assert.equal(references.length, 1);
+  assert.equal(references[0].card_print_id, 'glameow-83');
+  assert.deepEqual(references[0].diagnostic_reference_evidence.blockers,
+    ['target_already_mapped']);
+  assert.equal(references[0].diagnostic_reference_evidence.mapping_authority, false);
+  const enriched = enrichTcgplayerOllamaRowV1(row, [], null, pool);
+  assert.equal(enriched.review_targets.length, 0);
+  assert.equal(enriched.candidate_search.diagnostic_reference_count, 1);
+  assert.equal(enriched.candidate_search.diagnostic_reference_targets[0].card_print_id,
+    'glameow-83');
+});
+
+test('diagnostic references expose cross-set ambiguity without selecting a target', () => {
+  const row = {
+    source_category_id: 3,
+    source_product_name: 'Pikachu (Ivy)',
+    normalized_source_name: 'pikachu ivy',
+    printed_number: '1',
+  };
+  const cards = [
+    { ...baseCard, card_print_id: 'pikachu-a', set_id: 'set-a', canonical_name: 'Pikachu', canonical_number: '1', game: 'pokemon' },
+    { ...baseCard, card_print_id: 'pikachu-b', set_id: 'set-b', canonical_name: 'Pikachu', canonical_number: '1', game: 'pokemon' },
+  ];
+  const references = rankTcgplayerOllamaDiagnosticReferencesV1(row, cards);
+  assert.equal(references.length, 2);
+  assert.ok(references.every((candidate) =>
+    candidate.diagnostic_reference_evidence.blockers.includes('cross_set_target_ambiguous')));
 });
 
 test('source number extraction requires one unambiguous Number value', () => {
