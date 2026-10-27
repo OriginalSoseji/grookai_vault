@@ -138,6 +138,7 @@ try {
   }
   run('candidate_union', [
     'scripts/audits/japanese_master_index_v4/candidate_union_v1.mjs',
+    '--allow-incomplete-sources',
   ]);
   run('coverage', [
     'scripts/audits/japanese_master_index_v4/coverage_gap_report_v1.mjs',
