@@ -113,6 +113,14 @@ function positiveInteger(value, label) {
   return parsed;
 }
 
+function nonNegativeInteger(value, label) {
+  const parsed = Number.parseInt(String(value), 10);
+  if (!Number.isSafeInteger(parsed) || parsed < 0) {
+    throw new Error(`${label} must be a non-negative integer.`);
+  }
+  return parsed;
+}
+
 function safePathComponent(value) {
   const normalized = String(value ?? '')
     .normalize('NFKC')
@@ -134,6 +142,8 @@ export function parseCardHarvestArgs(argv = process.argv.slice(2)) {
     containerIds: [],
     maxContainers: null,
     maxCardsPerContainer: null,
+    sourceTimeoutSeconds: 120,
+    sourceRetryCount: 2,
     requestDelayMs: 125,
     generatedAt: null,
   };
@@ -170,6 +180,16 @@ export function parseCardHarvestArgs(argv = process.argv.slice(2)) {
         '--request-delay-ms',
       );
       requestDelayProvided = true;
+    } else if (token === '--source-timeout-seconds' && argv[index + 1]) {
+      options.sourceTimeoutSeconds = positiveInteger(
+        argv[++index],
+        '--source-timeout-seconds',
+      );
+    } else if (token === '--source-retry-count' && argv[index + 1]) {
+      options.sourceRetryCount = nonNegativeInteger(
+        argv[++index],
+        '--source-retry-count',
+      );
     } else if (token === '--generated-at' && argv[index + 1]) {
       options.generatedAt = new Date(argv[++index]).toISOString();
     } else {
@@ -272,6 +292,8 @@ async function loadOrCaptureSnapshot({
     url,
     outputDirectory,
     extension,
+    timeoutSeconds: options.sourceTimeoutSeconds,
+    retryCount: options.sourceRetryCount,
   });
   return { ...snapshot, capture_mode: 'live_fetch' };
 }
@@ -442,6 +464,12 @@ function errorRecord(error) {
     error_code: error?.code ?? null,
     error_message: String(error?.message ?? error),
   };
+}
+
+function isNotFoundError(error) {
+  return /(?:error|status)[:=\s]+404\b|returned error: 404\b/i.test(
+    String(error?.message ?? error),
+  );
 }
 
 async function harvestTcgdexContainer({
@@ -635,11 +663,16 @@ export async function runTcgdexJaCardHarvest(options) {
         `[jpn-master-index][tcgdex] container=${workItem.source_container_id} status=${result.health.status} assertions=${result.assertions.length}`,
       );
     } catch (error) {
+      const notFound = isNotFoundError(error);
       freshHealth.push({
         source_container_id: workItem.source_container_id,
         registry_key: workItem.registry_key,
-        status: 'source_fetch_or_parse_failed',
-        findings: ['source_fetch_or_parse_failed'],
+        status: notFound
+          ? 'source_card_rows_absent'
+          : 'source_fetch_or_parse_failed',
+        findings: notFound
+          ? ['source_set_not_found']
+          : ['source_fetch_or_parse_failed'],
         detail_failures: [],
         ...errorRecord(error),
       });
