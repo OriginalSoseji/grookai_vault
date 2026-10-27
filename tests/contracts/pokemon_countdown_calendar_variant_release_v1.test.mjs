@@ -5,6 +5,7 @@ import test from 'node:test';
 import {
   assertCountdownReleasePackageV1,
   buildCountdownReleasePackageV1,
+  countdownRollbackProofFingerprintV1,
   countdownReleaseApprovalTextV1,
   sha256,
   stableJson,
@@ -137,6 +138,41 @@ test('builds an immutable 22-row insert-only release package and exact approval 
   assert.match(approval, new RegExp(pkg.package_fingerprint_sha256));
   assert.match(approval, new RegExp(pkg.source_commit_sha));
   assert.match(approval, /rows=22$/);
+});
+
+test('approval package is stable across fresh rehearsals with generated identity row ids', () => {
+  const first = fixtures();
+  first.rehearsal.execution.in_transaction.target_snapshot.rows = [
+    { row_type: 'identity', row_id: '11111111-1111-4111-8111-111111111111' },
+  ];
+  first.rehearsal.fingerprint_sha256 = sha256(stableJson({
+    version: first.rehearsal.version,
+    project_ref: first.rehearsal.project_ref,
+    proposal_fingerprint_sha256: first.rehearsal.proposal_fingerprint_sha256,
+    plan_fingerprint_sha256: first.rehearsal.plan_fingerprint_sha256,
+    scope: first.rehearsal.scope,
+    execution: first.rehearsal.execution,
+  }));
+  const second = structuredClone(first);
+  second.rehearsal.execution.in_transaction.target_snapshot.rows[0].row_id =
+    '22222222-2222-4222-8222-222222222222';
+  second.rehearsal.fingerprint_sha256 = sha256(stableJson({
+    version: second.rehearsal.version,
+    project_ref: second.rehearsal.project_ref,
+    proposal_fingerprint_sha256: second.rehearsal.proposal_fingerprint_sha256,
+    plan_fingerprint_sha256: second.rehearsal.plan_fingerprint_sha256,
+    scope: second.rehearsal.scope,
+    execution: second.rehearsal.execution,
+  }));
+  assert.notEqual(first.rehearsal.fingerprint_sha256, second.rehearsal.fingerprint_sha256);
+  assert.equal(
+    countdownRollbackProofFingerprintV1(first.rehearsal),
+    countdownRollbackProofFingerprintV1(second.rehearsal),
+  );
+  const packageOne = buildCountdownReleasePackageV1({ ...first, rollbackReceipt: first.rehearsal, now: NOW });
+  const packageTwo = buildCountdownReleasePackageV1({ ...second, rollbackReceipt: second.rehearsal, now: NOW });
+  assert.equal(packageOne.package_fingerprint_sha256, packageTwo.package_fingerprint_sha256);
+  assert.equal(countdownReleaseApprovalTextV1(packageOne), countdownReleaseApprovalTextV1(packageTwo));
 });
 
 test('rejects stale, tampered, committed, or nonmatching rollback evidence', () => {

@@ -291,12 +291,12 @@ async function insertRelease(client, proposal, plan, pkg) {
               'source_product_name', source_product_name,
               'proposal_fingerprint_sha256', $2::text,
               'plan_fingerprint_sha256', $3::text,
-              'rollback_rehearsal_fingerprint_sha256', $4::text,
+              'rollback_proof_fingerprint_sha256', $4::text,
               'release_package_fingerprint_sha256', $5::text
             ), now(), true
        from countdown_release_targets`,
     [CREATED_BY, proposal.fingerprint_sha256, plan.fingerprint_sha256,
-      pkg.rollback_rehearsal_fingerprint_sha256, pkg.package_fingerprint_sha256],
+      pkg.rollback_proof_fingerprint_sha256, pkg.package_fingerprint_sha256],
   );
   const counts = {
     parent_inserts: parentInsert.rowCount,

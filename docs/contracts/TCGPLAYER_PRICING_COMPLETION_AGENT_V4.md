@@ -113,13 +113,13 @@ The separate manual `Pokemon Countdown Calendar Durable Release` workflow has
 two serial operations. `prepare_release` regenerates the proposal and live plan,
 repeats the full production rollback proof, and creates an immutable release
 package bound to the exact source commit, producer file hashes, proposal, plan,
-rollback receipt, 22-row target manifest, expected insert counts, and zero-write
+deterministic rollback proof, 22-row target manifest, expected insert counts, and zero-write
 boundaries outside the four catalog/mapping insert classes. It reports one exact
 fingerprint-bound approval phrase and performs no durable writes.
 
 `apply_release` must check out the exact prepared commit and receive that phrase
 unchanged. It regenerates every input and a fresh rollback proof; any source,
-code, database, target, package, or approval drift stops before the durable
+code, database, target, proof, package, or approval drift stops before the durable
 transaction. A successful transaction may insert only 22 `card_prints`, 22
 `card_print_identity`, 22 `card_printings`, and 22 `external_mappings` rows.
 It then opens an independent database connection and proves the exact 88-row

@@ -100,6 +100,26 @@ export function assertCountdownRollbackReceiptV1(receipt, { proposal, plan, now 
   return receipt;
 }
 
+export function countdownRollbackProofFingerprintV1(receipt) {
+  return sha256(stableJson({
+    version: receipt.version,
+    project_ref: receipt.project_ref,
+    proposal_fingerprint_sha256: receipt.proposal_fingerprint_sha256,
+    plan_fingerprint_sha256: receipt.plan_fingerprint_sha256,
+    scope: receipt.scope,
+    status: receipt.execution.status,
+    transaction: receipt.execution.transaction,
+    guard: receipt.execution.guard,
+    simulated_write_counts: receipt.execution.simulated_write_counts,
+    proof: receipt.execution.proof,
+    durable_before_hash_sha256: receipt.execution.before.target_snapshot.hash_sha256,
+    durable_after_hash_sha256: receipt.execution.after_rollback.target_snapshot.hash_sha256,
+    explicit_mapping_ids_bypassed_sequence: receipt.execution.explicit_mapping_ids_bypassed_sequence,
+    mapping_sequence_unchanged: receipt.execution.mapping_sequence_unchanged,
+    rollback_verified: receipt.execution.rollback_verified,
+  }));
+}
+
 export function buildCountdownReleasePackageV1({
   proposal,
   plan,
@@ -138,7 +158,7 @@ export function buildCountdownReleasePackageV1({
     },
     proposal_fingerprint_sha256: proposal.fingerprint_sha256,
     plan_fingerprint_sha256: plan.fingerprint_sha256,
-    rollback_rehearsal_fingerprint_sha256: rollbackReceipt.fingerprint_sha256,
+    rollback_proof_fingerprint_sha256: countdownRollbackProofFingerprintV1(rollbackReceipt),
     target_manifest_fingerprint_sha256: sha256(stableJson(targets)),
     source_group_id: 2155,
     expected: {
@@ -203,7 +223,10 @@ export function assertCountdownReleasePackageV1(pkg, {
     assert.equal(pkg.plan_fingerprint_sha256, plan.fingerprint_sha256);
     assert.equal(pkg.target_manifest_fingerprint_sha256, sha256(stableJson(targets)));
   }
-  if (rollbackReceipt) assert.equal(pkg.rollback_rehearsal_fingerprint_sha256, rollbackReceipt.fingerprint_sha256);
+  if (rollbackReceipt) assert.equal(
+    pkg.rollback_proof_fingerprint_sha256,
+    countdownRollbackProofFingerprintV1(rollbackReceipt),
+  );
   if (codeFiles) {
     const files = [...codeFiles].sort((left, right) => left.file.localeCompare(right.file));
     assert.deepEqual(pkg.code.files, files);
@@ -220,7 +243,7 @@ export function countdownReleaseApprovalTextV1(pkg) {
     `package=${pkg.package_fingerprint_sha256}`,
     `proposal=${pkg.proposal_fingerprint_sha256}`,
     `plan=${pkg.plan_fingerprint_sha256}`,
-    `rehearsal=${pkg.rollback_rehearsal_fingerprint_sha256}`,
+    `rollback_proof=${pkg.rollback_proof_fingerprint_sha256}`,
     `rows=${EXPECTED_ROWS}`,
   ].join(' ');
 }
