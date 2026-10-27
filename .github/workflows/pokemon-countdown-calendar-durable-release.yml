@@ -1,0 +1,140 @@
+name: Pokemon Countdown Calendar Durable Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      operation:
+        description: Prepare the exact release package or apply an approved package
+        required: true
+        type: choice
+        options:
+          - prepare_release
+          - apply_release
+      source_commit_sha:
+        description: Exact prepared source commit; required for apply_release
+        required: false
+        type: string
+      approval_phrase:
+        description: Exact fingerprint-bound approval text from prepare_release
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pokemon-countdown-calendar-durable-release-v1
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PROD_SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
+      SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      SUPABASE_DB_CA_CERT: ${{ secrets.SUPABASE_DB_CA_CERT }}
+    steps:
+      - name: Check out the requested immutable revision
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.operation == 'apply_release' && inputs.source_commit_sha || github.sha }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Verify durable release contracts and dispatch boundary
+        shell: bash
+        env:
+          DISPATCH_OPERATION: ${{ inputs.operation }}
+          DISPATCH_SOURCE_COMMIT: ${{ inputs.source_commit_sha }}
+          DISPATCH_APPROVAL_PHRASE: ${{ inputs.approval_phrase }}
+        run: |
+          set -euo pipefail
+          test -n "$PROD_SUPABASE_URL"
+          test -n "$SUPABASE_SECRET_KEY"
+          test -n "$SUPABASE_DB_URL"
+          if [[ "$DISPATCH_OPERATION" = "apply_release" ]]; then
+            [[ "$DISPATCH_SOURCE_COMMIT" =~ ^[a-f0-9]{40}$ ]]
+            test -n "$DISPATCH_APPROVAL_PHRASE"
+            test "$(git rev-parse HEAD)" = "$DISPATCH_SOURCE_COMMIT"
+          fi
+          test -z "$(git status --porcelain --untracked-files=no)"
+          node --check backend/catalog/pokemon_countdown_calendar_variant_release_v1.mjs
+          node --check scripts/audits/pokemon_countdown_calendar_variant_release_v1.mjs
+          node --check scripts/audits/pokemon_countdown_calendar_variant_rollback_rehearsal_v1.mjs
+          node --test \
+            tests/contracts/master_index_printing_execution_v1.test.mjs \
+            tests/contracts/pokemon_special_printing_reference_proposal_v1.test.mjs \
+            tests/contracts/pokemon_countdown_calendar_variant_plan_v1.test.mjs \
+            tests/contracts/pokemon_countdown_calendar_variant_rollback_rehearsal_v1.test.mjs \
+            tests/contracts/pokemon_countdown_calendar_variant_release_v1.test.mjs
+
+      - name: Build fresh production proposal and live plan
+        shell: bash
+        run: |
+          set -euo pipefail
+          OUT_DIR="$RUNNER_TEMP/pokemon-countdown-release-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+          echo "OUT_DIR=$OUT_DIR" >> "$GITHUB_ENV"
+          node scripts/workers/tcgplayer_pricing_completion_agent_v1.mjs \
+            --out-dir="$OUT_DIR" \
+            --run-key="countdown-release-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+
+      - name: Rehearse and roll back the fresh 22-row transaction
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/audits/pokemon_countdown_calendar_variant_rollback_rehearsal_v1.mjs \
+            --proposal="$OUT_DIR/pokemon_special_printing_reference_proposal_v1.json" \
+            --plan="$OUT_DIR/pokemon_countdown_calendar_variant_plan_v1.json" \
+            --output="$OUT_DIR/pokemon_countdown_calendar_variant_rollback_rehearsal_v1.json"
+
+      - name: Prepare or apply the exact durable release package
+        id: release
+        shell: bash
+        env:
+          DISPATCH_OPERATION: ${{ inputs.operation }}
+          DISPATCH_SOURCE_COMMIT: ${{ inputs.source_commit_sha }}
+          COUNTDOWN_RELEASE_APPROVAL: ${{ inputs.approval_phrase }}
+        run: |
+          set -euo pipefail
+          if [[ "$DISPATCH_OPERATION" = "apply_release" ]]; then
+            MODE="--apply"
+            export COUNTDOWN_RELEASE_EXPECTED_SHA="$DISPATCH_SOURCE_COMMIT"
+          else
+            MODE="--prepare"
+            export COUNTDOWN_RELEASE_EXPECTED_SHA="$(git rev-parse HEAD)"
+          fi
+          node scripts/audits/pokemon_countdown_calendar_variant_release_v1.mjs \
+            "$MODE" \
+            --proposal="$OUT_DIR/pokemon_special_printing_reference_proposal_v1.json" \
+            --plan="$OUT_DIR/pokemon_countdown_calendar_variant_plan_v1.json" \
+            --rehearsal="$OUT_DIR/pokemon_countdown_calendar_variant_rollback_rehearsal_v1.json" \
+            --output="$OUT_DIR/pokemon_countdown_calendar_variant_release_v1.json"
+
+      - name: Publish release summary
+        if: always()
+        shell: bash
+        run: |
+          if [[ -f "$OUT_DIR/pokemon_countdown_calendar_variant_release_v1.json" ]]; then
+            echo '## Pokemon Countdown Calendar durable release' >> "$GITHUB_STEP_SUMMARY"
+            echo '```json' >> "$GITHUB_STEP_SUMMARY"
+            jq '{mode, status, source_commit_sha: .package.source_commit_sha, package_fingerprint_sha256: .package.package_fingerprint_sha256, required_approval_text, durable_database_writes_performed, execution: (if .execution then {status: .execution.status, writes: .execution.writes, exact_readback: .execution.exact_readback, pricing_publication_performed: .execution.pricing_publication_performed} else null end)}' \
+              "$OUT_DIR/pokemon_countdown_calendar_variant_release_v1.json" >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Preserve immutable release evidence
+        if: always() && env.OUT_DIR != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: pokemon-countdown-calendar-durable-release-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ env.OUT_DIR }}
+          if-no-files-found: error
+          retention-days: 90
