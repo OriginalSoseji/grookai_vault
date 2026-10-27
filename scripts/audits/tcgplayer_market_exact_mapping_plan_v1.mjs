@@ -580,10 +580,10 @@ async function main() {
     gaps.length === 0 ||
     gaps.some(
       (row) =>
-        row.policy_version !== "TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2",
+        row.policy_version !== "TCGPLAYER_MARKET_COVERAGE_POLICY_V1_3",
     )
   ) {
-    throw new Error("coverage artifact is empty or not V1.2");
+    throw new Error("coverage artifact is empty or not V1.3");
   }
   const groupedGaps = groupGapRows(gaps);
   const { client, databaseTarget } = await connectExactMappingPlannerV1({ Client, connectionString: url });

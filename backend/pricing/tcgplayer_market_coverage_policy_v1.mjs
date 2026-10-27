@@ -5,7 +5,7 @@ import { applyTrainerKitPilotCoverageScopeV1 } from "./tcgplayer_trainer_kit_pil
 import { applyWcdTeamRushdownCoverageScopeV1 } from "./tcgplayer_wcd_team_rushdown_pilot_v1.mjs";
 import { applyCosmosFinishPublicationScopeV1 } from "./tcgplayer_cosmos_finish_v1.mjs";
 import {
-  classifyTcgplayerMarketProductScopeV1_2,
+  classifyTcgplayerMarketProductScopeV1_5,
   TCGPLAYER_MARKET_V1_1_GROUP_SCOPE_RULES,
 } from "./tcgplayer_market_product_scope_v1.mjs";
 
@@ -15,6 +15,8 @@ export const TCGPLAYER_MARKET_COVERAGE_POLICY_V1_1 =
   "TCGPLAYER_MARKET_COVERAGE_POLICY_V1_1";
 export const TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2 =
   "TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2";
+export const TCGPLAYER_MARKET_COVERAGE_POLICY_V1_3 =
+  "TCGPLAYER_MARKET_COVERAGE_POLICY_V1_3";
 export const TCGPLAYER_MARKET_MINIMUM_COVERAGE_PERCENT_V1 = 95;
 
 export const TCGPLAYER_MARKET_V1_SCOPE_EXCLUSION_RULES =
@@ -94,7 +96,7 @@ function productScope(row) {
   return applyCosmosFinishPublicationScopeV1(
     applyWcdTeamRushdownCoverageScopeV1(
       applyTrainerKitPilotCoverageScopeV1(
-        classifyTcgplayerMarketProductScopeV1_2(row), candidate,
+        classifyTcgplayerMarketProductScopeV1_5(row), candidate,
       ), candidate,
     ), candidate,
   );
@@ -160,7 +162,7 @@ export function classifyTcgplayerMarketCoverageRowV1(row = {}) {
     Boolean(text(row.card_print_id));
 
   return {
-    policy_version: TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2,
+    policy_version: TCGPLAYER_MARKET_COVERAGE_POLICY_V1_3,
     category_id: Number(row.category_id ?? rowEvidence.category_id),
     decision_id: row.id ?? null,
     source_observation_id: row.source_observation_id ?? null,
@@ -275,7 +277,7 @@ export function summarizeTcgplayerMarketCoverageV1(
   }
 
   return {
-    policy_version: TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2,
+    policy_version: TCGPLAYER_MARKET_COVERAGE_POLICY_V1_3,
     status: findings.length ? "failed" : "passed",
     threshold_percent: minimumCoveragePercent,
     counts: {

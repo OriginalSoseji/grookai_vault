@@ -4,7 +4,7 @@ import test from "node:test";
 import {
   buildTcgplayerIdentityMappingWorklistV1,
   escapeTcgplayerWorklistMarkdownCellV1,
-  TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2,
+  TCGPLAYER_MARKET_COVERAGE_POLICY_V1_3,
 } from "../../backend/pricing/tcgplayer_identity_mapping_worklist_v1.mjs";
 
 test("worklist Markdown cells escape backslashes, pipes, and line breaks", () => {
@@ -94,7 +94,7 @@ test("identity mapping worklist reconciles rows, products, and source groups", (
     source_groups: 2,
   }]);
   assert.ok(result.gaps.every((row) =>
-    row.policy_version === TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2));
+    row.policy_version === TCGPLAYER_MARKET_COVERAGE_POLICY_V1_3));
 });
 
 test("identity mapping worklist fails closed on duplicate or incomplete evidence", () => {
