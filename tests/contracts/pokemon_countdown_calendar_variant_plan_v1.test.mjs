@@ -143,6 +143,7 @@ test('planner source contains no mutation statements', async () => {
   );
   assert.match(source, /connectExactMappingPlannerV1/);
   assert.match(source, /supabase_service_snapshot/);
+  assert.match(source, /select\('\*', \{ count: 'exact', head: true \}\)/);
   assert.match(source, /card_print_traits/);
   const withoutHashUpdate = source.replace(
     ".createHash('sha256').update",

@@ -155,7 +155,7 @@ function requireSupabaseResult(result, code) {
 }
 
 async function supabaseCount(supabase, table, configure = (query) => query) {
-  const result = await configure(supabase.from(table).select('id', { count: 'exact', head: true }));
+  const result = await configure(supabase.from(table).select('*', { count: 'exact', head: true }));
   requireSupabaseResult(result, `countdown_variant_service_snapshot_${table}_count_failed`);
   return Number(result.count);
 }
