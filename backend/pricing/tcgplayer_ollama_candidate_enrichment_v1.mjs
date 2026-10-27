@@ -298,6 +298,70 @@ export function rankTcgplayerOllamaCandidatesV1(row, cards, groupConsensus = nul
     .slice(0, limit);
 }
 
+export function rankTcgplayerOllamaDiagnosticReferencesV1(
+  row,
+  cards,
+  groupConsensus = null,
+  limit = 20,
+) {
+  if (Number(row?.source_category_id) !== 3
+      || isLikelySealedTcgplayerProductV1(row?.source_product_name, row?.printed_number)) {
+    return [];
+  }
+  const authoritySetId = text(row?.set_authority?.set_id);
+  const consensusSetId = Number(groupConsensus?.set_count) === 1
+    ? text(groupConsensus.set_id)
+    : '';
+  const targetSetId = authoritySetId || consensusSetId;
+  const matches = cards.map((card) => ({
+    card,
+    evidence: candidateIdentityMatch(row, card, groupConsensus),
+  })).filter(({ evidence }) => evidence.identityMatch);
+  const crossSetAmbiguous = !targetSetId && new Set(matches.map(({ card }) =>
+    text(card.set_id))).size > 1;
+
+  return matches.map(({ card, evidence }) => {
+    const blockers = [
+      Number(card.active_standard_identity_count) !== 1
+        ? 'canonical_target_identity_not_unique'
+        : null,
+      Number(card.active_tcgplayer_mapping_count) !== 0
+        ? 'target_already_mapped'
+        : null,
+      text(card.variant_key) ? 'target_is_variant' : null,
+      crossSetAmbiguous ? 'cross_set_target_ambiguous' : null,
+    ].filter(Boolean);
+    const score =
+      (targetSetId ? 50 : 0) +
+      (evidence.numberExact ? 35 : 0) +
+      (evidence.nameExact ? 40 : Math.round(evidence.nameSimilarity * 25)) +
+      (authoritySetId ? 5 : 0);
+    return {
+      ...card,
+      diagnostic_reference_score: score,
+      diagnostic_reference_evidence: {
+        target_set_source: authoritySetId
+          ? 'existing_set_authority'
+          : consensusSetId
+            ? 'unique_group_set_consensus'
+            : 'global_catalog_search',
+        number_exact: evidence.numberExact,
+        name_exact: evidence.nameExact,
+        name_similarity: Number(evidence.nameSimilarity.toFixed(4)),
+        source_name_match: evidence.sourceNameMatch,
+        blockers,
+        review_only: true,
+        mapping_authority: false,
+        publication_authority: false,
+      },
+    };
+  }).sort((left, right) =>
+    right.diagnostic_reference_score - left.diagnostic_reference_score ||
+    text(left.set_code).localeCompare(text(right.set_code)) ||
+    text(left.gv_id).localeCompare(text(right.gv_id)))
+    .slice(0, limit);
+}
+
 export function diagnoseTcgplayerOllamaCandidateGapV1(
   row,
   cards,
@@ -360,6 +424,13 @@ export function enrichTcgplayerOllamaRowV1(
         ...(rankedById.get(candidate.card_print_id) ?? {}),
       }))
     : ranked;
+  const diagnosticReferences = discovered.length === 0
+    ? rankTcgplayerOllamaDiagnosticReferencesV1(
+        row,
+        diagnosticCards,
+        groupConsensus,
+      )
+    : [];
   return {
     ...row,
     review_targets: discovered,
@@ -371,6 +442,8 @@ export function enrichTcgplayerOllamaRowV1(
       group_consensus: groupConsensus,
       candidate_pool_count: cards.length,
       discovered_candidate_count: discovered.length,
+      diagnostic_reference_count: diagnosticReferences.length,
+      diagnostic_reference_targets: diagnosticReferences,
       no_candidate_reason: diagnoseTcgplayerOllamaCandidateGapV1(
         row,
         diagnosticCards,

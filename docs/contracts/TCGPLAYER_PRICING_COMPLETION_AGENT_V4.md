@@ -63,6 +63,11 @@ queued products, including source metadata, bounded catalog context, and one
 explicit no-candidate reason when no review target is found. This export has no
 mapping or publication authority. It exists so the repair agent can advance the
 entire queue without discarding products that failed candidate discovery.
+When an otherwise matching parent is already mapped, is a variant, lacks unique
+identity, or remains cross-set ambiguous, the diagnostic row includes bounded
+reference targets and explicit blockers. Reference targets are evidence for a
+later child-printing repair lane and can never enter the parent-mapping review
+batch.
 
 ## Founder dashboard
 
