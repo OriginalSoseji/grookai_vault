@@ -17,6 +17,9 @@ import {
   selectPokemonPricingMappingReviewBatchV1,
   summarizeTcgplayerPricingCompletionRunV1,
 } from '../../backend/operations/tcgplayer_pricing_completion_agent_v1.mjs';
+import {
+  buildPokemonSpecialPrintingReferenceProposalV1,
+} from '../../backend/pricing/pokemon_special_printing_reference_proposal_v1.mjs';
 
 function parseArgs(argv) {
   const value = (name) => argv.find((arg) => arg.startsWith(`--${name}=`))
@@ -254,10 +257,14 @@ async function main() {
       args.outDir,
       'ollama_identity_candidate_queue.jsonl',
     );
+    const pokemonDiagnosticQueuePath = path.join(
+      args.outDir,
+      'pokemon_identity_diagnostic_queue.jsonl',
+    );
     const enrichmentProcess = await runCandidateEnrichment({
       input: path.join(args.outDir, 'identity_product_queue.jsonl'),
       output: ollamaCandidateQueuePath,
-      diagnosticOutput: path.join(args.outDir, 'pokemon_identity_diagnostic_queue.jsonl'),
+      diagnosticOutput: pokemonDiagnosticQueuePath,
     });
     const ollamaCandidateQueue = await readJsonl(ollamaCandidateQueuePath);
     const mtgOllamaCandidateQueue = ollamaCandidateQueue.filter((row) =>
@@ -280,6 +287,27 @@ async function main() {
       `${ollamaCandidateQueuePath}.summary.json`,
       'utf8',
     ));
+    const [pokemonDiagnosticQueue, verifiedSetRegistry, masterPrintingRegistry] =
+      await Promise.all([
+        readJsonl(pokemonDiagnosticQueuePath),
+        fs.readFile(path.resolve(
+          'docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_sets_v1.json',
+        ), 'utf8').then(JSON.parse),
+        fs.readFile(path.resolve(
+          'docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_printings_v1.json',
+        ), 'utf8').then(JSON.parse),
+      ]);
+    const pokemonSpecialPrintingProposal = buildPokemonSpecialPrintingReferenceProposalV1({
+      diagnosticRows: pokemonDiagnosticQueue,
+      setRegistry: verifiedSetRegistry,
+      masterPrintings: masterPrintingRegistry.printings,
+    });
+    const pokemonSpecialPrintingProposalJson =
+      `${JSON.stringify(pokemonSpecialPrintingProposal, null, 2)}\n`;
+    await fs.writeFile(
+      path.join(args.outDir, 'pokemon_special_printing_reference_proposal_v1.json'),
+      pokemonSpecialPrintingProposalJson,
+    );
     const pokemonReviewedHoldRegistry = JSON.parse(await fs.readFile(
       path.resolve('docs/audits/pokemon_tcgplayer_reviewed_holds_20261026.json'),
       'utf8',
@@ -325,6 +353,7 @@ async function main() {
         no_candidate_reasons:
           enrichmentSummary.pokemon_diagnostic_output?.no_candidate_reasons ?? null,
       },
+      pokemon_special_printing_proposal: pokemonSpecialPrintingProposal.summary,
       exact_mapping_plan: {
         status: exactPlanProcess.status,
         error_code: exactPlanProcess.error_code,
@@ -395,6 +424,12 @@ async function main() {
           path: 'pokemon_identity_diagnostic_queue.jsonl',
           rows: enrichmentSummary.pokemon_diagnostic_output?.rows ?? 0,
           sha256: enrichmentSummary.pokemon_diagnostic_output?.sha256 ?? null,
+        },
+        pokemon_special_printing_reference_proposal: {
+          path: 'pokemon_special_printing_reference_proposal_v1.json',
+          rows: pokemonSpecialPrintingProposal.rows.length,
+          sha256: sha256(pokemonSpecialPrintingProposalJson),
+          fingerprint_sha256: pokemonSpecialPrintingProposal.fingerprint_sha256,
         },
       },
       audit_stdout: audit.stdout.trim(),

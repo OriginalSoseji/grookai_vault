@@ -69,6 +69,17 @@ reference targets and explicit blockers. Reference targets are evidence for a
 later child-printing repair lane and can never enter the parent-mapping review
 batch.
 
+For the 2008 Countdown Calendar source group, every run also derives a frozen,
+read-only special-printing proposal from those diagnostic references. The
+proposal resolves the underlying expansion parent by exact name, number, and
+verified printed total; ignores already-variant targets; and requires a matching
+`stamped` fact in the checked-in English Master Index. It proposes a distinct
+variant parent for the gold snowflake cards and for the silver Holo Pikachu,
+rather than attaching the source product to the already-mapped base parent.
+The proposal has no mapping, canonical-write, approval, or publication
+authority. A separate guarded plan, rollback simulation, and production
+readback remain mandatory before any database mutation.
+
 ## Founder dashboard
 
 The operations page reads the latest `operations_agent_runs.summary` for
