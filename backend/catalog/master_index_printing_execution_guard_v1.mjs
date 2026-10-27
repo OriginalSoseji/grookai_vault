@@ -5,8 +5,10 @@ import {printingManifestHash as hash} from './printing_completeness_gate_v1.mjs'
 export function assertPrintingDatabaseTarget(connectionString) {
  const url=new URL(connectionString);
  assert.ok(['postgres:','postgresql:'].includes(url.protocol));
- assert.equal(url.hostname,'aws-1-us-east-2.pooler.supabase.com','Wrong database host');
- assert.equal(decodeURIComponent(url.username),`postgres.${PROJECT}`,'Wrong database project');
+ const user=decodeURIComponent(url.username);
+ const direct=url.hostname===`db.${PROJECT}.supabase.co`&&user==='postgres';
+ const pooler=url.hostname==='aws-1-us-east-2.pooler.supabase.com'&&user===`postgres.${PROJECT}`;
+ assert.ok(direct||pooler,'Wrong database project');
  assert.equal(url.pathname,'/postgres');assert.ok(['5432','6543'].includes(url.port));
  // URL options must not override the verified transport or startup behavior.
  for(const key of url.searchParams.keys())assert.ok(['sslmode','sslcert','sslkey','sslrootcert'].includes(key),'Unexpected connection option');

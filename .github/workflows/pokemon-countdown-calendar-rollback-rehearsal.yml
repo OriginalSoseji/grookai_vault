@@ -34,6 +34,7 @@ jobs:
         run: |
           node --check scripts/audits/pokemon_countdown_calendar_variant_rollback_rehearsal_v1.mjs
           node --test \
+            tests/contracts/master_index_printing_execution_v1.test.mjs \
             tests/contracts/pokemon_special_printing_reference_proposal_v1.test.mjs \
             tests/contracts/pokemon_countdown_calendar_variant_plan_v1.test.mjs \
             tests/contracts/pokemon_countdown_calendar_variant_rollback_rehearsal_v1.test.mjs

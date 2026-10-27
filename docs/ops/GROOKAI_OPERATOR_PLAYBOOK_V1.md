@@ -3791,3 +3791,13 @@ authorize durable catalog writes, mapping apply, price publication, visibility
 changes, or customer-state changes. A durable release must bind a separate
 immutable apply package to the exact proposal, plan, rehearsal, and code
 fingerprints and must retain its own approval and production readback.
+
+The first production dispatch, run `40454355148`, stopped before opening a
+database session because the shared printing target guard recognized only the
+canonical pooler URL while the protected secret contained the canonical direct
+URL. It built the fresh 22-row plan successfully, performed zero transaction
+writes, and preserved its failure evidence. The target guard now accepts either
+exact transport for project `ycdxbpibncqcchqiihfz`: direct host plus `postgres`
+user, or the verified pooler host plus the project-qualified user. Foreign
+projects, mismatched host/user pairs, databases, ports, and startup options
+remain rejected.
