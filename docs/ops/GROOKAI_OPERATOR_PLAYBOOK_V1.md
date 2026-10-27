@@ -3801,3 +3801,23 @@ exact transport for project `ycdxbpibncqcchqiihfz`: direct host plus `postgres`
 user, or the verified pooler host plus the project-qualified user. Foreign
 projects, mismatched host/user pairs, databases, ports, and startup options
 remain rejected.
+
+Corrected production run `40455891692` passed from merged commit
+`fbdf7a8402505764ef6128165644b8f36a1a24ea`. It rebuilt the same 22-row proposal
+and plan, simulated 22 parent, identity, child, and mapping inserts, acknowledged
+rollback, retained mapping sequence value `355513`, and matched durable
+before/after target hash
+`4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945`.
+The immutable rehearsal fingerprint is
+`643f0d92754625a1bd0187dce550d1bce6cf073adc3b18429634eef929c34bf7`.
+
+For the durable release, first dispatch `Pokemon Countdown Calendar Durable
+Release` with `operation=prepare_release`. Preserve its artifact and copy the
+reported exact source commit and complete approval phrase. Review the package's
+22-row/88-insert scope and zero pricing, publication, Storage, customer, update,
+and delete boundaries. Only then dispatch `operation=apply_release` with that
+exact source commit and phrase. The apply run repeats the fresh rollback gate,
+commits one serializable insert-only transaction, and must finish with
+`committed_and_independently_verified`. Stop on uncertain commit or readback;
+never retry blindly. Pricing publication remains a later, separately governed
+step after these new mappings are visible to the pricing pipeline.
