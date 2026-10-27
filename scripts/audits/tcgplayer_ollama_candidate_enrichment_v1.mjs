@@ -10,6 +10,7 @@ import '../../backend/env.mjs';
 import {
   buildTcgplayerOllamaCandidateIndexV1,
   candidatePoolForTcgplayerOllamaRowV1,
+  diagnosticPoolForTcgplayerOllamaRowV1,
   enrichTcgplayerOllamaRowV1,
   normalizeTcgplayerOllamaSourceNameV1,
   uniqueTcgplayerExtendedNumberV1,
@@ -100,6 +101,7 @@ async function main() {
     cards = (await client.query(
       `select card.id::text as card_print_id, card.gv_id, card.set_id::text,
               card.set_code, set_row.name as set_name,
+              set_row.game,
               card.name as canonical_name, card.number as canonical_number,
               card.variant_key,
               min(identity.identity_domain) filter (
@@ -117,7 +119,7 @@ async function main() {
          join public.sets set_row on set_row.id = card.set_id
          left join public.card_print_identity identity on identity.card_print_id = card.id
          left join public.external_mappings mapping on mapping.card_print_id = card.id
-        group by card.id, card.gv_id, card.set_id, card.set_code, set_row.name,
+        group by card.id, card.gv_id, card.set_id, card.set_code, set_row.name, set_row.game,
                  card.name, card.number, card.variant_key`,
     )).rows;
     await client.query('rollback');
@@ -148,6 +150,7 @@ async function main() {
       row,
       candidatePoolForTcgplayerOllamaRowV1(row, candidateIndex, groupConsensus),
       groupConsensus,
+      diagnosticPoolForTcgplayerOllamaRowV1(row, candidateIndex, groupConsensus),
     );
   });
   const enriched = candidateOnly

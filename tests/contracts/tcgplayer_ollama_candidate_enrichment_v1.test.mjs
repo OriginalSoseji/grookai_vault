@@ -5,6 +5,7 @@ import {
   buildTcgplayerOllamaCandidateIndexV1,
   candidatePoolForTcgplayerOllamaRowV1,
   diagnoseTcgplayerOllamaCandidateGapV1,
+  diagnosticPoolForTcgplayerOllamaRowV1,
   enrichTcgplayerOllamaRowV1,
   isLikelySealedTcgplayerProductV1,
   normalizeTcgplayerOllamaCandidateTextV1,
@@ -70,6 +71,27 @@ test('candidate index keeps MTG and Pokemon identity domains separate', () => {
     printed_number: '233',
   }, index);
   assert.deepEqual(pool.map((row) => row.card_print_id), ['mtg-1']);
+});
+
+test('diagnostic lookup retains identity-less catalog rows without making them candidates', () => {
+  const identityLess = {
+    ...baseCard,
+    game: 'pokemon',
+    identity_domain: null,
+    active_standard_identity_count: 0,
+  };
+  const index = buildTcgplayerOllamaCandidateIndexV1([identityLess]);
+  const row = {
+    source_category_id: 3,
+    source_product_name: 'Abomasnow - 19/123',
+    printed_number: '19/123',
+  };
+  const consensus = { set_count: 1, set_id: 'set-1' };
+  assert.deepEqual(candidatePoolForTcgplayerOllamaRowV1(row, index, consensus), []);
+  const diagnostic = diagnosticPoolForTcgplayerOllamaRowV1(row, index, consensus);
+  assert.equal(diagnostic.length, 1);
+  assert.equal(diagnoseTcgplayerOllamaCandidateGapV1(row, diagnostic, consensus),
+    'canonical_target_identity_not_unique');
 });
 
 test('set consensus and exact coordinate rank one unmapped standard parent', () => {

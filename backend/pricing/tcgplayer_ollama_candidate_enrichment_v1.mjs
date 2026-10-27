@@ -90,21 +90,36 @@ export function uniqueTcgplayerExtendedNumberV1(extendedData) {
 export function buildTcgplayerOllamaCandidateIndexV1(cards = []) {
   const byDomainAndSet = new Map();
   const byDomainAndName = new Map();
+  const byCategoryAndSet = new Map();
+  const byCategoryAndName = new Map();
   for (const card of cards) {
     const domain = text(card.identity_domain);
     const setId = text(card.set_id);
     const name = normalizeTcgplayerOllamaCandidateTextV1(card.canonical_name);
-    if (!domain || !setId || !name) continue;
-    const setKey = `${domain}:${setId}`;
-    const nameKey = `${domain}:${name}`;
-    const setRows = byDomainAndSet.get(setKey) ?? [];
-    setRows.push(card);
-    byDomainAndSet.set(setKey, setRows);
-    const nameRows = byDomainAndName.get(nameKey) ?? [];
-    nameRows.push(card);
-    byDomainAndName.set(nameKey, nameRows);
+    const game = text(card.game).toLocaleLowerCase('en-US');
+    const categoryId = game === 'pokemon' ? 3 : game === 'mtg' ? 1 : null;
+    if (domain && setId && name) {
+      const setKey = `${domain}:${setId}`;
+      const nameKey = `${domain}:${name}`;
+      const setRows = byDomainAndSet.get(setKey) ?? [];
+      setRows.push(card);
+      byDomainAndSet.set(setKey, setRows);
+      const nameRows = byDomainAndName.get(nameKey) ?? [];
+      nameRows.push(card);
+      byDomainAndName.set(nameKey, nameRows);
+    }
+    if (categoryId && setId && name) {
+      const setKey = `${categoryId}:${setId}`;
+      const nameKey = `${categoryId}:${name}`;
+      const setRows = byCategoryAndSet.get(setKey) ?? [];
+      setRows.push(card);
+      byCategoryAndSet.set(setKey, setRows);
+      const nameRows = byCategoryAndName.get(nameKey) ?? [];
+      nameRows.push(card);
+      byCategoryAndName.set(nameKey, nameRows);
+    }
   }
-  return { byDomainAndSet, byDomainAndName };
+  return { byDomainAndSet, byDomainAndName, byCategoryAndSet, byCategoryAndName };
 }
 
 export function candidatePoolForTcgplayerOllamaRowV1(
@@ -124,6 +139,25 @@ export function candidatePoolForTcgplayerOllamaRowV1(
   }
   const name = normalizeTcgplayerOllamaCandidateTextV1(sourceName(row));
   return index.byDomainAndName.get(`${domain}:${name}`) ?? [];
+}
+
+export function diagnosticPoolForTcgplayerOllamaRowV1(
+  row,
+  index,
+  groupConsensus = null,
+) {
+  const categoryId = Number(row?.source_category_id);
+  if (![1, 3].includes(categoryId)) return [];
+  const authoritySetId = text(row?.set_authority?.set_id);
+  const consensusSetId = Number(groupConsensus?.set_count) === 1
+    ? text(groupConsensus.set_id)
+    : '';
+  const targetSetId = authoritySetId || consensusSetId;
+  if (targetSetId) {
+    return index.byCategoryAndSet.get(`${categoryId}:${targetSetId}`) ?? [];
+  }
+  const name = normalizeTcgplayerOllamaCandidateTextV1(sourceName(row));
+  return index.byCategoryAndName.get(`${categoryId}:${name}`) ?? [];
 }
 
 export function isLikelySealedTcgplayerProductV1(value, printedNumber = '') {
@@ -222,7 +256,12 @@ export function diagnoseTcgplayerOllamaCandidateGapV1(
   return 'no_eligible_unmapped_base_target';
 }
 
-export function enrichTcgplayerOllamaRowV1(row, cards, groupConsensus = null) {
+export function enrichTcgplayerOllamaRowV1(
+  row,
+  cards,
+  groupConsensus = null,
+  diagnosticCards = cards,
+) {
   const existing = Array.isArray(row.review_targets) && row.review_targets.length
     ? row.review_targets
     : Array.isArray(row.candidate_targets) && row.candidate_targets.length
@@ -249,7 +288,7 @@ export function enrichTcgplayerOllamaRowV1(row, cards, groupConsensus = null) {
       discovered_candidate_count: discovered.length,
       no_candidate_reason: diagnoseTcgplayerOllamaCandidateGapV1(
         row,
-        cards,
+        diagnosticCards,
         groupConsensus,
         discovered,
       ),
