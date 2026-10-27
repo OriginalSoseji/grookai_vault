@@ -78,7 +78,7 @@ function scheduledRun(day) {
 
 function coverage(overrides = {}) {
   return {
-    policy_version: "TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2",
+    policy_version: "TCGPLAYER_MARKET_COVERAGE_POLICY_V1_3",
     producing_commit_sha: COMMIT,
     status: "passed",
     coverage_status: "passed",
@@ -283,7 +283,7 @@ test("coverage and performance evidence must be clean and match their explicit p
     }),
   );
   assert.equal(result.status, "failed");
-  assert.ok(result.findings.includes("fresh_v1_2_coverage_gate_not_passed"));
+  assert.ok(result.findings.includes("fresh_v1_3_coverage_gate_not_passed"));
   assert.ok(result.findings.includes("coverage_producing_commit_mismatch"));
   assert.ok(result.findings.includes("fresh_read_performance_gate_not_passed"));
 });

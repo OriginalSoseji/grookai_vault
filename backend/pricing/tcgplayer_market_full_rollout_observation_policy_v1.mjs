@@ -1,5 +1,5 @@
 import {
-  TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2,
+  TCGPLAYER_MARKET_COVERAGE_POLICY_V1_3,
   TCGPLAYER_MARKET_MINIMUM_COVERAGE_PERCENT_V1,
 } from "./tcgplayer_market_coverage_policy_v1.mjs";
 import {
@@ -174,7 +174,7 @@ function matchRunsToSlots({ slots, runs, scheduleToleranceMinutes }) {
 
 function evaluateCoverage(coverage, findings) {
   if (
-    coverage?.policy_version !== TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2 ||
+    coverage?.policy_version !== TCGPLAYER_MARKET_COVERAGE_POLICY_V1_3 ||
     coverage?.status !== "passed" ||
     coverage?.coverage_status !== "passed" ||
     coverage?.current_publication_scope_status !== "passed" ||
@@ -183,7 +183,7 @@ function evaluateCoverage(coverage, findings) {
     integer(coverage?.counts?.unclassified_gap_rows) !== 0 ||
     !/^[a-f0-9]{40}$/.test(string(coverage?.producing_commit_sha))
   ) {
-    findings.push("fresh_v1_2_coverage_gate_not_passed");
+    findings.push("fresh_v1_3_coverage_gate_not_passed");
   }
 }
 

@@ -1,8 +1,8 @@
 export const TCGPLAYER_IDENTITY_MAPPING_WORKLIST_V1 =
   "TCGPLAYER_IDENTITY_MAPPING_WORKLIST_V1";
 
-export const TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2 =
-  "TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2";
+export const TCGPLAYER_MARKET_COVERAGE_POLICY_V1_3 =
+  "TCGPLAYER_MARKET_COVERAGE_POLICY_V1_3";
 
 const IDENTITY_REASONS = new Set([
   "missing_active_source_mapping",
@@ -136,7 +136,7 @@ export function buildTcgplayerIdentityMappingWorklistV1(
     groups.set(sourceGroupId, group);
 
     gaps.push({
-      policy_version: TCGPLAYER_MARKET_COVERAGE_POLICY_V1_2,
+      policy_version: TCGPLAYER_MARKET_COVERAGE_POLICY_V1_3,
       primary_gap_reason: primaryReason,
       decision: text(row.decision),
       source_observation_id: sourceObservationId,
