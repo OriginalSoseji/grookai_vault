@@ -1,4 +1,4 @@
-import { spawnSync } from 'node:child_process';
+import { spawn } from 'node:child_process';
 import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
@@ -55,7 +55,13 @@ function parseFinalHeaderBlock(rawHeaders) {
   };
 }
 
-function curlArguments({ url, bodyPath, headersPath, timeoutSeconds }) {
+function curlArguments({
+  url,
+  bodyPath,
+  headersPath,
+  timeoutSeconds,
+  retryCount = 2,
+}) {
   const args = [
     '--fail-with-body',
     '--location',
@@ -67,7 +73,7 @@ function curlArguments({ url, bodyPath, headersPath, timeoutSeconds }) {
     '--max-time',
     String(timeoutSeconds),
     '--retry',
-    '2',
+    String(retryCount),
     '--retry-delay',
     '1',
     '--retry-all-errors',
@@ -87,12 +93,51 @@ function curlArguments({ url, bodyPath, headersPath, timeoutSeconds }) {
   return args;
 }
 
+function runCurl(args, timeoutMs) {
+  return new Promise((resolve, reject) => {
+    const child = spawn('curl', args, {
+      stdio: ['ignore', 'pipe', 'pipe'],
+      windowsHide: true,
+    });
+    let stdout = '';
+    let stderr = '';
+    let settled = false;
+    let timer;
+    const finish = (callback, value) => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      callback(value);
+    };
+    child.stdout.setEncoding('utf8');
+    child.stderr.setEncoding('utf8');
+    child.stdout.on('data', (chunk) => { stdout += chunk; });
+    child.stderr.on('data', (chunk) => { stderr += chunk; });
+    child.once('error', (error) => finish(reject, error));
+    child.once('close', (status, signal) =>
+      finish(resolve, { status, signal, stdout, stderr }),
+    );
+    timer = setTimeout(() => {
+      if (process.platform === 'win32' && child.pid) {
+        spawn('taskkill', ['/pid', String(child.pid), '/t', '/f'], {
+          windowsHide: true,
+          stdio: 'ignore',
+        });
+      } else {
+        child.kill('SIGKILL');
+      }
+      finish(reject, new Error(`Source fetch timed out after ${timeoutMs}ms.`));
+    }, timeoutMs);
+  });
+}
+
 export async function captureSourceSnapshot({
   sourceId,
   url,
   outputDirectory,
   extension,
   timeoutSeconds = 120,
+  retryCount = 2,
 }) {
   const fetchedAt = new Date().toISOString();
   const tempDirectory = await fs.mkdtemp(
@@ -102,21 +147,16 @@ export async function captureSourceSnapshot({
   const tempHeadersPath = path.join(tempDirectory, 'response.headers');
 
   try {
-    const result = spawnSync(
-      'curl',
+    const result = await runCurl(
       curlArguments({
         url,
         bodyPath: tempBodyPath,
         headersPath: tempHeadersPath,
         timeoutSeconds,
+        retryCount,
       }),
-      {
-        encoding: 'utf8',
-        windowsHide: true,
-        timeout: (timeoutSeconds + 15) * 1_000,
-      },
+      (timeoutSeconds + 15) * 1_000,
     );
-    if (result.error) throw result.error;
     if (result.status !== 0) {
       throw new Error(
         `Source fetch failed for ${sourceId}: ${result.stderr?.trim() || `curl exit ${result.status}`}`,

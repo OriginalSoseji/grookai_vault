@@ -1,0 +1,50 @@
+name: Japanese master index continuous verification
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+    inputs:
+      source:
+        description: 'Governed source lane to process'
+        required: false
+        default: tcgdex_ja_cards
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: japanese-master-index-continuous-verification
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      JPN_VERIFY_SOURCES: ${{ inputs.source || 'tcgdex_ja_cards,limitless_jp_cards,artofpkm_jp_cards,serebii_jp_cards,official_jp_cards,bulbapedia_jp_card_lists,pokeguardian_release_reports' }}
+      RUFLO_PROGRESS_FILE: docs/audits/ruflo_notifications/progress.jsonl
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Require read-only database connection
+        run: test -n "$SUPABASE_DB_URL"
+      - name: Run one governed verification batch
+        run: node --use-system-ca scripts/agents/japanese_master_index_continuous_verification_agent_v1.mjs
+      - name: Upload verification report and Ruflo progress
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: japanese-master-index-verification-${{ github.run_id }}
+          path: |
+            docs/audits/japanese_master_index_v4/continuous_verification/
+            docs/audits/japanese_master_index_v4/index/
+            docs/audits/japanese_master_index_v4/promotion_package/
+            docs/audits/ruflo_notifications/progress.jsonl
+          if-no-files-found: warn

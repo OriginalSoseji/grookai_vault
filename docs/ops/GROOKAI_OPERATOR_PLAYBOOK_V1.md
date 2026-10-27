@@ -3769,6 +3769,11 @@ preserve the source lab and its receipts. See the coverage checkpoint for the
 opt-in test and private proof location. Parent admission remains separate from
 the reviewed child printing, source mapping and image workflows.
 
+## Japanese master-index continuous verification
+
+GitHub Actions runs `scripts/agents/japanese_master_index_continuous_verification_agent_v1.mjs` every 15 minutes from `main` through `.github/workflows/japanese-master-index-continuous-verification.yml`. The worker performs a fresh read-only database baseline, harvests the governed Japanese source lanes, packages fresh assertion evidence into the compressed inputs used by the downstream union and adjudication steps, and emits Ruflo-compatible progress events to `docs/audits/ruflo_notifications/progress.jsonl`.
+
+The worker is fail-closed: it never writes production or promotion tables. A database outage produces a deferred evidence-only result; a source timeout is bounded and recorded, and the per-source cursor in `docs/audits/japanese_master_index_v4/continuous_verification/container_cursors_v1.json` rotates the next batch of containers on the following run. Review the uploaded workflow artifacts before any separately authorized promotion.
 ## Pokemon Countdown Calendar rollback rehearsal — October 27, 2026
 
 Use the manual GitHub Actions workflow `Pokemon Countdown Calendar Rollback
