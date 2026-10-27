@@ -68,6 +68,15 @@ fingerprinted guarded plan, prove the parent/child delta in a rolled-back
 transaction, and require a production apply plus durable readback under its own
 authority. Never attach a Countdown Calendar product directly to the existing
 base parent or extend the frozen 143-row special-variant manifest in place.
+The adjacent `pokemon_countdown_calendar_variant_plan_v1.json` artifact is the
+live collision readback. Its `ready_for_transactional_rollback_rehearsal`
+status authorizes only the next rollback rehearsal; `unavailable` or any row
+blocker leaves the batch held. Preserve both fingerprints together because the
+live plan is invalid if its bound proposal artifact changes.
+The live plan must come from the pinned exact-mapping production reader with
+verified TLS, read-only startup, the canonical project ref, and passing
+`card_prints`, `sets`, and `card_print_traits` maturity counts. Never replace
+that connection with the broad production database login.
 
 The separate `pokemon-tcgplayer-mapping-outcome.yml` lane may convert an
 approved review into an executable founder item only when the approved payload

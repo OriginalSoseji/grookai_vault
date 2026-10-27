@@ -80,6 +80,20 @@ The proposal has no mapping, canonical-write, approval, or publication
 authority. A separate guarded plan, rollback simulation, and production
 readback remain mandatory before any database mutation.
 
+The worker then attempts a separate read-only live plan for those proposed
+Countdown Calendar rows. It verifies the base parent and finish child still
+exist, the TCGPlayer product is still unmapped, the target parent/child IDs and
+GV-ID do not collide, the finish key is active, and the canonical identity
+projection has no active hash collision. Passing rows are ready only for a
+transactionally rolled-back rehearsal. A plan outage is reported as
+`COUNTDOWN_VARIANT_PLAN_UNAVAILABLE` and does not erase the pricing backlog or
+weaken any gate.
+The plan reuses the pinned exact-mapping reader connection, requires verified
+TLS and the direct no-membership read-only production role, confirms project
+`ycdxbpibncqcchqiihfz`, and enforces the rulebook maturity counts before reading
+any proposed row. A broad production login or an isolated fixture cannot
+produce a production Countdown plan.
+
 ## Founder dashboard
 
 The operations page reads the latest `operations_agent_runs.summary` for
