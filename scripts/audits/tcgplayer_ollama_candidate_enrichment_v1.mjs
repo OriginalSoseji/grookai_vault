@@ -10,6 +10,7 @@ import '../../backend/env.mjs';
 import {
   buildTcgplayerOllamaCandidateIndexV1,
   candidatePoolForTcgplayerOllamaRowV1,
+  diagnosticPoolForTcgplayerOllamaRowV1,
   enrichTcgplayerOllamaRowV1,
   normalizeTcgplayerOllamaSourceNameV1,
   uniqueTcgplayerExtendedNumberV1,
@@ -46,6 +47,10 @@ async function main() {
   if (argv.includes('--apply') || argv.includes('--run')) throw new Error('Candidate enrichment is read-only');
   const inputPath = path.resolve(value(argv, 'input'));
   const outputPath = path.resolve(value(argv, 'output'));
+  const diagnosticOutputValue = value(argv, 'diagnostic-output');
+  const diagnosticOutputPath = diagnosticOutputValue
+    ? path.resolve(diagnosticOutputValue)
+    : '';
   if (!value(argv, 'input') || !value(argv, 'output')) throw new Error('--input and --output are required');
   const input = await readJsonl(inputPath);
   const candidateOnly = argv.includes('--candidate-only');
@@ -96,6 +101,7 @@ async function main() {
     cards = (await client.query(
       `select card.id::text as card_print_id, card.gv_id, card.set_id::text,
               card.set_code, set_row.name as set_name,
+              set_row.game,
               card.name as canonical_name, card.number as canonical_number,
               card.variant_key,
               min(identity.identity_domain) filter (
@@ -113,16 +119,8 @@ async function main() {
          join public.sets set_row on set_row.id = card.set_id
          left join public.card_print_identity identity on identity.card_print_id = card.id
          left join public.external_mappings mapping on mapping.card_print_id = card.id
-        where coalesce(card.variant_key, '') = ''
-        group by card.id, card.gv_id, card.set_id, card.set_code, set_row.name,
-                 card.name, card.number, card.variant_key
-       having count(distinct identity.id) filter (
-                where identity.is_active = true
-                  and identity.identity_domain in ('pokemon_eng_standard', 'mtg_eng_paper_print')
-              ) = 1
-          and count(distinct mapping.id) filter (
-                where mapping.source = 'tcgplayer' and mapping.active = true
-              ) = 0`,
+        group by card.id, card.gv_id, card.set_id, card.set_code, set_row.name, set_row.game,
+                 card.name, card.number, card.variant_key`,
     )).rows;
     await client.query('rollback');
   } finally {
@@ -152,6 +150,7 @@ async function main() {
       row,
       candidatePoolForTcgplayerOllamaRowV1(row, candidateIndex, groupConsensus),
       groupConsensus,
+      diagnosticPoolForTcgplayerOllamaRowV1(row, candidateIndex, groupConsensus),
     );
   });
   const enriched = candidateOnly
@@ -160,6 +159,20 @@ async function main() {
   const output = jsonl(enriched);
   await fs.mkdir(path.dirname(outputPath), { recursive: true });
   await fs.writeFile(outputPath, output);
+  const diagnosticRows = diagnosticOutputPath
+    ? enrichedAll.filter((row) => Number(row.source_category_id) === 3)
+    : [];
+  const diagnosticOutput = jsonl(diagnosticRows);
+  if (diagnosticOutputPath) {
+    await fs.mkdir(path.dirname(diagnosticOutputPath), { recursive: true });
+    await fs.writeFile(diagnosticOutputPath, diagnosticOutput);
+  }
+  const pokemonNoCandidateReasons = Object.fromEntries([...new Set(diagnosticRows
+    .map((row) => row.candidate_search?.no_candidate_reason)
+    .filter(Boolean))]
+    .sort()
+    .map((reason) => [reason, diagnosticRows.filter((row) =>
+      row.candidate_search?.no_candidate_reason === reason).length]));
   const summary = {
     schema_version: 'TCGPLAYER_OLLAMA_CANDIDATE_ENRICHMENT_V1',
     created_at: new Date().toISOString(),
@@ -175,6 +188,12 @@ async function main() {
     rows_without_review_targets: enrichedAll.filter((row) => row.review_targets.length === 0).length,
     missing_number_rows_enriched: enrichedAll.filter((row) =>
       !String(row.printed_number ?? '').trim() && row.review_targets.length > 0).length,
+    pokemon_diagnostic_output: diagnosticOutputPath ? {
+      path: diagnosticOutputPath,
+      rows: diagnosticRows.length,
+      sha256: createHash('sha256').update(diagnosticOutput).digest('hex'),
+      no_candidate_reasons: pokemonNoCandidateReasons,
+    } : null,
     categories: Object.fromEntries([1, 3].map((categoryId) => [
       String(categoryId),
       {

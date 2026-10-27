@@ -4,6 +4,8 @@ import test from 'node:test';
 import {
   buildTcgplayerOllamaCandidateIndexV1,
   candidatePoolForTcgplayerOllamaRowV1,
+  diagnoseTcgplayerOllamaCandidateGapV1,
+  diagnosticPoolForTcgplayerOllamaRowV1,
   enrichTcgplayerOllamaRowV1,
   isLikelySealedTcgplayerProductV1,
   normalizeTcgplayerOllamaCandidateTextV1,
@@ -71,6 +73,27 @@ test('candidate index keeps MTG and Pokemon identity domains separate', () => {
   assert.deepEqual(pool.map((row) => row.card_print_id), ['mtg-1']);
 });
 
+test('diagnostic lookup retains identity-less catalog rows without making them candidates', () => {
+  const identityLess = {
+    ...baseCard,
+    game: 'pokemon',
+    identity_domain: null,
+    active_standard_identity_count: 0,
+  };
+  const index = buildTcgplayerOllamaCandidateIndexV1([identityLess]);
+  const row = {
+    source_category_id: 3,
+    source_product_name: 'Abomasnow - 19/123',
+    printed_number: '19/123',
+  };
+  const consensus = { set_count: 1, set_id: 'set-1' };
+  assert.deepEqual(candidatePoolForTcgplayerOllamaRowV1(row, index, consensus), []);
+  const diagnostic = diagnosticPoolForTcgplayerOllamaRowV1(row, index, consensus);
+  assert.equal(diagnostic.length, 1);
+  assert.equal(diagnoseTcgplayerOllamaCandidateGapV1(row, diagnostic, consensus),
+    'canonical_target_identity_not_unique');
+});
+
 test('set consensus and exact coordinate rank one unmapped standard parent', () => {
   const row = { source_product_name: 'Abomasnow - 19/123', normalized_source_name: 'abomasnow', printed_number: '019/123' };
   const cards = [baseCard, { ...baseCard, card_print_id: 'mapped', active_tcgplayer_mapping_count: 1 }];
@@ -129,4 +152,26 @@ test('enrichment artifacts remain advisory and read-only', () => {
   assert.equal(enriched.candidate_search.mapping_authority, false);
   assert.equal(enriched.candidate_search.publication_authority, false);
   assert.equal(enriched.candidate_search.database_reads_only, true);
+});
+
+test('unmatched Pokemon products retain a concrete repair-lane diagnosis', () => {
+  const row = {
+    source_category_id: 3,
+    source_product_name: 'Abomasnow - 19/123',
+    printed_number: '19/123',
+  };
+  assert.equal(diagnoseTcgplayerOllamaCandidateGapV1(
+    row,
+    [{ ...baseCard, active_tcgplayer_mapping_count: 1 }],
+    { set_count: 1, set_id: 'set-1' },
+  ), 'canonical_parent_already_has_tcgplayer_mapping');
+  assert.equal(diagnoseTcgplayerOllamaCandidateGapV1(
+    row,
+    [{ ...baseCard, variant_key: 'staff_stamp' }],
+    { set_count: 1, set_id: 'set-1' },
+  ), 'candidate_requires_printing_or_variant_authority');
+  assert.equal(enrichTcgplayerOllamaRowV1(
+    { ...row, printed_number: '' },
+    [],
+  ).candidate_search.no_candidate_reason, 'missing_printed_number_evidence');
 });
