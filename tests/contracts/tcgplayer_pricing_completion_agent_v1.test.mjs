@@ -410,6 +410,9 @@ test('scheduled workflow measures production without treating backlog as a crash
   assert.match(worker, /pokemon_ollama_identity_candidate_queue\.jsonl/);
   assert.match(worker, /pokemon_identity_diagnostic_queue\.jsonl/);
   assert.match(worker, /pokemon_mapping_diagnostics/);
+  assert.match(worker, /pokemon_special_printing_reference_proposal_v1\.json/);
+  assert.match(worker, /buildPokemonSpecialPrintingReferenceProposalV1/);
+  assert.match(worker, /pokemon_special_printing_proposal/);
   assert.match(worker, /pokemon_tcgplayer_reviewed_holds_20261026\.json/);
   assert.match(worker, /applyPokemonPricingMappingReviewedHoldsV1/);
   assert.match(worker, /operations_publish_work_item_v1/);
