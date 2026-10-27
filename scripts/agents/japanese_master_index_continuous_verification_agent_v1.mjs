@@ -133,7 +133,9 @@ try {
       '--source-timeout-seconds', '30',
       '--source-retry-count', '0',
     ]);
-    packageFreshAssertions(source);
+    for (const artifactSource of Object.keys(ASSERTION_ARTIFACTS)) {
+      packageFreshAssertions(artifactSource);
+    }
     writeCursor(source, offset + 10);
   }
   run('candidate_union', [
