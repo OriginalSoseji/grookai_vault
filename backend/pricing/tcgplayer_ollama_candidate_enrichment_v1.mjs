@@ -58,7 +58,11 @@ export function candidateSearchNamesForTcgplayerOllamaRowV1(row) {
 
 function identitySearchNames(row) {
   const names = candidateSearchNamesForTcgplayerOllamaRowV1(row);
-  return Number(row?.source_category_id) === 3 ? names : names.slice(0, 1);
+  if (Number(row?.source_category_id) === 1
+      && !normalizeTcgplayerOllamaCoordinateV1(row?.printed_number)) {
+    return names.slice(0, 1);
+  }
+  return names;
 }
 
 function tokens(value) {
@@ -114,6 +118,14 @@ function identityDomainForCategory(categoryId) {
   if (Number(categoryId) === 1) return 'mtg_eng_paper_print';
   if (Number(categoryId) === 3) return 'pokemon_eng_standard';
   return '';
+}
+
+function isNonParentVariantForCategory(row, card) {
+  const variantKey = text(card?.variant_key);
+  if (!variantKey) return false;
+  if (Number(row?.source_category_id) !== 1) return true;
+  return !/^scryfall:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
+    .test(variantKey);
 }
 
 export function uniqueTcgplayerExtendedNumberV1(extendedData) {
@@ -255,7 +267,7 @@ export function rankTcgplayerOllamaCandidatesV1(row, cards, groupConsensus = nul
     if (wantedIdentityDomain && text(card.identity_domain) !== wantedIdentityDomain) continue;
     if (Number(card.active_standard_identity_count) !== 1) continue;
     if (Number(card.active_tcgplayer_mapping_count) !== 0) continue;
-    if (text(card.variant_key)) continue;
+    if (isNonParentVariantForCategory(row, card)) continue;
     if (targetSetId && text(card.set_id) !== targetSetId) continue;
 
     const {
@@ -389,7 +401,7 @@ export function diagnoseTcgplayerOllamaCandidateGapV1(
   if (identityMatches.every((card) => Number(card.active_standard_identity_count) !== 1)) {
     return 'canonical_target_identity_not_unique';
   }
-  if (identityMatches.every((card) => text(card.variant_key))) {
+  if (identityMatches.every((card) => isNonParentVariantForCategory(row, card))) {
     return 'candidate_requires_printing_or_variant_authority';
   }
   if (identityMatches.every((card) => Number(card.active_tcgplayer_mapping_count) !== 0)) {
@@ -398,7 +410,7 @@ export function diagnoseTcgplayerOllamaCandidateGapV1(
   const eligibleBaseTargets = identityMatches.filter((card) =>
     Number(card.active_standard_identity_count) === 1 &&
     Number(card.active_tcgplayer_mapping_count) === 0 &&
-    !text(card.variant_key));
+    !isNonParentVariantForCategory(row, card));
   if (!authoritySetId && !hasConsensusSet && eligibleBaseTargets.length > 1) {
     return 'multiple_cross_set_coordinate_targets';
   }

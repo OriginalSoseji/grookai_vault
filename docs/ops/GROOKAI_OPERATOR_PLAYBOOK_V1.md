@@ -369,6 +369,12 @@ or connect to PostgreSQL. Retain V2 state under
 `C:\grookai_vault_operator_artifacts\pricing_completion_ollama_v2`. Reconcile
 the hosted combined, Magic, and Pokemon candidate hashes before replacing the
 scheduled-task action.
+The hosted queue must reclassify both Magic and Pokemon with product-scope V1.5
+even when the source pricing receipt contains an older scope version. For Magic,
+do not treat a canonical `scryfall:<uuid>` printing key as a Pokemon-style child
+variant; require the exact printed coordinate and keep every result advisory.
+Any other MTG variant-key form remains held. A successful local task with zero
+Magic inputs is not evidence that the Magic backlog is complete.
 
 ## Pokémon 30th Celebration Classic aliases — October 14
 

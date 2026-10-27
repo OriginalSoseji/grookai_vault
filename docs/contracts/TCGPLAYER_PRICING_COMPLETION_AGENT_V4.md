@@ -6,6 +6,16 @@ The scheduled production agent measures pricing coverage every 15 minutes and
 reports Magic and Pokemon identity-mapping lanes independently. The latest
 successful measured run summary is the production source for the founder
 operations dashboard; running and failed partial summaries cannot replace it.
+Before publishing either identity queue, the agent rechecks Magic and Pokemon
+products with the current V1.5 scope classifier. Older pricing receipts cannot
+reintroduce sealed or packaged products into the card-repair lane.
+
+The advisory enrichment lane preserves the two identity domains. Pokemon child
+variants remain excluded. A canonical MTG `scryfall:<uuid>` printing key is an
+ordinary exact-print identity rather than a Pokemon-style child marker; other
+MTG variant-key forms remain held. MTG modifier aliases may enter review only
+with exact printed-coordinate evidence. The lane still excludes already-mapped
+targets and grants no mapping or publication authority.
 
 ## Pokemon review publication
 
