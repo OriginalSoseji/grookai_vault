@@ -127,6 +127,7 @@ function runPokemonCountdownVariantPlan({ proposal, output }) {
       'scripts/audits/pokemon_countdown_calendar_variant_plan_v1.mjs',
       `--proposal=${proposal}`,
       `--output=${output}`,
+      '--transport=supabase_service_snapshot',
     ], {
       cwd: path.resolve('.'),
       env: {
@@ -177,6 +178,12 @@ function pricingExactPlanFailureCodeV1(error) {
   const message = String(error?.message ?? error ?? '');
   const known = message.match(/\b(?:MAPPING_READER|PLANNER)_[A-Z_]+\b/)?.[0];
   return known ?? 'EXACT_MAPPING_PLAN_UNAVAILABLE';
+}
+
+function pricingCountdownVariantPlanFailureCodeV1(error) {
+  const message = String(error?.message ?? error ?? '');
+  const known = message.match(/\bcountdown_variant_[a-z_]+\b/)?.[0];
+  return known?.toUpperCase() ?? 'COUNTDOWN_VARIANT_PLAN_UNAVAILABLE';
 }
 
 async function heartbeat({ credentials, agent, runKey, status, summary }) {
@@ -361,11 +368,11 @@ async function main() {
         stdout: result.stdout,
         error_code: null,
       };
-    } catch {
+    } catch (error) {
       pokemonCountdownVariantPlanProcess = {
         status: 'unavailable',
         stdout: '',
-        error_code: 'COUNTDOWN_VARIANT_PLAN_UNAVAILABLE',
+        error_code: pricingCountdownVariantPlanFailureCodeV1(error),
       };
     }
     const pokemonReviewedHoldRegistry = JSON.parse(await fs.readFile(

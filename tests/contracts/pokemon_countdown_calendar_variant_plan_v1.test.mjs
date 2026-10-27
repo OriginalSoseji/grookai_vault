@@ -92,6 +92,7 @@ test('requires the canonical mature production reader target', () => {
     }),
     {
       project_ref: 'ycdxbpibncqcchqiihfz',
+      transport: 'postgres_reader',
       card_prints: 40_000,
       sets: 150,
       card_print_traits: 5_000,
@@ -114,6 +115,22 @@ test('requires the canonical mature production reader target', () => {
   );
 });
 
+test('accepts only a canonical bounded service snapshot above maturity gates', () => {
+  const result = assertPokemonCountdownCalendarEnvironmentSanityV1({
+    kind: 'production_service_snapshot',
+    project_ref: 'ycdxbpibncqcchqiihfz',
+    transport: 'supabase_rest',
+    https_required: true,
+    code_boundary_read_only: true,
+  }, {
+    card_prints: 40_001,
+    sets: 151,
+    card_print_traits: 5_001,
+  });
+  assert.equal(result.transport, 'supabase_rest');
+  assert.equal(result.maturity_gate_passed, true);
+});
+
 test('planner source contains no mutation statements', async () => {
   const source = await fs.readFile(
     new URL('../../scripts/audits/pokemon_countdown_calendar_variant_plan_v1.mjs', import.meta.url),
@@ -125,5 +142,11 @@ test('planner source contains no mutation statements', async () => {
     false,
   );
   assert.match(source, /connectExactMappingPlannerV1/);
+  assert.match(source, /supabase_service_snapshot/);
   assert.match(source, /card_print_traits/);
+  const withoutHashUpdate = source.replace(
+    ".createHash('sha256').update",
+    ".createHash('sha256').hashInput",
+  );
+  assert.doesNotMatch(withoutHashUpdate, /\.(?:insert|update|delete|upsert)\s*\(/i);
 });

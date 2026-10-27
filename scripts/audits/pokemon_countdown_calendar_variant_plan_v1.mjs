@@ -5,6 +5,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 
+import { createClient } from '@supabase/supabase-js';
 import pg from 'pg';
 
 import '../../backend/env.mjs';
@@ -102,10 +103,15 @@ function connectionString() {
 }
 
 export function assertPokemonCountdownCalendarEnvironmentSanityV1(databaseTarget, counts) {
-  if (databaseTarget?.kind !== 'production_project'
-      || databaseTarget?.project_ref !== PRODUCTION_PROJECT_REF
-      || databaseTarget?.verified_tls !== true
-      || databaseTarget?.startup_read_only !== true) {
+  const dedicatedReader = databaseTarget?.kind === 'production_project'
+    && databaseTarget?.verified_tls === true
+    && databaseTarget?.startup_read_only === true;
+  const boundedServiceSnapshot = databaseTarget?.kind === 'production_service_snapshot'
+    && databaseTarget?.transport === 'supabase_rest'
+    && databaseTarget?.https_required === true
+    && databaseTarget?.code_boundary_read_only === true;
+  if ((!dedicatedReader && !boundedServiceSnapshot)
+      || databaseTarget?.project_ref !== PRODUCTION_PROJECT_REF) {
     throw new Error('countdown_variant_plan_production_reader_required');
   }
   if (Number(counts?.card_prints) < 40_000
@@ -115,10 +121,160 @@ export function assertPokemonCountdownCalendarEnvironmentSanityV1(databaseTarget
   }
   return {
     project_ref: databaseTarget.project_ref,
+    transport: databaseTarget.transport ?? 'postgres_reader',
     card_prints: Number(counts.card_prints),
     sets: Number(counts.sets),
     card_print_traits: Number(counts.card_print_traits),
     maturity_gate_passed: true,
+  };
+}
+
+function serviceSnapshotCredentials() {
+  const supabaseUrl = process.env.PROD_SUPABASE_URL ?? process.env.SUPABASE_URL ?? '';
+  const serviceKey = process.env.SUPABASE_SECRET_KEY ?? '';
+  if (!supabaseUrl || !serviceKey) {
+    throw new Error('countdown_variant_service_snapshot_credentials_required');
+  }
+  let parsed;
+  try {
+    parsed = new URL(supabaseUrl);
+  } catch {
+    throw new Error('countdown_variant_service_snapshot_url_invalid');
+  }
+  if (parsed.protocol !== 'https:'
+      || parsed.hostname !== `${PRODUCTION_PROJECT_REF}.supabase.co`
+      || parsed.pathname !== '/') {
+    throw new Error('countdown_variant_service_snapshot_project_invalid');
+  }
+  return { supabaseUrl: parsed.href, serviceKey };
+}
+
+function requireSupabaseResult(result, code) {
+  if (result.error) throw new Error(code);
+  return result;
+}
+
+async function supabaseCount(supabase, table, configure = (query) => query) {
+  const result = await configure(supabase.from(table).select('id', { count: 'exact', head: true }));
+  requireSupabaseResult(result, `countdown_variant_service_snapshot_${table}_count_failed`);
+  return Number(result.count);
+}
+
+async function captureServiceEnvironmentSanity(supabase, databaseTarget) {
+  const [cardPrints, sets, traits] = await Promise.all([
+    supabaseCount(supabase, 'card_prints'),
+    supabaseCount(supabase, 'sets'),
+    supabaseCount(supabase, 'card_print_traits'),
+  ]);
+  return assertPokemonCountdownCalendarEnvironmentSanityV1(databaseTarget, {
+    card_prints: cardPrints,
+    sets,
+    card_print_traits: traits,
+  });
+}
+
+async function captureLiveRowViaSupabase(supabase, target) {
+  const baseResult = requireSupabaseResult(
+    await supabase.from('card_prints').select(
+      'id,gv_id,set_id,set_code,name,number,number_plain,printed_total,printed_set_abbrev,variant_key',
+    ).eq('id', target.base_card_print_id).limit(2),
+    'countdown_variant_service_snapshot_base_failed',
+  );
+  const base = baseResult.data?.[0] ?? null;
+  if (!base) {
+    return {
+      base_count: 0,
+      base_gv_id: null,
+      base_set_code: null,
+      base_name: null,
+      base_number: null,
+      base_finish_count: 0,
+      active_finish_count: 0,
+      source_mapping_count: 0,
+      variant_parent_collision_count: 0,
+      gv_id_collision_count: 0,
+      target_parent_id_collision_count: 0,
+      target_child_id_collision_count: 0,
+      identity_projection_status: null,
+      identity_hash_collision_count: 0,
+    };
+  }
+  const setResult = requireSupabaseResult(
+    await supabase.from('sets').select('id,source,code,printed_total,printed_set_abbrev')
+      .eq('id', base.set_id).limit(2),
+    'countdown_variant_service_snapshot_set_failed',
+  );
+  const set = setResult.data?.[0] ?? null;
+  const [
+    baseFinishCount,
+    activeFinishCount,
+    sourceMappingCount,
+    variantCandidatesResult,
+    gvIdCollisionCount,
+    targetParentIdCollisionCount,
+    targetChildIdCollisionCount,
+  ] = await Promise.all([
+    supabaseCount(supabase, 'card_printings', (query) => query
+      .eq('card_print_id', target.base_card_print_id)
+      .eq('finish_key', target.proposed_finish_key)
+      .eq('is_provisional', false)),
+    supabaseCount(supabase, 'finish_keys', (query) => query
+      .eq('key', target.proposed_finish_key).eq('is_active', true)),
+    supabaseCount(supabase, 'external_mappings', (query) => query
+      .eq('source', 'tcgplayer').eq('external_id', String(target.source_product_id))),
+    supabase.from('card_prints').select('id,name,number,number_plain,variant_key')
+      .eq('set_id', base.set_id).eq('variant_key', target.proposed_variant_key).limit(100),
+    supabaseCount(supabase, 'card_prints', (query) => query.eq('gv_id', target.proposed_parent_gv_id)),
+    supabaseCount(supabase, 'card_prints', (query) => query.eq('id', target.target_parent_id)),
+    supabaseCount(supabase, 'card_printings', (query) => query.eq('id', target.target_child_id)),
+  ]);
+  requireSupabaseResult(
+    variantCandidatesResult,
+    'countdown_variant_service_snapshot_variant_collision_failed',
+  );
+  const projectionResult = requireSupabaseResult(
+    await supabase.rpc('card_print_identity_backfill_projection_v1', {
+      p_set_source: set?.source ?? {},
+      p_card_print_set_code: base.set_code,
+      p_sets_code: set?.code ?? null,
+      p_number: base.number,
+      p_number_plain: base.number_plain,
+      p_name: base.name,
+      p_variant_key: target.proposed_variant_key,
+      p_printed_total: base.printed_total ?? set?.printed_total ?? null,
+      p_printed_set_abbrev: base.printed_set_abbrev ?? set?.printed_set_abbrev ?? null,
+    }),
+    'countdown_variant_service_snapshot_identity_projection_failed',
+  );
+  const projection = projectionResult.data ?? {};
+  const identityHashCollisionCount = projection.status === 'ready'
+    ? await supabaseCount(supabase, 'card_print_identity', (query) => query
+      .eq('is_active', true)
+      .eq('identity_domain', projection.identity_domain)
+      .eq('identity_key_version', projection.identity_key_version)
+      .eq('identity_key_hash', projection.identity_key_hash))
+    : 0;
+  const baseCoordinate = String(base.number_plain ?? base.number ?? '');
+  const variantParentCollisionCount = (variantCandidatesResult.data ?? []).filter((row) => (
+    String(row.number_plain ?? row.number ?? '') === baseCoordinate
+    && text(row.name).toLowerCase() === text(base.name).toLowerCase()
+    && text(row.variant_key) === target.proposed_variant_key
+  )).length;
+  return {
+    base_count: baseResult.data.length,
+    base_gv_id: base.gv_id,
+    base_set_code: base.set_code,
+    base_name: base.name,
+    base_number: base.number,
+    base_finish_count: baseFinishCount,
+    active_finish_count: activeFinishCount,
+    source_mapping_count: sourceMappingCount,
+    variant_parent_collision_count: variantParentCollisionCount,
+    gv_id_collision_count: gvIdCollisionCount,
+    target_parent_id_collision_count: targetParentIdCollisionCount,
+    target_child_id_collision_count: targetChildIdCollisionCount,
+    identity_projection_status: projection.status ?? null,
+    identity_hash_collision_count: identityHashCollisionCount,
   };
 }
 
@@ -207,38 +363,68 @@ function parseArgs(argv) {
     ?.slice(name.length + 3).trim() ?? '';
   const proposal = value('proposal');
   const output = value('output');
+  const transport = value('transport') || 'postgres_reader';
   if (!proposal || !output) throw new Error('--proposal and --output are required');
-  return { proposal: path.resolve(proposal), output: path.resolve(output) };
+  if (!['postgres_reader', 'supabase_service_snapshot'].includes(transport)) {
+    throw new Error('--transport is invalid');
+  }
+  return { proposal: path.resolve(proposal), output: path.resolve(output), transport };
 }
 
 export async function main(argv = process.argv.slice(2)) {
   const args = parseArgs(argv);
   const proposal = JSON.parse(await fs.readFile(args.proposal, 'utf8'));
   const targets = buildPokemonCountdownCalendarPlanTargetsV1(proposal);
-  const url = connectionString();
-  if (!url) throw new Error('SUPABASE_DB_URL is required');
-  const { client, databaseTarget } = await connectExactMappingPlannerV1({
-    Client,
-    connectionString: url,
-  });
   let rows;
   let environmentSanity;
-  try {
-    await client.query('begin read only');
-    environmentSanity = await captureEnvironmentSanity(client, databaseTarget);
+  let databaseTarget;
+  if (args.transport === 'supabase_service_snapshot') {
+    const { supabaseUrl, serviceKey } = serviceSnapshotCredentials();
+    databaseTarget = {
+      kind: 'production_service_snapshot',
+      project_ref: PRODUCTION_PROJECT_REF,
+      transport: 'supabase_rest',
+      https_required: true,
+      code_boundary_read_only: true,
+      transactionally_consistent: false,
+    };
+    const supabase = createClient(supabaseUrl, serviceKey, {
+      auth: { persistSession: false, autoRefreshToken: false },
+    });
+    environmentSanity = await captureServiceEnvironmentSanity(supabase, databaseTarget);
     rows = [];
     for (const target of targets) {
       rows.push(evaluatePokemonCountdownCalendarLiveRowV1(
         target,
-        await captureLiveRow(client, target),
+        await captureLiveRowViaSupabase(supabase, target),
       ));
     }
-    await client.query('rollback');
-  } catch (error) {
-    await client.query('rollback').catch(() => {});
-    throw error;
-  } finally {
-    await client.end();
+  } else {
+    const url = connectionString();
+    if (!url) throw new Error('SUPABASE_DB_URL is required');
+    const connected = await connectExactMappingPlannerV1({
+      Client,
+      connectionString: url,
+    });
+    ({ databaseTarget } = connected);
+    const { client } = connected;
+    try {
+      await client.query('begin read only');
+      environmentSanity = await captureEnvironmentSanity(client, databaseTarget);
+      rows = [];
+      for (const target of targets) {
+        rows.push(evaluatePokemonCountdownCalendarLiveRowV1(
+          target,
+          await captureLiveRow(client, target),
+        ));
+      }
+      await client.query('rollback');
+    } catch (error) {
+      await client.query('rollback').catch(() => {});
+      throw error;
+    } finally {
+      await client.end();
+    }
   }
   const fingerprintPayload = {
     version: VERSION,
@@ -258,6 +444,9 @@ export async function main(argv = process.argv.slice(2)) {
     proposal_fingerprint_sha256: proposal.fingerprint_sha256,
     database_target: databaseTarget,
     environment_sanity: environmentSanity,
+    snapshot_consistency: databaseTarget.transactionally_consistent === false
+      ? 'bounded_multi_request_snapshot_revalidate_in_transactional_rehearsal'
+      : 'single_read_only_transaction',
     summary: {
       planned_rows: rows.length,
       ready_for_transactional_rollback_rehearsal: ready,
