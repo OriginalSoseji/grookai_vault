@@ -58,7 +58,7 @@ export function buildTcgplayerIdentityProductQueueV1(gaps = []) {
     const sourceProductId = integer(gap?.source_product_id);
     const sourceCategoryId = integer(gap?.source_category_id);
     if (!sourceProductId || !sourceCategoryId) continue;
-    const currentPokemonScope = sourceCategoryId === 3
+    const currentProductScope = [1, 3].includes(sourceCategoryId)
       ? classifyTcgplayerMarketProductScopeV1_5({
           category_id: sourceCategoryId,
           source_product_name: gap.source_product_name,
@@ -67,7 +67,7 @@ export function buildTcgplayerIdentityProductQueueV1(gaps = []) {
             gap.has_printed_number_evidence === true,
         })
       : null;
-    if (currentPokemonScope && !currentPokemonScope.in_scope) continue;
+    if (currentProductScope && !currentProductScope.in_scope) continue;
     const key = `${sourceCategoryId}:${sourceProductId}`;
     const current = products.get(key) ?? {
       schema_version: 'TCGPLAYER_IDENTITY_PRODUCT_QUEUE_V1',
@@ -79,10 +79,10 @@ export function buildTcgplayerIdentityProductQueueV1(gaps = []) {
       source_group_name: String(gap.source_group_name ?? '').trim(),
       product_scope_result: String(gap.product_scope_result ?? '').trim(),
       product_scope_policy_version:
-        currentPokemonScope?.policy_version
+        currentProductScope?.policy_version
         ?? (String(gap.product_scope_policy_version ?? '').trim() || null),
       product_scope_rule_id:
-        currentPokemonScope?.rule_id
+        currentProductScope?.rule_id
         ?? (String(gap.product_scope_rule_id ?? '').trim() || null),
       has_printed_number_evidence:
         gap.has_printed_number_evidence === true,

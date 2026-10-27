@@ -238,6 +238,32 @@ test('Pokemon product queue rechecks stale scope with V1.5 and protects numbered
   assert.equal(queue[0].has_printed_number_evidence, true);
 });
 
+test('MTG product queue rechecks stale scope with V1.5 and protects numbered cards', () => {
+  const queue = buildTcgplayerIdentityProductQueueV1([{
+    source_product_id: 104, source_category_id: 1,
+    source_product_name: '10th Edition - Fat Pack',
+    source_group_name: '10th Edition',
+    product_scope_result: 'in_scope',
+    product_scope_policy_version: 'TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_3',
+    has_printed_number_evidence: false,
+  }, {
+    source_product_id: 105, source_category_id: 1,
+    source_product_name: 'Booster Tutor',
+    source_group_name: 'Unhinged',
+    product_scope_result: 'in_scope',
+    product_scope_policy_version: 'TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_3',
+    has_printed_number_evidence: true,
+  }]);
+
+  assert.equal(queue.length, 1);
+  assert.equal(queue[0].source_product_id, 105);
+  assert.equal(
+    queue[0].product_scope_policy_version,
+    'TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_5',
+  );
+  assert.equal(queue[0].has_printed_number_evidence, true);
+});
+
 test('Pokemon review leads become one bounded review-only founder item', () => {
   const item = buildPokemonPricingMappingReviewWorkItemV1({
     candidates: [{
