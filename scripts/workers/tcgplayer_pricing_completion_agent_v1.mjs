@@ -121,6 +121,35 @@ function runCandidateEnrichment({ input, output, diagnosticOutput }) {
   });
 }
 
+function runPokemonCountdownVariantPlan({ proposal, output }) {
+  return new Promise((resolve, reject) => {
+    const child = spawn(process.execPath, [
+      'scripts/audits/pokemon_countdown_calendar_variant_plan_v1.mjs',
+      `--proposal=${proposal}`,
+      `--output=${output}`,
+    ], {
+      cwd: path.resolve('.'),
+      env: {
+        ...process.env,
+        PGOPTIONS: '-c default_transaction_read_only=on',
+      },
+      windowsHide: true,
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    let stdout = '';
+    let stderr = '';
+    child.stdout.on('data', (chunk) => { stdout += chunk; });
+    child.stderr.on('data', (chunk) => { stderr += chunk; });
+    child.on('error', reject);
+    child.on('close', (code) => {
+      if (code === 0) resolve({ stdout, stderr });
+      else reject(new Error(
+        `Pokemon Countdown variant plan failed with exit ${code}: ${stderr || stdout}`,
+      ));
+    });
+  });
+}
+
 async function readOnlyChildDirectory(root) {
   const entries = await fs.readdir(root, { withFileTypes: true });
   const directories = entries.filter((entry) => entry.isDirectory())
@@ -304,10 +333,41 @@ async function main() {
     });
     const pokemonSpecialPrintingProposalJson =
       `${JSON.stringify(pokemonSpecialPrintingProposal, null, 2)}\n`;
+    const pokemonSpecialPrintingProposalPath = path.join(
+      args.outDir,
+      'pokemon_special_printing_reference_proposal_v1.json',
+    );
     await fs.writeFile(
-      path.join(args.outDir, 'pokemon_special_printing_reference_proposal_v1.json'),
+      pokemonSpecialPrintingProposalPath,
       pokemonSpecialPrintingProposalJson,
     );
+    const pokemonCountdownVariantPlanPath = path.join(
+      args.outDir,
+      'pokemon_countdown_calendar_variant_plan_v1.json',
+    );
+    let pokemonCountdownVariantPlan = null;
+    let pokemonCountdownVariantPlanProcess;
+    try {
+      const result = await runPokemonCountdownVariantPlan({
+        proposal: pokemonSpecialPrintingProposalPath,
+        output: pokemonCountdownVariantPlanPath,
+      });
+      pokemonCountdownVariantPlan = JSON.parse(await fs.readFile(
+        pokemonCountdownVariantPlanPath,
+        'utf8',
+      ));
+      pokemonCountdownVariantPlanProcess = {
+        status: 'available',
+        stdout: result.stdout,
+        error_code: null,
+      };
+    } catch {
+      pokemonCountdownVariantPlanProcess = {
+        status: 'unavailable',
+        stdout: '',
+        error_code: 'COUNTDOWN_VARIANT_PLAN_UNAVAILABLE',
+      };
+    }
     const pokemonReviewedHoldRegistry = JSON.parse(await fs.readFile(
       path.resolve('docs/audits/pokemon_tcgplayer_reviewed_holds_20261026.json'),
       'utf8',
@@ -354,6 +414,15 @@ async function main() {
           enrichmentSummary.pokemon_diagnostic_output?.no_candidate_reasons ?? null,
       },
       pokemon_special_printing_proposal: pokemonSpecialPrintingProposal.summary,
+      pokemon_countdown_calendar_variant_plan: pokemonCountdownVariantPlan
+        ? {
+            status: pokemonCountdownVariantPlanProcess.status,
+            ...pokemonCountdownVariantPlan.summary,
+          }
+        : {
+            status: pokemonCountdownVariantPlanProcess.status,
+            error_code: pokemonCountdownVariantPlanProcess.error_code,
+          },
       exact_mapping_plan: {
         status: exactPlanProcess.status,
         error_code: exactPlanProcess.error_code,
@@ -431,11 +500,21 @@ async function main() {
           sha256: sha256(pokemonSpecialPrintingProposalJson),
           fingerprint_sha256: pokemonSpecialPrintingProposal.fingerprint_sha256,
         },
+        ...(pokemonCountdownVariantPlan ? {
+          pokemon_countdown_calendar_variant_plan: {
+            path: 'pokemon_countdown_calendar_variant_plan_v1.json',
+            rows: pokemonCountdownVariantPlan.rows.length,
+            sha256: sha256(await fs.readFile(pokemonCountdownVariantPlanPath)),
+            fingerprint_sha256: pokemonCountdownVariantPlan.fingerprint_sha256,
+          },
+        } : {}),
       },
       audit_stdout: audit.stdout.trim(),
       exact_mapping_plan_stdout: exactPlanProcess.stdout.trim() || null,
       candidate_enrichment_stdout: enrichmentProcess.stdout.trim(),
       candidate_enrichment_summary: enrichmentSummary,
+      pokemon_countdown_calendar_variant_plan_stdout:
+        pokemonCountdownVariantPlanProcess.stdout.trim() || null,
       pokemon_mapping_review: {
         candidate_count: pokemonOllamaCandidateQueue.length,
         selected_count: pokemonReviewBatch.selected_count,
