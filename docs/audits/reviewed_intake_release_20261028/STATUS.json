@@ -1,0 +1,23 @@
+{
+  "phase": "frozen_locally_qualified_pending_committed_release",
+  "baselineProductionVersions": 477,
+  "candidateSha256": "f18d25777048114b5619af1d57eb3fa985c03f7453ef2ff936c340ea2a7c11a5",
+  "candidateFrozen": true,
+  "candidatePersistentlyAppliedToLocalLabs": true,
+  "productionFeatureApplied": false,
+  "freshFull478ReplayPassed": true,
+  "retainedUpgradePassed": true,
+  "rollbackBusinessPassed": true,
+  "driftGuardCasesPassed": 9,
+  "edgeUnitTestsPassed": 6,
+  "crossConnectionDurabilityProven": true,
+  "concurrencyProven": true,
+  "actualAuthStorageProven": true,
+  "runtimeCasesPassed": 9,
+  "fullPublicSchemaDifferenceBytes": 0,
+  "equalSecurityObjects": 1345,
+  "exactGovernedIntakeObjects": 38,
+  "featureDeployed": false,
+  "globalWritesEnabled": false,
+  "normalInstalledBuild": 502
+}

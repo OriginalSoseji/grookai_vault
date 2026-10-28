@@ -1,5 +1,67 @@
 # Grookai Operator Playbook V1
 
+## Reviewed intake date-correct release — October 28, 2026
+
+The release now requires both frozen020000 and forward050700 candidates.
+The earlier478-only instructions below are historical and cannot qualify479.
+Use `-CollectorReviewedIntakeDateReleaseV1 -ExpectedLocalOnlyIds
+20261028020000,20261028050700` for `AuditLinkedSchema` and `PrePush`, with a new
+immediate child of `C:/gv_intake_recovery_private_20261027` named
+`reviewed-intake-date-release-gate-*`. Source must be clean and committed.
+See the date release manifest and latest reviewed-intake checkpoint.
+
+The date candidate SHA256 is
+`98138e6344e1a6c54b46b8d705b50ac5feac4303e96f33a0603440f4a4d9b7c0`.
+All479 source files, genuine full replay, retained478-to479 upgrade/no-op,
+14 real runtime cases, 39 governed objects, full public schema and1,346 security
+objects are pinned. Both populated479 labs remain preserved and paused.
+Production remains477 until official dry-run lists exactly these two migrations
+and a qualified merged commit is applied. Then independently verify479 against
+the pinned target before compatible Edge deployment and disposable-account
+canary. Keep global writes disabled through qualification. Preserve the founder's
+account; use revision-checked audited controls and restore pause on any failure.
+
+## Reviewed intake qualified candidate — October 27, 2026 (Denver)
+
+The frozen feature candidate is `20261028020000`, SHA256
+`f18d25777048114b5619af1d57eb3fa985c03f7453ef2ff936c340ea2a7c11a5`.
+It has passed fresh full478 CLI replay/no-op, retained populated477-to478
+upgrade/no-op, exact 38-object fingerprints, full public schema and 1,345-object
+security equality, and nine real shared-Edge/Auth/Storage/concurrency cases.
+Both internal proof labs retain their fixtures with writes paused; never reset
+them. The legacy image bucket was explicitly created as a local platform
+fixture because it is absent from historical migration replay. Production was
+not changed by these tests. A raw Auth deletion probe hit the pre-existing
+`card_events` append-only trigger; it is not an account-erasure readiness pass.
+
+Use only `-CollectorReviewedIntakeReleaseV1` with exact pending ID20261028020000
+and a new protected `-AuditOutDir` directly under the evidence root beginning
+`reviewed-intake-release-gate-`. It requires clean committed source and rereads
+the fixed production477 baseline plus both qualified478 targets. Normal hooks,
+official CLI dry-run/apply, independent readback, Edge release and disposable
+production-account canary remain separate gates. Activation uses the audited
+control setter only after canary proof. Migration/function SQL bytes remain
+exact; TypeScript runtime hashes use Git LF text solely for checkout parity.
+
+## Reviewed intake release preparation — October 28
+
+PR 824 is merged as `aae9893f828b9d81c136ea154a0086e1bf0072d7`; its exact
+reconciliation is applied and independently verified at production 477 with
+zero schema differences and equal 1,331-object security. The old reconciliation
+gate is consumed and cannot qualify the next feature. Read the latest root
+`docs/checkpoints/INTAKE_BACKEND_RECOVERY_20261027.md` and protected evidence in
+`C:/gv_intake_recovery_private_20261027` for actual release state.
+
+New backend work is isolated in `C:/gv_intake_release_20261028`. Before new SQL,
+`AuditLinkedSchema -AppReviewedIntakeBaselineV1` proves the exact 477 source,
+retained lab and fresh production baseline without writes. It permits only a
+new `-AuditOutDir` directly under the protected evidence root beginning
+`baseline-intake-`; candidates, PrePush, target overrides and mixed scopes reject.
+The frozen metadata query and pinned pgkit 0.6.1 inspector come from the qualified
+recovery tooling. Preserve every consumed lab and failed receipt. New feature
+SQL and Edge code still require separate release qualification and real-account
+saving/recovery checks; neither the baseline audit nor build 502 proves that.
+
 ## App reviewed-intake baseline recovery — October 27
 
 Read `docs/checkpoints/INTAKE_BACKEND_RECOVERY_20261027.md` and

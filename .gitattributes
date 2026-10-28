@@ -18,3 +18,6 @@ docs/audits/storefront_production_package_v1/historical_migrations/*.sql -text
 # Byte-preserving live function bodies for the qualified intake baseline only.
 supabase/migrations/20261027230000_app_intake_baseline_reconciliation_v1.sql -text whitespace=trailing-space,space-before-tab,cr-at-eol
 docs/audits/intake_recovery_20261027/replay-v5-source-as-executed.mjs -text whitespace=trailing-space,space-before-tab,cr-at-eol
+
+# Preserve the hash-pinned inspector query's original indentation.
+scripts/schema/reviewed_intake_public_catalog_v1.sql whitespace=-space-before-tab
