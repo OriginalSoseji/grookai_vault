@@ -1,5 +1,12 @@
 # Grookai Operator Playbook V1
 
+## Build507 installed — October28,2026
+
+This supersedes installed-build and RuName status below. Signed507 is installed on the QA emulator and Samsung through data-preserving updates. The Samsung retains its signed-in account, pre-upgrade inventory summary and four-column density. TCGplayer NM/LP, signed-in eBay active/sold results and photo recognition passed. On507, an offline/restart/reconnect intake saved exactly one DMG/Holo copy with explicit USD0.00, verified independently. Native QA sale recording created one exact canonical receipt; no founder inventory was changed or real funds moved.
+
+The production RuName is known; callbacks remain eBay defaults. Publisher work is isolated and unshipped. The integration PR still requires hosted and live-web qualification. Eleven test fixtures now disable unrelated SDK deep-link observers after hosted Linux failures; production deep links remain unchanged. Preserve signed507 and verify native source equivalence for test-only commits. Intake control revision6 still permits only the two QA actors; global writes remain paused pending audited completion/activation.
+
+
 ## Build506 qualification and507 candidate — October28,2026
 
 This checkpoint supersedes older installed-build status below. Samsung and the isolated QA emulator now run506. Samsung account/data are preserved; TCGplayer NM/LP exact filters and signed-in eBay sold/active searches passed on real pages. QA stamped offline recovery saved one exact copy with NULL condition/cost, bringing QA inventory to ten. Notification refusal persisted across cold restart after a fresh QA-only install state. Full canonical Windows web parity passed143 checks.

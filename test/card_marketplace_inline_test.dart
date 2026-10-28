@@ -64,7 +64,10 @@ void main() {
     await Supabase.initialize(
       url: 'http://127.0.0.1:54321',
       publishableKey: 'local-inline-test',
-      authOptions: const FlutterAuthClientOptions(autoRefreshToken: false),
+      authOptions: const FlutterAuthClientOptions(
+        detectSessionInUri: false,
+        autoRefreshToken: false,
+      ),
       httpClient: MockClient((request) async {
         if (request.url.path == '/rest/v1/card_prints' &&
             request.url.queryParameters['name'] == 'eq.Eevee') {

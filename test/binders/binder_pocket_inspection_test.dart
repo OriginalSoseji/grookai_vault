@@ -141,7 +141,10 @@ void main() {
     await Supabase.initialize(
       url: 'http://127.0.0.1:54321',
       publishableKey: 'local-pocket-test',
-      authOptions: const FlutterAuthClientOptions(autoRefreshToken: false),
+      authOptions: const FlutterAuthClientOptions(
+        detectSessionInUri: false,
+        autoRefreshToken: false,
+      ),
       httpClient: MockClient((request) async {
         if (request.url.host != '127.0.0.1' ||
             !request.url.path.endsWith('card-marketplace-links-v1')) {

@@ -27,7 +27,7 @@
   "scannerManualFallback": {
     "mainScanBatchHandoff": true,
     "scopedPhotoImport": true,
-    "recognition": "blocked on workstation network by TLS inspection; Samsung verification pending",
+    "recognition": "Samsung photo recognition passed: public Eevee173 QA image returned expected top candidate for explicit review; no founder inventory write",
     "photoRetained": true,
     "reviewedExactParentAndPrinting": true,
     "activeCopiesBefore": 8,
@@ -47,8 +47,8 @@
     "Windows-native pixel checks run explicitly alongside portable logical layout checks"
   ],
   "finalCandidate": 507,
-  "finalCandidateStatus": "source corrections in final normal checks; not yet packaged",
-  "samsungInstalledBuild": 506,
+  "finalCandidateStatus": "signed and installed on QA emulator and Samsung; native qualified, hosted/live web checks pending",
+  "samsungInstalledBuild": 507,
   "globalIntakeWrites": "paused; two QA actors temporarily allowlisted",
   "stampedOfflineRecovery": {
     "pass": true,
@@ -99,5 +99,33 @@
     "canonicalWindows": true,
     "clockPinned": true,
     "intentionalGoldenUpdates": 6
-  }
+  },
+  "finalCandidateQualification": {
+    "build": 507,
+    "accountPreservingUpgrade": true,
+    "offlineForceStopRecovery": true,
+    "oneRecoveredCopy": true,
+    "condition": "DMG",
+    "finish": "Holo",
+    "explicitCostUsd": 0,
+    "costNotNull": true,
+    "acquiredOn": "2026-10-28",
+    "independentSdkReadback": true,
+    "samsungAccountAndSummaryPreserved": true,
+    "samsungFourColumnPreferencePreserved": true
+  },
+  "nativeSaleRecord": {
+    "build": 506,
+    "pass": true,
+    "disposableActorOnly": true,
+    "oneExactCopyArchived": true,
+    "oneCanonicalReceipt": true,
+    "enteredSaleUsd": 3,
+    "condition": "LP",
+    "printingPreserved": true,
+    "activeCountPersistedAcrossRestart": true,
+    "realFundsTransferred": false,
+    "ebayPublished": false
+  },
+  "hostedFixtureCorrection": "Disable unrelated SDK deep-link observers in eleven non-deep-link fixtures; 92 focused checks pass; hosted rerun pending."
 }

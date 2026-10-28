@@ -73,7 +73,10 @@ void main() {
     await Supabase.initialize(
       url: 'http://127.0.0.1:54321',
       publishableKey: 'local-scan-review',
-      authOptions: const FlutterAuthClientOptions(autoRefreshToken: false),
+      authOptions: const FlutterAuthClientOptions(
+        detectSessionInUri: false,
+        autoRefreshToken: false,
+      ),
       httpClient: MockClient((request) async {
         if (twoPrintings &&
             request.url.path.endsWith('get_public_card_printing_options_v1')) {
