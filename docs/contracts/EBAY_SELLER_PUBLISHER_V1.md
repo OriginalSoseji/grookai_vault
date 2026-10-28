@@ -2,9 +2,13 @@
 
 ## Status and scope
 
-Active implementation contract; isolated candidate, default off. No live seller
-linking or listing publication is established by this document. Existing market
-searches, grookai sale intent and owner-recorded sales retain their meanings.
+Active implementation contract; integrated native511 and production web,
+schema481. The verified real collector completed linking and live provider
+readback; controls revision4 enable the workflow for that collector only. Other
+accounts remain off. No real listing was published during qualification. Read
+[the live checkpoint](../checkpoints/APP_511_LIVE_VERIFICATION_20261028.md) and
+current service controls for actual state. Existing market searches, grookai sale
+intent and owner-recorded sales retain their meanings.
 
 This workflow links an authenticated collector's eBay seller account and lists
 one owned, active exact copy on EBAY_US. Native and web use the same durable
