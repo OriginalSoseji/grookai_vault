@@ -162,6 +162,9 @@ export type BinderDetail = BinderSummary & {
   externalTotalSlots: number;
   externalProgressUnit: BinderProgressUnit;
   checklist: BinderChecklistSlot[];
+  coverOptions?: Array<Pick<BinderChecklistSlot,
+    "cardPrintId" | "title" | "subtitle" | "imageUrl" | "hostedImage">>;
+  coverOptionsUnavailable?: boolean;
   activity: BinderActivityItem[];
   members: BinderMember[];
   eligibleCopies: BinderEligibleCopy[];

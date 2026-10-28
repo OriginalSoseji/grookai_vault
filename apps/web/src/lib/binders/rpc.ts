@@ -1053,7 +1053,7 @@ export async function getBinderDashboard(
   );
 }
 
-async function getCompleteCustomChecklist(
+async function getCompleteChecklist(
   supabase: SupabaseClient,
   publicId: string,
 ) {
@@ -1070,13 +1070,14 @@ async function getCompleteCustomChecklist(
     const envelope = record(value);
     items.push(...list(envelope.items));
     const nextPosition = field(envelope, "next_position");
-    if (typeof nextPosition !== "number" || !Number.isFinite(nextPosition)) {
+    if (nextPosition === null || nextPosition === undefined) {
       return { items };
     }
-    if (afterPosition !== null && nextPosition <= afterPosition) {
+    if (typeof nextPosition !== "number" || !Number.isSafeInteger(nextPosition)
+        || nextPosition < 0 || (afterPosition !== null && nextPosition <= afterPosition)) {
       throw new BinderRpcError(
         "unavailable",
-        "The custom checklist could not be loaded safely.",
+        "The Binder checklist could not be loaded safely.",
       );
     }
     afterPosition = nextPosition;
@@ -1084,7 +1085,7 @@ async function getCompleteCustomChecklist(
 
   throw new BinderRpcError(
     "unavailable",
-    "The custom checklist exceeded its bounded editor limit.",
+    "The Binder checklist exceeded its bounded loading limit.",
   );
 }
 
@@ -1131,6 +1132,9 @@ export async function getBinderDetail(
     options.includeCustomEditor === true &&
     detailBinder.target_kind === "custom" &&
     detailViewer.role === "owner";
+  const canLoadCoverOptions = tab === "settings" && boolean(
+    field(record(record(detail).permissions), "edit_metadata", "can_edit"),
+  );
   const checklistPromise =
     tab === "checklist"
       ? rpc(supabase, BINDER_READ_RPC.checklist, {
@@ -1203,8 +1207,11 @@ export async function getBinderDetail(
             typeof queueCursor.id === "string" ? queueCursor.id : null,
         })
       : Promise.resolve({ items: [] });
-  const customEditorPromise = canLoadCustomEditor
-    ? getCompleteCustomChecklist(supabase, publicId)
+  // Settings has no visible checklist page. Load its artwork choices separately
+  // after the caller's metadata authority is known, sharing the complete read
+  // with the custom editor when both need it.
+  const completeChecklistPromise = canLoadCustomEditor || canLoadCoverOptions
+    ? getCompleteChecklist(supabase, publicId)
     : Promise.resolve({ items: [] });
   const settled = await Promise.allSettled([
     checklistPromise,
@@ -1214,7 +1221,7 @@ export async function getBinderDetail(
     bulkPreviewPromise,
     pendingContributionsPromise,
     joinRequestsPromise,
-    customEditorPromise,
+    completeChecklistPromise,
   ]);
   if (canLoadCustomEditor && settled[7]?.status === "rejected") {
     throw settled[7].reason;
@@ -1232,8 +1239,15 @@ export async function getBinderDetail(
     valueAt(4, null),
     valueAt(5, { items: [] }),
     valueAt(6, { items: [] }),
-    valueAt(7, { items: [] }),
+    canLoadCustomEditor ? valueAt(7, { items: [] }) : { items: [] },
   );
+  if (canLoadCoverOptions) {
+    parsedDetail.coverOptionsUnavailable = settled[7]?.status === "rejected";
+    parsedDetail.coverOptions = list(record(valueAt(7, { items: [] })).items)
+      .map(parseChecklistSlot)
+      .map(({ cardPrintId, title, subtitle, imageUrl, hostedImage }) =>
+        ({ cardPrintId, title, subtitle, imageUrl, hostedImage }));
+  }
   if (settled.some((result) => result.status === "rejected")) {
     parsedDetail.stalePermission = true;
   }
