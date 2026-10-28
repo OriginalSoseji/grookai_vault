@@ -1,5 +1,42 @@
 # Grookai Operator Playbook V1
 
+## App reviewed-intake baseline recovery — October 27
+
+Read `docs/checkpoints/INTAKE_BACKEND_RECOVERY_20261027.md` and
+`docs/audits/intake_recovery_20261027/REVIEW.md`. Recovery source is isolated in
+`C:/gv_intake_recovery_20261027`; private snapshots and local credential-bearing
+CLI logs remain outside Git in `C:/gv_intake_recovery_private_20261027`.
+The original lot-label migration is restored exactly. The new reconciliation
+preserves the existing production index and ten exact function definitions,
+including their raw line endings. Never rewrite applied SQL or repair remote
+history to conceal this drift.
+
+The immutable alias migration needs 647 catalog pairs. The final v5 lab proves
+a genuine empty-prefix CLI reset, explicit synthetic prerequisite, all 476
+unchanged historical migrations, the exact candidate at 477 and no-op pushes.
+Its Kong gateway must reread the Storage address after reset; the owned monitor
+restarts only that lab's gateway after checking it is empty. The readiness relay
+returns only real upstream responses and retries only the idempotent bucket
+readiness GET. Keep every failed receipt and consumed/populated lab. **Never
+reset these existing labs.**
+
+`migration_preflight_strict.ps1 -AppIntakeReconciliationV1` is bounded to exact
+pending ID `20261027230000`, with a new private `-AuditOutDir` beginning
+`C:/gv_intake_recovery_private_20261027/strict-`. It freezes every original SQL
+hash and genuine replay proof, rereads the owned lab/data, captures production
+through the official CLI in repeatable-read read-only mode, requires whole
+public-schema/security equality, and repeats four rollback tests. `PrePush`
+also requires clean committed source containing current main. No mixed modes,
+target overrides, extra pending migrations or production apply capability.
+The migration contract documents this specific prerequisite-aware qualification;
+other gates and feature scopes remain unchanged.
+
+The ordinary empty-shadow failure is retained as failed evidence. This scope
+cannot qualify the future intake feature SQL or count as a production release.
+Normal hooks, exact dry-run, atomic CLI apply and independent readback remain
+required. Build 502 remains unchanged until an actual app/backend release is
+verified. Production intake is still absent at this checkpoint.
+
 ## Numbered card-name interpretation follow-up — October 26, 2026
 
 Read `docs/checkpoints/2026-10-26_numbered_name_set_disambiguation.md`.

@@ -19,6 +19,7 @@ param(
 
   [string[]]$ExpectedLocalOnlyIds = @(),
 
+  [switch]$AppIntakeReconciliationV1,
   [switch]$OperationsAgentScheduleHealthV1,
   [switch]$ReconciledReplayAudit,
   [switch]$CollectorCameoIsolatedReplay,
@@ -95,6 +96,19 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($AppIntakeReconciliationV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  $allowedParameters = @('Phase','AppIntakeReconciliationV1','ExpectedLocalOnlyIds','AuditOutDir')
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin $allowedParameters }).Count -gt 0 -or
+      ($requested -join ',') -ne '20261027230000' -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'App intake reconciliation permits only exact migration 20261027230000 with new private AuditOutDir; no combined scopes or overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_app_intake_reconciliation_v1.mjs') `
+    $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
 
 if ($OperationsAgentScheduleHealthV1) {
   $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)

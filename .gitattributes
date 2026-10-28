@@ -14,3 +14,7 @@ docs/audits/catalog_discovery/collectible_wave1_set_foundations_v1/production_ap
 apps/web/src/lib/stores/scanMatchV11.mjs -text
 apps/web/src/lib/stores/scanMatchV12.mjs -text
 docs/audits/storefront_production_package_v1/historical_migrations/*.sql -text
+
+# Byte-preserving live function bodies for the qualified intake baseline only.
+supabase/migrations/20261027230000_app_intake_baseline_reconciliation_v1.sql -text whitespace=trailing-space,space-before-tab,cr-at-eol
+docs/audits/intake_recovery_20261027/replay-v5-source-as-executed.mjs -text whitespace=trailing-space,space-before-tab,cr-at-eol
