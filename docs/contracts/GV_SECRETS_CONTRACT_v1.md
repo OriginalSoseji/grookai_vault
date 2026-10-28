@@ -18,6 +18,7 @@ As of the current stabilization phase:
 | `SUPABASE_PUBLISHABLE_KEY` | Public anon key for Edge functions and clients (this is the “anon key” in the Supabase dashboard). | ✅ | ✅ (`SUPABASE_PUBLISHABLE_KEY`) | ✅ (`SUPABASE_PUBLISHABLE_KEY`) |
 | `SUPABASE_SECRET_KEY` | Canonical service-role secret for backend workers and admin/edge boundaries. | ✅ (`SUPABASE_SECRET_KEY`) | ✅ (`SUPABASE_SECRET_KEY`) | ✅ (`SUPABASE_SECRET_KEY`) |
 | `OPENAI_API_KEY` | AI-powered tooling (if enabled; currently optional). | ✅ (optional) | ✅ (optional) | ✅ (optional) |
+| `EBAY_CLIENT_SECRET` | Existing production eBay application secret, reused only by server workers for owner-approved code exchange and refresh. | Existing ignored server env | Never a mobile define or public Edge/client value | Server runtime only; not needed by fixture checks |
 | `STRIPE_SECRET_KEY` | Server-only Stripe SDK authentication for the existing Grookai account. | Test-mode value only in ignored private env | Not used by this web integration | Not required; future production value belongs in sensitive Vercel storage |
 | `STRIPE_BILLING_WEBHOOK_SECRET` | Verify raw Stripe subscription webhook bodies. Separate endpoint secret per environment. | Local/test endpoint only | Not used | Not required; future production value belongs in sensitive Vercel storage |
 | `GROOKAI_COMMERCE_ALERT_URL` | Private HTTPS operations webhook destination for commerce alerts; may contain secret routing material. | Synthetic loopback only | Not used | Private worker environment only |
@@ -30,6 +31,13 @@ As of the current stabilization phase:
 > NOTE: Supabase project secrets live under Settings → Configuration → Secrets. GitHub Actions secrets must match these names in lowercase (e.g., `SUPABASE_SECRET_KEY`). `SUPABASE_PUBLISHABLE_KEY` maps to the “anon key” in the Supabase dashboard. Older runtime surfaces may still reference `SUPABASE_SERVICE_ROLE_KEY`, but current canonical authority is `SUPABASE_SECRET_KEY`.
 
 ## Naming Rules
+
+`EBAY_CLIENT_ID` is the existing public application identifier. The seller
+publisher's `EBAY_SELLER_RUNAME` is non-secret server configuration selecting the
+verified registered OAuth redirect name; it is not a URL or credential. Seller
+access and refresh tokens live only in the private server credential table.
+Never put those tokens, the client secret, provider authorization codes or
+one-use browser capabilities into mobile defines, browser bundles or logs.
 
 Stripe credentials must never enter mobile defines, browser bundles, logs or receipts.
 `STRIPE_ACCOUNT_ID`, `STRIPE_STORE_APP_PRICE_ID`, `STRIPE_STORE_WEB_PRICE_ID` and

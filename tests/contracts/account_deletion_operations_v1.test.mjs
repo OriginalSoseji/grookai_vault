@@ -68,6 +68,17 @@ test('an empty active billing reference permits the existing deletion plan after
  assert.equal(decision.decision,'hard_delete_allowed');
 });
 
+test('eBay drafts and reservation history require seller closeout before account deletion', () => {
+  for (const table_name of ['ebay_seller_drafts_v1', 'ebay_seller_reservations_v1']) {
+    const row = reference({ table_name });
+    assert.equal(classifyReference(row).policy, 'verified_seller_closeout_required');
+    const decision = buildDeletionDecision({ references: [row] });
+    assert.equal(decision.decision, 'seller_closeout_required');
+    assert.equal(decision.hard_delete_allowed, false);
+    assert.equal(buildDeletionDecision({ references: [{ ...row, row_count: 0 }] }).hard_delete_allowed, true);
+  }
+});
+
 test('artifacts use a one-way target fingerprint', () => {
   const userId = '91a3822d-30c5-48f8-9a09-97e57b73152d';
   const fingerprint = targetFingerprint(userId);

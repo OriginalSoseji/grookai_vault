@@ -10,6 +10,7 @@ import '../env.mjs';
 import { createBackendClient } from '../supabase_backend_client.mjs';
 import { EbayClient } from '../clients/ebay_client.mjs';
 import { getSellerEbayAuth } from './ebay_tokens.mjs';
+import { canSyncSellerOrders, sellerOrderScopeFilter } from './seller_order_scope_v1.mjs';
 
 const SOURCE_ID = 'ebay_self';
 const DEFAULT_SELLER_LIMIT = 10;
@@ -247,8 +248,9 @@ async function main() {
 
   const { data: sellers, error } = await supabase
     .from('ebay_accounts')
-    .select('id, user_id, marketplace_id, last_sync_at')
+    .select('id, user_id, marketplace_id, last_sync_at, scopes')
     .eq('is_active', true)
+    .or(sellerOrderScopeFilter)
     .order('last_sync_at', { ascending: true, nullsFirst: true })
     .limit(options.sellerLimit);
 
@@ -265,6 +267,7 @@ async function main() {
   let totalInserted = 0;
 
   for (const seller of sellers) {
+    if (!canSyncSellerOrders(seller.scopes)) continue;
     try {
       const stats = await syncSeller(supabase, seller, options);
       totalProcessed += stats.processed;

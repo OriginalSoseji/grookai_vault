@@ -20,6 +20,7 @@ import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/gv_chip.dart';
 import '../../widgets/pricing/card_marketplace_sheet.dart';
 import '../../widgets/pricing/ebay_listing_links.dart';
+import '../../widgets/pricing/ebay_seller_button.dart';
 import '../../theme/gv_tokens.dart';
 import '../gvvi/public_gvvi_screen.dart';
 import '../public_collector/public_collector_screen.dart';
@@ -1528,6 +1529,10 @@ class _VaultTopSurface extends StatelessWidget {
             setName: data.setName,
             collectorNumber: data.number == '—' ? null : data.number,
             finish: finishLabel,
+          ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: EbaySellerButton(instanceId: data.instanceId),
           ),
           const SizedBox(height: 16),
           const _VaultQuietDivider(),

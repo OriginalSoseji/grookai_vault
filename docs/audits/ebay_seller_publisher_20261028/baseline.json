@@ -1,0 +1,20 @@
+{
+  "at": "2026-10-28T11:07:12.279Z",
+  "pass": true,
+  "scope": "ebay_seller_read_only_baseline_479",
+  "remoteVersions": 479,
+  "localVersions": 479,
+  "frozenMigrationFiles": 479,
+  "remainingSqlBytes": 0,
+  "securityObjects": 1346,
+  "securityExact": true,
+  "knownColumnOrderOnly": [
+    "\"public\".\"card_prints\"",
+    "\"public\".\"pricing_jobs\"",
+    "\"public\".\"sets\""
+  ],
+  "querySha256": "a5dda9364406ff20238b63268805b9251de9676ad2ac543c561b6f4bdea28ad4",
+  "remoteWrites": 0,
+  "candidateQualified": false,
+  "productionApplyAuthorized": false
+}

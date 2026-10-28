@@ -21,6 +21,7 @@ import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/card_surface_price.dart';
 import '../../widgets/pricing/card_marketplace_sheet.dart';
 import '../../widgets/pricing/ebay_listing_links.dart';
+import '../../widgets/pricing/ebay_seller_button.dart';
 import '../../widgets/gv_chip.dart';
 import '../../widgets/vault/vault_printing_picker.dart';
 import '../../widgets/vault/vault_quick_action_sheet.dart';
@@ -1772,6 +1773,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
           collectorNumber: data.number,
           finish: copy.printingIdentityLabel,
         ),
+        EbaySellerButton(instanceId: copy.instanceId),
       ],
     );
   }

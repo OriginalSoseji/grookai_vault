@@ -61,11 +61,17 @@ jobs:
       - name: Install web presentation test dependencies
         run: npm ci --prefix apps/web --ignore-scripts
 
+      - name: Install pinned backend test dependencies
+        run: npm ci --prefix backend --ignore-scripts
+
       - name: Run runtime health checks
         run: npm run contracts:runtime-health
 
       - name: Run focused contracts test suite
         run: npm run contracts:test
+
+      - name: Verify seller identity and physical photo boundaries
+        run: npm --prefix backend run ebay:seller:test
 
   binder-rollout-windows:
     runs-on: windows-latest

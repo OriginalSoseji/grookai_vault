@@ -835,6 +835,9 @@ export function VaultCollectionView({
               >
                 Import Collection
               </Link>
+              <Link href="/vault/ebay" prefetch={false} className="gv-secondary-button px-4 py-2.5 text-sm md:px-5">
+                eBay listings
+              </Link>
               {bindersEnabled ? (
                 <Link
                   href="/binders"
