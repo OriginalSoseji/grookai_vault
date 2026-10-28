@@ -255,3 +255,6 @@ temp/
 
 # Repository-root Playwright diagnostic output.
 /test-results/
+
+# Generated Flutter golden comparison images; preserve review evidence outside source.
+/test/intake/failures/

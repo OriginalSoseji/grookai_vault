@@ -2,6 +2,12 @@
 
 ## Reviewed intake acquisition-date release — October 28, 2026
 
+This exact scope was consumed by the verified production477-to479 release from
+merged PR825 (`e99b3ebcde7b161aeac245af893d271f828b022d`). Its gate must now reject
+production479. Do not widen or reuse it for another release. Both applied SQL
+files remain frozen. Deployment and 13 real disposable-account checks passed;
+global write activation remains separate from schema qualification.
+
 `-CollectorReviewedIntakeDateReleaseV1` is a separate exact 477-to479 scope,
 limited to `AuditLinkedSchema` or `PrePush` and pending IDs
 `20261028020000,20261028050700`. Neither older intake gate is widened.

@@ -2985,13 +2985,13 @@ class _CopyRow extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(GvRadii.surface),
         onTap: onTap,
         onLongPress: onLongPress,
         child: Ink(
           decoration: BoxDecoration(
             color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.32),
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(GvRadii.surface),
           ),
           child: Padding(padding: const EdgeInsets.all(12), child: body),
         ),

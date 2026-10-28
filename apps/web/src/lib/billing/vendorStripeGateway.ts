@@ -33,7 +33,7 @@ export function readVendorBillingConfig(env: NodeJS.ProcessEnv): VendorBillingCo
 export function createVendorStripeClient(config: VendorBillingConfig): Stripe {
   return new Stripe(config.secretKey, {
     apiVersion: STRIPE_BILLING_API_VERSION, maxNetworkRetries: 2, timeout: 10_000,
-    telemetry: false, appInfo: { name: "Grookai Vault vendor billing", version: "1" },
+    telemetry: false, appInfo: { name: "grookai vault vendor billing", version: "1" },
   });
 }
 

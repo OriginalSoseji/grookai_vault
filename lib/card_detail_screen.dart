@@ -163,6 +163,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   String? _selectedCardPrintingId;
   bool _printingSelectionTouched = false;
   bool _printingOptionsLoading = true;
+  int _cardContextRequestVersion = 0;
   bool _priceLoading = false;
   String? _priceError;
   OwnershipState? _ownershipState;
@@ -341,6 +342,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   }
 
   Future<void> _loadCardContext() async {
+    final version = ++_cardContextRequestVersion;
     if (mounted) setState(() => _printingOptionsLoading = true);
     try {
       final rawDetailRow = await supabase
@@ -361,58 +363,34 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       final cardPrintId = _cleanText(contextData?['id']).isNotEmpty
           ? _cleanText(contextData?['id'])
           : widget.cardPrintId;
-      final imageFaces = await _fetchImageFaces(cardPrintId);
-
-      List<Map<String, dynamic>> relatedRows = const [];
-      if (resolvedName.isNotEmpty) {
-        final response = await supabase
-            .from('card_prints')
-            .select(
-              'id,gv_id,name,set_code,number,number_plain,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(name,release_date,identity_model)',
-            )
-            .eq('name', resolvedName)
-            .neq('id', widget.cardPrintId)
-            .not('gv_id', 'is', null)
-            .order('set_code', ascending: true)
-            .order('number_plain', ascending: true, nullsFirst: false)
-            .order('number', ascending: true)
-            .limit(20);
-
-        relatedRows = (await CanonImageUrlService.enrichRows(
-          (response as List<dynamic>).map(
-            (row) => Map<String, dynamic>.from(row as Map),
-          ),
-        )).where((row) => _cleanText(row['id']).isNotEmpty).toList();
-      }
-
-      final relatedVersionOwnershipByCardPrintId =
-          await _primeRelatedVersionOwnership(
-            relatedRows.map((row) => _cleanText(row['id'])),
-          );
       final printingOptions = await _fetchPrintingOptions(cardPrintId);
       final selectedCardPrintingId = _resolveInitialPrintingSelection(
         printingOptions,
       );
 
-      if (!mounted) {
+      if (!mounted || version != _cardContextRequestVersion) {
         return;
       }
 
       setState(() {
         _cardContextData = contextData;
-        _relatedVersions = relatedRows;
+        _relatedVersions = const [];
         _printingOptions = printingOptions;
         _printingOptionsLoading = false;
-        _imageFaces = imageFaces;
+        _imageFaces = const [];
         _selectedImageFaceIndex = 0;
         _selectedCardPrintingId = selectedCardPrintingId;
         _printingSelectionTouched = false;
-        _relatedVersionOwnershipByCardPrintId =
-            relatedVersionOwnershipByCardPrintId;
+        _relatedVersionOwnershipByCardPrintId = {};
       });
       unawaited(_loadPricing());
+      unawaited(_loadRelatedCardVersions(resolvedName, version));
+      final imageFaces = await _fetchImageFaces(cardPrintId);
+      if (mounted && version == _cardContextRequestVersion) {
+        setState(() => _imageFaces = imageFaces);
+      }
     } catch (_) {
-      if (!mounted) {
+      if (!mounted || version != _cardContextRequestVersion) {
         return;
       }
 
@@ -427,6 +405,43 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         _printingSelectionTouched = false;
         _relatedVersionOwnershipByCardPrintId = <String, OwnershipState>{};
       });
+    }
+  }
+
+  Future<void> _loadRelatedCardVersions(String name, int version) async {
+    // Related artwork and ownership are optional. Their latency or failure must
+    // never remove an already verified finish or block its marketplace links.
+    try {
+      List<Map<String, dynamic>> relatedRows = const [];
+      if (name.isNotEmpty) {
+        final response = await supabase
+            .from('card_prints')
+            .select(
+              'id,gv_id,name,set_code,number,number_plain,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(name,release_date,identity_model)',
+            )
+            .eq('name', name)
+            .neq('id', widget.cardPrintId)
+            .not('gv_id', 'is', null)
+            .order('set_code', ascending: true)
+            .order('number_plain', ascending: true, nullsFirst: false)
+            .order('number', ascending: true)
+            .limit(20);
+        relatedRows = (await CanonImageUrlService.enrichRows(
+          (response as List<dynamic>).map(
+            (row) => Map<String, dynamic>.from(row as Map),
+          ),
+        )).where((row) => _cleanText(row['id']).isNotEmpty).toList();
+      }
+      final ownership = await _primeRelatedVersionOwnership(
+        relatedRows.map((row) => _cleanText(row['id'])),
+      );
+      if (!mounted || version != _cardContextRequestVersion) return;
+      setState(() {
+        _relatedVersions = relatedRows;
+        _relatedVersionOwnershipByCardPrintId = ownership;
+      });
+    } catch (_) {
+      // Preserve the primary card/printing context during optional read failure.
     }
   }
 
@@ -3319,7 +3334,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     ThemeData theme,
     ColorScheme colorScheme,
   ) {
-    return CardPrintingPicker(
+    final picker = CardPrintingPicker(
       choices: [
         for (final option in _printingOptions)
           CardPrintingChoice(
@@ -3335,6 +3350,22 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         _printingOptions.firstWhere((option) => option.id == id),
       ),
       onViewMarket: _viewSelectedMarket,
+    );
+    final ownedCount = _ownershipState?.ownedCount ?? _managedOwnedCount ?? 0;
+    if (ownedCount < 1) return picker;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        picker,
+        const SizedBox(height: 8),
+        FilledButton.tonalIcon(
+          onPressed: _addingToVault || _printingOptionsLoading
+              ? null
+              : _addToVault,
+          icon: _buildPrimaryActionIcon(Icons.add_rounded),
+          label: Text(_addingToVault ? 'Opening review…' : 'Add another copy'),
+        ),
+      ],
     );
   }
 
@@ -3796,7 +3827,9 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: Text(
-              _printingOptions.isEmpty
+              _printingOptionsLoading
+                  ? 'Loading verified finishes…'
+                  : _printingOptions.isEmpty
                   ? 'Exact printing is unavailable. Marketplace links need a verified finish.'
                   : 'Choose a finish to open marketplace listings.',
               style: theme.textTheme.bodySmall?.copyWith(
@@ -4078,24 +4111,29 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
           SizedBox(
             width: 52,
             height: 52,
-            child: OutlinedButton(
-              onPressed: _wantLoading ? null : _toggleWant,
-              style: OutlinedButton.styleFrom(
-                padding: EdgeInsets.zero,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
+            child: Tooltip(
+              message: _wantState.want
+                  ? 'Remove from wishlist'
+                  : 'Add to wishlist',
+              child: OutlinedButton(
+                onPressed: _wantLoading ? null : _toggleWant,
+                style: OutlinedButton.styleFrom(
+                  padding: EdgeInsets.zero,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(GvRadii.control),
+                  ),
                 ),
+                child: _wantLoading
+                    ? const SizedBox.square(
+                        dimension: 18,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
+                    : Icon(
+                        _wantState.want
+                            ? Icons.bookmark_rounded
+                            : Icons.bookmark_border_rounded,
+                      ),
               ),
-              child: _wantLoading
-                  ? const SizedBox.square(
-                      dimension: 18,
-                      child: CircularProgressIndicator(strokeWidth: 2),
-                    )
-                  : Icon(
-                      _wantState.want
-                          ? Icons.bookmark_rounded
-                          : Icons.bookmark_border_rounded,
-                    ),
             ),
           ),
         ],

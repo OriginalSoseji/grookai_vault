@@ -58,6 +58,7 @@ void main() {
   var launchWorks = true;
   var twoFinishes = false;
   var requests = 0;
+  Completer<http.Response>? relatedRead;
   setUpAll(() async {
     SharedPreferences.setMockInitialValues({});
     await Supabase.initialize(
@@ -65,6 +66,21 @@ void main() {
       publishableKey: 'local-inline-test',
       authOptions: const FlutterAuthClientOptions(autoRefreshToken: false),
       httpClient: MockClient((request) async {
+        if (request.url.path == '/rest/v1/card_prints' &&
+            request.url.queryParameters['name'] == 'eq.Eevee') {
+          if (mode == 'related-delayed') {
+            relatedRead ??= Completer<http.Response>();
+            return relatedRead!.future;
+          }
+          if (mode == 'related-error') {
+            return http.Response(
+              jsonEncode({'message': 'Related versions fixture unavailable'}),
+              400,
+              headers: {'content-type': 'application/json'},
+              request: request,
+            );
+          }
+        }
         if (request.url.path.endsWith('card-marketplace-links-v1')) {
           requests++;
           final id = jsonDecode(request.body)['card_printing_id'] as String;
@@ -138,6 +154,7 @@ void main() {
     requests = 0;
     launchWorks = true;
     twoFinishes = false;
+    relatedRead = null;
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
         .setMockMethodCallHandler(
           const MethodChannel('plugins.flutter.io/url_launcher'),
@@ -193,6 +210,43 @@ void main() {
     }
     expect(requests, 1);
   });
+  for (final state in ['related-delayed', 'related-error']) {
+    testWidgets('$state cannot block verified printing marketplace actions', (
+      tester,
+    ) async {
+      mode = state;
+      await tester.pumpWidget(
+        MaterialApp(
+          theme: buildGrookaiTheme(Brightness.dark),
+          home: const CardDetailScreen(cardPrintId: parent, name: 'Eevee'),
+        ),
+      );
+      try {
+        await drain(tester);
+        if (state == 'related-delayed') {
+          expect(relatedRead, isNotNull);
+          expect(relatedRead!.isCompleted, false);
+        }
+        expect(
+          find.text(
+            'Exact printing is unavailable. Marketplace links need a verified finish.',
+          ),
+          findsNothing,
+        );
+        final lp = find.widgetWithText(OutlinedButton, 'LP');
+        await tester.ensureVisible(lp);
+        await tester.tap(lp);
+        await tester.pumpAndSettle();
+        expect(urls.single.queryParameters['Condition'], 'Lightly Played');
+        expect(urls.single.queryParameters['Printing'], 'Holofoil');
+      } finally {
+        if (relatedRead != null && !relatedRead!.isCompleted) {
+          relatedRead!.complete(http.Response('[]', 200));
+        }
+        await drain(tester);
+      }
+    });
+  }
   for (final state in ['unavailable', 'mismatch']) {
     testWidgets('$state never exposes condition links', (tester) async {
       mode = state;

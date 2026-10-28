@@ -124,3 +124,76 @@ The earlier signed build503 candidates remain preserved and uninstalled. The
 next fully qualified package will include this date correction; the Samsung
 still has build502 and its founder session remains untouched. Production remains
 at migration477 while the amended two-migration backend release is qualified.
+
+## Integrated backend and production verification
+
+PR825 merged as `e99b3ebcde7b161aeac245af893d271f828b022d` after normal commit,
+push and hosted checks. The tested and merged trees match. A new exact merged
+477-to479 gate passed, the official CLI dry-run listed only 020000/050700, and
+both frozen migrations applied successfully at 06:45 UTC on October 28.
+Independent production readback matches the complete qualified public schema,
+all 1,346 security objects and 39 governed fingerprints. The private photo bucket
+and initial paused control state match. No generated schema diff was executed.
+
+The deployed intake endpoint is ACTIVE version 1. All five downloaded runtime
+sources match their pinned Git LF text; global config is independently pinned
+and actual deployment metadata confirms the expected entrypoint and JWT setting.
+An initial readback harness incorrectly expected the function download to contain
+the whole project config; that failed attempt is preserved and classified.
+
+Thirteen actual production Edge/Auth/Storage/concurrency/date checks passed using
+two disposable accounts. The first production harness omitted the required
+acquisition day from its atomic-failure fixture, received the correct not-null
+failure, and restored pause. The corrected run reused the same accounts and
+passed, including canonical historical profitability periods. Four actual
+production family/community journeys passed: invitations, approval/withdrawal,
+view-link rotation/revocation and public community join/contribution. All QA
+Binders were returned to private/unlisted and archived; feature flags are unchanged.
+The founder's account has not been modified.
+
+The client date correction passed normal checks: 8,397 contract tests, 1,929 native
+tests, clean analysis, typecheck, lint and strict web build. Prior failed runs
+retain one catalog-process timeout and two stalled Windows test-loader attempts;
+both affected native files passed independently and the final full run passed.
+No hooks or checks were bypassed. The client was rebased onto the merged backend;
+native source-index SHA256 remains
+`fb63dce17fbdff25173a9271101dc9dc8749898d02647d4ded25d4fb13464958`.
+The only rebase conflict retained both function configurations.
+
+Signed build 504 and its matching Samsung preview are preserved. Only the separate
+QA emulator has 504; Samsung remains 502 with its account preserved. Native device
+journeys are in progress. Actual platform permission UI revealed a remaining
+capitalized app label and repeated notification permission requests after denial;
+the final package will correct these and requires fresh qualification. Generated
+golden comparison PNGs were byte-verified into private evidence and removed from
+tracked source; accepted reference goldens remain unchanged.
+
+Global intake writes remain disabled. The integrated client has not yet been
+pushed/merged, and the live website still follows main. eBay listing publication
+is not implemented; the registered OAuth RuName is still missing. Search links
+are not evidence of seller linking or publication readiness.
+
+## Device refinement follow-through
+
+Build504 signed in with the production QA account, loaded its real seven-copy
+Vault and preserved sign-in, dark appearance and four-column density across a
+forced process restart. Exact LP/Holo copy details and return from the external
+browser preserve the selected copy. The QA browser requires its initial setup;
+no third-party terms were accepted. Rendered marketplace pages still require
+verification in the Samsung's already configured browser.
+
+The device pass exposed platform labels still using capitalized product names;
+Android/iOS labels and provider-facing product text now follow `grookai vault`.
+Notification registration now persists the permission decision before prompting,
+coalesces concurrent requests and respects a subsequent system refusal. Four
+permission-policy tests pass, including restart and unavailable storage.
+Token refresh rechecks permission without prompting.
+
+Card details previously waited for optional related versions before publishing
+the verified printing, briefly showing a false unavailable message. Core context
+now loads first, optional failures preserve it, and stale context requests cannot
+replace newer state. Two regressions prove a delayed or failed related read cannot
+block an exact LP destination. Owned cards expose `Add another copy` in Collection;
+the wishlist control has an accessible label, and copy surfaces use shared radii.
+The final package number is505. These changes require normal commit/push checks,
+fresh packaging and continued native save/recovery/marketplace verification.

@@ -1,5 +1,18 @@
 # Grookai Operator Playbook V1
 
+## Verified reviewed-intake deployment — October 28, 2026
+
+PR825 is merged as `e99b3ebcde7b161aeac245af893d271f828b022d`. The exact merged
+gate and official dry-run passed; CLI applied020000/050700 at06:45 UTC.
+Production479 matches the qualified full schema,1,346 security objects and39
+governed fingerprints. Edge version1's downloaded source/settings match.
+Thirteen real production canary cases and four family/community journeys passed
+using only two disposable accounts. QA Binders are private/unlisted and archived;
+global intake writes are paused. Preserve all failed/resumed harness evidence.
+The founder's account is untouched. Older release gates/instructions below are
+historical and must not be widened or reused. Integrated native/client release
+and audited global activation are still pending at this checkpoint.
+
 ## Reviewed intake date-correct release — October 28, 2026
 
 The release now requires both frozen020000 and forward050700 candidates.
