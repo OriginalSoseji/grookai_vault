@@ -1,10 +1,14 @@
+import 'dart:async';
 import 'dart:typed_data';
+import 'package:http/http.dart' as http;
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'intake_models.dart';
 
 class IntakeService {
   IntakeService(this.client);
   final SupabaseClient client;
+  static const connectionMessage =
+      'Could not connect. Your local draft is retained. Reconnect and retry.';
   String get userId =>
       client.auth.currentUser?.id ??
       (throw StateError('Sign in to use intake.'));
@@ -18,6 +22,12 @@ class IntakeService {
         'vault-intake-v1',
         body: {'action': action, 'payload': payload},
       );
+    } on http.ClientException {
+      throw StateError(connectionMessage);
+    } on TimeoutException {
+      // A timeout can follow a successful commit. The controller reconciles
+      // the same durable batch before attempting another save.
+      throw StateError(connectionMessage);
     } on FunctionException catch (error) {
       final details = error.details;
       final code = details is Map ? details['error']?.toString() : null;

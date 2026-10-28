@@ -247,7 +247,7 @@ class _IntakeBatchScreenState extends State<IntakeBatchScreen> {
                     leading: _IntakeThumbnail(item: item, controller: c),
                     title: Text(item.selected?.name ?? 'Choose this card'),
                     subtitle: Text(
-                      '${item.selected?.setCode ?? 'Unidentified'} ${item.selected?.number ?? ''} · Qty ${item.quantity}\n${item.isSaved
+                      '${item.selected?.setCode ?? item.selected?.gvId ?? 'Choose a card'} ${item.selected?.number ?? ''} · Qty ${item.quantity}\n${item.isSaved
                           ? 'Saved · ${item.savedInstanceIds.length} copies'
                           : item.state == 'confirmed'
                           ? 'Confirmed · ${item.finishLabel ?? 'Finish unspecified'}'

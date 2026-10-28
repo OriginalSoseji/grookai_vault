@@ -197,3 +197,35 @@ block an exact LP destination. Owned cards expose `Add another copy` in Collecti
 the wishlist control has an accessible label, and copy surfaces use shared radii.
 The final package number is505. These changes require normal commit/push checks,
 fresh packaging and continued native save/recovery/marketplace verification.
+
+## Native offline recovery checkpoint
+
+Build505 was tested with the QA emulator's network disabled before saving one
+reviewed LP/Holo Eevee. The failed request retained its local batch. After a
+forced process restart and reconnection, Batch intake recovered that same draft
+with its October27 acquisition day and USD2.50 cost. Saving added exactly one
+active copy (seven to eight); independent SDK readback verified its exact child,
+condition, intake lineage, cost and canonical acquisition timestamp
+`2026-10-27T06:00:00Z`. The founder's account remains untouched.
+
+The device exposed raw transport details in the failed-save message. The client
+now translates SDK transport failures/timeouts into a concise retained-draft
+message without automatically retrying uncertain writes. Two SDK regressions
+verify safe errors and unchanged batch identity on explicit retry. A failed
+startup profile read also offers `Open saved drafts` for the current signed-in
+owner; a widget regression verifies this recovery route while the normal profile
+gate remains in place. Cloud-unavailable text hides transport details and a
+confirmed draft uses its canonical card identifier when no set label is present.
+
+Normal push checks passed all8,407 contract and1,935 native tests but correctly
+rejected the generated `next-env.d.ts` edit left by Next's build. Following the
+installed Next16 documentation, this generated declaration is now ignored and
+untracked; typecheck continues to generate it through `next typegen`. No hook or
+check was bypassed. Build506 will contain these recovery corrections and needs
+normal checks, packaging and device qualification. Samsung still has502.
+
+The two disposable QA actors alone remain temporarily allowlisted for native/web
+qualification; global intake writes stay disabled. Close this exact canary using
+its audited revision guard after the remaining client journeys. The eBay RuName
+is still unverified; the founder does not know it. Inspect the existing developer
+configuration rather than asking for secrets or inventing a redirect.

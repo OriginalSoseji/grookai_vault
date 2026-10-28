@@ -258,3 +258,6 @@ temp/
 
 # Generated Flutter golden comparison images; preserve review evidence outside source.
 /test/intake/failures/
+
+# Next.js regenerates this declaration for dev/build; never track generated paths.
+/apps/web/next-env.d.ts

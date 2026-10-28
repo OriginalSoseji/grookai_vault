@@ -89,6 +89,16 @@ class _RequiredProfileSetupGateState extends State<RequiredProfileSetupGate> {
                     icon: const Icon(Icons.refresh_rounded),
                     label: const Text('Try again'),
                   ),
+                  if (Supabase.instance.client.auth.currentUser != null)
+                    TextButton.icon(
+                      onPressed: () => Navigator.of(context).push<void>(
+                        MaterialPageRoute<void>(
+                          builder: (_) => const IntakeHomeScreen(),
+                        ),
+                      ),
+                      icon: const Icon(Icons.inventory_2_outlined),
+                      label: const Text('Open saved drafts'),
+                    ),
                 ],
               ),
             ),

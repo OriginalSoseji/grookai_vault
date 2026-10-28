@@ -39,8 +39,9 @@ class _IntakeHomeState extends State<IntakeHomeScreen> {
       remote = results[0] as List<Map<String, dynamic>>;
       lots = results[1] as List<PurchaseLot>;
       error = null;
-    } catch (e) {
-      error = 'Cloud sync unavailable. Local drafts are still available. $e';
+    } catch (_) {
+      error =
+          'Cloud sync unavailable. Local drafts are still available. Reconnect to sync.';
     }
     if (context.mounted) setState(() => loading = false);
   }

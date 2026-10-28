@@ -1,5 +1,21 @@
 # Grookai Operator Playbook V1
 
+## Integrated native recovery qualification — October28,2026
+
+See `docs/checkpoints/APP_REFINEMENT_INTEGRATION_20261028.md`. Build505's offline
+reviewed add survived a forced restart and saved exactly one copy after
+reconnection, with the reviewed day, exact LP/Holo identity and USD2.50 cost.
+The observed raw network error and blocked offline profile gate are corrected
+for506; normal checks and fresh device qualification are required. Next16's
+generated `apps/web/next-env.d.ts` is ignored/untracked, as its installed docs
+require; `next typegen` still runs before typecheck. Preserve failed push evidence.
+
+Production intake remains globally paused with only the same two disposable QA
+actors temporarily allowlisted under revision6. The protected native canary
+control script closes only its exact owned revision/actors and must be used after
+native/web qualification. Never reuse consumed migration gates or alter the
+frozen020000/050700 files. Samsung502 and its founder account remain preserved.
+
 ## Verified reviewed-intake deployment — October 28, 2026
 
 PR825 is merged as `e99b3ebcde7b161aeac245af893d271f828b022d`. The exact merged

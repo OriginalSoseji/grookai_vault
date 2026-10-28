@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-28T07:32:09.128Z",
+  "at": "2026-10-28T08:35:02.345Z",
   "base": "5b4a95e637ffcfb214aeeeb7b2279751124ab9f4",
   "sourceHead": "d6de174de9a6250ac4f71ad5bed49b90f8e78718",
   "originalWorkspacePreserved": true,
@@ -1101,7 +1101,7 @@
       "sourceDisposition": "manual_conflict_review",
       "decision": "Manually integrate reviewed adds, saved density, intake entry and copy workspace while retaining current game/search scopes, owned sealed inventory and normal navigation.",
       "present": true,
-      "sha256": "6fcd80eed7efe901a52f9aba9ee7cad7849615f7bae3c17dfa77518e8a3b135c"
+      "sha256": "f7e93c6a38706ebae95a8531f8d699726418b5332c4aefbd6ebbd63457338695"
     },
     {
       "path": "lib/main_vault.dart",
@@ -1255,7 +1255,7 @@
       "sourceDisposition": "unique_client_change",
       "decision": "unique_client_change",
       "present": true,
-      "sha256": "b230b42ba1b22b99d8f73450ae4ae86552cf73f82e7529520f6597a2c364d6f4"
+      "sha256": "dd2ad39f884ebf9ea3753d186faa495e398a4862f9792729c5628f7b5d0d9ea4"
     },
     {
       "path": "lib/screens/intake/intake_cost_review_screen.dart",
@@ -1276,7 +1276,7 @@
       "sourceDisposition": "unique_client_change",
       "decision": "unique_client_change",
       "present": true,
-      "sha256": "e8113409b46454bcf830e4a5dcb7adbec78ce0585b1cd4b62c2c11bb5da4fd46"
+      "sha256": "7dfaea1c7ee4c76b63f4684e74882a68adc71f6fc07ce3147b8c25c2c0eb791f"
     },
     {
       "path": "lib/screens/intake/intake_inventory_screen.dart",
@@ -1507,7 +1507,7 @@
       "sourceDisposition": "unique_client_change",
       "decision": "unique_client_change",
       "present": true,
-      "sha256": "05e0186b04a7461a1f886b1e692c30c590a635a299a2b1cec995da1fa3865984"
+      "sha256": "b1d0a0475987f790b636ce6e5cc5fae593a956156a153cc50732cd15885dff93"
     },
     {
       "path": "lib/services/network/network_stream_service.dart",
