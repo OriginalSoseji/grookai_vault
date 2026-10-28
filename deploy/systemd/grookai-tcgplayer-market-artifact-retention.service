@@ -1,0 +1,22 @@
+[Unit]
+Description=Grookai TCGPlayer market artifact verified retention
+Wants=network-online.target
+After=network-online.target
+Before=grookai-tcgplayer-market-pipeline.service
+RequiresMountsFor=/var/lib/grookai/market-pricing
+OnFailure=grookai-operations-webhook@%n.service
+OnFailureJobMode=replace-irreversibly
+
+[Service]
+Type=oneshot
+User=root
+WorkingDirectory=/opt/grookai_vault_mee_nightly
+EnvironmentFile=/etc/grookai/tcgplayer-market-pricing.env
+ExecStart=/usr/bin/env bash scripts/ops/tcgplayer_market_artifact_retention_v1.sh --apply
+TimeoutStartSec=4h
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
+
+[Install]
+WantedBy=multi-user.target

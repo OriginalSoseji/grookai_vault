@@ -4092,3 +4092,31 @@ mapping IDs; never retry blindly. A successful repair still does not publish
 prices. Run a later full governed TCGPlayer market pipeline and verify that the
 19 positive-price products publish while the three source-null products remain
 explicitly held.
+
+## TCGPlayer pricing storage and freshness runway — October 28, 2026
+
+The October 28 scheduled production cycle was stopped by its storage preflight
+before acquisition because `/mnt/grookai_worker_data` had less than the required
+15,000,000,000 free bytes. The timer remained enabled and healthy. Three old
+failed August production artifact directories were preserved as verified Zstd
+archives with per-file manifests, archive comparisons, SHA-256 receipts, and
+explicit source-removal metadata. Free capacity increased from 14,382,522,368
+to 17,021,394,944 bytes, and the original pricing preflight passed afterward.
+
+Install and enable `grookai-tcgplayer-market-artifact-retention.timer` with the
+combined pricing pipeline. It runs at 00:30 UTC, before the 08:15 UTC pricing
+cycle. The retention worker considers only finalized production schedule
+directories at least 14 days old, skips unsupported or incomplete directories,
+and deletes an exact source directory only after its archive, comparison,
+manifest, and hash checks pass. Its default target is 25,000,000,000 free bytes,
+providing working room above the 15 GB start floor. A retention failure must
+remain visible through the operations webhook; do not weaken the storage
+preflight to make the publication cycle start.
+
+Durable shadow, canary, and production publication now require at least four
+hours of source freshness remaining when the publication worker starts. This
+prevents a source run that is barely under the 36-hour limit from expiring while
+snapshot batches are still being written. On
+`source_freshness_runway_insufficient`, run a guarded current warehouse sync and
+start a new publication run; do not retry the stale frozen run or weaken the
+edition-lineage validators.
