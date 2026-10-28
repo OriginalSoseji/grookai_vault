@@ -1,0 +1,12 @@
+[Unit]
+Description=Run verified TCGPlayer market artifact retention before daily pricing
+
+[Timer]
+OnCalendar=*-*-* 00:30:00 UTC
+Persistent=true
+AccuracySec=1min
+RandomizedDelaySec=0
+Unit=grookai-tcgplayer-market-artifact-retention.service
+
+[Install]
+WantedBy=timers.target

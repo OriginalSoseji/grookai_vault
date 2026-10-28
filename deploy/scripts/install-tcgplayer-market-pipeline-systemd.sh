@@ -10,6 +10,8 @@ TIMER_NAME="grookai-tcgplayer-market-pipeline.timer"
 WEBHOOK_UNIT="grookai-operations-webhook@.service"
 LEGACY_TIMER="grookai-tcgcsv-warehouse.timer"
 LEGACY_SERVICE="grookai-tcgcsv-warehouse.service"
+RETENTION_SERVICE="grookai-tcgplayer-market-artifact-retention.service"
+RETENTION_TIMER="grookai-tcgplayer-market-artifact-retention.timer"
 
 cd "${REPO_DIR}"
 
@@ -38,9 +40,12 @@ require_env_value() {
 
 for required_file in \
   scripts/workers/tcgplayer_market_scheduled_runner_v1.mjs \
+  scripts/ops/tcgplayer_market_artifact_retention_v1.sh \
   scripts/ops/grookai_operations_webhook_v1.mjs \
   "deploy/systemd/${SERVICE_NAME}" \
   "deploy/systemd/${TIMER_NAME}" \
+  "deploy/systemd/${RETENTION_SERVICE}" \
+  "deploy/systemd/${RETENTION_TIMER}" \
   "deploy/systemd/${WEBHOOK_UNIT}"; do
   if [[ ! -f "${required_file}" ]]; then
     echo "Missing ${required_file}." >&2
@@ -65,6 +70,7 @@ source "${ENV_FILE}"
 set +a
 
 node --check scripts/workers/tcgplayer_market_scheduled_runner_v1.mjs
+bash -n scripts/ops/tcgplayer_market_artifact_retention_v1.sh
 node --check scripts/ops/grookai_operations_webhook_v1.mjs
 node scripts/workers/tcgplayer_market_scheduled_runner_v1.mjs \
   --dry-run \
@@ -90,12 +96,14 @@ install_unit() {
 
 install_unit "deploy/systemd/${SERVICE_NAME}" "${SERVICE_NAME}"
 sudo cp "deploy/systemd/${TIMER_NAME}" "/etc/systemd/system/${TIMER_NAME}"
+install_unit "deploy/systemd/${RETENTION_SERVICE}" "${RETENTION_SERVICE}"
+sudo cp "deploy/systemd/${RETENTION_TIMER}" "/etc/systemd/system/${RETENTION_TIMER}"
 install_unit "deploy/systemd/${WEBHOOK_UNIT}" "${WEBHOOK_UNIT}"
 sudo systemctl daemon-reload
-sudo systemctl reset-failed "${SERVICE_NAME}" "${TIMER_NAME}" 2>/dev/null || true
+sudo systemctl reset-failed "${SERVICE_NAME}" "${TIMER_NAME}" "${RETENTION_SERVICE}" "${RETENTION_TIMER}" 2>/dev/null || true
 
 if [[ "${ACTIVATE_TIMER}" != "1" ]]; then
-  sudo systemctl disable --now "${TIMER_NAME}" 2>/dev/null || true
+  sudo systemctl disable --now "${TIMER_NAME}" "${RETENTION_TIMER}" 2>/dev/null || true
   echo "Units installed but timer left disabled. Set ACTIVATE_TIMER=1 only after shadow verification."
   exit 0
 fi
@@ -161,7 +169,8 @@ esac
 # The combined pipeline now owns acquisition and publication. Retire only the
 # standalone current-sync timer; historical backfill remains separately governed.
 sudo systemctl disable --now "${LEGACY_TIMER}" "${LEGACY_SERVICE}" 2>/dev/null || true
+sudo systemctl enable --now "${RETENTION_TIMER}"
 sudo systemctl enable --now "${TIMER_NAME}"
 
-systemctl list-timers "${TIMER_NAME}" --no-pager
-systemctl status "${TIMER_NAME}" --no-pager
+systemctl list-timers "${RETENTION_TIMER}" "${TIMER_NAME}" --no-pager
+systemctl status "${RETENTION_TIMER}" "${TIMER_NAME}" --no-pager
