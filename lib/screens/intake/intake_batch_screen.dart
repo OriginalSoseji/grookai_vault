@@ -245,9 +245,9 @@ class _IntakeBatchScreenState extends State<IntakeBatchScreen> {
                   child: ListTile(
                     contentPadding: const EdgeInsets.all(10),
                     leading: _IntakeThumbnail(item: item, controller: c),
-                    title: Text(item.selected?.name ?? 'Choose this card'),
+                    title: Text(intakeCandidateDisplayName(item.selected)),
                     subtitle: Text(
-                      '${item.selected?.setCode ?? item.selected?.gvId ?? 'Choose a card'} ${item.selected?.number ?? ''} · Qty ${item.quantity}\n${item.isSaved
+                      '${intakeCandidateSetLabel(item.selected)} · Qty ${item.quantity}\n${item.isSaved
                           ? 'Saved · ${item.savedInstanceIds.length} copies'
                           : item.state == 'confirmed'
                           ? 'Confirmed · ${item.finishLabel ?? 'Finish unspecified'}'

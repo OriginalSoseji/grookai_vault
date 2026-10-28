@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-28T08:50:59.732Z",
+  "at": "2026-10-28T09:09:00.940Z",
   "base": "5b4a95e637ffcfb214aeeeb7b2279751124ab9f4",
   "sourceHead": "d6de174de9a6250ac4f71ad5bed49b90f8e78718",
   "originalWorkspacePreserved": true,
@@ -1255,14 +1255,14 @@
       "sourceDisposition": "unique_client_change",
       "decision": "unique_client_change",
       "present": true,
-      "sha256": "fba630fb878e27339907b623725c1504dc6577c283412c98ad6286f3258baf25"
+      "sha256": "e862b6fc65013886ce186edd37d2b283eef92d55ad7812f7167c462947d452ac"
     },
     {
       "path": "lib/screens/intake/intake_cost_review_screen.dart",
       "sourceDisposition": "unique_client_change",
       "decision": "unique_client_change",
       "present": true,
-      "sha256": "558b3266637e7e3b60817c062319b9bdfe2705039bb1aa89e2e5c3124034b51c"
+      "sha256": "3225a5464d671c8e807b8fade314a22cc652ad6d979658762b3822215aaaa78d"
     },
     {
       "path": "lib/screens/intake/intake_crop_screen.dart",
@@ -1290,14 +1290,14 @@
       "sourceDisposition": "unique_client_change",
       "decision": "unique_client_change",
       "present": true,
-      "sha256": "295d6c51d97b9938dc8583a0606591f3490b64d57ab2507a2151a4d9d555a5be"
+      "sha256": "c6a4a35091ac839ee384254be8a92bfa965520b00c0b86efbdfca2e8dd800a40"
     },
     {
       "path": "lib/screens/intake/intake_screens.dart",
       "sourceDisposition": "unique_client_change",
       "decision": "unique_client_change",
       "present": true,
-      "sha256": "16ead2bdcdd53505a908ff038ba8bf1173fc58231e8c31d4684b9a6069826604"
+      "sha256": "b8918b4f1d576169506b58ea59f82140341eeff524b7d364daa8d8b12aa6a748"
     },
     {
       "path": "lib/screens/intake/purchase_lot_editor.dart",
@@ -1598,7 +1598,7 @@
       "sourceDisposition": "unique_client_change",
       "decision": "unique_client_change",
       "present": true,
-      "sha256": "2d37a2526063a810fe089d3c47dedfb81cbd619ed1b5e1430b04807a0e89d7fe"
+      "sha256": "c6ea34d7c05be89869484b5d1786cdbb670921dfdbd46dbe0a4578c2cb88c61e"
     },
     {
       "path": "lib/services/scanner_v5/scanner_vault_add.dart",
@@ -1864,7 +1864,7 @@
       "sourceDisposition": "unique_client_change",
       "decision": "unique_client_change",
       "present": true,
-      "sha256": "4ca6f9674e6e3c99cb5e5d71d2cab613823c4e8be0e97af207e6a0db36ba3bb2"
+      "sha256": "a73584c8c842eca1842a120694373db0927fc8a39035839b9bc6655a56ffb1eb"
     }
   ],
   "additionalValidatedChanges": [

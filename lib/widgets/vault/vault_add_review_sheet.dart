@@ -118,6 +118,8 @@ class _VaultAddReviewSheetState extends State<VaultAddReviewSheet> {
             cardId: widget.cardPrintId,
             gvId: widget.gvId,
             name: widget.name,
+            displayName: widget.name,
+            setName: widget.setName,
             imageUrl: widget.imageUrl,
           ),
           cardPrintingId: widget.printingId,

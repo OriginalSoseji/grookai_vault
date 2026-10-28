@@ -146,12 +146,10 @@ class _IntakeItemEditorState extends State<IntakeItemEditor> {
           ),
         const SizedBox(height: 12),
         Text(
-          item.selected?.name ?? 'Unidentified card',
+          intakeCandidateDisplayName(item.selected),
           style: Theme.of(context).textTheme.titleLarge,
         ),
-        Text(
-          '${item.selected?.setCode ?? ''} · ${item.selected?.number ?? ''}',
-        ),
+        Text(intakeCandidateSetLabel(item.selected)),
         TextButton.icon(
           onPressed: () async {
             final result = await Navigator.of(context).push<ScannerV5Candidate>(
@@ -168,8 +166,8 @@ class _IntakeItemEditorState extends State<IntakeItemEditor> {
             children: item.candidates
                 .map(
                   (v) => ListTile(
-                    title: Text(v.name),
-                    subtitle: Text('${v.setCode} · ${v.number ?? ''}'),
+                    title: Text(intakeCandidateDisplayName(v)),
+                    subtitle: Text(intakeCandidateSetLabel(v)),
                     onTap: () => select(v),
                   ),
                 )
@@ -208,7 +206,11 @@ class _IntakeItemEditorState extends State<IntakeItemEditor> {
               DropdownMenuItem(
                 value: row['id'] as String,
                 child: Text(
-                  '${row['finish_label'] ?? row['finish_key'] ?? 'Printing'} ${row['printing_gv_id'] ?? ''}',
+                  formatFinishLabel(
+                        finishLabel: row['finish_label']?.toString(),
+                        finishKey: row['finish_key']?.toString(),
+                      ) ??
+                      'Printing',
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
@@ -267,7 +269,8 @@ class _IntakeItemEditorState extends State<IntakeItemEditor> {
 }
 
 class IntakeCardSearch extends StatefulWidget {
-  const IntakeCardSearch({super.key});
+  const IntakeCardSearch({super.key, this.searchCards});
+  final Future<List<CardPrint>> Function(String query)? searchCards;
   @override
   State<IntakeCardSearch> createState() => _IntakeCardSearchState();
 }
@@ -276,29 +279,63 @@ class _IntakeCardSearchState extends State<IntakeCardSearch> {
   final query = TextEditingController();
   List<CardPrint> rows = [];
   bool busy = false;
+  bool searched = false;
   String? error;
+  Timer? _debounce;
+  int _generation = 0;
   @override
   void dispose() {
+    _debounce?.cancel();
+    ++_generation;
     query.dispose();
     super.dispose();
   }
 
+  void changed(String value) {
+    _debounce?.cancel();
+    ++_generation;
+    setState(() {
+      rows = [];
+      busy = false;
+      searched = false;
+      error = null;
+    });
+    if (value.trim().isNotEmpty) {
+      _debounce = Timer(const Duration(milliseconds: 350), search);
+    }
+  }
+
   Future<void> search() async {
-    if (query.text.trim().isEmpty) return;
+    _debounce?.cancel();
+    final text = query.text.trim();
+    if (text.isEmpty || busy) return;
+    final generation = ++_generation;
     setState(() {
       busy = true;
+      rows = [];
       error = null;
     });
     try {
-      final result = await CardPrintRepository.searchCardPrintsResolved(
-        client: Supabase.instance.client,
-        options: CardSearchOptions(query: query.text.trim(), limit: 50),
-      );
-      rows = result.rows;
-    } catch (e) {
-      error = e.toString();
+      final result = widget.searchCards != null
+          ? await widget.searchCards!(text)
+          : (await CardPrintRepository.searchCardPrintsResolved(
+              client: Supabase.instance.client,
+              options: CardSearchOptions(query: text, limit: 50),
+            )).rows;
+      if (!mounted || generation != _generation) return;
+      setState(() {
+        rows = result;
+        searched = true;
+      });
+    } catch (_) {
+      if (!mounted || generation != _generation) return;
+      setState(() {
+        error =
+            'Card search could not load. Your query is kept. Retry when connected.';
+      });
+    } finally {
+      if (mounted && generation == _generation) setState(() => busy = false);
     }
-    if (context.mounted) setState(() => busy = false);
   }
 
   @override
@@ -311,37 +348,73 @@ class _IntakeCardSearchState extends State<IntakeCardSearch> {
           child: TextField(
             controller: query,
             autofocus: true,
-            onSubmitted: (_) => search(),
+            textInputAction: TextInputAction.search,
+            onChanged: changed,
+            onSubmitted: (_) {
+              FocusScope.of(context).unfocus();
+              search();
+            },
             decoration: InputDecoration(
               labelText: 'Name, set or card number',
               suffixIcon: IconButton(
-                onPressed: search,
+                tooltip: 'Search cards',
+                onPressed: busy ? null : search,
                 icon: const Icon(Icons.search),
               ),
             ),
           ),
         ),
         if (busy) const LinearProgressIndicator(),
-        if (error != null) Text(error!),
+        if (error != null)
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              children: [
+                Text(error!),
+                TextButton.icon(
+                  onPressed: search,
+                  icon: const Icon(Icons.refresh),
+                  label: const Text('Retry card search'),
+                ),
+              ],
+            ),
+          ),
+        if (!busy && error == null && rows.isEmpty)
+          Padding(
+            padding: const EdgeInsets.all(24),
+            child: Text(
+              searched
+                  ? 'No matching cards. Try a name with its collector number or set.'
+                  : 'Find the artwork and printed identity. You’ll review condition and finish next.',
+            ),
+          ),
         Expanded(
           child: ListView.builder(
             itemCount: rows.length,
             itemBuilder: (_, i) {
               final row = rows[i];
+              final identity = resolveCardPrintDisplayIdentity(row);
               return ListTile(
-                title: Text(row.name),
-                subtitle: Text('${row.setCode} · ${row.number ?? ''}'),
-                onTap: () => Navigator.pop(
-                  context,
-                  ScannerV5Candidate.fromJson({
-                    'card_id': row.id,
-                    'gv_id': row.gvId,
-                    'name': row.name,
-                    'set_code': row.setCode,
-                    'number': row.number,
-                    'image_url': row.imageUrl,
-                  }),
+                minTileHeight: 92,
+                isThreeLine: true,
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 6,
                 ),
+                leading: CardSurfaceArtwork(
+                  label: identity.displayName,
+                  imageUrl: row.catalogImageUrl,
+                  fallbackImageUrl: row.providerFallbackImageUrl,
+                  width: 52,
+                  height: 74,
+                  borderRadius: 10,
+                  enableTapToZoom: false,
+                  showShadow: false,
+                ),
+                title: Text(identity.displayName),
+                subtitle: Text('${row.displaySet} · #${row.displayNumber}'),
+                onTap: () =>
+                    Navigator.pop(context, intakeCandidateFromCard(row)),
               );
             },
           ),

@@ -1,0 +1,49 @@
+{
+  "build": 505,
+  "environment": "production release candidate on isolated QA emulator",
+  "accounts": "previously created disposable release actors only",
+  "founderWrites": 0,
+  "offlineManualAdd": {
+    "pass": true,
+    "forceStopRecovery": true,
+    "activeCopiesBefore": 7,
+    "activeCopiesAfter": 8,
+    "exactCondition": "LP",
+    "exactFinish": "Holo",
+    "acquiredOn": "2026-10-27",
+    "canonicalAcquisitionDate": "2026-10-27T06:00:00Z",
+    "costUsd": 2.5,
+    "independentSdkReadback": true
+  },
+  "binderPersistence": {
+    "pass": true,
+    "heldDrag": true,
+    "serverOrderPreserved": true,
+    "exactFinishRequirements": true,
+    "coverPreserved": true,
+    "gridFourByFourPreservedAcrossRestart": true,
+    "privateUnlisted": true
+  },
+  "scannerManualFallback": {
+    "mainScanBatchHandoff": true,
+    "scopedPhotoImport": true,
+    "recognition": "blocked on workstation network by TLS inspection; Samsung verification pending",
+    "photoRetained": true,
+    "reviewedExactParentAndPrinting": true,
+    "activeCopiesBefore": 8,
+    "activeCopiesAfter": 9,
+    "blankCostStayedUnknown": true,
+    "returnedToScannerAndRefreshedVault": true
+  },
+  "corrections": [
+    "safe retained-draft transport errors",
+    "offline profile gate provides owner-local draft recovery",
+    "typed TLS errors preserve scan photos",
+    "manual picker distinguishes stamped identities and preserves artwork/context",
+    "stale search results cannot replace newer choices"
+  ],
+  "finalCandidate": 506,
+  "finalCandidateStatus": "not yet packaged or qualified",
+  "samsungInstalledBuild": 502,
+  "globalIntakeWrites": "paused; two QA actors temporarily allowlisted"
+}

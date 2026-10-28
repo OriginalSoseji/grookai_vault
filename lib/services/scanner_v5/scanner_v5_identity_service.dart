@@ -205,6 +205,7 @@ class ScannerV5Candidate {
     this.gvId,
     this.displayName,
     this.setCode,
+    this.setName,
     this.number,
     this.variantKey,
     this.printedIdentityModifier,
@@ -232,6 +233,7 @@ class ScannerV5Candidate {
           _trimmedOrNull(json['name']) ??
           'Unknown card',
       setCode: _trimmedOrNull(json['set_code']) ?? _trimmedOrNull(json['set']),
+      setName: _trimmedOrNull(json['set_name']),
       number: _trimmedOrNull(json['number']),
       variantKey: _trimmedOrNull(json['variant_key']),
       printedIdentityModifier: _trimmedOrNull(
@@ -252,6 +254,7 @@ class ScannerV5Candidate {
   final String? displayName;
   final String name;
   final String? setCode;
+  final String? setName;
   final String? number;
   final String? variantKey;
   final String? printedIdentityModifier;
@@ -271,6 +274,7 @@ class ScannerV5Candidate {
     'display_name': displayName,
     'name': name,
     'set_code': setCode,
+    if (setName != null) 'set_name': setName,
     'number': number,
     'variant_key': variantKey,
     'printed_identity_modifier': printedIdentityModifier,

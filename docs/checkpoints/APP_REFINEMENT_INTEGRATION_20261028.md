@@ -265,3 +265,32 @@ Read-only production inspection found zero connected eBay accounts. No seller
 tokens were read or provider requests sent. Existing app keys alone therefore
 cannot substitute for seller OAuth setup. The developer console remains signed
 out; RuName is unverified and publication remains unimplemented.
+
+## Exact identity in manual intake
+
+The device's real resolver search returned regular Eevee173 and Pokémon Center
+stamped Eevee173 as distinct canonical parents, but the old manual picker rendered
+both as `Eevee / svp173`. This remaining ambiguity is corrected before packaging.
+Search rows now use the shared printed-identity formatter, canonical artwork and
+human-readable set/number. The exact selected parent, modifier, display identity,
+set label and artwork survive local draft serialization and appear in review,
+the batch and cost review. Finish selection remains explicit and owner saving
+continues through the existing reviewed-intake authority. Optional set-name
+metadata is omitted for older candidates when absent.
+
+Search is debounced with a labeled search action. Query changes immediately
+clear prior choices; old responses cannot replace newer results. Empty/error
+states explain the next action and preserve the query without raw transport
+details. Four focused regressions cover stamped-vs-regular selection, durable
+identity/artwork, late response ordering and safe retry. Analysis is clean.
+
+The scanner correction commit passed normal checks:8,407 contracts and1,940
+native tests, clean analysis, web typecheck/lint and strict build. The506 package
+was deliberately deferred before compilation so this exact-identity correction
+can be checked and included. No push or device upgrade has occurred yet.
+
+The original failed photo remained on the QA device. Its manual exact-parent,
+Holo/LP review then saved precisely one additional copy (eight to nine). A blank
+cost remained SQL NULL despite the displayed USD9.30 reference. Main Scan resumed
+after returning from Batch intake, and Vault refreshed to the real nine copies.
+Successful photo recognition still requires Samsung network verification.

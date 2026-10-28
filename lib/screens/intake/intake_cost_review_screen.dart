@@ -91,7 +91,9 @@ class _IntakeCostReviewState extends State<IntakeCostReviewScreen> {
           ))
             ListTile(
               contentPadding: EdgeInsets.zero,
-              title: Text('${item.selected!.name} × ${item.quantity}'),
+              title: Text(
+                '${intakeCandidateDisplayName(item.selected)} × ${item.quantity}',
+              ),
               subtitle: Text(
                 '${item.manualTotalCents == null ? 'Proportional suggestion' : 'Manual row total'} · Reference ${intakeMoney(item.referenceValueCents, c.batch.currency)} per copy\n${(allocation?.costs[item.id] ?? []).map((v) => intakeMoney(v, c.batch.currency)).join(' / ')}',
               ),

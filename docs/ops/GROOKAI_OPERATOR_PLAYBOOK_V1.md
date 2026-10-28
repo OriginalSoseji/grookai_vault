@@ -2,6 +2,14 @@
 
 ## Integrated native recovery qualification — October28,2026
 
+Real manual search exposed distinct stamped/base parents rendered with identical
+labels. The final506 source now preserves the shared printed identity, canonical
+artwork and human set label through selection, local recovery and review. Search
+invalidates stale results and retains safe retry. Packaging was deferred before
+compilation until this correction passes normal checks; no506 APK is installed.
+The failed-photo/manual fallback saved one exact LP/Holo copy with unknown cost
+still NULL; the QA Vault now contains nine active copies.
+
 Native Binder drag/order, exact requirements, cover and4×4 preference survived
 restart and independent owner readback. The private QA Binder is retained for web
 comparison; archive it after that check. Main scanner import reached a strict TLS
