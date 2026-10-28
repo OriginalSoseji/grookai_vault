@@ -2,6 +2,9 @@
 // operation authority must be established before calling mutation methods.
 const origins = Object.freeze({production:'https://api.ebay.com',sandbox:'https://api.sandbox.ebay.com'});
 const maxResponseBytes = 2_000_000;
+// Card taxonomy includes complete value dictionaries (currently over 2.6 MB).
+// Keep the larger, still bounded allowance confined to that read endpoint.
+const maxAspectResponseBytes = 4_000_000;
 export class EbaySellerApiError extends Error {
   constructor(code,{status=null,uncertain=false,retryAfterSeconds=null,errorIds=[]}={}) {
     super(code);this.name='EbaySellerApiError';this.code=code;this.status=status;
@@ -32,6 +35,7 @@ export class EbaySellerListingClient {
     this.#origin=origins[environment];this.#token=accessToken;this.#fetch=fetchImpl;this.#timeout=timeoutMs;
   }
   async #request(method,path,body,query,mutation=method!=='GET') {const url=new URL(path,this.#origin);
+    const responseByteLimit=method==='GET'&&/^\/commerce\/taxonomy\/v1\/category_tree\/[A-Za-z0-9_-]{1,100}\/get_item_aspects_for_category$/.test(url.pathname)?maxAspectResponseBytes:maxResponseBytes;
     if(url.origin!==this.#origin||!['/sell/','/commerce/'].some(prefix=>url.pathname.startsWith(prefix)))throw new EbaySellerApiError('invalid_provider_route');
     if(query)for(const [key,value] of Object.entries(query))url.searchParams.set(key,String(value));
     let encoded;try{encoded=body===undefined?undefined:JSON.stringify(body);}catch{throw new EbaySellerApiError('invalid_provider_payload');}
@@ -43,7 +47,7 @@ export class EbaySellerListingClient {
     let data=null;
     try {
       const chunks=[];let total=0;const reader=response.body?.getReader();
-      if(reader)for(;;){const {done,value}=await reader.read();if(done)break;total+=value.byteLength;if(total>maxResponseBytes){await reader.cancel();throw Error('bounded');}chunks.push(value);}
+      if(reader)for(;;){const {done,value}=await reader.read();if(done)break;total+=value.byteLength;if(total>responseByteLimit){await reader.cancel();throw Error('bounded');}chunks.push(value);}
       if(total){const bytes=new Uint8Array(total);let offset=0;for(const chunk of chunks){bytes.set(chunk,offset);offset+=chunk.byteLength;}data=JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(bytes));}
     }catch{if(response.ok)throw new EbaySellerApiError(mutation?'provider_result_uncertain':'provider_response_invalid',{status:response.status,uncertain:mutation});data=null;}
     if(!response.ok){
@@ -53,6 +57,7 @@ export class EbaySellerListingClient {
       const code=response.status===401||response.status===403?'seller_authorization_required':response.status===429?'provider_rate_limited':response.status===404?'provider_resource_not_found':response.status>=500?(mutation?'provider_result_uncertain':'provider_unavailable'):'provider_request_rejected';
       throw new EbaySellerApiError(code,{status:response.status,uncertain:mutation&&response.status>=500,retryAfterSeconds,errorIds});
     }
+    if(method==='GET'&&data===null)throw new EbaySellerApiError('provider_response_invalid',{status:response.status});
     if(data!==null&&(typeof data!=='object'||Array.isArray(data)))throw new EbaySellerApiError(mutation?'provider_result_uncertain':'provider_response_invalid',{status:response.status,uncertain:mutation});
     return data;
   }

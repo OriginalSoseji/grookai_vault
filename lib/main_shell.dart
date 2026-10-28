@@ -468,6 +468,7 @@ class _AppShellState extends State<AppShell> {
   bool _scannerFlowInFlight = false;
   bool _bottomNavCollapsed = false;
   bool _relationshipRouteLoading = false;
+  bool _menuOpen = false;
   int _pulseUnreadCount = 0;
   bool _onboardingProbeInFlight = false;
   bool _onboardingDismissedThisSession = false;
@@ -1655,61 +1656,77 @@ class _AppShellState extends State<AppShell> {
       ],
     );
 
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: gvSystemUiStyle(Theme.of(context).brightness),
-      child: Theme(
-        data: buildGvRedesignV2Theme(brightness: Theme.of(context).brightness),
-        child: Builder(
-          builder: (context) {
-            final v2ColorScheme = Theme.of(context).colorScheme;
-            return Scaffold(
-              key: _scaffoldKey,
-              // Keep feed actions and card metadata above the opaque dock.
-              // This also prevents large Android text from being hidden under
-              // navigation on Samsung devices.
-              extendBody: false,
-              resizeToAvoidBottomInset: false,
-              endDrawer: _GrookaiAppDrawer(
-                signedIn: _supabase.auth.currentUser != null,
-                relationshipRouteLoading: _relationshipRouteLoading,
-                onOpenDex: _openDex,
-                onOpenSets: _openSets,
-                onOpenCompare: _openCompare,
-                onOpenGrookaiObjects: _openGrookaiObjectsHub,
-                onOpenBinders: _openBinderLibrary,
-                onOpenVendorMode: _openVendorMode,
-                onOpenSalesDesk: _openSalesDesk,
-                onOpenManageStore: _openManageStore,
-                onOpenNearby: _openNearby,
-                onOpenNearbyMap: _openNearbyMap,
-                onOpenAccount: _openAccountHub,
-                onOpenGettingStarted: _openGettingStarted,
-                onOpenFollowers: () => _openOwnRelationships(
-                  PublicCollectorRelationshipMode.followers,
+    final brightness = Theme.of(context).brightness;
+    return PopScope<Object?>(
+      // The menu lives in this root route. Advertise its Back interception
+      // before Android decides whether Back should background the activity.
+      canPop: !_menuOpen,
+      onPopInvokedWithResult: (didPop, _) {
+        if (!didPop && _menuOpen) {
+          _scaffoldKey.currentState?.closeEndDrawer();
+        }
+      },
+      child: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: gvSystemUiStyle(Theme.of(context).brightness),
+        child: Theme(
+          data: buildGvRedesignV2Theme(brightness: brightness),
+          child: Builder(
+            builder: (context) {
+              final v2ColorScheme = Theme.of(context).colorScheme;
+              return Scaffold(
+                key: _scaffoldKey,
+                // Keep feed actions and card metadata above the opaque dock.
+                // This also prevents large Android text from being hidden under
+                // navigation on Samsung devices.
+                extendBody: false,
+                resizeToAvoidBottomInset: false,
+                onEndDrawerChanged: (open) {
+                  if (mounted && open != _menuOpen) {
+                    setState(() => _menuOpen = open);
+                  }
+                },
+                endDrawer: _GrookaiAppDrawer(
+                  signedIn: _supabase.auth.currentUser != null,
+                  relationshipRouteLoading: _relationshipRouteLoading,
+                  onOpenDex: _openDex,
+                  onOpenSets: _openSets,
+                  onOpenCompare: _openCompare,
+                  onOpenGrookaiObjects: _openGrookaiObjectsHub,
+                  onOpenBinders: _openBinderLibrary,
+                  onOpenVendorMode: _openVendorMode,
+                  onOpenSalesDesk: _openSalesDesk,
+                  onOpenManageStore: _openManageStore,
+                  onOpenNearby: _openNearby,
+                  onOpenNearbyMap: _openNearbyMap,
+                  onOpenAccount: _openAccountHub,
+                  onOpenGettingStarted: _openGettingStarted,
+                  onOpenFollowers: () => _openOwnRelationships(
+                    PublicCollectorRelationshipMode.followers,
+                  ),
+                  onOpenFollowing: () => _openOwnRelationships(
+                    PublicCollectorRelationshipMode.following,
+                  ),
+                  themeMode: widget.themeMode,
+                  onThemeModeChanged: widget.onThemeModeChanged,
                 ),
-                onOpenFollowing: () => _openOwnRelationships(
-                  PublicCollectorRelationshipMode.following,
+                appBar: AppBar(
+                  toolbarHeight: kShellAppBarHeight,
+                  actionsPadding: const EdgeInsets.only(right: 6),
+                  title: const _GrookaiWordmark(),
+                  actions: _buildAppBarActions(isDesktopShell: isDesktopShell),
                 ),
-                themeMode: widget.themeMode,
-                onThemeModeChanged: widget.onThemeModeChanged,
-              ),
-              appBar: AppBar(
-                toolbarHeight: kShellAppBarHeight,
-                actionsPadding: const EdgeInsets.only(right: 6),
-                title: const _GrookaiWordmark(),
-                actions: _buildAppBarActions(isDesktopShell: isDesktopShell),
-              ),
-              body: bodyWithOnboarding,
-              bottomNavigationBar: isDesktopShell
-                  ? null
-                  : _buildMobileBottomDock(
-                      context: context,
-                      colorScheme: v2ColorScheme,
-                      keyboardVisible: keyboardVisible,
-                      bottomSafeInset: bottomSafeInset,
-                    ),
-            );
-          },
+                body: bodyWithOnboarding,
+                bottomNavigationBar: isDesktopShell
+                    ? null
+                    : _buildMobileBottomDock(
+                        context: context,
+                        colorScheme: v2ColorScheme,
+                        keyboardVisible: keyboardVisible,
+                        bottomSafeInset: bottomSafeInset,
+                      ),
+              );
+            },
+          ),
         ),
       ),
     );
@@ -1936,6 +1953,7 @@ class _AppShellState extends State<AppShell> {
                             ? colorScheme.primary
                             : foreground,
                         fontSize: collapsed ? 10 : 11,
+                        height: 1.2,
                         fontWeight: selected
                             ? FontWeight.w700
                             : FontWeight.w600,

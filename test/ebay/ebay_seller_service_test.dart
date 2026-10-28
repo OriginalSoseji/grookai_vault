@@ -192,4 +192,65 @@ void main() {
       }
     },
   );
+  test(
+    'large metadata dictionaries survive the native envelope without widening workspace reads',
+    () async {
+      final client = await signedInClient();
+      final values = List.generate(
+        50000,
+        (i) => {'localizedValue': 'Collector card printing $i'},
+      );
+      final body = jsonEncode({
+        'aspects': [
+          {'localizedAspectName': 'Card Name', 'aspectValues': values},
+        ],
+      });
+      expect(utf8.encode(body).length, greaterThan(2 * 1024 * 1024));
+      final service = EbaySellerService(
+        client,
+        ownerId: owner,
+        transport: MockClient(
+          (request) async => http.Response(body, 200, request: request),
+        ),
+      );
+      addTearDown(service.dispose);
+      final result = await service.call('metadata', {
+        'instanceId': 'exact-copy',
+        'accountId': 'linked-account',
+      });
+      final aspects = result['aspects'] as List;
+      expect((aspects.single['aspectValues'] as List).length, values.length);
+      expect((aspects.single['aspectValues'] as List).last, values.last);
+      await expectLater(service.workspace(), throwsStateError);
+      await expectLater(
+        service.call('publish', {'requestId': 'reviewed-operation'}),
+        throwsStateError,
+      );
+    },
+  );
+  test('metadata keeps a finite 8 MiB response envelope', () async {
+    final client = await signedInClient();
+    final service = EbaySellerService(
+      client,
+      ownerId: owner,
+      transport: MockClient(
+        (request) async =>
+            http.Response('x' * (8 * 1024 * 1024 + 1), 200, request: request),
+      ),
+    );
+    addTearDown(service.dispose);
+    await expectLater(
+      service.call('metadata', {
+        'instanceId': 'exact-copy',
+        'accountId': 'linked-account',
+      }),
+      throwsA(
+        isA<StateError>().having(
+          (e) => e.message,
+          'bounded metadata',
+          EbaySellerService.uncertainMessage,
+        ),
+      ),
+    );
+  });
 }

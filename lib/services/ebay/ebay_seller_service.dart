@@ -70,11 +70,16 @@ class EbaySellerService implements EbaySellerApi {
         request.body = jsonEncode(body);
       }
       final response = await _transport.send(request);
+      // Metadata includes the complete card-aspect dictionary plus policies.
+      // Keep the larger envelope confined to that authenticated read action.
+      final maxBytes = body?['action'] == 'metadata'
+          ? 8 * 1024 * 1024
+          : 2 * 1024 * 1024;
       final bytes = BytesBuilder(copy: false);
       var size = 0;
       await for (final chunk in response.stream) {
         size += chunk.length;
-        if (size > 2 * 1024 * 1024) throw StateError(uncertainMessage);
+        if (size > maxBytes) throw StateError(uncertainMessage);
         bytes.add(chunk);
       }
       _requireOwner();
