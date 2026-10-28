@@ -1,5 +1,6 @@
 import { vendorPilot, vendorDeviceQa, VENDOR_PILOT_ORIGIN } from "./src/lib/vendorPilot.mjs";
 import path from "path";
+import { createRequire } from "node:module";
 import { scanRuntimeTracePatterns } from "./src/lib/stores/scanRuntimeFiles.mjs";
 import { assertCollectorReleaseEnvironment } from "./src/lib/collectorRelease.mjs";
 import { collectorStaging, collectorFixtureLab, collectorHostedStaging, storefrontLocalTest, vendorBatchLocalTest, collectrImportLocalTest, receiptCloudLocalTest, salesTradeLocalTest, receiptDeliveryLocalTest, salesPaymentsLocalTest, assertCollectorStagingTarget } from "./src/lib/collectorStaging.mjs";
@@ -10,6 +11,7 @@ import { collectorStaging, collectorFixtureLab, collectorHostedStaging, storefro
  * Web requires NEXT_PUBLIC_ vars; we map them without forking the contract.
  */
 const repoRoot = path.resolve(process.cwd(), "../..");
+const webRequire = createRequire(import.meta.url);
 
 if (vendorDeviceQa && (process.env.VERCEL_ENV !== "preview" ||
     process.env.NEXT_PUBLIC_SITE_URL !== VENDOR_PILOT_ORIGIN ||
@@ -67,6 +69,17 @@ if (!supabaseUrl || !supabaseAnon) {
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  webpack(config, { isServer }) {
+    if (isServer) {
+      // Backend workers share the deployed web package's locked dependencies;
+      // Vercel installs apps/web, not a second backend node_modules tree.
+      config.resolve.alias = { ...config.resolve.alias,
+        "@supabase/supabase-js$": webRequire.resolve("@supabase/supabase-js"),
+        "dotenv$": webRequire.resolve("dotenv"),
+        "sharp$": webRequire.resolve("sharp") };
+    }
+    return config;
+  },
   // Hide the developer badge only in the existing local visual test mode.
   devIndicators: process.env.GROOKAI_VISUAL_TEST_MODE === "1" ? false : undefined,
   distDir: vendorBatchLocalTest ? ".next-batch-intake" : storefrontLocalTest ? ".next-storefront" : collectorFixtureLab ? ".next-fixture" : ".next",

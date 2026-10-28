@@ -1,0 +1,397 @@
+[
+  {
+    "hash": "d99a8d48e8347d2d3fbf14e7559b82e1af620fb09d24a0558d86ce171bfc1a66",
+    "kind": "function",
+    "identity": "public.ebay_seller_account_status_v1()"
+  },
+  {
+    "hash": "270ae4f2f89985dea6eb1bacb87be21f105524d0313035677b7dcb063736c005",
+    "kind": "function",
+    "identity": "public.ebay_seller_assert_enabled_v1(uuid, text)"
+  },
+  {
+    "hash": "641cd0011466f2393b13fdc709a61084a00dff31584a7d05ff9e2dfdba749359",
+    "kind": "function",
+    "identity": "public.ebay_seller_copy_identity_v1(vault_item_instances)"
+  },
+  {
+    "hash": "bf1cd43579484b8e207fe345f58aa6805b9777df4d82f3460ebde8dc1611499c",
+    "kind": "function",
+    "identity": "public.ebay_seller_draft_action_v1(uuid, uuid, uuid, bigint, text)"
+  },
+  {
+    "hash": "6aaf7f9fc2034c44560f9ff99dcec0b9a399414f5e7bd8e9b54bf9a2ea890bf2",
+    "kind": "function",
+    "identity": "public.ebay_seller_draft_status_v1(uuid)"
+  },
+  {
+    "hash": "7d68a4b6f1b905b7d878c714c1fadef1e265c7772aed57dafc361b2d1891e407",
+    "kind": "function",
+    "identity": "public.ebay_seller_guard_disposition_v1()"
+  },
+  {
+    "hash": "5217481320adf8cd574f81a998d8da62389f3c8f046fe4da9da82a87dde4f027",
+    "kind": "function",
+    "identity": "public.ebay_seller_guard_parent_delete_v1()"
+  },
+  {
+    "hash": "adc24a3dad056e34f6fddc5a71f21fc1f59fdfbf60821a1265a84dac1acca47a",
+    "kind": "function",
+    "identity": "public.ebay_seller_guard_reserved_copy_v1()"
+  },
+  {
+    "hash": "dbc1432bbc1a6b3d6176fd194a3eab5fd30c53c496e6cb3f8cca227e936e31cb",
+    "kind": "function",
+    "identity": "public.ebay_seller_guard_reserved_slab_v1()"
+  },
+  {
+    "hash": "d0e9e9ed6de148818581f2e37a6bd40d1b9c449e6f706d874d26598ce0865458",
+    "kind": "function",
+    "identity": "public.ebay_seller_oauth_claim_v1(text, text, uuid, boolean)"
+  },
+  {
+    "hash": "d0f6709775f2ab5e11f859b90c0b4e573416bea59791e9f9cd33ffa462cf2bdc",
+    "kind": "function",
+    "identity": "public.ebay_seller_oauth_complete_v1(uuid, uuid, text, text, text, text, timestamp with time zone, text[], timestamp with time zone)"
+  },
+  {
+    "hash": "5472f6d8dc16449ea5088b588704540c6dd87828d7de7b19204193779f799d78",
+    "kind": "function",
+    "identity": "public.ebay_seller_oauth_fail_v1(uuid, uuid, boolean, text)"
+  },
+  {
+    "hash": "69a530047109cb7f3771dd57e8b3c112d4691447c7c11c34c596fbff14aa4c0d",
+    "kind": "function",
+    "identity": "public.ebay_seller_oauth_launch_v1(text, text, text)"
+  },
+  {
+    "hash": "d3b51c404be3db398858de50ac76896fc775965553eb5de4843233553b8fb6f9",
+    "kind": "function",
+    "identity": "public.ebay_seller_oauth_start_v1(uuid, text)"
+  },
+  {
+    "hash": "d56c1b2e5a32e331725fe1d56b690ff625c003cba243b0a2b4ae8c5adb902eba",
+    "kind": "function",
+    "identity": "public.ebay_seller_operation_checkpoint_v1(uuid, uuid, uuid, text, text, jsonb)"
+  },
+  {
+    "hash": "b77af0d86178832cc2368abadefc4c4806abca1e45c728bcc697a373cde16828",
+    "kind": "function",
+    "identity": "public.ebay_seller_operation_claim_v1(uuid, uuid, uuid, text, bigint, text, uuid)"
+  },
+  {
+    "hash": "242fdebc08baa304460d764ae0b8e8eec17530393b83454028bd550d2b227bad",
+    "kind": "function",
+    "identity": "public.ebay_seller_operation_complete_v1(uuid, uuid, uuid, jsonb, text)"
+  },
+  {
+    "hash": "4347a1d6b00bb5b19720401b5d108cf4393bf55f8fc831341299cd126cfa2755",
+    "kind": "function",
+    "identity": "public.ebay_seller_operation_fail_v1(uuid, uuid, uuid, boolean, text)"
+  },
+  {
+    "hash": "138d271a9f1205b39a92a3fb95e5517d379f8e366cdff16ed5d97d8db08069b7",
+    "kind": "function",
+    "identity": "public.ebay_seller_operation_lock_v1(uuid, uuid, uuid)"
+  },
+  {
+    "hash": "3bfadec28e1aa107a7b506dd6fee8602c679af238eb2100b14da125d72924b59",
+    "kind": "function",
+    "identity": "public.ebay_seller_operation_resume_v1(uuid, uuid, uuid)"
+  },
+  {
+    "hash": "7ae1dff98d7de9c6d892b02ef00f8ad8ce4c95f65c51bb82155164fba39db2e3",
+    "kind": "function",
+    "identity": "public.ebay_seller_operation_yield_v1(uuid, uuid, uuid)"
+  },
+  {
+    "hash": "e5790862dd4da532e1328f94b11140a916bd20804aa29faf4028565ca4d18f2f",
+    "kind": "function",
+    "identity": "public.ebay_seller_photo_path_authorized_v1(text, boolean)"
+  },
+  {
+    "hash": "61f8e92bf269d086675a485dd46cd7c01f040983f701d0320768033ef741c28a",
+    "kind": "function",
+    "identity": "public.ebay_seller_photo_receipt_v1(uuid, uuid, uuid, uuid, text, jsonb)"
+  },
+  {
+    "hash": "f6cbe8c489b73856ae6a91c2bf266e163276dd66eee66f42c42e077268a60b21",
+    "kind": "function",
+    "identity": "public.ebay_seller_photo_uploaded_v1(ebay_seller_photos_v1)"
+  },
+  {
+    "hash": "a3376ac709e2dbba2d949f778054f2123b9f0bf3e9624487c83d46f706a3b534",
+    "kind": "function",
+    "identity": "public.ebay_seller_record_sale_v1(uuid, uuid, bigint, integer, boolean)"
+  },
+  {
+    "hash": "f5547cef11479d84774de7eb32f13a6a5cc41813142d6119a7ad0df5c5d5413a",
+    "kind": "function",
+    "identity": "public.ebay_seller_register_photo_v1(uuid, uuid, uuid, bigint)"
+  },
+  {
+    "hash": "dceb5f39ed1d827647fa01565849b7b2d6aaffbdc3ff4e5b98c59390e0a4e586",
+    "kind": "function",
+    "identity": "public.ebay_seller_remove_photo_v1(uuid, uuid, uuid, bigint)"
+  },
+  {
+    "hash": "3d7507139836cc9b510828d9d048a90b2b6e24cd2aee4815300c49c2db17450a",
+    "kind": "function",
+    "identity": "public.ebay_seller_require_actor_v1(uuid)"
+  },
+  {
+    "hash": "b08c65c60c21249e0383e059a6983bf0a48347907c41dacd2c0f3fc1b6adff4c",
+    "kind": "function",
+    "identity": "public.ebay_seller_require_service_v1()"
+  },
+  {
+    "hash": "a6195833a050a6f66824f017dbeec3ce461d3054d4e88ecaceb79ede76bf6029",
+    "kind": "function",
+    "identity": "public.ebay_seller_save_draft_v1(uuid, uuid, uuid, uuid, bigint, jsonb)"
+  },
+  {
+    "hash": "2d69dd45be510bbee6d81bb854f6029ef02bc05fc4b6a8e61d38cd1f90b496f9",
+    "kind": "function",
+    "identity": "public.ebay_seller_set_control_v1(bigint, boolean, boolean, boolean, uuid[])"
+  },
+  {
+    "hash": "1d0a4401f1772a1ce25df21e2488c4aaca3a4f0b3e45c24d2d5565b2c3dddae4",
+    "kind": "function",
+    "identity": "public.ebay_seller_slab_evidence_v1(uuid)"
+  },
+  {
+    "hash": "2ba7e0a5d355c5d01a5709f1e97796600dd9bc096cd7654589944a770aa74b97",
+    "kind": "function",
+    "identity": "public.ebay_seller_token_claim_v1(uuid, uuid, uuid)"
+  },
+  {
+    "hash": "9c5ea828dec381108c0eb77856765aa85f8c6c57732813ae72068af337656d48",
+    "kind": "function",
+    "identity": "public.ebay_seller_token_complete_v1(uuid, uuid, uuid, bigint, text, timestamp with time zone, text, timestamp with time zone)"
+  },
+  {
+    "hash": "1efa03d80c09022adf88d8df2b148b9f80354bc6ab08291ce6af98695038c2db",
+    "kind": "function",
+    "identity": "public.ebay_seller_token_fail_v1(uuid, uuid, uuid, bigint, boolean, text)"
+  },
+  {
+    "hash": "449bbfe678f84eac180dc739f70a69f74cc29e8419eb450a2f136b27fb1652ce",
+    "kind": "function",
+    "identity": "public.ebay_seller_workspace_v1(uuid)"
+  },
+  {
+    "hash": "b0e8105155548954b32d11a9760719dda384005345496299194be13bec68e02d",
+    "kind": "index",
+    "identity": "public.ebay_accounts_active_last_sync_idx"
+  },
+  {
+    "hash": "fda4bbb632b1956bd6dd3ec3522fa9f71fbed2e703b27fb920aa7882f8ceab2c",
+    "kind": "index",
+    "identity": "public.ebay_accounts_pkey"
+  },
+  {
+    "hash": "bfced1b3fb9016065d005421cb94ca9853de7ac0a52f124079c044e08ee21795",
+    "kind": "index",
+    "identity": "public.ebay_accounts_provider_identity_v1"
+  },
+  {
+    "hash": "8daabc268a74512bdd476893ad5335e3066c9e6ae3795c98a173c0b90d787bfd",
+    "kind": "index",
+    "identity": "public.ebay_accounts_user_id_idx"
+  },
+  {
+    "hash": "59d88377693c1627776614aaa263d3ca6691f875c22f9b7665804ca318349ba5",
+    "kind": "index",
+    "identity": "public.ebay_accounts_verified_owner_v1"
+  },
+  {
+    "hash": "6a8f1bb3c094b9339128512f0652099a24cd28d4a27076e2ef6e30b0fa02facd",
+    "kind": "index",
+    "identity": "public.ebay_seller_control_events_v1_pkey"
+  },
+  {
+    "hash": "2e590653caf29f595012b25a30a7cef683322fe52439b43299657a441e0ecae2",
+    "kind": "index",
+    "identity": "public.ebay_seller_controls_v1_pkey"
+  },
+  {
+    "hash": "9d08229981412bad5bd80280754f4da5c3879a90e00f28003457124d8c32922b",
+    "kind": "index",
+    "identity": "public.ebay_seller_draft_owner_v1"
+  },
+  {
+    "hash": "39d6d8fc9991c9fdc247f8dfbcb8737186b59a552aa3e7c94d71b2a842e80921",
+    "kind": "index",
+    "identity": "public.ebay_seller_drafts_v1_id_user_id_key"
+  },
+  {
+    "hash": "0c31f9bc8e8c3b90f1470c26b37b144d07a7919ad51bdbc2f91fa3fffa6837d0",
+    "kind": "index",
+    "identity": "public.ebay_seller_drafts_v1_pkey"
+  },
+  {
+    "hash": "bf1aa23efb862e5650b37f209e8169702f3f5a0257d7c186ab85dd5ff6344671",
+    "kind": "index",
+    "identity": "public.ebay_seller_oauth_attempts_v1_launch_hash_key"
+  },
+  {
+    "hash": "5d1b2d726f2142e9df6e421bd3c87a7d3a76d068cc7d0a3845eb27fed38874dc",
+    "kind": "index",
+    "identity": "public.ebay_seller_oauth_attempts_v1_pkey"
+  },
+  {
+    "hash": "05983d6779c9f3600a3f9e5c81cfa4c07a668b7e7f205755996259741ec43456",
+    "kind": "index",
+    "identity": "public.ebay_seller_oauth_attempts_v1_state_hash_key"
+  },
+  {
+    "hash": "035ae4deec7507c812cf57fe44e64f18a6a57829723116518650f763f5dddc14",
+    "kind": "index",
+    "identity": "public.ebay_seller_one_active_draft_v1"
+  },
+  {
+    "hash": "f27efb64198e537a261c7242f522f120442c7d937563adde0d2dfba42a38f877",
+    "kind": "index",
+    "identity": "public.ebay_seller_one_active_oauth_v1"
+  },
+  {
+    "hash": "e7503ffc04ee2683bc30f43e87fc40b3df1890344a412ecd285e02150129e7bd",
+    "kind": "index",
+    "identity": "public.ebay_seller_one_copy_reservation_v1"
+  },
+  {
+    "hash": "2616674acbde246a61bd328c9d240f7e5f0220c273023744c74893f57f05a203",
+    "kind": "index",
+    "identity": "public.ebay_seller_one_running_account_v1"
+  },
+  {
+    "hash": "f5994f1acafd7a46e5cbaa1fa9c3f406f352d94d5b2277bf42d5a2d56f1ca730",
+    "kind": "index",
+    "identity": "public.ebay_seller_one_running_draft_v1"
+  },
+  {
+    "hash": "e6f7d435d90e2d6653e42741dee9aa3e91b5b4f7a1376735dec8b799b8c81933",
+    "kind": "index",
+    "identity": "public.ebay_seller_operations_v1_pkey"
+  },
+  {
+    "hash": "555e51740c7eb2911a80306824939c862ed1bc3f49be19eda5f147e975506f81",
+    "kind": "index",
+    "identity": "public.ebay_seller_operations_v1_user_id_request_id_key"
+  },
+  {
+    "hash": "1fa6b2cfc9841ed0d9277b0461aa849666d7e1c0e8d5f4812871f4203a166dc0",
+    "kind": "index",
+    "identity": "public.ebay_seller_photo_draft_v1"
+  },
+  {
+    "hash": "264297d432c90945bdf56ed293ea07a92700f2e7ca227f2a7310cd57707b3757",
+    "kind": "index",
+    "identity": "public.ebay_seller_photos_v1_pkey"
+  },
+  {
+    "hash": "080b4045a70515a35398430b0c78bacf02cef71c007dd98663b8717127cf9e2e",
+    "kind": "index",
+    "identity": "public.ebay_seller_reservations_v1_pkey"
+  },
+  {
+    "hash": "aa46624f0cf1c244f5e0b0ec36db5cfb2042719ba1a2a21f508e726f9aa2cc44",
+    "kind": "index",
+    "identity": "public.ebay_seller_token_refreshes_v1_pkey"
+  },
+  {
+    "hash": "6e9f3e6fcb71cef98fb3e3f895b1f2091f4bfe45c2a0f49139043541cbea317d",
+    "kind": "policy",
+    "identity": "ebay_seller_photo_delete_v1"
+  },
+  {
+    "hash": "95f20aa4b203457724a58e7baf6abf17c982827078fe8229ff15835a1e609573",
+    "kind": "policy",
+    "identity": "ebay_seller_photo_insert_v1"
+  },
+  {
+    "hash": "3aba61f2a0a92dd86203dc3800850fa40aa2796fa9182a6e9b7c34ae8278ef26",
+    "kind": "policy",
+    "identity": "ebay_seller_photo_read_v1"
+  },
+  {
+    "hash": "844da67153e4cc26893393b0e153050538389c954ad3066de59001af17760244",
+    "kind": "policy",
+    "identity": "ebay_seller_photo_update_v1"
+  },
+  {
+    "hash": "954f750f63fde005d7f3c97639a50ee6a38e4b8e124a421a9672c4d97c54da8e",
+    "kind": "table",
+    "identity": "public.ebay_accounts"
+  },
+  {
+    "hash": "d50143d5bb737dc4d6bbbfab72d187a765d82df74121f8cc5a149afeb3b7d655",
+    "kind": "table",
+    "identity": "public.ebay_seller_control_events_v1"
+  },
+  {
+    "hash": "6fe8d317158ef37ac2a2697a9f7f363dd1597dd36c9041a66dee1bbe78b5fb09",
+    "kind": "table",
+    "identity": "public.ebay_seller_controls_v1"
+  },
+  {
+    "hash": "4290154eddb543da2c6bbb1ef4e83598bf7b93c4780e081cc6d543607ab22bb7",
+    "kind": "table",
+    "identity": "public.ebay_seller_drafts_v1"
+  },
+  {
+    "hash": "147807a4dd5a8c26568b4f8d3e86e53174f5d069e5abb0ef22a8e02814d20c04",
+    "kind": "table",
+    "identity": "public.ebay_seller_oauth_attempts_v1"
+  },
+  {
+    "hash": "c18292226152c9c5b44ea964241d11dbbbe6a9a4fb886e97f64a1c190b8a575e",
+    "kind": "table",
+    "identity": "public.ebay_seller_operations_v1"
+  },
+  {
+    "hash": "d63f95fa01511dc5e619bf06bd16d095416119729722f37c05154ff1b49ea574",
+    "kind": "table",
+    "identity": "public.ebay_seller_photos_v1"
+  },
+  {
+    "hash": "bc4f3e1e028dd987d2684345bc3c1e314987335f0d737bf4458d0afb4b292e12",
+    "kind": "table",
+    "identity": "public.ebay_seller_reservations_v1"
+  },
+  {
+    "hash": "480636737d402d3e5179ea88e9a9f6181f4da50b26f5c205b1dbc34d4f239ada",
+    "kind": "table",
+    "identity": "public.ebay_seller_token_refreshes_v1"
+  },
+  {
+    "hash": "e1e2ff50d5f5167518e89899ce5aca2b35020bca19a7d67902803a5528faae89",
+    "kind": "trigger",
+    "identity": "auth.users.guard_ebay_seller_owner_delete_v1"
+  },
+  {
+    "hash": "d947a7d85e3018651a68dfd23be0adf0959a35d2e3d247ad66b233b4ff8dadea",
+    "kind": "trigger",
+    "identity": "public.ebay_accounts.guard_ebay_seller_account_delete_v1"
+  },
+  {
+    "hash": "2487e1f866cdc219df67e07b49517ea186e80f090401a634469427c9af8dd2f8",
+    "kind": "trigger",
+    "identity": "public.ebay_seller_drafts_v1.guard_ebay_seller_draft_delete_v1"
+  },
+  {
+    "hash": "1df47bc8edff72e62f3d88eede2ee91823781cddc9443eef8f27f59d054e5a04",
+    "kind": "trigger",
+    "identity": "public.slab_certs.guard_ebay_seller_reserved_slab_v1"
+  },
+  {
+    "hash": "a6e9a64862fb9a29cbb74223b7708a1903022c34f5b51e9ccae731abc106bec9",
+    "kind": "trigger",
+    "identity": "public.vault_item_instance_dispositions.guard_ebay_seller_disposition_v1"
+  },
+  {
+    "hash": "9111a8cbec27ab4f9ad7ef15372e5089825e51ed7505a5abbbad44c87eba62ab",
+    "kind": "trigger",
+    "identity": "public.vault_item_instances.guard_ebay_seller_reserved_copy_v1"
+  }
+]

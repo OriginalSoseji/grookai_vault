@@ -2144,6 +2144,17 @@ class VaultPageState extends State<VaultPage> {
                     ListTile(
                       minTileHeight: 48,
                       contentPadding: EdgeInsets.zero,
+                      leading: const Icon(Icons.sell_outlined),
+                      title: const Text('eBay listings'),
+                      trailing: const Icon(Icons.chevron_right_rounded),
+                      onTap: () {
+                        Navigator.of(context).pop();
+                        unawaited(openEbaySeller(context));
+                      },
+                    ),
+                    ListTile(
+                      minTileHeight: 48,
+                      contentPadding: EdgeInsets.zero,
                       leading: const Icon(Icons.auto_awesome_motion_outlined),
                       title: const Text('Memories'),
                       trailing: const Icon(Icons.chevron_right_rounded),

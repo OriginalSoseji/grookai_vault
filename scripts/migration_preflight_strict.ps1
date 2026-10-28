@@ -19,6 +19,9 @@ param(
 
   [string[]]$ExpectedLocalOnlyIds = @(),
 
+  [switch]$EbaySellerPublisherBaselineV1,
+  [switch]$EbaySellerPublisherReleaseV1,
+
   [switch]$AppReviewedIntakeBaselineV1,
   [switch]$CollectorReviewedIntakeReleaseV1,
   [switch]$CollectorReviewedIntakeDateReleaseV1,
@@ -99,6 +102,25 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($EbaySellerPublisherReleaseV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','EbaySellerPublisherReleaseV1','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested -join ',') -ne '20261028112000' -or [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Seller publisher release permits only exact 20261028112000 from479 with a new bounded private AuditOutDir; no combined scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_ebay_seller_release_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($EbaySellerPublisherBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or [string]::IsNullOrWhiteSpace($AuditOutDir) -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','EbaySellerPublisherBaselineV1','AuditOutDir') }).Count -gt 0) {
+    throw 'Seller publisher baseline permits only read-only AuditLinkedSchema at479 with a new bounded private AuditOutDir; no pending IDs, combined scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_ebay_seller_baseline_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
 
 if ($CollectorReviewedIntakeDateReleaseV1) {
   $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
