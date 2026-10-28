@@ -3,7 +3,7 @@ set -euo pipefail
 
 schema_version="TCGPLAYER_MARKET_ARTIFACT_RETENTION_V1"
 artifact_root="${TCGPLAYER_MARKET_SCHEDULE_OUT_ROOT:-/var/lib/grookai/market-pricing}"
-archive_root="${TCGPLAYER_MARKET_RETENTION_ARCHIVE_ROOT:-${artifact_root}/.verified-archives}"
+archive_root="${TCGPLAYER_MARKET_RETENTION_ARCHIVE_ROOT:-}"
 target_free_bytes="${TCGPLAYER_MARKET_RETENTION_TARGET_FREE_BYTES:-25000000000}"
 minimum_age_hours="${TCGPLAYER_MARKET_RETENTION_MINIMUM_AGE_HOURS:-336}"
 maximum_archives="${TCGPLAYER_MARKET_RETENTION_MAX_ARCHIVES:-10}"
@@ -22,6 +22,8 @@ for arg in "$@"; do
     *) fail "unknown argument: $arg" ;;
   esac
 done
+
+archive_root="${archive_root:-${artifact_root}/.verified-archives}"
 
 for value in "$target_free_bytes" "$minimum_age_hours" "$maximum_archives"; do
   [[ "$value" =~ ^[0-9]+$ ]] || fail "retention settings must be non-negative integers"
@@ -56,9 +58,10 @@ mapfile -d '' candidates < <(
 )
 
 archived_count=0
+planned_count=0
 projected_free="$free_before"
 for record in "${candidates[@]}"; do
-  [[ "$archived_count" -lt "$maximum_archives" ]] || break
+  [[ "$planned_count" -lt "$maximum_archives" ]] || break
   source_path="${record#* }"
   source_real="$(realpath -e -- "$source_path")"
   [[ "$(dirname -- "$source_real")" == "$artifact_root" ]] || fail "candidate escaped artifact root"
@@ -80,6 +83,7 @@ NODE
     continue
   fi
   source_bytes="$(du -sb -- "$source_real" | cut -f1)"
+  planned_count="$((planned_count + 1))"
   projected_free="$((projected_free + source_bytes))"
   printf 'candidate=%s source_bytes=%s\n' "$source_real" "$source_bytes"
   [[ "$apply" -eq 1 ]] || { [[ "$projected_free" -lt "$target_free_bytes" ]] || break; continue; }
@@ -123,7 +127,8 @@ NODE
 done
 
 free_after="$(free_bytes)"
-printf 'projected_free_bytes=%s\narchived_count=%s\nfree_bytes_after=%s\n' "$projected_free" "$archived_count" "$free_after"
+printf 'projected_free_bytes=%s\nplanned_count=%s\narchived_count=%s\nfree_bytes_after=%s\n' \
+  "$projected_free" "$planned_count" "$archived_count" "$free_after"
 if [[ "$apply" -eq 1 ]]; then
   [[ "$free_after" -ge "$target_free_bytes" ]] || fail "eligible archives did not restore the capacity target"
   printf 'status=capacity_restored\n'

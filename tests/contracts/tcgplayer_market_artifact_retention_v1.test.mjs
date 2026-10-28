@@ -20,6 +20,9 @@ test("market artifact retention verifies archives before exact source removal", 
   assert.match(script, /\['completed', 'failed'\]/);
   assert.match(script, /minimum_age_hours=.*336/);
   assert.match(script, /target_free_bytes=.*25000000000/);
+  assert.match(script, /archive_root="\$\{archive_root:-\$\{artifact_root\}\/\.verified-archives\}"/);
+  assert.match(script, /planned_count="\$\(\(planned_count \+ 1\)\)"/);
+  assert.match(script, /planned_count.*maximum_archives/);
 });
 
 test("retention is installed and scheduled ahead of pricing", () => {
