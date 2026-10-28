@@ -2,6 +2,15 @@
 
 ## Integrated native recovery qualification — October28,2026
 
+Native Binder drag/order, exact requirements, cover and4×4 preference survived
+restart and independent owner readback. The private QA Binder is retained for web
+comparison; archive it after that check. Main scanner import reached a strict TLS
+rejection caused on the workstation path by Norton HTTPS inspection. Do not
+disable inspection or certificate verification, or declare a public server fault
+from that evidence. Verify recognition through Samsung's independent network.
+Scanner/batch failure guidance now shares typed safe messages and preserves
+photos; these corrections require normal checks and packaging.
+
 See `docs/checkpoints/APP_REFINEMENT_INTEGRATION_20261028.md`. Build505's offline
 reviewed add survived a forced restart and saved exactly one copy after
 reconnection, with the reviewed day, exact LP/Holo identity and USD2.50 cost.

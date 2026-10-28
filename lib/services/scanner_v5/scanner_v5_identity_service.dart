@@ -36,6 +36,8 @@ class ScannerV5IdentityService {
           .timeout(const Duration(seconds: 18));
     } on TimeoutException {
       rethrow;
+    } on HandshakeException catch (error) {
+      throw ScannerV5SecureConnectionException(endpoint, cause: error);
     } on SocketException catch (error) {
       throw ScannerV5UnreachableException(endpoint, cause: error);
     } on http.ClientException catch (error) {
@@ -287,6 +289,14 @@ class ScannerV5IdentityException implements Exception {
 
   @override
   String toString() => 'ScannerV5IdentityException($message)';
+}
+
+class ScannerV5SecureConnectionException extends ScannerV5IdentityException {
+  const ScannerV5SecureConnectionException(this.endpoint, {this.cause})
+    : super('scanner_v5_secure_connection');
+
+  final String endpoint;
+  final Object? cause;
 }
 
 class ScannerV5UnreachableException extends ScannerV5IdentityException {

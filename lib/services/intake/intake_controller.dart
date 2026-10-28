@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import '../scanner_v5/scanner_v5_identity_service.dart';
+import '../scanner_v5/scanner_v5_error_copy.dart';
 import '../public/card_surface_pricing_service.dart';
 import 'intake_models.dart';
 import 'intake_service.dart';
@@ -182,14 +183,15 @@ class IntakeController extends ChangeNotifier {
           await changed();
         } catch (error) {
           job.state = 'failed';
-          job.error = error.toString();
+          job.error =
+              '${scannerV5UserFacingError(error).message} Your photo is retained in this draft.';
           await persist();
           _notify();
         }
       }
-    } catch (error) {
+    } catch (_) {
       message =
-          'Draft storage could not be updated. Free device space and retry. $error';
+          'Draft storage could not be updated. Free device space and retry. Existing photos are retained.';
       for (final job in batch.jobs.where((j) => j.state == 'processing')) {
         job.state = 'failed';
         job.error = message;

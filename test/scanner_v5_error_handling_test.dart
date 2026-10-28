@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter_test/flutter_test.dart';
@@ -10,6 +11,33 @@ import 'package:image/image.dart' as img;
 
 void main() {
   group('Scanner V5 identity service failures', () {
+    test(
+      'TLS rejection stays strict and exposes safe recovery guidance',
+      () async {
+        var requests = 0;
+        final service = ScannerV5IdentityService(
+          endpoint: 'https://scanner.example.com/scanner-v5/identify',
+          client: MockClient((_) async {
+            requests++;
+            throw const HandshakeException('private certificate details');
+          }),
+        );
+        addTearDown(service.dispose);
+        await expectLater(
+          service.identify(Uint8List.fromList([1, 2, 3])),
+          throwsA(isA<ScannerV5SecureConnectionException>()),
+        );
+        expect(requests, 1);
+        final error = const ScannerV5SecureConnectionException(
+          'https://private-host.example',
+          cause: HandshakeException('private certificate details'),
+        );
+        final copy = scannerV5UserFacingError(error);
+        expect(copy.message, contains('choose the card manually'));
+        expect(copy.message, isNot(contains('private')));
+        expect(scannerV5ErrorType(error), 'tls');
+      },
+    );
     test('defaults to the public scanner endpoint when unconfigured', () {
       final service = ScannerV5IdentityService(
         client: MockClient((_) async {
@@ -92,7 +120,7 @@ void main() {
       );
       expect(
         scannerV5UserFacingError(TimeoutException('slow')).message,
-          'Scanner took too long. Check your connection and try again.',
+        'Scanner took too long. Check your connection and try again.',
       );
     });
 

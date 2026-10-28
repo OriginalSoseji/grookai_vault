@@ -229,7 +229,7 @@ class _IntakeBatchScreenState extends State<IntakeBatchScreen> {
                               ),
                               const PopupMenuItem(
                                 value: 'crop',
-                                child: Text('Select a card manually'),
+                                child: Text('Crop photo and retry'),
                               ),
                               const PopupMenuItem(
                                 value: 'remove',

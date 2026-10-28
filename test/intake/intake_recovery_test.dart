@@ -57,9 +57,11 @@ class Scanner extends ScannerV5IdentityService {
   Scanner() : super(endpoint: 'https://example.test/identify');
   int calls = 0;
   bool fail = false;
+  Object? failure;
   @override
   Future<ScannerV5IdentifyResult> identify(Uint8List bytes) async {
     calls++;
+    if (failure != null) throw failure!;
     if (fail) throw StateError('offline');
     return ScannerV5IdentifyResult.fromJson({
       'ok': true,
@@ -84,6 +86,49 @@ void main() {
     await service.client.dispose();
     await directory.delete(recursive: true);
   });
+  test(
+    'secure connection failure preserves the photo and retries the same capture',
+    () async {
+      final scanner = Scanner()
+        ..failure = const ScannerV5SecureConnectionException(
+          'https://private-host.example',
+          cause: HandshakeException('private issuer details'),
+        );
+      final batch = IntakeBatch(title: 'TLS recovery', userId: 'owner');
+      final c = IntakeController(
+        batch: batch,
+        store: store,
+        service: service,
+        scanner: scanner,
+      );
+      await c.capture(Uint8List.fromList([1, 2, 3]));
+      while (batch.pendingCount > 0) {
+        await Future<void>.delayed(const Duration(milliseconds: 5));
+      }
+      final job = batch.jobs.single;
+      await c.process();
+      expect(job.state, 'failed');
+      expect(job.error, contains('Your photo is retained'));
+      expect(job.error, isNot(contains('private')));
+      final restored = (await store.list()).single;
+      expect(await File(restored.jobs.single.imagePath).readAsBytes(), [
+        1,
+        2,
+        3,
+      ]);
+      scanner.failure = null;
+      await c.retry(job);
+      while (batch.pendingCount > 0) {
+        await Future<void>.delayed(const Duration(milliseconds: 5));
+      }
+      expect(batch.jobs.single.id, restored.jobs.single.id);
+      await c.process();
+      expect(batch.items.single.captureId, job.id);
+      expect(batch.items.single.state, 'needs_review');
+      expect(service.commits, 0);
+      c.dispose();
+    },
+  );
   test(
     'draft replacement keeps the newest state and copied image bytes',
     () async {

@@ -229,3 +229,39 @@ qualification; global intake writes stay disabled. Close this exact canary using
 its audited revision guard after the remaining client journeys. The eBay RuName
 is still unverified; the founder does not know it. Inspect the existing developer
 configuration rather than asking for secrets or inventing a redirect.
+
+## Binder persistence and scanner transport checkpoint
+
+The production-connected QA emulator created a private/unlisted custom Binder
+through the app. A real held drag swapped two distinct slots; final review and
+creation preserved Eevee ex/Holo first and Eevee151/Reverse Holo second. The cover
+gallery saved Eevee ex artwork. After force-stop/restart, independent owner SDK
+reads verified the exact child IDs, positions, requirements, cover and privacy;
+the editor reopened in4×4 with the same order. Evidence is preserved privately.
+The private QA Binder remains available for subsequent web comparison.
+
+Main Scan correctly handed off to Batch intake. Importing public QA card artwork
+from Android's scoped photo picker retained the image, but Android rejected the
+scanner TLS handshake. An independent chain inspection on this workstation
+identified Norton Web/Mail Shield's inspection issuer. Windows curl trusts that
+local root; Android does not. This is not proof of a broken public server chain.
+No trust checks or endpoint protections were disabled. Successful recognition
+still needs the Samsung's independent network path.
+
+TLS rejection now has a typed scanner failure and actionable secure-connection
+guidance shared by main Scan and Batch intake. A failed capture retains its photo
+and gets concise retry/manual-add guidance rather than transport or issuer
+details. Regression tests verify strict handshake rejection, stable capture
+identity, retained image bytes, and no automatic inventory write. Crop retry is
+labeled accurately and uses the canonical interaction color. Existing scanner
+error-copy exports remain available to callers.
+
+The preceding recovery commit passed all8,407 contract and1,938 native tests,
+analysis, typecheck, lint and strict web build. The scanner corrections need their
+own normal checks before build506. The local test fixture was corrected to await
+its queued file write before deleting its temporary directory; its rerun passed.
+
+Read-only production inspection found zero connected eBay accounts. No seller
+tokens were read or provider requests sent. Existing app keys alone therefore
+cannot substitute for seller OAuth setup. The developer console remains signed
+out; RuName is unverified and publication remains unimplemented.

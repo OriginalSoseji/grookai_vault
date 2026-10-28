@@ -69,10 +69,13 @@ class _IntakeCropState extends State<IntakeCropScreen> {
                                 child: Container(
                                   decoration: BoxDecoration(
                                     border: Border.all(
-                                      color: Colors.orange,
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.primary,
                                       width: 3,
                                     ),
-                                    color: Colors.orange.withValues(alpha: 0.1),
+                                    color: Theme.of(context).colorScheme.primary
+                                        .withValues(alpha: 0.1),
                                   ),
                                 ),
                               ),
