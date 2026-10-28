@@ -1,5 +1,43 @@
 # Grookai Operator Playbook V1
 
+## Installed511, seller activation and pricing continuation — October28,2026
+
+Read [the current live checkpoint](../checkpoints/APP_511_LIVE_VERIFICATION_20261028.md)
+before the historical entries below. PR832 is merged as
+`974a4cdd2ed341bcb1ec34adcf373b02d34125f3`, all24 hosted checks passed, and
+`grookaivault.com` serves the exact tested tree. Signed511 is installed on QA
+and Samsung through data-preserving updates. Actual menu Back, scanner review,
+connected seller metadata and four shipping choices passed. The Samsung retained
+223 cards and its four-column grid. No founder copy was added, removed or edited.
+
+Seller controls reached revision4 through the existing SDK CAS authority after
+actual owner/OAuth/provider/native/HTTP verification. Linking, preparation and
+publication availability are enabled for exactly the verified real collector;
+other accounts remain off. No public listing, server draft, photo or offer was
+created. Collector photos, price, policies and final publication remain explicit
+collector choices. Reread live controls before any further change. Read protected
+`ebay-seller-labs-v1/production-seller-activation-v1/result.json`.
+
+The qualified retention-only runtime is
+`/opt/grookai/releases/ops/retention-37cda8886e`, from merged PR831. Its service
+WorkingDirectory is the only deployment substitution. The enabled
+`grookai-tcgplayer-market-artifact-retention.timer` runs00:30UTC; the first actual
+service run passed above25GB with zero archives/removals. Read protected
+`ebay-seller-labs-v1/production-retention-only-v1/result.json` and hashes.
+Do not use the combined installer to overwrite the existing pricing producer or
+dirty MEE checkout. The active pricing unit remains
+`grookai-tcgplayer-market-pipeline.service`, WorkingDirectory
+`/opt/grookai_pricing_current`, pinned to
+`cdcec2aa6ab39c237047119fa1dd31605ea1449f`.
+
+At22:49UTC the fresh source is complete but publication is waiting behind valid
+shadow workflow40776623318. Fresh prices and final Samsung TCGplayer checks are
+still pending. Preserve its lock and the failed-retry evidence. Continue with
+current service/SDK/lock readback, not blind restarts or relaxed freshness.
+Later verified restoration belongs in protected
+`ebay-seller-labs-v1/production-marketplace-restored-v1/result.json`; absence is
+not success. No schema apply belongs to this continuation.
+
 ## Live eBay card metadata follow-up — October28,2026
 
 The actual provider readback exposed a2.66MB taxonomy dictionary above the old
