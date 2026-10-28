@@ -405,7 +405,8 @@ function SettingsTab({
             description={binder.description}
             coverCardPrintId={binder.coverCardPrintId}
             requiresHostedCover={requiresHostedCover}
-            coverOptions={binder.checklist
+            coverOptionsUnavailable={binder.coverOptionsUnavailable}
+            coverOptions={(binder.coverOptions ?? binder.checklist)
               .filter(
                 (slot) =>
                   slot.cardPrintId &&

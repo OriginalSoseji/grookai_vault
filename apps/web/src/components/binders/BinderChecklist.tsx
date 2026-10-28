@@ -40,11 +40,11 @@ export function BinderChecklist({
   return (
     <div className="space-y-6">
       {canContribute ? (
-        <div className="rounded-3xl border border-emerald-200 bg-emerald-50/70 p-5">
+        <div className="rounded-lg border border-[var(--gv-border-soft)] bg-[var(--gv-surface-container)] p-4">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <h3 className="font-semibold text-emerald-950">Add your copy</h3>
-              <p className="mt-1 text-sm text-emerald-900/80">
+              <h3 className="font-semibold text-[var(--gv-text-primary)]">Add your copy</h3>
+              <p className="mt-1 text-sm text-[var(--gv-text-secondary)]">
                 Only the exact copies you choose are added. Each copy stays in its
                 contributor&apos;s Vault. Nothing else in your Vault is shared.
               </p>
@@ -56,7 +56,7 @@ export function BinderChecklist({
                   : `/binders/${encodeURIComponent(publicId)}?tab=checklist&add=1`
               }
               aria-expanded={showEligibleCopies}
-              className="min-h-11 rounded-full bg-emerald-900 px-4 py-2 text-sm font-semibold text-white"
+              className="gv-primary-button"
             >
               {showEligibleCopies ? "Hide eligible copies" : "Choose eligible copies"}
             </Link>
@@ -67,16 +67,16 @@ export function BinderChecklist({
                   : `/binders/${encodeURIComponent(publicId)}?tab=checklist&bulk=1`
               }
               aria-expanded={showBulkPreview}
-              className="min-h-11 rounded-full border border-emerald-300 bg-white px-4 py-2 text-sm font-semibold text-emerald-950"
+              className="gv-secondary-button"
             >
               {showBulkPreview ? "Hide bulk preview" : "Preview bulk add"}
             </Link>
           </div>
           {showEligibleCopies ? (
-            <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+            <ul className="mt-4 grid gap-[9px] sm:grid-cols-2">
               {eligible.length > 0 ? (
                 eligible.map((copy) => (
-                  <li key={copy.copyReference} className="rounded-2xl border border-emerald-200 bg-white p-4">
+                  <li key={copy.copyReference} className="rounded-lg border border-[var(--gv-border-soft)] bg-[var(--gv-surface-base)] p-4">
                     <div className="flex gap-3">
                       <div className="h-24 w-16 shrink-0 overflow-hidden rounded-lg bg-slate-100">
                         <PublicCardImage
@@ -97,14 +97,14 @@ export function BinderChecklist({
                   </li>
                 ))
               ) : (
-                <li className="text-sm text-emerald-900">
+                <li className="text-sm text-[var(--gv-text-secondary)]">
                   You don&apos;t have a matching copy in Vault. Scan or search to add one.
                 </li>
               )}
             </ul>
           ) : null}
           {showBulkPreview && bulkPreview ? (
-            <div className="mt-4 space-y-3 rounded-2xl border border-emerald-200 bg-white p-4">
+            <div className="mt-4 space-y-3 rounded-lg border border-[var(--gv-border-soft)] bg-[var(--gv-surface-base)] p-4">
               <p className="text-sm text-slate-700">
                 {bulkPreview.eligibleCount} eligible · {bulkPreview.duplicateCount} already added ·{" "}
                 {bulkPreview.unresolvedCount} need review · {bulkPreview.ineligibleCount} outside this Binder

@@ -380,6 +380,7 @@ export function BinderMetadataForm({
   coverCardPrintId,
   coverOptions,
   requiresHostedCover = false,
+  coverOptionsUnavailable = false,
 }: {
   publicId: string;
   title: string;
@@ -387,10 +388,11 @@ export function BinderMetadataForm({
   coverCardPrintId: string | null;
   coverOptions: CoverOption[];
   requiresHostedCover?: boolean;
+  coverOptionsUnavailable?: boolean;
 }) {
   const [state, action] = useFormState(binderFormAction, null);
   const [cover, setCover] = useState(coverCardPrintId ?? "");
-  const invalidCover = Boolean(requiresHostedCover && cover && !coverOptions.some(option => option.cardPrintId === cover));
+  const invalidCover = Boolean(!coverOptionsUnavailable && requiresHostedCover && cover && !coverOptions.some(option => option.cardPrintId === cover));
   return (
     <form action={action} className="space-y-4">
       <BinderIdempotencyField state={state} />
@@ -409,7 +411,8 @@ export function BinderMetadataForm({
           defaultValue={description ?? ""}
         />
       </label>
-      <BinderCoverPicker options={coverOptions} value={cover} onChange={setCover} allowCurrent={!requiresHostedCover} />
+      {coverOptionsUnavailable ? <p role="status" className="text-sm text-[var(--gv-text-secondary)]">Cover choices are unavailable. Your current cover is kept.</p> : null}
+      <BinderCoverPicker options={coverOptions} value={cover} onChange={setCover} allowCurrent={!requiresHostedCover || coverOptionsUnavailable} />
       <SubmitButton disabled={invalidCover}>Save details</SubmitButton>
       <BinderActionMessage state={state} />
     </form>
