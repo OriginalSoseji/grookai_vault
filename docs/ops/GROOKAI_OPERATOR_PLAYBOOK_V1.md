@@ -1,5 +1,81 @@
 # Grookai Operator Playbook V1
 
+## Live eBay card metadata follow-up — October28,2026
+
+The actual provider readback exposed a2.66MB taxonomy dictionary above the old
+2MB client limit. The follow-up checkout includes an endpoint-scoped4MB bound
+and rejects empty successful reads. All other endpoints retain2MB. The native metadata action alone accepts an8MiB
+composite response; ordinary native responses retain2MiB. Signed511 must include
+this transport correction as well as menu Back. Eighteen
+transport tests and seven live GETs pass, including35 card aspects, seller
+policies and the enabled inventory location. Preparation/publication stay off
+until this code passes normal/hosted checks and is deployed. Read protected
+`ebay-seller-labs-v1/production-seller-provider-readback-v2/result.json`.
+The consumed481 package and qualified checkout remain immutable; this code-only
+follow-up needs no schema apply. Later activation has its own live-state receipt.
+
+## Actual collector seller connection — October28,2026,21:13UTC
+
+This supersedes the pending-consent and all-off status immediately below.
+Samsung510's actual Account hub was matched to shared Auth before enabling the
+single-collector linking canary. Production seller controls are revision2,
+linking on for exactly that collector, preparation/publication off. Native
+Connect eBay completed the registered callback, SDK readback verified the linked
+attempt and immutable provider identity, and the native workspace displayed the
+connected seller. No new consent button was presented to the agent and no
+listing was published. Do not repeat linking or attach disposable QA accounts.
+
+Read the delivery checkpoint and protected
+`ebay-seller-labs-v1/production-seller-consent-v1/result.json`,
+`production-seller-linking-canary-v1/result-private.json`, and
+`production-collector-device-identity-v1/identity-private.json`.
+Always reread live controls before further activation. Physical photos, price,
+policies and final publication remain collector choices. No device credential
+belongs in repository notes, client configuration or automation artifacts.
+
+## Integrated app510 and deployed seller authority — October28,2026
+
+Read `docs/checkpoints/APP_EBAY_TECHNICAL_DELIVERY_20261028.md` before the older
+seller entries below. PR830 is merged as
+`a0d8e7da6c2777998dd6c6b95fb50ff2ba30b074`; all24 hosted checks passed. Normal
+package `com.grookai.vault`510 is installed on the QA device and Samsung through
+data-preserving updates. QA cold restart,11 saved cards, Binder grid/order/privacy
+and release PNG export passed. Samsung's final foreground/account/marketplace
+checks still require the phone to be unlocked at this checkpoint.
+
+Production schema481 and its complete schema/security readback passed. The merged
+web deployment is ready on `grookaivault.com`. Six actual production HTTP/Auth
+checks and a default-off backend-composition check passed without inventory
+writes or provider requests. The existing OAuth-enabled RuName now persistently
+uses the deployed seller callback for accepted/declined returns and the public
+privacy URL. No replacement keys or seller accounts were created.
+
+Seller qualification ended with revision1, all three controls off and an empty
+canary list. Actual collector consent/provider readback and activation are
+separate: read live state before changing it; never infer a grant from a saved
+callback or installed app. Enable only the verified real collector for the
+initial linking canary, using the existing revision-checked service SDK control
+RPC. Never bind the founder's eBay account to a disposable grookai QA account.
+Physical photos, price and final publication remain collector choices.
+Later consent/activation proof, only if completed, belongs in the protected
+`ebay-seller-labs-v1/production-seller-consent-v1/result.json` and
+`production-seller-activation-v1/result.json`; always reread live control and
+owner state rather than treating a static checkpoint as activation authority.
+
+Both480 and481 source bytes and consumed PrePush receipts are now immutable.
+The recovery gate's `AuditLinkedSchema` mode supports read-only481 verification;
+its original pending field names the consumed two-file payload. Do not reapply
+it or widen the gate. Preserve `C:/gv_ebay_integrated_20261028` at its qualified
+source, all local proof labs, and the private delivery receipts indexed by the
+checkpoint. The separate
+`C:/gv_ebay_release_notes_20261028` follow-up now also contains the Android menu
+Back correction discovered during QA510 foreground checks. Its actual-AppShell
+regressions cover phone/desktop Back, ordinary root exit, and a dialog above the
+menu, using bundled fonts. Signed511 and its update-only/device qualification
+must have their own protected receipts; do not infer installation from this
+prepared source. The later provider-response correction adds a separately qualified backend code
+change to this follow-up. It still needs no migration apply.
+
 ## Integrated seller review and current app — October28,2026
 
 This entry supersedes the installed-build and intake-control status below.

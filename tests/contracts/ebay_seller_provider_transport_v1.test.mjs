@@ -60,3 +60,27 @@ test('non-JSON authentication failure stays actionable without leaking provider 
 test('malformed local write payload is rejected before network access',async()=>{
   let calls=0;const api=client(async()=>{calls++;return json({});});for(const value of [undefined,null,[],true,'x']){assert.throws(()=>api.putInventoryItem('safe',value));await assert.rejects(api.createOffer(value),e=>e.code==='invalid_provider_payload'&&!e.uncertain);}assert.equal(calls,0);
 });
+
+
+test('full card-aspect dictionaries over 2 MB retain every value within the scoped 4 MB budget',async()=>{
+  const values=Array.from({length:50_000},(_,i)=>({localizedValue:'Collector card printing '+i}));
+  const body={aspects:[{localizedAspectName:'Card Name',aspectValues:values}]};
+  const bytes=Buffer.byteLength(JSON.stringify(body));assert.ok(bytes>2_000_000&&bytes<4_000_000);
+  const api=client(async()=>json(body));const result=await api.getCategoryAspects('0','183454');
+  assert.equal(result.aspects[0].aspectValues.length,50_000);
+  assert.deepEqual(result.aspects[0].aspectValues.at(-1),values.at(-1));
+  await assert.rejects(api.getLocations(),e=>e.code==='provider_response_invalid'&&!e.uncertain);
+  await assert.rejects(api.getCategorySuggestions('0','card'),e=>e.code==='provider_response_invalid'&&!e.uncertain);
+});
+test('card-aspect reads still reject responses above 4 MB and malformed JSON',async()=>{
+  for(const body of [new Uint8Array(4_000_001),'not-json']){
+    const api=client(async()=>new Response(body,{status:200}));
+    await assert.rejects(api.getCategoryAspects('0','183454'),e=>e.code==='provider_response_invalid'&&!e.uncertain);
+  }
+});
+test('empty successful reads cannot qualify metadata while empty write acknowledgements remain valid',async()=>{
+  const api=client(async()=>new Response(null,{status:204}));
+  await assert.rejects(api.getCategoryAspects('0','183454'),e=>e.code==='provider_response_invalid'&&!e.uncertain);
+  await assert.rejects(api.getLocations(),e=>e.code==='provider_response_invalid'&&!e.uncertain);
+  assert.equal(await api.putInventoryItem('safe',{product:{title:'Reviewed copy'}}),null);
+});
