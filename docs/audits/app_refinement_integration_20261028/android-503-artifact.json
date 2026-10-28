@@ -1,0 +1,26 @@
+{
+  "at": "2026-10-28T05:02:31.330Z",
+  "package": "com.grookai.vault",
+  "versionCode": 503,
+  "production": {
+    "file": "grookai-vault-503.apk",
+    "sha256": "fef1f970d44e44124e592d6accd3a46b0843473c42bdbda6a90102006aacc4d1",
+    "signingSha256": "a1290a32711ab390f798c0898a4d0d78c97f20b2e12adb55bb2260bff9036119"
+  },
+  "samsungPreview": {
+    "file": "grookai-vault-503-samsung-preview.apk",
+    "sha256": "cb571b648c9c382c8d84cf3e56fd794553bbe54b574baf197cc998d61f06af03",
+    "signingSha256": "e9575fdd80e4bc1b4e5a80e3638c76f963ae2618db4f71f95d5a0022bc7089c2",
+    "sameInstalled502Certificate": true
+  },
+  "publicDefinesOnly": true,
+  "installed": false,
+  "nativeSourceIndexSha256": "0b90b1b555276acfdaf5bcd6402ea2b07abe7ebd02b2f6dbb17bc675af5fd4e1",
+  "publicConfigurationSha256": "8677c9151c747fcc8f5dc13ee3a8be3249d2836406135880e999ddee7709e31f",
+  "compileFlags": {
+    "MTG_SEALED_CLIENT_V1_ENABLED": true,
+    "POKEMON_SEALED_CLIENT_V1_ENABLED": true,
+    "SEALED_OWNERSHIP_V1_ENABLED": true
+  },
+  "qualification": "signed_candidate_full_commit_checks_pending"
+}

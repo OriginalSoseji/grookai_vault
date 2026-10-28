@@ -78,3 +78,23 @@ callback remains disabled; do not re-enable its state-less code. eBay selling
 needs the complete authenticated state/replay boundary, policy/location setup,
 reviewable draft and recoverable offer/publish lifecycle before it can be called
 complete.
+
+## Signed Android candidate
+
+The integrated UI commit 51db719a6b3d94ca982d9606020103467a26d3f3 passed
+normal checks: 8,392 contract tests (11 skips), native analysis, 1,926 native
+tests (two skips), web typecheck/lint and strict production build.
+
+The first Android release attempt exposed two remaining floating dependencies
+in the Flutter integration-test plugin. The existing runner 1.3.0 pin is retained;
+rules 1.2.0 and Espresso 3.3.0 now match the SDK's accepted stable versions.
+The integration-test dependency stays installed. The ordinary release build
+then succeeded without changing TLS validation. This build fix is subject to
+a separate normal commit check.
+
+Build503 exists as a production-signed package and a Samsung-compatible preview
+using the installed build502 signing identity. Both are verified; neither is
+installed at this checkpoint. The primary account is untouched.
+[Artifact fingerprints](../audits/app_refinement_integration_20261028/android-503-artifact.json)
+bind the native source index and public-only configuration. No private signing
+material or administrative credentials are packaged or recorded in Git.
