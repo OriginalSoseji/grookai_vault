@@ -13,7 +13,7 @@ If a contract is missing from this index, it is not authoritative.
 
 | Contract | Status | Description |
 |--------|--------|-------------|
-| COLLECTOR_REVIEWED_INTAKE_V1 | Active; deployed schema479/Edge1, writes paused | docs/contracts/COLLECTOR_REVIEWED_INTAKE_V1.md — Private collector lots/reviewed batches, exact-copy saving and acquisition dates, durable failure records, ownership/privacy, allocation and supplemental sale data; production disposable-account canary passed, integrated client/device qualification remains required |
+| COLLECTOR_REVIEWED_INTAKE_V1 | Active; deployed schema479/Edge1, writes enabled | docs/contracts/COLLECTOR_REVIEWED_INTAKE_V1.md — Private collector lots/reviewed batches, exact-copy saving and acquisition dates, durable failure records, ownership/privacy, allocation and supplemental sale data; integrated build508 and live web qualified, globally enabled at control revision8 with no QA allowlist; see docs/checkpoints/APP_REFINEMENT_RELEASE_ACTIVATION_20261028.md |
 | SALES_SPLIT_PAYMENTS_V1 | Active implementation contract; default-off local candidate | docs/contracts/SALES_SPLIT_PAYMENTS_V1.md - Atomic external split payments, cash change, receipt snapshots and tender reports |
 | SALES_DESK_REFINED_V1 | Active implementation contract; local candidate | docs/contracts/SALES_DESK_REFINED_V1.md - Unified desktop/native entry, owner-local held carts, private customer view and in-person reporting |
 | SALES_FAST_ENTRY_V1 | Active implementation contract | docs/contracts/SALES_FAST_ENTRY_V1.md - Continuous canonical entry, bounded search, targeted owner reads and saved-price cart entry; native proof required before release |
