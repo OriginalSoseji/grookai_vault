@@ -21,6 +21,7 @@ param(
 
   [switch]$EbaySellerPublisherBaselineV1,
   [switch]$EbaySellerPublisherReleaseV1,
+  [switch]$EbaySellerPublisherRecoveryReleaseV1,
 
   [switch]$AppReviewedIntakeBaselineV1,
   [switch]$CollectorReviewedIntakeReleaseV1,
@@ -102,6 +103,16 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($EbaySellerPublisherRecoveryReleaseV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','EbaySellerPublisherRecoveryReleaseV1','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested -join ',') -ne '20261028112000,20261028174000' -or [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Seller publisher recovery release permits only exact 20261028112000,20261028174000 from479 with a new bounded private AuditOutDir; no combined scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_ebay_seller_recovery_release_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
 
 if ($EbaySellerPublisherReleaseV1) {
   $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)

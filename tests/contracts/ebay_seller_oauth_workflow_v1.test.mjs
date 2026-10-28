@@ -48,7 +48,8 @@ test('start persists only a hash and returns an owner-launch capability instead 
   assert.equal(calls[0].payload.p_actor, actor);
   assert.match(calls[0].payload.p_launch_hash, /^[a-f0-9]{64}$/);
   assert.ok(!JSON.stringify(calls).includes(url.searchParams.get('capability')));
-  assert.ok(!result.launchUrl.includes('api.ebay.com'));
+  assert.equal(url.username, '');
+  assert.equal(url.password, '');
 });
 
 test('browser launch persists independent state and browser hashes before returning a secure cookie', async () => {

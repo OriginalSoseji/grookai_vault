@@ -1,5 +1,59 @@
 # Grookai Operator Playbook V1
 
+## Integrated seller review and current app — October28,2026
+
+This entry supersedes the installed-build and intake-control status below.
+Samsung and the normal QA app run508 with preserved account/data. Main's
+integrated app and live web are qualified; reviewed intake is globally enabled
+at control revision8 with an empty allowlist. Read
+`docs/checkpoints/APP_REFINEMENT_RELEASE_ACTIVATION_20261028.md` and preserve its
+consumed activation,479 release gates and frozen migration bytes.
+
+The eBay seller workflow is under review in PR830 on
+`C:/gv_ebay_integrated_20261028`, branch
+`feat/ebay-seller-integrated-20261028`. Its qualified480 source is frozen at
+`3f137899a0e2b442fdb9f2dc967c0a12eaa015467b5ea56167cfcb256602c0ff`.
+Signed509 was compiled but is held and has not been installed: review found
+expired-operation recovery and web live-listing reconciliation gaps. Their
+correction uses forward174000 over frozen112000 and requires a new exact
+479→481 scope; do not widen or reuse the consumed480 release gate. Corrected
+native packaging will use510.
+
+Read `docs/contracts/EBAY_SELLER_PUBLISHER_V1.md`,
+`docs/checkpoints/EBAY_SELLER_INTEGRATION_20261028.md`, and
+`docs/audits/ebay_seller_publisher_20261028/CANDIDATE_QUALIFICATION.md`.
+The forward recovery proof is recorded in
+`docs/checkpoints/EBAY_SELLER_RECOVERY_20261028.md`.
+The480 manifest/fingerprints and private fresh/retained480 labs remain preserved
+as historical evidence. The new recovery package must prove fresh481 replay,
+retained data, exact full-schema/security equivalence, real Auth/Storage SDK
+interruption/concurrency and late-publication recovery before official CLI apply.
+
+Production remains479 with zero eBay seller bindings. Existing verified app
+keys and the registered RuName are configured as production server-only Vercel
+settings. The existing OAuth-enabled redirect still uses eBay default callbacks;
+do not claim the new callback is registered or a real seller has consented.
+Keep linking, preparation and publication disabled through delivery qualification.
+The collector supplies physical photos, selling price and final publication;
+never link a disposable grookai account to the founder's real eBay account.
+Expiry recovery must preserve reservations, retire stale workers durably and use
+provider reads; it must never retry an ambiguous provider mutation automatically.
+
+The separate `-EbaySellerPublisherRecoveryReleaseV1` gate permits only
+`AuditLinkedSchema`/`PrePush`, exact pending IDs
+`20261028112000,20261028174000`, and a new protected
+`C:/gv_intake_recovery_private_20261027/ebay-seller-recovery-release-gate-*`
+directory. Its verifier/manifest are
+`scripts/schema/verify_ebay_seller_recovery_release_v1.mjs` and
+`docs/audits/ebay_seller_publisher_20261028/recovery-release-manifest.json`.
+It preserves every prior source and requires81 exact seller objects, unchanged
+intake authority, full schema/security equality, populated upgrade/no-op and
+actual SDK proof of expiry before/after publication intent and safe handoffs.
+New481 labs use60760/60761 and60800/60801; preserve the consumed480 labs.
+Fault injection is confined to the isolated local SQL harness. The service SDK
+correctly lacks direct update permission on private operation rows; do not
+grant it new permissions to make a test pass.
+
 ## Final-review508 candidate — October28,2026
 
 Samsung still runs507. All hosted c77 checks passed, but three final review findings require508: release PNG export must not access debugNeedsPaint outside assertions; purchase-lot retries need stable identity/reconciliation; Unknown conditions must not become NM in the collector/vendor loader. These corrections passed22 focused checks. Main's data-only PR827 is incorporated. Normal checks,508 signing/device verification and final live-web qualification remain pending. Resolve findings only after their fixes are verified; never bypass conversation or merge gates. Global intake remains paused under the existing two-actor revision6 canary.

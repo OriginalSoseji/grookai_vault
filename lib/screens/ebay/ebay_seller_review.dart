@@ -44,7 +44,7 @@ class _EbaySellerReviewState extends State<EbaySellerReview> {
 
   void _synchronizeReview() {
     final signature =
-        '${model.draft['id']}:${model.draft['revision']}:${model.draft['reviewHash']}:${model.local?.dirty}';
+        '${model.draft['id']}:${model.draft['revision']}:${model.draft['reviewHash']}:${model.draft['state']}:${model.local?.dirty}';
     if (_reviewSignature != signature) {
       _confirmed = false;
       _saleConfirmed = false;
@@ -269,7 +269,13 @@ class _EbaySellerReviewState extends State<EbaySellerReview> {
                 ? null
                 : () => model.operate('withdraw', confirmed: true),
           ),
-        if (['live', 'uncertain', 'sale_reported'].contains(state))
+        if ([
+          'preparing',
+          'publishing',
+          'live',
+          'uncertain',
+          'sale_reported',
+        ].contains(state))
           _button(
             state == 'sale_reported'
                 ? 'Verify ended sale'

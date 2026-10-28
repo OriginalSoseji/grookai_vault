@@ -62,6 +62,27 @@ class _Api implements EbaySellerApi {
 
 void main() {
   setUp(() => SharedPreferences.setMockInitialValues({}));
+  for (final state in ['live', 'publishing', 'preparing']) {
+    testWidgets('$state keeps an explicit provider-status recovery action', (
+      tester,
+    ) async {
+      final api = _Api();
+      final model = EbaySellerController(api: api);
+      addTearDown(model.dispose);
+      model.draft = {'id': _draft, 'revision': 1, 'state': state};
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: EbaySellerReview(controller: model, nowMillis: 0),
+          ),
+        ),
+      );
+      final status = find.widgetWithText(OutlinedButton, 'Check eBay status');
+      expect(status, findsOneWidget);
+      expect(tester.widget<OutlinedButton>(status).onPressed, isNotNull);
+      expect(api.actions, isEmpty);
+    });
+  }
   for (final width in [384.0, 1024.0]) {
     for (final brightness in Brightness.values) {
       testWidgets(
@@ -157,6 +178,18 @@ void main() {
       find.widgetWithText(FilledButton, 'Publish on eBay'),
     );
     expect(publish().onPressed, isNull);
+    await tester.tap(find.byType(CheckboxListTile));
+    await tester.pump();
+    expect(publish().onPressed, isNotNull);
+    model.draft = {...model.draft, 'state': 'publishing'};
+    await render();
+    model.draft = {...model.draft, 'state': 'prepared'};
+    await render();
+    expect(publish().onPressed, isNull);
+    expect(
+      tester.widget<CheckboxListTile>(find.byType(CheckboxListTile)).value,
+      false,
+    );
     await tester.tap(find.byType(CheckboxListTile));
     await tester.pump();
     expect(publish().onPressed, isNotNull);

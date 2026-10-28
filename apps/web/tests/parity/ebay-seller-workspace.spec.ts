@@ -22,14 +22,14 @@ const frozenReview = { reviewDetails: { condition: 'Ungraded', conditionDescript
   policies: { fulfillment: { name: 'Tracked shipping', terms: ['DOMESTIC · USPSGroundAdvantage · USD 3.99'] },
     payment: { name: 'eBay payments', terms: [] }, return: { name: '30-day returns', terms: ['Returns accepted: 30 day'] } } } };
 
-async function setup(page: Page, options: { saved?: boolean; prepared?: boolean; stale?: boolean; lostSave?: boolean; lostPublish?: boolean } = {}) {
+async function setup(page: Page, options: { saved?: boolean; prepared?: boolean; stale?: boolean; lostSave?: boolean; lostPublish?: boolean; state?: string } = {}) {
   const requests: Record<string, unknown>[] = [];
   let firstSave = true;
   let prepareStep = 0;
   await page.route('**/api/canon/cards/**/image', route => route.fulfill({ contentType: 'image/svg+xml',
     body: '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="90"><rect width="64" height="90" rx="7" fill="#d6c886"/><rect x="4" y="4" width="56" height="82" rx="4" fill="#314633"/><circle cx="32" cy="40" r="18" fill="#9cae72"/><text x="8" y="77" fill="white" font-size="10">Fixture 173</text></svg>' }));
-  let draft: Record<string, unknown> | null = options.saved || options.prepared ? {
-    id: id(3), instanceId: copy.id, accountId: id(5), revision: 1, state: options.prepared ? 'prepared' : 'editing',
+  let draft: Record<string, unknown> | null = options.saved || options.prepared || options.state ? {
+    id: id(3), instanceId: copy.id, accountId: id(5), revision: 1, state: options.state ?? (options.prepared ? 'prepared' : 'editing'),
     input: listing(), photos: [{ id: id(6), path: `${id(1)}/${id(3)}/${id(6)}.jpg`, state: 'hosted' }],
     operations: [], reviewHash: 'a'.repeat(64), listingId: null,
     prepared: options.prepared ? frozenReview : null,
@@ -75,6 +75,10 @@ async function setup(page: Page, options: { saved?: boolean; prepared?: boolean;
         prepared: null, reviewHash: null, feeQuote: null };
       return route.fulfill({ json: { state: 'editing', revision: draft.revision } });
     }
+    if (body.action === 'reconcile') {
+      draft = { ...draft, state: 'sale_reported', listingId: '1234567890' };
+      return route.fulfill({ json: { status: 'succeeded', state: 'sale_reported' } });
+    }
     if (body.action === 'publish') {
       if (options.lostPublish) { draft = { ...draft, state: 'uncertain' }; return route.abort('failed'); }
       draft = { ...draft, state: 'live', listingId: '1234567890' };
@@ -91,6 +95,17 @@ test('unknown copy condition stays unselected while current selling options load
   await expect(page.getByLabel('Card Condition')).toHaveValue('');
   await expect(page.getByText('Condition unknown', { exact: false })).toBeVisible();
 });
+
+for (const state of ['live', 'publishing', 'preparing']) {
+  test(`${state} listing exposes provider reconciliation without replaying publication`, async ({ page }) => {
+    const calls = await setup(page, { state });
+    await page.goto('/visual-fixtures/ebay-seller');
+    await page.getByRole('button', { name: 'Check eBay status', exact: true }).click();
+    await expect(page.getByRole('button', { name: 'Verify ended sale', exact: true })).toBeVisible();
+    expect(calls.filter(c => c.action === 'reconcile')).toHaveLength(1);
+    expect(calls.some(c => ['publish', 'prepare', 'withdraw'].includes(String(c.action)))).toBe(false);
+  });
+}
 
 test('removing a copy photo updates its revision and blocks preparation without photos', async ({ page }) => {
   const calls = await setup(page, { saved: true });
