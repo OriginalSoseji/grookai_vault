@@ -84,7 +84,9 @@ test("Binder convergence preserves private handoff authority and quiet collector
 
   assert.match(library, /<ProductState/);
   assert.match(views, /aspect-\[5\/7\]/);
-  assert.match(views, /<ProductState compact/);
+  const libraryClient = read("apps/web/src/components/binders/BinderLibraryClient.tsx");
+  assert.match(views, /BinderLibraryClient/);
+  assert.match(libraryClient, /<ProductState compact/);
   assert.doesNotMatch(views, /rounded-3xl/);
   assert.match(invitation, /<ProductState/);
   assert.match(invitation, /BINDER_INVITE_TRANSIENT_COOKIE/);

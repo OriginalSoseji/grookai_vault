@@ -15,7 +15,7 @@ import '../../services/identity/image_presentation.dart';
 import '../../services/navigation/grookai_web_route_service.dart';
 import '../../services/network/card_engagement_service.dart';
 import '../../services/public/compare_service.dart';
-import '../../services/vault/vault_card_service.dart';
+import '../../widgets/vault/vault_add_review_sheet.dart';
 import '../../services/vault/collection_project_service.dart';
 import '../../theme/gv_grid_constants.dart';
 import '../../utils/dex_filter_options.dart';
@@ -595,22 +595,23 @@ class _GrookaiDexSpeciesScreenState extends State<GrookaiDexSpeciesScreen> {
       selectedPrinting = card.printings.single;
     }
 
+    if (!mounted) return;
     setState(() => _busyCardIds.add(card.cardPrintId));
     try {
-      await VaultCardService.addOrIncrementVaultItem(
-        client: _client,
-        userId: userId,
-        cardId: card.cardPrintId,
-        conditionLabel: 'NM',
-        fallbackName: card.name,
-        fallbackSetName: card.setName,
-        fallbackImageUrl: card.hostedImageUrl ?? card.providerFallbackImageUrl,
-        cardPrintingId: selectedPrinting!.id,
+      final saved = await showVaultAddReview(
+        context: context,
+        cardPrintId: card.cardPrintId,
+        gvId: card.gvId ?? '',
+        name: card.name,
+        setName: card.setName ?? '',
+        imageUrl: card.hostedImageUrl ?? card.providerFallbackImageUrl,
+        printingId: selectedPrinting?.id,
       );
+      if (saved == null) return;
       if (!mounted) {
         return;
       }
-      _showMessage('Added $displayName · ${selectedPrinting.finishName}.');
+      _showMessage('Added $displayName to your Vault.');
       await _load();
     } catch (error) {
       if (mounted) {

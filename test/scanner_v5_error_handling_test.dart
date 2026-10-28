@@ -92,7 +92,7 @@ void main() {
       );
       expect(
         scannerV5UserFacingError(TimeoutException('slow')).message,
-        'Scanner timed out. Try again with the card centered.',
+          'Scanner took too long. Check your connection and try again.',
       );
     });
 

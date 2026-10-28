@@ -28,7 +28,7 @@ function harness({error=null, exclusions=[fixture.legacy_card_print_id], ownedEd
     '@/lib/supabase/publicServer':{createPublicServerClient:()=>client},
     '@/lib/publicSets.shared':{resolvePublicSetRouteCode:code=>code},
     '@/lib/publicSetExactCodes':{resolveVisiblePublicSetReferences:async()=>[{id:'set-jungle'}]},
-    '@/lib/baseSetPrintRunLanes':{getBaseSetPrintRunLaneSpecialVariantKeys:()=>[]},
+    '@/lib/baseSetPrintRunLanes':{getBaseSetPrintRunLaneSpecialVariantKeys:()=>[],getBaseSetPrintRunLanePrintedIdentityModifier:()=>null},
     '@/lib/cards/getPublicCardPrintingOptions':{getPublicCardPrintingOptions:async(_client,ids)=>{
       calls.push({table:'printing-options',ids:Array.from(ids)});
       return fixture.options.filter(o=>ids.includes(o.card_print_id)).map(o=>({id:o.card_printing_id,card_print_id:o.card_print_id}));

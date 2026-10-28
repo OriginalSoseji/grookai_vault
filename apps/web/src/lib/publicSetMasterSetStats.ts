@@ -9,6 +9,7 @@ import { getPublicCardPrintingOptions } from "@/lib/cards/getPublicCardPrintingO
 import { getJungleDiscoveryExclusions } from "@/lib/cards/jungleEditionResolution";
 import {
   BASE_SET_PRINT_RUN_SOURCE_SET_CODE,
+  getBaseSetPrintRunLanePrintedIdentityModifier,
   getBaseSetPrintRunLaneSpecialVariantKeys,
 } from "@/lib/baseSetPrintRunLanes";
 
@@ -91,6 +92,7 @@ async function fetchSetCardPrintIds(
   }
 
   const specialVariantKeys = getBaseSetPrintRunLaneSpecialVariantKeys(normalizedCode);
+  const lanePrintedIdentityModifier = getBaseSetPrintRunLanePrintedIdentityModifier(normalizedCode);
   if (specialVariantKeys.length > 0) {
     const { data, error } = await supabase
       .from("card_prints")
@@ -101,6 +103,21 @@ async function fetchSetCardPrintIds(
 
     if (error) {
       throw new Error(`[card_prints.master-set-special-ids] ${error.message}`);
+    }
+
+    ids.push(...normalizeIds(((data ?? []) as CardPrintIdRow[]).map((row) => row.id)));
+  }
+
+  if (lanePrintedIdentityModifier) {
+    const { data, error } = await supabase
+      .from("card_prints")
+      .select("id")
+      .eq("set_code", BASE_SET_PRINT_RUN_SOURCE_SET_CODE)
+      .eq("printed_identity_modifier", lanePrintedIdentityModifier)
+      .not("gv_id", "is", null);
+
+    if (error) {
+      throw new Error(`[card_prints.master-set-modifier-ids] ${error.message}`);
     }
 
     ids.push(...normalizeIds(((data ?? []) as CardPrintIdRow[]).map((row) => row.id)));

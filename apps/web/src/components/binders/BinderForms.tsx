@@ -28,6 +28,7 @@ import type {
 import { BinderIdempotencyField } from "./BinderIdempotencyScope";
 import { useBinderOnline } from "./BinderOfflineBanner";
 import { CustomBinderSlotEditor } from "./CustomBinderSlotEditor";
+import BinderCoverPicker, {type CoverOption} from "./BinderCoverPicker";
 import type { BinderSpeciesOption } from "@/lib/binders/speciesOptions";
 import type { BinderSetOption } from "@/lib/binders/speciesOptions";
 
@@ -38,8 +39,10 @@ const labelClass = "block text-sm font-medium text-slate-700";
 function SubmitButton({
   children,
   tone = "primary",
+  disabled = false,
 }: {
   children: React.ReactNode;
+  disabled?: boolean;
   tone?: "primary" | "secondary" | "danger";
 }) {
   const { pending } = useFormStatus();
@@ -53,8 +56,8 @@ function SubmitButton({
   return (
     <button
       type="submit"
-      disabled={pending || !online}
-      aria-disabled={pending || !online}
+      disabled={pending || !online || disabled}
+      aria-disabled={pending || !online || disabled}
       className={`min-h-11 rounded-full border px-4 py-2 text-sm font-semibold transition disabled:cursor-wait disabled:opacity-60 ${toneClass}`}
     >
       {pending ? "Working…" : !online ? "Offline" : children}
@@ -376,14 +379,18 @@ export function BinderMetadataForm({
   description,
   coverCardPrintId,
   coverOptions,
+  requiresHostedCover = false,
 }: {
   publicId: string;
   title: string;
   description: string | null;
   coverCardPrintId: string | null;
-  coverOptions: Array<{ cardPrintId: string; label: string }>;
+  coverOptions: CoverOption[];
+  requiresHostedCover?: boolean;
 }) {
   const [state, action] = useFormState(binderFormAction, null);
+  const [cover, setCover] = useState(coverCardPrintId ?? "");
+  const invalidCover = Boolean(requiresHostedCover && cover && !coverOptions.some(option => option.cardPrintId === cover));
   return (
     <form action={action} className="space-y-4">
       <BinderIdempotencyField state={state} />
@@ -402,26 +409,8 @@ export function BinderMetadataForm({
           defaultValue={description ?? ""}
         />
       </label>
-      <label className={labelClass}>
-        Binder cover
-        <select
-          className={inputClass}
-          name="coverCardPrintId"
-          defaultValue={coverCardPrintId ?? ""}
-        >
-          <option value="">No cover</option>
-          {coverCardPrintId &&
-          !coverOptions.some((option) => option.cardPrintId === coverCardPrintId) ? (
-            <option value={coverCardPrintId}>Current cover</option>
-          ) : null}
-          {coverOptions.map((option) => (
-            <option key={option.cardPrintId} value={option.cardPrintId}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-      </label>
-      <SubmitButton>Save details</SubmitButton>
+      <BinderCoverPicker options={coverOptions} value={cover} onChange={setCover} allowCurrent={!requiresHostedCover} />
+      <SubmitButton disabled={invalidCover}>Save details</SubmitButton>
       <BinderActionMessage state={state} />
     </form>
   );

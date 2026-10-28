@@ -404,6 +404,7 @@ function SettingsTab({
             title={binder.title}
             description={binder.description}
             coverCardPrintId={binder.coverCardPrintId}
+            requiresHostedCover={requiresHostedCover}
             coverOptions={binder.checklist
               .filter(
                 (slot) =>
@@ -413,6 +414,8 @@ function SettingsTab({
               .map((slot) => ({
                 cardPrintId: slot.cardPrintId as string,
                 label: slot.title,
+                imageUrl: slot.imageUrl,
+                subtitle: slot.subtitle,
               }))}
           />
         </PageSection>

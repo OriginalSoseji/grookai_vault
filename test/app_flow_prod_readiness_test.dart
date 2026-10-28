@@ -10,10 +10,10 @@ void main() {
     ).readAsStringSync();
 
     expect(screen, contains('Future<void> _addToVault() async'));
-    expect(screen, contains('VaultCardService.addOrIncrementVaultItem'));
+    expect(screen, contains('showVaultAddReview'));
     expect(screen, contains('_resolvePrintingOptionForVaultAdd'));
     expect(screen, contains('swallowErrors: false'));
-    expect(screen, contains('cardPrintingId: printingOption.id'));
+    expect(screen, contains('printingId: printingOption.id'));
     expect(screen, contains("eventType: 'add_to_vault'"));
     expect(screen, contains('VaultManageCardScreen(gvviId: gvviId)'));
     expect(screen, contains("throw Exception('Copy could not be created.')"));
@@ -156,7 +156,7 @@ void main() {
     ).readAsStringSync();
 
     expect(screen, contains('IdentityScanService'));
-    expect(screen, contains('VaultCardService.addOrIncrementVaultItem'));
+    expect(screen, contains('showVaultAddReview'));
     expect(screen, contains("Selected card is missing card_print_id."));
     expect(screen, contains("Add to Vault failed:"));
 
@@ -285,13 +285,13 @@ void main() {
     expect(vault, isNot(contains("final imageUrl = (row['photo_url']")));
   });
 
-  test('Vault phone grid and loading state share lazy two-column geometry', () {
+  test('Vault selected density and loading state share lazy grid geometry', () {
     final vault = File('lib/main_vault.dart').readAsStringSync();
     final tile = RegExp(
       r'class _VaultGridTile extends StatelessWidget[\s\S]*?class _VaultGridArtwork',
     ).firstMatch(vault)!.group(0)!;
 
-    expect(vault, contains('viewportWidth < 600'));
+    expect(vault, contains('_gridPreferences.value.clamp('));
     expect(vault, contains('_buildVaultLoadingSliver(columns: columns)'));
     expect(vault, contains('childCount: columns * 2'));
     expect(vault, contains('crossAxisCount: columns'));

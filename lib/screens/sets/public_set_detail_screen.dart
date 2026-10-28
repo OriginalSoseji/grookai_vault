@@ -802,7 +802,7 @@ String _worldChampionshipDecklistBlurb(
       ? ''
       : ' Player: ${decklist.playerName}.';
 
-  return '$yearLabel decks preserve tournament lists from that year\'s top players. This $deckLabel is tracked as a replica list: Grookai stores one row per unique printed card, and the Qty column reconstructs the 60-card deck.$playerLine';
+  return '$yearLabel decks preserve tournament lists from that year\'s top players. This $deckLabel is tracked as a replica list: grookai stores one row per unique printed card, and the Qty column reconstructs the 60-card deck.$playerLine';
 }
 
 ResolvedImagePresentation _setCardImagePresentation(PublicSetCard card) {

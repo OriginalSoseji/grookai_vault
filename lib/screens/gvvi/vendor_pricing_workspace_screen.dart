@@ -856,6 +856,17 @@ class _DispositionBackground extends StatelessWidget {
   }
 }
 
+Future<VendorDispositionSubmission?> showExactCopyDispositionSheet(
+  BuildContext context,
+  VendorPricingWorkspaceRow row,
+) => showModalBottomSheet<VendorDispositionSubmission>(
+  context: context,
+  showDragHandle: true,
+  useSafeArea: true,
+  isScrollControlled: true,
+  builder: (_) => _DispositionSheet(row: row),
+);
+
 class _DispositionSheet extends StatefulWidget {
   const _DispositionSheet({required this.row});
 

@@ -12,10 +12,16 @@ const scannerV5DefaultIdentifyEndpoint =
 class ScannerV5IdentityService {
   ScannerV5IdentityService({http.Client? client, String? endpoint})
     : _client = client ?? http.Client(),
+      _ownsClient = client == null,
       endpoint = endpoint ?? _resolveEndpoint();
 
   final http.Client _client;
+  final bool _ownsClient;
   final String endpoint;
+
+  void dispose() {
+    if (_ownsClient) _client.close();
+  }
 
   Future<ScannerV5IdentifyResult> identify(Uint8List imageBytes) async {
     final uri = Uri.parse(endpoint);
@@ -48,6 +54,29 @@ class ScannerV5IdentityService {
       final decoded = jsonDecode(response.body);
       if (decoded is! Map) {
         throw const FormatException('scanner_v5_response_not_object');
+      }
+      if (decoded['ok'] != true ||
+          decoded['candidates'] is! List ||
+          !const {
+            'ocr_exact',
+            'fused',
+            'embedding_only',
+            'unreadable',
+          }.contains(decoded['mode'])) {
+        throw const FormatException('scanner_v5_invalid_result');
+      }
+      final candidates = decoded['candidates'] as List;
+      final uuid = RegExp(
+        r'^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$',
+      );
+      if (candidates.any(
+            (row) =>
+                row is! Map ||
+                row['card_id'] is! String ||
+                !uuid.hasMatch(row['card_id'] as String),
+          ) ||
+          (decoded['mode'] == 'unreadable') != candidates.isEmpty) {
+        throw const FormatException('scanner_v5_invalid_candidates');
       }
       return ScannerV5IdentifyResult.fromJson(
         Map<String, dynamic>.from(decoded),

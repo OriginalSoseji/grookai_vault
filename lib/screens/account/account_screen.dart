@@ -589,7 +589,7 @@ class _AccountScreenState extends State<AccountScreen> {
                 _AccountHero(
                   email: profile.email,
                   displayName: _displayNameController.text.trim().isEmpty
-                      ? 'Your Grookai profile'
+                      ? 'Your grookai profile'
                       : _displayNameController.text.trim(),
                   slug: _slugController.text.trim(),
                   avatarUrl: avatarUrl,
@@ -768,7 +768,7 @@ class _AccountScreenState extends State<AccountScreen> {
             ),
             const SizedBox(height: 6),
             Text(
-              'Opt in with a city or area and region. Grookai does not store an exact address or GPS location here.',
+              'Opt in with a city or area and region. grookai does not store an exact address or GPS location here.',
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                 color: Theme.of(
                   context,
@@ -906,7 +906,7 @@ class _AccountScreenState extends State<AccountScreen> {
             _AccountLinkTile(
               icon: Icons.privacy_tip_outlined,
               title: 'Privacy',
-              subtitle: 'Review Grookai privacy information',
+              subtitle: 'Review grookai privacy information',
               onTap: _openPrivacyPolicy,
             ),
           ],

@@ -399,3 +399,6 @@ entrypoint = "./functions/wall_feed/index.ts"
 enabled = true
 verify_jwt = false
 entrypoint = "./functions/vault-intake-v1/index.ts"
+
+[functions.card-marketplace-links-v1]
+verify_jwt = false

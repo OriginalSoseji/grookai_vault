@@ -248,3 +248,10 @@ temp/
 # Isolated storefront labs, credentials, release packages and generated builds.
 /.local/
 /apps/web/.next*/
+
+# Two bounded local browser artwork fixtures (not a catalog export).
+!apps/web/public/visual-fixtures/collector/eevee-173.webp
+!apps/web/public/visual-fixtures/collector/pikachu-58.webp
+
+# Repository-root Playwright diagnostic output.
+/test-results/

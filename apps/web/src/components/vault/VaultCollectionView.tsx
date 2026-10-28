@@ -21,6 +21,7 @@ import { useVaultMobileViewMode } from "@/hooks/useVaultMobileViewMode";
 import { useViewDensity, type ViewDensity } from "@/hooks/useViewDensity";
 import type { ReactNode } from "react";
 import { addCardReturnPath } from "@/lib/navigation/cardDetailNavigation";
+import VaultLongPressTarget from "./VaultLongPressTarget";
 import { OwnedSealedPanel } from "@/components/vault/OwnedSealedPanel";
 import { combineUsdTotal, sealedOwnershipEnabled, type SealedTotals } from "@/lib/sealed/ownedSealedV1";
 
@@ -276,15 +277,14 @@ function renderVaultGrid(
       {items.map((item) => {
         const rowKey = getVaultRowRuntimeKey(item);
         return (
-          <VaultCardTile
-            key={item.id}
+          <VaultLongPressTarget key={item.id} cardPrintId={item.card_id}><VaultCardTile
             item={item}
             returnPath={returnPath}
             density={density}
             logoPath={setLogoPathByCode[item.set_code.trim().toLowerCase()] ?? undefined}
             isExpanded={expandedCardId === rowKey}
             onExpansionToggle={onExpansionToggle}
-          />
+          /></VaultLongPressTarget>
         );
       })}
     </div>
@@ -941,6 +941,7 @@ export function VaultCollectionView({
               title="Vault Cards"
               description="Cards currently in your collection."
             />
+            <Link href="/vault/workspace" className="gv-secondary-button mt-3">Select copies · Trade workspace</Link>
           </div>
 
           <div className="gv-command-surface hidden md:flex md:flex-row md:items-center md:justify-between md:gap-4 md:p-3.5">

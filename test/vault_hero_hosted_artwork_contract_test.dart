@@ -10,7 +10,7 @@ void main() {
         'lib/screens/vault/vault_manage_card_screen.dart',
       ).readAsStringSync();
       final thumb = RegExp(
-        r'class _CardThumb[\s\S]*?class _ManageImageStatusBadge',
+        r'Widget _buildHero\([\s\S]*?Widget _buildOverviewTab\(',
       ).firstMatch(source)!.group(0)!;
 
       expect(source, contains('resolveCatalogArtwork('));
@@ -18,7 +18,8 @@ void main() {
       expect(source, contains('_preferredExactCopyImageUrl'));
       expect(source, contains('fallbackImageUrl: artwork.fallbackImageUrl'));
       expect(thumb, contains('CardSurfaceArtwork('));
-      expect(thumb, contains('fallbackImageUrl: fallbackImageUrl'));
+      expect(thumb, contains('imageUrl: artwork.primaryImageUrl'));
+      expect(thumb, contains('fallbackImageUrl: artwork.fallbackImageUrl'));
       expect(thumb, isNot(contains('Image.network(')));
     },
   );

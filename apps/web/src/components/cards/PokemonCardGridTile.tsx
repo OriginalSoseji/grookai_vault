@@ -121,8 +121,8 @@ function renderImage({
         loading={imageLoading}
         priority={imagePriority}
         sizes={imageSizes}
-        imageClassName={`aspect-[5/7] w-full rounded-[22px] object-contain transition duration-200 group-hover:scale-[1.006] ${imageClassName ?? ""}`.trim()}
-        fallbackClassName="gv-collector-card-image-empty flex aspect-[5/7] w-full items-center justify-center rounded-[22px] bg-white/42 px-4 text-center text-sm font-medium text-slate-400 ring-1 ring-inset ring-slate-200/40 dark:bg-white/[0.04] dark:text-slate-600 dark:ring-white/[0.05]"
+        imageClassName={`aspect-[5/7] w-full rounded-[10px] object-contain transition duration-200 group-hover:scale-[1.006] ${imageClassName ?? ""}`.trim()}
+        fallbackClassName="gv-collector-card-image-empty flex aspect-[5/7] w-full items-center justify-center rounded-[10px] bg-white/42 px-4 text-center text-sm font-medium text-slate-400 ring-1 ring-inset ring-slate-200/40 dark:bg-white/[0.04] dark:text-slate-600 dark:ring-white/[0.05]"
         fallbackLabel={imageFallbackLabel ?? imageAlt}
       />
       {imageOverlay ? (

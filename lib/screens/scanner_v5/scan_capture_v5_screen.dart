@@ -1,22 +1,26 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 import 'dart:math' as math;
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:image/image.dart' as img;
 import 'package:image_picker/image_picker.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../services/scanner_v5/scanner_v5_identity_service.dart';
+import '../../services/scanner_v5/scanner_camera_session.dart';
+import '../../services/scanner_v5/scanner_upload_preparation.dart';
+import '../../services/scanner_v5/scanner_session_log.dart';
+import '../../services/scanner_v5/scanner_vault_add.dart';
 import '../../services/onboarding/onboarding_ladder_service.dart';
-import '../../services/vault/vault_card_service.dart';
 import '../../services/public/jungle_edition_resolution_service.dart';
 import '../scanner/jungle_edition_scan_review.dart';
-import '../../widgets/vault/vault_printing_picker.dart';
+import '../../widgets/vault/vault_add_review_sheet.dart';
+import '../vault/vault_manage_card_screen.dart';
 import 'widgets/scanner_result_sheet.dart';
 import 'widgets/scanner_v5_palette.dart';
 import 'widgets/scanner_viewfinder_chrome.dart';
@@ -24,7 +28,17 @@ import 'widgets/scanner_viewfinder_chrome.dart';
 enum ScanCaptureV5Exit { vault }
 
 class ScanCaptureV5Screen extends StatefulWidget {
-  const ScanCaptureV5Screen({super.key});
+  const ScanCaptureV5Screen({
+    super.key,
+    this.onStartBatch,
+    this.onBatchCapture,
+    this.batchCount = 0,
+    this.multipleCards = false,
+  });
+  final Future<void> Function()? onStartBatch;
+  final Future<void> Function(Uint8List bytes)? onBatchCapture;
+  final int batchCount;
+  final bool multipleCards;
 
   @override
   State<ScanCaptureV5Screen> createState() => _ScanCaptureV5ScreenState();
@@ -32,15 +46,21 @@ class ScanCaptureV5Screen extends StatefulWidget {
 
 class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
     with WidgetsBindingObserver {
-  static const _sessionLogKey = 'scanner_v5_session_log_jsonl_v1';
-  static const _uploadJpegQuality = 85;
-  static const _uploadMaxLongEdge = 1200;
-
   final _identityService = ScannerV5IdentityService();
   final _imagePicker = ImagePicker();
   final String _sessionId =
       'scanner_v5_${DateTime.now().toUtc().microsecondsSinceEpoch}';
-  CameraController? _controller;
+  late final ScannerCameraSession<CameraController> _cameraSession;
+  CameraController? get _controller => _cameraSession.current;
+  bool _pickingPhoto = false;
+  bool _batchOpen = false;
+  String? _scanId;
+  String? _requestId;
+  DateTime? _shutterAt;
+  DateTime? _cardShutterAt;
+  int _retakes = 0;
+  String? _cardAttemptId;
+  bool _needsRetake = false;
   Future<void>? _cameraFuture;
   Size? _previewViewportSize;
   bool _capturing = false;
@@ -61,32 +81,37 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
       ]),
     );
     WidgetsBinding.instance.addObserver(this);
-    _cameraFuture = _initializeCamera();
+    _cameraSession = ScannerCameraSession<CameraController>(
+      create: _createCamera,
+      release: (camera) => camera.dispose(),
+    );
+    _cameraFuture = _cameraSession.resume();
   }
 
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
-    unawaited(_controller?.dispose());
+    unawaited(_cameraSession.close().catchError((Object _) {}));
+    _identityService.dispose();
     unawaited(SystemChrome.setPreferredOrientations(DeviceOrientation.values));
     super.dispose();
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    final controller = _controller;
-    if (controller == null || !controller.value.isInitialized) return;
-    if (state == AppLifecycleState.inactive ||
-        state == AppLifecycleState.paused) {
-      unawaited(controller.dispose());
-      _controller = null;
-    } else if (state == AppLifecycleState.resumed) {
-      _cameraFuture = _initializeCamera();
+    if (state == AppLifecycleState.resumed) {
+      if (_batchOpen) return;
+      _cameraFuture = _cameraSession.resume();
+      if (mounted) setState(() {});
+    } else if (state == AppLifecycleState.inactive ||
+        state == AppLifecycleState.paused ||
+        state == AppLifecycleState.detached) {
+      unawaited(_cameraSession.suspend().catchError((Object _) {}));
       if (mounted) setState(() {});
     }
   }
 
-  Future<void> _initializeCamera() async {
+  Future<CameraController> _createCamera() async {
     final cameras = await availableCameras();
     if (cameras.isEmpty) {
       throw StateError('No camera is available on this device.');
@@ -111,9 +136,7 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
       try {
         await controller.initialize();
         await _configureCamera(controller);
-        _controller = controller;
-        if (mounted) setState(() {});
-        return;
+        return controller;
       } catch (error) {
         lastError = error;
         await controller.dispose();
@@ -138,14 +161,69 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
   Future<void> _captureAndIdentify() async {
     final controller = _controller;
     if (_capturing ||
+        _pickingPhoto ||
+        _addingToVault ||
         controller == null ||
         !controller.value.isInitialized ||
         controller.value.isTakingPicture) {
       return;
     }
+    final viewport = _previewViewportSize ?? MediaQuery.sizeOf(context);
+    await _identify(() async {
+      await _prepareStill(controller);
+      final picture = await controller.takePicture();
+      try {
+        return await _prepareUploadBytes(
+          await File(picture.path).readAsBytes(),
+          viewportSize: viewport,
+        );
+      } finally {
+        unawaited(_deleteTemporaryCapture(picture.path));
+      }
+    }, source: 'live_camera');
+  }
 
-    final viewportSize = _previewViewportSize ?? MediaQuery.sizeOf(context);
-    await HapticFeedback.mediumImpact();
+  Future<void> _pickPhotoAndIdentify() async {
+    if (_capturing || _addingToVault || _pickingPhoto) return;
+    setState(() => _pickingPhoto = true);
+    try {
+      final picked = await _imagePicker.pickImage(
+        source: ImageSource.gallery,
+        imageQuality: 100,
+        requestFullMetadata: false,
+      );
+      if (!mounted || picked == null) return;
+      await _identify(
+        () async => compute(prepareScannerUpload, <String, Object>{
+          'bytes': await File(picked.path).readAsBytes(),
+          'maxDimension': widget.multipleCards ? 2400 : 1200,
+        }),
+        source: 'photo_library',
+      );
+    } catch (error) {
+      if (mounted) {
+        _showScanNotice(
+          'Could not open photo',
+          'Allow photo access or choose another image.',
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _pickingPhoto = false);
+    }
+  }
+
+  Future<void> _identify(
+    Future<Uint8List> Function() prepare, {
+    required String source,
+  }) async {
+    if (!mounted) return;
+    _shutterAt = DateTime.now().toUtc();
+    _scanId = '${_sessionId}_${_shutterAt!.microsecondsSinceEpoch}';
+    _cardAttemptId ??= _scanId;
+    _cardShutterAt ??= _shutterAt;
+    if (_needsRetake) _retakes += 1;
+    _needsRetake = false;
+    _requestId = null;
     setState(() {
       _capturing = true;
       _result = null;
@@ -154,39 +232,44 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
       _frozenUploadBytes = null;
       _showExactAlternates = false;
     });
-
     try {
-      await _prepareStill(controller);
-      final picture = await controller.takePicture();
-      final imageBytes = await _prepareUploadBytes(
-        await File(picture.path).readAsBytes(),
-        viewportSize: viewportSize,
-      );
-      unawaited(_deleteTemporaryCapture(picture.path));
+      unawaited(HapticFeedback.mediumImpact());
+      final bytes = await prepare();
       if (!mounted) return;
-      setState(() {
-        _frozenUploadBytes = imageBytes;
-      });
-
-      final result = await _identityService.identify(imageBytes);
-      await _appendSessionLog(result);
+      if (widget.onBatchCapture != null) {
+        await widget.onBatchCapture!(bytes);
+        if (!mounted) return;
+        setState(() {
+          _capturing = false;
+          _frozenUploadBytes = null;
+          _toastTitle = 'Added to scan queue';
+          _toastMessage = 'Keep scanning. Review the batch when ready.';
+        });
+        return;
+      }
+      setState(() => _frozenUploadBytes = bytes);
+      final result = await _identityService.identify(bytes);
+      _requestId = result.requestId;
+      await _appendSessionLog(result, source: source);
       if (!mounted) return;
-      final hasCandidates = result.candidates.isNotEmpty;
+      final hasCandidates = result.ok && result.candidates.isNotEmpty;
       setState(() {
         _result = hasCandidates ? result : null;
         _capturing = false;
-        _frozenUploadBytes = hasCandidates ? _frozenUploadBytes : null;
         if (!hasCandidates) {
+          _needsRetake = true;
+          _frozenUploadBytes = null;
           _toastTitle = "Couldn't read this card";
           _toastMessage =
-              result.retakeHint ?? 'Center one card and reduce glare.';
+              result.retakeHint ?? 'Try another clear photo of the full card.';
         }
       });
-      await HapticFeedback.selectionClick();
+      unawaited(HapticFeedback.selectionClick());
     } catch (error) {
-      await _appendIdentifyErrorLog(error);
+      await _appendIdentifyErrorLog(error, source: source);
       if (!mounted) return;
       final copy = scannerV5UserFacingError(error);
+      _needsRetake = true;
       setState(() {
         _capturing = false;
         _result = null;
@@ -197,61 +280,38 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
     }
   }
 
-  Future<void> _pickPhotoAndIdentify() async {
-    if (_capturing || _addingToVault) return;
-
-    final picked = await _imagePicker.pickImage(
-      source: ImageSource.gallery,
-      imageQuality: 100,
-      requestFullMetadata: false,
-    );
-    if (picked == null) return;
-
-    await HapticFeedback.selectionClick();
-    setState(() {
-      _capturing = true;
-      _result = null;
-      _toastTitle = null;
-      _toastMessage = null;
-      _frozenUploadBytes = null;
-      _showExactAlternates = false;
-    });
-
+  Future<void> _openBatchIntake() async {
+    if (_capturing || widget.onStartBatch == null) return;
+    _batchOpen = true;
     try {
-      final imageBytes = scannerV5PrepareImportedPhotoForUpload(
-        await File(picked.path).readAsBytes(),
-      );
-      if (!mounted) return;
-      setState(() {
-        _frozenUploadBytes = imageBytes;
-      });
+      await _cameraSession.suspend();
+      await widget.onStartBatch!();
+    } finally {
+      _batchOpen = false;
+      if (mounted) {
+        _cameraFuture = _cameraSession.resume();
+        setState(() {});
+      }
+    }
+  }
 
-      final result = await _identityService.identify(imageBytes);
-      await _appendSessionLog(result, source: 'photo_library');
+  Future<void> _openSavedCopy(String gvviId) async {
+    if (_batchOpen || !mounted) return;
+    _batchOpen = true;
+    try {
+      await _cameraSession.suspend();
       if (!mounted) return;
-      final hasCandidates = result.candidates.isNotEmpty;
-      setState(() {
-        _result = hasCandidates ? result : null;
-        _capturing = false;
-        _frozenUploadBytes = hasCandidates ? _frozenUploadBytes : null;
-        if (!hasCandidates) {
-          _toastTitle = "Couldn't read this photo";
-          _toastMessage =
-              result.retakeHint ?? 'Use a clear photo of one card front.';
-        }
-      });
-      await HapticFeedback.selectionClick();
-    } catch (error) {
-      await _appendIdentifyErrorLog(error, source: 'photo_library');
-      if (!mounted) return;
-      final copy = scannerV5UserFacingError(error);
-      setState(() {
-        _capturing = false;
-        _result = null;
-        _frozenUploadBytes = null;
-        _toastTitle = copy.title;
-        _toastMessage = copy.message;
-      });
+      await Navigator.of(context).push<void>(
+        MaterialPageRoute(
+          builder: (_) => VaultManageCardScreen(gvviId: gvviId),
+        ),
+      );
+    } finally {
+      _batchOpen = false;
+      if (mounted) {
+        _cameraFuture = _cameraSession.resume();
+        setState(() {});
+      }
     }
   }
 
@@ -281,144 +341,56 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
     Uint8List rawBytes, {
     required Size viewportSize,
   }) async {
-    final decoded = img.decodeImage(rawBytes);
-    if (decoded == null) {
-      return rawBytes;
+    if (widget.multipleCards) {
+      return compute(prepareScannerUpload, <String, Object>{
+        'bytes': rawBytes,
+        'maxDimension': 2200,
+      });
     }
-    final oriented = img.bakeOrientation(decoded);
-    final slotCrop = _cropToVisualSlot(oriented, viewportSize);
-    final resized = _resizeForUpload(slotCrop);
-    return Uint8List.fromList(
-      img.encodeJpg(resized, quality: _uploadJpegQuality),
-    );
+    final guide = _ScannerV5GuideGeometry.frameForSize(viewportSize);
+    return compute(prepareScannerUpload, <String, Object>{
+      'bytes': rawBytes,
+      'viewport': <double>[viewportSize.width, viewportSize.height],
+      'guide': <double>[
+        guide.left / viewportSize.width,
+        guide.top / viewportSize.height,
+        guide.width / viewportSize.width,
+        guide.height / viewportSize.height,
+      ],
+    });
   }
 
-  img.Image _cropToVisualSlot(img.Image source, Size viewportSize) {
-    final width = source.width;
-    final height = source.height;
-    if (width <= 0 ||
-        height <= 0 ||
-        viewportSize.width <= 0 ||
-        viewportSize.height <= 0) {
-      return source;
-    }
-
-    final sourceRect = Rect.fromLTWH(0, 0, width.toDouble(), height.toDouble());
-    final viewportAspect = viewportSize.width / viewportSize.height;
-    final sourceAspect = width / height;
-    late final Rect visibleRegion;
-    if (sourceAspect > viewportAspect) {
-      final visibleWidth = height * viewportAspect;
-      visibleRegion = Rect.fromLTWH(
-        (width - visibleWidth) / 2,
-        0,
-        visibleWidth,
-        height.toDouble(),
-      );
-    } else {
-      final visibleHeight = width / viewportAspect;
-      visibleRegion = Rect.fromLTWH(
-        0,
-        (height - visibleHeight) / 2,
-        width.toDouble(),
-        visibleHeight,
-      );
-    }
-
-    final guideRect = _ScannerV5GuideGeometry.frameForSize(viewportSize);
-    final guideFractions = Rect.fromLTRB(
-      guideRect.left / viewportSize.width,
-      guideRect.top / viewportSize.height,
-      guideRect.right / viewportSize.width,
-      guideRect.bottom / viewportSize.height,
-    );
-    final mappedGuide = Rect.fromLTRB(
-      visibleRegion.left + visibleRegion.width * guideFractions.left,
-      visibleRegion.top + visibleRegion.height * guideFractions.top,
-      visibleRegion.left + visibleRegion.width * guideFractions.right,
-      visibleRegion.top + visibleRegion.height * guideFractions.bottom,
-    );
-    final paddedGuide = mappedGuide.inflate(
-      math.min(mappedGuide.width, mappedGuide.height) * 0.04,
-    );
-    final clamped = Rect.fromLTRB(
-      paddedGuide.left.clamp(sourceRect.left, sourceRect.right - 1).toDouble(),
-      paddedGuide.top.clamp(sourceRect.top, sourceRect.bottom - 1).toDouble(),
-      paddedGuide.right.clamp(sourceRect.left + 1, sourceRect.right).toDouble(),
-      paddedGuide.bottom
-          .clamp(sourceRect.top + 1, sourceRect.bottom)
-          .toDouble(),
-    );
-
-    if (clamped != paddedGuide) {
-      debugPrint(
-        '[scanner_v5] slot crop clamped: source=${width}x$height '
-        'viewport=${viewportSize.width.toStringAsFixed(1)}x'
-        '${viewportSize.height.toStringAsFixed(1)} '
-        'mapped=${_formatRect(paddedGuide)} clamped=${_formatRect(clamped)}',
-      );
-    }
-
-    final x = clamped.left.floor().clamp(0, width - 1).toInt();
-    final y = clamped.top.floor().clamp(0, height - 1).toInt();
-    final w = clamped.width.ceil().clamp(1, width - x).toInt();
-    final h = clamped.height.ceil().clamp(1, height - y).toInt();
-
-    return img.copyCrop(source, x: x, y: y, width: w, height: h);
-  }
-
-  img.Image _resizeForUpload(img.Image source) {
-    return scannerV5ResizeForUpload(source);
-  }
+  Map<String, dynamic> _scanEvent(String type) => <String, dynamic>{
+    'event_type': type,
+    'ts': DateTime.now().toUtc().toIso8601String(),
+    'session_id': _sessionId,
+    'scan_id': _scanId,
+    'card_attempt_id': _cardAttemptId,
+    'request_id': _requestId,
+    'shutter_at': _cardShutterAt?.toIso8601String(),
+    'attempt_shutter_at': _shutterAt?.toIso8601String(),
+    'retakes': _retakes,
+    'endpoint': _identityService.endpoint,
+  };
 
   Future<void> _appendSessionLog(
     ScannerV5IdentifyResult result, {
     String source = 'live_camera',
-  }) async {
-    final prefs = await SharedPreferences.getInstance();
-    final rows = prefs.getStringList(_sessionLogKey) ?? const <String>[];
-    final retainedRows = rows.length > 49
-        ? rows.sublist(rows.length - 49)
-        : rows;
-    final nextRows = <String>[
-      ...retainedRows,
-      jsonEncode(<String, dynamic>{
-        'event_type': 'scanner_v5_identify_result',
-        'ts': DateTime.now().toUtc().toIso8601String(),
-        'session_id': _sessionId,
-        'source': source,
-        'endpoint': _identityService.endpoint,
-        'result': result.toSessionJson(),
-      }),
-    ];
-    await prefs.setStringList(_sessionLogKey, nextRows);
-  }
+  }) => ScannerSessionLog.append({
+    ..._scanEvent('scanner_v5_identify_result'),
+    'source': source,
+    'result': result.toSessionJson(),
+  });
 
   Future<void> _appendIdentifyErrorLog(
     Object error, {
     String source = 'live_camera',
-  }) async {
-    final prefs = await SharedPreferences.getInstance();
-    final rows = prefs.getStringList(_sessionLogKey) ?? const <String>[];
-    final retainedRows = rows.length > 49
-        ? rows.sublist(rows.length - 49)
-        : rows;
-    final nextRows = <String>[
-      ...retainedRows,
-      jsonEncode(<String, dynamic>{
-        'event_type': 'scanner_v5_identify_error',
-        'ts': DateTime.now().toUtc().toIso8601String(),
-        'session_id': _sessionId,
-        'source': source,
-        'endpoint': _identityService.endpoint,
-        'error_type': scannerV5ErrorType(error),
-        'http_status': error is ScannerV5HttpException
-            ? error.statusCode
-            : null,
-      }),
-    ];
-    await prefs.setStringList(_sessionLogKey, nextRows);
-  }
+  }) => ScannerSessionLog.append({
+    ..._scanEvent('scanner_v5_identify_error'),
+    'source': source,
+    'error_type': scannerV5ErrorType(error),
+    'http_status': error is ScannerV5HttpException ? error.statusCode : null,
+  });
 
   Future<void> _addCandidateToVault(ScannerV5Candidate candidate) async {
     if (_addingToVault) return;
@@ -440,28 +412,36 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
     }
 
     setState(() => _addingToVault = true);
+    final confirmedAt = DateTime.now().toUtc();
+    final resultSnapshot = _result;
     try {
-      final printing = await chooseVaultPrinting(
+      final savedGvvi = await showVaultAddReview(
         context: context,
-        client: Supabase.instance.client,
         cardPrintId: cardPrintId,
-        cardName: candidate.name,
+        gvId: candidate.gvId ?? '',
+        name: candidate.name,
+        setName: candidate.setCode ?? '',
+        imageUrl: candidate.imageUrl,
       );
-      if (printing == null) return;
-      final gvviId = await VaultCardService.addOrIncrementVaultItem(
-        client: Supabase.instance.client,
-        userId: userId,
-        cardId: cardPrintId,
-        fallbackName: candidate.name,
-        fallbackSetName: candidate.setCode,
-        fallbackImageUrl: candidate.imageUrl,
-        cardPrintingId: printing.id,
-      );
-      await _appendConfirmationLog(candidate: candidate, gvviId: gvviId);
-      await _emitScannerV5VaultAddEnriched(
-        userId: userId,
-        candidate: candidate,
-        gvviId: gvviId,
+      if (savedGvvi == null) return;
+      await commitScannerVaultAdd<String>(
+        commit: () async => savedGvvi,
+        afterCommit: (gvviId) async {
+          await _appendConfirmationLog(
+            candidate: candidate,
+            gvviId: gvviId,
+            confirmedAt: confirmedAt,
+            result: resultSnapshot,
+          );
+          unawaited(
+            _emitScannerV5VaultAddEnriched(
+              userId: userId,
+              candidate: candidate,
+              gvviId: gvviId,
+              result: resultSnapshot,
+            ),
+          );
+        },
       );
       unawaited(
         OnboardingLadderService.recordOwnedBestEffort(
@@ -471,8 +451,19 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
         ),
       );
       if (!mounted) return;
-      await HapticFeedback.heavyImpact();
+      unawaited(HapticFeedback.heavyImpact());
+      setState(() => _addingToVault = false);
       _resetToLiveScanner();
+      _retakes = 0;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('${candidate.name} saved to your Vault.'),
+          action: SnackBarAction(
+            label: 'View copy',
+            onPressed: () => unawaited(_openSavedCopy(savedGvvi)),
+          ),
+        ),
+      );
     } on JungleEditionSelectionRequired catch (error) {
       if (!mounted) return;
       await reviewScannedJungleEdition(context, error.resolution);
@@ -493,17 +484,20 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
   Future<void> _appendConfirmationLog({
     required ScannerV5Candidate candidate,
     required String gvviId,
+    required DateTime confirmedAt,
+    required ScannerV5IdentifyResult? result,
   }) async {
-    final result = _result;
     final candidates = result?.candidates ?? const <ScannerV5Candidate>[];
     final confirmedRank =
-        candidate.rank ??
         candidates.indexWhere(
-              (row) => row.vaultCardPrintId == candidate.vaultCardPrintId,
-            ) +
-            1;
+          (row) => row.vaultCardPrintId == candidate.vaultCardPrintId,
+        ) +
+        1;
     final payload = <String, dynamic>{
-      'event_type': 'scanner_v5_scan/card',
+      ..._scanEvent('scanner_v5_scan/card'),
+      'confirmed_at': confirmedAt.toIso8601String(),
+      'confirmed_gv_id': candidate.gvId,
+      'confirmed_card_id': candidate.vaultCardPrintId,
       'ts': DateTime.now().toUtc().toIso8601String(),
       'session_id': _sessionId,
       'confirmed_rank': confirmedRank <= 0 ? null : confirmedRank,
@@ -515,31 +509,21 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
           .map((row) => row.toSessionJson())
           .toList(growable: false),
     };
-    final prefs = await SharedPreferences.getInstance();
-    final rows = prefs.getStringList(_sessionLogKey) ?? const <String>[];
-    final retainedRows = rows.length > 49
-        ? rows.sublist(rows.length - 49)
-        : rows;
-    await prefs.setStringList(_sessionLogKey, <String>[
-      ...retainedRows,
-      jsonEncode(payload),
-    ]);
-    debugPrint('[scanner_v5] ${jsonEncode(payload)}');
+    await ScannerSessionLog.append(payload);
   }
 
   Future<void> _emitScannerV5VaultAddEnriched({
     required String userId,
     required ScannerV5Candidate candidate,
     required String gvviId,
+    required ScannerV5IdentifyResult? result,
   }) async {
-    final result = _result;
     final candidates = result?.candidates ?? const <ScannerV5Candidate>[];
     final confirmedRank =
-        candidate.rank ??
         candidates.indexWhere(
-              (row) => row.vaultCardPrintId == candidate.vaultCardPrintId,
-            ) +
-            1;
+          (row) => row.vaultCardPrintId == candidate.vaultCardPrintId,
+        ) +
+        1;
     try {
       await Supabase.instance.client.rpc(
         'scanner_v5_emit_vault_add_enriched_v1',
@@ -566,17 +550,24 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
 
   void _showScanNotice(String title, String message) {
     if (!mounted) return;
+    if (_result != null) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('$title: $message')));
+      return;
+    }
     setState(() {
-      _result = null;
-      _frozenUploadBytes = null;
-      _showExactAlternates = false;
       _toastTitle = title;
       _toastMessage = message;
     });
   }
 
   void _resetToLiveScanner() {
-    if (!mounted) return;
+    if (!mounted || _addingToVault) return;
+    _retakes = 0;
+    _cardAttemptId = null;
+    _cardShutterAt = null;
+    _needsRetake = false;
     setState(() {
       _capturing = false;
       _result = null;
@@ -585,6 +576,35 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
       _toastTitle = null;
       _toastMessage = null;
     });
+  }
+
+  void _retake() {
+    if (_addingToVault) return;
+    final attempt = _cardAttemptId;
+    final firstShutter = _cardShutterAt;
+    final retakes = _retakes + 1;
+    _resetToLiveScanner();
+    _cardAttemptId = attempt;
+    _cardShutterAt = firstShutter;
+    _retakes = retakes;
+  }
+
+  Future<void> _exportSessionLog() async {
+    try {
+      final log = await ScannerSessionLog.export();
+      if (!mounted) return;
+      await SharePlus.instance.share(
+        ShareParams(
+          text: log,
+          subject: 'Scanner V5 session log',
+          sharePositionOrigin: const Rect.fromLTWH(16, 60, 48, 48),
+        ),
+      );
+    } catch (_) {
+      if (mounted) {
+        _showScanNotice('Could not export log', 'Try again in a moment.');
+      }
+    }
   }
 
   Future<void> _toggleFlash() async {
@@ -601,6 +621,7 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
   }
 
   void _popToVault() {
+    if (_addingToVault) return;
     Navigator.of(context).pop(ScanCaptureV5Exit.vault);
   }
 
@@ -610,129 +631,144 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
       endpoint: _identityService.endpoint,
       isPhysicalDevice: Platform.isAndroid || Platform.isIOS,
     );
-    return Scaffold(
-      backgroundColor: ScannerV5Palette.bg,
-      extendBodyBehindAppBar: true,
-      body: FutureBuilder<void>(
-        future: _cameraFuture,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState != ConnectionState.done) {
-            return const ColoredBox(
-              color: ScannerV5Palette.bg,
-              child: Center(child: CircularProgressIndicator()),
-            );
-          }
-          if (snapshot.hasError) {
-            return _ScannerV5Message(
-              title: 'Camera unavailable',
-              message: 'Scanner could not start the camera.',
-              actionLabel: 'Try again',
-              onAction: () {
-                _cameraFuture = _initializeCamera();
-                setState(() {});
-              },
-            );
-          }
-          final controller = _controller;
-          if (controller == null || !controller.value.isInitialized) {
-            return const _ScannerV5Message(
-              title: 'Camera unavailable',
-              message: 'Scanner camera is not ready yet.',
-            );
-          }
-          return LayoutBuilder(
-            builder: (context, constraints) {
-              final viewportSize = Size(
-                constraints.maxWidth,
-                constraints.maxHeight,
-              );
-              _previewViewportSize = viewportSize;
-              final frame = _ScannerV5GuideGeometry.frameForSize(viewportSize);
-              final previewSize = controller.value.previewSize;
-              final frozenBytes = _frozenUploadBytes;
-              final hasFrozenFrame = frozenBytes != null;
-              final showResultSheet =
-                  _result != null && _result!.candidates.isNotEmpty;
-              return Stack(
-                children: [
-                  if (hasFrozenFrame)
-                    Positioned.fill(
-                      child: _capturing
-                          ? ScannerIdentifyingOverlay(
-                              imageBytes: frozenBytes,
-                              frame: frame,
-                            )
-                          : _FrozenResultFrame(
-                              imageBytes: frozenBytes,
-                              frame: frame,
-                            ),
-                    )
-                  else
-                    Positioned.fill(
-                      child: previewSize == null
-                          ? CameraPreview(controller)
-                          : FittedBox(
-                              fit: BoxFit.cover,
-                              clipBehavior: Clip.hardEdge,
-                              child: SizedBox(
-                                width: previewSize.height,
-                                height: previewSize.width,
-                                child: CameraPreview(controller),
+    return PopScope(
+      canPop: !_addingToVault,
+      child: Scaffold(
+        backgroundColor: ScannerV5Palette.bg,
+        extendBodyBehindAppBar: true,
+        body: FutureBuilder<void>(
+          future: _cameraFuture,
+          builder: (context, snapshot) {
+            final controller = _controller;
+            final cameraReady =
+                controller != null && controller.value.isInitialized;
+            return LayoutBuilder(
+              builder: (context, constraints) {
+                final viewportSize = Size(
+                  constraints.maxWidth,
+                  constraints.maxHeight,
+                );
+                _previewViewportSize = viewportSize;
+                final frame = _ScannerV5GuideGeometry.frameForSize(
+                  viewportSize,
+                );
+                final previewSize = cameraReady
+                    ? controller.value.previewSize
+                    : null;
+                final frozenBytes = _frozenUploadBytes;
+                final hasFrozenFrame = frozenBytes != null;
+                final showResultSheet =
+                    _result != null && _result!.candidates.isNotEmpty;
+                return Stack(
+                  children: [
+                    if (hasFrozenFrame)
+                      Positioned.fill(
+                        child: _capturing
+                            ? ScannerIdentifyingOverlay(
+                                imageBytes: frozenBytes,
+                                frame: frame,
+                              )
+                            : _FrozenResultFrame(
+                                imageBytes: frozenBytes,
+                                frame: frame,
                               ),
-                            ),
-                    ),
-                  Positioned.fill(
-                    child: IgnorePointer(
-                      child: CustomPaint(
-                        painter: _ScannerV5FramePainter(
-                          bracketColor: _toastTitle == null
-                              ? Colors.white.withValues(alpha: 0.92)
-                              : ScannerV5Palette.amber,
+                      )
+                    else if (cameraReady)
+                      Positioned.fill(
+                        child: previewSize == null
+                            ? CameraPreview(controller)
+                            : FittedBox(
+                                fit: BoxFit.cover,
+                                clipBehavior: Clip.hardEdge,
+                                child: SizedBox(
+                                  width: previewSize.height,
+                                  height: previewSize.width,
+                                  child: CameraPreview(controller),
+                                ),
+                              ),
+                      ),
+                    if (!hasFrozenFrame && !cameraReady)
+                      Positioned.fill(
+                        child: snapshot.connectionState != ConnectionState.done
+                            ? const Center(child: CircularProgressIndicator())
+                            : _ScannerV5Message(
+                                title: 'Camera unavailable',
+                                message:
+                                    'Allow camera access in Settings, retry, or use Photos below.',
+                                actionLabel: 'Try again',
+                                onAction: () {
+                                  _cameraFuture = _cameraSession.resume();
+                                  setState(() {});
+                                },
+                              ),
+                      ),
+                    Positioned.fill(
+                      child: IgnorePointer(
+                        child: CustomPaint(
+                          painter: _ScannerV5FramePainter(
+                            bracketColor: _toastTitle == null
+                                ? Colors.white.withValues(alpha: 0.92)
+                                : ScannerV5Palette.amber,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  ScannerViewfinderChrome(
-                    flashEnabled: _flashEnabled,
-                    captureEnabled:
-                        !endpointNotConfigured &&
-                        !_capturing &&
-                        !_addingToVault,
-                    identifying: _capturing,
-                    toastTitle: showResultSheet ? null : _toastTitle,
-                    toastMessage: showResultSheet ? null : _toastMessage,
-                    onClose: () => Navigator.of(context).maybePop(),
-                    onFlashToggle: _toggleFlash,
-                    onCapture: _captureAndIdentify,
-                    onPhotos: _pickPhotoAndIdentify,
-                    onVault: _popToVault,
-                  ),
-                  if (endpointNotConfigured)
-                    Positioned(
-                      left: 18,
-                      right: 18,
-                      top: MediaQuery.paddingOf(context).top + 58,
-                      child: _ScannerEndpointBanner(
-                        endpoint: _identityService.endpoint,
-                      ),
-                    ),
-                  if (showResultSheet)
-                    ScannerResultSheet(
-                      result: _result!,
-                      addingToVault: _addingToVault,
-                      showExactAlternates: _showExactAlternates,
-                      onAddCandidate: _addCandidateToVault,
-                      onDismiss: _resetToLiveScanner,
-                      onRetake: _resetToLiveScanner,
-                      onShowAlternates: () {
-                        setState(() => _showExactAlternates = true);
+                    ScannerViewfinderChrome(
+                      onStartBatch: widget.onStartBatch == null
+                          ? null
+                          : () => unawaited(_openBatchIntake()),
+                      multipleCards: widget.multipleCards,
+                      vaultLabel: widget.onBatchCapture == null
+                          ? 'Vault'
+                          : 'Review ${widget.batchCount}',
+                      flashEnabled: _flashEnabled,
+                      captureEnabled:
+                          !endpointNotConfigured &&
+                          cameraReady &&
+                          !_pickingPhoto &&
+                          !_capturing &&
+                          !_addingToVault,
+                      identifying: _capturing,
+                      toastTitle: _toastTitle,
+                      toastMessage: _toastMessage,
+                      onClose: () {
+                        if (!_addingToVault) Navigator.of(context).maybePop();
                       },
+                      onFlashToggle: _toggleFlash,
+                      onCapture: _captureAndIdentify,
+                      onPhotos: _pickPhotoAndIdentify,
+                      onVault: widget.onBatchCapture == null
+                          ? _popToVault
+                          : () => Navigator.of(context).pop(),
+                      onExportLog: _exportSessionLog,
                     ),
-                ],
-              );
-            },
-          );
-        },
+                    if (endpointNotConfigured)
+                      Positioned(
+                        left: 18,
+                        right: 18,
+                        top: MediaQuery.paddingOf(context).top + 58,
+                        child: _ScannerEndpointBanner(
+                          endpoint: _identityService.endpoint,
+                        ),
+                      ),
+                    if (showResultSheet)
+                      ScannerResultSheet(
+                        result: _result!,
+                        addingToVault: _addingToVault,
+                        showExactAlternates: _showExactAlternates,
+                        onAddCandidate: _addCandidateToVault,
+                        onDismiss: _resetToLiveScanner,
+                        onRetake: _retake,
+                        onShowAlternates: () {
+                          setState(() => _showExactAlternates = true);
+                        },
+                      ),
+                  ],
+                );
+              },
+            );
+          },
+        ),
       ),
     );
   }
@@ -749,7 +785,7 @@ ScannerV5ErrorCopy scannerV5UserFacingError(Object error) {
   if (error is TimeoutException) {
     return const ScannerV5ErrorCopy(
       title: 'Scanner timed out',
-      message: 'Scanner timed out. Try again with the card centered.',
+      message: 'Scanner took too long. Check your connection and try again.',
     );
   }
   if (error is ScannerV5UnreachableException) {
@@ -793,34 +829,12 @@ String scannerV5ErrorType(Object error) {
 
 @visibleForTesting
 Uint8List scannerV5PrepareImportedPhotoForUpload(Uint8List rawBytes) {
-  final decoded = img.decodeImage(rawBytes);
-  if (decoded == null) {
-    return rawBytes;
-  }
-  final oriented = img.bakeOrientation(decoded);
-  final resized = scannerV5ResizeForUpload(oriented);
-  return Uint8List.fromList(
-    img.encodeJpg(
-      resized,
-      quality: _ScanCaptureV5ScreenState._uploadJpegQuality,
-    ),
-  );
+  return prepareScannerUpload(<String, Object>{'bytes': rawBytes});
 }
 
 @visibleForTesting
-img.Image scannerV5ResizeForUpload(img.Image source) {
-  final longEdge = math.max(source.width, source.height);
-  if (longEdge <= _ScanCaptureV5ScreenState._uploadMaxLongEdge) {
-    return source;
-  }
-  final scale = _ScanCaptureV5ScreenState._uploadMaxLongEdge / longEdge;
-  return img.copyResize(
-    source,
-    width: math.max(1, (source.width * scale).round()),
-    height: math.max(1, (source.height * scale).round()),
-    interpolation: img.Interpolation.average,
-  );
-}
+img.Image scannerV5ResizeForUpload(img.Image source) =>
+    resizeScannerUpload(source);
 
 bool scannerV5EndpointNotConfiguredForDevice({
   required String endpoint,
@@ -1021,13 +1035,6 @@ class _ScannerV5FramePainter extends CustomPainter {
   bool shouldRepaint(covariant _ScannerV5FramePainter oldDelegate) {
     return oldDelegate.bracketColor != bracketColor;
   }
-}
-
-String _formatRect(Rect rect) {
-  return 'l=${rect.left.toStringAsFixed(1)},'
-      't=${rect.top.toStringAsFixed(1)},'
-      'r=${rect.right.toStringAsFixed(1)},'
-      'b=${rect.bottom.toStringAsFixed(1)}';
 }
 
 class _ScannerV5Message extends StatelessWidget {

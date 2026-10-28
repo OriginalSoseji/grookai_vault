@@ -1,0 +1,1870 @@
+{
+  "at": "2026-10-28T04:35:18.588Z",
+  "base": "5b4a95e637ffcfb214aeeeb7b2279751124ab9f4",
+  "sourceHead": "d6de174de9a6250ac4f71ad5bed49b90f8e78718",
+  "originalWorkspacePreserved": true,
+  "rows": [
+    {
+      "path": "apps/web/src/app/account/delete/page.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Preserve current canonical brand casing",
+      "present": true,
+      "sha256": "afdce3430b5a68fab8317e06322d218865e11b06bfdcfdccf75c4426c4846461"
+    },
+    {
+      "path": "apps/web/src/app/account/page.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Reviewed shared presentation/interaction integration, retaining current accessibility and identity",
+      "present": true,
+      "sha256": "d862f2538e1144cdd8eca9f992e26e02ff02f7bb07c56769fafef970e8d58e3b"
+    },
+    {
+      "path": "apps/web/src/app/api/resolver/search/route.ts",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Retain current main discovery/search implementation, game scoping, collector-number handling and current content layout; preserved branch predates these fixes.",
+      "present": true,
+      "sha256": "aa5e2fa1ff2fa815ccf1304a820396cc2448bf3b042958432d030acdaf9643ae"
+    },
+    {
+      "path": "apps/web/src/app/b/[viewToken]/page.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "c1803591660f5222c3d315adedcad13d9836ed194c9aba09cf2c9491ace1b70c"
+    },
+    {
+      "path": "apps/web/src/app/binder-invites/review/page.tsx",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "00c46e55fd2fef60e17b8c2688d09209e92692a26c5daadb30d1a96babcf89eb"
+    },
+    {
+      "path": "apps/web/src/app/binder-templates/[templateId]/page.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "95b54fa89755fd1a38bd0cb6aafbaa4068a04b542aed23c2dbb7946947aadd47"
+    },
+    {
+      "path": "apps/web/src/app/binders/[publicId]/page.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "38fac47823850663ca81b543273be263feb30daa30efdc2a2e245154fe15137a"
+    },
+    {
+      "path": "apps/web/src/app/binders/explore/page.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Preserve current canonical brand casing",
+      "present": true,
+      "sha256": "d8be8bc4f418ff258151efc9c938ce983c1ecfb33cab7c5620141a08f5d74e5f"
+    },
+    {
+      "path": "apps/web/src/app/binders/new/page.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "6358d14c5301ef855eec91113acc7e667c0850482cb8e93f3ed3b6ba5f82ab14"
+    },
+    {
+      "path": "apps/web/src/app/binders/page.tsx",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "441d46fb4a5cfeca343663eb67449314d6434f10b5a8924cd88846e7b2068096"
+    },
+    {
+      "path": "apps/web/src/app/brand-preview/page.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "a2d4085fae828318ff09318d9896722dadd57799fb534f64775a8a8c2fdf0619"
+    },
+    {
+      "path": "apps/web/src/app/card/[gv_id]/page.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Manually integrate reviewed durable multi-copy saving, exact marketplace links and modal controls while preserving current readers, image truth, edition validation and slab actions.",
+      "present": true,
+      "sha256": "7a8817b420c53aebd3f1e77dfb22e8f3d110f3ffca53e251d4c4f6a9dc27419d"
+    },
+    {
+      "path": "apps/web/src/app/dex/[speciesSlug]/page.tsx",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "bf57fab7b02e1ce7d750d4566f9e0746a3dfc9816175e0c78228229d90b8a99b"
+    },
+    {
+      "path": "apps/web/src/app/dex/error.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "ad99dd187db13aba740cb3870750abe174745b22bc1423f19675037c74fecb16"
+    },
+    {
+      "path": "apps/web/src/app/dex/loading.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "7e477e4ba629182dc5ad91edd9fe4913a866df1bb1290b0feb7e3959b7f0edfa"
+    },
+    {
+      "path": "apps/web/src/app/dex/page.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "9337c788ed5cbffd01e52d3c719a0af761ef29c505da573adcf54c80ed88bb94"
+    },
+    {
+      "path": "apps/web/src/app/early-access/page.tsx",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "1a783eec7ec995a838e21c08e42f9aafdf96932917dd6bc731ca3a142b132815"
+    },
+    {
+      "path": "apps/web/src/app/explore/page.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Retain current main discovery/search implementation, game scoping, collector-number handling and current content layout; preserved branch predates these fixes.",
+      "present": true,
+      "sha256": "68785eb4eae898d764623668706e11bc68da6403cf4de7dce94108ea8fabda0a"
+    },
+    {
+      "path": "apps/web/src/app/fonts/Roboto/LICENSE.txt",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "7f537df1ded63a952f3ce5c7bf7067868c62a0b4645bbb63d4193e9a6b1c47f3"
+    },
+    {
+      "path": "apps/web/src/app/fonts/Roboto/Roboto-Black.ttf",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "3872e9b39760a1b59ac1e192633dbb3b58e595b4d423930ac7ded525e9ae25e0"
+    },
+    {
+      "path": "apps/web/src/app/fonts/Roboto/Roboto-Bold.ttf",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "7d0b991ee3e0be7af01ad7ea8cd2beea6c00a25e679a0226b6737f079aafff86"
+    },
+    {
+      "path": "apps/web/src/app/fonts/Roboto/Roboto-Light.ttf",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "a6d343d425bc38db90152fa06058b1c7391eca9264f334ef65c1ce175085c6f6"
+    },
+    {
+      "path": "apps/web/src/app/fonts/Roboto/Roboto-Medium.ttf",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "f205cc511821ea56078a105557fcea6253129404d411c997e1866fbd006abb68"
+    },
+    {
+      "path": "apps/web/src/app/fonts/Roboto/Roboto-Regular.ttf",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "79e851404657dac2106b3d22ad256d47824a9a5765458edb72c9102a45816d95"
+    },
+    {
+      "path": "apps/web/src/app/fonts/Roboto/Roboto-Thin.ttf",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "3d91f7aa69cb7f7064035895c566ac5cb9b2084582d351af7267bb4e0fba60f5"
+    },
+    {
+      "path": "apps/web/src/app/globals.css",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "d50d7c946a4be88bd28da35a71b726340bfb021db408ca4cef2f0890caac9c94"
+    },
+    {
+      "path": "apps/web/src/app/gvvi/[gvvi_id]/page.tsx",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "fe6960c7cdc5b974d5fb43190376ce3c0026a4550f684794856824ea5ee85b7f"
+    },
+    {
+      "path": "apps/web/src/app/launch-identity.css",
+      "sourceDisposition": "manual_presence_review",
+      "decision": "Reconcile theme drift to the user-approved lime interface while preserving seasonal original-logo artwork.",
+      "present": true,
+      "sha256": "0daa321aacc56a13d3f8dfe14d345b3b2daee6ef3d87b39eed59df0e1e85bb77"
+    },
+    {
+      "path": "apps/web/src/app/layout.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Retain current normal application shell, routing, accessibility, authentication and bundled brand; interface accent reconciled through the shared theme.",
+      "present": true,
+      "sha256": "73e06ee27ee537878a8e11c5a987b92cf1d342b41416598a778b0c104cfb71f0"
+    },
+    {
+      "path": "apps/web/src/app/legal/page.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Preserve current canonical brand casing",
+      "present": true,
+      "sha256": "fcc55ff6a776535785273b0d2f29c2ed4e7853c0ffc40d7866ac5350a1849845"
+    },
+    {
+      "path": "apps/web/src/app/login/page.tsx",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "1125d19b43bf063493dfe02fc5db31082cee5abacef2b564f10639594fe7f854"
+    },
+    {
+      "path": "apps/web/src/app/lots/[publicId]/page.tsx",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "88000fb16ed67cc86c9e6a3978666042adc3ada4f4224dbec5afdad17388da4b"
+    },
+    {
+      "path": "apps/web/src/app/memory/[memory_id]/page.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "808a242adb1fd71811e5caca8845fa6ed0facf8f1a9c2911b52c4d0f7602fcea"
+    },
+    {
+      "path": "apps/web/src/app/network/page.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Retain current Pulse/Following notification, privacy and game-feed integration; do not restore the older branch that removes current Pulse behavior.",
+      "present": true,
+      "sha256": "b0030b14d65c5d6afc1664731a11174df3543f647427756abeeed93b5d15b186"
+    },
+    {
+      "path": "apps/web/src/app/page.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Preserve current canonical brand casing",
+      "present": true,
+      "sha256": "653b948159eb852484d02a3859c6da3c8a203832235127358a4552a50f90e5ec"
+    },
+    {
+      "path": "apps/web/src/app/privacy/page.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Retain current canonical casing, share/printing routing, submit behavior and current link-integrity coverage.",
+      "present": true,
+      "sha256": "3167eb3dae2b3889ac9a2e5ddcba870702e897d79809939df5530e77e39866ba"
+    },
+    {
+      "path": "apps/web/src/app/provisional/[candidate_id]/page.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "6cc84ebbdb8aa15c6bd03fae0a52a853dc67f3dfa0a2428da8a3eaf7b0a5253d"
+    },
+    {
+      "path": "apps/web/src/app/review/visual-search/page.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "07fa8e1082d557414bbdde01189f57b8a9e5916fb153bf9e0e0c83b7c7302c0b"
+    },
+    {
+      "path": "apps/web/src/app/scan/ScanClient.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Preserve current canonical brand casing",
+      "present": true,
+      "sha256": "e4b2ad148c66e059350cf9f18c6d68afaf67736513deee4cd25aeae27152ee08"
+    },
+    {
+      "path": "apps/web/src/app/scan/page.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "5e0e7e8797398c1fa4693537400c7c33e93d25c51bc2e96613b035b1b0370c97"
+    },
+    {
+      "path": "apps/web/src/app/scan/scan.module.css",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "657a578233c542969443237fc8df0f398cdcff1b83cf5a6e7d9382cd5c806353"
+    },
+    {
+      "path": "apps/web/src/app/sets/[set_code]/page.tsx",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "3f439e9521a04dd5bc38da79cbb19f83ba81ba060c35818e8c9c74b3653c1b9f"
+    },
+    {
+      "path": "apps/web/src/app/support/page.tsx",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "b45ccb0bc855591c494164bbc42a6afb50aa5bf4330bf0481c792efd67b0f655"
+    },
+    {
+      "path": "apps/web/src/app/u/[slug]/collection/page.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Preserve current canonical brand casing",
+      "present": true,
+      "sha256": "9a78a5c74ce27532d224b1c719beffe3948c28df559abe377d2195bf1fd53672"
+    },
+    {
+      "path": "apps/web/src/app/u/[slug]/followers/page.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Preserve current canonical brand casing",
+      "present": true,
+      "sha256": "40de7b5346dd183bae14329beed12c8f7678004b84939701511aea1f4f2b8fcd"
+    },
+    {
+      "path": "apps/web/src/app/u/[slug]/following/page.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Preserve current canonical brand casing",
+      "present": true,
+      "sha256": "ec6b4b1b764971fe452dcf76f16772b040703b33fcd6acdf179e5b1e1e026381"
+    },
+    {
+      "path": "apps/web/src/app/u/[slug]/page.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Preserve current canonical brand casing",
+      "present": true,
+      "sha256": "ea7d64c992b758f7e850a419f6c6ef662314c3b129ed2674ae3cfd6a151aebfd"
+    },
+    {
+      "path": "apps/web/src/app/u/[slug]/pokemon/[pokemon]/page.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Preserve current canonical brand casing",
+      "present": true,
+      "sha256": "4341962562de870ae44169e10ab7b056ac6cf5963a7c30b68b7b57d293d5737e"
+    },
+    {
+      "path": "apps/web/src/app/u/[slug]/section/[section_id]/page.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Preserve current canonical brand casing",
+      "present": true,
+      "sha256": "f1c2c512fc0180d49f15f87331678307d14ae57a8a65333b0490c3fc817d56e8"
+    },
+    {
+      "path": "apps/web/src/app/vault/card-options/route.ts",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "01557b4a22561aef43ff1da0a0f8c72184e386f4aa3349f2c65e6bbe17f97023"
+    },
+    {
+      "path": "apps/web/src/app/vault/card/[cardId]/page.tsx",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "682533cb01c4595a18ee4ebd43f68b2bc831b999cee9f9a20013715ab90c7266"
+    },
+    {
+      "path": "apps/web/src/app/vault/gvvi/[gvvi_id]/page.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Retain current exact-copy private owner actions and integrated visual fixture wiring.",
+      "present": true,
+      "sha256": "604252665c5a77183d040da8446cf001e039b9ee43f4bb5c92e80c0432faf677"
+    },
+    {
+      "path": "apps/web/src/app/vault/workspace/page.tsx",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "864edd9d91f1c8a0d734cd01846a1f39674e84ebc1e49997fea3f7f5c95e6be5"
+    },
+    {
+      "path": "apps/web/src/app/visual-fixtures/collector-refinement/page.tsx",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "03603c05b719eb343c39835b23ad85df297bfe7ee578c149533f40d6ecc8cbee"
+    },
+    {
+      "path": "apps/web/src/app/visual-fixtures/launch-identity/page.tsx",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "c1992e3866cd3659bf909c59650df528bfeb3a6a9b2110d5b151ff5579ebd30a"
+    },
+    {
+      "path": "apps/web/src/app/visual-fixtures/vault-collection/page.tsx",
+      "sourceDisposition": "manual_presence_review",
+      "decision": "Preserve the existing main implementation at this path; it supplies current brand, printing/navigation, owner-scoped persistence or pricing behavior. Marketplace search helper was separately reconciled for game-neutral active/sold searches.",
+      "present": true,
+      "sha256": "c64610ceb41ea1bf9870cee67fff5b8c775e465a00d6f9246938c5ef23165763"
+    },
+    {
+      "path": "apps/web/src/components/PersistentSearchBar.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Preserve current canonical brand casing",
+      "present": true,
+      "sha256": "167dc073c6e3033b5216d054b314b362af9b968434adb180bcafc1c30b695d60"
+    },
+    {
+      "path": "apps/web/src/components/PublicSearchForm.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Retain current main discovery/search implementation, game scoping, collector-number handling and current content layout; preserved branch predates these fixes.",
+      "present": true,
+      "sha256": "fb2a69b0f264e4a34d82058a96c9e1470e22e751e25b44c84fe2fce5d4c9198b"
+    },
+    {
+      "path": "apps/web/src/components/PublicSetCardGrid.tsx",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "2fd11febfff196696ee95d04b2df8888f8643ed2f963ae971335a11e88aed453"
+    },
+    {
+      "path": "apps/web/src/components/ShareCardButton.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Retain current canonical casing, share/printing routing, submit behavior and current link-integrity coverage.",
+      "present": true,
+      "sha256": "4b46d41bf52872f0346aacd3ed870aa94c090f23bf2854aaba291f921dac46c0"
+    },
+    {
+      "path": "apps/web/src/components/VaultSubmitButton.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Retain current canonical casing, share/printing routing, submit behavior and current link-integrity coverage.",
+      "present": true,
+      "sha256": "45e67556ec9721cda12bbb33888bb9d169a059557191484698dab6cd6da4ef7a"
+    },
+    {
+      "path": "apps/web/src/components/account/PublicProfileSettingsForm.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "b98e080e244350ace9ec7e621550d068a1a24d4af6b1045ea31b55db7cc30873"
+    },
+    {
+      "path": "apps/web/src/components/auth/SignOutButton.tsx",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "a74ba24e1157855a9a541bd47baf307e4638d7498ebc049427377b1069aaaf06"
+    },
+    {
+      "path": "apps/web/src/components/binders/BinderCoverPicker.tsx",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "6ea2b71e8f0c9ecbd85a3315ab06af4affb44f6b544587ac310944eb170c122c"
+    },
+    {
+      "path": "apps/web/src/components/binders/BinderForms.tsx",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "5df5ec718cc364b3185d5b0c0bead9275c7276c46a42f3f8d4ca0b92b037dc8c"
+    },
+    {
+      "path": "apps/web/src/components/binders/BinderLibraryClient.tsx",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "e5be626df0f826a77aefa193adbcc49ca838c25bdd26e64df31c0784971c343f"
+    },
+    {
+      "path": "apps/web/src/components/binders/BinderPageArrangement.tsx",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "81ea196ee5270241de4c448fbe29f997db01260393edbc0782968ce650cf6cca"
+    },
+    {
+      "path": "apps/web/src/components/binders/BinderSummaryPresentation.tsx",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "80ab9c10b96701b5f881a9435de33bc1c50453e0f01064540f3a0df48e06922d"
+    },
+    {
+      "path": "apps/web/src/components/binders/BinderViews.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Reviewed shared presentation/interaction integration, retaining current accessibility and identity",
+      "present": true,
+      "sha256": "068dcd9c106d35a8f4a5ca312375e81f09b1feaf2c86f9561343f21dd52ac295"
+    },
+    {
+      "path": "apps/web/src/components/binders/BinderWorkspace.tsx",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "5372cb6e69321055ff681d9f45e8f391bbb5234583fa5cb0e685f32733245bb2"
+    },
+    {
+      "path": "apps/web/src/components/binders/CustomBinderSlotEditor.tsx",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "a589d11e246c5b2e6fcec3775dcb522c4ad19ceaa9dde078e033d5aac9740c00"
+    },
+    {
+      "path": "apps/web/src/components/binders/binderPageImage.ts",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "26ddc1a0e0319bb3424c3b2e26d7a4e93a10412b1c802bf8f50a77319f4e76da"
+    },
+    {
+      "path": "apps/web/src/components/binders/useBinderHeldDrag.ts",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "1f881b26c75da8f8a749ae03e6f8e84a4f365acee75a1a3103ea72f2a24148f0"
+    },
+    {
+      "path": "apps/web/src/components/brand/BrandAvatar.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "a11271f025073750393ec032a8469788cbe65002d230a02402bc477c96d2e0c4"
+    },
+    {
+      "path": "apps/web/src/components/brand/BrandEmblem.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "0ac957bbff7f4d6c82ddcef7796aef8ed5cadae7434850f6424f677629c5d9ff"
+    },
+    {
+      "path": "apps/web/src/components/brand/BrandMotionToggle.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "727e167ac12e3cf84b26588bfe525210b52575cbe5d99f04bbfdb78e142ab9a2"
+    },
+    {
+      "path": "apps/web/src/components/brand/BrandText.tsx",
+      "sourceDisposition": "manual_presence_review",
+      "decision": "Preserve the existing main implementation at this path; it supplies current brand, printing/navigation, owner-scoped persistence or pricing behavior. Marketplace search helper was separately reconciled for game-neutral active/sold searches.",
+      "present": true,
+      "sha256": "ae500e1dacfdde9c78541803c5efdf1bf0057b732eb075dd72f7f541c472c583"
+    },
+    {
+      "path": "apps/web/src/components/brand/LogoThemePreview.tsx",
+      "sourceDisposition": "manual_presence_review",
+      "decision": "Preserve the existing main implementation at this path; it supplies current brand, printing/navigation, owner-scoped persistence or pricing behavior. Marketplace search helper was separately reconciled for game-neutral active/sold searches.",
+      "present": true,
+      "sha256": "da0c2a5791db7143ba1a2d332aa4483521bd7c2aa1c3384507ca6f27c646bcc6"
+    },
+    {
+      "path": "apps/web/src/components/brand/SeasonalLogoEffects.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "11a945b78013b11aaa7a9f3848d4f648e3938fa9eeb26c45e427708d155cc769"
+    },
+    {
+      "path": "apps/web/src/components/brand/brandTheme.ts",
+      "sourceDisposition": "manual_presence_review",
+      "decision": "Preserve the existing main implementation at this path; it supplies current brand, printing/navigation, owner-scoped persistence or pricing behavior. Marketplace search helper was separately reconciled for game-neutral active/sold searches.",
+      "present": true,
+      "sha256": "577eef20c0534e843976d9bb1b319ef46c94913b404fb51432d35dedca7a4487"
+    },
+    {
+      "path": "apps/web/src/components/cards/CardPageMarketVaultPanels.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Manually integrate reviewed durable multi-copy saving, exact marketplace links and modal controls while preserving current readers, image truth, edition validation and slab actions.",
+      "present": true,
+      "sha256": "7c0a8b25c7ffe9c68d379137ad2fe69891c2e6cd98542bee0c25c2ee0973a549"
+    },
+    {
+      "path": "apps/web/src/components/cards/CardUtilityActions.tsx",
+      "sourceDisposition": "manual_presence_review",
+      "decision": "Preserve the existing main implementation at this path; it supplies current brand, printing/navigation, owner-scoped persistence or pricing behavior. Marketplace search helper was separately reconciled for game-neutral active/sold searches.",
+      "present": true,
+      "sha256": "d6e349e92f639475de9cd02e50f264cae182d32173248f032afdd5ccaf9f49dc"
+    },
+    {
+      "path": "apps/web/src/components/cards/CollectorCardContext.tsx",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "ab90a07c1b3218de498a61442a9ce02691bccc0e6d6b79c70c73e27d92382712"
+    },
+    {
+      "path": "apps/web/src/components/cards/PokemonCardGridTile.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Reviewed shared presentation/interaction integration, retaining current accessibility and identity",
+      "present": true,
+      "sha256": "46acd84047bc6e067e1d0b03359be07f9d9e636eebc562711afaf0d98e7b45ba"
+    },
+    {
+      "path": "apps/web/src/components/cards/PrintingChip.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "e97979de3879b727a2cc12e1c152e48eaea8ce4942fa7e5adf29162b4db02cc8"
+    },
+    {
+      "path": "apps/web/src/components/cards/PrintingSelector.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "b4b6f7fa3a2b11c8b47aa8db42fe5a8f8cd5fc9f42cd83a81c9e920ad240b183"
+    },
+    {
+      "path": "apps/web/src/components/cards/VariantBadge.tsx",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "1376f2f6d4e1c0e5ba9f3e6049bc15b6788e084d4775fa6473ffd28850af4e1f"
+    },
+    {
+      "path": "apps/web/src/components/cards/VariantExplanationContextPreview.tsx",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "7d8274ae0abc43930cd590cc9b016db83055d8838d66f57acc9cddafa02c21d9"
+    },
+    {
+      "path": "apps/web/src/components/cards/pokemonCardGridLayout.ts",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "e7bc80861c2c09c6b184b736ed98267c6c1487e73b5c65fb6cc84535af95da91"
+    },
+    {
+      "path": "apps/web/src/components/compare/CompareCardButton.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "8019ca72d2916c6d0d49ae2866ff5ed6ab6249375ce5f4d87ae7bf2d13da6425"
+    },
+    {
+      "path": "apps/web/src/components/explore/ExploreDiscoverySections.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Retain current main discovery/search implementation, game scoping, collector-number handling and current content layout; preserved branch predates these fixes.",
+      "present": true,
+      "sha256": "b42752f891f9a8eee2cbc4d79b439dcdeb234f3d2d3bf0fd2ad40c0dbdc87dd0"
+    },
+    {
+      "path": "apps/web/src/components/explore/ExplorePageClient.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Retain current main discovery/search implementation, game scoping, collector-number handling and current content layout; preserved branch predates these fixes.",
+      "present": true,
+      "sha256": "353d0ede448086aba008e85d37b66c0643f47b93b1db3646f3cd011409a4410d"
+    },
+    {
+      "path": "apps/web/src/components/layout/DesktopApplicationShell.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Retain current normal application shell, routing, accessibility, authentication and bundled brand; interface accent reconciled through the shared theme.",
+      "present": true,
+      "sha256": "f07c7263ec4527ad2f1277ddf9b2e6cbafcec26c13ba6231d8fb144b7a6bb6f2"
+    },
+    {
+      "path": "apps/web/src/components/layout/LoadingCardGridSkeleton.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "0b88a929c7cdb3439135669906f87ef0ea7f9a9b8a47581bfaca9f0bfe64b875"
+    },
+    {
+      "path": "apps/web/src/components/layout/MobilePushedRouteHeader.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "6a2376af3461b4c397b1ba83ceeaeebe8120358d21d3228b629d1388dc6b8922"
+    },
+    {
+      "path": "apps/web/src/components/layout/PageIntro.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Reviewed shared presentation/interaction integration, retaining current accessibility and identity",
+      "present": true,
+      "sha256": "8e320cbd4ebce4bf0d96445af7c7f848f037d0c4215ecff423ea3080dc09d840"
+    },
+    {
+      "path": "apps/web/src/components/layout/SiteHeader.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Retain current normal application shell, routing, accessibility, authentication and bundled brand; interface accent reconciled through the shared theme.",
+      "present": true,
+      "sha256": "b83a8d83cfcb820fdbf872ef6f9f7d8d5c918a25e10941d10cab5a0b505be333"
+    },
+    {
+      "path": "apps/web/src/components/layout/ThemeToggle.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "e8c050e27d7d2433bbc82f68fc55a6d079bca871f88d53babdef8336844a2207"
+    },
+    {
+      "path": "apps/web/src/components/layout/signOutNavigation.test.mjs",
+      "sourceDisposition": "manual_presence_review",
+      "decision": "Preserve the existing main implementation at this path; it supplies current brand, printing/navigation, owner-scoped persistence or pricing behavior. Marketplace search helper was separately reconciled for game-neutral active/sold searches.",
+      "present": true,
+      "sha256": "48ad79e14b668c123d883515f7f31737492c2713e077246ce7f346cfd2d3e266"
+    },
+    {
+      "path": "apps/web/src/components/lotLabels/LotSaleForm.tsx",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "27e3607a763f07536bf5efa57ec2e2fe877b5d7a22c41ab41e4590390611f0e1"
+    },
+    {
+      "path": "apps/web/src/components/mobileParity/MobileParityDock.module.css",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "444510a2bc07ced87779b2385c84a94cccf64f01d3307a96dbad0ad1811ac1d7"
+    },
+    {
+      "path": "apps/web/src/components/network/ContactOwnerButton.tsx",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "2c0947dfb17a0d6e1cc96efa34a3b582634958a3bb7ca377c0398f4f3884dd32"
+    },
+    {
+      "path": "apps/web/src/components/network/InteractionGroupControls.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "3675122f164227f5ef8b30559011710c6bd87d95b3adbdb0a333db50073bdf3d"
+    },
+    {
+      "path": "apps/web/src/components/network/InteractionGroupExecutionPanel.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "0746880b2ac49bc2561136abfe00b8093e89037b787674ecc085654c8e12eec0"
+    },
+    {
+      "path": "apps/web/src/components/network/InteractionGroupReplyForm.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "77422afecd25288e26699e7906172936aea5a4407bb240ef32854e557749a1f0"
+    },
+    {
+      "path": "apps/web/src/components/network/NetworkStreamCard.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "3758e57368330c1a3a6f4638b500351208690767f956a5fa6f4006264d689e48"
+    },
+    {
+      "path": "apps/web/src/components/performance/publicLinkIntegrityGuards.test.mjs",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Retain current canonical casing, share/printing routing, submit behavior and current link-integrity coverage.",
+      "present": true,
+      "sha256": "ec58803c3f38121530c88d76c7ed40a6e0dfc8a2addbc1973ea488bac0924ad2"
+    },
+    {
+      "path": "apps/web/src/components/performance/publicRenderingCacheGuards.test.mjs",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Preserve current canonical brand casing",
+      "present": true,
+      "sha256": "876dcde8a106f14d83c307d4f095e4633842202d18a8fd63e5098461ef113df1"
+    },
+    {
+      "path": "apps/web/src/components/pricing/CardEbayLinks.tsx",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "62a7e676dce6f5ee58979fd5cae16021216a460c9b93d9a5b84681444a810cf0"
+    },
+    {
+      "path": "apps/web/src/components/pricing/CardMarketplaceLinks.tsx",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "f88534dbdb75e568d01ce5a4a6ee994449a9cc6d3e15d31efcddc4b24635d58f"
+    },
+    {
+      "path": "apps/web/src/components/pricing/CardPagePricingRail.tsx",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "ae1474e049a9ba7b8ee955ce7a79a244e613f611856835a818beb4ffc6f1eed6"
+    },
+    {
+      "path": "apps/web/src/components/provisional/RecentlyConfirmedDiscoverySection.tsx",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "16591b2118a3317b78ba8782d7b44524933585b6c825cb8efa29227188c50bb5"
+    },
+    {
+      "path": "apps/web/src/components/slabs/AddSlabCardAction.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "630161bf30843a10a354a588eece19ee879f794396edb0005bb19357f8075433"
+    },
+    {
+      "path": "apps/web/src/components/vault/AddToVaultCardAction.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Manually integrate reviewed durable multi-copy saving, exact marketplace links and modal controls while preserving current readers, image truth, edition validation and slab actions.",
+      "present": true,
+      "sha256": "9d3d86bcc2042cdb178b667faf2655ab40be5f28816ce3c98b2b37509249ddbf"
+    },
+    {
+      "path": "apps/web/src/components/vault/CollectorWorkspace.tsx",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "e453e4fa2a5d3d4b97a516f043242f4ad45a0ab365970e5a4302e12064f7053f"
+    },
+    {
+      "path": "apps/web/src/components/vault/OwnedObjectRemoveAction.tsx",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "57cfab4ec381d83d77e5006d1fb2186cc273a2615f8e7cdfad291a34b1e4917d"
+    },
+    {
+      "path": "apps/web/src/components/vault/VaultCardTile.tsx",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "cc67001f6c95994c42d5ace8d0fd07a343d6c16e078b04ad07d04c7ff5651427"
+    },
+    {
+      "path": "apps/web/src/components/vault/VaultCollectionView.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Merge held-copy selection and workspace entry; retain current sealed totals, paging, ownership and branded title.",
+      "present": true,
+      "sha256": "ceaadd846a10c732f89f22a5f0f09aaa69848031018d65643e85bfb2531a2eb8"
+    },
+    {
+      "path": "apps/web/src/components/vault/VaultDialogs.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "edce074d7a2d874e7235114997b91a49effebead6d1dcf29e874707fc0290535"
+    },
+    {
+      "path": "apps/web/src/components/vault/VaultInstanceNotesMediaCard.tsx",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "041528f03c047664bc3791f20557fb9f17c15ac91cd1055e615467da6592645a"
+    },
+    {
+      "path": "apps/web/src/components/vault/VaultInstancePricingCard.tsx",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "1366528ff3557f69a361159af9755e3629e8c2018e6ebf61bf52551f23fcd3a1"
+    },
+    {
+      "path": "apps/web/src/components/vault/VaultInstanceSectionMembershipCard.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "f5301b0b55fe5a68d3b35b1553456ebd745f9a19243faf53e22c6bb8ffe3e15b"
+    },
+    {
+      "path": "apps/web/src/components/vault/VaultInstanceSettingsCard.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "3cc8c4932ec90a340cc452b1b6876cf1378ff9727042f6f1663f5a732c93f561"
+    },
+    {
+      "path": "apps/web/src/components/vault/VaultLongPressTarget.tsx",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "ecae3ebb099727bdda685ce6be4a8fde46373cc1d40e4437558a32c719545956"
+    },
+    {
+      "path": "apps/web/src/components/vault/VaultManageCardCopiesBulkSection.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "80db04a4db76924b6d535a0fe17270c8e8de6102f1422c95668439790bbd526e"
+    },
+    {
+      "path": "apps/web/src/components/vault/VaultManageCopyCurationControls.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "3a558d823f849502c954c8e2a1a4ec28ef6ffba556617f4a980310a9bd40e4b9"
+    },
+    {
+      "path": "apps/web/src/components/vault/VaultMobileToolbar.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "fcf2c7d1796b90b952683e65b4fa87890f4a545c3d5ea1a0fa511641e630319d"
+    },
+    {
+      "path": "apps/web/src/components/vault/VaultMobileViews.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Reviewed shared presentation/interaction integration, retaining current accessibility and identity",
+      "present": true,
+      "sha256": "c61b135b0a46a4564c66d71b92c4213bceee9a4fc5a60ad5cd80f29fa346185b"
+    },
+    {
+      "path": "apps/web/src/components/vault/vaultInlineCopyRemoval.test.mjs",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "d4783f2fcb88ce445b2da13db074463036d6d1f0fe638aedcb19d19c37afb5b3"
+    },
+    {
+      "path": "apps/web/src/components/visualParity/CollectorRefinementFixture.tsx",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "a7aa9f4e4da02cc0433ed5e434a8c8276557d3f3ebff08c8e4f81aff6906f125"
+    },
+    {
+      "path": "apps/web/src/components/visualParity/ReleaseConvergenceScenario.tsx",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Retain current exact-copy private owner actions and integrated visual fixture wiring.",
+      "present": true,
+      "sha256": "fd5483e8e3a6d38de18603364be22ad56bdef2c8774769bd4764eac33c1f257f"
+    },
+    {
+      "path": "apps/web/src/components/visualParity/ReleaseConvergenceVaultTileFixture.tsx",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "b0aa8edb8f00be9b42eecf1d4c910a9017be422c7b1722b76dbe8fbb55cbf22b"
+    },
+    {
+      "path": "apps/web/src/components/visualParity/VisualParityScenario.tsx",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "d2bd61193555efbb3ecba49806ea7c137f2d7fd9ac6ae6ff919adc68be74adca"
+    },
+    {
+      "path": "apps/web/src/lib/baseSetPrintRunLanes.ts",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "9e5fb0a94c1a425e3f55aa37f033a37386c8cd522ad8430598cb44e86ef7abbe"
+    },
+    {
+      "path": "apps/web/src/lib/binders/rpc.ts",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "bc82ebe626738f4ddd8c61307c3f02a6b49fe93223e538cff4a552d2f41c9b79"
+    },
+    {
+      "path": "apps/web/src/lib/binders/types.ts",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "dca80f82233ee00856e0a2b8de48e2fabab1ef3e3587739b9abae94331b50a4a"
+    },
+    {
+      "path": "apps/web/src/lib/canon/resolveCardImageFieldsV1.ts",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "c687fd2b60f4134734884df0284af647d1873d71a21b29942bdf89d0dc475782"
+    },
+    {
+      "path": "apps/web/src/lib/cards/resolveCardImagePresentation.ts",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "cda474e5f62947c4dc928624dd525f24021b929750e8bd8fbe47288403fa53ca"
+    },
+    {
+      "path": "apps/web/src/lib/explore/collectorFractionQueryGuard.test.mjs",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "5d80afad7e749b1358d5409c222a30a61aaeac1d20d7d31cdeb384ae88b41ce9"
+    },
+    {
+      "path": "apps/web/src/lib/explore/getExploreRows.ts",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Retain current main discovery/search implementation, game scoping, collector-number handling and current content layout; preserved branch predates these fixes.",
+      "present": true,
+      "sha256": "97873f33573225b2e57e4aebe7dfd2aad4507375de7b86e8fc440eac410728f8"
+    },
+    {
+      "path": "apps/web/src/lib/lotLabels/getPublicLotLabel.ts",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "f31769b373d834ab333a2baedb89bc362cd0ccc4f4b732c22c125a5b85712011"
+    },
+    {
+      "path": "apps/web/src/lib/mobileParity/shellManifest.test.mjs",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "8b72fec8f61962287d09976c7ecd65321ca23d6263fbcabd6212ff5793ce99a0"
+    },
+    {
+      "path": "apps/web/src/lib/mobileParity/shellManifest.ts",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "f84d69478018bad44c32ea9a77f7788e218960e41c3dbb99fc29e436070636a6"
+    },
+    {
+      "path": "apps/web/src/lib/navigation/cardDetailNavigation.test.mjs",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "95e96aff39205ee263fc0c6c9b0560696d82bb5425375d032a6df124152f4e88"
+    },
+    {
+      "path": "apps/web/src/lib/navigation/cardDetailNavigation.ts",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "2bdfe124bc39d08b7a6c594d7dbacf79a94c2a7d1bf728b624d67d5219750836"
+    },
+    {
+      "path": "apps/web/src/lib/network/getCardStreamRows.ts",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "678beed9613c8030157ffab5bce38b3c6536d76150c0999158054a79e34a91c1"
+    },
+    {
+      "path": "apps/web/src/lib/pricing/ebaySearch.ts",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "a294055783a32f0ee2ff7575bc176bf7bb18b23e52bceec2ede9e073fa642ca0"
+    },
+    {
+      "path": "apps/web/src/lib/publicSetMasterSetStats.ts",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "7f4dea3f86fd971deef0135a85efa76c6170667f05d11a67e2c521b2cef90375"
+    },
+    {
+      "path": "apps/web/src/lib/publicSets.performance.test.mjs",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "e4413364357ee3981f7dc781799435a6aa36e4e77cd09b0cf1929ad57ea29e7c"
+    },
+    {
+      "path": "apps/web/src/lib/publicSets.ts",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "f2d10101c9414482e7f7a42dde34ffdfacb5344fe1d47cea32d47e909c594053"
+    },
+    {
+      "path": "apps/web/src/lib/vault/addReviewedCardToVault.ts",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "81cc3592c7a9a68893ea052e34f190e5d727c2b275d96c82398a706c5b51bd07"
+    },
+    {
+      "path": "apps/web/src/lib/vault/collectorMoney.ts",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "58699340331235ac0f5ab5d7db68d32ee786284dd7b1a3cba05e49a4ad4f4285"
+    },
+    {
+      "path": "apps/web/src/lib/vault/collectorWorkspaceActions.ts",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "ec5477ca5c9cb59fbe9f8aca3469df20ad7ee73b83adaf88ee4c392ced4f8fa2"
+    },
+    {
+      "path": "apps/web/src/styles/designTokens.ts",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "56ef56ad81c158da06746f424b793bbe32d59a17dd06ca5db18c00f909848a11"
+    },
+    {
+      "path": "lib/card_detail_screen.dart",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Manually integrate compact artwork, exact condition marketplace links, collection/activity and scrollable copy actions while retaining current image faces, exact printing identity and Jungle recovery.",
+      "present": true,
+      "sha256": "e23c1453919fe2a36eba3111611d20ab1912e261178d6d989f25be45ae80ca26"
+    },
+    {
+      "path": "lib/main.dart",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Manually integrate reviewed adds, saved density, intake entry and copy workspace while retaining current game/search scopes, owned sealed inventory and normal navigation.",
+      "present": true,
+      "sha256": "aacb5b03214c6e488d8e15a6aa41edbefe7cc633ffef48ff58f40e0759ba1ac8"
+    },
+    {
+      "path": "lib/main_shell.dart",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Manually integrate reviewed adds, saved density, intake entry and copy workspace while retaining current game/search scopes, owned sealed inventory and normal navigation.",
+      "present": true,
+      "sha256": "6fcd80eed7efe901a52f9aba9ee7cad7849615f7bae3c17dfa77518e8a3b135c"
+    },
+    {
+      "path": "lib/main_vault.dart",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Manually integrate reviewed adds, saved density, intake entry and copy workspace while retaining current game/search scopes, owned sealed inventory and normal navigation.",
+      "present": true,
+      "sha256": "7aaf41e4d98193e48701ec928fadb6292c1226a12ef3a3515a91e7a08ecb0bb2"
+    },
+    {
+      "path": "lib/models/binders/binder_grid_layout.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "f6e411679ca1bc462f81150b7ace80b4f525536188bb3375958d8a72e1c8161f"
+    },
+    {
+      "path": "lib/models/grookai_sale_listing.dart",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Retain current exact-copy, sealed/package identity and market-evidence distinctions; do not replace current models with older branch shapes.",
+      "present": true,
+      "sha256": "4e00e3fe206edb69d28e73898a61d04f967fcb3326b5b6d124109e80f1a115b0"
+    },
+    {
+      "path": "lib/screens/account/account_screen.dart",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "432909aae8caa6f5ccae2172b1d01936c3875bf7c04fef8ecdf5c8c380e40df9"
+    },
+    {
+      "path": "lib/screens/account/import_collection_screen.dart",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "8e92b139530624817ad0de73fb7a70edc84d1a1b35b94d80dd67aa9911c767a0"
+    },
+    {
+      "path": "lib/screens/account/submit_missing_card_screen.dart",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "840acfed6ddd1578c118fca2c1821dacddd4a48df8314fad59c1a2181f4b9b54"
+    },
+    {
+      "path": "lib/screens/binders/binder_custom_checklist_screen.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "f7cae9ce506266a5c467906cd398072cd60624451676f9060d67f8784a54a30f"
+    },
+    {
+      "path": "lib/screens/binders/binder_detail_screen.dart",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Use shared cover gallery/metadata dialog; retain main variant copy outside conflict.",
+      "present": true,
+      "sha256": "752fc590db2508a5ab1e90883ffeec6aa3fd5ce8453b9a0ab4e55610443fff89"
+    },
+    {
+      "path": "lib/screens/binders/binder_library_screen.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "08736a91046ab18f17a6688b9a415a915a18fd9d4559119c848dcec31f9168ed"
+    },
+    {
+      "path": "lib/screens/dex/grookai_dex_screen.dart",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Retain current compact presentation, required 9px spacing, current loading/refresh generations, variant labels and sealed/owner privacy behavior.",
+      "present": true,
+      "sha256": "3134755cfb498a523ff5cf34067dd202603e86621900ba10f62267e6f15ededb"
+    },
+    {
+      "path": "lib/screens/dex/grookai_dex_species_screen.dart",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Use durable review with main-selected exact printing.",
+      "present": true,
+      "sha256": "7ab9cb0c709ed8456862a9d1ef2dc4669e832894d868fd9a7bb77cabfe71be56"
+    },
+    {
+      "path": "lib/screens/grookai_objects/collector_memories_screen.dart",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "47b9aa2273aac643a559743e2564506ed6ec868b223d61f8375fe54abfb5da84"
+    },
+    {
+      "path": "lib/screens/grookai_objects/collector_memory_detail_screen.dart",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "b71595478301f21d93408db7777a5c4365d2839feba41edbafc2feb7f8c57309"
+    },
+    {
+      "path": "lib/screens/grookai_objects/for_sale_terms_screen.dart",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "c8fbefed5df245347442db8a0da458a8191f5632349d735ab1a219b4d17fb0db"
+    },
+    {
+      "path": "lib/screens/grookai_objects/grookai_objects_hub_screen.dart",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Preserve current owned-item market value, including sealed objects.",
+      "present": true,
+      "sha256": "ec225439c77d6ad55467236dbceb911a9f8e5bc045f3f261281bba03c72f3023"
+    },
+    {
+      "path": "lib/screens/grookai_objects/lot_pricing_screen.dart",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Retain sealed identity and unknown-value wording.",
+      "present": true,
+      "sha256": "1af21d40fa22b6edebfa48c49d30e0ee1a7bee47ec62b5fe414fb9a35046026c"
+    },
+    {
+      "path": "lib/screens/grookai_objects/memory_card_capture_screen.dart",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "00b739e1d66a2490da90c0f9825a07a1950893b8982107b6137d7b3a9323c8d8"
+    },
+    {
+      "path": "lib/screens/gvvi/public_gvvi_screen.dart",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Shared review preserves verified preferred printing and edition guard.",
+      "present": true,
+      "sha256": "77620794f70ed72410930a4154a9569cb9218c9e0437e8b21bd8920dc0301661"
+    },
+    {
+      "path": "lib/screens/gvvi/vendor_pricing_workspace_screen.dart",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "a5aaccafa2b0ddeea30ee404a3ba9ea224e05578c53ab08cccb360d82c6524c5"
+    },
+    {
+      "path": "lib/screens/identity_scan/identity_scan_screen.dart",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Keep current edition exception handling; shared review validates exact printing.",
+      "present": true,
+      "sha256": "5c9f25a02231ca0c4540a502e111ff1543304b21604ac32ab83e6fc8bd1f2a4f"
+    },
+    {
+      "path": "lib/screens/identity_scan/identity_scanner_ui_mapper.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "33930e9d8104c203104c1ec68b416dd548f93abe17dba3d3eea24cb473c55ffc"
+    },
+    {
+      "path": "lib/screens/intake/intake_batch_screen.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "b230b42ba1b22b99d8f73450ae4ae86552cf73f82e7529520f6597a2c364d6f4"
+    },
+    {
+      "path": "lib/screens/intake/intake_cost_review_screen.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "558b3266637e7e3b60817c062319b9bdfe2705039bb1aa89e2e5c3124034b51c"
+    },
+    {
+      "path": "lib/screens/intake/intake_crop_screen.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "2fbe125641cc7602624cdd9649111270c03173276805869b5bf25fcf3147d708"
+    },
+    {
+      "path": "lib/screens/intake/intake_home_screen.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "e8113409b46454bcf830e4a5dcb7adbec78ce0585b1cd4b62c2c11bb5da4fd46"
+    },
+    {
+      "path": "lib/screens/intake/intake_inventory_screen.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "27c8b2482a9d020067257ccd470a26659a182d565a06655ff324a68325fada36"
+    },
+    {
+      "path": "lib/screens/intake/intake_item_editor.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "295d6c51d97b9938dc8583a0606591f3490b64d57ab2507a2151a4d9d555a5be"
+    },
+    {
+      "path": "lib/screens/intake/intake_screens.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "fd2973b0074be479c3f21a5ca97d5e857a788fdfe6b6898d7c2d2c6813e6de2d"
+    },
+    {
+      "path": "lib/screens/intake/purchase_lot_editor.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "9a3576b3b478d628696c6c49171196449888d7a7111cb0138b44f7333d7fabb1"
+    },
+    {
+      "path": "lib/screens/intake/purchase_lots_screen.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "770d8a21bb0ec8efbc8121616da6933df3413f868e7d212ec2f221a238a34d59"
+    },
+    {
+      "path": "lib/screens/network/network_screen.dart",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Retain current Pulse/Following notification, privacy and game-feed integration; do not restore the older branch that removes current Pulse behavior.",
+      "present": true,
+      "sha256": "a8aca217afaff3e4c90267e7cdd69abb9a23cbcf3081b7d2dbd712c9811be65f"
+    },
+    {
+      "path": "lib/screens/printing/lot_label_print_screen.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "9fea8554c1d43148e1feee10e9485a97827a29530dfdbc45b208ff9eab21c101"
+    },
+    {
+      "path": "lib/screens/printing/p21_label_print_screen.dart",
+      "sourceDisposition": "manual_presence_review",
+      "decision": "Preserve the existing main implementation at this path; it supplies current brand, printing/navigation, owner-scoped persistence or pricing behavior. Marketplace search helper was separately reconciled for game-neutral active/sold searches.",
+      "present": true,
+      "sha256": "c608b9ba90a2cf23c0319f4d4317ed202de4f6c2e50e30e345bd847dcd298a0f"
+    },
+    {
+      "path": "lib/screens/public_collector/public_collector_screen.dart",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Retain current compact presentation, required 9px spacing, current loading/refresh generations, variant labels and sealed/owner privacy behavior.",
+      "present": true,
+      "sha256": "9debc3be40e7bfb57bdb1264e4f329bc9febf9b87a6a26b1ac10abf8a7d633aa"
+    },
+    {
+      "path": "lib/screens/scanner/scan_identify_screen.dart",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Keep edition recovery; use durable review.",
+      "present": true,
+      "sha256": "eecc7b5855db4eb74322d7de4909abe497c52db34ce9280aa3ece3d8d59df11a"
+    },
+    {
+      "path": "lib/screens/scanner_v5/scan_capture_v5_screen.dart",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Combine saved-copy action and current edition recovery.",
+      "present": true,
+      "sha256": "a77db66e9ce8296a2e4d731488f2f884c96702827d52320c7ce07082425c0916"
+    },
+    {
+      "path": "lib/screens/scanner_v5/widgets/scanner_candidate_row.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "03d6abdeb90027ba05bd914aef1312ebd53cb4449bfea924569cf5f996c2fb9b"
+    },
+    {
+      "path": "lib/screens/scanner_v5/widgets/scanner_result_sheet.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "c02909f70185908150d12629494e77a9b7d27d869e880f4dba30eceae4c33171"
+    },
+    {
+      "path": "lib/screens/scanner_v5/widgets/scanner_viewfinder_chrome.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "230cfb338d24691bbb75d16be720d1a708ce607d69c01ccee4a3c10b9d577d5d"
+    },
+    {
+      "path": "lib/screens/sets/public_set_detail_screen.dart",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Retain current large-text price footer fix.",
+      "present": true,
+      "sha256": "9b69b074f8670871f5bb582ab9e09c0d09691d5c7fde6e6c728ab588b8a97211"
+    },
+    {
+      "path": "lib/screens/sets/public_sets_screen.dart",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Retain current compact presentation, required 9px spacing, current loading/refresh generations, variant labels and sealed/owner privacy behavior.",
+      "present": true,
+      "sha256": "c9b26ffc15faaf1232c34006dca6d49dbb0459bceab5f8f9e95ae7a0d8ebc3e0"
+    },
+    {
+      "path": "lib/screens/vault/collection_projects_screen.dart",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "7b49b38b70276f45f2d1cc3b952e8960d75f09b0cf5aa25b4ba9bcf05204ce75"
+    },
+    {
+      "path": "lib/screens/vault/collector_workspace_screen.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "0d85a7b829c8f869c131d49cedd2b5d38471fb2490818dc66e6632c52709dd44"
+    },
+    {
+      "path": "lib/screens/vault/vault_gvvi_screen.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "cc2cef771885282e866445d41d1f5163d05fb9b4e23a278ac3327fb53a988c95"
+    },
+    {
+      "path": "lib/screens/vault/vault_manage_card_screen.dart",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Manually integrate compact artwork, exact condition marketplace links, collection/activity and scrollable copy actions while retaining current image faces, exact printing identity and Jungle recovery.",
+      "present": true,
+      "sha256": "6720dcdab8254b7aa58d9bc52cda0c34ad1d09b314cebb64d09762b851fe5df5"
+    },
+    {
+      "path": "lib/services/binders/binder_grid_preferences.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "8d1515503085e1b900f62dd0385bac72983367de282bf87413c8beb96709a2e1"
+    },
+    {
+      "path": "lib/services/binders/binder_library_preferences.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "19c7ce8077065aa6c44c946c1694f196e39fa0ebd7fcdfffac20463783866921"
+    },
+    {
+      "path": "lib/services/diagnostics/grookai_crash_reporting_service.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "5263b6de7d5e326ab719727a6a8a0625ff41a605fe105f1a71169ede4541a690"
+    },
+    {
+      "path": "lib/services/grookai_dex/grookai_dex_service.dart",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "dc4d023bccb60c6bfb19713981b9fb61ce856843ee24be10de547d2f5a1f4acb"
+    },
+    {
+      "path": "lib/services/grookai_objects/grookai_object_export_service.dart",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Preserve original brand casing in error text.",
+      "present": true,
+      "sha256": "f7958f0293714f16fab1b6b40e303dc60a4f57d10e4e4b7c046b17af017749d6"
+    },
+    {
+      "path": "lib/services/grookai_objects/memory_card_print_service.dart",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "90796ede1c736bf41962232302f997f26ed9ef059d07bb80d67dc06e1e2a51d0"
+    },
+    {
+      "path": "lib/services/identity/image_presentation.dart",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "3c643764466d564c61baf910ffc3b1927c1c1a03cdcaa00451c1c53147777db8"
+    },
+    {
+      "path": "lib/services/identity/variant_origin_public_copy_generated.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "92d4720fd16b1f23567aff083b8360431be5e8c3bcc3a162663f0c9a50e1e0cf"
+    },
+    {
+      "path": "lib/services/intake/intake_controller.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "8c7af511d3087f8f8e45a17163a920ed9a8c680522d9f8f4bdeefc6582855515"
+    },
+    {
+      "path": "lib/services/intake/intake_cost_allocation.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "f325b1959448c01cd0e18e61d291fa86ba5e0a8109519a9edc670e88924b7927"
+    },
+    {
+      "path": "lib/services/intake/intake_draft_store.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "159a70404d1bedbb61030ef3031c9e98f6e228ec7503f587efb72082639fcd33"
+    },
+    {
+      "path": "lib/services/intake/intake_models.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "bfda6e59626d37514c586d2e52a3ff2e1e00f81498691b110bc6e9196753ef4e"
+    },
+    {
+      "path": "lib/services/intake/intake_service.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "61c7bf2b56a9c5abfe7bf5f01f9b14be56f15ad24100bd295f7cefc85a2ef884"
+    },
+    {
+      "path": "lib/services/network/network_stream_service.dart",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "b7afead815bf3f4f4c01a32ca73ec777c75477243eea8567cbb958599fd54cee"
+    },
+    {
+      "path": "lib/services/pricing/card_personal_sales_service.dart",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "11496632edda5885e5b1d54d94ff10e3ebce96cfa884a38a5a08464b9cd1cd55"
+    },
+    {
+      "path": "lib/services/pricing/card_sold_comps_service.dart",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "b57a9b504120afd92cbd7508e2cc62b7cd97aef52580b616f012655738818e29"
+    },
+    {
+      "path": "lib/services/pricing/ebay_sold_search_uri.dart",
+      "sourceDisposition": "manual_presence_review",
+      "decision": "Preserve the existing main implementation at this path; it supplies current brand, printing/navigation, owner-scoped persistence or pricing behavior. Marketplace search helper was separately reconciled for game-neutral active/sold searches.",
+      "present": true,
+      "sha256": "8e23135647b13035552e8e3de4dde1c32a37a4bd517414769fafe098863913ea"
+    },
+    {
+      "path": "lib/services/printing/lot_p21_label.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "f6e15c8a31bc85c65c2d2d526858f03c44d6c0b40d5f33bfbcf46fab296f3625"
+    },
+    {
+      "path": "lib/services/printing/p21_label.dart",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "718c12eb14976679adc2eb276bf8e87996c1adfb5a626920473cfd6b2b33661a"
+    },
+    {
+      "path": "lib/services/printing/p21_printer_service.dart",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "accde461067484b04d0f0c821bc05c9efd111cc35b6caf3ee188b422bc95e328"
+    },
+    {
+      "path": "lib/services/public/card_surface_pricing_service.dart",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Preserve eBay active-listing source distinction.",
+      "present": true,
+      "sha256": "7bda1ee43d3fa3008d5ea41ed73e962863dc1fbef03006061407552f4cf037d6"
+    },
+    {
+      "path": "lib/services/public/public_sets_service.dart",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Retain current catalog RPC/cache/performance behavior.",
+      "present": true,
+      "sha256": "0795b05935208a68c51ffbed78b818bdab609d57253dff8177abb266a7af6ac3"
+    },
+    {
+      "path": "lib/services/scanner_v5/scanner_camera_session.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "c49ba27555b25ee6a4a01ca20d8be1a24daeae2ac56ebc9585096932942a5754"
+    },
+    {
+      "path": "lib/services/scanner_v5/scanner_session_log.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "b1ddce8836cb7a385c7733dcd2e101a19d52f5b995a2b12435b86245c19d0a4a"
+    },
+    {
+      "path": "lib/services/scanner_v5/scanner_upload_preparation.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "c5a2c74e01475c6312126244cd26e808e28f4b0b064d6d74aada376202458023"
+    },
+    {
+      "path": "lib/services/scanner_v5/scanner_v5_identity_service.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "95df261d872cb535d0285440fa52db66b7b6ecd20d4cdde0396385631c718879"
+    },
+    {
+      "path": "lib/services/scanner_v5/scanner_vault_add.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "db1d00e4688eef4d5810d03aa339fa784fc34a4e399b3c5d9682deedd32bae54"
+    },
+    {
+      "path": "lib/services/search/local_recent_searches.dart",
+      "sourceDisposition": "manual_presence_review",
+      "decision": "Preserve the existing main implementation at this path; it supplies current brand, printing/navigation, owner-scoped persistence or pricing behavior. Marketplace search helper was separately reconciled for game-neutral active/sold searches.",
+      "present": true,
+      "sha256": "5c34a27f7b3a8af476dbf8d1e1ad5342ef5d207f47e7ba4fd465b814d6896231"
+    },
+    {
+      "path": "lib/services/vault/vault_card_service.dart",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "f8af184070f3bba73117ccfad418f2e0e600d3a618fd8cc675a835a39a26b98e"
+    },
+    {
+      "path": "lib/services/vault/vault_grid_preferences.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "a1bf4a1d4c07994c79373fa3f8a0e8bbd056509ed05213b66986e345c0095aa2"
+    },
+    {
+      "path": "lib/services/vault/vault_gvvi_service.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "036c90a863860a343191f79be2d020b45aa4881a7060f11045eee54637eebfab"
+    },
+    {
+      "path": "lib/theme/gv_grid_constants.dart",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Both sides use required 9px gaps; retain shared documentation.",
+      "present": true,
+      "sha256": "d244eb35f83fd69c11e7dbdbe6f9703591308c1d42ae59d27c04ea0d97a06ecf"
+    },
+    {
+      "path": "lib/theme/gv_tokens.dart",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Retain selected brightness and readable platform chrome with bundled Roboto.",
+      "present": true,
+      "sha256": "d28c81f4ae9eda54efa85618daff911ada365a9ca4ede66e69da01d3c722a54b"
+    },
+    {
+      "path": "lib/theme/gv_typography.dart",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "4f7a49f68e1ebf823b8119e0cf3d96b430f3e41d3218479460efa8e41d2eea51"
+    },
+    {
+      "path": "lib/utils/pokemon_sprite_url.dart",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Retain governed self-hosted sprite delivery.",
+      "present": true,
+      "sha256": "790dcb8a9752cb63fccc073c48eec80f90aaf3f1c9f32e4927802b4826cf1cac"
+    },
+    {
+      "path": "lib/widgets/app_shell_metrics.dart",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "f9627f65a7fd18d0760934ffa1b96b3b4a079fb87c85021e0bda4d10daf7ee49"
+    },
+    {
+      "path": "lib/widgets/binders/binder_cover_picker_sheet.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "aec72fe64efff57a479a078d8d0d655cb311a3cb0a1e66598a5a43e515f0ae64"
+    },
+    {
+      "path": "lib/widgets/binders/binder_grid_size_sheet.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "b3c0829ec2242a94e89ee4a791cddfb2218cb44832145c7effe046e20877bcd2"
+    },
+    {
+      "path": "lib/widgets/binders/binder_metadata_dialog.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "c9d78538cadb7dce0c6f7b10ac886f8f16fe5975d818f344f182535c2e20ed25"
+    },
+    {
+      "path": "lib/widgets/binders/binder_move_to_pocket_sheet.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "0bae5ffa2d8c05afe28edbe69fbb2427638b2bcaaf623e7e6dece9db2a747553"
+    },
+    {
+      "path": "lib/widgets/binders/binder_page_arrangement.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "03e3c59d18ed51e46168ac51c09825f911c0c8d4e5d59b619f77b0b4c20ec279"
+    },
+    {
+      "path": "lib/widgets/binders/binder_page_image.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "4ecd32c9b5d37e9e2b972eac3e782e9ab24cddc51c9e9f2c2dc0b7dce06dd95e"
+    },
+    {
+      "path": "lib/widgets/binders/binder_page_image_sheet.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "6a1880f8ebdb08969f3e5a34f2f66f6332f163f25eacd955727df80d5c397bdc"
+    },
+    {
+      "path": "lib/widgets/binders/binder_page_picker_sheet.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "810a2ca53af7530cc734cbc70f810d22525e162187831c0a35d4cee3cd79c14e"
+    },
+    {
+      "path": "lib/widgets/binders/binder_pocket_sheet.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "9786b3ffd5c31428c4d5b0910989f3f8cba2d215be948ccbbbb6df69f0b88eef"
+    },
+    {
+      "path": "lib/widgets/binders/binder_slot_choice_sheet.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "6cea82adf53888cb57bd1df591b00c5af37ea4f66662d2eba5a17f6b4c9c4ce7"
+    },
+    {
+      "path": "lib/widgets/binders/binder_widgets.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "e998e4735ef4919d4789b2b6f179e270161425012cf8f025a8508a9b6f5510b8"
+    },
+    {
+      "path": "lib/widgets/card_view_mode.dart",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "a370d3b5f1555bfbcbee98425001af7a982a75a76624cf61b1447bf5838ffdc4"
+    },
+    {
+      "path": "lib/widgets/cards/card_comments_sheet.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "404ea8afe9de38cc172e0a474b7e08c8313b2e7acba09e813ac2daf395fc11a0"
+    },
+    {
+      "path": "lib/widgets/cards/card_printing_picker.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "7b25cc4aef0bc788c9e4e05823401fb1a649a504afc0367bad8b37f716149b49"
+    },
+    {
+      "path": "lib/widgets/cards/collector_card_context.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "2093146bebceda939ad61f876a881ea4d21ef92fb4a018685dda69b94efb4536"
+    },
+    {
+      "path": "lib/widgets/contact_owner_button.dart",
+      "sourceDisposition": "three_way_merged_requires_review",
+      "decision": "three_way_merged_requires_review",
+      "present": true,
+      "sha256": "93db14b7094b21eb1ce30a0cc81777d4a00604f1b1da0906a14535a081b64800"
+    },
+    {
+      "path": "lib/widgets/grookai_objects/grookai_object_atoms.dart",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Preserve current exports dependencies and brand casing.",
+      "present": true,
+      "sha256": "d9722ae59d8a33f570094ac85ad7b67dfd3ffac6a3f47e3e4aace2579fdd1d5b"
+    },
+    {
+      "path": "lib/widgets/grookai_objects/grookai_object_destination_export_renderer.dart",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Preserve type guard so non-lot backs use correct renderer.",
+      "present": true,
+      "sha256": "acbf14d50cfe0b6c6f303c160aeaad876fd84782ea149e1e24f7876f08fb1dca"
+    },
+    {
+      "path": "lib/widgets/grookai_objects/grookai_object_models.dart",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Retain current exact-copy, sealed/package identity and market-evidence distinctions; do not replace current models with older branch shapes.",
+      "present": true,
+      "sha256": "c0dbd40c85500b30b726b40390aaae9173b013bb494364f46195248b8f3749c8"
+    },
+    {
+      "path": "lib/widgets/grookai_objects/grookai_object_share_destination_sheet.dart",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "fff268236ba45f91179331dd92b805ba7e96b4d8660564a8459e413495227269"
+    },
+    {
+      "path": "lib/widgets/grookai_objects/grookai_object_skin.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "d8744e413b626789724ade53d1c1b7db6bf88e69aa97227eca6bc4a92f35144d"
+    },
+    {
+      "path": "lib/widgets/grookai_objects/lot_card_widgets.dart",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Retain unknown-value formatting instead of inventing zero prices.",
+      "present": true,
+      "sha256": "b466a04f047ce1c4fba55592f73b9cf24a6ca22c671c2257185914548b0061b2"
+    },
+    {
+      "path": "lib/widgets/network/network_interaction_card.dart",
+      "sourceDisposition": "already_present",
+      "decision": "already_present",
+      "present": true,
+      "sha256": "1c51b89e3dd80a517b8d73a867fbdb5916a0accdfc6260e0d9e751b487ce2734"
+    },
+    {
+      "path": "lib/widgets/onboarding/onboarding_ladder_sheet.dart",
+      "sourceDisposition": "manual_conflict_review",
+      "decision": "Use shared durable review and verified printing guard.",
+      "present": true,
+      "sha256": "71fa5390c845aee73d1fcaaba6dd82d933893ebe631e35227ce3bd98f7647996"
+    },
+    {
+      "path": "lib/widgets/pricing/card_market_history_sheet.dart",
+      "sourceDisposition": "manual_presence_review",
+      "decision": "Preserve the existing main implementation at this path; it supplies current brand, printing/navigation, owner-scoped persistence or pricing behavior. Marketplace search helper was separately reconciled for game-neutral active/sold searches.",
+      "present": true,
+      "sha256": "687ec1c3057bdd0fbfe93c6a79d18c1d22a367c8817715ef16320064afb207ef"
+    },
+    {
+      "path": "lib/widgets/pricing/card_marketplace_sheet.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "5cc0693962814e8d3e6ea1ef33afe7e5efec32441bc71662de35ff8ec4d7b31d"
+    },
+    {
+      "path": "lib/widgets/pricing/ebay_listing_links.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "fd5743180ec2b0ba4438ef42c4a48491c19a089b62c457a0e1bccf0d678794bc"
+    },
+    {
+      "path": "lib/widgets/vault/vault_add_review_sheet.dart",
+      "sourceDisposition": "unique_client_change",
+      "decision": "unique_client_change",
+      "present": true,
+      "sha256": "53758c8e2d385f29555915eb5d21f9acdde1436707c8cc6071aba95b44fa20a3"
+    }
+  ]
+}

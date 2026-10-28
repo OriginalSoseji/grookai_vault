@@ -38,7 +38,7 @@ const String _kDefaultRepresentativeNote =
 const String _kDefaultMissingVariantVisualNote =
     'This is the card, but not the correct variant image.';
 const String _kDefaultBlockedNote =
-    'A possible image exists, but it needs verification before Grookai can use it.';
+    'A possible image exists, but it needs verification before grookai can use it.';
 
 String? _normalizeTextOrNull(String? value) {
   final normalized = (value ?? '').trim();
