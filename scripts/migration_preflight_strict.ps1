@@ -21,6 +21,7 @@ param(
 
   [switch]$AppReviewedIntakeBaselineV1,
   [switch]$CollectorReviewedIntakeReleaseV1,
+  [switch]$CollectorReviewedIntakeDateReleaseV1,
   [switch]$AppIntakeReconciliationV1,
   [switch]$OperationsAgentScheduleHealthV1,
   [switch]$ReconciledReplayAudit,
@@ -98,6 +99,16 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($CollectorReviewedIntakeDateReleaseV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','CollectorReviewedIntakeDateReleaseV1','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested -join ',') -ne '20261028020000,20261028050700' -or [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Reviewed intake date release permits only exact 20261028020000 and 20261028050700 with a new bounded private AuditOutDir; no combined scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_reviewed_intake_date_release_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
 
 if ($CollectorReviewedIntakeReleaseV1) {
   $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)

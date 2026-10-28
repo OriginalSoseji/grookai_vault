@@ -1,5 +1,32 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Reviewed intake acquisition-date release — October 28, 2026
+
+`-CollectorReviewedIntakeDateReleaseV1` is a separate exact 477-to479 scope,
+limited to `AuditLinkedSchema` or `PrePush` and pending IDs
+`20261028020000,20261028050700`. Neither older intake gate is widened.
+Both frozen migrations and all 477 historical files retain their raw hashes.
+The earlier 478 candidate is preserved; the forward repair sets the canonical
+acquisition timestamp used by existing profitability readers.
+
+The new gate requires clean committed source containing current main, the
+original qualification receipts, a genuine full 479 CLI replay with the same
+declared historical prerequisite, retained 478-to479 upgrade and no-op push,
+14 actual shared-Edge/Auth/Storage/concurrency/date tests, 39 exact governed
+fingerprints, all 1,346 security objects equal and zero full public-schema
+differences between fresh and retained targets. It rereads production at477
+against the frozen baseline and the qualified target against both live labs.
+The manifest also pins the executed qualification sources and private receipts.
+Raw SQL/function text is never normalized. Only the established three-table
+column-order handling applies to the production-baseline comparison.
+
+Use a new immediate child of the protected private recovery root named
+`reviewed-intake-date-release-gate-*`. Combined scopes, target overrides,
+partial/extra pending IDs and changed proofs are rejected before any connection.
+No populated lab may be reset. Official CLI dry-run/apply, independent479
+readback, compatible Edge deployment and disposable-account canary remain
+required after committed qualification. Writes remain off until canary proof.
+
 ## Reviewed collector intake release — October 27, 2026 (Denver)
 
 `-CollectorReviewedIntakeReleaseV1` permits only `AuditLinkedSchema` or `PrePush`

@@ -1,0 +1,15 @@
+{
+  "at": "2026-10-28T05:47:45.571Z",
+  "pass": true,
+  "sourceLedger": 478,
+  "targetLedger": 479,
+  "officialCliDryRunApplyNoop": true,
+  "realAuthAndStorageBeforeAfter": true,
+  "legacyCopiesExact": true,
+  "otherRetainedBusinessFieldsExact": true,
+  "onlyExpectedDateAndAutomaticTimestampCorrections": true,
+  "correctedCopies": 2,
+  "historicalProfitabilityVerified": true,
+  "writesRemainOff": true,
+  "productionWrites": 0
+}

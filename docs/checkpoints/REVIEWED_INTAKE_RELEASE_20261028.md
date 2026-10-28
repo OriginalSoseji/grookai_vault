@@ -95,3 +95,35 @@ CLI's legacy-named JSON field directly. They now use the existing loopback-only
 `localSupabaseStatusSecret` adapter. Frozen migration bytes and all shipped
 runtime source hashes remain unchanged; this correction is subject to normal
 hooks and a new exact-commit qualification before merge/apply.
+
+## Forward acquisition-date correction
+
+PR825 review correctly identified that the initial writer left canonical
+`acquisition_date` at its save-time default. Existing profitability reports use
+that field, so a historical acquisition appeared in the wrong reporting period.
+Auto-merge was disabled. Frozen478 was not edited.
+
+Forward migration `20261028050700_collector_intake_acquisition_date_v1.sql` is
+frozen at SHA256 `98138e6344e1a6c54b46b8d705b50ac5feac4303e96f33a0603440f4a4d9b7c0`.
+It validates paired captured UTC instant/offset metadata against the reviewed
+civil day, preserves the UTC convention for older snapshots, populates the
+canonical timestamp and repairs only eligible committed reviewed-intake defaults.
+Explicit different dates and unrelated copies remain unchanged.
+
+The rollback proof reproduces and corrects the original period error, preserves
+explicit dates, rejects malformed metadata atomically, repeats safely and rejects
+helper definition/grant/overload drift. A new genuine official CLI replay of all
+479 files and the declared647-pair prerequisite passes. The retained478 lab was
+advanced through479 by official CLI: two legitimate reviewed defaults corrected,
+original legacy copies exact, real Auth/private image bytes preserved and
+historical profitability verified. Fresh and retained479 have zero complete
+public-schema differences, 1,346 security objects equal and39 governed fingerprints.
+Fourteen actual Edge/Auth/Storage/concurrency/date journeys pass, including
+Denver, Kiritimati, Kolkata and a DST midnight transition. Both labs end paused.
+
+The distinct `CollectorReviewedIntakeDateReleaseV1` gate binds all479 raw files,
+unchanged original runtime,19 private receipts and executed qualification sources.
+Three rejection suites pass. The old478 gate stays exact and cannot authorize479.
+Normal hooks, committed qualification, merge, CLI apply, independent production
+readback, deployment and disposable-account canary are still pending here.
+Production remains477; no production writes occurred during these proofs.

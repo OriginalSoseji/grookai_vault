@@ -1,5 +1,26 @@
 # Grookai Operator Playbook V1
 
+## Reviewed intake date-correct release — October 28, 2026
+
+The release now requires both frozen020000 and forward050700 candidates.
+The earlier478-only instructions below are historical and cannot qualify479.
+Use `-CollectorReviewedIntakeDateReleaseV1 -ExpectedLocalOnlyIds
+20261028020000,20261028050700` for `AuditLinkedSchema` and `PrePush`, with a new
+immediate child of `C:/gv_intake_recovery_private_20261027` named
+`reviewed-intake-date-release-gate-*`. Source must be clean and committed.
+See the date release manifest and latest reviewed-intake checkpoint.
+
+The date candidate SHA256 is
+`98138e6344e1a6c54b46b8d705b50ac5feac4303e96f33a0603440f4a4d9b7c0`.
+All479 source files, genuine full replay, retained478-to479 upgrade/no-op,
+14 real runtime cases, 39 governed objects, full public schema and1,346 security
+objects are pinned. Both populated479 labs remain preserved and paused.
+Production remains477 until official dry-run lists exactly these two migrations
+and a qualified merged commit is applied. Then independently verify479 against
+the pinned target before compatible Edge deployment and disposable-account
+canary. Keep global writes disabled through qualification. Preserve the founder's
+account; use revision-checked audited controls and restore pause on any failure.
+
 ## Reviewed intake qualified candidate — October 27, 2026 (Denver)
 
 The frozen feature candidate is `20261028020000`, SHA256

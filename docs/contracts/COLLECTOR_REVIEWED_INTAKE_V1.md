@@ -68,6 +68,16 @@ not be deployed. New SQL must be forward-only and separately qualified.
 
 ## Costs and sales
 
+- The collector's reviewed acquisition day must populate both intake `acquired_on`
+  and canonical `acquisition_date`, which existing profitability readers use.
+  Native/web capture the selected local day, its UTC instant and historical UTC
+  offset together; retries and recovered drafts preserve that capture. Validate
+  paired metadata and civil-day consistency, including timezone/DST boundaries.
+  Older snapshots without metadata use an explicit UTC calendar convention.
+- The frozen forward repair changes only committed, owner-matched reviewed-intake
+  copies still carrying null or their creation-time default. Explicit different
+  acquisition timestamps and unrelated inventory remain untouched.
+
 - Money uses integer minor units or validated finite two-decimal amounts within
   explicit bounds. Unknown basis stays unknown. No implicit FX conversion or
   invented valuation is introduced.
