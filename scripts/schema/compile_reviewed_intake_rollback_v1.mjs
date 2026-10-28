@@ -1,0 +1,41 @@
+// Compile only in our frozen local reference, under an outer rollback. No reset,
+// ledger entry, production connection or persistent candidate apply is permitted.
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {createHash} from 'node:crypto';
+import {execFileSync,spawnSync} from 'node:child_process';
+import {isDeepStrictEqual} from 'node:util';
+import {splitSealedMigrationStatementsV1 as split} from '../../backend/pricing/cross_tcg_sealed_product_schema_apply_v1.mjs';
+
+const root=path.resolve(fileURLToPath(new URL('../..',import.meta.url)));
+assert.equal(root.replaceAll('\\','/'),'C:/gv_intake_release_20261028');
+const privateRoot='C:/gv_intake_recovery_private_20261027/reviewed-intake-release-v1';
+const suffix=process.argv[2];assert.match(suffix??'',/^attempt-\d+$/);
+const project='intake-ready-replay-476-v5-20261027',container='supabase_db_'+project;
+const source=fs.readFileSync(root+'/supabase/migrations/20261028020000_collector_reviewed_intake_v1.sql','utf8');
+const statements=split(source);
+const strip=s=>s.replace(/^(?:\s*--[^\n]*(?:\n|$))*/,'').trim();
+assert.equal(strip(statements[0]).toLowerCase(),'begin');assert.equal(strip(statements.at(-1)).toLowerCase(),'commit');
+const inner=statements.slice(1,-1);
+for(const statement of inner)assert.doesNotMatch(strip(statement),/^(?:begin|commit|rollback|start\s+transaction)\b/i,'Unexpected top-level transaction control');
+const info=JSON.parse(execFileSync('docker',['inspect',container],{encoding:'utf8'}))[0];
+assert.equal(info.State.Running,true);assert.equal(info.Image,'sha256:4c39816ce8d9303a3aba1161c842929c73a40c7109a9ef1b644582478e31832e');
+assert.deepEqual(Object.keys(info.NetworkSettings.Networks),[project]);
+assert.equal(JSON.parse(execFileSync('docker',['network','inspect',project],{encoding:'utf8'}))[0].Internal,true);
+const sql=q=>execFileSync('docker',['exec','-i',container,'psql','-X','-qAt','-U','postgres','-d','postgres','-v','ON_ERROR_STOP=1'],{input:q,encoding:'utf8',timeout:120000,maxBuffer:64_000_000});
+assert.equal(sql("select (select count(*) from auth.users)::text||':'||(select count(*) from vault_item_instances)::text||':'||current_setting('max_worker_processes')").trim(),'0:0:0');
+const metadata=fs.readFileSync(root+'/scripts/schema/reviewed_intake_public_catalog_v1.sql','utf8');
+const before=JSON.parse(sql(metadata));assert.equal(before.LEDGER.length,477);
+const countBefore=sql("select (select count(*) from card_prints)::text||':'||(select count(*) from sets)::text||':'||(select count(*) from card_print_identity_aliases)::text").trim();
+const payload='begin;\n'+inner.join(';\n')+';\nselect json_build_object(\'request_fn\',to_regprocedure(\'public.vault_intake_request_v1(uuid,text,jsonb)\') is not null,\'writes_enabled\',(select writes_enabled from public.collector_intake_controls_v1 where singleton));\nrollback;';
+const result=spawnSync('docker',['exec','-i',container,'psql','-X','-qAt','-U','postgres','-d','postgres','-v','ON_ERROR_STOP=1'],{input:payload,encoding:'utf8',timeout:120000,maxBuffer:32_000_000});
+fs.writeFileSync(privateRoot+'/compile-'+suffix+'.log',(result.stdout??'')+(result.stderr??''),{flag:'wx'});
+assert.ifError(result.error);
+const after=JSON.parse(sql(metadata));assert.ok(isDeepStrictEqual(after,before),'Rollback changed catalog/security/ledger');
+assert.equal(sql("select (select count(*) from card_prints)::text||':'||(select count(*) from sets)::text||':'||(select count(*) from card_print_identity_aliases)::text").trim(),countBefore);
+assert.equal(sql("select (select count(*) from auth.users)::text||':'||(select count(*) from vault_item_instances)::text||':'||current_setting('max_worker_processes')").trim(),'0:0:0');
+const report={at:new Date().toISOString(),pass:result.status===0,sourceSha256:createHash('sha256').update(source).digest('hex'),scope:'local_rollback_compile_only',persistentApply:false,ledgerVersions:477,catalogAndSecurityUnchanged:true,existingCountsUnchanged:true,remoteWrites:0};
+fs.writeFileSync(privateRoot+'/compile-'+suffix+'.json',JSON.stringify(report,null,2)+'\n',{flag:'wx'});
+console.log(JSON.stringify(report));assert.equal(result.status,0,'Draft compile failed; inspect preserved private log');

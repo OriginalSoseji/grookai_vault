@@ -1,0 +1,11 @@
+{
+  "at": "2026-10-28T02:08:55.486Z",
+  "pass": true,
+  "sourceSha256": "3024df735c10f77980e9d5c32592421574ee32c1fce4bdcfed239695d950d215",
+  "scope": "local_rollback_compile_only",
+  "persistentApply": false,
+  "ledgerVersions": 477,
+  "catalogAndSecurityUnchanged": true,
+  "existingCountsUnchanged": true,
+  "remoteWrites": 0
+}

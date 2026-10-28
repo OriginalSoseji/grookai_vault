@@ -1,0 +1,12 @@
+{
+  "at": "2026-10-28T02:31:54.208Z",
+  "pass": true,
+  "sourceSha256": "af32c954422b54ff26155fe1b962a19c377fc08473fb2d6598e423fd87d883a5",
+  "scope": "dedicated_local_rollback_business_cases",
+  "candidatePersistentlyApplied": false,
+  "catalogSecurityAndLedgerUnchanged": true,
+  "authUsersAndCopiesAfter": 0,
+  "crossConnectionDurabilityProven": false,
+  "concurrencyProven": false,
+  "remoteWrites": 0
+}

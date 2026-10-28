@@ -1,5 +1,57 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Reviewed collector intake release — October 27, 2026 (Denver)
+
+`-CollectorReviewedIntakeReleaseV1` permits only `AuditLinkedSchema` or `PrePush`
+for exact pending migration `20261028020000` against canonical production at
+477 versions. It rejects combined scopes, target overrides, dirty source,
+changed historical/candidate/runtime bytes and missing or changed proof files.
+This separate additive feature scope does not widen either prior intake flag.
+
+The bounded release requires the frozen candidate's genuine full 478 CLI replay
+with the declared 647-pair historical prerequisite, retained populated 477-to478
+upgrade, no-op pushes, nine real shared-Edge/Auth/Storage/concurrency checks,
+failure persistence across connections, exact 38-object fingerprints and
+default-off controls. A read-only linked snapshot must match the frozen 477
+baseline; fresh and retained targets must match in complete public schema and
+all 1,345 security objects. Raw function text remains significant. Inspector
+result rows with tied sort keys may be compared as complete row multisets;
+individual fields, nested arrays, duplicate rows and definition bytes are not
+normalized. Existing three-table column-order handling applies only when
+comparing the historical production baseline.
+
+No populated proof lab may be reset. Generated differences are diagnostic and
+must never be executed. The ordinary empty-shadow failure remains failed
+evidence. Normal hooks, exact committed qualification, official CLI dry-run and
+apply, independent readback, compatible Edge deployment and disposable-account
+canary remain separate requirements. Schema release starts with writes off;
+activation is an audited revision-checked control change after canary proof.
+
+## Reviewed intake baseline audit — October 28
+
+`-AppReviewedIntakeBaselineV1` permits read-only `AuditLinkedSchema` only at
+the exact merged PR 824 baseline: 477 source/applied versions, merged commit
+`aae9893f828b9d81c136ea154a0086e1bf0072d7`, no candidate SQL, no combined scopes
+or target overrides, and a new protected private output directory. It cannot
+authorize PrePush or any production apply.
+
+This carries forward the unchanged genuine reset and explicit historical data
+prerequisite proof, then rereads the frozen isolated 477 lab and fresh canonical
+production. It requires all historical SQL hashes, exact ledgers, zero remaining
+public-schema SQL and all 1,331 security objects equal. Raw function text remains
+significant; only the existing three-table column-order handling applies. The
+lab must still have zero Auth users/copies, disabled workers and 647 synthetic
+aliases on its private internal network. The metadata query itself is hash
+pinned and executes in a repeatable-read read-only transaction. No generated
+diff is executed, and no populated lab is reset.
+
+The ordinary empty-shadow failure remains failed evidence. This explicit scope
+establishes only the starting baseline for new reviewed-intake work. Any new
+feature migration requires separate exact-candidate replay, retained-data
+upgrade, real RPC/auth/privacy/failure-persistence proof and committed release
+qualification. The earlier reconciliation scope remains bound to its original
+476-to477 release and must not be widened or reused for the feature.
+
 ## App intake baseline reconciliation qualification — October 27
 
 `-AppIntakeReconciliationV1` permits only `AuditLinkedSchema` or `PrePush` for

@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-28T03:22:32.747Z",
+  "pass": true,
+  "tests": [
+    "real_auth_rejects_missing_and_invalid_tokens",
+    "default_off_failure_durable_in_independent_connection",
+    "verified_actor_ignores_spoof_and_real_roles_deny_private_access",
+    "real_private_storage_owner_bytes_peer_anon_mime_boundaries",
+    "four_concurrent_partial_commits_and_new_session_retry_share_exact_ids",
+    "committed_failure_record_survives_atomic_copy_rollback",
+    "four_concurrent_sales_one_disposition_and_conflicting_reuse_rejected",
+    "competing_stale_allocations_cannot_spend_reserve_twice",
+    "audited_pause_stops_writes_and_preserves_owner_recovery_reads"
+  ],
+  "sourceSha256": "f18d25777048114b5619af1d57eb3fa985c03f7453ef2ff936c340ea2a7c11a5",
+  "actualShippedHandler": true,
+  "actualSharedAuth": true,
+  "realGoTrueAndStorage": true,
+  "crossConnectionDurability": true,
+  "concurrency": true,
+  "productionWrites": 0,
+  "writesOffAfter": true
+}

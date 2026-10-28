@@ -9,7 +9,8 @@ import {validateInvocation,validateInventory} from '../../scripts/schema/verify_
 const root=fileURLToPath(new URL('../..',import.meta.url));
 const manifest=JSON.parse(fs.readFileSync(path.join(root,'docs/audits/intake_recovery_20261027/qualification-manifest.json')));
 const candidate=manifest.candidate;
-const files=()=>Object.fromEntries(fs.readdirSync(path.join(root,'supabase/migrations')).filter(n=>n.endsWith('.sql')).map(n=>[n,fs.readFileSync(path.join(root,'supabase/migrations',n))]));
+// This historical scope remains 477 even after later feature migrations exist.
+const files=()=>Object.fromEntries([...Object.keys(manifest.baselineSources),candidate].map(n=>[n,fs.readFileSync(path.join(root,'supabase/migrations',n))]));
 test('bounded invocation permits only the two phases and a new top-level private destination',()=>{
   assert.equal(validateInvocation(['AuditLinkedSchema','--out-dir=C:/gv_intake_recovery_private_20261027/strict-unit']).phase,'AuditLinkedSchema');
   assert.equal(validateInvocation(['PrePush','--out-dir=C:/gv_intake_recovery_private_20261027/strict-unit']).phase,'PrePush');
@@ -17,6 +18,11 @@ test('bounded invocation permits only the two phases and a new top-level private
 });
 test('exact inventory passes and keeps every original migration byte',()=>{
   const ids=validateInventory(files(),manifest.baselineSources);assert.equal(ids.length,477);assert.equal(ids.at(-1),'20261027230000');
+});
+
+test('the historical reconciliation gate rejects the reviewed intake feature',()=>{
+  const future='20261028020000_collector_reviewed_intake_v1.sql';
+  assert.throws(()=>validateInventory({...files(),[future]:fs.readFileSync(path.join(root,'supabase/migrations',future))},manifest.baselineSources));
 });
 test('changed historical or candidate SQL is rejected before any connection',()=>{
   for(const name of [Object.keys(manifest.baselineSources)[0],candidate]){

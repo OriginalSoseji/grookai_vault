@@ -393,3 +393,9 @@ entrypoint = "./functions/operations-webhook-v1/index.ts"
 enabled = true
 verify_jwt = false
 entrypoint = "./functions/wall_feed/index.ts"
+
+# This boundary verifies every caller through auth.getUser before service RPCs.
+[functions.vault-intake-v1]
+enabled = true
+verify_jwt = false
+entrypoint = "./functions/vault-intake-v1/index.ts"

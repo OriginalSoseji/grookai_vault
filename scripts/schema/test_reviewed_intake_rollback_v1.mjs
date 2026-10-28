@@ -1,0 +1,33 @@
+// Initial SQL business qualification on our dedicated draft lab. Every DDL/data
+// statement runs under rollback; this is not cross-connection durability proof.
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import {fileURLToPath} from 'node:url';
+import {createHash} from 'node:crypto';
+import {execFileSync,spawnSync} from 'node:child_process';
+import {isDeepStrictEqual} from 'node:util';
+import {splitSealedMigrationStatementsV1 as split} from '../../backend/pricing/cross_tcg_sealed_product_schema_apply_v1.mjs';
+const root=path.resolve(fileURLToPath(new URL('../..',import.meta.url)));
+assert.equal(root.replaceAll('\\','/'),'C:/gv_intake_release_20261028');
+const attempt=process.argv[2];assert.match(attempt??'',/^attempt-\d+$/);
+const work='C:/gv_intake_recovery_private_20261027/reviewed-intake-release-v1';
+const project='reviewed-intake-draft-477-20261028',container='supabase_db_'+project;
+const source=fs.readFileSync(root+'/supabase/migrations/20261028020000_collector_reviewed_intake_v1.sql','utf8');
+const statements=split(source),strip=s=>s.replace(/^(?:\s*--[^\n]*(?:\n|$))*/,'').trim();
+assert.equal(strip(statements[0]).toLowerCase(),'begin');assert.equal(strip(statements.at(-1)).toLowerCase(),'commit');
+const inner=statements.slice(1,-1);for(const s of inner)assert.doesNotMatch(strip(s),/^(?:begin|commit|rollback|start\s+transaction)\b/i);
+const info=JSON.parse(execFileSync('docker',['inspect',container],{encoding:'utf8'}))[0];
+assert.equal(info.State.Running,true);assert.equal(info.Image,'sha256:4c39816ce8d9303a3aba1161c842929c73a40c7109a9ef1b644582478e31832e');
+assert.deepEqual(Object.keys(info.NetworkSettings.Networks),[project]);assert.equal(JSON.parse(execFileSync('docker',['network','inspect',project],{encoding:'utf8'}))[0].Internal,true);
+assert.equal(fs.existsSync(work+'/local-draft-477/supabase/.temp/project-ref'),false);
+const sql=q=>execFileSync('docker',['exec','-i',container,'psql','-X','-qAt','-U','postgres','-d','postgres','-v','ON_ERROR_STOP=1'],{input:q,encoding:'utf8',timeout:120000,maxBuffer:64_000_000});
+const state=()=>sql("select (select count(*) from auth.users)::text||':'||(select count(*) from vault_item_instances)::text||':'||current_setting('max_worker_processes')").trim();
+assert.equal(state(),'0:0:0');
+const query=fs.readFileSync(root+'/scripts/schema/reviewed_intake_public_catalog_v1.sql','utf8');const before=JSON.parse(sql(query));assert.equal(before.LEDGER.length,477);
+const cases=fs.readFileSync(root+'/scripts/schema/reviewed_intake_rollback_cases_v1.sql','utf8');
+const result=spawnSync('docker',['exec','-i',container,'psql','-X','-qAt','-U','postgres','-d','postgres','-v','ON_ERROR_STOP=1'],{input:'begin;\n'+inner.join(';\n')+';\n'+cases+'\nrollback;\n',encoding:'utf8',timeout:120000,maxBuffer:32_000_000});
+fs.writeFileSync(work+'/business-'+attempt+'.log',(result.stdout??'')+(result.stderr??''),{flag:'wx'});assert.ifError(result.error);
+assert.ok(isDeepStrictEqual(JSON.parse(sql(query)),before),'Rollback changed the schema/security/ledger');assert.equal(state(),'0:0:0');
+const report={at:new Date().toISOString(),pass:result.status===0,sourceSha256:createHash('sha256').update(source).digest('hex'),scope:'dedicated_local_rollback_business_cases',candidatePersistentlyApplied:false,catalogSecurityAndLedgerUnchanged:true,authUsersAndCopiesAfter:0,crossConnectionDurabilityProven:false,concurrencyProven:false,remoteWrites:0};
+fs.writeFileSync(work+'/business-'+attempt+'.json',JSON.stringify(report,null,2)+'\n',{flag:'wx'});console.log(JSON.stringify(report));assert.equal(result.status,0,'Business cases failed; inspect private log');

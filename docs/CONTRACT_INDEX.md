@@ -13,6 +13,7 @@ If a contract is missing from this index, it is not authoritative.
 
 | Contract | Status | Description |
 |--------|--------|-------------|
+| COLLECTOR_REVIEWED_INTAKE_V1 | Active; frozen default-off candidate, full local replay/upgrade/runtime qualified | docs/contracts/COLLECTOR_REVIEWED_INTAKE_V1.md — Private collector lots/reviewed batches, exact-copy saving, durable failure records, ownership/privacy, allocation and supplemental sale data; exact committed release gate and production canary remain required |
 | SALES_SPLIT_PAYMENTS_V1 | Active implementation contract; default-off local candidate | docs/contracts/SALES_SPLIT_PAYMENTS_V1.md - Atomic external split payments, cash change, receipt snapshots and tender reports |
 | SALES_DESK_REFINED_V1 | Active implementation contract; local candidate | docs/contracts/SALES_DESK_REFINED_V1.md - Unified desktop/native entry, owner-local held carts, private customer view and in-person reporting |
 | SALES_FAST_ENTRY_V1 | Active implementation contract | docs/contracts/SALES_FAST_ENTRY_V1.md - Continuous canonical entry, bounded search, targeted owner reads and saved-price cart entry; native proof required before release |
@@ -30,7 +31,7 @@ If a contract is missing from this index, it is not authoritative.
 | VENDOR_STORE_TRIALS_V1 | Active implementation contract | docs/contracts/VENDOR_STORE_TRIALS_V1.md - Invitation-only expiring store access; no billing, automatic publication or permanent grants |
 | SEALED_OWNED_COLLECTIBLES_V1 | Active implementation contract | docs/contracts/SEALED_OWNED_COLLECTIBLES_V1.md - Exact-copy sealed ownership in the existing Vault, qualified totals, Wall, vendor, sale/trade/history and sharing; production activation requires migration replay and mixed-inventory acceptance |
 | GROOKAI_GUARDRAILS | Active | Global stop-rules and mandatory audit triggers |
-| GV_MIGRATION_MAINTENANCE_CONTRACT | Active | docs/contracts/GV_MIGRATION_MAINTENANCE_CONTRACT.md — Immutable SQL history, strict migration gates, replay and exact bounded qualifications; October 27 intake baseline reconciliation scope |
+| GV_MIGRATION_MAINTENANCE_CONTRACT | Active | docs/contracts/GV_MIGRATION_MAINTENANCE_CONTRACT.md — Immutable SQL history, strict migration gates, replay and exact bounded qualifications; reviewed-intake read-only baseline 477 and prior reconciliation scope |
 | APP_VISUAL_SYSTEM_CONTRACT_V1 | Active | [App Visual System](contracts/APP_VISUAL_SYSTEM_CONTRACT_V1.md) — Native and web ink/bone/lime palette, compact content hierarchy, tighter geometry, consistent card spacing, and responsive verification |
 | BRAND_TYPOGRAPHY_CONTRACT_V1 | Active | [Brand and Typography](contracts/BRAND_TYPOGRAPHY_CONTRACT_V1.md) — Bundled Roboto, lowercase names, weight 900 wordmarks, original emblem preservation, and flexible seasonal colors and motion |
 | NO_ASSUMPTION_RULE | Active | Prohibits assumption-driven work across the entire project |

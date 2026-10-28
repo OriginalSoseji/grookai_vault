@@ -1,0 +1,8 @@
+{
+  "at": "2026-10-28T03:17:16.295Z",
+  "pass": true,
+  "realAuthAndStorageAfterUpgrade": true,
+  "retainedRecordsByteExact": true,
+  "writesRemainOff": true,
+  "productionWrites": 0
+}
