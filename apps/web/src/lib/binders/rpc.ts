@@ -159,6 +159,11 @@ function parseNotificationPreference(value: unknown): BinderNotificationPreferen
 
 function parseSummary(value: unknown): BinderSummary {
   const item = record(value);
+  const policy = nested(item, "policy");
+  const access = policy.read_access ?? item.read_access;
+  const discoverability = policy.discoverability ?? item.discoverability;
+  const joining = policy.join_policy ?? item.join_policy;
+  const contributions = policy.contribution_policy ?? item.contribution_policy;
   const progress = nested(item, "progress");
   const memberSummary = nested(item, "member_summary");
   return {
@@ -188,6 +193,10 @@ function parseSummary(value: unknown): BinderSummary {
       1,
     ),
     updatedAt: nullableString(field(item, "updated_at", "last_activity_at")),
+    ...(access === "private" || access === "link" || access === "public" ? { readAccess: access } : {}),
+    ...(discoverability === "listed" || discoverability === "unlisted" ? { discoverability } : {}),
+    ...(joining === "closed" || joining === "invite_only" || joining === "request_to_join" ? { joinPolicy: joining } : {}),
+    ...(contributions === "owner_only" || contributions === "members_direct" || contributions === "approval_required" ? { contributionPolicy: contributions } : {}),
   };
 }
 

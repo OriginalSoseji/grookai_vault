@@ -8,6 +8,7 @@ import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction"
 import { resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import type { VaultCardData } from "@/components/vault/VaultCardTile";
+import VaultLongPressTarget from "./VaultLongPressTarget";
 import {
   formatVaultCopyDate,
   formatVaultCopyIdentityLabel,
@@ -441,7 +442,7 @@ export function VaultMobileViews(props: VaultMobileCommonProps) {
     return (
       <div className="space-y-2.5 md:hidden">
         {items.map((item) => (
-          <MobileCompactRow key={item.id} item={item} returnPath={props.returnPath} />
+          <VaultLongPressTarget key={item.id} cardPrintId={item.card_id}><MobileCompactRow item={item} returnPath={props.returnPath} /></VaultLongPressTarget>
         ))}
       </div>
     );
@@ -451,7 +452,7 @@ export function VaultMobileViews(props: VaultMobileCommonProps) {
     return (
       <div className="space-y-3 md:hidden">
         {items.map((item) => (
-          <MobileDetailRow key={item.id} item={item} {...props} />
+          <VaultLongPressTarget key={item.id} cardPrintId={item.card_id}><MobileDetailRow item={item} {...props} /></VaultLongPressTarget>
         ))}
       </div>
     );
@@ -460,7 +461,7 @@ export function VaultMobileViews(props: VaultMobileCommonProps) {
   return (
     <div className="grid grid-cols-2 gap-3 md:hidden">
       {items.map((item) => (
-        <MobileGridCard key={item.id} item={item} returnPath={props.returnPath} />
+        <VaultLongPressTarget key={item.id} cardPrintId={item.card_id}><MobileGridCard item={item} returnPath={props.returnPath} /></VaultLongPressTarget>
       ))}
     </div>
   );

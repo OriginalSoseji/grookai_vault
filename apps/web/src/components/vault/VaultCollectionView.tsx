@@ -8,6 +8,7 @@ import { getPokemonCardCollectionGridClassName } from "@/components/cards/pokemo
 import { SearchToolbar, SearchToolbarButton, SearchToolbarInput } from "@/components/common/SearchToolbar";
 import { ViewDensityToggle } from "@/components/collection/ViewDensityToggle";
 import PageIntro from "@/components/layout/PageIntro";
+import { useClientReady } from "@/components/layout/useClientReady";
 import PageSection from "@/components/layout/PageSection";
 import ProductState from "@/components/layout/ProductState";
 import SectionHeader from "@/components/layout/SectionHeader";
@@ -21,6 +22,7 @@ import { useVaultMobileViewMode } from "@/hooks/useVaultMobileViewMode";
 import { useViewDensity, type ViewDensity } from "@/hooks/useViewDensity";
 import type { ReactNode } from "react";
 import { addCardReturnPath } from "@/lib/navigation/cardDetailNavigation";
+import VaultLongPressTarget from "./VaultLongPressTarget";
 import { OwnedSealedPanel } from "@/components/vault/OwnedSealedPanel";
 import { combineUsdTotal, sealedOwnershipEnabled, type SealedTotals } from "@/lib/sealed/ownedSealedV1";
 
@@ -276,15 +278,14 @@ function renderVaultGrid(
       {items.map((item) => {
         const rowKey = getVaultRowRuntimeKey(item);
         return (
-          <VaultCardTile
-            key={item.id}
+          <VaultLongPressTarget key={item.id} cardPrintId={item.card_id}><VaultCardTile
             item={item}
             returnPath={returnPath}
             density={density}
             logoPath={setLogoPathByCode[item.set_code.trim().toLowerCase()] ?? undefined}
             isExpanded={expandedCardId === rowKey}
             onExpansionToggle={onExpansionToggle}
-          />
+          /></VaultLongPressTarget>
         );
       })}
     </div>
@@ -313,6 +314,7 @@ export function VaultCollectionView({
   publicProfileHref = null,
   setLogoPathByCode = {},
 }: VaultCollectionViewProps) {
+  const clientReady = useClientReady();
   const searchParams = useSearchParams();
   const { density, setDensity } = useViewDensity();
   const { mode: mobileViewMode, setMode: setMobileViewMode } = useVaultMobileViewMode();
@@ -360,9 +362,9 @@ export function VaultCollectionView({
       cards,
       uniqueCards,
       sets,
-      lastAdded: formatLastAdded(latestTimestamp),
+      lastAdded: clientReady ? formatLastAdded(latestTimestamp) : "…",
     };
-  }, [items]);
+  }, [items, clientReady]);
 
   const collectorPageActivationVariant =
     summary.uniqueCards >= COLLECTOR_PAGE_ACTIVATION_MIN_UNIQUE_CARDS
@@ -377,7 +379,9 @@ export function VaultCollectionView({
       ? formatVaultCurrency(combinedValue)
       : null;
   const coverageLabel = `${valueSummary.pricedCopyCount + (sealedTotals?.priced_copy_count ?? 0)} / ${valueSummary.totalRawCopyCount + (sealedTotals?.active_copy_count ?? 0)}`;
-  const freshnessLabel = formatPricingFreshness(valueSummary.latestPricingUpdateAt);
+  const freshnessLabel = clientReady
+    ? formatPricingFreshness(valueSummary.latestPricingUpdateAt)
+    : "Updated recently";
 
   const recentItems = useMemo(
     () =>
@@ -941,6 +945,7 @@ export function VaultCollectionView({
               title="Vault Cards"
               description="Cards currently in your collection."
             />
+            <Link href="/vault/workspace" className="gv-secondary-button mt-3">Select copies · Trade workspace</Link>
           </div>
 
           <div className="gv-command-surface hidden md:flex md:flex-row md:items-center md:justify-between md:gap-4 md:p-3.5">
@@ -1061,7 +1066,7 @@ export function VaultCollectionView({
                       .join(" • ")}
                   </span>
                 }
-                meta={<span>Added {formatTimeAgo(item.created_at)}</span>}
+                meta={<span>Added {clientReady ? formatTimeAgo(item.created_at) : "recently"}</span>}
                 footer={<span className="truncate font-mono text-[10px] uppercase tracking-[0.12em] text-slate-300">{item.gv_id}</span>}
               />
             ))}

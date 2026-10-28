@@ -630,9 +630,26 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text('Continue building'), findsOneWidget);
-      expect(find.text('Shared with me'), findsOneWidget);
       expect(find.text('Family Mega Binder'), findsOneWidget);
       expect(find.textContaining('Cards stay in your Vault'), findsOneWidget);
+
+      final libraryScroll = find.byWidgetPredicate(
+        (widget) =>
+            widget is Scrollable &&
+            widget.axisDirection == AxisDirection.down &&
+            widget.restorationId != 'editable',
+      );
+      await tester.scrollUntilVisible(
+        find.text('Shared with me'),
+        150,
+        scrollable: libraryScroll.last,
+      );
+      expect(find.text('Shared with me'), findsOneWidget);
+      await tester.scrollUntilVisible(
+        find.widgetWithText(TextButton, 'Decline'),
+        -150,
+        scrollable: libraryScroll.last,
+      );
 
       await tester.tap(find.widgetWithText(TextButton, 'Decline'));
       await tester.pumpAndSettle();
@@ -1010,7 +1027,7 @@ void main() {
       find.widgetWithText(FilledButton, 'Save'),
     );
     expect(saveButton.onPressed, isNull);
-    expect(find.textContaining('Choose a Grookai-hosted card'), findsOneWidget);
+    expect(find.textContaining('Choose a grookai-hosted card'), findsOneWidget);
 
     await tester.tap(find.byKey(const ValueKey('binder-cover-cover-card-1')));
     await tester.pumpAndSettle();

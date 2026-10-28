@@ -86,9 +86,9 @@ const onyxTokens = GrookaiObjectTokens(
   accentOnAccent: Color(0xFF191408),
   badgeShape: AccentShape.pill,
   ctaShape: AccentShape.pill,
-  titleFontFamily: 'Instrument Serif',
+  titleFontFamily: 'Roboto',
   titleItalic: true,
-  monoFontFamily: 'Spline Sans Mono',
+  monoFontFamily: 'Roboto',
 );
 
 // ── IVORY — archival certificate / bill of sale ─────────────────────────────
@@ -108,9 +108,9 @@ const ivoryTokens = GrookaiObjectTokens(
   accentOnAccent: Color(0xFFF7F2E5),
   badgeShape: AccentShape.rect,
   ctaShape: AccentShape.rect,
-  titleFontFamily: 'Instrument Serif',
+  titleFontFamily: 'Roboto',
   titleItalic: false,
-  monoFontFamily: 'Spline Sans Mono',
+  monoFontFamily: 'Roboto',
 );
 
 // ── KRAFT — flea-market hang tag / field log ────────────────────────────────
@@ -134,9 +134,9 @@ const kraftTokens = GrookaiObjectTokens(
   accentOnAccent: Color(0xFFF7F2E5),
   badgeShape: AccentShape.rect,
   ctaShape: AccentShape.pill,
-  titleFontFamily: 'Instrument Serif',
+  titleFontFamily: 'Roboto',
   titleItalic: false,
-  monoFontFamily: 'Spline Sans Mono',
+  monoFontFamily: 'Roboto',
 );
 
 const Map<GrookaiObjectSkin, GrookaiObjectTokens> grookaiObjectTokens = {

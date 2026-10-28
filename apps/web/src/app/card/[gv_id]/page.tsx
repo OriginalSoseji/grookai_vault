@@ -64,8 +64,7 @@ import type { AssignmentCandidate } from "@/lib/condition/getAssignmentCandidate
 import { createSlabInstance } from "@/lib/slabs/createSlabInstance";
 import { createServerComponentClient, hasSupabaseServerAuthCookie } from "@/lib/supabase/server";
 import { trackServerEvent } from "@/lib/telemetry/trackServerEvent";
-import { addCardToVault, type AddCardToVaultResult } from "@/lib/vault/addCardToVault";
-import { addCopies, parseCardAddOptions } from "@/lib/vault/cardAddOptions";
+import {addReviewedCardToVault} from "@/lib/vault/addReviewedCardToVault";
 import {
   getOwnedPrintingCountsByCardPrintIds,
   type OwnedPrintingCountsByCardPrintId,
@@ -733,31 +732,18 @@ async function CardPageContent({
     if (!user) return { ok: false, status: "login-required", submissionKey };
     if (!resolvedCard.id || !resolvedCard.gv_id) return { ok: false, status: "not-found", submissionKey };
 
-    let result: AddCardToVaultResult;
+    let result: Awaited<ReturnType<typeof addReviewedCardToVault>>;
     let quantity = 1;
     try {
-      const options = parseCardAddOptions(_formData.get("condition"), _formData.get("quantity"));
       assertJungleEditionSelection(await getJungleEditionResolution(actionClient, resolvedCard.id), resolvedCard.id, selectedPrintingId);
-      quantity = options.quantity;
-      const batch = await addCopies(quantity, () => addCardToVault({
+      result = await addReviewedCardToVault({
         client: actionClient,
         userId: user.id,
         cardPrintId: resolvedCard.id,
-        gvId: resolvedCard.gv_id,
         name: resolvedCard.name,
-        setName: resolvedCard.set_name,
-        imageUrl: resolvedCard.image_url,
-        cardPrintingId: selectedPrintingId || undefined,
-        conditionLabel: options.conditionLabel,
-      }));
-      if (batch.error) {
-        console.error("[vault:add] bounded copy add stopped", batch.error);
-        return {
-          ok: false, status: "error", submissionKey, addedCount: batch.completed.length,
-          message: `${batch.completed.length} of ${quantity} copies confirmed. Check your Vault before trying again; the last request could not be confirmed.`,
-        };
-      }
-      result = batch.completed[batch.completed.length - 1];
+        formData: _formData,
+      });
+      quantity = result.quantity;
     } catch (error) {
       if (error instanceof JungleEditionRequiredError) return {
         ok: false, status: "edition-required", message: error.message,
@@ -779,7 +765,7 @@ async function CardPageContent({
       return {
         ok: false,
         status: "error",
-        message: "Something went wrong while adding this card to your vault.",
+        message: "Your addition was not confirmed. Keep this review and retry.",
         submissionKey,
       };
     }
@@ -791,7 +777,7 @@ async function CardPageContent({
       gvId: resolvedCard.gv_id,
       metadata: { gv_vi_id: result.gvvi_id, quantity_delta: quantity, card_printing_id: selectedPrintingId || null },
     });
-    return { ok: true, status: "added", gvvi_id: result.gvvi_id, submissionKey, addedCount: quantity };
+    return { ok: true, status: "added", gvvi_id: result.gvvi_id, gvvi_ids: result.gvvi_ids, quantity, submissionKey, addedCount: quantity };
   }
 
   async function createSlabAction(

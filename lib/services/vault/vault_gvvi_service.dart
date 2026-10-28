@@ -1162,7 +1162,9 @@ int? _toInt(dynamic value) {
 
 String? _normalizeSource(String? value) {
   final normalized = _clean(value).toLowerCase();
-  if (normalized == 'justtcg' || normalized == 'ebay') {
+  if (normalized == 'tcgplayer' ||
+      normalized == 'justtcg' ||
+      normalized == 'ebay') {
     return normalized;
   }
   return null;

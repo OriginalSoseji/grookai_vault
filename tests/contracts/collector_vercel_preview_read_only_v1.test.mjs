@@ -64,3 +64,15 @@ test('preview build fails closed on admin credentials; all common clients are gu
   }
   assert.match(fs.readFileSync(new URL('src/lib/supabase/admin.ts', root), 'utf8'), /if \(collectorPreview\) throw/);
 });
+
+test('preview permits only the exact read-only marketplace function and strips user credentials', async () => {
+  const sent=[];
+  const read=createPreviewReadFetch('https://catalog.supabase.co','public-key',async(input,init)=>{sent.push(init);return Response.json({link:null});});
+  const path='https://catalog.supabase.co/functions/v1/';
+  assert.equal((await read(path+'card-marketplace-links-v1',{method:'POST',headers:{Authorization:'Bearer user-jwt',Cookie:'session=x'},body:'{}'})).status,200);
+  assert.equal(sent[0].headers.get('authorization'),'Bearer public-key');
+  assert.equal(sent[0].headers.get('cookie'),null);
+  for(const [name,method] of [['vault-intake-v1','POST'],['card-marketplace-links-v1','DELETE'],['card-marketplace-links-v1/extra','POST']]) assert.equal((await read(path+name,{method})).status,403);
+  assert.equal((await read('https://elsewhere.test/functions/v1/card-marketplace-links-v1',{method:'POST'})).status,403);
+  assert.equal(sent.length,1);
+});

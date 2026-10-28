@@ -1,5 +1,72 @@
 # Grookai Operator Playbook V1
 
+## Final-review508 candidate — October28,2026
+
+Samsung still runs507. All hosted c77 checks passed, but three final review findings require508: release PNG export must not access debugNeedsPaint outside assertions; purchase-lot retries need stable identity/reconciliation; Unknown conditions must not become NM in the collector/vendor loader. These corrections passed22 focused checks. Main's data-only PR827 is incorporated. Normal checks,508 signing/device verification and final live-web qualification remain pending. Resolve findings only after their fixes are verified; never bypass conversation or merge gates. Global intake remains paused under the existing two-actor revision6 canary.
+
+
+## Build507 installed — October28,2026
+
+This supersedes installed-build and RuName status below. Signed507 is installed on the QA emulator and Samsung through data-preserving updates. The Samsung retains its signed-in account, pre-upgrade inventory summary and four-column density. TCGplayer NM/LP, signed-in eBay active/sold results and photo recognition passed. On507, an offline/restart/reconnect intake saved exactly one DMG/Holo copy with explicit USD0.00, verified independently. Native QA sale recording created one exact canonical receipt; no founder inventory was changed or real funds moved.
+
+The production RuName is known; callbacks remain eBay defaults. Publisher work is isolated and unshipped. The integration PR still requires hosted and live-web qualification. Eleven test fixtures now disable unrelated SDK deep-link observers after hosted Linux failures; production deep links remain unchanged. Preserve signed507 and verify native source equivalence for test-only commits. Intake control revision6 still permits only the two QA actors; global writes remain paused pending audited completion/activation.
+
+
+## Build506 qualification and507 candidate — October28,2026
+
+This checkpoint supersedes older installed-build status below. Samsung and the isolated QA emulator now run506. Samsung account/data are preserved; TCGplayer NM/LP exact filters and signed-in eBay sold/active searches passed on real pages. QA stamped offline recovery saved one exact copy with NULL condition/cost, bringing QA inventory to ten. Notification refusal persisted across cold restart after a fresh QA-only install state. Full canonical Windows web parity passed143 checks.
+
+Final507 source adds fail-closed local persistence before cloud saves, safe error text, portable logical/Windows pixel test separation, app-links fixture channels, and hydration-safe local Vault dates. Normal checks, packaging, hosted checks and final live web qualification remain required. The revision6 two-actor canary remains open; ordinary intake writes remain paused. Do not clear Samsung data or use consumed migration gates.
+
+The signed-in eBay developer console confirms required production scopes, but User Tokens returns a provider error and RuName remains unverified. Local OAuth/provider prototypes are not integrated or deployed; listing publication is still pending.
+
+
+## Integrated native recovery qualification — October28,2026
+
+Real manual search exposed distinct stamped/base parents rendered with identical
+labels. The final506 source now preserves the shared printed identity, canonical
+artwork and human set label through selection, local recovery and review. Search
+invalidates stale results and retains safe retry. Packaging was deferred before
+compilation until this correction passes normal checks; no506 APK is installed.
+The failed-photo/manual fallback saved one exact LP/Holo copy with unknown cost
+still NULL; the QA Vault now contains nine active copies.
+
+Native Binder drag/order, exact requirements, cover and4×4 preference survived
+restart and independent owner readback. The private QA Binder is retained for web
+comparison; archive it after that check. Main scanner import reached a strict TLS
+rejection caused on the workstation path by Norton HTTPS inspection. Do not
+disable inspection or certificate verification, or declare a public server fault
+from that evidence. Verify recognition through Samsung's independent network.
+Scanner/batch failure guidance now shares typed safe messages and preserves
+photos; these corrections require normal checks and packaging.
+
+See `docs/checkpoints/APP_REFINEMENT_INTEGRATION_20261028.md`. Build505's offline
+reviewed add survived a forced restart and saved exactly one copy after
+reconnection, with the reviewed day, exact LP/Holo identity and USD2.50 cost.
+The observed raw network error and blocked offline profile gate are corrected
+for506; normal checks and fresh device qualification are required. Next16's
+generated `apps/web/next-env.d.ts` is ignored/untracked, as its installed docs
+require; `next typegen` still runs before typecheck. Preserve failed push evidence.
+
+Production intake remains globally paused with only the same two disposable QA
+actors temporarily allowlisted under revision6. The protected native canary
+control script closes only its exact owned revision/actors and must be used after
+native/web qualification. Never reuse consumed migration gates or alter the
+frozen020000/050700 files. Samsung502 and its founder account remain preserved.
+
+## Verified reviewed-intake deployment — October 28, 2026
+
+PR825 is merged as `e99b3ebcde7b161aeac245af893d271f828b022d`. The exact merged
+gate and official dry-run passed; CLI applied020000/050700 at06:45 UTC.
+Production479 matches the qualified full schema,1,346 security objects and39
+governed fingerprints. Edge version1's downloaded source/settings match.
+Thirteen real production canary cases and four family/community journeys passed
+using only two disposable accounts. QA Binders are private/unlisted and archived;
+global intake writes are paused. Preserve all failed/resumed harness evidence.
+The founder's account is untouched. Older release gates/instructions below are
+historical and must not be widened or reused. Integrated native/client release
+and audited global activation are still pending at this checkpoint.
+
 ## Reviewed intake date-correct release — October 28, 2026
 
 The release now requires both frozen020000 and forward050700 candidates.

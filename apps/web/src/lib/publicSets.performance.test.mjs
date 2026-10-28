@@ -183,6 +183,6 @@ test("full card loading is scoped to one selected game and set", () => {
 });
 
 test("set card pages use the stable card-print id as the final database order", () => {
-  assert.equal([...cardsFunctionSource.matchAll(/\.order\("id", \{ ascending: true \}\)/g)].length, 3);
+  assert.equal([...cardsFunctionSource.matchAll(/\.order\("id", \{ ascending: true \}\)/g)].length, 4);
   assert.match(source, /\(left\.id \?\? ""\)\.localeCompare\(right\.id \?\? ""\)/);
 });

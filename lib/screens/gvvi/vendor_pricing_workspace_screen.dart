@@ -856,6 +856,17 @@ class _DispositionBackground extends StatelessWidget {
   }
 }
 
+Future<VendorDispositionSubmission?> showExactCopyDispositionSheet(
+  BuildContext context,
+  VendorPricingWorkspaceRow row,
+) => showModalBottomSheet<VendorDispositionSubmission>(
+  context: context,
+  showDragHandle: true,
+  useSafeArea: true,
+  isScrollControlled: true,
+  builder: (_) => _DispositionSheet(row: row),
+);
+
 class _DispositionSheet extends StatefulWidget {
   const _DispositionSheet({required this.row});
 
@@ -1397,7 +1408,7 @@ class _VendorInventoryRow extends StatelessWidget {
         .toList(growable: false);
     final condition = _conditions.contains(row.conditionLabel.toUpperCase())
         ? row.conditionLabel.toUpperCase()
-        : 'NM';
+        : null;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -1526,6 +1537,7 @@ class _VendorInventoryRow extends StatelessWidget {
                     : DropdownButtonFormField<String>(
                         key: Key('vendor_condition_${row.instanceId}'),
                         initialValue: condition,
+                        hint: const Text('Unknown'),
                         isExpanded: true,
                         decoration: const InputDecoration(isDense: true),
                         items: _conditions

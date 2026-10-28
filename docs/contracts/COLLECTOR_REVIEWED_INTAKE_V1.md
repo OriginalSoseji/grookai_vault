@@ -1,6 +1,7 @@
 # COLLECTOR_REVIEWED_INTAKE_V1
 
-Status: Active implementation contract; frozen, default-off local qualification.
+Status: Active; schema479 and Edge version1 deployed and independently verified;
+global writes paused pending integrated client/device qualification.
 Owner: grookai vault founder. Effective: October 27, 2026 (America/Denver).
 
 ## Scope and authority

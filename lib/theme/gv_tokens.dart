@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'gv_typography.dart';
 
@@ -87,13 +88,12 @@ class GvPalette {
 
 /// The shared visual contract for the V2 collector surfaces.
 ///
-/// It intentionally stays independent of the user's legacy light-theme
-/// preference while the new shell is rolled out screen by screen.
-ThemeData buildGvRedesignV2Theme() {
-  final colorScheme = GvPalette.scheme(Brightness.dark);
+/// Root and pushed screens follow the collector's selected brightness.
+ThemeData buildGvRedesignV2Theme({Brightness brightness = Brightness.dark}) {
+  final colorScheme = GvPalette.scheme(brightness);
   final base = ThemeData(
     useMaterial3: true,
-    brightness: Brightness.dark,
+    brightness: brightness,
     colorScheme: colorScheme,
     fontFamily: GvTypography.fontFamily,
   );
@@ -161,7 +161,9 @@ ThemeData buildGvRedesignV2Theme() {
       surfaceTintColor: Colors.transparent,
       showDragHandle: true,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(GvRadii.floating),
+        ),
       ),
     ),
     dialogTheme: DialogThemeData(
@@ -180,7 +182,10 @@ ThemeData buildGvRedesignV2Theme() {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(GvRadii.control),
         ),
-        textStyle: const TextStyle(fontWeight: FontWeight.w800),
+        textStyle: const TextStyle(
+          fontFamily: GvTypography.fontFamily,
+          fontWeight: FontWeight.w800,
+        ),
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
@@ -228,6 +233,23 @@ ThemeData buildGvRedesignV2Theme() {
         fontWeight: FontWeight.w700,
       ),
     ),
+  );
+}
+
+/// Keep platform chrome readable when a root or detail screen changes theme.
+SystemUiOverlayStyle gvSystemUiStyle(Brightness brightness) {
+  final surface = GvPalette.scheme(brightness).surface;
+  final icons = brightness == Brightness.dark
+      ? Brightness.light
+      : Brightness.dark;
+  return SystemUiOverlayStyle(
+    statusBarColor: surface,
+    statusBarIconBrightness: icons,
+    statusBarBrightness: brightness,
+    systemNavigationBarColor: surface,
+    systemNavigationBarDividerColor: surface,
+    systemNavigationBarIconBrightness: icons,
+    systemNavigationBarContrastEnforced: false,
   );
 }
 

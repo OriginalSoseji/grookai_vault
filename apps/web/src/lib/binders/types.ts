@@ -29,6 +29,10 @@ export type BinderSummary = {
   progressUnit: BinderProgressUnit;
   memberCount: number;
   updatedAt: string | null;
+  readAccess?: BinderReadAccess;
+  discoverability?: BinderDiscoverability;
+  joinPolicy?: BinderJoinPolicy;
+  contributionPolicy?: BinderContributionPolicy;
 };
 
 export type BinderInvitationSummary = {

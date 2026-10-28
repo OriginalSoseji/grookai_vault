@@ -19,7 +19,7 @@ test('manage-card printing enrichment is owner-scoped and read-only', () => {
 });
 
 test('manage-card hero, copy rows, and Card Detail retain printing identity', () => {
-  assert.match(screen, /label: data\.printingIdentityLabel/);
+  assert.match(screen, /Text\(\s*data\.printingIdentityLabel/);
   assert.match(screen, /copy\.printingIdentityLabel/);
   assert.match(screen, /selectedPrintingGvId: data\.copies\.length == 1/);
   assert.match(screen, /selectedFinishLabel: data\.copies\.length == 1/);

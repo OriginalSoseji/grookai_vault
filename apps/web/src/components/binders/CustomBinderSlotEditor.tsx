@@ -1,9 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import PublicCardImage from "@/components/PublicCardImage";
 import type { BinderChecklistSlot } from "@/lib/binders/types";
 import { useBinderOnline } from "./BinderOfflineBanner";
+import BinderPageArrangement from "./BinderPageArrangement";
+import CardMarketplaceLinks from "@/components/pricing/CardMarketplaceLinks";
+import CardEbayLinks from "@/components/pricing/CardEbayLinks";
 
 type FinishOption = {
   cardPrintingId: string;
@@ -31,7 +34,7 @@ type EditorSlot = {
 };
 
 const inputClass =
-  "mt-1.5 min-h-11 w-full rounded-2xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm text-slate-950 outline-none focus:ring-2 focus:ring-emerald-300";
+  "mt-1.5 min-h-11 w-full rounded-lg border border-slate-200 bg-white px-3.5 py-2.5 text-sm text-slate-950 outline-none focus:ring-2 focus:ring-emerald-300";
 
 function mergeFinishOptions(
   current: FinishOption[],
@@ -99,15 +102,24 @@ export function CustomBinderSlotEditor({
   inputName,
   mode,
   initialSlots = [],
+  unoptimizedImages = false,
 }: {
   inputName: "customSlotsJson" | "slotsJson";
   mode: "create" | "revision";
   initialSlots?: BinderChecklistSlot[];
+  unoptimizedImages?: boolean;
 }) {
   const online = useBinderOnline();
-  const [slots, setSlots] = useState<EditorSlot[]>(() =>
-    makeInitialSlots(initialSlots),
-  );
+  const [history, setHistory] = useState<{past: EditorSlot[][]; present: EditorSlot[]; future: EditorSlot[][]}>(()=>({past:[],present:makeInitialSlots(initialSlots),future:[]}));
+  const slots=history.present;
+  const [tab,setTab]=useState<'find'|'checklist'|'arrange'>('find');
+  const [checklistQuery,setChecklistQuery]=useState('');
+  const [locatedKey,setLocatedKey]=useState<string|null>(null);
+  const [inspected,setInspected]=useState<number|null>(null);
+  const [inspectionPrinting,setInspectionPrinting]=useState('');
+  const [zoom,setZoom]=useState(false);
+  const inspectDialog=useRef<HTMLDialogElement>(null);
+  const baseline=useMemo(()=>JSON.stringify(makeInitialSlots(initialSlots).map(slot=>({card_print_id:slot.cardPrintId,card_printing_id:slot.cardPrintingId,required_quantity:slot.requiredQuantity}))),[initialSlots]);
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<CardOption[]>([]);
   const [finishSelections, setFinishSelections] = useState<
@@ -164,15 +176,10 @@ export function CustomBinderSlotEditor({
             )
             .map((item) => [item.cardPrintId, item.finishes] as const),
         );
-        setSlots((current) =>
-          current.map((slot) => ({
-            ...slot,
-            finishOptions: mergeFinishOptions(
-              slot.finishOptions,
-              finishesByCard.get(slot.cardPrintId) ?? [],
-            ),
-          })),
-        );
+        setHistory(history => {
+          const enrich=(items:EditorSlot[])=>items.map(slot=>({...slot,finishOptions:mergeFinishOptions(slot.finishOptions,finishesByCard.get(slot.cardPrintId)??[])}));
+          return {...history,present:enrich(history.present),past:history.past.map(enrich),future:history.future.map(enrich)};
+        });
         setFinishError(null);
       })
       .catch((error: unknown) => {
@@ -265,7 +272,8 @@ export function CustomBinderSlotEditor({
   );
 
   function changeSlots(update: (current: EditorSlot[]) => EditorSlot[]) {
-    setSlots((current) => update(current));
+    setHistory(h=>({past:[...h.past,h.present].slice(-50),present:update(h.present),future:[]}));
+    setLocatedKey(null);
     setConfirmed(false);
   }
 
@@ -388,11 +396,31 @@ export function CustomBinderSlotEditor({
     });
   }
 
+  useEffect(()=>{
+    if(serializedSlots===baseline)return;
+    const unload=(event:BeforeUnloadEvent)=>{event.preventDefault();};
+    const navigate=(event:MouseEvent)=>{
+      if(event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
+      const link=(event.target as Element).closest<HTMLAnchorElement>('a[href]');
+      if(!link||link.target==='_blank'||link.hasAttribute('download')||link.getAttribute('href')?.startsWith('#'))return;
+      if(link.href===window.location.href)return;
+      if(!window.confirm('Leave without saving your Binder changes?')){event.preventDefault();event.stopPropagation();}
+    };
+    window.addEventListener('beforeunload',unload);
+    document.addEventListener('click',navigate,true);
+    return ()=>{window.removeEventListener('beforeunload',unload);document.removeEventListener('click',navigate,true);};
+  },[serializedSlots,baseline]);
+  function undo(){setHistory(h=>h.past.length?{past:h.past.slice(0,-1),present:h.past[h.past.length-1],future:[h.present,...h.future]}:h);setConfirmed(false);setLocatedKey(null);}
+  function redo(){setHistory(h=>h.future.length?{past:[...h.past,h.present],present:h.future[0],future:h.future.slice(1)}:h);setConfirmed(false);setLocatedKey(null);}
+  function inspect(index:number){setInspected(index);setInspectionPrinting(slots[index].cardPrintingId??'');setZoom(false);inspectDialog.current?.showModal();}
+  const inspectedSlot=inspected===null?null:slots[inspected];
   return (
     <div className="space-y-6">
       <input type="hidden" name={inputName} value={serializedSlots} />
+      <nav className="gv-workspace-mode" aria-label="Checklist editor views">{(['find','checklist','arrange'] as const).map(value=><button type="button" key={value} aria-pressed={tab===value} onClick={()=>setTab(value)}>{value==='find'?'Find cards':value==='checklist'?'Checklist':'Arrange'}</button>)}</nav>
+      {tab==='arrange' ? slots.length>0 ? <BinderPageArrangement unoptimizedImages={unoptimizedImages} slots={slots.map(slot=>({...slot,subtitle:[slot.subtitle,slot.finishLabel??'Any governed finish',`Quantity ${slot.requiredQuantity}`].filter(Boolean).join(' · ')}))} onMove={(from,to)=>changeSlots(current=>{const next=[...current];const[moved]=next.splice(from,1);next.splice(to,0,moved);return next;})} onUndo={undo} onRedo={redo} canUndo={history.past.length>0} canRedo={history.future.length>0} locatedKey={locatedKey} onInspect={inspect}/> : <p>Add a card in Find cards to start arranging.</p> : null}
 
-      <section className="space-y-3 rounded-3xl border border-slate-200 bg-slate-50 p-4">
+      <section hidden={tab!=='find'} className="space-y-3 rounded-lg border border-slate-200 bg-slate-50 p-4">
         <div>
           <h3 className="font-semibold text-slate-950">Find canonical cards</h3>
           <p className="mt-1 text-sm text-slate-600">
@@ -433,11 +461,11 @@ export function CustomBinderSlotEditor({
               return (
                 <li
                   key={option.cardPrintId}
-                  className="rounded-2xl border border-slate-200 bg-white p-3"
+                  className="rounded-lg border border-slate-200 bg-white p-3"
                 >
                   <div className="flex gap-3">
                     <div className="h-28 w-20 shrink-0 overflow-hidden rounded-xl bg-slate-100">
-                      <PublicCardImage
+                      <PublicCardImage unoptimized={unoptimizedImages}
                         src={option.imageUrl ?? undefined}
                         alt={`${option.title} card artwork`}
                         imageClassName="h-full w-full object-contain"
@@ -493,7 +521,8 @@ export function CustomBinderSlotEditor({
         ) : null}
       </section>
 
-      <section className="space-y-3">
+      <section hidden={tab!=='checklist'} className="space-y-3">
+        <label>Find in checklist<input type="search" className={inputClass} value={checklistQuery} onChange={e=>setChecklistQuery(e.target.value)} /></label>
         <div>
           <h3 className="font-semibold text-slate-950">Ordered checklist</h3>
           <p className="mt-1 text-sm text-slate-600">
@@ -503,26 +532,26 @@ export function CustomBinderSlotEditor({
           </p>
         </div>
         {finishError ? (
-          <p role="alert" className="rounded-2xl bg-amber-50 p-3 text-sm text-amber-900">
+          <p role="alert" className="rounded-lg bg-amber-50 p-3 text-sm text-amber-900">
             {finishError} Current finish selections are preserved, but wait to
             publish if you need to change them.
           </p>
         ) : null}
         {notice ? (
-          <p role="status" className="rounded-2xl bg-sky-50 p-3 text-sm text-sky-900">
+          <p role="status" className="rounded-lg bg-sky-50 p-3 text-sm text-sky-900">
             {notice}
           </p>
         ) : null}
         {slots.length > 0 ? (
           <ol className="space-y-3">
-            {slots.map((slot, index) => (
+            {slots.map((slot, index) => `${slot.title} ${slot.subtitle??''} ${slot.finishLabel??''}`.toLowerCase().includes(checklistQuery.toLowerCase()) ? (
               <li
                 key={slot.localKey}
-                className="rounded-2xl border border-slate-200 bg-white p-4"
+                className="rounded-lg border border-slate-200 bg-white p-4"
               >
                 <div className="flex flex-col gap-4 sm:flex-row">
                   <div className="h-32 w-24 shrink-0 overflow-hidden rounded-xl bg-slate-100">
-                    <PublicCardImage
+                    <PublicCardImage unoptimized={unoptimizedImages}
                       src={slot.imageUrl ?? undefined}
                       alt={`${slot.title} card artwork`}
                       imageClassName="h-full w-full object-contain"
@@ -578,6 +607,8 @@ export function CustomBinderSlotEditor({
                       </label>
                     </div>
                     <div className="flex flex-wrap gap-2">
+                      <button type="button" className="gv-secondary-button" onClick={()=>{setLocatedKey(slot.localKey);setTab('arrange');}}>Show in Arrange</button>
+                      <button type="button" className="gv-secondary-button" onClick={()=>inspect(index)}>Inspect card</button>
                       <button
                         type="button"
                         disabled={index === 0}
@@ -615,16 +646,16 @@ export function CustomBinderSlotEditor({
                   </div>
                 </div>
               </li>
-            ))}
+            ) : null)}
           </ol>
         ) : (
-          <p className="rounded-2xl border border-dashed border-slate-300 p-5 text-sm text-slate-600">
+          <p className="rounded-lg border border-dashed border-slate-300 p-5 text-sm text-slate-600">
             Add at least one canonical card to create the checklist.
           </p>
         )}
       </section>
 
-      <section className="space-y-3 rounded-3xl border border-emerald-200 bg-emerald-50 p-4">
+      <section className="space-y-3 rounded-lg border border-emerald-200 bg-emerald-50 p-4">
         <h3 className="font-semibold text-emerald-950">
           Review and confirm
         </h3>
@@ -670,6 +701,13 @@ export function CustomBinderSlotEditor({
           </span>
         </label>
       </section>
+      <dialog ref={inspectDialog} className="gv-collector-sheet" aria-label="Inspect Binder card"><div className="space-y-3 p-4">{inspectedSlot?<>
+        <h3>{inspectedSlot.title}</h3><p>{inspectedSlot.subtitle} · Pocket {(inspected??0)+1} · Quantity {inspectedSlot.requiredQuantity}</p>
+        <div className="max-h-[50dvh] overflow-auto"><button type="button" aria-label="Zoom artwork" onClick={()=>setZoom(!zoom)}><PublicCardImage unoptimized={unoptimizedImages} src={inspectedSlot.imageUrl??undefined} alt={inspectedSlot.title} fallbackClassName="flex aspect-[5/7] items-center justify-center" imageClassName={zoom?'w-[200%] max-w-none object-contain':'max-h-[48dvh] w-full object-contain'} fallbackLabel={inspectedSlot.title}/></button></div>
+        <label>Inspect printing<select className={inputClass} value={inspectionPrinting} onChange={e=>setInspectionPrinting(e.target.value)}><option value="">Choose printing</option>{inspectedSlot.finishOptions.map(f=><option key={f.cardPrintingId} value={f.cardPrintingId}>{f.label}</option>)}</select></label>
+        <CardMarketplaceLinks cardPrintId={inspectedSlot.cardPrintId} cardPrintingId={inspectionPrinting||null} identity={inspectedSlot.title} context={inspectedSlot.subtitle??undefined}/>
+        <CardEbayLinks cardName={inspectedSlot.title} setName={inspectedSlot.subtitle} finish={inspectedSlot.finishOptions.find(f=>f.cardPrintingId===inspectionPrinting)?.label}/>
+      </>:null}<button type="button" className="gv-secondary-button" onClick={()=>inspectDialog.current?.close()}>Close inspection</button></div></dialog>
     </div>
   );
 }

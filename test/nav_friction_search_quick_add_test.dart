@@ -37,11 +37,17 @@ void main() {
     );
   });
 
-  test('search quick add reuses existing vault write path', () {
+  test('search quick add uses reviewed exact-copy intake', () {
     final search = File('lib/main.dart').readAsStringSync();
 
     expect(search, contains('Future<String?> _addToVaultFromSearch'));
-    expect(search, contains('VaultCardService.addOrIncrementVaultItem'));
+    expect(search, contains('showVaultAddReview('));
+    final add = search
+        .split('Future<String?> _addToVaultFromSearch(')[1]
+        .split('Future<void> _quickAddSearchResultToVault(')[0];
+    expect(add, contains('printingId: cardPrintingId'));
+    expect(add, isNot(contains("conditionLabel: 'NM'")));
+    expect(add, contains('if (gvviId == null) return null;'));
     expect(search, contains('OnboardingLadderService.recordOwnedBestEffort'));
     expect(search, contains('_refreshCatalogOwnershipState(card.id)'));
     expect(search, isNot(contains('insert(\'vault_items\'')));

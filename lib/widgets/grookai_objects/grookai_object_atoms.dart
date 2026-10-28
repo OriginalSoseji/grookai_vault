@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../theme/gv_typography.dart';
 import 'grookai_object_skin.dart';
 
@@ -16,16 +15,8 @@ TextStyle monoLabel(
   double letterSpacing = 0.14,
   FontWeight weight = FontWeight.w600,
 }) {
-  if (!GoogleFonts.config.allowRuntimeFetching) {
-    return TextStyle(
-      fontSize: size,
-      color: color ?? t.mutedText,
-      letterSpacing: size * letterSpacing,
-      fontWeight: weight,
-      fontFamily: t.monoFontFamily,
-    );
-  }
-  return GoogleFonts.splineSansMono(
+  return TextStyle(
+    fontFamily: GvTypography.fontFamily,
     fontSize: size,
     color: color ?? t.mutedText,
     letterSpacing: size * letterSpacing,
@@ -33,20 +24,13 @@ TextStyle monoLabel(
   );
 }
 
-/// Card/collector name treatment — italic serif on Onyx, upright on
-/// Ivory/Kraft per the approved mockup.
+/// Card and collector names use the bundled application typeface on every skin.
 TextStyle serifTitle(GrookaiObjectTokens t, {double size = 28, Color? color}) {
-  final base = GoogleFonts.config.allowRuntimeFetching
-      ? GoogleFonts.instrumentSerif(
-          fontSize: size,
-          color: color ?? t.primaryText,
-        )
-      : TextStyle(
-          fontSize: size,
-          color: color ?? t.primaryText,
-          fontFamily: t.titleFontFamily,
-        );
-  return t.titleItalic ? base.copyWith(fontStyle: FontStyle.italic) : base;
+  return TextStyle(
+    fontSize: size,
+    color: color ?? t.primaryText,
+    fontFamily: GvTypography.fontFamily,
+  );
 }
 
 /// "FOR SALE" / "LOT · 9 SIR" header badge. [rotationDeg] is used on Kraft's
@@ -187,7 +171,7 @@ class CardFooterBrand extends StatelessWidget {
         Flexible(
           flex: 2,
           child: Text(
-            'CREATED WITH grookai vault',
+            'Created with grookai vault',
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.right,

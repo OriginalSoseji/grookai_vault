@@ -1,0 +1,37 @@
+{
+  "at": "2026-10-28T06:48:57.752Z",
+  "pass": true,
+  "files": [
+    {
+      "path": "supabase/functions/vault-intake-v1/index.ts",
+      "sha256": "2292a5cceb3610fc63b385ce7c648ff55bc32ddca928bf2ad453ad0560a563ef"
+    },
+    {
+      "path": "supabase/functions/vault-intake-v1/handler.ts",
+      "sha256": "df99e5807ce098400cbc3fe444daf27063f0a20e50986e7b77f50e2119103843"
+    },
+    {
+      "path": "supabase/functions/_shared/auth.ts",
+      "sha256": "96a8c3a206565b1938e4fd1e72afc89f664f34f2384922f9a0df1e96ecce7863"
+    },
+    {
+      "path": "supabase/functions/_shared/cors.ts",
+      "sha256": "f1a25a444e8be1eb74d2a39b3a96b138c621c1f53e1c4fe6d8696382bb3831c5"
+    },
+    {
+      "path": "supabase/functions/_shared/key_resolver.ts",
+      "sha256": "b55eb1e17878795142d5c97d35b2840524bfcb1191a6af274fb09acac712b3c7"
+    }
+  ],
+  "sourceConfigSha256": "9e2d59074226b0a0d477869b6305f0ff3016ee64b1072c70267a3eb0cf7f3232",
+  "deployedConfig": {
+    "name": "vault-intake-v1",
+    "status": "ACTIVE",
+    "version": 1,
+    "verify_jwt": false,
+    "entrypointMatches": true,
+    "import_map": false
+  },
+  "gitLfRuntimeTextOnly": true,
+  "writesRemainOff": true
+}

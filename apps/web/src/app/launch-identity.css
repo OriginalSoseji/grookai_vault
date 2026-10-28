@@ -1,11 +1,11 @@
 /* Product-wide visual authority: docs/contracts/APP_VISUAL_SYSTEM_CONTRACT_V1.md.
    Values follow the native launch theme; route behavior stays in components. */
 html.gv-launch[data-visual-system="launch"] {
-  --gv-primary: var(--gv-brand-accent-light, #466d00);
+  --gv-primary: #466d00;
   --gv-on-primary: #ffffff;
-  --gv-primary-electric: var(--gv-brand-accent, #b7f23a);
-  --gv-primary-soft: var(--gv-brand-accent-soft, rgb(70 109 0 / 9%));
-  --gv-primary-container: var(--gv-brand-accent-container-light, #ddf7a3);
+  --gv-primary-electric: #b7f23a;
+  --gv-primary-soft: rgb(70 109 0 / 9%);
+  --gv-primary-container: #ddf7a3;
   --gv-tertiary-container: #ffdcc0;
   --gv-market: #8b4f13;
   --gv-surface-page: #f4f5ed;
@@ -33,10 +33,10 @@ html.gv-launch[data-visual-system="launch"] {
 }
 
 html.gv-launch[data-visual-system="launch"].gv-dark {
-  --gv-primary: var(--gv-brand-accent, #b7f23a);
+  --gv-primary: #b7f23a;
   --gv-on-primary: #080b09;
-  --gv-primary-soft: var(--gv-brand-accent-soft, rgb(183 242 58 / 10%));
-  --gv-primary-container: var(--gv-brand-accent-container, #283915);
+  --gv-primary-soft: rgb(183 242 58 / 10%);
+  --gv-primary-container: #283915;
   --gv-tertiary-container: #4a321c;
   --gv-market: #f0af6e;
   --gv-surface-page: #080b09;

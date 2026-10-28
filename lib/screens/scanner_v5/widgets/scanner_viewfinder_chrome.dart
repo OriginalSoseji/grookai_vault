@@ -18,6 +18,10 @@ class ScannerViewfinderChrome extends StatelessWidget {
     required this.identifying,
     this.toastTitle,
     this.toastMessage,
+    this.onExportLog,
+    this.onStartBatch,
+    this.multipleCards = false,
+    this.vaultLabel = 'Vault',
     super.key,
   });
 
@@ -31,6 +35,10 @@ class ScannerViewfinderChrome extends StatelessWidget {
   final bool identifying;
   final String? toastTitle;
   final String? toastMessage;
+  final VoidCallback? onExportLog;
+  final VoidCallback? onStartBatch;
+  final bool multipleCards;
+  final String vaultLabel;
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +46,26 @@ class ScannerViewfinderChrome extends StatelessWidget {
     final bottom = 46 + padding.bottom;
     return Stack(
       children: [
+        if (onStartBatch != null)
+          Positioned(
+            left: 74,
+            top: padding.top + 10,
+            child: _GlassCircleButton(
+              icon: Icons.playlist_add_rounded,
+              tooltip: 'Batch intake',
+              onPressed: onStartBatch!,
+            ),
+          ),
+        if (onExportLog != null)
+          Positioned(
+            right: 74,
+            top: padding.top + 10,
+            child: _GlassCircleButton(
+              icon: Icons.ios_share_rounded,
+              tooltip: 'Export scan log',
+              onPressed: onExportLog!,
+            ),
+          ),
         Positioned(
           left: 16,
           top: padding.top + 10,
@@ -70,6 +98,8 @@ class ScannerViewfinderChrome extends StatelessWidget {
                   Text(
                     identifying
                         ? 'Reading card...'
+                        : multipleCards
+                        ? 'Space cards apart on a plain background'
                         : 'Fill the frame with one card',
                     style: const TextStyle(
                       color: ScannerV5Palette.text,
@@ -127,7 +157,7 @@ class ScannerViewfinderChrome extends StatelessWidget {
               ),
               _BottomTool(
                 icon: Icons.inventory_2_outlined,
-                label: 'Vault',
+                label: vaultLabel,
                 onPressed: onVault,
               ),
             ],

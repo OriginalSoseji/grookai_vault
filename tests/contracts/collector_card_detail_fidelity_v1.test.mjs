@@ -20,8 +20,12 @@ test('card detail preserves readers and slab action around the bounded edition l
   const business = source => source.replaceAll('\r\n', '\n').split('async function CardPageContent(')[1].split('  const initialRenderMs')[0]
     .replace(/  async function addToVaultAction\([\s\S]*?(?=  async function createSlabAction)/, '').replace(editionRead, '');
   assert.equal(createHash('sha256').update(business(current)).digest('hex'), baselineDigest);
-  assert.match(current, /parseCardAddOptions\(_formData.get\("condition"\), _formData.get\("quantity"\)\)/);
-  assert.match(current, /conditionLabel: options.conditionLabel/);
+  assert.match(current, /addReviewedCardToVault/);
+  const reviewed = read("lib/vault/addReviewedCardToVault.ts");
+  assert.match(reviewed, /formData.get\("condition"\)/);
+  assert.match(reviewed, /formData.get\("quantity"\)/);
+  assert.match(reviewed, /vault_intake_request_v1/);
+  assert.match(reviewed, /assertJungleEditionSelection/);
   assert.match(current, /assertAuthenticatedVaultUser|actionClient.auth.getUser/);
 });
 
@@ -68,7 +72,7 @@ test('optional zoom label leaves every existing caller and image absence behavio
 
 test('compact printing presentation keeps a visible image limitation and exact writer payload', () => {
   const add = read('components/vault/AddToVaultCardAction.tsx');
-  for (const token of ['compactPresentation = false', 'gv-detail-printing-notice', 'resolveCardImagePresentation(effectiveSelectedPrinting)', 'is_display_fallback ? null', 'name="card_printing_id" value={selectedChildPrintingId}', 'action={formAction}', 'onSelectedPrintingChange?.(printing)']) assert.ok(add.includes(token), token);
+  for (const token of ['compactPresentation = false', 'gv-detail-printing-notice', 'resolveCardImagePresentation(effectiveSelectedPrinting)', 'effectiveSelectedPrinting?.is_display_fallback', 'action={formAction}', 'onSelectedPrintingChange?.(printing)']) assert.ok(add.includes(token), token);
 });
 
 test('preview finish control is a native select, not the legacy nested panels', () => {
@@ -77,6 +81,7 @@ test('preview finish control is a native select, not the legacy nested panels', 
   assert.ok(add.includes('value={effectiveSelectedPrinting?.id ?? ""}'));
   assert.ok(add.includes('if (printing) handleSelectedPrintingChange(printing)'));
   assert.doesNotMatch(add, /gv-detail-printing-disclosure/);
+  assert.match(add, /name="card_printing_id"\s+value=\{selectedChildPrintingId\}/);
   const compact = add.split('{compactPresentation && printings.length > 0 ? (')[1].split(') : printingControls}')[0];
   assert.doesNotMatch(compact, /PrintingSelector|printingControls|Selected version|Image status/);
 });

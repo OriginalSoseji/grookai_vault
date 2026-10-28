@@ -28,14 +28,12 @@ void main() {
     final pickerIndex = source.indexOf(
       'showModalBottomSheet<GrookaiDexPrintingOption>',
     );
-    final writeIndex = source.indexOf(
-      'VaultCardService.addOrIncrementVaultItem',
-    );
+    final writeIndex = source.indexOf('showVaultAddReview');
 
     expect(multiFinishIndex, greaterThanOrEqualTo(0));
     expect(pickerIndex, greaterThan(multiFinishIndex));
     expect(writeIndex, greaterThan(pickerIndex));
-    expect(source, contains('cardPrintingId: selectedPrinting!.id'));
+    expect(source, contains('printingId: selectedPrinting?.id'));
     expect(source, contains("'Choose the exact finish'"));
   });
 

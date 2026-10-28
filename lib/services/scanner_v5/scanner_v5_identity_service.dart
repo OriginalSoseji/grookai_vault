@@ -12,10 +12,16 @@ const scannerV5DefaultIdentifyEndpoint =
 class ScannerV5IdentityService {
   ScannerV5IdentityService({http.Client? client, String? endpoint})
     : _client = client ?? http.Client(),
+      _ownsClient = client == null,
       endpoint = endpoint ?? _resolveEndpoint();
 
   final http.Client _client;
+  final bool _ownsClient;
   final String endpoint;
+
+  void dispose() {
+    if (_ownsClient) _client.close();
+  }
 
   Future<ScannerV5IdentifyResult> identify(Uint8List imageBytes) async {
     final uri = Uri.parse(endpoint);
@@ -30,6 +36,8 @@ class ScannerV5IdentityService {
           .timeout(const Duration(seconds: 18));
     } on TimeoutException {
       rethrow;
+    } on HandshakeException catch (error) {
+      throw ScannerV5SecureConnectionException(endpoint, cause: error);
     } on SocketException catch (error) {
       throw ScannerV5UnreachableException(endpoint, cause: error);
     } on http.ClientException catch (error) {
@@ -48,6 +56,29 @@ class ScannerV5IdentityService {
       final decoded = jsonDecode(response.body);
       if (decoded is! Map) {
         throw const FormatException('scanner_v5_response_not_object');
+      }
+      if (decoded['ok'] != true ||
+          decoded['candidates'] is! List ||
+          !const {
+            'ocr_exact',
+            'fused',
+            'embedding_only',
+            'unreadable',
+          }.contains(decoded['mode'])) {
+        throw const FormatException('scanner_v5_invalid_result');
+      }
+      final candidates = decoded['candidates'] as List;
+      final uuid = RegExp(
+        r'^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$',
+      );
+      if (candidates.any(
+            (row) =>
+                row is! Map ||
+                row['card_id'] is! String ||
+                !uuid.hasMatch(row['card_id'] as String),
+          ) ||
+          (decoded['mode'] == 'unreadable') != candidates.isEmpty) {
+        throw const FormatException('scanner_v5_invalid_candidates');
       }
       return ScannerV5IdentifyResult.fromJson(
         Map<String, dynamic>.from(decoded),
@@ -174,6 +205,7 @@ class ScannerV5Candidate {
     this.gvId,
     this.displayName,
     this.setCode,
+    this.setName,
     this.number,
     this.variantKey,
     this.printedIdentityModifier,
@@ -201,6 +233,7 @@ class ScannerV5Candidate {
           _trimmedOrNull(json['name']) ??
           'Unknown card',
       setCode: _trimmedOrNull(json['set_code']) ?? _trimmedOrNull(json['set']),
+      setName: _trimmedOrNull(json['set_name']),
       number: _trimmedOrNull(json['number']),
       variantKey: _trimmedOrNull(json['variant_key']),
       printedIdentityModifier: _trimmedOrNull(
@@ -221,6 +254,7 @@ class ScannerV5Candidate {
   final String? displayName;
   final String name;
   final String? setCode;
+  final String? setName;
   final String? number;
   final String? variantKey;
   final String? printedIdentityModifier;
@@ -240,6 +274,7 @@ class ScannerV5Candidate {
     'display_name': displayName,
     'name': name,
     'set_code': setCode,
+    if (setName != null) 'set_name': setName,
     'number': number,
     'variant_key': variantKey,
     'printed_identity_modifier': printedIdentityModifier,
@@ -258,6 +293,14 @@ class ScannerV5IdentityException implements Exception {
 
   @override
   String toString() => 'ScannerV5IdentityException($message)';
+}
+
+class ScannerV5SecureConnectionException extends ScannerV5IdentityException {
+  const ScannerV5SecureConnectionException(this.endpoint, {this.cause})
+    : super('scanner_v5_secure_connection');
+
+  final String endpoint;
+  final Object? cause;
 }
 
 class ScannerV5UnreachableException extends ScannerV5IdentityException {

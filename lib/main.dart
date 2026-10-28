@@ -95,6 +95,10 @@ import 'services/identity/identity_search.dart';
 import 'theme/gv_grid_constants.dart';
 import 'theme/gv_typography.dart';
 import 'theme/gv_tokens.dart';
+import 'services/vault/vault_grid_preferences.dart';
+import 'screens/vault/collector_workspace_screen.dart';
+import 'screens/intake/intake_screens.dart';
+import 'widgets/vault/vault_add_review_sheet.dart';
 import 'utils/display_image_contract.dart';
 import 'utils/vault_printing_identity.dart';
 import 'widgets/gv_surface.dart';
@@ -266,7 +270,7 @@ Future<String?> _showPublicCollectorSlugPrompt(BuildContext context) async {
   );
 }
 
-ThemeData _buildGrookaiTheme(Brightness brightness) {
+ThemeData buildGrookaiTheme(Brightness brightness) {
   final colorScheme = GvPalette.scheme(brightness);
   final base = ThemeData(
     useMaterial3: true,
@@ -403,7 +407,9 @@ ThemeData _buildGrookaiTheme(Brightness brightness) {
       surfaceTintColor: Colors.transparent,
       showDragHandle: true,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(GvRadii.floating),
+        ),
       ),
     ),
     dialogTheme: DialogThemeData(
@@ -424,6 +430,7 @@ ThemeData _buildGrookaiTheme(Brightness brightness) {
           borderRadius: BorderRadius.circular(GvRadii.control),
         ),
         textStyle: const TextStyle(
+          fontFamily: GvTypography.fontFamily,
           fontWeight: FontWeight.w700,
           letterSpacing: 0,
         ),
@@ -440,6 +447,7 @@ ThemeData _buildGrookaiTheme(Brightness brightness) {
           borderRadius: BorderRadius.circular(GvRadii.control),
         ),
         textStyle: const TextStyle(
+          fontFamily: GvTypography.fontFamily,
           fontWeight: FontWeight.w700,
           letterSpacing: 0,
         ),
@@ -3397,8 +3405,8 @@ class _MyAppState extends State<MyApp> {
       },
       title: GvTypography.productName,
       debugShowCheckedModeBanner: false,
-      theme: _buildGrookaiTheme(Brightness.light),
-      darkTheme: _buildGrookaiTheme(Brightness.dark),
+      theme: buildGrookaiTheme(Brightness.light),
+      darkTheme: buildGrookaiTheme(Brightness.dark),
       themeMode: _themeMode,
       home: Builder(
         builder: (context) {
@@ -5230,16 +5238,16 @@ class HomePageState extends State<HomePage> {
     });
 
     try {
-      final gvviId = await VaultCardService.addOrIncrementVaultItem(
-        client: supabase,
-        userId: userId,
-        cardId: card.id,
-        conditionLabel: 'NM',
-        fallbackName: card.name,
-        fallbackSetName: card.displaySet.isEmpty ? null : card.displaySet,
-        fallbackImageUrl: card.displayImage,
-        cardPrintingId: cardPrintingId,
+      final gvviId = await showVaultAddReview(
+        context: context,
+        cardPrintId: card.id,
+        gvId: card.gvId ?? '',
+        name: card.name,
+        setName: card.displaySet,
+        imageUrl: card.displayImage,
+        printingId: cardPrintingId,
       );
+      if (gvviId == null) return null;
 
       if (!mounted) {
         return gvviId;

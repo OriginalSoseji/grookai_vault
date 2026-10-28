@@ -7,6 +7,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../firebase_options.dart';
 import '../navigation/grookai_web_route_service.dart';
+import 'notification_permission_policy.dart';
 
 typedef GrookaiNotificationRouteHandler =
     void Function(GrookaiCanonicalRoute route);
@@ -38,6 +39,21 @@ class GrookaiPushNotificationService {
   final SupabaseClient _client = Supabase.instance.client;
 
   FirebaseMessaging? _messaging;
+  late final _permissionPolicy = NotificationPermissionPolicy(
+    readAuthorization: () async =>
+        (await _firebaseMessaging.getNotificationSettings())
+            .authorizationStatus,
+    requestAuthorization: () async =>
+        (await _firebaseMessaging.requestPermission(
+          alert: true,
+          announcement: false,
+          badge: true,
+          carPlay: false,
+          criticalAlert: false,
+          provisional: false,
+          sound: true,
+        )).authorizationStatus,
+  );
   StreamSubscription<String>? _tokenRefreshSubscription;
   StreamSubscription<RemoteMessage>? _foregroundSubscription;
   StreamSubscription<RemoteMessage>? _openedSubscription;
@@ -114,16 +130,7 @@ class GrookaiPushNotificationService {
     }
 
     try {
-      final settings = await _firebaseMessaging.requestPermission(
-        alert: true,
-        announcement: false,
-        badge: true,
-        carPlay: false,
-        criticalAlert: false,
-        provisional: false,
-        sound: true,
-      );
-      if (settings.authorizationStatus == AuthorizationStatus.denied) {
+      if (!await _permissionPolicy.ensureCanNotify()) {
         _debug('permission_denied reason=$reason');
         return;
       }
@@ -191,6 +198,11 @@ class GrookaiPushNotificationService {
 
   Future<void> _registerToken(String token, {required String reason}) async {
     if (_client.auth.currentUser == null) {
+      return;
+    }
+    if (!NotificationPermissionPolicy.isGranted(
+      (await _firebaseMessaging.getNotificationSettings()).authorizationStatus,
+    )) {
       return;
     }
 

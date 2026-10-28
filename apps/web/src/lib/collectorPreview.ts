@@ -17,9 +17,10 @@ export function createPreviewReadFetch(url: string, key: string, transport: type
     const target = new URL(request.url);
     const rpc = target.pathname.match(/^\/rest\/v1\/rpc\/([a-z0-9_]+)$/)?.[1];
     const read = request.method === "GET" || request.method === "HEAD";
-    const allowed = target.origin === origin && (rpc
+    const marketplaceRead = target.pathname === "/functions/v1/card-marketplace-links-v1" && request.method === "POST";
+    const allowed = target.origin === origin && (marketplaceRead || (rpc
       ? PREVIEW_READ_RPCS.has(rpc) && (read || request.method === "POST")
-      : read && /^\/rest\/v1\/[a-z0-9_]+$/.test(target.pathname));
+      : read && /^\/rest\/v1\/[a-z0-9_]+$/.test(target.pathname)));
     if (!allowed) {
       return Response.json({ message: "Read-only design preview", code: "PREVIEW_READ_ONLY" }, { status: 403 });
     }

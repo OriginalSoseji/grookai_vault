@@ -2,9 +2,9 @@
 library;
 
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:grookai_vault/widgets/grookai_objects/grookai_object_frame.dart';
@@ -18,7 +18,22 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   late GoldenFileComparator originalGoldenComparator;
-  setUpAll(() {
+  setUpAll(() async {
+    final roboto = FontLoader('Roboto');
+    for (final weight in [
+      'Thin',
+      'Light',
+      'Regular',
+      'Medium',
+      'Bold',
+      'Black',
+    ]) {
+      roboto.addFont(rootBundle.load('assets/fonts/Roboto/Roboto-$weight.ttf'));
+    }
+    await roboto.load();
+    await (FontLoader(
+      'MaterialIcons',
+    )..addFont(rootBundle.load('fonts/MaterialIcons-Regular.otf'))).load();
     GoogleFonts.config.allowRuntimeFetching = false;
     originalGoldenComparator = goldenFileComparator;
     goldenFileComparator = _RendererGoldenComparator(

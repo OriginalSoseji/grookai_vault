@@ -32,17 +32,17 @@ meaning. Card artwork supplies the remaining visual color.
 
 Any logo color or multicolor treatment is allowed, including playful seasonal,
 holiday, and event themes, provided the original design and proportions remain
-intact. The active theme also supplies the matching interface accent below.
+intact. Interface colors continue to follow the canonical palette above.
 
-## Seasonal accent authority (owner clarification, 2026-10-22)
+## Seasonal artwork and interface authority (owner clarification, 2026-10-27)
 
-Interface accents always match the active logo theme. Halloween replaces the
-baseline lime with the logo's orange `#FF8A33` for primary actions, selected
-states, focus, and interaction highlights. Light mode uses a darker accessible
-orange `#A74400`. Future themes carry their logo and interface accent together;
-Winter uses ice blue. Semantic success, warning, and destructive states retain
-their meaning. The palette above is the unthemed baseline, not permission to
-keep lime when a different seasonal logo is active.
+The owner's current repository instruction requires ink, bone and electric-lime
+interactions on every branch and platform. Seasonal, holiday, event and
+multicolor logo treatments remain unrestricted within the original artwork's
+proportions. They do not replace interface interaction colors. Light mode keeps
+the accessible deep-green counterpart. This supersedes the October22 seasonal
+interface override; semantic success, warning and destructive states retain
+their meaning.
 
 ## Typography and hierarchy
 

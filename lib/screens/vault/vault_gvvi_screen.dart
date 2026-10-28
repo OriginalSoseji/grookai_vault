@@ -10,6 +10,7 @@ import '../../card_detail_screen.dart';
 import '../../services/identity/catalog_artwork_resolution.dart';
 import '../../services/identity/display_identity.dart';
 import '../../services/identity/image_presentation.dart';
+import '../../services/public/public_card_printing_options_service.dart';
 import '../../services/navigation/grookai_web_route_service.dart';
 import '../../services/vault/collector_memory_service.dart';
 import '../../services/vault/vault_gvvi_service.dart';
@@ -17,6 +18,9 @@ import '../../services/vault/slab_upgrade_service.dart';
 import '../../utils/display_image_contract.dart';
 import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/gv_chip.dart';
+import '../../widgets/pricing/card_marketplace_sheet.dart';
+import '../../widgets/pricing/ebay_listing_links.dart';
+import '../../theme/gv_tokens.dart';
 import '../gvvi/public_gvvi_screen.dart';
 import '../public_collector/public_collector_screen.dart';
 import 'slab_upgrade_screen.dart';
@@ -65,6 +69,7 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
   final TextEditingController _notesController = TextEditingController();
 
   VaultGvviData? _data;
+  String? _finishLabel;
   List<_GvviRelatedPrint> _relatedPrints = const [];
   List<CollectorMemory> _memories = const <CollectorMemory>[];
   List<CollectorMemoryPrompt> _memoryPrompts = const <CollectorMemoryPrompt>[];
@@ -134,6 +139,7 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
                 client: _client,
                 instanceId: data.instanceId,
               ),
+        _loadFinishLabel(data),
       ]);
       final relatedPrints = results[0] as List<_GvviRelatedPrint>;
       final sectionMemberships = results[1] as List<VaultGvviSectionMembership>;
@@ -144,6 +150,7 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
       _notesController.text = data?.notes ?? '';
       setState(() {
         _data = data;
+        _finishLabel = results[2] as String?;
         _relatedPrints = relatedPrints;
         _sectionMemberships = sectionMemberships;
         _memories = const <CollectorMemory>[];
@@ -223,6 +230,31 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
       }
     }
     return Map<String, String>.fromEntries(entries);
+  }
+
+  Future<String?> _loadFinishLabel(VaultGvviData? data) async {
+    if (data?.cardPrintingId == null) return null;
+    try {
+      final rows = await PublicCardPrintingOptionsService.fetch(
+        client: _client,
+        cardPrintIds: [data!.cardPrintId],
+      );
+      final row = rows
+          .where(
+            (row) =>
+                row['id'] == data.cardPrintingId &&
+                row['card_print_id'] == data.cardPrintId,
+          )
+          .firstOrNull;
+      return row == null
+          ? null
+          : formatFinishLabel(
+              finishKey: row['finish_key'] as String?,
+              finishLabel: row['finish_label'] as String?,
+            );
+    } catch (_) {
+      return null;
+    }
   }
 
   Future<List<_GvviRelatedPrint>> _fetchRelatedPrints(
@@ -333,6 +365,8 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
           condition: data.isGraded ? 'SLAB' : data.conditionLabel,
           exactCopyGvviId: data.gvviId,
           exactCopyOwnerUserId: _client.auth.currentUser?.id,
+          selectedPrintingGvId: data.cardPrintingId,
+          openedFromCopyDetail: true,
         ),
       ),
     );
@@ -1200,6 +1234,8 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 48,
+        systemOverlayStyle: gvSystemUiStyle(Theme.of(context).brightness),
         title: const Text('Copy'),
         actions: [
           if (widget.launchedFromSearch)
@@ -1230,6 +1266,7 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
                 children: [
                   _VaultTopSurface(
                     data: _data!,
+                    finishLabel: _finishLabel,
                     intentLabel: _intentLabel(_data!.intent),
                     status: _status,
                     savingIntent: _savingIntent,
@@ -1433,6 +1470,7 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
 class _VaultTopSurface extends StatelessWidget {
   const _VaultTopSurface({
     required this.data,
+    this.finishLabel,
     required this.intentLabel,
     required this.onManageCard,
     required this.onViewCard,
@@ -1446,6 +1484,7 @@ class _VaultTopSurface extends StatelessWidget {
   });
 
   final VaultGvviData data;
+  final String? finishLabel;
   final String intentLabel;
   final String? status;
   final bool savingIntent;
@@ -1459,21 +1498,40 @@ class _VaultTopSurface extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    return Container(
-      padding: const EdgeInsets.fromLTRB(14, 14, 14, 12),
-      decoration: BoxDecoration(
-        color: colorScheme.surface,
-        borderRadius: BorderRadius.circular(28),
-        border: Border.all(color: colorScheme.outline.withValues(alpha: 0.05)),
-      ),
+    return Padding(
+      padding: const EdgeInsets.only(top: 4),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          _VaultGvviOverviewSurface(data: data, intentLabel: intentLabel),
-          const SizedBox(height: 10),
+          _VaultGvviOverviewSurface(
+            data: data,
+            intentLabel: intentLabel,
+            finishLabel: finishLabel,
+          ),
+          const SizedBox(height: 20),
           _VaultGvviPriceSurface(data: data, framed: false),
-          const SizedBox(height: 10),
+          const SizedBox(height: 12),
+          if (data.cardPrintingId != null)
+            Align(
+              alignment: Alignment.centerLeft,
+              child: ExactTcgplayerButton(
+                cardPrintId: data.cardPrintId,
+                cardPrintingId: data.cardPrintingId!,
+                identity: _gvviDisplayIdentity(data).displayName,
+                imageUrl: data.primaryImageUrl,
+                contextLabel: '${data.setName} · ${data.number}',
+                condition: data.isGraded ? null : data.conditionLabel,
+              ),
+            ),
+          EbayListingLinks(
+            cardName: _gvviDisplayIdentity(data).displayName,
+            setName: data.setName,
+            collectorNumber: data.number == '—' ? null : data.number,
+            finish: finishLabel,
+          ),
+          const SizedBox(height: 16),
+          const _VaultQuietDivider(),
+          const SizedBox(height: 16),
           _VaultPrimaryActionsSurface(
             onManageCard: onManageCard,
             onViewCard: onViewCard,
@@ -1504,174 +1562,144 @@ class _VaultGvviOverviewSurface extends StatelessWidget {
   const _VaultGvviOverviewSurface({
     required this.data,
     required this.intentLabel,
+    this.finishLabel,
   });
-
   final VaultGvviData data;
   final String intentLabel;
+  final String? finishLabel;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    final hasExactMedia =
-        (data.frontImageUrl ?? '').trim().isNotEmpty ||
-        (data.backImageUrl ?? '').trim().isNotEmpty;
-    final copySummary = data.activeCopyCount <= 1
-        ? 'Only active copy in your vault'
-        : '1 of ${data.activeCopyCount} active copies in your vault';
-    final imageLabel =
-        '${data.setName}${data.number == '—' ? '' : ' • #${data.number}'}';
-    final imagePresentation = _vaultGvviImagePresentation(data);
-
+    final colors = theme.colorScheme;
+    final identity = _gvviDisplayIdentity(data);
+    final presentation = _vaultGvviImagePresentation(data);
+    final condition = data.isGraded
+        ? [data.grader, data.grade]
+              .whereType<String>()
+              .where((value) => value.trim().isNotEmpty)
+              .join(' ')
+        : (data.conditionLabel?.trim().isNotEmpty == true
+              ? data.conditionLabel!
+              : 'Condition unknown');
     return LayoutBuilder(
       builder: (context, constraints) {
-        final stacked = constraints.maxWidth < 520;
-        final displayIdentity = _gvviDisplayIdentity(data);
-        final heroArt = Center(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(
-              maxWidth: stacked ? 220 : 220,
-              minWidth: stacked ? 0 : 176,
-            ),
-            child: AspectRatio(
-              aspectRatio: 2.5 / 3.5,
-              child: Stack(
-                children: [
-                  Positioned.fill(
-                    child: CardSurfaceArtwork(
-                      label: displayIdentity.displayName,
-                      imageUrl: data.primaryImageUrl,
-                      fallbackImageUrl: data.fallbackImageUrl,
-                      borderRadius: 24,
-                      padding: const EdgeInsets.all(6),
-                      showZoomAffordance:
-                          (data.primaryImageUrl ?? data.fallbackImageUrl ?? '')
-                              .trim()
-                              .isNotEmpty,
+        final compact = constraints.maxWidth < 520;
+        final artwork = SizedBox(
+          width: compact ? 112 : 156,
+          child: AspectRatio(
+            aspectRatio: 2.5 / 3.5,
+            child: Stack(
+              children: [
+                Positioned.fill(
+                  child: CardSurfaceArtwork(
+                    label: identity.displayName,
+                    imageUrl: data.primaryImageUrl,
+                    fallbackImageUrl: data.fallbackImageUrl,
+                    borderRadius: GvRadii.artwork,
+                    padding: EdgeInsets.zero,
+                    showShadow: false,
+                    showZoomAffordance:
+                        (data.primaryImageUrl ?? data.fallbackImageUrl ?? '')
+                            .trim()
+                            .isNotEmpty,
+                  ),
+                ),
+                if (presentation.compactBadgeLabel != null)
+                  Positioned(
+                    left: 4,
+                    right: 4,
+                    bottom: 4,
+                    child: _VaultImageStatusBadge(
+                      label: presentation.compactBadgeLabel!,
+                      strong: presentation.isCollisionRepresentative,
                     ),
                   ),
-                  if (imagePresentation.compactBadgeLabel != null)
-                    Positioned(
-                      left: 8,
-                      right: 8,
-                      bottom: 8,
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: _VaultImageStatusBadge(
-                          label: imagePresentation.compactBadgeLabel!,
-                          strong: imagePresentation.isCollisionRepresentative,
-                        ),
-                      ),
-                    ),
-                ],
-              ),
+              ],
             ),
           ),
         );
-
-        final overview = Column(
+        final details = Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'EXACT COPY',
-              style: theme.textTheme.labelSmall?.copyWith(
-                fontWeight: FontWeight.w700,
-                letterSpacing: 0.9,
-                color: colorScheme.onSurface.withValues(alpha: 0.46),
+              identity.displayName,
+              style: theme.textTheme.titleLarge?.copyWith(
+                fontWeight: FontWeight.w800,
+                height: 1.12,
               ),
             ),
             const SizedBox(height: 6),
             Text(
-              displayIdentity.displayName,
-              style: theme.textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.w800,
-                letterSpacing: 0,
-                height: 1.02,
+              '${data.setName}${data.number == '—' ? '' : ' · #${data.number}'}',
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: colors.onSurfaceVariant,
+                height: 1.4,
               ),
             ),
-            const SizedBox(height: 4),
+            const SizedBox(height: 10),
             Text(
-              imageLabel,
-              style: theme.textTheme.bodyLarge?.copyWith(
+              [
+                if (condition.isNotEmpty) condition,
+                ?finishLabel,
+                data.isGraded ? 'Graded slab' : 'Raw copy',
+              ].join(' · '),
+              style: theme.textTheme.labelLarge?.copyWith(
                 fontWeight: FontWeight.w700,
-                color: colorScheme.onSurface.withValues(alpha: 0.76),
               ),
             ),
-            const SizedBox(height: 2),
+            const SizedBox(height: 6),
             Text(
-              copySummary,
-              style: theme.textTheme.labelMedium?.copyWith(
-                color: colorScheme.onSurface.withValues(alpha: 0.56),
+              {
+                intentLabel,
+                data.canOpenPublicPage ? 'Public' : 'Private',
+                if (data.isSharedOnWall) 'On wall',
+              }.join(' · '),
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: colors.onSurfaceVariant,
               ),
             ),
-            if (imagePresentation.detailNote != null) ...[
-              const SizedBox(height: 8),
-              _VaultImageTruthNote(note: imagePresentation.detailNote!),
-            ],
-            const SizedBox(height: 8),
-            Wrap(
-              spacing: 6,
-              runSpacing: 6,
-              children: [
-                GvChip(label: intentLabel, tone: colorScheme.primary),
-                GvChip(
-                  label: data.isGraded ? 'Graded slab' : 'Raw copy',
-                  tone: Colors.deepPurple,
-                ),
-                GvChip(
-                  label: data.canOpenPublicPage ? 'Public' : 'Private',
-                  tone: data.canOpenPublicPage
-                      ? Colors.orange.shade800
-                      : colorScheme.secondary,
-                ),
-                GvChip(
-                  label:
-                      hasExactMedia &&
-                          data.imageDisplayMode == GvviImageDisplayMode.uploaded
-                      ? 'Uploaded photo'
-                      : 'Card art',
-                  tone: Colors.blueGrey,
-                ),
-                if ((_dataLabel(data) ?? '').isNotEmpty)
-                  GvChip(label: _dataLabel(data)!, tone: Colors.teal),
-                GvChip(
-                  label: data.isSharedOnWall ? 'On wall' : 'Off wall',
-                  tone: data.isSharedOnWall
-                      ? Colors.green.shade700
-                      : colorScheme.onSurface.withValues(alpha: 0.65),
-                ),
-              ],
+            const SizedBox(height: 6),
+            Text(
+              data.activeCopyCount <= 1
+                  ? 'Only active copy in your vault'
+                  : '1 of ${data.activeCopyCount} active copies in your vault',
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: colors.onSurfaceVariant,
+              ),
             ),
+            if ((data.certNumber ?? '').isNotEmpty) ...[
+              const SizedBox(height: 6),
+              Text('Cert ${data.certNumber}', style: theme.textTheme.bodySmall),
+            ],
           ],
         );
-
-        if (stacked) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [heroArt, const SizedBox(height: 10), overview],
-          );
-        }
-
-        return Row(
+        final enlarged = MediaQuery.textScalerOf(context).scale(14) > 20;
+        return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            heroArt,
-            const SizedBox(width: 16),
-            Expanded(child: overview),
+            if (enlarged)
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [artwork, const SizedBox(height: 16), details],
+              )
+            else
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  artwork,
+                  const SizedBox(width: 16),
+                  Expanded(child: details),
+                ],
+              ),
+            if (presentation.detailNote != null) ...[
+              const SizedBox(height: 10),
+              _VaultImageTruthNote(note: presentation.detailNote!),
+            ],
           ],
         );
       },
     );
-  }
-
-  String? _dataLabel(VaultGvviData data) {
-    if ((data.certNumber ?? '').trim().isNotEmpty) {
-      return 'Cert ${data.certNumber}';
-    }
-    if (!data.isGraded && (data.conditionLabel ?? '').trim().isNotEmpty) {
-      return data.conditionLabel!;
-    }
-    return null;
   }
 }
 
@@ -1753,7 +1781,7 @@ class _VaultImageTruthNote extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: colorScheme.tertiaryContainer.withValues(alpha: 0.38),
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(GvRadii.surface),
         border: Border.all(color: colorScheme.tertiary.withValues(alpha: 0.14)),
       ),
       child: Padding(
@@ -1866,7 +1894,7 @@ class _VaultPrimaryActionsSurface extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
           decoration: BoxDecoration(
             color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.12),
-            borderRadius: BorderRadius.circular(18),
+            borderRadius: BorderRadius.circular(GvRadii.surface),
             border: Border.all(
               color: colorScheme.outline.withValues(alpha: 0.06),
             ),
@@ -1909,7 +1937,7 @@ class _VaultIntentQuickSurface extends StatelessWidget {
         color: isPublic
             ? colorScheme.primaryContainer.withValues(alpha: 0.32)
             : colorScheme.surfaceContainerHighest.withValues(alpha: 0.18),
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(GvRadii.surface),
         border: Border.all(color: colorScheme.outline.withValues(alpha: 0.08)),
       ),
       child: Padding(
@@ -2011,7 +2039,7 @@ class _VaultPublicPreviewSurface extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: colorScheme.surface,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(GvRadii.surface),
         border: Border.all(color: colorScheme.outline.withValues(alpha: 0.08)),
       ),
       child: Padding(
@@ -2137,7 +2165,9 @@ class _VaultPreviewActionChip extends StatelessWidget {
       style: OutlinedButton.styleFrom(
         minimumSize: const Size(0, 36),
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(GvRadii.surface),
+        ),
       ),
     );
   }
@@ -2283,13 +2313,13 @@ class _VaultOverviewActionCard extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(GvRadii.surface),
         onTap: onTap,
         child: Ink(
           padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
           decoration: BoxDecoration(
             color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.12),
-            borderRadius: BorderRadius.circular(14),
+            borderRadius: BorderRadius.circular(GvRadii.surface),
             border: Border.all(
               color: colorScheme.outline.withValues(alpha: 0.06),
             ),
@@ -2369,6 +2399,10 @@ class _VaultGvviPriceSurface extends StatelessWidget {
             fontWeight: FontWeight.w800,
             letterSpacing: 0,
             height: 1.0,
+            color:
+                headline != null && data.pricingMode == GvviPricingMode.market
+                ? colorScheme.tertiary
+                : colorScheme.onSurface,
           ),
         ),
         if (subtitle.trim().isNotEmpty) ...[
@@ -2391,7 +2425,7 @@ class _VaultGvviPriceSurface extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
       decoration: BoxDecoration(
         color: colorScheme.surface,
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(GvRadii.surface),
         border: Border.all(color: colorScheme.outline.withValues(alpha: 0.08)),
       ),
       child: content,
@@ -2400,6 +2434,8 @@ class _VaultGvviPriceSurface extends StatelessWidget {
 
   String _pricingSourceLabel(String? source) {
     switch ((source ?? '').trim().toLowerCase()) {
+      case 'tcgplayer':
+        return 'TCGplayer Market';
       case 'justtcg':
         return 'JustTCG';
       case 'ebay':
@@ -2486,12 +2522,12 @@ class _VaultActionPathRow extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(GvRadii.surface),
         onTap: onTap,
         child: Ink(
           decoration: BoxDecoration(
             color: colorScheme.primary.withValues(alpha: 0.045),
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(GvRadii.surface),
             border: Border.all(
               color: colorScheme.primary.withValues(alpha: 0.12),
             ),
@@ -2605,7 +2641,7 @@ class _NotesSurface extends StatelessWidget {
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: colorScheme.surface,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(GvRadii.surface),
         border: Border.all(color: colorScheme.outline.withValues(alpha: 0.08)),
       ),
       child: content,
@@ -2682,7 +2718,7 @@ class _MediaSurface extends StatelessWidget {
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surface,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(GvRadii.surface),
         border: Border.all(
           color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.08),
         ),
@@ -2731,7 +2767,7 @@ class _MediaTile extends StatelessWidget {
           child: CardSurfaceArtwork(
             label: '$label photo',
             imageUrl: imageUrl,
-            borderRadius: 16,
+            borderRadius: GvRadii.artwork,
             padding: const EdgeInsets.all(5),
             showZoomAffordance: hasImage,
           ),
@@ -2827,7 +2863,7 @@ class _OutcomeSurface extends StatelessWidget {
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: colorScheme.surface,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(GvRadii.surface),
         border: Border.all(color: colorScheme.outline.withValues(alpha: 0.08)),
       ),
       child: content,
@@ -2860,7 +2896,7 @@ class _VaultMeta extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(11, 9, 11, 9),
       decoration: BoxDecoration(
         color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.10),
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(GvRadii.surface),
         border: Border.all(color: colorScheme.outline.withValues(alpha: 0.04)),
       ),
       child: Column(
@@ -2947,7 +2983,7 @@ class _CollectorMemoriesSurface extends StatelessWidget {
                   vertical: 9,
                 ),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(14),
+                  borderRadius: BorderRadius.circular(GvRadii.surface),
                 ),
               ),
             ),
@@ -3016,7 +3052,7 @@ class _CollectorMemoryPromptCard extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: colorScheme.primaryContainer.withValues(alpha: 0.20),
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(GvRadii.surface),
         border: Border.all(color: colorScheme.primary.withValues(alpha: 0.12)),
       ),
       child: Padding(
@@ -3086,7 +3122,7 @@ class _CollectorMemoryEmptyState extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: colorScheme.surface.withValues(alpha: 0.52),
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(GvRadii.surface),
         border: Border.all(color: colorScheme.outline.withValues(alpha: 0.06)),
       ),
       child: Padding(
@@ -3234,7 +3270,7 @@ class _CollectorMemoryPhotoThumb extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     final url = (photoUrl ?? '').trim();
     return ClipRRect(
-      borderRadius: BorderRadius.circular(14),
+      borderRadius: BorderRadius.circular(GvRadii.surface),
       child: Container(
         width: 58,
         height: 58,
@@ -3363,7 +3399,9 @@ class _CollectorMemoryEditorSheetState
       child: DecoratedBox(
         decoration: BoxDecoration(
           color: colorScheme.surface,
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+          borderRadius: const BorderRadius.vertical(
+            top: Radius.circular(GvRadii.floating),
+          ),
           border: Border.all(
             color: colorScheme.outline.withValues(alpha: 0.08),
           ),
@@ -3550,7 +3588,7 @@ class _VaultSectionFrame extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
       decoration: BoxDecoration(
         color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.08),
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(GvRadii.surface),
         border: Border.all(color: colorScheme.outline.withValues(alpha: 0.05)),
       ),
       child: Column(
@@ -3583,7 +3621,7 @@ class _VaultInlineStatusMessage extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
       decoration: BoxDecoration(
         color: colorScheme.surfaceContainerHighest.withValues(alpha: 0.16),
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(GvRadii.surface),
       ),
       child: Text(
         message,
@@ -3618,7 +3656,7 @@ class _VaultDangerSurface extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
       decoration: BoxDecoration(
         color: colorScheme.errorContainer.withValues(alpha: 0.10),
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(GvRadii.surface),
         border: Border.all(color: colorScheme.error.withValues(alpha: 0.08)),
       ),
       child: Column(
@@ -3729,7 +3767,7 @@ class _VaultRelatedPrintTile extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(GvRadii.surface),
         onTap: onTap,
         child: Padding(
           padding: const EdgeInsets.only(bottom: 1),
@@ -3742,7 +3780,7 @@ class _VaultRelatedPrintTile extends StatelessWidget {
                   label: displayIdentity.displayName,
                   imageUrl: artwork.primaryImageUrl,
                   fallbackImageUrl: artwork.fallbackImageUrl,
-                  borderRadius: 16,
+                  borderRadius: GvRadii.artwork,
                   padding: const EdgeInsets.all(4),
                   showZoomAffordance: false,
                 ),
@@ -3800,7 +3838,7 @@ class _VaultGvviStateCard extends StatelessWidget {
           padding: const EdgeInsets.all(18),
           decoration: BoxDecoration(
             color: colorScheme.surface,
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(GvRadii.surface),
             border: Border.all(
               color: colorScheme.outline.withValues(alpha: 0.12),
             ),

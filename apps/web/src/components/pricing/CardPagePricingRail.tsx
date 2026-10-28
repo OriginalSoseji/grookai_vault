@@ -76,10 +76,10 @@ function PricingEmptyState() {
       data-pricing-status="unavailable"
     >
       <p className="text-base font-semibold text-slate-950 dark:text-slate-100">
-        No qualified market price
+        Market price unavailable
       </p>
       <p className="text-xs leading-5 text-slate-500">
-        This printing does not yet have a fresh, exact TCGPlayer mapping.
+        No qualified market price is available for this printing.
       </p>
     </div>
   );
@@ -122,14 +122,14 @@ function MarketPriceBlock({
       data-provenance-id={pricing.provenance_id}
       data-is-from-price={pricing.is_from_price ? "true" : "false"}
     >
-      <p className="text-3xl font-semibold text-slate-950 dark:text-slate-100">
+      <p className="gv-collector-market-value text-3xl font-semibold">
         {pricing.is_from_price ? "From " : ""}
         {formatUsdPrice(pricing.market_close)}
       </p>
       <p className="text-sm font-medium text-slate-700 dark:text-slate-300">
         {pricing.source_label}
       </p>
-      <p className="text-xs text-slate-500">
+      <p className="sr-only">
         {context}
         {observedAt ? ` · Updated ${observedAt}` : ""}
       </p>
@@ -221,7 +221,7 @@ function LockedPricingState({ loginHref }: { loginHref: string }) {
       <div className="space-y-4">
         <div className="space-y-2">
           <p className="text-[11px] font-semibold uppercase text-slate-500">
-            Pricing
+            Market price
           </p>
           <p className="text-xl font-semibold text-slate-950 dark:text-slate-100">
             Sign in to view pricing
@@ -263,7 +263,7 @@ function AuthenticatedPricingState({
       <div className="space-y-4">
         <div className="space-y-2">
           <p className="text-[11px] font-semibold uppercase text-slate-500">
-            Pricing
+            Market price
           </p>
           {isLoading ? (
             <div className="space-y-3" role="status" aria-label="Loading market data">

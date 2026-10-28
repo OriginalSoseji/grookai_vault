@@ -1,6 +1,6 @@
 type VariantBadgeProps = {
   label: string;
-  tone?: "variant" | "selected" | "context" | "metadata";
+  tone?: "variant" | "selected" | "context" | "metadata" | "edition";
 };
 
 export default function VariantBadge({ label, tone = "variant" }: VariantBadgeProps) {
@@ -11,6 +11,8 @@ export default function VariantBadge({ label, tone = "variant" }: VariantBadgePr
         ? "gv-hi-search-context"
         : tone === "metadata"
           ? "border-slate-200 bg-white text-slate-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300"
+          : tone === "edition"
+            ? "border-amber-300 bg-amber-50 text-amber-800 shadow-sm dark:border-amber-400/50 dark:bg-amber-400/15 dark:text-amber-200"
           : "border-slate-200 bg-slate-50 text-slate-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300";
 
   return (

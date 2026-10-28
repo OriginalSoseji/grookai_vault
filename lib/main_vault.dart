@@ -610,6 +610,7 @@ class VaultPageState extends State<VaultPage> {
   _VaultStructuralView _view = _VaultStructuralView.all;
   _VaultPricingFilter _pricingFilter = _VaultPricingFilter.all;
   AppCardViewMode _cardViewMode = AppCardViewMode.grid;
+  final _gridPreferences = VaultGridPreferences();
   _VaultDerivedData _derivedData = const _VaultDerivedData.empty();
   final Set<String> _selectedCardPrintIds = <String>{};
   bool _selectionMode = false;
@@ -620,6 +621,8 @@ class VaultPageState extends State<VaultPage> {
     super.initState();
     _searchController = TextEditingController();
     _searchController.addListener(_handleSearchChanged);
+    _gridPreferences.addListener(_gridDensityChanged);
+    unawaited(_gridPreferences.ensureLoaded());
     _uid = supabase.auth.currentUser?.id;
     _sealedValue = OwnedSealedTotalsController(
       OwnedSealedService.supabase(supabase),
@@ -629,6 +632,8 @@ class VaultPageState extends State<VaultPage> {
 
   @override
   void dispose() {
+    _gridPreferences.removeListener(_gridDensityChanged);
+    _gridPreferences.dispose();
     _sealedValue.dispose();
     _searchController.removeListener(_handleSearchChanged);
     _searchController.dispose();
@@ -637,6 +642,32 @@ class VaultPageState extends State<VaultPage> {
 
   void _sealedValueChanged() {
     if (mounted) setState(() {});
+  }
+
+  void _gridDensityChanged() {
+    if (mounted) setState(() {});
+  }
+
+  Future<void> _selectGridDensity(int columns) async {
+    final saved = await _gridPreferences.select(columns);
+    if (!saved && mounted) {
+      _showVaultMutationError(
+        'Grid size changed for now. Could not save this setting.',
+      );
+    }
+  }
+
+  Future<void> _openReviewedWorkspace({bool intake = false}) async {
+    await Navigator.of(context).push<void>(
+      MaterialPageRoute(
+        builder: (_) => intake
+            ? const IntakeHomeScreen()
+            : CollectorWorkspaceScreen(
+                cardPrintIds: Set.of(_selectedCardPrintIds),
+              ),
+      ),
+    );
+    if (mounted) await reload();
   }
 
   Future<void> reload() async {
@@ -1104,17 +1135,16 @@ class VaultPageState extends State<VaultPage> {
     }
 
     try {
-      await VaultCardService.addOrIncrementVaultItem(
-        client: supabase,
-        userId: userId,
-        cardId: picked.id,
-        deltaQty: 1,
-        conditionLabel: 'NM',
-        fallbackName: picked.name,
-        fallbackSetName: picked.displaySet,
-        fallbackImageUrl: picked.displayImage,
-        cardPrintingId: cardPrintingId,
+      final saved = await showVaultAddReview(
+        context: context,
+        cardPrintId: picked.id,
+        gvId: picked.gvId ?? '',
+        name: picked.name,
+        setName: picked.displaySet,
+        imageUrl: picked.displayImage,
+        printingId: cardPrintingId,
       );
+      if (saved == null) return false;
       await reload();
       return true;
     } catch (_) {
@@ -2407,12 +2437,9 @@ class VaultPageState extends State<VaultPage> {
     );
     final columns = resolvedViewMode != AppCardViewMode.grid
         ? 1
-        : viewportWidth < 600
-        ? 2
-        : resolveSharedCardGridColumns(
-            context,
-            horizontalPadding: 28,
-            minTileWidth: 132,
+        : _gridPreferences.value.clamp(
+            2,
+            ((viewportWidth - 28 + 9) / 81).floor().clamp(2, 4),
           );
     final vaultContentSlivers = <Widget>[];
     final combinedValue = combineCollectionUsd(
@@ -2693,11 +2720,20 @@ class VaultPageState extends State<VaultPage> {
                     label: 'Search your Vault',
                     child: TextField(
                       controller: _searchController,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         hintText: 'Search by card, set, or Pokémon…',
-                        prefixIcon: Icon(Icons.search_rounded),
+                        prefixIcon: const Icon(Icons.search_rounded),
+                        suffixIcon: _search.isEmpty
+                            ? null
+                            : IconButton(
+                                tooltip: 'Clear Vault search',
+                                onPressed: _searchController.clear,
+                                icon: const Icon(Icons.close_rounded),
+                              ),
                         isDense: true,
-                        contentPadding: EdgeInsets.symmetric(vertical: 13),
+                        contentPadding: const EdgeInsets.symmetric(
+                          vertical: 13,
+                        ),
                       ),
                     ),
                   ),
@@ -2730,10 +2766,38 @@ class VaultPageState extends State<VaultPage> {
                           'Sealed ${entry.key} ${(entry.value as num).toStringAsFixed(2)} (separate from USD total)',
                           style: theme.textTheme.bodySmall,
                         ),
-                  Row(
+                  Wrap(
+                    spacing: 9,
+                    runSpacing: 4,
+                    crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
                       _buildVaultFilterButton(theme),
-                      const SizedBox(width: 6),
+                      IconButton(
+                        tooltip: 'Review incoming cards',
+                        onPressed: () =>
+                            unawaited(_openReviewedWorkspace(intake: true)),
+                        icon: const Icon(Icons.add_photo_alternate_outlined),
+                      ),
+                      IconButton(
+                        tooltip: 'Review exact copies for trade or sale',
+                        onPressed: () => unawaited(_openReviewedWorkspace()),
+                        icon: const Icon(Icons.checklist_rounded),
+                      ),
+                      if (resolvedViewMode == AppCardViewMode.grid)
+                        PopupMenuButton<int>(
+                          tooltip: 'Grid density',
+                          icon: const Icon(Icons.grid_on_rounded),
+                          onSelected: (value) =>
+                              unawaited(_selectGridDensity(value)),
+                          itemBuilder: (_) => [
+                            for (final value in [2, 3, 4])
+                              CheckedPopupMenuItem(
+                                value: value,
+                                checked: _gridPreferences.value == value,
+                                child: Text('$value columns'),
+                              ),
+                          ],
+                        ),
                       PopupMenuButton<_SortBy>(
                         tooltip: 'Sort Vault',
                         onSelected: (value) {
@@ -2913,7 +2977,10 @@ class _VaultPrimaryTabs extends StatelessWidget {
     final tabs = <(String, VoidCallback)>[
       ('Cards', onCards),
       ('Sets', onSets),
-      ('Lists', onLists),
+      (
+        BinderFeatureFlags.production.personalAvailable ? 'Binders' : 'Lists',
+        onLists,
+      ),
     ];
     return DecoratedBox(
       decoration: BoxDecoration(

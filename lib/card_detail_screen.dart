@@ -24,6 +24,11 @@ import 'services/identity/image_presentation.dart';
 import 'services/identity/variant_origin_public_copy.dart';
 import 'services/navigation/grookai_web_route_service.dart';
 import 'services/pricing/ebay_sold_search_uri.dart';
+import 'widgets/pricing/ebay_listing_links.dart';
+import 'widgets/pricing/card_marketplace_sheet.dart';
+import 'widgets/cards/card_comments_sheet.dart';
+import 'widgets/cards/card_printing_picker.dart';
+import 'widgets/vault/vault_add_review_sheet.dart';
 import 'services/pricing/card_personal_sales_service.dart';
 import 'services/sales/sales_card_reference.dart';
 import 'services/navigation/copy_detail_navigation_policy.dart';
@@ -36,7 +41,6 @@ import 'services/public/compare_service.dart';
 import 'services/public/public_card_printing_options_service.dart';
 import 'services/public/jungle_edition_resolution_service.dart';
 import 'services/vault/collector_memory_service.dart';
-import 'services/vault/vault_card_service.dart';
 import 'services/vault/vault_gvvi_service.dart';
 import 'services/vault/ownership_resolver_adapter.dart';
 import 'theme/gv_tokens.dart';
@@ -144,6 +148,7 @@ class _CardImageFace {
 enum _CardDetailTab { overview, collection, activity }
 
 class _CardDetailScreenState extends State<CardDetailScreen> {
+  final _marketAnchor = GlobalKey();
   static const double _sectionSpacing = 10;
   final supabase = Supabase.instance.client;
   final _ownershipAdapter = OwnershipResolverAdapter.instance;
@@ -157,6 +162,8 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   int _selectedImageFaceIndex = 0;
   String? _selectedCardPrintingId;
   bool _printingSelectionTouched = false;
+  bool _printingOptionsLoading = true;
+  int _cardContextRequestVersion = 0;
   bool _priceLoading = false;
   String? _priceError;
   OwnershipState? _ownershipState;
@@ -335,6 +342,8 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   }
 
   Future<void> _loadCardContext() async {
+    final version = ++_cardContextRequestVersion;
+    if (mounted) setState(() => _printingOptionsLoading = true);
     try {
       final rawDetailRow = await supabase
           .from('card_prints')
@@ -354,57 +363,34 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       final cardPrintId = _cleanText(contextData?['id']).isNotEmpty
           ? _cleanText(contextData?['id'])
           : widget.cardPrintId;
-      final imageFaces = await _fetchImageFaces(cardPrintId);
-
-      List<Map<String, dynamic>> relatedRows = const [];
-      if (resolvedName.isNotEmpty) {
-        final response = await supabase
-            .from('card_prints')
-            .select(
-              'id,gv_id,name,set_code,number,number_plain,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(name,release_date,identity_model)',
-            )
-            .eq('name', resolvedName)
-            .neq('id', widget.cardPrintId)
-            .not('gv_id', 'is', null)
-            .order('set_code', ascending: true)
-            .order('number_plain', ascending: true, nullsFirst: false)
-            .order('number', ascending: true)
-            .limit(20);
-
-        relatedRows = (await CanonImageUrlService.enrichRows(
-          (response as List<dynamic>).map(
-            (row) => Map<String, dynamic>.from(row as Map),
-          ),
-        )).where((row) => _cleanText(row['id']).isNotEmpty).toList();
-      }
-
-      final relatedVersionOwnershipByCardPrintId =
-          await _primeRelatedVersionOwnership(
-            relatedRows.map((row) => _cleanText(row['id'])),
-          );
       final printingOptions = await _fetchPrintingOptions(cardPrintId);
       final selectedCardPrintingId = _resolveInitialPrintingSelection(
         printingOptions,
       );
 
-      if (!mounted) {
+      if (!mounted || version != _cardContextRequestVersion) {
         return;
       }
 
       setState(() {
         _cardContextData = contextData;
-        _relatedVersions = relatedRows;
+        _relatedVersions = const [];
         _printingOptions = printingOptions;
-        _imageFaces = imageFaces;
+        _printingOptionsLoading = false;
+        _imageFaces = const [];
         _selectedImageFaceIndex = 0;
         _selectedCardPrintingId = selectedCardPrintingId;
         _printingSelectionTouched = false;
-        _relatedVersionOwnershipByCardPrintId =
-            relatedVersionOwnershipByCardPrintId;
+        _relatedVersionOwnershipByCardPrintId = {};
       });
       unawaited(_loadPricing());
+      unawaited(_loadRelatedCardVersions(resolvedName, version));
+      final imageFaces = await _fetchImageFaces(cardPrintId);
+      if (mounted && version == _cardContextRequestVersion) {
+        setState(() => _imageFaces = imageFaces);
+      }
     } catch (_) {
-      if (!mounted) {
+      if (!mounted || version != _cardContextRequestVersion) {
         return;
       }
 
@@ -412,12 +398,50 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         _cardContextData = null;
         _relatedVersions = const [];
         _printingOptions = const <_CardDetailPrintingOption>[];
+        _printingOptionsLoading = false;
         _imageFaces = const <_CardImageFace>[];
         _selectedImageFaceIndex = 0;
         _selectedCardPrintingId = null;
         _printingSelectionTouched = false;
         _relatedVersionOwnershipByCardPrintId = <String, OwnershipState>{};
       });
+    }
+  }
+
+  Future<void> _loadRelatedCardVersions(String name, int version) async {
+    // Related artwork and ownership are optional. Their latency or failure must
+    // never remove an already verified finish or block its marketplace links.
+    try {
+      List<Map<String, dynamic>> relatedRows = const [];
+      if (name.isNotEmpty) {
+        final response = await supabase
+            .from('card_prints')
+            .select(
+              'id,gv_id,name,set_code,number,number_plain,rarity,variant_key,printed_identity_modifier,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(name,release_date,identity_model)',
+            )
+            .eq('name', name)
+            .neq('id', widget.cardPrintId)
+            .not('gv_id', 'is', null)
+            .order('set_code', ascending: true)
+            .order('number_plain', ascending: true, nullsFirst: false)
+            .order('number', ascending: true)
+            .limit(20);
+        relatedRows = (await CanonImageUrlService.enrichRows(
+          (response as List<dynamic>).map(
+            (row) => Map<String, dynamic>.from(row as Map),
+          ),
+        )).where((row) => _cleanText(row['id']).isNotEmpty).toList();
+      }
+      final ownership = await _primeRelatedVersionOwnership(
+        relatedRows.map((row) => _cleanText(row['id'])),
+      );
+      if (!mounted || version != _cardContextRequestVersion) return;
+      setState(() {
+        _relatedVersions = relatedRows;
+        _relatedVersionOwnershipByCardPrintId = ownership;
+      });
+    } catch (_) {
+      // Preserve the primary card/printing context during optional read failure.
     }
   }
 
@@ -851,6 +875,20 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
 
   String get _displayTitle => _displayIdentity.displayName;
 
+  // Search keeps printed identity modifiers, with finish supplied separately.
+  String get _marketSearchName => resolveDisplayIdentityFromFields(
+    name: _displayName,
+    variantKey: _cleanText(_cardContextData?['variant_key']),
+    printedIdentityModifier: _cleanText(
+      _cardContextData?['printed_identity_modifier'],
+    ),
+    setIdentityModel: _cleanText(
+      _extractRecord(_cardContextData?['sets'])?['identity_model'],
+    ),
+    setCode: _resolvedSetCode,
+    number: _resolvedCollectorNumber,
+  ).displayName.replaceAll(' · ', ' ');
+
   bool get _hasExplicitPrintingContext =>
       _printingSelectionTouched ||
       _printingOptions.length == 1 ||
@@ -1124,6 +1162,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       return;
     }
 
+    if (!mounted) return;
     final userId = supabase.auth.currentUser?.id;
     if (userId == null || userId.isEmpty) {
       await _showSignedOutIntentSheet(
@@ -1279,7 +1318,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
           gvviId: gvviId,
           cardPrintId: widget.cardPrintId,
           source: GrookaiMemoryCardSource(
-            cardName: _displayTitle,
+            cardName: _marketSearchName,
             setLine: _collectorIdentityLine ?? _resolvedSetName,
             printingIdentityLabel: printingIdentityLabel,
             cardImageUrl: _cardImagePresentation.displayImageUrl,
@@ -1309,7 +1348,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         builder: (_) => ForSaleTermsScreen(
           gvviId: gvviId,
           source: GrookaiSaleListingSource(
-            cardName: _displayTitle,
+            cardName: _marketSearchName,
             setLine: _collectorIdentityLine ?? _resolvedSetName,
             printingIdentityLabel: printingIdentityLabel,
             cardImageUrl: _cardImagePresentation.displayImageUrl,
@@ -1370,9 +1409,9 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       useSafeArea: true,
       showDragHandle: true,
       isScrollControlled: true,
-      builder: (_) => _CardCommentsSheet(
+      builder: (_) => CardCommentsSheet(
         cardPrintId: widget.cardPrintId,
-        cardName: _displayTitle,
+        cardName: _marketSearchName,
       ),
     );
   }
@@ -1541,23 +1580,22 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       return;
     }
 
+    if (!mounted) return;
     setState(() {
       _addingToVault = true;
     });
 
     try {
-      final gvviId = await VaultCardService.addOrIncrementVaultItem(
-        client: supabase,
-        userId: userId,
-        cardId: widget.cardPrintId,
-        conditionLabel: 'NM',
-        fallbackName: _displayName,
-        fallbackSetName: _resolvedSetName.isEmpty ? null : _resolvedSetName,
-        fallbackImageUrl: _cleanText(widget.imageUrl).isEmpty
-            ? null
-            : widget.imageUrl,
-        cardPrintingId: printingOption.id,
+      final gvviId = await showVaultAddReview(
+        context: context,
+        cardPrintId: widget.cardPrintId,
+        gvId: widget.gvId ?? '',
+        name: _displayName,
+        setName: _resolvedSetName,
+        imageUrl: widget.imageUrl,
+        printingId: printingOption.id,
       );
+      if (gvviId == null) return;
 
       if (!mounted) {
         return;
@@ -2122,24 +2160,15 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: const SystemUiOverlayStyle(
-        statusBarColor: Color(0xFF080B09),
-        statusBarIconBrightness: Brightness.light,
-        statusBarBrightness: Brightness.dark,
-        systemNavigationBarColor: Color(0xFF080B09),
-        systemNavigationBarDividerColor: Color(0xFF080B09),
-        systemNavigationBarIconBrightness: Brightness.light,
-        systemNavigationBarContrastEnforced: false,
-      ),
+      value: gvSystemUiStyle(Theme.of(context).brightness),
       child: Theme(
-        data: buildGvRedesignV2Theme(),
+        data: buildGvRedesignV2Theme(brightness: Theme.of(context).brightness),
         child: Builder(
           builder: (context) {
             final theme = Theme.of(context);
             final colorScheme = theme.colorScheme;
             final collectionSections = <Widget>[
-              if (_printingOptions.isNotEmpty)
-                _buildPrintingOptionsSection(theme, colorScheme),
+              _buildPrintingOptionsSection(theme, colorScheme),
               if (_variantOriginCopy != null)
                 _buildVariantOriginSection(theme, colorScheme),
             ];
@@ -2166,22 +2195,46 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
               body: SafeArea(
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.fromLTRB(20, 6, 20, 28),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      _buildPageChrome(theme, colorScheme),
-                      const SizedBox(height: 12),
-                      _buildHeroPanel(theme, colorScheme),
-                      const SizedBox(height: 18),
-                      _buildPricingSection(theme, colorScheme),
-                      const SizedBox(height: 18),
-                      _buildDetailTabRail(theme, colorScheme),
-                      const SizedBox(height: _sectionSpacing),
-                      for (var index = 0; index < sections.length; index++) ...[
-                        if (index > 0) const SizedBox(height: _sectionSpacing),
-                        sections[index],
-                      ],
-                    ],
+                  child: Center(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 840),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          _buildPageChrome(theme, colorScheme),
+                          const SizedBox(height: 12),
+                          _buildHeroPanel(theme, colorScheme),
+                          const SizedBox(height: 18),
+                          _buildDetailTabRail(theme, colorScheme),
+                          const SizedBox(height: _sectionSpacing),
+                          if (_selectedTab != _CardDetailTab.overview)
+                            for (final section in sections) ...[
+                              section,
+                              const SizedBox(height: _sectionSpacing),
+                            ],
+                          Column(
+                            key: _marketAnchor,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              _buildPricingSection(theme, colorScheme),
+                              const SizedBox(height: 12),
+                              _buildPriceHistoryAction(theme, colorScheme),
+                            ],
+                          ),
+                          const SizedBox(height: 18),
+                          if (_selectedTab == _CardDetailTab.overview)
+                            for (
+                              var index = 0;
+                              index < sections.length;
+                              index++
+                            ) ...[
+                              if (index > 0)
+                                const SizedBox(height: _sectionSpacing),
+                              sections[index],
+                            ],
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -2385,110 +2438,56 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   }
 
   Widget _buildHeroPanel(ThemeData theme, ColorScheme colorScheme) {
-    final imagePresentation = _cardImagePresentation;
-
+    final presentation = _cardImagePresentation;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        _buildHeroImage(),
-        if (imagePresentation.compactBadgeLabel != null) ...[
+        LayoutBuilder(
+          builder: (context, constraints) {
+            final artwork = SizedBox(width: 112, child: _buildHeroImage());
+            final identity = _buildIdentitySection(theme, colorScheme);
+            if (constraints.maxWidth < 320 ||
+                MediaQuery.textScalerOf(context).scale(14) > 20) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [artwork, const SizedBox(height: 16), identity],
+              );
+            }
+            return Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                artwork,
+                const SizedBox(width: 16),
+                Expanded(child: identity),
+              ],
+            );
+          },
+        ),
+        if (presentation.compactBadgeLabel != null) ...[
           const SizedBox(height: 12),
           Align(
-            alignment: Alignment.center,
+            alignment: Alignment.centerLeft,
             child: _buildImageStatusBadge(
               theme: theme,
               colorScheme: colorScheme,
               label:
-                  imagePresentation.detailBadgeLabel ??
-                  imagePresentation.compactBadgeLabel!,
-              strong: imagePresentation.isCollisionRepresentative,
+                  presentation.detailBadgeLabel ??
+                  presentation.compactBadgeLabel!,
+              strong: presentation.isCollisionRepresentative,
             ),
           ),
         ],
-        if (imagePresentation.detailNote != null) ...[
+        if (presentation.detailNote != null) ...[
           const SizedBox(height: 8),
           Text(
-            imagePresentation.detailNote!,
-            textAlign: TextAlign.center,
+            presentation.detailNote!,
             style: theme.textTheme.bodySmall?.copyWith(
-              color: colorScheme.onSurface.withValues(alpha: 0.58),
+              color: colorScheme.onSurfaceVariant,
               height: 1.35,
-              fontWeight: FontWeight.w600,
             ),
           ),
         ],
-        _buildMarketCompActions(theme, colorScheme),
-        const SizedBox(height: 22),
-        _buildIdentitySection(theme, colorScheme),
       ],
-    );
-  }
-
-  Widget _buildMarketCompActions(ThemeData theme, ColorScheme colorScheme) {
-    if (_displayTitle.trim().isEmpty || _displayTitle == 'Card Detail') {
-      return const SizedBox.shrink();
-    }
-
-    final borderColor = colorScheme.outline.withValues(alpha: 0.22);
-    final foregroundColor = colorScheme.onSurface.withValues(alpha: 0.84);
-    final buttonStyle = OutlinedButton.styleFrom(
-      minimumSize: const Size(44, 42),
-      padding: const EdgeInsets.symmetric(horizontal: 12),
-      foregroundColor: foregroundColor,
-      side: BorderSide(color: borderColor),
-      textStyle: theme.textTheme.labelLarge?.copyWith(
-        fontWeight: FontWeight.w700,
-      ),
-    );
-
-    return Padding(
-      padding: const EdgeInsets.only(top: 16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(
-            'CHECK MARKET COMPS',
-            textAlign: TextAlign.center,
-            style: theme.textTheme.labelSmall?.copyWith(
-              color: colorScheme.onSurface.withValues(alpha: 0.58),
-              fontWeight: FontWeight.w700,
-              letterSpacing: 1.4,
-            ),
-          ),
-          const SizedBox(height: 9),
-          Row(
-            children: [
-              Expanded(
-                child: OutlinedButton.icon(
-                  onPressed: () => unawaited(_openTcgplayerSearch()),
-                  icon: const Icon(Icons.open_in_new_rounded, size: 16),
-                  label: const Text('TCGplayer'),
-                  style: buttonStyle,
-                ),
-              ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: OutlinedButton.icon(
-                  onPressed: () =>
-                      unawaited(_openEbaySoldSearch(_selectedPrintingOption)),
-                  icon: const Icon(Icons.open_in_new_rounded, size: 16),
-                  label: const Text('eBay sold'),
-                  style: buttonStyle,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 4),
-          Text(
-            'Opens the current card identity in a new tab.',
-            textAlign: TextAlign.center,
-            style: theme.textTheme.bodySmall?.copyWith(
-              color: colorScheme.onSurface.withValues(alpha: 0.52),
-              height: 1.25,
-            ),
-          ),
-        ],
-      ),
     );
   }
 
@@ -2504,9 +2503,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        final maxWidth = constraints.maxWidth < 420
-            ? constraints.maxWidth * 0.72
-            : 286.0;
+        final maxWidth = constraints.maxWidth;
         return Center(
           child: ConstrainedBox(
             constraints: BoxConstraints(maxWidth: maxWidth),
@@ -2521,10 +2518,10 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                         : '$_displayTitle, ${selectedFace.label}',
                     imageUrl: url,
                     fallbackImageUrl: fallbackUrl,
-                    borderRadius: 20,
+                    borderRadius: GvRadii.artwork,
                     padding: EdgeInsets.zero,
                     frame: CardArtworkFrame.none,
-                    showShadow: true,
+                    showShadow: false,
                     showZoomAffordance: url.isNotEmpty,
                   ),
                 ),
@@ -2532,22 +2529,27 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                   const SizedBox(height: 12),
                   SizedBox(
                     width: double.infinity,
-                    child: SegmentedButton<int>(
-                      segments: [
+                    child: Wrap(
+                      spacing: 4,
+                      runSpacing: 4,
+                      children: [
                         for (var index = 0; index < _imageFaces.length; index++)
-                          ButtonSegment<int>(
-                            value: index,
-                            label: Text(_imageFaces[index].label),
+                          Semantics(
+                            selected: index == _selectedImageFaceIndex,
+                            child: TextButton(
+                              style: TextButton.styleFrom(
+                                minimumSize: const Size(44, 44),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 6,
+                                ),
+                              ),
+                              onPressed: () => setState(
+                                () => _selectedImageFaceIndex = index,
+                              ),
+                              child: Text(_imageFaces[index].label),
+                            ),
                           ),
                       ],
-                      selected: <int>{_selectedImageFaceIndex},
-                      showSelectedIcon: false,
-                      onSelectionChanged: (selection) {
-                        if (selection.isEmpty) return;
-                        setState(() {
-                          _selectedImageFaceIndex = selection.first;
-                        });
-                      },
                     ),
                   ),
                 ],
@@ -2901,7 +2903,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                   cardPrintId: widget.cardPrintId,
                   ownerUserId: widget.contactOwnerUserId,
                   ownerDisplayName: _cleanText(widget.contactOwnerDisplayName),
-                  cardName: _displayTitle,
+                  cardName: _marketSearchName,
                   intent: widget.contactIntent,
                 ),
               ),
@@ -2925,6 +2927,42 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
 
   Widget _buildCardJourneySection(ThemeData theme, ColorScheme colorScheme) {
     final overview = _journeyOverview;
+
+    if (supabase.auth.currentUser == null) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildSectionLabel('Around this card', theme, colorScheme),
+          const SizedBox(height: 8),
+          Text(
+            'Sign in to see collector activity.',
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: colorScheme.onSurfaceVariant,
+            ),
+          ),
+          const SizedBox(height: 4),
+          TextButton.icon(
+            onPressed: () async {
+              await Navigator.of(context).push<bool>(
+                MaterialPageRoute(
+                  builder: (_) => const SignInContinuationScreen(
+                    destinationLabel: 'see collector activity',
+                  ),
+                ),
+              );
+              if (mounted) {
+                setState(() {});
+                if (supabase.auth.currentUser != null) {
+                  unawaited(_loadJourneyOverview());
+                }
+              }
+            },
+            icon: const Icon(Icons.login_rounded, size: 18),
+            label: const Text('Sign in to view activity'),
+          ),
+        ],
+      );
+    }
 
     if (_journeyLoading && overview == null) {
       return Column(
@@ -3260,7 +3298,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       builder: (sheetContext) => _CardJourneyCollectorsSheet(
         service: _journeyService,
         cardPrintId: widget.cardPrintId,
-        cardName: _displayTitle,
+        cardName: _marketSearchName,
         snapshot: snapshot,
       ),
     );
@@ -3274,9 +3312,21 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       builder: (sheetContext) => _CardJourneyMomentsSheet(
         service: _journeyService,
         cardPrintId: widget.cardPrintId,
-        cardName: _displayTitle,
+        cardName: _marketSearchName,
         initialMoments: overview.moments,
       ),
+    );
+  }
+
+  void _viewSelectedMarket() {
+    final target = _marketAnchor.currentContext;
+    if (target == null) return;
+    Scrollable.ensureVisible(
+      target,
+      alignment: .05,
+      duration: MediaQuery.disableAnimationsOf(context)
+          ? Duration.zero
+          : const Duration(milliseconds: 240),
     );
   }
 
@@ -3284,71 +3334,38 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     ThemeData theme,
     ColorScheme colorScheme,
   ) {
-    final selectedId = _cleanText(_selectedCardPrintingId);
-
-    return _buildSurface(
-      colorScheme: colorScheme,
-      soft: true,
-      padding: const EdgeInsets.all(14),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _buildSectionLabel('Variants', theme, colorScheme),
-          const SizedBox(height: 10),
-          Wrap(
-            spacing: 10,
-            runSpacing: 8,
-            children: [
-              for (final option in _printingOptions)
-                _buildPrintingOptionButton(
-                  label: option.finishName,
-                  selected: option.id == selectedId,
-                  onTap: () {
-                    setState(() {
-                      _selectedCardPrintingId = option.id;
-                      _printingSelectionTouched = true;
-                    });
-                    unawaited(_loadPricing());
-                  },
-                  theme: theme,
-                  colorScheme: colorScheme,
-                ),
-            ],
+    final picker = CardPrintingPicker(
+      choices: [
+        for (final option in _printingOptions)
+          CardPrintingChoice(
+            id: option.id,
+            label: option.finishName,
+            publicId: option.printingGvId,
           ),
-        ],
+      ],
+      selectedId: _hasExplicitPrintingContext ? _selectedCardPrintingId : null,
+      loading: _printingOptionsLoading,
+      onRetry: () => unawaited(_loadCardContext()),
+      onSelected: (id) => _selectPrinting(
+        _printingOptions.firstWhere((option) => option.id == id),
       ),
+      onViewMarket: _viewSelectedMarket,
     );
-  }
-
-  Widget _buildPrintingOptionButton({
-    required String label,
-    required bool selected,
-    required VoidCallback onTap,
-    required ThemeData theme,
-    required ColorScheme colorScheme,
-  }) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(999),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 4),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              label,
-              style: theme.textTheme.labelLarge?.copyWith(
-                color: selected ? colorScheme.primary : colorScheme.onSurface,
-                fontWeight: selected ? FontWeight.w800 : FontWeight.w600,
-              ),
-            ),
-            if (selected) ...[
-              const SizedBox(width: 5),
-              Icon(Icons.check_rounded, size: 15, color: colorScheme.primary),
-            ],
-          ],
+    final ownedCount = _ownershipState?.ownedCount ?? _managedOwnedCount ?? 0;
+    if (ownedCount < 1) return picker;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        picker,
+        const SizedBox(height: 8),
+        FilledButton.tonalIcon(
+          onPressed: _addingToVault || _printingOptionsLoading
+              ? null
+              : _addToVault,
+          icon: _buildPrimaryActionIcon(Icons.add_rounded),
+          label: Text(_addingToVault ? 'Opening review…' : 'Add another copy'),
         ),
-      ),
+      ],
     );
   }
 
@@ -3711,7 +3728,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       useSafeArea: true,
       backgroundColor: Colors.transparent,
       builder: (_) => CardMarketHistorySheet(
-        cardName: _displayTitle,
+        cardName: _marketSearchName,
         printingLabel: printing?.finishName ?? 'Selected variant',
         cardPrintingId: printingId,
         loadPersonalSales: (cardPrintingId) =>
@@ -3723,7 +3740,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
 
   Future<void> _openEbaySoldSearch(_CardDetailPrintingOption? printing) async {
     final uri = buildEbaySoldSearchUri(
-      cardName: _displayTitle,
+      cardName: _marketSearchName,
       setName: _resolvedSetName,
       collectorNumber: _resolvedCollectorNumber,
       finish: printing?.finishName,
@@ -3743,57 +3760,113 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     await launchUrl(reference.uri, mode: LaunchMode.externalApplication);
   }
 
-  Widget _buildTcgplayerAction(ThemeData theme, ColorScheme colorScheme) {
-    if (_displayName == 'Card Detail') return const SizedBox.shrink();
-    final reference = SalesCardReference(
-      name: _displayTitle,
-      setName: _resolvedSetName,
-      number: _resolvedCollectorNumber,
-      productId: _cleanText(_cardContextData?['tcgplayer_id']).isEmpty
-          ? null
-          : _cleanText(_cardContextData?['tcgplayer_id']),
-    );
-    return Padding(
-      padding: const EdgeInsets.only(top: 10),
-      child: Align(
-        alignment: Alignment.centerLeft,
-        child: OutlinedButton.icon(
-          onPressed: () => unawaited(_openTcgplayerSearch()),
-          icon: const Icon(Icons.open_in_new_rounded, size: 17),
-          label: Text(reference.label),
-          style: OutlinedButton.styleFrom(
-            minimumSize: const Size(44, 42),
-            textStyle: theme.textTheme.labelLarge?.copyWith(
-              fontWeight: FontWeight.w700,
+  void _selectPrinting(_CardDetailPrintingOption option) {
+    if (_selectedCardPrintingId == option.id && _hasExplicitPrintingContext) {
+      return;
+    }
+    setState(() {
+      _selectedCardPrintingId = option.id;
+      _printingSelectionTouched = true;
+      _priceData = null;
+    });
+    unawaited(_loadPricing());
+  }
+
+  Future<void> _chooseMarketFinish() async {
+    final selected = await showModalBottomSheet<_CardDetailPrintingOption>(
+      context: context,
+      showDragHandle: true,
+      isScrollControlled: true,
+      builder: (sheetContext) => SafeArea(
+        top: false,
+        child: ListView(
+          shrinkWrap: true,
+          children: [
+            ListTile(
+              title: Text(_displayTitle),
+              subtitle: const Text('Choose the printing on your copy'),
             ),
-          ),
+            for (final option in _printingOptions)
+              ListTile(
+                title: Text(option.finishName),
+                selected:
+                    _hasExplicitPrintingContext &&
+                    option.id == _selectedCardPrintingId,
+                trailing: option.id == _selectedCardPrintingId
+                    ? const Icon(Icons.check_rounded)
+                    : null,
+                onTap: () => Navigator.pop(sheetContext, option),
+              ),
+          ],
         ),
       ),
     );
+    if (!mounted || selected == null) return;
+    _selectPrinting(selected);
   }
 
   Widget _buildPriceHistoryAction(ThemeData theme, ColorScheme colorScheme) {
-    if (!_hasExplicitPrintingContext ||
-        _cleanText(_selectedPrintingOption?.id).isEmpty ||
-        supabase.auth.currentUser == null) {
-      return const SizedBox.shrink();
-    }
-    return Padding(
-      padding: const EdgeInsets.only(top: 10),
-      child: Align(
-        alignment: Alignment.centerLeft,
-        child: OutlinedButton.icon(
-          onPressed: _openMarketHistory,
-          icon: const Icon(Icons.show_chart_rounded, size: 18),
-          label: const Text('View price history'),
-          style: OutlinedButton.styleFrom(
-            minimumSize: const Size(44, 42),
-            textStyle: theme.textTheme.labelLarge?.copyWith(
-              fontWeight: FontWeight.w700,
+    final printing = _selectedPrintingForDisplay;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        if (_printingOptions.length > 1)
+          Align(
+            alignment: Alignment.centerLeft,
+            child: OutlinedButton.icon(
+              onPressed: _chooseMarketFinish,
+              icon: const Icon(Icons.tune_rounded, size: 18),
+              label: Text(
+                printing == null
+                    ? 'Choose finish'
+                    : 'Finish · ${printing.finishName}',
+              ),
             ),
           ),
-        ),
-      ),
+        if (printing == null)
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: Text(
+              _printingOptionsLoading
+                  ? 'Loading verified finishes…'
+                  : _printingOptions.isEmpty
+                  ? 'Exact printing is unavailable. Marketplace links need a verified finish.'
+                  : 'Choose a finish to open marketplace listings.',
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: colorScheme.onSurfaceVariant,
+              ),
+            ),
+          )
+        else ...[
+          CardMarketplaceSheet(
+            key: ValueKey('market-${widget.cardPrintId}-${printing.id}'),
+            inline: true,
+            cardPrintId: widget.cardPrintId,
+            cardPrintingId: printing.id,
+            identity: _displayTitle,
+            imageUrl: _cardImagePresentation.displayImageUrl,
+            contextLabel: '$_resolvedSetName · $_resolvedCollectorNumber',
+            condition: widget.condition,
+          ),
+          const SizedBox(height: 16),
+          EbayListingLinks(
+            outlined: true,
+            cardName: _marketSearchName,
+            setName: _resolvedSetName,
+            collectorNumber: _resolvedCollectorNumber,
+            finish: printing.finishName,
+          ),
+          if (supabase.auth.currentUser != null)
+            Align(
+              alignment: Alignment.centerLeft,
+              child: TextButton.icon(
+                onPressed: _openMarketHistory,
+                icon: const Icon(Icons.show_chart_rounded, size: 18),
+                label: const Text('View price history'),
+              ),
+            ),
+        ],
+      ],
     );
   }
 
@@ -3813,8 +3886,6 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
           ),
           const SizedBox(height: 7),
           const _CardDetailSkeletonBlock(width: 192, height: 10),
-          _buildPriceHistoryAction(theme, colorScheme),
-          _buildTcgplayerAction(theme, colorScheme),
         ],
       );
     }
@@ -3842,8 +3913,6 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
             icon: const Icon(Icons.refresh, size: 16),
             label: const Text('Retry'),
           ),
-          _buildPriceHistoryAction(theme, colorScheme),
-          _buildTcgplayerAction(theme, colorScheme),
         ],
       );
     }
@@ -3867,8 +3936,6 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
               color: colorScheme.onSurface.withValues(alpha: 0.58),
             ),
           ),
-          _buildPriceHistoryAction(theme, colorScheme),
-          _buildTcgplayerAction(theme, colorScheme),
         ],
       );
     }
@@ -3923,8 +3990,6 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
               color: colorScheme.onSurface.withValues(alpha: 0.58),
             ),
           ),
-          _buildPriceHistoryAction(theme, colorScheme),
-          _buildTcgplayerAction(theme, colorScheme),
         ] else ...[
           Row(
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -3989,8 +4054,6 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
               ),
             ),
           ],
-          _buildPriceHistoryAction(theme, colorScheme),
-          _buildTcgplayerAction(theme, colorScheme),
         ],
       ],
     );
@@ -4003,7 +4066,9 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   ButtonStyle _primaryActionButtonStyle(ThemeData theme) {
     return FilledButton.styleFrom(
       minimumSize: const Size(44, 44),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(GvRadii.control),
+      ),
       textStyle: theme.textTheme.labelLarge?.copyWith(
         fontWeight: FontWeight.w700,
       ),
@@ -4046,24 +4111,29 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
           SizedBox(
             width: 52,
             height: 52,
-            child: OutlinedButton(
-              onPressed: _wantLoading ? null : _toggleWant,
-              style: OutlinedButton.styleFrom(
-                padding: EdgeInsets.zero,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
+            child: Tooltip(
+              message: _wantState.want
+                  ? 'Remove from wishlist'
+                  : 'Add to wishlist',
+              child: OutlinedButton(
+                onPressed: _wantLoading ? null : _toggleWant,
+                style: OutlinedButton.styleFrom(
+                  padding: EdgeInsets.zero,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(GvRadii.control),
+                  ),
                 ),
+                child: _wantLoading
+                    ? const SizedBox.square(
+                        dimension: 18,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
+                    : Icon(
+                        _wantState.want
+                            ? Icons.bookmark_rounded
+                            : Icons.bookmark_border_rounded,
+                      ),
               ),
-              child: _wantLoading
-                  ? const SizedBox.square(
-                      dimension: 18,
-                      child: CircularProgressIndicator(strokeWidth: 2),
-                    )
-                  : Icon(
-                      _wantState.want
-                          ? Icons.bookmark_rounded
-                          : Icons.bookmark_border_rounded,
-                    ),
             ),
           ),
         ],

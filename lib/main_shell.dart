@@ -89,6 +89,16 @@ class _RequiredProfileSetupGateState extends State<RequiredProfileSetupGate> {
                     icon: const Icon(Icons.refresh_rounded),
                     label: const Text('Try again'),
                   ),
+                  if (Supabase.instance.client.auth.currentUser != null)
+                    TextButton.icon(
+                      onPressed: () => Navigator.of(context).push<void>(
+                        MaterialPageRoute<void>(
+                          builder: (_) => const IntakeHomeScreen(),
+                        ),
+                      ),
+                      icon: const Icon(Icons.inventory_2_outlined),
+                      label: const Text('Open saved drafts'),
+                    ),
                 ],
               ),
             ),
@@ -1266,7 +1276,12 @@ class _AppShellState extends State<AppShell> {
 
     if (kScannerV5Enabled) {
       final action = await _pushPage<ScanCaptureV5Exit>(
-        const ScanCaptureV5Screen(),
+        ScanCaptureV5Screen(
+          onStartBatch: () async {
+            await _pushPage<void>(const IntakeHomeScreen());
+            if (mounted) _vaultKey.currentState?.reload();
+          },
+        ),
       );
       if (!mounted || action == null) {
         return;
@@ -1624,17 +1639,9 @@ class _AppShellState extends State<AppShell> {
     );
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: const SystemUiOverlayStyle(
-        statusBarColor: Color(0xFF080B09),
-        statusBarIconBrightness: Brightness.light,
-        statusBarBrightness: Brightness.dark,
-        systemNavigationBarColor: Color(0xFF080B09),
-        systemNavigationBarDividerColor: Color(0xFF080B09),
-        systemNavigationBarIconBrightness: Brightness.light,
-        systemNavigationBarContrastEnforced: false,
-      ),
+      value: gvSystemUiStyle(Theme.of(context).brightness),
       child: Theme(
-        data: buildGvRedesignV2Theme(),
+        data: buildGvRedesignV2Theme(brightness: Theme.of(context).brightness),
         child: Builder(
           builder: (context) {
             final v2ColorScheme = Theme.of(context).colorScheme;
@@ -3284,7 +3291,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     // This branded surface has a fixed dark background in both system modes.
     return Theme(
-      data: _buildGrookaiTheme(Brightness.dark),
+      data: buildGrookaiTheme(Brightness.dark),
       child: Builder(builder: _buildLoginSurface),
     );
   }
