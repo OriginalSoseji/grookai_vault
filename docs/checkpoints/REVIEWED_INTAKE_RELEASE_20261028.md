@@ -87,3 +87,11 @@ migration files, compatible runtime text and ten private proof receipts. Normal
 hooks, clean committed qualification, official dry-run/apply, independent readback
 and production disposable-account canary remain pending. Production is still477;
 build502 remains installed and reviewed intake is unavailable there.
+
+The initial backend commit `53a36f1cb4aa44ac6c8afbef64ba352d52374977` passed
+normal commit/push hooks and exact committed PrePush qualification. PR825 is
+open. Hosted key policy then caught two local harness scripts accessing the
+CLI's legacy-named JSON field directly. They now use the existing loopback-only
+`localSupabaseStatusSecret` adapter. Frozen migration bytes and all shipped
+runtime source hashes remain unchanged; this correction is subject to normal
+hooks and a new exact-commit qualification before merge/apply.

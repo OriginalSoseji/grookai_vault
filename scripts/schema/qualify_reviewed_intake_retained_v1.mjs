@@ -5,6 +5,7 @@ import {createHash,randomBytes} from 'node:crypto';
 import {execFileSync,spawnSync} from 'node:child_process';
 import {createClient} from '@supabase/supabase-js';
 import {isDeepStrictEqual} from 'node:util';
+import {localSupabaseStatusSecret} from '../lib/local_supabase_cli_status_v1.mjs';
 const root='C:/gv_intake_release_20261028';assert.equal(process.cwd().replaceAll('\\','/'),root);
 const base='C:/gv_intake_recovery_private_20261027/reviewed-intake-release-v1';
 const work=base+'/local-draft-477',project='reviewed-intake-draft-477-20261028',db='supabase_db_'+project;
@@ -25,7 +26,7 @@ const cli=args=>execFileSync('supabase',[...args,'--workdir',work,'--network-id'
 const credentials=JSON.parse(cli(['status','--output','json']));
 const url='http://127.0.0.1:60521';assert.match(credentials.API_URL,/127\.0\.0\.1:60521/);
 const options={auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false}};
-const admin=createClient(url,credentials.SERVICE_ROLE_KEY,options);
+const admin=createClient(url,localSupabaseStatusSecret(credentials),options);
 const anon=()=>createClient(url,credentials.ANON_KEY,options);
 const ok=r=>{if(r.error)throw Error(r.error.message);return r.data;};
 const save=(name,data)=>fs.writeFileSync(output+'/'+name,JSON.stringify(data,null,2)+'\n',{flag:'wx'});
