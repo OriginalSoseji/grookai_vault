@@ -1,5 +1,10 @@
 # Grookai Operator Playbook V1
 
+## Final-review508 candidate — October28,2026
+
+Samsung still runs507. All hosted c77 checks passed, but three final review findings require508: release PNG export must not access debugNeedsPaint outside assertions; purchase-lot retries need stable identity/reconciliation; Unknown conditions must not become NM in the collector/vendor loader. These corrections passed22 focused checks. Main's data-only PR827 is incorporated. Normal checks,508 signing/device verification and final live-web qualification remain pending. Resolve findings only after their fixes are verified; never bypass conversation or merge gates. Global intake remains paused under the existing two-actor revision6 canary.
+
+
 ## Build507 installed — October28,2026
 
 This supersedes installed-build and RuName status below. Signed507 is installed on the QA emulator and Samsung through data-preserving updates. The Samsung retains its signed-in account, pre-upgrade inventory summary and four-column density. TCGplayer NM/LP, signed-in eBay active/sold results and photo recognition passed. On507, an offline/restart/reconnect intake saved exactly one DMG/Holo copy with explicit USD0.00, verified independently. Native QA sale recording created one exact canonical receipt; no founder inventory was changed or real funds moved.

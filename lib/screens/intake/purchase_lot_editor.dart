@@ -9,6 +9,9 @@ class PurchaseLotEditor extends StatefulWidget {
 }
 
 class _PurchaseLotEditorState extends State<PurchaseLotEditor> {
+  late final String _lotId = widget.lot?.id ?? newIntakeId();
+  late int _revision = widget.lot?.revision ?? 0;
+  PurchaseLot? _pendingSave;
   late final name = TextEditingController(
     text: widget.lot?.name ?? 'Purchase ${intakeDate(DateTime.now())}',
   );
@@ -39,7 +42,7 @@ class _PurchaseLotEditorState extends State<PurchaseLotEditor> {
       if (name.text.trim().isEmpty) throw StateError('Enter a lot name.');
       setState(() => busy = true);
       final lot = PurchaseLot(
-        id: widget.lot?.id,
+        id: _lotId,
         name: name.text.trim(),
         purchasedOn: date,
         currency: currency,
@@ -48,16 +51,66 @@ class _PurchaseLotEditorState extends State<PurchaseLotEditor> {
         notes: notes.text.trim(),
         tags: _tags(tags.text),
         isComplete: complete,
-        revision: widget.lot?.revision ?? 0,
+        revision: _revision,
       );
+      final pending = _pendingSave;
+      if (pending != null) {
+        // A failed response may follow a committed save. Read that same lot
+        // before making another request; never mint another creation identity.
+        final current = (await widget.service.lots())
+            .where((value) => value.id == _lotId)
+            .firstOrNull;
+        if (current == null) {
+          if (widget.lot != null || _revision > 0) {
+            throw StateError(
+              'This lot is unavailable. Refresh your purchase history.',
+            );
+          }
+        } else if (_sameValues(current, pending)) {
+          _revision = current.revision;
+          if (_sameValues(lot, pending)) {
+            _pendingSave = null;
+            if (mounted) Navigator.pop(context, current);
+            return;
+          }
+        } else if (current.revision != pending.revision) {
+          throw StateError(
+            'This lot changed on another device. Refresh it before saving.',
+          );
+        } else {
+          _revision = current.revision;
+        }
+      }
+      lot.revision = _revision;
+      _pendingSave = PurchaseLot.fromJson(lot.toJson());
       final saved = await widget.service.saveLot(lot);
+      if (saved.id != _lotId) {
+        throw StateError(
+          'The lot save is unconfirmed. Retry to check its saved version.',
+        );
+      }
+      _revision = saved.revision;
+      _pendingSave = null;
       if (mounted) Navigator.pop(context, saved);
     } catch (e) {
-      if (mounted) _error(context, e);
+      if (mounted) {
+        ScaffoldMessenger.of(context).removeCurrentSnackBar();
+        _error(context, e);
+      }
     } finally {
       if (mounted) setState(() => busy = false);
     }
   }
+
+  bool _sameValues(PurchaseLot left, PurchaseLot right) =>
+      left.name == right.name &&
+      intakeDate(left.purchasedOn) == intakeDate(right.purchasedOn) &&
+      left.currency == right.currency &&
+      left.totalCostCents == right.totalCostCents &&
+      left.isComplete == right.isComplete &&
+      left.source == right.source &&
+      left.notes == right.notes &&
+      listEquals(left.tags, right.tags);
 
   @override
   Widget build(BuildContext context) => Scaffold(

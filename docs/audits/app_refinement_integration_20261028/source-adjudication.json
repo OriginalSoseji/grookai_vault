@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-28T10:48:39.355Z",
+  "at": "2026-10-28T11:40:10.530Z",
   "base": "5b4a95e637ffcfb214aeeeb7b2279751124ab9f4",
   "sourceHead": "d6de174de9a6250ac4f71ad5bed49b90f8e78718",
   "originalWorkspacePreserved": true,
@@ -1234,7 +1234,7 @@
       "sourceDisposition": "three_way_merged_requires_review",
       "decision": "three_way_merged_requires_review",
       "present": true,
-      "sha256": "a5aaccafa2b0ddeea30ee404a3ba9ea224e05578c53ab08cccb360d82c6524c5"
+      "sha256": "20a066aec8cff26f4016b1084bad1fc4ce5a37e74c9713c03b55afb0f936fd7e"
     },
     {
       "path": "lib/screens/identity_scan/identity_scan_screen.dart",
@@ -1304,7 +1304,7 @@
       "sourceDisposition": "unique_client_change",
       "decision": "unique_client_change",
       "present": true,
-      "sha256": "9a3576b3b478d628696c6c49171196449888d7a7111cb0138b44f7333d7fabb1"
+      "sha256": "5f6f2e41999a8a9d5f45f8f7662d7c8810644075a2e769ce2676181907cc9a2b"
     },
     {
       "path": "lib/screens/intake/purchase_lots_screen.dart",
@@ -1451,7 +1451,7 @@
       "sourceDisposition": "manual_conflict_review",
       "decision": "Preserve original brand casing in error text.",
       "present": true,
-      "sha256": "f7958f0293714f16fab1b6b40e303dc60a4f57d10e4e4b7c046b17af017749d6"
+      "sha256": "675f6d9157a06094b65d79d078529576124556cf47ca57aee4d0b4cf0c655814"
     },
     {
       "path": "lib/services/grookai_objects/memory_card_print_service.dart",
@@ -1870,7 +1870,8 @@
   "additionalValidatedChanges": [
     "Reviewed acquisition dates capture and retain their explicit instant/offset; existing exact-copy and edition boundaries remain intact.",
     "Actual device review: use lowercase platform/provider product names; remember notification refusal across restarts; retain verified printing data independently of delayed/failed related-card reads; expose Add another copy for owned cards; label the wishlist action and use the shared copy-surface radius.",
-    "Build506 real-device stamped offline recovery and Samsung exact marketplace pages; final persistence guards, portable golden routing and hydration-safe Vault dates."
+    "Build506 real-device stamped offline recovery and Samsung exact marketplace pages; final persistence guards, portable golden routing and hydration-safe Vault dates.",
+    "Final review: assertion-only export paint diagnostic, purchase-lot stable retry/reconciliation and Unknown-condition preservation; data-only main PR827 retained."
   ],
-  "integratedMain": "e99b3ebcde7b161aeac245af893d271f828b022d"
+  "integratedMain": "cd6fd2a6de93ac3df4bf85a54602c869b79d59cb"
 }

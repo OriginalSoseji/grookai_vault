@@ -46,8 +46,8 @@
     "hydration-safe Vault dates in the collector browser time zone",
     "Windows-native pixel checks run explicitly alongside portable logical layout checks"
   ],
-  "finalCandidate": 507,
-  "finalCandidateStatus": "signed and installed on QA emulator and Samsung; native qualified, hosted/live web checks pending",
+  "finalCandidate": 508,
+  "finalCandidateStatus": "three final-review corrections passed 22 focused checks; normal checks, signing and release-mode verification pending",
   "samsungInstalledBuild": 507,
   "globalIntakeWrites": "paused; two QA actors temporarily allowlisted",
   "stampedOfflineRecovery": {
@@ -127,5 +127,10 @@
     "realFundsTransferred": false,
     "ebayPublished": false
   },
-  "hostedFixtureCorrection": "Disable unrelated SDK deep-link observers in eleven non-deep-link fixtures; 92 focused checks pass; hosted rerun pending."
+  "hostedFixtureCorrection": "Disable unrelated SDK deep-link observers in eleven non-deep-link fixtures; 92 focused checks pass; hosted rerun pending.",
+  "reviewCorrections": {
+    "export": "Remove unconditional debugNeedsPaint access; assertion-only diagnostic retained. Actual release export verification required on508.",
+    "lotRetry": "Stable creation identity, reconciliation before retry, recovered revisions and conflicting-edit protection; four widget regressions pass.",
+    "unknownCondition": "SDK workspace loader retains Unknown and condition control stays unselected; SDK and UI regressions pass."
+  }
 }
