@@ -63,10 +63,12 @@ class VaultAddReviewSheet extends StatefulWidget {
     required this.finish,
     this.imageUrl,
     this.service,
+    this.initialAcquiredOn,
   });
   final String cardPrintId, gvId, name, setName, printingId, finish;
   final String? imageUrl;
   final IntakeService? service;
+  final DateTime? initialAcquiredOn;
   @override
   State<VaultAddReviewSheet> createState() => _VaultAddReviewSheetState();
 }
@@ -79,6 +81,7 @@ class _VaultAddReviewSheetState extends State<VaultAddReviewSheet> {
   late final Future<List<PurchaseLot>> _lots = _service.lots();
   PurchaseLot? _lot;
   String _condition = 'Unspecified';
+  late DateTime _acquiredOn = widget.initialAcquiredOn ?? DateTime.now();
   bool _graded = false, _busy = false, _reviewed = false;
   String? _error;
   IntakeController? _controller;
@@ -135,6 +138,7 @@ class _VaultAddReviewSheetState extends State<VaultAddReviewSheet> {
           userId: _service.userId,
           lotId: _lot?.id,
           currency: _lot?.currency ?? 'USD',
+          acquiredOn: _acquiredOn,
           items: [item],
           allocationReviewed: true,
         );
@@ -354,6 +358,26 @@ class _VaultAddReviewSheetState extends State<VaultAddReviewSheet> {
               ),
             ),
             const Divider(height: 1),
+            OutlinedButton.icon(
+              onPressed: locked
+                  ? null
+                  : () async {
+                      final date = await showDatePicker(
+                        context: context,
+                        initialDate: _acquiredOn,
+                        firstDate: DateTime(1900),
+                        lastDate: DateTime(2100),
+                      );
+                      if (date != null && mounted) {
+                        setState(() {
+                          _acquiredOn = date;
+                          _reviewed = false;
+                        });
+                      }
+                    },
+              icon: const Icon(Icons.calendar_today_outlined, size: 18),
+              label: Text('Acquired ${intakeDate(_acquiredOn)}'),
+            ),
             ExpansionTile(
               tilePadding: EdgeInsets.zero,
               childrenPadding: const EdgeInsets.only(bottom: 12),
@@ -427,6 +451,9 @@ class _VaultAddReviewSheetState extends State<VaultAddReviewSheet> {
                             ? null
                             : (value) => setState(() {
                                 _lot = value;
+                                if (value != null) {
+                                  _acquiredOn = value.purchasedOn;
+                                }
                                 _reviewed = false;
                               }),
                       ),

@@ -98,3 +98,29 @@ installed at this checkpoint. The primary account is untouched.
 [Artifact fingerprints](../audits/app_refinement_integration_20261028/android-503-artifact.json)
 bind the native source index and public-only configuration. No private signing
 material or administrative credentials are packaged or recorded in Git.
+
+## Acquisition-date review correction
+
+PR825 review found that the first intake writer left the established acquisition
+date at its creation-time default. The existing profitability and inventory
+readers therefore put historical purchases in the save period. The backend is
+being corrected by the separate immutable forward migration
+20261028050700; the qualified 20261028020000 SQL remains unchanged.
+
+Native and web review now show the acquisition date and retain its explicit UTC
+instant and local offset in the durable snapshot. Native recovery preserves
+those values rather than recomputing them from the current device time zone.
+Selecting a purchase lot uses its purchase date. Web no longer infers a calendar
+date from server UTC. Invalid dates remain unsaved, and failure text describes
+recovery without exposing internal error codes.
+
+Five web date tests cover Denver, Kiritimati, Kolkata, DST midnight normalization
+and malformed inputs. The updated browser run passes all 38 checks; the native
+intake run passes 20 tests, and analysis/typecheck/lint pass. The two form goldens
+were rendered with the bundled font/icons and the visible date control reviewed.
+Normal commit checks are required for this client correction.
+
+The earlier signed build503 candidates remain preserved and uninstalled. The
+next fully qualified package will include this date correction; the Samsung
+still has build502 and its founder session remains untouched. Production remains
+at migration477 while the amended two-migration backend release is qualified.

@@ -129,6 +129,9 @@ test("reviewed add supports unknown cost, quantity and raw/slab choice", async (
   await page.goto("/visual-fixtures/collector-refinement?view=add");
   await page.getByLabel("Quantity", { exact: true }).fill("3");
   await expect(page.getByText(/3 × Holofoil/)).toBeVisible();
+  await page.getByLabel("Acquired on", {exact:true}).fill("2020-01-15");
+  await expect(page.locator('input[name="acquired_at"]')).toHaveValue("2020-01-15T07:00:00.000Z");
+  await expect(page.locator('input[name="acquired_utc_offset_minutes"]')).toHaveValue("-420");
   await page.getByText("Acquisition cost", { exact: false }).first().click();
   await expect(page.getByLabel("Total paid · USD (optional)")).toHaveValue("");
   await page.getByRole("checkbox", {

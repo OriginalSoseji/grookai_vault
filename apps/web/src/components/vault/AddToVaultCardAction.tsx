@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { type ReactNode, useActionState, useEffect, useId, useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
+import { isCollectorAcquisition, localCollectorAcquisition, localCollectorToday, type CollectorAcquisition } from "@/lib/vault/collectorAcquisitionDate";
 import PrintingSelector from "@/components/cards/PrintingSelector";
 import VaultSubmitButton from "@/components/VaultSubmitButton";
 import { useClientViewer } from "@/lib/auth/useClientViewer";
@@ -185,6 +186,7 @@ export default function AddToVaultCardAction({
   const [quantity, setQuantity] = useState(1);
   const [condition, setCondition] = useState("Unspecified");
   const [totalPaid, setTotalPaid] = useState("");
+  const [acquisition, setAcquisition] = useState<CollectorAcquisition | null>(null);
   const [reviewed, setReviewed] = useState(false);
   const [restoredKey, setRestoredKey] = useState<string | null>(null);
   const requestStorageKey = `vault_add_review_v1:${
@@ -220,6 +222,7 @@ export default function AddToVaultCardAction({
     setQuantity(1);
     setCondition("Unspecified");
     setTotalPaid("");
+    setAcquisition(localCollectorAcquisition(localCollectorToday()));
     try {
       // Without a verified browser owner, retain only this mounted attempt.
       const raw = viewer.userId ? sessionStorage.getItem(requestStorageKey) : null;
@@ -230,6 +233,7 @@ export default function AddToVaultCardAction({
           : crypto.randomUUID(),
       );
       if (draft) {
+        if (isCollectorAcquisition(draft.acquisition)) setAcquisition(draft.acquisition);
         setQuantity(
           Number.isInteger(draft.quantity) && draft.quantity >= 1 &&
             draft.quantity <= 100
@@ -267,9 +271,9 @@ export default function AddToVaultCardAction({
   useEffect(() => {
     if (!requestId || restoredKey !== requestStorageKey || !viewer.userId) return;
     try {
-      sessionStorage.setItem(requestStorageKey, JSON.stringify({requestId,quantity,condition,totalPaid,printingId:selectedChildPrintingId}));
+      sessionStorage.setItem(requestStorageKey, JSON.stringify({requestId,quantity,condition,totalPaid,printingId:selectedChildPrintingId,acquisition}));
     } catch { /* A mounted review retains its retry identity when storage is unavailable. */ }
-  }, [requestId,restoredKey,requestStorageKey,viewer.userId,quantity,condition,totalPaid,selectedChildPrintingId]);
+  }, [requestId,restoredKey,requestStorageKey,viewer.userId,quantity,condition,totalPaid,selectedChildPrintingId,acquisition]);
 
   useEffect(() => {
     setReviewed(false);
@@ -405,6 +409,7 @@ export default function AddToVaultCardAction({
                         quantity,
                         condition,
                         totalPaid,
+                        acquisition,
                         printingId: selectedChildPrintingId,
                       }),
                     );
@@ -431,6 +436,12 @@ export default function AddToVaultCardAction({
                   )
                   : null}
                 <input type="hidden" name="request_id" value={requestId} />
+                <input type="hidden" name="acquired_at" value={acquisition?.acquired_at ?? ""} />
+                <input type="hidden" name="acquired_utc_offset_minutes" value={acquisition?.acquired_utc_offset_minutes ?? ""} />
+                <label className="gv-collector-field-row">Acquired on
+                  <input type="date" name="acquired_on" required value={acquisition?.acquired_on ?? ""}
+                    onChange={event => {setAcquisition(localCollectorAcquisition(event.target.value));setReviewed(false);}} />
+                </label>
                 <fieldset>
                   <legend className="text-sm font-medium">Condition</legend>
                   <input type="hidden" name="condition" value={condition} />
@@ -544,7 +555,7 @@ export default function AddToVaultCardAction({
                   />I reviewed the printing, copies and cost.
                 </label>
                 <VaultSubmitButton
-                  disabled={!reviewed || !requestId || restoredKey !== requestStorageKey || !selectedChildPrintingId}
+                  disabled={!reviewed || !acquisition || !requestId || restoredKey !== requestStorageKey || !selectedChildPrintingId}
                   label="Add to Vault"
                   successActive={successPulse !== null}
                   successLabel={successPulse === "incremented"

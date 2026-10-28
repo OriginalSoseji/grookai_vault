@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-28T04:35:18.588Z",
+  "at": "2026-10-28T05:40:20.273Z",
   "base": "5b4a95e637ffcfb214aeeeb7b2279751124ab9f4",
   "sourceHead": "d6de174de9a6250ac4f71ad5bed49b90f8e78718",
   "originalWorkspacePreserved": true,
@@ -800,7 +800,7 @@
       "sourceDisposition": "manual_conflict_review",
       "decision": "Manually integrate reviewed durable multi-copy saving, exact marketplace links and modal controls while preserving current readers, image truth, edition validation and slab actions.",
       "present": true,
-      "sha256": "9d3d86bcc2042cdb178b667faf2655ab40be5f28816ce3c98b2b37509249ddbf"
+      "sha256": "e5b42597778c5bf44d5eaceb20ca3767c6ba9dafc7dec1df119cb4ced89bec24"
     },
     {
       "path": "apps/web/src/components/vault/CollectorWorkspace.tsx",
@@ -1059,7 +1059,7 @@
       "sourceDisposition": "unique_client_change",
       "decision": "unique_client_change",
       "present": true,
-      "sha256": "81cc3592c7a9a68893ea052e34f190e5d727c2b275d96c82398a706c5b51bd07"
+      "sha256": "536c00e1903fe71e595fe417b64e9bac0ce9bd9e955a2c18ce567563363c3915"
     },
     {
       "path": "apps/web/src/lib/vault/collectorMoney.ts",
@@ -1500,14 +1500,14 @@
       "sourceDisposition": "unique_client_change",
       "decision": "unique_client_change",
       "present": true,
-      "sha256": "bfda6e59626d37514c586d2e52a3ff2e1e00f81498691b110bc6e9196753ef4e"
+      "sha256": "9bac5f254c1495c3144fad95165b54071f78c7b363c615214848d60ab88b2e49"
     },
     {
       "path": "lib/services/intake/intake_service.dart",
       "sourceDisposition": "unique_client_change",
       "decision": "unique_client_change",
       "present": true,
-      "sha256": "61c7bf2b56a9c5abfe7bf5f01f9b14be56f15ad24100bd295f7cefc85a2ef884"
+      "sha256": "05e0186b04a7461a1f886b1e692c30c590a635a299a2b1cec995da1fa3865984"
     },
     {
       "path": "lib/services/network/network_stream_service.dart",
@@ -1864,7 +1864,10 @@
       "sourceDisposition": "unique_client_change",
       "decision": "unique_client_change",
       "present": true,
-      "sha256": "53758c8e2d385f29555915eb5d21f9acdde1436707c8cc6071aba95b44fa20a3"
+      "sha256": "4ca6f9674e6e3c99cb5e5d71d2cab613823c4e8be0e97af207e6a0db36ba3bb2"
     }
+  ],
+  "additionalValidatedChanges": [
+    "Reviewed acquisition dates capture and retain their explicit instant/offset; existing exact-copy and edition boundaries remain intact."
   ]
 }

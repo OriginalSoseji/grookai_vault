@@ -48,6 +48,7 @@ void main() {
                   child: SafeArea(
                     child: VaultAddReviewSheet(
                       service: _Service(),
+                      initialAcquiredOn: DateTime(2026, 10, 27),
                       cardPrintId: 'card',
                       gvId: 'GV-PK-SVP-173',
                       name: 'Eevee',

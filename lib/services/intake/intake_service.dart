@@ -22,6 +22,12 @@ class IntakeService {
       final details = error.details;
       final code = details is Map ? details['error']?.toString() : null;
       throw StateError(switch (code) {
+        'intake_service_unavailable' =>
+          'Saving is temporarily unavailable. Your local draft is retained. Try again shortly.',
+        'invalid_payload' =>
+          'Review the card, quantity, acquisition date and costs before retrying. Your draft is retained.',
+        'not_found' =>
+          'This draft or lot is unavailable for this account. Refresh its cloud version.',
         'revision_conflict' =>
           'This draft or lot changed on another device. Refresh its cloud version before saving.',
         'lot_changed_review_costs_again' =>
@@ -35,15 +41,13 @@ class IntakeService {
         'lot_currency_locked' =>
           'A lot with saved copies keeps its original currency.',
         _ =>
-          'Intake could not be saved. Your local draft is retained. ${code ?? 'Check the connection and retry.'}',
+          'Intake could not be saved. Your local draft is retained. Check the connection and retry.',
       });
     }
     final data = response.data;
     if (response.status >= 300 || data is! Map || data['ok'] != true) {
       throw StateError(
-        data is Map
-            ? '${data['error'] ?? 'Intake request failed'}'
-            : 'Intake request failed',
+        'Intake could not be confirmed. Your local draft is retained. Check the connection and retry.',
       );
     }
     return data['result'];

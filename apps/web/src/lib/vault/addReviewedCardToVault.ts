@@ -1,4 +1,5 @@
 import "server-only";
+import { isCollectorAcquisition } from "./collectorAcquisitionDate";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { assertAuthenticatedVaultUser } from "@/lib/vault/assertAuthenticatedVaultUser";
@@ -26,6 +27,14 @@ export async function addReviewedCardToVault(
         !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
           .test(id)
       ) throw new Error("Reload the add form and try again.");
+      const offsetValue = formData.get("acquired_utc_offset_minutes");
+      const offset = typeof offsetValue === "string" && /^-?[0-9]{1,4}$/.test(offsetValue) ? Number(offsetValue) : Number.NaN;
+      const acquisition = {
+        acquired_on: String(formData.get("acquired_on") ?? ""),
+        acquired_at: String(formData.get("acquired_at") ?? ""),
+        acquired_utc_offset_minutes: offset,
+      };
+      if (!isCollectorAcquisition(acquisition)) throw new Error("Choose a valid acquisition date.");
       const printingId = String(formData.get("card_printing_id") ?? "").trim();
       assertJungleEditionSelection(await getJungleEditionResolution(client,cardPrintId),cardPrintId,printingId);
       const quantity = Number(formData.get("quantity"));
@@ -76,6 +85,8 @@ export async function addReviewedCardToVault(
           previous && previous.snapshot?.items?.[0]?.card_id !== cardPrintId
         ) throw new Error("This draft belongs to another card.");
         const snapshot = {
+          acquired_at: acquisition.acquired_at,
+          acquired_utc_offset_minutes: acquisition.acquired_utc_offset_minutes,
           items: [{
             id,
             card_id: cardPrintId,
@@ -98,7 +109,7 @@ export async function addReviewedCardToVault(
           lot_id: null,
           title: `${name} · manual add`,
           currency: "USD",
-          acquired_on: new Date().toISOString().slice(0, 10),
+          acquired_on: acquisition.acquired_on,
           tags: [],
           snapshot,
         });

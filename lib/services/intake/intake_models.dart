@@ -267,6 +267,8 @@ class IntakeBatch {
     this.lotId,
     this.currency = 'USD',
     DateTime? acquiredOn,
+    DateTime? acquiredAt,
+    int? acquiredUtcOffsetMinutes,
     List<String>? tags,
     List<IntakeCaptureJob>? jobs,
     List<IntakeItem>? items,
@@ -280,13 +282,27 @@ class IntakeBatch {
        tags = tags ?? [],
        jobs = jobs ?? [],
        items = items ?? [],
-       createdAt = createdAt ?? DateTime.now();
+       createdAt = createdAt ?? DateTime.now() {
+    if ((acquiredAt == null) != (acquiredUtcOffsetMinutes == null)) {
+      throw ArgumentError('Incomplete acquisition date metadata');
+    }
+    final localDay = DateTime(
+      this.acquiredOn.year,
+      this.acquiredOn.month,
+      this.acquiredOn.day,
+    );
+    this.acquiredAt = acquiredAt ?? localDay.toUtc();
+    this.acquiredUtcOffsetMinutes =
+        acquiredUtcOffsetMinutes ?? localDay.timeZoneOffset.inMinutes;
+  }
   final String id;
   final String userId;
   String title;
   String? lotId;
   String currency;
   DateTime acquiredOn;
+  late final DateTime acquiredAt;
+  late final int acquiredUtcOffsetMinutes;
   List<String> tags;
   List<IntakeCaptureJob> jobs;
   List<IntakeItem> items;
@@ -308,6 +324,8 @@ class IntakeBatch {
     'lot_id': lotId,
     'currency': currency,
     'acquired_on': intakeDate(acquiredOn),
+    'acquired_at': acquiredAt.toUtc().toIso8601String(),
+    'acquired_utc_offset_minutes': acquiredUtcOffsetMinutes,
     'tags': tags,
     'revision': revision,
     'state': state,
@@ -324,6 +342,10 @@ class IntakeBatch {
     lotId: j['lot_id'] as String?,
     currency: j['currency'] as String? ?? 'USD',
     acquiredOn: DateTime.parse(j['acquired_on'] as String),
+    acquiredAt: j['acquired_at'] == null
+        ? null
+        : DateTime.parse(j['acquired_at'] as String),
+    acquiredUtcOffsetMinutes: j['acquired_utc_offset_minutes'] as int?,
     tags: List<String>.from(j['tags'] ?? []),
     revision: (j['revision'] as num?)?.toInt() ?? 0,
     state: j['state'] as String? ?? 'draft',
