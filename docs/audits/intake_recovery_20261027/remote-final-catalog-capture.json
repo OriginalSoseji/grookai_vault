@@ -1,0 +1,16 @@
+{
+  "observedAt": "2026-10-28T00:04:49.608Z",
+  "target": "REMOTE READ ONLY",
+  "projectRef": "ycdxbpibncqcchqiihfz",
+  "remoteWrites": 0,
+  "readOnly": "on",
+  "sanity": {
+    "cards": 172404,
+    "sets": 3410,
+    "traits": 32903
+  },
+  "migrations": 476,
+  "sha256": "ecebd86512583407eedee59464775c5b824dc46b50c51f5b4b3f9e1256c65d5a",
+  "querySha256": "a5dda9364406ff20238b63268805b9251de9676ad2ac543c561b6f4bdea28ad4",
+  "engine": "pgkit 0.6.1"
+}

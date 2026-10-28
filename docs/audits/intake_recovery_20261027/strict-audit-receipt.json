@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-28T00:05:37.937Z",
+  "phase": "AuditLinkedSchema",
+  "pass": true,
+  "scope": "exact_app_intake_baseline_reconciliation_only",
+  "head": "30b3c99a893c61e173204a5568f6d46a4969dfcb",
+  "sourceClean": false,
+  "candidateSha256": "c330b8cbc5f3b21590607862f7121be4a455422a644206ccc5ca23c442c17af2",
+  "manifestSha256": "1a9750c02e3e4ee4d71bba8fef15f94d01a6b366dc9586c26da3693cf5495da9",
+  "historicalFiles": 476,
+  "remoteVersions": 476,
+  "localVersions": 477,
+  "genuineCliResetPassed": true,
+  "explicitSyntheticPrerequisite": true,
+  "remainingSqlBytes": 0,
+  "securityObjects": 1331,
+  "securitySame": true,
+  "guardTestsPassed": 4,
+  "retainedDataUnchanged": true,
+  "remoteWrites": 0,
+  "productionApplied": false
+}

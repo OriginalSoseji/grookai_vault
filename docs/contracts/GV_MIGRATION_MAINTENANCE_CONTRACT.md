@@ -1,5 +1,42 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## App intake baseline reconciliation qualification — October 27
+
+`-AppIntakeReconciliationV1` permits only `AuditLinkedSchema` or `PrePush` for
+exact pending migration `20261027230000`, on canonical production at the exact
+476-version baseline ending `20261023120000`. It rejects mixed scopes, target
+overrides, changed historical SQL, duplicate versions, extra pending files,
+changed candidate bytes and changed proof files. It is limited to baseline
+reconciliation; it cannot qualify any intake feature or authorize an apply.
+
+The immutable `20261012010000` alias migration requires 647 existing catalog
+pairs. This bounded route replaces only the ordinary empty-shadow assumption:
+it requires a genuine successful CLI reset of an empty owned platform lab to
+the pre-alias prefix, the explicit synthetic 1,294-parent prerequisite, all
+476 unchanged historical files applied by CLI, and the exact forward candidate
+plus a no-op push at 477. The source manifest freezes all historical hashes,
+the executed replay driver, prerequisite, config, reset/push logs and proof
+receipts. A failed reset is never accepted as a successful reset.
+
+Every invocation rereads the isolated lab's image/network/config, exact ledger,
+zero Auth users and Vault copies, disabled workers, and retained data digests.
+Fresh production is inspected in repeatable-read read-only mode through the
+official CLI. The full public schema and governed security footprint must match
+the local 477 model: raw function text remains significant, zero remaining SQL
+is required, and all 1,331 security objects must match. Only the previously
+approved three-table physical column-order handling applies. No generated diff
+is executed. The candidate's apply/rollback, repeat and function/index drift
+rejection tests run again locally, proving the complete catalog and data remain
+unchanged after rollback. Populated labs are never reset.
+
+`PrePush` additionally requires clean committed source containing current main.
+The ordinary strict gate and other scopes remain unchanged. This amendment
+allows the exact full-schema comparison above to serve as this reconciliation's
+linked shadow/pull equivalence proof; it does not relax committed-source,
+replay, hook, exact dry-run, atomic CLI apply or independent readback duties.
+Neither phase applies SQL to production. A future intake migration needs a new
+qualification and cannot reuse this scope.
+
 ## Operations agent schedule-health release — October 16
 
 `-OperationsAgentScheduleHealthV1` accepts only `AuditLinkedSchema` or

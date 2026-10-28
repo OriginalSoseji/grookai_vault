@@ -1,0 +1,18 @@
+{
+  "at": "2026-10-27T23:25:38.534Z",
+  "pass": true,
+  "scope": "isolated local reconciliation only",
+  "remoteWrites": 0,
+  "sourceSha256": "c330b8cbc5f3b21590607862f7121be4a455422a644206ccc5ca23c442c17af2",
+  "tests": [
+    "exact_candidate_applies_and_rolls_back",
+    "repeat_application_is_idempotent_and_rolls_back",
+    "changed_function_body_is_rejected_without_writes",
+    "same_named_different_index_is_rejected_without_writes"
+  ],
+  "cliLocalPushPassed": true,
+  "ledgerBefore": 476,
+  "ledgerAfter": 477,
+  "securityUnchanged": true,
+  "mandatoryReleaseGatesPassed": false
+}

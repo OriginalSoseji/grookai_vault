@@ -1,0 +1,15 @@
+{
+  "observedAt": "2026-10-27T22:57:41.639Z",
+  "comparison": "offline_restore_of_schema_only_live_capture",
+  "remoteWrites": 0,
+  "localContainer": "gv-intake-history-proof-20261027",
+  "network": "none",
+  "sourceCommit": "b1f4cd289bb3aedf06097c8a4b90fe63f2127ea8",
+  "sourcePath": "supabase/migrations/20261023120000_lot_label_sales_v1.sql",
+  "sourceSha256": "03aa6bf13897a0d0d1fe20df33ef0d894821d0a617e91aeb99521be4fe112578",
+  "remotePublicSchemaSha256": "f1e676e9ce8421a56c995efd98dcce95c57c6f73b28b3b5239daae838b1fedf6",
+  "capturedStatements": 34,
+  "defaultPrivilegeStatements": 12,
+  "differences": [],
+  "pass": true
+}

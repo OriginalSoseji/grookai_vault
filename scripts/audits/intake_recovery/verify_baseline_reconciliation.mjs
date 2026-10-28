@@ -1,0 +1,50 @@
+// Qualify exact reconciliation bytes on the owned, isolated diagnostic lab only.
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {isDeepStrictEqual} from 'node:util';
+import {execFileSync,spawnSync} from 'node:child_process';
+import {splitSealedMigrationStatementsV1 as split} from '../../../backend/pricing/cross_tcg_sealed_product_schema_apply_v1.mjs';
+
+const root='C:/gv_intake_recovery_20261027',work='C:/gv_intake_recovery_private_20261027/full-replay-476';
+const privateRoot='C:/gv_intake_recovery_private_20261027',audit='docs/audits/intake_recovery_20261027';
+const project='intake-replay-476-20261027',container='supabase_db_'+project;
+const manifest=JSON.parse(fs.readFileSync(audit+'/baseline-reconciliation-candidate.json'));
+const bytes=fs.readFileSync(root+'/'+manifest.path),hash=value=>createHash('sha256').update(value).digest('hex');
+assert.equal(hash(bytes),manifest.sha256);
+const freeze=JSON.parse(fs.readFileSync(work+'/freeze.json'));
+for(const [file,digest] of Object.entries(freeze.sources))assert.equal(hash(fs.readFileSync(root+'/supabase/migrations/'+file)),digest,'Original history changed');
+const info=JSON.parse(execFileSync('docker',['inspect',container],{encoding:'utf8'}))[0];
+assert.deepEqual(Object.keys(info.NetworkSettings.Networks),[project]);
+assert.equal(JSON.parse(execFileSync('docker',['network','inspect',project],{encoding:'utf8'}))[0].Internal,true);
+for(const mappings of Object.values(info.NetworkSettings.Ports))assert.equal(mappings?.length??0,0,'No direct database publication');
+const sql=query=>execFileSync('docker',['exec','-i',container,'psql','-X','-qAt','-U','postgres','-d','postgres','-v','ON_ERROR_STOP=1'],{input:query,encoding:'utf8',timeout:120000,maxBuffer:64_000_000}).trim();
+const snapshotSql=fs.readFileSync(privateRoot+'/read-only-snapshot.sql','utf8');
+const snapshot=()=>JSON.parse(sql(snapshotSql));
+const before=snapshot();assert.equal(before.LEDGER.length,476);
+assert.equal(sql("select (select count(*) from auth.users)::text||':'||(select count(*) from vault_item_instances)::text||':'||current_setting('max_worker_processes')"),'0:0:0');
+const statements=split(bytes.toString('utf8'));
+assert.equal(statements[0].toLowerCase(),'begin');assert.equal(statements.at(-1).toLowerCase(),'commit');
+const body=statements.slice(1,-1).join(';\n')+';\n';
+const tests=[];
+const unchanged=()=>assert.ok(isDeepStrictEqual(snapshot(),before),'Rollback did not preserve the complete catalog');
+sql('begin;\n'+body+'\nrollback;');unchanged();tests.push('exact_candidate_applies_and_rolls_back');
+sql('begin;\n'+body+'\n'+body+'\nrollback;');unchanged();tests.push('repeat_application_is_idempotent_and_rolls_back');
+const original=before.FUNCTIONS_QUERY.find(row=>row.schema==='public'&&row.name==='lot_label_public_read_v1');
+const drift=original.full_definition.replace(original.definition,original.definition+'\n-- synthetic guard drift\n');
+assert.notEqual(drift,original.full_definition);
+function denied(input,code){let caught=false;try{sql(input);}catch(error){caught=true;assert.match(String(error.stderr),new RegExp(code));}assert.ok(caught,'Guard unexpectedly accepted drift');unchanged();}
+denied('begin;\n'+drift+';\n'+body+'\nrollback;','baseline_reconciliation_function_drift');tests.push('changed_function_body_is_rejected_without_writes');
+denied("begin;create index market_listing_price_events_slab_identity_idx on public.market_listing_price_events ((event_payload->>'synthetic_wrong_key'));\n"+body+'\nrollback;','baseline_reconciliation_index_drift');tests.push('same_named_different_index_is_rejected_without_writes');
+const target=work+'/'+manifest.path;assert.equal(fs.existsSync(target),false,'Never replace consumed migration bytes');
+fs.writeFileSync(target,bytes,{flag:'wx'});
+fs.writeFileSync(work+'/reconciliation-apply-intent.json',JSON.stringify({at:new Date().toISOString(),localOnly:true,sourceSha256:hash(bytes),ledgerBefore:476,tests,consumed:true},null,2),{flag:'wx'});
+const env={...process.env,DO_NOT_TRACK:'1'};for(const key of Object.keys(env))if(/SUPABASE|DATABASE_URL|POSTGRES_URL/.test(key))delete env[key];
+const log=fs.openSync(work+'/reconciliation-push.log','wx');let result;
+try{result=spawnSync('supabase',['db','push','--local','--yes','--workdir',work,'--network-id',project],{cwd:work,env,stdio:['ignore',log,log],timeout:300000});}finally{fs.closeSync(log);}
+assert.ifError(result.error);assert.equal(result.status,0,'Local reconciliation CLI push failed');
+const after=snapshot();assert.equal(after.LEDGER.length,477);assert.equal(after.LEDGER.at(-1).version,'20261027230000');
+assert.ok(isDeepStrictEqual(before.SECURITY,after.SECURITY),'Permissions/owners/RLS changed');
+const report={at:new Date().toISOString(),pass:true,scope:'isolated local reconciliation only',remoteWrites:0,sourceSha256:hash(bytes),tests,cliLocalPushPassed:true,ledgerBefore:476,ledgerAfter:477,securityUnchanged:true,mandatoryReleaseGatesPassed:false};
+fs.writeFileSync(audit+'/baseline-reconciliation-tests.json',JSON.stringify(report,null,2));
+console.log(JSON.stringify(report));

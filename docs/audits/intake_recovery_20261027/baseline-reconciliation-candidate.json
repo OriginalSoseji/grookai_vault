@@ -1,0 +1,145 @@
+{
+  "preparedAt": "2026-10-27T23:23:02.007Z",
+  "mode": "source_only_forward_reconciliation",
+  "remoteWrites": 0,
+  "path": "supabase/migrations/20261027230000_app_intake_baseline_reconciliation_v1.sql",
+  "sha256": "c330b8cbc5f3b21590607862f7121be4a455422a644206ccc5ca23c442c17af2",
+  "liveSnapshotSha256": "249f2d0d8f5b2cddf0101f285086b7dc28bf37ab304eb85e134c65c646517fa3",
+  "functions": [
+    {
+      "identity": "public|lot_label_public_read_v1|p_public_id uuid",
+      "name": "lot_label_public_read_v1",
+      "arguments": "p_public_id uuid",
+      "beforeSha256": "cfa826888834dbe6861a7ddf52c86fd9d5474e8d2e614b67bec98307bf28a6c2",
+      "liveSha256": "8955ff443a08dd273ff012c8558339261a0b9b51f926a31c51530bd377e97b5b",
+      "owner": "postgres",
+      "acl": [
+        "anon=X/postgres",
+        "authenticated=X/postgres",
+        "postgres=X/postgres",
+        "service_role=X/postgres"
+      ]
+    },
+    {
+      "identity": "public|lot_label_record_sale_v1|p_public_id uuid, p_amount_cents integer, p_condition_label text, p_quantity integer, p_notes text",
+      "name": "lot_label_record_sale_v1",
+      "arguments": "p_public_id uuid, p_amount_cents integer, p_condition_label text, p_quantity integer, p_notes text",
+      "beforeSha256": "d35346960ca98caac4b03c2c029ecfdac7318ca0dfbf422fc9505e998434c8cd",
+      "liveSha256": "1156db178c43be772f8b42e746c4f7a5ae7f45d2763f0b5e32401c43d68a0b52",
+      "owner": "postgres",
+      "acl": [
+        "anon=X/postgres",
+        "authenticated=X/postgres",
+        "postgres=X/postgres",
+        "service_role=X/postgres"
+      ]
+    },
+    {
+      "identity": "public|vendor_receipt_delivery_capabilities_v1|",
+      "name": "vendor_receipt_delivery_capabilities_v1",
+      "arguments": "",
+      "beforeSha256": "7571473f1984c01225295b6ebb75e2e1d1665fc3d855a9b6475072c4758a9222",
+      "liveSha256": "8652f23fc3e48f8d2f1a093c25a35d02674bab36be61f8cffb82c58d5433782e",
+      "owner": "postgres",
+      "acl": [
+        "authenticated=X/postgres",
+        "postgres=X/postgres",
+        "service_role=X/postgres"
+      ]
+    },
+    {
+      "identity": "public|vendor_receipt_delivery_claim_v1|p_owner_id uuid, p_id uuid",
+      "name": "vendor_receipt_delivery_claim_v1",
+      "arguments": "p_owner_id uuid, p_id uuid",
+      "beforeSha256": "c157cfe7889c82033fa86acbf0bd76d71c37ed475a0673e639b847274616203b",
+      "liveSha256": "66caec50a08b9a0b7c5b298464092b0959b39adfba0a50c8eeeaf1aea02240ae",
+      "owner": "postgres",
+      "acl": [
+        "postgres=X/postgres",
+        "service_role=X/postgres"
+      ]
+    },
+    {
+      "identity": "public|vendor_receipt_delivery_finish_v1|p_id uuid, p_claim_token uuid, p_status text, p_provider_id text, p_failure_code text",
+      "name": "vendor_receipt_delivery_finish_v1",
+      "arguments": "p_id uuid, p_claim_token uuid, p_status text, p_provider_id text, p_failure_code text",
+      "beforeSha256": "b2f5fe0a1592cabc5b59bfd263999d1110c7943c47dbaf5f13a8b519c13b8341",
+      "liveSha256": "313d07c57daed85f5793b46d4e3af9e2a6931596c6b87a71595788fe9074ff06",
+      "owner": "postgres",
+      "acl": [
+        "postgres=X/postgres",
+        "service_role=X/postgres"
+      ]
+    },
+    {
+      "identity": "public|vendor_receipt_delivery_poll_v1|p_owner_id uuid, p_id uuid",
+      "name": "vendor_receipt_delivery_poll_v1",
+      "arguments": "p_owner_id uuid, p_id uuid",
+      "beforeSha256": "b23095afebb0a46785eff252524609fc096318c450c5e01d6c74262e378e96cd",
+      "liveSha256": "dca6733026bb1148a91fb4765023d8047b35ebfc1964b3d4b29296b291a1fdf6",
+      "owner": "postgres",
+      "acl": [
+        "postgres=X/postgres",
+        "service_role=X/postgres"
+      ]
+    },
+    {
+      "identity": "public|vendor_receipt_delivery_read_v1|p_receipt_id uuid",
+      "name": "vendor_receipt_delivery_read_v1",
+      "arguments": "p_receipt_id uuid",
+      "beforeSha256": "eecbfd8448f991d15bc8d20075cefee2144356bdb19301c7ecae4ebe136a8da7",
+      "liveSha256": "1f14ca270a30bf4020ac92acbcdc413efa3b28f63016240735f41fca9c0b7a40",
+      "owner": "postgres",
+      "acl": [
+        "authenticated=X/postgres",
+        "postgres=X/postgres",
+        "service_role=X/postgres"
+      ]
+    },
+    {
+      "identity": "public|vendor_receipt_delivery_request_v1|p_request_id uuid, p_receipt_id uuid, p_channel text, p_destination text",
+      "name": "vendor_receipt_delivery_request_v1",
+      "arguments": "p_request_id uuid, p_receipt_id uuid, p_channel text, p_destination text",
+      "beforeSha256": "a69bd7030de18fdaf44015fee50c0289ba5afdc4b5321d1cbd1c76933cbd184c",
+      "liveSha256": "219eb2a9274054ddf3021ac35e6f0751ae8abbf8cbb44c486d2fa9f658a5e0de",
+      "owner": "postgres",
+      "acl": [
+        "authenticated=X/postgres",
+        "postgres=X/postgres",
+        "service_role=X/postgres"
+      ]
+    },
+    {
+      "identity": "public|vendor_receipt_delivery_settle_v1|p_owner_id uuid, p_id uuid, p_provider_id text, p_status text",
+      "name": "vendor_receipt_delivery_settle_v1",
+      "arguments": "p_owner_id uuid, p_id uuid, p_provider_id text, p_status text",
+      "beforeSha256": "3ef6bfd1a58c1279b5ac88228095659041b1850484c38df6cc8be2dd5e98f0b9",
+      "liveSha256": "abfc2b8c07088cf31bd9bc586cd2e77064699db738486ba006c4c913d6ccc5f6",
+      "owner": "postgres",
+      "acl": [
+        "postgres=X/postgres",
+        "service_role=X/postgres"
+      ]
+    },
+    {
+      "identity": "public|vendor_receipt_delivery_view_v1|d vendor_receipt_deliveries",
+      "name": "vendor_receipt_delivery_view_v1",
+      "arguments": "d vendor_receipt_deliveries",
+      "beforeSha256": "dc10ee56bf0d6746584ed6b8d14109463b2ce88e5f19b2ac280db02e941f2dda",
+      "liveSha256": "ddfa26bd6dba05f542dd7d4f5b9af37ccd2199f5056a8fd1ca4d827e719f3c09",
+      "owner": "postgres",
+      "acl": [
+        "postgres=X/postgres",
+        "service_role=X/postgres"
+      ]
+    }
+  ],
+  "index": {
+    "name": "market_listing_price_events_slab_identity_idx",
+    "table": "market_listing_price_events",
+    "definition": "CREATE INDEX market_listing_price_events_slab_identity_idx ON public.market_listing_price_events USING btree (((event_payload ->> 'listing_evidence_class'::text))) WHERE ((event_payload ->> 'listing_evidence_class'::text) = 'slab'::text)"
+  },
+  "changesGrants": false,
+  "changesData": false,
+  "qualified": false
+}
