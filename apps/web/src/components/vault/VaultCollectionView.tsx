@@ -8,6 +8,7 @@ import { getPokemonCardCollectionGridClassName } from "@/components/cards/pokemo
 import { SearchToolbar, SearchToolbarButton, SearchToolbarInput } from "@/components/common/SearchToolbar";
 import { ViewDensityToggle } from "@/components/collection/ViewDensityToggle";
 import PageIntro from "@/components/layout/PageIntro";
+import { useClientReady } from "@/components/layout/useClientReady";
 import PageSection from "@/components/layout/PageSection";
 import ProductState from "@/components/layout/ProductState";
 import SectionHeader from "@/components/layout/SectionHeader";
@@ -313,6 +314,7 @@ export function VaultCollectionView({
   publicProfileHref = null,
   setLogoPathByCode = {},
 }: VaultCollectionViewProps) {
+  const clientReady = useClientReady();
   const searchParams = useSearchParams();
   const { density, setDensity } = useViewDensity();
   const { mode: mobileViewMode, setMode: setMobileViewMode } = useVaultMobileViewMode();
@@ -360,9 +362,9 @@ export function VaultCollectionView({
       cards,
       uniqueCards,
       sets,
-      lastAdded: formatLastAdded(latestTimestamp),
+      lastAdded: clientReady ? formatLastAdded(latestTimestamp) : "…",
     };
-  }, [items]);
+  }, [items, clientReady]);
 
   const collectorPageActivationVariant =
     summary.uniqueCards >= COLLECTOR_PAGE_ACTIVATION_MIN_UNIQUE_CARDS
@@ -377,7 +379,9 @@ export function VaultCollectionView({
       ? formatVaultCurrency(combinedValue)
       : null;
   const coverageLabel = `${valueSummary.pricedCopyCount + (sealedTotals?.priced_copy_count ?? 0)} / ${valueSummary.totalRawCopyCount + (sealedTotals?.active_copy_count ?? 0)}`;
-  const freshnessLabel = formatPricingFreshness(valueSummary.latestPricingUpdateAt);
+  const freshnessLabel = clientReady
+    ? formatPricingFreshness(valueSummary.latestPricingUpdateAt)
+    : "Updated recently";
 
   const recentItems = useMemo(
     () =>
@@ -1062,7 +1066,7 @@ export function VaultCollectionView({
                       .join(" • ")}
                   </span>
                 }
-                meta={<span>Added {formatTimeAgo(item.created_at)}</span>}
+                meta={<span>Added {clientReady ? formatTimeAgo(item.created_at) : "recently"}</span>}
                 footer={<span className="truncate font-mono text-[10px] uppercase tracking-[0.12em] text-slate-300">{item.gv_id}</span>}
               />
             ))}

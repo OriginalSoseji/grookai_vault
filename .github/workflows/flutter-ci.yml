@@ -68,3 +68,4 @@ jobs:
         run: >-
           flutter test --no-pub
           test/grookai_objects/grookai_object_renderer_golden_test.dart
+          test/intake/vault_add_review_sheet_test.dart

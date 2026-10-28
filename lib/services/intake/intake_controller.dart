@@ -335,6 +335,9 @@ class IntakeController extends ChangeNotifier {
     busy = true;
     _notify();
     try {
+      // Retry must also have a durable owner-local identity before any remote
+      // request, including when an earlier initial disk write failed.
+      await persist();
       // Recovery first: a previous response may have been lost after committing.
       if (batch.revision > 0) {
         final remote = await service.getBatch(batch.id);
@@ -358,7 +361,11 @@ class IntakeController extends ChangeNotifier {
       await persist();
       message = 'Saved to Vault. Every copy has its own intake history.';
     } catch (error) {
-      message = 'Save incomplete. Your draft is retained. $error';
+      message = error is FileSystemException
+          ? 'This draft could not be stored on your device. Free device space and retry before saving.'
+          : error is StateError
+          ? error.message.toString()
+          : 'Save could not be confirmed. Your local draft is retained. Reconnect and retry.';
       rethrow;
     } finally {
       busy = false;

@@ -73,6 +73,14 @@ class Scanner extends ScannerV5IdentityService {
   }
 }
 
+class UnwritableStore extends IntakeDraftStore {
+  UnwritableStore(super.directory);
+  @override
+  Future<void> save(IntakeBatch batch) async {
+    throw const FileSystemException('Test disk full');
+  }
+}
+
 void main() {
   late Directory directory;
   late IntakeDraftStore store;
@@ -86,6 +94,30 @@ void main() {
     await service.client.dispose();
     await directory.delete(recursive: true);
   });
+  test(
+    'failed local persistence prevents every cloud save and commit',
+    () async {
+      final controller = IntakeController(
+        batch: IntakeBatch(
+          title: 'Retry safely',
+          userId: 'owner',
+          allocationReviewed: true,
+        ),
+        store: UnwritableStore(directory),
+        service: service,
+        scanner: Scanner(),
+      );
+      await expectLater(
+        controller.saveToVault(),
+        throwsA(isA<FileSystemException>()),
+      );
+      expect(service.revision, 0);
+      expect(service.commits, 0);
+      expect(controller.message, contains('Free device space'));
+      expect(controller.busy, isFalse);
+      controller.dispose();
+    },
+  );
   test(
     'secure connection failure preserves the photo and retries the same capture',
     () async {

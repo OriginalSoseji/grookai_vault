@@ -58,6 +58,7 @@ class _IntakeBatchScreenState extends State<IntakeBatchScreen> {
   }
 
   Future<void> costs() async {
+    var saving = false;
     try {
       PurchaseLot? lot;
       if (c.batch.lotId != null) {
@@ -72,6 +73,7 @@ class _IntakeBatchScreenState extends State<IntakeBatchScreen> {
         ),
       );
       if (accepted == true && mounted) {
+        saving = true;
         await c.saveToVault();
         if (mounted) {
           _error(
@@ -81,7 +83,7 @@ class _IntakeBatchScreenState extends State<IntakeBatchScreen> {
         }
       }
     } catch (e) {
-      if (mounted) _error(context, e);
+      if (mounted) _error(context, saving ? c.message ?? e : e);
     }
   }
 

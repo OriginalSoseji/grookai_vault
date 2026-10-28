@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
@@ -10,7 +11,16 @@ import 'package:grookai_vault/main.dart' show RequiredProfileSetupGate;
 import 'package:grookai_vault/screens/intake/intake_screens.dart';
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+  const channels = [
+    MethodChannel('com.llfbandit.app_links/messages'),
+    MethodChannel('com.llfbandit.app_links/events'),
+  ];
   setUpAll(() async {
+    for (final channel in channels) {
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(channel, (_) async => null);
+    }
     SharedPreferences.setMockInitialValues({});
     await Supabase.initialize(
       url: 'http://127.0.0.1:54321',
@@ -43,7 +53,13 @@ void main() {
       password: 'fixture',
     );
   });
-  tearDownAll(() => Supabase.instance.dispose());
+  tearDownAll(() async {
+    await Supabase.instance.dispose();
+    for (final channel in channels) {
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(channel, null);
+    }
+  });
   testWidgets(
     'offline profile failure retains an owner-local draft recovery route',
     (tester) async {

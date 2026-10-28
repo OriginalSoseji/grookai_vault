@@ -294,3 +294,15 @@ Holo/LP review then saved precisely one additional copy (eight to nine). A blank
 cost remained SQL NULL despite the displayed USD9.30 reference. Main Scan resumed
 after returning from Batch intake, and Vault refreshed to the real nine copies.
 Successful photo recognition still requires Samsung network verification.
+
+## Build506 device and final check corrections
+
+Build506 was signed from `b341f96284e7593c640e12b97823b037d4d08953` and installed with data-preserving updates on the QA emulator and Samsung. Samsung sign-in and grid preference remain intact. Real TCGplayer NM and LP destinations showed product516696 with the correct condition, Reverse Holofoil and English filters. eBay sold and active searches rendered real Eevee151#133 Reverse Holo listings after the owner signed in to eBay; returning preserved the selected card. These checks do not establish eBay publication.
+
+The stamped manual-add draft survived failed offline saving, force-stop and the offline profile recovery route. Reconnection saved exactly one copy (nine to ten); independent SDK reads confirmed the stamped parent, verified Holo child, and NULL condition/cost. On the disposable emulator only, a fresh login displayed the OS notification prompt; refusing it persisted across cold restart. Samsung app data was never cleared.
+
+Final507 source now requires successful local persistence before every remote save attempt and provides safe storage/connection errors without a raw StateError prefix. A regression verifies that failed local storage prevents all cloud save/commit calls. Hosted Linux checks exposed an unmocked app-links stream and Windows-only pixel comparisons: the fixture mocks both app-links channels, logical layout checks remain portable, and unchanged accepted pixel references run explicitly in the Windows golden job.
+
+The full canonical Windows browser suite passed143 checks. Six screenshot baselines were visually reviewed and updated for the contract lime controls and reviewed intake form; acquisition dates use a fixed test clock. The functional save check verifies exact printing, LP, quantity, cost, acquisition instant and re-review after changes. Vault date labels now wait for client readiness before local formatting; pagination checks reject browser exceptions, including hydration mismatches. No screenshot tolerance was weakened. Final normal checks,507 packaging, hosted checks, integrated web verification and global activation remain pending.
+
+The eBay Developers account is signed in and its production scopes include the required inventory, account-read and identity-read scopes. The User Tokens console currently returns an eBay provider error, so the registered RuName remains unverified. There are zero connected seller accounts; OAuth and publisher transport prototypes have only local fixture proof and are not shipped.

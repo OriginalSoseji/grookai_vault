@@ -1,5 +1,5 @@
 {
-  "build": 505,
+  "build": 506,
   "environment": "production release candidate on isolated QA emulator",
   "accounts": "previously created disposable release actors only",
   "founderWrites": 0,
@@ -40,10 +40,64 @@
     "offline profile gate provides owner-local draft recovery",
     "typed TLS errors preserve scan photos",
     "manual picker distinguishes stamped identities and preserves artwork/context",
-    "stale search results cannot replace newer choices"
+    "stale search results cannot replace newer choices",
+    "durable local persistence must succeed before any cloud save attempt",
+    "safe save errors without StateError prefixes",
+    "hydration-safe Vault dates in the collector browser time zone",
+    "Windows-native pixel checks run explicitly alongside portable logical layout checks"
   ],
-  "finalCandidate": 506,
-  "finalCandidateStatus": "not yet packaged or qualified",
-  "samsungInstalledBuild": 502,
-  "globalIntakeWrites": "paused; two QA actors temporarily allowlisted"
+  "finalCandidate": 507,
+  "finalCandidateStatus": "source corrections in final normal checks; not yet packaged",
+  "samsungInstalledBuild": 506,
+  "globalIntakeWrites": "paused; two QA actors temporarily allowlisted",
+  "stampedOfflineRecovery": {
+    "pass": true,
+    "baseAndStampDistinct": true,
+    "artworkAndPrintingPreserved": true,
+    "offlineProfileRecovery": true,
+    "forceStopRecovery": true,
+    "activeCopiesBefore": 9,
+    "activeCopiesAfter": 10,
+    "unknownConditionAndCostStayedNull": true,
+    "independentSdkReadback": true
+  },
+  "notificationFirstUse": {
+    "pass": true,
+    "osPromptSeen": true,
+    "denialRespectedAcrossColdRestart": true,
+    "disposableEmulatorOnly": true
+  },
+  "samsungMarketplace": {
+    "tcgplayerNearMint": {
+      "pass": true,
+      "product": "516696",
+      "finish": "Reverse Holofoil",
+      "language": "English"
+    },
+    "tcgplayerLightlyPlayed": {
+      "pass": true,
+      "product": "516696",
+      "finish": "Reverse Holofoil",
+      "language": "English"
+    },
+    "ebaySold": {
+      "pass": true,
+      "query": "Eevee 151 133 Reverse Holo",
+      "soldAndCompleteFilters": true,
+      "renderedSoldListings": true
+    },
+    "ebayActive": {
+      "pass": true,
+      "query": "Eevee 151 133 Reverse Holo",
+      "renderedActiveListings": true
+    },
+    "returnedToSameCard": true,
+    "accountPreserved": true
+  },
+  "webParity": {
+    "passed": 143,
+    "canonicalWindows": true,
+    "clockPinned": true,
+    "intentionalGoldenUpdates": 6
+  }
 }

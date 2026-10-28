@@ -1,5 +1,14 @@
 # Grookai Operator Playbook V1
 
+## Build506 qualification and507 candidate — October28,2026
+
+This checkpoint supersedes older installed-build status below. Samsung and the isolated QA emulator now run506. Samsung account/data are preserved; TCGplayer NM/LP exact filters and signed-in eBay sold/active searches passed on real pages. QA stamped offline recovery saved one exact copy with NULL condition/cost, bringing QA inventory to ten. Notification refusal persisted across cold restart after a fresh QA-only install state. Full canonical Windows web parity passed143 checks.
+
+Final507 source adds fail-closed local persistence before cloud saves, safe error text, portable logical/Windows pixel test separation, app-links fixture channels, and hydration-safe local Vault dates. Normal checks, packaging, hosted checks and final live web qualification remain required. The revision6 two-actor canary remains open; ordinary intake writes remain paused. Do not clear Samsung data or use consumed migration gates.
+
+The signed-in eBay developer console confirms required production scopes, but User Tokens returns a provider error and RuName remains unverified. Local OAuth/provider prototypes are not integrated or deployed; listing publication is still pending.
+
+
 ## Integrated native recovery qualification — October28,2026
 
 Real manual search exposed distinct stamped/base parents rendered with identical

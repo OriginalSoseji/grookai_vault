@@ -1,5 +1,5 @@
 {
-  "at": "2026-10-28T09:09:00.940Z",
+  "at": "2026-10-28T10:14:35.892Z",
   "base": "5b4a95e637ffcfb214aeeeb7b2279751124ab9f4",
   "sourceHead": "d6de174de9a6250ac4f71ad5bed49b90f8e78718",
   "originalWorkspacePreserved": true,
@@ -828,7 +828,7 @@
       "sourceDisposition": "manual_conflict_review",
       "decision": "Merge held-copy selection and workspace entry; retain current sealed totals, paging, ownership and branded title.",
       "present": true,
-      "sha256": "ceaadd846a10c732f89f22a5f0f09aaa69848031018d65643e85bfb2531a2eb8"
+      "sha256": "b9d7a82769f5a1ca3472eb6f84525ff462ce16eed162ad296eb828668bbde280"
     },
     {
       "path": "apps/web/src/components/vault/VaultDialogs.tsx",
@@ -1255,7 +1255,7 @@
       "sourceDisposition": "unique_client_change",
       "decision": "unique_client_change",
       "present": true,
-      "sha256": "e862b6fc65013886ce186edd37d2b283eef92d55ad7812f7167c462947d452ac"
+      "sha256": "68d12f75ea4b6ff4eafc4e02fe65aeb5e4c30c675dde2ffe2b21932579f71008"
     },
     {
       "path": "lib/screens/intake/intake_cost_review_screen.dart",
@@ -1479,7 +1479,7 @@
       "sourceDisposition": "unique_client_change",
       "decision": "unique_client_change",
       "present": true,
-      "sha256": "db744a6e794a31f5c4f16f8814b375c5268323d4b820c2a15bf895f5b6cb601d"
+      "sha256": "6c73fdfbe4be73b701a1721e1b322f063a04a3c1911c6645822559cc5abfc6c8"
     },
     {
       "path": "lib/services/intake/intake_cost_allocation.dart",
@@ -1864,12 +1864,13 @@
       "sourceDisposition": "unique_client_change",
       "decision": "unique_client_change",
       "present": true,
-      "sha256": "a73584c8c842eca1842a120694373db0927fc8a39035839b9bc6655a56ffb1eb"
+      "sha256": "5b4a0e67d897df9840019a7f97e84628331b4dc052d2c9d4ae5913e6ac4a84df"
     }
   ],
   "additionalValidatedChanges": [
     "Reviewed acquisition dates capture and retain their explicit instant/offset; existing exact-copy and edition boundaries remain intact.",
-    "Actual device review: use lowercase platform/provider product names; remember notification refusal across restarts; retain verified printing data independently of delayed/failed related-card reads; expose Add another copy for owned cards; label the wishlist action and use the shared copy-surface radius."
+    "Actual device review: use lowercase platform/provider product names; remember notification refusal across restarts; retain verified printing data independently of delayed/failed related-card reads; expose Add another copy for owned cards; label the wishlist action and use the shared copy-surface radius.",
+    "Build506 real-device stamped offline recovery and Samsung exact marketplace pages; final persistence guards, portable golden routing and hydration-safe Vault dates."
   ],
   "integratedMain": "e99b3ebcde7b161aeac245af893d271f828b022d"
 }

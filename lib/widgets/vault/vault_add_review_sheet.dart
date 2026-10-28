@@ -191,7 +191,12 @@ class _VaultAddReviewSheetState extends State<VaultAddReviewSheet> {
     } catch (error) {
       if (mounted) {
         setState(
-          () => _error = error.toString().replaceFirst('Bad state: ', ''),
+          () => _error = error is StateError
+              ? error.message.toString()
+              : _controller?.batch.state == 'saved'
+              ? 'Your copy was saved. Refresh your Vault to open it.'
+              : _controller?.message ??
+                    'Could not save this review. Check device space and your connection, then retry.',
         );
       }
     } finally {
