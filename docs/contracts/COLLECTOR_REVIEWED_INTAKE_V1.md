@@ -1,7 +1,9 @@
 # COLLECTOR_REVIEWED_INTAKE_V1
 
-Status: Active; schema479 and Edge version1 deployed and independently verified;
-global writes paused pending integrated client/device qualification.
+Status: Active; schema479 and Edge version1 deployed and independently verified.
+Global writes enabled at control revision8 with an empty QA allowlist after
+integrated build508 and live web qualification on October 28, 2026. See
+[the release checkpoint](../checkpoints/APP_REFINEMENT_RELEASE_ACTIVATION_20261028.md).
 Owner: grookai vault founder. Effective: October 27, 2026 (America/Denver).
 
 ## Scope and authority
