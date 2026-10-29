@@ -122,7 +122,7 @@ jobs:
           node scripts/workers/catalog_incremental_supervisor_v1.mjs \
             --mode=plan \
             --as-of="$(date -u +%F)" \
-            --max-targets=10 \
+            --max-targets=5 \
             --outcome-eligible-only \
             --discovery-dir="${{ steps.discovery.outputs.out_dir }}" \
             --out-dir="$SUPERVISOR_DIR" || SUPERVISOR_EXIT=$?

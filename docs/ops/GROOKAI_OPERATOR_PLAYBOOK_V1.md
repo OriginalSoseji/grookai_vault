@@ -4261,3 +4261,27 @@ snapshot batches are still being written. On
 `source_freshness_runway_insufficient`, run a guarded current warehouse sync and
 start a new publication run; do not retry the stale frozen run or weaken the
 edition-lineage validators.
+
+## Continuous catalog promotion — October 29, 2026
+
+Universal Catalog Discovery remains a read-only evidence producer. Canonical
+execution is owned by `Catalog Continuous Promotion`, which triggers only after
+a successful default-branch discovery run and only while the repository variable
+`CATALOG_CONTINUOUS_PROMOTION_ACTIVE` equals `true`.
+
+The executor downloads the exact discovery artifact, verifies its internal
+package hash, checks out trusted `main`, proves it equals the source commit, and
+accepts at most five registered outcome packages. Each target must first complete
+a same-fingerprint transactional dry run with exact rollback absence. The
+executor then invokes the same writer in apply mode and requires exact durable
+readback. MTG writers also verify the frozen execution-count fingerprint before
+inserting or committing. Results and failures are persisted under the
+`catalog-continuous-promotion-v1` operations agent and preserved as a 90-day
+workflow artifact.
+
+The workflow is insert-only. It cannot update or delete canonical rows, change
+Storage or image pointers, write pricing or publication state, mutate Vault or
+customer data, or activate public visibility. `30th-c` and other raw English
+Pokemon missing sets remain held until Master Index admission. On any commit,
+source, package, collision, rollback, or readback mismatch, inspect the durable
+agent run and artifact; never retry blindly or broaden the target.
