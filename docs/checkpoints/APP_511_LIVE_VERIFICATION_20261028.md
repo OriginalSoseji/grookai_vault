@@ -2,8 +2,9 @@
 
 This supersedes the prepared-build and pending seller-activation statements in
 [the technical delivery checkpoint](APP_EBAY_TECHNICAL_DELIVERY_20261028.md).
-It records completed checks as of22:49UTC. It does not declare the separate
-pricing publication or final refreshed TCGplayer checks complete.
+The original checks below were completed by22:49UTC on October28. The final
+marketplace recovery section records the later pricing and refreshed
+TCGplayer checks completed on October29.
 
 ## Delivered application
 
@@ -81,8 +82,9 @@ shadow run `mtg-global-market-shadow-40776623318-1`. Read-only database lock
 inspection and the matching hosted workflow confirmed the owner is working.
 It was not cancelled, terminated or bypassed. The prior failed retry's complete
 15-file evidence was preserved with matching hashes before the later retry.
-Final publication, reconciliation and refreshed Samsung NM/LP destination checks
-remain pending at this checkpoint.
+At this continuation checkpoint, final publication, reconciliation and
+refreshed Samsung NM/LP destination checks were still pending. The final
+marketplace recovery section below supersedes that interim status.
 
 The qualified retention script from merged PR831,
 `37cda8886e42278285b8da984adfb413ec483e9a`, is now installed separately at
@@ -176,3 +178,47 @@ policies, one enabled location and35 aspects. No new consent, account, listing,
 offer, photo or inventory write was made. Read protected
 `ebay-seller-labs-v1/production-seller-provider-readback-v3/result.json` and its
 token-state readback. No credential values are selected in that readback.
+
+## Final marketplace recovery — October 29, 2026
+
+The guarded scheduled production run completed successfully at 02:16 UTC without
+changing its producer, bypassing a lock, weakening a freshness guard, or
+interrupting another worker. The completed full source run had 560,434 price
+rows and zero failures. Production published 177,074 qualified snapshots from
+209,857 selected candidates; reconciliation had zero mismatches, all five
+required phases succeeded, and health reported `healthy` with a 2.208-hour source
+age, zero broken traces, zero failed phase attempts and zero current-price
+failures. The retained health receipt was hash-checked against the remote
+artifact. The current publication is
+`TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-10-29-publication`.
+
+The exact Eevee 151 #133 Reverse Holo printing resolves to TCGplayer product
+516696. On the production website, the live anonymous exact-printing API and
+condition chooser passed at desktop and mobile sizes. NM, LP, MP, HP and DMG each
+resolve to the same English Reverse Holofoil product with the matching
+condition. On Samsung running app build 511, the saved NM copy and card-level LP
+link opened the matching Near Mint and Lightly Played filters on that same
+product.
+The saved copy remains NM. Its inventory and legacy ownership fingerprints
+matched before and after the marketplace checks.
+
+The real seller connection recovered its expired access token through the
+existing server-side renewal path. All seven seller metadata GETs passed again.
+Samsung on build 511 also returned 456 sold and more than 1,800 active eBay
+results for the known card. The listing review loaded seller aspects and
+existing policy choices. No listing was published. The review was exited
+without creating a server draft, photo, offer, reservation or inventory write.
+These provider and
+publication controls remain scoped to the verified collector. A future real
+listing still needs that collector's price, photos, policy choices and final
+Publish action.
+
+The 00:30 UTC October 29 retention timer run completed successfully. Capacity was
+already above target, so it created no archives, removed no source directories
+and did not interrupt the pricing producer.
+
+Private, hash-preserving evidence is under
+`C:/gv_intake_recovery_private_20261027/ebay-seller-labs-v1/production-marketplace-restored-v1/`.
+It includes the terminal service observation, remote health artifacts, actual
+SDK/Edge data readback, inventory fingerprints, Samsung NM/LP screenshots,
+desktop/mobile production chooser receipts and the final result receipt.
