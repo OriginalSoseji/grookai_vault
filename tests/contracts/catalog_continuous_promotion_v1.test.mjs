@@ -127,6 +127,8 @@ test("continuous catalog agent is durable, bounded, and activation-gated", () =>
   );
   assert.match(workflow, /workflow_run:/);
   assert.match(workflow, /CATALOG_CONTINUOUS_PROMOTION_ACTIVE == 'true'/);
+  assert.match(workflow, /ref: main/);
+  assert.doesNotMatch(workflow, /ref: \$\{\{ needs\.prepare\.outputs\.source_head_sha \}\}/);
   assert.match(workflow, /--max-targets=5/);
   assert.match(workflow, /catalog_continuous_promotion_v1\.mjs/);
   assert.match(workflow, /actions\/upload-artifact@v4/);

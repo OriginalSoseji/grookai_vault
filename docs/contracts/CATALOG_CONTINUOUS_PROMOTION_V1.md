@@ -24,7 +24,8 @@ Every cycle must:
 
 1. originate from a successful `Universal Catalog Discovery` run on the
    default branch;
-2. check out that run's exact 40-character commit SHA;
+2. check out trusted `main` and prove it is that run's exact 40-character
+   commit SHA before any writer can execute;
 3. download that run's immutable 90-day evidence artifact;
 4. verify the outcome-package artifact hash and every package fingerprint;
 5. accept no more than five unique targets;

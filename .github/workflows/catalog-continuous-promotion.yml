@@ -75,7 +75,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ needs.prepare.outputs.source_head_sha }}
+          ref: main
 
       - uses: actions/setup-node@v4
         with:
