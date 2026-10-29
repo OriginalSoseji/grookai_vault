@@ -4285,3 +4285,21 @@ customer data, or activate public visibility. `30th-c` and other raw English
 Pokemon missing sets remain held until Master Index admission. On any commit,
 source, package, collision, rollback, or readback mismatch, inspect the durable
 agent run and artifact; never retry blindly or broaden the target.
+
+## Completed TCGplayer publication recovery — October 29, 2026
+
+The guarded production recovery completed successfully after the independently
+owned shadow run released the global publication lock. The current run is
+`TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-10-29-publication`; it published
+177,074 qualified snapshots, reconciled with zero mismatches, and completed
+health as `healthy`. Its source age was 2.208 hours, and health reported zero
+broken traces, failed phase attempts, and failed source rows. The source run was
+the completed October 28 full sync with 560,434 price rows and zero failures.
+
+The Samsung and anonymous production-site checks confirmed the exact Eevee 151
+#133 Reverse Holo links for all five conditions. If freshness later expires,
+follow the normal guarded warehouse and production pipeline. Preserve
+reconciliation and health artifacts; do not hardcode a TCGplayer URL or weaken
+the freshness, mapping, quarantine, or publication guards. The successful
+terminal and health evidence is preserved with the APP511 live-verification
+checkpoint under the private recovery root.
