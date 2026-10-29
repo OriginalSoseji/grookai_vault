@@ -572,7 +572,10 @@ test("TCGdex Miscellaneous Promos resolves to the governed Ancient Mew owner", (
   assert.deepEqual(ENGLISH_POKEMON_SOURCE_ALIAS_OWNERS_V1.map((row) => [
     row.source_set_key,
     row.canonical_set_key,
-  ]), [["miscp", "misc"]]);
+  ]), [
+    ["30th-c", "30c-classic"],
+    ["miscp", "misc"],
+  ]);
 
   const owners = mergeEnglishPokemonFoldedSubsetOwnersV1();
   const overlay = deriveEnglishPokemonCanonicalAliasOverlayV1({
@@ -626,6 +629,63 @@ test("TCGdex Miscellaneous Promos resolves to the governed Ancient Mew owner", (
     englishAliasResolutions: overlay.resolutions,
   });
   assert.equal(master.rows[0].master_index_status, "alias_or_subset_owner_resolved");
+  assert.equal(master.rows[0].promotion_decision, "no_write_existing_canonical_owner");
+  assert.deepEqual(buildCanonicalPromotionCandidatesV1({
+    actionableGaps: [],
+    pokemonMasterIndexReconciliation: master,
+  }), []);
+});
+
+test("TCGdex 30th Classic gallery shell resolves to the existing reprint-anthology owner", () => {
+  const owners = mergeEnglishPokemonFoldedSubsetOwnersV1();
+  const overlay = deriveEnglishPokemonCanonicalAliasOverlayV1({
+    databaseSets: [{
+      game_code: "pokemon",
+      catalog_scope: "pokemon_en",
+      code: "30c-classic",
+      name: "30th Celebration Classic Collection",
+      card_count: 30,
+      identity_model: "reprint_anthology",
+    }],
+    databaseCards: [],
+    masterCards: [],
+    masterSetRemaps: owners,
+  });
+  assert.deepEqual(overlay.sets[0].code_aliases, ["30th-c"]);
+  assert.deepEqual(overlay.resolutions.find((row) => row.source_code === "30th-c"), {
+    source_code: "30th-c",
+    canonical_code: "30c-classic",
+    evidence_card_count: null,
+    evidence_row_count: null,
+    authority: "english_master_index_source_alias_owner_v1",
+  });
+
+  const [reconciled] = reconcileCatalogSets({
+    sourceSets: [{
+      game_code: "pokemon",
+      catalog_scope: "pokemon_en",
+      source_id: "tcgdex_english_set_registry",
+      source_set_id: "30th-c",
+      code: "30th-c",
+      name: "30th Classic Collection",
+      expected_card_count: 30,
+      count_scope: "source_observed_identity_rows",
+      source_url: "https://api.tcgdex.net/v2/en/sets/30th-c",
+    }],
+    databaseSets: overlay.sets,
+    asOf: "2026-10-29",
+  });
+  assert.equal(reconciled.database_code, "30c-classic");
+  assert.equal(reconciled.database_card_count, 30);
+  assert.equal(reconciled.status, CATALOG_GAP_STATUSES.EXACT_COMPLETE);
+
+  const master = buildPokemonLanguageMasterIndexReconciliationV1({
+    reconciliation: [reconciled],
+    englishMasterCards: [],
+    englishAliasResolutions: overlay.resolutions,
+  });
+  assert.equal(master.rows[0].master_index_status, "alias_or_subset_owner_resolved");
+  assert.equal(master.rows[0].canonical_owner_code, "30c-classic");
   assert.equal(master.rows[0].promotion_decision, "no_write_existing_canonical_owner");
   assert.deepEqual(buildCanonicalPromotionCandidatesV1({
     actionableGaps: [],
