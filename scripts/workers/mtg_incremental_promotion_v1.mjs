@@ -107,6 +107,7 @@ async function fetchScryfallSetCards(setCode) {
   url.searchParams.set("q", `set:${setCode} game:paper lang:en`);
   url.searchParams.set("unique", "prints");
   url.searchParams.set("include_extras", "true");
+  url.searchParams.set("include_variations", "true");
   const cards = [];
   const snapshots = [];
   while (url) {

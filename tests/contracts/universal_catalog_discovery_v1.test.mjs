@@ -965,3 +965,10 @@ test("cross-TCG search uses game-scoped aliases and Unicode-safe set tokens", ()
   assert.match(search, /const boundedSetCodes = inferredSetCodes\.length > 0/);
   assert.match(search, /Promise\.all\(boundedSetCodes\.map/);
 });
+
+test("MTG discovery includes Scryfall variation printings in exact set counts", () => {
+  const worker = source("scripts/workers/universal_catalog_discovery_v1.mjs");
+  assert.match(worker, /unique", "prints"/);
+  assert.match(worker, /include_extras", "true"/);
+  assert.match(worker, /include_variations", "true"/);
+});

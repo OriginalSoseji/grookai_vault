@@ -55,6 +55,7 @@ test("MTG incremental promotion uses existing canonical contracts dynamically", 
   assert.match(worker, /buildMtgCanonicalSetPromotionContractV1/);
   assert.match(worker, /set:\$\{setCode\} game:paper lang:en/);
   assert.match(worker, /unique", "prints"/);
+  assert.match(worker, /include_variations", "true"/);
 });
 
 test("MTG incremental promotion extends only fully accounted partial sets", () => {
