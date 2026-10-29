@@ -89,6 +89,10 @@ test("continuous catalog writer proves rollback before exact apply", () => {
   assert.ok(dryRun.args.includes("--mode=dry-run"));
   assert.ok(apply.args.includes("--mode=apply"));
   assert.ok(dryRun.args.includes(`--expected-payload-fingerprint=${"b".repeat(64)}`));
+  const expectedCountsHashArgument = dryRun.args.find((arg) =>
+    arg.startsWith("--expected-execution-counts-sha256="));
+  assert.match(expectedCountsHashArgument, /^--expected-execution-counts-sha256=[a-f0-9]{64}$/);
+  assert.ok(apply.args.includes(expectedCountsHashArgument));
   const inserted = outcomePackage.expected_counts;
   const postRollback = Object.fromEntries(Object.keys(inserted).map((key) => [key, {
     planned_count: inserted[key], actual_count: 0, exact_count: 0,

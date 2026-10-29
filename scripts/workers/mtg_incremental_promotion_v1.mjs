@@ -8,6 +8,8 @@ import { Client } from "pg";
 import { buildMtgCanonicalCandidateV1 } from
   "../../backend/pricing/mtg_canonical_catalog_candidate_v1.mjs";
 import { sha256 } from "../../backend/catalog/universal_catalog_discovery_v1.mjs";
+import { operationsSha256V1 } from
+  "../../backend/operations/operations_control_plane_v1.mjs";
 import {
   buildMtgCanaryPayloadV1,
 } from "../audits/mtg_canonical_catalog_canary_plan_v1.mjs";
@@ -59,6 +61,7 @@ function parseArgs(argv) {
     setCode: "hob",
     expectedHeadSha: null,
     expectedPayloadFingerprint: null,
+    expectedExecutionCountsSha256: null,
     databaseUrl: process.env.SUPABASE_DB_URL ?? process.env.DATABASE_URL ?? null,
     outDir: path.join("docs", "audits", "mtg_incremental_promotion_v1", stamp),
   };
@@ -69,6 +72,11 @@ function parseArgs(argv) {
     else if (token.startsWith("--expected-head-sha=")) options.expectedHeadSha = token.slice(20);
     else if (token.startsWith("--expected-payload-fingerprint=")) {
       options.expectedPayloadFingerprint = token.slice(31);
+    }
+    else if (token.startsWith("--expected-execution-counts-sha256=")) {
+      options.expectedExecutionCountsSha256 = token.slice(
+        "--expected-execution-counts-sha256=".length,
+      );
     }
     else if (token.startsWith("--db-url=")) options.databaseUrl = token.slice(9);
     else if (token.startsWith("--out-dir=")) options.outDir = path.resolve(token.slice(10));
@@ -86,6 +94,10 @@ function parseArgs(argv) {
   if (options.mode === "apply" &&
       !/^[0-9a-f]{64}$/.test(options.expectedPayloadFingerprint ?? "")) {
     throw new Error("Apply requires --expected-payload-fingerprint");
+  }
+  if (options.mode === "apply" &&
+      !/^[0-9a-f]{64}$/.test(options.expectedExecutionCountsSha256 ?? "")) {
+    throw new Error("Apply requires --expected-execution-counts-sha256");
   }
   return options;
 }
@@ -439,6 +451,11 @@ async function main() {
         ? selectMtgPromotionRowsV1(promotion.rows, newParentIds, false)
         : selectMtgPromotionRowsV1(promotion.rows, [], false);
     const executionRowCounts = promotionRowCounts(executionRows);
+    const executionRowCountsSha256 = operationsSha256V1(executionRowCounts);
+    if (options.expectedExecutionCountsSha256 &&
+        options.expectedExecutionCountsSha256 !== executionRowCountsSha256) {
+      throw new Error("Expected execution counts do not match the frozen MTG delta");
+    }
     const shouldMutate = releaseEligible && executionRows.card_prints.length > 0;
     let transactionResult = {
       action: shouldMutate ? "plan_only" : "no_op",
@@ -495,6 +512,7 @@ async function main() {
       promotion_row_counts: promotion.row_counts,
       retained_parent_count: retainedParentIds.size,
       execution_row_counts: executionRowCounts,
+      execution_row_counts_sha256: executionRowCountsSha256,
       source_snapshot_count: source.snapshots.length,
       source_bulk_sha256: sourceBulkSha256,
       writer_payload_fingerprint: payload.writer_payload_fingerprint,

@@ -4243,12 +4243,14 @@ a successful default-branch discovery run and only while the repository variable
 `CATALOG_CONTINUOUS_PROMOTION_ACTIVE` equals `true`.
 
 The executor downloads the exact discovery artifact, verifies its internal
-package hash, checks out the source commit, and accepts at most five registered
-outcome packages. Each target must first complete a same-fingerprint transactional
-dry run with exact rollback absence. The executor then invokes the same writer in
-apply mode and requires exact durable readback. Results and failures are persisted
-under the `catalog-continuous-promotion-v1` operations agent and preserved as a
-90-day workflow artifact.
+package hash, checks out trusted `main`, proves it equals the source commit, and
+accepts at most five registered outcome packages. Each target must first complete
+a same-fingerprint transactional dry run with exact rollback absence. The
+executor then invokes the same writer in apply mode and requires exact durable
+readback. MTG writers also verify the frozen execution-count fingerprint before
+inserting or committing. Results and failures are persisted under the
+`catalog-continuous-promotion-v1` operations agent and preserved as a 90-day
+workflow artifact.
 
 The workflow is insert-only. It cannot update or delete canonical rows, change
 Storage or image pointers, write pricing or publication state, mutate Vault or

@@ -430,6 +430,11 @@ export function buildCatalogWriterInvocationV1(outcomePackage, {
     `--expected-head-sha=${headSha}`,
     `--expected-payload-fingerprint=${outcomePackage.payload_fingerprint_sha256}`,
   ];
+  if (outcomePackage.writer_key === "mtg_incremental_promotion_v1") {
+    args.push(
+      `--expected-execution-counts-sha256=${operationsSha256V1(outcomePackage.expected_counts)}`,
+    );
+  }
   const target = outcomePackage.target;
   if (outcomePackage.writer_key === "mtg_incremental_promotion_v1") {
     args.push(`--set-code=${target.set_code}`);

@@ -73,8 +73,10 @@ Only then may the same commit, target, source constraints, and payload
 fingerprint run in `apply` mode.
 
 Source drift between dry run and apply changes the payload fingerprint and
-fails closed. A failed target stops the cycle; it is not substituted, broadened,
-or retried with changed inputs.
+fails closed. MTG also binds the exact execution-row count fingerprint inside
+the writer transaction, before insertion or commit, so an intervening partial
+insert cannot shrink the approved delta. A failed target stops the cycle; it is
+not substituted, broadened, or retried with changed inputs.
 
 ## Write Envelope
 
