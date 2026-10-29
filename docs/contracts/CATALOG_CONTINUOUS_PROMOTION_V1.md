@@ -55,6 +55,9 @@ An MTG partial set may enter the writer only when:
 - the authority is `scryfall_sets_and_prints`;
 - source and canonical set codes match exactly after case normalization;
 - the comparison scope is `full_set`;
+- exact Scryfall counts and writer payloads include extras and variation
+  printings, so retained variation parents remain inside the frozen source
+  scope;
 - existing, expected, and missing counts are exact integers;
 - `missing = expected - existing` and both counts are positive;
 - the writer accounts for every retained Scryfall mapping and retained
