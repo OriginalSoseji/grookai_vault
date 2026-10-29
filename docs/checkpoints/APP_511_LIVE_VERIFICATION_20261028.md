@@ -122,3 +122,57 @@ the current publication/freshness and verify actual Samsung NM/LP destinations.
 Record that result separately under
 `ebay-seller-labs-v1/production-marketplace-restored-v1/result.json`.
 An absent or failed receipt does not establish completion.
+
+## Guarded continuation after UTC midnight
+
+PR833 merged this checkpoint as
+`aed2d38b80788324d54c27bf180e25a7fd176de3`. All15 applicable hosted checks
+passed with no unresolved review threads. Both normal hook runs also passed the
+complete contract/native/backend/web checks. Production deployment
+`dpl_H3aoVH7sajS2uUW1Pb2xMQpiiEZ8` independently read back READY on that exact
+commit. Application blobs and the installed511 native source index are unchanged.
+
+The October28 production pricing retry exhausted all three normal20-minute
+advisory-lock waits, ending23:31:13UTC. It did not acquire the publication lock
+or activate a publication. Its32 terminal artifact files, totaling25,972 bytes,
+were copied from the quiescent server and every SHA256 matched before any later
+start. The original remote evidence remains in place. Read protected
+`ebay-seller-labs-v1/pricing-guarded-service-retry-v2/failed-run-preserved-qualified-v2.json`.
+
+The independent shadow `mtg-global-market-shadow-40776623318-1` reached
+`shadow_verified` with reconciled state at00:01UTC on October29. Its candidate
+publication contains177,069 eligible snapshots. The hosted workflow subsequently
+completed successfully. Only after strict-TLS readback found the publication
+lock free, verified that exact shadow/source, and checked the retained failure
+receipt did the existing production service restart at00:03:32UTC. The producer
+remains clean/pinned `cdcec2aa6ab39c237047119fa1dd31605ea1449f`; no code,
+environment, freshness or storage guard was changed. The source had33.947 hours
+of freshness remaining.
+
+The normal scheduler selected the new UTC-date run key
+`TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-10-29`. It did not overwrite the failed
+October28 run. The actual service child command independently establishes this
+run root under `/var/lib/grookai/market-pricing`; do not infer it from the old
+directory or the workstation's local calendar day. Warehouse reuse and active
+asks completed; publication reached candidate staging at00:08UTC. Successful
+activation, final reconciliation and Samsung NM/LP checks remain pending at
+this continuation checkpoint.
+
+Preserve protected `ebay-seller-labs-v1/pricing-guarded-service-retry-v3/guard.json`,
+`start-result.json`, `current-run-pointer.json` and timestamped phase readbacks.
+The restart receipt is consumed: never rerun its start driver blindly. Read the
+actual unit, active child, database run and current publication before further
+action. The local monitor is read-only and leaves the service intact if its
+observation window ends. The final restoration receipt remains the separately
+indexed `production-marketplace-restored-v1/result.json`; absent proof is not
+success.
+
+At23:47UTC, an additional live seller check verified normal expiry recovery.
+The existing access token was expired. The qualified server token authority
+renewed it through its persisted nonce/claim/completion path; credential revision
+advanced from1 to3 and state returned ready. All seven live metadata GETs then
+passed again: four shipping policies, two payment policies, three return
+policies, one enabled location and35 aspects. No new consent, account, listing,
+offer, photo or inventory write was made. Read protected
+`ebay-seller-labs-v1/production-seller-provider-readback-v3/result.json` and its
+token-state readback. No credential values are selected in that readback.
