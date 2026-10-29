@@ -1,5 +1,32 @@
 # Grookai Operator Playbook V1
 
+## Pricing continuation and seller renewal — October29,2026 UTC
+
+Read the final continuation section of
+[the511 live checkpoint](../checkpoints/APP_511_LIVE_VERIFICATION_20261028.md).
+PR833 is merged as `aed2d38b80788324d54c27bf180e25a7fd176de3`; all15 applicable
+hosted checks passed and the production domain serves that exact tested tree.
+The installed511 application source is unchanged.
+
+The October28 pricing retry ended after three normal lock-wait deadlines. Its32
+files were preserved with matching hashes before the next start. Shadow40776623318
+then passed reconciliation/hosted completion and released the lock. The guarded
+service start at00:03UTC selected the actual new run
+`TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-10-29`, preserving the failed October28
+directory. Read protected `ebay-seller-labs-v1/pricing-guarded-service-retry-v3`
+and its actual `current-run-pointer.json`. The restart is consumed; inspect live
+unit/child/database state before further action. Producer, environment, storage
+floor and freshness guards remain unchanged. Publication and final Samsung
+condition destinations are still pending at this checkpoint; only the later
+indexed `production-marketplace-restored-v1/result.json` can establish restoration.
+
+The existing eBay connection also passed actual access-token expiry recovery
+through its qualified nonce/revision authority, followed by all seven provider
+metadata GETs. Read protected
+`ebay-seller-labs-v1/production-seller-provider-readback-v3/result.json`.
+No new consent or listing publication occurred. Never copy credentials into
+notes, source, client configuration or verification artifacts.
+
 ## Installed511, seller activation and pricing continuation — October28,2026
 
 Read [the current live checkpoint](../checkpoints/APP_511_LIVE_VERIFICATION_20261028.md)
