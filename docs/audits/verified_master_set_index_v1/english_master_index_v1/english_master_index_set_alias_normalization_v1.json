@@ -1,22 +1,30 @@
 {
   "version": "ENGLISH_MASTER_INDEX_SET_ALIAS_NORMALIZATION_V1",
-  "generated_at": "2026-10-28T09:58:32.775Z",
+  "generated_at": "2026-10-29T10:21:04.926Z",
   "audit_only": true,
   "db_writes": false,
   "rule": "Evidence set aliases are canonicalized before suppression and classification only when an alias resolves to exactly one configured English set.",
   "summary": {
-    "evidence_rows_examined": 319659,
-    "evidence_rows_after_dedupe": 243513,
+    "evidence_rows_examined": 321556,
+    "evidence_rows_after_dedupe": 245401,
     "evidence_rows_remapped": 2236,
-    "duplicate_rows_collapsed": 76146,
+    "duplicate_rows_collapsed": 76155,
     "unresolved_evidence_rows": 0,
     "ambiguous_aliases": 2,
     "source_availability_rows_remapped": 0,
     "historical_remaps_preserved": 12,
     "effective_remaps": 46,
-    "folded_subset_owners": 3
+    "folded_subset_owners": 4
   },
   "folded_subset_owners": [
+    {
+      "source_set_key": "30th-c",
+      "source_set_name": "30th Classic Collection",
+      "canonical_set_key": "30c-classic",
+      "canonical_set_name": "30th Celebration Classic Collection",
+      "authority": "english_master_index_source_alias_owner_v1",
+      "note": "TCGdex exposes the 30-card Classic Collection under 30th-c with 001-030 gallery ordinals. The governed canonical reprint-anthology owner is 30c-classic, whose 30 parents preserve each card's historic printed number; the source shell must reconcile to that existing owner and must never create 30 duplicate parents."
+    },
     {
       "source_set_key": "miscp",
       "source_set_name": "Miscellaneous Promos",
