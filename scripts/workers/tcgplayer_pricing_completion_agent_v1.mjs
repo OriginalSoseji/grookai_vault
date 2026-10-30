@@ -60,20 +60,52 @@ function runBacklogAudit(outRoot) {
   });
 }
 
-function runExactMappingPlan({ sourceRunId, coverageGaps, outRoot, databaseUrl }) {
+function credentialFreePlannerEnvV1(env = process.env) {
+  return Object.fromEntries(Object.entries(env).filter(([key]) =>
+    !/(?:SUPABASE|DATABASE|POSTGRES|PGHOST|PGUSER|PGPASSWORD|PGDATABASE|PGPORT|PGOPTIONS|SECRET_KEY|SERVICE_ROLE)/i.test(key)));
+}
+
+function runExactMappingSnapshot({ sourceRunId, coverageGaps, output }) {
+  return new Promise((resolve, reject) => {
+    const child = spawn(process.execPath, [
+      'scripts/audits/tcgplayer_market_exact_mapping_snapshot_v1.mjs',
+      `--source-run-id=${sourceRunId}`,
+      `--coverage-gaps=${coverageGaps}`,
+      `--output=${output}`,
+    ], {
+      cwd: path.resolve('.'),
+      env: {
+        ...process.env,
+        PGOPTIONS: '-c default_transaction_read_only=on',
+      },
+      windowsHide: true,
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    let stdout = '';
+    let stderr = '';
+    child.stdout.on('data', (chunk) => { stdout += chunk; });
+    child.stderr.on('data', (chunk) => { stderr += chunk; });
+    child.on('error', reject);
+    child.on('close', (code) => {
+      if (code === 0) resolve({ stdout, stderr });
+      else reject(new Error(
+        `Exact mapping snapshot failed with exit ${code}: ${stderr || stdout}`,
+      ));
+    });
+  });
+}
+
+function runExactMappingPlan({ sourceRunId, coverageGaps, snapshotInput, outRoot }) {
   return new Promise((resolve, reject) => {
     const child = spawn(process.execPath, [
       'scripts/audits/tcgplayer_market_exact_mapping_plan_v1.mjs',
       `--source-run-id=${sourceRunId}`,
       `--coverage-gaps=${coverageGaps}`,
+      `--snapshot-input=${snapshotInput}`,
       `--out-root=${outRoot}`,
     ], {
       cwd: path.resolve('.'),
-      env: {
-        ...process.env,
-        SUPABASE_DB_URL: databaseUrl,
-        PGOPTIONS: '-c default_transaction_read_only=on',
-      },
+      env: credentialFreePlannerEnvV1(),
       windowsHide: true,
       stdio: ['ignore', 'pipe', 'pipe'],
     });
@@ -239,44 +271,56 @@ async function main() {
       'utf8',
     ));
     const exactPlanRoot = path.join(args.outDir, 'exact_mapping_plan');
+    const exactSnapshotPath = path.join(args.outDir, 'exact_mapping_snapshot_v1.json');
     let exactPlan = null;
     let exactPlanDir = null;
+    let exactSnapshotProcess = {
+      status: 'unavailable',
+      stdout: '',
+      error_code: 'EXACT_MAPPING_SNAPSHOT_UNAVAILABLE',
+    };
     let exactPlanProcess = {
       status: 'unavailable',
       stdout: '',
-      error_code: 'MAPPING_READER_NOT_PROVISIONED',
+      error_code: 'EXACT_MAPPING_PLAN_UNAVAILABLE',
     };
-    const exactMappingReaderUrl =
-      process.env.TCGPLAYER_EXACT_MAPPING_READER_DB_URL?.trim() ?? '';
-    if (exactMappingReaderUrl) {
-      try {
-        const processResult = await runExactMappingPlan({
-          sourceRunId: report.run.source_sync_run_id,
-          coverageGaps: path.join(backlogRoot, 'latest_pokemon_identity_mapping_gaps.jsonl'),
-          outRoot: exactPlanRoot,
-          databaseUrl: exactMappingReaderUrl,
-        });
-        exactPlanDir = await readOnlyChildDirectory(exactPlanRoot);
-        const exactPlanSummary = JSON.parse(await fs.readFile(
-          path.join(exactPlanDir, 'summary.json'),
-          'utf8',
-        ));
-        exactPlan = {
-          ...exactPlanSummary,
-          candidates: await readJsonl(path.join(exactPlanDir, 'candidates.jsonl')),
-        };
-        exactPlanProcess = {
-          status: 'available',
-          stdout: processResult.stdout,
-          error_code: null,
-        };
-      } catch (error) {
-        exactPlanProcess = {
-          status: 'unavailable',
-          stdout: '',
-          error_code: pricingExactPlanFailureCodeV1(error),
-        };
-      }
+    try {
+      const snapshotResult = await runExactMappingSnapshot({
+        sourceRunId: report.run.source_sync_run_id,
+        coverageGaps: path.join(backlogRoot, 'latest_pokemon_identity_mapping_gaps.jsonl'),
+        output: exactSnapshotPath,
+      });
+      exactSnapshotProcess = {
+        status: 'available',
+        stdout: snapshotResult.stdout,
+        error_code: null,
+      };
+      const processResult = await runExactMappingPlan({
+        sourceRunId: report.run.source_sync_run_id,
+        coverageGaps: path.join(backlogRoot, 'latest_pokemon_identity_mapping_gaps.jsonl'),
+        snapshotInput: exactSnapshotPath,
+        outRoot: exactPlanRoot,
+      });
+      exactPlanDir = await readOnlyChildDirectory(exactPlanRoot);
+      const exactPlanSummary = JSON.parse(await fs.readFile(
+        path.join(exactPlanDir, 'summary.json'),
+        'utf8',
+      ));
+      exactPlan = {
+        ...exactPlanSummary,
+        candidates: await readJsonl(path.join(exactPlanDir, 'candidates.jsonl')),
+      };
+      exactPlanProcess = {
+        status: 'available',
+        stdout: processResult.stdout,
+        error_code: null,
+      };
+    } catch (error) {
+      exactPlanProcess = {
+        status: 'unavailable',
+        stdout: '',
+        error_code: pricingExactPlanFailureCodeV1(error),
+      };
     }
     const identityGaps = await readJsonl(
       path.join(backlogRoot, 'latest_identity_mapping_gaps.jsonl'),
@@ -447,6 +491,8 @@ async function main() {
       exact_mapping_plan: {
         status: exactPlanProcess.status,
         error_code: exactPlanProcess.error_code,
+        snapshot_status: exactSnapshotProcess.status,
+        snapshot_error_code: exactSnapshotProcess.error_code,
       },
     };
     const sourceRunUri = process.env.GITHUB_SERVER_URL
@@ -478,6 +524,12 @@ async function main() {
       backlog_artifact_root: path.relative(args.outDir, backlogRoot).replace(/\\/g, '/'),
       exact_mapping_plan_artifact_root: exactPlanDir
         ? path.relative(args.outDir, exactPlanDir).replace(/\\/g, '/')
+        : null,
+      exact_mapping_snapshot_artifact: exactSnapshotProcess.status === 'available'
+        ? {
+            path: path.relative(args.outDir, exactSnapshotPath).replace(/\\/g, '/'),
+            sha256: sha256(await fs.readFile(exactSnapshotPath)),
+          }
         : null,
       identity_product_queue_artifacts: {
         combined: {
@@ -532,6 +584,7 @@ async function main() {
       },
       audit_stdout: audit.stdout.trim(),
       exact_mapping_plan_stdout: exactPlanProcess.stdout.trim() || null,
+      exact_mapping_snapshot_stdout: exactSnapshotProcess.stdout.trim() || null,
       candidate_enrichment_stdout: enrichmentProcess.stdout.trim(),
       candidate_enrichment_summary: enrichmentSummary,
       pokemon_countdown_calendar_variant_plan_stdout:

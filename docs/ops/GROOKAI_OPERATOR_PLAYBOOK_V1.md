@@ -412,14 +412,21 @@ fingerprint make an identical rerun idempotent. Do not hand-edit the payload,
 split collisions into separate approvals, or treat an approved review item as a
 completed mapping. Dashboard backlog counts use the latest successful measured
 run so a starting or failed run cannot replace known measurements with zeros.
-The optional exact planner currently remains unavailable until the dedicated
-reader capability is independently qualified and activated. Activation also
-requires the repository secret `TCGPLAYER_EXACT_MAPPING_READER_DB_URL` to contain
-that dedicated reader connection. When it is absent, the agent records
-`MAPPING_READER_NOT_PROVISIONED` and does not launch the planner. A fixed
-`MAPPING_READER_*` or `PLANNER_*` code is a held automatic lane, not permission
-to substitute the broad production database login. Backlog measurement,
-candidate enrichment, and review publication continue without that planner.
+`TCGPLAYER_PRICING_COMPLETION_AGENT_V5` keeps the dedicated reader capability
+blocked and removes `TCGPLAYER_EXACT_MAPPING_READER_DB_URL` from the hosted
+workflow. Each hosted run now captures the exact Pokemon planner inputs in a
+separate verified-TLS, repeatable-read, read-only subprocess using the existing
+backlog-census connection. The connection is closed before a second subprocess
+runs the unchanged exact matching policy from
+`exact_mapping_snapshot_v1.json`. That planner subprocess receives an environment
+with every Supabase, database, PostgreSQL, service-role, secret-key, and PG
+connection variable removed. Inspect `exact_mapping_plan.snapshot_status`, the
+snapshot SHA-256, `summary.json.snapshot_receipt`, and candidate/blocked counts
+in the preserved workflow artifact. `EXACT_MAPPING_SNAPSHOT_UNAVAILABLE` or
+`EXACT_MAPPING_PLAN_UNAVAILABLE` is a held automatic lane; it never authorizes a
+credential substitution or weakens the mapping-release gates. Backlog
+measurement, candidate enrichment, and review publication continue when the
+snapshot or offline plan is unavailable.
 
 GitHub schedule events remain the primary fifteen-minute clock, but the Windows
 task `Grookai Pricing Completion Dispatch Watchdog` is the redundant freshness

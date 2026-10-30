@@ -2,7 +2,7 @@ import { execFile } from "node:child_process";
 import { createHash } from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { promisify } from "node:util";
 
 import pg from "pg";
@@ -13,7 +13,6 @@ import {
   uniqueTrainerKitPrintedNumberV1,
 } from "../../backend/pricing/tcgplayer_trainer_kit_pilot_v1.mjs";
 
-import "../../backend/env.mjs";
 import {
   planTcgplayerExactMappingCandidateV1,
   quarantineTcgplayerTargetCollisionsV1,
@@ -72,6 +71,10 @@ import {
   reviewedTcgplayerWcdTeamRushdownProductIdentityByIdV1,
   uniqueWcdTeamRushdownPrintedNumberV1,
 } from "../../backend/pricing/tcgplayer_wcd_team_rushdown_pilot_v1.mjs";
+import {
+  assertCredentialFreeExactMappingPlannerEnvironmentV1,
+  validatePricingCompletionExactMappingSnapshotV1,
+} from "../../backend/pricing/pricing_completion_exact_mapping_snapshot_v1.mjs";
 
 const { Client } = pg;
 const execFileAsync = promisify(execFile);
@@ -158,11 +161,13 @@ function parseArgs(argv) {
       .trim();
   const sourceRunId = value("source-run-id");
   const coverageGaps = value("coverage-gaps");
+  const snapshotInput = value("snapshot-input");
   if (!sourceRunId) throw new Error("--source-run-id is required");
   if (!coverageGaps) throw new Error("--coverage-gaps is required");
   return {
     sourceRunId,
     coverageGaps: path.resolve(coverageGaps),
+    snapshotInput: snapshotInput ? path.resolve(snapshotInput) : null,
     outRoot: path.resolve(value("out-root") || DEFAULT_OUT_ROOT),
   };
 }
@@ -229,7 +234,7 @@ function numberField(extendedData) {
   ).trim();
 }
 
-function groupGapRows(gaps) {
+export function groupGapRows(gaps) {
   const groups = new Map();
   for (const gap of gaps) {
     if (gap.primary_gap_reason !== "missing_active_source_mapping") continue;
@@ -253,7 +258,7 @@ function groupGapRows(gaps) {
   );
 }
 
-async function loadSourceContext(client, sourceRunId, groupedGaps) {
+export async function loadSourceContext(client, sourceRunId, groupedGaps) {
   const productIds = groupedGaps.map((row) => row.source_product_id);
   const sourceRun = (
     await client.query(
@@ -355,7 +360,7 @@ async function loadSourceContext(client, sourceRunId, groupedGaps) {
   return { sourceRun, sources };
 }
 
-async function loadDirectTargets(client, sources) {
+export async function loadDirectTargets(client, sources) {
   const embeddedIds = sources.map(
     (row) =>
       `tcgcsv:${row.source_group_id}:${row.source_product_id}`,
@@ -402,7 +407,7 @@ async function loadDirectTargets(client, sources) {
   return result;
 }
 
-async function loadGroupConsensus(client, sources) {
+export async function loadGroupConsensus(client, sources) {
   const groupIds = [...new Set(sources.map((row) => row.source_group_id))];
   const rows = (
     await client.query(
@@ -429,7 +434,7 @@ async function loadGroupConsensus(client, sources) {
   return new Map(rows.map((row) => [Number(row.source_group_id), row]));
 }
 
-async function resolveAuthorities(client, sources, consensusByGroup) {
+export async function resolveAuthorities(client, sources, consensusByGroup) {
   const sourceGroups = new Set(sources.map((row) => row.source_group_id));
   const applicable = REVIEWED_SET_AUTHORITIES.filter((authority) =>
     sourceGroups.has(authority.source_group_id),
@@ -499,7 +504,7 @@ async function resolveAuthorities(client, sources, consensusByGroup) {
   return { authorities, targetSetIds: [...targetSetIds].sort() };
 }
 
-async function loadSetTargets(client, setIds) {
+export async function loadSetTargets(client, setIds) {
   if (setIds.length === 0) return [];
   return (
     await client.query(
@@ -567,14 +572,17 @@ function markdown(summary) {
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
-  const url = connectionString();
-  if (!url) throw new Error("database URL is required");
-  exactMappingPlannerDatabaseConfigV1(url);
+  if (args.snapshotInput) assertCredentialFreeExactMappingPlannerEnvironmentV1();
+  else await import("../../backend/env.mjs");
+  const url = args.snapshotInput ? "" : connectionString();
+  if (!args.snapshotInput && !url) throw new Error("database URL is required");
+  if (!args.snapshotInput) exactMappingPlannerDatabaseConfigV1(url);
   const [commitSha, branch, trackedWorktreeStatus] = await Promise.all([
     git(["rev-parse", "HEAD"]),
     git(["branch", "--show-current"]),
     git(["status", "--porcelain", "--untracked-files=no"]),
   ]);
+  const coverageGapBytes = await fs.readFile(args.coverageGaps);
   const gaps = await readJsonl(args.coverageGaps);
   if (
     gaps.length === 0 ||
@@ -586,25 +594,59 @@ async function main() {
     throw new Error("coverage artifact is empty or not V1.3");
   }
   const groupedGaps = groupGapRows(gaps);
-  const { client, databaseTarget } = await connectExactMappingPlannerV1({ Client, connectionString: url });
+  let client = null;
   try {
-    await client.query("begin read only");
-    await client.query("set local statement_timeout = '120s'");
-    const { sourceRun, sources } = await loadSourceContext(
-      client,
-      args.sourceRunId,
-      groupedGaps,
-    );
-    const [directTargetsByProduct, consensusByGroup] = await Promise.all([
-      loadDirectTargets(client, sources),
-      loadGroupConsensus(client, sources),
-    ]);
-    const { authorities, targetSetIds } = await resolveAuthorities(
-      client,
+    let planningContext;
+    if (args.snapshotInput) {
+      const snapshot = JSON.parse(await fs.readFile(args.snapshotInput, "utf8"));
+      planningContext = validatePricingCompletionExactMappingSnapshotV1({
+        snapshot,
+        expectedSourceSyncRunId: args.sourceRunId,
+        expectedCoverageGapsSha256: sha256(coverageGapBytes),
+        expectedSourceProductIds: groupedGaps.map((row) => row.source_product_id),
+      });
+    } else {
+      const connection = await connectExactMappingPlannerV1({ Client, connectionString: url });
+      client = connection.client;
+      await client.query("begin read only");
+      await client.query("set local statement_timeout = '120s'");
+      const { sourceRun, sources } = await loadSourceContext(
+        client,
+        args.sourceRunId,
+        groupedGaps,
+      );
+      const [directTargetsByProduct, consensusByGroup] = await Promise.all([
+        loadDirectTargets(client, sources),
+        loadGroupConsensus(client, sources),
+      ]);
+      const { authorities, targetSetIds } = await resolveAuthorities(
+        client,
+        sources,
+        consensusByGroup,
+      );
+      const setTargets = await loadSetTargets(client, targetSetIds);
+      await client.query("rollback");
+      planningContext = {
+        sourceRun,
+        sources,
+        directTargetsByProduct,
+        consensusByGroup,
+        authorities,
+        setTargets,
+        databaseTarget: connection.databaseTarget,
+        snapshotReceipt: null,
+      };
+    }
+    const {
+      sourceRun,
       sources,
+      directTargetsByProduct,
       consensusByGroup,
-    );
-    const setTargets = await loadSetTargets(client, targetSetIds);
+      authorities,
+      setTargets,
+      databaseTarget,
+      snapshotReceipt,
+    } = planningContext;
     const results = quarantineTcgplayerTargetCollisionsV1(
       sources.map((source) =>
         planTcgplayerExactMappingCandidateV1({
@@ -617,8 +659,6 @@ async function main() {
         }),
       ),
     );
-    await client.query("rollback");
-
     const candidates = results.filter(
       (row) => row.disposition === "candidate",
     );
@@ -646,6 +686,7 @@ async function main() {
       policy_version: TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_3,
       status: findings.length === 0 ? "passed" : "failed",
       database_target: databaseTarget,
+      snapshot_receipt: snapshotReceipt,
       source_run: sourceRun,
       coverage_gaps_artifact: path
         .relative(REPO_ROOT, args.coverageGaps)
@@ -680,12 +721,15 @@ async function main() {
     const runPlan = {
       planner_version: PLANNER_VERSION,
       policy_version: TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_3,
-      mode: "read_only_dry_run",
+      mode: args.snapshotInput ? "credential_free_snapshot_dry_run" : "read_only_dry_run",
       database_target: databaseTarget,
       commit_sha: commitSha,
       branch,
       tracked_worktree_clean: !trackedWorktreeStatus,
       source_sync_run_id: args.sourceRunId,
+      snapshot_input_sha256: args.snapshotInput
+        ? sha256(await fs.readFile(args.snapshotInput))
+        : null,
       coverage_gaps_artifact: summary.coverage_gaps_artifact,
       reviewed_set_authorities: REVIEWED_SET_AUTHORITIES,
       boundaries: summary.boundaries,
@@ -719,14 +763,17 @@ async function main() {
     );
     if (summary.status !== "passed") process.exitCode = 1;
   } catch (error) {
-    await client.query("rollback").catch(() => {});
+    await client?.query("rollback").catch(() => {});
     throw error;
   } finally {
-    await client.end().catch(() => {});
+    await client?.end().catch(() => {});
   }
 }
 
-main().catch((error) => {
-  console.error(`[tcgplayer-exact-mapping-plan] ${error.stack || error.message}`);
-  process.exitCode = 1;
-});
+if (process.argv[1]
+  && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
+  main().catch((error) => {
+    console.error(`[tcgplayer-exact-mapping-plan] ${error.stack || error.message}`);
+    process.exitCode = 1;
+  });
+}
