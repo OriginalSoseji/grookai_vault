@@ -51,3 +51,20 @@ revalidation, approval, rollback, and durable readback gates remain mandatory.
 The exact planner must never invoke an apply script or convert snapshot evidence
 directly into mapping or publication authority.
 
+## Future-release triage
+
+The operations agent may maintain an exact, source-group-bound future-release
+hold registry backed by an official publisher release date. Before that date,
+blocked source products from the reviewed group are reported separately from
+actionable mapping failures. The hold is telemetry only: it grants no catalog,
+mapping, pricing, publication, or customer-state write authority. It must match
+both the numeric source group and exact source group name, remain bound to the
+completed source run's `observed_on` date, and expire automatically on the
+official release date. After expiration, still-unresolved products return to
+the actionable blocked queue.
+
+Each hosted run preserves two hashed artifacts: the future-release catalog
+holds and the remaining actionable exact-mapping blocks. A malformed source
+date, duplicate source product, changed group identity, or non-authority block
+reason fails closed instead of suppressing work.
+

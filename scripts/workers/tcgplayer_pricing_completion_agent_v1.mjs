@@ -14,6 +14,7 @@ import {
   buildTcgplayerIdentityProductQueueV1,
   buildPokemonPricingMappingReviewWorkItemV1,
   applyPokemonPricingMappingReviewedHoldsV1,
+  classifyTcgplayerFutureReleaseBlocksV1,
   selectPokemonPricingMappingReviewBatchV1,
   summarizeTcgplayerPricingCompletionRunV1,
 } from '../../backend/operations/tcgplayer_pricing_completion_agent_v1.mjs';
@@ -309,6 +310,7 @@ async function main() {
       exactPlan = {
         ...exactPlanSummary,
         candidates: await readJsonl(path.join(exactPlanDir, 'candidates.jsonl')),
+        blocked: await readJsonl(path.join(exactPlanDir, 'blocked.jsonl')),
       };
       exactPlanProcess = {
         status: 'available',
@@ -326,6 +328,40 @@ async function main() {
       path.join(backlogRoot, 'latest_identity_mapping_gaps.jsonl'),
     );
     const identityProductQueue = buildTcgplayerIdentityProductQueueV1(identityGaps);
+    const exactMappingBlockTriage = exactPlan
+      ? classifyTcgplayerFutureReleaseBlocksV1(exactPlan.blocked, {
+          observedOn: exactPlan.source_run?.observed_on,
+        })
+      : {
+          future_release_holds: [],
+          actionable_blocks: [],
+          summary: {
+            status: 'unavailable',
+            blocked_products: null,
+            future_release_hold_products: null,
+            actionable_blocked_products: null,
+            future_release_groups: [],
+            canonical_writes: false,
+            mapping_writes: false,
+            pricing_writes: false,
+          },
+        };
+    const futureReleaseHoldJsonl = jsonl(
+      exactMappingBlockTriage.future_release_holds,
+    );
+    const actionableExactBlockJsonl = jsonl(
+      exactMappingBlockTriage.actionable_blocks,
+    );
+    await Promise.all([
+      fs.writeFile(
+        path.join(args.outDir, 'pokemon_future_release_catalog_holds.jsonl'),
+        futureReleaseHoldJsonl,
+      ),
+      fs.writeFile(
+        path.join(args.outDir, 'pokemon_actionable_exact_mapping_blocks.jsonl'),
+        actionableExactBlockJsonl,
+      ),
+    ]);
     const mtgIdentityQueue = identityProductQueue.filter((row) =>
       row.source_category_id === 1);
     const pokemonIdentityQueue = identityProductQueue.filter((row) =>
@@ -494,6 +530,7 @@ async function main() {
         snapshot_status: exactSnapshotProcess.status,
         snapshot_error_code: exactSnapshotProcess.error_code,
       },
+      exact_mapping_block_triage: exactMappingBlockTriage.summary,
     };
     const sourceRunUri = process.env.GITHUB_SERVER_URL
       && process.env.GITHUB_REPOSITORY
@@ -532,6 +569,16 @@ async function main() {
           }
         : null,
       identity_product_queue_artifacts: {
+        pokemon_future_release_catalog_holds: {
+          path: 'pokemon_future_release_catalog_holds.jsonl',
+          rows: exactMappingBlockTriage.future_release_holds.length,
+          sha256: sha256(futureReleaseHoldJsonl),
+        },
+        pokemon_actionable_exact_mapping_blocks: {
+          path: 'pokemon_actionable_exact_mapping_blocks.jsonl',
+          rows: exactMappingBlockTriage.actionable_blocks.length,
+          sha256: sha256(actionableExactBlockJsonl),
+        },
         combined: {
           path: 'identity_product_queue.jsonl',
           rows: identityProductQueue.length,

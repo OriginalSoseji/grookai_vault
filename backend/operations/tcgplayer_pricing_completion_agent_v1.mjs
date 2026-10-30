@@ -19,9 +19,114 @@ export const TCGPLAYER_POKEMON_MAPPING_REVIEW_VERSION =
 export const TCGPLAYER_POKEMON_REVIEWED_HOLDS_VERSION =
   'TCGPLAYER_POKEMON_REVIEWED_HOLDS_V1';
 
+export const TCGPLAYER_FUTURE_RELEASE_GROUP_HOLDS_V1 = Object.freeze([
+  Object.freeze({
+    source_group_id: 24831,
+    source_group_name: 'ME06: Delta Reign',
+    release_date: '2026-11-06',
+    official_source_url:
+      'https://www.pokemon.com/us/features/sneak-a-peek-at-cards-from-the-mega-evolution-delta-reign-expansion',
+    evidence:
+      'The official Pokemon announcement identifies Mega Evolution—Delta Reign as available November 6, 2026.',
+  }),
+]);
+
 function integer(value) {
   const parsed = Number(value);
   return Number.isFinite(parsed) ? Math.max(0, Math.trunc(parsed)) : 0;
+}
+
+function isoDay(value, label) {
+  const day = String(value ?? '').trim().slice(0, 10);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(day)
+      || !Number.isFinite(Date.parse(`${day}T00:00:00.000Z`))) {
+    throw new Error(`${label} must contain an ISO date`);
+  }
+  return day;
+}
+
+export function classifyTcgplayerFutureReleaseBlocksV1(
+  blockedRows,
+  { observedOn } = {},
+) {
+  if (!Array.isArray(blockedRows)) {
+    throw new Error('Exact mapping blocked rows must be an array');
+  }
+  const observedDay = isoDay(observedOn, 'observedOn');
+  const holdByGroup = new Map(TCGPLAYER_FUTURE_RELEASE_GROUP_HOLDS_V1.map(
+    (hold) => [hold.source_group_id, hold],
+  ));
+  const futureReleaseHolds = [];
+  const actionableBlocks = [];
+  const sourceProducts = new Set();
+  for (const row of blockedRows) {
+    const sourceProductId = integer(row?.source_product_id);
+    if (!sourceProductId || sourceProducts.has(sourceProductId)) {
+      throw new Error('Exact mapping blocked rows require unique source products');
+    }
+    sourceProducts.add(sourceProductId);
+    const groupId = integer(row?.source_group_id);
+    const groupName = String(row?.source_group_name ?? '').trim();
+    const hold = holdByGroup.get(groupId);
+    const isFutureReleaseHold = hold
+      && row?.reason === 'missing_unique_set_authority'
+      && groupName === hold.source_group_name
+      && observedDay < hold.release_date;
+    if (!isFutureReleaseHold) {
+      actionableBlocks.push(row);
+      continue;
+    }
+    futureReleaseHolds.push({
+      schema_version: 'TCGPLAYER_FUTURE_RELEASE_CATALOG_HOLD_V1',
+      disposition: 'future_release_catalog_hold',
+      source_product_id: sourceProductId,
+      source_product_name: String(row?.source_product_name ?? '').trim(),
+      source_group_id: groupId,
+      source_group_name: groupName,
+      printed_number: String(row?.printed_number ?? '').trim(),
+      source_subtypes: [...new Set(row?.source_subtypes ?? [])].sort(),
+      supporting_gap_observation_ids:
+        [...new Set(row?.supporting_gap_observation_ids ?? [])].sort(),
+      supporting_gap_row_count: integer(row?.supporting_gap_row_count),
+      blocked_reason: String(row?.reason ?? '').trim(),
+      observed_on: observedDay,
+      release_date: hold.release_date,
+      official_source_url: hold.official_source_url,
+      evidence: hold.evidence,
+      mapping_authority: false,
+      catalog_write_authority: false,
+      pricing_write_authority: false,
+    });
+  }
+  const heldGroups = new Map();
+  for (const row of futureReleaseHolds) {
+    const current = heldGroups.get(row.source_group_id) ?? {
+      source_group_id: row.source_group_id,
+      source_group_name: row.source_group_name,
+      release_date: row.release_date,
+      source_products: 0,
+      supporting_gap_rows: 0,
+    };
+    current.source_products += 1;
+    current.supporting_gap_rows += row.supporting_gap_row_count;
+    heldGroups.set(row.source_group_id, current);
+  }
+  return {
+    observed_on: observedDay,
+    future_release_holds: futureReleaseHolds,
+    actionable_blocks: actionableBlocks,
+    summary: {
+      blocked_products: blockedRows.length,
+      future_release_hold_products: futureReleaseHolds.length,
+      actionable_blocked_products: actionableBlocks.length,
+      future_release_groups: [...heldGroups.values()].sort((left, right) =>
+        left.release_date.localeCompare(right.release_date)
+        || left.source_group_id - right.source_group_id),
+      canonical_writes: false,
+      mapping_writes: false,
+      pricing_writes: false,
+    },
+  };
 }
 
 export function buildTcgplayerPricingCompletionAgentV1() {
