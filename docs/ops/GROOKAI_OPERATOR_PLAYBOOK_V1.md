@@ -4288,6 +4288,31 @@ snapshot batches are still being written. On
 start a new publication run; do not retry the stale frozen run or weaken the
 edition-lineage validators.
 
+## TCGPlayer future-release pricing triage — October 30, 2026
+
+The scheduled pricing completion agent separates reviewed future-set listings
+from mapping blocks that can be worked now. Read
+`pokemon_future_release_catalog_holds.jsonl` for the official-date-bound holds
+and `pokemon_actionable_exact_mapping_blocks.jsonl` for the remaining exact
+mapping work. Both files are hashed in `agent_run.json`; their row counts are
+reported under `summary.exact_mapping_block_triage`.
+
+Every hold is bound to the completed source run's `observed_on` day, exact
+TCGPlayer group ID and exact group name. The current reviewed hold is group
+`24831`, `ME06: Delta Reign`, with the official November 6, 2026 release date.
+Before that date, its blocked products remain visible but do not inflate the
+actionable mapping count. The hold expires automatically on release day; any
+still-unresolved products then return to the actionable artifact. A changed
+group identity, non-authority block reason, malformed source date, or duplicate
+source product is never suppressed.
+
+This split is telemetry only. It grants no catalog admission, canonical card or
+printing creation, external mapping, pricing, publication, Storage, Vault, or
+customer-state write authority. Do not map a future-set product to an older
+same-name and same-number card. Catalog admission and later price publication
+must still pass their independent source, Master Index, mapping, release, and
+readback gates.
+
 ## Continuous catalog promotion — October 29, 2026
 
 Universal Catalog Discovery remains a read-only evidence producer. Canonical
