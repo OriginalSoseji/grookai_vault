@@ -12,6 +12,7 @@ param(
 $ErrorActionPreference = 'Stop'
 $mutex = [System.Threading.Mutex]::new($false, 'Local\GrookaiPricingCompletionDispatchWatchdogV1')
 $hasMutex = $false
+$priorDispatchRequestedAt = $null
 
 function Convert-ToUtc([object]$Value) {
   return ([DateTimeOffset]::Parse([string]$Value)).ToUniversalTime()
@@ -30,8 +31,13 @@ function Write-Receipt([System.Collections.IDictionary]$Receipt) {
   New-Item -ItemType Directory -Path $ArtifactRoot -Force | Out-Null
   $bytes = $Receipt | ConvertTo-Json -Depth 12
   $dryRunReceipt = [bool]$Receipt.dry_run
-  $fileName = if ($dryRunReceipt) { 'dry-run-latest.json' } else { 'latest.json' }
-  $historyName = if ($dryRunReceipt) { 'dry-run-watchdog.jsonl' } else { 'watchdog.jsonl' }
+  $failureReceipt = [string]$Receipt.decision -eq 'watchdog_failed'
+  $fileName = if ($dryRunReceipt) { 'dry-run-latest.json' } elseif ($failureReceipt) {
+    'failure-latest.json'
+  } else { 'latest.json' }
+  $historyName = if ($dryRunReceipt) { 'dry-run-watchdog.jsonl' } elseif ($failureReceipt) {
+    'failure-watchdog.jsonl'
+  } else { 'watchdog.jsonl' }
   $temp = Join-Path $ArtifactRoot "$fileName.tmp"
   $path = Join-Path $ArtifactRoot $fileName
   Set-Content -LiteralPath $temp -Value $bytes -Encoding utf8
@@ -74,8 +80,11 @@ try {
   $prior = if (Test-Path -LiteralPath $priorPath -PathType Leaf) {
     Get-Content -LiteralPath $priorPath -Raw | ConvertFrom-Json -DateKind String
   } else { $null }
-  if ($decision -like 'dispatch_*' -and $prior?.dispatch_requested_at) {
-    $priorAge = ($now - (Convert-ToUtc $prior.dispatch_requested_at)).TotalMinutes
+  if ($prior -and $prior.dispatch_requested_at) {
+    $priorDispatchRequestedAt = [string]$prior.dispatch_requested_at
+  }
+  if ($decision -like 'dispatch_*' -and $priorDispatchRequestedAt) {
+    $priorAge = ($now - (Convert-ToUtc $priorDispatchRequestedAt)).TotalMinutes
     if ($priorAge -lt $MaxAgeMinutes) { $decision = 'recent_local_dispatch_request' }
   }
 
@@ -89,7 +98,7 @@ try {
     decision = $decision
     dry_run = [bool]$DryRun
     dispatched = $false
-    dispatch_requested_at = $null
+    dispatch_requested_at = $priorDispatchRequestedAt
     thresholds = [ordered]@{
       max_age_minutes = $MaxAgeMinutes
       active_max_age_minutes = $ActiveMaxAgeMinutes
@@ -136,6 +145,7 @@ try {
     error_class = $_.Exception.GetType().Name
     message = $_.Exception.Message
     dispatched = $false
+    dispatch_requested_at = $priorDispatchRequestedAt
   }
   try { Write-Receipt $failure } catch {}
   Write-Error $_
