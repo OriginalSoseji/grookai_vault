@@ -17,6 +17,8 @@ failed run has passed its retry delay.
 - A failed hosted run receives a five-minute retry delay.
 - A successful local dispatch request suppresses another request for 20 minutes,
   even when GitHub has not displayed the new run yet.
+- Later healthy or failed checks preserve that last successful dispatch timestamp;
+  failures write separate receipts and cannot shorten the cooldown.
 - A named mutex makes concurrent watchdog invocations a safe no-op.
 - Every decision is retained in `latest.json` and append-only `watchdog.jsonl`.
 - Dry-run mode performs the same read and decision logic without dispatching.
@@ -37,3 +39,5 @@ be interpreted as a completed pricing census.
 The installed action uses PowerShell 7 (`pwsh.exe`). GitHub timestamps must be
 parsed with `ConvertFrom-Json -DateKind String` before explicit UTC conversion;
 implicit local `DateTime` conversion is not accepted for freshness decisions.
+PowerShell null checks must use explicit variables; ambiguous `$name?.property`
+syntax is forbidden in this worker.

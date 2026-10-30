@@ -485,5 +485,9 @@ test('Windows watchdog dispatches only stale hosted pricing measurements', () =>
   assert.match(watchdog, /recent_local_dispatch_request/);
   assert.match(watchdog, /\[switch\]\$DryRun/);
   assert.match(watchdog, /ConvertFrom-Json -DateKind String/);
+  assert.match(watchdog, /\$prior -and \$prior\.dispatch_requested_at/);
+  assert.match(watchdog, /dispatch_requested_at = \$priorDispatchRequestedAt/);
+  assert.match(watchdog, /failure-latest\.json/);
+  assert.doesNotMatch(watchdog, /\$prior\?\./);
   assert.doesNotMatch(watchdog, /SUPABASE|DATABASE_URL|POSTGRES_URL|external_mappings|market_price_/);
 });
