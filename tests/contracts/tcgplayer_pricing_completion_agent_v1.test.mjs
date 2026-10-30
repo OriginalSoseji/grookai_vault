@@ -471,3 +471,19 @@ test('local V2 consumer uses hosted candidate evidence without database secrets'
   assert.doesNotMatch(runner, /candidate_enrichment/);
   assert.match(runner, /if \(\$hasMutex\) \{[\s\S]*ollama\.exe stop[\s\S]*ReleaseMutex\(\)/);
 });
+
+test('Windows watchdog dispatches only stale hosted pricing measurements', () => {
+  const watchdog = fs.readFileSync(
+    path.join(ROOT, 'scripts/ops/ensure_pricing_completion_freshness_v1.ps1'),
+    'utf8',
+  );
+  assert.match(watchdog, /GrookaiPricingCompletionDispatchWatchdogV1/);
+  assert.match(watchdog, /MaxAgeMinutes = 20/);
+  assert.match(watchdog, /ActiveMaxAgeMinutes = 45/);
+  assert.match(watchdog, /FailureRetryDelayMinutes = 5/);
+  assert.match(watchdog, /gh\.exe workflow run \$Workflow --repo \$Repository --ref \$Ref/);
+  assert.match(watchdog, /recent_local_dispatch_request/);
+  assert.match(watchdog, /\[switch\]\$DryRun/);
+  assert.match(watchdog, /ConvertFrom-Json -DateKind String/);
+  assert.doesNotMatch(watchdog, /SUPABASE|DATABASE_URL|POSTGRES_URL|external_mappings|market_price_/);
+});

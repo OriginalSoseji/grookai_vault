@@ -421,6 +421,22 @@ that dedicated reader connection. When it is absent, the agent records
 to substitute the broad production database login. Backlog measurement,
 candidate enrichment, and review publication continue without that planner.
 
+GitHub schedule events remain the primary fifteen-minute clock, but the Windows
+task `Grookai Pricing Completion Dispatch Watchdog` is the redundant freshness
+route defined by `PRICING_COMPLETION_DISPATCH_WATCHDOG_V1`. It runs
+`scripts/ops/ensure_pricing_completion_freshness_v1.ps1` every five minutes,
+requests a `main` workflow dispatch only when the latest hosted run is stale,
+and preserves receipts under
+`C:\grookai_vault_operator_artifacts\pricing_completion_dispatch_watchdog_v1`.
+The default healthy window is 20 minutes; active runs suppress another dispatch
+for 45 minutes, failed runs wait five minutes, and a local dispatch request has
+a 20-minute cooldown. Inspect both `Get-ScheduledTaskInfo` and `latest.json` when
+checking this route. The task requires the owner's authenticated GitHub CLI and
+an available Windows host, and its action must use PowerShell 7 (`pwsh.exe`) so
+GitHub UTC timestamps remain explicit strings before freshness calculation. It
+receives no database credentials and grants no
+mapping, catalog, pricing-publication, or customer-state authority.
+
 Each successful scheduled run also preserves
 `pokemon_special_printing_reference_proposal_v1.json` beside the Pokemon
 diagnostic queue. The artifact currently routes missing 2008 Countdown Calendar
