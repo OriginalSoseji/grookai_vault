@@ -3,7 +3,7 @@ name: TCGPlayer Pricing Completion Agent
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "7,22,37,52 * * * *"
 
 permissions:
   contents: read
@@ -20,6 +20,7 @@ jobs:
       PROD_SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
       SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
       SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      TCGPLAYER_EXACT_MAPPING_READER_DB_URL: ${{ secrets.TCGPLAYER_EXACT_MAPPING_READER_DB_URL }}
       SUPABASE_DB_CA_CERT: ${{ secrets.SUPABASE_DB_CA_CERT }}
       PGOPTIONS: "-c default_transaction_read_only=on"
     steps:

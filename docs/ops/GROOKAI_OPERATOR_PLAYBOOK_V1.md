@@ -413,7 +413,10 @@ split collisions into separate approvals, or treat an approved review item as a
 completed mapping. Dashboard backlog counts use the latest successful measured
 run so a starting or failed run cannot replace known measurements with zeros.
 The optional exact planner currently remains unavailable until the dedicated
-reader capability is independently qualified and activated. A fixed
+reader capability is independently qualified and activated. Activation also
+requires the repository secret `TCGPLAYER_EXACT_MAPPING_READER_DB_URL` to contain
+that dedicated reader connection. When it is absent, the agent records
+`MAPPING_READER_NOT_PROVISIONED` and does not launch the planner. A fixed
 `MAPPING_READER_*` or `PLANNER_*` code is a held automatic lane, not permission
 to substitute the broad production database login. Backlog measurement,
 candidate enrichment, and review publication continue without that planner.
