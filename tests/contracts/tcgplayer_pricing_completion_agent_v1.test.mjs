@@ -418,7 +418,8 @@ test('scheduled workflow measures production without treating backlog as a crash
     path.join(ROOT, '.github/workflows/tcgplayer-pricing-completion-agent.yml'),
     'utf8',
   );
-  assert.match(workflow, /cron: "\*\/15 \* \* \* \*"/);
+  assert.match(workflow, /cron: "7,22,37,52 \* \* \* \*"/);
+  assert.match(workflow, /TCGPLAYER_EXACT_MAPPING_READER_DB_URL: \$\{\{ secrets\.TCGPLAYER_EXACT_MAPPING_READER_DB_URL \}\}/);
   assert.match(workflow, /tcgplayer_pricing_completion_agent_v1\.mjs/);
   assert.match(workflow, /PGOPTIONS: "-c default_transaction_read_only=on"/);
   assert.doesNotMatch(workflow, /--require-complete/);
@@ -453,6 +454,10 @@ test('scheduled workflow measures production without treating backlog as a crash
   assert.match(worker, /exact_mapping_plan:\s*\{[\s\S]*status: exactPlanProcess\.status/);
   assert.match(worker, /pricingExactPlanFailureCodeV1\(error\)/);
   assert.match(worker, /exact_mapping_plan_artifact_root: exactPlanDir/);
+  assert.match(worker, /TCGPLAYER_EXACT_MAPPING_READER_DB_URL\?\.trim\(\)/);
+  assert.match(worker, /error_code: 'MAPPING_READER_NOT_PROVISIONED'/);
+  assert.match(worker, /SUPABASE_DB_URL: databaseUrl/);
+  assert.match(worker, /databaseUrl: exactMappingReaderUrl/);
 });
 
 test('local V2 consumer uses hosted candidate evidence without database secrets', () => {

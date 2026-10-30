@@ -60,7 +60,7 @@ function runBacklogAudit(outRoot) {
   });
 }
 
-function runExactMappingPlan({ sourceRunId, coverageGaps, outRoot }) {
+function runExactMappingPlan({ sourceRunId, coverageGaps, outRoot, databaseUrl }) {
   return new Promise((resolve, reject) => {
     const child = spawn(process.execPath, [
       'scripts/audits/tcgplayer_market_exact_mapping_plan_v1.mjs',
@@ -71,6 +71,7 @@ function runExactMappingPlan({ sourceRunId, coverageGaps, outRoot }) {
       cwd: path.resolve('.'),
       env: {
         ...process.env,
+        SUPABASE_DB_URL: databaseUrl,
         PGOPTIONS: '-c default_transaction_read_only=on',
       },
       windowsHide: true,
@@ -240,29 +241,42 @@ async function main() {
     const exactPlanRoot = path.join(args.outDir, 'exact_mapping_plan');
     let exactPlan = null;
     let exactPlanDir = null;
-    let exactPlanProcess = { status: 'unavailable', stdout: '', error_code: null };
-    try {
-      const processResult = await runExactMappingPlan({
-        sourceRunId: report.run.source_sync_run_id,
-        coverageGaps: path.join(backlogRoot, 'latest_pokemon_identity_mapping_gaps.jsonl'),
-        outRoot: exactPlanRoot,
-      });
-      exactPlanDir = await readOnlyChildDirectory(exactPlanRoot);
-      const exactPlanSummary = JSON.parse(await fs.readFile(
-        path.join(exactPlanDir, 'summary.json'),
-        'utf8',
-      ));
-      exactPlan = {
-        ...exactPlanSummary,
-        candidates: await readJsonl(path.join(exactPlanDir, 'candidates.jsonl')),
-      };
-      exactPlanProcess = { status: 'available', stdout: processResult.stdout, error_code: null };
-    } catch (error) {
-      exactPlanProcess = {
-        status: 'unavailable',
-        stdout: '',
-        error_code: pricingExactPlanFailureCodeV1(error),
-      };
+    let exactPlanProcess = {
+      status: 'unavailable',
+      stdout: '',
+      error_code: 'MAPPING_READER_NOT_PROVISIONED',
+    };
+    const exactMappingReaderUrl =
+      process.env.TCGPLAYER_EXACT_MAPPING_READER_DB_URL?.trim() ?? '';
+    if (exactMappingReaderUrl) {
+      try {
+        const processResult = await runExactMappingPlan({
+          sourceRunId: report.run.source_sync_run_id,
+          coverageGaps: path.join(backlogRoot, 'latest_pokemon_identity_mapping_gaps.jsonl'),
+          outRoot: exactPlanRoot,
+          databaseUrl: exactMappingReaderUrl,
+        });
+        exactPlanDir = await readOnlyChildDirectory(exactPlanRoot);
+        const exactPlanSummary = JSON.parse(await fs.readFile(
+          path.join(exactPlanDir, 'summary.json'),
+          'utf8',
+        ));
+        exactPlan = {
+          ...exactPlanSummary,
+          candidates: await readJsonl(path.join(exactPlanDir, 'candidates.jsonl')),
+        };
+        exactPlanProcess = {
+          status: 'available',
+          stdout: processResult.stdout,
+          error_code: null,
+        };
+      } catch (error) {
+        exactPlanProcess = {
+          status: 'unavailable',
+          stdout: '',
+          error_code: pricingExactPlanFailureCodeV1(error),
+        };
+      }
     }
     const identityGaps = await readJsonl(
       path.join(backlogRoot, 'latest_identity_mapping_gaps.jsonl'),

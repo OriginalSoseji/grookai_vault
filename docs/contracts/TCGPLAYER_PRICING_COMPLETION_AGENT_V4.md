@@ -62,7 +62,11 @@ subtype would route to Normal or Holo remain held, as do unnumbered rows without
 exact printed-coordinate evidence.
 
 The production direct-reader role is not activated. If the optional exact
-planner rejects its connection or cannot produce a plan, the agent records a
+planner's dedicated `TCGPLAYER_EXACT_MAPPING_READER_DB_URL` is absent, the agent
+records `MAPPING_READER_NOT_PROVISIONED` without attempting a connection. The
+broad production database URL used by the independent backlog census must never
+be passed to the exact planner. If a provisioned planner rejects its connection
+or cannot produce a plan, the agent records a
 fixed error code, reports newly verified exact candidates as unavailable, and continues
 the independent backlog measurement and founder-review lane. The failure does
 not weaken the planner connection policy and does not use the broad production
