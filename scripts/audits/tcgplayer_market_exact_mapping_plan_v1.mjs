@@ -13,7 +13,6 @@ import {
   uniqueTrainerKitPrintedNumberV1,
 } from "../../backend/pricing/tcgplayer_trainer_kit_pilot_v1.mjs";
 
-import "../../backend/env.mjs";
 import {
   planTcgplayerExactMappingCandidateV1,
   quarantineTcgplayerTargetCollisionsV1,
@@ -574,6 +573,7 @@ function markdown(summary) {
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   if (args.snapshotInput) assertCredentialFreeExactMappingPlannerEnvironmentV1();
+  else await import("../../backend/env.mjs");
   const url = args.snapshotInput ? "" : connectionString();
   if (!args.snapshotInput && !url) throw new Error("database URL is required");
   if (!args.snapshotInput) exactMappingPlannerDatabaseConfigV1(url);

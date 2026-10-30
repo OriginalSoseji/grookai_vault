@@ -66,6 +66,15 @@ export function assertPricingCompletionSnapshotTargetV1(connectionString, env = 
   return parsed;
 }
 
+export function pricingCompletionSnapshotClientTargetV1(connectionString, env = process.env) {
+  const parsed = assertPricingCompletionSnapshotTargetV1(connectionString, env);
+  parsed.searchParams.delete('sslmode');
+  return {
+    connectionString: parsed.href,
+    hostname: parsed.hostname,
+  };
+}
+
 export function assertCredentialFreeExactMappingPlannerEnvironmentV1(env = process.env) {
   const forbidden = Object.entries(env).filter(([key, value]) =>
     value && /(?:SUPABASE|DATABASE|POSTGRES|PGHOST|PGUSER|PGPASSWORD|PGDATABASE|PGPORT|PGOPTIONS|SECRET_KEY|SERVICE_ROLE)/i.test(key));

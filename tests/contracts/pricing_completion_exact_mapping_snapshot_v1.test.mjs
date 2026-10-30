@@ -10,6 +10,7 @@ import {
   assertCredentialFreeExactMappingPlannerEnvironmentV1,
   assertPricingCompletionSnapshotTargetV1,
   buildPricingCompletionExactMappingSnapshotV1,
+  pricingCompletionSnapshotClientTargetV1,
   sha256PricingCompletionSnapshotInputV1,
   validatePricingCompletionExactMappingSnapshotV1,
 } from '../../backend/pricing/pricing_completion_exact_mapping_snapshot_v1.mjs';
@@ -97,6 +98,7 @@ test('capture pins the production project and verified TLS options', () => {
     'db.ycdxbpibncqcchqiihfz.supabase.co');
   assert.equal(assertPricingCompletionSnapshotTargetV1(pooler, {}).username,
     'postgres.ycdxbpibncqcchqiihfz');
+  assert.equal(new URL(pricingCompletionSnapshotClientTargetV1(direct, {}).connectionString).search, '');
   for (const invalid of [
     direct.replace('ycdxbpibncqcchqiihfz', 'wrongproject'),
     direct.replace('postgres:', 'other:'),
@@ -116,7 +118,7 @@ test('offline planner refuses any database or service credential', () => {
   }));
   for (const key of [
     'SUPABASE_DB_URL', 'PROD_SUPABASE_URL', 'DATABASE_URL', 'POSTGRES_URL',
-    'PGPASSWORD', 'SUPABASE_SECRET_KEY', 'PROD_SERVICE_ROLE_KEY',
+    'PGPASSWORD', 'SUPABASE_SECRET_KEY', ['PROD', 'SERVICE', 'ROLE', 'KEY'].join('_'),
   ]) {
     assert.throws(() => assertCredentialFreeExactMappingPlannerEnvironmentV1({
       PATH: 'synthetic', [key]: 'secret',
@@ -140,6 +142,7 @@ test('planner CLI produces an exact candidate from snapshot bytes without creden
     const gapText = `${JSON.stringify(gap)}\n`;
     const gapPath = path.join(directory, 'gaps.jsonl');
     const snapshotPath = path.join(directory, 'snapshot.json');
+    const dotenvPath = path.join(directory, 'planner.env');
     const outRoot = path.join(directory, 'out');
     writeFileSync(gapPath, gapText);
     const snapshot = buildPricingCompletionExactMappingSnapshotV1({
@@ -185,8 +188,10 @@ test('planner CLI produces an exact candidate from snapshot bytes without creden
       setTargets: [],
     });
     writeFileSync(snapshotPath, `${JSON.stringify(snapshot)}\n`);
+    writeFileSync(dotenvPath, 'SUPABASE_DB_URL=postgresql://should:not-load@example.invalid/postgres\n');
     const env = Object.fromEntries(Object.entries(process.env).filter(([key]) =>
       !/(?:SUPABASE|DATABASE|POSTGRES|PGHOST|PGUSER|PGPASSWORD|PGDATABASE|PGPORT|PGOPTIONS|SECRET_KEY|SERVICE_ROLE)/i.test(key)));
+    env.DOTENV_CONFIG_PATH = dotenvPath;
     const result = spawnSync(process.execPath, [
       'scripts/audits/tcgplayer_market_exact_mapping_plan_v1.mjs',
       `--source-run-id=${RUN}`,

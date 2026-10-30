@@ -8,8 +8,8 @@ import pg from 'pg';
 
 import '../../backend/env.mjs';
 import {
-  assertPricingCompletionSnapshotTargetV1,
   buildPricingCompletionExactMappingSnapshotV1,
+  pricingCompletionSnapshotClientTargetV1,
   PRICING_COMPLETION_PROJECT_REF_V1,
   sha256PricingCompletionSnapshotInputV1,
 } from '../../backend/pricing/pricing_completion_exact_mapping_snapshot_v1.mjs';
@@ -72,12 +72,12 @@ export async function runTcgplayerMarketExactMappingSnapshotV1(argv) {
   const args = parseArgs(argv);
   const url = connectionString();
   if (!url) throw new Error('snapshot_database_url_required');
-  const parsed = assertPricingCompletionSnapshotTargetV1(url);
+  const target = pricingCompletionSnapshotClientTargetV1(url);
   const { bytes, rows } = await readGaps(args.coverageGaps);
   const groupedGaps = groupGapRows(rows);
   const client = new Client({
-    connectionString: url,
-    ssl: sslConfig(url),
+    connectionString: target.connectionString,
+    ssl: sslConfig(target.connectionString),
     application_name: 'tcgplayer-exact-mapping-snapshot-v1',
     connectionTimeoutMillis: 15_000,
     statement_timeout: 120_000,
