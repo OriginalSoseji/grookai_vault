@@ -9,6 +9,7 @@ import {
   buildTcgplayerIdentityProductQueueV1,
   buildPokemonPricingMappingReviewWorkItemV1,
   applyPokemonPricingMappingReviewedHoldsV1,
+  classifyTcgplayerFutureReleaseBlocksV1,
   pokemonPricingMappingReviewEvidenceFingerprintV1,
   selectPokemonPricingMappingReviewBatchV1,
   summarizeTcgplayerPricingCompletionRunV1,
@@ -201,6 +202,76 @@ test('product queue deduplicates observations while preserving subtype evidence'
   assert.deepEqual(queue[0].supporting_gap_observation_ids, ['observation-1', 'observation-2']);
   assert.equal(queue[0].supporting_gap_row_count, 2);
   assert.equal(queue[0].mapping_authority, false);
+});
+
+test('future Pokemon set listings are separated from actionable mapping blocks', () => {
+  const deltaReign = {
+    source_product_id: 726510,
+    source_product_name: 'Masquerain - 003/103',
+    source_group_id: 24831,
+    source_group_name: 'ME06: Delta Reign',
+    printed_number: '003/103',
+    source_subtypes: ['Reverse Holofoil'],
+    supporting_gap_observation_ids: ['observation-delta'],
+    supporting_gap_row_count: 1,
+    reason: 'missing_unique_set_authority',
+  };
+  const professorPromo = {
+    ...deltaReign,
+    source_product_id: 176625,
+    source_product_name: 'Fighting Energy (2004-2005)',
+    source_group_id: 2332,
+    source_group_name: 'Professor Program Promos',
+    printed_number: '105/109',
+    supporting_gap_observation_ids: ['observation-professor'],
+  };
+  const result = classifyTcgplayerFutureReleaseBlocksV1(
+    [deltaReign, professorPromo],
+    { observedOn: '2026-10-30' },
+  );
+  assert.equal(result.future_release_holds.length, 1);
+  assert.equal(result.future_release_holds[0].source_product_id, 726510);
+  assert.equal(result.future_release_holds[0].release_date, '2026-11-06');
+  assert.equal(result.future_release_holds[0].mapping_authority, false);
+  assert.equal(result.actionable_blocks.length, 1);
+  assert.equal(result.actionable_blocks[0].source_product_id, 176625);
+  assert.equal(result.summary.future_release_hold_products, 1);
+  assert.equal(result.summary.actionable_blocked_products, 1);
+});
+
+test('future release holds expire on the official release date', () => {
+  const row = {
+    source_product_id: 726510,
+    source_product_name: 'Masquerain - 003/103',
+    source_group_id: 24831,
+    source_group_name: 'ME06: Delta Reign',
+    reason: 'missing_unique_set_authority',
+  };
+  const result = classifyTcgplayerFutureReleaseBlocksV1(
+    [row],
+    { observedOn: '2026-11-06T06:00:00.000Z' },
+  );
+  assert.equal(result.future_release_holds.length, 0);
+  assert.equal(result.actionable_blocks.length, 1);
+});
+
+test('future release triage rejects duplicate or unbound source evidence', () => {
+  const row = {
+    source_product_id: 726510,
+    source_group_id: 24831,
+    source_group_name: 'ME06: Delta Reign',
+    reason: 'missing_unique_set_authority',
+  };
+  assert.throws(
+    () => classifyTcgplayerFutureReleaseBlocksV1([row, row], {
+      observedOn: '2026-10-30',
+    }),
+    /unique source products/,
+  );
+  assert.throws(
+    () => classifyTcgplayerFutureReleaseBlocksV1([row], {}),
+    /observedOn must contain an ISO date/,
+  );
 });
 
 test('product queue excludes variant and unsupported product lanes', () => {
@@ -455,6 +526,10 @@ test('scheduled workflow measures production without treating backlog as a crash
   assert.match(worker, /exact_mapping_plan:\s*\{[\s\S]*status: exactPlanProcess\.status/);
   assert.match(worker, /pricingExactPlanFailureCodeV1\(error\)/);
   assert.match(worker, /exact_mapping_plan_artifact_root: exactPlanDir/);
+  assert.match(worker, /classifyTcgplayerFutureReleaseBlocksV1/);
+  assert.match(worker, /pokemon_future_release_catalog_holds\.jsonl/);
+  assert.match(worker, /pokemon_actionable_exact_mapping_blocks\.jsonl/);
+  assert.match(worker, /exact_mapping_block_triage: exactMappingBlockTriage\.summary/);
   assert.match(worker, /tcgplayer_market_exact_mapping_snapshot_v1\.mjs/);
   assert.match(worker, /exact_mapping_snapshot_v1\.json/);
   assert.match(worker, /--snapshot-input=\$\{snapshotInput\}/);
