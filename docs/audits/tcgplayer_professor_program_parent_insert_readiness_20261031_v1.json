@@ -1,0 +1,877 @@
+{
+  "generated_at": "2026-10-31T05:23:30.856Z",
+  "version": "tcgplayer_professor_program_parent_insert_readiness_20261031_v1",
+  "package_id": "TCGPLAYER-PROFESSOR-PROGRAM-PARENT-INSERT-READINESS-V1",
+  "future_package_id": "TCGPLAYER-PROFESSOR-PROGRAM-PARENT-INSERTS-V1",
+  "audit_only": true,
+  "db_reads_performed": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "pricing_writes_performed": false,
+  "mapping_writes_performed": false,
+  "migrations_created": false,
+  "deletes_performed": false,
+  "merges_performed": false,
+  "cleanup_performed": false,
+  "quarantine_performed": false,
+  "write_ready_now": 0,
+  "source_artifacts": {
+    "professor_program_identity_review": "docs/audits/tcgplayer_professor_program_identity_review_20261030_v1.json",
+    "bulbapedia_catalog_compare_name_mismatch": "docs/audits/bulbapedia_catalog_compare_v1/name_mismatch.csv"
+  },
+  "source_hashes_sha256": {
+    "professor_program_identity_review": "e14f4419439a2d69c3f2560d373a38c078dde5ab629a20c6613e062323456e4b",
+    "bulbapedia_catalog_compare_name_mismatch": "9a819dd55d14debfb27356b3e706e3cf814197bc6b63e6be511ece41693acefe"
+  },
+  "package_fingerprint_sha256": "126b5c9000fbc58b0f4ea9a7254e632a710becf066d2060710abddca50b303d0",
+  "summary": {
+    "target_rows": 8,
+    "ready_for_guarded_dry_run_parent_child_insert": 3,
+    "blocked_before_guarded_dry_run": 5,
+    "expected_parent_inserts": 3,
+    "expected_identity_inserts": 3,
+    "expected_child_inserts": 3,
+    "expected_deletes": 0,
+    "expected_merges": 0,
+    "by_status": {
+      "blocked_before_guarded_dry_run": 5,
+      "ready_for_guarded_dry_run_parent_child_insert": 3
+    },
+    "by_finish": {
+      "holo": 1,
+      "normal": 2,
+      "reverse": 5
+    },
+    "by_base_selection_authority": {
+      "bulbapedia_additional_cards_exact_base_reference": 7,
+      "unique_live_exact_finish_parent_from_review": 1
+    }
+  },
+  "rows": [
+    {
+      "source_product_id": "176629",
+      "source_product_name": "Prof. Oak's Research (2004-2005)",
+      "source_group_id": "2332",
+      "source_group_name": "Professor Program Promos",
+      "target_parent_id": "e402c8fc-563b-49e3-a198-6a5fe5f75cda",
+      "target_child_id": "eb9b3f39-760f-4b77-a3b1-c486b4a4e4c3",
+      "set_key": "ex6",
+      "set_name": "FireRed & LeafGreen",
+      "card_number": "98",
+      "card_name": "Prof. Oak's Research",
+      "target_variant_key": "professor_program_stamp",
+      "target_printed_identity_modifier": "professor_program_stamp",
+      "target_finish_key": "normal",
+      "source_subtypes": [
+        "Normal"
+      ],
+      "live_exact_finish_parent_ids": [
+        "453468cf-a458-4ff6-acde-6103b234bf87"
+      ],
+      "selected_base_parent_id": "453468cf-a458-4ff6-acde-6103b234bf87",
+      "base_selection_authority": "bulbapedia_additional_cards_exact_base_reference",
+      "base_selection_evidence": [
+        {
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/EX_FireRed_%26_LeafGreen_%28TCG%29",
+          "lane": "Additional cards",
+          "notes": "Professor Program 2004-2005}",
+          "db_number": "98",
+          "bulba_number": "98/112"
+        }
+      ],
+      "evidence": {
+        "exact_finish": [
+          "https://api.pokemontcg.io/v2/cards/ex6-98",
+          "https://api.tcgdex.net/v2/en/cards/ex6-98",
+          "https://prices.pokemontcg.io/tcgplayer/ex6-98",
+          "https://www.thepricedex.com/set/ex6/firered-and-leafgreen/price-list"
+        ],
+        "professor_program_identity": [
+          "https://www.sportscardinvestor.com/cards/prof.-oak-s-research-pokemon/2004-ex-firered-leafgreen-promo-professor-program-098-112",
+          "https://www.thepricedex.com/set/ex6/firered-and-leafgreen/price-list"
+        ],
+        "base_selection": [
+          {
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/EX_FireRed_%26_LeafGreen_%28TCG%29",
+            "lane": "Additional cards",
+            "notes": "Professor Program 2004-2005}",
+            "db_number": "98",
+            "bulba_number": "98/112"
+          }
+        ]
+      },
+      "evidence_counts": {
+        "exact_finish_rows": 1,
+        "professor_program_identity_rows": 1,
+        "base_selection_rows": 1
+      },
+      "base_set_code": "ex6",
+      "base_number": "98",
+      "base_number_plain": "98",
+      "base_name": "Prof. Oak's Research",
+      "base_variant_key": "",
+      "base_printed_identity_modifier": null,
+      "matching_base_parent_count": 1,
+      "base_identity_match": true,
+      "base_finish_exists": true,
+      "active_finish_exists": true,
+      "target_parent_collision_count": 0,
+      "target_parent_id_collision_count": 0,
+      "target_child_id_collision_count": 0,
+      "source_mapping_count": 0,
+      "identity_projection_ready": true,
+      "identity_domain": "pokemon_eng_standard",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "ebb65d387983cfcd8f2d4a3b646b794f577b6d60a1e64abf05221d5daa2ff8c1",
+      "identity_hash_collision_count": 0,
+      "matching_base_candidates": [
+        {
+          "name": "Prof. Oak's Research",
+          "number": "98",
+          "finish_keys": [
+            "normal",
+            "reverse"
+          ],
+          "variant_key": "",
+          "number_plain": "98",
+          "card_print_id": "453468cf-a458-4ff6-acde-6103b234bf87",
+          "printed_identity_modifier": null
+        }
+      ],
+      "readiness_status": "ready_for_guarded_dry_run_parent_child_insert",
+      "blockers": []
+    },
+    {
+      "source_product_id": "176630",
+      "source_product_name": "Professor Birch (2006)",
+      "source_group_id": "2332",
+      "source_group_name": "Professor Program Promos",
+      "target_parent_id": "99addc3f-8da7-4120-8ee1-81b638467ffd",
+      "target_child_id": "a60341ac-f18f-45fb-8561-27997547d30f",
+      "set_key": "ex9",
+      "set_name": "Emerald",
+      "card_number": "82",
+      "card_name": "Professor Birch",
+      "target_variant_key": "professor_program_stamp",
+      "target_printed_identity_modifier": "professor_program_stamp",
+      "target_finish_key": "holo",
+      "source_subtypes": [
+        "Holofoil"
+      ],
+      "live_exact_finish_parent_ids": [
+        "a3ae0ede-d02f-4bbd-b148-a1de0aa268fb",
+        "ed61ea12-90af-4250-b089-e2b31fc2fdce"
+      ],
+      "selected_base_parent_id": "a3ae0ede-d02f-4bbd-b148-a1de0aa268fb",
+      "base_selection_authority": "bulbapedia_additional_cards_exact_base_reference",
+      "base_selection_evidence": [
+        {
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/EX_Emerald_%28TCG%29",
+          "lane": "Additional cards",
+          "notes": "Professor Program 2006}",
+          "db_number": "82",
+          "bulba_number": "82/106"
+        }
+      ],
+      "evidence": {
+        "exact_finish": [
+          "https://api.tcgdex.net/v2/en/cards/ex9-82",
+          "https://pokecardvalues.co.uk/cards/professor-birch-82-106-holo-professor-program-emerald/ex9-82-1-55/"
+        ],
+        "professor_program_identity": [
+          "https://api.tcgdex.net/v2/en/cards/ex9-82",
+          "https://pokecardvalues.co.uk/cards/professor-birch-82-106-holo-professor-program-emerald/ex9-82-1-55/"
+        ],
+        "base_selection": [
+          {
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/EX_Emerald_%28TCG%29",
+            "lane": "Additional cards",
+            "notes": "Professor Program 2006}",
+            "db_number": "82",
+            "bulba_number": "82/106"
+          }
+        ]
+      },
+      "evidence_counts": {
+        "exact_finish_rows": 1,
+        "professor_program_identity_rows": 1,
+        "base_selection_rows": 1
+      },
+      "base_set_code": "ex9",
+      "base_number": "82",
+      "base_number_plain": "82",
+      "base_name": "Professor Birch",
+      "base_variant_key": "",
+      "base_printed_identity_modifier": null,
+      "matching_base_parent_count": 1,
+      "base_identity_match": true,
+      "base_finish_exists": true,
+      "active_finish_exists": true,
+      "target_parent_collision_count": 1,
+      "target_parent_id_collision_count": 0,
+      "target_child_id_collision_count": 0,
+      "source_mapping_count": 0,
+      "identity_projection_ready": true,
+      "identity_domain": "pokemon_eng_standard",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "72f1d9523f3f3d6e36d4d5822ddb2d209b56ca208419505d6331c7039bea08d0",
+      "identity_hash_collision_count": 1,
+      "matching_base_candidates": [
+        {
+          "name": "Professor Birch",
+          "number": "82",
+          "finish_keys": [
+            "holo",
+            "normal",
+            "reverse"
+          ],
+          "variant_key": "",
+          "number_plain": "82",
+          "card_print_id": "a3ae0ede-d02f-4bbd-b148-a1de0aa268fb",
+          "printed_identity_modifier": null
+        },
+        {
+          "name": "Professor Birch",
+          "number": "82",
+          "finish_keys": [
+            "holo"
+          ],
+          "variant_key": "professor_program_stamp",
+          "number_plain": "82",
+          "card_print_id": "ed61ea12-90af-4250-b089-e2b31fc2fdce",
+          "printed_identity_modifier": null
+        }
+      ],
+      "readiness_status": "blocked_before_guarded_dry_run",
+      "blockers": [
+        "professor_program_parent_already_exists",
+        "identity_hash_collision"
+      ]
+    },
+    {
+      "source_product_id": "176631",
+      "source_product_name": "Professor Oak's Visit (2008-2009)",
+      "source_group_id": "2332",
+      "source_group_name": "Professor Program Promos",
+      "target_parent_id": "baa63e55-c8aa-4936-8c9a-63de29e75c16",
+      "target_child_id": "235db02c-1431-42ba-a973-43cb6d89b38d",
+      "set_key": "dp3",
+      "set_name": "Secret Wonders",
+      "card_number": "122",
+      "card_name": "Professor Oak's Visit",
+      "target_variant_key": "professor_program_stamp",
+      "target_printed_identity_modifier": "professor_program_stamp",
+      "target_finish_key": "normal",
+      "source_subtypes": [
+        "Normal"
+      ],
+      "live_exact_finish_parent_ids": [
+        "20353cdf-bdef-4e82-acac-49cf30ee22b5"
+      ],
+      "selected_base_parent_id": "20353cdf-bdef-4e82-acac-49cf30ee22b5",
+      "base_selection_authority": "bulbapedia_additional_cards_exact_base_reference",
+      "base_selection_evidence": [
+        {
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Secret_Wonders_%28TCG%29",
+          "lane": "Additional cards",
+          "notes": "Professor Program 2008-2009}",
+          "db_number": "122",
+          "bulba_number": "122/132"
+        }
+      ],
+      "evidence": {
+        "exact_finish": [
+          "https://api.pokemontcg.io/v2/cards/dp3-122",
+          "https://api.tcgdex.net/v2/en/cards/dp3-122",
+          "https://prices.pokemontcg.io/tcgplayer/dp3-122",
+          "https://www.thepricedex.com/set/dp3/secret-wonders/price-list"
+        ],
+        "professor_program_identity": [
+          "https://www.pricecharting.com/game/pokemon-secret-wonders/professor-oaks-visit-professor-program-122",
+          "https://www.thepricedex.com/set/dp3/secret-wonders/price-list"
+        ],
+        "base_selection": [
+          {
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Secret_Wonders_%28TCG%29",
+            "lane": "Additional cards",
+            "notes": "Professor Program 2008-2009}",
+            "db_number": "122",
+            "bulba_number": "122/132"
+          }
+        ]
+      },
+      "evidence_counts": {
+        "exact_finish_rows": 1,
+        "professor_program_identity_rows": 1,
+        "base_selection_rows": 1
+      },
+      "base_set_code": "dp3",
+      "base_number": "122",
+      "base_number_plain": "122",
+      "base_name": "Professor Oak's Visit",
+      "base_variant_key": "",
+      "base_printed_identity_modifier": null,
+      "matching_base_parent_count": 1,
+      "base_identity_match": true,
+      "base_finish_exists": true,
+      "active_finish_exists": true,
+      "target_parent_collision_count": 0,
+      "target_parent_id_collision_count": 0,
+      "target_child_id_collision_count": 0,
+      "source_mapping_count": 0,
+      "identity_projection_ready": true,
+      "identity_domain": "pokemon_eng_standard",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "ec7c0da9c597ef1e7a72c5c3248a570841149bdf371b1f9355b600efffd566f1",
+      "identity_hash_collision_count": 0,
+      "matching_base_candidates": [
+        {
+          "name": "Professor Oak's Visit",
+          "number": "122",
+          "finish_keys": [
+            "normal",
+            "reverse"
+          ],
+          "variant_key": "",
+          "number_plain": "122",
+          "card_print_id": "20353cdf-bdef-4e82-acac-49cf30ee22b5",
+          "printed_identity_modifier": null
+        }
+      ],
+      "readiness_status": "ready_for_guarded_dry_run_parent_child_insert",
+      "blockers": []
+    },
+    {
+      "source_product_id": "176632",
+      "source_product_name": "Professor Juniper - 98/108 (2013)",
+      "source_group_id": "2332",
+      "source_group_name": "Professor Program Promos",
+      "target_parent_id": "70ddf705-3cc3-469c-a911-f3848439fc27",
+      "target_child_id": "dc79f1e8-5ee4-4a39-a486-a3ea1321a889",
+      "set_key": "bw5",
+      "set_name": "Dark Explorers",
+      "card_number": "98",
+      "card_name": "Professor Juniper",
+      "target_variant_key": "professor_program_stamp",
+      "target_printed_identity_modifier": "professor_program_stamp",
+      "target_finish_key": "reverse",
+      "source_subtypes": [
+        "Reverse Holofoil"
+      ],
+      "live_exact_finish_parent_ids": [
+        "c98e4f39-59fc-4ec1-bfc5-c34f28a25f3c",
+        "e2dadea2-f1a8-4cac-9496-31e8adfa5908"
+      ],
+      "selected_base_parent_id": "e2dadea2-f1a8-4cac-9496-31e8adfa5908",
+      "base_selection_authority": "bulbapedia_additional_cards_exact_base_reference",
+      "base_selection_evidence": [
+        {
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Dark_Explorers_%28TCG%29",
+          "lane": "Additional cards",
+          "notes": "Crosshatch Holo Professor Program stamp promo (January 2013)}",
+          "db_number": "98",
+          "bulba_number": "98/108"
+        }
+      ],
+      "evidence": {
+        "exact_finish": [
+          "https://api.pokemontcg.io/v2/cards/bw5-98",
+          "https://reverseholo.app/sets/bw5",
+          "https://www.thepricedex.com/set/bw5/dark-explorers/price-list"
+        ],
+        "professor_program_identity": [
+          "https://www.pricecharting.com/game/pokemon-dark-explorers/professor-juniper-professor-program-98",
+          "https://www.thepricedex.com/set/bw5/dark-explorers/price-list"
+        ],
+        "base_selection": [
+          {
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Dark_Explorers_%28TCG%29",
+            "lane": "Additional cards",
+            "notes": "Crosshatch Holo Professor Program stamp promo (January 2013)}",
+            "db_number": "98",
+            "bulba_number": "98/108"
+          }
+        ]
+      },
+      "evidence_counts": {
+        "exact_finish_rows": 1,
+        "professor_program_identity_rows": 1,
+        "base_selection_rows": 1
+      },
+      "base_set_code": "bw5",
+      "base_number": "98",
+      "base_number_plain": "98",
+      "base_name": "Professor Juniper",
+      "base_variant_key": "",
+      "base_printed_identity_modifier": null,
+      "matching_base_parent_count": 1,
+      "base_identity_match": true,
+      "base_finish_exists": true,
+      "active_finish_exists": true,
+      "target_parent_collision_count": 1,
+      "target_parent_id_collision_count": 0,
+      "target_child_id_collision_count": 0,
+      "source_mapping_count": 0,
+      "identity_projection_ready": true,
+      "identity_domain": "pokemon_eng_standard",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "a8288d0a62c36c02d66f66a3536411570f4bac1a114f04e0b2e2211e285dbf92",
+      "identity_hash_collision_count": 1,
+      "matching_base_candidates": [
+        {
+          "name": "Professor Juniper",
+          "number": "98",
+          "finish_keys": [
+            "reverse"
+          ],
+          "variant_key": "professor_program_stamp",
+          "number_plain": "98",
+          "card_print_id": "c98e4f39-59fc-4ec1-bfc5-c34f28a25f3c",
+          "printed_identity_modifier": null
+        },
+        {
+          "name": "Professor Juniper",
+          "number": "98",
+          "finish_keys": [
+            "normal",
+            "reverse"
+          ],
+          "variant_key": "",
+          "number_plain": "98",
+          "card_print_id": "e2dadea2-f1a8-4cac-9496-31e8adfa5908",
+          "printed_identity_modifier": null
+        }
+      ],
+      "readiness_status": "blocked_before_guarded_dry_run",
+      "blockers": [
+        "professor_program_parent_already_exists",
+        "identity_hash_collision"
+      ]
+    },
+    {
+      "source_product_id": "176633",
+      "source_product_name": "Professor Juniper - 101/114 (2013)",
+      "source_group_id": "2332",
+      "source_group_name": "Professor Program Promos",
+      "target_parent_id": "b0ad4f99-3dd3-48ce-ad20-a4cda3cdd888",
+      "target_child_id": "dc316091-4006-4830-8c7d-d55822c241bd",
+      "set_key": "bw1",
+      "set_name": "Black & White",
+      "card_number": "101",
+      "card_name": "Professor Juniper",
+      "target_variant_key": "professor_program_stamp",
+      "target_printed_identity_modifier": "professor_program_stamp",
+      "target_finish_key": "reverse",
+      "source_subtypes": [
+        "Reverse Holofoil"
+      ],
+      "live_exact_finish_parent_ids": [
+        "12cad852-d079-44cc-9438-e806aede97ff",
+        "98f0a49e-37ac-4e45-9813-f1ce4ff2dc45"
+      ],
+      "selected_base_parent_id": "98f0a49e-37ac-4e45-9813-f1ce4ff2dc45",
+      "base_selection_authority": "bulbapedia_additional_cards_exact_base_reference",
+      "base_selection_evidence": [
+        {
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Black_%26_White_%28TCG%29",
+          "lane": "Additional cards",
+          "notes": "Crosshatch Holo Professor Program stamp promo (January 2013)}",
+          "db_number": "101",
+          "bulba_number": "101/114"
+        }
+      ],
+      "evidence": {
+        "exact_finish": [
+          "https://api.pokemontcg.io/v2/cards/bw1-101",
+          "https://reverseholo.app/sets/bw1",
+          "https://www.thepricedex.com/set/bw1/black-and-white/price-list"
+        ],
+        "professor_program_identity": [
+          "https://www.pricecharting.com/game/pokemon-black-and-white/professor-juniper-professor-program-101",
+          "https://www.thepricedex.com/set/bw1/black-and-white/price-list"
+        ],
+        "base_selection": [
+          {
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Black_%26_White_%28TCG%29",
+            "lane": "Additional cards",
+            "notes": "Crosshatch Holo Professor Program stamp promo (January 2013)}",
+            "db_number": "101",
+            "bulba_number": "101/114"
+          }
+        ]
+      },
+      "evidence_counts": {
+        "exact_finish_rows": 1,
+        "professor_program_identity_rows": 1,
+        "base_selection_rows": 1
+      },
+      "base_set_code": "bw1",
+      "base_number": "101",
+      "base_number_plain": "101",
+      "base_name": "Professor Juniper",
+      "base_variant_key": "",
+      "base_printed_identity_modifier": null,
+      "matching_base_parent_count": 1,
+      "base_identity_match": true,
+      "base_finish_exists": true,
+      "active_finish_exists": true,
+      "target_parent_collision_count": 1,
+      "target_parent_id_collision_count": 0,
+      "target_child_id_collision_count": 0,
+      "source_mapping_count": 0,
+      "identity_projection_ready": true,
+      "identity_domain": "pokemon_eng_standard",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "3a4b559f49ef04465dc446373abe517eeaab4fe4a8f425820f99f74b0700b3f5",
+      "identity_hash_collision_count": 1,
+      "matching_base_candidates": [
+        {
+          "name": "Professor Juniper",
+          "number": "101",
+          "finish_keys": [
+            "reverse"
+          ],
+          "variant_key": "professor_program_stamp",
+          "number_plain": "101",
+          "card_print_id": "12cad852-d079-44cc-9438-e806aede97ff",
+          "printed_identity_modifier": null
+        },
+        {
+          "name": "Professor Juniper",
+          "number": "101",
+          "finish_keys": [
+            "normal",
+            "reverse"
+          ],
+          "variant_key": "",
+          "number_plain": "101",
+          "card_print_id": "98f0a49e-37ac-4e45-9813-f1ce4ff2dc45",
+          "printed_identity_modifier": null
+        }
+      ],
+      "readiness_status": "blocked_before_guarded_dry_run",
+      "blockers": [
+        "professor_program_parent_already_exists",
+        "identity_hash_collision"
+      ]
+    },
+    {
+      "source_product_id": "176638",
+      "source_product_name": "Professor Sycamore (2015)",
+      "source_group_id": "2332",
+      "source_group_name": "Professor Program Promos",
+      "target_parent_id": "1882ba56-6fbd-4568-bc33-31fa0280aad2",
+      "target_child_id": "8caf6a7d-948f-4a79-b437-d301588b7931",
+      "set_key": "xy1",
+      "set_name": "XY",
+      "card_number": "122",
+      "card_name": "Professor Sycamore",
+      "target_variant_key": "professor_program_stamp",
+      "target_printed_identity_modifier": "professor_program_stamp",
+      "target_finish_key": "reverse",
+      "source_subtypes": [
+        "Reverse Holofoil"
+      ],
+      "live_exact_finish_parent_ids": [
+        "4cec1b2e-358c-4e24-a295-efb955acc303"
+      ],
+      "selected_base_parent_id": "4cec1b2e-358c-4e24-a295-efb955acc303",
+      "base_selection_authority": "bulbapedia_additional_cards_exact_base_reference",
+      "base_selection_evidence": [
+        {
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/XY_%28TCG%29",
+          "lane": "Additional cards",
+          "notes": "Crosshatch Holo Professor Program stamp promo (August 2015)}",
+          "db_number": "122",
+          "bulba_number": "122/146"
+        }
+      ],
+      "evidence": {
+        "exact_finish": [
+          "https://api.pokemontcg.io/v2/cards/xy1-122",
+          "https://reverseholo.app/sets/xy1",
+          "https://www.thepricedex.com/set/xy1/xy/price-list"
+        ],
+        "professor_program_identity": [
+          "https://www.pricecharting.com/game/pokemon-xy/professor-sycamore-professor-program-crosshatch-holo-122",
+          "https://www.thepricedex.com/set/xy1/xy/price-list"
+        ],
+        "base_selection": [
+          {
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/XY_%28TCG%29",
+            "lane": "Additional cards",
+            "notes": "Crosshatch Holo Professor Program stamp promo (August 2015)}",
+            "db_number": "122",
+            "bulba_number": "122/146"
+          }
+        ]
+      },
+      "evidence_counts": {
+        "exact_finish_rows": 1,
+        "professor_program_identity_rows": 1,
+        "base_selection_rows": 1
+      },
+      "base_set_code": "xy1",
+      "base_number": "122",
+      "base_number_plain": "122",
+      "base_name": "Professor Sycamore",
+      "base_variant_key": "",
+      "base_printed_identity_modifier": null,
+      "matching_base_parent_count": 1,
+      "base_identity_match": true,
+      "base_finish_exists": true,
+      "active_finish_exists": true,
+      "target_parent_collision_count": 1,
+      "target_parent_id_collision_count": 0,
+      "target_child_id_collision_count": 0,
+      "source_mapping_count": 0,
+      "identity_projection_ready": true,
+      "identity_domain": "pokemon_eng_standard",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "b6b902faf0f8d7be93a4207dc4880e5db973c9647b1901db09a0ae545e9951ac",
+      "identity_hash_collision_count": 1,
+      "matching_base_candidates": [
+        {
+          "name": "Professor Sycamore",
+          "number": "122",
+          "finish_keys": [
+            "normal",
+            "reverse"
+          ],
+          "variant_key": "",
+          "number_plain": "122",
+          "card_print_id": "4cec1b2e-358c-4e24-a295-efb955acc303",
+          "printed_identity_modifier": null
+        },
+        {
+          "name": "Professor Sycamore",
+          "number": "122",
+          "finish_keys": [
+            "holo"
+          ],
+          "variant_key": "professor_program_stamp",
+          "number_plain": "122",
+          "card_print_id": "69183c91-e669-4697-b5ab-f3cef1a11a5c",
+          "printed_identity_modifier": null
+        },
+        {
+          "name": "Professor Sycamore",
+          "number": "122",
+          "finish_keys": [
+            "holo"
+          ],
+          "variant_key": "player_rewards_crosshatch_stamp",
+          "number_plain": "122",
+          "card_print_id": "ad8770e6-9af1-41b0-98b3-a868b31ec126",
+          "printed_identity_modifier": null
+        }
+      ],
+      "readiness_status": "blocked_before_guarded_dry_run",
+      "blockers": [
+        "professor_program_parent_already_exists",
+        "identity_hash_collision"
+      ]
+    },
+    {
+      "source_product_id": "213516",
+      "source_product_name": "Judge (2019)",
+      "source_group_id": "2332",
+      "source_group_name": "Professor Program Promos",
+      "target_parent_id": "e6b5e51b-e231-4bc3-8053-763e77e17a57",
+      "target_child_id": "821db6c8-86a7-4fd1-b3ce-b64cd4a4e581",
+      "set_key": "sm6",
+      "set_name": "Forbidden Light",
+      "card_number": "108",
+      "card_name": "Judge",
+      "target_variant_key": "professor_program_stamp",
+      "target_printed_identity_modifier": "professor_program_stamp",
+      "target_finish_key": "reverse",
+      "source_subtypes": [
+        "Reverse Holofoil"
+      ],
+      "live_exact_finish_parent_ids": [
+        "a51c9d34-02ab-48d5-932f-ca2e78b81bd0"
+      ],
+      "selected_base_parent_id": "a51c9d34-02ab-48d5-932f-ca2e78b81bd0",
+      "base_selection_authority": "bulbapedia_additional_cards_exact_base_reference",
+      "base_selection_evidence": [
+        {
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Forbidden_Light_%28TCG%29",
+          "lane": "Additional cards",
+          "notes": "Reverse Holo Professor Program promo}",
+          "db_number": "108",
+          "bulba_number": "108/131"
+        }
+      ],
+      "evidence": {
+        "exact_finish": [
+          "https://api.pokemontcg.io/v2/cards/sm6-108",
+          "https://reverseholo.app/sets/sm6",
+          "https://www.thepricedex.com/set/sm6/forbidden-light/price-list"
+        ],
+        "professor_program_identity": [
+          "https://www.pricecharting.com/game/pokemon-forbidden-light/judge-professor-program-108",
+          "https://www.thepricedex.com/set/sm6/forbidden-light/price-list"
+        ],
+        "base_selection": [
+          {
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Forbidden_Light_%28TCG%29",
+            "lane": "Additional cards",
+            "notes": "Reverse Holo Professor Program promo}",
+            "db_number": "108",
+            "bulba_number": "108/131"
+          }
+        ]
+      },
+      "evidence_counts": {
+        "exact_finish_rows": 1,
+        "professor_program_identity_rows": 1,
+        "base_selection_rows": 1
+      },
+      "base_set_code": "sm6",
+      "base_number": "108",
+      "base_number_plain": "108",
+      "base_name": "Judge",
+      "base_variant_key": "",
+      "base_printed_identity_modifier": null,
+      "matching_base_parent_count": 1,
+      "base_identity_match": true,
+      "base_finish_exists": true,
+      "active_finish_exists": true,
+      "target_parent_collision_count": 1,
+      "target_parent_id_collision_count": 0,
+      "target_child_id_collision_count": 0,
+      "source_mapping_count": 0,
+      "identity_projection_ready": true,
+      "identity_domain": "pokemon_eng_standard",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "6eec18938508e4bea14fe2021d1ec9d9edce7beba72b8d7aeef32706c986fd34",
+      "identity_hash_collision_count": 1,
+      "matching_base_candidates": [
+        {
+          "name": "Judge",
+          "number": "108",
+          "finish_keys": [
+            "normal",
+            "reverse"
+          ],
+          "variant_key": "",
+          "number_plain": "108",
+          "card_print_id": "a51c9d34-02ab-48d5-932f-ca2e78b81bd0",
+          "printed_identity_modifier": null
+        },
+        {
+          "name": "Judge",
+          "number": "108",
+          "finish_keys": [
+            "reverse"
+          ],
+          "variant_key": "professor_program_stamp",
+          "number_plain": "108",
+          "card_print_id": "ea08d28d-8267-4db9-859c-64ffd048792f",
+          "printed_identity_modifier": "professor_program_stamp"
+        }
+      ],
+      "readiness_status": "blocked_before_guarded_dry_run",
+      "blockers": [
+        "professor_program_parent_already_exists",
+        "identity_hash_collision"
+      ]
+    },
+    {
+      "source_product_id": "499366",
+      "source_product_name": "Gym Trainer (2022)",
+      "source_group_id": "2332",
+      "source_group_name": "Professor Program Promos",
+      "target_parent_id": "8f22c4ef-320d-45cd-8938-4aa84aca740e",
+      "target_child_id": "2f02ea00-6f1e-480d-8766-edb2a468d72f",
+      "set_key": "swsh4.5",
+      "set_name": "Shining Fates",
+      "card_number": "59",
+      "card_name": "Gym Trainer",
+      "target_variant_key": "professor_program_stamp",
+      "target_printed_identity_modifier": "professor_program_stamp",
+      "target_finish_key": "reverse",
+      "source_subtypes": [
+        "Reverse Holofoil"
+      ],
+      "live_exact_finish_parent_ids": [
+        "d04a6b76-26f1-4a33-99ae-6920f7a501da"
+      ],
+      "selected_base_parent_id": "d04a6b76-26f1-4a33-99ae-6920f7a501da",
+      "base_selection_authority": "unique_live_exact_finish_parent_from_review",
+      "base_selection_evidence": [],
+      "evidence": {
+        "exact_finish": [
+          "https://api.pokemontcg.io/v2/cards/swsh45-59",
+          "https://api.tcgdex.net/v2/en/cards/swsh4.5-59",
+          "https://prices.pokemontcg.io/tcgplayer/swsh45-59",
+          "https://reverseholo.app/sets/swsh4.5",
+          "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+        ],
+        "professor_program_identity": [
+          "https://www.pricecharting.com/game/pokemon-shining-fates/gym-trainer-professor-program-59",
+          "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+        ],
+        "base_selection": []
+      },
+      "evidence_counts": {
+        "exact_finish_rows": 1,
+        "professor_program_identity_rows": 1,
+        "base_selection_rows": 0
+      },
+      "base_set_code": "swsh4.5",
+      "base_number": "59",
+      "base_number_plain": "59",
+      "base_name": "Gym Trainer",
+      "base_variant_key": "",
+      "base_printed_identity_modifier": null,
+      "matching_base_parent_count": 1,
+      "base_identity_match": true,
+      "base_finish_exists": true,
+      "active_finish_exists": true,
+      "target_parent_collision_count": 0,
+      "target_parent_id_collision_count": 0,
+      "target_child_id_collision_count": 0,
+      "source_mapping_count": 0,
+      "identity_projection_ready": true,
+      "identity_domain": "pokemon_eng_standard",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "ad7e69d12144b415ef8a7809bb609965cee5f117df686083ddfda79f6d5288c5",
+      "identity_hash_collision_count": 0,
+      "matching_base_candidates": [
+        {
+          "name": "Gym Trainer",
+          "number": "59",
+          "finish_keys": [
+            "normal",
+            "reverse"
+          ],
+          "variant_key": "",
+          "number_plain": "59",
+          "card_print_id": "d04a6b76-26f1-4a33-99ae-6920f7a501da",
+          "printed_identity_modifier": null
+        }
+      ],
+      "readiness_status": "ready_for_guarded_dry_run_parent_child_insert",
+      "blockers": []
+    }
+  ],
+  "next_boundary": {
+    "recommended_next_step": "Resolve the listed readiness blockers before preparing any mutation artifact.",
+    "allowed_future_scope": [
+      "8 card_print parent inserts",
+      "8 card_print_identity inserts",
+      "8 card_printing child inserts"
+    ],
+    "forbidden_future_scope": [
+      "mapping writes",
+      "pricing writes",
+      "ordinary parent mutation",
+      "deletes",
+      "merges",
+      "quarantine",
+      "migrations"
+    ]
+  }
+}

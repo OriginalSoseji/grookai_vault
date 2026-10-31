@@ -1,0 +1,816 @@
+{
+  "generated_at": "2026-10-31T05:25:05.551Z",
+  "version": "tcgplayer_professor_program_catalog_repair_guarded_dry_run_20261031_v1",
+  "package_id": "TCGPLAYER-PROFESSOR-PROGRAM-CATALOG-REPAIR-V1",
+  "rollback_only": true,
+  "db_reads_performed": true,
+  "db_writes_performed_inside_rolled_back_transaction": true,
+  "durable_db_writes_performed": false,
+  "mapping_writes_performed": false,
+  "pricing_writes_performed": false,
+  "migrations_created": false,
+  "deletes_performed": false,
+  "merges_performed": false,
+  "routing_artifact": "docs/audits/tcgplayer_professor_program_repair_routing_20261031_v1.json",
+  "readiness_artifact": "docs/audits/tcgplayer_professor_program_parent_insert_readiness_20261031_v1.json",
+  "routing_fingerprint_sha256": "e6caf91fb1cd324610f7157d8446aae3d1f1d57dd6709944738cf8ba396b3bdd",
+  "readiness_package_fingerprint_sha256": "126b5c9000fbc58b0f4ea9a7254e632a710becf066d2060710abddca50b303d0",
+  "package_fingerprint_sha256": "1203f252f7856cff512d85ff7d76eb45a9cf18e528166b53b519fb34a7c78820",
+  "dry_run_proof_sha256": "4f36fdc0e284c6112cf22698e4b9b0940bda5d4c56b4f0f7c73006fb3b5d6000",
+  "targets": [
+    {
+      "operation": "insert_parent_identity_child",
+      "source_product_id": "176629",
+      "source_product_name": "Prof. Oak's Research (2004-2005)",
+      "source_group_id": "2332",
+      "set_key": "ex6",
+      "card_number": "98",
+      "card_name": "Prof. Oak's Research",
+      "base_parent_id": "453468cf-a458-4ff6-acde-6103b234bf87",
+      "target_parent_id": "e402c8fc-563b-49e3-a198-6a5fe5f75cda",
+      "target_child_id": "eb9b3f39-760f-4b77-a3b1-c486b4a4e4c3",
+      "target_variant_key": "professor_program_stamp",
+      "target_printed_identity_modifier": "professor_program_stamp",
+      "target_finish_key": "normal",
+      "evidence_payload": {
+        "source_product_id": "176629",
+        "source_product_name": "Prof. Oak's Research (2004-2005)",
+        "source_group_id": "2332",
+        "routing_fingerprint_sha256": "e6caf91fb1cd324610f7157d8446aae3d1f1d57dd6709944738cf8ba396b3bdd",
+        "readiness_package_fingerprint_sha256": "126b5c9000fbc58b0f4ea9a7254e632a710becf066d2060710abddca50b303d0",
+        "evidence": {
+          "exact_finish": [
+            "https://api.pokemontcg.io/v2/cards/ex6-98",
+            "https://api.tcgdex.net/v2/en/cards/ex6-98",
+            "https://prices.pokemontcg.io/tcgplayer/ex6-98",
+            "https://www.thepricedex.com/set/ex6/firered-and-leafgreen/price-list"
+          ],
+          "professor_program_identity": [
+            "https://www.sportscardinvestor.com/cards/prof.-oak-s-research-pokemon/2004-ex-firered-leafgreen-promo-professor-program-098-112",
+            "https://www.thepricedex.com/set/ex6/firered-and-leafgreen/price-list"
+          ],
+          "base_selection": [
+            {
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/EX_FireRed_%26_LeafGreen_%28TCG%29",
+              "lane": "Additional cards",
+              "notes": "Professor Program 2004-2005}",
+              "db_number": "98",
+              "bulba_number": "98/112"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "operation": "repair_existing_parent_modifier",
+      "source_product_id": "176630",
+      "source_product_name": "Professor Birch (2006)",
+      "source_group_id": "2332",
+      "set_key": "ex9",
+      "card_number": "82",
+      "card_name": "Professor Birch",
+      "base_parent_id": "a3ae0ede-d02f-4bbd-b148-a1de0aa268fb",
+      "target_parent_id": "ed61ea12-90af-4250-b089-e2b31fc2fdce",
+      "target_child_id": "820ba0fb-cc4a-4460-ada6-66fdeb1185b9",
+      "target_variant_key": "professor_program_stamp",
+      "target_printed_identity_modifier": "professor_program_stamp",
+      "target_finish_key": "holo",
+      "evidence_payload": {
+        "source_product_id": "176630",
+        "source_product_name": "Professor Birch (2006)",
+        "source_group_id": "2332",
+        "routing_fingerprint_sha256": "e6caf91fb1cd324610f7157d8446aae3d1f1d57dd6709944738cf8ba396b3bdd",
+        "readiness_package_fingerprint_sha256": "126b5c9000fbc58b0f4ea9a7254e632a710becf066d2060710abddca50b303d0",
+        "evidence": {
+          "exact_finish": [
+            "https://api.tcgdex.net/v2/en/cards/ex9-82",
+            "https://pokecardvalues.co.uk/cards/professor-birch-82-106-holo-professor-program-emerald/ex9-82-1-55/"
+          ],
+          "professor_program_identity": [
+            "https://api.tcgdex.net/v2/en/cards/ex9-82",
+            "https://pokecardvalues.co.uk/cards/professor-birch-82-106-holo-professor-program-emerald/ex9-82-1-55/"
+          ],
+          "base_selection": [
+            {
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/EX_Emerald_%28TCG%29",
+              "lane": "Additional cards",
+              "notes": "Professor Program 2006}",
+              "db_number": "82",
+              "bulba_number": "82/106"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "operation": "insert_parent_identity_child",
+      "source_product_id": "176631",
+      "source_product_name": "Professor Oak's Visit (2008-2009)",
+      "source_group_id": "2332",
+      "set_key": "dp3",
+      "card_number": "122",
+      "card_name": "Professor Oak's Visit",
+      "base_parent_id": "20353cdf-bdef-4e82-acac-49cf30ee22b5",
+      "target_parent_id": "baa63e55-c8aa-4936-8c9a-63de29e75c16",
+      "target_child_id": "235db02c-1431-42ba-a973-43cb6d89b38d",
+      "target_variant_key": "professor_program_stamp",
+      "target_printed_identity_modifier": "professor_program_stamp",
+      "target_finish_key": "normal",
+      "evidence_payload": {
+        "source_product_id": "176631",
+        "source_product_name": "Professor Oak's Visit (2008-2009)",
+        "source_group_id": "2332",
+        "routing_fingerprint_sha256": "e6caf91fb1cd324610f7157d8446aae3d1f1d57dd6709944738cf8ba396b3bdd",
+        "readiness_package_fingerprint_sha256": "126b5c9000fbc58b0f4ea9a7254e632a710becf066d2060710abddca50b303d0",
+        "evidence": {
+          "exact_finish": [
+            "https://api.pokemontcg.io/v2/cards/dp3-122",
+            "https://api.tcgdex.net/v2/en/cards/dp3-122",
+            "https://prices.pokemontcg.io/tcgplayer/dp3-122",
+            "https://www.thepricedex.com/set/dp3/secret-wonders/price-list"
+          ],
+          "professor_program_identity": [
+            "https://www.pricecharting.com/game/pokemon-secret-wonders/professor-oaks-visit-professor-program-122",
+            "https://www.thepricedex.com/set/dp3/secret-wonders/price-list"
+          ],
+          "base_selection": [
+            {
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Secret_Wonders_%28TCG%29",
+              "lane": "Additional cards",
+              "notes": "Professor Program 2008-2009}",
+              "db_number": "122",
+              "bulba_number": "122/132"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "operation": "repair_existing_parent_modifier",
+      "source_product_id": "176632",
+      "source_product_name": "Professor Juniper - 98/108 (2013)",
+      "source_group_id": "2332",
+      "set_key": "bw5",
+      "card_number": "98",
+      "card_name": "Professor Juniper",
+      "base_parent_id": "e2dadea2-f1a8-4cac-9496-31e8adfa5908",
+      "target_parent_id": "c98e4f39-59fc-4ec1-bfc5-c34f28a25f3c",
+      "target_child_id": "04cf4fa5-ea7a-434c-a558-7b53e95a4a93",
+      "target_variant_key": "professor_program_stamp",
+      "target_printed_identity_modifier": "professor_program_stamp",
+      "target_finish_key": "reverse",
+      "evidence_payload": {
+        "source_product_id": "176632",
+        "source_product_name": "Professor Juniper - 98/108 (2013)",
+        "source_group_id": "2332",
+        "routing_fingerprint_sha256": "e6caf91fb1cd324610f7157d8446aae3d1f1d57dd6709944738cf8ba396b3bdd",
+        "readiness_package_fingerprint_sha256": "126b5c9000fbc58b0f4ea9a7254e632a710becf066d2060710abddca50b303d0",
+        "evidence": {
+          "exact_finish": [
+            "https://api.pokemontcg.io/v2/cards/bw5-98",
+            "https://reverseholo.app/sets/bw5",
+            "https://www.thepricedex.com/set/bw5/dark-explorers/price-list"
+          ],
+          "professor_program_identity": [
+            "https://www.pricecharting.com/game/pokemon-dark-explorers/professor-juniper-professor-program-98",
+            "https://www.thepricedex.com/set/bw5/dark-explorers/price-list"
+          ],
+          "base_selection": [
+            {
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Dark_Explorers_%28TCG%29",
+              "lane": "Additional cards",
+              "notes": "Crosshatch Holo Professor Program stamp promo (January 2013)}",
+              "db_number": "98",
+              "bulba_number": "98/108"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "operation": "repair_existing_parent_modifier",
+      "source_product_id": "176633",
+      "source_product_name": "Professor Juniper - 101/114 (2013)",
+      "source_group_id": "2332",
+      "set_key": "bw1",
+      "card_number": "101",
+      "card_name": "Professor Juniper",
+      "base_parent_id": "98f0a49e-37ac-4e45-9813-f1ce4ff2dc45",
+      "target_parent_id": "12cad852-d079-44cc-9438-e806aede97ff",
+      "target_child_id": "8b0cf097-ef28-42aa-a3f2-f8665f863726",
+      "target_variant_key": "professor_program_stamp",
+      "target_printed_identity_modifier": "professor_program_stamp",
+      "target_finish_key": "reverse",
+      "evidence_payload": {
+        "source_product_id": "176633",
+        "source_product_name": "Professor Juniper - 101/114 (2013)",
+        "source_group_id": "2332",
+        "routing_fingerprint_sha256": "e6caf91fb1cd324610f7157d8446aae3d1f1d57dd6709944738cf8ba396b3bdd",
+        "readiness_package_fingerprint_sha256": "126b5c9000fbc58b0f4ea9a7254e632a710becf066d2060710abddca50b303d0",
+        "evidence": {
+          "exact_finish": [
+            "https://api.pokemontcg.io/v2/cards/bw1-101",
+            "https://reverseholo.app/sets/bw1",
+            "https://www.thepricedex.com/set/bw1/black-and-white/price-list"
+          ],
+          "professor_program_identity": [
+            "https://www.pricecharting.com/game/pokemon-black-and-white/professor-juniper-professor-program-101",
+            "https://www.thepricedex.com/set/bw1/black-and-white/price-list"
+          ],
+          "base_selection": [
+            {
+              "source_url": "https://bulbapedia.bulbagarden.net/wiki/Black_%26_White_%28TCG%29",
+              "lane": "Additional cards",
+              "notes": "Crosshatch Holo Professor Program stamp promo (January 2013)}",
+              "db_number": "101",
+              "bulba_number": "101/114"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "operation": "insert_parent_identity_child",
+      "source_product_id": "499366",
+      "source_product_name": "Gym Trainer (2022)",
+      "source_group_id": "2332",
+      "set_key": "swsh4.5",
+      "card_number": "59",
+      "card_name": "Gym Trainer",
+      "base_parent_id": "d04a6b76-26f1-4a33-99ae-6920f7a501da",
+      "target_parent_id": "8f22c4ef-320d-45cd-8938-4aa84aca740e",
+      "target_child_id": "2f02ea00-6f1e-480d-8766-edb2a468d72f",
+      "target_variant_key": "professor_program_stamp",
+      "target_printed_identity_modifier": "professor_program_stamp",
+      "target_finish_key": "reverse",
+      "evidence_payload": {
+        "source_product_id": "499366",
+        "source_product_name": "Gym Trainer (2022)",
+        "source_group_id": "2332",
+        "routing_fingerprint_sha256": "e6caf91fb1cd324610f7157d8446aae3d1f1d57dd6709944738cf8ba396b3bdd",
+        "readiness_package_fingerprint_sha256": "126b5c9000fbc58b0f4ea9a7254e632a710becf066d2060710abddca50b303d0",
+        "evidence": {
+          "exact_finish": [
+            "https://api.pokemontcg.io/v2/cards/swsh45-59",
+            "https://api.tcgdex.net/v2/en/cards/swsh4.5-59",
+            "https://prices.pokemontcg.io/tcgplayer/swsh45-59",
+            "https://reverseholo.app/sets/swsh4.5",
+            "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+          ],
+          "professor_program_identity": [
+            "https://www.pricecharting.com/game/pokemon-shining-fates/gym-trainer-professor-program-59",
+            "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+          ],
+          "base_selection": []
+        }
+      }
+    }
+  ],
+  "execution": {
+    "guard": {
+      "target_count": 6,
+      "insert_target_count": 3,
+      "modifier_target_count": 3,
+      "missing_base_count": 0,
+      "base_identity_mismatch_count": 0,
+      "inactive_finish_count": 0,
+      "base_finish_missing_count": 0,
+      "source_mapping_collision_count": 0,
+      "insert_parent_id_collision_count": 0,
+      "insert_child_id_collision_count": 0,
+      "insert_semantic_parent_collision_count": 0,
+      "insert_projection_ready_count": 3,
+      "insert_identity_hash_collision_count": 0,
+      "modifier_parent_ready_count": 3,
+      "modifier_active_identity_count": 3,
+      "modifier_exact_child_count": 3
+    },
+    "simulated_write_counts": {
+      "parent_inserts": 3,
+      "identity_inserts": 3,
+      "child_inserts": 3,
+      "modifier_updates": 3,
+      "mapping_writes": 0,
+      "pricing_writes": 0,
+      "deletes": 0,
+      "merges": 0
+    },
+    "proof": {
+      "repaired_parent_count": 6,
+      "active_identity_count": 6,
+      "exact_child_count": 6,
+      "mapping_write_count": 0
+    },
+    "before_snapshot": {
+      "captured_at": "2026-10-31T05:25:04.136Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "source_product_id": "176629",
+          "row_id": "453468cf-a458-4ff6-acde-6103b234bf87",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "source_product_id": "176630",
+          "row_id": "a3ae0ede-d02f-4bbd-b148-a1de0aa268fb",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "source_product_id": "176631",
+          "row_id": "20353cdf-bdef-4e82-acac-49cf30ee22b5",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "source_product_id": "176632",
+          "row_id": "e2dadea2-f1a8-4cac-9496-31e8adfa5908",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "source_product_id": "176633",
+          "row_id": "98f0a49e-37ac-4e45-9813-f1ce4ff2dc45",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "source_product_id": "499366",
+          "row_id": "d04a6b76-26f1-4a33-99ae-6920f7a501da",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "source_product_id": "176630",
+          "row_id": "820ba0fb-cc4a-4460-ada6-66fdeb1185b9",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": null,
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "source_product_id": "176632",
+          "row_id": "04cf4fa5-ea7a-434c-a558-7b53e95a4a93",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": null,
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "source_product_id": "176633",
+          "row_id": "8b0cf097-ef28-42aa-a3f2-f8665f863726",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": null,
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "source_product_id": "176630",
+          "row_id": "b8157ec0-6e5b-435f-9f52-da24b976b60c",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": "72f1d9523f3f3d6e36d4d5822ddb2d209b56ca208419505d6331c7039bea08d0"
+        },
+        {
+          "row_type": "target_identity",
+          "source_product_id": "176632",
+          "row_id": "5630fdfa-e046-44d9-8bf3-3e4fb953ab5a",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": "a8288d0a62c36c02d66f66a3536411570f4bac1a114f04e0b2e2211e285dbf92"
+        },
+        {
+          "row_type": "target_identity",
+          "source_product_id": "176633",
+          "row_id": "b758abc1-413b-4c5d-ac64-906eb691673a",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": "3a4b559f49ef04465dc446373abe517eeaab4fe4a8f425820f99f74b0700b3f5"
+        },
+        {
+          "row_type": "target_parent",
+          "source_product_id": "176630",
+          "row_id": "ed61ea12-90af-4250-b089-e2b31fc2fdce",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "source_product_id": "176632",
+          "row_id": "c98e4f39-59fc-4ec1-bfc5-c34f28a25f3c",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "source_product_id": "176633",
+          "row_id": "12cad852-d079-44cc-9438-e806aede97ff",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "aace12789875dc67ae402d6f34d4900e1b4c3b1f61b00857f3e67a6b86610ba6"
+    },
+    "transient_snapshot": {
+      "captured_at": "2026-10-31T05:25:05.306Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "source_product_id": "176629",
+          "row_id": "453468cf-a458-4ff6-acde-6103b234bf87",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "source_product_id": "176630",
+          "row_id": "a3ae0ede-d02f-4bbd-b148-a1de0aa268fb",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "source_product_id": "176631",
+          "row_id": "20353cdf-bdef-4e82-acac-49cf30ee22b5",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "source_product_id": "176632",
+          "row_id": "e2dadea2-f1a8-4cac-9496-31e8adfa5908",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "source_product_id": "176633",
+          "row_id": "98f0a49e-37ac-4e45-9813-f1ce4ff2dc45",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "source_product_id": "499366",
+          "row_id": "d04a6b76-26f1-4a33-99ae-6920f7a501da",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "source_product_id": "176629",
+          "row_id": "eb9b3f39-760f-4b77-a3b1-c486b4a4e4c3",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": "professor_program_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "source_product_id": "176630",
+          "row_id": "820ba0fb-cc4a-4460-ada6-66fdeb1185b9",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": "professor_program_stamp",
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "source_product_id": "176631",
+          "row_id": "235db02c-1431-42ba-a973-43cb6d89b38d",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": "professor_program_stamp",
+          "finish_key": "normal",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "source_product_id": "176632",
+          "row_id": "04cf4fa5-ea7a-434c-a558-7b53e95a4a93",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": "professor_program_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "source_product_id": "176633",
+          "row_id": "8b0cf097-ef28-42aa-a3f2-f8665f863726",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": "professor_program_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "source_product_id": "499366",
+          "row_id": "2f02ea00-6f1e-480d-8766-edb2a468d72f",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": "professor_program_stamp",
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "source_product_id": "176629",
+          "row_id": "eac55819-9df1-486c-9303-3a32e85fa2cf",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": "professor_program_stamp",
+          "finish_key": null,
+          "identity_key_hash": "ebb65d387983cfcd8f2d4a3b646b794f577b6d60a1e64abf05221d5daa2ff8c1"
+        },
+        {
+          "row_type": "target_identity",
+          "source_product_id": "176630",
+          "row_id": "b8157ec0-6e5b-435f-9f52-da24b976b60c",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": "professor_program_stamp",
+          "finish_key": null,
+          "identity_key_hash": "72f1d9523f3f3d6e36d4d5822ddb2d209b56ca208419505d6331c7039bea08d0"
+        },
+        {
+          "row_type": "target_identity",
+          "source_product_id": "176631",
+          "row_id": "a4799d44-42c6-426e-a51c-b0c75897822c",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": "professor_program_stamp",
+          "finish_key": null,
+          "identity_key_hash": "ec7c0da9c597ef1e7a72c5c3248a570841149bdf371b1f9355b600efffd566f1"
+        },
+        {
+          "row_type": "target_identity",
+          "source_product_id": "176632",
+          "row_id": "5630fdfa-e046-44d9-8bf3-3e4fb953ab5a",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": "professor_program_stamp",
+          "finish_key": null,
+          "identity_key_hash": "a8288d0a62c36c02d66f66a3536411570f4bac1a114f04e0b2e2211e285dbf92"
+        },
+        {
+          "row_type": "target_identity",
+          "source_product_id": "176633",
+          "row_id": "b758abc1-413b-4c5d-ac64-906eb691673a",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": "professor_program_stamp",
+          "finish_key": null,
+          "identity_key_hash": "3a4b559f49ef04465dc446373abe517eeaab4fe4a8f425820f99f74b0700b3f5"
+        },
+        {
+          "row_type": "target_identity",
+          "source_product_id": "499366",
+          "row_id": "bce4d8bf-8a2e-4193-b9fa-33e043ca67bd",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": "professor_program_stamp",
+          "finish_key": null,
+          "identity_key_hash": "ad7e69d12144b415ef8a7809bb609965cee5f117df686083ddfda79f6d5288c5"
+        },
+        {
+          "row_type": "target_parent",
+          "source_product_id": "176629",
+          "row_id": "e402c8fc-563b-49e3-a198-6a5fe5f75cda",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": "professor_program_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "source_product_id": "176630",
+          "row_id": "ed61ea12-90af-4250-b089-e2b31fc2fdce",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": "professor_program_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "source_product_id": "176631",
+          "row_id": "baa63e55-c8aa-4936-8c9a-63de29e75c16",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": "professor_program_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "source_product_id": "176632",
+          "row_id": "c98e4f39-59fc-4ec1-bfc5-c34f28a25f3c",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": "professor_program_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "source_product_id": "176633",
+          "row_id": "12cad852-d079-44cc-9438-e806aede97ff",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": "professor_program_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "source_product_id": "499366",
+          "row_id": "8f22c4ef-320d-45cd-8938-4aa84aca740e",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": "professor_program_stamp",
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "55a332da0fbde3691327c460cec45fa7b67405ec017eb41ff25e2a856435aaa7"
+    },
+    "after_snapshot": {
+      "captured_at": "2026-10-31T05:25:05.466Z",
+      "rows": [
+        {
+          "row_type": "base_parent",
+          "source_product_id": "176629",
+          "row_id": "453468cf-a458-4ff6-acde-6103b234bf87",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "source_product_id": "176630",
+          "row_id": "a3ae0ede-d02f-4bbd-b148-a1de0aa268fb",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "source_product_id": "176631",
+          "row_id": "20353cdf-bdef-4e82-acac-49cf30ee22b5",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "source_product_id": "176632",
+          "row_id": "e2dadea2-f1a8-4cac-9496-31e8adfa5908",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "source_product_id": "176633",
+          "row_id": "98f0a49e-37ac-4e45-9813-f1ce4ff2dc45",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "base_parent",
+          "source_product_id": "499366",
+          "row_id": "d04a6b76-26f1-4a33-99ae-6920f7a501da",
+          "variant_key": "",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "source_product_id": "176630",
+          "row_id": "820ba0fb-cc4a-4460-ada6-66fdeb1185b9",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": null,
+          "finish_key": "holo",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "source_product_id": "176632",
+          "row_id": "04cf4fa5-ea7a-434c-a558-7b53e95a4a93",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": null,
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_child",
+          "source_product_id": "176633",
+          "row_id": "8b0cf097-ef28-42aa-a3f2-f8665f863726",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": null,
+          "finish_key": "reverse",
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_identity",
+          "source_product_id": "176630",
+          "row_id": "b8157ec0-6e5b-435f-9f52-da24b976b60c",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": "72f1d9523f3f3d6e36d4d5822ddb2d209b56ca208419505d6331c7039bea08d0"
+        },
+        {
+          "row_type": "target_identity",
+          "source_product_id": "176632",
+          "row_id": "5630fdfa-e046-44d9-8bf3-3e4fb953ab5a",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": "a8288d0a62c36c02d66f66a3536411570f4bac1a114f04e0b2e2211e285dbf92"
+        },
+        {
+          "row_type": "target_identity",
+          "source_product_id": "176633",
+          "row_id": "b758abc1-413b-4c5d-ac64-906eb691673a",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": "3a4b559f49ef04465dc446373abe517eeaab4fe4a8f425820f99f74b0700b3f5"
+        },
+        {
+          "row_type": "target_parent",
+          "source_product_id": "176630",
+          "row_id": "ed61ea12-90af-4250-b089-e2b31fc2fdce",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "source_product_id": "176632",
+          "row_id": "c98e4f39-59fc-4ec1-bfc5-c34f28a25f3c",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        },
+        {
+          "row_type": "target_parent",
+          "source_product_id": "176633",
+          "row_id": "12cad852-d079-44cc-9438-e806aede97ff",
+          "variant_key": "professor_program_stamp",
+          "printed_identity_modifier": null,
+          "finish_key": null,
+          "identity_key_hash": null
+        }
+      ],
+      "hash_sha256": "aace12789875dc67ae402d6f34d4900e1b4c3b1f61b00857f3e67a6b86610ba6"
+    },
+    "rollback_verified": true,
+    "transient_change_verified": true
+  },
+  "recommended_real_apply_approval_text": "Approve real TCGPLAYER-PROFESSOR-PROGRAM-CATALOG-REPAIR-V1 apply only. Fingerprint: 1203f252f7856cff512d85ff7d76eb45a9cf18e528166b53b519fb34a7c78820. Scope: 3 Professor Program parent inserts, 3 active identity inserts, 3 child printing inserts, and 3 existing Professor Program printed_identity_modifier repairs. Dry-run rollback proof: aace12789875dc67ae402d6f34d4900e1b4c3b1f61b00857f3e67a6b86610ba6 == aace12789875dc67ae402d6f34d4900e1b4c3b1f61b00857f3e67a6b86610ba6. Excludes Professor Sycamore product 176638 and excludes Judge product 213516 mapping. No mapping writes. No pricing writes. No ordinary parent mutation. No deletes. No merges. No migrations.",
+  "excluded_scope": {
+    "professor_sycamore_product_176638": "held_existing_professor_program_parent_finish_conflict",
+    "judge_product_213516": "already_structurally_correct_mapping_only"
+  }
+}

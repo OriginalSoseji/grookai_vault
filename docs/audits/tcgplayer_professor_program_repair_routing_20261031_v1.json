@@ -1,0 +1,260 @@
+{
+  "generated_at": "2026-10-31T05:24:14.823Z",
+  "version": "tcgplayer_professor_program_repair_routing_20261031_v1",
+  "package_id": "TCGPLAYER-PROFESSOR-PROGRAM-REPAIR-ROUTING-V1",
+  "audit_only": true,
+  "db_reads_performed": true,
+  "db_writes_performed": false,
+  "durable_db_writes_performed": false,
+  "mapping_writes_performed": false,
+  "pricing_writes_performed": false,
+  "migrations_created": false,
+  "deletes_performed": false,
+  "merges_performed": false,
+  "source_artifact": "docs/audits/tcgplayer_professor_program_parent_insert_readiness_20261031_v1.json",
+  "source_sha256": "531d87193c35f140452215c7cb96f830aea7e5b444ab6082a43669d95100e2e1",
+  "fingerprint_sha256": "e6caf91fb1cd324610f7157d8446aae3d1f1d57dd6709944738cf8ba396b3bdd",
+  "summary": {
+    "rows": 8,
+    "ready_rows": 7,
+    "blocked_rows": 1,
+    "by_route": {
+      "blocked_existing_parent_finish_conflict": 1,
+      "ready_existing_parent_modifier_repair": 3,
+      "ready_parent_identity_child_insert": 3,
+      "ready_tcgplayer_mapping": 1
+    }
+  },
+  "rows": [
+    {
+      "source_product_id": "176629",
+      "source_product_name": "Prof. Oak's Research (2004-2005)",
+      "source_group_id": "2332",
+      "set_key": "ex6",
+      "card_number": "98",
+      "card_name": "Prof. Oak's Research",
+      "target_variant_key": "professor_program_stamp",
+      "target_finish_key": "normal",
+      "selected_base_parent_id": "453468cf-a458-4ff6-acde-6103b234bf87",
+      "proposed_parent_id": "e402c8fc-563b-49e3-a198-6a5fe5f75cda",
+      "proposed_child_id": "eb9b3f39-760f-4b77-a3b1-c486b4a4e4c3",
+      "professor_program_parents": [],
+      "current_tcgplayer_mappings": [],
+      "route": "ready_parent_identity_child_insert",
+      "target_parent_id": "e402c8fc-563b-49e3-a198-6a5fe5f75cda",
+      "target_printing_id": "eb9b3f39-760f-4b77-a3b1-c486b4a4e4c3",
+      "blockers": []
+    },
+    {
+      "source_product_id": "176630",
+      "source_product_name": "Professor Birch (2006)",
+      "source_group_id": "2332",
+      "set_key": "ex9",
+      "card_number": "82",
+      "card_name": "Professor Birch",
+      "target_variant_key": "professor_program_stamp",
+      "target_finish_key": "holo",
+      "selected_base_parent_id": "a3ae0ede-d02f-4bbd-b148-a1de0aa268fb",
+      "proposed_parent_id": "99addc3f-8da7-4120-8ee1-81b638467ffd",
+      "proposed_child_id": "a60341ac-f18f-45fb-8561-27997547d30f",
+      "professor_program_parents": [
+        {
+          "children": [
+            {
+              "finish_key": "holo",
+              "printing_id": "820ba0fb-cc4a-4460-ada6-66fdeb1185b9",
+              "is_provisional": false
+            }
+          ],
+          "variant_key": "professor_program_stamp",
+          "card_print_id": "ed61ea12-90af-4250-b089-e2b31fc2fdce",
+          "active_identity_count": 1,
+          "printed_identity_modifier": null
+        }
+      ],
+      "current_tcgplayer_mappings": [],
+      "route": "ready_existing_parent_modifier_repair",
+      "target_parent_id": "ed61ea12-90af-4250-b089-e2b31fc2fdce",
+      "target_printing_id": "820ba0fb-cc4a-4460-ada6-66fdeb1185b9",
+      "blockers": []
+    },
+    {
+      "source_product_id": "176631",
+      "source_product_name": "Professor Oak's Visit (2008-2009)",
+      "source_group_id": "2332",
+      "set_key": "dp3",
+      "card_number": "122",
+      "card_name": "Professor Oak's Visit",
+      "target_variant_key": "professor_program_stamp",
+      "target_finish_key": "normal",
+      "selected_base_parent_id": "20353cdf-bdef-4e82-acac-49cf30ee22b5",
+      "proposed_parent_id": "baa63e55-c8aa-4936-8c9a-63de29e75c16",
+      "proposed_child_id": "235db02c-1431-42ba-a973-43cb6d89b38d",
+      "professor_program_parents": [],
+      "current_tcgplayer_mappings": [],
+      "route": "ready_parent_identity_child_insert",
+      "target_parent_id": "baa63e55-c8aa-4936-8c9a-63de29e75c16",
+      "target_printing_id": "235db02c-1431-42ba-a973-43cb6d89b38d",
+      "blockers": []
+    },
+    {
+      "source_product_id": "176632",
+      "source_product_name": "Professor Juniper - 98/108 (2013)",
+      "source_group_id": "2332",
+      "set_key": "bw5",
+      "card_number": "98",
+      "card_name": "Professor Juniper",
+      "target_variant_key": "professor_program_stamp",
+      "target_finish_key": "reverse",
+      "selected_base_parent_id": "e2dadea2-f1a8-4cac-9496-31e8adfa5908",
+      "proposed_parent_id": "70ddf705-3cc3-469c-a911-f3848439fc27",
+      "proposed_child_id": "dc79f1e8-5ee4-4a39-a486-a3ea1321a889",
+      "professor_program_parents": [
+        {
+          "children": [
+            {
+              "finish_key": "reverse",
+              "printing_id": "04cf4fa5-ea7a-434c-a558-7b53e95a4a93",
+              "is_provisional": false
+            }
+          ],
+          "variant_key": "professor_program_stamp",
+          "card_print_id": "c98e4f39-59fc-4ec1-bfc5-c34f28a25f3c",
+          "active_identity_count": 1,
+          "printed_identity_modifier": null
+        }
+      ],
+      "current_tcgplayer_mappings": [],
+      "route": "ready_existing_parent_modifier_repair",
+      "target_parent_id": "c98e4f39-59fc-4ec1-bfc5-c34f28a25f3c",
+      "target_printing_id": "04cf4fa5-ea7a-434c-a558-7b53e95a4a93",
+      "blockers": []
+    },
+    {
+      "source_product_id": "176633",
+      "source_product_name": "Professor Juniper - 101/114 (2013)",
+      "source_group_id": "2332",
+      "set_key": "bw1",
+      "card_number": "101",
+      "card_name": "Professor Juniper",
+      "target_variant_key": "professor_program_stamp",
+      "target_finish_key": "reverse",
+      "selected_base_parent_id": "98f0a49e-37ac-4e45-9813-f1ce4ff2dc45",
+      "proposed_parent_id": "b0ad4f99-3dd3-48ce-ad20-a4cda3cdd888",
+      "proposed_child_id": "dc316091-4006-4830-8c7d-d55822c241bd",
+      "professor_program_parents": [
+        {
+          "children": [
+            {
+              "finish_key": "reverse",
+              "printing_id": "8b0cf097-ef28-42aa-a3f2-f8665f863726",
+              "is_provisional": false
+            }
+          ],
+          "variant_key": "professor_program_stamp",
+          "card_print_id": "12cad852-d079-44cc-9438-e806aede97ff",
+          "active_identity_count": 1,
+          "printed_identity_modifier": null
+        }
+      ],
+      "current_tcgplayer_mappings": [],
+      "route": "ready_existing_parent_modifier_repair",
+      "target_parent_id": "12cad852-d079-44cc-9438-e806aede97ff",
+      "target_printing_id": "8b0cf097-ef28-42aa-a3f2-f8665f863726",
+      "blockers": []
+    },
+    {
+      "source_product_id": "176638",
+      "source_product_name": "Professor Sycamore (2015)",
+      "source_group_id": "2332",
+      "set_key": "xy1",
+      "card_number": "122",
+      "card_name": "Professor Sycamore",
+      "target_variant_key": "professor_program_stamp",
+      "target_finish_key": "reverse",
+      "selected_base_parent_id": "4cec1b2e-358c-4e24-a295-efb955acc303",
+      "proposed_parent_id": "1882ba56-6fbd-4568-bc33-31fa0280aad2",
+      "proposed_child_id": "8caf6a7d-948f-4a79-b437-d301588b7931",
+      "professor_program_parents": [
+        {
+          "children": [
+            {
+              "finish_key": "holo",
+              "printing_id": "3ab2cee1-0b4d-4cad-bb7c-21eb7025398f",
+              "is_provisional": false
+            }
+          ],
+          "variant_key": "professor_program_stamp",
+          "card_print_id": "69183c91-e669-4697-b5ab-f3cef1a11a5c",
+          "active_identity_count": 1,
+          "printed_identity_modifier": null
+        }
+      ],
+      "current_tcgplayer_mappings": [],
+      "route": "blocked_existing_parent_finish_conflict",
+      "target_parent_id": "69183c91-e669-4697-b5ab-f3cef1a11a5c",
+      "target_printing_id": null,
+      "blockers": [
+        "source_finish_child_missing_on_professor_program_parent"
+      ]
+    },
+    {
+      "source_product_id": "213516",
+      "source_product_name": "Judge (2019)",
+      "source_group_id": "2332",
+      "set_key": "sm6",
+      "card_number": "108",
+      "card_name": "Judge",
+      "target_variant_key": "professor_program_stamp",
+      "target_finish_key": "reverse",
+      "selected_base_parent_id": "a51c9d34-02ab-48d5-932f-ca2e78b81bd0",
+      "proposed_parent_id": "e6b5e51b-e231-4bc3-8053-763e77e17a57",
+      "proposed_child_id": "821db6c8-86a7-4fd1-b3ce-b64cd4a4e581",
+      "professor_program_parents": [
+        {
+          "children": [
+            {
+              "finish_key": "reverse",
+              "printing_id": "bfe26a71-5c95-4e97-8b12-ef6afa0b2dc6",
+              "is_provisional": false
+            }
+          ],
+          "variant_key": "professor_program_stamp",
+          "card_print_id": "ea08d28d-8267-4db9-859c-64ffd048792f",
+          "active_identity_count": 1,
+          "printed_identity_modifier": "professor_program_stamp"
+        }
+      ],
+      "current_tcgplayer_mappings": [],
+      "route": "ready_tcgplayer_mapping",
+      "target_parent_id": "ea08d28d-8267-4db9-859c-64ffd048792f",
+      "target_printing_id": "bfe26a71-5c95-4e97-8b12-ef6afa0b2dc6",
+      "blockers": []
+    },
+    {
+      "source_product_id": "499366",
+      "source_product_name": "Gym Trainer (2022)",
+      "source_group_id": "2332",
+      "set_key": "swsh4.5",
+      "card_number": "59",
+      "card_name": "Gym Trainer",
+      "target_variant_key": "professor_program_stamp",
+      "target_finish_key": "reverse",
+      "selected_base_parent_id": "d04a6b76-26f1-4a33-99ae-6920f7a501da",
+      "proposed_parent_id": "8f22c4ef-320d-45cd-8938-4aa84aca740e",
+      "proposed_child_id": "2f02ea00-6f1e-480d-8766-edb2a468d72f",
+      "professor_program_parents": [],
+      "current_tcgplayer_mappings": [],
+      "route": "ready_parent_identity_child_insert",
+      "target_parent_id": "8f22c4ef-320d-45cd-8938-4aa84aca740e",
+      "target_printing_id": "2f02ea00-6f1e-480d-8766-edb2a468d72f",
+      "blockers": []
+    }
+  ],
+  "next_boundary": {
+    "dry_run_insert_rows": 3,
+    "dry_run_modifier_repair_rows": 3,
+    "mapping_only_rows": 1,
+    "held_rows": 1
+  }
+}
