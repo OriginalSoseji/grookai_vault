@@ -1,6 +1,6 @@
 # English Verified Master Set Index V1
 
-Generated: 2026-10-30T10:23:50.845Z
+Generated: 2026-10-31T09:54:51.157Z
 
 Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were performed.
 
@@ -13,7 +13,7 @@ Transport: Default Node TLS verification.
 | metric | count |
 | --- | --- |
 | sets | 207 |
-| evidence rows | 243063 |
+| evidence rows | 243254 |
 | conflicts | 0 |
 | manual review | 415 |
 
@@ -146,7 +146,7 @@ Transport: Default Node TLS verification.
 | pokemasters_ascended_heroes | 7 |
 | pokemoncard_io_price_breakdown | 18 |
 | pokemonflashfire_league_reverse_exact | 14 |
-| pokemontcg_api | 52042 |
+| pokemontcg_api | 52041 |
 | pokemonwizard_variant_exact | 1 |
 | pokescope_ascended_heroes_mimikyu_097 | 2 |
 | pokescope_ascended_heroes_tarountula_018 | 1 |
@@ -195,7 +195,7 @@ Transport: Default Node TLS verification.
 | tcgdex | 49421 |
 | tcgnav_exact_finish | 1 |
 | tcgplayer | 4 |
-| tcgplayer_price_guide | 23847 |
+| tcgplayer_price_guide | 24039 |
 | tcgplayer_pro_catalog_page | 1 |
 | tcgplayer_product_675813 | 1 |
 | tcgplayer_product_675814 | 1 |
@@ -793,16 +793,16 @@ Transport: Default Node TLS verification.
 | human_fixtures | collected | 1 |
 | pkmncards | collected | 154 |
 | pkmncards | error | 53 |
-| pokemontcg_api | cached_snapshot | 15 |
-| pokemontcg_api | collected | 144 |
+| pokemontcg_api | cached_snapshot | 9 |
+| pokemontcg_api | collected | 150 |
 | pokemontcg_api | collected_plus_cached_snapshot | 17 |
 | pokemontcg_api | unavailable | 31 |
 | tcgdex | collected | 201 |
 | tcgdex | unavailable | 6 |
-| tcgplayer_price_guide | cached_snapshot | 13 |
-| tcgplayer_price_guide | collected | 122 |
-| tcgplayer_price_guide | collected_plus_cached_snapshot | 16 |
-| tcgplayer_price_guide | unavailable | 56 |
+| tcgplayer_price_guide | cached_snapshot | 7 |
+| tcgplayer_price_guide | collected | 129 |
+| tcgplayer_price_guide | collected_plus_cached_snapshot | 17 |
+| tcgplayer_price_guide | unavailable | 54 |
 | thepricedex_price_list | collected | 178 |
 | thepricedex_price_list | error | 28 |
 | thepricedex_price_list | unavailable | 1 |
