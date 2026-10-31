@@ -4313,6 +4313,31 @@ same-name and same-number card. Catalog admission and later price publication
 must still pass their independent source, Master Index, mapping, release, and
 readback gates.
 
+## TCGPlayer Professor Program pricing triage — October 30, 2026
+
+TCGPlayer group `2332`, `Professor Program Promos`, is a multi-set special-print
+group. Never assign group-wide set authority and never map one of its products
+to the ordinary card parent merely because name, number, and source finish
+match. Read
+`docs/audits/TCGPLAYER_PROFESSOR_PROGRAM_IDENTITY_REVIEW_20261030_V1.md` and the
+bound JSON report before working this group.
+
+Run `scripts/audits/tcgplayer_professor_program_identity_review_v1.mjs` against
+the current exact planner's `blocked.jsonl`. A mapping authority candidate must
+have a unique name/number/printed-total identity plus a current distinct parent
+whose `variant_key` and `printed_identity_modifier` both equal
+`professor_program_stamp`, with one active verified child matching the source
+finish. The group label is routing evidence, and the TCGPlayer price subtype may
+select an already verified child; neither may create or restore catalog truth.
+
+Keep event-placement labels such as `Top 8` and `Finalist` identity-bearing.
+Keep year-numbered energy promos held until an exact underlying set/product
+identity source exists. Route unique underlying cards with no stamped parent to
+catalog identity completion before exact mapping or pricing. The October 30
+baseline contains 48 holds and zero mapping-ready rows; eight are in that
+catalog-identity-first lane. Any later nonzero candidate count requires a fresh
+current catalog reconciliation artifact, not the older Grookai audit alone.
+
 ## Continuous catalog promotion — October 29, 2026
 
 Universal Catalog Discovery remains a read-only evidence producer. Canonical
