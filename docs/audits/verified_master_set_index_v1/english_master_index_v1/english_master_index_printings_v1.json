@@ -1,6 +1,6 @@
 {
   "version": "ENGLISH_MASTER_INDEX_PRINTINGS_V1",
-  "generated_at": "2026-11-04T11:27:56.846Z",
+  "generated_at": "2026-11-05T11:25:27.215Z",
   "audit_only": true,
   "db_writes": false,
   "evidence_storage": "compact_evidence_urls_only",
@@ -311519,23 +311519,20 @@
         "Rare",
         "Rare Secret"
       ],
-      "source_count": 4,
+      "source_count": 3,
       "sources": [
         "pokemontcg_api",
         "tcgdex",
-        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "api.tcgdex.net",
-        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "structured_api",
-        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -311552,23 +311549,16 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/dp2-124"
         },
         {
-          "source_key": "tcgplayer_price_guide",
-          "source_authority": "tcgplayer.com",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://prices.pokemontcg.io/tcgplayer/dp2-124"
-        },
-        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/dp2/mysterious-treasures/price-list"
         }
       ],
-      "evidence_count": 4,
+      "evidence_count": 3,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/dp2-124",
         "https://api.tcgdex.net/v2/en/cards/dp2-124",
-        "https://prices.pokemontcg.io/tcgplayer/dp2-124",
         "https://www.thepricedex.com/set/dp2/mysterious-treasures/price-list"
       ]
     },
@@ -376380,35 +376370,23 @@
       "rarity_values": [
         "Common"
       ],
-      "source_count": 5,
+      "source_count": 3,
       "sources": [
-        "pokemontcg_api",
         "reverseholo_set_checklist",
         "tcgdex",
-        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
-        "api.pokemontcg.io",
         "reverseholo.app",
         "api.tcgdex.net",
-        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
-        "structured_api",
         "collector_reference",
         "structured_api",
-        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
-        {
-          "source_key": "pokemontcg_api",
-          "source_authority": "api.pokemontcg.io",
-          "source_kind": "structured_api",
-          "source_url": "https://api.pokemontcg.io/v2/cards/dp6-106"
-        },
         {
           "source_key": "reverseholo_set_checklist",
           "source_authority": "reverseholo.app",
@@ -376422,24 +376400,16 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/dp6-106"
         },
         {
-          "source_key": "tcgplayer_price_guide",
-          "source_authority": "tcgplayer.com",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://prices.pokemontcg.io/tcgplayer/dp6-106"
-        },
-        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/dp6/legends-awakened/price-list"
         }
       ],
-      "evidence_count": 5,
+      "evidence_count": 3,
       "evidence_urls": [
-        "https://api.pokemontcg.io/v2/cards/dp6-106",
         "https://reverseholo.app/sets/dp6",
         "https://api.tcgdex.net/v2/en/cards/dp6-106",
-        "https://prices.pokemontcg.io/tcgplayer/dp6-106",
         "https://www.thepricedex.com/set/dp6/legends-awakened/price-list"
       ]
     },
@@ -377135,35 +377105,23 @@
       "rarity_values": [
         "Common"
       ],
-      "source_count": 5,
+      "source_count": 3,
       "sources": [
-        "pokemontcg_api",
         "reverseholo_set_checklist",
         "tcgdex",
-        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
-        "api.pokemontcg.io",
         "reverseholo.app",
         "api.tcgdex.net",
-        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
-        "structured_api",
         "collector_reference",
         "structured_api",
-        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
-        {
-          "source_key": "pokemontcg_api",
-          "source_authority": "api.pokemontcg.io",
-          "source_kind": "structured_api",
-          "source_url": "https://api.pokemontcg.io/v2/cards/dp6-111"
-        },
         {
           "source_key": "reverseholo_set_checklist",
           "source_authority": "reverseholo.app",
@@ -377177,24 +377135,16 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/dp6-111"
         },
         {
-          "source_key": "tcgplayer_price_guide",
-          "source_authority": "tcgplayer.com",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://prices.pokemontcg.io/tcgplayer/dp6-111"
-        },
-        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/dp6/legends-awakened/price-list"
         }
       ],
-      "evidence_count": 5,
+      "evidence_count": 3,
       "evidence_urls": [
-        "https://api.pokemontcg.io/v2/cards/dp6-111",
         "https://reverseholo.app/sets/dp6",
         "https://api.tcgdex.net/v2/en/cards/dp6-111",
-        "https://prices.pokemontcg.io/tcgplayer/dp6-111",
         "https://www.thepricedex.com/set/dp6/legends-awakened/price-list"
       ]
     },
@@ -577603,23 +577553,20 @@
         "Rare",
         "Rare Holo EX"
       ],
-      "source_count": 4,
+      "source_count": 3,
       "sources": [
         "pokemontcg_api",
         "tcgdex",
-        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "api.tcgdex.net",
-        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "structured_api",
-        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -577636,23 +577583,16 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/ex16-93"
         },
         {
-          "source_key": "tcgplayer_price_guide",
-          "source_authority": "tcgplayer.com",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://prices.pokemontcg.io/tcgplayer/ex16-93"
-        },
-        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/ex16/power-keepers/price-list"
         }
       ],
-      "evidence_count": 4,
+      "evidence_count": 3,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/ex16-93",
         "https://api.tcgdex.net/v2/en/cards/ex16-93",
-        "https://prices.pokemontcg.io/tcgplayer/ex16-93",
         "https://www.thepricedex.com/set/ex16/power-keepers/price-list"
       ]
     },
@@ -577669,23 +577609,20 @@
         "Rare",
         "Rare Holo EX"
       ],
-      "source_count": 4,
+      "source_count": 3,
       "sources": [
         "pokemontcg_api",
         "tcgdex",
-        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "api.tcgdex.net",
-        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "structured_api",
-        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -577702,23 +577639,16 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/ex16-94"
         },
         {
-          "source_key": "tcgplayer_price_guide",
-          "source_authority": "tcgplayer.com",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://prices.pokemontcg.io/tcgplayer/ex16-94"
-        },
-        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/ex16/power-keepers/price-list"
         }
       ],
-      "evidence_count": 4,
+      "evidence_count": 3,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/ex16-94",
         "https://api.tcgdex.net/v2/en/cards/ex16-94",
-        "https://prices.pokemontcg.io/tcgplayer/ex16-94",
         "https://www.thepricedex.com/set/ex16/power-keepers/price-list"
       ]
     },
@@ -577735,23 +577665,20 @@
         "Rare",
         "Rare Holo EX"
       ],
-      "source_count": 4,
+      "source_count": 3,
       "sources": [
         "pokemontcg_api",
         "tcgdex",
-        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "api.tcgdex.net",
-        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "structured_api",
-        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -577768,23 +577695,16 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/ex16-95"
         },
         {
-          "source_key": "tcgplayer_price_guide",
-          "source_authority": "tcgplayer.com",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://prices.pokemontcg.io/tcgplayer/ex16-95"
-        },
-        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/ex16/power-keepers/price-list"
         }
       ],
-      "evidence_count": 4,
+      "evidence_count": 3,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/ex16-95",
         "https://api.tcgdex.net/v2/en/cards/ex16-95",
-        "https://prices.pokemontcg.io/tcgplayer/ex16-95",
         "https://www.thepricedex.com/set/ex16/power-keepers/price-list"
       ]
     },
@@ -577801,23 +577721,20 @@
         "Rare",
         "Rare Holo EX"
       ],
-      "source_count": 4,
+      "source_count": 3,
       "sources": [
         "pokemontcg_api",
         "tcgdex",
-        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "api.tcgdex.net",
-        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "structured_api",
-        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -577834,23 +577751,16 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/ex16-96"
         },
         {
-          "source_key": "tcgplayer_price_guide",
-          "source_authority": "tcgplayer.com",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://prices.pokemontcg.io/tcgplayer/ex16-96"
-        },
-        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/ex16/power-keepers/price-list"
         }
       ],
-      "evidence_count": 4,
+      "evidence_count": 3,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/ex16-96",
         "https://api.tcgdex.net/v2/en/cards/ex16-96",
-        "https://prices.pokemontcg.io/tcgplayer/ex16-96",
         "https://www.thepricedex.com/set/ex16/power-keepers/price-list"
       ]
     },
@@ -577867,23 +577777,20 @@
         "Rare",
         "Rare Holo EX"
       ],
-      "source_count": 4,
+      "source_count": 3,
       "sources": [
         "pokemontcg_api",
         "tcgdex",
-        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "api.tcgdex.net",
-        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "structured_api",
-        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -577900,23 +577807,16 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/ex16-97"
         },
         {
-          "source_key": "tcgplayer_price_guide",
-          "source_authority": "tcgplayer.com",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://prices.pokemontcg.io/tcgplayer/ex16-97"
-        },
-        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/ex16/power-keepers/price-list"
         }
       ],
-      "evidence_count": 4,
+      "evidence_count": 3,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/ex16-97",
         "https://api.tcgdex.net/v2/en/cards/ex16-97",
-        "https://prices.pokemontcg.io/tcgplayer/ex16-97",
         "https://www.thepricedex.com/set/ex16/power-keepers/price-list"
       ]
     },
@@ -577933,23 +577833,20 @@
         "Rare",
         "Rare Holo EX"
       ],
-      "source_count": 4,
+      "source_count": 3,
       "sources": [
         "pokemontcg_api",
         "tcgdex",
-        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "api.tcgdex.net",
-        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "structured_api",
-        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -577966,23 +577863,16 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/ex16-98"
         },
         {
-          "source_key": "tcgplayer_price_guide",
-          "source_authority": "tcgplayer.com",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://prices.pokemontcg.io/tcgplayer/ex16-98"
-        },
-        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/ex16/power-keepers/price-list"
         }
       ],
-      "evidence_count": 4,
+      "evidence_count": 3,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/ex16-98",
         "https://api.tcgdex.net/v2/en/cards/ex16-98",
-        "https://prices.pokemontcg.io/tcgplayer/ex16-98",
         "https://www.thepricedex.com/set/ex16/power-keepers/price-list"
       ]
     },
@@ -577999,23 +577889,20 @@
         "Rare",
         "Rare Holo EX"
       ],
-      "source_count": 4,
+      "source_count": 3,
       "sources": [
         "pokemontcg_api",
         "tcgdex",
-        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "api.tcgdex.net",
-        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "structured_api",
-        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -578032,23 +577919,16 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/ex16-99"
         },
         {
-          "source_key": "tcgplayer_price_guide",
-          "source_authority": "tcgplayer.com",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://prices.pokemontcg.io/tcgplayer/ex16-99"
-        },
-        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/ex16/power-keepers/price-list"
         }
       ],
-      "evidence_count": 4,
+      "evidence_count": 3,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/ex16-99",
         "https://api.tcgdex.net/v2/en/cards/ex16-99",
-        "https://prices.pokemontcg.io/tcgplayer/ex16-99",
         "https://www.thepricedex.com/set/ex16/power-keepers/price-list"
       ]
     },
@@ -578065,23 +577945,20 @@
         "Rare",
         "Rare Holo Star"
       ],
-      "source_count": 4,
+      "source_count": 3,
       "sources": [
         "pokemontcg_api",
         "tcgdex",
-        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "api.tcgdex.net",
-        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "structured_api",
-        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -578098,23 +577975,16 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/ex16-100"
         },
         {
-          "source_key": "tcgplayer_price_guide",
-          "source_authority": "tcgplayer.com",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://prices.pokemontcg.io/tcgplayer/ex16-100"
-        },
-        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/ex16/power-keepers/price-list"
         }
       ],
-      "evidence_count": 4,
+      "evidence_count": 3,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/ex16-100",
         "https://api.tcgdex.net/v2/en/cards/ex16-100",
-        "https://prices.pokemontcg.io/tcgplayer/ex16-100",
         "https://www.thepricedex.com/set/ex16/power-keepers/price-list"
       ]
     },
@@ -578137,21 +578007,18 @@
         "pokemontcg_api",
         "tcgcsv_tcgplayer_catalog",
         "tcgdex",
-        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "tcgplayer.com",
         "api.tcgdex.net",
-        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "marketplace_checklist",
         "structured_api",
-        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -578174,24 +578041,17 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/ex16-101"
         },
         {
-          "source_key": "tcgplayer_price_guide",
-          "source_authority": "tcgplayer.com",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://prices.pokemontcg.io/tcgplayer/ex16-101"
-        },
-        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/ex16/power-keepers/price-list"
         }
       ],
-      "evidence_count": 5,
+      "evidence_count": 4,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/ex16-101",
         "https://www.tcgplayer.com/product/86351/pokemon-power-keepers-jolteon-star",
         "https://api.tcgdex.net/v2/en/cards/ex16-101",
-        "https://prices.pokemontcg.io/tcgplayer/ex16-101",
         "https://www.thepricedex.com/set/ex16/power-keepers/price-list"
       ]
     },
@@ -578208,23 +578068,20 @@
         "Rare",
         "Rare Holo Star"
       ],
-      "source_count": 4,
+      "source_count": 3,
       "sources": [
         "pokemontcg_api",
         "tcgdex",
-        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "api.tcgdex.net",
-        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "structured_api",
-        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -578241,23 +578098,16 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/ex16-102"
         },
         {
-          "source_key": "tcgplayer_price_guide",
-          "source_authority": "tcgplayer.com",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://prices.pokemontcg.io/tcgplayer/ex16-102"
-        },
-        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/ex16/power-keepers/price-list"
         }
       ],
-      "evidence_count": 4,
+      "evidence_count": 3,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/ex16-102",
         "https://api.tcgdex.net/v2/en/cards/ex16-102",
-        "https://prices.pokemontcg.io/tcgplayer/ex16-102",
         "https://www.thepricedex.com/set/ex16/power-keepers/price-list"
       ]
     },
@@ -578274,23 +578124,20 @@
         "Rare",
         "Rare Holo"
       ],
-      "source_count": 4,
+      "source_count": 3,
       "sources": [
         "pokemontcg_api",
         "tcgdex",
-        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "api.tcgdex.net",
-        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "structured_api",
-        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -578307,23 +578154,16 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/ex16-103"
         },
         {
-          "source_key": "tcgplayer_price_guide",
-          "source_authority": "tcgplayer.com",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://prices.pokemontcg.io/tcgplayer/ex16-103"
-        },
-        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/ex16/power-keepers/price-list"
         }
       ],
-      "evidence_count": 4,
+      "evidence_count": 3,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/ex16-103",
         "https://api.tcgdex.net/v2/en/cards/ex16-103",
-        "https://prices.pokemontcg.io/tcgplayer/ex16-103",
         "https://www.thepricedex.com/set/ex16/power-keepers/price-list"
       ]
     },
@@ -578340,23 +578180,20 @@
         "Rare",
         "Rare Holo"
       ],
-      "source_count": 4,
+      "source_count": 3,
       "sources": [
         "pokemontcg_api",
         "tcgdex",
-        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "api.tcgdex.net",
-        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "structured_api",
-        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -578373,23 +578210,16 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/ex16-104"
         },
         {
-          "source_key": "tcgplayer_price_guide",
-          "source_authority": "tcgplayer.com",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://prices.pokemontcg.io/tcgplayer/ex16-104"
-        },
-        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/ex16/power-keepers/price-list"
         }
       ],
-      "evidence_count": 4,
+      "evidence_count": 3,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/ex16-104",
         "https://api.tcgdex.net/v2/en/cards/ex16-104",
-        "https://prices.pokemontcg.io/tcgplayer/ex16-104",
         "https://www.thepricedex.com/set/ex16/power-keepers/price-list"
       ]
     },
@@ -578406,23 +578236,20 @@
         "Rare",
         "Rare Holo"
       ],
-      "source_count": 4,
+      "source_count": 3,
       "sources": [
         "pokemontcg_api",
         "tcgdex",
-        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "api.tcgdex.net",
-        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "structured_api",
-        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -578439,23 +578266,16 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/ex16-105"
         },
         {
-          "source_key": "tcgplayer_price_guide",
-          "source_authority": "tcgplayer.com",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://prices.pokemontcg.io/tcgplayer/ex16-105"
-        },
-        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/ex16/power-keepers/price-list"
         }
       ],
-      "evidence_count": 4,
+      "evidence_count": 3,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/ex16-105",
         "https://api.tcgdex.net/v2/en/cards/ex16-105",
-        "https://prices.pokemontcg.io/tcgplayer/ex16-105",
         "https://www.thepricedex.com/set/ex16/power-keepers/price-list"
       ]
     },
@@ -578472,23 +578292,20 @@
         "Rare",
         "Rare Holo"
       ],
-      "source_count": 4,
+      "source_count": 3,
       "sources": [
         "pokemontcg_api",
         "tcgdex",
-        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "api.tcgdex.net",
-        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "structured_api",
-        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -578505,23 +578322,16 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/ex16-106"
         },
         {
-          "source_key": "tcgplayer_price_guide",
-          "source_authority": "tcgplayer.com",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://prices.pokemontcg.io/tcgplayer/ex16-106"
-        },
-        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/ex16/power-keepers/price-list"
         }
       ],
-      "evidence_count": 4,
+      "evidence_count": 3,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/ex16-106",
         "https://api.tcgdex.net/v2/en/cards/ex16-106",
-        "https://prices.pokemontcg.io/tcgplayer/ex16-106",
         "https://www.thepricedex.com/set/ex16/power-keepers/price-list"
       ]
     },
@@ -578538,23 +578348,20 @@
         "Rare",
         "Rare Holo"
       ],
-      "source_count": 4,
+      "source_count": 3,
       "sources": [
         "pokemontcg_api",
         "tcgdex",
-        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "api.tcgdex.net",
-        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "structured_api",
-        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -578571,23 +578378,16 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/ex16-107"
         },
         {
-          "source_key": "tcgplayer_price_guide",
-          "source_authority": "tcgplayer.com",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://prices.pokemontcg.io/tcgplayer/ex16-107"
-        },
-        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/ex16/power-keepers/price-list"
         }
       ],
-      "evidence_count": 4,
+      "evidence_count": 3,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/ex16-107",
         "https://api.tcgdex.net/v2/en/cards/ex16-107",
-        "https://prices.pokemontcg.io/tcgplayer/ex16-107",
         "https://www.thepricedex.com/set/ex16/power-keepers/price-list"
       ]
     },
@@ -578604,23 +578404,20 @@
         "Rare",
         "Rare Holo"
       ],
-      "source_count": 4,
+      "source_count": 3,
       "sources": [
         "pokemontcg_api",
         "tcgdex",
-        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "api.tcgdex.net",
-        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "structured_api",
-        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -578637,23 +578434,16 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/ex16-108"
         },
         {
-          "source_key": "tcgplayer_price_guide",
-          "source_authority": "tcgplayer.com",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://prices.pokemontcg.io/tcgplayer/ex16-108"
-        },
-        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/ex16/power-keepers/price-list"
         }
       ],
-      "evidence_count": 4,
+      "evidence_count": 3,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/ex16-108",
         "https://api.tcgdex.net/v2/en/cards/ex16-108",
-        "https://prices.pokemontcg.io/tcgplayer/ex16-108",
         "https://www.thepricedex.com/set/ex16/power-keepers/price-list"
       ]
     },
@@ -744441,23 +744231,20 @@
       "rarity_values": [
         "Uncommon"
       ],
-      "source_count": 4,
+      "source_count": 3,
       "sources": [
         "pokemontcg_api",
         "tcgdex",
-        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "api.tcgdex.net",
-        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "structured_api",
-        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -744474,23 +744261,16 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/hgss1-96"
         },
         {
-          "source_key": "tcgplayer_price_guide",
-          "source_authority": "tcgplayer.com",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://prices.pokemontcg.io/tcgplayer/hgss1-96"
-        },
-        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/hgss1/heartgold-and-soulsilver/price-list"
         }
       ],
-      "evidence_count": 4,
+      "evidence_count": 3,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/hgss1-96",
         "https://api.tcgdex.net/v2/en/cards/hgss1-96",
-        "https://prices.pokemontcg.io/tcgplayer/hgss1-96",
         "https://www.thepricedex.com/set/hgss1/heartgold-and-soulsilver/price-list"
       ]
     },
@@ -744506,23 +744286,20 @@
       "rarity_values": [
         "Uncommon"
       ],
-      "source_count": 4,
+      "source_count": 3,
       "sources": [
         "pokemontcg_api",
         "tcgdex",
-        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "api.tcgdex.net",
-        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "structured_api",
-        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -744539,23 +744316,16 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/hgss1-96"
         },
         {
-          "source_key": "tcgplayer_price_guide",
-          "source_authority": "tcgplayer.com",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://prices.pokemontcg.io/tcgplayer/hgss1-96"
-        },
-        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/hgss1/heartgold-and-soulsilver/price-list"
         }
       ],
-      "evidence_count": 4,
+      "evidence_count": 3,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/hgss1-96",
         "https://api.tcgdex.net/v2/en/cards/hgss1-96",
-        "https://prices.pokemontcg.io/tcgplayer/hgss1-96",
         "https://www.thepricedex.com/set/hgss1/heartgold-and-soulsilver/price-list"
       ]
     },
@@ -747549,26 +747319,23 @@
         "Rare Secret",
         "Ultra Rare"
       ],
-      "source_count": 5,
+      "source_count": 4,
       "sources": [
         "pokemontcg_api",
         "reverseholo_set_checklist",
         "tcgdex",
-        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "reverseholo.app",
         "api.tcgdex.net",
-        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "collector_reference",
         "structured_api",
-        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -747591,24 +747358,17 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/hgss1-ONE"
         },
         {
-          "source_key": "tcgplayer_price_guide",
-          "source_authority": "tcgplayer.com",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://prices.pokemontcg.io/tcgplayer/hgss1-ONE"
-        },
-        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/hgss1/heartgold-and-soulsilver/price-list"
         }
       ],
-      "evidence_count": 5,
+      "evidence_count": 4,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/hgss1-ONE",
         "https://reverseholo.app/sets/hgss1",
         "https://api.tcgdex.net/v2/en/cards/hgss1-ONE",
-        "https://prices.pokemontcg.io/tcgplayer/hgss1-ONE",
         "https://www.thepricedex.com/set/hgss1/heartgold-and-soulsilver/price-list"
       ]
     },
@@ -1060684,26 +1060444,23 @@
       "rarity_values": [
         "Uncommon"
       ],
-      "source_count": 5,
+      "source_count": 4,
       "sources": [
         "pokemontcg_api",
         "reverseholo_set_checklist",
         "tcgdex",
-        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "reverseholo.app",
         "api.tcgdex.net",
-        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "collector_reference",
         "structured_api",
-        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -1060726,24 +1060483,17 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/sm11-120"
         },
         {
-          "source_key": "tcgplayer_price_guide",
-          "source_authority": "tcgplayer.com",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://prices.pokemontcg.io/tcgplayer/sm11-120"
-        },
-        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/sm11/unified-minds/price-list"
         }
       ],
-      "evidence_count": 5,
+      "evidence_count": 4,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/sm11-120",
         "https://reverseholo.app/sets/sm11",
         "https://api.tcgdex.net/v2/en/cards/sm11-120",
-        "https://prices.pokemontcg.io/tcgplayer/sm11-120",
         "https://www.thepricedex.com/set/sm11/unified-minds/price-list"
       ]
     },
@@ -1060829,21 +1060579,18 @@
         "pokemontcg_api",
         "tcgcsv_tcgplayer_catalog",
         "tcgdex",
-        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "tcgplayer.com",
         "api.tcgdex.net",
-        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "marketplace_checklist",
         "structured_api",
-        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -1060866,24 +1060613,17 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/sm11-121"
         },
         {
-          "source_key": "tcgplayer_price_guide",
-          "source_authority": "tcgplayer.com",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://prices.pokemontcg.io/tcgplayer/sm11-121"
-        },
-        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/sm11/unified-minds/price-list"
         }
       ],
-      "evidence_count": 5,
+      "evidence_count": 4,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/sm11-121",
         "https://www.tcgplayer.com/product/195077/pokemon-sm-unified-minds-archeops",
         "https://api.tcgdex.net/v2/en/cards/sm11-121",
-        "https://prices.pokemontcg.io/tcgplayer/sm11-121",
         "https://www.thepricedex.com/set/sm11/unified-minds/price-list"
       ]
     },
@@ -2127647,23 +2127387,26 @@
         "Rare Rainbow",
         "Secret Rare"
       ],
-      "source_count": 4,
+      "source_count": 5,
       "sources": [
         "pokemontcg_api",
         "reverseholo_set_checklist",
         "tcgdex",
+        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "reverseholo.app",
         "api.tcgdex.net",
+        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "collector_reference",
         "structured_api",
+        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -2127686,17 +2127429,24 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/swsh8-272"
         },
         {
+          "source_key": "tcgplayer_price_guide",
+          "source_authority": "tcgplayer.com",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://prices.pokemontcg.io/tcgplayer/swsh8-272"
+        },
+        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
         }
       ],
-      "evidence_count": 4,
+      "evidence_count": 5,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/swsh8-272",
         "https://reverseholo.app/sets/swsh8",
         "https://api.tcgdex.net/v2/en/cards/swsh8-272",
+        "https://prices.pokemontcg.io/tcgplayer/swsh8-272",
         "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
       ]
     },
@@ -2127713,23 +2127463,26 @@
         "Rare Rainbow",
         "Secret Rare"
       ],
-      "source_count": 4,
+      "source_count": 5,
       "sources": [
         "pokemontcg_api",
         "reverseholo_set_checklist",
         "tcgdex",
+        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "reverseholo.app",
         "api.tcgdex.net",
+        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "collector_reference",
         "structured_api",
+        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -2127752,17 +2127505,24 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/swsh8-273"
         },
         {
+          "source_key": "tcgplayer_price_guide",
+          "source_authority": "tcgplayer.com",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://prices.pokemontcg.io/tcgplayer/swsh8-273"
+        },
+        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
         }
       ],
-      "evidence_count": 4,
+      "evidence_count": 5,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/swsh8-273",
         "https://reverseholo.app/sets/swsh8",
         "https://api.tcgdex.net/v2/en/cards/swsh8-273",
+        "https://prices.pokemontcg.io/tcgplayer/swsh8-273",
         "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
       ]
     },
@@ -2127779,23 +2127539,26 @@
         "Rare Rainbow",
         "Secret Rare"
       ],
-      "source_count": 4,
+      "source_count": 5,
       "sources": [
         "pokemontcg_api",
         "reverseholo_set_checklist",
         "tcgdex",
+        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "reverseholo.app",
         "api.tcgdex.net",
+        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "collector_reference",
         "structured_api",
+        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -2127818,17 +2127581,24 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/swsh8-274"
         },
         {
+          "source_key": "tcgplayer_price_guide",
+          "source_authority": "tcgplayer.com",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://prices.pokemontcg.io/tcgplayer/swsh8-274"
+        },
+        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
         }
       ],
-      "evidence_count": 4,
+      "evidence_count": 5,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/swsh8-274",
         "https://reverseholo.app/sets/swsh8",
         "https://api.tcgdex.net/v2/en/cards/swsh8-274",
+        "https://prices.pokemontcg.io/tcgplayer/swsh8-274",
         "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
       ]
     },
@@ -2127845,20 +2127615,23 @@
         "Rare Rainbow",
         "Secret Rare"
       ],
-      "source_count": 3,
+      "source_count": 4,
       "sources": [
         "pokemontcg_api",
         "tcgdex",
+        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "api.tcgdex.net",
+        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "structured_api",
+        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -2127875,16 +2127648,23 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/swsh8-275"
         },
         {
+          "source_key": "tcgplayer_price_guide",
+          "source_authority": "tcgplayer.com",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://prices.pokemontcg.io/tcgplayer/swsh8-275"
+        },
+        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
         }
       ],
-      "evidence_count": 3,
+      "evidence_count": 4,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/swsh8-275",
         "https://api.tcgdex.net/v2/en/cards/swsh8-275",
+        "https://prices.pokemontcg.io/tcgplayer/swsh8-275",
         "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
       ]
     },
@@ -2127901,23 +2127681,26 @@
         "Rare Rainbow",
         "Secret Rare"
       ],
-      "source_count": 4,
+      "source_count": 5,
       "sources": [
         "pokemontcg_api",
         "reverseholo_set_checklist",
         "tcgdex",
+        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "reverseholo.app",
         "api.tcgdex.net",
+        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "collector_reference",
         "structured_api",
+        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -2127940,17 +2127723,24 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/swsh8-276"
         },
         {
+          "source_key": "tcgplayer_price_guide",
+          "source_authority": "tcgplayer.com",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://prices.pokemontcg.io/tcgplayer/swsh8-276"
+        },
+        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
         }
       ],
-      "evidence_count": 4,
+      "evidence_count": 5,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/swsh8-276",
         "https://reverseholo.app/sets/swsh8",
         "https://api.tcgdex.net/v2/en/cards/swsh8-276",
+        "https://prices.pokemontcg.io/tcgplayer/swsh8-276",
         "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
       ]
     },
@@ -2127967,23 +2127757,26 @@
         "Rare Rainbow",
         "Secret Rare"
       ],
-      "source_count": 4,
+      "source_count": 5,
       "sources": [
         "pokemontcg_api",
         "reverseholo_set_checklist",
         "tcgdex",
+        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "reverseholo.app",
         "api.tcgdex.net",
+        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "collector_reference",
         "structured_api",
+        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -2128006,17 +2127799,24 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/swsh8-277"
         },
         {
+          "source_key": "tcgplayer_price_guide",
+          "source_authority": "tcgplayer.com",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://prices.pokemontcg.io/tcgplayer/swsh8-277"
+        },
+        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
         }
       ],
-      "evidence_count": 4,
+      "evidence_count": 5,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/swsh8-277",
         "https://reverseholo.app/sets/swsh8",
         "https://api.tcgdex.net/v2/en/cards/swsh8-277",
+        "https://prices.pokemontcg.io/tcgplayer/swsh8-277",
         "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
       ]
     },
@@ -2128033,23 +2127833,26 @@
         "Rare Rainbow",
         "Secret Rare"
       ],
-      "source_count": 4,
+      "source_count": 5,
       "sources": [
         "pokemontcg_api",
         "reverseholo_set_checklist",
         "tcgdex",
+        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "reverseholo.app",
         "api.tcgdex.net",
+        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "collector_reference",
         "structured_api",
+        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -2128072,17 +2127875,24 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/swsh8-278"
         },
         {
+          "source_key": "tcgplayer_price_guide",
+          "source_authority": "tcgplayer.com",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://prices.pokemontcg.io/tcgplayer/swsh8-278"
+        },
+        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
         }
       ],
-      "evidence_count": 4,
+      "evidence_count": 5,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/swsh8-278",
         "https://reverseholo.app/sets/swsh8",
         "https://api.tcgdex.net/v2/en/cards/swsh8-278",
+        "https://prices.pokemontcg.io/tcgplayer/swsh8-278",
         "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
       ]
     },
@@ -2128099,23 +2127909,26 @@
         "Rare Rainbow",
         "Secret Rare"
       ],
-      "source_count": 4,
+      "source_count": 5,
       "sources": [
         "pokemontcg_api",
         "reverseholo_set_checklist",
         "tcgdex",
+        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "reverseholo.app",
         "api.tcgdex.net",
+        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "collector_reference",
         "structured_api",
+        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -2128138,17 +2127951,24 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/swsh8-279"
         },
         {
+          "source_key": "tcgplayer_price_guide",
+          "source_authority": "tcgplayer.com",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://prices.pokemontcg.io/tcgplayer/swsh8-279"
+        },
+        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
         }
       ],
-      "evidence_count": 4,
+      "evidence_count": 5,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/swsh8-279",
         "https://reverseholo.app/sets/swsh8",
         "https://api.tcgdex.net/v2/en/cards/swsh8-279",
+        "https://prices.pokemontcg.io/tcgplayer/swsh8-279",
         "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
       ]
     },
@@ -2128165,23 +2127985,26 @@
         "Rare Secret",
         "Secret Rare"
       ],
-      "source_count": 4,
+      "source_count": 5,
       "sources": [
         "pokemontcg_api",
         "reverseholo_set_checklist",
         "tcgdex",
+        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "reverseholo.app",
         "api.tcgdex.net",
+        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "collector_reference",
         "structured_api",
+        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -2128204,17 +2128027,24 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/swsh8-280"
         },
         {
+          "source_key": "tcgplayer_price_guide",
+          "source_authority": "tcgplayer.com",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://prices.pokemontcg.io/tcgplayer/swsh8-280"
+        },
+        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
         }
       ],
-      "evidence_count": 4,
+      "evidence_count": 5,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/swsh8-280",
         "https://reverseholo.app/sets/swsh8",
         "https://api.tcgdex.net/v2/en/cards/swsh8-280",
+        "https://prices.pokemontcg.io/tcgplayer/swsh8-280",
         "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
       ]
     },
@@ -2128231,23 +2128061,26 @@
         "Rare Secret",
         "Secret Rare"
       ],
-      "source_count": 4,
+      "source_count": 5,
       "sources": [
         "pokemontcg_api",
         "reverseholo_set_checklist",
         "tcgdex",
+        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "reverseholo.app",
         "api.tcgdex.net",
+        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "collector_reference",
         "structured_api",
+        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -2128270,17 +2128103,24 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/swsh8-281"
         },
         {
+          "source_key": "tcgplayer_price_guide",
+          "source_authority": "tcgplayer.com",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://prices.pokemontcg.io/tcgplayer/swsh8-281"
+        },
+        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
         }
       ],
-      "evidence_count": 4,
+      "evidence_count": 5,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/swsh8-281",
         "https://reverseholo.app/sets/swsh8",
         "https://api.tcgdex.net/v2/en/cards/swsh8-281",
+        "https://prices.pokemontcg.io/tcgplayer/swsh8-281",
         "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
       ]
     },
@@ -2128297,23 +2128137,26 @@
         "Rare Secret",
         "Secret Rare"
       ],
-      "source_count": 4,
+      "source_count": 5,
       "sources": [
         "pokemontcg_api",
         "reverseholo_set_checklist",
         "tcgdex",
+        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "reverseholo.app",
         "api.tcgdex.net",
+        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "collector_reference",
         "structured_api",
+        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -2128336,17 +2128179,24 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/swsh8-282"
         },
         {
+          "source_key": "tcgplayer_price_guide",
+          "source_authority": "tcgplayer.com",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://prices.pokemontcg.io/tcgplayer/swsh8-282"
+        },
+        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
         }
       ],
-      "evidence_count": 4,
+      "evidence_count": 5,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/swsh8-282",
         "https://reverseholo.app/sets/swsh8",
         "https://api.tcgdex.net/v2/en/cards/swsh8-282",
+        "https://prices.pokemontcg.io/tcgplayer/swsh8-282",
         "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
       ]
     },
@@ -2128363,23 +2128213,26 @@
         "Rare Secret",
         "Secret Rare"
       ],
-      "source_count": 4,
+      "source_count": 5,
       "sources": [
         "pokemontcg_api",
         "reverseholo_set_checklist",
         "tcgdex",
+        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "reverseholo.app",
         "api.tcgdex.net",
+        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "collector_reference",
         "structured_api",
+        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -2128402,17 +2128255,24 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/swsh8-283"
         },
         {
+          "source_key": "tcgplayer_price_guide",
+          "source_authority": "tcgplayer.com",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://prices.pokemontcg.io/tcgplayer/swsh8-283"
+        },
+        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
         }
       ],
-      "evidence_count": 4,
+      "evidence_count": 5,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/swsh8-283",
         "https://reverseholo.app/sets/swsh8",
         "https://api.tcgdex.net/v2/en/cards/swsh8-283",
+        "https://prices.pokemontcg.io/tcgplayer/swsh8-283",
         "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
       ]
     },
@@ -2128429,23 +2128289,26 @@
         "Rare Secret",
         "Secret Rare"
       ],
-      "source_count": 4,
+      "source_count": 5,
       "sources": [
         "pokemontcg_api",
         "reverseholo_set_checklist",
         "tcgdex",
+        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "reverseholo.app",
         "api.tcgdex.net",
+        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "collector_reference",
         "structured_api",
+        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -2128468,17 +2128331,24 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/swsh8-284"
         },
         {
+          "source_key": "tcgplayer_price_guide",
+          "source_authority": "tcgplayer.com",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://prices.pokemontcg.io/tcgplayer/swsh8-284"
+        },
+        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
         }
       ],
-      "evidence_count": 4,
+      "evidence_count": 5,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/swsh8-284",
         "https://reverseholo.app/sets/swsh8",
         "https://api.tcgdex.net/v2/en/cards/swsh8-284",
+        "https://prices.pokemontcg.io/tcgplayer/swsh8-284",
         "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
       ]
     },
