@@ -2,6 +2,7 @@
 
 import {
   appendFileSync,
+  existsSync,
   mkdirSync,
   readFileSync,
   writeFileSync,
@@ -88,6 +89,10 @@ function packageFreshAssertions(source) {
     ROOT,
     'docs', 'audits', 'japanese_master_index_v4', 'cards', `${stem}.json`,
   );
+  if (!existsSync(jsonPath)) {
+    emit({ status: 'deferred', step: `package_assertions:${source}`, reason: 'source_json_not_present_preserving_existing_compressed_artifact' });
+    return;
+  }
   const gzipPath = `${jsonPath}.gz`;
   const raw = readFileSync(jsonPath);
   writeFileSync(gzipPath, gzipSync(raw, { level: 9 }));
