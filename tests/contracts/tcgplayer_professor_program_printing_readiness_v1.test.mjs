@@ -47,6 +47,7 @@ test("Professor Program printing-readiness rehearsal proves exact rollback-only 
 
 test("Professor Program printing-readiness rehearsal has no durable commit or out-of-scope writes", async () => {
   const source = await fs.readFile(rehearsalScriptPath, "utf8");
+  assert.match(source, /assertPrintingDatabaseTarget\(process\.env\.SUPABASE_DB_URL\)/);
   assert.match(source, /begin isolation level serializable/);
   assert.match(source, /await client\.query\("rollback"\)/);
   assert.doesNotMatch(source, /await client\.query\(["']commit["']\)/);

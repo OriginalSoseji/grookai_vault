@@ -7,6 +7,7 @@ import { fileURLToPath } from "node:url";
 import pg from "pg";
 
 import "../../backend/env.mjs";
+import { assertPrintingDatabaseTarget } from "../../backend/catalog/master_index_printing_execution_guard_v1.mjs";
 
 const VERSION = "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_GUARDED_DRY_RUN_V1";
 const PACKAGE_ID = "TCGPLAYER-PROFESSOR-PROGRAM-PRINTING-READINESS-REPAIR-V1";
@@ -135,7 +136,7 @@ async function run() {
   const publicUrl = new URL(process.env.SUPABASE_URL ?? "");
   assert.equal(publicUrl.hostname, `${PROJECT_REF}.supabase.co`, "production_project_ref_mismatch");
   assert.ok(process.env.SUPABASE_DB_URL, "SUPABASE_DB_URL_required");
-  const databaseUrl = new URL(process.env.SUPABASE_DB_URL);
+  const databaseUrl = assertPrintingDatabaseTarget(process.env.SUPABASE_DB_URL);
   const client = new pg.Client({ connectionString: databaseUrl.href,
     ssl: databaseUrl.hostname === "localhost" || databaseUrl.hostname === "127.0.0.1"
       ? false : { rejectUnauthorized: false },

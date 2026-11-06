@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-06T04:34:01.189Z",
+  "generated_at": "2026-11-06T04:57:03.892Z",
   "version": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_GUARDED_DRY_RUN_V1",
   "package_id": "TCGPLAYER-PROFESSOR-PROGRAM-PRINTING-READINESS-REPAIR-V1",
   "package_fingerprint_sha256": "b9e2818bebd307b37649a3ee5a377e4832bb0bb8d6fb310b0849def5bced89f5",
@@ -134,7 +134,7 @@
   },
   "proof": {
     "before_snapshot": {
-      "captured_at": "2026-11-06T04:33:59.196Z",
+      "captured_at": "2026-11-06T04:57:01.019Z",
       "printings": [
         {
           "id": "04cf4fa5-ea7a-434c-a558-7b53e95a4a93",
@@ -204,7 +204,7 @@
       "hash_sha256": "7b59b57d5e38982fb9353b447980508a24b2ddddebcafbeef805a31d4b5188d0"
     },
     "transient_snapshot": {
-      "captured_at": "2026-11-06T04:34:00.238Z",
+      "captured_at": "2026-11-06T04:57:02.960Z",
       "printings": [
         {
           "id": "04cf4fa5-ea7a-434c-a558-7b53e95a4a93",
@@ -306,7 +306,7 @@
             "package_fingerprint": "b9e2818bebd307b37649a3ee5a377e4832bb0bb8d6fb310b0849def5bced89f5"
           },
           "reviewed_by": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_GUARDED_DRY_RUN_V1",
-          "reviewed_at": "2026-11-06T04:33:59.958Z"
+          "reviewed_at": "2026-11-06T04:57:02.689Z"
         },
         {
           "id": "3bf3cc03-8f90-5da2-8faa-a7a7f721e4c8",
@@ -343,7 +343,7 @@
             "package_fingerprint": "b9e2818bebd307b37649a3ee5a377e4832bb0bb8d6fb310b0849def5bced89f5"
           },
           "reviewed_by": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_GUARDED_DRY_RUN_V1",
-          "reviewed_at": "2026-11-06T04:33:59.958Z"
+          "reviewed_at": "2026-11-06T04:57:02.689Z"
         },
         {
           "id": "69dc5650-4313-5aaf-816e-534b765f1bf4",
@@ -380,7 +380,7 @@
             "package_fingerprint": "b9e2818bebd307b37649a3ee5a377e4832bb0bb8d6fb310b0849def5bced89f5"
           },
           "reviewed_by": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_GUARDED_DRY_RUN_V1",
-          "reviewed_at": "2026-11-06T04:33:59.958Z"
+          "reviewed_at": "2026-11-06T04:57:02.689Z"
         },
         {
           "id": "20429a21-3df6-5c8f-8943-e1415223cdeb",
@@ -417,7 +417,7 @@
             "package_fingerprint": "b9e2818bebd307b37649a3ee5a377e4832bb0bb8d6fb310b0849def5bced89f5"
           },
           "reviewed_by": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_GUARDED_DRY_RUN_V1",
-          "reviewed_at": "2026-11-06T04:33:59.958Z"
+          "reviewed_at": "2026-11-06T04:57:02.689Z"
         },
         {
           "id": "42025a68-bc9d-53fc-85b9-0f6aafa45abe",
@@ -454,7 +454,7 @@
             "package_fingerprint": "b9e2818bebd307b37649a3ee5a377e4832bb0bb8d6fb310b0849def5bced89f5"
           },
           "reviewed_by": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_GUARDED_DRY_RUN_V1",
-          "reviewed_at": "2026-11-06T04:33:59.958Z"
+          "reviewed_at": "2026-11-06T04:57:02.689Z"
         },
         {
           "id": "8d6b0e38-a5b6-5c25-8a57-99f3e668d88c",
@@ -491,7 +491,7 @@
             "package_fingerprint": "b9e2818bebd307b37649a3ee5a377e4832bb0bb8d6fb310b0849def5bced89f5"
           },
           "reviewed_by": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_GUARDED_DRY_RUN_V1",
-          "reviewed_at": "2026-11-06T04:33:59.958Z"
+          "reviewed_at": "2026-11-06T04:57:02.689Z"
         },
         {
           "id": "677982ca-1bb7-542b-86e4-b792c4cb9b83",
@@ -528,13 +528,13 @@
             "package_fingerprint": "b9e2818bebd307b37649a3ee5a377e4832bb0bb8d6fb310b0849def5bced89f5"
           },
           "reviewed_by": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_GUARDED_DRY_RUN_V1",
-          "reviewed_at": "2026-11-06T04:33:59.958Z"
+          "reviewed_at": "2026-11-06T04:57:02.689Z"
         }
       ],
       "hash_sha256": "9e576ede343d1cc8cdf3b3ca51a2a9956f07033c81f3504d016074a0a61a7404"
     },
     "after_snapshot": {
-      "captured_at": "2026-11-06T04:34:01.113Z",
+      "captured_at": "2026-11-06T04:57:03.817Z",
       "printings": [
         {
           "id": "04cf4fa5-ea7a-434c-a558-7b53e95a4a93",
