@@ -1,5 +1,25 @@
 # Grookai Operator Playbook V1
 
+## Eevee/Snorlax product-origin integration — November 5, 2026
+
+Read `docs/ops/SPECIAL_CARD_PRODUCT_ORIGINS_MAIN_V2_20261105.md`. The committed
+four-card source release `d48ea00792787ca548c6d885a29bdf7fb128c7d2` is prepared
+on fresh main `3bf51e8404f9052103b165922c385a06ee3f0316` in
+`C:/gv_special_card_product_origins_main_refresh_20261105`. Main's 18 existing
+mobile lowercase `grookai` corrections are preserved and reconciled into the web
+copy; the original V1 packet and old source checkout remain unchanged. All other
+3,326 row references and 54 mobile family definitions survive intact. Regenerate
+through the V2 overlay, then the existing mobile exporter. The first candidate
+on `2141c0ecc6` is retained after the authority refresh; do not reuse it as current.
+19 Node checks, 11 Flutter tests, web typechecking, focused Flutter analysis and
+full client payload parity pass. The user continued with “Next step” after the
+explicit 20-file allowlist approval request, approving that local commit. The
+normal managed release hook must pass; merge and deployment remain unapproved. The
+existing images are already correct; no database, Storage, identity, child or
+pricing change is proposed. Preserve the completed source-owner repair and its
+Gengar price suppression. Current private evidence:
+`C:/grookai_vault_operator_artifacts/special_card_product_origins_main_refresh_20261105`.
+
 ## Pricing continuation and seller renewal — October29,2026 UTC
 
 Read the final continuation section of

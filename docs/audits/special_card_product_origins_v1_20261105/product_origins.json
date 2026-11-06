@@ -1,0 +1,309 @@
+{
+  "version": "SPECIAL_CARD_ETB_PRODUCT_ORIGINS_V1",
+  "reviewed_on": "2026-11-05",
+  "prepared_at": "2026-11-06T04:27:58.216Z",
+  "project_ref": "ycdxbpibncqcchqiihfz",
+  "scope": "Four English physical parent identities; source-backed product descriptions and current parent-image verification. No database, Storage, child or pricing writes.",
+  "baseline_payload_sha256": "54dd0e923b2e15e38ccf353d44bd6ca0c419f00b2bcce12c323f7834444de702",
+  "source_documents": [
+    {
+      "id": "prismatic_standard",
+      "url": "https://www.pokemon.com/uk/pokemon-tcg/product-gallery/scarlet-violet-prismatic-evolutions-elite-trainer-box",
+      "tier": "TIER_1",
+      "observed_on": "2026-11-05",
+      "access_method": "web_search_index_full_product_contents",
+      "supports": "The standard Prismatic Evolutions Elite Trainer Box lists an Eevee full-art foil promo among its contents."
+    },
+    {
+      "id": "prismatic_announcement",
+      "url": "https://press.pokemon.com/en/New-Pokemon-Trading-Card-Game-Scarlet-VioletPrismatic-Evolutions-Expan",
+      "tier": "TIER_1",
+      "observed_on": "2026-11-05",
+      "access_method": "web_search_index_official_press_release",
+      "supports": "The announcement names Eevee as the standard ETB promo and describes two Eevee promos in the Pokémon Center ETB, with one carrying the Pokémon Center logo."
+    },
+    {
+      "id": "snorlax_standard",
+      "url": "https://www.pokemon.com/uk/pokemon-tcg/product-gallery/scarlet-violet-151-elite-trainer-box",
+      "tier": "TIER_1",
+      "observed_on": "2026-11-05",
+      "access_method": "web_search_index_full_product_contents",
+      "supports": "The standard Scarlet & Violet—151 Elite Trainer Box lists a Snorlax full-art foil promo among its contents."
+    },
+    {
+      "id": "snorlax_center",
+      "url": "https://www.pokemon.com/us/pokemon-tcg/product-gallery/scarlet-violet-151-pokemon-center-elite-trainer-box/",
+      "tier": "TIER_1",
+      "observed_on": "2026-11-05",
+      "access_method": "web_search_index_full_product_contents",
+      "supports": "The Pokémon Center 151 ETB lists both a Snorlax promo bearing the Pokémon Center logo and a Snorlax promo without that logo."
+    }
+  ],
+  "targets": [
+    {
+      "card_print_id": "c7171ec8-743d-453d-bc8b-47517986916f",
+      "gv_id": "GV-PK-PR-SV-051",
+      "name": "Snorlax",
+      "printed_number": "051",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "origin_family_key": "special_card_etb_snorlax_051_unstamped",
+      "prior_reference": {
+        "card_print_id": "c7171ec8-743d-453d-bc8b-47517986916f",
+        "gv_id": "GV-PK-PR-SV-051",
+        "origin_family_key": "sv_black_star_promos",
+        "variant_key": "",
+        "printed_identity_modifier": null
+      },
+      "identity_domain": "pokemon_eng_standard",
+      "distribution": [
+        {
+          "product_name": "Scarlet & Violet—151 Elite Trainer Box",
+          "relationship": "included_promo",
+          "source_ids": [
+            "snorlax_standard"
+          ]
+        },
+        {
+          "product_name": "Scarlet & Violet—151 Pokémon Center Elite Trainer Box",
+          "relationship": "included_unstamped_promo",
+          "source_ids": [
+            "snorlax_center"
+          ]
+        }
+      ],
+      "source_ids": [
+        "snorlax_standard",
+        "snorlax_center"
+      ],
+      "public_copy": {
+        "family_key": "special_card_etb_snorlax_051_unstamped",
+        "family_label": "Snorlax SVP 051 · ETB Promo",
+        "variant_category": "product_promo_identity",
+        "confidence": "high",
+        "why_it_exists": "Snorlax SVP 051 is the full-art foil promo included in the Scarlet & Violet—151 Elite Trainer Box. The Pokémon Center edition also includes this unstamped promo alongside a separately stamped copy.",
+        "why_collectors_care": "Its SVP 051 number and boxed-product origin distinguish this Snorlax promo from expansion cards. The Pokémon Center logo version is cataloged separately.",
+        "how_to_identify": "Look for Snorlax, the SVP 051 promo number, the woodland Snorlax illustration, and the absence of the Pokémon Center logo above the retreat cost.",
+        "grookai_rule": "The unstamped promo and Pokémon Center logo version are cataloged separately. Product information describes documented distribution, not the origin of an individual owned card.",
+        "source_urls": [
+          "https://www.pokemon.com/uk/pokemon-tcg/product-gallery/scarlet-violet-151-elite-trainer-box",
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/scarlet-violet-151-pokemon-center-elite-trainer-box/"
+        ]
+      },
+      "image_review": {
+        "status": "current_parent_visual_identity_matches",
+        "source_url": "https://assets.tcgdex.net/en/sv/svp/051/high.webp",
+        "storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/svp/gv-pk-pr-sv-051/17c345a33989cfa474d29493.webp",
+        "sha256": "17c345a33989cfa474d2949360ebfc39b5dd5458fe2d5e5c2cab0ce6aa5751b1",
+        "visually_checked_on": "2026-11-05",
+        "method": "direct_visual_inspection_of_current_downloaded_warehouse_object",
+        "name_matches": true,
+        "number_matches": true,
+        "artwork_matches": true,
+        "language": "English",
+        "pokemon_center_logo": "absent",
+        "intended_image_writes": 0,
+        "child_finish_claim": "No new exact child-finish certification; existing image/finish fields remain unchanged."
+      }
+    },
+    {
+      "card_print_id": "a36f8d8a-353f-4cca-ba89-912eb7f10c3a",
+      "gv_id": "GV-PK-PR-SV-173",
+      "name": "Eevee",
+      "printed_number": "173",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "origin_family_key": "special_card_etb_eevee_173_unstamped",
+      "prior_reference": {
+        "card_print_id": "a36f8d8a-353f-4cca-ba89-912eb7f10c3a",
+        "gv_id": "GV-PK-PR-SV-173",
+        "origin_family_key": "sv_black_star_promos",
+        "variant_key": "",
+        "printed_identity_modifier": null
+      },
+      "identity_domain": "pokemon_eng_standard",
+      "distribution": [
+        {
+          "product_name": "Scarlet & Violet—Prismatic Evolutions Elite Trainer Box",
+          "relationship": "included_promo",
+          "source_ids": [
+            "prismatic_standard"
+          ]
+        },
+        {
+          "product_name": "Scarlet & Violet—Prismatic Evolutions Pokémon Center Elite Trainer Box",
+          "relationship": "included_unstamped_promo",
+          "source_ids": [
+            "prismatic_announcement"
+          ]
+        }
+      ],
+      "source_ids": [
+        "prismatic_standard",
+        "prismatic_announcement"
+      ],
+      "public_copy": {
+        "family_key": "special_card_etb_eevee_173_unstamped",
+        "family_label": "Eevee SVP 173 · ETB Promo",
+        "variant_category": "product_promo_identity",
+        "confidence": "high",
+        "why_it_exists": "Eevee SVP 173 is the full-art foil promo included in the Scarlet & Violet—Prismatic Evolutions Elite Trainer Box. The Pokémon Center edition also includes this unstamped promo alongside a separately stamped copy.",
+        "why_collectors_care": "Its SVP 173 number and boxed-product origin distinguish this Eevee promo from expansion cards. The Pokémon Center logo version is cataloged separately.",
+        "how_to_identify": "Look for Eevee, the SVP 173 promo number, the sleeping Eevee illustration, and the absence of the Pokémon Center logo above the retreat cost.",
+        "grookai_rule": "The unstamped promo and Pokémon Center logo version are cataloged separately. Product information describes documented distribution, not the origin of an individual owned card.",
+        "source_urls": [
+          "https://www.pokemon.com/uk/pokemon-tcg/product-gallery/scarlet-violet-prismatic-evolutions-elite-trainer-box",
+          "https://press.pokemon.com/en/New-Pokemon-Trading-Card-Game-Scarlet-VioletPrismatic-Evolutions-Expan"
+        ]
+      },
+      "image_review": {
+        "status": "current_parent_visual_identity_matches",
+        "source_url": "https://assets.tcgdex.net/en/sv/svp/173/high.webp",
+        "storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/svp/gv-pk-pr-sv-173/b049a37d94498f7e511ff84e.webp",
+        "sha256": "b049a37d94498f7e511ff84e16eda618e08e57ff1a40b603ccff9642b89ac715",
+        "visually_checked_on": "2026-11-05",
+        "method": "direct_visual_inspection_of_current_downloaded_warehouse_object",
+        "name_matches": true,
+        "number_matches": true,
+        "artwork_matches": true,
+        "language": "English",
+        "pokemon_center_logo": "absent",
+        "intended_image_writes": 0,
+        "child_finish_claim": "No new exact child-finish certification; existing image/finish fields remain unchanged."
+      }
+    },
+    {
+      "card_print_id": "f605056d-5521-4dcf-a6e2-176b6d2ca7b5",
+      "gv_id": "GV-PK-SVP-051-POKEMON-CENTER-STAMP",
+      "name": "Snorlax",
+      "printed_number": "051",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "origin_family_key": "special_card_etb_snorlax_051_pokemon_center",
+      "prior_reference": {
+        "card_print_id": "f605056d-5521-4dcf-a6e2-176b6d2ca7b5",
+        "gv_id": "GV-PK-SVP-051-POKEMON-CENTER-STAMP",
+        "origin_family_key": "sv_black_star_promos",
+        "variant_key": "pokemon_center_stamp",
+        "printed_identity_modifier": "pokemon_center_stamp"
+      },
+      "identity_domain": "pokemon_eng_standard",
+      "distribution": [
+        {
+          "product_name": "Scarlet & Violet—151 Pokémon Center Elite Trainer Box",
+          "relationship": "included_logo_promo",
+          "source_ids": [
+            "snorlax_center"
+          ]
+        }
+      ],
+      "source_ids": [
+        "snorlax_center"
+      ],
+      "public_copy": {
+        "family_key": "special_card_etb_snorlax_051_pokemon_center",
+        "family_label": "Snorlax SVP 051 · Pokémon Center ETB",
+        "variant_category": "product_promo_identity",
+        "confidence": "high",
+        "why_it_exists": "The Pokémon Center logo version of Snorlax SVP 051 was included in the Scarlet & Violet—151 Pokémon Center Elite Trainer Box. The box also contains an unstamped copy of the promo.",
+        "why_collectors_care": "The Pokémon Center logo distinguishes this Snorlax promo from the unstamped card with the same number and artwork.",
+        "how_to_identify": "Look for Snorlax, the SVP 051 promo number, the woodland Snorlax illustration, and the Pokémon Center logo above the retreat cost.",
+        "grookai_rule": "The unstamped promo and Pokémon Center logo version are cataloged separately. Product information describes documented distribution, not the origin of an individual owned card.",
+        "source_urls": [
+          "https://www.pokemon.com/us/pokemon-tcg/product-gallery/scarlet-violet-151-pokemon-center-elite-trainer-box/"
+        ]
+      },
+      "image_review": {
+        "status": "current_parent_visual_identity_matches",
+        "source_url": "https://tcgplayer-cdn.tcgplayer.com/product/517270_in_1000x1000.jpg",
+        "storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/svp/gv-pk-svp-051-pokemon-center-stamp/d75c140e2aa2aa0e3d879fc3d73f1a67acf2a0e8a0b846130935d231ee6f92c2.jpg",
+        "sha256": "d75c140e2aa2aa0e3d879fc3d73f1a67acf2a0e8a0b846130935d231ee6f92c2",
+        "visually_checked_on": "2026-11-05",
+        "method": "direct_visual_inspection_of_current_downloaded_warehouse_object",
+        "name_matches": true,
+        "number_matches": true,
+        "artwork_matches": true,
+        "language": "English",
+        "pokemon_center_logo": "present",
+        "intended_image_writes": 0,
+        "child_finish_claim": "No new exact child-finish certification; existing image/finish fields remain unchanged."
+      }
+    },
+    {
+      "card_print_id": "cffe987c-a680-4f7e-b1cf-96c89bc9e229",
+      "gv_id": "GV-PK-SVP-173-POKEMON-CENTER-STAMP",
+      "name": "Eevee",
+      "printed_number": "173",
+      "variant_key": "pokemon_center_stamp",
+      "printed_identity_modifier": "pokemon_center_stamp",
+      "origin_family_key": "special_card_etb_eevee_173_pokemon_center",
+      "prior_reference": {
+        "card_print_id": "cffe987c-a680-4f7e-b1cf-96c89bc9e229",
+        "gv_id": "GV-PK-SVP-173-POKEMON-CENTER-STAMP",
+        "origin_family_key": "sv_black_star_promos",
+        "variant_key": "pokemon_center_stamp",
+        "printed_identity_modifier": "pokemon_center_stamp"
+      },
+      "identity_domain": "pokemon_eng_standard",
+      "distribution": [
+        {
+          "product_name": "Scarlet & Violet—Prismatic Evolutions Pokémon Center Elite Trainer Box",
+          "relationship": "included_logo_promo",
+          "source_ids": [
+            "prismatic_announcement"
+          ]
+        }
+      ],
+      "source_ids": [
+        "prismatic_announcement"
+      ],
+      "public_copy": {
+        "family_key": "special_card_etb_eevee_173_pokemon_center",
+        "family_label": "Eevee SVP 173 · Pokémon Center ETB",
+        "variant_category": "product_promo_identity",
+        "confidence": "high",
+        "why_it_exists": "The Pokémon Center logo version of Eevee SVP 173 was included in the Scarlet & Violet—Prismatic Evolutions Pokémon Center Elite Trainer Box. The box also contains an unstamped copy of the promo.",
+        "why_collectors_care": "The Pokémon Center logo distinguishes this Eevee promo from the unstamped card with the same number and artwork.",
+        "how_to_identify": "Look for Eevee, the SVP 173 promo number, the sleeping Eevee illustration, and the Pokémon Center logo above the retreat cost.",
+        "grookai_rule": "The unstamped promo and Pokémon Center logo version are cataloged separately. Product information describes documented distribution, not the origin of an individual owned card.",
+        "source_urls": [
+          "https://press.pokemon.com/en/New-Pokemon-Trading-Card-Game-Scarlet-VioletPrismatic-Evolutions-Expan"
+        ]
+      },
+      "image_review": {
+        "status": "current_parent_visual_identity_matches",
+        "source_url": "https://tcgplayer-cdn.tcgplayer.com/product/610757_in_1000x1000.jpg",
+        "storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/svp/gv-pk-svp-173-pokemon-center-stamp/24291b3ec064cb54bf7aea98c2d5f00de9e549c5752e032c6cf4d690c6c16b89.jpg",
+        "sha256": "24291b3ec064cb54bf7aea98c2d5f00de9e549c5752e032c6cf4d690c6c16b89",
+        "visually_checked_on": "2026-11-05",
+        "method": "direct_visual_inspection_of_current_downloaded_warehouse_object",
+        "name_matches": true,
+        "number_matches": true,
+        "artwork_matches": true,
+        "language": "English",
+        "pokemon_center_logo": "present",
+        "intended_image_writes": 0,
+        "child_finish_claim": "No new exact child-finish certification; existing image/finish fields remain unchanged."
+      }
+    }
+  ],
+  "source_receipts": {
+    "live_readback_sha256": "2e5a76dd6711c30c18c90dc5c83967e072a3a16e371c42760326b791d1049d0a",
+    "current_image_acquisition_sha256": "b8580a4b55a4535f1534d95a785a951b1c2b326b5541b9c9ae794a5de497f00d",
+    "external_evidence_directory": "C:\\grookai_vault_operator_artifacts\\special_card_product_origins_20261105"
+  },
+  "boundaries": {
+    "database_writes": 0,
+    "storage_uploads": 0,
+    "image_changes": 0,
+    "identity_changes": 0,
+    "child_changes": 0,
+    "pricing_changes": 0
+  },
+  "limits": [
+    "Parent image verification does not certify all listed child finishes.",
+    "Product evidence does not prove the origin or authenticity of an owned copy.",
+    "No sole-lifetime-distribution, scarcity, quantity or value claims.",
+    "This is the first four-row content batch, not completion of the full special-card inventory."
+  ]
+}
