@@ -1,0 +1,67 @@
+{
+  "generated_at": "2026-11-05T23:59:48.781Z",
+  "version": "tcgplayer_professor_program_catalog_repair_post_apply_readback_20261105_v1",
+  "package_fingerprint_sha256": "1203f252f7856cff512d85ff7d76eb45a9cf18e528166b53b519fb34a7c78820",
+  "read_only_transaction": true,
+  "status": "passed",
+  "rows": [
+    {
+      "source_product_id": "176629",
+      "parent_id": "e402c8fc-563b-49e3-a198-6a5fe5f75cda",
+      "variant_key": "professor_program_stamp",
+      "printed_identity_modifier": "professor_program_stamp",
+      "active_identities": 1,
+      "exact_children": 1,
+      "active_mappings": 0
+    },
+    {
+      "source_product_id": "176630",
+      "parent_id": "ed61ea12-90af-4250-b089-e2b31fc2fdce",
+      "variant_key": "professor_program_stamp",
+      "printed_identity_modifier": "professor_program_stamp",
+      "active_identities": 1,
+      "exact_children": 1,
+      "active_mappings": 0
+    },
+    {
+      "source_product_id": "176631",
+      "parent_id": "baa63e55-c8aa-4936-8c9a-63de29e75c16",
+      "variant_key": "professor_program_stamp",
+      "printed_identity_modifier": "professor_program_stamp",
+      "active_identities": 1,
+      "exact_children": 1,
+      "active_mappings": 0
+    },
+    {
+      "source_product_id": "176632",
+      "parent_id": "c98e4f39-59fc-4ec1-bfc5-c34f28a25f3c",
+      "variant_key": "professor_program_stamp",
+      "printed_identity_modifier": "professor_program_stamp",
+      "active_identities": 1,
+      "exact_children": 1,
+      "active_mappings": 0
+    },
+    {
+      "source_product_id": "176633",
+      "parent_id": "12cad852-d079-44cc-9438-e806aede97ff",
+      "variant_key": "professor_program_stamp",
+      "printed_identity_modifier": "professor_program_stamp",
+      "active_identities": 1,
+      "exact_children": 1,
+      "active_mappings": 0
+    },
+    {
+      "source_product_id": "499366",
+      "parent_id": "8f22c4ef-320d-45cd-8938-4aa84aca740e",
+      "variant_key": "professor_program_stamp",
+      "printed_identity_modifier": "professor_program_stamp",
+      "active_identities": 1,
+      "exact_children": 1,
+      "active_mappings": 0
+    }
+  ],
+  "excluded_products": {
+    "professor_sycamore_176638_active_mapping_count": 0,
+    "judge_213516_active_mapping_count": 0
+  }
+}
