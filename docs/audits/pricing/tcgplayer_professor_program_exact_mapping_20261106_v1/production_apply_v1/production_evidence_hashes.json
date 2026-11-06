@@ -1,0 +1,18 @@
+{
+  "schema_version": "TCGPLAYER_PROFESSOR_PROGRAM_EXACT_MAPPING_PRODUCTION_EVIDENCE_HASHES_V1",
+  "files": {
+    "artifact_hashes.json": "261e22df2f66d056d2134f700ddb659541d15793ce02b441e20a9426cd3d39db",
+    "independent_post_apply_readback.json": "97c525ea453066495b2a07681e772f3971ffee2a1fc8f21b04e3ce6148ae27a3",
+    "inserted_mappings.jsonl": "593a699d74931296c282272efd87bf4122d13b1d097b351524f075fc8f2298d5",
+    "live_precondition_readback.json": "66cff3029fd752f048c95c599e810f9ae62b18abc2ec79e18598206af4e5657f",
+    "mapping_readback.jsonl": "593a699d74931296c282272efd87bf4122d13b1d097b351524f075fc8f2298d5",
+    "master_authority.json": "92628190d14a1c7c0a962bcdc9e4664b4b75d05fb0faa703b4ab6960b82d8b9c",
+    "precommit_readback.json": "dbdff3d247b38acb602042c0b316211f9778d703d700a3e96eaa64aa4f5e2af8",
+    "repaired_mappings.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "REPORT.md": "d52155aae7aea8597113f84c590d6a1ee7dcf5e9bc1d4e063c7723ed599cb9c0",
+    "rollback_manifest.json": "bbcfab56afde27118077991a1cab7c68a7a6befa495b090cbd98fca2cf1d8008",
+    "run_plan.json": "9b045b24396dc13c42f69236ecbd985231828d1eb67b7e182797abebe6f5569a",
+    "selected_candidates.jsonl": "49e845552c5b34650ade6e4b78b558e71d7e9d3a86c15a69163c2b4a981df957",
+    "summary.json": "fe7a2ec825fe0a053e1b92dbb195562be9889d83ced2da19f7b82cbb223e06f5"
+  }
+}

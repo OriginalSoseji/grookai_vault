@@ -1,0 +1,12 @@
+{
+  "master_authority.json": "92628190d14a1c7c0a962bcdc9e4664b4b75d05fb0faa703b4ab6960b82d8b9c",
+  "run_plan.json": "9b045b24396dc13c42f69236ecbd985231828d1eb67b7e182797abebe6f5569a",
+  "summary.json": "fe7a2ec825fe0a053e1b92dbb195562be9889d83ced2da19f7b82cbb223e06f5",
+  "selected_candidates.jsonl": "49e845552c5b34650ade6e4b78b558e71d7e9d3a86c15a69163c2b4a981df957",
+  "live_precondition_readback.json": "66cff3029fd752f048c95c599e810f9ae62b18abc2ec79e18598206af4e5657f",
+  "inserted_mappings.jsonl": "593a699d74931296c282272efd87bf4122d13b1d097b351524f075fc8f2298d5",
+  "repaired_mappings.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "mapping_readback.jsonl": "593a699d74931296c282272efd87bf4122d13b1d097b351524f075fc8f2298d5",
+  "rollback_manifest.json": "bbcfab56afde27118077991a1cab7c68a7a6befa495b090cbd98fca2cf1d8008",
+  "precommit_readback.json": "dbdff3d247b38acb602042c0b316211f9778d703d700a3e96eaa64aa4f5e2af8"
+}
