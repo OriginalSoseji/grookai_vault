@@ -1,0 +1,17 @@
+{
+  "version": "TCGPLAYER_PROFESSOR_PROGRAM_EXACT_MAPPING_GUARDED_DRY_RUN_V1",
+  "status": "passed",
+  "counts": {
+    "candidates": 7,
+    "blocked": 0,
+    "held": 1,
+    "projected_gap_rows": 7
+  },
+  "batch": {
+    "index": 1,
+    "total": 1,
+    "offset": 0,
+    "size": 7
+  },
+  "database_writes": 0
+}

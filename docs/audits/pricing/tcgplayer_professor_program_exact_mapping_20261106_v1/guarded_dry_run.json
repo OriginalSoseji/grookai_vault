@@ -1,0 +1,56 @@
+{
+  "package_id": "TCGPLAYER-PROFESSOR-PROGRAM-EXACT-MAPPING-V1",
+  "source_commit": "ea15d95e9d09bb37943c07a4049e79b8486fa7d2",
+  "readiness_fingerprint": "4033952910f53fc067974c5517e102903399e202dc6ae8bdd260bce9eee1a815",
+  "source_sync_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+  "candidate_count": 7,
+  "source_product_ids": [
+    176629,
+    176630,
+    176631,
+    176632,
+    176633,
+    213516,
+    499366
+  ],
+  "candidate_artifact_sha256": "49e845552c5b34650ade6e4b78b558e71d7e9d3a86c15a69163c2b4a981df957",
+  "master_authority_file_sha256": "92628190d14a1c7c0a962bcdc9e4664b4b75d05fb0faa703b4ab6960b82d8b9c",
+  "master_authority_fingerprint": "c4cd22441ec233c9c89ee29ff3177c4051cab7b03eff7b51584d10770e3f6784",
+  "batch_fingerprint": "07f29b3b6e022ab16f2c03589c2e3b76da9eb77086ec63f826476ccf94977d37",
+  "held_product_ids": [
+    176638
+  ],
+  "boundaries": {
+    "mapping_inserts": 7,
+    "pricing_writes": 0,
+    "publication_writes": 0,
+    "parent_writes": 0,
+    "printing_writes": 0,
+    "identity_writes": 0,
+    "deletes": 0,
+    "merges": 0,
+    "migrations": 0
+  },
+  "package_fingerprint_sha256": "6b977b88eccc59a959701f64f5189eeb7ad31787261ea285c5108cecbca4eda9",
+  "reviewed_at": "2026-11-06T06:56:00.000Z",
+  "proof": {
+    "status": "rollback_proof_passed_zero_durable_changes",
+    "transient_mapping_inserts": 7,
+    "rollback_acknowledged": true,
+    "before_snapshot": {
+      "rows": [],
+      "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "after_rollback_snapshot": {
+      "rows": [],
+      "hash_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  },
+  "approval_text_required": "Approve real TCGPLAYER-PROFESSOR-PROGRAM-EXACT-MAPPING-V1 apply only. Source commit: ea15d95e9d09bb37943c07a4049e79b8486fa7d2. Fingerprint: 6b977b88eccc59a959701f64f5189eeb7ad31787261ea285c5108cecbca4eda9. Scope: 7 insert-only active TCGPlayer parent mappings for Professor Program products 176629, 176630, 176631, 176632, 176633, 213516, 499366. Dry-run rollback proof: 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945 == 4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945. Excludes Professor Sycamore product 176638. No pricing writes. No publication writes. No parent, identity, or printing writes. No deletes. No merges. No migrations.",
+  "execution": {
+    "status": "guarded_dry_run_complete",
+    "durable_database_writes": 0,
+    "execution_authorized": false,
+    "next_gate": "separate_exact_founder_approval"
+  }
+}
