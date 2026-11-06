@@ -151,19 +151,28 @@ try {
     'scripts/audits/japanese_master_index_v4/candidate_union_v1.mjs',
     '--allow-incomplete-sources',
   ]);
+  const candidateManifest = JSON.parse(readFileSync(
+    path.join(ROOT, 'docs', 'audits', 'japanese_master_index_v4', 'index', 'candidate_union_manifest_v1.json'),
+    'utf8',
+  ));
+  const unionComplete = candidateManifest.content?.status === 'complete';
   run('coverage', [
     'scripts/audits/japanese_master_index_v4/coverage_gap_report_v1.mjs',
   ]);
-  run('strict_admission', [
-    'scripts/audits/japanese_master_index_v4/final_admission_v1.mjs',
-  ]);
-  run('complete_adjudication', [
-    'scripts/audits/japanese_master_index_v4/complete_adjudication_v1.mjs',
-  ]);
-  run('promotion_package', [
-    'scripts/audits/japanese_master_index_v4/promotion_package_v1.mjs',
-  ]);
-  if (liveBaselineAvailable) {
+  if (unionComplete) {
+    run('strict_admission', [
+      'scripts/audits/japanese_master_index_v4/final_admission_v1.mjs',
+    ]);
+    run('complete_adjudication', [
+      'scripts/audits/japanese_master_index_v4/complete_adjudication_v1.mjs',
+    ]);
+    run('promotion_package', [
+      'scripts/audits/japanese_master_index_v4/promotion_package_v1.mjs',
+    ]);
+  } else {
+    emit({ status: 'deferred', step: 'strict_admission', reason: 'waiting_for_complete_accumulated_source_set' });
+  }
+  if (liveBaselineAvailable && unionComplete) {
     run('finalize_no_write', [
       'scripts/audits/japanese_master_index_v4/finalize_v1.mjs',
       `--live-recheck-root=${liveRecheckRoot}`,
@@ -180,14 +189,15 @@ try {
     package_id: 'JPN-MASTER-INDEX-CONTINUOUS-VERIFICATION-AGENT-V1',
     generated_at: new Date().toISOString(),
     sources: SOURCES,
-    status: liveBaselineAvailable
+    status: liveBaselineAvailable && unionComplete
       ? 'completed_no_write'
-      : 'completed_evidence_only_waiting_for_baseline',
+      : 'completed_evidence_only_waiting_for_complete_source_set',
     proof_policy: 'two_independent_verified_proofs_required_before_promotion',
     production_writes: false,
     promotion_writes: false,
     next_run_required: true,
     live_baseline_available: liveBaselineAvailable,
+    union_complete: unionComplete,
   };
   const output = path.join(REPORT_DIR, 'latest_progress_v1.json');
   writeFileSync(output, `${JSON.stringify(report, null, 2)}\n`);
