@@ -7,6 +7,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import pg from "pg";
 
 import "../../backend/env.mjs";
+import { assertPrintingDatabaseTarget } from "../../backend/catalog/master_index_printing_execution_guard_v1.mjs";
 
 export const TCGPLAYER_PROFESSOR_PROGRAM_MAPPING_READINESS_V1 =
   "TCGPLAYER_PROFESSOR_PROGRAM_MAPPING_READINESS_V1";
@@ -66,10 +67,10 @@ function connectionConfig() {
   const publicUrl = new URL(process.env.SUPABASE_URL);
   assert.equal(publicUrl.hostname.split(".")[0], PROJECT_REF, "production_project_ref_mismatch");
   assert.ok(process.env.SUPABASE_DB_URL, "SUPABASE_DB_URL_required");
-  const databaseUrl = new URL(process.env.SUPABASE_DB_URL);
+  const databaseUrl = assertPrintingDatabaseTarget(process.env.SUPABASE_DB_URL);
   const ca = process.env.SUPABASE_DB_CA_CERT?.trim();
   return {
-    connectionString: process.env.SUPABASE_DB_URL,
+    connectionString: databaseUrl.href,
     ssl: databaseUrl.hostname === "localhost" || databaseUrl.hostname === "127.0.0.1"
       ? false
       : ca ? { rejectUnauthorized: true, ca } : { rejectUnauthorized: false },

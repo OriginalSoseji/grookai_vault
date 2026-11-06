@@ -72,6 +72,9 @@ import {
   uniqueWcdTeamRushdownPrintedNumberV1,
 } from "../../backend/pricing/tcgplayer_wcd_team_rushdown_pilot_v1.mjs";
 import {
+  TCGPLAYER_PROFESSOR_PROGRAM_PRODUCT_IDENTITIES_V1,
+} from "../../backend/pricing/tcgplayer_professor_program_product_identity_authority_v1.mjs";
+import {
   assertCredentialFreeExactMappingPlannerEnvironmentV1,
   validatePricingCompletionExactMappingSnapshotV1,
 } from "../../backend/pricing/pricing_completion_exact_mapping_snapshot_v1.mjs";
@@ -100,6 +103,7 @@ const REVIEWED_PRODUCT_IDENTITIES = Object.freeze([
   ...TCGPLAYER_REVIEW_LEAD_ALIAS_PRODUCT_IDENTITIES_V1,
   ...TCGPLAYER_FOUNDER_REVIEW_BATCH_PRODUCT_IDENTITIES_V1,
   ...TCGPLAYER_WCD_TEAM_RUSHDOWN_CARDS_V1,
+  ...TCGPLAYER_PROFESSOR_PROGRAM_PRODUCT_IDENTITIES_V1,
 ]);
 const DEFAULT_OUT_ROOT = path.join(
   REPO_ROOT,

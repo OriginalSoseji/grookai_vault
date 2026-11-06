@@ -1,0 +1,1578 @@
+{
+  "generated_at": "2026-11-06T06:26:52.178Z",
+  "version": "TCGPLAYER_PROFESSOR_PROGRAM_MAPPING_READINESS_V1",
+  "catalog_package_id": "TCGPLAYER-PROFESSOR-PROGRAM-CATALOG-REPAIR-V1",
+  "catalog_package_fingerprint_sha256": "1203f252f7856cff512d85ff7d76eb45a9cf18e528166b53b519fb34a7c78820",
+  "catalog_apply_artifact_sha256": "621c88ed0f12a1868f2d17e7eefccf13dce821cbc75162f9386b7c5936f4c515",
+  "ready_scope": [
+    {
+      "source_product_id": 176629,
+      "source_product_name": "Prof. Oak's Research (2004-2005)",
+      "printed_number": "98/112",
+      "target_parent_id": "e402c8fc-563b-49e3-a198-6a5fe5f75cda",
+      "target_child_id": "eb9b3f39-760f-4b77-a3b1-c486b4a4e4c3",
+      "finish_key": "normal"
+    },
+    {
+      "source_product_id": 176630,
+      "source_product_name": "Professor Birch (2006)",
+      "printed_number": "82/106",
+      "target_parent_id": "ed61ea12-90af-4250-b089-e2b31fc2fdce",
+      "target_child_id": "820ba0fb-cc4a-4460-ada6-66fdeb1185b9",
+      "finish_key": "holo"
+    },
+    {
+      "source_product_id": 176631,
+      "source_product_name": "Professor Oak's Visit (2008-2009)",
+      "printed_number": "122/132",
+      "target_parent_id": "baa63e55-c8aa-4936-8c9a-63de29e75c16",
+      "target_child_id": "235db02c-1431-42ba-a973-43cb6d89b38d",
+      "finish_key": "normal"
+    },
+    {
+      "source_product_id": 176632,
+      "source_product_name": "Professor Juniper - 98/108 (2013)",
+      "printed_number": "98/108",
+      "target_parent_id": "c98e4f39-59fc-4ec1-bfc5-c34f28a25f3c",
+      "target_child_id": "04cf4fa5-ea7a-434c-a558-7b53e95a4a93",
+      "finish_key": "reverse"
+    },
+    {
+      "source_product_id": 176633,
+      "source_product_name": "Professor Juniper - 101/114 (2013)",
+      "printed_number": "101/114",
+      "target_parent_id": "12cad852-d079-44cc-9438-e806aede97ff",
+      "target_child_id": "8b0cf097-ef28-42aa-a3f2-f8665f863726",
+      "finish_key": "reverse"
+    },
+    {
+      "source_product_id": 213516,
+      "source_product_name": "Judge (2019)",
+      "printed_number": "108/131",
+      "target_parent_id": "ea08d28d-8267-4db9-859c-64ffd048792f",
+      "target_child_id": "bfe26a71-5c95-4e97-8b12-ef6afa0b2dc6",
+      "finish_key": "reverse"
+    },
+    {
+      "source_product_id": 499366,
+      "source_product_name": "Gym Trainer (2022)",
+      "printed_number": "059/072",
+      "target_parent_id": "8f22c4ef-320d-45cd-8938-4aa84aca740e",
+      "target_child_id": "2f02ea00-6f1e-480d-8766-edb2a468d72f",
+      "finish_key": "reverse"
+    }
+  ],
+  "blocked_scope": {
+    "source_product_id": 176638,
+    "source_product_name": "Professor Sycamore (2015)",
+    "printed_number": "122/146",
+    "target_parent_id": "69183c91-e669-4697-b5ab-f3cef1a11a5c",
+    "required_finish_key": "reverse",
+    "existing_conflicting_finish_key": "holo",
+    "reason": "source_finish_child_missing_on_professor_program_parent"
+  },
+  "source_sync_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+  "rows": [
+    {
+      "source_product_id": 176629,
+      "source_product_name": "Prof. Oak's Research (2004-2005)",
+      "printed_number": "98/112",
+      "target_parent_id": "e402c8fc-563b-49e3-a198-6a5fe5f75cda",
+      "target_child_id": "eb9b3f39-760f-4b77-a3b1-c486b4a4e4c3",
+      "finish_key": "normal",
+      "status": "ready_for_authority_package",
+      "failures": [],
+      "product": {
+        "product_id": 176629,
+        "category_id": 3,
+        "group_id": 2332,
+        "name": "Prof. Oak's Research (2004-2005)",
+        "source_url": "https://www.tcgplayer.com/product/176629/pokemon-professor-program-promos-prof-oaks-research-2004-2005",
+        "source_modified_on": "2018-09-13T19:45:58.427",
+        "extended_data": [
+          {
+            "name": "Number",
+            "value": "98/112",
+            "displayName": "Card Number"
+          },
+          {
+            "name": "Rarity",
+            "value": "Promo",
+            "displayName": "Rarity"
+          },
+          {
+            "name": "Card Type",
+            "value": "Supporter",
+            "displayName": "Card Type"
+          },
+          {
+            "name": "CardText",
+            "value": "Shuffle your hand into your deck, then draw 5 cards.",
+            "displayName": "Card Text"
+          }
+        ],
+        "payload_hash": "2100f044d148a713c0fb40bcd575cf33a60781880736edd42216c02bb1e6b5ac",
+        "last_seen_at": "2026-11-05T08:40:28.109Z",
+        "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      "parent": {
+        "id": "e402c8fc-563b-49e3-a198-6a5fe5f75cda",
+        "set_id": "e3c0f90a-9b77-488d-8445-64e929a5a4fb",
+        "set_code": "ex6",
+        "name": "Prof. Oak's Research",
+        "number": "98",
+        "variant_key": "professor_program_stamp",
+        "gv_id": "GV-PK-RG-98-PROFESSOR-PROGRAM",
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": "professor_program_stamp",
+        "active_standard_identity_count": 1
+      },
+      "child": {
+        "id": "eb9b3f39-760f-4b77-a3b1-c486b4a4e4c3",
+        "card_print_id": "e402c8fc-563b-49e3-a198-6a5fe5f75cda",
+        "finish_key": "normal",
+        "printing_gv_id": "GV-PK-RG-98-PROFESSOR-PROGRAM-STD",
+        "is_provisional": false,
+        "provenance_source": "tcgplayer_professor_program_catalog_repair_v1",
+        "provenance_ref": "tcgplayer:176629:professor_program_stamp:normal",
+        "finish_active": true,
+        "active_truth_review": "verified",
+        "public_visibility": "visible",
+        "public_visible": true
+      },
+      "existing_mappings": [],
+      "observation_summary": [
+        {
+          "product_id": 176629,
+          "subtype_name": "Normal",
+          "observation_count": 341,
+          "first_observed_on": "2024-02-08T07:00:00.000Z",
+          "last_observed_on": "2026-11-05T07:00:00.000Z",
+          "last_observed_at": "2026-11-05T08:40:28.602Z"
+        }
+      ],
+      "latest_observations": [
+        {
+          "id": "a298bf76-27e9-4e4d-a2f4-02f2299a79c5",
+          "product_id": 176629,
+          "subtype_name": "Normal",
+          "observed_on": "2026-11-05T07:00:00.000Z",
+          "low_price": "115",
+          "mid_price": "124.99",
+          "high_price": "134.95",
+          "market_price": "134.99",
+          "direct_low_price": null,
+          "currency": "USD",
+          "payload_hash": "ae58d91e4d5e5e55e5521ea324967048466efa7c585245482f1556e003818fe0",
+          "last_observed_at": "2026-11-05T08:40:28.602Z",
+          "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e"
+        }
+      ],
+      "active_publication_overlap": []
+    },
+    {
+      "source_product_id": 176630,
+      "source_product_name": "Professor Birch (2006)",
+      "printed_number": "82/106",
+      "target_parent_id": "ed61ea12-90af-4250-b089-e2b31fc2fdce",
+      "target_child_id": "820ba0fb-cc4a-4460-ada6-66fdeb1185b9",
+      "finish_key": "holo",
+      "status": "ready_for_authority_package",
+      "failures": [],
+      "product": {
+        "product_id": 176630,
+        "category_id": 3,
+        "group_id": 2332,
+        "name": "Professor Birch (2006)",
+        "source_url": "https://www.tcgplayer.com/product/176630/pokemon-professor-program-promos-professor-birch-2006",
+        "source_modified_on": "2018-09-13T19:49:15.107",
+        "extended_data": [
+          {
+            "name": "Number",
+            "value": "82/106",
+            "displayName": "Card Number"
+          },
+          {
+            "name": "Rarity",
+            "value": "Promo",
+            "displayName": "Rarity"
+          },
+          {
+            "name": "Card Type",
+            "value": "Supporter",
+            "displayName": "Card Type"
+          },
+          {
+            "name": "CardText",
+            "value": "Draw cards from your deck until you have 6 cards in your hand.",
+            "displayName": "Card Text"
+          }
+        ],
+        "payload_hash": "12ab75c48536a38c87d18ac53d2421f21d41320583f82c2044b11f46fab225a2",
+        "last_seen_at": "2026-11-05T08:40:28.109Z",
+        "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      "parent": {
+        "id": "ed61ea12-90af-4250-b089-e2b31fc2fdce",
+        "set_id": "07f4df8d-766f-4801-b1f8-7e5a80035274",
+        "set_code": "ex9",
+        "name": "Professor Birch",
+        "number": "82",
+        "variant_key": "professor_program_stamp",
+        "gv_id": "GV-PK-EX9-82-PROFESSOR-PROGRAM-STAMP",
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": "professor_program_stamp",
+        "active_standard_identity_count": 1
+      },
+      "child": {
+        "id": "820ba0fb-cc4a-4460-ada6-66fdeb1185b9",
+        "card_print_id": "ed61ea12-90af-4250-b089-e2b31fc2fdce",
+        "finish_key": "holo",
+        "printing_gv_id": "GV-PK-EX9-82-PROFESSOR-PROGRAM-STAMP-HOLO",
+        "is_provisional": false,
+        "provenance_source": "verified_master_index_v1",
+        "provenance_ref": "ex9:82:professor_program_stamp:holo",
+        "finish_active": true,
+        "active_truth_review": "verified",
+        "public_visibility": "visible",
+        "public_visible": true
+      },
+      "existing_mappings": [],
+      "observation_summary": [
+        {
+          "product_id": 176630,
+          "subtype_name": "Holofoil",
+          "observation_count": 341,
+          "first_observed_on": "2024-02-08T07:00:00.000Z",
+          "last_observed_on": "2026-11-05T07:00:00.000Z",
+          "last_observed_at": "2026-11-05T08:40:28.602Z"
+        }
+      ],
+      "latest_observations": [
+        {
+          "id": "b08213b6-e598-4002-8f81-4aa7b23cfa62",
+          "product_id": 176630,
+          "subtype_name": "Holofoil",
+          "observed_on": "2026-11-05T07:00:00.000Z",
+          "low_price": "69.99",
+          "mid_price": "71.21",
+          "high_price": "149.9",
+          "market_price": "54.95",
+          "direct_low_price": null,
+          "currency": "USD",
+          "payload_hash": "4f85dd65b51e2580d0b0b33a1629435c96fc1ef2d216901e7e5b467d20f9033b",
+          "last_observed_at": "2026-11-05T08:40:28.602Z",
+          "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e"
+        }
+      ],
+      "active_publication_overlap": []
+    },
+    {
+      "source_product_id": 176631,
+      "source_product_name": "Professor Oak's Visit (2008-2009)",
+      "printed_number": "122/132",
+      "target_parent_id": "baa63e55-c8aa-4936-8c9a-63de29e75c16",
+      "target_child_id": "235db02c-1431-42ba-a973-43cb6d89b38d",
+      "finish_key": "normal",
+      "status": "ready_for_authority_package",
+      "failures": [],
+      "product": {
+        "product_id": 176631,
+        "category_id": 3,
+        "group_id": 2332,
+        "name": "Professor Oak's Visit (2008-2009)",
+        "source_url": "https://www.tcgplayer.com/product/176631/pokemon-professor-program-promos-professor-oaks-visit-2008-2009",
+        "source_modified_on": "2022-03-28T16:30:49.38",
+        "extended_data": [
+          {
+            "name": "Number",
+            "value": "122/132",
+            "displayName": "Card Number"
+          },
+          {
+            "name": "Rarity",
+            "value": "Promo",
+            "displayName": "Rarity"
+          },
+          {
+            "name": "Card Type",
+            "value": "Supporter",
+            "displayName": "Card Type"
+          },
+          {
+            "name": "CardText",
+            "value": "Draw 3 cards. Then, choose a card from your hand and put it on the bottom of your deck.",
+            "displayName": "Card Text"
+          }
+        ],
+        "payload_hash": "46bb7fdfb52c0714ac677415977a50d089d75c5ee2c96f1318dff7bfe4b146c0",
+        "last_seen_at": "2026-11-05T08:40:28.109Z",
+        "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      "parent": {
+        "id": "baa63e55-c8aa-4936-8c9a-63de29e75c16",
+        "set_id": "d19aaa18-3b30-41a2-919d-2fce1d7bebfe",
+        "set_code": "dp3",
+        "name": "Professor Oak's Visit",
+        "number": "122",
+        "variant_key": "professor_program_stamp",
+        "gv_id": "GV-PK-SW-122-PROFESSOR-PROGRAM",
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": "professor_program_stamp",
+        "active_standard_identity_count": 1
+      },
+      "child": {
+        "id": "235db02c-1431-42ba-a973-43cb6d89b38d",
+        "card_print_id": "baa63e55-c8aa-4936-8c9a-63de29e75c16",
+        "finish_key": "normal",
+        "printing_gv_id": "GV-PK-SW-122-PROFESSOR-PROGRAM-STD",
+        "is_provisional": false,
+        "provenance_source": "tcgplayer_professor_program_catalog_repair_v1",
+        "provenance_ref": "tcgplayer:176631:professor_program_stamp:normal",
+        "finish_active": true,
+        "active_truth_review": "verified",
+        "public_visibility": "visible",
+        "public_visible": true
+      },
+      "existing_mappings": [],
+      "observation_summary": [
+        {
+          "product_id": 176631,
+          "subtype_name": "Normal",
+          "observation_count": 341,
+          "first_observed_on": "2024-02-08T07:00:00.000Z",
+          "last_observed_on": "2026-11-05T07:00:00.000Z",
+          "last_observed_at": "2026-11-05T08:40:28.602Z"
+        }
+      ],
+      "latest_observations": [
+        {
+          "id": "3244ea82-1bdd-4b26-b51e-cd8f3c26ddeb",
+          "product_id": 176631,
+          "subtype_name": "Normal",
+          "observed_on": "2026-11-05T07:00:00.000Z",
+          "low_price": "57.11",
+          "mid_price": "68.6",
+          "high_price": "79.99",
+          "market_price": "50.99",
+          "direct_low_price": null,
+          "currency": "USD",
+          "payload_hash": "5e3438842418616ac046aa372ad27d9734e2bd5aec8d7e56539a5bfb16145baa",
+          "last_observed_at": "2026-11-05T08:40:28.602Z",
+          "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e"
+        }
+      ],
+      "active_publication_overlap": []
+    },
+    {
+      "source_product_id": 176632,
+      "source_product_name": "Professor Juniper - 98/108 (2013)",
+      "printed_number": "98/108",
+      "target_parent_id": "c98e4f39-59fc-4ec1-bfc5-c34f28a25f3c",
+      "target_child_id": "04cf4fa5-ea7a-434c-a558-7b53e95a4a93",
+      "finish_key": "reverse",
+      "status": "ready_for_authority_package",
+      "failures": [],
+      "product": {
+        "product_id": 176632,
+        "category_id": 3,
+        "group_id": 2332,
+        "name": "Professor Juniper - 98/108 (2013)",
+        "source_url": "https://www.tcgplayer.com/product/176632/pokemon-professor-program-promos-professor-juniper-98-108-2013",
+        "source_modified_on": "2020-08-11T13:26:10.06",
+        "extended_data": [
+          {
+            "name": "Number",
+            "value": "98/108",
+            "displayName": "Card Number"
+          },
+          {
+            "name": "Rarity",
+            "value": "Promo",
+            "displayName": "Rarity"
+          },
+          {
+            "name": "Card Type",
+            "value": "Supporter",
+            "displayName": "Card Type"
+          },
+          {
+            "name": "CardText",
+            "value": "Discard your hand and draw 7 cards.",
+            "displayName": "Card Text"
+          }
+        ],
+        "payload_hash": "9ebf257352ac4c85000a6beee02c9a62157c58512c09ee21520cd8e710bd561b",
+        "last_seen_at": "2026-11-05T08:40:28.109Z",
+        "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      "parent": {
+        "id": "c98e4f39-59fc-4ec1-bfc5-c34f28a25f3c",
+        "set_id": "56c23b8d-904e-4c3a-b0fd-9562919f5694",
+        "set_code": "bw5",
+        "name": "Professor Juniper",
+        "number": "98",
+        "variant_key": "professor_program_stamp",
+        "gv_id": "GV-PK-BW5-98-PROFESSOR-PROGRAM-STAMP",
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": "professor_program_stamp",
+        "active_standard_identity_count": 1
+      },
+      "child": {
+        "id": "04cf4fa5-ea7a-434c-a558-7b53e95a4a93",
+        "card_print_id": "c98e4f39-59fc-4ec1-bfc5-c34f28a25f3c",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-BW5-98-PROFESSOR-PROGRAM-STAMP-RH",
+        "is_provisional": false,
+        "provenance_source": "verified_master_index_v1",
+        "provenance_ref": "bw5:98:professor_program_stamp:reverse",
+        "finish_active": true,
+        "active_truth_review": "verified",
+        "public_visibility": "visible",
+        "public_visible": true
+      },
+      "existing_mappings": [],
+      "observation_summary": [
+        {
+          "product_id": 176632,
+          "subtype_name": "Reverse Holofoil",
+          "observation_count": 341,
+          "first_observed_on": "2024-02-08T07:00:00.000Z",
+          "last_observed_on": "2026-11-05T07:00:00.000Z",
+          "last_observed_at": "2026-11-05T08:40:28.602Z"
+        }
+      ],
+      "latest_observations": [
+        {
+          "id": "bb1c7243-6f70-467c-8be5-72354cc5b2c4",
+          "product_id": 176632,
+          "subtype_name": "Reverse Holofoil",
+          "observed_on": "2026-11-05T07:00:00.000Z",
+          "low_price": "20",
+          "mid_price": "24.57",
+          "high_price": "29.97",
+          "market_price": "22.88",
+          "direct_low_price": null,
+          "currency": "USD",
+          "payload_hash": "ca095b8805811b38a9a9b654eedbf160c100f77d343fec8a5e7d2cc1e83883cf",
+          "last_observed_at": "2026-11-05T08:40:28.602Z",
+          "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e"
+        }
+      ],
+      "active_publication_overlap": []
+    },
+    {
+      "source_product_id": 176633,
+      "source_product_name": "Professor Juniper - 101/114 (2013)",
+      "printed_number": "101/114",
+      "target_parent_id": "12cad852-d079-44cc-9438-e806aede97ff",
+      "target_child_id": "8b0cf097-ef28-42aa-a3f2-f8665f863726",
+      "finish_key": "reverse",
+      "status": "ready_for_authority_package",
+      "failures": [],
+      "product": {
+        "product_id": 176633,
+        "category_id": 3,
+        "group_id": 2332,
+        "name": "Professor Juniper - 101/114 (2013)",
+        "source_url": "https://www.tcgplayer.com/product/176633/pokemon-professor-program-promos-professor-juniper-101-114-2013",
+        "source_modified_on": "2020-08-12T14:53:10.173",
+        "extended_data": [
+          {
+            "name": "Number",
+            "value": "101/114",
+            "displayName": "Card Number"
+          },
+          {
+            "name": "Rarity",
+            "value": "Promo",
+            "displayName": "Rarity"
+          },
+          {
+            "name": "Card Type",
+            "value": "Supporter",
+            "displayName": "Card Type"
+          },
+          {
+            "name": "CardText",
+            "value": "Discard your hand and draw 7 cards.",
+            "displayName": "Card Text"
+          }
+        ],
+        "payload_hash": "f43442da46ce6174f89657be59334827212558c63d14d43d4873d2ae2b9769ea",
+        "last_seen_at": "2026-11-05T08:40:28.109Z",
+        "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      "parent": {
+        "id": "12cad852-d079-44cc-9438-e806aede97ff",
+        "set_id": "474cefc3-bb4d-47eb-8c02-333953130b4c",
+        "set_code": "bw1",
+        "name": "Professor Juniper",
+        "number": "101",
+        "variant_key": "professor_program_stamp",
+        "gv_id": "GV-PK-BW1-101-PROFESSOR-PROGRAM-STAMP",
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": "professor_program_stamp",
+        "active_standard_identity_count": 1
+      },
+      "child": {
+        "id": "8b0cf097-ef28-42aa-a3f2-f8665f863726",
+        "card_print_id": "12cad852-d079-44cc-9438-e806aede97ff",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-BW1-101-PROFESSOR-PROGRAM-STAMP-RH",
+        "is_provisional": false,
+        "provenance_source": "verified_master_index_v1",
+        "provenance_ref": "bw1:101:professor_program_stamp:reverse",
+        "finish_active": true,
+        "active_truth_review": "verified",
+        "public_visibility": "visible",
+        "public_visible": true
+      },
+      "existing_mappings": [],
+      "observation_summary": [
+        {
+          "product_id": 176633,
+          "subtype_name": "Reverse Holofoil",
+          "observation_count": 341,
+          "first_observed_on": "2024-02-08T07:00:00.000Z",
+          "last_observed_on": "2026-11-05T07:00:00.000Z",
+          "last_observed_at": "2026-11-05T08:40:28.602Z"
+        }
+      ],
+      "latest_observations": [
+        {
+          "id": "c3d878f2-2683-4136-bfa3-14d787098263",
+          "product_id": 176633,
+          "subtype_name": "Reverse Holofoil",
+          "observed_on": "2026-11-05T07:00:00.000Z",
+          "low_price": "15",
+          "mid_price": "17.73",
+          "high_price": "20.45",
+          "market_price": "20.45",
+          "direct_low_price": null,
+          "currency": "USD",
+          "payload_hash": "27f14a087a7d5328aec2263eeb06d90fc2384bb7df33485a3d5ad0de593579d7",
+          "last_observed_at": "2026-11-05T08:40:28.602Z",
+          "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e"
+        }
+      ],
+      "active_publication_overlap": []
+    },
+    {
+      "source_product_id": 213516,
+      "source_product_name": "Judge (2019)",
+      "printed_number": "108/131",
+      "target_parent_id": "ea08d28d-8267-4db9-859c-64ffd048792f",
+      "target_child_id": "bfe26a71-5c95-4e97-8b12-ef6afa0b2dc6",
+      "finish_key": "reverse",
+      "status": "ready_for_authority_package",
+      "failures": [],
+      "product": {
+        "product_id": 213516,
+        "category_id": 3,
+        "group_id": 2332,
+        "name": "Judge (2019)",
+        "source_url": "https://www.tcgplayer.com/product/213516/pokemon-professor-program-promos-judge-2019",
+        "source_modified_on": "2022-03-28T16:32:56.96",
+        "extended_data": [
+          {
+            "name": "Number",
+            "value": "108/131",
+            "displayName": "Card Number"
+          },
+          {
+            "name": "Rarity",
+            "value": "Promo",
+            "displayName": "Rarity"
+          },
+          {
+            "name": "Card Type",
+            "value": "Supporter",
+            "displayName": "Card Type"
+          },
+          {
+            "name": "CardText",
+            "value": "Each player shuffles their hand into their deck and draws 4 cards.",
+            "displayName": "Card Text"
+          }
+        ],
+        "payload_hash": "a86286a108aa899294ba14b06917cc4efc3b6819ddf8fb840d27eb36bcd93382",
+        "last_seen_at": "2026-11-05T08:40:28.109Z",
+        "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      "parent": {
+        "id": "ea08d28d-8267-4db9-859c-64ffd048792f",
+        "set_id": "2ac96af4-a5e2-479f-916c-7b52e13a8f3a",
+        "set_code": "sm6",
+        "name": "Judge",
+        "number": "108",
+        "variant_key": "professor_program_stamp",
+        "gv_id": "GV-PK-FLI-108-PROFESSOR-PROGRAM-STAMP",
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": "professor_program_stamp",
+        "active_standard_identity_count": 1
+      },
+      "child": {
+        "id": "bfe26a71-5c95-4e97-8b12-ef6afa0b2dc6",
+        "card_print_id": "ea08d28d-8267-4db9-859c-64ffd048792f",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-FLI-108-PROFESSOR-PROGRAM-STAMP-RH",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sm6:108:stamped_identity:professor_program_stamp:reverse",
+        "finish_active": true,
+        "active_truth_review": "verified",
+        "public_visibility": "visible",
+        "public_visible": true
+      },
+      "existing_mappings": [],
+      "observation_summary": [
+        {
+          "product_id": 213516,
+          "subtype_name": "Reverse Holofoil",
+          "observation_count": 341,
+          "first_observed_on": "2024-02-08T07:00:00.000Z",
+          "last_observed_on": "2026-11-05T07:00:00.000Z",
+          "last_observed_at": "2026-11-05T08:40:28.602Z"
+        }
+      ],
+      "latest_observations": [
+        {
+          "id": "b86bcfe2-febb-46e2-b18e-5bc537a9551b",
+          "product_id": 213516,
+          "subtype_name": "Reverse Holofoil",
+          "observed_on": "2026-11-05T07:00:00.000Z",
+          "low_price": "24",
+          "mid_price": "39.95",
+          "high_price": "225",
+          "market_price": "22.41",
+          "direct_low_price": null,
+          "currency": "USD",
+          "payload_hash": "af046ecb4eab8845c20bb4f5a4a3641c0a1d60181f7740cbb076df07e7558f87",
+          "last_observed_at": "2026-11-05T08:40:28.602Z",
+          "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e"
+        }
+      ],
+      "active_publication_overlap": []
+    },
+    {
+      "source_product_id": 499366,
+      "source_product_name": "Gym Trainer (2022)",
+      "printed_number": "059/072",
+      "target_parent_id": "8f22c4ef-320d-45cd-8938-4aa84aca740e",
+      "target_child_id": "2f02ea00-6f1e-480d-8766-edb2a468d72f",
+      "finish_key": "reverse",
+      "status": "ready_for_authority_package",
+      "failures": [],
+      "product": {
+        "product_id": 499366,
+        "category_id": 3,
+        "group_id": 2332,
+        "name": "Gym Trainer (2022)",
+        "source_url": "https://www.tcgplayer.com/product/499366/pokemon-professor-program-promos-gym-trainer-2022",
+        "source_modified_on": "2023-06-07T15:50:07.373",
+        "extended_data": [
+          {
+            "name": "Number",
+            "value": "059/072",
+            "displayName": "Card Number"
+          },
+          {
+            "name": "Rarity",
+            "value": "Promo",
+            "displayName": "Rarity"
+          },
+          {
+            "name": "Card Type",
+            "value": "Supporter",
+            "displayName": "Card Type"
+          },
+          {
+            "name": "CardText",
+            "value": "Draw 2 cards. If any of your Pokémon were Knocked Out during your opponent's last turn, draw 2 more cards.\r\n<br><br>\r\nYou may play only 1 Supporter card during your turn.",
+            "displayName": "Card Text"
+          }
+        ],
+        "payload_hash": "4f482f3cd87468f5963345bf9fbea62082d671412d6aedfaeb8262e7fe35b74f",
+        "last_seen_at": "2026-11-05T08:40:28.109Z",
+        "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      "parent": {
+        "id": "8f22c4ef-320d-45cd-8938-4aa84aca740e",
+        "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+        "set_code": "swsh4.5",
+        "name": "Gym Trainer",
+        "number": "59",
+        "variant_key": "professor_program_stamp",
+        "gv_id": "GV-PK-SHF-59-PROFESSOR-PROGRAM",
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": "professor_program_stamp",
+        "active_standard_identity_count": 1
+      },
+      "child": {
+        "id": "2f02ea00-6f1e-480d-8766-edb2a468d72f",
+        "card_print_id": "8f22c4ef-320d-45cd-8938-4aa84aca740e",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-SHF-59-PROFESSOR-PROGRAM-RH",
+        "is_provisional": false,
+        "provenance_source": "tcgplayer_professor_program_catalog_repair_v1",
+        "provenance_ref": "tcgplayer:499366:professor_program_stamp:reverse",
+        "finish_active": true,
+        "active_truth_review": "verified",
+        "public_visibility": "visible",
+        "public_visible": true
+      },
+      "existing_mappings": [],
+      "observation_summary": [
+        {
+          "product_id": 499366,
+          "subtype_name": "Reverse Holofoil",
+          "observation_count": 341,
+          "first_observed_on": "2024-02-08T07:00:00.000Z",
+          "last_observed_on": "2026-11-05T07:00:00.000Z",
+          "last_observed_at": "2026-11-05T08:40:28.602Z"
+        }
+      ],
+      "latest_observations": [
+        {
+          "id": "c3b9fae1-21d8-44bc-9131-73d5e6cbe4cd",
+          "product_id": 499366,
+          "subtype_name": "Reverse Holofoil",
+          "observed_on": "2026-11-05T07:00:00.000Z",
+          "low_price": "10.96",
+          "mid_price": "14.09",
+          "high_price": "23",
+          "market_price": "14.19",
+          "direct_low_price": null,
+          "currency": "USD",
+          "payload_hash": "2c3d53e2d316a2101d2f2a70a0ef5afe7c1133ed02d669c427b1dce5d5e35af2",
+          "last_observed_at": "2026-11-05T08:40:28.602Z",
+          "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e"
+        }
+      ],
+      "active_publication_overlap": []
+    }
+  ],
+  "blocked": {
+    "source_product_id": 176638,
+    "target_parent_id": "69183c91-e669-4697-b5ab-f3cef1a11a5c",
+    "status": "held_finish_conflict_confirmed",
+    "reason": "source_finish_child_missing_on_professor_program_parent"
+  },
+  "fingerprint_sha256": "4033952910f53fc067974c5517e102903399e202dc6ae8bdd260bce9eee1a815",
+  "production_project_ref": "ycdxbpibncqcchqiihfz",
+  "database_transaction": "repeatable_read_read_only",
+  "database_writes": 0,
+  "mapping_writes": 0,
+  "pricing_writes": 0,
+  "publication_writes": 0,
+  "execution_authorized": false,
+  "counts": {
+    "proposed": 7,
+    "ready": 7,
+    "blocked": 0,
+    "held": 1,
+    "active_mapping_collisions": 0,
+    "active_publication_overlap": 0
+  },
+  "production": {
+    "server": {
+      "database": "postgres",
+      "username": "postgres",
+      "read_only": "on"
+    },
+    "maturity": {
+      "card_prints": 172418,
+      "card_printings": 241944,
+      "active_tcgplayer_mappings": 124339
+    },
+    "source_run": {
+      "id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+      "run_key": "TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-11-05-warehouse",
+      "sync_mode": "current_full_sync",
+      "status": "completed",
+      "observed_on": "2026-11-05T07:00:00.000Z",
+      "product_count": 519031,
+      "price_row_count": 564106,
+      "failed_count": 0,
+      "artifact_hash": "5c49f20fe11b846c2b136699921083cfa1bbb4ce8cbe130a778f4922bbcaf75d",
+      "git_commit_sha": "cdcec2aa6ab39c237047119fa1dd31605ea1449f",
+      "started_at": "2026-11-05T08:15:16.210Z",
+      "finished_at": "2026-11-05T09:35:24.089Z"
+    },
+    "source_group": {
+      "group_id": 2332,
+      "category_id": 3,
+      "name": "Professor Program Promos",
+      "abbreviation": "PPP",
+      "source_active": true,
+      "catalog_metadata_status": "current",
+      "last_seen_at": "2026-11-05T08:36:23.287Z",
+      "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e"
+    },
+    "products": [
+      {
+        "product_id": 176629,
+        "category_id": 3,
+        "group_id": 2332,
+        "name": "Prof. Oak's Research (2004-2005)",
+        "source_url": "https://www.tcgplayer.com/product/176629/pokemon-professor-program-promos-prof-oaks-research-2004-2005",
+        "source_modified_on": "2018-09-13T19:45:58.427",
+        "extended_data": [
+          {
+            "name": "Number",
+            "value": "98/112",
+            "displayName": "Card Number"
+          },
+          {
+            "name": "Rarity",
+            "value": "Promo",
+            "displayName": "Rarity"
+          },
+          {
+            "name": "Card Type",
+            "value": "Supporter",
+            "displayName": "Card Type"
+          },
+          {
+            "name": "CardText",
+            "value": "Shuffle your hand into your deck, then draw 5 cards.",
+            "displayName": "Card Text"
+          }
+        ],
+        "payload_hash": "2100f044d148a713c0fb40bcd575cf33a60781880736edd42216c02bb1e6b5ac",
+        "last_seen_at": "2026-11-05T08:40:28.109Z",
+        "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      {
+        "product_id": 176630,
+        "category_id": 3,
+        "group_id": 2332,
+        "name": "Professor Birch (2006)",
+        "source_url": "https://www.tcgplayer.com/product/176630/pokemon-professor-program-promos-professor-birch-2006",
+        "source_modified_on": "2018-09-13T19:49:15.107",
+        "extended_data": [
+          {
+            "name": "Number",
+            "value": "82/106",
+            "displayName": "Card Number"
+          },
+          {
+            "name": "Rarity",
+            "value": "Promo",
+            "displayName": "Rarity"
+          },
+          {
+            "name": "Card Type",
+            "value": "Supporter",
+            "displayName": "Card Type"
+          },
+          {
+            "name": "CardText",
+            "value": "Draw cards from your deck until you have 6 cards in your hand.",
+            "displayName": "Card Text"
+          }
+        ],
+        "payload_hash": "12ab75c48536a38c87d18ac53d2421f21d41320583f82c2044b11f46fab225a2",
+        "last_seen_at": "2026-11-05T08:40:28.109Z",
+        "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      {
+        "product_id": 176631,
+        "category_id": 3,
+        "group_id": 2332,
+        "name": "Professor Oak's Visit (2008-2009)",
+        "source_url": "https://www.tcgplayer.com/product/176631/pokemon-professor-program-promos-professor-oaks-visit-2008-2009",
+        "source_modified_on": "2022-03-28T16:30:49.38",
+        "extended_data": [
+          {
+            "name": "Number",
+            "value": "122/132",
+            "displayName": "Card Number"
+          },
+          {
+            "name": "Rarity",
+            "value": "Promo",
+            "displayName": "Rarity"
+          },
+          {
+            "name": "Card Type",
+            "value": "Supporter",
+            "displayName": "Card Type"
+          },
+          {
+            "name": "CardText",
+            "value": "Draw 3 cards. Then, choose a card from your hand and put it on the bottom of your deck.",
+            "displayName": "Card Text"
+          }
+        ],
+        "payload_hash": "46bb7fdfb52c0714ac677415977a50d089d75c5ee2c96f1318dff7bfe4b146c0",
+        "last_seen_at": "2026-11-05T08:40:28.109Z",
+        "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      {
+        "product_id": 176632,
+        "category_id": 3,
+        "group_id": 2332,
+        "name": "Professor Juniper - 98/108 (2013)",
+        "source_url": "https://www.tcgplayer.com/product/176632/pokemon-professor-program-promos-professor-juniper-98-108-2013",
+        "source_modified_on": "2020-08-11T13:26:10.06",
+        "extended_data": [
+          {
+            "name": "Number",
+            "value": "98/108",
+            "displayName": "Card Number"
+          },
+          {
+            "name": "Rarity",
+            "value": "Promo",
+            "displayName": "Rarity"
+          },
+          {
+            "name": "Card Type",
+            "value": "Supporter",
+            "displayName": "Card Type"
+          },
+          {
+            "name": "CardText",
+            "value": "Discard your hand and draw 7 cards.",
+            "displayName": "Card Text"
+          }
+        ],
+        "payload_hash": "9ebf257352ac4c85000a6beee02c9a62157c58512c09ee21520cd8e710bd561b",
+        "last_seen_at": "2026-11-05T08:40:28.109Z",
+        "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      {
+        "product_id": 176633,
+        "category_id": 3,
+        "group_id": 2332,
+        "name": "Professor Juniper - 101/114 (2013)",
+        "source_url": "https://www.tcgplayer.com/product/176633/pokemon-professor-program-promos-professor-juniper-101-114-2013",
+        "source_modified_on": "2020-08-12T14:53:10.173",
+        "extended_data": [
+          {
+            "name": "Number",
+            "value": "101/114",
+            "displayName": "Card Number"
+          },
+          {
+            "name": "Rarity",
+            "value": "Promo",
+            "displayName": "Rarity"
+          },
+          {
+            "name": "Card Type",
+            "value": "Supporter",
+            "displayName": "Card Type"
+          },
+          {
+            "name": "CardText",
+            "value": "Discard your hand and draw 7 cards.",
+            "displayName": "Card Text"
+          }
+        ],
+        "payload_hash": "f43442da46ce6174f89657be59334827212558c63d14d43d4873d2ae2b9769ea",
+        "last_seen_at": "2026-11-05T08:40:28.109Z",
+        "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      {
+        "product_id": 176638,
+        "category_id": 3,
+        "group_id": 2332,
+        "name": "Professor Sycamore (2015)",
+        "source_url": "https://www.tcgplayer.com/product/176638/pokemon-professor-program-promos-professor-sycamore-2015",
+        "source_modified_on": "2022-03-28T16:32:19.66",
+        "extended_data": [
+          {
+            "name": "Number",
+            "value": "122/146",
+            "displayName": "Card Number"
+          },
+          {
+            "name": "Rarity",
+            "value": "Promo",
+            "displayName": "Rarity"
+          },
+          {
+            "name": "Card Type",
+            "value": "Supporter",
+            "displayName": "Card Type"
+          },
+          {
+            "name": "CardText",
+            "value": "Discard your hand and draw 7 cards.",
+            "displayName": "Card Text"
+          }
+        ],
+        "payload_hash": "e683ebd893ddb1bb86b574104d94fc67fa34f36ceb5591b81fe2ce2761c52a3f",
+        "last_seen_at": "2026-11-05T08:40:28.109Z",
+        "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      {
+        "product_id": 213516,
+        "category_id": 3,
+        "group_id": 2332,
+        "name": "Judge (2019)",
+        "source_url": "https://www.tcgplayer.com/product/213516/pokemon-professor-program-promos-judge-2019",
+        "source_modified_on": "2022-03-28T16:32:56.96",
+        "extended_data": [
+          {
+            "name": "Number",
+            "value": "108/131",
+            "displayName": "Card Number"
+          },
+          {
+            "name": "Rarity",
+            "value": "Promo",
+            "displayName": "Rarity"
+          },
+          {
+            "name": "Card Type",
+            "value": "Supporter",
+            "displayName": "Card Type"
+          },
+          {
+            "name": "CardText",
+            "value": "Each player shuffles their hand into their deck and draws 4 cards.",
+            "displayName": "Card Text"
+          }
+        ],
+        "payload_hash": "a86286a108aa899294ba14b06917cc4efc3b6819ddf8fb840d27eb36bcd93382",
+        "last_seen_at": "2026-11-05T08:40:28.109Z",
+        "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      },
+      {
+        "product_id": 499366,
+        "category_id": 3,
+        "group_id": 2332,
+        "name": "Gym Trainer (2022)",
+        "source_url": "https://www.tcgplayer.com/product/499366/pokemon-professor-program-promos-gym-trainer-2022",
+        "source_modified_on": "2023-06-07T15:50:07.373",
+        "extended_data": [
+          {
+            "name": "Number",
+            "value": "059/072",
+            "displayName": "Card Number"
+          },
+          {
+            "name": "Rarity",
+            "value": "Promo",
+            "displayName": "Rarity"
+          },
+          {
+            "name": "Card Type",
+            "value": "Supporter",
+            "displayName": "Card Type"
+          },
+          {
+            "name": "CardText",
+            "value": "Draw 2 cards. If any of your Pokémon were Knocked Out during your opponent's last turn, draw 2 more cards.\r\n<br><br>\r\nYou may play only 1 Supporter card during your turn.",
+            "displayName": "Card Text"
+          }
+        ],
+        "payload_hash": "4f482f3cd87468f5963345bf9fbea62082d671412d6aedfaeb8262e7fe35b74f",
+        "last_seen_at": "2026-11-05T08:40:28.109Z",
+        "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+        "source_active": true,
+        "catalog_metadata_status": "current"
+      }
+    ],
+    "parents": [
+      {
+        "id": "12cad852-d079-44cc-9438-e806aede97ff",
+        "set_id": "474cefc3-bb4d-47eb-8c02-333953130b4c",
+        "set_code": "bw1",
+        "name": "Professor Juniper",
+        "number": "101",
+        "variant_key": "professor_program_stamp",
+        "gv_id": "GV-PK-BW1-101-PROFESSOR-PROGRAM-STAMP",
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": "professor_program_stamp",
+        "active_standard_identity_count": 1
+      },
+      {
+        "id": "69183c91-e669-4697-b5ab-f3cef1a11a5c",
+        "set_id": "37b25b6d-7f33-4e6f-8c40-086f7df82d7e",
+        "set_code": "xy1",
+        "name": "Professor Sycamore",
+        "number": "122",
+        "variant_key": "professor_program_stamp",
+        "gv_id": "GV-PK-XY1-122-PROFESSOR-PROGRAM-STAMP",
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": null,
+        "active_standard_identity_count": 1
+      },
+      {
+        "id": "8f22c4ef-320d-45cd-8938-4aa84aca740e",
+        "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+        "set_code": "swsh4.5",
+        "name": "Gym Trainer",
+        "number": "59",
+        "variant_key": "professor_program_stamp",
+        "gv_id": "GV-PK-SHF-59-PROFESSOR-PROGRAM",
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": "professor_program_stamp",
+        "active_standard_identity_count": 1
+      },
+      {
+        "id": "baa63e55-c8aa-4936-8c9a-63de29e75c16",
+        "set_id": "d19aaa18-3b30-41a2-919d-2fce1d7bebfe",
+        "set_code": "dp3",
+        "name": "Professor Oak's Visit",
+        "number": "122",
+        "variant_key": "professor_program_stamp",
+        "gv_id": "GV-PK-SW-122-PROFESSOR-PROGRAM",
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": "professor_program_stamp",
+        "active_standard_identity_count": 1
+      },
+      {
+        "id": "c98e4f39-59fc-4ec1-bfc5-c34f28a25f3c",
+        "set_id": "56c23b8d-904e-4c3a-b0fd-9562919f5694",
+        "set_code": "bw5",
+        "name": "Professor Juniper",
+        "number": "98",
+        "variant_key": "professor_program_stamp",
+        "gv_id": "GV-PK-BW5-98-PROFESSOR-PROGRAM-STAMP",
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": "professor_program_stamp",
+        "active_standard_identity_count": 1
+      },
+      {
+        "id": "e402c8fc-563b-49e3-a198-6a5fe5f75cda",
+        "set_id": "e3c0f90a-9b77-488d-8445-64e929a5a4fb",
+        "set_code": "ex6",
+        "name": "Prof. Oak's Research",
+        "number": "98",
+        "variant_key": "professor_program_stamp",
+        "gv_id": "GV-PK-RG-98-PROFESSOR-PROGRAM",
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": "professor_program_stamp",
+        "active_standard_identity_count": 1
+      },
+      {
+        "id": "ea08d28d-8267-4db9-859c-64ffd048792f",
+        "set_id": "2ac96af4-a5e2-479f-916c-7b52e13a8f3a",
+        "set_code": "sm6",
+        "name": "Judge",
+        "number": "108",
+        "variant_key": "professor_program_stamp",
+        "gv_id": "GV-PK-FLI-108-PROFESSOR-PROGRAM-STAMP",
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": "professor_program_stamp",
+        "active_standard_identity_count": 1
+      },
+      {
+        "id": "ed61ea12-90af-4250-b089-e2b31fc2fdce",
+        "set_id": "07f4df8d-766f-4801-b1f8-7e5a80035274",
+        "set_code": "ex9",
+        "name": "Professor Birch",
+        "number": "82",
+        "variant_key": "professor_program_stamp",
+        "gv_id": "GV-PK-EX9-82-PROFESSOR-PROGRAM-STAMP",
+        "identity_domain": "pokemon_eng_standard",
+        "printed_identity_modifier": "professor_program_stamp",
+        "active_standard_identity_count": 1
+      }
+    ],
+    "children": [
+      {
+        "id": "8b0cf097-ef28-42aa-a3f2-f8665f863726",
+        "card_print_id": "12cad852-d079-44cc-9438-e806aede97ff",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-BW1-101-PROFESSOR-PROGRAM-STAMP-RH",
+        "is_provisional": false,
+        "provenance_source": "verified_master_index_v1",
+        "provenance_ref": "bw1:101:professor_program_stamp:reverse",
+        "finish_active": true,
+        "active_truth_review": "verified",
+        "public_visibility": "visible",
+        "public_visible": true
+      },
+      {
+        "id": "3ab2cee1-0b4d-4cad-bb7c-21eb7025398f",
+        "card_print_id": "69183c91-e669-4697-b5ab-f3cef1a11a5c",
+        "finish_key": "holo",
+        "printing_gv_id": "GV-PK-XY1-122-PROFESSOR-PROGRAM-STAMP-HOLO",
+        "is_provisional": false,
+        "provenance_source": "verified_master_index_v1",
+        "provenance_ref": "xy1:122:professor_program_stamp:holo",
+        "finish_active": true,
+        "active_truth_review": null,
+        "public_visibility": null,
+        "public_visible": true
+      },
+      {
+        "id": "2f02ea00-6f1e-480d-8766-edb2a468d72f",
+        "card_print_id": "8f22c4ef-320d-45cd-8938-4aa84aca740e",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-SHF-59-PROFESSOR-PROGRAM-RH",
+        "is_provisional": false,
+        "provenance_source": "tcgplayer_professor_program_catalog_repair_v1",
+        "provenance_ref": "tcgplayer:499366:professor_program_stamp:reverse",
+        "finish_active": true,
+        "active_truth_review": "verified",
+        "public_visibility": "visible",
+        "public_visible": true
+      },
+      {
+        "id": "235db02c-1431-42ba-a973-43cb6d89b38d",
+        "card_print_id": "baa63e55-c8aa-4936-8c9a-63de29e75c16",
+        "finish_key": "normal",
+        "printing_gv_id": "GV-PK-SW-122-PROFESSOR-PROGRAM-STD",
+        "is_provisional": false,
+        "provenance_source": "tcgplayer_professor_program_catalog_repair_v1",
+        "provenance_ref": "tcgplayer:176631:professor_program_stamp:normal",
+        "finish_active": true,
+        "active_truth_review": "verified",
+        "public_visibility": "visible",
+        "public_visible": true
+      },
+      {
+        "id": "04cf4fa5-ea7a-434c-a558-7b53e95a4a93",
+        "card_print_id": "c98e4f39-59fc-4ec1-bfc5-c34f28a25f3c",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-BW5-98-PROFESSOR-PROGRAM-STAMP-RH",
+        "is_provisional": false,
+        "provenance_source": "verified_master_index_v1",
+        "provenance_ref": "bw5:98:professor_program_stamp:reverse",
+        "finish_active": true,
+        "active_truth_review": "verified",
+        "public_visibility": "visible",
+        "public_visible": true
+      },
+      {
+        "id": "eb9b3f39-760f-4b77-a3b1-c486b4a4e4c3",
+        "card_print_id": "e402c8fc-563b-49e3-a198-6a5fe5f75cda",
+        "finish_key": "normal",
+        "printing_gv_id": "GV-PK-RG-98-PROFESSOR-PROGRAM-STD",
+        "is_provisional": false,
+        "provenance_source": "tcgplayer_professor_program_catalog_repair_v1",
+        "provenance_ref": "tcgplayer:176629:professor_program_stamp:normal",
+        "finish_active": true,
+        "active_truth_review": "verified",
+        "public_visibility": "visible",
+        "public_visible": true
+      },
+      {
+        "id": "bfe26a71-5c95-4e97-8b12-ef6afa0b2dc6",
+        "card_print_id": "ea08d28d-8267-4db9-859c-64ffd048792f",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-FLI-108-PROFESSOR-PROGRAM-STAMP-RH",
+        "is_provisional": false,
+        "provenance_source": "verified_master_set_index_v1",
+        "provenance_ref": "sm6:108:stamped_identity:professor_program_stamp:reverse",
+        "finish_active": true,
+        "active_truth_review": "verified",
+        "public_visibility": "visible",
+        "public_visible": true
+      },
+      {
+        "id": "820ba0fb-cc4a-4460-ada6-66fdeb1185b9",
+        "card_print_id": "ed61ea12-90af-4250-b089-e2b31fc2fdce",
+        "finish_key": "holo",
+        "printing_gv_id": "GV-PK-EX9-82-PROFESSOR-PROGRAM-STAMP-HOLO",
+        "is_provisional": false,
+        "provenance_source": "verified_master_index_v1",
+        "provenance_ref": "ex9:82:professor_program_stamp:holo",
+        "finish_active": true,
+        "active_truth_review": "verified",
+        "public_visibility": "visible",
+        "public_visible": true
+      }
+    ],
+    "mappings": [],
+    "observation_summary": [
+      {
+        "product_id": 176629,
+        "subtype_name": "Normal",
+        "observation_count": 341,
+        "first_observed_on": "2024-02-08T07:00:00.000Z",
+        "last_observed_on": "2026-11-05T07:00:00.000Z",
+        "last_observed_at": "2026-11-05T08:40:28.602Z"
+      },
+      {
+        "product_id": 176630,
+        "subtype_name": "Holofoil",
+        "observation_count": 341,
+        "first_observed_on": "2024-02-08T07:00:00.000Z",
+        "last_observed_on": "2026-11-05T07:00:00.000Z",
+        "last_observed_at": "2026-11-05T08:40:28.602Z"
+      },
+      {
+        "product_id": 176631,
+        "subtype_name": "Normal",
+        "observation_count": 341,
+        "first_observed_on": "2024-02-08T07:00:00.000Z",
+        "last_observed_on": "2026-11-05T07:00:00.000Z",
+        "last_observed_at": "2026-11-05T08:40:28.602Z"
+      },
+      {
+        "product_id": 176632,
+        "subtype_name": "Reverse Holofoil",
+        "observation_count": 341,
+        "first_observed_on": "2024-02-08T07:00:00.000Z",
+        "last_observed_on": "2026-11-05T07:00:00.000Z",
+        "last_observed_at": "2026-11-05T08:40:28.602Z"
+      },
+      {
+        "product_id": 176633,
+        "subtype_name": "Reverse Holofoil",
+        "observation_count": 341,
+        "first_observed_on": "2024-02-08T07:00:00.000Z",
+        "last_observed_on": "2026-11-05T07:00:00.000Z",
+        "last_observed_at": "2026-11-05T08:40:28.602Z"
+      },
+      {
+        "product_id": 176638,
+        "subtype_name": "Reverse Holofoil",
+        "observation_count": 341,
+        "first_observed_on": "2024-02-08T07:00:00.000Z",
+        "last_observed_on": "2026-11-05T07:00:00.000Z",
+        "last_observed_at": "2026-11-05T08:40:28.602Z"
+      },
+      {
+        "product_id": 213516,
+        "subtype_name": "Reverse Holofoil",
+        "observation_count": 341,
+        "first_observed_on": "2024-02-08T07:00:00.000Z",
+        "last_observed_on": "2026-11-05T07:00:00.000Z",
+        "last_observed_at": "2026-11-05T08:40:28.602Z"
+      },
+      {
+        "product_id": 499366,
+        "subtype_name": "Reverse Holofoil",
+        "observation_count": 341,
+        "first_observed_on": "2024-02-08T07:00:00.000Z",
+        "last_observed_on": "2026-11-05T07:00:00.000Z",
+        "last_observed_at": "2026-11-05T08:40:28.602Z"
+      }
+    ],
+    "latest_observations": [
+      {
+        "id": "a298bf76-27e9-4e4d-a2f4-02f2299a79c5",
+        "product_id": 176629,
+        "subtype_name": "Normal",
+        "observed_on": "2026-11-05T07:00:00.000Z",
+        "low_price": "115",
+        "mid_price": "124.99",
+        "high_price": "134.95",
+        "market_price": "134.99",
+        "direct_low_price": null,
+        "currency": "USD",
+        "payload_hash": "ae58d91e4d5e5e55e5521ea324967048466efa7c585245482f1556e003818fe0",
+        "last_observed_at": "2026-11-05T08:40:28.602Z",
+        "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e"
+      },
+      {
+        "id": "b08213b6-e598-4002-8f81-4aa7b23cfa62",
+        "product_id": 176630,
+        "subtype_name": "Holofoil",
+        "observed_on": "2026-11-05T07:00:00.000Z",
+        "low_price": "69.99",
+        "mid_price": "71.21",
+        "high_price": "149.9",
+        "market_price": "54.95",
+        "direct_low_price": null,
+        "currency": "USD",
+        "payload_hash": "4f85dd65b51e2580d0b0b33a1629435c96fc1ef2d216901e7e5b467d20f9033b",
+        "last_observed_at": "2026-11-05T08:40:28.602Z",
+        "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e"
+      },
+      {
+        "id": "3244ea82-1bdd-4b26-b51e-cd8f3c26ddeb",
+        "product_id": 176631,
+        "subtype_name": "Normal",
+        "observed_on": "2026-11-05T07:00:00.000Z",
+        "low_price": "57.11",
+        "mid_price": "68.6",
+        "high_price": "79.99",
+        "market_price": "50.99",
+        "direct_low_price": null,
+        "currency": "USD",
+        "payload_hash": "5e3438842418616ac046aa372ad27d9734e2bd5aec8d7e56539a5bfb16145baa",
+        "last_observed_at": "2026-11-05T08:40:28.602Z",
+        "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e"
+      },
+      {
+        "id": "bb1c7243-6f70-467c-8be5-72354cc5b2c4",
+        "product_id": 176632,
+        "subtype_name": "Reverse Holofoil",
+        "observed_on": "2026-11-05T07:00:00.000Z",
+        "low_price": "20",
+        "mid_price": "24.57",
+        "high_price": "29.97",
+        "market_price": "22.88",
+        "direct_low_price": null,
+        "currency": "USD",
+        "payload_hash": "ca095b8805811b38a9a9b654eedbf160c100f77d343fec8a5e7d2cc1e83883cf",
+        "last_observed_at": "2026-11-05T08:40:28.602Z",
+        "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e"
+      },
+      {
+        "id": "c3d878f2-2683-4136-bfa3-14d787098263",
+        "product_id": 176633,
+        "subtype_name": "Reverse Holofoil",
+        "observed_on": "2026-11-05T07:00:00.000Z",
+        "low_price": "15",
+        "mid_price": "17.73",
+        "high_price": "20.45",
+        "market_price": "20.45",
+        "direct_low_price": null,
+        "currency": "USD",
+        "payload_hash": "27f14a087a7d5328aec2263eeb06d90fc2384bb7df33485a3d5ad0de593579d7",
+        "last_observed_at": "2026-11-05T08:40:28.602Z",
+        "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e"
+      },
+      {
+        "id": "ee8a6207-8a28-4aee-8b39-03b8767482e8",
+        "product_id": 176638,
+        "subtype_name": "Reverse Holofoil",
+        "observed_on": "2026-11-05T07:00:00.000Z",
+        "low_price": "15.98",
+        "mid_price": "18.27",
+        "high_price": "30",
+        "market_price": "16.4",
+        "direct_low_price": null,
+        "currency": "USD",
+        "payload_hash": "871a8f9ddc8f0ec7959f39a80a5ebf4950ce7463d34d069e2cbe3e00ded7891a",
+        "last_observed_at": "2026-11-05T08:40:28.602Z",
+        "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e"
+      },
+      {
+        "id": "b86bcfe2-febb-46e2-b18e-5bc537a9551b",
+        "product_id": 213516,
+        "subtype_name": "Reverse Holofoil",
+        "observed_on": "2026-11-05T07:00:00.000Z",
+        "low_price": "24",
+        "mid_price": "39.95",
+        "high_price": "225",
+        "market_price": "22.41",
+        "direct_low_price": null,
+        "currency": "USD",
+        "payload_hash": "af046ecb4eab8845c20bb4f5a4a3641c0a1d60181f7740cbb076df07e7558f87",
+        "last_observed_at": "2026-11-05T08:40:28.602Z",
+        "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e"
+      },
+      {
+        "id": "c3b9fae1-21d8-44bc-9131-73d5e6cbe4cd",
+        "product_id": 499366,
+        "subtype_name": "Reverse Holofoil",
+        "observed_on": "2026-11-05T07:00:00.000Z",
+        "low_price": "10.96",
+        "mid_price": "14.09",
+        "high_price": "23",
+        "market_price": "14.19",
+        "direct_low_price": null,
+        "currency": "USD",
+        "payload_hash": "2c3d53e2d316a2101d2f2a70a0ef5afe7c1133ed02d669c427b1dce5d5e35af2",
+        "last_observed_at": "2026-11-05T08:40:28.602Z",
+        "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e"
+      }
+    ],
+    "active_publication_overlap": []
+  },
+  "held_row": {
+    "source_product_id": 176638,
+    "source_product_name": "Professor Sycamore (2015)",
+    "printed_number": "122/146",
+    "target_parent_id": "69183c91-e669-4697-b5ab-f3cef1a11a5c",
+    "required_finish_key": "reverse",
+    "existing_conflicting_finish_key": "holo",
+    "reason": "source_finish_child_missing_on_professor_program_parent",
+    "status": "held_finish_conflict_confirmed",
+    "product": {
+      "product_id": 176638,
+      "category_id": 3,
+      "group_id": 2332,
+      "name": "Professor Sycamore (2015)",
+      "source_url": "https://www.tcgplayer.com/product/176638/pokemon-professor-program-promos-professor-sycamore-2015",
+      "source_modified_on": "2022-03-28T16:32:19.66",
+      "extended_data": [
+        {
+          "name": "Number",
+          "value": "122/146",
+          "displayName": "Card Number"
+        },
+        {
+          "name": "Rarity",
+          "value": "Promo",
+          "displayName": "Rarity"
+        },
+        {
+          "name": "Card Type",
+          "value": "Supporter",
+          "displayName": "Card Type"
+        },
+        {
+          "name": "CardText",
+          "value": "Discard your hand and draw 7 cards.",
+          "displayName": "Card Text"
+        }
+      ],
+      "payload_hash": "e683ebd893ddb1bb86b574104d94fc67fa34f36ceb5591b81fe2ce2761c52a3f",
+      "last_seen_at": "2026-11-05T08:40:28.109Z",
+      "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+      "source_active": true,
+      "catalog_metadata_status": "current"
+    },
+    "parent": {
+      "id": "69183c91-e669-4697-b5ab-f3cef1a11a5c",
+      "set_id": "37b25b6d-7f33-4e6f-8c40-086f7df82d7e",
+      "set_code": "xy1",
+      "name": "Professor Sycamore",
+      "number": "122",
+      "variant_key": "professor_program_stamp",
+      "gv_id": "GV-PK-XY1-122-PROFESSOR-PROGRAM-STAMP",
+      "identity_domain": "pokemon_eng_standard",
+      "printed_identity_modifier": null,
+      "active_standard_identity_count": 1
+    },
+    "children": [
+      {
+        "id": "3ab2cee1-0b4d-4cad-bb7c-21eb7025398f",
+        "card_print_id": "69183c91-e669-4697-b5ab-f3cef1a11a5c",
+        "finish_key": "holo",
+        "printing_gv_id": "GV-PK-XY1-122-PROFESSOR-PROGRAM-STAMP-HOLO",
+        "is_provisional": false,
+        "provenance_source": "verified_master_index_v1",
+        "provenance_ref": "xy1:122:professor_program_stamp:holo",
+        "finish_active": true,
+        "active_truth_review": null,
+        "public_visibility": null,
+        "public_visible": true
+      }
+    ],
+    "existing_mappings": []
+  },
+  "next_boundary": "Build the exact seven-row reviewed-product authority and guarded dry-run package; durable mapping apply requires separate founder approval."
+}
