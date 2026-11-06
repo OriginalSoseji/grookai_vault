@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-31T05:25:05.551Z",
+  "generated_at": "2026-11-05T23:55:38.629Z",
   "version": "tcgplayer_professor_program_catalog_repair_guarded_dry_run_20261031_v1",
   "package_id": "TCGPLAYER-PROFESSOR-PROGRAM-CATALOG-REPAIR-V1",
   "rollback_only": true,
@@ -302,7 +302,7 @@
       "mapping_write_count": 0
     },
     "before_snapshot": {
-      "captured_at": "2026-10-31T05:25:04.136Z",
+      "captured_at": "2026-11-05T23:55:37.245Z",
       "rows": [
         {
           "row_type": "base_parent",
@@ -443,7 +443,7 @@
       "hash_sha256": "aace12789875dc67ae402d6f34d4900e1b4c3b1f61b00857f3e67a6b86610ba6"
     },
     "transient_snapshot": {
-      "captured_at": "2026-10-31T05:25:05.306Z",
+      "captured_at": "2026-11-05T23:55:38.396Z",
       "rows": [
         {
           "row_type": "base_parent",
@@ -556,7 +556,7 @@
         {
           "row_type": "target_identity",
           "source_product_id": "176629",
-          "row_id": "eac55819-9df1-486c-9303-3a32e85fa2cf",
+          "row_id": "bb61f383-d714-4676-b2a3-327dbf2e0445",
           "variant_key": "professor_program_stamp",
           "printed_identity_modifier": "professor_program_stamp",
           "finish_key": null,
@@ -574,7 +574,7 @@
         {
           "row_type": "target_identity",
           "source_product_id": "176631",
-          "row_id": "a4799d44-42c6-426e-a51c-b0c75897822c",
+          "row_id": "589c59be-0ebd-4545-9df7-d75d828d0ff5",
           "variant_key": "professor_program_stamp",
           "printed_identity_modifier": "professor_program_stamp",
           "finish_key": null,
@@ -601,7 +601,7 @@
         {
           "row_type": "target_identity",
           "source_product_id": "499366",
-          "row_id": "bce4d8bf-8a2e-4193-b9fa-33e043ca67bd",
+          "row_id": "5d61ddf6-1958-4223-9e58-9dadc31cb748",
           "variant_key": "professor_program_stamp",
           "printed_identity_modifier": "professor_program_stamp",
           "finish_key": null,
@@ -662,10 +662,10 @@
           "identity_key_hash": null
         }
       ],
-      "hash_sha256": "55a332da0fbde3691327c460cec45fa7b67405ec017eb41ff25e2a856435aaa7"
+      "hash_sha256": "335d97825186889a682ee7d75669c2dbc431511279b9009707a003b4ebcf06f7"
     },
     "after_snapshot": {
-      "captured_at": "2026-10-31T05:25:05.466Z",
+      "captured_at": "2026-11-05T23:55:38.547Z",
       "rows": [
         {
           "row_type": "base_parent",
