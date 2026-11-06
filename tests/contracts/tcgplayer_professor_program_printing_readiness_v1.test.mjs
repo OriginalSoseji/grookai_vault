@@ -10,6 +10,8 @@ const rehearsalPath = path.join(root, "docs", "audits",
   "tcgplayer_professor_program_printing_readiness_guarded_dry_run_20261105_v1.json");
 const rehearsalScriptPath = path.join(root, "scripts", "audits",
   "tcgplayer_professor_program_printing_readiness_guarded_dry_run_v1.mjs");
+const mappingReadinessScriptPath = path.join(root, "scripts", "audits",
+  "tcgplayer_professor_program_mapping_readiness_v1.mjs");
 
 test("Professor Program mapping readiness freezes seven exact targets and holds Sycamore", async () => {
   const report = JSON.parse(await fs.readFile(auditPath, "utf8"));
@@ -25,6 +27,12 @@ test("Professor Program mapping readiness freezes seven exact targets and holds 
   assert.equal(report.held_row.status, "held_finish_conflict_confirmed");
   assert.equal(report.counts.active_mapping_collisions, 0);
   assert.equal(report.counts.active_publication_overlap, 0);
+});
+
+test("Professor Program mapping readiness binds its database connection to production", async () => {
+  const source = await fs.readFile(mappingReadinessScriptPath, "utf8");
+  assert.match(source, /assertPrintingDatabaseTarget\(process\.env\.SUPABASE_DB_URL\)/);
+  assert.match(source, /begin transaction isolation level repeatable read read only/);
 });
 
 test("Professor Program printing-readiness rehearsal proves exact rollback-only repair", async () => {
