@@ -23,6 +23,8 @@ const SUPPORTED_IDENTITY_DOMAINS = new Map([
   [1, "mtg_eng_paper_print"],
   [3, "pokemon_eng_standard"],
 ]);
+const REVIEWED_SOURCE_MAPPING_INVALIDATION_REASON =
+  "PROVEN_UNSTAMPED_PRODUCT_ON_STAMPED_PARENT";
 
 function clean(value) {
   return String(value ?? "").trim();
@@ -108,6 +110,9 @@ export function evaluateTcgplayerMarketQualificationV1(
   const variantAssignmentStatus = clean(
     row.variant_assignment_status ?? row.derived_variant_assignment_status,
   );
+  const reviewedSourceMappingInvalidationReason = clean(
+    row.source_mapping_meta?.reviewed_invalidation?.reason_code,
+  );
 
   if (!expectedIdentityDomain) exclusionReasons.push("unsupported_source_category");
   if (sourceProductId === null) reasons.push("invalid_source_product_id");
@@ -152,6 +157,12 @@ export function evaluateTcgplayerMarketQualificationV1(
         ? "missing_active_source_mapping"
         : "ambiguous_active_source_mapping",
     );
+  }
+  if (
+    reviewedSourceMappingInvalidationReason ===
+    REVIEWED_SOURCE_MAPPING_INVALIDATION_REASON
+  ) {
+    reasons.push("reviewed_source_mapping_invalidated");
   }
   if (!exactEditionAssignment && !exactMtgPrintingMapping && !clean(row.source_mapping_id)) {
     reasons.push("missing_source_mapping_identity");
@@ -347,6 +358,8 @@ export function evaluateTcgplayerMarketQualificationV1(
       card_print_mapping_count: mappingCount,
       source_mapping_count: sourceMappingCount,
       source_mapping_id: clean(row.source_mapping_id) || null,
+      reviewed_source_mapping_invalidation_reason:
+        reviewedSourceMappingInvalidationReason || null,
       mapping_method: clean(row.mapping_method) || null,
       card_printing_mapping_count: printingMappingCount,
       identity_domain_count: identityDomainCount,
