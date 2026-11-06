@@ -1,0 +1,17 @@
+{
+  "schema_version": "TCGPLAYER_REVIEWED_INVALIDATION_QUALIFICATION_REPAIR_TARGETS_V1",
+  "run_key": "TCGPLAYER-REVIEWED-INVALIDATION-QUALIFICATION-REPAIR-COMMIT-V1",
+  "commit_sha": "801e77af1b8ea1fcd36f2b9dd5226ce151f9662e",
+  "source_sync_run_id": "c583e2a1-4b07-4be5-b9a9-fd7cd34e5922",
+  "targets": [
+    {"source_product_id": 176629, "source_subtype_name": "Normal", "market_price": "134.99", "source_mapping_id": "355730", "printing_gv_id": "GV-PK-RG-98-PROFESSOR-PROGRAM-STD", "decision": "publish", "eligible": true, "reason_codes": [], "decision_key": "cded468166bb1035708996878ad6c18ba6f7140b63366a61dfb5566077ff08bd"},
+    {"source_product_id": 176630, "source_subtype_name": "Holofoil", "market_price": "54.95", "source_mapping_id": "355731", "printing_gv_id": "GV-PK-EX9-82-PROFESSOR-PROGRAM-STAMP-HOLO", "decision": "publish", "eligible": true, "reason_codes": [], "decision_key": "6342727db580b7aaa483be0cdbe1be5dccc89b0d506e1210ea004976a0dd024b"},
+    {"source_product_id": 176631, "source_subtype_name": "Normal", "market_price": "50.99", "source_mapping_id": "355732", "printing_gv_id": "GV-PK-SW-122-PROFESSOR-PROGRAM-STD", "decision": "publish", "eligible": true, "reason_codes": [], "decision_key": "2541299ad69c8f668ea574ce0b615adf3b30570b0fca00f5f8395f816066759f"},
+    {"source_product_id": 176632, "source_subtype_name": "Reverse Holofoil", "market_price": "22.88", "source_mapping_id": "355733", "printing_gv_id": "GV-PK-BW5-98-PROFESSOR-PROGRAM-STAMP-RH", "decision": "publish", "eligible": true, "reason_codes": [], "decision_key": "f2f0e849516224ea10d48389a0489357287bb026480bd95ff6895f350d27523f"},
+    {"source_product_id": 176633, "source_subtype_name": "Reverse Holofoil", "market_price": "20.45", "source_mapping_id": "355734", "printing_gv_id": "GV-PK-BW1-101-PROFESSOR-PROGRAM-STAMP-RH", "decision": "publish", "eligible": true, "reason_codes": [], "decision_key": "db13a8bdfd603b302a107d85d6d6c7d6f0c975ba0868aa74a6baa84c5258c83d"},
+    {"source_product_id": 213516, "source_subtype_name": "Reverse Holofoil", "market_price": "22.41", "source_mapping_id": "355735", "printing_gv_id": "GV-PK-FLI-108-PROFESSOR-PROGRAM-STAMP-RH", "decision": "publish", "eligible": true, "reason_codes": [], "decision_key": "46d69189de5a58f54864ba403c9d18acb6929427aef28bcb62bc4bd07a3ac111"},
+    {"source_product_id": 499366, "source_subtype_name": "Reverse Holofoil", "market_price": "14.19", "source_mapping_id": "355736", "printing_gv_id": "GV-PK-SHF-59-PROFESSOR-PROGRAM-RH", "decision": "publish", "eligible": true, "reason_codes": [], "decision_key": "31207f7de77ef4d5b50b7ee249c0c02b284fd8704fef0763ca8d5b30f09f98e6"},
+    {"source_product_id": 684431, "source_subtype_name": "Holofoil", "market_price": "0.87", "source_mapping_id": "131943", "printing_gv_id": "GV-PK-ME03-050-HOLO", "decision": "quarantine", "eligible": false, "reason_codes": ["reviewed_source_mapping_invalidated"], "reviewed_invalidation_reason": "PROVEN_UNSTAMPED_PRODUCT_ON_STAMPED_PARENT", "decision_key": "a8ab36e7eabf993ab8c2b4805dd19ecb90f41ddb9c050f246751c813f62533e4"},
+    {"source_product_id": 684431, "source_subtype_name": "Reverse Holofoil", "market_price": "0.67", "source_mapping_id": "131943", "printing_gv_id": "GV-PK-ME03-050-RH", "decision": "quarantine", "eligible": false, "reason_codes": ["reviewed_source_mapping_invalidated"], "reviewed_invalidation_reason": "PROVEN_UNSTAMPED_PRODUCT_ON_STAMPED_PARENT", "decision_key": "182cb5e81b2fc5b2de30d6fbe7c153c212084e18fe0d8d57550eed59f3accc72"}
+  ]
+}

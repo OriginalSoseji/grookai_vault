@@ -457,6 +457,45 @@ test("publishes an exact fresh English Pokemon printing", () => {
   assert.deepEqual(result.reason_codes, []);
 });
 
+test("quarantines a mapping carrying the governed reviewed invalidation", () => {
+  const result = evaluateTcgplayerMarketQualificationV1(
+    validCandidate({
+      source_mapping_meta: {
+        reviewed_invalidation: {
+          reason_code: "PROVEN_UNSTAMPED_PRODUCT_ON_STAMPED_PARENT",
+        },
+      },
+    }),
+    { now: NOW },
+  );
+  assert.equal(result.decision, "quarantine");
+  assert.equal(result.eligible, false);
+  assert.deepEqual(result.reason_codes, [
+    "reviewed_source_mapping_invalidated",
+  ]);
+  assert.equal(
+    result.evidence.reviewed_source_mapping_invalidation_reason,
+    "PROVEN_UNSTAMPED_PRODUCT_ON_STAMPED_PARENT",
+  );
+});
+
+test("does not treat unrelated mapping metadata as the governed invalidation", () => {
+  const result = evaluateTcgplayerMarketQualificationV1(
+    validCandidate({
+      source_mapping_meta: {
+        reviewed_invalidation: { reason_code: "UNRELATED_REVIEW_NOTE" },
+      },
+    }),
+    { now: NOW },
+  );
+  assert.equal(result.decision, "publish");
+  assert.deepEqual(result.reason_codes, []);
+  assert.equal(
+    result.evidence.reviewed_source_mapping_invalidation_reason,
+    "UNRELATED_REVIEW_NOTE",
+  );
+});
+
 test("publishes MTG through an exact product-and-finish mapping without a false parent", () => {
   const result = evaluateTcgplayerMarketQualificationV1(
     validCandidate({
@@ -797,7 +836,7 @@ test("worker enriches candidates with source-group evidence before qualification
     WORKER,
     /publication scope evidence missing for \$\{missingScopeEvidence\.length\} Pokemon candidates/i,
   );
-  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_21/);
+  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_22/);
   assert.match(WORKER, /v_tcgplayer_market_qualification_candidates_v7/);
   assert.match(WORKER, /prepare_tcgplayer_jungle_edition_assignments_v1/);
   assert.match(WORKER, /prepare_tcgplayer_gym_challenge_edition_assignments_v1/);
