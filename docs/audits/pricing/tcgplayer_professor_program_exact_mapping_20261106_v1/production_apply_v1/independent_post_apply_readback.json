@@ -1,0 +1,286 @@
+{
+  "schema_version": "TCGPLAYER_PROFESSOR_PROGRAM_EXACT_MAPPING_POST_APPLY_READBACK_V1",
+  "status": "passed",
+  "observed_at": "2026-11-06T07:08:07.982Z",
+  "maintenance_run_id": "299090b7-3d1f-4e89-a9ed-4b76751e231a",
+  "database_identity": {
+    "database_name": "postgres",
+    "username": "postgres"
+  },
+  "tls": {
+    "authorized": true,
+    "peer_sha256": "ae38260f9f9bbae35ebe97c5c01f67eca63807b2a931273bab1879220554fbbc"
+  },
+  "expected_mapping_count": 7,
+  "active_mapping_count": 7,
+  "excluded_product_176638_active_mapping_count": 0,
+  "active_publication_overlap_count": 0,
+  "mappings": [
+    {
+      "id": "355730",
+      "card_print_id": "e402c8fc-563b-49e3-a198-6a5fe5f75cda",
+      "source": "tcgplayer",
+      "external_id": "176629",
+      "meta": {
+        "confidence": 1,
+        "evidence_lane": "reviewed_product_identity_authority",
+        "mapping_method": "exact_reviewed_product_identity_authority_v1",
+        "schema_version": "TCGPLAYER_MARKET_EXACT_MAPPING_META_SCHEMA_V1",
+        "canonical_gv_id": "GV-PK-RG-98-PROFESSOR-PROGRAM",
+        "source_group_id": 2332,
+        "batch_fingerprint": "07f29b3b6e022ab16f2c03589c2e3b76da9eb77086ec63f826476ccf94977d37",
+        "source_group_name": "Professor Program Promos",
+        "maintenance_run_id": "299090b7-3d1f-4e89-a9ed-4b76751e231a",
+        "source_sync_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+        "apply_policy_version": "TCGPLAYER_MARKET_EXACT_MAPPING_APPLY_POLICY_V1_1",
+        "producing_commit_sha": "5d1f261c339fa647771e43ab56df06a7c0c3688a",
+        "candidate_fingerprint": "2160683481d8787a4e97aa86f78b57c8207f5764ec6e837e5936cf4584c4e04c",
+        "candidate_artifact_path": "docs/audits/pricing/tcgplayer_professor_program_exact_mapping_20261106_v1/plan/candidates.jsonl",
+        "candidate_policy_version": "TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_3",
+        "master_authority_binding": {
+          "review_sha256": "fef68c871aee3f501159ab87a9113ddb55f85f5bd89cb56b896e5821a1ab9761",
+          "master_index_sha256": "5cc1e87748a9f050c4103f79b3a9b2b485eecb37460bb1133fae0b96eab79b09",
+          "candidate_fingerprint": "2160683481d8787a4e97aa86f78b57c8207f5764ec6e837e5936cf4584c4e04c",
+          "mapping_source_sha256": "e974dcc9305ca35f5bba65b33d3359f03ecd944183f63b57e008e63bccfa0d43",
+          "master_manifest_fingerprint": "2c595f6b3b600659574c30ab1e5b2359ff1784568e3d69764261997e55a24bb9"
+        },
+        "candidate_artifact_sha256": "49e845552c5b34650ade6e4b78b558e71d7e9d3a86c15a69163c2b4a981df957",
+        "candidate_plan_commit_sha": "ea15d95e9d09bb37943c07a4049e79b8486fa7d2",
+        "master_authority_fingerprint": "c4cd22441ec233c9c89ee29ff3177c4051cab7b03eff7b51584d10770e3f6784",
+        "supporting_gap_observation_ids": [
+          "a298bf76-27e9-4e4d-a2f4-02f2299a79c5"
+        ]
+      },
+      "synced_at": "2026-11-06T07:05:49.421Z",
+      "active": true
+    },
+    {
+      "id": "355731",
+      "card_print_id": "ed61ea12-90af-4250-b089-e2b31fc2fdce",
+      "source": "tcgplayer",
+      "external_id": "176630",
+      "meta": {
+        "confidence": 1,
+        "evidence_lane": "reviewed_product_identity_authority",
+        "mapping_method": "exact_reviewed_product_identity_authority_v1",
+        "schema_version": "TCGPLAYER_MARKET_EXACT_MAPPING_META_SCHEMA_V1",
+        "canonical_gv_id": "GV-PK-EX9-82-PROFESSOR-PROGRAM-STAMP",
+        "source_group_id": 2332,
+        "batch_fingerprint": "07f29b3b6e022ab16f2c03589c2e3b76da9eb77086ec63f826476ccf94977d37",
+        "source_group_name": "Professor Program Promos",
+        "maintenance_run_id": "299090b7-3d1f-4e89-a9ed-4b76751e231a",
+        "source_sync_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+        "apply_policy_version": "TCGPLAYER_MARKET_EXACT_MAPPING_APPLY_POLICY_V1_1",
+        "producing_commit_sha": "5d1f261c339fa647771e43ab56df06a7c0c3688a",
+        "candidate_fingerprint": "26a8f5f18a19549e255fa391f903b7efeb952c578773121276e5533e3d745f8c",
+        "candidate_artifact_path": "docs/audits/pricing/tcgplayer_professor_program_exact_mapping_20261106_v1/plan/candidates.jsonl",
+        "candidate_policy_version": "TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_3",
+        "master_authority_binding": {
+          "review_sha256": "29dfe31b385c909bb6258e9f33ff43afab8045ace5b6c8bff472a81c1f37f8f3",
+          "master_index_sha256": "4ff1823098b7b7776b7296f300c86e02c57b3eaaeaf513e80fd6365b838df9a8",
+          "candidate_fingerprint": "26a8f5f18a19549e255fa391f903b7efeb952c578773121276e5533e3d745f8c",
+          "mapping_source_sha256": "ef03af8a40be8f23933ea4ba0c7c542597d88d8367e5fdc8b35e59f57bd118c0",
+          "master_manifest_fingerprint": "ccbeff8fc979db0295a9e1a1bd2ac2464289777472d82713ebb1bb45d8860de0"
+        },
+        "candidate_artifact_sha256": "49e845552c5b34650ade6e4b78b558e71d7e9d3a86c15a69163c2b4a981df957",
+        "candidate_plan_commit_sha": "ea15d95e9d09bb37943c07a4049e79b8486fa7d2",
+        "master_authority_fingerprint": "c4cd22441ec233c9c89ee29ff3177c4051cab7b03eff7b51584d10770e3f6784",
+        "supporting_gap_observation_ids": [
+          "b08213b6-e598-4002-8f81-4aa7b23cfa62"
+        ]
+      },
+      "synced_at": "2026-11-06T07:05:49.421Z",
+      "active": true
+    },
+    {
+      "id": "355732",
+      "card_print_id": "baa63e55-c8aa-4936-8c9a-63de29e75c16",
+      "source": "tcgplayer",
+      "external_id": "176631",
+      "meta": {
+        "confidence": 1,
+        "evidence_lane": "reviewed_product_identity_authority",
+        "mapping_method": "exact_reviewed_product_identity_authority_v1",
+        "schema_version": "TCGPLAYER_MARKET_EXACT_MAPPING_META_SCHEMA_V1",
+        "canonical_gv_id": "GV-PK-SW-122-PROFESSOR-PROGRAM",
+        "source_group_id": 2332,
+        "batch_fingerprint": "07f29b3b6e022ab16f2c03589c2e3b76da9eb77086ec63f826476ccf94977d37",
+        "source_group_name": "Professor Program Promos",
+        "maintenance_run_id": "299090b7-3d1f-4e89-a9ed-4b76751e231a",
+        "source_sync_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+        "apply_policy_version": "TCGPLAYER_MARKET_EXACT_MAPPING_APPLY_POLICY_V1_1",
+        "producing_commit_sha": "5d1f261c339fa647771e43ab56df06a7c0c3688a",
+        "candidate_fingerprint": "e645609ed57dbbff85a3e8afb31d5abd12536e563cde21b5c0292067adffed64",
+        "candidate_artifact_path": "docs/audits/pricing/tcgplayer_professor_program_exact_mapping_20261106_v1/plan/candidates.jsonl",
+        "candidate_policy_version": "TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_3",
+        "master_authority_binding": {
+          "review_sha256": "5029b8bb7dc4c619276f4c80a4fbb96428e219ec5c4f6891d351f1063b16ba47",
+          "master_index_sha256": "9552b80788e34c20a140fb0cae8a3a9f893941a07bd5e5c6a1915d612c1f803f",
+          "candidate_fingerprint": "e645609ed57dbbff85a3e8afb31d5abd12536e563cde21b5c0292067adffed64",
+          "mapping_source_sha256": "91ce0ad5a0d35e8af1e03c9f283fed1099def7015628b242af393266960fb416",
+          "master_manifest_fingerprint": "0a1720770a76f8d20c8fdeaf775c64a0f3e7e1c537d058788ff6ba6171b6a2db"
+        },
+        "candidate_artifact_sha256": "49e845552c5b34650ade6e4b78b558e71d7e9d3a86c15a69163c2b4a981df957",
+        "candidate_plan_commit_sha": "ea15d95e9d09bb37943c07a4049e79b8486fa7d2",
+        "master_authority_fingerprint": "c4cd22441ec233c9c89ee29ff3177c4051cab7b03eff7b51584d10770e3f6784",
+        "supporting_gap_observation_ids": [
+          "3244ea82-1bdd-4b26-b51e-cd8f3c26ddeb"
+        ]
+      },
+      "synced_at": "2026-11-06T07:05:49.421Z",
+      "active": true
+    },
+    {
+      "id": "355733",
+      "card_print_id": "c98e4f39-59fc-4ec1-bfc5-c34f28a25f3c",
+      "source": "tcgplayer",
+      "external_id": "176632",
+      "meta": {
+        "confidence": 1,
+        "evidence_lane": "reviewed_product_identity_authority",
+        "mapping_method": "exact_reviewed_product_identity_authority_v1",
+        "schema_version": "TCGPLAYER_MARKET_EXACT_MAPPING_META_SCHEMA_V1",
+        "canonical_gv_id": "GV-PK-BW5-98-PROFESSOR-PROGRAM-STAMP",
+        "source_group_id": 2332,
+        "batch_fingerprint": "07f29b3b6e022ab16f2c03589c2e3b76da9eb77086ec63f826476ccf94977d37",
+        "source_group_name": "Professor Program Promos",
+        "maintenance_run_id": "299090b7-3d1f-4e89-a9ed-4b76751e231a",
+        "source_sync_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+        "apply_policy_version": "TCGPLAYER_MARKET_EXACT_MAPPING_APPLY_POLICY_V1_1",
+        "producing_commit_sha": "5d1f261c339fa647771e43ab56df06a7c0c3688a",
+        "candidate_fingerprint": "e1e07523d11c2ff73c4cd6cabf853082131ea77082ae7dd4046e524359db5eba",
+        "candidate_artifact_path": "docs/audits/pricing/tcgplayer_professor_program_exact_mapping_20261106_v1/plan/candidates.jsonl",
+        "candidate_policy_version": "TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_3",
+        "master_authority_binding": {
+          "review_sha256": "88474a0c7e07cc561c3ad6aca4f7dbab12477be6a25bed4c2607878876de680c",
+          "master_index_sha256": "48a0fb632305dce65ea9b25523b4cec00fe239338ed329c88cad51bb682b9d29",
+          "candidate_fingerprint": "e1e07523d11c2ff73c4cd6cabf853082131ea77082ae7dd4046e524359db5eba",
+          "mapping_source_sha256": "5cc7645341c45dc86c64b98bde2867d77064a4790ce57832ed9affe435a13c6d",
+          "master_manifest_fingerprint": "2bade9ff0280eccab63161940f4c9e4cceeb9eb55d80bf9ce5050027bb655bb1"
+        },
+        "candidate_artifact_sha256": "49e845552c5b34650ade6e4b78b558e71d7e9d3a86c15a69163c2b4a981df957",
+        "candidate_plan_commit_sha": "ea15d95e9d09bb37943c07a4049e79b8486fa7d2",
+        "master_authority_fingerprint": "c4cd22441ec233c9c89ee29ff3177c4051cab7b03eff7b51584d10770e3f6784",
+        "supporting_gap_observation_ids": [
+          "bb1c7243-6f70-467c-8be5-72354cc5b2c4"
+        ]
+      },
+      "synced_at": "2026-11-06T07:05:49.421Z",
+      "active": true
+    },
+    {
+      "id": "355734",
+      "card_print_id": "12cad852-d079-44cc-9438-e806aede97ff",
+      "source": "tcgplayer",
+      "external_id": "176633",
+      "meta": {
+        "confidence": 1,
+        "evidence_lane": "reviewed_product_identity_authority",
+        "mapping_method": "exact_reviewed_product_identity_authority_v1",
+        "schema_version": "TCGPLAYER_MARKET_EXACT_MAPPING_META_SCHEMA_V1",
+        "canonical_gv_id": "GV-PK-BW1-101-PROFESSOR-PROGRAM-STAMP",
+        "source_group_id": 2332,
+        "batch_fingerprint": "07f29b3b6e022ab16f2c03589c2e3b76da9eb77086ec63f826476ccf94977d37",
+        "source_group_name": "Professor Program Promos",
+        "maintenance_run_id": "299090b7-3d1f-4e89-a9ed-4b76751e231a",
+        "source_sync_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+        "apply_policy_version": "TCGPLAYER_MARKET_EXACT_MAPPING_APPLY_POLICY_V1_1",
+        "producing_commit_sha": "5d1f261c339fa647771e43ab56df06a7c0c3688a",
+        "candidate_fingerprint": "59e0986b240a74816d34b765d830cca58c0c1d808bc591e9c64bce2a401dacdc",
+        "candidate_artifact_path": "docs/audits/pricing/tcgplayer_professor_program_exact_mapping_20261106_v1/plan/candidates.jsonl",
+        "candidate_policy_version": "TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_3",
+        "master_authority_binding": {
+          "review_sha256": "6d47a37192aafc784b1524d91d804d7cb416f5a020e3b5c2cab9a5db48886cd7",
+          "master_index_sha256": "5e57447a81ff3fcdb7bcabe0820c5c41abf914375836410c188d5d0aa3357923",
+          "candidate_fingerprint": "59e0986b240a74816d34b765d830cca58c0c1d808bc591e9c64bce2a401dacdc",
+          "mapping_source_sha256": "3be788e236a049bdda84504becda52f42a1388b9d3dfc8cd23d83d09b58192c4",
+          "master_manifest_fingerprint": "f8259f2868c9928401eacb8b1a526580137f9138acaadd44af4a354e88e65bb3"
+        },
+        "candidate_artifact_sha256": "49e845552c5b34650ade6e4b78b558e71d7e9d3a86c15a69163c2b4a981df957",
+        "candidate_plan_commit_sha": "ea15d95e9d09bb37943c07a4049e79b8486fa7d2",
+        "master_authority_fingerprint": "c4cd22441ec233c9c89ee29ff3177c4051cab7b03eff7b51584d10770e3f6784",
+        "supporting_gap_observation_ids": [
+          "c3d878f2-2683-4136-bfa3-14d787098263"
+        ]
+      },
+      "synced_at": "2026-11-06T07:05:49.421Z",
+      "active": true
+    },
+    {
+      "id": "355735",
+      "card_print_id": "ea08d28d-8267-4db9-859c-64ffd048792f",
+      "source": "tcgplayer",
+      "external_id": "213516",
+      "meta": {
+        "confidence": 1,
+        "evidence_lane": "reviewed_product_identity_authority",
+        "mapping_method": "exact_reviewed_product_identity_authority_v1",
+        "schema_version": "TCGPLAYER_MARKET_EXACT_MAPPING_META_SCHEMA_V1",
+        "canonical_gv_id": "GV-PK-FLI-108-PROFESSOR-PROGRAM-STAMP",
+        "source_group_id": 2332,
+        "batch_fingerprint": "07f29b3b6e022ab16f2c03589c2e3b76da9eb77086ec63f826476ccf94977d37",
+        "source_group_name": "Professor Program Promos",
+        "maintenance_run_id": "299090b7-3d1f-4e89-a9ed-4b76751e231a",
+        "source_sync_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+        "apply_policy_version": "TCGPLAYER_MARKET_EXACT_MAPPING_APPLY_POLICY_V1_1",
+        "producing_commit_sha": "5d1f261c339fa647771e43ab56df06a7c0c3688a",
+        "candidate_fingerprint": "afb3742b96f1f33c6daa5375e85c99341124936bc622eb838442c01f8f84252f",
+        "candidate_artifact_path": "docs/audits/pricing/tcgplayer_professor_program_exact_mapping_20261106_v1/plan/candidates.jsonl",
+        "candidate_policy_version": "TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_3",
+        "master_authority_binding": {
+          "review_sha256": "c43d0f792f4438344815faf5a0b350e9667edea1ead9b37e7a4912090cf6171a",
+          "master_index_sha256": "7bc7ba92db553fba112ffc09388e993bec22ee5f858eaa569834e2362618b686",
+          "candidate_fingerprint": "afb3742b96f1f33c6daa5375e85c99341124936bc622eb838442c01f8f84252f",
+          "mapping_source_sha256": "4cd2449e8ec55e14a33dbeaf54282e1e334f2c06304a036d60c2eb0373c34afe",
+          "master_manifest_fingerprint": "1f5394b3dfd910087d04a5a0220391eb9fdf9134e5d6030daa3bb0c4310fae09"
+        },
+        "candidate_artifact_sha256": "49e845552c5b34650ade6e4b78b558e71d7e9d3a86c15a69163c2b4a981df957",
+        "candidate_plan_commit_sha": "ea15d95e9d09bb37943c07a4049e79b8486fa7d2",
+        "master_authority_fingerprint": "c4cd22441ec233c9c89ee29ff3177c4051cab7b03eff7b51584d10770e3f6784",
+        "supporting_gap_observation_ids": [
+          "b86bcfe2-febb-46e2-b18e-5bc537a9551b"
+        ]
+      },
+      "synced_at": "2026-11-06T07:05:49.421Z",
+      "active": true
+    },
+    {
+      "id": "355736",
+      "card_print_id": "8f22c4ef-320d-45cd-8938-4aa84aca740e",
+      "source": "tcgplayer",
+      "external_id": "499366",
+      "meta": {
+        "confidence": 1,
+        "evidence_lane": "reviewed_product_identity_authority",
+        "mapping_method": "exact_reviewed_product_identity_authority_v1",
+        "schema_version": "TCGPLAYER_MARKET_EXACT_MAPPING_META_SCHEMA_V1",
+        "canonical_gv_id": "GV-PK-SHF-59-PROFESSOR-PROGRAM",
+        "source_group_id": 2332,
+        "batch_fingerprint": "07f29b3b6e022ab16f2c03589c2e3b76da9eb77086ec63f826476ccf94977d37",
+        "source_group_name": "Professor Program Promos",
+        "maintenance_run_id": "299090b7-3d1f-4e89-a9ed-4b76751e231a",
+        "source_sync_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+        "apply_policy_version": "TCGPLAYER_MARKET_EXACT_MAPPING_APPLY_POLICY_V1_1",
+        "producing_commit_sha": "5d1f261c339fa647771e43ab56df06a7c0c3688a",
+        "candidate_fingerprint": "a53e82900ed2a54ee39dc794271fdfcf16be605455282d1891b87ea35aef872d",
+        "candidate_artifact_path": "docs/audits/pricing/tcgplayer_professor_program_exact_mapping_20261106_v1/plan/candidates.jsonl",
+        "candidate_policy_version": "TCGPLAYER_MARKET_EXACT_MAPPING_PLAN_POLICY_V1_3",
+        "master_authority_binding": {
+          "review_sha256": "dd76be6bc4863fa13e3b8476e7a720069e85dc54cd27f3d896e734e8b3e51bf2",
+          "master_index_sha256": "7695e281a5556e22330fc090514d0ee307d2788131dfa85e92457c2f3b2615d4",
+          "candidate_fingerprint": "a53e82900ed2a54ee39dc794271fdfcf16be605455282d1891b87ea35aef872d",
+          "mapping_source_sha256": "769b1ab604285b73dc3e3db4ec6f54e06450f4487843af713bc403b132116cf6",
+          "master_manifest_fingerprint": "6ab99ff164bd120c962f9d4b038e2f15da089782406ff8988aae39541f301c98"
+        },
+        "candidate_artifact_sha256": "49e845552c5b34650ade6e4b78b558e71d7e9d3a86c15a69163c2b4a981df957",
+        "candidate_plan_commit_sha": "ea15d95e9d09bb37943c07a4049e79b8486fa7d2",
+        "master_authority_fingerprint": "c4cd22441ec233c9c89ee29ff3177c4051cab7b03eff7b51584d10770e3f6784",
+        "supporting_gap_observation_ids": [
+          "c3b9fae1-21d8-44bc-9131-73d5e6cbe4cd"
+        ]
+      },
+      "synced_at": "2026-11-06T07:05:49.421Z",
+      "active": true
+    }
+  ]
+}

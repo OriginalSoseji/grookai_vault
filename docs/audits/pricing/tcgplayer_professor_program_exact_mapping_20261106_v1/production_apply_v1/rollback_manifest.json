@@ -1,0 +1,71 @@
+{
+  "schema_version": "TCGPLAYER_MARKET_EXACT_MAPPING_ROLLBACK_MANIFEST_V1",
+  "maintenance_run_id": "299090b7-3d1f-4e89-a9ed-4b76751e231a",
+  "batch_fingerprint": "07f29b3b6e022ab16f2c03589c2e3b76da9eb77086ec63f826476ccf94977d37",
+  "operation": "deactivate_exact_inserted_mapping_ids",
+  "mapping_rows": [
+    {
+      "mapping_id": "355730",
+      "source": "tcgplayer",
+      "external_id": "176629",
+      "card_print_id": "e402c8fc-563b-49e3-a198-6a5fe5f75cda",
+      "expected_candidate_fingerprint": "2160683481d8787a4e97aa86f78b57c8207f5764ec6e837e5936cf4584c4e04c",
+      "expected_active_state": true,
+      "rollback_action": "deactivate_inserted_mapping"
+    },
+    {
+      "mapping_id": "355731",
+      "source": "tcgplayer",
+      "external_id": "176630",
+      "card_print_id": "ed61ea12-90af-4250-b089-e2b31fc2fdce",
+      "expected_candidate_fingerprint": "26a8f5f18a19549e255fa391f903b7efeb952c578773121276e5533e3d745f8c",
+      "expected_active_state": true,
+      "rollback_action": "deactivate_inserted_mapping"
+    },
+    {
+      "mapping_id": "355732",
+      "source": "tcgplayer",
+      "external_id": "176631",
+      "card_print_id": "baa63e55-c8aa-4936-8c9a-63de29e75c16",
+      "expected_candidate_fingerprint": "e645609ed57dbbff85a3e8afb31d5abd12536e563cde21b5c0292067adffed64",
+      "expected_active_state": true,
+      "rollback_action": "deactivate_inserted_mapping"
+    },
+    {
+      "mapping_id": "355733",
+      "source": "tcgplayer",
+      "external_id": "176632",
+      "card_print_id": "c98e4f39-59fc-4ec1-bfc5-c34f28a25f3c",
+      "expected_candidate_fingerprint": "e1e07523d11c2ff73c4cd6cabf853082131ea77082ae7dd4046e524359db5eba",
+      "expected_active_state": true,
+      "rollback_action": "deactivate_inserted_mapping"
+    },
+    {
+      "mapping_id": "355734",
+      "source": "tcgplayer",
+      "external_id": "176633",
+      "card_print_id": "12cad852-d079-44cc-9438-e806aede97ff",
+      "expected_candidate_fingerprint": "59e0986b240a74816d34b765d830cca58c0c1d808bc591e9c64bce2a401dacdc",
+      "expected_active_state": true,
+      "rollback_action": "deactivate_inserted_mapping"
+    },
+    {
+      "mapping_id": "355735",
+      "source": "tcgplayer",
+      "external_id": "213516",
+      "card_print_id": "ea08d28d-8267-4db9-859c-64ffd048792f",
+      "expected_candidate_fingerprint": "afb3742b96f1f33c6daa5375e85c99341124936bc622eb838442c01f8f84252f",
+      "expected_active_state": true,
+      "rollback_action": "deactivate_inserted_mapping"
+    },
+    {
+      "mapping_id": "355736",
+      "source": "tcgplayer",
+      "external_id": "499366",
+      "card_print_id": "8f22c4ef-320d-45cd-8938-4aa84aca740e",
+      "expected_candidate_fingerprint": "a53e82900ed2a54ee39dc794271fdfcf16be605455282d1891b87ea35aef872d",
+      "expected_active_state": true,
+      "rollback_action": "deactivate_inserted_mapping"
+    }
+  ]
+}

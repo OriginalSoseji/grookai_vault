@@ -1,0 +1,977 @@
+{
+  "sourceRun": {
+    "id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+    "sync_mode": "current_full_sync",
+    "status": "completed",
+    "failed_count": 0,
+    "observed_on": "2026-11-05T07:00:00.000Z",
+    "finished_at": "2026-11-05T09:35:24.089Z",
+    "artifact_hash": "5c49f20fe11b846c2b136699921083cfa1bbb4ce8cbe130a778f4922bbcaf75d"
+  },
+  "sources": [
+    {
+      "product_id": 176629,
+      "source_product_name": "Prof. Oak's Research (2004-2005)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "extended_data": [
+        {
+          "name": "Number",
+          "value": "98/112",
+          "displayName": "Card Number"
+        },
+        {
+          "name": "Rarity",
+          "value": "Promo",
+          "displayName": "Rarity"
+        },
+        {
+          "name": "Card Type",
+          "value": "Supporter",
+          "displayName": "Card Type"
+        },
+        {
+          "name": "CardText",
+          "value": "Shuffle your hand into your deck, then draw 5 cards.",
+          "displayName": "Card Text"
+        }
+      ],
+      "source_active": true,
+      "catalog_metadata_status": "current",
+      "active_source_mapping_count": 0
+    },
+    {
+      "product_id": 176630,
+      "source_product_name": "Professor Birch (2006)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "extended_data": [
+        {
+          "name": "Number",
+          "value": "82/106",
+          "displayName": "Card Number"
+        },
+        {
+          "name": "Rarity",
+          "value": "Promo",
+          "displayName": "Rarity"
+        },
+        {
+          "name": "Card Type",
+          "value": "Supporter",
+          "displayName": "Card Type"
+        },
+        {
+          "name": "CardText",
+          "value": "Draw cards from your deck until you have 6 cards in your hand.",
+          "displayName": "Card Text"
+        }
+      ],
+      "source_active": true,
+      "catalog_metadata_status": "current",
+      "active_source_mapping_count": 0
+    },
+    {
+      "product_id": 176631,
+      "source_product_name": "Professor Oak's Visit (2008-2009)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "extended_data": [
+        {
+          "name": "Number",
+          "value": "122/132",
+          "displayName": "Card Number"
+        },
+        {
+          "name": "Rarity",
+          "value": "Promo",
+          "displayName": "Rarity"
+        },
+        {
+          "name": "Card Type",
+          "value": "Supporter",
+          "displayName": "Card Type"
+        },
+        {
+          "name": "CardText",
+          "value": "Draw 3 cards. Then, choose a card from your hand and put it on the bottom of your deck.",
+          "displayName": "Card Text"
+        }
+      ],
+      "source_active": true,
+      "catalog_metadata_status": "current",
+      "active_source_mapping_count": 0
+    },
+    {
+      "product_id": 176632,
+      "source_product_name": "Professor Juniper - 98/108 (2013)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "extended_data": [
+        {
+          "name": "Number",
+          "value": "98/108",
+          "displayName": "Card Number"
+        },
+        {
+          "name": "Rarity",
+          "value": "Promo",
+          "displayName": "Rarity"
+        },
+        {
+          "name": "Card Type",
+          "value": "Supporter",
+          "displayName": "Card Type"
+        },
+        {
+          "name": "CardText",
+          "value": "Discard your hand and draw 7 cards.",
+          "displayName": "Card Text"
+        }
+      ],
+      "source_active": true,
+      "catalog_metadata_status": "current",
+      "active_source_mapping_count": 0
+    },
+    {
+      "product_id": 176633,
+      "source_product_name": "Professor Juniper - 101/114 (2013)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "extended_data": [
+        {
+          "name": "Number",
+          "value": "101/114",
+          "displayName": "Card Number"
+        },
+        {
+          "name": "Rarity",
+          "value": "Promo",
+          "displayName": "Rarity"
+        },
+        {
+          "name": "Card Type",
+          "value": "Supporter",
+          "displayName": "Card Type"
+        },
+        {
+          "name": "CardText",
+          "value": "Discard your hand and draw 7 cards.",
+          "displayName": "Card Text"
+        }
+      ],
+      "source_active": true,
+      "catalog_metadata_status": "current",
+      "active_source_mapping_count": 0
+    },
+    {
+      "product_id": 213516,
+      "source_product_name": "Judge (2019)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "extended_data": [
+        {
+          "name": "Number",
+          "value": "108/131",
+          "displayName": "Card Number"
+        },
+        {
+          "name": "Rarity",
+          "value": "Promo",
+          "displayName": "Rarity"
+        },
+        {
+          "name": "Card Type",
+          "value": "Supporter",
+          "displayName": "Card Type"
+        },
+        {
+          "name": "CardText",
+          "value": "Each player shuffles their hand into their deck and draws 4 cards.",
+          "displayName": "Card Text"
+        }
+      ],
+      "source_active": true,
+      "catalog_metadata_status": "current",
+      "active_source_mapping_count": 0
+    },
+    {
+      "product_id": 499366,
+      "source_product_name": "Gym Trainer (2022)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "extended_data": [
+        {
+          "name": "Number",
+          "value": "059/072",
+          "displayName": "Card Number"
+        },
+        {
+          "name": "Rarity",
+          "value": "Promo",
+          "displayName": "Rarity"
+        },
+        {
+          "name": "Card Type",
+          "value": "Supporter",
+          "displayName": "Card Type"
+        },
+        {
+          "name": "CardText",
+          "value": "Draw 2 cards. If any of your Pokémon were Knocked Out during your opponent's last turn, draw 2 more cards.\r\n<br><br>\r\nYou may play only 1 Supporter card during your turn.",
+          "displayName": "Card Text"
+        }
+      ],
+      "source_active": true,
+      "catalog_metadata_status": "current",
+      "active_source_mapping_count": 0
+    }
+  ],
+  "sourceMappings": [],
+  "targets": [
+    {
+      "card_print_id": "12cad852-d079-44cc-9438-e806aede97ff",
+      "gv_id": "GV-PK-BW1-101-PROFESSOR-PROGRAM-STAMP",
+      "set_id": "474cefc3-bb4d-47eb-8c02-333953130b4c",
+      "set_code": "bw1",
+      "name": "Professor Juniper",
+      "number": "101",
+      "variant_key": "professor_program_stamp",
+      "parent_snapshot": {
+        "id": "12cad852-d079-44cc-9438-e806aede97ff",
+        "name": "Professor Juniper",
+        "gv_id": "GV-PK-BW1-101-PROFESSOR-PROGRAM-STAMP",
+        "artist": "Ken Sugimori",
+        "number": "101",
+        "rarity": "Uncommon",
+        "set_id": "474cefc3-bb4d-47eb-8c02-333953130b4c",
+        "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+        "set_code": "bw1",
+        "variants": null,
+        "image_res": null,
+        "image_url": null,
+        "created_at": "2026-06-11T17:38:14.754519+00:00",
+        "image_hash": null,
+        "image_note": "Stamped canonical identity: Professor Program Stamp. Representative base image only until exact stamped image is available.",
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/bw1/gv-pk-bw1-101-professor-program-stamp/96baedca3f70766a0cbc459e.webp",
+        "updated_at": "2026-11-05T23:58:54.299595+00:00",
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "tcgdex": {
+            "legalities": {},
+            "flavor_text": null
+          },
+          "package_id": "PKG-11B-STAMPED-CANONICAL-PARENT-IDENTITY-ROUTED",
+          "stamp_label": "Professor Program Stamp",
+          "variant_key": "professor_program_stamp",
+          "base_parent_id": "98f0a49e-37ac-4e45-9813-f1ce4ff2dc45",
+          "source_package_id": "PKG-11B-STAMPED-FINISH-ROUTING-READINESS",
+          "professor_program_modifier_repair_v1": {
+            "package_id": "TCGPLAYER-PROFESSOR-PROGRAM-CATALOG-REPAIR-V1",
+            "source_product_id": "176633",
+            "package_fingerprint_sha256": "1203f252f7856cff512d85ff7d76eb45a9cf18e528166b53b519fb34a7c78820"
+          }
+        },
+        "variant_key": "professor_program_stamp",
+        "external_ids": {
+          "verified_master_index_v1": {
+            "evidence_urls": [
+              "https://www.pricecharting.com/game/pokemon-black-and-white/professor-juniper-professor-program-101",
+              "https://www.thepricedex.com/set/bw1/black-and-white/price-list",
+              "https://pokecardvalues.co.uk/cards/professor-juniper-101-114-reverse-holo-professor-program-black-white/bw1-101-3-55/"
+            ],
+            "finish_claims": [
+              {
+                "reason": "explicit_reverse_label",
+                "finish_key": "reverse",
+                "evidence_text": "Poke Card Values exact stamped finish: Professor Juniper - 101/114 - Reverse Holo - Professor Program - Promo"
+              },
+              {
+                "reason": "explicit_reverse_label",
+                "finish_key": "reverse",
+                "evidence_text": "https://pokecardvalues.co.uk/cards/professor-juniper-101-114-reverse-holo-professor-program-black-white/bw1-101-3-55/"
+              }
+            ],
+            "routing_status": "ready_finish_routed_exact_label",
+            "evidence_labels": [
+              "ThePriceDex preserved finish evidence from last promoted Master Index",
+              "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+              "Poke Card Values exact stamped finish: Professor Juniper - 101/114 - Reverse Holo - Professor Program - Promo"
+            ],
+            "routing_fingerprint": "1f26e9e434928e2cf01b6620c092be1e332c0db8f1adea50fa2f641e7a1f1a14",
+            "preserved_evidence_sources": [
+              "pricecharting_csv_product",
+              "thepricedex_price_list",
+              "pokecardvalues_stamped_finish"
+            ]
+          }
+        },
+        "image_source": "identity",
+        "image_status": "representative_shared_stamp",
+        "number_plain": "101",
+        "tcgplayer_id": null,
+        "image_alt_url": null,
+        "printed_total": null,
+        "last_synced_at": "2026-06-11T17:38:14.754519+00:00",
+        "identity_domain": "pokemon_eng_standard",
+        "regulation_mark": null,
+        "data_quality_flags": {
+          "legacy_image_url": "https://images.pokemontcg.io/bw1/101_hires.png",
+          "pokemontcg_legacy": true
+        },
+        "print_identity_key": null,
+        "printed_set_abbrev": null,
+        "set_identity_model": "standard",
+        "image_last_checked_at": "2026-06-11T17:38:14.754519+00:00",
+        "representative_image_url": "https://assets.tcgdex.net/en/bw/bw1/101/high.webp",
+        "printed_identity_modifier": "professor_program_stamp"
+      },
+      "active_standard_identity_count": 1,
+      "active_tcgplayer_mapping_count": 0
+    },
+    {
+      "card_print_id": "8f22c4ef-320d-45cd-8938-4aa84aca740e",
+      "gv_id": "GV-PK-SHF-59-PROFESSOR-PROGRAM",
+      "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+      "set_code": "swsh4.5",
+      "name": "Gym Trainer",
+      "number": "59",
+      "variant_key": "professor_program_stamp",
+      "parent_snapshot": {
+        "id": "8f22c4ef-320d-45cd-8938-4aa84aca740e",
+        "name": "Gym Trainer",
+        "gv_id": "GV-PK-SHF-59-PROFESSOR-PROGRAM",
+        "artist": "Ryuta Fuse",
+        "number": "59",
+        "rarity": "Uncommon",
+        "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+        "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+        "set_code": "swsh4.5",
+        "variants": null,
+        "image_res": null,
+        "image_url": null,
+        "created_at": "2026-11-05T23:58:54.299595+00:00",
+        "image_hash": null,
+        "image_note": "Professor Program stamped identity. Representative base image only until exact stamped image is available. Source product 499366.",
+        "image_path": null,
+        "updated_at": "2026-11-05T23:58:54.299595+00:00",
+        "ai_metadata": {
+          "source": "tcgplayer_professor_program_catalog_repair_v1",
+          "package_id": "TCGPLAYER-PROFESSOR-PROGRAM-CATALOG-REPAIR-V1",
+          "variant_key": "professor_program_stamp",
+          "base_parent_id": "d04a6b76-26f1-4a33-99ae-6920f7a501da",
+          "source_product_id": "499366",
+          "explicit_child_finish_key": "reverse",
+          "package_fingerprint_sha256": "1203f252f7856cff512d85ff7d76eb45a9cf18e528166b53b519fb34a7c78820"
+        },
+        "variant_key": "professor_program_stamp",
+        "external_ids": {
+          "verified_professor_program_v1": {
+            "evidence": {
+              "exact_finish": [
+                "https://api.pokemontcg.io/v2/cards/swsh45-59",
+                "https://api.tcgdex.net/v2/en/cards/swsh4.5-59",
+                "https://prices.pokemontcg.io/tcgplayer/swsh45-59",
+                "https://reverseholo.app/sets/swsh4.5",
+                "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+              ],
+              "base_selection": [],
+              "professor_program_identity": [
+                "https://www.pricecharting.com/game/pokemon-shining-fates/gym-trainer-professor-program-59",
+                "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+              ]
+            },
+            "source_group_id": "2332",
+            "source_product_id": "499366",
+            "source_product_name": "Gym Trainer (2022)",
+            "routing_fingerprint_sha256": "e6caf91fb1cd324610f7157d8446aae3d1f1d57dd6709944738cf8ba396b3bdd",
+            "readiness_package_fingerprint_sha256": "126b5c9000fbc58b0f4ea9a7254e632a710becf066d2060710abddca50b303d0"
+          }
+        },
+        "image_source": null,
+        "image_status": "representative_shared_stamp",
+        "number_plain": "59",
+        "tcgplayer_id": null,
+        "image_alt_url": null,
+        "printed_total": 72,
+        "last_synced_at": "2026-11-05T23:58:54.299595+00:00",
+        "identity_domain": "pokemon_eng_standard",
+        "regulation_mark": null,
+        "data_quality_flags": {},
+        "print_identity_key": null,
+        "printed_set_abbrev": "SHF",
+        "set_identity_model": "standard",
+        "image_last_checked_at": "2026-11-05T23:58:54.299595+00:00",
+        "representative_image_url": "https://assets.tcgdex.net/en/swsh/swsh4.5/59/high.webp",
+        "printed_identity_modifier": "professor_program_stamp"
+      },
+      "active_standard_identity_count": 1,
+      "active_tcgplayer_mapping_count": 0
+    },
+    {
+      "card_print_id": "baa63e55-c8aa-4936-8c9a-63de29e75c16",
+      "gv_id": "GV-PK-SW-122-PROFESSOR-PROGRAM",
+      "set_id": "d19aaa18-3b30-41a2-919d-2fce1d7bebfe",
+      "set_code": "dp3",
+      "name": "Professor Oak's Visit",
+      "number": "122",
+      "variant_key": "professor_program_stamp",
+      "parent_snapshot": {
+        "id": "baa63e55-c8aa-4936-8c9a-63de29e75c16",
+        "name": "Professor Oak's Visit",
+        "gv_id": "GV-PK-SW-122-PROFESSOR-PROGRAM",
+        "artist": "Ken Sugimori",
+        "number": "122",
+        "rarity": "Uncommon",
+        "set_id": "d19aaa18-3b30-41a2-919d-2fce1d7bebfe",
+        "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+        "set_code": "dp3",
+        "variants": null,
+        "image_res": null,
+        "image_url": null,
+        "created_at": "2026-11-05T23:58:54.299595+00:00",
+        "image_hash": null,
+        "image_note": "Professor Program stamped identity. Representative base image only until exact stamped image is available. Source product 176631.",
+        "image_path": null,
+        "updated_at": "2026-11-05T23:58:54.299595+00:00",
+        "ai_metadata": {
+          "source": "tcgplayer_professor_program_catalog_repair_v1",
+          "tcgdex": {
+            "legalities": {},
+            "flavor_text": null
+          },
+          "package_id": "TCGPLAYER-PROFESSOR-PROGRAM-CATALOG-REPAIR-V1",
+          "variant_key": "professor_program_stamp",
+          "base_parent_id": "20353cdf-bdef-4e82-acac-49cf30ee22b5",
+          "source_product_id": "176631",
+          "explicit_child_finish_key": "normal",
+          "package_fingerprint_sha256": "1203f252f7856cff512d85ff7d76eb45a9cf18e528166b53b519fb34a7c78820"
+        },
+        "variant_key": "professor_program_stamp",
+        "external_ids": {
+          "tcgdex": "dp3-122",
+          "verified_professor_program_v1": {
+            "evidence": {
+              "exact_finish": [
+                "https://api.pokemontcg.io/v2/cards/dp3-122",
+                "https://api.tcgdex.net/v2/en/cards/dp3-122",
+                "https://prices.pokemontcg.io/tcgplayer/dp3-122",
+                "https://www.thepricedex.com/set/dp3/secret-wonders/price-list"
+              ],
+              "base_selection": [
+                {
+                  "lane": "Additional cards",
+                  "notes": "Professor Program 2008-2009}",
+                  "db_number": "122",
+                  "source_url": "https://bulbapedia.bulbagarden.net/wiki/Secret_Wonders_%28TCG%29",
+                  "bulba_number": "122/132"
+                }
+              ],
+              "professor_program_identity": [
+                "https://www.pricecharting.com/game/pokemon-secret-wonders/professor-oaks-visit-professor-program-122",
+                "https://www.thepricedex.com/set/dp3/secret-wonders/price-list"
+              ]
+            },
+            "source_group_id": "2332",
+            "source_product_id": "176631",
+            "source_product_name": "Professor Oak's Visit (2008-2009)",
+            "routing_fingerprint_sha256": "e6caf91fb1cd324610f7157d8446aae3d1f1d57dd6709944738cf8ba396b3bdd",
+            "readiness_package_fingerprint_sha256": "126b5c9000fbc58b0f4ea9a7254e632a710becf066d2060710abddca50b303d0"
+          }
+        },
+        "image_source": null,
+        "image_status": "representative_shared_stamp",
+        "number_plain": "122",
+        "tcgplayer_id": null,
+        "image_alt_url": null,
+        "printed_total": 132,
+        "last_synced_at": "2026-11-05T23:58:54.299595+00:00",
+        "identity_domain": "pokemon_eng_standard",
+        "regulation_mark": null,
+        "data_quality_flags": {
+          "legacy_image_url": "https://images.pokemontcg.io/dp3/122_hires.png",
+          "pokemontcg_legacy": true
+        },
+        "print_identity_key": null,
+        "printed_set_abbrev": "SW",
+        "set_identity_model": "standard",
+        "image_last_checked_at": "2026-11-05T23:58:54.299595+00:00",
+        "representative_image_url": "https://assets.tcgdex.net/en/dp/dp3/122/high.webp",
+        "printed_identity_modifier": "professor_program_stamp"
+      },
+      "active_standard_identity_count": 1,
+      "active_tcgplayer_mapping_count": 0
+    },
+    {
+      "card_print_id": "c98e4f39-59fc-4ec1-bfc5-c34f28a25f3c",
+      "gv_id": "GV-PK-BW5-98-PROFESSOR-PROGRAM-STAMP",
+      "set_id": "56c23b8d-904e-4c3a-b0fd-9562919f5694",
+      "set_code": "bw5",
+      "name": "Professor Juniper",
+      "number": "98",
+      "variant_key": "professor_program_stamp",
+      "parent_snapshot": {
+        "id": "c98e4f39-59fc-4ec1-bfc5-c34f28a25f3c",
+        "name": "Professor Juniper",
+        "gv_id": "GV-PK-BW5-98-PROFESSOR-PROGRAM-STAMP",
+        "artist": "Kanako Eo",
+        "number": "98",
+        "rarity": "Uncommon",
+        "set_id": "56c23b8d-904e-4c3a-b0fd-9562919f5694",
+        "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+        "set_code": "bw5",
+        "variants": null,
+        "image_res": null,
+        "image_url": null,
+        "created_at": "2026-06-11T17:38:14.754519+00:00",
+        "image_hash": null,
+        "image_note": "Stamped canonical identity: Professor Program Stamp. Representative base image only until exact stamped image is available.",
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/bw5/gv-pk-bw5-98-professor-program-stamp/46369d521a8eb16f6df56152.webp",
+        "updated_at": "2026-11-05T23:58:54.299595+00:00",
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "tcgdex": {
+            "legalities": {},
+            "flavor_text": null
+          },
+          "package_id": "PKG-11B-STAMPED-CANONICAL-PARENT-IDENTITY-ROUTED",
+          "stamp_label": "Professor Program Stamp",
+          "variant_key": "professor_program_stamp",
+          "base_parent_id": "e2dadea2-f1a8-4cac-9496-31e8adfa5908",
+          "source_package_id": "PKG-11B-STAMPED-FINISH-ROUTING-READINESS",
+          "professor_program_modifier_repair_v1": {
+            "package_id": "TCGPLAYER-PROFESSOR-PROGRAM-CATALOG-REPAIR-V1",
+            "source_product_id": "176632",
+            "package_fingerprint_sha256": "1203f252f7856cff512d85ff7d76eb45a9cf18e528166b53b519fb34a7c78820"
+          }
+        },
+        "variant_key": "professor_program_stamp",
+        "external_ids": {
+          "verified_master_index_v1": {
+            "evidence_urls": [
+              "https://www.pricecharting.com/game/pokemon-dark-explorers/professor-juniper-professor-program-98",
+              "https://www.thepricedex.com/set/bw5/dark-explorers/price-list",
+              "https://pokecardvalues.co.uk/cards/professor-juniper-98-108-reverse-holo-professor-program-dark-explorers/bw5-98-3-55/"
+            ],
+            "finish_claims": [
+              {
+                "reason": "explicit_reverse_label",
+                "finish_key": "reverse",
+                "evidence_text": "Poke Card Values exact stamped finish: Professor Juniper - 98/108 - Reverse Holo - Professor Program - Promo"
+              },
+              {
+                "reason": "explicit_reverse_label",
+                "finish_key": "reverse",
+                "evidence_text": "https://pokecardvalues.co.uk/cards/professor-juniper-98-108-reverse-holo-professor-program-dark-explorers/bw5-98-3-55/"
+              }
+            ],
+            "routing_status": "ready_finish_routed_exact_label",
+            "evidence_labels": [
+              "ThePriceDex preserved finish evidence from last promoted Master Index",
+              "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+              "Poke Card Values exact stamped finish: Professor Juniper - 98/108 - Reverse Holo - Professor Program - Promo"
+            ],
+            "routing_fingerprint": "1f26e9e434928e2cf01b6620c092be1e332c0db8f1adea50fa2f641e7a1f1a14",
+            "preserved_evidence_sources": [
+              "pricecharting_csv_product",
+              "thepricedex_price_list",
+              "pokecardvalues_stamped_finish"
+            ]
+          }
+        },
+        "image_source": "identity",
+        "image_status": "representative_shared_stamp",
+        "number_plain": "98",
+        "tcgplayer_id": null,
+        "image_alt_url": null,
+        "printed_total": null,
+        "last_synced_at": "2026-06-11T17:38:14.754519+00:00",
+        "identity_domain": "pokemon_eng_standard",
+        "regulation_mark": null,
+        "data_quality_flags": {
+          "legacy_image_url": "https://images.pokemontcg.io/bw5/98_hires.png",
+          "pokemontcg_legacy": true
+        },
+        "print_identity_key": null,
+        "printed_set_abbrev": null,
+        "set_identity_model": "standard",
+        "image_last_checked_at": "2026-06-11T17:38:14.754519+00:00",
+        "representative_image_url": "https://assets.tcgdex.net/en/bw/bw5/98/high.webp",
+        "printed_identity_modifier": "professor_program_stamp"
+      },
+      "active_standard_identity_count": 1,
+      "active_tcgplayer_mapping_count": 0
+    },
+    {
+      "card_print_id": "e402c8fc-563b-49e3-a198-6a5fe5f75cda",
+      "gv_id": "GV-PK-RG-98-PROFESSOR-PROGRAM",
+      "set_id": "e3c0f90a-9b77-488d-8445-64e929a5a4fb",
+      "set_code": "ex6",
+      "name": "Prof. Oak's Research",
+      "number": "98",
+      "variant_key": "professor_program_stamp",
+      "parent_snapshot": {
+        "id": "e402c8fc-563b-49e3-a198-6a5fe5f75cda",
+        "name": "Prof. Oak's Research",
+        "gv_id": "GV-PK-RG-98-PROFESSOR-PROGRAM",
+        "artist": "Ken Sugimori",
+        "number": "98",
+        "rarity": "Uncommon",
+        "set_id": "e3c0f90a-9b77-488d-8445-64e929a5a4fb",
+        "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+        "set_code": "ex6",
+        "variants": null,
+        "image_res": null,
+        "image_url": null,
+        "created_at": "2026-11-05T23:58:54.299595+00:00",
+        "image_hash": null,
+        "image_note": "Professor Program stamped identity. Representative base image only until exact stamped image is available. Source product 176629.",
+        "image_path": null,
+        "updated_at": "2026-11-05T23:58:54.299595+00:00",
+        "ai_metadata": {
+          "source": "tcgplayer_professor_program_catalog_repair_v1",
+          "tcgdex": {
+            "legalities": {},
+            "flavor_text": null
+          },
+          "package_id": "TCGPLAYER-PROFESSOR-PROGRAM-CATALOG-REPAIR-V1",
+          "variant_key": "professor_program_stamp",
+          "base_parent_id": "453468cf-a458-4ff6-acde-6103b234bf87",
+          "source_product_id": "176629",
+          "explicit_child_finish_key": "normal",
+          "package_fingerprint_sha256": "1203f252f7856cff512d85ff7d76eb45a9cf18e528166b53b519fb34a7c78820"
+        },
+        "variant_key": "professor_program_stamp",
+        "external_ids": {
+          "tcgdex": "ex6-98",
+          "verified_professor_program_v1": {
+            "evidence": {
+              "exact_finish": [
+                "https://api.pokemontcg.io/v2/cards/ex6-98",
+                "https://api.tcgdex.net/v2/en/cards/ex6-98",
+                "https://prices.pokemontcg.io/tcgplayer/ex6-98",
+                "https://www.thepricedex.com/set/ex6/firered-and-leafgreen/price-list"
+              ],
+              "base_selection": [
+                {
+                  "lane": "Additional cards",
+                  "notes": "Professor Program 2004-2005}",
+                  "db_number": "98",
+                  "source_url": "https://bulbapedia.bulbagarden.net/wiki/EX_FireRed_%26_LeafGreen_%28TCG%29",
+                  "bulba_number": "98/112"
+                }
+              ],
+              "professor_program_identity": [
+                "https://www.sportscardinvestor.com/cards/prof.-oak-s-research-pokemon/2004-ex-firered-leafgreen-promo-professor-program-098-112",
+                "https://www.thepricedex.com/set/ex6/firered-and-leafgreen/price-list"
+              ]
+            },
+            "source_group_id": "2332",
+            "source_product_id": "176629",
+            "source_product_name": "Prof. Oak's Research (2004-2005)",
+            "routing_fingerprint_sha256": "e6caf91fb1cd324610f7157d8446aae3d1f1d57dd6709944738cf8ba396b3bdd",
+            "readiness_package_fingerprint_sha256": "126b5c9000fbc58b0f4ea9a7254e632a710becf066d2060710abddca50b303d0"
+          }
+        },
+        "image_source": null,
+        "image_status": "representative_shared_stamp",
+        "number_plain": "98",
+        "tcgplayer_id": null,
+        "image_alt_url": null,
+        "printed_total": 112,
+        "last_synced_at": "2026-11-05T23:58:54.299595+00:00",
+        "identity_domain": "pokemon_eng_standard",
+        "regulation_mark": null,
+        "data_quality_flags": {
+          "legacy_image_url": "https://images.pokemontcg.io/ex6/98_hires.png",
+          "pokemontcg_legacy": true
+        },
+        "print_identity_key": null,
+        "printed_set_abbrev": "RG",
+        "set_identity_model": "standard",
+        "image_last_checked_at": "2026-11-05T23:58:54.299595+00:00",
+        "representative_image_url": "https://assets.tcgdex.net/en/ex/ex6/98/high.webp",
+        "printed_identity_modifier": "professor_program_stamp"
+      },
+      "active_standard_identity_count": 1,
+      "active_tcgplayer_mapping_count": 0
+    },
+    {
+      "card_print_id": "ea08d28d-8267-4db9-859c-64ffd048792f",
+      "gv_id": "GV-PK-FLI-108-PROFESSOR-PROGRAM-STAMP",
+      "set_id": "2ac96af4-a5e2-479f-916c-7b52e13a8f3a",
+      "set_code": "sm6",
+      "name": "Judge",
+      "number": "108",
+      "variant_key": "professor_program_stamp",
+      "parent_snapshot": {
+        "id": "ea08d28d-8267-4db9-859c-64ffd048792f",
+        "name": "Judge",
+        "gv_id": "GV-PK-FLI-108-PROFESSOR-PROGRAM-STAMP",
+        "artist": "Sanosuke Sakuma",
+        "number": "108",
+        "rarity": "Uncommon",
+        "set_id": "2ac96af4-a5e2-479f-916c-7b52e13a8f3a",
+        "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+        "set_code": "sm6",
+        "variants": null,
+        "image_res": null,
+        "image_url": null,
+        "created_at": "2026-06-22T02:37:29.450851+00:00",
+        "image_hash": null,
+        "image_note": "Stamped canonical identity: professor_program_stamp. Representative base image only until exact stamped image is available.",
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sm6/gv-pk-fli-108-professor-program-stamp/b2777064ac33ebb6f8726b42.png",
+        "updated_at": "2026-06-22T02:37:29.450851+00:00",
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "package_id": "POKUMON-DETAIL-PARENT-INSERTS",
+          "pokemonapi": {
+            "legalities": {
+              "expanded": "Legal",
+              "standard": "Legal",
+              "unlimited": "Legal"
+            },
+            "flavor_text": null
+          },
+          "stamp_label": "professor_program_stamp",
+          "variant_key": "professor_program_stamp",
+          "base_parent_id": "a51c9d34-02ab-48d5-932f-ca2e78b81bd0",
+          "child_finish_keys": [
+            "reverse"
+          ]
+        },
+        "variant_key": "professor_program_stamp",
+        "external_ids": {
+          "verified_master_index_v1": {
+            "evidence": [
+              {
+                "source_key": "pokumon_special_print",
+                "source_url": "https://pokumon.com/card/professor-program-judge-108-131-professor-program-special-print/",
+                "source_kind": "collector_reference",
+                "page_classes": [
+                  "additional_attributes-event-stamp",
+                  "additional_attributes-watermark",
+                  "holofoil-crosshatch",
+                  "holofoil-mirror",
+                  "holofoil-non-holo",
+                  "holofoil-reverse",
+                  "release_event-professor-program",
+                  "tag-1622",
+                  "tag-3396",
+                  "tag-556",
+                  "tag-6636",
+                  "tag-crosshatch",
+                  "tag-emi-ando",
+                  "tag-energy",
+                  "tag-english",
+                  "tag-event-stamp",
+                  "tag-free-promo",
+                  "tag-judge",
+                  "tag-ken-sugimori",
+                  "tag-league-staff",
+                  "tag-lightning-energy",
+                  "tag-mirror",
+                  "tag-non-holo",
+                  "tag-none",
+                  "tag-prof-oaks-research",
+                  "tag-professor-juniper",
+                  "tag-professor-oaks-new-theory",
+                  "tag-professor-program",
+                  "tag-reverse",
+                  "tag-sanosuke-sakuma",
+                  "tag-special-print-promos",
+                  "tag-trainer",
+                  "tag-watermark"
+                ],
+                "evidence_label": "Pokumon card-name result: Professor Program Judge (108/131 Professor Program Special Print)",
+                "parsed_finish_key": "reverse",
+                "source_fingerprint_sha256": "e4ea5067b963cf3418922ebdcc86e9ff223b738d74c90e7b02aa26d8797fc7c2"
+              }
+            ],
+            "package_id": "POKUMON-DETAIL-PARENT-INSERTS",
+            "source_urls": [
+              "https://pokumon.com/card/professor-program-judge-108-131-professor-program-special-print/"
+            ],
+            "stamp_label": "professor_program_stamp",
+            "variant_key": "professor_program_stamp",
+            "child_finish_keys": [
+              "reverse"
+            ]
+          }
+        },
+        "image_source": "identity",
+        "image_status": "representative_shared_stamp",
+        "number_plain": "108",
+        "tcgplayer_id": null,
+        "image_alt_url": null,
+        "printed_total": null,
+        "last_synced_at": "2026-06-22T02:37:29.450851+00:00",
+        "identity_domain": "pokemon_eng_standard",
+        "regulation_mark": null,
+        "data_quality_flags": {
+          "legacy_image_url": "https://images.pokemontcg.io/sm6/108_hires.png",
+          "pokemontcg_legacy": true
+        },
+        "print_identity_key": null,
+        "printed_set_abbrev": null,
+        "set_identity_model": "standard",
+        "image_last_checked_at": "2026-06-22T02:37:29.450851+00:00",
+        "representative_image_url": "https://images.pokemontcg.io/sm6/108_hires.png",
+        "printed_identity_modifier": "professor_program_stamp"
+      },
+      "active_standard_identity_count": 1,
+      "active_tcgplayer_mapping_count": 0
+    },
+    {
+      "card_print_id": "ed61ea12-90af-4250-b089-e2b31fc2fdce",
+      "gv_id": "GV-PK-EX9-82-PROFESSOR-PROGRAM-STAMP",
+      "set_id": "07f4df8d-766f-4801-b1f8-7e5a80035274",
+      "set_code": "ex9",
+      "name": "Professor Birch",
+      "number": "82",
+      "variant_key": "professor_program_stamp",
+      "parent_snapshot": {
+        "id": "ed61ea12-90af-4250-b089-e2b31fc2fdce",
+        "name": "Professor Birch",
+        "gv_id": "GV-PK-EX9-82-PROFESSOR-PROGRAM-STAMP",
+        "artist": "Ken Sugimori",
+        "number": "82",
+        "rarity": "Uncommon",
+        "set_id": "07f4df8d-766f-4801-b1f8-7e5a80035274",
+        "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+        "set_code": "ex9",
+        "variants": null,
+        "image_res": null,
+        "image_url": null,
+        "created_at": "2026-06-11T17:38:14.754519+00:00",
+        "image_hash": null,
+        "image_note": "Stamped canonical identity: Professor Program Stamp. Representative base image only until exact stamped image is available.",
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/ex9/gv-pk-ex9-82-professor-program-stamp/8ff7bfc9324c48fa19aa8eee.webp",
+        "updated_at": "2026-11-05T23:58:54.299595+00:00",
+        "ai_metadata": {
+          "source": "verified_master_set_index_v1",
+          "tcgdex": {
+            "legalities": {},
+            "flavor_text": null
+          },
+          "package_id": "PKG-11B-STAMPED-CANONICAL-PARENT-IDENTITY-ROUTED",
+          "pokemonapi": {
+            "legalities": {
+              "unlimited": "Legal"
+            },
+            "flavor_text": null
+          },
+          "stamp_label": "Professor Program Stamp",
+          "variant_key": "professor_program_stamp",
+          "base_parent_id": "a3ae0ede-d02f-4bbd-b148-a1de0aa268fb",
+          "source_package_id": "PKG-11B-STAMPED-FINISH-ROUTING-READINESS",
+          "professor_program_modifier_repair_v1": {
+            "package_id": "TCGPLAYER-PROFESSOR-PROGRAM-CATALOG-REPAIR-V1",
+            "source_product_id": "176630",
+            "package_fingerprint_sha256": "1203f252f7856cff512d85ff7d76eb45a9cf18e528166b53b519fb34a7c78820"
+          }
+        },
+        "variant_key": "professor_program_stamp",
+        "external_ids": {
+          "verified_master_index_v1": {
+            "evidence_urls": [
+              "https://www.pricecharting.com/game/pokemon-emerald/professor-birch-program-2005-82",
+              "https://www.thepricedex.com/set/ex9/emerald/price-list",
+              "https://pokecardvalues.co.uk/cards/professor-birch-82-106-holo-professor-program-emerald/ex9-82-1-55/"
+            ],
+            "finish_claims": [
+              {
+                "reason": "explicit_holo_label",
+                "finish_key": "holo",
+                "evidence_text": "Poke Card Values exact stamped finish: Professor Birch - 82/106 - Holo - Professor Program - Promo"
+              },
+              {
+                "reason": "explicit_holo_label",
+                "finish_key": "holo",
+                "evidence_text": "https://pokecardvalues.co.uk/cards/professor-birch-82-106-holo-professor-program-emerald/ex9-82-1-55/"
+              }
+            ],
+            "routing_status": "ready_finish_routed_exact_label",
+            "evidence_labels": [
+              "ThePriceDex preserved finish evidence from last promoted Master Index",
+              "pricecharting_csv_product preserved finish evidence from last promoted Master Index",
+              "Poke Card Values exact stamped finish: Professor Birch - 82/106 - Holo - Professor Program - Promo"
+            ],
+            "routing_fingerprint": "1f26e9e434928e2cf01b6620c092be1e332c0db8f1adea50fa2f641e7a1f1a14",
+            "preserved_evidence_sources": [
+              "pricecharting_csv_product",
+              "thepricedex_price_list",
+              "pokecardvalues_stamped_finish"
+            ]
+          }
+        },
+        "image_source": "identity",
+        "image_status": "representative_shared_stamp",
+        "number_plain": "82",
+        "tcgplayer_id": null,
+        "image_alt_url": null,
+        "printed_total": null,
+        "last_synced_at": "2026-06-11T17:38:14.754519+00:00",
+        "identity_domain": "pokemon_eng_standard",
+        "regulation_mark": null,
+        "data_quality_flags": {
+          "legacy_image_url": "https://images.pokemontcg.io/ex9/82_hires.png",
+          "pokemontcg_legacy": true
+        },
+        "print_identity_key": null,
+        "printed_set_abbrev": null,
+        "set_identity_model": "standard",
+        "image_last_checked_at": "2026-06-11T17:38:14.754519+00:00",
+        "representative_image_url": "https://assets.tcgdex.net/en/ex/ex9/82/high.webp",
+        "printed_identity_modifier": "professor_program_stamp"
+      },
+      "active_standard_identity_count": 1,
+      "active_tcgplayer_mapping_count": 0
+    }
+  ],
+  "observations": [
+    {
+      "id": "3244ea82-1bdd-4b26-b51e-cd8f3c26ddeb",
+      "product_id": 176631,
+      "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+      "observed_on": "2026-11-05T07:00:00.000Z"
+    },
+    {
+      "id": "a298bf76-27e9-4e4d-a2f4-02f2299a79c5",
+      "product_id": 176629,
+      "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+      "observed_on": "2026-11-05T07:00:00.000Z"
+    },
+    {
+      "id": "b08213b6-e598-4002-8f81-4aa7b23cfa62",
+      "product_id": 176630,
+      "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+      "observed_on": "2026-11-05T07:00:00.000Z"
+    },
+    {
+      "id": "b86bcfe2-febb-46e2-b18e-5bc537a9551b",
+      "product_id": 213516,
+      "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+      "observed_on": "2026-11-05T07:00:00.000Z"
+    },
+    {
+      "id": "bb1c7243-6f70-467c-8be5-72354cc5b2c4",
+      "product_id": 176632,
+      "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+      "observed_on": "2026-11-05T07:00:00.000Z"
+    },
+    {
+      "id": "c3b9fae1-21d8-44bc-9131-73d5e6cbe4cd",
+      "product_id": 499366,
+      "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+      "observed_on": "2026-11-05T07:00:00.000Z"
+    },
+    {
+      "id": "c3d878f2-2683-4136-bfa3-14d787098263",
+      "product_id": 176633,
+      "last_seen_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+      "observed_on": "2026-11-05T07:00:00.000Z"
+    }
+  ],
+  "activePublicationOverlap": []
+}
