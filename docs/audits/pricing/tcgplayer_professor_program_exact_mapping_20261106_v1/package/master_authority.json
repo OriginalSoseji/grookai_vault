@@ -1,0 +1,779 @@
+{
+  "version": "MASTER_INDEX_MAPPING_AUTHORITY_V1",
+  "purpose": "evidence_binding_not_execution_authorization",
+  "candidate_fingerprints": [
+    "2160683481d8787a4e97aa86f78b57c8207f5764ec6e837e5936cf4584c4e04c",
+    "26a8f5f18a19549e255fa391f903b7efeb952c578773121276e5533e3d745f8c",
+    "59e0986b240a74816d34b765d830cca58c0c1d808bc591e9c64bce2a401dacdc",
+    "a53e82900ed2a54ee39dc794271fdfcf16be605455282d1891b87ea35aef872d",
+    "afb3742b96f1f33c6daa5375e85c99341124936bc622eb838442c01f8f84252f",
+    "e1e07523d11c2ff73c4cd6cabf853082131ea77082ae7dd4046e524359db5eba",
+    "e645609ed57dbbff85a3e8afb31d5abd12536e563cde21b5c0292067adffed64"
+  ],
+  "scopes": [
+    {
+      "manifest": {
+        "version": "PRINTING_COMPLETENESS_GATE_V1",
+        "game": "pokemon",
+        "language": "en",
+        "set_code": "ex6",
+        "scope": "verified_parent_families",
+        "scope_note": "Exact Professor Program stamped parent and verified normal printing for TCGPlayer product 176629.",
+        "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+        "master_index_ref": "ex6-professor-program-mapping-projection-v1",
+        "master_index_sha256": "5cc1e87748a9f050c4103f79b3a9b2b485eecb37460bb1133fae0b96eab79b09",
+        "parents": [
+          {
+            "id": "e402c8fc-563b-49e3-a198-6a5fe5f75cda",
+            "name": "Prof. Oak's Research",
+            "gv_id": "GV-PK-RG-98-PROFESSOR-PROGRAM",
+            "set_id": "e3c0f90a-9b77-488d-8445-64e929a5a4fb",
+            "variant_key": "professor_program_stamp",
+            "identity_domain": "pokemon_eng_standard",
+            "printed_coordinate": "98",
+            "printed_identity_modifier": "professor_program_stamp"
+          }
+        ],
+        "printings": [
+          {
+            "card_print_id": "e402c8fc-563b-49e3-a198-6a5fe5f75cda",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-RG-98-PROFESSOR-PROGRAM-STD",
+            "review_status": "verified",
+            "evidence": [
+              {
+                "kind": "exact_printing_mapping",
+                "source_ref": "professor-program-product-176629-reviewed-evidence-v1",
+                "sha256": "e974dcc9305ca35f5bba65b33d3359f03ecd944183f63b57e008e63bccfa0d43",
+                "card_print_id": "e402c8fc-563b-49e3-a198-6a5fe5f75cda",
+                "finish_key": "normal"
+              }
+            ]
+          }
+        ],
+        "unresolved_variants": [],
+        "suppressed_printing_facts": [],
+        "expected": {
+          "parents": 1,
+          "printings": 1,
+          "finishes": {
+            "normal": 1
+          }
+        },
+        "authority": {
+          "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+          "status": "verified_scope",
+          "set_id": "e3c0f90a-9b77-488d-8445-64e929a5a4fb",
+          "source_artifacts": [
+            {
+              "ref": "ex6-professor-program-mapping-projection-v1",
+              "sha256": "5cc1e87748a9f050c4103f79b3a9b2b485eecb37460bb1133fae0b96eab79b09",
+              "kind": "exact_printing_mapping",
+              "url_or_identifier": "derived:ex6-professor-program-mapping-projection-v1",
+              "retrieved_at": "2026-11-06T06:52:00.000Z"
+            },
+            {
+              "ref": "professor-program-product-176629-reviewed-evidence-v1",
+              "sha256": "e974dcc9305ca35f5bba65b33d3359f03ecd944183f63b57e008e63bccfa0d43",
+              "kind": "exact_printing_mapping",
+              "url_or_identifier": "docs/audits/tcgplayer_professor_program_mapping_readiness_post_printing_apply_20261105_v1.json",
+              "retrieved_at": "2026-11-05T08:40:28.109Z"
+            }
+          ],
+          "protected_facts": [
+            {
+              "card_print_id": "e402c8fc-563b-49e3-a198-6a5fe5f75cda",
+              "finish_key": "normal"
+            }
+          ],
+          "forbidden_facts": [],
+          "conflicts": [],
+          "review": {
+            "ref": "review:ex6:professor-program-176629",
+            "sha256": "51d23d388c047c65c67bb3b78d09481cb0e9ccd8de417286b49f7196c5aee7ec"
+          }
+        },
+        "external_mapping_assertions": [
+          {
+            "source": "tcgplayer",
+            "external_id": "176629",
+            "card_print_id": "e402c8fc-563b-49e3-a198-6a5fe5f75cda",
+            "candidate_fingerprint": "2160683481d8787a4e97aa86f78b57c8207f5764ec6e837e5936cf4584c4e04c",
+            "source_ref": "professor-program-product-176629-reviewed-evidence-v1",
+            "source_sha256": "e974dcc9305ca35f5bba65b33d3359f03ecd944183f63b57e008e63bccfa0d43"
+          }
+        ],
+        "fingerprint": "ae2dbd9e87072c7467654c4fad9e60c1716bd8674cdf2a9714a736b559875d51"
+      },
+      "artifacts": [
+        {
+          "ref": "ex6-professor-program-mapping-projection-v1",
+          "base64": "ewogICJ2ZXJzaW9uIjogIlRDR1BMQVlFUl9QUk9GRVNTT1JfUFJPR1JBTV9NQVNURVJfSU5ERVhfUFJPSkVDVElPTl9WMSIsCiAgInJlYWRpbmVzc19maW5nZXJwcmludCI6ICI0MDMzOTUyOTEwZjUzZmMwNjc5NzRjNTUxN2UxMDI5MDMzOTllMjAyZGM2YWU4YmRkMjYwYmNlOWVlZTFhODE1IiwKICAic291cmNlX3Byb2R1Y3RfaWQiOiAxNzY2MjksCiAgInRhcmdldCI6IHsKICAgICJjYXJkX3ByaW50X2lkIjogImU0MDJjOGZjLTU2M2ItNDllMy1hMTk4LTZhNWZlNWY3NWNkYSIsCiAgICAiZ3ZfaWQiOiAiR1YtUEstUkctOTgtUFJPRkVTU09SLVBST0dSQU0iLAogICAgInNldF9pZCI6ICJlM2MwZjkwYS05Yjc3LTQ4OGQtODQ0NS02NGU5MjlhNWE0ZmIiLAogICAgInNldF9jb2RlIjogImV4NiIsCiAgICAibmFtZSI6ICJQcm9mLiBPYWsncyBSZXNlYXJjaCIsCiAgICAibnVtYmVyIjogIjk4IiwKICAgICJ2YXJpYW50X2tleSI6ICJwcm9mZXNzb3JfcHJvZ3JhbV9zdGFtcCIKICB9LAogICJwcmludGluZyI6IHsKICAgICJwcmludGluZ19pZCI6ICJlYjliM2YzOS03NjBmLTRiNzctYTNiMS1jNDg2YjRhNGU0YzMiLAogICAgImZpbmlzaF9rZXkiOiAibm9ybWFsIiwKICAgICJwcmludGluZ19ndl9pZCI6ICJHVi1QSy1SRy05OC1QUk9GRVNTT1ItUFJPR1JBTS1TVEQiLAogICAgInByb3ZlbmFuY2Vfc291cmNlIjogInRjZ3BsYXllcl9wcm9mZXNzb3JfcHJvZ3JhbV9jYXRhbG9nX3JlcGFpcl92MSIsCiAgICAicHJvdmVuYW5jZV9yZWYiOiAidGNncGxheWVyOjE3NjYyOTpwcm9mZXNzb3JfcHJvZ3JhbV9zdGFtcDpub3JtYWwiCiAgfQp9Cg=="
+        },
+        {
+          "ref": "professor-program-product-176629-reviewed-evidence-v1",
+          "base64": "ewogICJ2ZXJzaW9uIjogIlRDR1BMQVlFUl9QUk9GRVNTT1JfUFJPR1JBTV9SRVZJRVdFRF9NQVBQSU5HX0VWSURFTkNFX1YxIiwKICAicmVhZGluZXNzX2ZpbmdlcnByaW50IjogIjQwMzM5NTI5MTBmNTNmYzA2Nzk3NGM1NTE3ZTEwMjkwMzM5OWUyMDJkYzZhZThiZGQyNjBiY2U5ZWVlMWE4MTUiLAogICJzb3VyY2Vfc3luY19ydW5faWQiOiAiOTA1YzllMDktYjY1OC00NGZlLWIzMmMtYzkxZmJmNmJkZTFlIiwKICAic291cmNlX3Byb2R1Y3QiOiB7CiAgICAicHJvZHVjdF9pZCI6IDE3NjYyOSwKICAgICJjYXRlZ29yeV9pZCI6IDMsCiAgICAiZ3JvdXBfaWQiOiAyMzMyLAogICAgIm5hbWUiOiAiUHJvZi4gT2FrJ3MgUmVzZWFyY2ggKDIwMDQtMjAwNSkiLAogICAgInNvdXJjZV91cmwiOiAiaHR0cHM6Ly93d3cudGNncGxheWVyLmNvbS9wcm9kdWN0LzE3NjYyOS9wb2tlbW9uLXByb2Zlc3Nvci1wcm9ncmFtLXByb21vcy1wcm9mLW9ha3MtcmVzZWFyY2gtMjAwNC0yMDA1IiwKICAgICJzb3VyY2VfbW9kaWZpZWRfb24iOiAiMjAxOC0wOS0xM1QxOTo0NTo1OC40MjciLAogICAgImV4dGVuZGVkX2RhdGEiOiBbCiAgICAgIHsKICAgICAgICAibmFtZSI6ICJOdW1iZXIiLAogICAgICAgICJ2YWx1ZSI6ICI5OC8xMTIiLAogICAgICAgICJkaXNwbGF5TmFtZSI6ICJDYXJkIE51bWJlciIKICAgICAgfSwKICAgICAgewogICAgICAgICJuYW1lIjogIlJhcml0eSIsCiAgICAgICAgInZhbHVlIjogIlByb21vIiwKICAgICAgICAiZGlzcGxheU5hbWUiOiAiUmFyaXR5IgogICAgICB9LAogICAgICB7CiAgICAgICAgIm5hbWUiOiAiQ2FyZCBUeXBlIiwKICAgICAgICAidmFsdWUiOiAiU3VwcG9ydGVyIiwKICAgICAgICAiZGlzcGxheU5hbWUiOiAiQ2FyZCBUeXBlIgogICAgICB9LAogICAgICB7CiAgICAgICAgIm5hbWUiOiAiQ2FyZFRleHQiLAogICAgICAgICJ2YWx1ZSI6ICJTaHVmZmxlIHlvdXIgaGFuZCBpbnRvIHlvdXIgZGVjaywgdGhlbiBkcmF3IDUgY2FyZHMuIiwKICAgICAgICAiZGlzcGxheU5hbWUiOiAiQ2FyZCBUZXh0IgogICAgICB9CiAgICBdLAogICAgInBheWxvYWRfaGFzaCI6ICIyMTAwZjA0NGQxNDhhNzEzYzBmYjQwYmNkNTc1Y2YzM2E2MDc4MTg4MDczNmVkZDQyMjE2YzAyYmIxZTZiNWFjIiwKICAgICJsYXN0X3NlZW5fYXQiOiAiMjAyNi0xMS0wNVQwODo0MDoyOC4xMDlaIiwKICAgICJsYXN0X3NlZW5fcnVuX2lkIjogIjkwNWM5ZTA5LWI2NTgtNDRmZS1iMzJjLWM5MWZiZjZiZGUxZSIsCiAgICAic291cmNlX2FjdGl2ZSI6IHRydWUsCiAgICAiY2F0YWxvZ19tZXRhZGF0YV9zdGF0dXMiOiAiY3VycmVudCIKICB9LAogICJsYXRlc3Rfb2JzZXJ2YXRpb25zIjogWwogICAgewogICAgICAiaWQiOiAiYTI5OGJmNzYtMjdlOS00ZTRkLWEyZjQtMDJmMjI5OWE3OWM1IiwKICAgICAgInByb2R1Y3RfaWQiOiAxNzY2MjksCiAgICAgICJzdWJ0eXBlX25hbWUiOiAiTm9ybWFsIiwKICAgICAgIm9ic2VydmVkX29uIjogIjIwMjYtMTEtMDVUMDc6MDA6MDAuMDAwWiIsCiAgICAgICJsb3dfcHJpY2UiOiAiMTE1IiwKICAgICAgIm1pZF9wcmljZSI6ICIxMjQuOTkiLAogICAgICAiaGlnaF9wcmljZSI6ICIxMzQuOTUiLAogICAgICAibWFya2V0X3ByaWNlIjogIjEzNC45OSIsCiAgICAgICJkaXJlY3RfbG93X3ByaWNlIjogbnVsbCwKICAgICAgImN1cnJlbmN5IjogIlVTRCIsCiAgICAgICJwYXlsb2FkX2hhc2giOiAiYWU1OGQ5MWU0ZDVlNWU1NWU1NTIxZWEzMjQ5NjcwNDg0NjZlZmE3YzU4NTI0NTQ4MmYxNTU2ZTAwMzgxOGZlMCIsCiAgICAgICJsYXN0X29ic2VydmVkX2F0IjogIjIwMjYtMTEtMDVUMDg6NDA6MjguNjAyWiIsCiAgICAgICJsYXN0X3NlZW5fcnVuX2lkIjogIjkwNWM5ZTA5LWI2NTgtNDRmZS1iMzJjLWM5MWZiZjZiZGUxZSIKICAgIH0KICBdLAogICJ0YXJnZXRfcGFyZW50IjogewogICAgImlkIjogImU0MDJjOGZjLTU2M2ItNDllMy1hMTk4LTZhNWZlNWY3NWNkYSIsCiAgICAic2V0X2lkIjogImUzYzBmOTBhLTliNzctNDg4ZC04NDQ1LTY0ZTkyOWE1YTRmYiIsCiAgICAic2V0X2NvZGUiOiAiZXg2IiwKICAgICJuYW1lIjogIlByb2YuIE9haydzIFJlc2VhcmNoIiwKICAgICJudW1iZXIiOiAiOTgiLAogICAgInZhcmlhbnRfa2V5IjogInByb2Zlc3Nvcl9wcm9ncmFtX3N0YW1wIiwKICAgICJndl9pZCI6ICJHVi1QSy1SRy05OC1QUk9GRVNTT1ItUFJPR1JBTSIsCiAgICAiaWRlbnRpdHlfZG9tYWluIjogInBva2Vtb25fZW5nX3N0YW5kYXJkIiwKICAgICJwcmludGVkX2lkZW50aXR5X21vZGlmaWVyIjogInByb2Zlc3Nvcl9wcm9ncmFtX3N0YW1wIiwKICAgICJhY3RpdmVfc3RhbmRhcmRfaWRlbnRpdHlfY291bnQiOiAxCiAgfSwKICAidGFyZ2V0X2NoaWxkIjogewogICAgImlkIjogImViOWIzZjM5LTc2MGYtNGI3Ny1hM2IxLWM0ODZiNGE0ZTRjMyIsCiAgICAiY2FyZF9wcmludF9pZCI6ICJlNDAyYzhmYy01NjNiLTQ5ZTMtYTE5OC02YTVmZTVmNzVjZGEiLAogICAgImZpbmlzaF9rZXkiOiAibm9ybWFsIiwKICAgICJwcmludGluZ19ndl9pZCI6ICJHVi1QSy1SRy05OC1QUk9GRVNTT1ItUFJPR1JBTS1TVEQiLAogICAgImlzX3Byb3Zpc2lvbmFsIjogZmFsc2UsCiAgICAicHJvdmVuYW5jZV9zb3VyY2UiOiAidGNncGxheWVyX3Byb2Zlc3Nvcl9wcm9ncmFtX2NhdGFsb2dfcmVwYWlyX3YxIiwKICAgICJwcm92ZW5hbmNlX3JlZiI6ICJ0Y2dwbGF5ZXI6MTc2NjI5OnByb2Zlc3Nvcl9wcm9ncmFtX3N0YW1wOm5vcm1hbCIsCiAgICAiZmluaXNoX2FjdGl2ZSI6IHRydWUsCiAgICAiYWN0aXZlX3RydXRoX3JldmlldyI6ICJ2ZXJpZmllZCIsCiAgICAicHVibGljX3Zpc2liaWxpdHkiOiAidmlzaWJsZSIsCiAgICAicHVibGljX3Zpc2libGUiOiB0cnVlCiAgfSwKICAiZXhpc3RpbmdfbWFwcGluZ3MiOiBbXSwKICAiYWN0aXZlX3B1YmxpY2F0aW9uX292ZXJsYXAiOiBbXSwKICAiY2FuZGlkYXRlX2ZpbmdlcnByaW50IjogIjIxNjA2ODM0ODFkODc4N2E0ZTk3YWE4NmY3OGI1N2M4MjA3ZjU3NjRlYzZlODM3ZTU5MzZjZjQ1ODRjNGUwNGMiCn0K"
+        },
+        {
+          "ref": "review:ex6:professor-program-176629",
+          "base64": "ewogICJzdGF0dXMiOiAidmVyaWZpZWRfc2NvcGUiLAogICJtYXN0ZXJfaW5kZXhfc2hhMjU2IjogIjVjYzFlODc3NDhhOWYwNTBjNDEwM2Y3OWIzYTliMmI0ODVlZWNiMzc0NjBiYjExMzNmYWUwYjk2ZWFiNzliMDkiLAogICJnYW1lIjogInBva2Vtb24iLAogICJsYW5ndWFnZSI6ICJlbiIsCiAgInNldF9jb2RlIjogImV4NiIsCiAgInNjb3BlIjogInZlcmlmaWVkX3BhcmVudF9mYW1pbGllcyIsCiAgInJldmlld2VyIjogIkNvZGV4IHNvdXJjZSBhZGp1ZGljYXRpb247IG5vdCBmb3VuZGVyIG11dGF0aW9uIGFwcHJvdmFsIiwKICAicmV2aWV3ZWRfYXQiOiAiMjAyNi0xMS0wNlQwNjo1MjowMC4wMDBaIiwKICAicHJvamVjdGlvbl9zaGEyNTYiOiAiZDgzMzlhYzlmY2E0NzBjNDNhNWNjNGM2MGZhZDcwMmVlOWI5MTU3OGE0NzRhOTE3NTlhNWZhOTMxM2U5MzliMyIsCiAgInJlYXNvbmluZyI6IFsKICAgICJUaGUgZnJvemVuIHByb2R1Y3Qtc3BlY2lmaWMgcmVnaXN0cnkgYmluZHMgdGhlIGV4YWN0IFRDR1BsYXllciBwcm9kdWN0IHRvIG9uZSBQcm9mZXNzb3IgUHJvZ3JhbSBzdGFtcGVkIHBhcmVudC4iLAogICAgIlRoZSBsaXZlIHJlYWRpbmVzcyBhdWRpdCBwcm92ZXMgb25lIGFjdGl2ZSBFbmdsaXNoIHBoeXNpY2FsIGlkZW50aXR5IGFuZCBvbmUgdmVyaWZpZWQgdmlzaWJsZSBjaGlsZCBtYXRjaGluZyB0aGUgc291cmNlIGZpbmlzaC4iLAogICAgIk5vIHNvdXJjZSBvciB0YXJnZXQgbWFwcGluZyBoaXN0b3J5IGFuZCBubyBhY3RpdmUgcHVibGljYXRpb24gb3ZlcmxhcCBleGlzdCBmb3IgdGhpcyBwcm9kdWN0LiIsCiAgICAiUHJvZmVzc29yIFN5Y2Ftb3JlIHByb2R1Y3QgMTc2NjM4IHJlbWFpbnMgZXhjbHVkZWQgYmVjYXVzZSBpdHMgcmVxdWlyZWQgUmV2ZXJzZSBjaGlsZCBjb25mbGljdHMgd2l0aCB0aGUgZXhpc3RpbmcgSG9sbyBjaGlsZC4iLAogICAgIlRoaXMgZXZpZGVuY2UgcmV2aWV3IGRvZXMgbm90IGF1dGhvcml6ZSBhIGR1cmFibGUgZGF0YWJhc2UgbXV0YXRpb24uIgogIF0sCiAgIm11dGF0aW9uX2F1dGhvcml0eSI6IGZhbHNlCn0K"
+        }
+      ]
+    },
+    {
+      "manifest": {
+        "version": "PRINTING_COMPLETENESS_GATE_V1",
+        "game": "pokemon",
+        "language": "en",
+        "set_code": "ex9",
+        "scope": "verified_parent_families",
+        "scope_note": "Exact Professor Program stamped parent and verified holo printing for TCGPlayer product 176630.",
+        "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+        "master_index_ref": "ex9-professor-program-mapping-projection-v1",
+        "master_index_sha256": "4ff1823098b7b7776b7296f300c86e02c57b3eaaeaf513e80fd6365b838df9a8",
+        "parents": [
+          {
+            "id": "ed61ea12-90af-4250-b089-e2b31fc2fdce",
+            "name": "Professor Birch",
+            "gv_id": "GV-PK-EX9-82-PROFESSOR-PROGRAM-STAMP",
+            "set_id": "07f4df8d-766f-4801-b1f8-7e5a80035274",
+            "variant_key": "professor_program_stamp",
+            "identity_domain": "pokemon_eng_standard",
+            "printed_coordinate": "82",
+            "printed_identity_modifier": "professor_program_stamp"
+          }
+        ],
+        "printings": [
+          {
+            "card_print_id": "ed61ea12-90af-4250-b089-e2b31fc2fdce",
+            "finish_key": "holo",
+            "printing_gv_id": "GV-PK-EX9-82-PROFESSOR-PROGRAM-STAMP-HOLO",
+            "review_status": "verified",
+            "evidence": [
+              {
+                "kind": "exact_printing_mapping",
+                "source_ref": "professor-program-product-176630-reviewed-evidence-v1",
+                "sha256": "ef03af8a40be8f23933ea4ba0c7c542597d88d8367e5fdc8b35e59f57bd118c0",
+                "card_print_id": "ed61ea12-90af-4250-b089-e2b31fc2fdce",
+                "finish_key": "holo"
+              }
+            ]
+          }
+        ],
+        "unresolved_variants": [],
+        "suppressed_printing_facts": [],
+        "expected": {
+          "parents": 1,
+          "printings": 1,
+          "finishes": {
+            "holo": 1
+          }
+        },
+        "authority": {
+          "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+          "status": "verified_scope",
+          "set_id": "07f4df8d-766f-4801-b1f8-7e5a80035274",
+          "source_artifacts": [
+            {
+              "ref": "ex9-professor-program-mapping-projection-v1",
+              "sha256": "4ff1823098b7b7776b7296f300c86e02c57b3eaaeaf513e80fd6365b838df9a8",
+              "kind": "exact_printing_mapping",
+              "url_or_identifier": "derived:ex9-professor-program-mapping-projection-v1",
+              "retrieved_at": "2026-11-06T06:52:00.000Z"
+            },
+            {
+              "ref": "professor-program-product-176630-reviewed-evidence-v1",
+              "sha256": "ef03af8a40be8f23933ea4ba0c7c542597d88d8367e5fdc8b35e59f57bd118c0",
+              "kind": "exact_printing_mapping",
+              "url_or_identifier": "docs/audits/tcgplayer_professor_program_mapping_readiness_post_printing_apply_20261105_v1.json",
+              "retrieved_at": "2026-11-05T08:40:28.109Z"
+            }
+          ],
+          "protected_facts": [
+            {
+              "card_print_id": "ed61ea12-90af-4250-b089-e2b31fc2fdce",
+              "finish_key": "holo"
+            }
+          ],
+          "forbidden_facts": [],
+          "conflicts": [],
+          "review": {
+            "ref": "review:ex9:professor-program-176630",
+            "sha256": "e4618cf51b4f6760243ac7444ff758c2fac9cd058ef75bc03d72b8fc0801d363"
+          }
+        },
+        "external_mapping_assertions": [
+          {
+            "source": "tcgplayer",
+            "external_id": "176630",
+            "card_print_id": "ed61ea12-90af-4250-b089-e2b31fc2fdce",
+            "candidate_fingerprint": "26a8f5f18a19549e255fa391f903b7efeb952c578773121276e5533e3d745f8c",
+            "source_ref": "professor-program-product-176630-reviewed-evidence-v1",
+            "source_sha256": "ef03af8a40be8f23933ea4ba0c7c542597d88d8367e5fdc8b35e59f57bd118c0"
+          }
+        ],
+        "fingerprint": "e935be75782a7e72fc477fe549b8b0aa9ce5f682e2fb493055978775d401a7b4"
+      },
+      "artifacts": [
+        {
+          "ref": "ex9-professor-program-mapping-projection-v1",
+          "base64": "ewogICJ2ZXJzaW9uIjogIlRDR1BMQVlFUl9QUk9GRVNTT1JfUFJPR1JBTV9NQVNURVJfSU5ERVhfUFJPSkVDVElPTl9WMSIsCiAgInJlYWRpbmVzc19maW5nZXJwcmludCI6ICI0MDMzOTUyOTEwZjUzZmMwNjc5NzRjNTUxN2UxMDI5MDMzOTllMjAyZGM2YWU4YmRkMjYwYmNlOWVlZTFhODE1IiwKICAic291cmNlX3Byb2R1Y3RfaWQiOiAxNzY2MzAsCiAgInRhcmdldCI6IHsKICAgICJjYXJkX3ByaW50X2lkIjogImVkNjFlYTEyLTkwYWYtNDI1MC1iMDg5LWUyYjMxZmMyZmRjZSIsCiAgICAiZ3ZfaWQiOiAiR1YtUEstRVg5LTgyLVBST0ZFU1NPUi1QUk9HUkFNLVNUQU1QIiwKICAgICJzZXRfaWQiOiAiMDdmNGRmOGQtNzY2Zi00ODAxLWIxZjgtN2U1YTgwMDM1Mjc0IiwKICAgICJzZXRfY29kZSI6ICJleDkiLAogICAgIm5hbWUiOiAiUHJvZmVzc29yIEJpcmNoIiwKICAgICJudW1iZXIiOiAiODIiLAogICAgInZhcmlhbnRfa2V5IjogInByb2Zlc3Nvcl9wcm9ncmFtX3N0YW1wIgogIH0sCiAgInByaW50aW5nIjogewogICAgInByaW50aW5nX2lkIjogIjgyMGJhMGZiLWNjNGEtNDQ2MC1hZGE2LTY2ZmRlYjExODViOSIsCiAgICAiZmluaXNoX2tleSI6ICJob2xvIiwKICAgICJwcmludGluZ19ndl9pZCI6ICJHVi1QSy1FWDktODItUFJPRkVTU09SLVBST0dSQU0tU1RBTVAtSE9MTyIsCiAgICAicHJvdmVuYW5jZV9zb3VyY2UiOiAidmVyaWZpZWRfbWFzdGVyX2luZGV4X3YxIiwKICAgICJwcm92ZW5hbmNlX3JlZiI6ICJleDk6ODI6cHJvZmVzc29yX3Byb2dyYW1fc3RhbXA6aG9sbyIKICB9Cn0K"
+        },
+        {
+          "ref": "professor-program-product-176630-reviewed-evidence-v1",
+          "base64": "ewogICJ2ZXJzaW9uIjogIlRDR1BMQVlFUl9QUk9GRVNTT1JfUFJPR1JBTV9SRVZJRVdFRF9NQVBQSU5HX0VWSURFTkNFX1YxIiwKICAicmVhZGluZXNzX2ZpbmdlcnByaW50IjogIjQwMzM5NTI5MTBmNTNmYzA2Nzk3NGM1NTE3ZTEwMjkwMzM5OWUyMDJkYzZhZThiZGQyNjBiY2U5ZWVlMWE4MTUiLAogICJzb3VyY2Vfc3luY19ydW5faWQiOiAiOTA1YzllMDktYjY1OC00NGZlLWIzMmMtYzkxZmJmNmJkZTFlIiwKICAic291cmNlX3Byb2R1Y3QiOiB7CiAgICAicHJvZHVjdF9pZCI6IDE3NjYzMCwKICAgICJjYXRlZ29yeV9pZCI6IDMsCiAgICAiZ3JvdXBfaWQiOiAyMzMyLAogICAgIm5hbWUiOiAiUHJvZmVzc29yIEJpcmNoICgyMDA2KSIsCiAgICAic291cmNlX3VybCI6ICJodHRwczovL3d3dy50Y2dwbGF5ZXIuY29tL3Byb2R1Y3QvMTc2NjMwL3Bva2Vtb24tcHJvZmVzc29yLXByb2dyYW0tcHJvbW9zLXByb2Zlc3Nvci1iaXJjaC0yMDA2IiwKICAgICJzb3VyY2VfbW9kaWZpZWRfb24iOiAiMjAxOC0wOS0xM1QxOTo0OToxNS4xMDciLAogICAgImV4dGVuZGVkX2RhdGEiOiBbCiAgICAgIHsKICAgICAgICAibmFtZSI6ICJOdW1iZXIiLAogICAgICAgICJ2YWx1ZSI6ICI4Mi8xMDYiLAogICAgICAgICJkaXNwbGF5TmFtZSI6ICJDYXJkIE51bWJlciIKICAgICAgfSwKICAgICAgewogICAgICAgICJuYW1lIjogIlJhcml0eSIsCiAgICAgICAgInZhbHVlIjogIlByb21vIiwKICAgICAgICAiZGlzcGxheU5hbWUiOiAiUmFyaXR5IgogICAgICB9LAogICAgICB7CiAgICAgICAgIm5hbWUiOiAiQ2FyZCBUeXBlIiwKICAgICAgICAidmFsdWUiOiAiU3VwcG9ydGVyIiwKICAgICAgICAiZGlzcGxheU5hbWUiOiAiQ2FyZCBUeXBlIgogICAgICB9LAogICAgICB7CiAgICAgICAgIm5hbWUiOiAiQ2FyZFRleHQiLAogICAgICAgICJ2YWx1ZSI6ICJEcmF3IGNhcmRzIGZyb20geW91ciBkZWNrIHVudGlsIHlvdSBoYXZlIDYgY2FyZHMgaW4geW91ciBoYW5kLiIsCiAgICAgICAgImRpc3BsYXlOYW1lIjogIkNhcmQgVGV4dCIKICAgICAgfQogICAgXSwKICAgICJwYXlsb2FkX2hhc2giOiAiMTJhYjc1YzQ4NTM2YTM4Yzg3ZDE4YWM1M2QyNDIxZjIxZDQxMzIwNTgzZjgyYzIwNDRiMTFmNDZmYWIyMjVhMiIsCiAgICAibGFzdF9zZWVuX2F0IjogIjIwMjYtMTEtMDVUMDg6NDA6MjguMTA5WiIsCiAgICAibGFzdF9zZWVuX3J1bl9pZCI6ICI5MDVjOWUwOS1iNjU4LTQ0ZmUtYjMyYy1jOTFmYmY2YmRlMWUiLAogICAgInNvdXJjZV9hY3RpdmUiOiB0cnVlLAogICAgImNhdGFsb2dfbWV0YWRhdGFfc3RhdHVzIjogImN1cnJlbnQiCiAgfSwKICAibGF0ZXN0X29ic2VydmF0aW9ucyI6IFsKICAgIHsKICAgICAgImlkIjogImIwODIxM2I2LWU1OTgtNDAwMi04ZjgxLTRhYTdiMjNjZmE2MiIsCiAgICAgICJwcm9kdWN0X2lkIjogMTc2NjMwLAogICAgICAic3VidHlwZV9uYW1lIjogIkhvbG9mb2lsIiwKICAgICAgIm9ic2VydmVkX29uIjogIjIwMjYtMTEtMDVUMDc6MDA6MDAuMDAwWiIsCiAgICAgICJsb3dfcHJpY2UiOiAiNjkuOTkiLAogICAgICAibWlkX3ByaWNlIjogIjcxLjIxIiwKICAgICAgImhpZ2hfcHJpY2UiOiAiMTQ5LjkiLAogICAgICAibWFya2V0X3ByaWNlIjogIjU0Ljk1IiwKICAgICAgImRpcmVjdF9sb3dfcHJpY2UiOiBudWxsLAogICAgICAiY3VycmVuY3kiOiAiVVNEIiwKICAgICAgInBheWxvYWRfaGFzaCI6ICI0Zjg1ZGQ2NWI1MWUyNTgwZDBiMGIzM2ExNjI5NDM1Yzk2ZmMxZWYyZDIxNjkwMWU3ZTViNDY3ZDIwZjkwMzNiIiwKICAgICAgImxhc3Rfb2JzZXJ2ZWRfYXQiOiAiMjAyNi0xMS0wNVQwODo0MDoyOC42MDJaIiwKICAgICAgImxhc3Rfc2Vlbl9ydW5faWQiOiAiOTA1YzllMDktYjY1OC00NGZlLWIzMmMtYzkxZmJmNmJkZTFlIgogICAgfQogIF0sCiAgInRhcmdldF9wYXJlbnQiOiB7CiAgICAiaWQiOiAiZWQ2MWVhMTItOTBhZi00MjUwLWIwODktZTJiMzFmYzJmZGNlIiwKICAgICJzZXRfaWQiOiAiMDdmNGRmOGQtNzY2Zi00ODAxLWIxZjgtN2U1YTgwMDM1Mjc0IiwKICAgICJzZXRfY29kZSI6ICJleDkiLAogICAgIm5hbWUiOiAiUHJvZmVzc29yIEJpcmNoIiwKICAgICJudW1iZXIiOiAiODIiLAogICAgInZhcmlhbnRfa2V5IjogInByb2Zlc3Nvcl9wcm9ncmFtX3N0YW1wIiwKICAgICJndl9pZCI6ICJHVi1QSy1FWDktODItUFJPRkVTU09SLVBST0dSQU0tU1RBTVAiLAogICAgImlkZW50aXR5X2RvbWFpbiI6ICJwb2tlbW9uX2VuZ19zdGFuZGFyZCIsCiAgICAicHJpbnRlZF9pZGVudGl0eV9tb2RpZmllciI6ICJwcm9mZXNzb3JfcHJvZ3JhbV9zdGFtcCIsCiAgICAiYWN0aXZlX3N0YW5kYXJkX2lkZW50aXR5X2NvdW50IjogMQogIH0sCiAgInRhcmdldF9jaGlsZCI6IHsKICAgICJpZCI6ICI4MjBiYTBmYi1jYzRhLTQ0NjAtYWRhNi02NmZkZWIxMTg1YjkiLAogICAgImNhcmRfcHJpbnRfaWQiOiAiZWQ2MWVhMTItOTBhZi00MjUwLWIwODktZTJiMzFmYzJmZGNlIiwKICAgICJmaW5pc2hfa2V5IjogImhvbG8iLAogICAgInByaW50aW5nX2d2X2lkIjogIkdWLVBLLUVYOS04Mi1QUk9GRVNTT1ItUFJPR1JBTS1TVEFNUC1IT0xPIiwKICAgICJpc19wcm92aXNpb25hbCI6IGZhbHNlLAogICAgInByb3ZlbmFuY2Vfc291cmNlIjogInZlcmlmaWVkX21hc3Rlcl9pbmRleF92MSIsCiAgICAicHJvdmVuYW5jZV9yZWYiOiAiZXg5OjgyOnByb2Zlc3Nvcl9wcm9ncmFtX3N0YW1wOmhvbG8iLAogICAgImZpbmlzaF9hY3RpdmUiOiB0cnVlLAogICAgImFjdGl2ZV90cnV0aF9yZXZpZXciOiAidmVyaWZpZWQiLAogICAgInB1YmxpY192aXNpYmlsaXR5IjogInZpc2libGUiLAogICAgInB1YmxpY192aXNpYmxlIjogdHJ1ZQogIH0sCiAgImV4aXN0aW5nX21hcHBpbmdzIjogW10sCiAgImFjdGl2ZV9wdWJsaWNhdGlvbl9vdmVybGFwIjogW10sCiAgImNhbmRpZGF0ZV9maW5nZXJwcmludCI6ICIyNmE4ZjVmMThhMTk1NDllMjU1ZmEzOTFmOTAzYjdlZmViOTUyYzU3ODc3MzEyMTI3NmU1NTMzZTNkNzQ1ZjhjIgp9Cg=="
+        },
+        {
+          "ref": "review:ex9:professor-program-176630",
+          "base64": "ewogICJzdGF0dXMiOiAidmVyaWZpZWRfc2NvcGUiLAogICJtYXN0ZXJfaW5kZXhfc2hhMjU2IjogIjRmZjE4MjMwOThiN2I3Nzc2YjcyOTZmMzAwYzg2ZTAyYzU3YjNlYWFlYWY1MTNlODBmZDYzNjViODM4ZGY5YTgiLAogICJnYW1lIjogInBva2Vtb24iLAogICJsYW5ndWFnZSI6ICJlbiIsCiAgInNldF9jb2RlIjogImV4OSIsCiAgInNjb3BlIjogInZlcmlmaWVkX3BhcmVudF9mYW1pbGllcyIsCiAgInJldmlld2VyIjogIkNvZGV4IHNvdXJjZSBhZGp1ZGljYXRpb247IG5vdCBmb3VuZGVyIG11dGF0aW9uIGFwcHJvdmFsIiwKICAicmV2aWV3ZWRfYXQiOiAiMjAyNi0xMS0wNlQwNjo1MjowMC4wMDBaIiwKICAicHJvamVjdGlvbl9zaGEyNTYiOiAiZmM0ZjFmNDliZjkwYWY3MmUwMDQ4MjdlNGE2YjdiODFhNGNhNWRjYTZkYjA1NjMzMzZlNWNkYjE0ZjVlN2VjYyIsCiAgInJlYXNvbmluZyI6IFsKICAgICJUaGUgZnJvemVuIHByb2R1Y3Qtc3BlY2lmaWMgcmVnaXN0cnkgYmluZHMgdGhlIGV4YWN0IFRDR1BsYXllciBwcm9kdWN0IHRvIG9uZSBQcm9mZXNzb3IgUHJvZ3JhbSBzdGFtcGVkIHBhcmVudC4iLAogICAgIlRoZSBsaXZlIHJlYWRpbmVzcyBhdWRpdCBwcm92ZXMgb25lIGFjdGl2ZSBFbmdsaXNoIHBoeXNpY2FsIGlkZW50aXR5IGFuZCBvbmUgdmVyaWZpZWQgdmlzaWJsZSBjaGlsZCBtYXRjaGluZyB0aGUgc291cmNlIGZpbmlzaC4iLAogICAgIk5vIHNvdXJjZSBvciB0YXJnZXQgbWFwcGluZyBoaXN0b3J5IGFuZCBubyBhY3RpdmUgcHVibGljYXRpb24gb3ZlcmxhcCBleGlzdCBmb3IgdGhpcyBwcm9kdWN0LiIsCiAgICAiUHJvZmVzc29yIFN5Y2Ftb3JlIHByb2R1Y3QgMTc2NjM4IHJlbWFpbnMgZXhjbHVkZWQgYmVjYXVzZSBpdHMgcmVxdWlyZWQgUmV2ZXJzZSBjaGlsZCBjb25mbGljdHMgd2l0aCB0aGUgZXhpc3RpbmcgSG9sbyBjaGlsZC4iLAogICAgIlRoaXMgZXZpZGVuY2UgcmV2aWV3IGRvZXMgbm90IGF1dGhvcml6ZSBhIGR1cmFibGUgZGF0YWJhc2UgbXV0YXRpb24uIgogIF0sCiAgIm11dGF0aW9uX2F1dGhvcml0eSI6IGZhbHNlCn0K"
+        }
+      ]
+    },
+    {
+      "manifest": {
+        "version": "PRINTING_COMPLETENESS_GATE_V1",
+        "game": "pokemon",
+        "language": "en",
+        "set_code": "dp3",
+        "scope": "verified_parent_families",
+        "scope_note": "Exact Professor Program stamped parent and verified normal printing for TCGPlayer product 176631.",
+        "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+        "master_index_ref": "dp3-professor-program-mapping-projection-v1",
+        "master_index_sha256": "9552b80788e34c20a140fb0cae8a3a9f893941a07bd5e5c6a1915d612c1f803f",
+        "parents": [
+          {
+            "id": "baa63e55-c8aa-4936-8c9a-63de29e75c16",
+            "name": "Professor Oak's Visit",
+            "gv_id": "GV-PK-SW-122-PROFESSOR-PROGRAM",
+            "set_id": "d19aaa18-3b30-41a2-919d-2fce1d7bebfe",
+            "variant_key": "professor_program_stamp",
+            "identity_domain": "pokemon_eng_standard",
+            "printed_coordinate": "122",
+            "printed_identity_modifier": "professor_program_stamp"
+          }
+        ],
+        "printings": [
+          {
+            "card_print_id": "baa63e55-c8aa-4936-8c9a-63de29e75c16",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-SW-122-PROFESSOR-PROGRAM-STD",
+            "review_status": "verified",
+            "evidence": [
+              {
+                "kind": "exact_printing_mapping",
+                "source_ref": "professor-program-product-176631-reviewed-evidence-v1",
+                "sha256": "91ce0ad5a0d35e8af1e03c9f283fed1099def7015628b242af393266960fb416",
+                "card_print_id": "baa63e55-c8aa-4936-8c9a-63de29e75c16",
+                "finish_key": "normal"
+              }
+            ]
+          }
+        ],
+        "unresolved_variants": [],
+        "suppressed_printing_facts": [],
+        "expected": {
+          "parents": 1,
+          "printings": 1,
+          "finishes": {
+            "normal": 1
+          }
+        },
+        "authority": {
+          "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+          "status": "verified_scope",
+          "set_id": "d19aaa18-3b30-41a2-919d-2fce1d7bebfe",
+          "source_artifacts": [
+            {
+              "ref": "dp3-professor-program-mapping-projection-v1",
+              "sha256": "9552b80788e34c20a140fb0cae8a3a9f893941a07bd5e5c6a1915d612c1f803f",
+              "kind": "exact_printing_mapping",
+              "url_or_identifier": "derived:dp3-professor-program-mapping-projection-v1",
+              "retrieved_at": "2026-11-06T06:52:00.000Z"
+            },
+            {
+              "ref": "professor-program-product-176631-reviewed-evidence-v1",
+              "sha256": "91ce0ad5a0d35e8af1e03c9f283fed1099def7015628b242af393266960fb416",
+              "kind": "exact_printing_mapping",
+              "url_or_identifier": "docs/audits/tcgplayer_professor_program_mapping_readiness_post_printing_apply_20261105_v1.json",
+              "retrieved_at": "2026-11-05T08:40:28.109Z"
+            }
+          ],
+          "protected_facts": [
+            {
+              "card_print_id": "baa63e55-c8aa-4936-8c9a-63de29e75c16",
+              "finish_key": "normal"
+            }
+          ],
+          "forbidden_facts": [],
+          "conflicts": [],
+          "review": {
+            "ref": "review:dp3:professor-program-176631",
+            "sha256": "2c6111bae005c75e0e176b28c86b90e118a36388a12097d4e6394321367dcd19"
+          }
+        },
+        "external_mapping_assertions": [
+          {
+            "source": "tcgplayer",
+            "external_id": "176631",
+            "card_print_id": "baa63e55-c8aa-4936-8c9a-63de29e75c16",
+            "candidate_fingerprint": "e645609ed57dbbff85a3e8afb31d5abd12536e563cde21b5c0292067adffed64",
+            "source_ref": "professor-program-product-176631-reviewed-evidence-v1",
+            "source_sha256": "91ce0ad5a0d35e8af1e03c9f283fed1099def7015628b242af393266960fb416"
+          }
+        ],
+        "fingerprint": "69a0e87d69b150918c2b446e59749a8a605d5990423d71adcb7ce1b49340077f"
+      },
+      "artifacts": [
+        {
+          "ref": "dp3-professor-program-mapping-projection-v1",
+          "base64": "ewogICJ2ZXJzaW9uIjogIlRDR1BMQVlFUl9QUk9GRVNTT1JfUFJPR1JBTV9NQVNURVJfSU5ERVhfUFJPSkVDVElPTl9WMSIsCiAgInJlYWRpbmVzc19maW5nZXJwcmludCI6ICI0MDMzOTUyOTEwZjUzZmMwNjc5NzRjNTUxN2UxMDI5MDMzOTllMjAyZGM2YWU4YmRkMjYwYmNlOWVlZTFhODE1IiwKICAic291cmNlX3Byb2R1Y3RfaWQiOiAxNzY2MzEsCiAgInRhcmdldCI6IHsKICAgICJjYXJkX3ByaW50X2lkIjogImJhYTYzZTU1LWM4YWEtNDkzNi04YzlhLTYzZGUyOWU3NWMxNiIsCiAgICAiZ3ZfaWQiOiAiR1YtUEstU1ctMTIyLVBST0ZFU1NPUi1QUk9HUkFNIiwKICAgICJzZXRfaWQiOiAiZDE5YWFhMTgtM2IzMC00MWEyLTkxOWQtMmZjZTFkN2JlYmZlIiwKICAgICJzZXRfY29kZSI6ICJkcDMiLAogICAgIm5hbWUiOiAiUHJvZmVzc29yIE9haydzIFZpc2l0IiwKICAgICJudW1iZXIiOiAiMTIyIiwKICAgICJ2YXJpYW50X2tleSI6ICJwcm9mZXNzb3JfcHJvZ3JhbV9zdGFtcCIKICB9LAogICJwcmludGluZyI6IHsKICAgICJwcmludGluZ19pZCI6ICIyMzVkYjAyYy0xNDMxLTQyYmEtYTk3My00M2NiNmQ4OWIzOGQiLAogICAgImZpbmlzaF9rZXkiOiAibm9ybWFsIiwKICAgICJwcmludGluZ19ndl9pZCI6ICJHVi1QSy1TVy0xMjItUFJPRkVTU09SLVBST0dSQU0tU1REIiwKICAgICJwcm92ZW5hbmNlX3NvdXJjZSI6ICJ0Y2dwbGF5ZXJfcHJvZmVzc29yX3Byb2dyYW1fY2F0YWxvZ19yZXBhaXJfdjEiLAogICAgInByb3ZlbmFuY2VfcmVmIjogInRjZ3BsYXllcjoxNzY2MzE6cHJvZmVzc29yX3Byb2dyYW1fc3RhbXA6bm9ybWFsIgogIH0KfQo="
+        },
+        {
+          "ref": "professor-program-product-176631-reviewed-evidence-v1",
+          "base64": "ewogICJ2ZXJzaW9uIjogIlRDR1BMQVlFUl9QUk9GRVNTT1JfUFJPR1JBTV9SRVZJRVdFRF9NQVBQSU5HX0VWSURFTkNFX1YxIiwKICAicmVhZGluZXNzX2ZpbmdlcnByaW50IjogIjQwMzM5NTI5MTBmNTNmYzA2Nzk3NGM1NTE3ZTEwMjkwMzM5OWUyMDJkYzZhZThiZGQyNjBiY2U5ZWVlMWE4MTUiLAogICJzb3VyY2Vfc3luY19ydW5faWQiOiAiOTA1YzllMDktYjY1OC00NGZlLWIzMmMtYzkxZmJmNmJkZTFlIiwKICAic291cmNlX3Byb2R1Y3QiOiB7CiAgICAicHJvZHVjdF9pZCI6IDE3NjYzMSwKICAgICJjYXRlZ29yeV9pZCI6IDMsCiAgICAiZ3JvdXBfaWQiOiAyMzMyLAogICAgIm5hbWUiOiAiUHJvZmVzc29yIE9haydzIFZpc2l0ICgyMDA4LTIwMDkpIiwKICAgICJzb3VyY2VfdXJsIjogImh0dHBzOi8vd3d3LnRjZ3BsYXllci5jb20vcHJvZHVjdC8xNzY2MzEvcG9rZW1vbi1wcm9mZXNzb3ItcHJvZ3JhbS1wcm9tb3MtcHJvZmVzc29yLW9ha3MtdmlzaXQtMjAwOC0yMDA5IiwKICAgICJzb3VyY2VfbW9kaWZpZWRfb24iOiAiMjAyMi0wMy0yOFQxNjozMDo0OS4zOCIsCiAgICAiZXh0ZW5kZWRfZGF0YSI6IFsKICAgICAgewogICAgICAgICJuYW1lIjogIk51bWJlciIsCiAgICAgICAgInZhbHVlIjogIjEyMi8xMzIiLAogICAgICAgICJkaXNwbGF5TmFtZSI6ICJDYXJkIE51bWJlciIKICAgICAgfSwKICAgICAgewogICAgICAgICJuYW1lIjogIlJhcml0eSIsCiAgICAgICAgInZhbHVlIjogIlByb21vIiwKICAgICAgICAiZGlzcGxheU5hbWUiOiAiUmFyaXR5IgogICAgICB9LAogICAgICB7CiAgICAgICAgIm5hbWUiOiAiQ2FyZCBUeXBlIiwKICAgICAgICAidmFsdWUiOiAiU3VwcG9ydGVyIiwKICAgICAgICAiZGlzcGxheU5hbWUiOiAiQ2FyZCBUeXBlIgogICAgICB9LAogICAgICB7CiAgICAgICAgIm5hbWUiOiAiQ2FyZFRleHQiLAogICAgICAgICJ2YWx1ZSI6ICJEcmF3IDMgY2FyZHMuIFRoZW4sIGNob29zZSBhIGNhcmQgZnJvbSB5b3VyIGhhbmQgYW5kIHB1dCBpdCBvbiB0aGUgYm90dG9tIG9mIHlvdXIgZGVjay4iLAogICAgICAgICJkaXNwbGF5TmFtZSI6ICJDYXJkIFRleHQiCiAgICAgIH0KICAgIF0sCiAgICAicGF5bG9hZF9oYXNoIjogIjQ2YmI3ZmRmYjUyYzA3MTRhYzY3NzQxNTk3N2E1MGQwODlkNzVjNWVlMmM5NmYxMzE4ZGZmN2JmZTRiMTQ2YzAiLAogICAgImxhc3Rfc2Vlbl9hdCI6ICIyMDI2LTExLTA1VDA4OjQwOjI4LjEwOVoiLAogICAgImxhc3Rfc2Vlbl9ydW5faWQiOiAiOTA1YzllMDktYjY1OC00NGZlLWIzMmMtYzkxZmJmNmJkZTFlIiwKICAgICJzb3VyY2VfYWN0aXZlIjogdHJ1ZSwKICAgICJjYXRhbG9nX21ldGFkYXRhX3N0YXR1cyI6ICJjdXJyZW50IgogIH0sCiAgImxhdGVzdF9vYnNlcnZhdGlvbnMiOiBbCiAgICB7CiAgICAgICJpZCI6ICIzMjQ0ZWE4Mi0xYmRkLTRiMjYtYjUxZS1jZDhmM2MyNmRkZWIiLAogICAgICAicHJvZHVjdF9pZCI6IDE3NjYzMSwKICAgICAgInN1YnR5cGVfbmFtZSI6ICJOb3JtYWwiLAogICAgICAib2JzZXJ2ZWRfb24iOiAiMjAyNi0xMS0wNVQwNzowMDowMC4wMDBaIiwKICAgICAgImxvd19wcmljZSI6ICI1Ny4xMSIsCiAgICAgICJtaWRfcHJpY2UiOiAiNjguNiIsCiAgICAgICJoaWdoX3ByaWNlIjogIjc5Ljk5IiwKICAgICAgIm1hcmtldF9wcmljZSI6ICI1MC45OSIsCiAgICAgICJkaXJlY3RfbG93X3ByaWNlIjogbnVsbCwKICAgICAgImN1cnJlbmN5IjogIlVTRCIsCiAgICAgICJwYXlsb2FkX2hhc2giOiAiNWUzNDM4ODQyNDE4NjE2YWMwNDZhYTM3MmFkMjdkOTczNGUyYmQ1YWVjOGQ3ZTU2NTM5YTViZmIxNjE0NWJhYSIsCiAgICAgICJsYXN0X29ic2VydmVkX2F0IjogIjIwMjYtMTEtMDVUMDg6NDA6MjguNjAyWiIsCiAgICAgICJsYXN0X3NlZW5fcnVuX2lkIjogIjkwNWM5ZTA5LWI2NTgtNDRmZS1iMzJjLWM5MWZiZjZiZGUxZSIKICAgIH0KICBdLAogICJ0YXJnZXRfcGFyZW50IjogewogICAgImlkIjogImJhYTYzZTU1LWM4YWEtNDkzNi04YzlhLTYzZGUyOWU3NWMxNiIsCiAgICAic2V0X2lkIjogImQxOWFhYTE4LTNiMzAtNDFhMi05MTlkLTJmY2UxZDdiZWJmZSIsCiAgICAic2V0X2NvZGUiOiAiZHAzIiwKICAgICJuYW1lIjogIlByb2Zlc3NvciBPYWsncyBWaXNpdCIsCiAgICAibnVtYmVyIjogIjEyMiIsCiAgICAidmFyaWFudF9rZXkiOiAicHJvZmVzc29yX3Byb2dyYW1fc3RhbXAiLAogICAgImd2X2lkIjogIkdWLVBLLVNXLTEyMi1QUk9GRVNTT1ItUFJPR1JBTSIsCiAgICAiaWRlbnRpdHlfZG9tYWluIjogInBva2Vtb25fZW5nX3N0YW5kYXJkIiwKICAgICJwcmludGVkX2lkZW50aXR5X21vZGlmaWVyIjogInByb2Zlc3Nvcl9wcm9ncmFtX3N0YW1wIiwKICAgICJhY3RpdmVfc3RhbmRhcmRfaWRlbnRpdHlfY291bnQiOiAxCiAgfSwKICAidGFyZ2V0X2NoaWxkIjogewogICAgImlkIjogIjIzNWRiMDJjLTE0MzEtNDJiYS1hOTczLTQzY2I2ZDg5YjM4ZCIsCiAgICAiY2FyZF9wcmludF9pZCI6ICJiYWE2M2U1NS1jOGFhLTQ5MzYtOGM5YS02M2RlMjllNzVjMTYiLAogICAgImZpbmlzaF9rZXkiOiAibm9ybWFsIiwKICAgICJwcmludGluZ19ndl9pZCI6ICJHVi1QSy1TVy0xMjItUFJPRkVTU09SLVBST0dSQU0tU1REIiwKICAgICJpc19wcm92aXNpb25hbCI6IGZhbHNlLAogICAgInByb3ZlbmFuY2Vfc291cmNlIjogInRjZ3BsYXllcl9wcm9mZXNzb3JfcHJvZ3JhbV9jYXRhbG9nX3JlcGFpcl92MSIsCiAgICAicHJvdmVuYW5jZV9yZWYiOiAidGNncGxheWVyOjE3NjYzMTpwcm9mZXNzb3JfcHJvZ3JhbV9zdGFtcDpub3JtYWwiLAogICAgImZpbmlzaF9hY3RpdmUiOiB0cnVlLAogICAgImFjdGl2ZV90cnV0aF9yZXZpZXciOiAidmVyaWZpZWQiLAogICAgInB1YmxpY192aXNpYmlsaXR5IjogInZpc2libGUiLAogICAgInB1YmxpY192aXNpYmxlIjogdHJ1ZQogIH0sCiAgImV4aXN0aW5nX21hcHBpbmdzIjogW10sCiAgImFjdGl2ZV9wdWJsaWNhdGlvbl9vdmVybGFwIjogW10sCiAgImNhbmRpZGF0ZV9maW5nZXJwcmludCI6ICJlNjQ1NjA5ZWQ1N2RiYmZmODVhM2U4YWZiMzFkNWFiZDEyNTM2ZTU2M2NkZTIxYjVjMDI5MjA2N2FkZmZlZDY0Igp9Cg=="
+        },
+        {
+          "ref": "review:dp3:professor-program-176631",
+          "base64": "ewogICJzdGF0dXMiOiAidmVyaWZpZWRfc2NvcGUiLAogICJtYXN0ZXJfaW5kZXhfc2hhMjU2IjogIjk1NTJiODA3ODhlMzRjMjBhMTQwZmIwY2FlOGEzYTlmODkzOTQxYTA3YmQ1ZTVjNmExOTE1ZDYxMmMxZjgwM2YiLAogICJnYW1lIjogInBva2Vtb24iLAogICJsYW5ndWFnZSI6ICJlbiIsCiAgInNldF9jb2RlIjogImRwMyIsCiAgInNjb3BlIjogInZlcmlmaWVkX3BhcmVudF9mYW1pbGllcyIsCiAgInJldmlld2VyIjogIkNvZGV4IHNvdXJjZSBhZGp1ZGljYXRpb247IG5vdCBmb3VuZGVyIG11dGF0aW9uIGFwcHJvdmFsIiwKICAicmV2aWV3ZWRfYXQiOiAiMjAyNi0xMS0wNlQwNjo1MjowMC4wMDBaIiwKICAicHJvamVjdGlvbl9zaGEyNTYiOiAiZTYwOTUwNzcyNDJmMzBkMDQxNGNkN2UwYWIzYTZhZjQwMzhhNTNhMzUwYjBiNDZjNmRiNzJhZmRmZDVhOTE0ZiIsCiAgInJlYXNvbmluZyI6IFsKICAgICJUaGUgZnJvemVuIHByb2R1Y3Qtc3BlY2lmaWMgcmVnaXN0cnkgYmluZHMgdGhlIGV4YWN0IFRDR1BsYXllciBwcm9kdWN0IHRvIG9uZSBQcm9mZXNzb3IgUHJvZ3JhbSBzdGFtcGVkIHBhcmVudC4iLAogICAgIlRoZSBsaXZlIHJlYWRpbmVzcyBhdWRpdCBwcm92ZXMgb25lIGFjdGl2ZSBFbmdsaXNoIHBoeXNpY2FsIGlkZW50aXR5IGFuZCBvbmUgdmVyaWZpZWQgdmlzaWJsZSBjaGlsZCBtYXRjaGluZyB0aGUgc291cmNlIGZpbmlzaC4iLAogICAgIk5vIHNvdXJjZSBvciB0YXJnZXQgbWFwcGluZyBoaXN0b3J5IGFuZCBubyBhY3RpdmUgcHVibGljYXRpb24gb3ZlcmxhcCBleGlzdCBmb3IgdGhpcyBwcm9kdWN0LiIsCiAgICAiUHJvZmVzc29yIFN5Y2Ftb3JlIHByb2R1Y3QgMTc2NjM4IHJlbWFpbnMgZXhjbHVkZWQgYmVjYXVzZSBpdHMgcmVxdWlyZWQgUmV2ZXJzZSBjaGlsZCBjb25mbGljdHMgd2l0aCB0aGUgZXhpc3RpbmcgSG9sbyBjaGlsZC4iLAogICAgIlRoaXMgZXZpZGVuY2UgcmV2aWV3IGRvZXMgbm90IGF1dGhvcml6ZSBhIGR1cmFibGUgZGF0YWJhc2UgbXV0YXRpb24uIgogIF0sCiAgIm11dGF0aW9uX2F1dGhvcml0eSI6IGZhbHNlCn0K"
+        }
+      ]
+    },
+    {
+      "manifest": {
+        "version": "PRINTING_COMPLETENESS_GATE_V1",
+        "game": "pokemon",
+        "language": "en",
+        "set_code": "bw5",
+        "scope": "verified_parent_families",
+        "scope_note": "Exact Professor Program stamped parent and verified reverse printing for TCGPlayer product 176632.",
+        "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+        "master_index_ref": "bw5-professor-program-mapping-projection-v1",
+        "master_index_sha256": "48a0fb632305dce65ea9b25523b4cec00fe239338ed329c88cad51bb682b9d29",
+        "parents": [
+          {
+            "id": "c98e4f39-59fc-4ec1-bfc5-c34f28a25f3c",
+            "name": "Professor Juniper",
+            "gv_id": "GV-PK-BW5-98-PROFESSOR-PROGRAM-STAMP",
+            "set_id": "56c23b8d-904e-4c3a-b0fd-9562919f5694",
+            "variant_key": "professor_program_stamp",
+            "identity_domain": "pokemon_eng_standard",
+            "printed_coordinate": "98",
+            "printed_identity_modifier": "professor_program_stamp"
+          }
+        ],
+        "printings": [
+          {
+            "card_print_id": "c98e4f39-59fc-4ec1-bfc5-c34f28a25f3c",
+            "finish_key": "reverse",
+            "printing_gv_id": "GV-PK-BW5-98-PROFESSOR-PROGRAM-STAMP-RH",
+            "review_status": "verified",
+            "evidence": [
+              {
+                "kind": "exact_printing_mapping",
+                "source_ref": "professor-program-product-176632-reviewed-evidence-v1",
+                "sha256": "5cc7645341c45dc86c64b98bde2867d77064a4790ce57832ed9affe435a13c6d",
+                "card_print_id": "c98e4f39-59fc-4ec1-bfc5-c34f28a25f3c",
+                "finish_key": "reverse"
+              }
+            ]
+          }
+        ],
+        "unresolved_variants": [],
+        "suppressed_printing_facts": [],
+        "expected": {
+          "parents": 1,
+          "printings": 1,
+          "finishes": {
+            "reverse": 1
+          }
+        },
+        "authority": {
+          "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+          "status": "verified_scope",
+          "set_id": "56c23b8d-904e-4c3a-b0fd-9562919f5694",
+          "source_artifacts": [
+            {
+              "ref": "bw5-professor-program-mapping-projection-v1",
+              "sha256": "48a0fb632305dce65ea9b25523b4cec00fe239338ed329c88cad51bb682b9d29",
+              "kind": "exact_printing_mapping",
+              "url_or_identifier": "derived:bw5-professor-program-mapping-projection-v1",
+              "retrieved_at": "2026-11-06T06:52:00.000Z"
+            },
+            {
+              "ref": "professor-program-product-176632-reviewed-evidence-v1",
+              "sha256": "5cc7645341c45dc86c64b98bde2867d77064a4790ce57832ed9affe435a13c6d",
+              "kind": "exact_printing_mapping",
+              "url_or_identifier": "docs/audits/tcgplayer_professor_program_mapping_readiness_post_printing_apply_20261105_v1.json",
+              "retrieved_at": "2026-11-05T08:40:28.109Z"
+            }
+          ],
+          "protected_facts": [
+            {
+              "card_print_id": "c98e4f39-59fc-4ec1-bfc5-c34f28a25f3c",
+              "finish_key": "reverse"
+            }
+          ],
+          "forbidden_facts": [],
+          "conflicts": [],
+          "review": {
+            "ref": "review:bw5:professor-program-176632",
+            "sha256": "a06b510997decb5b3b97867a0d8b6d954f2f45cf1a48818acaecd5a997c7925c"
+          }
+        },
+        "external_mapping_assertions": [
+          {
+            "source": "tcgplayer",
+            "external_id": "176632",
+            "card_print_id": "c98e4f39-59fc-4ec1-bfc5-c34f28a25f3c",
+            "candidate_fingerprint": "e1e07523d11c2ff73c4cd6cabf853082131ea77082ae7dd4046e524359db5eba",
+            "source_ref": "professor-program-product-176632-reviewed-evidence-v1",
+            "source_sha256": "5cc7645341c45dc86c64b98bde2867d77064a4790ce57832ed9affe435a13c6d"
+          }
+        ],
+        "fingerprint": "8bff33f079495004215331da07c8e4db4951ac595ba8d9993065cf45c10d8d10"
+      },
+      "artifacts": [
+        {
+          "ref": "bw5-professor-program-mapping-projection-v1",
+          "base64": "ewogICJ2ZXJzaW9uIjogIlRDR1BMQVlFUl9QUk9GRVNTT1JfUFJPR1JBTV9NQVNURVJfSU5ERVhfUFJPSkVDVElPTl9WMSIsCiAgInJlYWRpbmVzc19maW5nZXJwcmludCI6ICI0MDMzOTUyOTEwZjUzZmMwNjc5NzRjNTUxN2UxMDI5MDMzOTllMjAyZGM2YWU4YmRkMjYwYmNlOWVlZTFhODE1IiwKICAic291cmNlX3Byb2R1Y3RfaWQiOiAxNzY2MzIsCiAgInRhcmdldCI6IHsKICAgICJjYXJkX3ByaW50X2lkIjogImM5OGU0ZjM5LTU5ZmMtNGVjMS1iZmM1LWMzNGYyOGEyNWYzYyIsCiAgICAiZ3ZfaWQiOiAiR1YtUEstQlc1LTk4LVBST0ZFU1NPUi1QUk9HUkFNLVNUQU1QIiwKICAgICJzZXRfaWQiOiAiNTZjMjNiOGQtOTA0ZS00YzNhLWIwZmQtOTU2MjkxOWY1Njk0IiwKICAgICJzZXRfY29kZSI6ICJidzUiLAogICAgIm5hbWUiOiAiUHJvZmVzc29yIEp1bmlwZXIiLAogICAgIm51bWJlciI6ICI5OCIsCiAgICAidmFyaWFudF9rZXkiOiAicHJvZmVzc29yX3Byb2dyYW1fc3RhbXAiCiAgfSwKICAicHJpbnRpbmciOiB7CiAgICAicHJpbnRpbmdfaWQiOiAiMDRjZjRmYTUtZWE3YS00MzRjLWE1NTgtN2I1M2U5NWE0YTkzIiwKICAgICJmaW5pc2hfa2V5IjogInJldmVyc2UiLAogICAgInByaW50aW5nX2d2X2lkIjogIkdWLVBLLUJXNS05OC1QUk9GRVNTT1ItUFJPR1JBTS1TVEFNUC1SSCIsCiAgICAicHJvdmVuYW5jZV9zb3VyY2UiOiAidmVyaWZpZWRfbWFzdGVyX2luZGV4X3YxIiwKICAgICJwcm92ZW5hbmNlX3JlZiI6ICJidzU6OTg6cHJvZmVzc29yX3Byb2dyYW1fc3RhbXA6cmV2ZXJzZSIKICB9Cn0K"
+        },
+        {
+          "ref": "professor-program-product-176632-reviewed-evidence-v1",
+          "base64": "ewogICJ2ZXJzaW9uIjogIlRDR1BMQVlFUl9QUk9GRVNTT1JfUFJPR1JBTV9SRVZJRVdFRF9NQVBQSU5HX0VWSURFTkNFX1YxIiwKICAicmVhZGluZXNzX2ZpbmdlcnByaW50IjogIjQwMzM5NTI5MTBmNTNmYzA2Nzk3NGM1NTE3ZTEwMjkwMzM5OWUyMDJkYzZhZThiZGQyNjBiY2U5ZWVlMWE4MTUiLAogICJzb3VyY2Vfc3luY19ydW5faWQiOiAiOTA1YzllMDktYjY1OC00NGZlLWIzMmMtYzkxZmJmNmJkZTFlIiwKICAic291cmNlX3Byb2R1Y3QiOiB7CiAgICAicHJvZHVjdF9pZCI6IDE3NjYzMiwKICAgICJjYXRlZ29yeV9pZCI6IDMsCiAgICAiZ3JvdXBfaWQiOiAyMzMyLAogICAgIm5hbWUiOiAiUHJvZmVzc29yIEp1bmlwZXIgLSA5OC8xMDggKDIwMTMpIiwKICAgICJzb3VyY2VfdXJsIjogImh0dHBzOi8vd3d3LnRjZ3BsYXllci5jb20vcHJvZHVjdC8xNzY2MzIvcG9rZW1vbi1wcm9mZXNzb3ItcHJvZ3JhbS1wcm9tb3MtcHJvZmVzc29yLWp1bmlwZXItOTgtMTA4LTIwMTMiLAogICAgInNvdXJjZV9tb2RpZmllZF9vbiI6ICIyMDIwLTA4LTExVDEzOjI2OjEwLjA2IiwKICAgICJleHRlbmRlZF9kYXRhIjogWwogICAgICB7CiAgICAgICAgIm5hbWUiOiAiTnVtYmVyIiwKICAgICAgICAidmFsdWUiOiAiOTgvMTA4IiwKICAgICAgICAiZGlzcGxheU5hbWUiOiAiQ2FyZCBOdW1iZXIiCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAibmFtZSI6ICJSYXJpdHkiLAogICAgICAgICJ2YWx1ZSI6ICJQcm9tbyIsCiAgICAgICAgImRpc3BsYXlOYW1lIjogIlJhcml0eSIKICAgICAgfSwKICAgICAgewogICAgICAgICJuYW1lIjogIkNhcmQgVHlwZSIsCiAgICAgICAgInZhbHVlIjogIlN1cHBvcnRlciIsCiAgICAgICAgImRpc3BsYXlOYW1lIjogIkNhcmQgVHlwZSIKICAgICAgfSwKICAgICAgewogICAgICAgICJuYW1lIjogIkNhcmRUZXh0IiwKICAgICAgICAidmFsdWUiOiAiRGlzY2FyZCB5b3VyIGhhbmQgYW5kIGRyYXcgNyBjYXJkcy4iLAogICAgICAgICJkaXNwbGF5TmFtZSI6ICJDYXJkIFRleHQiCiAgICAgIH0KICAgIF0sCiAgICAicGF5bG9hZF9oYXNoIjogIjllYmYyNTczNTJhYzRjODUwMDBhNmJlZWUwMmM5YTYyMTU3YzU4NTEyYzA5ZWUyMTUyMGNkOGU3MTBiZDU2MWIiLAogICAgImxhc3Rfc2Vlbl9hdCI6ICIyMDI2LTExLTA1VDA4OjQwOjI4LjEwOVoiLAogICAgImxhc3Rfc2Vlbl9ydW5faWQiOiAiOTA1YzllMDktYjY1OC00NGZlLWIzMmMtYzkxZmJmNmJkZTFlIiwKICAgICJzb3VyY2VfYWN0aXZlIjogdHJ1ZSwKICAgICJjYXRhbG9nX21ldGFkYXRhX3N0YXR1cyI6ICJjdXJyZW50IgogIH0sCiAgImxhdGVzdF9vYnNlcnZhdGlvbnMiOiBbCiAgICB7CiAgICAgICJpZCI6ICJiYjFjNzI0My02ZjcwLTQ2N2MtOGJlNS03MjM1NGNjNWIyYzQiLAogICAgICAicHJvZHVjdF9pZCI6IDE3NjYzMiwKICAgICAgInN1YnR5cGVfbmFtZSI6ICJSZXZlcnNlIEhvbG9mb2lsIiwKICAgICAgIm9ic2VydmVkX29uIjogIjIwMjYtMTEtMDVUMDc6MDA6MDAuMDAwWiIsCiAgICAgICJsb3dfcHJpY2UiOiAiMjAiLAogICAgICAibWlkX3ByaWNlIjogIjI0LjU3IiwKICAgICAgImhpZ2hfcHJpY2UiOiAiMjkuOTciLAogICAgICAibWFya2V0X3ByaWNlIjogIjIyLjg4IiwKICAgICAgImRpcmVjdF9sb3dfcHJpY2UiOiBudWxsLAogICAgICAiY3VycmVuY3kiOiAiVVNEIiwKICAgICAgInBheWxvYWRfaGFzaCI6ICJjYTA5NWI4ODA1ODExYjM4YTlhOWI2NTRlZWRiZjE2MGMxMDBmNzdkMzQzZmVjOGE1ZTdkMmNjMWU4Mzg4M2NmIiwKICAgICAgImxhc3Rfb2JzZXJ2ZWRfYXQiOiAiMjAyNi0xMS0wNVQwODo0MDoyOC42MDJaIiwKICAgICAgImxhc3Rfc2Vlbl9ydW5faWQiOiAiOTA1YzllMDktYjY1OC00NGZlLWIzMmMtYzkxZmJmNmJkZTFlIgogICAgfQogIF0sCiAgInRhcmdldF9wYXJlbnQiOiB7CiAgICAiaWQiOiAiYzk4ZTRmMzktNTlmYy00ZWMxLWJmYzUtYzM0ZjI4YTI1ZjNjIiwKICAgICJzZXRfaWQiOiAiNTZjMjNiOGQtOTA0ZS00YzNhLWIwZmQtOTU2MjkxOWY1Njk0IiwKICAgICJzZXRfY29kZSI6ICJidzUiLAogICAgIm5hbWUiOiAiUHJvZmVzc29yIEp1bmlwZXIiLAogICAgIm51bWJlciI6ICI5OCIsCiAgICAidmFyaWFudF9rZXkiOiAicHJvZmVzc29yX3Byb2dyYW1fc3RhbXAiLAogICAgImd2X2lkIjogIkdWLVBLLUJXNS05OC1QUk9GRVNTT1ItUFJPR1JBTS1TVEFNUCIsCiAgICAiaWRlbnRpdHlfZG9tYWluIjogInBva2Vtb25fZW5nX3N0YW5kYXJkIiwKICAgICJwcmludGVkX2lkZW50aXR5X21vZGlmaWVyIjogInByb2Zlc3Nvcl9wcm9ncmFtX3N0YW1wIiwKICAgICJhY3RpdmVfc3RhbmRhcmRfaWRlbnRpdHlfY291bnQiOiAxCiAgfSwKICAidGFyZ2V0X2NoaWxkIjogewogICAgImlkIjogIjA0Y2Y0ZmE1LWVhN2EtNDM0Yy1hNTU4LTdiNTNlOTVhNGE5MyIsCiAgICAiY2FyZF9wcmludF9pZCI6ICJjOThlNGYzOS01OWZjLTRlYzEtYmZjNS1jMzRmMjhhMjVmM2MiLAogICAgImZpbmlzaF9rZXkiOiAicmV2ZXJzZSIsCiAgICAicHJpbnRpbmdfZ3ZfaWQiOiAiR1YtUEstQlc1LTk4LVBST0ZFU1NPUi1QUk9HUkFNLVNUQU1QLVJIIiwKICAgICJpc19wcm92aXNpb25hbCI6IGZhbHNlLAogICAgInByb3ZlbmFuY2Vfc291cmNlIjogInZlcmlmaWVkX21hc3Rlcl9pbmRleF92MSIsCiAgICAicHJvdmVuYW5jZV9yZWYiOiAiYnc1Ojk4OnByb2Zlc3Nvcl9wcm9ncmFtX3N0YW1wOnJldmVyc2UiLAogICAgImZpbmlzaF9hY3RpdmUiOiB0cnVlLAogICAgImFjdGl2ZV90cnV0aF9yZXZpZXciOiAidmVyaWZpZWQiLAogICAgInB1YmxpY192aXNpYmlsaXR5IjogInZpc2libGUiLAogICAgInB1YmxpY192aXNpYmxlIjogdHJ1ZQogIH0sCiAgImV4aXN0aW5nX21hcHBpbmdzIjogW10sCiAgImFjdGl2ZV9wdWJsaWNhdGlvbl9vdmVybGFwIjogW10sCiAgImNhbmRpZGF0ZV9maW5nZXJwcmludCI6ICJlMWUwNzUyM2QxMWMyZmY3M2M0Y2Q2Y2FiZjg1MzA4MjEzMWVhNzcwODJhZTdkZDQwNDZlNTI0MzU5ZGI1ZWJhIgp9Cg=="
+        },
+        {
+          "ref": "review:bw5:professor-program-176632",
+          "base64": "ewogICJzdGF0dXMiOiAidmVyaWZpZWRfc2NvcGUiLAogICJtYXN0ZXJfaW5kZXhfc2hhMjU2IjogIjQ4YTBmYjYzMjMwNWRjZTY1ZWE5YjI1NTIzYjRjZWMwMGZlMjM5MzM4ZWQzMjljODhjYWQ1MWJiNjgyYjlkMjkiLAogICJnYW1lIjogInBva2Vtb24iLAogICJsYW5ndWFnZSI6ICJlbiIsCiAgInNldF9jb2RlIjogImJ3NSIsCiAgInNjb3BlIjogInZlcmlmaWVkX3BhcmVudF9mYW1pbGllcyIsCiAgInJldmlld2VyIjogIkNvZGV4IHNvdXJjZSBhZGp1ZGljYXRpb247IG5vdCBmb3VuZGVyIG11dGF0aW9uIGFwcHJvdmFsIiwKICAicmV2aWV3ZWRfYXQiOiAiMjAyNi0xMS0wNlQwNjo1MjowMC4wMDBaIiwKICAicHJvamVjdGlvbl9zaGEyNTYiOiAiNGE4ZDgxN2I2ODMwYTQxMmE3MDI5N2NlMWY2ZTg4ZTU5MDg4YWUwNDgyMzcwZTkwZWQzOTdhMDVlYmFhNjVmOCIsCiAgInJlYXNvbmluZyI6IFsKICAgICJUaGUgZnJvemVuIHByb2R1Y3Qtc3BlY2lmaWMgcmVnaXN0cnkgYmluZHMgdGhlIGV4YWN0IFRDR1BsYXllciBwcm9kdWN0IHRvIG9uZSBQcm9mZXNzb3IgUHJvZ3JhbSBzdGFtcGVkIHBhcmVudC4iLAogICAgIlRoZSBsaXZlIHJlYWRpbmVzcyBhdWRpdCBwcm92ZXMgb25lIGFjdGl2ZSBFbmdsaXNoIHBoeXNpY2FsIGlkZW50aXR5IGFuZCBvbmUgdmVyaWZpZWQgdmlzaWJsZSBjaGlsZCBtYXRjaGluZyB0aGUgc291cmNlIGZpbmlzaC4iLAogICAgIk5vIHNvdXJjZSBvciB0YXJnZXQgbWFwcGluZyBoaXN0b3J5IGFuZCBubyBhY3RpdmUgcHVibGljYXRpb24gb3ZlcmxhcCBleGlzdCBmb3IgdGhpcyBwcm9kdWN0LiIsCiAgICAiUHJvZmVzc29yIFN5Y2Ftb3JlIHByb2R1Y3QgMTc2NjM4IHJlbWFpbnMgZXhjbHVkZWQgYmVjYXVzZSBpdHMgcmVxdWlyZWQgUmV2ZXJzZSBjaGlsZCBjb25mbGljdHMgd2l0aCB0aGUgZXhpc3RpbmcgSG9sbyBjaGlsZC4iLAogICAgIlRoaXMgZXZpZGVuY2UgcmV2aWV3IGRvZXMgbm90IGF1dGhvcml6ZSBhIGR1cmFibGUgZGF0YWJhc2UgbXV0YXRpb24uIgogIF0sCiAgIm11dGF0aW9uX2F1dGhvcml0eSI6IGZhbHNlCn0K"
+        }
+      ]
+    },
+    {
+      "manifest": {
+        "version": "PRINTING_COMPLETENESS_GATE_V1",
+        "game": "pokemon",
+        "language": "en",
+        "set_code": "bw1",
+        "scope": "verified_parent_families",
+        "scope_note": "Exact Professor Program stamped parent and verified reverse printing for TCGPlayer product 176633.",
+        "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+        "master_index_ref": "bw1-professor-program-mapping-projection-v1",
+        "master_index_sha256": "5e57447a81ff3fcdb7bcabe0820c5c41abf914375836410c188d5d0aa3357923",
+        "parents": [
+          {
+            "id": "12cad852-d079-44cc-9438-e806aede97ff",
+            "name": "Professor Juniper",
+            "gv_id": "GV-PK-BW1-101-PROFESSOR-PROGRAM-STAMP",
+            "set_id": "474cefc3-bb4d-47eb-8c02-333953130b4c",
+            "variant_key": "professor_program_stamp",
+            "identity_domain": "pokemon_eng_standard",
+            "printed_coordinate": "101",
+            "printed_identity_modifier": "professor_program_stamp"
+          }
+        ],
+        "printings": [
+          {
+            "card_print_id": "12cad852-d079-44cc-9438-e806aede97ff",
+            "finish_key": "reverse",
+            "printing_gv_id": "GV-PK-BW1-101-PROFESSOR-PROGRAM-STAMP-RH",
+            "review_status": "verified",
+            "evidence": [
+              {
+                "kind": "exact_printing_mapping",
+                "source_ref": "professor-program-product-176633-reviewed-evidence-v1",
+                "sha256": "3be788e236a049bdda84504becda52f42a1388b9d3dfc8cd23d83d09b58192c4",
+                "card_print_id": "12cad852-d079-44cc-9438-e806aede97ff",
+                "finish_key": "reverse"
+              }
+            ]
+          }
+        ],
+        "unresolved_variants": [],
+        "suppressed_printing_facts": [],
+        "expected": {
+          "parents": 1,
+          "printings": 1,
+          "finishes": {
+            "reverse": 1
+          }
+        },
+        "authority": {
+          "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+          "status": "verified_scope",
+          "set_id": "474cefc3-bb4d-47eb-8c02-333953130b4c",
+          "source_artifacts": [
+            {
+              "ref": "bw1-professor-program-mapping-projection-v1",
+              "sha256": "5e57447a81ff3fcdb7bcabe0820c5c41abf914375836410c188d5d0aa3357923",
+              "kind": "exact_printing_mapping",
+              "url_or_identifier": "derived:bw1-professor-program-mapping-projection-v1",
+              "retrieved_at": "2026-11-06T06:52:00.000Z"
+            },
+            {
+              "ref": "professor-program-product-176633-reviewed-evidence-v1",
+              "sha256": "3be788e236a049bdda84504becda52f42a1388b9d3dfc8cd23d83d09b58192c4",
+              "kind": "exact_printing_mapping",
+              "url_or_identifier": "docs/audits/tcgplayer_professor_program_mapping_readiness_post_printing_apply_20261105_v1.json",
+              "retrieved_at": "2026-11-05T08:40:28.109Z"
+            }
+          ],
+          "protected_facts": [
+            {
+              "card_print_id": "12cad852-d079-44cc-9438-e806aede97ff",
+              "finish_key": "reverse"
+            }
+          ],
+          "forbidden_facts": [],
+          "conflicts": [],
+          "review": {
+            "ref": "review:bw1:professor-program-176633",
+            "sha256": "a0a5506d083b5f634b5e497f90d1ef02e190bb4d8cbb4d2bcc4d5f2b416c6434"
+          }
+        },
+        "external_mapping_assertions": [
+          {
+            "source": "tcgplayer",
+            "external_id": "176633",
+            "card_print_id": "12cad852-d079-44cc-9438-e806aede97ff",
+            "candidate_fingerprint": "59e0986b240a74816d34b765d830cca58c0c1d808bc591e9c64bce2a401dacdc",
+            "source_ref": "professor-program-product-176633-reviewed-evidence-v1",
+            "source_sha256": "3be788e236a049bdda84504becda52f42a1388b9d3dfc8cd23d83d09b58192c4"
+          }
+        ],
+        "fingerprint": "a2db66595b7a71c38ac80b5a3765fdec9467cdfc40dd82a605e69a486275ad81"
+      },
+      "artifacts": [
+        {
+          "ref": "bw1-professor-program-mapping-projection-v1",
+          "base64": "ewogICJ2ZXJzaW9uIjogIlRDR1BMQVlFUl9QUk9GRVNTT1JfUFJPR1JBTV9NQVNURVJfSU5ERVhfUFJPSkVDVElPTl9WMSIsCiAgInJlYWRpbmVzc19maW5nZXJwcmludCI6ICI0MDMzOTUyOTEwZjUzZmMwNjc5NzRjNTUxN2UxMDI5MDMzOTllMjAyZGM2YWU4YmRkMjYwYmNlOWVlZTFhODE1IiwKICAic291cmNlX3Byb2R1Y3RfaWQiOiAxNzY2MzMsCiAgInRhcmdldCI6IHsKICAgICJjYXJkX3ByaW50X2lkIjogIjEyY2FkODUyLWQwNzktNDRjYy05NDM4LWU4MDZhZWRlOTdmZiIsCiAgICAiZ3ZfaWQiOiAiR1YtUEstQlcxLTEwMS1QUk9GRVNTT1ItUFJPR1JBTS1TVEFNUCIsCiAgICAic2V0X2lkIjogIjQ3NGNlZmMzLWJiNGQtNDdlYi04YzAyLTMzMzk1MzEzMGI0YyIsCiAgICAic2V0X2NvZGUiOiAiYncxIiwKICAgICJuYW1lIjogIlByb2Zlc3NvciBKdW5pcGVyIiwKICAgICJudW1iZXIiOiAiMTAxIiwKICAgICJ2YXJpYW50X2tleSI6ICJwcm9mZXNzb3JfcHJvZ3JhbV9zdGFtcCIKICB9LAogICJwcmludGluZyI6IHsKICAgICJwcmludGluZ19pZCI6ICI4YjBjZjA5Ny1lZjI4LTQyYWEtYTNmMi1mODY2NWY4NjM3MjYiLAogICAgImZpbmlzaF9rZXkiOiAicmV2ZXJzZSIsCiAgICAicHJpbnRpbmdfZ3ZfaWQiOiAiR1YtUEstQlcxLTEwMS1QUk9GRVNTT1ItUFJPR1JBTS1TVEFNUC1SSCIsCiAgICAicHJvdmVuYW5jZV9zb3VyY2UiOiAidmVyaWZpZWRfbWFzdGVyX2luZGV4X3YxIiwKICAgICJwcm92ZW5hbmNlX3JlZiI6ICJidzE6MTAxOnByb2Zlc3Nvcl9wcm9ncmFtX3N0YW1wOnJldmVyc2UiCiAgfQp9Cg=="
+        },
+        {
+          "ref": "professor-program-product-176633-reviewed-evidence-v1",
+          "base64": "ewogICJ2ZXJzaW9uIjogIlRDR1BMQVlFUl9QUk9GRVNTT1JfUFJPR1JBTV9SRVZJRVdFRF9NQVBQSU5HX0VWSURFTkNFX1YxIiwKICAicmVhZGluZXNzX2ZpbmdlcnByaW50IjogIjQwMzM5NTI5MTBmNTNmYzA2Nzk3NGM1NTE3ZTEwMjkwMzM5OWUyMDJkYzZhZThiZGQyNjBiY2U5ZWVlMWE4MTUiLAogICJzb3VyY2Vfc3luY19ydW5faWQiOiAiOTA1YzllMDktYjY1OC00NGZlLWIzMmMtYzkxZmJmNmJkZTFlIiwKICAic291cmNlX3Byb2R1Y3QiOiB7CiAgICAicHJvZHVjdF9pZCI6IDE3NjYzMywKICAgICJjYXRlZ29yeV9pZCI6IDMsCiAgICAiZ3JvdXBfaWQiOiAyMzMyLAogICAgIm5hbWUiOiAiUHJvZmVzc29yIEp1bmlwZXIgLSAxMDEvMTE0ICgyMDEzKSIsCiAgICAic291cmNlX3VybCI6ICJodHRwczovL3d3dy50Y2dwbGF5ZXIuY29tL3Byb2R1Y3QvMTc2NjMzL3Bva2Vtb24tcHJvZmVzc29yLXByb2dyYW0tcHJvbW9zLXByb2Zlc3Nvci1qdW5pcGVyLTEwMS0xMTQtMjAxMyIsCiAgICAic291cmNlX21vZGlmaWVkX29uIjogIjIwMjAtMDgtMTJUMTQ6NTM6MTAuMTczIiwKICAgICJleHRlbmRlZF9kYXRhIjogWwogICAgICB7CiAgICAgICAgIm5hbWUiOiAiTnVtYmVyIiwKICAgICAgICAidmFsdWUiOiAiMTAxLzExNCIsCiAgICAgICAgImRpc3BsYXlOYW1lIjogIkNhcmQgTnVtYmVyIgogICAgICB9LAogICAgICB7CiAgICAgICAgIm5hbWUiOiAiUmFyaXR5IiwKICAgICAgICAidmFsdWUiOiAiUHJvbW8iLAogICAgICAgICJkaXNwbGF5TmFtZSI6ICJSYXJpdHkiCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAibmFtZSI6ICJDYXJkIFR5cGUiLAogICAgICAgICJ2YWx1ZSI6ICJTdXBwb3J0ZXIiLAogICAgICAgICJkaXNwbGF5TmFtZSI6ICJDYXJkIFR5cGUiCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAibmFtZSI6ICJDYXJkVGV4dCIsCiAgICAgICAgInZhbHVlIjogIkRpc2NhcmQgeW91ciBoYW5kIGFuZCBkcmF3IDcgY2FyZHMuIiwKICAgICAgICAiZGlzcGxheU5hbWUiOiAiQ2FyZCBUZXh0IgogICAgICB9CiAgICBdLAogICAgInBheWxvYWRfaGFzaCI6ICJmNDM0NDJkYTQ2Y2U2MTc0Zjg5NjU3YmU1OTMzNDgyNzIxMjU1OGM2M2QxNGQ0M2Q0ODczZDJhZTJiOTc2OWVhIiwKICAgICJsYXN0X3NlZW5fYXQiOiAiMjAyNi0xMS0wNVQwODo0MDoyOC4xMDlaIiwKICAgICJsYXN0X3NlZW5fcnVuX2lkIjogIjkwNWM5ZTA5LWI2NTgtNDRmZS1iMzJjLWM5MWZiZjZiZGUxZSIsCiAgICAic291cmNlX2FjdGl2ZSI6IHRydWUsCiAgICAiY2F0YWxvZ19tZXRhZGF0YV9zdGF0dXMiOiAiY3VycmVudCIKICB9LAogICJsYXRlc3Rfb2JzZXJ2YXRpb25zIjogWwogICAgewogICAgICAiaWQiOiAiYzNkODc4ZjItMjY4My00MTM2LWJmYTMtMTRkNzg3MDk4MjYzIiwKICAgICAgInByb2R1Y3RfaWQiOiAxNzY2MzMsCiAgICAgICJzdWJ0eXBlX25hbWUiOiAiUmV2ZXJzZSBIb2xvZm9pbCIsCiAgICAgICJvYnNlcnZlZF9vbiI6ICIyMDI2LTExLTA1VDA3OjAwOjAwLjAwMFoiLAogICAgICAibG93X3ByaWNlIjogIjE1IiwKICAgICAgIm1pZF9wcmljZSI6ICIxNy43MyIsCiAgICAgICJoaWdoX3ByaWNlIjogIjIwLjQ1IiwKICAgICAgIm1hcmtldF9wcmljZSI6ICIyMC40NSIsCiAgICAgICJkaXJlY3RfbG93X3ByaWNlIjogbnVsbCwKICAgICAgImN1cnJlbmN5IjogIlVTRCIsCiAgICAgICJwYXlsb2FkX2hhc2giOiAiMjdmMTRhMDg3YTdkNTMyOGFlYzIyNjNlZWIwNmQ5MGZjMjM4NGJiN2RmMzM0ODVhM2Q1YWQwZGU1OTM1NzlkNyIsCiAgICAgICJsYXN0X29ic2VydmVkX2F0IjogIjIwMjYtMTEtMDVUMDg6NDA6MjguNjAyWiIsCiAgICAgICJsYXN0X3NlZW5fcnVuX2lkIjogIjkwNWM5ZTA5LWI2NTgtNDRmZS1iMzJjLWM5MWZiZjZiZGUxZSIKICAgIH0KICBdLAogICJ0YXJnZXRfcGFyZW50IjogewogICAgImlkIjogIjEyY2FkODUyLWQwNzktNDRjYy05NDM4LWU4MDZhZWRlOTdmZiIsCiAgICAic2V0X2lkIjogIjQ3NGNlZmMzLWJiNGQtNDdlYi04YzAyLTMzMzk1MzEzMGI0YyIsCiAgICAic2V0X2NvZGUiOiAiYncxIiwKICAgICJuYW1lIjogIlByb2Zlc3NvciBKdW5pcGVyIiwKICAgICJudW1iZXIiOiAiMTAxIiwKICAgICJ2YXJpYW50X2tleSI6ICJwcm9mZXNzb3JfcHJvZ3JhbV9zdGFtcCIsCiAgICAiZ3ZfaWQiOiAiR1YtUEstQlcxLTEwMS1QUk9GRVNTT1ItUFJPR1JBTS1TVEFNUCIsCiAgICAiaWRlbnRpdHlfZG9tYWluIjogInBva2Vtb25fZW5nX3N0YW5kYXJkIiwKICAgICJwcmludGVkX2lkZW50aXR5X21vZGlmaWVyIjogInByb2Zlc3Nvcl9wcm9ncmFtX3N0YW1wIiwKICAgICJhY3RpdmVfc3RhbmRhcmRfaWRlbnRpdHlfY291bnQiOiAxCiAgfSwKICAidGFyZ2V0X2NoaWxkIjogewogICAgImlkIjogIjhiMGNmMDk3LWVmMjgtNDJhYS1hM2YyLWY4NjY1Zjg2MzcyNiIsCiAgICAiY2FyZF9wcmludF9pZCI6ICIxMmNhZDg1Mi1kMDc5LTQ0Y2MtOTQzOC1lODA2YWVkZTk3ZmYiLAogICAgImZpbmlzaF9rZXkiOiAicmV2ZXJzZSIsCiAgICAicHJpbnRpbmdfZ3ZfaWQiOiAiR1YtUEstQlcxLTEwMS1QUk9GRVNTT1ItUFJPR1JBTS1TVEFNUC1SSCIsCiAgICAiaXNfcHJvdmlzaW9uYWwiOiBmYWxzZSwKICAgICJwcm92ZW5hbmNlX3NvdXJjZSI6ICJ2ZXJpZmllZF9tYXN0ZXJfaW5kZXhfdjEiLAogICAgInByb3ZlbmFuY2VfcmVmIjogImJ3MToxMDE6cHJvZmVzc29yX3Byb2dyYW1fc3RhbXA6cmV2ZXJzZSIsCiAgICAiZmluaXNoX2FjdGl2ZSI6IHRydWUsCiAgICAiYWN0aXZlX3RydXRoX3JldmlldyI6ICJ2ZXJpZmllZCIsCiAgICAicHVibGljX3Zpc2liaWxpdHkiOiAidmlzaWJsZSIsCiAgICAicHVibGljX3Zpc2libGUiOiB0cnVlCiAgfSwKICAiZXhpc3RpbmdfbWFwcGluZ3MiOiBbXSwKICAiYWN0aXZlX3B1YmxpY2F0aW9uX292ZXJsYXAiOiBbXSwKICAiY2FuZGlkYXRlX2ZpbmdlcnByaW50IjogIjU5ZTA5ODZiMjQwYTc0ODE2ZDM0Yjc2NWQ4MzBjY2E1OGMwYzFkODA4YmM1OTFlOWM2NGJjZTJhNDAxZGFjZGMiCn0K"
+        },
+        {
+          "ref": "review:bw1:professor-program-176633",
+          "base64": "ewogICJzdGF0dXMiOiAidmVyaWZpZWRfc2NvcGUiLAogICJtYXN0ZXJfaW5kZXhfc2hhMjU2IjogIjVlNTc0NDdhODFmZjNmY2RiN2JjYWJlMDgyMGM1YzQxYWJmOTE0Mzc1ODM2NDEwYzE4OGQ1ZDBhYTMzNTc5MjMiLAogICJnYW1lIjogInBva2Vtb24iLAogICJsYW5ndWFnZSI6ICJlbiIsCiAgInNldF9jb2RlIjogImJ3MSIsCiAgInNjb3BlIjogInZlcmlmaWVkX3BhcmVudF9mYW1pbGllcyIsCiAgInJldmlld2VyIjogIkNvZGV4IHNvdXJjZSBhZGp1ZGljYXRpb247IG5vdCBmb3VuZGVyIG11dGF0aW9uIGFwcHJvdmFsIiwKICAicmV2aWV3ZWRfYXQiOiAiMjAyNi0xMS0wNlQwNjo1MjowMC4wMDBaIiwKICAicHJvamVjdGlvbl9zaGEyNTYiOiAiODg2OTY1NzZjOWQwMDYwMjZiYjc3ODRkOGQ1ODUxYjdmNGQyMzMzY2FlM2RiNmM1YWFhZDk5OTg4YjgyNjJkNyIsCiAgInJlYXNvbmluZyI6IFsKICAgICJUaGUgZnJvemVuIHByb2R1Y3Qtc3BlY2lmaWMgcmVnaXN0cnkgYmluZHMgdGhlIGV4YWN0IFRDR1BsYXllciBwcm9kdWN0IHRvIG9uZSBQcm9mZXNzb3IgUHJvZ3JhbSBzdGFtcGVkIHBhcmVudC4iLAogICAgIlRoZSBsaXZlIHJlYWRpbmVzcyBhdWRpdCBwcm92ZXMgb25lIGFjdGl2ZSBFbmdsaXNoIHBoeXNpY2FsIGlkZW50aXR5IGFuZCBvbmUgdmVyaWZpZWQgdmlzaWJsZSBjaGlsZCBtYXRjaGluZyB0aGUgc291cmNlIGZpbmlzaC4iLAogICAgIk5vIHNvdXJjZSBvciB0YXJnZXQgbWFwcGluZyBoaXN0b3J5IGFuZCBubyBhY3RpdmUgcHVibGljYXRpb24gb3ZlcmxhcCBleGlzdCBmb3IgdGhpcyBwcm9kdWN0LiIsCiAgICAiUHJvZmVzc29yIFN5Y2Ftb3JlIHByb2R1Y3QgMTc2NjM4IHJlbWFpbnMgZXhjbHVkZWQgYmVjYXVzZSBpdHMgcmVxdWlyZWQgUmV2ZXJzZSBjaGlsZCBjb25mbGljdHMgd2l0aCB0aGUgZXhpc3RpbmcgSG9sbyBjaGlsZC4iLAogICAgIlRoaXMgZXZpZGVuY2UgcmV2aWV3IGRvZXMgbm90IGF1dGhvcml6ZSBhIGR1cmFibGUgZGF0YWJhc2UgbXV0YXRpb24uIgogIF0sCiAgIm11dGF0aW9uX2F1dGhvcml0eSI6IGZhbHNlCn0K"
+        }
+      ]
+    },
+    {
+      "manifest": {
+        "version": "PRINTING_COMPLETENESS_GATE_V1",
+        "game": "pokemon",
+        "language": "en",
+        "set_code": "sm6",
+        "scope": "verified_parent_families",
+        "scope_note": "Exact Professor Program stamped parent and verified reverse printing for TCGPlayer product 213516.",
+        "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+        "master_index_ref": "sm6-professor-program-mapping-projection-v1",
+        "master_index_sha256": "7bc7ba92db553fba112ffc09388e993bec22ee5f858eaa569834e2362618b686",
+        "parents": [
+          {
+            "id": "ea08d28d-8267-4db9-859c-64ffd048792f",
+            "name": "Judge",
+            "gv_id": "GV-PK-FLI-108-PROFESSOR-PROGRAM-STAMP",
+            "set_id": "2ac96af4-a5e2-479f-916c-7b52e13a8f3a",
+            "variant_key": "professor_program_stamp",
+            "identity_domain": "pokemon_eng_standard",
+            "printed_coordinate": "108",
+            "printed_identity_modifier": "professor_program_stamp"
+          }
+        ],
+        "printings": [
+          {
+            "card_print_id": "ea08d28d-8267-4db9-859c-64ffd048792f",
+            "finish_key": "reverse",
+            "printing_gv_id": "GV-PK-FLI-108-PROFESSOR-PROGRAM-STAMP-RH",
+            "review_status": "verified",
+            "evidence": [
+              {
+                "kind": "exact_printing_mapping",
+                "source_ref": "professor-program-product-213516-reviewed-evidence-v1",
+                "sha256": "4cd2449e8ec55e14a33dbeaf54282e1e334f2c06304a036d60c2eb0373c34afe",
+                "card_print_id": "ea08d28d-8267-4db9-859c-64ffd048792f",
+                "finish_key": "reverse"
+              }
+            ]
+          }
+        ],
+        "unresolved_variants": [],
+        "suppressed_printing_facts": [],
+        "expected": {
+          "parents": 1,
+          "printings": 1,
+          "finishes": {
+            "reverse": 1
+          }
+        },
+        "authority": {
+          "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+          "status": "verified_scope",
+          "set_id": "2ac96af4-a5e2-479f-916c-7b52e13a8f3a",
+          "source_artifacts": [
+            {
+              "ref": "sm6-professor-program-mapping-projection-v1",
+              "sha256": "7bc7ba92db553fba112ffc09388e993bec22ee5f858eaa569834e2362618b686",
+              "kind": "exact_printing_mapping",
+              "url_or_identifier": "derived:sm6-professor-program-mapping-projection-v1",
+              "retrieved_at": "2026-11-06T06:52:00.000Z"
+            },
+            {
+              "ref": "professor-program-product-213516-reviewed-evidence-v1",
+              "sha256": "4cd2449e8ec55e14a33dbeaf54282e1e334f2c06304a036d60c2eb0373c34afe",
+              "kind": "exact_printing_mapping",
+              "url_or_identifier": "docs/audits/tcgplayer_professor_program_mapping_readiness_post_printing_apply_20261105_v1.json",
+              "retrieved_at": "2026-11-05T08:40:28.109Z"
+            }
+          ],
+          "protected_facts": [
+            {
+              "card_print_id": "ea08d28d-8267-4db9-859c-64ffd048792f",
+              "finish_key": "reverse"
+            }
+          ],
+          "forbidden_facts": [],
+          "conflicts": [],
+          "review": {
+            "ref": "review:sm6:professor-program-213516",
+            "sha256": "e602712a84ef3c244954dfef6a866aeb609631eaeee1c3ea2d5bbab650910037"
+          }
+        },
+        "external_mapping_assertions": [
+          {
+            "source": "tcgplayer",
+            "external_id": "213516",
+            "card_print_id": "ea08d28d-8267-4db9-859c-64ffd048792f",
+            "candidate_fingerprint": "afb3742b96f1f33c6daa5375e85c99341124936bc622eb838442c01f8f84252f",
+            "source_ref": "professor-program-product-213516-reviewed-evidence-v1",
+            "source_sha256": "4cd2449e8ec55e14a33dbeaf54282e1e334f2c06304a036d60c2eb0373c34afe"
+          }
+        ],
+        "fingerprint": "9fa652f9f197e00247709b5a6a25a8a5f51ca845669a4c846bbf3c8dedaec07e"
+      },
+      "artifacts": [
+        {
+          "ref": "professor-program-product-213516-reviewed-evidence-v1",
+          "base64": "ewogICJ2ZXJzaW9uIjogIlRDR1BMQVlFUl9QUk9GRVNTT1JfUFJPR1JBTV9SRVZJRVdFRF9NQVBQSU5HX0VWSURFTkNFX1YxIiwKICAicmVhZGluZXNzX2ZpbmdlcnByaW50IjogIjQwMzM5NTI5MTBmNTNmYzA2Nzk3NGM1NTE3ZTEwMjkwMzM5OWUyMDJkYzZhZThiZGQyNjBiY2U5ZWVlMWE4MTUiLAogICJzb3VyY2Vfc3luY19ydW5faWQiOiAiOTA1YzllMDktYjY1OC00NGZlLWIzMmMtYzkxZmJmNmJkZTFlIiwKICAic291cmNlX3Byb2R1Y3QiOiB7CiAgICAicHJvZHVjdF9pZCI6IDIxMzUxNiwKICAgICJjYXRlZ29yeV9pZCI6IDMsCiAgICAiZ3JvdXBfaWQiOiAyMzMyLAogICAgIm5hbWUiOiAiSnVkZ2UgKDIwMTkpIiwKICAgICJzb3VyY2VfdXJsIjogImh0dHBzOi8vd3d3LnRjZ3BsYXllci5jb20vcHJvZHVjdC8yMTM1MTYvcG9rZW1vbi1wcm9mZXNzb3ItcHJvZ3JhbS1wcm9tb3MtanVkZ2UtMjAxOSIsCiAgICAic291cmNlX21vZGlmaWVkX29uIjogIjIwMjItMDMtMjhUMTY6MzI6NTYuOTYiLAogICAgImV4dGVuZGVkX2RhdGEiOiBbCiAgICAgIHsKICAgICAgICAibmFtZSI6ICJOdW1iZXIiLAogICAgICAgICJ2YWx1ZSI6ICIxMDgvMTMxIiwKICAgICAgICAiZGlzcGxheU5hbWUiOiAiQ2FyZCBOdW1iZXIiCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAibmFtZSI6ICJSYXJpdHkiLAogICAgICAgICJ2YWx1ZSI6ICJQcm9tbyIsCiAgICAgICAgImRpc3BsYXlOYW1lIjogIlJhcml0eSIKICAgICAgfSwKICAgICAgewogICAgICAgICJuYW1lIjogIkNhcmQgVHlwZSIsCiAgICAgICAgInZhbHVlIjogIlN1cHBvcnRlciIsCiAgICAgICAgImRpc3BsYXlOYW1lIjogIkNhcmQgVHlwZSIKICAgICAgfSwKICAgICAgewogICAgICAgICJuYW1lIjogIkNhcmRUZXh0IiwKICAgICAgICAidmFsdWUiOiAiRWFjaCBwbGF5ZXIgc2h1ZmZsZXMgdGhlaXIgaGFuZCBpbnRvIHRoZWlyIGRlY2sgYW5kIGRyYXdzIDQgY2FyZHMuIiwKICAgICAgICAiZGlzcGxheU5hbWUiOiAiQ2FyZCBUZXh0IgogICAgICB9CiAgICBdLAogICAgInBheWxvYWRfaGFzaCI6ICJhODYyODZhMTA4YWE4OTkyOTRiYTE0YjA2OTE3Y2M0ZWZjM2I2ODE5ZGRmOGZiODQwZDI3ZWIzNmJjZDkzMzgyIiwKICAgICJsYXN0X3NlZW5fYXQiOiAiMjAyNi0xMS0wNVQwODo0MDoyOC4xMDlaIiwKICAgICJsYXN0X3NlZW5fcnVuX2lkIjogIjkwNWM5ZTA5LWI2NTgtNDRmZS1iMzJjLWM5MWZiZjZiZGUxZSIsCiAgICAic291cmNlX2FjdGl2ZSI6IHRydWUsCiAgICAiY2F0YWxvZ19tZXRhZGF0YV9zdGF0dXMiOiAiY3VycmVudCIKICB9LAogICJsYXRlc3Rfb2JzZXJ2YXRpb25zIjogWwogICAgewogICAgICAiaWQiOiAiYjg2YmNmZTItZmViYi00NmUyLWIxOGUtNWJjNTM3YTk1NTFiIiwKICAgICAgInByb2R1Y3RfaWQiOiAyMTM1MTYsCiAgICAgICJzdWJ0eXBlX25hbWUiOiAiUmV2ZXJzZSBIb2xvZm9pbCIsCiAgICAgICJvYnNlcnZlZF9vbiI6ICIyMDI2LTExLTA1VDA3OjAwOjAwLjAwMFoiLAogICAgICAibG93X3ByaWNlIjogIjI0IiwKICAgICAgIm1pZF9wcmljZSI6ICIzOS45NSIsCiAgICAgICJoaWdoX3ByaWNlIjogIjIyNSIsCiAgICAgICJtYXJrZXRfcHJpY2UiOiAiMjIuNDEiLAogICAgICAiZGlyZWN0X2xvd19wcmljZSI6IG51bGwsCiAgICAgICJjdXJyZW5jeSI6ICJVU0QiLAogICAgICAicGF5bG9hZF9oYXNoIjogImFmMDQ2ZWNiNGVhYjg4NDVjMjBiYjRmNWE0YTM2NDFjMGExZDYwMTgxZjc3NDBjYmIwNzZkZjA3ZTc1NThmODciLAogICAgICAibGFzdF9vYnNlcnZlZF9hdCI6ICIyMDI2LTExLTA1VDA4OjQwOjI4LjYwMloiLAogICAgICAibGFzdF9zZWVuX3J1bl9pZCI6ICI5MDVjOWUwOS1iNjU4LTQ0ZmUtYjMyYy1jOTFmYmY2YmRlMWUiCiAgICB9CiAgXSwKICAidGFyZ2V0X3BhcmVudCI6IHsKICAgICJpZCI6ICJlYTA4ZDI4ZC04MjY3LTRkYjktODU5Yy02NGZmZDA0ODc5MmYiLAogICAgInNldF9pZCI6ICIyYWM5NmFmNC1hNWUyLTQ3OWYtOTE2Yy03YjUyZTEzYThmM2EiLAogICAgInNldF9jb2RlIjogInNtNiIsCiAgICAibmFtZSI6ICJKdWRnZSIsCiAgICAibnVtYmVyIjogIjEwOCIsCiAgICAidmFyaWFudF9rZXkiOiAicHJvZmVzc29yX3Byb2dyYW1fc3RhbXAiLAogICAgImd2X2lkIjogIkdWLVBLLUZMSS0xMDgtUFJPRkVTU09SLVBST0dSQU0tU1RBTVAiLAogICAgImlkZW50aXR5X2RvbWFpbiI6ICJwb2tlbW9uX2VuZ19zdGFuZGFyZCIsCiAgICAicHJpbnRlZF9pZGVudGl0eV9tb2RpZmllciI6ICJwcm9mZXNzb3JfcHJvZ3JhbV9zdGFtcCIsCiAgICAiYWN0aXZlX3N0YW5kYXJkX2lkZW50aXR5X2NvdW50IjogMQogIH0sCiAgInRhcmdldF9jaGlsZCI6IHsKICAgICJpZCI6ICJiZmUyNmE3MS01Yzk1LTRlOTctOGIxMi1lZjZhZmEwYjJkYzYiLAogICAgImNhcmRfcHJpbnRfaWQiOiAiZWEwOGQyOGQtODI2Ny00ZGI5LTg1OWMtNjRmZmQwNDg3OTJmIiwKICAgICJmaW5pc2hfa2V5IjogInJldmVyc2UiLAogICAgInByaW50aW5nX2d2X2lkIjogIkdWLVBLLUZMSS0xMDgtUFJPRkVTU09SLVBST0dSQU0tU1RBTVAtUkgiLAogICAgImlzX3Byb3Zpc2lvbmFsIjogZmFsc2UsCiAgICAicHJvdmVuYW5jZV9zb3VyY2UiOiAidmVyaWZpZWRfbWFzdGVyX3NldF9pbmRleF92MSIsCiAgICAicHJvdmVuYW5jZV9yZWYiOiAic202OjEwODpzdGFtcGVkX2lkZW50aXR5OnByb2Zlc3Nvcl9wcm9ncmFtX3N0YW1wOnJldmVyc2UiLAogICAgImZpbmlzaF9hY3RpdmUiOiB0cnVlLAogICAgImFjdGl2ZV90cnV0aF9yZXZpZXciOiAidmVyaWZpZWQiLAogICAgInB1YmxpY192aXNpYmlsaXR5IjogInZpc2libGUiLAogICAgInB1YmxpY192aXNpYmxlIjogdHJ1ZQogIH0sCiAgImV4aXN0aW5nX21hcHBpbmdzIjogW10sCiAgImFjdGl2ZV9wdWJsaWNhdGlvbl9vdmVybGFwIjogW10sCiAgImNhbmRpZGF0ZV9maW5nZXJwcmludCI6ICJhZmIzNzQyYjk2ZjFmMzNjNmRhYTUzNzVlODVjOTkzNDExMjQ5MzZiYzYyMmViODM4NDQyYzAxZjhmODQyNTJmIgp9Cg=="
+        },
+        {
+          "ref": "review:sm6:professor-program-213516",
+          "base64": "ewogICJzdGF0dXMiOiAidmVyaWZpZWRfc2NvcGUiLAogICJtYXN0ZXJfaW5kZXhfc2hhMjU2IjogIjdiYzdiYTkyZGI1NTNmYmExMTJmZmMwOTM4OGU5OTNiZWMyMmVlNWY4NThlYWE1Njk4MzRlMjM2MjYxOGI2ODYiLAogICJnYW1lIjogInBva2Vtb24iLAogICJsYW5ndWFnZSI6ICJlbiIsCiAgInNldF9jb2RlIjogInNtNiIsCiAgInNjb3BlIjogInZlcmlmaWVkX3BhcmVudF9mYW1pbGllcyIsCiAgInJldmlld2VyIjogIkNvZGV4IHNvdXJjZSBhZGp1ZGljYXRpb247IG5vdCBmb3VuZGVyIG11dGF0aW9uIGFwcHJvdmFsIiwKICAicmV2aWV3ZWRfYXQiOiAiMjAyNi0xMS0wNlQwNjo1MjowMC4wMDBaIiwKICAicHJvamVjdGlvbl9zaGEyNTYiOiAiMjZhMWFhZGJhMmQ0OWM2YWI2MTFkYjEwYTI3ZGJjZWJkMTkwMTJlNGM1MjYwYjcyMDExNWRkMTAxODRhMGU1MyIsCiAgInJlYXNvbmluZyI6IFsKICAgICJUaGUgZnJvemVuIHByb2R1Y3Qtc3BlY2lmaWMgcmVnaXN0cnkgYmluZHMgdGhlIGV4YWN0IFRDR1BsYXllciBwcm9kdWN0IHRvIG9uZSBQcm9mZXNzb3IgUHJvZ3JhbSBzdGFtcGVkIHBhcmVudC4iLAogICAgIlRoZSBsaXZlIHJlYWRpbmVzcyBhdWRpdCBwcm92ZXMgb25lIGFjdGl2ZSBFbmdsaXNoIHBoeXNpY2FsIGlkZW50aXR5IGFuZCBvbmUgdmVyaWZpZWQgdmlzaWJsZSBjaGlsZCBtYXRjaGluZyB0aGUgc291cmNlIGZpbmlzaC4iLAogICAgIk5vIHNvdXJjZSBvciB0YXJnZXQgbWFwcGluZyBoaXN0b3J5IGFuZCBubyBhY3RpdmUgcHVibGljYXRpb24gb3ZlcmxhcCBleGlzdCBmb3IgdGhpcyBwcm9kdWN0LiIsCiAgICAiUHJvZmVzc29yIFN5Y2Ftb3JlIHByb2R1Y3QgMTc2NjM4IHJlbWFpbnMgZXhjbHVkZWQgYmVjYXVzZSBpdHMgcmVxdWlyZWQgUmV2ZXJzZSBjaGlsZCBjb25mbGljdHMgd2l0aCB0aGUgZXhpc3RpbmcgSG9sbyBjaGlsZC4iLAogICAgIlRoaXMgZXZpZGVuY2UgcmV2aWV3IGRvZXMgbm90IGF1dGhvcml6ZSBhIGR1cmFibGUgZGF0YWJhc2UgbXV0YXRpb24uIgogIF0sCiAgIm11dGF0aW9uX2F1dGhvcml0eSI6IGZhbHNlCn0K"
+        },
+        {
+          "ref": "sm6-professor-program-mapping-projection-v1",
+          "base64": "ewogICJ2ZXJzaW9uIjogIlRDR1BMQVlFUl9QUk9GRVNTT1JfUFJPR1JBTV9NQVNURVJfSU5ERVhfUFJPSkVDVElPTl9WMSIsCiAgInJlYWRpbmVzc19maW5nZXJwcmludCI6ICI0MDMzOTUyOTEwZjUzZmMwNjc5NzRjNTUxN2UxMDI5MDMzOTllMjAyZGM2YWU4YmRkMjYwYmNlOWVlZTFhODE1IiwKICAic291cmNlX3Byb2R1Y3RfaWQiOiAyMTM1MTYsCiAgInRhcmdldCI6IHsKICAgICJjYXJkX3ByaW50X2lkIjogImVhMDhkMjhkLTgyNjctNGRiOS04NTljLTY0ZmZkMDQ4NzkyZiIsCiAgICAiZ3ZfaWQiOiAiR1YtUEstRkxJLTEwOC1QUk9GRVNTT1ItUFJPR1JBTS1TVEFNUCIsCiAgICAic2V0X2lkIjogIjJhYzk2YWY0LWE1ZTItNDc5Zi05MTZjLTdiNTJlMTNhOGYzYSIsCiAgICAic2V0X2NvZGUiOiAic202IiwKICAgICJuYW1lIjogIkp1ZGdlIiwKICAgICJudW1iZXIiOiAiMTA4IiwKICAgICJ2YXJpYW50X2tleSI6ICJwcm9mZXNzb3JfcHJvZ3JhbV9zdGFtcCIKICB9LAogICJwcmludGluZyI6IHsKICAgICJwcmludGluZ19pZCI6ICJiZmUyNmE3MS01Yzk1LTRlOTctOGIxMi1lZjZhZmEwYjJkYzYiLAogICAgImZpbmlzaF9rZXkiOiAicmV2ZXJzZSIsCiAgICAicHJpbnRpbmdfZ3ZfaWQiOiAiR1YtUEstRkxJLTEwOC1QUk9GRVNTT1ItUFJPR1JBTS1TVEFNUC1SSCIsCiAgICAicHJvdmVuYW5jZV9zb3VyY2UiOiAidmVyaWZpZWRfbWFzdGVyX3NldF9pbmRleF92MSIsCiAgICAicHJvdmVuYW5jZV9yZWYiOiAic202OjEwODpzdGFtcGVkX2lkZW50aXR5OnByb2Zlc3Nvcl9wcm9ncmFtX3N0YW1wOnJldmVyc2UiCiAgfQp9Cg=="
+        }
+      ]
+    },
+    {
+      "manifest": {
+        "version": "PRINTING_COMPLETENESS_GATE_V1",
+        "game": "pokemon",
+        "language": "en",
+        "set_code": "swsh4.5",
+        "scope": "verified_parent_families",
+        "scope_note": "Exact Professor Program stamped parent and verified reverse printing for TCGPlayer product 499366.",
+        "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+        "master_index_ref": "swsh4.5-professor-program-mapping-projection-v1",
+        "master_index_sha256": "7695e281a5556e22330fc090514d0ee307d2788131dfa85e92457c2f3b2615d4",
+        "parents": [
+          {
+            "id": "8f22c4ef-320d-45cd-8938-4aa84aca740e",
+            "name": "Gym Trainer",
+            "gv_id": "GV-PK-SHF-59-PROFESSOR-PROGRAM",
+            "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+            "variant_key": "professor_program_stamp",
+            "identity_domain": "pokemon_eng_standard",
+            "printed_coordinate": "59",
+            "printed_identity_modifier": "professor_program_stamp"
+          }
+        ],
+        "printings": [
+          {
+            "card_print_id": "8f22c4ef-320d-45cd-8938-4aa84aca740e",
+            "finish_key": "reverse",
+            "printing_gv_id": "GV-PK-SHF-59-PROFESSOR-PROGRAM-RH",
+            "review_status": "verified",
+            "evidence": [
+              {
+                "kind": "exact_printing_mapping",
+                "source_ref": "professor-program-product-499366-reviewed-evidence-v1",
+                "sha256": "769b1ab604285b73dc3e3db4ec6f54e06450f4487843af713bc403b132116cf6",
+                "card_print_id": "8f22c4ef-320d-45cd-8938-4aa84aca740e",
+                "finish_key": "reverse"
+              }
+            ]
+          }
+        ],
+        "unresolved_variants": [],
+        "suppressed_printing_facts": [],
+        "expected": {
+          "parents": 1,
+          "printings": 1,
+          "finishes": {
+            "reverse": 1
+          }
+        },
+        "authority": {
+          "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+          "status": "verified_scope",
+          "set_id": "6335ab75-4e9d-4e4c-8955-261f5288ca7c",
+          "source_artifacts": [
+            {
+              "ref": "swsh4.5-professor-program-mapping-projection-v1",
+              "sha256": "7695e281a5556e22330fc090514d0ee307d2788131dfa85e92457c2f3b2615d4",
+              "kind": "exact_printing_mapping",
+              "url_or_identifier": "derived:swsh4.5-professor-program-mapping-projection-v1",
+              "retrieved_at": "2026-11-06T06:52:00.000Z"
+            },
+            {
+              "ref": "professor-program-product-499366-reviewed-evidence-v1",
+              "sha256": "769b1ab604285b73dc3e3db4ec6f54e06450f4487843af713bc403b132116cf6",
+              "kind": "exact_printing_mapping",
+              "url_or_identifier": "docs/audits/tcgplayer_professor_program_mapping_readiness_post_printing_apply_20261105_v1.json",
+              "retrieved_at": "2026-11-05T08:40:28.109Z"
+            }
+          ],
+          "protected_facts": [
+            {
+              "card_print_id": "8f22c4ef-320d-45cd-8938-4aa84aca740e",
+              "finish_key": "reverse"
+            }
+          ],
+          "forbidden_facts": [],
+          "conflicts": [],
+          "review": {
+            "ref": "review:swsh4.5:professor-program-499366",
+            "sha256": "8d62d3d64c42e0f6b3206f9005e8f5646a23e30abe782ed119906b4de909f7b8"
+          }
+        },
+        "external_mapping_assertions": [
+          {
+            "source": "tcgplayer",
+            "external_id": "499366",
+            "card_print_id": "8f22c4ef-320d-45cd-8938-4aa84aca740e",
+            "candidate_fingerprint": "a53e82900ed2a54ee39dc794271fdfcf16be605455282d1891b87ea35aef872d",
+            "source_ref": "professor-program-product-499366-reviewed-evidence-v1",
+            "source_sha256": "769b1ab604285b73dc3e3db4ec6f54e06450f4487843af713bc403b132116cf6"
+          }
+        ],
+        "fingerprint": "6f72c8a77c42e1cb9ba8270e4cadb9953b5bd1966b940626dfca28049ef4b467"
+      },
+      "artifacts": [
+        {
+          "ref": "professor-program-product-499366-reviewed-evidence-v1",
+          "base64": "ewogICJ2ZXJzaW9uIjogIlRDR1BMQVlFUl9QUk9GRVNTT1JfUFJPR1JBTV9SRVZJRVdFRF9NQVBQSU5HX0VWSURFTkNFX1YxIiwKICAicmVhZGluZXNzX2ZpbmdlcnByaW50IjogIjQwMzM5NTI5MTBmNTNmYzA2Nzk3NGM1NTE3ZTEwMjkwMzM5OWUyMDJkYzZhZThiZGQyNjBiY2U5ZWVlMWE4MTUiLAogICJzb3VyY2Vfc3luY19ydW5faWQiOiAiOTA1YzllMDktYjY1OC00NGZlLWIzMmMtYzkxZmJmNmJkZTFlIiwKICAic291cmNlX3Byb2R1Y3QiOiB7CiAgICAicHJvZHVjdF9pZCI6IDQ5OTM2NiwKICAgICJjYXRlZ29yeV9pZCI6IDMsCiAgICAiZ3JvdXBfaWQiOiAyMzMyLAogICAgIm5hbWUiOiAiR3ltIFRyYWluZXIgKDIwMjIpIiwKICAgICJzb3VyY2VfdXJsIjogImh0dHBzOi8vd3d3LnRjZ3BsYXllci5jb20vcHJvZHVjdC80OTkzNjYvcG9rZW1vbi1wcm9mZXNzb3ItcHJvZ3JhbS1wcm9tb3MtZ3ltLXRyYWluZXItMjAyMiIsCiAgICAic291cmNlX21vZGlmaWVkX29uIjogIjIwMjMtMDYtMDdUMTU6NTA6MDcuMzczIiwKICAgICJleHRlbmRlZF9kYXRhIjogWwogICAgICB7CiAgICAgICAgIm5hbWUiOiAiTnVtYmVyIiwKICAgICAgICAidmFsdWUiOiAiMDU5LzA3MiIsCiAgICAgICAgImRpc3BsYXlOYW1lIjogIkNhcmQgTnVtYmVyIgogICAgICB9LAogICAgICB7CiAgICAgICAgIm5hbWUiOiAiUmFyaXR5IiwKICAgICAgICAidmFsdWUiOiAiUHJvbW8iLAogICAgICAgICJkaXNwbGF5TmFtZSI6ICJSYXJpdHkiCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAibmFtZSI6ICJDYXJkIFR5cGUiLAogICAgICAgICJ2YWx1ZSI6ICJTdXBwb3J0ZXIiLAogICAgICAgICJkaXNwbGF5TmFtZSI6ICJDYXJkIFR5cGUiCiAgICAgIH0sCiAgICAgIHsKICAgICAgICAibmFtZSI6ICJDYXJkVGV4dCIsCiAgICAgICAgInZhbHVlIjogIkRyYXcgMiBjYXJkcy4gSWYgYW55IG9mIHlvdXIgUG9rw6ltb24gd2VyZSBLbm9ja2VkIE91dCBkdXJpbmcgeW91ciBvcHBvbmVudCdzIGxhc3QgdHVybiwgZHJhdyAyIG1vcmUgY2FyZHMuXHJcbjxicj48YnI+XHJcbllvdSBtYXkgcGxheSBvbmx5IDEgU3VwcG9ydGVyIGNhcmQgZHVyaW5nIHlvdXIgdHVybi4iLAogICAgICAgICJkaXNwbGF5TmFtZSI6ICJDYXJkIFRleHQiCiAgICAgIH0KICAgIF0sCiAgICAicGF5bG9hZF9oYXNoIjogIjRmNDgyZjNjZDg3NDY4ZjU5NjMzNDViZjlmYmVhNjIwODJkNjcxNDEyZDZhZWRmYWViODI2MmU3ZmUzNWI3NGYiLAogICAgImxhc3Rfc2Vlbl9hdCI6ICIyMDI2LTExLTA1VDA4OjQwOjI4LjEwOVoiLAogICAgImxhc3Rfc2Vlbl9ydW5faWQiOiAiOTA1YzllMDktYjY1OC00NGZlLWIzMmMtYzkxZmJmNmJkZTFlIiwKICAgICJzb3VyY2VfYWN0aXZlIjogdHJ1ZSwKICAgICJjYXRhbG9nX21ldGFkYXRhX3N0YXR1cyI6ICJjdXJyZW50IgogIH0sCiAgImxhdGVzdF9vYnNlcnZhdGlvbnMiOiBbCiAgICB7CiAgICAgICJpZCI6ICJjM2I5ZmFlMS0yMWQ4LTQ0YmMtOTEzMS03M2Q1ZTZjYmU0Y2QiLAogICAgICAicHJvZHVjdF9pZCI6IDQ5OTM2NiwKICAgICAgInN1YnR5cGVfbmFtZSI6ICJSZXZlcnNlIEhvbG9mb2lsIiwKICAgICAgIm9ic2VydmVkX29uIjogIjIwMjYtMTEtMDVUMDc6MDA6MDAuMDAwWiIsCiAgICAgICJsb3dfcHJpY2UiOiAiMTAuOTYiLAogICAgICAibWlkX3ByaWNlIjogIjE0LjA5IiwKICAgICAgImhpZ2hfcHJpY2UiOiAiMjMiLAogICAgICAibWFya2V0X3ByaWNlIjogIjE0LjE5IiwKICAgICAgImRpcmVjdF9sb3dfcHJpY2UiOiBudWxsLAogICAgICAiY3VycmVuY3kiOiAiVVNEIiwKICAgICAgInBheWxvYWRfaGFzaCI6ICIyYzNkNTNlMmQzMTZhMjEwMWQyZjJhNzBhMGVmNWFmZTdjMTEzM2VkMDJkNjY5YzQyN2IxZGNlNWQ1ZTM1YWYyIiwKICAgICAgImxhc3Rfb2JzZXJ2ZWRfYXQiOiAiMjAyNi0xMS0wNVQwODo0MDoyOC42MDJaIiwKICAgICAgImxhc3Rfc2Vlbl9ydW5faWQiOiAiOTA1YzllMDktYjY1OC00NGZlLWIzMmMtYzkxZmJmNmJkZTFlIgogICAgfQogIF0sCiAgInRhcmdldF9wYXJlbnQiOiB7CiAgICAiaWQiOiAiOGYyMmM0ZWYtMzIwZC00NWNkLTg5MzgtNGFhODRhY2E3NDBlIiwKICAgICJzZXRfaWQiOiAiNjMzNWFiNzUtNGU5ZC00ZTRjLTg5NTUtMjYxZjUyODhjYTdjIiwKICAgICJzZXRfY29kZSI6ICJzd3NoNC41IiwKICAgICJuYW1lIjogIkd5bSBUcmFpbmVyIiwKICAgICJudW1iZXIiOiAiNTkiLAogICAgInZhcmlhbnRfa2V5IjogInByb2Zlc3Nvcl9wcm9ncmFtX3N0YW1wIiwKICAgICJndl9pZCI6ICJHVi1QSy1TSEYtNTktUFJPRkVTU09SLVBST0dSQU0iLAogICAgImlkZW50aXR5X2RvbWFpbiI6ICJwb2tlbW9uX2VuZ19zdGFuZGFyZCIsCiAgICAicHJpbnRlZF9pZGVudGl0eV9tb2RpZmllciI6ICJwcm9mZXNzb3JfcHJvZ3JhbV9zdGFtcCIsCiAgICAiYWN0aXZlX3N0YW5kYXJkX2lkZW50aXR5X2NvdW50IjogMQogIH0sCiAgInRhcmdldF9jaGlsZCI6IHsKICAgICJpZCI6ICIyZjAyZWEwMC02ZjFlLTQ4MGQtODc2Ni1lZGIyYTQ2OGQ3MmYiLAogICAgImNhcmRfcHJpbnRfaWQiOiAiOGYyMmM0ZWYtMzIwZC00NWNkLTg5MzgtNGFhODRhY2E3NDBlIiwKICAgICJmaW5pc2hfa2V5IjogInJldmVyc2UiLAogICAgInByaW50aW5nX2d2X2lkIjogIkdWLVBLLVNIRi01OS1QUk9GRVNTT1ItUFJPR1JBTS1SSCIsCiAgICAiaXNfcHJvdmlzaW9uYWwiOiBmYWxzZSwKICAgICJwcm92ZW5hbmNlX3NvdXJjZSI6ICJ0Y2dwbGF5ZXJfcHJvZmVzc29yX3Byb2dyYW1fY2F0YWxvZ19yZXBhaXJfdjEiLAogICAgInByb3ZlbmFuY2VfcmVmIjogInRjZ3BsYXllcjo0OTkzNjY6cHJvZmVzc29yX3Byb2dyYW1fc3RhbXA6cmV2ZXJzZSIsCiAgICAiZmluaXNoX2FjdGl2ZSI6IHRydWUsCiAgICAiYWN0aXZlX3RydXRoX3JldmlldyI6ICJ2ZXJpZmllZCIsCiAgICAicHVibGljX3Zpc2liaWxpdHkiOiAidmlzaWJsZSIsCiAgICAicHVibGljX3Zpc2libGUiOiB0cnVlCiAgfSwKICAiZXhpc3RpbmdfbWFwcGluZ3MiOiBbXSwKICAiYWN0aXZlX3B1YmxpY2F0aW9uX292ZXJsYXAiOiBbXSwKICAiY2FuZGlkYXRlX2ZpbmdlcnByaW50IjogImE1M2U4MjkwMGVkMmE1NGVlMzlkYzc5NDI3MWZkZmNmMTZiZTYwNTQ1NTI4MmQxODkxYjg3ZWEzNWFlZjg3MmQiCn0K"
+        },
+        {
+          "ref": "review:swsh4.5:professor-program-499366",
+          "base64": "ewogICJzdGF0dXMiOiAidmVyaWZpZWRfc2NvcGUiLAogICJtYXN0ZXJfaW5kZXhfc2hhMjU2IjogIjc2OTVlMjgxYTU1NTZlMjIzMzBmYzA5MDUxNGQwZWUzMDdkMjc4ODEzMWRmYTg1ZTkyNDU3YzJmM2IyNjE1ZDQiLAogICJnYW1lIjogInBva2Vtb24iLAogICJsYW5ndWFnZSI6ICJlbiIsCiAgInNldF9jb2RlIjogInN3c2g0LjUiLAogICJzY29wZSI6ICJ2ZXJpZmllZF9wYXJlbnRfZmFtaWxpZXMiLAogICJyZXZpZXdlciI6ICJDb2RleCBzb3VyY2UgYWRqdWRpY2F0aW9uOyBub3QgZm91bmRlciBtdXRhdGlvbiBhcHByb3ZhbCIsCiAgInJldmlld2VkX2F0IjogIjIwMjYtMTEtMDZUMDY6NTI6MDAuMDAwWiIsCiAgInByb2plY3Rpb25fc2hhMjU2IjogImMzNmE3OWVjYTU4MjU4MmE2NzYwMGIyMGM2MmRlZjRiNmRlODg1YzdlYzhkMzgzMmFkZDUzYTVhNWU1M2QwM2YiLAogICJyZWFzb25pbmciOiBbCiAgICAiVGhlIGZyb3plbiBwcm9kdWN0LXNwZWNpZmljIHJlZ2lzdHJ5IGJpbmRzIHRoZSBleGFjdCBUQ0dQbGF5ZXIgcHJvZHVjdCB0byBvbmUgUHJvZmVzc29yIFByb2dyYW0gc3RhbXBlZCBwYXJlbnQuIiwKICAgICJUaGUgbGl2ZSByZWFkaW5lc3MgYXVkaXQgcHJvdmVzIG9uZSBhY3RpdmUgRW5nbGlzaCBwaHlzaWNhbCBpZGVudGl0eSBhbmQgb25lIHZlcmlmaWVkIHZpc2libGUgY2hpbGQgbWF0Y2hpbmcgdGhlIHNvdXJjZSBmaW5pc2guIiwKICAgICJObyBzb3VyY2Ugb3IgdGFyZ2V0IG1hcHBpbmcgaGlzdG9yeSBhbmQgbm8gYWN0aXZlIHB1YmxpY2F0aW9uIG92ZXJsYXAgZXhpc3QgZm9yIHRoaXMgcHJvZHVjdC4iLAogICAgIlByb2Zlc3NvciBTeWNhbW9yZSBwcm9kdWN0IDE3NjYzOCByZW1haW5zIGV4Y2x1ZGVkIGJlY2F1c2UgaXRzIHJlcXVpcmVkIFJldmVyc2UgY2hpbGQgY29uZmxpY3RzIHdpdGggdGhlIGV4aXN0aW5nIEhvbG8gY2hpbGQuIiwKICAgICJUaGlzIGV2aWRlbmNlIHJldmlldyBkb2VzIG5vdCBhdXRob3JpemUgYSBkdXJhYmxlIGRhdGFiYXNlIG11dGF0aW9uLiIKICBdLAogICJtdXRhdGlvbl9hdXRob3JpdHkiOiBmYWxzZQp9Cg=="
+        },
+        {
+          "ref": "swsh4.5-professor-program-mapping-projection-v1",
+          "base64": "ewogICJ2ZXJzaW9uIjogIlRDR1BMQVlFUl9QUk9GRVNTT1JfUFJPR1JBTV9NQVNURVJfSU5ERVhfUFJPSkVDVElPTl9WMSIsCiAgInJlYWRpbmVzc19maW5nZXJwcmludCI6ICI0MDMzOTUyOTEwZjUzZmMwNjc5NzRjNTUxN2UxMDI5MDMzOTllMjAyZGM2YWU4YmRkMjYwYmNlOWVlZTFhODE1IiwKICAic291cmNlX3Byb2R1Y3RfaWQiOiA0OTkzNjYsCiAgInRhcmdldCI6IHsKICAgICJjYXJkX3ByaW50X2lkIjogIjhmMjJjNGVmLTMyMGQtNDVjZC04OTM4LTRhYTg0YWNhNzQwZSIsCiAgICAiZ3ZfaWQiOiAiR1YtUEstU0hGLTU5LVBST0ZFU1NPUi1QUk9HUkFNIiwKICAgICJzZXRfaWQiOiAiNjMzNWFiNzUtNGU5ZC00ZTRjLTg5NTUtMjYxZjUyODhjYTdjIiwKICAgICJzZXRfY29kZSI6ICJzd3NoNC41IiwKICAgICJuYW1lIjogIkd5bSBUcmFpbmVyIiwKICAgICJudW1iZXIiOiAiNTkiLAogICAgInZhcmlhbnRfa2V5IjogInByb2Zlc3Nvcl9wcm9ncmFtX3N0YW1wIgogIH0sCiAgInByaW50aW5nIjogewogICAgInByaW50aW5nX2lkIjogIjJmMDJlYTAwLTZmMWUtNDgwZC04NzY2LWVkYjJhNDY4ZDcyZiIsCiAgICAiZmluaXNoX2tleSI6ICJyZXZlcnNlIiwKICAgICJwcmludGluZ19ndl9pZCI6ICJHVi1QSy1TSEYtNTktUFJPRkVTU09SLVBST0dSQU0tUkgiLAogICAgInByb3ZlbmFuY2Vfc291cmNlIjogInRjZ3BsYXllcl9wcm9mZXNzb3JfcHJvZ3JhbV9jYXRhbG9nX3JlcGFpcl92MSIsCiAgICAicHJvdmVuYW5jZV9yZWYiOiAidGNncGxheWVyOjQ5OTM2Njpwcm9mZXNzb3JfcHJvZ3JhbV9zdGFtcDpyZXZlcnNlIgogIH0KfQo="
+        }
+      ]
+    }
+  ],
+  "fingerprint": "bf303b057f8ad77e148f447dd847f302b543ddab0eec85b808e4085e38a26915"
+}

@@ -1,0 +1,10 @@
+{
+  "version": "MASTER_INDEX_MAPPING_PACKAGE_RECEIPT_V1",
+  "authority_fingerprint": "bf303b057f8ad77e148f447dd847f302b543ddab0eec85b808e4085e38a26915",
+  "authority_file_sha256": "bc28572365c365fd4d82d241061a35816246a14a396214f8752d6dc92a1db13e",
+  "selected_file_sha256": "49e845552c5b34650ade6e4b78b558e71d7e9d3a86c15a69163c2b4a981df957",
+  "selected_count": 7,
+  "scope_count": 7,
+  "execution_authorized": false,
+  "database_writes": 0
+}

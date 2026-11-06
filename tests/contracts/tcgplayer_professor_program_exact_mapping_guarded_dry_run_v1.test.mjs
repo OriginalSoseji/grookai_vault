@@ -10,6 +10,10 @@ const SCRIPT = fs.readFileSync(
   new URL("../../scripts/audits/tcgplayer_professor_program_exact_mapping_guarded_dry_run_v1.mjs", import.meta.url),
   "utf8",
 );
+const RECEIPT = JSON.parse(fs.readFileSync(
+  new URL("../../docs/audits/pricing/tcgplayer_professor_program_exact_mapping_20261106_v1/guarded_dry_run.json", import.meta.url),
+  "utf8",
+));
 
 test("Professor Program exact mapping rehearsal freezes the intended seven products", () => {
   assert.deepEqual(
@@ -50,4 +54,19 @@ test("Professor Program package keeps pricing and publication outside the write 
   assert.match(SCRIPT, /deletes: 0/);
   assert.match(SCRIPT, /migrations: 0/);
   assert.match(SCRIPT, /separate_exact_founder_approval/);
+});
+
+test("checked-in Professor Program rehearsal proves zero durable mappings", () => {
+  assert.equal(RECEIPT.package_id, "TCGPLAYER-PROFESSOR-PROGRAM-EXACT-MAPPING-V1");
+  assert.equal(RECEIPT.package_fingerprint_sha256,
+    "302c082a0d821c57f1fa0d66630d03adf1bfcd29033a102c59cb0e1480cff521");
+  assert.deepEqual(RECEIPT.source_product_ids,
+    [176629, 176630, 176631, 176632, 176633, 213516, 499366]);
+  assert.equal(RECEIPT.proof.transient_mapping_inserts, 7);
+  assert.equal(RECEIPT.proof.rollback_acknowledged, true);
+  assert.equal(RECEIPT.proof.before_snapshot.hash_sha256,
+    RECEIPT.proof.after_rollback_snapshot.hash_sha256);
+  assert.deepEqual(RECEIPT.proof.after_rollback_snapshot.rows, []);
+  assert.equal(RECEIPT.execution.durable_database_writes, 0);
+  assert.equal(RECEIPT.execution.execution_authorized, false);
 });
