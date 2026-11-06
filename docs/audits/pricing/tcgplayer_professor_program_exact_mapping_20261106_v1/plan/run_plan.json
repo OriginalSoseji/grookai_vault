@@ -1,0 +1,18 @@
+{
+  "version": "TCGPLAYER_MARKET_EXACT_MAPPING_RUN_PLAN_V1",
+  "mode": "read_only_dry_run",
+  "commit_sha": "ea15d95e9d09bb37943c07a4049e79b8486fa7d2",
+  "branch": "ops/professor-program-mapping-proof-20261106",
+  "tracked_worktree_clean": true,
+  "source_sync_run_id": "905c9e09-b658-44fe-b32c-c91fbf6bde1e",
+  "database_target": {
+    "kind": "production_project",
+    "project_ref": "ycdxbpibncqcchqiihfz"
+  },
+  "batch": {
+    "index": 1,
+    "total": 1,
+    "offset": 0,
+    "size": 7
+  }
+}
