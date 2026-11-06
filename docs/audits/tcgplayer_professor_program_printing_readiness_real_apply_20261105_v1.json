@@ -1,0 +1,768 @@
+{
+  "generated_at": "2026-11-06T06:01:07.038Z",
+  "version": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_REAL_APPLY_V1",
+  "package_id": "TCGPLAYER-PROFESSOR-PROGRAM-PRINTING-READINESS-REPAIR-V1",
+  "package_fingerprint_sha256": "b9e2818bebd307b37649a3ee5a377e4832bb0bb8d6fb310b0849def5bced89f5",
+  "production_project_ref": "ycdxbpibncqcchqiihfz",
+  "approved_source_commit": "2141c0ecc64f05e262821b0ef9c7fbed36006b9e",
+  "approval_sha256": "34fd4e447ed39830671677b56d592c1d344d5cc2372bec73fc3211d78ae0cdd3",
+  "dry_run_artifact": "docs/audits/tcgplayer_professor_program_printing_readiness_guarded_dry_run_20261105_v1.json",
+  "dry_run_artifact_sha256": "30814a73686d5085b8365643abd8359dbef07cca860e57524dfb31572f9b24cf",
+  "dry_run_rollback_proof": "7b59b57d5e38982fb9353b447980508a24b2ddddebcafbeef805a31d4b5188d0 == 7b59b57d5e38982fb9353b447980508a24b2ddddebcafbeef805a31d4b5188d0",
+  "execution": {
+    "status": "applied_and_verified",
+    "committed": true,
+    "exact_readback": true,
+    "counts": {
+      "targets": 7,
+      "printing_gv_id_updates": 3,
+      "truth_review_inserts": 7,
+      "mapping_writes": 0,
+      "pricing_writes": 0,
+      "publication_writes": 0,
+      "parent_writes": 0,
+      "identity_writes": 0,
+      "deletes": 0,
+      "merges": 0,
+      "migrations": 0
+    },
+    "guard": {
+      "active_mapping_count": 0,
+      "active_publication_overlap_count": 0
+    },
+    "readback_guard": {
+      "active_mapping_count": 0,
+      "active_publication_overlap_count": 0
+    },
+    "before_snapshot": {
+      "captured_at": "2026-11-06T06:01:04.001Z",
+      "printings": [
+        {
+          "id": "04cf4fa5-ea7a-434c-a558-7b53e95a4a93",
+          "card_print_id": "c98e4f39-59fc-4ec1-bfc5-c34f28a25f3c",
+          "finish_key": "reverse",
+          "printing_gv_id": "GV-PK-BW5-98-PROFESSOR-PROGRAM-STAMP-RH",
+          "is_provisional": false,
+          "provenance_source": "verified_master_index_v1",
+          "provenance_ref": "bw5:98:professor_program_stamp:reverse"
+        },
+        {
+          "id": "235db02c-1431-42ba-a973-43cb6d89b38d",
+          "card_print_id": "baa63e55-c8aa-4936-8c9a-63de29e75c16",
+          "finish_key": "normal",
+          "printing_gv_id": null,
+          "is_provisional": false,
+          "provenance_source": "tcgplayer_professor_program_catalog_repair_v1",
+          "provenance_ref": "tcgplayer:176631:professor_program_stamp:normal"
+        },
+        {
+          "id": "2f02ea00-6f1e-480d-8766-edb2a468d72f",
+          "card_print_id": "8f22c4ef-320d-45cd-8938-4aa84aca740e",
+          "finish_key": "reverse",
+          "printing_gv_id": null,
+          "is_provisional": false,
+          "provenance_source": "tcgplayer_professor_program_catalog_repair_v1",
+          "provenance_ref": "tcgplayer:499366:professor_program_stamp:reverse"
+        },
+        {
+          "id": "820ba0fb-cc4a-4460-ada6-66fdeb1185b9",
+          "card_print_id": "ed61ea12-90af-4250-b089-e2b31fc2fdce",
+          "finish_key": "holo",
+          "printing_gv_id": "GV-PK-EX9-82-PROFESSOR-PROGRAM-STAMP-HOLO",
+          "is_provisional": false,
+          "provenance_source": "verified_master_index_v1",
+          "provenance_ref": "ex9:82:professor_program_stamp:holo"
+        },
+        {
+          "id": "8b0cf097-ef28-42aa-a3f2-f8665f863726",
+          "card_print_id": "12cad852-d079-44cc-9438-e806aede97ff",
+          "finish_key": "reverse",
+          "printing_gv_id": "GV-PK-BW1-101-PROFESSOR-PROGRAM-STAMP-RH",
+          "is_provisional": false,
+          "provenance_source": "verified_master_index_v1",
+          "provenance_ref": "bw1:101:professor_program_stamp:reverse"
+        },
+        {
+          "id": "bfe26a71-5c95-4e97-8b12-ef6afa0b2dc6",
+          "card_print_id": "ea08d28d-8267-4db9-859c-64ffd048792f",
+          "finish_key": "reverse",
+          "printing_gv_id": "GV-PK-FLI-108-PROFESSOR-PROGRAM-STAMP-RH",
+          "is_provisional": false,
+          "provenance_source": "verified_master_set_index_v1",
+          "provenance_ref": "sm6:108:stamped_identity:professor_program_stamp:reverse"
+        },
+        {
+          "id": "eb9b3f39-760f-4b77-a3b1-c486b4a4e4c3",
+          "card_print_id": "e402c8fc-563b-49e3-a198-6a5fe5f75cda",
+          "finish_key": "normal",
+          "printing_gv_id": null,
+          "is_provisional": false,
+          "provenance_source": "tcgplayer_professor_program_catalog_repair_v1",
+          "provenance_ref": "tcgplayer:176629:professor_program_stamp:normal"
+        }
+      ],
+      "reviews": [],
+      "hash_sha256": "7b59b57d5e38982fb9353b447980508a24b2ddddebcafbeef805a31d4b5188d0"
+    },
+    "after_commit_snapshot": {
+      "captured_at": "2026-11-06T06:01:05.579Z",
+      "printings": [
+        {
+          "id": "04cf4fa5-ea7a-434c-a558-7b53e95a4a93",
+          "card_print_id": "c98e4f39-59fc-4ec1-bfc5-c34f28a25f3c",
+          "finish_key": "reverse",
+          "printing_gv_id": "GV-PK-BW5-98-PROFESSOR-PROGRAM-STAMP-RH",
+          "is_provisional": false,
+          "provenance_source": "verified_master_index_v1",
+          "provenance_ref": "bw5:98:professor_program_stamp:reverse"
+        },
+        {
+          "id": "235db02c-1431-42ba-a973-43cb6d89b38d",
+          "card_print_id": "baa63e55-c8aa-4936-8c9a-63de29e75c16",
+          "finish_key": "normal",
+          "printing_gv_id": "GV-PK-SW-122-PROFESSOR-PROGRAM-STD",
+          "is_provisional": false,
+          "provenance_source": "tcgplayer_professor_program_catalog_repair_v1",
+          "provenance_ref": "tcgplayer:176631:professor_program_stamp:normal"
+        },
+        {
+          "id": "2f02ea00-6f1e-480d-8766-edb2a468d72f",
+          "card_print_id": "8f22c4ef-320d-45cd-8938-4aa84aca740e",
+          "finish_key": "reverse",
+          "printing_gv_id": "GV-PK-SHF-59-PROFESSOR-PROGRAM-RH",
+          "is_provisional": false,
+          "provenance_source": "tcgplayer_professor_program_catalog_repair_v1",
+          "provenance_ref": "tcgplayer:499366:professor_program_stamp:reverse"
+        },
+        {
+          "id": "820ba0fb-cc4a-4460-ada6-66fdeb1185b9",
+          "card_print_id": "ed61ea12-90af-4250-b089-e2b31fc2fdce",
+          "finish_key": "holo",
+          "printing_gv_id": "GV-PK-EX9-82-PROFESSOR-PROGRAM-STAMP-HOLO",
+          "is_provisional": false,
+          "provenance_source": "verified_master_index_v1",
+          "provenance_ref": "ex9:82:professor_program_stamp:holo"
+        },
+        {
+          "id": "8b0cf097-ef28-42aa-a3f2-f8665f863726",
+          "card_print_id": "12cad852-d079-44cc-9438-e806aede97ff",
+          "finish_key": "reverse",
+          "printing_gv_id": "GV-PK-BW1-101-PROFESSOR-PROGRAM-STAMP-RH",
+          "is_provisional": false,
+          "provenance_source": "verified_master_index_v1",
+          "provenance_ref": "bw1:101:professor_program_stamp:reverse"
+        },
+        {
+          "id": "bfe26a71-5c95-4e97-8b12-ef6afa0b2dc6",
+          "card_print_id": "ea08d28d-8267-4db9-859c-64ffd048792f",
+          "finish_key": "reverse",
+          "printing_gv_id": "GV-PK-FLI-108-PROFESSOR-PROGRAM-STAMP-RH",
+          "is_provisional": false,
+          "provenance_source": "verified_master_set_index_v1",
+          "provenance_ref": "sm6:108:stamped_identity:professor_program_stamp:reverse"
+        },
+        {
+          "id": "eb9b3f39-760f-4b77-a3b1-c486b4a4e4c3",
+          "card_print_id": "e402c8fc-563b-49e3-a198-6a5fe5f75cda",
+          "finish_key": "normal",
+          "printing_gv_id": "GV-PK-RG-98-PROFESSOR-PROGRAM-STD",
+          "is_provisional": false,
+          "provenance_source": "tcgplayer_professor_program_catalog_repair_v1",
+          "provenance_ref": "tcgplayer:176629:professor_program_stamp:normal"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "d5308864-50d7-525c-85ce-c965f45e30bc",
+          "card_printing_id": "04cf4fa5-ea7a-434c-a558-7b53e95a4a93",
+          "review_status": "verified",
+          "public_visibility": "visible",
+          "active": true,
+          "reason": "Exact Professor Program stamped printing and finish verified by the approved catalog-repair evidence chain; review is limited to this source product, parent, child, and finish.",
+          "confidence": "high",
+          "expected_finish_keys": [
+            "reverse"
+          ],
+          "evidence": {
+            "version": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_REAL_APPLY_V1",
+            "finish_key": "reverse",
+            "printing_id": "04cf4fa5-ea7a-434c-a558-7b53e95a4a93",
+            "card_print_id": "c98e4f39-59fc-4ec1-bfc5-c34f28a25f3c",
+            "printing_gv_id": "GV-PK-BW5-98-PROFESSOR-PROGRAM-STAMP-RH",
+            "source_artifacts": [
+              {
+                "path": "docs/audits/tcgplayer_professor_program_mapping_readiness_20261105_v1.json",
+                "sha256": "5f6add5a69ac881ac51ba05e0dd8f74eb61ea47bb6ac82f69a7daf9fa2272553"
+              },
+              {
+                "path": "docs/audits/tcgplayer_professor_program_catalog_repair_real_apply_20261105_v1.json",
+                "sha256": "621c88ed0f12a1868f2d17e7eefccf13dce821cbc75162f9386b7c5936f4c515"
+              },
+              {
+                "path": "docs/audits/tcgplayer_professor_program_parent_insert_readiness_20261031_v1.json",
+                "sha256": "531d87193c35f140452215c7cb96f830aea7e5b444ab6082a43669d95100e2e1"
+              }
+            ],
+            "source_product_id": 176632,
+            "package_fingerprint": "b9e2818bebd307b37649a3ee5a377e4832bb0bb8d6fb310b0849def5bced89f5"
+          },
+          "reviewed_by": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_REAL_APPLY_V1",
+          "reviewed_at": "2026-11-06T06:01:05.070Z"
+        },
+        {
+          "id": "3bf3cc03-8f90-5da2-8faa-a7a7f721e4c8",
+          "card_printing_id": "235db02c-1431-42ba-a973-43cb6d89b38d",
+          "review_status": "verified",
+          "public_visibility": "visible",
+          "active": true,
+          "reason": "Exact Professor Program stamped printing and finish verified by the approved catalog-repair evidence chain; review is limited to this source product, parent, child, and finish.",
+          "confidence": "high",
+          "expected_finish_keys": [
+            "normal"
+          ],
+          "evidence": {
+            "version": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_REAL_APPLY_V1",
+            "finish_key": "normal",
+            "printing_id": "235db02c-1431-42ba-a973-43cb6d89b38d",
+            "card_print_id": "baa63e55-c8aa-4936-8c9a-63de29e75c16",
+            "printing_gv_id": "GV-PK-SW-122-PROFESSOR-PROGRAM-STD",
+            "source_artifacts": [
+              {
+                "path": "docs/audits/tcgplayer_professor_program_mapping_readiness_20261105_v1.json",
+                "sha256": "5f6add5a69ac881ac51ba05e0dd8f74eb61ea47bb6ac82f69a7daf9fa2272553"
+              },
+              {
+                "path": "docs/audits/tcgplayer_professor_program_catalog_repair_real_apply_20261105_v1.json",
+                "sha256": "621c88ed0f12a1868f2d17e7eefccf13dce821cbc75162f9386b7c5936f4c515"
+              },
+              {
+                "path": "docs/audits/tcgplayer_professor_program_parent_insert_readiness_20261031_v1.json",
+                "sha256": "531d87193c35f140452215c7cb96f830aea7e5b444ab6082a43669d95100e2e1"
+              }
+            ],
+            "source_product_id": 176631,
+            "package_fingerprint": "b9e2818bebd307b37649a3ee5a377e4832bb0bb8d6fb310b0849def5bced89f5"
+          },
+          "reviewed_by": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_REAL_APPLY_V1",
+          "reviewed_at": "2026-11-06T06:01:05.070Z"
+        },
+        {
+          "id": "69dc5650-4313-5aaf-816e-534b765f1bf4",
+          "card_printing_id": "2f02ea00-6f1e-480d-8766-edb2a468d72f",
+          "review_status": "verified",
+          "public_visibility": "visible",
+          "active": true,
+          "reason": "Exact Professor Program stamped printing and finish verified by the approved catalog-repair evidence chain; review is limited to this source product, parent, child, and finish.",
+          "confidence": "high",
+          "expected_finish_keys": [
+            "reverse"
+          ],
+          "evidence": {
+            "version": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_REAL_APPLY_V1",
+            "finish_key": "reverse",
+            "printing_id": "2f02ea00-6f1e-480d-8766-edb2a468d72f",
+            "card_print_id": "8f22c4ef-320d-45cd-8938-4aa84aca740e",
+            "printing_gv_id": "GV-PK-SHF-59-PROFESSOR-PROGRAM-RH",
+            "source_artifacts": [
+              {
+                "path": "docs/audits/tcgplayer_professor_program_mapping_readiness_20261105_v1.json",
+                "sha256": "5f6add5a69ac881ac51ba05e0dd8f74eb61ea47bb6ac82f69a7daf9fa2272553"
+              },
+              {
+                "path": "docs/audits/tcgplayer_professor_program_catalog_repair_real_apply_20261105_v1.json",
+                "sha256": "621c88ed0f12a1868f2d17e7eefccf13dce821cbc75162f9386b7c5936f4c515"
+              },
+              {
+                "path": "docs/audits/tcgplayer_professor_program_parent_insert_readiness_20261031_v1.json",
+                "sha256": "531d87193c35f140452215c7cb96f830aea7e5b444ab6082a43669d95100e2e1"
+              }
+            ],
+            "source_product_id": 499366,
+            "package_fingerprint": "b9e2818bebd307b37649a3ee5a377e4832bb0bb8d6fb310b0849def5bced89f5"
+          },
+          "reviewed_by": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_REAL_APPLY_V1",
+          "reviewed_at": "2026-11-06T06:01:05.070Z"
+        },
+        {
+          "id": "20429a21-3df6-5c8f-8943-e1415223cdeb",
+          "card_printing_id": "820ba0fb-cc4a-4460-ada6-66fdeb1185b9",
+          "review_status": "verified",
+          "public_visibility": "visible",
+          "active": true,
+          "reason": "Exact Professor Program stamped printing and finish verified by the approved catalog-repair evidence chain; review is limited to this source product, parent, child, and finish.",
+          "confidence": "high",
+          "expected_finish_keys": [
+            "holo"
+          ],
+          "evidence": {
+            "version": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_REAL_APPLY_V1",
+            "finish_key": "holo",
+            "printing_id": "820ba0fb-cc4a-4460-ada6-66fdeb1185b9",
+            "card_print_id": "ed61ea12-90af-4250-b089-e2b31fc2fdce",
+            "printing_gv_id": "GV-PK-EX9-82-PROFESSOR-PROGRAM-STAMP-HOLO",
+            "source_artifacts": [
+              {
+                "path": "docs/audits/tcgplayer_professor_program_mapping_readiness_20261105_v1.json",
+                "sha256": "5f6add5a69ac881ac51ba05e0dd8f74eb61ea47bb6ac82f69a7daf9fa2272553"
+              },
+              {
+                "path": "docs/audits/tcgplayer_professor_program_catalog_repair_real_apply_20261105_v1.json",
+                "sha256": "621c88ed0f12a1868f2d17e7eefccf13dce821cbc75162f9386b7c5936f4c515"
+              },
+              {
+                "path": "docs/audits/tcgplayer_professor_program_parent_insert_readiness_20261031_v1.json",
+                "sha256": "531d87193c35f140452215c7cb96f830aea7e5b444ab6082a43669d95100e2e1"
+              }
+            ],
+            "source_product_id": 176630,
+            "package_fingerprint": "b9e2818bebd307b37649a3ee5a377e4832bb0bb8d6fb310b0849def5bced89f5"
+          },
+          "reviewed_by": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_REAL_APPLY_V1",
+          "reviewed_at": "2026-11-06T06:01:05.070Z"
+        },
+        {
+          "id": "42025a68-bc9d-53fc-85b9-0f6aafa45abe",
+          "card_printing_id": "8b0cf097-ef28-42aa-a3f2-f8665f863726",
+          "review_status": "verified",
+          "public_visibility": "visible",
+          "active": true,
+          "reason": "Exact Professor Program stamped printing and finish verified by the approved catalog-repair evidence chain; review is limited to this source product, parent, child, and finish.",
+          "confidence": "high",
+          "expected_finish_keys": [
+            "reverse"
+          ],
+          "evidence": {
+            "version": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_REAL_APPLY_V1",
+            "finish_key": "reverse",
+            "printing_id": "8b0cf097-ef28-42aa-a3f2-f8665f863726",
+            "card_print_id": "12cad852-d079-44cc-9438-e806aede97ff",
+            "printing_gv_id": "GV-PK-BW1-101-PROFESSOR-PROGRAM-STAMP-RH",
+            "source_artifacts": [
+              {
+                "path": "docs/audits/tcgplayer_professor_program_mapping_readiness_20261105_v1.json",
+                "sha256": "5f6add5a69ac881ac51ba05e0dd8f74eb61ea47bb6ac82f69a7daf9fa2272553"
+              },
+              {
+                "path": "docs/audits/tcgplayer_professor_program_catalog_repair_real_apply_20261105_v1.json",
+                "sha256": "621c88ed0f12a1868f2d17e7eefccf13dce821cbc75162f9386b7c5936f4c515"
+              },
+              {
+                "path": "docs/audits/tcgplayer_professor_program_parent_insert_readiness_20261031_v1.json",
+                "sha256": "531d87193c35f140452215c7cb96f830aea7e5b444ab6082a43669d95100e2e1"
+              }
+            ],
+            "source_product_id": 176633,
+            "package_fingerprint": "b9e2818bebd307b37649a3ee5a377e4832bb0bb8d6fb310b0849def5bced89f5"
+          },
+          "reviewed_by": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_REAL_APPLY_V1",
+          "reviewed_at": "2026-11-06T06:01:05.070Z"
+        },
+        {
+          "id": "8d6b0e38-a5b6-5c25-8a57-99f3e668d88c",
+          "card_printing_id": "bfe26a71-5c95-4e97-8b12-ef6afa0b2dc6",
+          "review_status": "verified",
+          "public_visibility": "visible",
+          "active": true,
+          "reason": "Exact Professor Program stamped printing and finish verified by the approved catalog-repair evidence chain; review is limited to this source product, parent, child, and finish.",
+          "confidence": "high",
+          "expected_finish_keys": [
+            "reverse"
+          ],
+          "evidence": {
+            "version": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_REAL_APPLY_V1",
+            "finish_key": "reverse",
+            "printing_id": "bfe26a71-5c95-4e97-8b12-ef6afa0b2dc6",
+            "card_print_id": "ea08d28d-8267-4db9-859c-64ffd048792f",
+            "printing_gv_id": "GV-PK-FLI-108-PROFESSOR-PROGRAM-STAMP-RH",
+            "source_artifacts": [
+              {
+                "path": "docs/audits/tcgplayer_professor_program_mapping_readiness_20261105_v1.json",
+                "sha256": "5f6add5a69ac881ac51ba05e0dd8f74eb61ea47bb6ac82f69a7daf9fa2272553"
+              },
+              {
+                "path": "docs/audits/tcgplayer_professor_program_catalog_repair_real_apply_20261105_v1.json",
+                "sha256": "621c88ed0f12a1868f2d17e7eefccf13dce821cbc75162f9386b7c5936f4c515"
+              },
+              {
+                "path": "docs/audits/tcgplayer_professor_program_parent_insert_readiness_20261031_v1.json",
+                "sha256": "531d87193c35f140452215c7cb96f830aea7e5b444ab6082a43669d95100e2e1"
+              }
+            ],
+            "source_product_id": 213516,
+            "package_fingerprint": "b9e2818bebd307b37649a3ee5a377e4832bb0bb8d6fb310b0849def5bced89f5"
+          },
+          "reviewed_by": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_REAL_APPLY_V1",
+          "reviewed_at": "2026-11-06T06:01:05.070Z"
+        },
+        {
+          "id": "677982ca-1bb7-542b-86e4-b792c4cb9b83",
+          "card_printing_id": "eb9b3f39-760f-4b77-a3b1-c486b4a4e4c3",
+          "review_status": "verified",
+          "public_visibility": "visible",
+          "active": true,
+          "reason": "Exact Professor Program stamped printing and finish verified by the approved catalog-repair evidence chain; review is limited to this source product, parent, child, and finish.",
+          "confidence": "high",
+          "expected_finish_keys": [
+            "normal"
+          ],
+          "evidence": {
+            "version": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_REAL_APPLY_V1",
+            "finish_key": "normal",
+            "printing_id": "eb9b3f39-760f-4b77-a3b1-c486b4a4e4c3",
+            "card_print_id": "e402c8fc-563b-49e3-a198-6a5fe5f75cda",
+            "printing_gv_id": "GV-PK-RG-98-PROFESSOR-PROGRAM-STD",
+            "source_artifacts": [
+              {
+                "path": "docs/audits/tcgplayer_professor_program_mapping_readiness_20261105_v1.json",
+                "sha256": "5f6add5a69ac881ac51ba05e0dd8f74eb61ea47bb6ac82f69a7daf9fa2272553"
+              },
+              {
+                "path": "docs/audits/tcgplayer_professor_program_catalog_repair_real_apply_20261105_v1.json",
+                "sha256": "621c88ed0f12a1868f2d17e7eefccf13dce821cbc75162f9386b7c5936f4c515"
+              },
+              {
+                "path": "docs/audits/tcgplayer_professor_program_parent_insert_readiness_20261031_v1.json",
+                "sha256": "531d87193c35f140452215c7cb96f830aea7e5b444ab6082a43669d95100e2e1"
+              }
+            ],
+            "source_product_id": 176629,
+            "package_fingerprint": "b9e2818bebd307b37649a3ee5a377e4832bb0bb8d6fb310b0849def5bced89f5"
+          },
+          "reviewed_by": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_REAL_APPLY_V1",
+          "reviewed_at": "2026-11-06T06:01:05.070Z"
+        }
+      ],
+      "hash_sha256": "638221c2e2d3fa29afc0bef174ac8683be101928bd7942c17c4393e4994954a0"
+    },
+    "independent_readback_snapshot": {
+      "captured_at": "2026-11-06T06:01:06.447Z",
+      "printings": [
+        {
+          "id": "04cf4fa5-ea7a-434c-a558-7b53e95a4a93",
+          "card_print_id": "c98e4f39-59fc-4ec1-bfc5-c34f28a25f3c",
+          "finish_key": "reverse",
+          "printing_gv_id": "GV-PK-BW5-98-PROFESSOR-PROGRAM-STAMP-RH",
+          "is_provisional": false,
+          "provenance_source": "verified_master_index_v1",
+          "provenance_ref": "bw5:98:professor_program_stamp:reverse"
+        },
+        {
+          "id": "235db02c-1431-42ba-a973-43cb6d89b38d",
+          "card_print_id": "baa63e55-c8aa-4936-8c9a-63de29e75c16",
+          "finish_key": "normal",
+          "printing_gv_id": "GV-PK-SW-122-PROFESSOR-PROGRAM-STD",
+          "is_provisional": false,
+          "provenance_source": "tcgplayer_professor_program_catalog_repair_v1",
+          "provenance_ref": "tcgplayer:176631:professor_program_stamp:normal"
+        },
+        {
+          "id": "2f02ea00-6f1e-480d-8766-edb2a468d72f",
+          "card_print_id": "8f22c4ef-320d-45cd-8938-4aa84aca740e",
+          "finish_key": "reverse",
+          "printing_gv_id": "GV-PK-SHF-59-PROFESSOR-PROGRAM-RH",
+          "is_provisional": false,
+          "provenance_source": "tcgplayer_professor_program_catalog_repair_v1",
+          "provenance_ref": "tcgplayer:499366:professor_program_stamp:reverse"
+        },
+        {
+          "id": "820ba0fb-cc4a-4460-ada6-66fdeb1185b9",
+          "card_print_id": "ed61ea12-90af-4250-b089-e2b31fc2fdce",
+          "finish_key": "holo",
+          "printing_gv_id": "GV-PK-EX9-82-PROFESSOR-PROGRAM-STAMP-HOLO",
+          "is_provisional": false,
+          "provenance_source": "verified_master_index_v1",
+          "provenance_ref": "ex9:82:professor_program_stamp:holo"
+        },
+        {
+          "id": "8b0cf097-ef28-42aa-a3f2-f8665f863726",
+          "card_print_id": "12cad852-d079-44cc-9438-e806aede97ff",
+          "finish_key": "reverse",
+          "printing_gv_id": "GV-PK-BW1-101-PROFESSOR-PROGRAM-STAMP-RH",
+          "is_provisional": false,
+          "provenance_source": "verified_master_index_v1",
+          "provenance_ref": "bw1:101:professor_program_stamp:reverse"
+        },
+        {
+          "id": "bfe26a71-5c95-4e97-8b12-ef6afa0b2dc6",
+          "card_print_id": "ea08d28d-8267-4db9-859c-64ffd048792f",
+          "finish_key": "reverse",
+          "printing_gv_id": "GV-PK-FLI-108-PROFESSOR-PROGRAM-STAMP-RH",
+          "is_provisional": false,
+          "provenance_source": "verified_master_set_index_v1",
+          "provenance_ref": "sm6:108:stamped_identity:professor_program_stamp:reverse"
+        },
+        {
+          "id": "eb9b3f39-760f-4b77-a3b1-c486b4a4e4c3",
+          "card_print_id": "e402c8fc-563b-49e3-a198-6a5fe5f75cda",
+          "finish_key": "normal",
+          "printing_gv_id": "GV-PK-RG-98-PROFESSOR-PROGRAM-STD",
+          "is_provisional": false,
+          "provenance_source": "tcgplayer_professor_program_catalog_repair_v1",
+          "provenance_ref": "tcgplayer:176629:professor_program_stamp:normal"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "d5308864-50d7-525c-85ce-c965f45e30bc",
+          "card_printing_id": "04cf4fa5-ea7a-434c-a558-7b53e95a4a93",
+          "review_status": "verified",
+          "public_visibility": "visible",
+          "active": true,
+          "reason": "Exact Professor Program stamped printing and finish verified by the approved catalog-repair evidence chain; review is limited to this source product, parent, child, and finish.",
+          "confidence": "high",
+          "expected_finish_keys": [
+            "reverse"
+          ],
+          "evidence": {
+            "version": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_REAL_APPLY_V1",
+            "finish_key": "reverse",
+            "printing_id": "04cf4fa5-ea7a-434c-a558-7b53e95a4a93",
+            "card_print_id": "c98e4f39-59fc-4ec1-bfc5-c34f28a25f3c",
+            "printing_gv_id": "GV-PK-BW5-98-PROFESSOR-PROGRAM-STAMP-RH",
+            "source_artifacts": [
+              {
+                "path": "docs/audits/tcgplayer_professor_program_mapping_readiness_20261105_v1.json",
+                "sha256": "5f6add5a69ac881ac51ba05e0dd8f74eb61ea47bb6ac82f69a7daf9fa2272553"
+              },
+              {
+                "path": "docs/audits/tcgplayer_professor_program_catalog_repair_real_apply_20261105_v1.json",
+                "sha256": "621c88ed0f12a1868f2d17e7eefccf13dce821cbc75162f9386b7c5936f4c515"
+              },
+              {
+                "path": "docs/audits/tcgplayer_professor_program_parent_insert_readiness_20261031_v1.json",
+                "sha256": "531d87193c35f140452215c7cb96f830aea7e5b444ab6082a43669d95100e2e1"
+              }
+            ],
+            "source_product_id": 176632,
+            "package_fingerprint": "b9e2818bebd307b37649a3ee5a377e4832bb0bb8d6fb310b0849def5bced89f5"
+          },
+          "reviewed_by": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_REAL_APPLY_V1",
+          "reviewed_at": "2026-11-06T06:01:05.070Z"
+        },
+        {
+          "id": "3bf3cc03-8f90-5da2-8faa-a7a7f721e4c8",
+          "card_printing_id": "235db02c-1431-42ba-a973-43cb6d89b38d",
+          "review_status": "verified",
+          "public_visibility": "visible",
+          "active": true,
+          "reason": "Exact Professor Program stamped printing and finish verified by the approved catalog-repair evidence chain; review is limited to this source product, parent, child, and finish.",
+          "confidence": "high",
+          "expected_finish_keys": [
+            "normal"
+          ],
+          "evidence": {
+            "version": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_REAL_APPLY_V1",
+            "finish_key": "normal",
+            "printing_id": "235db02c-1431-42ba-a973-43cb6d89b38d",
+            "card_print_id": "baa63e55-c8aa-4936-8c9a-63de29e75c16",
+            "printing_gv_id": "GV-PK-SW-122-PROFESSOR-PROGRAM-STD",
+            "source_artifacts": [
+              {
+                "path": "docs/audits/tcgplayer_professor_program_mapping_readiness_20261105_v1.json",
+                "sha256": "5f6add5a69ac881ac51ba05e0dd8f74eb61ea47bb6ac82f69a7daf9fa2272553"
+              },
+              {
+                "path": "docs/audits/tcgplayer_professor_program_catalog_repair_real_apply_20261105_v1.json",
+                "sha256": "621c88ed0f12a1868f2d17e7eefccf13dce821cbc75162f9386b7c5936f4c515"
+              },
+              {
+                "path": "docs/audits/tcgplayer_professor_program_parent_insert_readiness_20261031_v1.json",
+                "sha256": "531d87193c35f140452215c7cb96f830aea7e5b444ab6082a43669d95100e2e1"
+              }
+            ],
+            "source_product_id": 176631,
+            "package_fingerprint": "b9e2818bebd307b37649a3ee5a377e4832bb0bb8d6fb310b0849def5bced89f5"
+          },
+          "reviewed_by": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_REAL_APPLY_V1",
+          "reviewed_at": "2026-11-06T06:01:05.070Z"
+        },
+        {
+          "id": "69dc5650-4313-5aaf-816e-534b765f1bf4",
+          "card_printing_id": "2f02ea00-6f1e-480d-8766-edb2a468d72f",
+          "review_status": "verified",
+          "public_visibility": "visible",
+          "active": true,
+          "reason": "Exact Professor Program stamped printing and finish verified by the approved catalog-repair evidence chain; review is limited to this source product, parent, child, and finish.",
+          "confidence": "high",
+          "expected_finish_keys": [
+            "reverse"
+          ],
+          "evidence": {
+            "version": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_REAL_APPLY_V1",
+            "finish_key": "reverse",
+            "printing_id": "2f02ea00-6f1e-480d-8766-edb2a468d72f",
+            "card_print_id": "8f22c4ef-320d-45cd-8938-4aa84aca740e",
+            "printing_gv_id": "GV-PK-SHF-59-PROFESSOR-PROGRAM-RH",
+            "source_artifacts": [
+              {
+                "path": "docs/audits/tcgplayer_professor_program_mapping_readiness_20261105_v1.json",
+                "sha256": "5f6add5a69ac881ac51ba05e0dd8f74eb61ea47bb6ac82f69a7daf9fa2272553"
+              },
+              {
+                "path": "docs/audits/tcgplayer_professor_program_catalog_repair_real_apply_20261105_v1.json",
+                "sha256": "621c88ed0f12a1868f2d17e7eefccf13dce821cbc75162f9386b7c5936f4c515"
+              },
+              {
+                "path": "docs/audits/tcgplayer_professor_program_parent_insert_readiness_20261031_v1.json",
+                "sha256": "531d87193c35f140452215c7cb96f830aea7e5b444ab6082a43669d95100e2e1"
+              }
+            ],
+            "source_product_id": 499366,
+            "package_fingerprint": "b9e2818bebd307b37649a3ee5a377e4832bb0bb8d6fb310b0849def5bced89f5"
+          },
+          "reviewed_by": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_REAL_APPLY_V1",
+          "reviewed_at": "2026-11-06T06:01:05.070Z"
+        },
+        {
+          "id": "20429a21-3df6-5c8f-8943-e1415223cdeb",
+          "card_printing_id": "820ba0fb-cc4a-4460-ada6-66fdeb1185b9",
+          "review_status": "verified",
+          "public_visibility": "visible",
+          "active": true,
+          "reason": "Exact Professor Program stamped printing and finish verified by the approved catalog-repair evidence chain; review is limited to this source product, parent, child, and finish.",
+          "confidence": "high",
+          "expected_finish_keys": [
+            "holo"
+          ],
+          "evidence": {
+            "version": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_REAL_APPLY_V1",
+            "finish_key": "holo",
+            "printing_id": "820ba0fb-cc4a-4460-ada6-66fdeb1185b9",
+            "card_print_id": "ed61ea12-90af-4250-b089-e2b31fc2fdce",
+            "printing_gv_id": "GV-PK-EX9-82-PROFESSOR-PROGRAM-STAMP-HOLO",
+            "source_artifacts": [
+              {
+                "path": "docs/audits/tcgplayer_professor_program_mapping_readiness_20261105_v1.json",
+                "sha256": "5f6add5a69ac881ac51ba05e0dd8f74eb61ea47bb6ac82f69a7daf9fa2272553"
+              },
+              {
+                "path": "docs/audits/tcgplayer_professor_program_catalog_repair_real_apply_20261105_v1.json",
+                "sha256": "621c88ed0f12a1868f2d17e7eefccf13dce821cbc75162f9386b7c5936f4c515"
+              },
+              {
+                "path": "docs/audits/tcgplayer_professor_program_parent_insert_readiness_20261031_v1.json",
+                "sha256": "531d87193c35f140452215c7cb96f830aea7e5b444ab6082a43669d95100e2e1"
+              }
+            ],
+            "source_product_id": 176630,
+            "package_fingerprint": "b9e2818bebd307b37649a3ee5a377e4832bb0bb8d6fb310b0849def5bced89f5"
+          },
+          "reviewed_by": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_REAL_APPLY_V1",
+          "reviewed_at": "2026-11-06T06:01:05.070Z"
+        },
+        {
+          "id": "42025a68-bc9d-53fc-85b9-0f6aafa45abe",
+          "card_printing_id": "8b0cf097-ef28-42aa-a3f2-f8665f863726",
+          "review_status": "verified",
+          "public_visibility": "visible",
+          "active": true,
+          "reason": "Exact Professor Program stamped printing and finish verified by the approved catalog-repair evidence chain; review is limited to this source product, parent, child, and finish.",
+          "confidence": "high",
+          "expected_finish_keys": [
+            "reverse"
+          ],
+          "evidence": {
+            "version": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_REAL_APPLY_V1",
+            "finish_key": "reverse",
+            "printing_id": "8b0cf097-ef28-42aa-a3f2-f8665f863726",
+            "card_print_id": "12cad852-d079-44cc-9438-e806aede97ff",
+            "printing_gv_id": "GV-PK-BW1-101-PROFESSOR-PROGRAM-STAMP-RH",
+            "source_artifacts": [
+              {
+                "path": "docs/audits/tcgplayer_professor_program_mapping_readiness_20261105_v1.json",
+                "sha256": "5f6add5a69ac881ac51ba05e0dd8f74eb61ea47bb6ac82f69a7daf9fa2272553"
+              },
+              {
+                "path": "docs/audits/tcgplayer_professor_program_catalog_repair_real_apply_20261105_v1.json",
+                "sha256": "621c88ed0f12a1868f2d17e7eefccf13dce821cbc75162f9386b7c5936f4c515"
+              },
+              {
+                "path": "docs/audits/tcgplayer_professor_program_parent_insert_readiness_20261031_v1.json",
+                "sha256": "531d87193c35f140452215c7cb96f830aea7e5b444ab6082a43669d95100e2e1"
+              }
+            ],
+            "source_product_id": 176633,
+            "package_fingerprint": "b9e2818bebd307b37649a3ee5a377e4832bb0bb8d6fb310b0849def5bced89f5"
+          },
+          "reviewed_by": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_REAL_APPLY_V1",
+          "reviewed_at": "2026-11-06T06:01:05.070Z"
+        },
+        {
+          "id": "8d6b0e38-a5b6-5c25-8a57-99f3e668d88c",
+          "card_printing_id": "bfe26a71-5c95-4e97-8b12-ef6afa0b2dc6",
+          "review_status": "verified",
+          "public_visibility": "visible",
+          "active": true,
+          "reason": "Exact Professor Program stamped printing and finish verified by the approved catalog-repair evidence chain; review is limited to this source product, parent, child, and finish.",
+          "confidence": "high",
+          "expected_finish_keys": [
+            "reverse"
+          ],
+          "evidence": {
+            "version": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_REAL_APPLY_V1",
+            "finish_key": "reverse",
+            "printing_id": "bfe26a71-5c95-4e97-8b12-ef6afa0b2dc6",
+            "card_print_id": "ea08d28d-8267-4db9-859c-64ffd048792f",
+            "printing_gv_id": "GV-PK-FLI-108-PROFESSOR-PROGRAM-STAMP-RH",
+            "source_artifacts": [
+              {
+                "path": "docs/audits/tcgplayer_professor_program_mapping_readiness_20261105_v1.json",
+                "sha256": "5f6add5a69ac881ac51ba05e0dd8f74eb61ea47bb6ac82f69a7daf9fa2272553"
+              },
+              {
+                "path": "docs/audits/tcgplayer_professor_program_catalog_repair_real_apply_20261105_v1.json",
+                "sha256": "621c88ed0f12a1868f2d17e7eefccf13dce821cbc75162f9386b7c5936f4c515"
+              },
+              {
+                "path": "docs/audits/tcgplayer_professor_program_parent_insert_readiness_20261031_v1.json",
+                "sha256": "531d87193c35f140452215c7cb96f830aea7e5b444ab6082a43669d95100e2e1"
+              }
+            ],
+            "source_product_id": 213516,
+            "package_fingerprint": "b9e2818bebd307b37649a3ee5a377e4832bb0bb8d6fb310b0849def5bced89f5"
+          },
+          "reviewed_by": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_REAL_APPLY_V1",
+          "reviewed_at": "2026-11-06T06:01:05.070Z"
+        },
+        {
+          "id": "677982ca-1bb7-542b-86e4-b792c4cb9b83",
+          "card_printing_id": "eb9b3f39-760f-4b77-a3b1-c486b4a4e4c3",
+          "review_status": "verified",
+          "public_visibility": "visible",
+          "active": true,
+          "reason": "Exact Professor Program stamped printing and finish verified by the approved catalog-repair evidence chain; review is limited to this source product, parent, child, and finish.",
+          "confidence": "high",
+          "expected_finish_keys": [
+            "normal"
+          ],
+          "evidence": {
+            "version": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_REAL_APPLY_V1",
+            "finish_key": "normal",
+            "printing_id": "eb9b3f39-760f-4b77-a3b1-c486b4a4e4c3",
+            "card_print_id": "e402c8fc-563b-49e3-a198-6a5fe5f75cda",
+            "printing_gv_id": "GV-PK-RG-98-PROFESSOR-PROGRAM-STD",
+            "source_artifacts": [
+              {
+                "path": "docs/audits/tcgplayer_professor_program_mapping_readiness_20261105_v1.json",
+                "sha256": "5f6add5a69ac881ac51ba05e0dd8f74eb61ea47bb6ac82f69a7daf9fa2272553"
+              },
+              {
+                "path": "docs/audits/tcgplayer_professor_program_catalog_repair_real_apply_20261105_v1.json",
+                "sha256": "621c88ed0f12a1868f2d17e7eefccf13dce821cbc75162f9386b7c5936f4c515"
+              },
+              {
+                "path": "docs/audits/tcgplayer_professor_program_parent_insert_readiness_20261031_v1.json",
+                "sha256": "531d87193c35f140452215c7cb96f830aea7e5b444ab6082a43669d95100e2e1"
+              }
+            ],
+            "source_product_id": 176629,
+            "package_fingerprint": "b9e2818bebd307b37649a3ee5a377e4832bb0bb8d6fb310b0849def5bced89f5"
+          },
+          "reviewed_by": "TCGPLAYER_PROFESSOR_PROGRAM_PRINTING_READINESS_REAL_APPLY_V1",
+          "reviewed_at": "2026-11-06T06:01:05.070Z"
+        }
+      ],
+      "hash_sha256": "638221c2e2d3fa29afc0bef174ac8683be101928bd7942c17c4393e4994954a0"
+    }
+  }
+}
