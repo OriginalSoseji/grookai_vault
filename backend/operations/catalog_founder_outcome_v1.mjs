@@ -91,7 +91,12 @@ function assertPlainObject(value, label) {
 
 function normalizeExpectedCounts(writerKey, summary) {
   let source;
-  if (writerKey === "mtg_incremental_promotion_v1") source = summary.promotion_row_counts;
+  if (writerKey === "mtg_incremental_promotion_v1") {
+    if (summary.database_state === "partial_or_drifted" && !summary.execution_row_counts) {
+      throw new Error("Partial MTG outcomes require exact execution row counts");
+    }
+    source = summary.execution_row_counts ?? summary.promotion_row_counts;
+  }
   else if (isOnePieceWriter(writerKey)) source = summary.counts;
   else if (writerKey === "english_pokemon_incremental_promotion_v1") {
     source = {
@@ -407,17 +412,29 @@ export function buildCatalogSetOutcomeAgentV1() {
   });
 }
 
-export function buildCatalogWriterInvocationV1(outcomePackage, { headSha, outDir }) {
+export function buildCatalogWriterInvocationV1(outcomePackage, {
+  headSha,
+  outDir,
+  mode = "apply",
+}) {
   validateCatalogFounderOutcomePackageV1(outcomePackage, { sourceCommitSha: headSha });
+  if (!new Set(["dry-run", "apply"]).has(mode)) {
+    throw new Error("Catalog writer invocation mode must be dry-run or apply");
+  }
   const writer = CATALOG_OUTCOME_WRITER_REGISTRY_V1[outcomePackage.writer_key];
   const args = [
     path.normalize(writer.worker),
-    "--mode=apply",
+    `--mode=${mode}`,
     `--as-of=${outcomePackage.as_of}`,
     `--out-dir=${path.resolve(outDir)}`,
     `--expected-head-sha=${headSha}`,
     `--expected-payload-fingerprint=${outcomePackage.payload_fingerprint_sha256}`,
   ];
+  if (outcomePackage.writer_key === "mtg_incremental_promotion_v1") {
+    args.push(
+      `--expected-execution-counts-sha256=${operationsSha256V1(outcomePackage.expected_counts)}`,
+    );
+  }
   const target = outcomePackage.target;
   if (outcomePackage.writer_key === "mtg_incremental_promotion_v1") {
     args.push(`--set-code=${target.set_code}`);
@@ -439,7 +456,8 @@ export function buildCatalogWriterInvocationV1(outcomePackage, { headSha, outDir
     );
   }
   const env = {};
-  if (outcomePackage.writer_key === "english_pokemon_incremental_promotion_v1") {
+  if (mode === "apply" &&
+      outcomePackage.writer_key === "english_pokemon_incremental_promotion_v1") {
     env.ENGLISH_POKEMON_INCREMENTAL_APPLY_APPROVAL = [
       "I approve ENGLISH_POKEMON_INCREMENTAL_PROMOTION_V1 apply only",
       `source_set=${target.source_set_code}`,
@@ -451,6 +469,93 @@ export function buildCatalogWriterInvocationV1(outcomePackage, { headSha, outDir
     ].join("; ");
   }
   return { writer, args, env };
+}
+
+function assertSimpleReadbackCounts(readback, expectedCounts, label) {
+  assertPlainObject(readback, label);
+  for (const [key, expected] of Object.entries(expectedCounts)) {
+    if (Number(readback[key]) !== Number(expected)) {
+      throw new Error(`${label} mismatch: ${key}`);
+    }
+  }
+}
+
+function assertSimpleAbsenceCounts(readback, expectedCounts, label) {
+  assertPlainObject(readback, label);
+  for (const key of Object.keys(expectedCounts)) {
+    if (Number(readback[key]) !== 0) {
+      throw new Error(`${label} retained rows: ${key}`);
+    }
+  }
+}
+
+export function validateCatalogWriterRollbackProofV1(outcomePackage, summary) {
+  validateCatalogFounderOutcomePackageV1(outcomePackage);
+  assertPlainObject(summary, "Catalog writer dry-run summary");
+  const writer = CATALOG_OUTCOME_WRITER_REGISTRY_V1[outcomePackage.writer_key];
+  if (summary.mode !== "dry-run") {
+    throw new Error("Catalog rollback proof did not run in dry-run mode");
+  }
+  if (writer.producer_version && summary.version !== writer.producer_version) {
+    throw new Error("Catalog rollback proof producer version does not match registry");
+  }
+  if (clean(summary[writer.fingerprint_field]) !==
+      outcomePackage.payload_fingerprint_sha256) {
+    throw new Error("Catalog rollback proof fingerprint does not match the frozen package");
+  }
+
+  if (outcomePackage.writer_key === "english_pokemon_incremental_promotion_v1") {
+    assertSimpleReadbackCounts(
+      summary.inserted_readback,
+      outcomePackage.expected_counts,
+      "Catalog rollback inserted readback",
+    );
+    assertSimpleAbsenceCounts(
+      summary.rollback_absence_readback,
+      outcomePackage.expected_counts,
+      "Catalog rollback absence readback",
+    );
+  } else if (outcomePackage.writer_key === "mtg_incremental_promotion_v1") {
+    if (summary.transaction_result?.action !== "rolled_back") {
+      throw new Error("MTG catalog rollback proof did not roll back");
+    }
+    const inserted = summary.transaction_result.inserted;
+    const absent = summary.transaction_result.post_rollback;
+    assertPlainObject(inserted, "MTG catalog rollback inserted counts");
+    assertPlainObject(absent, "MTG catalog rollback absence readback");
+    for (const [key, expected] of Object.entries(outcomePackage.expected_counts)) {
+      if (Number(inserted[key]) !== Number(expected)) {
+        throw new Error(`MTG catalog rollback inserted count mismatch: ${key}`);
+      }
+      if (Number(absent[key]?.actual_count) !== 0 ||
+          Number(absent[key]?.exact_count) !== 0) {
+        throw new Error(`MTG catalog rollback retained rows: ${key}`);
+      }
+    }
+  } else {
+    if (summary.transaction_result?.action !== "rolled_back") {
+      throw new Error("Catalog rollback proof did not roll back");
+    }
+    assertSimpleReadbackCounts(
+      summary.transaction_result.inserted_readback,
+      outcomePackage.expected_counts,
+      "Catalog rollback inserted readback",
+    );
+    assertSimpleAbsenceCounts(
+      summary.transaction_result.post_rollback_readback,
+      outcomePackage.expected_counts,
+      "Catalog rollback absence readback",
+    );
+  }
+
+  return {
+    reconciled: true,
+    target_key: outcomePackage.target_key,
+    writer_key: outcomePackage.writer_key,
+    payload_fingerprint_sha256: outcomePackage.payload_fingerprint_sha256,
+    rollback_proven: true,
+    canonical_writes: false,
+  };
 }
 
 export function validateCatalogWriterResultV1(outcomePackage, summary) {

@@ -38,8 +38,8 @@ function parseArgs(argv) {
     throw new Error("--discovery-dir and --out-dir are required");
   }
   if (!/^\d{4}-\d{2}-\d{2}$/.test(options.asOf)) throw new Error("Invalid --as-of");
-  if (!Number.isInteger(options.maxTargets) || options.maxTargets < 1 || options.maxTargets > 10) {
-    throw new Error("--max-targets must be between 1 and 10");
+  if (!Number.isInteger(options.maxTargets) || options.maxTargets < 1 || options.maxTargets > 5) {
+    throw new Error("--max-targets must be between 1 and 5");
   }
   if (options.mode === "apply" && !/^[0-9a-f]{40}$/.test(options.expectedHeadSha ?? "")) {
     throw new Error("Apply requires --expected-head-sha");
@@ -55,13 +55,30 @@ async function readJson(file) {
 }
 
 export function catalogIncrementalTargetForGapV1(gap) {
-  if (gap.status === "missing_set" && gap.game_code === "mtg" && gap.source_code) {
+  const mtgExactPartialExtension = gap.status === "incomplete_cards" &&
+    gap.game_code === "mtg" &&
+    gap.source_id === "scryfall_sets_and_prints" &&
+    gap.count_scope === "full_set" &&
+    String(gap.source_code ?? "").toLowerCase() ===
+      String(gap.database_code ?? "").toLowerCase() &&
+    Number.isInteger(Number(gap.database_card_count)) &&
+    Number.isInteger(Number(gap.expected_card_count)) &&
+    Number.isInteger(Number(gap.missing_card_count)) &&
+    Number(gap.database_card_count) > 0 &&
+    Number(gap.expected_card_count) > Number(gap.database_card_count) &&
+    Number(gap.missing_card_count) ===
+      Number(gap.expected_card_count) - Number(gap.database_card_count);
+  if ((gap.status === "missing_set" || mtgExactPartialExtension) &&
+      gap.game_code === "mtg" && gap.source_code) {
     return {
       key: `mtg:${String(gap.source_code).toLowerCase()}`,
       writer_key: "mtg_incremental_promotion_v1",
       founder_outcome_eligible: true,
       worker: "scripts/workers/mtg_incremental_promotion_v1.mjs",
       target: { set_code: String(gap.source_code).toLowerCase() },
+      gap_shape: mtgExactPartialExtension
+        ? "exact_partial_extension"
+        : "exact_missing_set",
       args: [`--set-code=${String(gap.source_code).toLowerCase()}`],
     };
   }

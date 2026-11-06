@@ -1,0 +1,14 @@
+{
+  "at": "2026-10-28T05:50:29.400Z",
+  "pass": true,
+  "sourceSha256": "98138e6344e1a6c54b46b8d705b50ac5feac4303e96f33a0603440f4a4d9b7c0",
+  "targetLedger": 479,
+  "fullPublicSchemaDiffBytes": 0,
+  "securityObjects": 1346,
+  "securityExact": true,
+  "governedIntakeObjects": 39,
+  "governedFingerprintsExact": true,
+  "privateBucketExact": true,
+  "functionTextNormalization": false,
+  "productionWrites": 0
+}

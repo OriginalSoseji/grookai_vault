@@ -29,6 +29,10 @@ export type BinderSummary = {
   progressUnit: BinderProgressUnit;
   memberCount: number;
   updatedAt: string | null;
+  readAccess?: BinderReadAccess;
+  discoverability?: BinderDiscoverability;
+  joinPolicy?: BinderJoinPolicy;
+  contributionPolicy?: BinderContributionPolicy;
 };
 
 export type BinderInvitationSummary = {
@@ -158,6 +162,9 @@ export type BinderDetail = BinderSummary & {
   externalTotalSlots: number;
   externalProgressUnit: BinderProgressUnit;
   checklist: BinderChecklistSlot[];
+  coverOptions?: Array<Pick<BinderChecklistSlot,
+    "cardPrintId" | "title" | "subtitle" | "imageUrl" | "hostedImage">>;
+  coverOptionsUnavailable?: boolean;
   activity: BinderActivityItem[];
   members: BinderMember[];
   eligibleCopies: BinderEligibleCopy[];

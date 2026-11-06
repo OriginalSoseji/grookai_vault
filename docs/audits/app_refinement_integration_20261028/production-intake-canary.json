@@ -1,0 +1,27 @@
+{
+  "at": "2026-10-28T06:52:13.041Z",
+  "pass": true,
+  "target": "ycdxbpibncqcchqiihfz",
+  "sourceHead": "e99b3ebcde7b161aeac245af893d271f828b022d",
+  "tests": [
+    "deployed_gateway_and_shared_auth_reject_missing_invalid_tokens",
+    "deployed_edge_default_off_failure_is_durable",
+    "real_verified_actors_ignore_spoof_and_deny_peer_private_data",
+    "four_concurrent_commits_and_new_session_retry_preserve_two_exact_copies",
+    "bad_second_item_rolls_back_copies_and_failure_is_durable",
+    "private_image_owner_bytes_and_peer_anonymous_denial",
+    "concurrent_sale_retry_is_single_and_conflicting_reuse_is_rejected",
+    "historical_acquisition_date_denver",
+    "historical_acquisition_date_kiritimati",
+    "historical_acquisition_date_kolkata",
+    "historical_acquisition_date_dst_midnight",
+    "invalid_acquisition_is_atomic_audited_and_helper_is_private",
+    "audited_pause_preserves_owner_recovery_reads"
+  ],
+  "realDeployedEdge": true,
+  "realAuthAndStorage": true,
+  "existingCanonicalPrinting": true,
+  "onlyDisposableActors": true,
+  "founderWrites": 0,
+  "writesOffAfter": true
+}

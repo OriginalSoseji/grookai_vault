@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import EbaySellerLink from "@/components/ebay/EbaySellerLink";
 import CardImageTruthBadge from "@/components/cards/CardImageTruthBadge";
 import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
 import VariantBadge from "@/components/cards/VariantBadge";
@@ -321,6 +322,7 @@ export function VaultCardTile({
                     ) : (
                       <span className="text-xs font-medium text-slate-400">Copy unavailable</span>
                     )}
+                    <EbaySellerLink instanceId={copy.instance_id} />
                     <OwnedObjectRemoveAction
                       instanceId={copy.instance_id}
                       label={copy.is_graded ? "Remove slab" : "Remove copy"}

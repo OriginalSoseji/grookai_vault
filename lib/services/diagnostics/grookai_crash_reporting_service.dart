@@ -103,7 +103,7 @@ class GrookaiCrashReportingService {
     }
 
     await crashlytics.recordError(
-      StateError('Grookai Crashlytics self-test non-fatal event'),
+      StateError('grookai Crashlytics self-test non-fatal event'),
       StackTrace.current,
       reason: 'GROOKAI_CRASH_REPORTING_SELF_TEST',
       fatal: false,

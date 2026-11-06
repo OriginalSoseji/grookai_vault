@@ -14,6 +14,7 @@ import {
   buildTcgplayerIdentityProductQueueV1,
   buildPokemonPricingMappingReviewWorkItemV1,
   applyPokemonPricingMappingReviewedHoldsV1,
+  classifyTcgplayerFutureReleaseBlocksV1,
   selectPokemonPricingMappingReviewBatchV1,
   summarizeTcgplayerPricingCompletionRunV1,
 } from '../../backend/operations/tcgplayer_pricing_completion_agent_v1.mjs';
@@ -60,19 +61,52 @@ function runBacklogAudit(outRoot) {
   });
 }
 
-function runExactMappingPlan({ sourceRunId, coverageGaps, outRoot }) {
+function credentialFreePlannerEnvV1(env = process.env) {
+  return Object.fromEntries(Object.entries(env).filter(([key]) =>
+    !/(?:SUPABASE|DATABASE|POSTGRES|PGHOST|PGUSER|PGPASSWORD|PGDATABASE|PGPORT|PGOPTIONS|SECRET_KEY|SERVICE_ROLE)/i.test(key)));
+}
+
+function runExactMappingSnapshot({ sourceRunId, coverageGaps, output }) {
   return new Promise((resolve, reject) => {
     const child = spawn(process.execPath, [
-      'scripts/audits/tcgplayer_market_exact_mapping_plan_v1.mjs',
+      'scripts/audits/tcgplayer_market_exact_mapping_snapshot_v1.mjs',
       `--source-run-id=${sourceRunId}`,
       `--coverage-gaps=${coverageGaps}`,
-      `--out-root=${outRoot}`,
+      `--output=${output}`,
     ], {
       cwd: path.resolve('.'),
       env: {
         ...process.env,
         PGOPTIONS: '-c default_transaction_read_only=on',
       },
+      windowsHide: true,
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    let stdout = '';
+    let stderr = '';
+    child.stdout.on('data', (chunk) => { stdout += chunk; });
+    child.stderr.on('data', (chunk) => { stderr += chunk; });
+    child.on('error', reject);
+    child.on('close', (code) => {
+      if (code === 0) resolve({ stdout, stderr });
+      else reject(new Error(
+        `Exact mapping snapshot failed with exit ${code}: ${stderr || stdout}`,
+      ));
+    });
+  });
+}
+
+function runExactMappingPlan({ sourceRunId, coverageGaps, snapshotInput, outRoot }) {
+  return new Promise((resolve, reject) => {
+    const child = spawn(process.execPath, [
+      'scripts/audits/tcgplayer_market_exact_mapping_plan_v1.mjs',
+      `--source-run-id=${sourceRunId}`,
+      `--coverage-gaps=${coverageGaps}`,
+      `--snapshot-input=${snapshotInput}`,
+      `--out-root=${outRoot}`,
+    ], {
+      cwd: path.resolve('.'),
+      env: credentialFreePlannerEnvV1(),
       windowsHide: true,
       stdio: ['ignore', 'pipe', 'pipe'],
     });
@@ -238,13 +272,34 @@ async function main() {
       'utf8',
     ));
     const exactPlanRoot = path.join(args.outDir, 'exact_mapping_plan');
+    const exactSnapshotPath = path.join(args.outDir, 'exact_mapping_snapshot_v1.json');
     let exactPlan = null;
     let exactPlanDir = null;
-    let exactPlanProcess = { status: 'unavailable', stdout: '', error_code: null };
+    let exactSnapshotProcess = {
+      status: 'unavailable',
+      stdout: '',
+      error_code: 'EXACT_MAPPING_SNAPSHOT_UNAVAILABLE',
+    };
+    let exactPlanProcess = {
+      status: 'unavailable',
+      stdout: '',
+      error_code: 'EXACT_MAPPING_PLAN_UNAVAILABLE',
+    };
     try {
+      const snapshotResult = await runExactMappingSnapshot({
+        sourceRunId: report.run.source_sync_run_id,
+        coverageGaps: path.join(backlogRoot, 'latest_pokemon_identity_mapping_gaps.jsonl'),
+        output: exactSnapshotPath,
+      });
+      exactSnapshotProcess = {
+        status: 'available',
+        stdout: snapshotResult.stdout,
+        error_code: null,
+      };
       const processResult = await runExactMappingPlan({
         sourceRunId: report.run.source_sync_run_id,
         coverageGaps: path.join(backlogRoot, 'latest_pokemon_identity_mapping_gaps.jsonl'),
+        snapshotInput: exactSnapshotPath,
         outRoot: exactPlanRoot,
       });
       exactPlanDir = await readOnlyChildDirectory(exactPlanRoot);
@@ -255,8 +310,13 @@ async function main() {
       exactPlan = {
         ...exactPlanSummary,
         candidates: await readJsonl(path.join(exactPlanDir, 'candidates.jsonl')),
+        blocked: await readJsonl(path.join(exactPlanDir, 'blocked.jsonl')),
       };
-      exactPlanProcess = { status: 'available', stdout: processResult.stdout, error_code: null };
+      exactPlanProcess = {
+        status: 'available',
+        stdout: processResult.stdout,
+        error_code: null,
+      };
     } catch (error) {
       exactPlanProcess = {
         status: 'unavailable',
@@ -268,6 +328,40 @@ async function main() {
       path.join(backlogRoot, 'latest_identity_mapping_gaps.jsonl'),
     );
     const identityProductQueue = buildTcgplayerIdentityProductQueueV1(identityGaps);
+    const exactMappingBlockTriage = exactPlan
+      ? classifyTcgplayerFutureReleaseBlocksV1(exactPlan.blocked, {
+          observedOn: exactPlan.source_run?.observed_on,
+        })
+      : {
+          future_release_holds: [],
+          actionable_blocks: [],
+          summary: {
+            status: 'unavailable',
+            blocked_products: null,
+            future_release_hold_products: null,
+            actionable_blocked_products: null,
+            future_release_groups: [],
+            canonical_writes: false,
+            mapping_writes: false,
+            pricing_writes: false,
+          },
+        };
+    const futureReleaseHoldJsonl = jsonl(
+      exactMappingBlockTriage.future_release_holds,
+    );
+    const actionableExactBlockJsonl = jsonl(
+      exactMappingBlockTriage.actionable_blocks,
+    );
+    await Promise.all([
+      fs.writeFile(
+        path.join(args.outDir, 'pokemon_future_release_catalog_holds.jsonl'),
+        futureReleaseHoldJsonl,
+      ),
+      fs.writeFile(
+        path.join(args.outDir, 'pokemon_actionable_exact_mapping_blocks.jsonl'),
+        actionableExactBlockJsonl,
+      ),
+    ]);
     const mtgIdentityQueue = identityProductQueue.filter((row) =>
       row.source_category_id === 1);
     const pokemonIdentityQueue = identityProductQueue.filter((row) =>
@@ -433,7 +527,10 @@ async function main() {
       exact_mapping_plan: {
         status: exactPlanProcess.status,
         error_code: exactPlanProcess.error_code,
+        snapshot_status: exactSnapshotProcess.status,
+        snapshot_error_code: exactSnapshotProcess.error_code,
       },
+      exact_mapping_block_triage: exactMappingBlockTriage.summary,
     };
     const sourceRunUri = process.env.GITHUB_SERVER_URL
       && process.env.GITHUB_REPOSITORY
@@ -465,7 +562,23 @@ async function main() {
       exact_mapping_plan_artifact_root: exactPlanDir
         ? path.relative(args.outDir, exactPlanDir).replace(/\\/g, '/')
         : null,
+      exact_mapping_snapshot_artifact: exactSnapshotProcess.status === 'available'
+        ? {
+            path: path.relative(args.outDir, exactSnapshotPath).replace(/\\/g, '/'),
+            sha256: sha256(await fs.readFile(exactSnapshotPath)),
+          }
+        : null,
       identity_product_queue_artifacts: {
+        pokemon_future_release_catalog_holds: {
+          path: 'pokemon_future_release_catalog_holds.jsonl',
+          rows: exactMappingBlockTriage.future_release_holds.length,
+          sha256: sha256(futureReleaseHoldJsonl),
+        },
+        pokemon_actionable_exact_mapping_blocks: {
+          path: 'pokemon_actionable_exact_mapping_blocks.jsonl',
+          rows: exactMappingBlockTriage.actionable_blocks.length,
+          sha256: sha256(actionableExactBlockJsonl),
+        },
         combined: {
           path: 'identity_product_queue.jsonl',
           rows: identityProductQueue.length,
@@ -518,6 +631,7 @@ async function main() {
       },
       audit_stdout: audit.stdout.trim(),
       exact_mapping_plan_stdout: exactPlanProcess.stdout.trim() || null,
+      exact_mapping_snapshot_stdout: exactSnapshotProcess.stdout.trim() || null,
       candidate_enrichment_stdout: enrichmentProcess.stdout.trim(),
       candidate_enrichment_summary: enrichmentSummary,
       pokemon_countdown_calendar_variant_plan_stdout:

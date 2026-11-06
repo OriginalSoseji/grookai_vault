@@ -83,14 +83,14 @@ class GrookaiObjectExportService {
       await WidgetsBinding.instance.endOfFrame.timeout(
         const Duration(seconds: 2),
         onTimeout: () => throw StateError(
-          'Grookai object export frame did not finish rendering.',
+          'grookai object export frame did not finish rendering.',
         ),
       );
     }
     final context = repaintBoundaryKey.currentContext;
     final renderObject = context?.findRenderObject();
     if (renderObject is! RenderRepaintBoundary) {
-      throw StateError('Grookai object export boundary is not ready.');
+      throw StateError('grookai object export boundary is not ready.');
     }
     // debugNeedsPaint throws outside debug builds. The completed frames above
     // establish paint readiness; keep this extra diagnostic inside an assert.
@@ -105,7 +105,7 @@ class GrookaiObjectExportService {
     final data = await image.toByteData(format: ui.ImageByteFormat.png);
     image.dispose();
     if (data == null) {
-      throw StateError('Grookai object export did not produce PNG data.');
+      throw StateError('grookai object export did not produce PNG data.');
     }
     return data.buffer.asUint8List();
   }

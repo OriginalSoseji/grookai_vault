@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../stores/storefront_screen.dart';
+import '../ebay/ebay_seller_screen.dart';
 import '../stores/custom_product_screen.dart';
 
 import '../../card_detail_screen.dart';
@@ -1739,6 +1740,13 @@ class _PulseItemRow extends StatelessWidget {
 
     final navigator = Navigator.of(context, rootNavigator: true);
     switch (route.kind) {
+      case GrookaiCanonicalRouteKind.ebaySeller:
+        await openEbaySeller(
+          context,
+          instanceId: route.value.isEmpty ? null : route.value,
+          draftId: route.draftId,
+        );
+        return true;
       case GrookaiCanonicalRouteKind.search:
         await navigator.pushNamed('/search', arguments: Uri.parse(route.path));
         return true;

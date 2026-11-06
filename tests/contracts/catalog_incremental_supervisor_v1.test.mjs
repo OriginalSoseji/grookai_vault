@@ -58,6 +58,38 @@ test("partial and source-ambiguous gaps stay outside unattended promotion", () =
   assert.equal(plan.unsupported.length, 3);
 });
 
+test("exact Scryfall MTG partial extensions route to the insert-only writer", () => {
+  const plan = buildCatalogIncrementalSupervisorPlanV1([{
+    game_code: "mtg",
+    status: "incomplete_cards",
+    source_id: "scryfall_sets_and_prints",
+    source_code: "fra",
+    database_code: "fra",
+    count_scope: "full_set",
+    database_card_count: 452,
+    expected_card_count: 461,
+    missing_card_count: 9,
+  }]);
+  assert.deepEqual(plan.targets.map((row) => row.key), ["mtg:fra"]);
+  assert.equal(plan.targets[0].gap_shape, "exact_partial_extension");
+  assert.equal(plan.targets[0].writer_key, "mtg_incremental_promotion_v1");
+  assert.equal(plan.unsupported.length, 0);
+
+  const mismatched = buildCatalogIncrementalSupervisorPlanV1([{
+    game_code: "mtg",
+    status: "incomplete_cards",
+    source_id: "scryfall_sets_and_prints",
+    source_code: "fra",
+    database_code: "fra",
+    count_scope: "full_set",
+    database_card_count: 452,
+    expected_card_count: 461,
+    missing_card_count: 8,
+  }]);
+  assert.equal(mismatched.targets.length, 0);
+  assert.equal(mismatched.unsupported.length, 1);
+});
+
 test("English Pokemon gaps never route to the Japanese writer", () => {
   const plan = buildCatalogIncrementalSupervisorPlanV1([{
     game_code: "pokemon",

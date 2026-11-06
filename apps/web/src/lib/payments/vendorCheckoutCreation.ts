@@ -80,7 +80,7 @@ function parameters(b: CheckoutOrderBinding): Stripe.Checkout.SessionCreateParam
   return { mode: "payment", ui_mode: "hosted_page", payment_method_types: ["card"],
     client_reference_id: b.orderId, metadata: metadata(b),
     line_items: [{ quantity: b.quantity, price_data: { currency: "usd", unit_amount: b.unitAmountMinor,
-      product_data: { name: "Grookai Vault order" } } }],
+      product_data: { name: "grookai vault order" } } }],
     payment_intent_data: { capture_method: "automatic", metadata: metadata(b) },
     success_url: `${origin(b.seller.livemode)}/account/orders/${b.orderId}?checkout=returned`,
     cancel_url: `${origin(b.seller.livemode)}/account/orders/${b.orderId}?checkout=returned`,

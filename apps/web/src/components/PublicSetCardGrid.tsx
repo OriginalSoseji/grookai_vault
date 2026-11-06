@@ -145,13 +145,21 @@ export default function PublicSetCardGrid({
           const selectedHostedImageUrl = buildCanonCardImageProxyUrl(selectedPrinting?.printing_gv_id);
           const selectedImageUrl = selectedPrinting?.display_image_url ?? selectedPrinting?.image_url ?? null;
           const cardFallbackImageUrl = card.display_image_url ?? card.image_url ?? null;
-          const imageSources = [
-            selectedHostedImageUrl,
-            cardFallbackImageUrl,
-            selectedImageUrl,
-            selectedPrinting?.external_image_fallback_url,
-            card.external_image_fallback_url,
-          ].filter(
+          const isKnownFirstEditionBaseImage =
+            setCode === "base1" &&
+            !card.variant_key &&
+            !card.printed_identity_modifier &&
+            (card.image_url?.includes("assets.tcgdex.net/en/base/base1/") ?? false);
+          const imageSources = (isKnownFirstEditionBaseImage
+            ? []
+            : [
+                selectedHostedImageUrl,
+                cardFallbackImageUrl,
+                selectedImageUrl,
+                selectedPrinting?.external_image_fallback_url,
+                card.external_image_fallback_url,
+              ]
+          ).filter(
             (candidate, candidateIndex, candidates): candidate is string =>
               Boolean(candidate?.trim()) && candidates.indexOf(candidate) === candidateIndex,
           );
@@ -162,9 +170,17 @@ export default function PublicSetCardGrid({
                 ? selectedHostedImageUrl !== selectedImageUrl
                 : !selectedImageUrl),
           );
-          const displayedImageTruthSource = selectedPrintingUsesBaseImage
+          const displayedImageTruthSource = isKnownFirstEditionBaseImage
+            ? {
+                ...card,
+                image_status: "missing",
+                image_note:
+                  "The cataloged Base Set image is a 1st Edition reference. An exact non-stamped Base Set image is pending verification.",
+              }
+            : selectedPrintingUsesBaseImage
             ? {
                 ...selectedPrinting,
+                printed_identity_modifier: card.printed_identity_modifier,
                 display_image_kind: "missing_variant_visual" as const,
                 image_status: selectedPrinting?.image_status ?? "missing_variant_visual",
                 image_note:
@@ -172,9 +188,31 @@ export default function PublicSetCardGrid({
                   "Correct printing. Image may not show exact finish, stamp, or parallel.",
               }
             : selectedImageUrl
-              ? selectedPrinting
+              ? { ...selectedPrinting, printed_identity_modifier: card.printed_identity_modifier }
               : card;
           const imagePresentation = resolveCardImagePresentation(displayedImageTruthSource);
+          const isFirstEditionCard = /(^|;)edition:first_edition(?:;|$)/i.test(
+            card.printed_identity_modifier ?? "",
+          );
+          const resolvedImagePresentation = (isFirstEditionCard && imagePresentation.isRepresentative)
+            ? {
+                ...imagePresentation,
+                compactBadgeLabel: "1st Edition Image Pending",
+                detailBadgeLabel: "1st Edition Image Pending",
+                detailNote:
+                  imagePresentation.imageNote ??
+                  "Correct 1st Edition printing. Exact stamped card image is not cataloged yet.",
+              }
+            : isKnownFirstEditionBaseImage
+              ? {
+                  ...imagePresentation,
+                  compactBadgeLabel: "Base Set Image Pending",
+                  detailBadgeLabel: "Base Set Image Pending",
+                  detailNote:
+                    imagePresentation.imageNote ??
+                    "The cataloged image is a 1st Edition reference. Exact non-stamped Base Set artwork is pending verification.",
+                }
+            : imagePresentation;
           const finishLabels = (card.printings ?? []).map((printing) => printing.finish_name).filter((label): label is string => Boolean(label));
           const badgeLabels = [...variantLabels];
           const selectedFinishLabel = selectedPrinting?.finish_name ?? null;
@@ -187,18 +225,24 @@ export default function PublicSetCardGrid({
               imageSrc={imageSources[0]}
               imageFallbackSrc={imageSources[1]}
               imageFallbackSources={imageSources.slice(2)}
-              imageAlt={getCardImageAltText(displayIdentity.display_name, displayedImageTruthSource)}
+              imageAlt={
+                isFirstEditionCard
+                  ? `${displayIdentity.display_name} representative image. 1st Edition image pending.`
+                  : isKnownFirstEditionBaseImage
+                    ? `${displayIdentity.display_name}. Exact non-stamped Base Set image pending.`
+                  : getCardImageAltText(displayIdentity.display_name, displayedImageTruthSource)
+              }
               imageHref={buildCardHref(card.gv_id, getPrintingPublicReference(selectedPrinting))}
               imageSizes="(max-width: 640px) 44vw, (max-width: 1024px) 24vw, 190px"
               imageLoading={index < 12 ? "eager" : "lazy"}
               imageOverlay={
-                imagePresentation.compactBadgeLabel ? (
+                resolvedImagePresentation.compactBadgeLabel ? (
                   <CardImageTruthBadge
-                    label={imagePresentation.compactBadgeLabel}
+                    label={resolvedImagePresentation.compactBadgeLabel}
                     emphasis={
-                      imagePresentation.isCollisionRepresentative ||
-                      imagePresentation.isMissingVariantVisual ||
-                      imagePresentation.isBlocked
+                      resolvedImagePresentation.isCollisionRepresentative ||
+                      resolvedImagePresentation.isMissingVariantVisual ||
+                      resolvedImagePresentation.isBlocked
                         ? "strong"
                         : "default"
                     }
@@ -227,7 +271,11 @@ export default function PublicSetCardGrid({
                 badgeLabels.length > 0 || finishLabels.length > 0 ? (
                   <>
                     {badgeLabels.map((label) => (
-                      <VariantBadge key={`${card.gv_id}-${label}`} label={label} />
+                      <VariantBadge
+                        key={`${card.gv_id}-${label}`}
+                        label={label}
+                        tone={/^1st edition/i.test(label) ? "edition" : "variant"}
+                      />
                     ))}
                     {(card.printings ?? []).map((printing) => {
                       const label = printing.finish_name;

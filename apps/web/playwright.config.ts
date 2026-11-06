@@ -30,6 +30,10 @@ export default defineConfig({
     "mobile.a11y.spec.ts",
     "gvvi-vendor-qr.responsive.spec.ts",
     "release-convergence.spec.ts",
+    "collector-refinement.spec.ts",
+    "binder-refinement-completion.spec.ts",
+    "vault-collection.pagination.spec.ts",
+    "ebay-seller-workspace.spec.ts",
   ],
   outputDir: "./test-results/mobile-parity",
   snapshotPathTemplate:

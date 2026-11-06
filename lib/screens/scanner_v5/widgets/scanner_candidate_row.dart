@@ -4,7 +4,7 @@ import '../../../services/identity/catalog_artwork_resolution.dart';
 import '../../../services/identity/display_identity.dart';
 import '../../../services/scanner_v5/scanner_v5_identity_service.dart';
 import '../../../widgets/card_surface_artwork.dart';
-import 'scanner_v5_palette.dart';
+import '../../../theme/gv_tokens.dart';
 
 class ScannerCandidateRow extends StatelessWidget {
   const ScannerCandidateRow({
@@ -12,6 +12,7 @@ class ScannerCandidateRow extends StatelessWidget {
     required this.onTap,
     this.bestMatch = false,
     this.enabled = true,
+    this.onView,
     super.key,
   });
 
@@ -19,9 +20,11 @@ class ScannerCandidateRow extends StatelessWidget {
   final VoidCallback onTap;
   final bool bestMatch;
   final bool enabled;
+  final VoidCallback? onView;
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
     final displayIdentity = resolveDisplayIdentityFromFields(
       name: candidate.name,
       variantKey: candidate.variantKey,
@@ -35,17 +38,13 @@ class ScannerCandidateRow extends StatelessWidget {
       color: Colors.transparent,
       child: InkWell(
         onTap: enabled ? onTap : null,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(GvRadii.surface),
         child: Ink(
           decoration: BoxDecoration(
-            color: bestMatch
-                ? ScannerV5Palette.selectedRow
-                : ScannerV5Palette.row.withValues(alpha: 0.74),
-            borderRadius: BorderRadius.circular(16),
+            color: colors.surfaceContainer,
+            borderRadius: BorderRadius.circular(GvRadii.surface),
             border: Border.all(
-              color: bestMatch
-                  ? ScannerV5Palette.blue.withValues(alpha: 0.45)
-                  : ScannerV5Palette.hairline,
+              color: bestMatch ? colors.primary : colors.outlineVariant,
             ),
           ),
           child: Padding(
@@ -58,9 +57,9 @@ class ScannerCandidateRow extends StatelessWidget {
                   fallbackImageUrl: artwork.fallbackImageUrl,
                   width: 54,
                   height: 76,
-                  borderRadius: 9,
+                  borderRadius: GvRadii.artwork,
                   padding: EdgeInsets.zero,
-                  backgroundColor: ScannerV5Palette.sheet,
+                  backgroundColor: colors.surfaceContainerLow,
                   enableTapToZoom: false,
                   showShadow: false,
                 ),
@@ -71,15 +70,16 @@ class ScannerCandidateRow extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       if (bestMatch) ...[
-                        const _BestMatchChip(),
+                        Text(
+                          'Closest match',
+                          style: Theme.of(context).textTheme.labelSmall,
+                        ),
                         const SizedBox(height: 7),
                       ],
                       Text(
                         displayIdentity.displayName,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          color: ScannerV5Palette.text,
+                        style: TextStyle(
+                          color: colors.onSurface,
                           fontSize: 14.5,
                           fontWeight: FontWeight.w700,
                           height: 1.15,
@@ -88,23 +88,35 @@ class ScannerCandidateRow extends StatelessWidget {
                       const SizedBox(height: 3),
                       Text(
                         _candidateMeta(candidate),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(
-                          color: ScannerV5Palette.dim(0.6),
+                          color: colors.onSurfaceVariant,
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
                           height: 1.2,
                         ),
                       ),
+                      const SizedBox(height: 6),
+                      Text(
+                        'Review this copy',
+                        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                          color: enabled
+                              ? colors.primary
+                              : colors.onSurfaceVariant,
+                        ),
+                      ),
+                      if (onView != null)
+                        TextButton(
+                          onPressed: enabled ? onView : null,
+                          child: const Text('View card & market'),
+                        ),
                     ],
                   ),
                 ),
                 const SizedBox(width: 10),
                 enabled
-                    ? const Icon(
-                        Icons.add_circle_outline_rounded,
-                        color: ScannerV5Palette.text,
+                    ? Icon(
+                        Icons.chevron_right,
+                        color: colors.onSurfaceVariant,
                         size: 24,
                       )
                     : SizedBox(
@@ -112,7 +124,7 @@ class ScannerCandidateRow extends StatelessWidget {
                         height: 22,
                         child: CircularProgressIndicator(
                           strokeWidth: 2,
-                          color: ScannerV5Palette.dim(0.75),
+                          color: colors.onSurfaceVariant,
                         ),
                       ),
               ],
@@ -124,37 +136,9 @@ class ScannerCandidateRow extends StatelessWidget {
   }
 }
 
-class _BestMatchChip extends StatelessWidget {
-  const _BestMatchChip();
-
-  @override
-  Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: ScannerV5Palette.blue.withValues(alpha: 0.14),
-        borderRadius: BorderRadius.circular(999),
-      ),
-      child: const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-        child: Text(
-          'BEST MATCH',
-          style: TextStyle(
-            color: ScannerV5Palette.blue,
-            fontSize: 9.5,
-            fontWeight: FontWeight.w700,
-            letterSpacing: 0.8,
-            height: 1,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 String _candidateMeta(ScannerV5Candidate candidate) {
   return [
     if (candidate.setCode != null) candidate.setCode,
     if (candidate.number != null) '#${candidate.number}',
-    if (candidate.gvId != null) candidate.gvId,
   ].join(' · ');
 }

@@ -89,6 +89,16 @@ class _RequiredProfileSetupGateState extends State<RequiredProfileSetupGate> {
                     icon: const Icon(Icons.refresh_rounded),
                     label: const Text('Try again'),
                   ),
+                  if (Supabase.instance.client.auth.currentUser != null)
+                    TextButton.icon(
+                      onPressed: () => Navigator.of(context).push<void>(
+                        MaterialPageRoute<void>(
+                          builder: (_) => const IntakeHomeScreen(),
+                        ),
+                      ),
+                      icon: const Icon(Icons.inventory_2_outlined),
+                      label: const Text('Open saved drafts'),
+                    ),
                 ],
               ),
             ),
@@ -458,6 +468,7 @@ class _AppShellState extends State<AppShell> {
   bool _scannerFlowInFlight = false;
   bool _bottomNavCollapsed = false;
   bool _relationshipRouteLoading = false;
+  bool _menuOpen = false;
   int _pulseUnreadCount = 0;
   bool _onboardingProbeInFlight = false;
   bool _onboardingDismissedThisSession = false;
@@ -669,6 +680,23 @@ class _AppShellState extends State<AppShell> {
     // Canonical web URLs are the single source of truth for app deep-link
     // routing.
     switch (route.kind) {
+      case GrookaiCanonicalRouteKind.ebaySeller:
+        if (route.value.isEmpty &&
+            route.draftId == null &&
+            EbaySellerLinkReturn.deliver()) {
+          Navigator.of(context, rootNavigator: true).popUntil(
+            (r) => r.settings.name == EbaySellerScreen.routeName || r.isFirst,
+          );
+        } else {
+          unawaited(
+            openEbaySeller(
+              context,
+              instanceId: route.value.isEmpty ? null : route.value,
+              draftId: route.draftId,
+            ),
+          );
+        }
+        break;
       case GrookaiCanonicalRouteKind.search:
         unawaited(
           Navigator.of(
@@ -1266,7 +1294,12 @@ class _AppShellState extends State<AppShell> {
 
     if (kScannerV5Enabled) {
       final action = await _pushPage<ScanCaptureV5Exit>(
-        const ScanCaptureV5Screen(),
+        ScanCaptureV5Screen(
+          onStartBatch: () async {
+            await _pushPage<void>(const IntakeHomeScreen());
+            if (mounted) _vaultKey.currentState?.reload();
+          },
+        ),
       );
       if (!mounted || action == null) {
         return;
@@ -1623,69 +1656,77 @@ class _AppShellState extends State<AppShell> {
       ],
     );
 
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: const SystemUiOverlayStyle(
-        statusBarColor: Color(0xFF080B09),
-        statusBarIconBrightness: Brightness.light,
-        statusBarBrightness: Brightness.dark,
-        systemNavigationBarColor: Color(0xFF080B09),
-        systemNavigationBarDividerColor: Color(0xFF080B09),
-        systemNavigationBarIconBrightness: Brightness.light,
-        systemNavigationBarContrastEnforced: false,
-      ),
-      child: Theme(
-        data: buildGvRedesignV2Theme(),
-        child: Builder(
-          builder: (context) {
-            final v2ColorScheme = Theme.of(context).colorScheme;
-            return Scaffold(
-              key: _scaffoldKey,
-              // Keep feed actions and card metadata above the opaque dock.
-              // This also prevents large Android text from being hidden under
-              // navigation on Samsung devices.
-              extendBody: false,
-              resizeToAvoidBottomInset: false,
-              endDrawer: _GrookaiAppDrawer(
-                signedIn: _supabase.auth.currentUser != null,
-                relationshipRouteLoading: _relationshipRouteLoading,
-                onOpenDex: _openDex,
-                onOpenSets: _openSets,
-                onOpenCompare: _openCompare,
-                onOpenGrookaiObjects: _openGrookaiObjectsHub,
-                onOpenBinders: _openBinderLibrary,
-                onOpenVendorMode: _openVendorMode,
-                onOpenSalesDesk: _openSalesDesk,
-                onOpenManageStore: _openManageStore,
-                onOpenNearby: _openNearby,
-                onOpenNearbyMap: _openNearbyMap,
-                onOpenAccount: _openAccountHub,
-                onOpenGettingStarted: _openGettingStarted,
-                onOpenFollowers: () => _openOwnRelationships(
-                  PublicCollectorRelationshipMode.followers,
+    final brightness = Theme.of(context).brightness;
+    return PopScope<Object?>(
+      // The menu lives in this root route. Advertise its Back interception
+      // before Android decides whether Back should background the activity.
+      canPop: !_menuOpen,
+      onPopInvokedWithResult: (didPop, _) {
+        if (!didPop && _menuOpen) {
+          _scaffoldKey.currentState?.closeEndDrawer();
+        }
+      },
+      child: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: gvSystemUiStyle(Theme.of(context).brightness),
+        child: Theme(
+          data: buildGvRedesignV2Theme(brightness: brightness),
+          child: Builder(
+            builder: (context) {
+              final v2ColorScheme = Theme.of(context).colorScheme;
+              return Scaffold(
+                key: _scaffoldKey,
+                // Keep feed actions and card metadata above the opaque dock.
+                // This also prevents large Android text from being hidden under
+                // navigation on Samsung devices.
+                extendBody: false,
+                resizeToAvoidBottomInset: false,
+                onEndDrawerChanged: (open) {
+                  if (mounted && open != _menuOpen) {
+                    setState(() => _menuOpen = open);
+                  }
+                },
+                endDrawer: _GrookaiAppDrawer(
+                  signedIn: _supabase.auth.currentUser != null,
+                  relationshipRouteLoading: _relationshipRouteLoading,
+                  onOpenDex: _openDex,
+                  onOpenSets: _openSets,
+                  onOpenCompare: _openCompare,
+                  onOpenGrookaiObjects: _openGrookaiObjectsHub,
+                  onOpenBinders: _openBinderLibrary,
+                  onOpenVendorMode: _openVendorMode,
+                  onOpenSalesDesk: _openSalesDesk,
+                  onOpenManageStore: _openManageStore,
+                  onOpenNearby: _openNearby,
+                  onOpenNearbyMap: _openNearbyMap,
+                  onOpenAccount: _openAccountHub,
+                  onOpenGettingStarted: _openGettingStarted,
+                  onOpenFollowers: () => _openOwnRelationships(
+                    PublicCollectorRelationshipMode.followers,
+                  ),
+                  onOpenFollowing: () => _openOwnRelationships(
+                    PublicCollectorRelationshipMode.following,
+                  ),
+                  themeMode: widget.themeMode,
+                  onThemeModeChanged: widget.onThemeModeChanged,
                 ),
-                onOpenFollowing: () => _openOwnRelationships(
-                  PublicCollectorRelationshipMode.following,
+                appBar: AppBar(
+                  toolbarHeight: kShellAppBarHeight,
+                  actionsPadding: const EdgeInsets.only(right: 6),
+                  title: const _GrookaiWordmark(),
+                  actions: _buildAppBarActions(isDesktopShell: isDesktopShell),
                 ),
-                themeMode: widget.themeMode,
-                onThemeModeChanged: widget.onThemeModeChanged,
-              ),
-              appBar: AppBar(
-                toolbarHeight: kShellAppBarHeight,
-                actionsPadding: const EdgeInsets.only(right: 6),
-                title: const _GrookaiWordmark(),
-                actions: _buildAppBarActions(isDesktopShell: isDesktopShell),
-              ),
-              body: bodyWithOnboarding,
-              bottomNavigationBar: isDesktopShell
-                  ? null
-                  : _buildMobileBottomDock(
-                      context: context,
-                      colorScheme: v2ColorScheme,
-                      keyboardVisible: keyboardVisible,
-                      bottomSafeInset: bottomSafeInset,
-                    ),
-            );
-          },
+                body: bodyWithOnboarding,
+                bottomNavigationBar: isDesktopShell
+                    ? null
+                    : _buildMobileBottomDock(
+                        context: context,
+                        colorScheme: v2ColorScheme,
+                        keyboardVisible: keyboardVisible,
+                        bottomSafeInset: bottomSafeInset,
+                      ),
+              );
+            },
+          ),
         ),
       ),
     );
@@ -1912,6 +1953,7 @@ class _AppShellState extends State<AppShell> {
                             ? colorScheme.primary
                             : foreground,
                         fontSize: collapsed ? 10 : 11,
+                        height: 1.2,
                         fontWeight: selected
                             ? FontWeight.w700
                             : FontWeight.w600,
@@ -3284,7 +3326,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     // This branded surface has a fixed dark background in both system modes.
     return Theme(
-      data: _buildGrookaiTheme(Brightness.dark),
+      data: buildGrookaiTheme(Brightness.dark),
       child: Builder(builder: _buildLoginSurface),
     );
   }

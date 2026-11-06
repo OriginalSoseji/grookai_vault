@@ -45,26 +45,29 @@ void main() {
     expect(vault, contains('() => _openManageCardRow(row)'));
   });
 
-  test('unified ownership screen handles gvvi-only and single-copy overview', () {
-    final screen = File(
-      'lib/screens/vault/vault_manage_card_screen.dart',
-    ).readAsStringSync();
+  test(
+    'unified ownership screen handles gvvi-only and single-copy overview',
+    () {
+      final screen = File(
+        'lib/screens/vault/vault_manage_card_screen.dart',
+      ).readAsStringSync();
 
-    expect(screen, contains('this.vaultItemId = \'\','));
-    expect(screen, contains('Future<_ManageCardBootstrapContext>'));
-    expect(screen, contains('VaultGvviService.loadPrivate'));
-    expect(
-      screen,
-      contains('final showCopiesTab = data != null && data.copies.length > 1;'),
-    );
-    expect(screen, contains('if (showCopiesTab) ...['));
-    expect(
-      screen,
-      contains(
-        "_buildTabListView(\n                                  storageKey: 'overview-single'",
-      ),
-    );
-    expect(screen, contains('_buildSingleCopyControls'));
-    expect(screen, isNot(contains("AppBar(title: const Text('Manage Card'))")));
-  });
+      expect(screen, contains('this.vaultItemId = \'\','));
+      expect(screen, contains('Future<_ManageCardBootstrapContext>'));
+      expect(screen, contains('VaultGvviService.loadPrivate'));
+      expect(
+        screen,
+        contains(
+          'final showCopiesTab = data != null && data.copies.length > 1;',
+        ),
+      );
+      expect(screen, contains('if (showCopiesTab) ...['));
+      expect(screen, contains("storageKey: 'overview-single'"));
+      expect(screen, contains('_buildSingleCopyControls'));
+      expect(
+        screen,
+        isNot(contains("AppBar(title: const Text('Manage Card'))")),
+      );
+    },
+  );
 }

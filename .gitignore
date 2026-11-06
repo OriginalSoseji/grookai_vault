@@ -126,6 +126,19 @@ tmp_schema_local.sql
 *.webp
 *_report.md
 apps/web/src/app/api/*
+!apps/web/src/app/api/ebay/
+apps/web/src/app/api/ebay/*
+!apps/web/src/app/api/ebay/seller/
+apps/web/src/app/api/ebay/seller/*
+!apps/web/src/app/api/ebay/seller/route.ts
+!apps/web/src/app/api/ebay/seller/oauth/
+apps/web/src/app/api/ebay/seller/oauth/*
+!apps/web/src/app/api/ebay/seller/oauth/launch/
+apps/web/src/app/api/ebay/seller/oauth/launch/*
+!apps/web/src/app/api/ebay/seller/oauth/launch/route.ts
+!apps/web/src/app/api/ebay/seller/oauth/callback/
+apps/web/src/app/api/ebay/seller/oauth/callback/*
+!apps/web/src/app/api/ebay/seller/oauth/callback/route.ts
 !apps/web/src/app/api/vault/
 apps/web/src/app/api/vault/*
 !apps/web/src/app/api/vault/import/
@@ -248,3 +261,16 @@ temp/
 # Isolated storefront labs, credentials, release packages and generated builds.
 /.local/
 /apps/web/.next*/
+
+# Two bounded local browser artwork fixtures (not a catalog export).
+!apps/web/public/visual-fixtures/collector/eevee-173.webp
+!apps/web/public/visual-fixtures/collector/pikachu-58.webp
+
+# Repository-root Playwright diagnostic output.
+/test-results/
+
+# Generated Flutter golden comparison images; preserve review evidence outside source.
+/test/intake/failures/
+
+# Next.js regenerates this declaration for dev/build; never track generated paths.
+/apps/web/next-env.d.ts

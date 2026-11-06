@@ -14,6 +14,7 @@ enum GrookaiCanonicalRouteKind {
   gvvi,
   dex,
   feed,
+  ebaySeller,
   binderLibrary,
   binder,
   binderViewLink,
@@ -41,6 +42,7 @@ class GrookaiCanonicalRoute {
     required this.value,
     this.sectionId,
     this.productId,
+    this.draftId,
     this.preview = false,
   });
 
@@ -158,6 +160,25 @@ class GrookaiCanonicalRoute {
     );
   }
 
+  factory GrookaiCanonicalRoute.ebaySeller({
+    String instanceId = '',
+    String? draftId,
+  }) {
+    final query = <String, String>{
+      if (instanceId.isNotEmpty) 'instanceId': instanceId,
+      if (draftId != null && draftId.isNotEmpty) 'draftId': draftId,
+    };
+    return GrookaiCanonicalRoute._(
+      kind: GrookaiCanonicalRouteKind.ebaySeller,
+      path: Uri(
+        path: '/vault/ebay',
+        queryParameters: query.isEmpty ? null : query,
+      ).toString(),
+      value: instanceId,
+      draftId: draftId,
+    );
+  }
+
   factory GrookaiCanonicalRoute.binder(String publicId) {
     final normalized = publicId.trim();
     return GrookaiCanonicalRoute._(
@@ -231,6 +252,7 @@ class GrookaiCanonicalRoute {
   final String value;
   final String? sectionId;
   final String? productId;
+  final String? draftId;
   final bool preview;
 }
 
@@ -318,6 +340,11 @@ class GrookaiWebRouteService {
       return null;
     }
     final head = segments.first.toLowerCase();
+    if (head == 'vault' &&
+        segments.length == 2 &&
+        segments[1].toLowerCase() == 'ebay') {
+      return _parseSellerUri(uri);
+    }
     if (head == 'explore' || head == 'search') {
       return GrookaiCanonicalRoute.search(uri);
     }
@@ -431,6 +458,7 @@ class GrookaiWebRouteService {
         .where((segment) => segment.isNotEmpty)
         .toList(growable: false);
 
+    if (host == 'ebay-seller' && segments.isEmpty) return _parseSellerUri(uri);
     if (host == 'card' && segments.isNotEmpty) {
       return GrookaiCanonicalRoute.card(segments.first);
     }
@@ -521,6 +549,34 @@ class GrookaiWebRouteService {
 
     final canonicalHost = buildUri('/').host.toLowerCase();
     return uri.host.toLowerCase() == canonicalHost;
+  }
+
+  static GrookaiCanonicalRoute? _parseSellerUri(Uri uri) {
+    if (uri.userInfo.isNotEmpty ||
+        uri.hasPort ||
+        uri.hasFragment ||
+        uri.queryParameters.keys.any(
+          (k) => !['instanceId', 'draftId'].contains(k),
+        )) {
+      return null;
+    }
+    final values = <String, String>{};
+    for (final key in ['instanceId', 'draftId']) {
+      final supplied = uri.queryParametersAll[key];
+      if (supplied == null) continue;
+      if (supplied.length != 1 ||
+          !RegExp(
+            r'^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$',
+            caseSensitive: false,
+          ).hasMatch(supplied.single)) {
+        return null;
+      }
+      values[key] = supplied.single.toLowerCase();
+    }
+    return GrookaiCanonicalRoute.ebaySeller(
+      instanceId: values['instanceId'] ?? '',
+      draftId: values['draftId'],
+    );
   }
 
   static bool _isSupportedAppDeepLink(Uri uri) {

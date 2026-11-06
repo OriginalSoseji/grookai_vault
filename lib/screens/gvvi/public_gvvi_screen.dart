@@ -20,12 +20,11 @@ import '../../services/printing/p21_printer_service.dart';
 import '../../services/pricing/ebay_sold_search_uri.dart';
 import '../../services/sales/sales_card_reference.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
-import '../../services/vault/vault_card_service.dart';
+import '../../widgets/vault/vault_add_review_sheet.dart';
 import '../../services/vault/vault_gvvi_service.dart';
 import '../../services/network/intent_presentation.dart' as intent_presentation;
 import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/contact_owner_button.dart';
-import '../../widgets/vault/vault_printing_picker.dart';
 import '../network/network_inbox_screen.dart';
 import '../public_collector/public_collector_screen.dart';
 import '../vault/vault_manage_card_screen.dart';
@@ -247,26 +246,16 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
           if (userId == null || userId.isEmpty) {
             throw Exception('Sign in to add cards to your vault.');
           }
-          final printing = await chooseVaultPrinting(
+          final gvviId = await showVaultAddReview(
             context: context,
-            client: _client,
             cardPrintId: data.cardPrintId,
-            cardName: data.cardName,
-            preferredPrintingId: data.cardPrintingId,
+            gvId: data.gvId,
+            name: data.cardName,
+            setName: data.setName,
+            imageUrl: data.imageUrl ?? data.fallbackImageUrl,
+            printingId: data.cardPrintingId,
           );
-          if (printing == null) return;
-          final gvviId = await VaultCardService.addOrIncrementVaultItem(
-            client: _client,
-            userId: userId,
-            cardId: data.cardPrintId,
-            conditionLabel: data.conditionLabel ?? 'NM',
-            fallbackName: data.cardName,
-            fallbackSetName: data.setName.isEmpty ? null : data.setName,
-            fallbackImageUrl: (data.imageUrl ?? '').trim().isEmpty
-                ? data.fallbackImageUrl
-                : data.imageUrl,
-            cardPrintingId: printing.id,
-          );
+          if (gvviId == null) return;
           if (!mounted) {
             return;
           }

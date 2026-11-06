@@ -24,7 +24,7 @@ export function readSellerStripeConfig(env: NodeJS.ProcessEnv): SellerStripeConf
 export function createSellerStripeClient(config: SellerStripeConfig): Stripe {
   return new Stripe(config.secretKey, { apiVersion: STRIPE_BILLING_API_VERSION,
     maxNetworkRetries: 2, timeout: 10_000, telemetry: false,
-    appInfo: { name: "Grookai Vault seller payments", version: "1" } });
+    appInfo: { name: "grookai vault seller payments", version: "1" } });
 }
 
 async function providerRead<T>(read: () => Promise<T>): Promise<T> {

@@ -12,6 +12,7 @@ import '../../services/vault/vault_card_service.dart';
 import '../../services/public/jungle_edition_resolution_service.dart';
 import 'jungle_edition_scan_review.dart';
 import '../../widgets/vault/vault_printing_picker.dart';
+import '../../widgets/vault/vault_add_review_sheet.dart';
 import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/ownership/ownership_signal.dart';
 
@@ -130,17 +131,17 @@ class _ScanIdentifyScreenState extends State<ScanIdentifyScreen> {
       );
       if (printing == null) return;
 
-      await VaultCardService.addOrIncrementVaultItem(
-        client: supabase,
-        userId: uid,
-        cardId: cardPrintId,
-        deltaQty: 1,
-        conditionLabel: 'NM',
-        fallbackName: name,
-        fallbackSetName: setName,
-        fallbackImageUrl: cand['image_url']?.toString(),
-        cardPrintingId: printing.id,
+      if (!mounted) return;
+      final saved = await showVaultAddReview(
+        context: context,
+        cardPrintId: cardPrintId,
+        gvId: identity.gvId,
+        name: name,
+        setName: setName,
+        imageUrl: cand['image_url']?.toString(),
+        printingId: printing.id,
       );
+      if (saved == null) return;
 
       _snack('Added to vault.');
       if (!mounted) return;

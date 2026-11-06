@@ -384,7 +384,7 @@ class VendorPricingWorkspaceService {
                     (printingId == null
                         ? 'Variant needed'
                         : 'Variant assigned'),
-          conditionLabel: _nullable(instance['condition_label']) ?? 'NM',
+          conditionLabel: _nullable(instance['condition_label']) ?? 'Unknown',
           intent: _normalizeIntent(instance['intent']),
           isGraded: isGraded,
           gradeCompany:

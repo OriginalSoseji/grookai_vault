@@ -1,0 +1,4720 @@
+{
+  "version": "TCGPLAYER_PROFESSOR_PROGRAM_IDENTITY_REVIEW_V1",
+  "audit_only": true,
+  "db_reads": false,
+  "db_writes": false,
+  "mapping_writes": false,
+  "scope": {
+    "source_group_id": 2332,
+    "source_group_name": "Professor Program Promos",
+    "source_products": 48
+  },
+  "source_hashes_sha256": {
+    "blocked_jsonl": "7618e82a54975653058d87468e5fcecbabb4180c6e0e56fe7844971adfac472e",
+    "master_sets": "0876900a2d5c4f8c361ad798a57d071e95dc6eddbec7dfea94bd114fcd9129fb",
+    "master_cards": "d88d73f875eadfc2b1a0865fe28467d1dd368a4eeb8127be6c2ed37aac5b5019",
+    "master_printings": "e35f9ea674117ef49b80fc7dbb01feb167f7056e47af8d8d763b3bb9df24d578",
+    "grookai_audit": "f8154a45afc4fdc3ae9a8022075fc48b11c565a5e573b0974b094f9612071363"
+  },
+  "summary": {
+    "disposition_counts": {
+      "hold": 48
+    },
+    "reason_counts": {
+      "ambiguous_underlying_set_identity": 16,
+      "identity_bearing_event_qualifier_requires_distinct_parent": 2,
+      "live_professor_program_parent_link_not_proven": 8,
+      "no_master_index_name_number_set_total_match": 5,
+      "professor_program_stamp_not_proven_by_master_index": 17
+    }
+  },
+  "boundaries": {
+    "group_label_is_not_set_authority": true,
+    "source_subtype_is_not_stamp_authority": true,
+    "identity_bearing_event_qualifiers_are_preserved": true,
+    "authority_candidates_require_unique_live_parent": true,
+    "report_is_not_mutation_authority": true
+  },
+  "rows": [
+    {
+      "source_product_id": 176625,
+      "source_product_name": "Fighting Energy (2004-2005)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "105/109",
+      "source_subtypes": [
+        "Normal"
+      ],
+      "source_finish_key": "normal",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "professor_program_stamp_not_proven_by_master_index",
+      "match_counts": {
+        "name_number": 1,
+        "name_number_set_total": 1,
+        "selected_candidates": 1,
+        "exact_finish_evidence": 1,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 2,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": {
+        "exact": [
+          109
+        ],
+        "fallback": [
+          109
+        ]
+      },
+      "master_candidates": [
+        {
+          "set_key": "ex1",
+          "set_name": "Ruby & Sapphire",
+          "card_number": "105",
+          "card_name": "Fighting Energy",
+          "status": "master_verified",
+          "sources": [
+            "bulbapedia_set_list",
+            "pkmncards",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/Ruby_%26_Sapphire_(TCG)#Set_lists",
+            "https://pkmncards.com/card/fighting-energy-ruby-sapphire-rs-105/",
+            "https://api.pokemontcg.io/v2/cards/ex1-105",
+            "https://api.tcgdex.net/v2/en/cards/ex1-105",
+            "https://www.thepricedex.com/set/ex1/ruby-and-sapphire/price-list"
+          ]
+        }
+      ],
+      "master_printings": [
+        {
+          "set_key": "ex1",
+          "set_name": "Ruby & Sapphire",
+          "card_number": "105",
+          "card_name": "Fighting Energy",
+          "finish_key": "normal",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/ex1-105",
+            "https://api.tcgdex.net/v2/en/cards/ex1-105",
+            "https://prices.pokemontcg.io/tcgplayer/ex1-105",
+            "https://www.thepricedex.com/set/ex1/ruby-and-sapphire/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "ex1",
+          "set_name": "Ruby & Sapphire",
+          "card_number": "105",
+          "card_name": "Fighting Energy",
+          "finish_key": "reverse",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/ex1-105",
+            "https://reverseholo.app/sets/ex1",
+            "https://api.tcgdex.net/v2/en/cards/ex1-105",
+            "https://prices.pokemontcg.io/tcgplayer/ex1-105",
+            "https://www.thepricedex.com/set/ex1/ruby-and-sapphire/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "ex1",
+          "set_name": "Ruby & Sapphire",
+          "card_number": "105",
+          "card_name": "Fighting Energy",
+          "finish_key": "stamped",
+          "status": "master_verified",
+          "sources": [
+            "elitefourum_alternate_checklist",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.elitefourum.com/t/updated-6-15-15-alternate-set-card-checklist-english/11788",
+            "https://www.thepricedex.com/set/ex1/ruby-and-sapphire/price-list"
+          ],
+          "professor_program_evidence": false
+        }
+      ],
+      "live_targets": [
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "46f60ec9-7442-4336-b6bf-2b3860e8227d",
+          "printing_id": "dc136394-7a3c-4914-ae41-9e6f66d61d5f",
+          "grookai_card_name": "Fighting Energy",
+          "finish_key": "normal",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        },
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "34d2b3d1-8753-464a-8831-2f1acebc9e3d",
+          "printing_id": "21a67c97-f938-4a77-ba19-6d5588d985ef",
+          "grookai_card_name": "Fighting Energy",
+          "finish_key": "normal",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        }
+      ]
+    },
+    {
+      "source_product_id": 176626,
+      "source_product_name": "Fire Energy (2004-2005)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "108/109",
+      "source_subtypes": [
+        "Normal"
+      ],
+      "source_finish_key": "normal",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "professor_program_stamp_not_proven_by_master_index",
+      "match_counts": {
+        "name_number": 1,
+        "name_number_set_total": 1,
+        "selected_candidates": 1,
+        "exact_finish_evidence": 1,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 2,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": {
+        "exact": [
+          109
+        ],
+        "fallback": [
+          109
+        ]
+      },
+      "master_candidates": [
+        {
+          "set_key": "ex1",
+          "set_name": "Ruby & Sapphire",
+          "card_number": "108",
+          "card_name": "Fire Energy",
+          "status": "master_verified",
+          "sources": [
+            "bulbapedia_set_list",
+            "pkmncards",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/Ruby_%26_Sapphire_(TCG)#Set_lists",
+            "https://pkmncards.com/card/fire-energy-ruby-sapphire-rs-108/",
+            "https://api.pokemontcg.io/v2/cards/ex1-108",
+            "https://api.tcgdex.net/v2/en/cards/ex1-108",
+            "https://www.thepricedex.com/set/ex1/ruby-and-sapphire/price-list"
+          ]
+        }
+      ],
+      "master_printings": [
+        {
+          "set_key": "ex1",
+          "set_name": "Ruby & Sapphire",
+          "card_number": "108",
+          "card_name": "Fire Energy",
+          "finish_key": "normal",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/ex1-108",
+            "https://api.tcgdex.net/v2/en/cards/ex1-108",
+            "https://prices.pokemontcg.io/tcgplayer/ex1-108",
+            "https://www.thepricedex.com/set/ex1/ruby-and-sapphire/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "ex1",
+          "set_name": "Ruby & Sapphire",
+          "card_number": "108",
+          "card_name": "Fire Energy",
+          "finish_key": "reverse",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/ex1-108",
+            "https://reverseholo.app/sets/ex1",
+            "https://api.tcgdex.net/v2/en/cards/ex1-108",
+            "https://prices.pokemontcg.io/tcgplayer/ex1-108",
+            "https://www.thepricedex.com/set/ex1/ruby-and-sapphire/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "ex1",
+          "set_name": "Ruby & Sapphire",
+          "card_number": "108",
+          "card_name": "Fire Energy",
+          "finish_key": "stamped",
+          "status": "master_verified",
+          "sources": [
+            "elitefourum_alternate_checklist",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.elitefourum.com/t/updated-6-15-15-alternate-set-card-checklist-english/11788",
+            "https://www.thepricedex.com/set/ex1/ruby-and-sapphire/price-list"
+          ],
+          "professor_program_evidence": false
+        }
+      ],
+      "live_targets": [
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "1655b928-7da5-42ed-a178-b0519693823d",
+          "printing_id": "4130ab92-b412-4a75-ad6c-6797b672f298",
+          "grookai_card_name": "Fire Energy",
+          "finish_key": "normal",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        },
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "b6097c58-3292-4832-9bb1-757f60171dbf",
+          "printing_id": "fc72a95e-8e11-43c0-b4a9-d1e25c9c8988",
+          "grookai_card_name": "Fire Energy",
+          "finish_key": "normal",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        }
+      ]
+    },
+    {
+      "source_product_id": 176627,
+      "source_product_name": "Grass Energy (2004-2005)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "104/109",
+      "source_subtypes": [
+        "Normal"
+      ],
+      "source_finish_key": "normal",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "professor_program_stamp_not_proven_by_master_index",
+      "match_counts": {
+        "name_number": 1,
+        "name_number_set_total": 1,
+        "selected_candidates": 1,
+        "exact_finish_evidence": 1,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 1,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": {
+        "exact": [
+          109
+        ],
+        "fallback": [
+          109
+        ]
+      },
+      "master_candidates": [
+        {
+          "set_key": "ex1",
+          "set_name": "Ruby & Sapphire",
+          "card_number": "104",
+          "card_name": "Grass Energy",
+          "status": "master_verified",
+          "sources": [
+            "bulbapedia_set_list",
+            "pkmncards",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/Ruby_%26_Sapphire_(TCG)#Set_lists",
+            "https://pkmncards.com/card/grass-energy-ruby-sapphire-rs-104/",
+            "https://api.pokemontcg.io/v2/cards/ex1-104",
+            "https://api.tcgdex.net/v2/en/cards/ex1-104",
+            "https://www.thepricedex.com/set/ex1/ruby-and-sapphire/price-list"
+          ]
+        }
+      ],
+      "master_printings": [
+        {
+          "set_key": "ex1",
+          "set_name": "Ruby & Sapphire",
+          "card_number": "104",
+          "card_name": "Grass Energy",
+          "finish_key": "normal",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/ex1-104",
+            "https://api.tcgdex.net/v2/en/cards/ex1-104",
+            "https://prices.pokemontcg.io/tcgplayer/ex1-104",
+            "https://www.thepricedex.com/set/ex1/ruby-and-sapphire/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "ex1",
+          "set_name": "Ruby & Sapphire",
+          "card_number": "104",
+          "card_name": "Grass Energy",
+          "finish_key": "reverse",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/ex1-104",
+            "https://reverseholo.app/sets/ex1",
+            "https://api.tcgdex.net/v2/en/cards/ex1-104",
+            "https://prices.pokemontcg.io/tcgplayer/ex1-104",
+            "https://www.thepricedex.com/set/ex1/ruby-and-sapphire/price-list"
+          ],
+          "professor_program_evidence": false
+        }
+      ],
+      "live_targets": [
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "49b7e215-cf55-450d-8375-d956ba965abf",
+          "printing_id": "c8711bda-241d-426b-af96-3588c6680ba2",
+          "grookai_card_name": "Grass Energy",
+          "finish_key": "normal",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        }
+      ]
+    },
+    {
+      "source_product_id": 176628,
+      "source_product_name": "Lightning Energy (2004-2005)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "109/109",
+      "source_subtypes": [
+        "Normal"
+      ],
+      "source_finish_key": "normal",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "professor_program_stamp_not_proven_by_master_index",
+      "match_counts": {
+        "name_number": 2,
+        "name_number_set_total": 1,
+        "selected_candidates": 1,
+        "exact_finish_evidence": 1,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 1,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": {
+        "exact": [
+          109
+        ],
+        "fallback": [
+          109
+        ]
+      },
+      "master_candidates": [
+        {
+          "set_key": "ex1",
+          "set_name": "Ruby & Sapphire",
+          "card_number": "109",
+          "card_name": "Lightning Energy",
+          "status": "master_verified",
+          "sources": [
+            "bulbapedia_set_list",
+            "pkmncards",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/Ruby_%26_Sapphire_(TCG)#Set_lists",
+            "https://pkmncards.com/card/lightning-energy-ruby-sapphire-rs-109/",
+            "https://api.pokemontcg.io/v2/cards/ex1-109",
+            "https://api.tcgdex.net/v2/en/cards/ex1-109",
+            "https://www.thepricedex.com/set/ex1/ruby-and-sapphire/price-list"
+          ]
+        }
+      ],
+      "master_printings": [
+        {
+          "set_key": "ex1",
+          "set_name": "Ruby & Sapphire",
+          "card_number": "109",
+          "card_name": "Lightning Energy",
+          "finish_key": "normal",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/ex1-109",
+            "https://api.tcgdex.net/v2/en/cards/ex1-109",
+            "https://prices.pokemontcg.io/tcgplayer/ex1-109",
+            "https://www.thepricedex.com/set/ex1/ruby-and-sapphire/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "ex1",
+          "set_name": "Ruby & Sapphire",
+          "card_number": "109",
+          "card_name": "Lightning Energy",
+          "finish_key": "reverse",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/ex1-109",
+            "https://reverseholo.app/sets/ex1",
+            "https://api.tcgdex.net/v2/en/cards/ex1-109",
+            "https://prices.pokemontcg.io/tcgplayer/ex1-109",
+            "https://www.thepricedex.com/set/ex1/ruby-and-sapphire/price-list"
+          ],
+          "professor_program_evidence": false
+        }
+      ],
+      "live_targets": [
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "37468fb8-5cfc-4b64-a1ac-e5d21ae52036",
+          "printing_id": "121df92b-84b2-4e0f-b24d-5fd521e9f01e",
+          "grookai_card_name": "Lightning Energy",
+          "finish_key": "normal",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        }
+      ]
+    },
+    {
+      "source_product_id": 176629,
+      "source_product_name": "Prof. Oak's Research (2004-2005)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "98/112",
+      "source_subtypes": [
+        "Normal"
+      ],
+      "source_finish_key": "normal",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "live_professor_program_parent_link_not_proven",
+      "match_counts": {
+        "name_number": 1,
+        "name_number_set_total": 1,
+        "selected_candidates": 1,
+        "exact_finish_evidence": 1,
+        "professor_program_evidence": 1,
+        "live_exact_finish_rows": 1,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": {
+        "exact": [
+          112
+        ],
+        "fallback": [
+          116
+        ]
+      },
+      "master_candidates": [
+        {
+          "set_key": "ex6",
+          "set_name": "FireRed & LeafGreen",
+          "card_number": "98",
+          "card_name": "Prof. Oak's Research",
+          "status": "master_verified",
+          "sources": [
+            "bulbapedia_set_list",
+            "pkmncards",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/FireRed_%26_LeafGreen_(TCG)#Set_lists",
+            "https://pkmncards.com/card/prof-oaks-research-firered-leafgreen-rg-98/",
+            "https://api.pokemontcg.io/v2/cards/ex6-98",
+            "https://api.tcgdex.net/v2/en/cards/ex6-98",
+            "https://www.thepricedex.com/set/ex6/firered-and-leafgreen/price-list"
+          ]
+        }
+      ],
+      "master_printings": [
+        {
+          "set_key": "ex6",
+          "set_name": "FireRed & LeafGreen",
+          "card_number": "98",
+          "card_name": "Prof. Oak's Research",
+          "finish_key": "normal",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/ex6-98",
+            "https://api.tcgdex.net/v2/en/cards/ex6-98",
+            "https://prices.pokemontcg.io/tcgplayer/ex6-98",
+            "https://www.thepricedex.com/set/ex6/firered-and-leafgreen/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "ex6",
+          "set_name": "FireRed & LeafGreen",
+          "card_number": "98",
+          "card_name": "Prof. Oak's Research",
+          "finish_key": "reverse",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/ex6-98",
+            "https://api.tcgdex.net/v2/en/cards/ex6-98",
+            "https://prices.pokemontcg.io/tcgplayer/ex6-98",
+            "https://www.thepricedex.com/set/ex6/firered-and-leafgreen/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "ex6",
+          "set_name": "FireRed & LeafGreen",
+          "card_number": "98",
+          "card_name": "Prof. Oak's Research",
+          "finish_key": "stamped",
+          "status": "master_verified",
+          "sources": [
+            "sports_card_investor_variant_exact",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.sportscardinvestor.com/cards/prof.-oak-s-research-pokemon/2004-ex-firered-leafgreen-promo-professor-program-098-112",
+            "https://www.thepricedex.com/set/ex6/firered-and-leafgreen/price-list"
+          ],
+          "professor_program_evidence": true
+        }
+      ],
+      "live_targets": [
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "453468cf-a458-4ff6-acde-6103b234bf87",
+          "printing_id": "4b3e3a10-2187-43d7-a5b6-9a5ef4bf14a4",
+          "grookai_card_name": "Prof. Oak's Research",
+          "finish_key": "normal",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        }
+      ]
+    },
+    {
+      "source_product_id": 176630,
+      "source_product_name": "Professor Birch (2006)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "82/106",
+      "source_subtypes": [
+        "Holofoil"
+      ],
+      "source_finish_key": "holo",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "live_professor_program_parent_link_not_proven",
+      "match_counts": {
+        "name_number": 1,
+        "name_number_set_total": 1,
+        "selected_candidates": 1,
+        "exact_finish_evidence": 1,
+        "professor_program_evidence": 1,
+        "live_exact_finish_rows": 2,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": {
+        "exact": [
+          106
+        ],
+        "fallback": [
+          107
+        ]
+      },
+      "master_candidates": [
+        {
+          "set_key": "ex9",
+          "set_name": "Emerald",
+          "card_number": "82",
+          "card_name": "Professor Birch",
+          "status": "master_verified",
+          "sources": [
+            "pkmncards",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://pkmncards.com/card/professor-birch-emerald-em-82/",
+            "https://api.pokemontcg.io/v2/cards/ex9-82",
+            "https://api.tcgdex.net/v2/en/cards/ex9-82",
+            "https://www.thepricedex.com/set/ex9/emerald/price-list"
+          ]
+        }
+      ],
+      "master_printings": [
+        {
+          "set_key": "ex9",
+          "set_name": "Emerald",
+          "card_number": "82",
+          "card_name": "Professor Birch",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "sources": [
+            "pokecardvalues_stamped_finish",
+            "tcgdex"
+          ],
+          "evidence_urls": [
+            "https://pokecardvalues.co.uk/cards/professor-birch-82-106-holo-professor-program-emerald/ex9-82-1-55/",
+            "https://api.tcgdex.net/v2/en/cards/ex9-82"
+          ],
+          "professor_program_evidence": true
+        },
+        {
+          "set_key": "ex9",
+          "set_name": "Emerald",
+          "card_number": "82",
+          "card_name": "Professor Birch",
+          "finish_key": "normal",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/ex9-82",
+            "https://api.tcgdex.net/v2/en/cards/ex9-82",
+            "https://prices.pokemontcg.io/tcgplayer/ex9-82",
+            "https://www.thepricedex.com/set/ex9/emerald/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "ex9",
+          "set_name": "Emerald",
+          "card_number": "82",
+          "card_name": "Professor Birch",
+          "finish_key": "reverse",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/ex9-82",
+            "https://reverseholo.app/sets/ex9",
+            "https://api.tcgdex.net/v2/en/cards/ex9-82",
+            "https://www.thepricedex.com/set/ex9/emerald/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "ex9",
+          "set_name": "Emerald",
+          "card_number": "82",
+          "card_name": "Professor Birch",
+          "finish_key": "stamped",
+          "status": "master_verified",
+          "sources": [
+            "pricecharting_csv_product",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.pricecharting.com/game/pokemon-emerald/professor-birch-program-2005-82",
+            "https://www.thepricedex.com/set/ex9/emerald/price-list"
+          ],
+          "professor_program_evidence": false
+        }
+      ],
+      "live_targets": [
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "ed61ea12-90af-4250-b089-e2b31fc2fdce",
+          "printing_id": "dca7743b-bb81-48ea-b2ac-7fc7688bf005",
+          "grookai_card_name": "Professor Birch",
+          "finish_key": "holo",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        },
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "a3ae0ede-d02f-4bbd-b148-a1de0aa268fb",
+          "printing_id": "75999405-0d8a-4944-b000-962f0b0fbc38",
+          "grookai_card_name": "Professor Birch",
+          "finish_key": "holo",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        }
+      ]
+    },
+    {
+      "source_product_id": 176631,
+      "source_product_name": "Professor Oak's Visit (2008-2009)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "122/132",
+      "source_subtypes": [
+        "Normal"
+      ],
+      "source_finish_key": "normal",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "live_professor_program_parent_link_not_proven",
+      "match_counts": {
+        "name_number": 1,
+        "name_number_set_total": 1,
+        "selected_candidates": 1,
+        "exact_finish_evidence": 1,
+        "professor_program_evidence": 1,
+        "live_exact_finish_rows": 1,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": {
+        "exact": [
+          132
+        ],
+        "fallback": [
+          132
+        ]
+      },
+      "master_candidates": [
+        {
+          "set_key": "dp3",
+          "set_name": "Secret Wonders",
+          "card_number": "122",
+          "card_name": "Professor Oak's Visit",
+          "status": "master_verified",
+          "sources": [
+            "bulbapedia_set_list",
+            "pkmncards",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/Secret_Wonders_(TCG)#Set_lists",
+            "https://pkmncards.com/card/professor-oaks-visit-secret-wonders-sw-122/",
+            "https://api.pokemontcg.io/v2/cards/dp3-122",
+            "https://api.tcgdex.net/v2/en/cards/dp3-122",
+            "https://www.thepricedex.com/set/dp3/secret-wonders/price-list"
+          ]
+        }
+      ],
+      "master_printings": [
+        {
+          "set_key": "dp3",
+          "set_name": "Secret Wonders",
+          "card_number": "122",
+          "card_name": "Professor Oak's Visit",
+          "finish_key": "normal",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/dp3-122",
+            "https://api.tcgdex.net/v2/en/cards/dp3-122",
+            "https://prices.pokemontcg.io/tcgplayer/dp3-122",
+            "https://www.thepricedex.com/set/dp3/secret-wonders/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "dp3",
+          "set_name": "Secret Wonders",
+          "card_number": "122",
+          "card_name": "Professor Oak's Visit",
+          "finish_key": "reverse",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/dp3-122",
+            "https://api.tcgdex.net/v2/en/cards/dp3-122",
+            "https://prices.pokemontcg.io/tcgplayer/dp3-122",
+            "https://www.thepricedex.com/set/dp3/secret-wonders/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "dp3",
+          "set_name": "Secret Wonders",
+          "card_number": "122",
+          "card_name": "Professor Oak's Visit",
+          "finish_key": "stamped",
+          "status": "master_verified",
+          "sources": [
+            "pricecharting_csv_product",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.pricecharting.com/game/pokemon-secret-wonders/professor-oaks-visit-professor-program-122",
+            "https://www.thepricedex.com/set/dp3/secret-wonders/price-list"
+          ],
+          "professor_program_evidence": true
+        }
+      ],
+      "live_targets": [
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "20353cdf-bdef-4e82-acac-49cf30ee22b5",
+          "printing_id": "523ebfea-6896-42fa-bc05-eb023fbe158a",
+          "grookai_card_name": "Professor Oak's Visit",
+          "finish_key": "normal",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        }
+      ]
+    },
+    {
+      "source_product_id": 176632,
+      "source_product_name": "Professor Juniper - 98/108 (2013)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "98/108",
+      "source_subtypes": [
+        "Reverse Holofoil"
+      ],
+      "source_finish_key": "reverse",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "live_professor_program_parent_link_not_proven",
+      "match_counts": {
+        "name_number": 1,
+        "name_number_set_total": 1,
+        "selected_candidates": 1,
+        "exact_finish_evidence": 1,
+        "professor_program_evidence": 1,
+        "live_exact_finish_rows": 2,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": {
+        "exact": [
+          108
+        ],
+        "fallback": [
+          111
+        ]
+      },
+      "master_candidates": [
+        {
+          "set_key": "bw5",
+          "set_name": "Dark Explorers",
+          "card_number": "98",
+          "card_name": "Professor Juniper",
+          "status": "master_verified",
+          "sources": [
+            "bulbapedia_set_list",
+            "pkmncards",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/Dark_Explorers_(TCG)#Set_lists",
+            "https://pkmncards.com/card/professor-juniper-dark-explorers-dex-98/",
+            "https://api.pokemontcg.io/v2/cards/bw5-98",
+            "https://api.tcgdex.net/v2/en/cards/bw5-98",
+            "https://www.thepricedex.com/set/bw5/dark-explorers/price-list"
+          ]
+        }
+      ],
+      "master_printings": [
+        {
+          "set_key": "bw5",
+          "set_name": "Dark Explorers",
+          "card_number": "98",
+          "card_name": "Professor Juniper",
+          "finish_key": "normal",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/bw5-98",
+            "https://api.tcgdex.net/v2/en/cards/bw5-98",
+            "https://prices.pokemontcg.io/tcgplayer/bw5-98",
+            "https://www.thepricedex.com/set/bw5/dark-explorers/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "bw5",
+          "set_name": "Dark Explorers",
+          "card_number": "98",
+          "card_name": "Professor Juniper",
+          "finish_key": "reverse",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/bw5-98",
+            "https://reverseholo.app/sets/bw5",
+            "https://www.thepricedex.com/set/bw5/dark-explorers/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "bw5",
+          "set_name": "Dark Explorers",
+          "card_number": "98",
+          "card_name": "Professor Juniper",
+          "finish_key": "stamped",
+          "status": "master_verified",
+          "sources": [
+            "pricecharting_csv_product",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.pricecharting.com/game/pokemon-dark-explorers/professor-juniper-professor-program-98",
+            "https://www.thepricedex.com/set/bw5/dark-explorers/price-list"
+          ],
+          "professor_program_evidence": true
+        }
+      ],
+      "live_targets": [
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "c98e4f39-59fc-4ec1-bfc5-c34f28a25f3c",
+          "printing_id": "c927a695-e2b4-4e04-a545-4b066d097d8c",
+          "grookai_card_name": "Professor Juniper",
+          "finish_key": "reverse",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        },
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "e2dadea2-f1a8-4cac-9496-31e8adfa5908",
+          "printing_id": "b1b72ab6-a9c7-46c9-868f-eaa17d94b9db",
+          "grookai_card_name": "Professor Juniper",
+          "finish_key": "reverse",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        }
+      ]
+    },
+    {
+      "source_product_id": 176633,
+      "source_product_name": "Professor Juniper - 101/114 (2013)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "101/114",
+      "source_subtypes": [
+        "Reverse Holofoil"
+      ],
+      "source_finish_key": "reverse",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "live_professor_program_parent_link_not_proven",
+      "match_counts": {
+        "name_number": 1,
+        "name_number_set_total": 1,
+        "selected_candidates": 1,
+        "exact_finish_evidence": 1,
+        "professor_program_evidence": 1,
+        "live_exact_finish_rows": 2,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": {
+        "exact": [
+          114
+        ],
+        "fallback": [
+          115
+        ]
+      },
+      "master_candidates": [
+        {
+          "set_key": "bw1",
+          "set_name": "Black & White",
+          "card_number": "101",
+          "card_name": "Professor Juniper",
+          "status": "master_verified",
+          "sources": [
+            "bulbapedia_set_list",
+            "pkmncards",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/Black_%26_White_(TCG)#Set_lists",
+            "https://pkmncards.com/card/professor-juniper-black-white-blw-101/",
+            "https://api.pokemontcg.io/v2/cards/bw1-101",
+            "https://api.tcgdex.net/v2/en/cards/bw1-101",
+            "https://www.thepricedex.com/set/bw1/black-and-white/price-list"
+          ]
+        }
+      ],
+      "master_printings": [
+        {
+          "set_key": "bw1",
+          "set_name": "Black & White",
+          "card_number": "101",
+          "card_name": "Professor Juniper",
+          "finish_key": "normal",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/bw1-101",
+            "https://api.tcgdex.net/v2/en/cards/bw1-101",
+            "https://prices.pokemontcg.io/tcgplayer/bw1-101",
+            "https://www.thepricedex.com/set/bw1/black-and-white/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "bw1",
+          "set_name": "Black & White",
+          "card_number": "101",
+          "card_name": "Professor Juniper",
+          "finish_key": "reverse",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/bw1-101",
+            "https://reverseholo.app/sets/bw1",
+            "https://www.thepricedex.com/set/bw1/black-and-white/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "bw1",
+          "set_name": "Black & White",
+          "card_number": "101",
+          "card_name": "Professor Juniper",
+          "finish_key": "stamped",
+          "status": "master_verified",
+          "sources": [
+            "pricecharting_csv_product",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.pricecharting.com/game/pokemon-black-and-white/professor-juniper-professor-program-101",
+            "https://www.thepricedex.com/set/bw1/black-and-white/price-list"
+          ],
+          "professor_program_evidence": true
+        }
+      ],
+      "live_targets": [
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "12cad852-d079-44cc-9438-e806aede97ff",
+          "printing_id": "7637371e-c948-466b-b14f-676a198a502c",
+          "grookai_card_name": "Professor Juniper",
+          "finish_key": "reverse",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        },
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "98f0a49e-37ac-4e45-9813-f1ce4ff2dc45",
+          "printing_id": "9b8c6ebf-9a70-4c38-8bc9-1b5cf0bdba01",
+          "grookai_card_name": "Professor Juniper",
+          "finish_key": "reverse",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        }
+      ]
+    },
+    {
+      "source_product_id": 176634,
+      "source_product_name": "Professor Rowan (2007)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "112/130",
+      "source_subtypes": [
+        "Normal"
+      ],
+      "source_finish_key": "normal",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "professor_program_stamp_not_proven_by_master_index",
+      "match_counts": {
+        "name_number": 1,
+        "name_number_set_total": 1,
+        "selected_candidates": 1,
+        "exact_finish_evidence": 1,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 1,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": {
+        "exact": [
+          130
+        ],
+        "fallback": [
+          130
+        ]
+      },
+      "master_candidates": [
+        {
+          "set_key": "dp1",
+          "set_name": "Diamond & Pearl",
+          "card_number": "112",
+          "card_name": "Professor Rowan",
+          "status": "master_verified",
+          "sources": [
+            "bulbapedia_set_list",
+            "pkmncards",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/Diamond_%26_Pearl_(TCG)#Set_lists",
+            "https://pkmncards.com/card/professor-rowan-diamond-pearl-dp-112/",
+            "https://api.pokemontcg.io/v2/cards/dp1-112",
+            "https://api.tcgdex.net/v2/en/cards/dp1-112",
+            "https://www.thepricedex.com/set/dp1/diamond-and-pearl/price-list"
+          ]
+        }
+      ],
+      "master_printings": [
+        {
+          "set_key": "dp1",
+          "set_name": "Diamond & Pearl",
+          "card_number": "112",
+          "card_name": "Professor Rowan",
+          "finish_key": "cosmos",
+          "status": "master_verified",
+          "sources": [
+            "tcgcollector_card_variants",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.tcgcollector.com/cards/3665/professor-rowan-diamond-and-pearl-112-130",
+            "https://www.thepricedex.com/set/dp1/diamond-and-pearl/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "dp1",
+          "set_name": "Diamond & Pearl",
+          "card_number": "112",
+          "card_name": "Professor Rowan",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "sources": [
+            "cardtrader_blueprint_index",
+            "tcgdex"
+          ],
+          "evidence_urls": [
+            "https://www.cardtrader.com/en/cards/114224-professor-rowan-holo-promo-112-130-diamond-pearl-promos",
+            "https://api.tcgdex.net/v2/en/cards/dp1-112"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "dp1",
+          "set_name": "Diamond & Pearl",
+          "card_number": "112",
+          "card_name": "Professor Rowan",
+          "finish_key": "normal",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/dp1-112",
+            "https://api.tcgdex.net/v2/en/cards/dp1-112",
+            "https://prices.pokemontcg.io/tcgplayer/dp1-112",
+            "https://www.thepricedex.com/set/dp1/diamond-and-pearl/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "dp1",
+          "set_name": "Diamond & Pearl",
+          "card_number": "112",
+          "card_name": "Professor Rowan",
+          "finish_key": "reverse",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/dp1-112",
+            "https://reverseholo.app/sets/dp1",
+            "https://api.tcgdex.net/v2/en/cards/dp1-112",
+            "https://prices.pokemontcg.io/tcgplayer/dp1-112",
+            "https://www.thepricedex.com/set/dp1/diamond-and-pearl/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "dp1",
+          "set_name": "Diamond & Pearl",
+          "card_number": "112",
+          "card_name": "Professor Rowan",
+          "finish_key": "stamped",
+          "status": "master_verified",
+          "sources": [
+            "pokescope_variant_exact",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://pokescope.app/card/dp1-112/",
+            "https://www.thepricedex.com/set/dp1/diamond-and-pearl/price-list"
+          ],
+          "professor_program_evidence": false
+        }
+      ],
+      "live_targets": [
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "7b071c37-8c72-4364-8df6-9b450c4ddf1c",
+          "printing_id": "263b587d-68bf-4489-8bb2-794532300d59",
+          "grookai_card_name": "Professor Rowan",
+          "finish_key": "normal",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        }
+      ]
+    },
+    {
+      "source_product_id": 176636,
+      "source_product_name": "Water Energy (2004-2005)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "106/109",
+      "source_subtypes": [
+        "Normal"
+      ],
+      "source_finish_key": "normal",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "professor_program_stamp_not_proven_by_master_index",
+      "match_counts": {
+        "name_number": 1,
+        "name_number_set_total": 1,
+        "selected_candidates": 1,
+        "exact_finish_evidence": 1,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 2,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": {
+        "exact": [
+          109
+        ],
+        "fallback": [
+          109
+        ]
+      },
+      "master_candidates": [
+        {
+          "set_key": "ex1",
+          "set_name": "Ruby & Sapphire",
+          "card_number": "106",
+          "card_name": "Water Energy",
+          "status": "master_verified",
+          "sources": [
+            "bulbapedia_set_list",
+            "pkmncards",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/Ruby_%26_Sapphire_(TCG)#Set_lists",
+            "https://pkmncards.com/card/water-energy-ruby-sapphire-rs-106/",
+            "https://api.pokemontcg.io/v2/cards/ex1-106",
+            "https://api.tcgdex.net/v2/en/cards/ex1-106",
+            "https://www.thepricedex.com/set/ex1/ruby-and-sapphire/price-list"
+          ]
+        }
+      ],
+      "master_printings": [
+        {
+          "set_key": "ex1",
+          "set_name": "Ruby & Sapphire",
+          "card_number": "106",
+          "card_name": "Water Energy",
+          "finish_key": "normal",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/ex1-106",
+            "https://api.tcgdex.net/v2/en/cards/ex1-106",
+            "https://prices.pokemontcg.io/tcgplayer/ex1-106",
+            "https://www.thepricedex.com/set/ex1/ruby-and-sapphire/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "ex1",
+          "set_name": "Ruby & Sapphire",
+          "card_number": "106",
+          "card_name": "Water Energy",
+          "finish_key": "reverse",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/ex1-106",
+            "https://reverseholo.app/sets/ex1",
+            "https://api.tcgdex.net/v2/en/cards/ex1-106",
+            "https://prices.pokemontcg.io/tcgplayer/ex1-106",
+            "https://www.thepricedex.com/set/ex1/ruby-and-sapphire/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "ex1",
+          "set_name": "Ruby & Sapphire",
+          "card_number": "106",
+          "card_name": "Water Energy",
+          "finish_key": "stamped",
+          "status": "master_verified",
+          "sources": [
+            "elitefourum_alternate_checklist",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.elitefourum.com/t/updated-6-15-15-alternate-set-card-checklist-english/11788",
+            "https://www.thepricedex.com/set/ex1/ruby-and-sapphire/price-list"
+          ],
+          "professor_program_evidence": false
+        }
+      ],
+      "live_targets": [
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "b7b7d3e2-53ca-45d1-b3f7-c41ed12860a8",
+          "printing_id": "15b74723-fed2-4d27-95e9-f8b8811dfae6",
+          "grookai_card_name": "Water Energy",
+          "finish_key": "normal",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        },
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "77d6c408-1a84-486e-a162-f170cac3a42d",
+          "printing_id": "b51813ae-6381-4ee2-b3ba-161a09bae420",
+          "grookai_card_name": "Water Energy",
+          "finish_key": "normal",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        }
+      ]
+    },
+    {
+      "source_product_id": 176637,
+      "source_product_name": "Psychic Energy (2004-2005)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "107/109",
+      "source_subtypes": [
+        "Normal"
+      ],
+      "source_finish_key": "normal",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "professor_program_stamp_not_proven_by_master_index",
+      "match_counts": {
+        "name_number": 2,
+        "name_number_set_total": 1,
+        "selected_candidates": 1,
+        "exact_finish_evidence": 1,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 2,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": {
+        "exact": [
+          109
+        ],
+        "fallback": [
+          109
+        ]
+      },
+      "master_candidates": [
+        {
+          "set_key": "ex1",
+          "set_name": "Ruby & Sapphire",
+          "card_number": "107",
+          "card_name": "Psychic Energy",
+          "status": "master_verified",
+          "sources": [
+            "bulbapedia_set_list",
+            "pkmncards",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/Ruby_%26_Sapphire_(TCG)#Set_lists",
+            "https://pkmncards.com/card/psychic-energy-ruby-sapphire-rs-107/",
+            "https://api.pokemontcg.io/v2/cards/ex1-107",
+            "https://api.tcgdex.net/v2/en/cards/ex1-107",
+            "https://www.thepricedex.com/set/ex1/ruby-and-sapphire/price-list"
+          ]
+        }
+      ],
+      "master_printings": [
+        {
+          "set_key": "ex1",
+          "set_name": "Ruby & Sapphire",
+          "card_number": "107",
+          "card_name": "Psychic Energy",
+          "finish_key": "normal",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/ex1-107",
+            "https://api.tcgdex.net/v2/en/cards/ex1-107",
+            "https://prices.pokemontcg.io/tcgplayer/ex1-107",
+            "https://www.thepricedex.com/set/ex1/ruby-and-sapphire/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "ex1",
+          "set_name": "Ruby & Sapphire",
+          "card_number": "107",
+          "card_name": "Psychic Energy",
+          "finish_key": "reverse",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/ex1-107",
+            "https://reverseholo.app/sets/ex1",
+            "https://api.tcgdex.net/v2/en/cards/ex1-107",
+            "https://prices.pokemontcg.io/tcgplayer/ex1-107",
+            "https://www.thepricedex.com/set/ex1/ruby-and-sapphire/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "ex1",
+          "set_name": "Ruby & Sapphire",
+          "card_number": "107",
+          "card_name": "Psychic Energy",
+          "finish_key": "stamped",
+          "status": "master_verified",
+          "sources": [
+            "elitefourum_alternate_checklist",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.elitefourum.com/t/updated-6-15-15-alternate-set-card-checklist-english/11788",
+            "https://www.thepricedex.com/set/ex1/ruby-and-sapphire/price-list"
+          ],
+          "professor_program_evidence": false
+        }
+      ],
+      "live_targets": [
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "908d835b-e0ec-4418-99a9-b7c51eab0889",
+          "printing_id": "16dc4de2-8853-442e-9484-1d41ea25e383",
+          "grookai_card_name": "Psychic Energy",
+          "finish_key": "normal",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        },
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "931be0cb-f5e2-46ed-bb73-8924b8c40752",
+          "printing_id": "b5cd52c9-7094-4b34-b8c0-5b9330c487c4",
+          "grookai_card_name": "Psychic Energy",
+          "finish_key": "normal",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        }
+      ]
+    },
+    {
+      "source_product_id": 176638,
+      "source_product_name": "Professor Sycamore (2015)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "122/146",
+      "source_subtypes": [
+        "Reverse Holofoil"
+      ],
+      "source_finish_key": "reverse",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "live_professor_program_parent_link_not_proven",
+      "match_counts": {
+        "name_number": 1,
+        "name_number_set_total": 1,
+        "selected_candidates": 1,
+        "exact_finish_evidence": 1,
+        "professor_program_evidence": 1,
+        "live_exact_finish_rows": 1,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": {
+        "exact": [
+          146
+        ],
+        "fallback": [
+          146
+        ]
+      },
+      "master_candidates": [
+        {
+          "set_key": "xy1",
+          "set_name": "XY",
+          "card_number": "122",
+          "card_name": "Professor Sycamore",
+          "status": "master_verified",
+          "sources": [
+            "bulbapedia_set_list",
+            "pkmncards",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/XY_(TCG)#Set_lists",
+            "https://pkmncards.com/card/professor-sycamore-xy-xy-122/",
+            "https://api.pokemontcg.io/v2/cards/xy1-122",
+            "https://api.tcgdex.net/v2/en/cards/xy1-122",
+            "https://www.thepricedex.com/set/xy1/xy/price-list"
+          ]
+        }
+      ],
+      "master_printings": [
+        {
+          "set_key": "xy1",
+          "set_name": "XY",
+          "card_number": "122",
+          "card_name": "Professor Sycamore",
+          "finish_key": "normal",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/xy1-122",
+            "https://api.tcgdex.net/v2/en/cards/xy1-122",
+            "https://prices.pokemontcg.io/tcgplayer/xy1-122",
+            "https://www.thepricedex.com/set/xy1/xy/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "xy1",
+          "set_name": "XY",
+          "card_number": "122",
+          "card_name": "Professor Sycamore",
+          "finish_key": "reverse",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/xy1-122",
+            "https://reverseholo.app/sets/xy1",
+            "https://www.thepricedex.com/set/xy1/xy/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "xy1",
+          "set_name": "XY",
+          "card_number": "122",
+          "card_name": "Professor Sycamore",
+          "finish_key": "stamped",
+          "status": "master_verified",
+          "sources": [
+            "pricecharting_csv_product",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.pricecharting.com/game/pokemon-xy/professor-sycamore-professor-program-crosshatch-holo-122",
+            "https://www.thepricedex.com/set/xy1/xy/price-list"
+          ],
+          "professor_program_evidence": true
+        }
+      ],
+      "live_targets": [
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "4cec1b2e-358c-4e24-a295-efb955acc303",
+          "printing_id": "1a259802-cf91-4f4f-a44b-e48e3af7bdc8",
+          "grookai_card_name": "Professor Sycamore",
+          "finish_key": "reverse",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        }
+      ]
+    },
+    {
+      "source_product_id": 213516,
+      "source_product_name": "Judge (2019)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "108/131",
+      "source_subtypes": [
+        "Reverse Holofoil"
+      ],
+      "source_finish_key": "reverse",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "live_professor_program_parent_link_not_proven",
+      "match_counts": {
+        "name_number": 1,
+        "name_number_set_total": 1,
+        "selected_candidates": 1,
+        "exact_finish_evidence": 1,
+        "professor_program_evidence": 1,
+        "live_exact_finish_rows": 1,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": {
+        "exact": [
+          131
+        ],
+        "fallback": [
+          146,
+          150
+        ]
+      },
+      "master_candidates": [
+        {
+          "set_key": "sm6",
+          "set_name": "Forbidden Light",
+          "card_number": "108",
+          "card_name": "Judge",
+          "status": "master_verified",
+          "sources": [
+            "bulbapedia_set_list",
+            "pkmncards",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/Forbidden_Light_(TCG)#Set_lists",
+            "https://pkmncards.com/card/judge-forbidden-light-fli-108/",
+            "https://api.pokemontcg.io/v2/cards/sm6-108",
+            "https://api.tcgdex.net/v2/en/cards/sm6-108",
+            "https://www.thepricedex.com/set/sm6/forbidden-light/price-list"
+          ]
+        }
+      ],
+      "master_printings": [
+        {
+          "set_key": "sm6",
+          "set_name": "Forbidden Light",
+          "card_number": "108",
+          "card_name": "Judge",
+          "finish_key": "normal",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sm6-108",
+            "https://api.tcgdex.net/v2/en/cards/sm6-108",
+            "https://prices.pokemontcg.io/tcgplayer/sm6-108",
+            "https://www.thepricedex.com/set/sm6/forbidden-light/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "sm6",
+          "set_name": "Forbidden Light",
+          "card_number": "108",
+          "card_name": "Judge",
+          "finish_key": "reverse",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sm6-108",
+            "https://reverseholo.app/sets/sm6",
+            "https://www.thepricedex.com/set/sm6/forbidden-light/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "sm6",
+          "set_name": "Forbidden Light",
+          "card_number": "108",
+          "card_name": "Judge",
+          "finish_key": "stamped",
+          "status": "master_verified",
+          "sources": [
+            "pricecharting_csv_product",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.pricecharting.com/game/pokemon-forbidden-light/judge-professor-program-108",
+            "https://www.thepricedex.com/set/sm6/forbidden-light/price-list"
+          ],
+          "professor_program_evidence": true
+        }
+      ],
+      "live_targets": [
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "a51c9d34-02ab-48d5-932f-ca2e78b81bd0",
+          "printing_id": "21a859ca-27a3-4542-91af-ed552617be97",
+          "grookai_card_name": "Judge",
+          "finish_key": "reverse",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        }
+      ]
+    },
+    {
+      "source_product_id": 278686,
+      "source_product_name": "Professor's Research [Professor Juniper] - 060/072",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "060/072",
+      "source_subtypes": [
+        "Reverse Holofoil"
+      ],
+      "source_finish_key": "reverse",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "professor_program_stamp_not_proven_by_master_index",
+      "match_counts": {
+        "name_number": 1,
+        "name_number_set_total": 1,
+        "selected_candidates": 1,
+        "exact_finish_evidence": 1,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 1,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": {
+        "exact": [
+          72
+        ],
+        "fallback": [
+          73
+        ]
+      },
+      "master_candidates": [
+        {
+          "set_key": "swsh4.5",
+          "set_name": "Shining Fates",
+          "card_number": "60",
+          "card_name": "Professor's Research (Professor Juniper)",
+          "status": "master_verified",
+          "sources": [
+            "pkmncards_identity_gap",
+            "tcgdex"
+          ],
+          "evidence_urls": [
+            "https://pkmncards.com/card/professors-research-shining-fates-shf-060/",
+            "https://api.tcgdex.net/v2/en/cards/swsh4.5-60"
+          ]
+        }
+      ],
+      "master_printings": [
+        {
+          "set_key": "swsh4.5",
+          "set_name": "Shining Fates",
+          "card_number": "60",
+          "card_name": "Professor's Research (Professor Juniper)",
+          "finish_key": "normal",
+          "status": "master_verified",
+          "sources": [
+            "tcgcsv_tcgplayer_catalog",
+            "tcgdex"
+          ],
+          "evidence_urls": [
+            "https://www.tcgplayer.com/product/232545/pokemon-shining-fates-professors-research",
+            "https://api.tcgdex.net/v2/en/cards/swsh4.5-60"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "swsh4.5",
+          "set_name": "Shining Fates",
+          "card_number": "60",
+          "card_name": "Professor's Research (Professor Juniper)",
+          "finish_key": "reverse",
+          "status": "master_verified",
+          "sources": [
+            "tcdb_checklist",
+            "tcgdex"
+          ],
+          "evidence_urls": [
+            "https://www.tcdb.com/ViewCard.cfm/sid/261540/cid/16099518/2021-Pokemon-Sword-&-Shield-Shining-Fates---Reverse-Holos-060/072-Professor's-Research:-Professor-Juniper?PageIndex=1",
+            "https://api.tcgdex.net/v2/en/cards/swsh4.5-60"
+          ],
+          "professor_program_evidence": false
+        }
+      ],
+      "live_targets": [
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "17cd3179-b844-47a8-a197-ae123ca4b583",
+          "printing_id": "0e7c02d8-a3b2-44e5-bdf7-275385ecccb4",
+          "grookai_card_name": "Professor's Research (Professor Juniper)",
+          "finish_key": "reverse",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        }
+      ]
+    },
+    {
+      "source_product_id": 278687,
+      "source_product_name": "Professor's Research [Professor Rowan] - 147/172",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "147/172",
+      "source_subtypes": [
+        "Reverse Holofoil"
+      ],
+      "source_finish_key": "reverse",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "no_master_index_name_number_set_total_match",
+      "match_counts": {
+        "name_number": 0,
+        "name_number_set_total": 0,
+        "selected_candidates": 0,
+        "exact_finish_evidence": 0,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 0,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": null,
+      "master_candidates": [],
+      "master_printings": [],
+      "live_targets": []
+    },
+    {
+      "source_product_id": 499366,
+      "source_product_name": "Gym Trainer (2022)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "059/072",
+      "source_subtypes": [
+        "Reverse Holofoil"
+      ],
+      "source_finish_key": "reverse",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "live_professor_program_parent_link_not_proven",
+      "match_counts": {
+        "name_number": 2,
+        "name_number_set_total": 1,
+        "selected_candidates": 1,
+        "exact_finish_evidence": 1,
+        "professor_program_evidence": 1,
+        "live_exact_finish_rows": 1,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": {
+        "exact": [
+          72
+        ],
+        "fallback": [
+          73
+        ]
+      },
+      "master_candidates": [
+        {
+          "set_key": "swsh4.5",
+          "set_name": "Shining Fates",
+          "card_number": "59",
+          "card_name": "Gym Trainer",
+          "status": "master_verified",
+          "sources": [
+            "pkmncards",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://pkmncards.com/card/gym-trainer-shining-fates-shf-059/",
+            "https://api.pokemontcg.io/v2/cards/swsh45-59",
+            "https://api.tcgdex.net/v2/en/cards/swsh4.5-59",
+            "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+          ]
+        }
+      ],
+      "master_printings": [
+        {
+          "set_key": "swsh4.5",
+          "set_name": "Shining Fates",
+          "card_number": "59",
+          "card_name": "Gym Trainer",
+          "finish_key": "normal",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/swsh45-59",
+            "https://api.tcgdex.net/v2/en/cards/swsh4.5-59",
+            "https://prices.pokemontcg.io/tcgplayer/swsh45-59",
+            "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "swsh4.5",
+          "set_name": "Shining Fates",
+          "card_number": "59",
+          "card_name": "Gym Trainer",
+          "finish_key": "reverse",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/swsh45-59",
+            "https://reverseholo.app/sets/swsh4.5",
+            "https://api.tcgdex.net/v2/en/cards/swsh4.5-59",
+            "https://prices.pokemontcg.io/tcgplayer/swsh45-59",
+            "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "swsh4.5",
+          "set_name": "Shining Fates",
+          "card_number": "59",
+          "card_name": "Gym Trainer",
+          "finish_key": "stamped",
+          "status": "master_verified",
+          "sources": [
+            "pricecharting_csv_product",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.pricecharting.com/game/pokemon-shining-fates/gym-trainer-professor-program-59",
+            "https://www.thepricedex.com/set/swsh45/shining-fates/price-list"
+          ],
+          "professor_program_evidence": true
+        }
+      ],
+      "live_targets": [
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "d04a6b76-26f1-4a33-99ae-6920f7a501da",
+          "printing_id": "31aafc67-c110-408d-85b6-13d685ac0ded",
+          "grookai_card_name": "Gym Trainer",
+          "finish_key": "reverse",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        }
+      ]
+    },
+    {
+      "source_product_id": 556953,
+      "source_product_name": "Professor's Research [Professor Sada] - 189/198",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "189/198",
+      "source_subtypes": [
+        "Reverse Holofoil"
+      ],
+      "source_finish_key": "reverse",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "professor_program_stamp_not_proven_by_master_index",
+      "match_counts": {
+        "name_number": 1,
+        "name_number_set_total": 1,
+        "selected_candidates": 1,
+        "exact_finish_evidence": 1,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 2,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": {
+        "exact": [
+          198
+        ],
+        "fallback": [
+          258
+        ]
+      },
+      "master_candidates": [
+        {
+          "set_key": "sv01",
+          "set_name": "Scarlet & Violet",
+          "card_number": "189",
+          "card_name": "Professor's Research (Professor Sada)",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv1-189",
+            "https://www.thepricedex.com/set/sv1/scarlet-and-violet/price-list"
+          ]
+        }
+      ],
+      "master_printings": [
+        {
+          "set_key": "sv01",
+          "set_name": "Scarlet & Violet",
+          "card_number": "189",
+          "card_name": "Professor's Research (Professor Sada)",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv1-189",
+            "https://www.thepricedex.com/set/sv1/scarlet-and-violet/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "sv01",
+          "set_name": "Scarlet & Violet",
+          "card_number": "189",
+          "card_name": "Professor's Research (Professor Sada)",
+          "finish_key": "reverse",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv1-189",
+            "https://www.thepricedex.com/set/sv1/scarlet-and-violet/price-list"
+          ],
+          "professor_program_evidence": false
+        }
+      ],
+      "live_targets": [
+        {
+          "status": "name_mismatch_needs_review",
+          "card_print_id": "3cc9f3b8-542b-4418-bef5-bb2e2131d0d4",
+          "printing_id": "f5ed48a5-520f-4bd5-ba82-0f0facc32c16",
+          "grookai_card_name": "Professor's Research",
+          "finish_key": "reverse",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "missing_from_grookai",
+          "finish_key": "reverse",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Index has this printing fact, but no exact Grookai printing row matched set, number, name, and finish."
+        }
+      ]
+    },
+    {
+      "source_product_id": 556957,
+      "source_product_name": "Professor's Research [Professor Turo] - 190/198",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "190/198",
+      "source_subtypes": [
+        "Reverse Holofoil"
+      ],
+      "source_finish_key": "reverse",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "professor_program_stamp_not_proven_by_master_index",
+      "match_counts": {
+        "name_number": 1,
+        "name_number_set_total": 1,
+        "selected_candidates": 1,
+        "exact_finish_evidence": 1,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 2,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": {
+        "exact": [
+          198
+        ],
+        "fallback": [
+          258
+        ]
+      },
+      "master_candidates": [
+        {
+          "set_key": "sv01",
+          "set_name": "Scarlet & Violet",
+          "card_number": "190",
+          "card_name": "Professor's Research (Professor Turo)",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv1-190",
+            "https://www.thepricedex.com/set/sv1/scarlet-and-violet/price-list"
+          ]
+        }
+      ],
+      "master_printings": [
+        {
+          "set_key": "sv01",
+          "set_name": "Scarlet & Violet",
+          "card_number": "190",
+          "card_name": "Professor's Research (Professor Turo)",
+          "finish_key": "holo",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv1-190",
+            "https://www.thepricedex.com/set/sv1/scarlet-and-violet/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "sv01",
+          "set_name": "Scarlet & Violet",
+          "card_number": "190",
+          "card_name": "Professor's Research (Professor Turo)",
+          "finish_key": "reverse",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv1-190",
+            "https://www.thepricedex.com/set/sv1/scarlet-and-violet/price-list"
+          ],
+          "professor_program_evidence": false
+        }
+      ],
+      "live_targets": [
+        {
+          "status": "name_mismatch_needs_review",
+          "card_print_id": "bf0b05aa-2269-47b8-b6e7-dd1ed1e3b30f",
+          "printing_id": "3620c2db-dbd6-40a8-bf79-6d09e4c5738e",
+          "grookai_card_name": "Professor's Research",
+          "finish_key": "reverse",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Set, number, and finish matched the index, but card name did not match exactly."
+        },
+        {
+          "status": "missing_from_grookai",
+          "finish_key": "reverse",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Index has this printing fact, but no exact Grookai printing row matched set, number, name, and finish."
+        }
+      ]
+    },
+    {
+      "source_product_id": 556967,
+      "source_product_name": "Friends in Galar - 140/172 (2022)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "140/172",
+      "source_subtypes": [
+        "Reverse Holofoil"
+      ],
+      "source_finish_key": "reverse",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "professor_program_stamp_not_proven_by_master_index",
+      "match_counts": {
+        "name_number": 2,
+        "name_number_set_total": 1,
+        "selected_candidates": 1,
+        "exact_finish_evidence": 1,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 1,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": {
+        "exact": [
+          172
+        ],
+        "fallback": [
+          186
+        ]
+      },
+      "master_candidates": [
+        {
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "140",
+          "card_name": "Friends in Galar",
+          "status": "master_verified",
+          "sources": [
+            "pkmncards",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://pkmncards.com/card/friends-in-galar-brilliant-stars-brs-140/",
+            "https://api.pokemontcg.io/v2/cards/swsh9-140",
+            "https://api.tcgdex.net/v2/en/cards/swsh9-140",
+            "https://www.thepricedex.com/set/swsh9/brilliant-stars/price-list"
+          ]
+        }
+      ],
+      "master_printings": [
+        {
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "140",
+          "card_name": "Friends in Galar",
+          "finish_key": "normal",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/swsh9-140",
+            "https://api.tcgdex.net/v2/en/cards/swsh9-140",
+            "https://prices.pokemontcg.io/tcgplayer/swsh9-140",
+            "https://www.thepricedex.com/set/swsh9/brilliant-stars/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "140",
+          "card_name": "Friends in Galar",
+          "finish_key": "reverse",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/swsh9-140",
+            "https://reverseholo.app/sets/swsh9",
+            "https://api.tcgdex.net/v2/en/cards/swsh9-140",
+            "https://prices.pokemontcg.io/tcgplayer/swsh9-140",
+            "https://www.thepricedex.com/set/swsh9/brilliant-stars/price-list"
+          ],
+          "professor_program_evidence": false
+        }
+      ],
+      "live_targets": [
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "945096eb-e444-43e6-9d16-1387b338c317",
+          "printing_id": "1933d583-b6a2-48e3-98a4-8e95b4dd78fb",
+          "grookai_card_name": "Friends in Galar",
+          "finish_key": "reverse",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        }
+      ]
+    },
+    {
+      "source_product_id": 556969,
+      "source_product_name": "Roxanne - 150/189 (2022)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "150/189",
+      "source_subtypes": [
+        "Reverse Holofoil"
+      ],
+      "source_finish_key": "reverse",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "professor_program_stamp_not_proven_by_master_index",
+      "match_counts": {
+        "name_number": 2,
+        "name_number_set_total": 1,
+        "selected_candidates": 1,
+        "exact_finish_evidence": 1,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 3,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": {
+        "exact": [
+          189
+        ],
+        "fallback": [
+          216
+        ]
+      },
+      "master_candidates": [
+        {
+          "set_key": "swsh10",
+          "set_name": "Astral Radiance",
+          "card_number": "150",
+          "card_name": "Roxanne",
+          "status": "master_verified",
+          "sources": [
+            "bulbapedia_set_list",
+            "pkmncards",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/Astral_Radiance_(TCG)#Set_lists",
+            "https://pkmncards.com/card/roxanne-astral-radiance-asr-150/",
+            "https://api.pokemontcg.io/v2/cards/swsh10-150",
+            "https://api.tcgdex.net/v2/en/cards/swsh10-150",
+            "https://www.thepricedex.com/set/swsh10/astral-radiance/price-list"
+          ]
+        }
+      ],
+      "master_printings": [
+        {
+          "set_key": "swsh10",
+          "set_name": "Astral Radiance",
+          "card_number": "150",
+          "card_name": "Roxanne",
+          "finish_key": "normal",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/swsh10-150",
+            "https://api.tcgdex.net/v2/en/cards/swsh10-150",
+            "https://prices.pokemontcg.io/tcgplayer/swsh10-150",
+            "https://www.thepricedex.com/set/swsh10/astral-radiance/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "swsh10",
+          "set_name": "Astral Radiance",
+          "card_number": "150",
+          "card_name": "Roxanne",
+          "finish_key": "reverse",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/swsh10-150",
+            "https://reverseholo.app/sets/swsh10",
+            "https://api.tcgdex.net/v2/en/cards/swsh10-150",
+            "https://prices.pokemontcg.io/tcgplayer/swsh10-150",
+            "https://www.thepricedex.com/set/swsh10/astral-radiance/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "swsh10",
+          "set_name": "Astral Radiance",
+          "card_number": "150",
+          "card_name": "Roxanne",
+          "finish_key": "stamped",
+          "status": "master_verified",
+          "sources": [
+            "pricecharting_csv_product",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.pricecharting.com/game/pokemon-astral-radiance/roxanne-regional-championships-150",
+            "https://www.thepricedex.com/set/swsh10/astral-radiance/price-list"
+          ],
+          "professor_program_evidence": false
+        }
+      ],
+      "live_targets": [
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "23a7a4c4-b333-487a-be9b-04aefe1f8424",
+          "printing_id": "3040d9c0-98a9-4271-85d0-da54b27ba553",
+          "grookai_card_name": "Roxanne",
+          "finish_key": "reverse",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        },
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "bf26d7a4-3168-444a-b0f0-f3ee57e3c0d3",
+          "printing_id": "b1bcc676-11f4-4408-9eb6-0156dc3baa7f",
+          "grookai_card_name": "Roxanne",
+          "finish_key": "reverse",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        },
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "41d8cce4-540a-4a89-bcae-2e4518735c85",
+          "printing_id": "c3501f8a-5ea3-46e8-9d26-8cb4483e30c8",
+          "grookai_card_name": "Roxanne",
+          "finish_key": "reverse",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        }
+      ]
+    },
+    {
+      "source_product_id": 599453,
+      "source_product_name": "Fighting Energy (2023)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "006",
+      "source_subtypes": [
+        "Holofoil"
+      ],
+      "source_finish_key": "holo",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "ambiguous_underlying_set_identity",
+      "match_counts": {
+        "name_number": 4,
+        "name_number_set_total": 0,
+        "selected_candidates": 4,
+        "exact_finish_evidence": 0,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 0,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": null,
+      "master_candidates": [
+        {
+          "set_key": "tk-bw-e",
+          "set_name": "BW trainer Kit (Excadrill)",
+          "card_number": "6",
+          "card_name": "Fighting Energy",
+          "status": "master_verified",
+          "sources": [
+            "tcgcollector_card_variants",
+            "tcgdex"
+          ],
+          "evidence_urls": [
+            "https://www.tcgcollector.com/cards/7295/fighting-energy-bw-trainer-kit-excadrill-6-30",
+            "https://api.tcgdex.net/v2/en/cards/tk-bw-e-6"
+          ]
+        },
+        {
+          "set_key": "mee",
+          "set_name": "Mega Evolution Energy",
+          "card_number": "6",
+          "card_name": "Basic Fighting Energy",
+          "status": "master_verified",
+          "sources": [
+            "eyevo_set_checklist",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://eyevotcg.com/sets/mega-evolution-energy/",
+            "https://api.tcgdex.net/v2/en/cards/mee-006",
+            "https://www.thepricedex.com/set/mee/mega-evolution-energy/price-list"
+          ]
+        },
+        {
+          "set_key": "tk-xy-latio",
+          "set_name": "XY trainer Kit (Latios)",
+          "card_number": "6",
+          "card_name": "Fighting Energy",
+          "status": "master_verified",
+          "sources": [
+            "pkmncards",
+            "tcgdex"
+          ],
+          "evidence_urls": [
+            "https://pkmncards.com/card/fighting-energy-xy-trainer-kit-latios-tk8o-6/",
+            "https://api.tcgdex.net/v2/en/cards/tk-xy-latio-6"
+          ]
+        },
+        {
+          "set_key": "sve",
+          "set_name": "Scarlet & Violet Energies",
+          "card_number": "6",
+          "card_name": "Basic Fighting Energy",
+          "status": "master_verified",
+          "sources": [
+            "eyevo_set_checklist",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://eyevotcg.com/sets/scarlet-violet-energy/",
+            "https://api.pokemontcg.io/v2/cards/sve-6",
+            "https://api.tcgdex.net/v2/en/cards/sve-006",
+            "https://www.thepricedex.com/set/sve/scarlet-and-violet-energies/price-list"
+          ]
+        }
+      ],
+      "master_printings": [],
+      "live_targets": []
+    },
+    {
+      "source_product_id": 599454,
+      "source_product_name": "Fire Energy (2023)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "002",
+      "source_subtypes": [
+        "Holofoil"
+      ],
+      "source_finish_key": "holo",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "ambiguous_underlying_set_identity",
+      "match_counts": {
+        "name_number": 2,
+        "name_number_set_total": 0,
+        "selected_candidates": 2,
+        "exact_finish_evidence": 0,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 0,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": null,
+      "master_candidates": [
+        {
+          "set_key": "mee",
+          "set_name": "Mega Evolution Energy",
+          "card_number": "2",
+          "card_name": "Basic Fire Energy",
+          "status": "master_verified",
+          "sources": [
+            "eyevo_set_checklist",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://eyevotcg.com/sets/mega-evolution-energy/",
+            "https://api.tcgdex.net/v2/en/cards/mee-002",
+            "https://www.thepricedex.com/set/mee/mega-evolution-energy/price-list"
+          ]
+        },
+        {
+          "set_key": "sve",
+          "set_name": "Scarlet & Violet Energies",
+          "card_number": "2",
+          "card_name": "Basic Fire Energy",
+          "status": "master_verified",
+          "sources": [
+            "eyevo_set_checklist",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://eyevotcg.com/sets/scarlet-violet-energy/",
+            "https://api.pokemontcg.io/v2/cards/sve-2",
+            "https://api.tcgdex.net/v2/en/cards/sve-002",
+            "https://www.thepricedex.com/set/sve/scarlet-and-violet-energies/price-list"
+          ]
+        }
+      ],
+      "master_printings": [],
+      "live_targets": []
+    },
+    {
+      "source_product_id": 599455,
+      "source_product_name": "Grass Energy (2023)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "001",
+      "source_subtypes": [
+        "Holofoil"
+      ],
+      "source_finish_key": "holo",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "ambiguous_underlying_set_identity",
+      "match_counts": {
+        "name_number": 3,
+        "name_number_set_total": 0,
+        "selected_candidates": 3,
+        "exact_finish_evidence": 0,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 0,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": null,
+      "master_candidates": [
+        {
+          "set_key": "mee",
+          "set_name": "Mega Evolution Energy",
+          "card_number": "1",
+          "card_name": "Basic Grass Energy",
+          "status": "master_verified",
+          "sources": [
+            "eyevo_set_checklist",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://eyevotcg.com/sets/mega-evolution-energy/",
+            "https://api.tcgdex.net/v2/en/cards/mee-001",
+            "https://www.thepricedex.com/set/mee/mega-evolution-energy/price-list"
+          ]
+        },
+        {
+          "set_key": "tk-xy-latia",
+          "set_name": "XY trainer Kit (Latias)",
+          "card_number": "1",
+          "card_name": "Grass Energy",
+          "status": "master_verified",
+          "sources": [
+            "pkmncards",
+            "tcgdex"
+          ],
+          "evidence_urls": [
+            "https://pkmncards.com/card/grass-energy-xy-trainer-kit-latias-tk8a-1/",
+            "https://api.tcgdex.net/v2/en/cards/tk-xy-latia-1"
+          ]
+        },
+        {
+          "set_key": "sve",
+          "set_name": "Scarlet & Violet Energies",
+          "card_number": "1",
+          "card_name": "Basic Grass Energy",
+          "status": "master_verified",
+          "sources": [
+            "eyevo_set_checklist",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://eyevotcg.com/sets/scarlet-violet-energy/",
+            "https://api.pokemontcg.io/v2/cards/sve-1",
+            "https://api.tcgdex.net/v2/en/cards/sve-001",
+            "https://www.thepricedex.com/set/sve/scarlet-and-violet-energies/price-list"
+          ]
+        }
+      ],
+      "master_printings": [],
+      "live_targets": []
+    },
+    {
+      "source_product_id": 599456,
+      "source_product_name": "Lightning Energy (2023)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "004",
+      "source_subtypes": [
+        "Holofoil"
+      ],
+      "source_finish_key": "holo",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "ambiguous_underlying_set_identity",
+      "match_counts": {
+        "name_number": 2,
+        "name_number_set_total": 0,
+        "selected_candidates": 2,
+        "exact_finish_evidence": 0,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 0,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": null,
+      "master_candidates": [
+        {
+          "set_key": "mee",
+          "set_name": "Mega Evolution Energy",
+          "card_number": "4",
+          "card_name": "Basic Lightning Energy",
+          "status": "master_verified",
+          "sources": [
+            "eyevo_set_checklist",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://eyevotcg.com/sets/mega-evolution-energy/",
+            "https://api.tcgdex.net/v2/en/cards/mee-004",
+            "https://www.thepricedex.com/set/mee/mega-evolution-energy/price-list"
+          ]
+        },
+        {
+          "set_key": "sve",
+          "set_name": "Scarlet & Violet Energies",
+          "card_number": "4",
+          "card_name": "Basic Lightning Energy",
+          "status": "master_verified",
+          "sources": [
+            "eyevo_set_checklist",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://eyevotcg.com/sets/scarlet-violet-energy/",
+            "https://api.pokemontcg.io/v2/cards/sve-4",
+            "https://api.tcgdex.net/v2/en/cards/sve-004",
+            "https://www.thepricedex.com/set/sve/scarlet-and-violet-energies/price-list"
+          ]
+        }
+      ],
+      "master_printings": [],
+      "live_targets": []
+    },
+    {
+      "source_product_id": 599457,
+      "source_product_name": "Psychic Energy (2023)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "005",
+      "source_subtypes": [
+        "Holofoil"
+      ],
+      "source_finish_key": "holo",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "ambiguous_underlying_set_identity",
+      "match_counts": {
+        "name_number": 3,
+        "name_number_set_total": 0,
+        "selected_candidates": 3,
+        "exact_finish_evidence": 0,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 0,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": null,
+      "master_candidates": [
+        {
+          "set_key": "mee",
+          "set_name": "Mega Evolution Energy",
+          "card_number": "5",
+          "card_name": "Basic Psychic Energy",
+          "status": "master_verified",
+          "sources": [
+            "eyevo_set_checklist",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://eyevotcg.com/sets/mega-evolution-energy/",
+            "https://api.tcgdex.net/v2/en/cards/mee-005",
+            "https://www.thepricedex.com/set/mee/mega-evolution-energy/price-list"
+          ]
+        },
+        {
+          "set_key": "tk-xy-n",
+          "set_name": "XY trainer Kit (Noivern)",
+          "card_number": "5",
+          "card_name": "Psychic Energy",
+          "status": "master_verified",
+          "sources": [
+            "pkmncards",
+            "tcgdex"
+          ],
+          "evidence_urls": [
+            "https://pkmncards.com/card/psychic-energy-xy-trainer-kit-noivern-tk6n-5/",
+            "https://api.tcgdex.net/v2/en/cards/tk-xy-n-5"
+          ]
+        },
+        {
+          "set_key": "sve",
+          "set_name": "Scarlet & Violet Energies",
+          "card_number": "5",
+          "card_name": "Basic Psychic Energy",
+          "status": "master_verified",
+          "sources": [
+            "eyevo_set_checklist",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://eyevotcg.com/sets/scarlet-violet-energy/",
+            "https://api.pokemontcg.io/v2/cards/sve-5",
+            "https://api.tcgdex.net/v2/en/cards/sve-005",
+            "https://www.thepricedex.com/set/sve/scarlet-and-violet-energies/price-list"
+          ]
+        }
+      ],
+      "master_printings": [],
+      "live_targets": []
+    },
+    {
+      "source_product_id": 599458,
+      "source_product_name": "Water Energy (2023)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "003",
+      "source_subtypes": [
+        "Holofoil"
+      ],
+      "source_finish_key": "holo",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "ambiguous_underlying_set_identity",
+      "match_counts": {
+        "name_number": 4,
+        "name_number_set_total": 0,
+        "selected_candidates": 4,
+        "exact_finish_evidence": 0,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 0,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": null,
+      "master_candidates": [
+        {
+          "set_key": "mee",
+          "set_name": "Mega Evolution Energy",
+          "card_number": "3",
+          "card_name": "Basic Water Energy",
+          "status": "master_verified",
+          "sources": [
+            "eyevo_set_checklist",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://eyevotcg.com/sets/mega-evolution-energy/",
+            "https://api.tcgdex.net/v2/en/cards/mee-003",
+            "https://www.thepricedex.com/set/mee/mega-evolution-energy/price-list"
+          ]
+        },
+        {
+          "set_key": "tk-xy-su",
+          "set_name": "XY trainer Kit (Suicune)",
+          "card_number": "3",
+          "card_name": "Water Energy",
+          "status": "master_verified",
+          "sources": [
+            "pkmncards",
+            "tcgdex"
+          ],
+          "evidence_urls": [
+            "https://pkmncards.com/card/water-energy-xy-trainer-kit-suicune-tk9s-3/",
+            "https://api.tcgdex.net/v2/en/cards/tk-xy-su-3"
+          ]
+        },
+        {
+          "set_key": "sve",
+          "set_name": "Scarlet & Violet Energies",
+          "card_number": "3",
+          "card_name": "Basic Water Energy",
+          "status": "master_verified",
+          "sources": [
+            "eyevo_set_checklist",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://eyevotcg.com/sets/scarlet-violet-energy/",
+            "https://api.pokemontcg.io/v2/cards/sve-3",
+            "https://api.tcgdex.net/v2/en/cards/sve-003",
+            "https://www.thepricedex.com/set/sve/scarlet-and-violet-energies/price-list"
+          ]
+        },
+        {
+          "set_key": "tk-hs-g",
+          "set_name": "HS trainer Kit (Gyarados)",
+          "card_number": "3",
+          "card_name": "Water Energy",
+          "status": "candidate_unconfirmed",
+          "sources": [
+            "tcgdex"
+          ],
+          "evidence_urls": [
+            "https://api.tcgdex.net/v2/en/cards/tk-hs-g-3"
+          ]
+        }
+      ],
+      "master_printings": [],
+      "live_targets": []
+    },
+    {
+      "source_product_id": 599459,
+      "source_product_name": "Metal Energy (2023)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "008",
+      "source_subtypes": [
+        "Holofoil"
+      ],
+      "source_finish_key": "holo",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "ambiguous_underlying_set_identity",
+      "match_counts": {
+        "name_number": 3,
+        "name_number_set_total": 0,
+        "selected_candidates": 3,
+        "exact_finish_evidence": 0,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 0,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": null,
+      "master_candidates": [
+        {
+          "set_key": "mee",
+          "set_name": "Mega Evolution Energy",
+          "card_number": "8",
+          "card_name": "Basic Metal Energy",
+          "status": "master_verified",
+          "sources": [
+            "eyevo_set_checklist",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://eyevotcg.com/sets/mega-evolution-energy/",
+            "https://api.tcgdex.net/v2/en/cards/mee-008",
+            "https://www.thepricedex.com/set/mee/mega-evolution-energy/price-list"
+          ]
+        },
+        {
+          "set_key": "tk-xy-b",
+          "set_name": "XY trainer Kit (Bisharp)",
+          "card_number": "8",
+          "card_name": "Metal Energy",
+          "status": "master_verified",
+          "sources": [
+            "pkmncards",
+            "tcgdex"
+          ],
+          "evidence_urls": [
+            "https://pkmncards.com/card/metal-energy-xy-trainer-kit-bisharp-tk7a-8/",
+            "https://api.tcgdex.net/v2/en/cards/tk-xy-b-8"
+          ]
+        },
+        {
+          "set_key": "sve",
+          "set_name": "Scarlet & Violet Energies",
+          "card_number": "8",
+          "card_name": "Basic Metal Energy",
+          "status": "master_verified",
+          "sources": [
+            "eyevo_set_checklist",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://eyevotcg.com/sets/scarlet-violet-energy/",
+            "https://api.pokemontcg.io/v2/cards/sve-8",
+            "https://api.tcgdex.net/v2/en/cards/sve-008",
+            "https://www.thepricedex.com/set/sve/scarlet-and-violet-energies/price-list"
+          ]
+        }
+      ],
+      "master_printings": [],
+      "live_targets": []
+    },
+    {
+      "source_product_id": 599460,
+      "source_product_name": "Darkness Energy (2023)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "007",
+      "source_subtypes": [
+        "Holofoil"
+      ],
+      "source_finish_key": "holo",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "ambiguous_underlying_set_identity",
+      "match_counts": {
+        "name_number": 3,
+        "name_number_set_total": 0,
+        "selected_candidates": 3,
+        "exact_finish_evidence": 0,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 0,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": null,
+      "master_candidates": [
+        {
+          "set_key": "tk-bw-z",
+          "set_name": "BW trainer Kit (Zoroark)",
+          "card_number": "7",
+          "card_name": "Darkness Energy",
+          "status": "master_verified",
+          "sources": [
+            "tcgcollector_card_variants",
+            "tcgdex"
+          ],
+          "evidence_urls": [
+            "https://www.tcgcollector.com/cards/7326/darkness-energy-bw-trainer-kit-zoroark-7-30",
+            "https://api.tcgdex.net/v2/en/cards/tk-bw-z-7"
+          ]
+        },
+        {
+          "set_key": "mee",
+          "set_name": "Mega Evolution Energy",
+          "card_number": "7",
+          "card_name": "Basic Darkness Energy",
+          "status": "master_verified",
+          "sources": [
+            "eyevo_set_checklist",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://eyevotcg.com/sets/mega-evolution-energy/",
+            "https://api.tcgdex.net/v2/en/cards/mee-007",
+            "https://www.thepricedex.com/set/mee/mega-evolution-energy/price-list"
+          ]
+        },
+        {
+          "set_key": "sve",
+          "set_name": "Scarlet & Violet Energies",
+          "card_number": "7",
+          "card_name": "Basic Darkness Energy",
+          "status": "master_verified",
+          "sources": [
+            "eyevo_set_checklist",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://eyevotcg.com/sets/scarlet-violet-energy/",
+            "https://api.pokemontcg.io/v2/cards/sve-7",
+            "https://api.tcgdex.net/v2/en/cards/sve-007",
+            "https://www.thepricedex.com/set/sve/scarlet-and-violet-energies/price-list"
+          ]
+        }
+      ],
+      "master_printings": [],
+      "live_targets": []
+    },
+    {
+      "source_product_id": 604494,
+      "source_product_name": "Darkness Energy (2024)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "015",
+      "source_subtypes": [
+        "Holofoil"
+      ],
+      "source_finish_key": "holo",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "ambiguous_underlying_set_identity",
+      "match_counts": {
+        "name_number": 2,
+        "name_number_set_total": 0,
+        "selected_candidates": 2,
+        "exact_finish_evidence": 0,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 0,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": null,
+      "master_candidates": [
+        {
+          "set_key": "sve",
+          "set_name": "Scarlet & Violet Energies",
+          "card_number": "15",
+          "card_name": "Basic Darkness Energy",
+          "status": "master_verified",
+          "sources": [
+            "eyevo_set_checklist",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://eyevotcg.com/sets/scarlet-violet-energy/",
+            "https://api.pokemontcg.io/v2/cards/sve-15",
+            "https://api.tcgdex.net/v2/en/cards/sve-015",
+            "https://www.thepricedex.com/set/sve/scarlet-and-violet-energies/price-list"
+          ]
+        },
+        {
+          "set_key": "mee",
+          "set_name": "Mega Evolution Energy",
+          "card_number": "15",
+          "card_name": "Basic Darkness Energy",
+          "status": "human_source_verified",
+          "sources": [
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/mee/mega-evolution-energy/price-list"
+          ]
+        }
+      ],
+      "master_printings": [],
+      "live_targets": []
+    },
+    {
+      "source_product_id": 604495,
+      "source_product_name": "Metal Energy (2024)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "016",
+      "source_subtypes": [
+        "Holofoil"
+      ],
+      "source_finish_key": "holo",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "ambiguous_underlying_set_identity",
+      "match_counts": {
+        "name_number": 2,
+        "name_number_set_total": 0,
+        "selected_candidates": 2,
+        "exact_finish_evidence": 0,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 0,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": null,
+      "master_candidates": [
+        {
+          "set_key": "sve",
+          "set_name": "Scarlet & Violet Energies",
+          "card_number": "16",
+          "card_name": "Basic Metal Energy",
+          "status": "master_verified",
+          "sources": [
+            "eyevo_set_checklist",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://eyevotcg.com/sets/scarlet-violet-energy/",
+            "https://api.pokemontcg.io/v2/cards/sve-16",
+            "https://api.tcgdex.net/v2/en/cards/sve-016",
+            "https://www.thepricedex.com/set/sve/scarlet-and-violet-energies/price-list"
+          ]
+        },
+        {
+          "set_key": "mee",
+          "set_name": "Mega Evolution Energy",
+          "card_number": "16",
+          "card_name": "Basic Metal Energy",
+          "status": "human_source_verified",
+          "sources": [
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/mee/mega-evolution-energy/price-list"
+          ]
+        }
+      ],
+      "master_printings": [],
+      "live_targets": []
+    },
+    {
+      "source_product_id": 604496,
+      "source_product_name": "Water Energy (2024)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "011",
+      "source_subtypes": [
+        "Holofoil"
+      ],
+      "source_finish_key": "holo",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "ambiguous_underlying_set_identity",
+      "match_counts": {
+        "name_number": 3,
+        "name_number_set_total": 0,
+        "selected_candidates": 3,
+        "exact_finish_evidence": 0,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 0,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": null,
+      "master_candidates": [
+        {
+          "set_key": "sve",
+          "set_name": "Scarlet & Violet Energies",
+          "card_number": "11",
+          "card_name": "Basic Water Energy",
+          "status": "master_verified",
+          "sources": [
+            "eyevo_set_checklist",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://eyevotcg.com/sets/scarlet-violet-energy/",
+            "https://api.pokemontcg.io/v2/cards/sve-11",
+            "https://api.tcgdex.net/v2/en/cards/sve-011",
+            "https://www.thepricedex.com/set/sve/scarlet-and-violet-energies/price-list"
+          ]
+        },
+        {
+          "set_key": "tk-hs-g",
+          "set_name": "HS trainer Kit (Gyarados)",
+          "card_number": "11",
+          "card_name": "Water Energy",
+          "status": "candidate_unconfirmed",
+          "sources": [
+            "tcgdex"
+          ],
+          "evidence_urls": [
+            "https://api.tcgdex.net/v2/en/cards/tk-hs-g-11"
+          ]
+        },
+        {
+          "set_key": "mee",
+          "set_name": "Mega Evolution Energy",
+          "card_number": "11",
+          "card_name": "Basic Water Energy",
+          "status": "human_source_verified",
+          "sources": [
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/mee/mega-evolution-energy/price-list"
+          ]
+        }
+      ],
+      "master_printings": [],
+      "live_targets": []
+    },
+    {
+      "source_product_id": 604497,
+      "source_product_name": "Psychic Energy (2024)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "013",
+      "source_subtypes": [
+        "Holofoil"
+      ],
+      "source_finish_key": "holo",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "ambiguous_underlying_set_identity",
+      "match_counts": {
+        "name_number": 2,
+        "name_number_set_total": 0,
+        "selected_candidates": 2,
+        "exact_finish_evidence": 0,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 0,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": null,
+      "master_candidates": [
+        {
+          "set_key": "sve",
+          "set_name": "Scarlet & Violet Energies",
+          "card_number": "13",
+          "card_name": "Basic Psychic Energy",
+          "status": "master_verified",
+          "sources": [
+            "eyevo_set_checklist",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://eyevotcg.com/sets/scarlet-violet-energy/",
+            "https://api.pokemontcg.io/v2/cards/sve-13",
+            "https://api.tcgdex.net/v2/en/cards/sve-013",
+            "https://www.thepricedex.com/set/sve/scarlet-and-violet-energies/price-list"
+          ]
+        },
+        {
+          "set_key": "mee",
+          "set_name": "Mega Evolution Energy",
+          "card_number": "13",
+          "card_name": "Basic Psychic Energy",
+          "status": "human_source_verified",
+          "sources": [
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/mee/mega-evolution-energy/price-list"
+          ]
+        }
+      ],
+      "master_printings": [],
+      "live_targets": []
+    },
+    {
+      "source_product_id": 604498,
+      "source_product_name": "Lightning Energy (2024)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "012",
+      "source_subtypes": [
+        "Normal"
+      ],
+      "source_finish_key": "normal",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "ambiguous_underlying_set_identity",
+      "match_counts": {
+        "name_number": 4,
+        "name_number_set_total": 0,
+        "selected_candidates": 4,
+        "exact_finish_evidence": 0,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 0,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": null,
+      "master_candidates": [
+        {
+          "set_key": "tk-ex-m",
+          "set_name": "EX Trainer Kit 2 Minun",
+          "card_number": "12",
+          "card_name": "Lightning Energy",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/tk2b-12",
+            "https://api.tcgdex.net/v2/en/cards/tk-ex-m-12",
+            "https://www.thepricedex.com/set/tk2b/ex-trainer-kit-2-minun/price-list"
+          ]
+        },
+        {
+          "set_key": "sve",
+          "set_name": "Scarlet & Violet Energies",
+          "card_number": "12",
+          "card_name": "Basic Lightning Energy",
+          "status": "master_verified",
+          "sources": [
+            "eyevo_set_checklist",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://eyevotcg.com/sets/scarlet-violet-energy/",
+            "https://api.pokemontcg.io/v2/cards/sve-12",
+            "https://api.tcgdex.net/v2/en/cards/sve-012",
+            "https://www.thepricedex.com/set/sve/scarlet-and-violet-energies/price-list"
+          ]
+        },
+        {
+          "set_key": "tk-sm-r",
+          "set_name": "SM trainer Kit (Alolan Raichu)",
+          "card_number": "12",
+          "card_name": "Lightning Energy",
+          "status": "candidate_unconfirmed",
+          "sources": [
+            "tcgdex"
+          ],
+          "evidence_urls": [
+            "https://api.tcgdex.net/v2/en/cards/tk-sm-r-12"
+          ]
+        },
+        {
+          "set_key": "mee",
+          "set_name": "Mega Evolution Energy",
+          "card_number": "12",
+          "card_name": "Basic Lightning Energy",
+          "status": "human_source_verified",
+          "sources": [
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/mee/mega-evolution-energy/price-list"
+          ]
+        }
+      ],
+      "master_printings": [],
+      "live_targets": []
+    },
+    {
+      "source_product_id": 604499,
+      "source_product_name": "Grass Energy (2024)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "009",
+      "source_subtypes": [
+        "Holofoil"
+      ],
+      "source_finish_key": "holo",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "ambiguous_underlying_set_identity",
+      "match_counts": {
+        "name_number": 2,
+        "name_number_set_total": 0,
+        "selected_candidates": 2,
+        "exact_finish_evidence": 0,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 0,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": null,
+      "master_candidates": [
+        {
+          "set_key": "sve",
+          "set_name": "Scarlet & Violet Energies",
+          "card_number": "9",
+          "card_name": "Basic Grass Energy",
+          "status": "master_verified",
+          "sources": [
+            "eyevo_set_checklist",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://eyevotcg.com/sets/scarlet-violet-energy/",
+            "https://api.pokemontcg.io/v2/cards/sve-9",
+            "https://api.tcgdex.net/v2/en/cards/sve-009",
+            "https://www.thepricedex.com/set/sve/scarlet-and-violet-energies/price-list"
+          ]
+        },
+        {
+          "set_key": "mee",
+          "set_name": "Mega Evolution Energy",
+          "card_number": "9",
+          "card_name": "Basic Grass Energy",
+          "status": "human_source_verified",
+          "sources": [
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/mee/mega-evolution-energy/price-list"
+          ]
+        }
+      ],
+      "master_printings": [],
+      "live_targets": []
+    },
+    {
+      "source_product_id": 604500,
+      "source_product_name": "Fire Energy (2024)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "010",
+      "source_subtypes": [
+        "Holofoil"
+      ],
+      "source_finish_key": "holo",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "ambiguous_underlying_set_identity",
+      "match_counts": {
+        "name_number": 3,
+        "name_number_set_total": 0,
+        "selected_candidates": 3,
+        "exact_finish_evidence": 0,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 0,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": null,
+      "master_candidates": [
+        {
+          "set_key": "tk-ex-latia",
+          "set_name": "EX Trainer Kit Latias",
+          "card_number": "10",
+          "card_name": "Fire Energy",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/tk1a-10",
+            "https://api.tcgdex.net/v2/en/cards/tk-ex-latia-10",
+            "https://www.thepricedex.com/set/tk1a/ex-trainer-kit-latias/price-list"
+          ]
+        },
+        {
+          "set_key": "sve",
+          "set_name": "Scarlet & Violet Energies",
+          "card_number": "10",
+          "card_name": "Basic Fire Energy",
+          "status": "master_verified",
+          "sources": [
+            "eyevo_set_checklist",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://eyevotcg.com/sets/scarlet-violet-energy/",
+            "https://api.pokemontcg.io/v2/cards/sve-10",
+            "https://api.tcgdex.net/v2/en/cards/sve-010",
+            "https://www.thepricedex.com/set/sve/scarlet-and-violet-energies/price-list"
+          ]
+        },
+        {
+          "set_key": "mee",
+          "set_name": "Mega Evolution Energy",
+          "card_number": "10",
+          "card_name": "Basic Fire Energy",
+          "status": "human_source_verified",
+          "sources": [
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/mee/mega-evolution-energy/price-list"
+          ]
+        }
+      ],
+      "master_printings": [],
+      "live_targets": []
+    },
+    {
+      "source_product_id": 604501,
+      "source_product_name": "Fighting Energy (2024)",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "014",
+      "source_subtypes": [
+        "Holofoil"
+      ],
+      "source_finish_key": "holo",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "ambiguous_underlying_set_identity",
+      "match_counts": {
+        "name_number": 2,
+        "name_number_set_total": 0,
+        "selected_candidates": 2,
+        "exact_finish_evidence": 0,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 0,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": null,
+      "master_candidates": [
+        {
+          "set_key": "sve",
+          "set_name": "Scarlet & Violet Energies",
+          "card_number": "14",
+          "card_name": "Basic Fighting Energy",
+          "status": "master_verified",
+          "sources": [
+            "eyevo_set_checklist",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://eyevotcg.com/sets/scarlet-violet-energy/",
+            "https://api.pokemontcg.io/v2/cards/sve-14",
+            "https://api.tcgdex.net/v2/en/cards/sve-014",
+            "https://www.thepricedex.com/set/sve/scarlet-and-violet-energies/price-list"
+          ]
+        },
+        {
+          "set_key": "mee",
+          "set_name": "Mega Evolution Energy",
+          "card_number": "14",
+          "card_name": "Basic Fighting Energy",
+          "status": "human_source_verified",
+          "sources": [
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.thepricedex.com/set/mee/mega-evolution-energy/price-list"
+          ]
+        }
+      ],
+      "master_printings": [],
+      "live_targets": []
+    },
+    {
+      "source_product_id": 658743,
+      "source_product_name": "Judge - 176/198",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "176/198",
+      "source_subtypes": [
+        "Reverse Holofoil"
+      ],
+      "source_finish_key": "reverse",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "professor_program_stamp_not_proven_by_master_index",
+      "match_counts": {
+        "name_number": 1,
+        "name_number_set_total": 1,
+        "selected_candidates": 1,
+        "exact_finish_evidence": 1,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 1,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": {
+        "exact": [
+          198
+        ],
+        "fallback": [
+          258
+        ]
+      },
+      "master_candidates": [
+        {
+          "set_key": "sv01",
+          "set_name": "Scarlet & Violet",
+          "card_number": "176",
+          "card_name": "Judge",
+          "status": "master_verified",
+          "sources": [
+            "bulbapedia_set_list",
+            "pkmncards",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/Scarlet_%26_Violet_(TCG)#Set_lists",
+            "https://pkmncards.com/card/judge-scarlet-violet-svi-176/",
+            "https://api.pokemontcg.io/v2/cards/sv1-176",
+            "https://api.tcgdex.net/v2/en/cards/sv01-176",
+            "https://www.thepricedex.com/set/sv1/scarlet-and-violet/price-list"
+          ]
+        }
+      ],
+      "master_printings": [
+        {
+          "set_key": "sv01",
+          "set_name": "Scarlet & Violet",
+          "card_number": "176",
+          "card_name": "Judge",
+          "finish_key": "normal",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv1-176",
+            "https://api.tcgdex.net/v2/en/cards/sv01-176",
+            "https://prices.pokemontcg.io/tcgplayer/sv1-176",
+            "https://www.thepricedex.com/set/sv1/scarlet-and-violet/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "sv01",
+          "set_name": "Scarlet & Violet",
+          "card_number": "176",
+          "card_name": "Judge",
+          "finish_key": "reverse",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv1-176",
+            "https://reverseholo.app/sets/sv01",
+            "https://api.tcgdex.net/v2/en/cards/sv01-176",
+            "https://prices.pokemontcg.io/tcgplayer/sv1-176",
+            "https://www.thepricedex.com/set/sv1/scarlet-and-violet/price-list"
+          ],
+          "professor_program_evidence": false
+        }
+      ],
+      "live_targets": [
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "dd4c9cf7-f7e7-4e21-9dfe-8a3edd6927d9",
+          "printing_id": "6fe2faf9-4074-4c4b-b4c7-20d7e9b11d16",
+          "grookai_card_name": "Judge",
+          "finish_key": "reverse",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        }
+      ]
+    },
+    {
+      "source_product_id": 677790,
+      "source_product_name": "Roseanne's Backup",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "148/172",
+      "source_subtypes": [
+        "Reverse Holofoil"
+      ],
+      "source_finish_key": "reverse",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "professor_program_stamp_not_proven_by_master_index",
+      "match_counts": {
+        "name_number": 2,
+        "name_number_set_total": 1,
+        "selected_candidates": 1,
+        "exact_finish_evidence": 1,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 1,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": {
+        "exact": [
+          172
+        ],
+        "fallback": [
+          186
+        ]
+      },
+      "master_candidates": [
+        {
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "148",
+          "card_name": "Roseanne's Backup",
+          "status": "master_verified",
+          "sources": [
+            "pkmncards",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://pkmncards.com/card/roseannes-backup-brilliant-stars-brs-148/",
+            "https://api.pokemontcg.io/v2/cards/swsh9-148",
+            "https://api.tcgdex.net/v2/en/cards/swsh9-148",
+            "https://www.thepricedex.com/set/swsh9/brilliant-stars/price-list"
+          ]
+        }
+      ],
+      "master_printings": [
+        {
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "148",
+          "card_name": "Roseanne's Backup",
+          "finish_key": "normal",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/swsh9-148",
+            "https://api.tcgdex.net/v2/en/cards/swsh9-148",
+            "https://prices.pokemontcg.io/tcgplayer/swsh9-148",
+            "https://www.thepricedex.com/set/swsh9/brilliant-stars/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "148",
+          "card_name": "Roseanne's Backup",
+          "finish_key": "reverse",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/swsh9-148",
+            "https://api.tcgdex.net/v2/en/cards/swsh9-148",
+            "https://prices.pokemontcg.io/tcgplayer/swsh9-148",
+            "https://www.thepricedex.com/set/swsh9/brilliant-stars/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "swsh9",
+          "set_name": "Brilliant Stars",
+          "card_number": "148",
+          "card_name": "Roseanne's Backup",
+          "finish_key": "stamped",
+          "status": "master_verified",
+          "sources": [
+            "pricecharting_csv_product",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://www.pricecharting.com/game/pokemon-brilliant-stars/roseannes-backup-prize-pack-148",
+            "https://www.thepricedex.com/set/swsh9/brilliant-stars/price-list"
+          ],
+          "professor_program_evidence": false
+        }
+      ],
+      "live_targets": [
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "8284463e-2cbe-403f-858f-2359a04e4567",
+          "printing_id": "98eb96db-df62-4f30-b2ae-b42ed9fadc63",
+          "grookai_card_name": "Roseanne's Backup",
+          "finish_key": "reverse",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        }
+      ]
+    },
+    {
+      "source_product_id": 685999,
+      "source_product_name": "Judge - 167/182",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "167/182",
+      "source_subtypes": [
+        "Reverse Holofoil"
+      ],
+      "source_finish_key": "reverse",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "professor_program_stamp_not_proven_by_master_index",
+      "match_counts": {
+        "name_number": 1,
+        "name_number_set_total": 1,
+        "selected_candidates": 1,
+        "exact_finish_evidence": 1,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 1,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": {
+        "exact": [
+          182
+        ],
+        "fallback": [
+          244
+        ]
+      },
+      "master_candidates": [
+        {
+          "set_key": "sv10",
+          "set_name": "Destined Rivals",
+          "card_number": "167",
+          "card_name": "Judge",
+          "status": "master_verified",
+          "sources": [
+            "pkmncards",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://pkmncards.com/card/judge-destined-rivals-dri-167/",
+            "https://api.pokemontcg.io/v2/cards/sv10-167",
+            "https://api.tcgdex.net/v2/en/cards/sv10-167",
+            "https://www.thepricedex.com/set/sv10/destined-rivals/price-list"
+          ]
+        }
+      ],
+      "master_printings": [
+        {
+          "set_key": "sv10",
+          "set_name": "Destined Rivals",
+          "card_number": "167",
+          "card_name": "Judge",
+          "finish_key": "normal",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv10-167",
+            "https://api.tcgdex.net/v2/en/cards/sv10-167",
+            "https://prices.pokemontcg.io/tcgplayer/sv10-167",
+            "https://www.thepricedex.com/set/sv10/destined-rivals/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "sv10",
+          "set_name": "Destined Rivals",
+          "card_number": "167",
+          "card_name": "Judge",
+          "finish_key": "reverse",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv10-167",
+            "https://reverseholo.app/sets/sv10",
+            "https://api.tcgdex.net/v2/en/cards/sv10-167",
+            "https://prices.pokemontcg.io/tcgplayer/sv10-167",
+            "https://www.thepricedex.com/set/sv10/destined-rivals/price-list"
+          ],
+          "professor_program_evidence": false
+        }
+      ],
+      "live_targets": [
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "3e9e2f68-0b64-4efc-95d9-b25b7d1b6568",
+          "printing_id": "01d0eeff-e016-4270-97b8-a8812080b2bf",
+          "grookai_card_name": "Judge",
+          "finish_key": "reverse",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        }
+      ]
+    },
+    {
+      "source_product_id": 696151,
+      "source_product_name": "Judge - 235/264",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "235/264",
+      "source_subtypes": [
+        "Reverse Holofoil"
+      ],
+      "source_finish_key": "reverse",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "professor_program_stamp_not_proven_by_master_index",
+      "match_counts": {
+        "name_number": 1,
+        "name_number_set_total": 1,
+        "selected_candidates": 1,
+        "exact_finish_evidence": 1,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 1,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": {
+        "exact": [
+          264
+        ],
+        "fallback": [
+          284
+        ]
+      },
+      "master_candidates": [
+        {
+          "set_key": "swsh8",
+          "set_name": "Fusion Strike",
+          "card_number": "235",
+          "card_name": "Judge",
+          "status": "master_verified",
+          "sources": [
+            "bulbapedia_set_list",
+            "pkmncards",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://bulbapedia.bulbagarden.net/wiki/Fusion_Strike_(TCG)#Set_lists",
+            "https://pkmncards.com/card/judge-fusion-strike-fst-235/",
+            "https://api.pokemontcg.io/v2/cards/swsh8-235",
+            "https://api.tcgdex.net/v2/en/cards/swsh8-235",
+            "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
+          ]
+        }
+      ],
+      "master_printings": [
+        {
+          "set_key": "swsh8",
+          "set_name": "Fusion Strike",
+          "card_number": "235",
+          "card_name": "Judge",
+          "finish_key": "normal",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/swsh8-235",
+            "https://api.tcgdex.net/v2/en/cards/swsh8-235",
+            "https://prices.pokemontcg.io/tcgplayer/swsh8-235",
+            "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "swsh8",
+          "set_name": "Fusion Strike",
+          "card_number": "235",
+          "card_name": "Judge",
+          "finish_key": "reverse",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/swsh8-235",
+            "https://reverseholo.app/sets/swsh8",
+            "https://api.tcgdex.net/v2/en/cards/swsh8-235",
+            "https://prices.pokemontcg.io/tcgplayer/swsh8-235",
+            "https://www.thepricedex.com/set/swsh8/fusion-strike/price-list"
+          ],
+          "professor_program_evidence": false
+        }
+      ],
+      "live_targets": [
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "5c30c5e4-7ba6-48ee-b156-236bb52fc64b",
+          "printing_id": "07c1f5cd-5cad-4dbf-ab4d-042cc53fddc5",
+          "grookai_card_name": "Judge",
+          "finish_key": "reverse",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        }
+      ]
+    },
+    {
+      "source_product_id": 704476,
+      "source_product_name": "Professor's Research [Professor Juniper] - 085/086",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "085/086",
+      "source_subtypes": [
+        "Reverse Holofoil"
+      ],
+      "source_finish_key": "reverse",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "no_master_index_name_number_set_total_match",
+      "match_counts": {
+        "name_number": 0,
+        "name_number_set_total": 0,
+        "selected_candidates": 0,
+        "exact_finish_evidence": 0,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 0,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": null,
+      "master_candidates": [],
+      "master_printings": [],
+      "live_targets": []
+    },
+    {
+      "source_product_id": 704477,
+      "source_product_name": "Professor's Research [Professor Kukui] - 222",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "222",
+      "source_subtypes": [
+        "Holofoil"
+      ],
+      "source_finish_key": "holo",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "no_master_index_name_number_set_total_match",
+      "match_counts": {
+        "name_number": 0,
+        "name_number_set_total": 0,
+        "selected_candidates": 0,
+        "exact_finish_evidence": 0,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 0,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": null,
+      "master_candidates": [],
+      "master_printings": [],
+      "live_targets": []
+    },
+    {
+      "source_product_id": 704478,
+      "source_product_name": "Professor's Research [Professor Birch] - 221",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "221",
+      "source_subtypes": [
+        "Holofoil"
+      ],
+      "source_finish_key": "holo",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "no_master_index_name_number_set_total_match",
+      "match_counts": {
+        "name_number": 0,
+        "name_number_set_total": 0,
+        "selected_candidates": 0,
+        "exact_finish_evidence": 0,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 0,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": null,
+      "master_candidates": [],
+      "master_printings": [],
+      "live_targets": []
+    },
+    {
+      "source_product_id": 704479,
+      "source_product_name": "Professor's Research [Professor Magnolia] - 223",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "223",
+      "source_subtypes": [
+        "Holofoil"
+      ],
+      "source_finish_key": "holo",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "no_master_index_name_number_set_total_match",
+      "match_counts": {
+        "name_number": 0,
+        "name_number_set_total": 0,
+        "selected_candidates": 0,
+        "exact_finish_evidence": 0,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 0,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": null,
+      "master_candidates": [],
+      "master_printings": [],
+      "live_targets": []
+    },
+    {
+      "source_product_id": 717548,
+      "source_product_name": "Rosa's Encouragement - 084/088 [Top 8]",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "084/088",
+      "source_subtypes": [
+        "Reverse Holofoil"
+      ],
+      "source_finish_key": "reverse",
+      "identity_qualifier": "top_8",
+      "disposition": "hold",
+      "reason": "identity_bearing_event_qualifier_requires_distinct_parent",
+      "match_counts": {
+        "name_number": 1,
+        "name_number_set_total": 1,
+        "selected_candidates": 1,
+        "exact_finish_evidence": 1,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 1,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": {
+        "exact": [
+          88
+        ],
+        "fallback": [
+          124
+        ]
+      },
+      "master_candidates": [
+        {
+          "set_key": "me03",
+          "set_name": "Perfect Order",
+          "card_number": "84",
+          "card_name": "Rosa's Encouragement",
+          "status": "master_verified",
+          "sources": [
+            "pkmncards",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://pkmncards.com/card/rosas-encouragement-perfect-order-por-084/",
+            "https://api.pokemontcg.io/v2/cards/me3-84",
+            "https://api.tcgdex.net/v2/en/cards/me03-084",
+            "https://www.thepricedex.com/set/me3/perfect-order/price-list"
+          ]
+        }
+      ],
+      "master_printings": [
+        {
+          "set_key": "me03",
+          "set_name": "Perfect Order",
+          "card_number": "084",
+          "card_name": "Rosa's Encouragement",
+          "finish_key": "normal",
+          "status": "master_verified",
+          "sources": [
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.tcgdex.net/v2/en/cards/me03-084",
+            "https://www.thepricedex.com/set/me3/perfect-order/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "me03",
+          "set_name": "Perfect Order",
+          "card_number": "084",
+          "card_name": "Rosa's Encouragement",
+          "finish_key": "reverse",
+          "status": "master_verified",
+          "sources": [
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.tcgdex.net/v2/en/cards/me03-084",
+            "https://www.thepricedex.com/set/me3/perfect-order/price-list"
+          ],
+          "professor_program_evidence": false
+        }
+      ],
+      "live_targets": [
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "bbbf9f14-86b1-4545-a352-8082124c2426",
+          "printing_id": "ba59322f-09c7-424d-883c-c91f04ebe87d",
+          "grookai_card_name": "Rosa's Encouragement",
+          "finish_key": "reverse",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        }
+      ]
+    },
+    {
+      "source_product_id": 717550,
+      "source_product_name": "Rosa's Encouragement - 084/088 [Finalist]",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "084/088",
+      "source_subtypes": [
+        "Reverse Holofoil"
+      ],
+      "source_finish_key": "reverse",
+      "identity_qualifier": "finalist",
+      "disposition": "hold",
+      "reason": "identity_bearing_event_qualifier_requires_distinct_parent",
+      "match_counts": {
+        "name_number": 1,
+        "name_number_set_total": 1,
+        "selected_candidates": 1,
+        "exact_finish_evidence": 1,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 1,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": {
+        "exact": [
+          88
+        ],
+        "fallback": [
+          124
+        ]
+      },
+      "master_candidates": [
+        {
+          "set_key": "me03",
+          "set_name": "Perfect Order",
+          "card_number": "84",
+          "card_name": "Rosa's Encouragement",
+          "status": "master_verified",
+          "sources": [
+            "pkmncards",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://pkmncards.com/card/rosas-encouragement-perfect-order-por-084/",
+            "https://api.pokemontcg.io/v2/cards/me3-84",
+            "https://api.tcgdex.net/v2/en/cards/me03-084",
+            "https://www.thepricedex.com/set/me3/perfect-order/price-list"
+          ]
+        }
+      ],
+      "master_printings": [
+        {
+          "set_key": "me03",
+          "set_name": "Perfect Order",
+          "card_number": "084",
+          "card_name": "Rosa's Encouragement",
+          "finish_key": "normal",
+          "status": "master_verified",
+          "sources": [
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.tcgdex.net/v2/en/cards/me03-084",
+            "https://www.thepricedex.com/set/me3/perfect-order/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "me03",
+          "set_name": "Perfect Order",
+          "card_number": "084",
+          "card_name": "Rosa's Encouragement",
+          "finish_key": "reverse",
+          "status": "master_verified",
+          "sources": [
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.tcgdex.net/v2/en/cards/me03-084",
+            "https://www.thepricedex.com/set/me3/perfect-order/price-list"
+          ],
+          "professor_program_evidence": false
+        }
+      ],
+      "live_targets": [
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "bbbf9f14-86b1-4545-a352-8082124c2426",
+          "printing_id": "ba59322f-09c7-424d-883c-c91f04ebe87d",
+          "grookai_card_name": "Rosa's Encouragement",
+          "finish_key": "reverse",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        }
+      ]
+    },
+    {
+      "source_product_id": 718143,
+      "source_product_name": "Community Center - 146/167",
+      "source_group_id": 2332,
+      "source_group_name": "Professor Program Promos",
+      "printed_number": "146/167",
+      "source_subtypes": [
+        "Reverse Holofoil"
+      ],
+      "source_finish_key": "reverse",
+      "identity_qualifier": null,
+      "disposition": "hold",
+      "reason": "professor_program_stamp_not_proven_by_master_index",
+      "match_counts": {
+        "name_number": 1,
+        "name_number_set_total": 1,
+        "selected_candidates": 1,
+        "exact_finish_evidence": 1,
+        "professor_program_evidence": 0,
+        "live_exact_finish_rows": 1,
+        "live_professor_program_rows": 0,
+        "live_parent_targets": 0
+      },
+      "selected_set_totals": {
+        "exact": [
+          167
+        ],
+        "fallback": [
+          226
+        ]
+      },
+      "master_candidates": [
+        {
+          "set_key": "sv06",
+          "set_name": "Twilight Masquerade",
+          "card_number": "146",
+          "card_name": "Community Center",
+          "status": "master_verified",
+          "sources": [
+            "pkmncards",
+            "pokemontcg_api",
+            "tcgdex",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://pkmncards.com/card/community-center-twilight-masquerade-twm-146/",
+            "https://api.pokemontcg.io/v2/cards/sv6-146",
+            "https://api.tcgdex.net/v2/en/cards/sv06-146",
+            "https://www.thepricedex.com/set/sv6/twilight-masquerade/price-list"
+          ]
+        }
+      ],
+      "master_printings": [
+        {
+          "set_key": "sv06",
+          "set_name": "Twilight Masquerade",
+          "card_number": "146",
+          "card_name": "Community Center",
+          "finish_key": "normal",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv6-146",
+            "https://api.tcgdex.net/v2/en/cards/sv06-146",
+            "https://prices.pokemontcg.io/tcgplayer/sv6-146",
+            "https://www.thepricedex.com/set/sv6/twilight-masquerade/price-list"
+          ],
+          "professor_program_evidence": false
+        },
+        {
+          "set_key": "sv06",
+          "set_name": "Twilight Masquerade",
+          "card_number": "146",
+          "card_name": "Community Center",
+          "finish_key": "reverse",
+          "status": "master_verified",
+          "sources": [
+            "pokemontcg_api",
+            "reverseholo_set_checklist",
+            "tcgdex",
+            "tcgplayer_price_guide",
+            "thepricedex_price_list"
+          ],
+          "evidence_urls": [
+            "https://api.pokemontcg.io/v2/cards/sv6-146",
+            "https://reverseholo.app/sets/sv06",
+            "https://api.tcgdex.net/v2/en/cards/sv06-146",
+            "https://prices.pokemontcg.io/tcgplayer/sv6-146",
+            "https://www.thepricedex.com/set/sv6/twilight-masquerade/price-list"
+          ],
+          "professor_program_evidence": false
+        }
+      ],
+      "live_targets": [
+        {
+          "status": "master_verified_by_index",
+          "card_print_id": "69feccc1-edd0-40a1-88fb-a4b2a10a5e6d",
+          "printing_id": "02ff12ed-1347-40a5-b064-69eb23517892",
+          "grookai_card_name": "Community Center",
+          "finish_key": "reverse",
+          "variant_key": null,
+          "printed_identity_modifier": null,
+          "note": "Exact set, number, name, and finish matched the current index."
+        }
+      ]
+    }
+  ]
+}

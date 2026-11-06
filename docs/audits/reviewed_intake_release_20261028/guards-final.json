@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-28T03:05:37.290Z",
+  "pass": true,
+  "sourceSha256": "f18d25777048114b5619af1d57eb3fa985c03f7453ef2ff936c340ea2a7c11a5",
+  "tests": [
+    "repeat_preserves_exact_schema_security_and_active_controls",
+    "function_drift_rejected_without_persistent_changes",
+    "table_drift_rejected_without_persistent_changes",
+    "policy_drift_rejected_without_persistent_changes",
+    "index_drift_rejected_without_persistent_changes",
+    "wrong_relation_kind_drift_rejected_without_persistent_changes",
+    "overload_drift_rejected_without_persistent_changes",
+    "trigger_drift_rejected_without_persistent_changes",
+    "bucket_drift_rejected_without_persistent_changes"
+  ],
+  "catalogSecurityAndLedgerUnchanged": true,
+  "localRollbackOnly": true,
+  "remoteWrites": 0
+}

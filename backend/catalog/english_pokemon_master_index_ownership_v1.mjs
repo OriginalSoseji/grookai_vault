@@ -22,6 +22,14 @@ export const ENGLISH_POKEMON_FOLDED_SUBSET_OWNERS_V1 = Object.freeze([
 
 export const ENGLISH_POKEMON_SOURCE_ALIAS_OWNERS_V1 = Object.freeze([
   Object.freeze({
+    source_set_key: "30th-c",
+    source_set_name: "30th Classic Collection",
+    canonical_set_key: "30c-classic",
+    canonical_set_name: "30th Celebration Classic Collection",
+    authority: "english_master_index_source_alias_owner_v1",
+    note: "TCGdex exposes the 30-card Classic Collection under 30th-c with 001-030 gallery ordinals. The governed canonical reprint-anthology owner is 30c-classic, whose 30 parents preserve each card's historic printed number; the source shell must reconcile to that existing owner and must never create 30 duplicate parents.",
+  }),
+  Object.freeze({
     source_set_key: "miscp",
     source_set_name: "Miscellaneous Promos",
     canonical_set_key: "misc",

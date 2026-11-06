@@ -6,6 +6,16 @@ The scheduled production agent measures pricing coverage every 15 minutes and
 reports Magic and Pokemon identity-mapping lanes independently. The latest
 successful measured run summary is the production source for the founder
 operations dashboard; running and failed partial summaries cannot replace it.
+Before publishing either identity queue, the agent rechecks Magic and Pokemon
+products with the current V1.5 scope classifier. Older pricing receipts cannot
+reintroduce sealed or packaged products into the card-repair lane.
+
+The advisory enrichment lane preserves the two identity domains. Pokemon child
+variants remain excluded. A canonical MTG `scryfall:<uuid>` printing key is an
+ordinary exact-print identity rather than a Pokemon-style child marker; other
+MTG variant-key forms remain held. MTG modifier aliases may enter review only
+with exact printed-coordinate evidence. The lane still excludes already-mapped
+targets and grants no mapping or publication authority.
 
 ## Pokemon review publication
 
@@ -52,7 +62,11 @@ subtype would route to Normal or Holo remain held, as do unnumbered rows without
 exact printed-coordinate evidence.
 
 The production direct-reader role is not activated. If the optional exact
-planner rejects its connection or cannot produce a plan, the agent records a
+planner's dedicated `TCGPLAYER_EXACT_MAPPING_READER_DB_URL` is absent, the agent
+records `MAPPING_READER_NOT_PROVISIONED` without attempting a connection. The
+broad production database URL used by the independent backlog census must never
+be passed to the exact planner. If a provisioned planner rejects its connection
+or cannot produce a plan, the agent records a
 fixed error code, reports newly verified exact candidates as unavailable, and continues
 the independent backlog measurement and founder-review lane. The failure does
 not weaken the planner connection policy and does not use the broad production

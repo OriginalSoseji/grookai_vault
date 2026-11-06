@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import EbaySellerLink from "@/components/ebay/EbaySellerLink";
 import { useMemo, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction";
@@ -234,6 +235,7 @@ export default function VaultManageCardCopiesBulkSection({
                 ) : (
                   <span className="text-xs font-medium text-slate-400">Copy unavailable</span>
                 )}
+                <EbaySellerLink instanceId={copy.instance_id} />
                 <OwnedObjectRemoveAction
                   instanceId={copy.instance_id}
                   label={copy.is_graded ? "Remove slab" : "Remove copy"}

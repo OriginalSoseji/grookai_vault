@@ -438,7 +438,7 @@ class VaultManageCardCopy {
           (json['finish_keys'] is Map
               ? _trimmedOrNull((json['finish_keys'] as Map)['label'])
               : null),
-      conditionLabel: _trimmedOrNull(json['condition_label']) ?? 'NM',
+      conditionLabel: _trimmedOrNull(json['condition_label']) ?? 'Unknown',
       intent: normalizeVaultIntentValue(json['intent']),
       note: _trimmedOrNull(json['notes']),
       createdAt: DateTime.tryParse((json['created_at'] ?? '').toString()),

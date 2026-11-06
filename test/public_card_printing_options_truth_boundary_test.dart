@@ -158,7 +158,7 @@ void main() {
         lessThan(addBlock.indexOf('final userId = supabase.auth.currentUser')),
       );
       expect(addBlock, contains('pendingPrinting: printingOption'));
-      expect(addBlock, contains('cardPrintingId: printingOption.id'));
+      expect(addBlock, contains('printingId: printingOption.id'));
       expect(detail, contains('_printingOptions.length == 1'));
     },
   );
@@ -186,7 +186,8 @@ void main() {
       main,
       contains('No verified variant is available. Try again before adding.'),
     );
-    expect(addBlock, contains('cardPrintingId: cardPrintingId'));
+    expect(addBlock, contains('printingId: cardPrintingId'));
+    expect(addBlock, contains('showVaultAddReview('));
     expect(quickAddBlock, contains('printingOptions.length != 1'));
     expect(quickAddBlock, contains('_openSearchCardActionHub(card)'));
   });
@@ -194,19 +195,18 @@ void main() {
   test(
     'scanner add routes require an exact printing before the vault write',
     () {
+      final review = File(
+        'lib/widgets/vault/vault_add_review_sheet.dart',
+      ).readAsStringSync();
+      expect(review, contains('await chooseVaultPrinting('));
+      expect(review, contains('assertSelection(cardPrintId, printing.id)'));
       for (final path in <String>[
         'lib/screens/scanner_v5/scan_capture_v5_screen.dart',
         'lib/screens/identity_scan/identity_scan_screen.dart',
         'lib/screens/scanner/scan_identify_screen.dart',
       ]) {
         final source = File(path).readAsStringSync();
-        final pickerIndex = source.indexOf('await chooseVaultPrinting(');
-        final writeIndex = source.indexOf(
-          'await VaultCardService.addOrIncrementVaultItem(',
-        );
-        expect(pickerIndex, greaterThanOrEqualTo(0), reason: path);
-        expect(writeIndex, greaterThan(pickerIndex), reason: path);
-        expect(source, contains('cardPrintingId: printing.id'), reason: path);
+        expect(source, contains('await showVaultAddReview('), reason: path);
       }
     },
   );

@@ -41,6 +41,7 @@ const scenarios = [
 ] as const;
 
 async function openScenario(page: import("@playwright/test").Page, scenario: typeof scenarios[number]) {
+  await page.clock.setFixedTime(new Date("2026-10-27T18:00:00.000Z"));
   const response = await page.goto(`/visual-fixtures/release-convergence/${scenario}`, {
     waitUntil: "networkidle",
   });
@@ -309,15 +310,32 @@ test("Card detail Add to Vault keeps version choice, action, and success feedbac
   await openScenario(page, "card-detail-hierarchy");
 
   const flow = page.locator("[data-add-to-vault-flow]");
-  await expect(flow.getByText("1. Choose version", { exact: true })).toBeVisible();
+  await expect(flow.getByText("Printing", { exact: true })).toBeVisible();
   await expect(flow.locator("[data-selected-printing='fixture-printing-reverse']")).toBeVisible();
+  const addButton = flow.getByRole("button", { name: "Add to Vault", exact: true });
+  await expect(addButton).toBeDisabled();
+  await expect(flow.getByRole("button", { name: "Unknown", exact: true })).toHaveAttribute("aria-pressed", "true");
+  await expect(flow.getByLabel("Acquired on")).toHaveValue("2026-10-27");
 
   await flow.getByRole("button", { name: "Normal", exact: true }).click();
   await expect(flow.locator("[data-selected-printing='fixture-printing-normal']")).toBeVisible();
   await expect(flow.getByText("Variant Image Pending", { exact: true })).toBeVisible();
   await expect(flow.locator("input[name='card_printing_id']")).toHaveValue("fixture-printing-normal");
 
-  await flow.getByRole("button", { name: "Add to Vault", exact: true }).click();
+  await flow.getByRole("button", { name: "LP", exact: true }).click();
+  await flow.getByLabel("Quantity", { exact: true }).fill("2");
+  await flow.locator(".gv-cost-disclosure summary").click();
+  await flow.getByLabel("Total paid · USD (optional)").fill("5.00");
+  await expect(addButton).toBeDisabled();
+  await flow.getByLabel("I reviewed the printing, copies and cost.").check();
+  await expect(addButton).toBeEnabled();
+  // Changing an acknowledged value requires a fresh review.
+  await flow.getByLabel("Acquired on").fill("2026-10-26");
+  await expect(addButton).toBeDisabled();
+  await expect(flow.locator("input[name='condition']")).toHaveValue("LP");
+  await expect(flow.locator("input[name='acquired_at']")).toHaveValue("2026-10-26T06:00:00.000Z");
+  await flow.getByLabel("I reviewed the printing, copies and cost.").check();
+  await addButton.click();
   await expect(flow.getByRole("status")).toContainText("Added to Vault");
   await expect(flow.getByRole("link", { name: "View exact copy" })).toHaveAttribute(
     "href",

@@ -55,6 +55,7 @@ test("MTG incremental promotion uses existing canonical contracts dynamically", 
   assert.match(worker, /buildMtgCanonicalSetPromotionContractV1/);
   assert.match(worker, /set:\$\{setCode\} game:paper lang:en/);
   assert.match(worker, /unique", "prints"/);
+  assert.match(worker, /include_variations", "true"/);
 });
 
 test("MTG incremental promotion extends only fully accounted partial sets", () => {
@@ -64,6 +65,9 @@ test("MTG incremental promotion extends only fully accounted partial sets", () =
   assert.match(payloadBuilder, /image_url:\s*null/);
   assert.match(payloadBuilder, /image_pending_self_host/);
   assert.match(worker, /rollback absence proof failed/i);
+  assert.match(worker, /Apply requires --expected-execution-counts-sha256/);
+  assert.match(worker, /"--expected-execution-counts-sha256="\.length/);
+  assert.match(worker, /Expected execution counts do not match the frozen MTG delta/);
   assert.match(worker, /Apply requires the exact clean frozen commit/);
   assert.doesNotMatch(worker, /\bupdate\s+public\.|\bdelete\s+from\b|\btruncate\b/i);
 });

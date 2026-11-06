@@ -1,4 +1,5 @@
 import Link from "next/link";
+import EbaySellerLink from "@/components/ebay/EbaySellerLink";
 import { notFound } from "next/navigation";
 import CopyButton from "@/components/CopyButton";
 import VendorQrManagementCard from "@/components/gvvi/VendorQrManagementCard";
@@ -215,6 +216,7 @@ export default async function VaultInstancePage(
         <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">
           Start with intent and condition. Pricing, notes, photos, and Wall sections are optional.
         </p>
+        {isActive ? <div className="mt-3"><EbaySellerLink instanceId={detail.instanceId} /></div> : null}
       </section>
 
       <div className="grid gap-8 xl:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] xl:items-start">

@@ -1,0 +1,16 @@
+{
+  "at": "2026-10-28T04:21:34.202Z",
+  "pass": true,
+  "tests": [
+    "private_family_denies_uninvited_reads_and_real_second_account_accepts",
+    "exact_owned_copy_requires_approval_withdraws_and_remains_in_owners_vault",
+    "view_only_link_redacts_private_intake_data_and_rotation_revocation_take_effect",
+    "public_community_join_request_and_copy_approval_use_existing_backend"
+  ],
+  "priorCompletedReceipts": "family-community-runtime-v1",
+  "realGoTrueSdk": true,
+  "realBinderRpcs": true,
+  "syntheticLocalCanonicalFixture": true,
+  "founderWrites": 0,
+  "productionWrites": 0
+}

@@ -8,9 +8,8 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../services/identity/catalog_artwork_resolution.dart';
 import '../../services/onboarding/onboarding_ladder_service.dart';
 import '../../services/public/collector_follow_service.dart';
-import '../../services/vault/vault_card_service.dart';
+import '../vault/vault_add_review_sheet.dart';
 import '../card_surface_artwork.dart';
-import '../vault/vault_printing_picker.dart';
 
 class OnboardingLadderOverlay extends StatefulWidget {
   const OnboardingLadderOverlay({
@@ -201,22 +200,15 @@ class _OnboardingLadderOverlayState extends State<OnboardingLadderOverlay> {
     }
     setState(() => _busy = true);
     try {
-      final printing = await chooseVaultPrinting(
+      final saved = await showVaultAddReview(
         context: context,
-        client: Supabase.instance.client,
         cardPrintId: card.cardPrintId,
-        cardName: card.name,
+        gvId: card.gvId ?? '',
+        name: card.name,
+        setName: card.setCode ?? '',
+        imageUrl: card.imageUrl,
       );
-      if (printing == null) return;
-      await VaultCardService.addOrIncrementVaultItem(
-        client: Supabase.instance.client,
-        userId: userId,
-        cardId: card.cardPrintId,
-        fallbackName: card.name,
-        fallbackSetName: card.setCode,
-        fallbackImageUrl: card.imageUrl,
-        cardPrintingId: printing.id,
-      );
+      if (saved == null) return;
       final next = await widget.service.recordOwned(
         cardPrintId: card.cardPrintId,
         source: 'search',

@@ -1,0 +1,11 @@
+{
+  "tests": 8397,
+  "pass": 8386,
+  "fail": 0,
+  "skipped": 11,
+  "sourceBase": "30b3c99a893c61e173204a5568f6d46a4969dfcb",
+  "dependenciesInstalled": true,
+  "rawLog": "C:/grookai_vault/docs/audits/intake_recovery_20261027/current-main-contract-tests-final.txt",
+  "rawLogSha256": "8c35adeec5eda966896a5e9fc022bfda8f4c8cdcb6ffa63bdba703f5e12406f6",
+  "doesNotQualifyProductionRelease": true
+}

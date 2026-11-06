@@ -15,6 +15,7 @@ import {
 import {
   BASE_SET_PRINT_RUN_SOURCE_SET_CODE,
   getBaseSetPrintRunLaneCardCountAdjustment,
+  getBaseSetPrintRunLanePrintedIdentityModifier,
   getBaseSetPrintRunLaneSpecialVariantKeys,
 } from "@/lib/baseSetPrintRunLanes";
 import { createServerComponentClient } from "@/lib/supabase/server";
@@ -511,9 +512,10 @@ export const getPublicSetCards = cache(async function getPublicSetCards(
       sets(identity_model)
     `;
   const specialVariantKeys = getBaseSetPrintRunLaneSpecialVariantKeys(normalizedCode);
+  const lanePrintedIdentityModifier = getBaseSetPrintRunLanePrintedIdentityModifier(normalizedCode);
 
   if (specialVariantKeys.length > 0) {
-    const [primaryResult, specialResult] = await Promise.all([
+    const [primaryResult, specialResult, modifierResult] = await Promise.all([
       supabase
         .from("card_prints")
         .select(selectClause)
@@ -531,6 +533,16 @@ export const getPublicSetCards = cache(async function getPublicSetCards(
         .order("number_plain", { ascending: true, nullsFirst: false })
         .order("variant_key", { ascending: true })
         .order("id", { ascending: true }),
+      lanePrintedIdentityModifier
+        ? supabase
+            .from("card_prints")
+            .select(selectClause)
+            .eq("set_code", BASE_SET_PRINT_RUN_SOURCE_SET_CODE)
+            .eq("printed_identity_modifier", lanePrintedIdentityModifier)
+            .not("gv_id", "is", null)
+            .order("number_plain", { ascending: true, nullsFirst: false })
+            .order("id", { ascending: true })
+        : Promise.resolve({ data: [], error: null }),
     ]);
 
     if (primaryResult.error) {
@@ -539,10 +551,14 @@ export const getPublicSetCards = cache(async function getPublicSetCards(
     if (specialResult.error) {
       throw new Error(specialResult.error.message);
     }
+    if (modifierResult.error) {
+      throw new Error(modifierResult.error.message);
+    }
 
     const rows = [
       ...((primaryResult.data ?? []) as unknown as PublicSetCardRow[]),
       ...((specialResult.data ?? []) as unknown as PublicSetCardRow[]),
+      ...((modifierResult.data ?? []) as unknown as PublicSetCardRow[]),
     ]
       .filter((row): row is PublicSetCardRow & { gv_id: string } => Boolean(row.gv_id))
       .sort(comparePublicSetCardRows)

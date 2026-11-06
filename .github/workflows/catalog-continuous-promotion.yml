@@ -1,0 +1,181 @@
+name: Catalog Continuous Promotion
+
+on:
+  workflow_run:
+    workflows: ["Universal Catalog Discovery"]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: Successful Universal Catalog Discovery run ID
+        required: true
+        type: string
+
+permissions:
+  actions: read
+  contents: read
+  issues: write
+
+concurrency:
+  group: catalog-continuous-promotion-v1
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    if: ${{ vars.CATALOG_CONTINUOUS_PROMOTION_ACTIVE == 'true' }}
+    runs-on: ubuntu-latest
+    outputs:
+      source_run_id: ${{ steps.source.outputs.source_run_id }}
+      source_head_sha: ${{ steps.source.outputs.source_head_sha }}
+    steps:
+      - name: Freeze successful default-branch discovery run
+        id: source
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EVENT_NAME: ${{ github.event_name }}
+          EVENT_RUN_ID: ${{ github.event.workflow_run.id }}
+          EVENT_HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+          EVENT_HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
+          EVENT_CONCLUSION: ${{ github.event.workflow_run.conclusion }}
+          INPUT_RUN_ID: ${{ inputs.source_run_id }}
+        run: |
+          set -euo pipefail
+          if [[ "$EVENT_NAME" == "workflow_run" ]]; then
+            SOURCE_RUN_ID="$EVENT_RUN_ID"
+            SOURCE_HEAD_SHA="$EVENT_HEAD_SHA"
+            SOURCE_HEAD_BRANCH="$EVENT_HEAD_BRANCH"
+            SOURCE_CONCLUSION="$EVENT_CONCLUSION"
+          else
+            test "$INPUT_RUN_ID" = "${INPUT_RUN_ID//[^0-9]/}"
+            RUN_JSON="$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/$INPUT_RUN_ID")"
+            test "$(jq -r .name <<<"$RUN_JSON")" = "Universal Catalog Discovery"
+            SOURCE_RUN_ID="$(jq -r .id <<<"$RUN_JSON")"
+            SOURCE_HEAD_SHA="$(jq -r .head_sha <<<"$RUN_JSON")"
+            SOURCE_HEAD_BRANCH="$(jq -r .head_branch <<<"$RUN_JSON")"
+            SOURCE_CONCLUSION="$(jq -r .conclusion <<<"$RUN_JSON")"
+          fi
+          test "$SOURCE_HEAD_BRANCH" = "${{ github.event.repository.default_branch }}"
+          test "$SOURCE_CONCLUSION" = "success"
+          test "${#SOURCE_HEAD_SHA}" -eq 40
+          echo "source_run_id=$SOURCE_RUN_ID" >> "$GITHUB_OUTPUT"
+          echo "source_head_sha=$SOURCE_HEAD_SHA" >> "$GITHUB_OUTPUT"
+
+  promote:
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      SUPABASE_DB_CA_CERT: ${{ secrets.SUPABASE_DB_CA_CERT }}
+      PROD_SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
+      SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+      CATALOG_AUTOMATION_MODE: governed-continuous-promotion-v1
+      CATALOG_CONTINUOUS_PROMOTION_ACTIVE: ${{ vars.CATALOG_CONTINUOUS_PROMOTION_ACTIVE }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install catalog worker dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Verify continuous-promotion contracts
+        run: |
+          node --check backend/operations/catalog_continuous_promotion_v1.mjs
+          node --check scripts/workers/catalog_continuous_promotion_v1.mjs
+          node --test \
+            tests/contracts/catalog_incremental_supervisor_v1.test.mjs \
+            tests/contracts/catalog_founder_outcome_v1.test.mjs \
+            tests/contracts/catalog_continuous_promotion_v1.test.mjs
+          git diff --check
+
+      - name: Download exact frozen discovery evidence
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_RUN_ID: ${{ needs.prepare.outputs.source_run_id }}
+        run: |
+          set -euo pipefail
+          SOURCE_DIR="$RUNNER_TEMP/catalog-discovery-$SOURCE_RUN_ID"
+          OUT_DIR="$RUNNER_TEMP/catalog-continuous-promotion-$GITHUB_RUN_ID"
+          gh run download "$SOURCE_RUN_ID" \
+            --name "universal-catalog-discovery-$SOURCE_RUN_ID" \
+            --dir "$SOURCE_DIR"
+          test -f "$SOURCE_DIR/catalog_outcome_packages/founder_outcome_packages.json"
+          test -f "$SOURCE_DIR/catalog_outcome_packages/artifact_hashes.json"
+          echo "SOURCE_DIR=$SOURCE_DIR" >> "$GITHUB_ENV"
+          echo "OUT_DIR=$OUT_DIR" >> "$GITHUB_ENV"
+
+      - name: Execute rollback-proven exact catalog deltas
+        shell: bash
+        env:
+          SOURCE_RUN_ID: ${{ needs.prepare.outputs.source_run_id }}
+          SOURCE_HEAD_SHA: ${{ needs.prepare.outputs.source_head_sha }}
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$SOURCE_HEAD_SHA"
+          test -z "$(git status --porcelain --untracked-files=no)"
+          node scripts/workers/catalog_continuous_promotion_v1.mjs \
+            --run \
+            --packages-file="$SOURCE_DIR/catalog_outcome_packages/founder_outcome_packages.json" \
+            --out-dir="$OUT_DIR" \
+            --expected-head-sha="$SOURCE_HEAD_SHA" \
+            --source-run-id="$SOURCE_RUN_ID" \
+            --max-targets=5
+
+      - name: Publish continuous-promotion summary
+        if: always()
+        shell: bash
+        run: |
+          if [[ -f "$OUT_DIR/summary.json" ]]; then
+            cat "$OUT_DIR/summary.json" >> "$GITHUB_STEP_SUMMARY"
+          elif [[ -f "$OUT_DIR/failure.json" ]]; then
+            cat "$OUT_DIR/failure.json" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Preserve continuous-promotion evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: catalog-continuous-promotion-${{ github.run_id }}
+          path: ${{ env.OUT_DIR }}
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Reconcile continuous-promotion incident
+        if: always()
+        uses: actions/github-script@v7
+        env:
+          PROMOTION_OUTCOME: ${{ job.status }}
+          SOURCE_RUN_ID: ${{ needs.prepare.outputs.source_run_id }}
+        with:
+          script: |
+            const title = '[Catalog Continuous Promotion] Execution failure';
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo, state: 'open', per_page: 100,
+            });
+            const existing = issues.find((issue) => issue.title === title);
+            if (process.env.PROMOTION_OUTCOME === 'success') {
+              if (existing) await github.rest.issues.update({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: existing.number, state: 'closed',
+              });
+              return;
+            }
+            const body = `The bounded continuous catalog writer failed closed. ` +
+              `Inspect its durable agent run and 90-day artifact before retrying.\n\n` +
+              `Discovery run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${process.env.SOURCE_RUN_ID}\n` +
+              `Promotion run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            if (existing) await github.rest.issues.update({
+              owner: context.repo.owner, repo: context.repo.repo,
+              issue_number: existing.number, body,
+            });
+            else await github.rest.issues.create({
+              owner: context.repo.owner, repo: context.repo.repo, title, body,
+            });

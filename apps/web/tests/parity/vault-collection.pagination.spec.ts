@@ -3,6 +3,15 @@ import { expect, test } from "@playwright/test";
 const FIXTURE_PATH = "/visual-fixtures/vault-collection";
 
 test.describe("Vault collection pagination", () => {
+  const pageErrors: string[] = [];
+  test.beforeEach(async ({ page }) => {
+    pageErrors.length = 0;
+    page.on("pageerror", error => pageErrors.push(error.message));
+    await page.clock.setFixedTime(new Date("2026-10-27T18:00:00.000Z"));
+  });
+  test.afterEach(() => {
+    expect(pageErrors).toEqual([]);
+  });
   test("desktop keeps the collection bounded and preserves state in the URL", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.goto(FIXTURE_PATH, { waitUntil: "networkidle" });

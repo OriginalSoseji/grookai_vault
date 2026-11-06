@@ -9,10 +9,9 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../../services/identity/catalog_artwork_resolution.dart';
 import '../../services/identity/display_identity.dart';
 import '../../services/identity/identity_scan_service.dart';
-import '../../services/vault/vault_card_service.dart';
 import '../../services/public/jungle_edition_resolution_service.dart';
 import '../scanner/jungle_edition_scan_review.dart';
-import '../../widgets/vault/vault_printing_picker.dart';
+import '../../widgets/vault/vault_add_review_sheet.dart';
 import '../../widgets/card_surface_artwork.dart';
 
 enum _IdentityScanStep { capture, processing, hintReady, results, error }
@@ -260,24 +259,15 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
         _snack('Please sign in.');
         return;
       }
-      final printing = await chooseVaultPrinting(
+      final saved = await showVaultAddReview(
         context: context,
-        client: Supabase.instance.client,
         cardPrintId: cardId,
-        cardName: (cand['name'] ?? 'this card').toString(),
+        gvId: (cand['gv_id'] ?? '').toString(),
+        name: (cand['name'] ?? '').toString(),
+        setName: (cand['set_code'] ?? '').toString(),
+        imageUrl: (cand['image_url'] ?? '').toString(),
       );
-      if (printing == null) return;
-      await VaultCardService.addOrIncrementVaultItem(
-        client: Supabase.instance.client,
-        userId: userId,
-        cardId: cardId,
-        deltaQty: 1,
-        conditionLabel: 'NM',
-        fallbackName: (cand['name'] ?? '').toString(),
-        fallbackSetName: (cand['set_code'] ?? '').toString(),
-        fallbackImageUrl: (cand['image_url'] ?? '').toString(),
-        cardPrintingId: printing.id,
-      );
+      if (saved == null) return;
       if (!mounted) return;
       _snack('Added to Vault.');
     } on JungleEditionSelectionRequired catch (error) {
@@ -556,7 +546,7 @@ class _IdentityScanScreenState extends State<IdentityScanScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Grookai Vision thinks this is…',
+                  'grookai Vision thinks this is…',
                   style: theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.w700,
                   ),

@@ -123,7 +123,7 @@ class IdentityScannerUiMapper {
         eyebrow: 'Locked on card',
         title:
             signal?.lockedCandidateName ?? previewName ?? 'Reading the print',
-        subtitle: previewLine ?? 'Stay steady while Grookai confirms the card.',
+        subtitle: previewLine ?? 'Stay steady while grookai confirms the card.',
         supportingText:
             'Hold the card in place while the exact print is confirmed.',
         confidence01: signal?.scanConfidence01 ?? signal?.confidence01,
@@ -197,7 +197,7 @@ class IdentityScannerUiMapper {
           state: ScannerUiState.locked,
           eyebrow: 'Locked on card',
           title: 'Reading the print',
-          subtitle: 'Stay steady while Grookai confirms the card.',
+          subtitle: 'Stay steady while grookai confirms the card.',
           supportingText: null,
           confidence01: signal?.scanConfidence01 ?? signal?.confidence01,
           backendDriven: true,

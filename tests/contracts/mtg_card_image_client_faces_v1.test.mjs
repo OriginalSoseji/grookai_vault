@@ -28,6 +28,8 @@ test("Flutter card detail fails closed when the face RPC is unavailable", () => 
   const screen = read("lib/card_detail_screen.dart");
   assert.match(screen, /get_card_print_image_faces_v1/);
   assert.match(screen, /catch \(_\) \{\s*return const <_CardImageFace>\[\];/);
-  assert.match(screen, /SegmentedButton<int>/);
+  assert.match(screen, /Wrap\(/);
+  assert.match(screen, /OutlinedButton/);
+  assert.match(screen, /_selectedImageFaceIndex = index/);
   assert.match(screen, /selectedFace\?\.role == 'back'/);
 });

@@ -4,6 +4,39 @@ import 'package:grookai_vault/screens/gvvi/vendor_pricing_workspace_screen.dart'
 import 'package:grookai_vault/services/gvvi/vendor_pricing_workspace_service.dart';
 
 void main() {
+  testWidgets(
+    'unknown condition is unselected until the collector chooses a grade',
+    (tester) async {
+      final service = _FakeVendorService(
+        VendorPricingWorkspaceData(
+          rows: [
+            _row(
+              instanceId: 'unknown-copy',
+              name: 'Unknown condition card',
+              conditionLabel: 'Unknown',
+            ),
+          ],
+          sections: const [],
+        ),
+      );
+      await tester.pumpWidget(
+        MaterialApp(home: VendorPricingWorkspaceScreen(service: service)),
+      );
+      await tester.pumpAndSettle();
+      final field = find.byKey(const Key('vendor_condition_unknown-copy'));
+      await tester.ensureVisible(field);
+      final control = tester.widget<DropdownButtonFormField<String>>(field);
+      expect(control.initialValue, isNull);
+      expect(find.text('Unknown'), findsWidgets);
+      expect(service.conditionSaves, isEmpty);
+      await tester.tap(field);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('LP').last);
+      await tester.pumpAndSettle();
+      expect(service.conditionSaves.single, ('unknown-copy', 'LP'));
+      expect(tester.takeException(), isNull);
+    },
+  );
   test('market comparison is exact, deterministic, and triage ordered', () {
     final below = _row(instanceId: 'below', askingPrice: 15, marketPrice: 20);
     final above = _row(instanceId: 'above', askingPrice: 24, marketPrice: 20);
@@ -329,6 +362,7 @@ VendorPricingWorkspaceRow _row({
   double? askingPrice,
   double? marketPrice,
   String intent = 'hold',
+  String conditionLabel = 'NM',
 }) {
   return VendorPricingWorkspaceRow(
     instanceId: instanceId,
@@ -343,7 +377,7 @@ VendorPricingWorkspaceRow _row({
     setCode: 'tst',
     number: '1',
     printingLabel: 'Holo',
-    conditionLabel: 'NM',
+    conditionLabel: conditionLabel,
     intent: intent,
     isGraded: false,
     marketPrice: marketPrice,

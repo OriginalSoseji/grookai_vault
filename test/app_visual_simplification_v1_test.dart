@@ -61,8 +61,8 @@ void main() {
       vault,
       contains('final columns = resolvedViewMode != AppCardViewMode.grid'),
     );
-    expect(vault, contains('viewportWidth < 600'));
-    expect(vault, contains('? 2'));
+    expect(vault, contains('_gridPreferences.value.clamp('));
+    expect(vault, contains('_buildVaultLoadingSliver(columns: columns)'));
     expect(vault, contains('class _VaultGridLoadingTile'));
   });
 

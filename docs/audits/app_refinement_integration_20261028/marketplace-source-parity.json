@@ -1,0 +1,13 @@
+{
+  "at": "2026-10-28T03:47:50.474Z",
+  "endpoint": "card-marketplace-links-v1",
+  "remoteVersion": 1,
+  "remoteStatus": "ACTIVE",
+  "runtimeSourceMatchesOfficialDownload": true,
+  "hashes": {
+    "handler.ts": "b08e4093eb0eff83ed87b144277babf20d4e245f2c7001ba08cf00af652fa3ea",
+    "index.ts": "3e8343f2bb66295419e6870b63d5fbd47921fcaf9f4e00a4f9473eb9f1077f2b",
+    "handler_test.ts": "d108e73a0327342ad2935a89e85ebba16fa795ba60fbd6700469a7f732b54cb3"
+  },
+  "productionWrites": 0
+}

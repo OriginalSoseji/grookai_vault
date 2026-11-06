@@ -9,6 +9,7 @@ import {
   buildTcgplayerIdentityProductQueueV1,
   buildPokemonPricingMappingReviewWorkItemV1,
   applyPokemonPricingMappingReviewedHoldsV1,
+  classifyTcgplayerFutureReleaseBlocksV1,
   pokemonPricingMappingReviewEvidenceFingerprintV1,
   selectPokemonPricingMappingReviewBatchV1,
   summarizeTcgplayerPricingCompletionRunV1,
@@ -203,6 +204,76 @@ test('product queue deduplicates observations while preserving subtype evidence'
   assert.equal(queue[0].mapping_authority, false);
 });
 
+test('future Pokemon set listings are separated from actionable mapping blocks', () => {
+  const deltaReign = {
+    source_product_id: 726510,
+    source_product_name: 'Masquerain - 003/103',
+    source_group_id: 24831,
+    source_group_name: 'ME06: Delta Reign',
+    printed_number: '003/103',
+    source_subtypes: ['Reverse Holofoil'],
+    supporting_gap_observation_ids: ['observation-delta'],
+    supporting_gap_row_count: 1,
+    reason: 'missing_unique_set_authority',
+  };
+  const professorPromo = {
+    ...deltaReign,
+    source_product_id: 176625,
+    source_product_name: 'Fighting Energy (2004-2005)',
+    source_group_id: 2332,
+    source_group_name: 'Professor Program Promos',
+    printed_number: '105/109',
+    supporting_gap_observation_ids: ['observation-professor'],
+  };
+  const result = classifyTcgplayerFutureReleaseBlocksV1(
+    [deltaReign, professorPromo],
+    { observedOn: '2026-10-30' },
+  );
+  assert.equal(result.future_release_holds.length, 1);
+  assert.equal(result.future_release_holds[0].source_product_id, 726510);
+  assert.equal(result.future_release_holds[0].release_date, '2026-11-06');
+  assert.equal(result.future_release_holds[0].mapping_authority, false);
+  assert.equal(result.actionable_blocks.length, 1);
+  assert.equal(result.actionable_blocks[0].source_product_id, 176625);
+  assert.equal(result.summary.future_release_hold_products, 1);
+  assert.equal(result.summary.actionable_blocked_products, 1);
+});
+
+test('future release holds expire on the official release date', () => {
+  const row = {
+    source_product_id: 726510,
+    source_product_name: 'Masquerain - 003/103',
+    source_group_id: 24831,
+    source_group_name: 'ME06: Delta Reign',
+    reason: 'missing_unique_set_authority',
+  };
+  const result = classifyTcgplayerFutureReleaseBlocksV1(
+    [row],
+    { observedOn: '2026-11-06T06:00:00.000Z' },
+  );
+  assert.equal(result.future_release_holds.length, 0);
+  assert.equal(result.actionable_blocks.length, 1);
+});
+
+test('future release triage rejects duplicate or unbound source evidence', () => {
+  const row = {
+    source_product_id: 726510,
+    source_group_id: 24831,
+    source_group_name: 'ME06: Delta Reign',
+    reason: 'missing_unique_set_authority',
+  };
+  assert.throws(
+    () => classifyTcgplayerFutureReleaseBlocksV1([row, row], {
+      observedOn: '2026-10-30',
+    }),
+    /unique source products/,
+  );
+  assert.throws(
+    () => classifyTcgplayerFutureReleaseBlocksV1([row], {}),
+    /observedOn must contain an ISO date/,
+  );
+});
+
 test('product queue excludes variant and unsupported product lanes', () => {
   const queue = buildTcgplayerIdentityProductQueueV1([{
     source_product_id: 100, source_category_id: 3,
@@ -231,6 +302,32 @@ test('Pokemon product queue rechecks stale scope with V1.5 and protects numbered
 
   assert.equal(queue.length, 1);
   assert.equal(queue[0].source_product_id, 103);
+  assert.equal(
+    queue[0].product_scope_policy_version,
+    'TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_5',
+  );
+  assert.equal(queue[0].has_printed_number_evidence, true);
+});
+
+test('MTG product queue rechecks stale scope with V1.5 and protects numbered cards', () => {
+  const queue = buildTcgplayerIdentityProductQueueV1([{
+    source_product_id: 104, source_category_id: 1,
+    source_product_name: '10th Edition - Fat Pack',
+    source_group_name: '10th Edition',
+    product_scope_result: 'in_scope',
+    product_scope_policy_version: 'TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_3',
+    has_printed_number_evidence: false,
+  }, {
+    source_product_id: 105, source_category_id: 1,
+    source_product_name: 'Booster Tutor',
+    source_group_name: 'Unhinged',
+    product_scope_result: 'in_scope',
+    product_scope_policy_version: 'TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_3',
+    has_printed_number_evidence: true,
+  }]);
+
+  assert.equal(queue.length, 1);
+  assert.equal(queue[0].source_product_id, 105);
   assert.equal(
     queue[0].product_scope_policy_version,
     'TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_5',
@@ -392,7 +489,9 @@ test('scheduled workflow measures production without treating backlog as a crash
     path.join(ROOT, '.github/workflows/tcgplayer-pricing-completion-agent.yml'),
     'utf8',
   );
-  assert.match(workflow, /cron: "\*\/15 \* \* \* \*"/);
+  assert.match(workflow, /cron: "7,22,37,52 \* \* \* \*"/);
+  assert.doesNotMatch(workflow, /TCGPLAYER_EXACT_MAPPING_READER_DB_URL/);
+  assert.match(workflow, /pricing_completion_exact_mapping_snapshot_v1\.test\.mjs/);
   assert.match(workflow, /tcgplayer_pricing_completion_agent_v1\.mjs/);
   assert.match(workflow, /PGOPTIONS: "-c default_transaction_read_only=on"/);
   assert.doesNotMatch(workflow, /--require-complete/);
@@ -427,6 +526,17 @@ test('scheduled workflow measures production without treating backlog as a crash
   assert.match(worker, /exact_mapping_plan:\s*\{[\s\S]*status: exactPlanProcess\.status/);
   assert.match(worker, /pricingExactPlanFailureCodeV1\(error\)/);
   assert.match(worker, /exact_mapping_plan_artifact_root: exactPlanDir/);
+  assert.match(worker, /classifyTcgplayerFutureReleaseBlocksV1/);
+  assert.match(worker, /pokemon_future_release_catalog_holds\.jsonl/);
+  assert.match(worker, /pokemon_actionable_exact_mapping_blocks\.jsonl/);
+  assert.match(worker, /exact_mapping_block_triage: exactMappingBlockTriage\.summary/);
+  assert.match(worker, /tcgplayer_market_exact_mapping_snapshot_v1\.mjs/);
+  assert.match(worker, /exact_mapping_snapshot_v1\.json/);
+  assert.match(worker, /--snapshot-input=\$\{snapshotInput\}/);
+  assert.match(worker, /credentialFreePlannerEnvV1/);
+  assert.match(worker, /SUPABASE\|DATABASE\|POSTGRES/);
+  assert.doesNotMatch(worker, /TCGPLAYER_EXACT_MAPPING_READER_DB_URL/);
+  assert.doesNotMatch(worker, /databaseUrl: exactMappingReaderUrl/);
 });
 
 test('local V2 consumer uses hosted candidate evidence without database secrets', () => {
@@ -439,4 +549,24 @@ test('local V2 consumer uses hosted candidate evidence without database secrets'
   assert.doesNotMatch(runner, /\.env\.local|SUPABASE_DB_URL|DATABASE_URL|POSTGRES_URL/);
   assert.doesNotMatch(runner, /candidate_enrichment/);
   assert.match(runner, /if \(\$hasMutex\) \{[\s\S]*ollama\.exe stop[\s\S]*ReleaseMutex\(\)/);
+});
+
+test('Windows watchdog dispatches only stale hosted pricing measurements', () => {
+  const watchdog = fs.readFileSync(
+    path.join(ROOT, 'scripts/ops/ensure_pricing_completion_freshness_v1.ps1'),
+    'utf8',
+  );
+  assert.match(watchdog, /GrookaiPricingCompletionDispatchWatchdogV1/);
+  assert.match(watchdog, /MaxAgeMinutes = 20/);
+  assert.match(watchdog, /ActiveMaxAgeMinutes = 45/);
+  assert.match(watchdog, /FailureRetryDelayMinutes = 5/);
+  assert.match(watchdog, /gh\.exe workflow run \$Workflow --repo \$Repository --ref \$Ref/);
+  assert.match(watchdog, /recent_local_dispatch_request/);
+  assert.match(watchdog, /\[switch\]\$DryRun/);
+  assert.match(watchdog, /ConvertFrom-Json -DateKind String/);
+  assert.match(watchdog, /\$prior -and \$prior\.dispatch_requested_at/);
+  assert.match(watchdog, /dispatch_requested_at = \$priorDispatchRequestedAt/);
+  assert.match(watchdog, /failure-latest\.json/);
+  assert.doesNotMatch(watchdog, /\$prior\?\./);
+  assert.doesNotMatch(watchdog, /SUPABASE|DATABASE_URL|POSTGRES_URL|external_mappings|market_price_/);
 });

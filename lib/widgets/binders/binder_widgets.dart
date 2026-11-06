@@ -134,7 +134,7 @@ class BinderArtwork extends StatelessWidget {
             errorBuilder: (_, _, _) => fallback,
           );
     return ClipRRect(
-      borderRadius: BorderRadius.circular(GvRadii.control),
+      borderRadius: BorderRadius.circular(GvRadii.artwork),
       child: ColoredBox(
         color: colors.primaryContainer.withValues(alpha: 0.35),
         child: SizedBox.square(
@@ -166,11 +166,18 @@ class BinderSummaryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final access = binder.isCommunity ? 'Community' : binder.readAccess.label;
+    final visibility = [
+      access,
+      if (binder.readAccess == BinderReadAccess.private &&
+          binder.joinPolicy == BinderJoinPolicy.inviteOnly)
+        'Invite-only',
+    ].join(' · ');
     return Semantics(
       button: true,
       label:
           '${binder.title}. ${binder.progressLabel}. '
-          '${binder.role.label}. Open Binder.',
+          '${binder.role.label}. $visibility. Open Binder.',
       child: GvSurface(
         variant: GvSurfaceVariant.grouped,
         padding: EdgeInsets.zero,
@@ -189,27 +196,43 @@ class BinderSummaryCard extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                binder.title,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: theme.textTheme.titleSmall?.copyWith(
-                                  fontWeight: FontWeight.w800,
-                                ),
+                        LayoutBuilder(
+                          builder: (context, constraints) {
+                            final title = Text(
+                              binder.title,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: theme.textTheme.titleSmall?.copyWith(
+                                fontWeight: FontWeight.w800,
                               ),
-                            ),
-                            const SizedBox(width: 8),
-                            Text(
+                            );
+                            final role = Text(
                               binder.role.label,
                               style: theme.textTheme.labelSmall?.copyWith(
                                 color: theme.colorScheme.onSurfaceVariant,
                                 fontWeight: FontWeight.w700,
                               ),
-                            ),
-                          ],
+                            );
+                            if (constraints.maxWidth < 240 ||
+                                MediaQuery.textScalerOf(context).scale(14) >
+                                    16.1) {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  title,
+                                  const SizedBox(height: 2),
+                                  role,
+                                ],
+                              );
+                            }
+                            return Row(
+                              children: [
+                                Expanded(child: title),
+                                const SizedBox(width: 8),
+                                role,
+                              ],
+                            );
+                          },
                         ),
                         const SizedBox(height: 2),
                         Text(
@@ -223,6 +246,13 @@ class BinderSummaryCard extends StatelessWidget {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: theme.textTheme.bodySmall?.copyWith(
+                            color: theme.colorScheme.onSurfaceVariant,
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        Text(
+                          visibility,
+                          style: theme.textTheme.labelSmall?.copyWith(
                             color: theme.colorScheme.onSurfaceVariant,
                           ),
                         ),

@@ -146,6 +146,10 @@ export function getBaseSetPrintRunLaneSpecialVariantKeys(
   return BASE_SET_PRINT_RUN_LANE_SPECIAL_VARIANT_KEYS[normalizedCode];
 }
 
+export function getBaseSetPrintRunLanePrintedIdentityModifier(setCode?: string | null) {
+  return normalizeSetCode(setCode) === "base1-first-edition" ? "edition:first_edition" : null;
+}
+
 export function getBaseSetPrintRunLaneCardCountAdjustment(
   setCode?: string | null,
 ) {

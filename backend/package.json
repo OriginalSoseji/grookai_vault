@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "ebay:seller:test": "node --test ebay/tests/*.test.mjs",
     "condition:run-jobner-v1": "node condition/condition_analysis_job_runner_v1.mjs",
     "condition:worker": "node condition/condition_analysis_job_runner_v1.mjs",
     "condition:worker:once": "node condition/condition_analysis_job_runner_v1.mjs --once --max-jobs 1",

@@ -94,7 +94,7 @@ class SharedCardViewModeButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
         decoration: BoxDecoration(
           color: colorScheme.surface.withValues(alpha: 0.88),
-          borderRadius: BorderRadius.circular(14),
+          borderRadius: BorderRadius.circular(8),
           border: Border.all(
             color: colorScheme.outline.withValues(alpha: 0.10),
           ),

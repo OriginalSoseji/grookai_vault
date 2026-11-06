@@ -1,0 +1,9 @@
+{
+  "pass": true,
+  "classificationOnly": true,
+  "originalOperatorBytesSha256": "1a9750c02e3e4ee4d71bba8fef15f94d01a6b366dc9586c26da3693cf5495da9",
+  "repositoryCheckoutBytesSha256": "723fdcf4e8cb7219e8cefd072489116f249ab1fe34d08eb2ec8bc73e47664b64",
+  "onlyDifference": "JSON file newline encoding; no field or hash value changed",
+  "functionTextNormalized": false,
+  "productionWrites": 0
+}

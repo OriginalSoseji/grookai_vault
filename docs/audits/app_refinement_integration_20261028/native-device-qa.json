@@ -1,0 +1,136 @@
+{
+  "build": 506,
+  "environment": "production release candidate on isolated QA emulator",
+  "accounts": "previously created disposable release actors only",
+  "founderWrites": 0,
+  "offlineManualAdd": {
+    "pass": true,
+    "forceStopRecovery": true,
+    "activeCopiesBefore": 7,
+    "activeCopiesAfter": 8,
+    "exactCondition": "LP",
+    "exactFinish": "Holo",
+    "acquiredOn": "2026-10-27",
+    "canonicalAcquisitionDate": "2026-10-27T06:00:00Z",
+    "costUsd": 2.5,
+    "independentSdkReadback": true
+  },
+  "binderPersistence": {
+    "pass": true,
+    "heldDrag": true,
+    "serverOrderPreserved": true,
+    "exactFinishRequirements": true,
+    "coverPreserved": true,
+    "gridFourByFourPreservedAcrossRestart": true,
+    "privateUnlisted": true
+  },
+  "scannerManualFallback": {
+    "mainScanBatchHandoff": true,
+    "scopedPhotoImport": true,
+    "recognition": "Samsung photo recognition passed: public Eevee173 QA image returned expected top candidate for explicit review; no founder inventory write",
+    "photoRetained": true,
+    "reviewedExactParentAndPrinting": true,
+    "activeCopiesBefore": 8,
+    "activeCopiesAfter": 9,
+    "blankCostStayedUnknown": true,
+    "returnedToScannerAndRefreshedVault": true
+  },
+  "corrections": [
+    "safe retained-draft transport errors",
+    "offline profile gate provides owner-local draft recovery",
+    "typed TLS errors preserve scan photos",
+    "manual picker distinguishes stamped identities and preserves artwork/context",
+    "stale search results cannot replace newer choices",
+    "durable local persistence must succeed before any cloud save attempt",
+    "safe save errors without StateError prefixes",
+    "hydration-safe Vault dates in the collector browser time zone",
+    "Windows-native pixel checks run explicitly alongside portable logical layout checks"
+  ],
+  "finalCandidate": 508,
+  "finalCandidateStatus": "three final-review corrections passed 22 focused checks; normal checks, signing and release-mode verification pending",
+  "samsungInstalledBuild": 507,
+  "globalIntakeWrites": "paused; two QA actors temporarily allowlisted",
+  "stampedOfflineRecovery": {
+    "pass": true,
+    "baseAndStampDistinct": true,
+    "artworkAndPrintingPreserved": true,
+    "offlineProfileRecovery": true,
+    "forceStopRecovery": true,
+    "activeCopiesBefore": 9,
+    "activeCopiesAfter": 10,
+    "unknownConditionAndCostStayedNull": true,
+    "independentSdkReadback": true
+  },
+  "notificationFirstUse": {
+    "pass": true,
+    "osPromptSeen": true,
+    "denialRespectedAcrossColdRestart": true,
+    "disposableEmulatorOnly": true
+  },
+  "samsungMarketplace": {
+    "tcgplayerNearMint": {
+      "pass": true,
+      "product": "516696",
+      "finish": "Reverse Holofoil",
+      "language": "English"
+    },
+    "tcgplayerLightlyPlayed": {
+      "pass": true,
+      "product": "516696",
+      "finish": "Reverse Holofoil",
+      "language": "English"
+    },
+    "ebaySold": {
+      "pass": true,
+      "query": "Eevee 151 133 Reverse Holo",
+      "soldAndCompleteFilters": true,
+      "renderedSoldListings": true
+    },
+    "ebayActive": {
+      "pass": true,
+      "query": "Eevee 151 133 Reverse Holo",
+      "renderedActiveListings": true
+    },
+    "returnedToSameCard": true,
+    "accountPreserved": true
+  },
+  "webParity": {
+    "passed": 143,
+    "canonicalWindows": true,
+    "clockPinned": true,
+    "intentionalGoldenUpdates": 6
+  },
+  "finalCandidateQualification": {
+    "build": 507,
+    "accountPreservingUpgrade": true,
+    "offlineForceStopRecovery": true,
+    "oneRecoveredCopy": true,
+    "condition": "DMG",
+    "finish": "Holo",
+    "explicitCostUsd": 0,
+    "costNotNull": true,
+    "acquiredOn": "2026-10-28",
+    "independentSdkReadback": true,
+    "samsungAccountAndSummaryPreserved": true,
+    "samsungFourColumnPreferencePreserved": true
+  },
+  "nativeSaleRecord": {
+    "build": 506,
+    "pass": true,
+    "disposableActorOnly": true,
+    "oneExactCopyArchived": true,
+    "oneCanonicalReceipt": true,
+    "enteredSaleUsd": 3,
+    "condition": "LP",
+    "printingPreserved": true,
+    "activeCountPersistedAcrossRestart": true,
+    "realFundsTransferred": false,
+    "ebayPublished": false
+  },
+  "hostedFixtureCorrection": "Disable unrelated SDK deep-link observers in eleven non-deep-link fixtures; 92 focused checks pass; hosted rerun pending.",
+  "reviewCorrections": {
+    "export": "Remove unconditional debugNeedsPaint access; assertion-only diagnostic retained. Actual release export verification required on508.",
+    "lotRetry": "Stable creation identity, reconciliation before retry, recovered revisions and conflicting-edit protection; four widget regressions pass.",
+    "unknownCondition": "SDK workspace loader retains Unknown and condition control stays unselected; SDK and UI regressions pass."
+  }
+}

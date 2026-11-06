@@ -1,5 +1,366 @@
 # Grookai Operator Playbook V1
 
+## Pricing continuation and seller renewal — October29,2026 UTC
+
+Read the final continuation section of
+[the511 live checkpoint](../checkpoints/APP_511_LIVE_VERIFICATION_20261028.md).
+PR833 is merged as `aed2d38b80788324d54c27bf180e25a7fd176de3`; all15 applicable
+hosted checks passed and the production domain serves that exact tested tree.
+The installed511 application source is unchanged.
+
+The October28 pricing retry ended after three normal lock-wait deadlines. Its32
+files were preserved with matching hashes before the next start. Shadow40776623318
+then passed reconciliation/hosted completion and released the lock. The guarded
+service start at00:03UTC selected the actual new run
+`TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-10-29`, preserving the failed October28
+directory. Read protected `ebay-seller-labs-v1/pricing-guarded-service-retry-v3`
+and its actual `current-run-pointer.json`. The restart is consumed; inspect live
+unit/child/database state before further action. Producer, environment, storage
+floor and freshness guards remain unchanged. Publication and final Samsung
+condition destinations are still pending at this checkpoint; only the later
+indexed `production-marketplace-restored-v1/result.json` can establish restoration.
+
+The existing eBay connection also passed actual access-token expiry recovery
+through its qualified nonce/revision authority, followed by all seven provider
+metadata GETs. Read protected
+`ebay-seller-labs-v1/production-seller-provider-readback-v3/result.json`.
+No new consent or listing publication occurred. Never copy credentials into
+notes, source, client configuration or verification artifacts.
+
+## Installed511, seller activation and pricing continuation — October28,2026
+
+Read [the current live checkpoint](../checkpoints/APP_511_LIVE_VERIFICATION_20261028.md)
+before the historical entries below. PR832 is merged as
+`974a4cdd2ed341bcb1ec34adcf373b02d34125f3`, all24 hosted checks passed, and
+`grookaivault.com` serves the exact tested tree. Signed511 is installed on QA
+and Samsung through data-preserving updates. Actual menu Back, scanner review,
+connected seller metadata and four shipping choices passed. The Samsung retained
+223 cards and its four-column grid. No founder copy was added, removed or edited.
+
+Seller controls reached revision4 through the existing SDK CAS authority after
+actual owner/OAuth/provider/native/HTTP verification. Linking, preparation and
+publication availability are enabled for exactly the verified real collector;
+other accounts remain off. No public listing, server draft, photo or offer was
+created. Collector photos, price, policies and final publication remain explicit
+collector choices. Reread live controls before any further change. Read protected
+`ebay-seller-labs-v1/production-seller-activation-v1/result.json`.
+
+The qualified retention-only runtime is
+`/opt/grookai/releases/ops/retention-37cda8886e`, from merged PR831. Its service
+WorkingDirectory is the only deployment substitution. The enabled
+`grookai-tcgplayer-market-artifact-retention.timer` runs00:30UTC; the first actual
+service run passed above25GB with zero archives/removals. Read protected
+`ebay-seller-labs-v1/production-retention-only-v1/result.json` and hashes.
+Do not use the combined installer to overwrite the existing pricing producer or
+dirty MEE checkout. The active pricing unit remains
+`grookai-tcgplayer-market-pipeline.service`, WorkingDirectory
+`/opt/grookai_pricing_current`, pinned to
+`cdcec2aa6ab39c237047119fa1dd31605ea1449f`.
+
+At22:49UTC the fresh source is complete but publication is waiting behind valid
+shadow workflow40776623318. Fresh prices and final Samsung TCGplayer checks are
+still pending. Preserve its lock and the failed-retry evidence. Continue with
+current service/SDK/lock readback, not blind restarts or relaxed freshness.
+Later verified restoration belongs in protected
+`ebay-seller-labs-v1/production-marketplace-restored-v1/result.json`; absence is
+not success. No schema apply belongs to this continuation.
+
+## Live eBay card metadata follow-up — October28,2026
+
+The actual provider readback exposed a2.66MB taxonomy dictionary above the old
+2MB client limit. The follow-up checkout includes an endpoint-scoped4MB bound
+and rejects empty successful reads. All other endpoints retain2MB. The native metadata action alone accepts an8MiB
+composite response; ordinary native responses retain2MiB. Signed511 must include
+this transport correction as well as menu Back. Eighteen
+transport tests and seven live GETs pass, including35 card aspects, seller
+policies and the enabled inventory location. Preparation/publication stay off
+until this code passes normal/hosted checks and is deployed. Read protected
+`ebay-seller-labs-v1/production-seller-provider-readback-v2/result.json`.
+The consumed481 package and qualified checkout remain immutable; this code-only
+follow-up needs no schema apply. Later activation has its own live-state receipt.
+
+## Actual collector seller connection — October28,2026,21:13UTC
+
+This supersedes the pending-consent and all-off status immediately below.
+Samsung510's actual Account hub was matched to shared Auth before enabling the
+single-collector linking canary. Production seller controls are revision2,
+linking on for exactly that collector, preparation/publication off. Native
+Connect eBay completed the registered callback, SDK readback verified the linked
+attempt and immutable provider identity, and the native workspace displayed the
+connected seller. No new consent button was presented to the agent and no
+listing was published. Do not repeat linking or attach disposable QA accounts.
+
+Read the delivery checkpoint and protected
+`ebay-seller-labs-v1/production-seller-consent-v1/result.json`,
+`production-seller-linking-canary-v1/result-private.json`, and
+`production-collector-device-identity-v1/identity-private.json`.
+Always reread live controls before further activation. Physical photos, price,
+policies and final publication remain collector choices. No device credential
+belongs in repository notes, client configuration or automation artifacts.
+
+## Integrated app510 and deployed seller authority — October28,2026
+
+Read `docs/checkpoints/APP_EBAY_TECHNICAL_DELIVERY_20261028.md` before the older
+seller entries below. PR830 is merged as
+`a0d8e7da6c2777998dd6c6b95fb50ff2ba30b074`; all24 hosted checks passed. Normal
+package `com.grookai.vault`510 is installed on the QA device and Samsung through
+data-preserving updates. QA cold restart,11 saved cards, Binder grid/order/privacy
+and release PNG export passed. Samsung's final foreground/account/marketplace
+checks still require the phone to be unlocked at this checkpoint.
+
+Production schema481 and its complete schema/security readback passed. The merged
+web deployment is ready on `grookaivault.com`. Six actual production HTTP/Auth
+checks and a default-off backend-composition check passed without inventory
+writes or provider requests. The existing OAuth-enabled RuName now persistently
+uses the deployed seller callback for accepted/declined returns and the public
+privacy URL. No replacement keys or seller accounts were created.
+
+Seller qualification ended with revision1, all three controls off and an empty
+canary list. Actual collector consent/provider readback and activation are
+separate: read live state before changing it; never infer a grant from a saved
+callback or installed app. Enable only the verified real collector for the
+initial linking canary, using the existing revision-checked service SDK control
+RPC. Never bind the founder's eBay account to a disposable grookai QA account.
+Physical photos, price and final publication remain collector choices.
+Later consent/activation proof, only if completed, belongs in the protected
+`ebay-seller-labs-v1/production-seller-consent-v1/result.json` and
+`production-seller-activation-v1/result.json`; always reread live control and
+owner state rather than treating a static checkpoint as activation authority.
+
+Both480 and481 source bytes and consumed PrePush receipts are now immutable.
+The recovery gate's `AuditLinkedSchema` mode supports read-only481 verification;
+its original pending field names the consumed two-file payload. Do not reapply
+it or widen the gate. Preserve `C:/gv_ebay_integrated_20261028` at its qualified
+source, all local proof labs, and the private delivery receipts indexed by the
+checkpoint. The separate
+`C:/gv_ebay_release_notes_20261028` follow-up now also contains the Android menu
+Back correction discovered during QA510 foreground checks. Its actual-AppShell
+regressions cover phone/desktop Back, ordinary root exit, and a dialog above the
+menu, using bundled fonts. Signed511 and its update-only/device qualification
+must have their own protected receipts; do not infer installation from this
+prepared source. The later provider-response correction adds a separately qualified backend code
+change to this follow-up. It still needs no migration apply.
+
+## Integrated seller review and current app — October28,2026
+
+This entry supersedes the installed-build and intake-control status below.
+Samsung and the normal QA app run508 with preserved account/data. Main's
+integrated app and live web are qualified; reviewed intake is globally enabled
+at control revision8 with an empty allowlist. Read
+`docs/checkpoints/APP_REFINEMENT_RELEASE_ACTIVATION_20261028.md` and preserve its
+consumed activation,479 release gates and frozen migration bytes.
+
+The eBay seller workflow is under review in PR830 on
+`C:/gv_ebay_integrated_20261028`, branch
+`feat/ebay-seller-integrated-20261028`. Its qualified480 source is frozen at
+`3f137899a0e2b442fdb9f2dc967c0a12eaa015467b5ea56167cfcb256602c0ff`.
+Signed509 was compiled but is held and has not been installed: review found
+expired-operation recovery and web live-listing reconciliation gaps. Their
+correction uses forward174000 over frozen112000 and requires a new exact
+479→481 scope; do not widen or reuse the consumed480 release gate. Corrected
+native packaging will use510.
+
+Read `docs/contracts/EBAY_SELLER_PUBLISHER_V1.md`,
+`docs/checkpoints/EBAY_SELLER_INTEGRATION_20261028.md`, and
+`docs/audits/ebay_seller_publisher_20261028/CANDIDATE_QUALIFICATION.md`.
+The forward recovery proof is recorded in
+`docs/checkpoints/EBAY_SELLER_RECOVERY_20261028.md`.
+The480 manifest/fingerprints and private fresh/retained480 labs remain preserved
+as historical evidence. The new recovery package must prove fresh481 replay,
+retained data, exact full-schema/security equivalence, real Auth/Storage SDK
+interruption/concurrency and late-publication recovery before official CLI apply.
+
+Production remains479 with zero eBay seller bindings. Existing verified app
+keys and the registered RuName are configured as production server-only Vercel
+settings. The existing OAuth-enabled redirect still uses eBay default callbacks;
+do not claim the new callback is registered or a real seller has consented.
+Keep linking, preparation and publication disabled through delivery qualification.
+The collector supplies physical photos, selling price and final publication;
+never link a disposable grookai account to the founder's real eBay account.
+Expiry recovery must preserve reservations, retire stale workers durably and use
+provider reads; it must never retry an ambiguous provider mutation automatically.
+
+The separate `-EbaySellerPublisherRecoveryReleaseV1` gate permits only
+`AuditLinkedSchema`/`PrePush`, exact pending IDs
+`20261028112000,20261028174000`, and a new protected
+`C:/gv_intake_recovery_private_20261027/ebay-seller-recovery-release-gate-*`
+directory. Its verifier/manifest are
+`scripts/schema/verify_ebay_seller_recovery_release_v1.mjs` and
+`docs/audits/ebay_seller_publisher_20261028/recovery-release-manifest.json`.
+It preserves every prior source and requires81 exact seller objects, unchanged
+intake authority, full schema/security equality, populated upgrade/no-op and
+actual SDK proof of expiry before/after publication intent and safe handoffs.
+New481 labs use60760/60761 and60800/60801; preserve the consumed480 labs.
+Fault injection is confined to the isolated local SQL harness. The service SDK
+correctly lacks direct update permission on private operation rows; do not
+grant it new permissions to make a test pass.
+
+## Final-review508 candidate — October28,2026
+
+Samsung still runs507. All hosted c77 checks passed, but three final review findings require508: release PNG export must not access debugNeedsPaint outside assertions; purchase-lot retries need stable identity/reconciliation; Unknown conditions must not become NM in the collector/vendor loader. These corrections passed22 focused checks. Main's data-only PR827 is incorporated. Normal checks,508 signing/device verification and final live-web qualification remain pending. Resolve findings only after their fixes are verified; never bypass conversation or merge gates. Global intake remains paused under the existing two-actor revision6 canary.
+
+
+## Build507 installed — October28,2026
+
+This supersedes installed-build and RuName status below. Signed507 is installed on the QA emulator and Samsung through data-preserving updates. The Samsung retains its signed-in account, pre-upgrade inventory summary and four-column density. TCGplayer NM/LP, signed-in eBay active/sold results and photo recognition passed. On507, an offline/restart/reconnect intake saved exactly one DMG/Holo copy with explicit USD0.00, verified independently. Native QA sale recording created one exact canonical receipt; no founder inventory was changed or real funds moved.
+
+The production RuName is known; callbacks remain eBay defaults. Publisher work is isolated and unshipped. The integration PR still requires hosted and live-web qualification. Eleven test fixtures now disable unrelated SDK deep-link observers after hosted Linux failures; production deep links remain unchanged. Preserve signed507 and verify native source equivalence for test-only commits. Intake control revision6 still permits only the two QA actors; global writes remain paused pending audited completion/activation.
+
+
+## Build506 qualification and507 candidate — October28,2026
+
+This checkpoint supersedes older installed-build status below. Samsung and the isolated QA emulator now run506. Samsung account/data are preserved; TCGplayer NM/LP exact filters and signed-in eBay sold/active searches passed on real pages. QA stamped offline recovery saved one exact copy with NULL condition/cost, bringing QA inventory to ten. Notification refusal persisted across cold restart after a fresh QA-only install state. Full canonical Windows web parity passed143 checks.
+
+Final507 source adds fail-closed local persistence before cloud saves, safe error text, portable logical/Windows pixel test separation, app-links fixture channels, and hydration-safe local Vault dates. Normal checks, packaging, hosted checks and final live web qualification remain required. The revision6 two-actor canary remains open; ordinary intake writes remain paused. Do not clear Samsung data or use consumed migration gates.
+
+The signed-in eBay developer console confirms required production scopes, but User Tokens returns a provider error and RuName remains unverified. Local OAuth/provider prototypes are not integrated or deployed; listing publication is still pending.
+
+
+## Integrated native recovery qualification — October28,2026
+
+Real manual search exposed distinct stamped/base parents rendered with identical
+labels. The final506 source now preserves the shared printed identity, canonical
+artwork and human set label through selection, local recovery and review. Search
+invalidates stale results and retains safe retry. Packaging was deferred before
+compilation until this correction passes normal checks; no506 APK is installed.
+The failed-photo/manual fallback saved one exact LP/Holo copy with unknown cost
+still NULL; the QA Vault now contains nine active copies.
+
+Native Binder drag/order, exact requirements, cover and4×4 preference survived
+restart and independent owner readback. The private QA Binder is retained for web
+comparison; archive it after that check. Main scanner import reached a strict TLS
+rejection caused on the workstation path by Norton HTTPS inspection. Do not
+disable inspection or certificate verification, or declare a public server fault
+from that evidence. Verify recognition through Samsung's independent network.
+Scanner/batch failure guidance now shares typed safe messages and preserves
+photos; these corrections require normal checks and packaging.
+
+See `docs/checkpoints/APP_REFINEMENT_INTEGRATION_20261028.md`. Build505's offline
+reviewed add survived a forced restart and saved exactly one copy after
+reconnection, with the reviewed day, exact LP/Holo identity and USD2.50 cost.
+The observed raw network error and blocked offline profile gate are corrected
+for506; normal checks and fresh device qualification are required. Next16's
+generated `apps/web/next-env.d.ts` is ignored/untracked, as its installed docs
+require; `next typegen` still runs before typecheck. Preserve failed push evidence.
+
+Production intake remains globally paused with only the same two disposable QA
+actors temporarily allowlisted under revision6. The protected native canary
+control script closes only its exact owned revision/actors and must be used after
+native/web qualification. Never reuse consumed migration gates or alter the
+frozen020000/050700 files. Samsung502 and its founder account remain preserved.
+
+## Verified reviewed-intake deployment — October 28, 2026
+
+PR825 is merged as `e99b3ebcde7b161aeac245af893d271f828b022d`. The exact merged
+gate and official dry-run passed; CLI applied020000/050700 at06:45 UTC.
+Production479 matches the qualified full schema,1,346 security objects and39
+governed fingerprints. Edge version1's downloaded source/settings match.
+Thirteen real production canary cases and four family/community journeys passed
+using only two disposable accounts. QA Binders are private/unlisted and archived;
+global intake writes are paused. Preserve all failed/resumed harness evidence.
+The founder's account is untouched. Older release gates/instructions below are
+historical and must not be widened or reused. Integrated native/client release
+and audited global activation are still pending at this checkpoint.
+
+## Reviewed intake date-correct release — October 28, 2026
+
+The release now requires both frozen020000 and forward050700 candidates.
+The earlier478-only instructions below are historical and cannot qualify479.
+Use `-CollectorReviewedIntakeDateReleaseV1 -ExpectedLocalOnlyIds
+20261028020000,20261028050700` for `AuditLinkedSchema` and `PrePush`, with a new
+immediate child of `C:/gv_intake_recovery_private_20261027` named
+`reviewed-intake-date-release-gate-*`. Source must be clean and committed.
+See the date release manifest and latest reviewed-intake checkpoint.
+
+The date candidate SHA256 is
+`98138e6344e1a6c54b46b8d705b50ac5feac4303e96f33a0603440f4a4d9b7c0`.
+All479 source files, genuine full replay, retained478-to479 upgrade/no-op,
+14 real runtime cases, 39 governed objects, full public schema and1,346 security
+objects are pinned. Both populated479 labs remain preserved and paused.
+Production remains477 until official dry-run lists exactly these two migrations
+and a qualified merged commit is applied. Then independently verify479 against
+the pinned target before compatible Edge deployment and disposable-account
+canary. Keep global writes disabled through qualification. Preserve the founder's
+account; use revision-checked audited controls and restore pause on any failure.
+
+## Reviewed intake qualified candidate — October 27, 2026 (Denver)
+
+The frozen feature candidate is `20261028020000`, SHA256
+`f18d25777048114b5619af1d57eb3fa985c03f7453ef2ff936c340ea2a7c11a5`.
+It has passed fresh full478 CLI replay/no-op, retained populated477-to478
+upgrade/no-op, exact 38-object fingerprints, full public schema and 1,345-object
+security equality, and nine real shared-Edge/Auth/Storage/concurrency cases.
+Both internal proof labs retain their fixtures with writes paused; never reset
+them. The legacy image bucket was explicitly created as a local platform
+fixture because it is absent from historical migration replay. Production was
+not changed by these tests. A raw Auth deletion probe hit the pre-existing
+`card_events` append-only trigger; it is not an account-erasure readiness pass.
+
+Use only `-CollectorReviewedIntakeReleaseV1` with exact pending ID20261028020000
+and a new protected `-AuditOutDir` directly under the evidence root beginning
+`reviewed-intake-release-gate-`. It requires clean committed source and rereads
+the fixed production477 baseline plus both qualified478 targets. Normal hooks,
+official CLI dry-run/apply, independent readback, Edge release and disposable
+production-account canary remain separate gates. Activation uses the audited
+control setter only after canary proof. Migration/function SQL bytes remain
+exact; TypeScript runtime hashes use Git LF text solely for checkout parity.
+
+## Reviewed intake release preparation — October 28
+
+PR 824 is merged as `aae9893f828b9d81c136ea154a0086e1bf0072d7`; its exact
+reconciliation is applied and independently verified at production 477 with
+zero schema differences and equal 1,331-object security. The old reconciliation
+gate is consumed and cannot qualify the next feature. Read the latest root
+`docs/checkpoints/INTAKE_BACKEND_RECOVERY_20261027.md` and protected evidence in
+`C:/gv_intake_recovery_private_20261027` for actual release state.
+
+New backend work is isolated in `C:/gv_intake_release_20261028`. Before new SQL,
+`AuditLinkedSchema -AppReviewedIntakeBaselineV1` proves the exact 477 source,
+retained lab and fresh production baseline without writes. It permits only a
+new `-AuditOutDir` directly under the protected evidence root beginning
+`baseline-intake-`; candidates, PrePush, target overrides and mixed scopes reject.
+The frozen metadata query and pinned pgkit 0.6.1 inspector come from the qualified
+recovery tooling. Preserve every consumed lab and failed receipt. New feature
+SQL and Edge code still require separate release qualification and real-account
+saving/recovery checks; neither the baseline audit nor build 502 proves that.
+
+## App reviewed-intake baseline recovery — October 27
+
+Read `docs/checkpoints/INTAKE_BACKEND_RECOVERY_20261027.md` and
+`docs/audits/intake_recovery_20261027/REVIEW.md`. Recovery source is isolated in
+`C:/gv_intake_recovery_20261027`; private snapshots and local credential-bearing
+CLI logs remain outside Git in `C:/gv_intake_recovery_private_20261027`.
+The original lot-label migration is restored exactly. The new reconciliation
+preserves the existing production index and ten exact function definitions,
+including their raw line endings. Never rewrite applied SQL or repair remote
+history to conceal this drift.
+
+The immutable alias migration needs 647 catalog pairs. The final v5 lab proves
+a genuine empty-prefix CLI reset, explicit synthetic prerequisite, all 476
+unchanged historical migrations, the exact candidate at 477 and no-op pushes.
+Its Kong gateway must reread the Storage address after reset; the owned monitor
+restarts only that lab's gateway after checking it is empty. The readiness relay
+returns only real upstream responses and retries only the idempotent bucket
+readiness GET. Keep every failed receipt and consumed/populated lab. **Never
+reset these existing labs.**
+
+`migration_preflight_strict.ps1 -AppIntakeReconciliationV1` is bounded to exact
+pending ID `20261027230000`, with a new private `-AuditOutDir` beginning
+`C:/gv_intake_recovery_private_20261027/strict-`. It freezes every original SQL
+hash and genuine replay proof, rereads the owned lab/data, captures production
+through the official CLI in repeatable-read read-only mode, requires whole
+public-schema/security equality, and repeats four rollback tests. `PrePush`
+also requires clean committed source containing current main. No mixed modes,
+target overrides, extra pending migrations or production apply capability.
+The migration contract documents this specific prerequisite-aware qualification;
+other gates and feature scopes remain unchanged.
+
+The ordinary empty-shadow failure is retained as failed evidence. This scope
+cannot qualify the future intake feature SQL or count as a production release.
+Normal hooks, exact dry-run, atomic CLI apply and independent readback remain
+required. Build 502 remains unchanged until an actual app/backend release is
+verified. Production intake is still absent at this checkpoint.
+
 ## Numbered card-name interpretation follow-up — October 26, 2026
 
 Read `docs/checkpoints/2026-10-26_numbered_name_set_disambiguation.md`.
@@ -51,11 +412,37 @@ fingerprint make an identical rerun idempotent. Do not hand-edit the payload,
 split collisions into separate approvals, or treat an approved review item as a
 completed mapping. Dashboard backlog counts use the latest successful measured
 run so a starting or failed run cannot replace known measurements with zeros.
-The optional exact planner currently remains unavailable until the dedicated
-reader capability is independently qualified and activated. A fixed
-`MAPPING_READER_*` or `PLANNER_*` code is a held automatic lane, not permission
-to substitute the broad production database login. Backlog measurement,
-candidate enrichment, and review publication continue without that planner.
+`TCGPLAYER_PRICING_COMPLETION_AGENT_V5` keeps the dedicated reader capability
+blocked and removes `TCGPLAYER_EXACT_MAPPING_READER_DB_URL` from the hosted
+workflow. Each hosted run now captures the exact Pokemon planner inputs in a
+separate verified-TLS, repeatable-read, read-only subprocess using the existing
+backlog-census connection. The connection is closed before a second subprocess
+runs the unchanged exact matching policy from
+`exact_mapping_snapshot_v1.json`. That planner subprocess receives an environment
+with every Supabase, database, PostgreSQL, service-role, secret-key, and PG
+connection variable removed. Inspect `exact_mapping_plan.snapshot_status`, the
+snapshot SHA-256, `summary.json.snapshot_receipt`, and candidate/blocked counts
+in the preserved workflow artifact. `EXACT_MAPPING_SNAPSHOT_UNAVAILABLE` or
+`EXACT_MAPPING_PLAN_UNAVAILABLE` is a held automatic lane; it never authorizes a
+credential substitution or weakens the mapping-release gates. Backlog
+measurement, candidate enrichment, and review publication continue when the
+snapshot or offline plan is unavailable.
+
+GitHub schedule events remain the primary fifteen-minute clock, but the Windows
+task `Grookai Pricing Completion Dispatch Watchdog` is the redundant freshness
+route defined by `PRICING_COMPLETION_DISPATCH_WATCHDOG_V1`. It runs
+`scripts/ops/ensure_pricing_completion_freshness_v1.ps1` every five minutes,
+requests a `main` workflow dispatch only when the latest hosted run is stale,
+and preserves receipts under
+`C:\grookai_vault_operator_artifacts\pricing_completion_dispatch_watchdog_v1`.
+The default healthy window is 20 minutes; active runs suppress another dispatch
+for 45 minutes, failed runs wait five minutes, and a local dispatch request has
+a 20-minute cooldown. Inspect both `Get-ScheduledTaskInfo` and `latest.json` when
+checking this route. The task requires the owner's authenticated GitHub CLI and
+an available Windows host, and its action must use PowerShell 7 (`pwsh.exe`) so
+GitHub UTC timestamps remain explicit strings before freshness calculation. It
+receives no database credentials and grants no
+mapping, catalog, pricing-publication, or customer-state authority.
 
 Each successful scheduled run also preserves
 `pokemon_special_printing_reference_proposal_v1.json` beside the Pokemon
@@ -369,6 +756,12 @@ or connect to PostgreSQL. Retain V2 state under
 `C:\grookai_vault_operator_artifacts\pricing_completion_ollama_v2`. Reconcile
 the hosted combined, Magic, and Pokemon candidate hashes before replacing the
 scheduled-task action.
+The hosted queue must reclassify both Magic and Pokemon with product-scope V1.5
+even when the source pricing receipt contains an older scope version. For Magic,
+do not treat a canonical `scryfall:<uuid>` printing key as a Pokemon-style child
+variant; require the exact printed coordinate and keep every result advisory.
+Any other MTG variant-key form remains held. A successful local task with zero
+Magic inputs is not evidence that the Magic backlog is complete.
 
 ## Pokémon 30th Celebration Classic aliases — October 14
 
@@ -3866,3 +4259,123 @@ mapping IDs; never retry blindly. A successful repair still does not publish
 prices. Run a later full governed TCGPlayer market pipeline and verify that the
 19 positive-price products publish while the three source-null products remain
 explicitly held.
+
+## TCGPlayer pricing storage and freshness runway — October 28, 2026
+
+The October 28 scheduled production cycle was stopped by its storage preflight
+before acquisition because `/mnt/grookai_worker_data` had less than the required
+15,000,000,000 free bytes. The timer remained enabled and healthy. Three old
+failed August production artifact directories were preserved as verified Zstd
+archives with per-file manifests, archive comparisons, SHA-256 receipts, and
+explicit source-removal metadata. Free capacity increased from 14,382,522,368
+to 17,021,394,944 bytes, and the original pricing preflight passed afterward.
+
+Install and enable `grookai-tcgplayer-market-artifact-retention.timer` with the
+combined pricing pipeline. It runs at 00:30 UTC, before the 08:15 UTC pricing
+cycle. The retention worker considers only finalized production schedule
+directories at least 14 days old, skips unsupported or incomplete directories,
+and deletes an exact source directory only after its archive, comparison,
+manifest, and hash checks pass. Its default target is 25,000,000,000 free bytes,
+providing working room above the 15 GB start floor. A retention failure must
+remain visible through the operations webhook; do not weaken the storage
+preflight to make the publication cycle start.
+
+Durable shadow, canary, and production publication now require at least four
+hours of source freshness remaining when the publication worker starts. This
+prevents a source run that is barely under the 36-hour limit from expiring while
+snapshot batches are still being written. On
+`source_freshness_runway_insufficient`, run a guarded current warehouse sync and
+start a new publication run; do not retry the stale frozen run or weaken the
+edition-lineage validators.
+
+## TCGPlayer future-release pricing triage — October 30, 2026
+
+The scheduled pricing completion agent separates reviewed future-set listings
+from mapping blocks that can be worked now. Read
+`pokemon_future_release_catalog_holds.jsonl` for the official-date-bound holds
+and `pokemon_actionable_exact_mapping_blocks.jsonl` for the remaining exact
+mapping work. Both files are hashed in `agent_run.json`; their row counts are
+reported under `summary.exact_mapping_block_triage`.
+
+Every hold is bound to the completed source run's `observed_on` day, exact
+TCGPlayer group ID and exact group name. The current reviewed hold is group
+`24831`, `ME06: Delta Reign`, with the official November 6, 2026 release date.
+Before that date, its blocked products remain visible but do not inflate the
+actionable mapping count. The hold expires automatically on release day; any
+still-unresolved products then return to the actionable artifact. A changed
+group identity, non-authority block reason, malformed source date, or duplicate
+source product is never suppressed.
+
+This split is telemetry only. It grants no catalog admission, canonical card or
+printing creation, external mapping, pricing, publication, Storage, Vault, or
+customer-state write authority. Do not map a future-set product to an older
+same-name and same-number card. Catalog admission and later price publication
+must still pass their independent source, Master Index, mapping, release, and
+readback gates.
+
+## TCGPlayer Professor Program pricing triage — October 30, 2026
+
+TCGPlayer group `2332`, `Professor Program Promos`, is a multi-set special-print
+group. Never assign group-wide set authority and never map one of its products
+to the ordinary card parent merely because name, number, and source finish
+match. Read
+`docs/audits/TCGPLAYER_PROFESSOR_PROGRAM_IDENTITY_REVIEW_20261030_V1.md` and the
+bound JSON report before working this group.
+
+Run `scripts/audits/tcgplayer_professor_program_identity_review_v1.mjs` against
+the current exact planner's `blocked.jsonl`. A mapping authority candidate must
+have a unique name/number/printed-total identity plus a current distinct parent
+whose `variant_key` and `printed_identity_modifier` both equal
+`professor_program_stamp`, with one active verified child matching the source
+finish. The group label is routing evidence, and the TCGPlayer price subtype may
+select an already verified child; neither may create or restore catalog truth.
+
+Keep event-placement labels such as `Top 8` and `Finalist` identity-bearing.
+Keep year-numbered energy promos held until an exact underlying set/product
+identity source exists. Route unique underlying cards with no stamped parent to
+catalog identity completion before exact mapping or pricing. The October 30
+baseline contains 48 holds and zero mapping-ready rows; eight are in that
+catalog-identity-first lane. Any later nonzero candidate count requires a fresh
+current catalog reconciliation artifact, not the older Grookai audit alone.
+
+## Continuous catalog promotion — October 29, 2026
+
+Universal Catalog Discovery remains a read-only evidence producer. Canonical
+execution is owned by `Catalog Continuous Promotion`, which triggers only after
+a successful default-branch discovery run and only while the repository variable
+`CATALOG_CONTINUOUS_PROMOTION_ACTIVE` equals `true`.
+
+The executor downloads the exact discovery artifact, verifies its internal
+package hash, checks out trusted `main`, proves it equals the source commit, and
+accepts at most five registered outcome packages. Each target must first complete
+a same-fingerprint transactional dry run with exact rollback absence. The
+executor then invokes the same writer in apply mode and requires exact durable
+readback. MTG writers also verify the frozen execution-count fingerprint before
+inserting or committing. Results and failures are persisted under the
+`catalog-continuous-promotion-v1` operations agent and preserved as a 90-day
+workflow artifact.
+
+The workflow is insert-only. It cannot update or delete canonical rows, change
+Storage or image pointers, write pricing or publication state, mutate Vault or
+customer data, or activate public visibility. `30th-c` and other raw English
+Pokemon missing sets remain held until Master Index admission. On any commit,
+source, package, collision, rollback, or readback mismatch, inspect the durable
+agent run and artifact; never retry blindly or broaden the target.
+
+## Completed TCGplayer publication recovery — October 29, 2026
+
+The guarded production recovery completed successfully after the independently
+owned shadow run released the global publication lock. The current run is
+`TCGPLAYER-MARKET-SCHEDULE-PRODUCTION-2026-10-29-publication`; it published
+177,074 qualified snapshots, reconciled with zero mismatches, and completed
+health as `healthy`. Its source age was 2.208 hours, and health reported zero
+broken traces, failed phase attempts, and failed source rows. The source run was
+the completed October 28 full sync with 560,434 price rows and zero failures.
+
+The Samsung and anonymous production-site checks confirmed the exact Eevee 151
+#133 Reverse Holo links for all five conditions. If freshness later expires,
+follow the normal guarded warehouse and production pipeline. Preserve
+reconciliation and health artifacts; do not hardcode a TCGplayer URL or weaken
+the freshness, mapping, quarantine, or publication guards. The successful
+terminal and health evidence is preserved with the APP511 live-verification
+checkpoint under the private recovery root.

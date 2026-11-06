@@ -119,6 +119,8 @@ test("writer invocation comes from code registry and pins commit, target, and pa
   assert.ok(invocation.args.includes("--set-code=tst"));
   assert.ok(invocation.args.includes(`--expected-head-sha=${"a".repeat(40)}`));
   assert.ok(invocation.args.includes(`--expected-payload-fingerprint=${"b".repeat(64)}`));
+  assert.ok(invocation.args.some((arg) =>
+    /^--expected-execution-counts-sha256=[a-f0-9]{64}$/.test(arg)));
   assert.equal(Object.keys(invocation.env).length, 0);
 });
 

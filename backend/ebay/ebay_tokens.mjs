@@ -1,5 +1,7 @@
 // Helper utilities for seller-specific eBay OAuth tokens.
 // Handles token lookup + refresh when a refresh_token is present.
+import { EbaySellerOauthClient } from './seller_oauth_v1.mjs';
+import { getVerifiedSellerAccessToken } from './seller_token_authority_v1.mjs';
 
 function getTokenEndpoint() {
   const env = (process.env.EBAY_ENV || 'production').toLowerCase();
@@ -65,6 +67,19 @@ export async function getSellerEbayAuth(supabase, { ebayAccountId }) {
   const refreshToken = data.refresh_token;
   const marketplaceId = data.marketplace_id || process.env.EBAY_MARKETPLACE_ID || 'EBAY_US';
   const ebayUsername = data.ebay_username || null;
+  if (data.provider_user_id) {
+    accessToken = await getVerifiedSellerAccessToken({
+      db: supabase, actorId: data.user_id, accountId: data.id,
+      oauthClient: new EbaySellerOauthClient({
+        environment: data.environment,
+        clientId: process.env.EBAY_CLIENT_ID,
+        clientSecret: process.env.EBAY_CLIENT_SECRET,
+        // Refresh never requires or transmits the registered OAuth RuName.
+        ruName: null,
+      }),
+    });
+    return { accessToken, marketplaceId, ebayUsername };
+  }
   const expiresAt = data.access_token_expires_at ? Date.parse(data.access_token_expires_at) : null;
   const needsRefresh =
     refreshToken &&

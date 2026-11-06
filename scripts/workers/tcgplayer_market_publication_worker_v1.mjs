@@ -42,6 +42,9 @@ import {
   buildMtgPricingProductionGuardStartedArtifactV1,
   evaluateMtgPricingProductionActivationGuardV1,
 } from "../../backend/pricing/mtg_pricing_production_guard_v1.mjs";
+import {
+  assertTcgplayerMarketSourceRunwayV1,
+} from "../../backend/pricing/tcgplayer_market_source_runway_v1.mjs";
 
 const { Client } = pg;
 const execFileAsync = promisify(execFile);
@@ -53,7 +56,7 @@ const DEFAULT_OUT_ROOT = path.join(
   "artifacts",
   "market_pricing_product_v1",
 );
-const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_20";
+const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_21";
 const PIPELINE_VERSION = "TCGPLAYER_MARKET_PIPELINE_V1";
 const SCHEMA_VERSION = "TCGPLAYER_MARKET_PUBLICATION_SCHEMA_V1";
 const SNAPSHOT_SCHEMA_VERSION = "MARKET_PRICE_PUBLICATION_SNAPSHOT_V1";
@@ -1933,6 +1936,11 @@ async function main() {
   );
   try {
     const sourceRun = await latestSourceRun(client);
+    const sourceRunway = WRITE_MODES.has(args.runMode)
+      ? assertTcgplayerMarketSourceRunwayV1(sourceRun, {
+          freshnessHours: args.freshnessHours,
+        })
+      : null;
     if (
       args.expectedSourceSyncRunId &&
       sourceRun.id !== args.expectedSourceSyncRunId
@@ -1969,6 +1977,7 @@ async function main() {
         canary_expected_count:
           loadedCanary?.definition.expected_count ?? null,
         freshness_hours: args.freshnessHours,
+        source_freshness_runway: sourceRunway,
         suppression_hours: args.suppressionHours,
         batch_size: args.batchSize,
         candidate_product_page_size:
@@ -2022,6 +2031,7 @@ async function main() {
       source_sync_run_id: sourceRun.id,
       evaluated_at: new Date().toISOString(),
       freshness_hours: args.freshnessHours,
+      source_freshness_runway: sourceRunway,
       suppression_hours: args.suppressionHours,
       ...counts,
       durable_run_state: durableRun?.state ?? null,

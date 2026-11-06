@@ -1,12 +1,13 @@
 import Link from "next/link";
+import {BinderProgress,BinderSummaryCard} from "./BinderSummaryPresentation";
+export {BinderProgress,BinderSummaryCard} from "./BinderSummaryPresentation";
+import BinderLibraryClient from "./BinderLibraryClient";
 import PublicCardImage from "@/components/PublicCardImage";
 import PageSection from "@/components/layout/PageSection";
 import ProductState from "@/components/layout/ProductState";
 import type {
   BinderDashboard,
-  BinderProgressUnit,
   BinderPublicProjection,
-  BinderSummary,
   BinderTemplateSummary,
 } from "@/lib/binders/types";
 import {
@@ -15,64 +16,6 @@ import {
   BinderTrustSafetyControls,
   SimpleBinderAction,
 } from "./BinderForms";
-
-function progressPercent(completed: number, total: number) {
-  return total > 0 ? Math.min(100, Math.max(0, Math.round((completed / total) * 100))) : 0;
-}
-
-export function BinderProgress({
-  completed,
-  total,
-  unit,
-  label = "Binder progress",
-}: {
-  completed: number;
-  total: number;
-  unit: BinderProgressUnit;
-  label?: string;
-}) {
-  const percent = progressPercent(completed, total);
-  const accessibleCompleted = Math.min(
-    Math.max(0, completed),
-    Math.max(0, total),
-  );
-  const unitLabel =
-    unit === "finish_options"
-      ? total === 1
-        ? "finish option"
-        : "finish options"
-      : unit === "custom_slots"
-        ? total === 1
-          ? "custom slot"
-          : "custom slots"
-        : total === 1
-          ? "card print"
-          : "card prints";
-  return (
-    <div className="space-y-2">
-      <div className="flex items-center justify-between gap-3 text-sm">
-        <span className="font-medium text-slate-700">{label}</span>
-        <span className="font-semibold text-slate-950">
-          {completed} of {total} {unitLabel}
-        </span>
-      </div>
-      <div
-        role="progressbar"
-        aria-label={label}
-        aria-valuemin={0}
-        aria-valuemax={Math.max(0, total)}
-        aria-valuenow={accessibleCompleted}
-        aria-valuetext={`${accessibleCompleted} of ${Math.max(0, total)} ${unitLabel} complete`}
-        className="h-2.5 overflow-hidden rounded-full bg-slate-100"
-      >
-        <div
-          className="h-full rounded-full bg-emerald-500 transition-[width]"
-          style={{ width: `${percent}%` }}
-        />
-      </div>
-    </div>
-  );
-}
 
 function BinderCoverArtwork({
   src,
@@ -99,72 +42,6 @@ function BinderCoverArtwork({
   );
 }
 
-export function BinderSummaryCard({ binder }: { binder: BinderSummary }) {
-  return (
-    <Link
-      href={`/binders/${encodeURIComponent(binder.publicId)}`}
-      className="gv-collector-binder-tile group flex min-w-0 flex-col overflow-hidden rounded-lg border border-slate-200 bg-white transition hover:border-sky-300 focus:outline-none focus:ring-2 focus:ring-sky-400"
-    >
-      <div className="gv-collector-binder-cover h-[220px] overflow-hidden bg-slate-50 sm:h-[250px]">
-        <BinderCoverArtwork src={binder.coverImageUrl} title={binder.title} />
-      </div>
-      <div className="gv-collector-binder-info flex min-w-0 flex-1 flex-col justify-between gap-4 break-words p-5">
-        <div className="min-w-0">
-          <p className="text-xs font-semibold capitalize text-slate-500">
-            {binder.role} · {binder.binderType}
-          </p>
-          <h3 className="mt-1 text-base font-semibold text-slate-950 group-hover:text-sky-700">
-            {binder.title}
-          </h3>
-          {binder.description ? (
-            <p className="mt-1 line-clamp-2 text-sm text-slate-600">{binder.description}</p>
-          ) : null}
-        </div>
-        <div className="space-y-2">
-          <BinderProgress
-            completed={binder.completedSlots}
-            total={binder.totalSlots}
-            unit={binder.progressUnit}
-          />
-          <p className="text-xs text-slate-500">
-            {binder.memberCount} {binder.memberCount === 1 ? "member" : "members"}
-          </p>
-        </div>
-      </div>
-    </Link>
-  );
-}
-
-function DashboardSection({
-  title,
-  description,
-  items,
-  empty,
-}: {
-  title: string;
-  description?: string;
-  items: BinderSummary[];
-  empty: string;
-}) {
-  return (
-    <PageSection spacing="loose">
-      <div>
-        <h2 className="gv-section-title">{title}</h2>
-        {description ? <p className="mt-1 text-sm text-slate-600">{description}</p> : null}
-      </div>
-      {items.length > 0 ? (
-        <div className="gv-collector-binder-grid grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-          {items.map((binder) => (
-            <BinderSummaryCard key={binder.publicId} binder={binder} />
-          ))}
-        </div>
-      ) : (
-        <ProductState compact eyebrow={title} title="Nothing here yet" description={empty} />
-      )}
-    </PageSection>
-  );
-}
-
 export function BinderDashboardView({
   dashboard,
   sharedEnabled,
@@ -178,20 +55,12 @@ export function BinderDashboardView({
 }) {
   return (
     <div className="space-y-10">
-      <DashboardSection
-        title="Continue building"
-        description="Pick up the collection goals you are actively building."
-        items={dashboard.continueBuilding}
-        empty="No Binders yet. Start with a Pokémon Binder."
-      />
-      {sharedEnabled || dashboard.sharedWithMe.length > 0 ? (
-        <DashboardSection
-          title="Shared with me"
-          description="Binders where another collector invited you to build or view."
-          items={dashboard.sharedWithMe}
-          empty="Build together—invite family or friends."
-        />
-      ) : null}
+      <BinderLibraryClient groups={[
+        {title:'Continue building',items:dashboard.continueBuilding,empty:'No active Binders yet.'},
+        ...(sharedEnabled||dashboard.sharedWithMe.length?[{title:'Shared with me',items:dashboard.sharedWithMe,empty:'Build together—invite family or friends.'}]:[]),
+        {title:'Completed',items:dashboard.completed,empty:'Completed Binders will appear here.'},
+        {title:'Archived',items:dashboard.archived,empty:'Archived Binders stay safe and can be restored.'},
+      ]} hasMore={Boolean(dashboard.nextCursor)} />
       {sharedEnabled || dashboard.invitations.length > 0 ? (
         <PageSection spacing="loose">
           <div>
@@ -362,16 +231,6 @@ export function BinderDashboardView({
           </ul>
         </PageSection>
       ) : null}
-      <DashboardSection
-        title="Completed"
-        items={dashboard.completed}
-        empty="Completed collection goals will be celebrated here."
-      />
-      <DashboardSection
-        title="Archived"
-        items={dashboard.archived}
-        empty="Archived Binders stay safe and can be restored."
-      />
     </div>
   );
 }

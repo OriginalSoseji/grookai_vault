@@ -29,7 +29,7 @@ test("selected child printings receive a stable Grookai-hosted image route", () 
 
 test("set thumbnails try child and parent hosted art before provider URLs", () => {
   const grid = source("apps/web/src/components/PublicSetCardGrid.tsx");
-  const sourcesStart = indexAfter(grid, "const imageSources = [");
+  const sourcesStart = indexAfter(grid, "const imageSources = (isKnownFirstEditionBaseImage");
   const childHosted = indexAfter(grid, "selectedHostedImageUrl,", sourcesStart);
   const parentHosted = indexAfter(grid, "cardFallbackImageUrl,", childHosted);
   const selectedProvider = indexAfter(grid, "selectedImageUrl,", parentHosted);

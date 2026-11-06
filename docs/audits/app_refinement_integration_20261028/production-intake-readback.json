@@ -1,0 +1,32 @@
+{
+  "at": "2026-10-28T06:45:35.416Z",
+  "pass": true,
+  "target": "ycdxbpibncqcchqiihfz",
+  "head": "e99b3ebcde7b161aeac245af893d271f828b022d",
+  "candidateSha256": "98138e6344e1a6c54b46b8d705b50ac5feac4303e96f33a0603440f4a4d9b7c0",
+  "migrationVersions": 479,
+  "fullSchemaDiffBytes": 0,
+  "securityExact": true,
+  "securityObjects": 1346,
+  "governedObjects": 39,
+  "control": {
+    "canary_actor_ids": [],
+    "revision": 1,
+    "writes_enabled": false
+  },
+  "bucket": {
+    "allowed_mime_types": [
+      "image/jpeg",
+      "image/png"
+    ],
+    "file_size_limit": 16777216,
+    "id": "vault-intake-private",
+    "public": false
+  },
+  "sanity": {
+    "cards": 172404,
+    "sets": 3410,
+    "traits": 32903
+  },
+  "productionWrites": 0
+}

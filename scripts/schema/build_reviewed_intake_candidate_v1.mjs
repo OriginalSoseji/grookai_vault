@@ -1,0 +1,14 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import {fileURLToPath} from 'node:url';
+import {createHash} from 'node:crypto';
+const root=path.resolve(fileURLToPath(new URL('../..',import.meta.url)));
+assert.equal(root.replaceAll('\\','/'),'C:/gv_intake_release_20261028');
+assert.equal(fs.existsSync('C:/gv_intake_recovery_private_20261027/reviewed-intake-release-v1/candidate-frozen.json'),false,'Never rebuild a frozen/applied candidate');
+const names=['reviewed_intake_governance_v1.sql','reviewed_intake_legacy_transformation_v1.sql','reviewed_intake_request_v1.sql'];
+if(fs.existsSync(root+'/scripts/schema/reviewed_intake_object_guards_v1.sql'))names.unshift('reviewed_intake_object_guards_v1.sql');
+const parts=names.map(n=>fs.readFileSync(root+'/scripts/schema/'+n,'utf8').trimEnd());
+const bytes=Buffer.from('-- Qualified replay and default-off rollout are required before activation.\nbegin;\nset local search_path=pg_catalog,public,extensions;\n\n'+parts.join('\n\n')+'\n\ncommit;\n');
+fs.writeFileSync(root+'/supabase/migrations/20261028020000_collector_reviewed_intake_v1.sql',bytes);
+console.log(JSON.stringify({candidate:'20261028020000',sha256:createHash('sha256').update(bytes).digest('hex'),frozen:false,applied:false}));

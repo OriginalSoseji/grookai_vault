@@ -9,6 +9,7 @@ import '../../services/binders/binder_feature_flags.dart';
 import '../../services/binders/binder_realtime_service.dart';
 import '../../services/binders/binder_repository.dart';
 import '../../widgets/binders/binder_widgets.dart';
+import '../../widgets/binders/binder_metadata_dialog.dart';
 import 'binder_collaboration_screens.dart';
 import 'binder_custom_checklist_screen.dart';
 import 'binder_moderation_screen.dart';
@@ -1479,10 +1480,6 @@ class _BinderSettingsTabState extends State<_BinderSettingsTab> {
     }
     if (!mounted) return;
     setState(() => _auxiliaryBusy = false);
-    final title = TextEditingController(text: widget.detail.summary.title);
-    final description = TextEditingController(
-      text: widget.detail.summary.description,
-    );
     final requiresHostedCover =
         widget.detail.summary.targetKind == BinderTargetKind.custom ||
         (widget.detail.summary.readAccess == BinderReadAccess.public &&
@@ -1507,124 +1504,27 @@ class _BinderSettingsTabState extends State<_BinderSettingsTab> {
         if (byName != 0) return byName;
         return (left.number ?? '').compareTo(right.number ?? '');
       });
-    final currentCover = widget.detail.coverCardPrintId ?? '';
-    var selectedCover = currentCover;
-    final currentIsCandidate = coverCandidates.any(
-      (item) => item.cardPrintId == currentCover,
-    );
-    final save = await showDialog<bool>(
+    final draft = await showDialog<BinderMetadataDraft>(
       context: context,
-      builder: (context) => StatefulBuilder(
-        builder: (context, setDialogState) {
-          final selectionIsEligible =
-              selectedCover.isEmpty ||
-              coverCandidates.any(
-                (item) => item.cardPrintId == selectedCover,
-              ) ||
-              !requiresHostedCover;
-          return AlertDialog(
-            title: const Text('Edit Binder details'),
-            content: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  TextField(
-                    controller: title,
-                    maxLength: 80,
-                    decoration: const InputDecoration(labelText: 'Title'),
-                  ),
-                  TextField(
-                    controller: description,
-                    maxLength: 1000,
-                    minLines: 2,
-                    maxLines: 5,
-                    decoration: const InputDecoration(labelText: 'Description'),
-                  ),
-                  const SizedBox(height: 10),
-                  DropdownButtonFormField<String>(
-                    key: ValueKey('binder-cover-$selectedCover'),
-                    initialValue: selectedCover,
-                    isExpanded: true,
-                    decoration: InputDecoration(
-                      labelText: 'Binder cover',
-                      helperText: requiresHostedCover
-                          ? 'Public, listed, and custom Binders use verified '
-                                'grookai-hosted artwork only.'
-                          : 'Choose a governed card from this checklist.',
-                      errorText: selectionIsEligible
-                          ? null
-                          : 'Choose a Grookai-hosted card or explicitly '
-                                'choose No cover.',
-                    ),
-                    items: <DropdownMenuItem<String>>[
-                      const DropdownMenuItem<String>(
-                        value: '',
-                        child: Text('No cover'),
-                      ),
-                      if (currentCover.isNotEmpty && !currentIsCandidate)
-                        DropdownMenuItem<String>(
-                          value: currentCover,
-                          enabled: !requiresHostedCover,
-                          child: Text(
-                            requiresHostedCover
-                                ? 'Current cover needs replacement'
-                                : 'Keep current cover',
-                          ),
-                        ),
-                      for (final item in coverCandidates)
-                        DropdownMenuItem<String>(
-                          value: item.cardPrintId,
-                          child: Text(
-                            [
-                              resolveBinderChecklistItemIdentity(
-                                item,
-                              ).displayName,
-                              if ((item.number ?? '').isNotEmpty)
-                                '#${item.number}',
-                              if (item.hasHostedImage) 'grookai hosted',
-                            ].join(' · '),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                    ],
-                    onChanged: (value) {
-                      if (value != null) {
-                        setDialogState(() => selectedCover = value);
-                      }
-                    },
-                  ),
-                ],
-              ),
-            ),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context, false),
-                child: const Text('Cancel'),
-              ),
-              FilledButton(
-                onPressed: selectionIsEligible
-                    ? () => Navigator.pop(context, true)
-                    : null,
-                child: const Text('Save'),
-              ),
-            ],
-          );
-        },
+      builder: (_) => BinderMetadataDialog(
+        title: widget.detail.summary.title,
+        description: widget.detail.summary.description,
+        candidates: coverCandidates,
+        currentCoverId: widget.detail.coverCardPrintId ?? '',
+        currentCoverImageUrl: widget.detail.summary.coverImageUrl,
+        requiresHostedCover: requiresHostedCover,
       ),
     );
-    if (save == true) {
-      final ok = await widget.controller.mutate(
-        () => widget.repository.updateMetadata(
-          publicId: widget.detail.summary.publicId,
-          title: title.text,
-          description: description.text,
-          coverCardPrintId: selectedCover.isEmpty ? null : selectedCover,
-        ),
-      );
-      if (!ok) widget.onFailure();
-    }
-    title.dispose();
-    description.dispose();
+    if (draft == null || !mounted) return;
+    final ok = await widget.controller.mutate(
+      () => widget.repository.updateMetadata(
+        publicId: widget.detail.summary.publicId,
+        title: draft.title,
+        description: draft.description,
+        coverCardPrintId: draft.coverCardPrintId,
+      ),
+    );
+    if (!ok) widget.onFailure();
   }
 
   Future<void> _archiveOrRestore() async {
@@ -1888,6 +1788,7 @@ class _BinderSettingsTabState extends State<_BinderSettingsTab> {
           ),
           const SizedBox(height: 9),
           DropdownButtonFormField<BinderReadAccess>(
+            isExpanded: true,
             initialValue: _readAccess,
             decoration: const InputDecoration(labelText: 'Read access'),
             items: BinderReadAccess.values
@@ -1910,6 +1811,7 @@ class _BinderSettingsTabState extends State<_BinderSettingsTab> {
           ),
           const SizedBox(height: 9),
           DropdownButtonFormField<BinderDiscoverability>(
+            isExpanded: true,
             initialValue: _discoverability,
             decoration: const InputDecoration(labelText: 'Discoverability'),
             items: BinderDiscoverability.values
@@ -1924,6 +1826,7 @@ class _BinderSettingsTabState extends State<_BinderSettingsTab> {
           ),
           const SizedBox(height: 9),
           DropdownButtonFormField<BinderJoinPolicy>(
+            isExpanded: true,
             initialValue: _joinPolicy,
             decoration: const InputDecoration(labelText: 'Joining'),
             items: BinderJoinPolicy.values
@@ -1943,6 +1846,7 @@ class _BinderSettingsTabState extends State<_BinderSettingsTab> {
           ),
           const SizedBox(height: 9),
           DropdownButtonFormField<BinderContributionPolicy>(
+            isExpanded: true,
             initialValue: _contributionPolicy,
             decoration: const InputDecoration(labelText: 'New contributions'),
             items: BinderContributionPolicy.values

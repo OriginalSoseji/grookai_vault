@@ -1,4 +1,5 @@
 export type CardImagePresentationInput = {
+  printed_identity_modifier?: string | null;
   display_image_kind?: string | null;
   image_status?: string | null;
   image_note?: string | null;
@@ -23,6 +24,8 @@ const DEFAULT_REPRESENTATIVE_NOTE =
   "Correct printing. Image may not show exact finish, stamp, or parallel.";
 const DEFAULT_MISSING_VARIANT_VISUAL_NOTE =
   "This is the printing, but not the correct variant image.";
+const DEFAULT_FIRST_EDITION_VISUAL_NOTE =
+  "Correct 1st Edition printing. Exact stamped card image is not cataloged yet.";
 const DEFAULT_BLOCKED_NOTE =
   "A possible image exists, but it needs verification before Grookai can use it.";
 
@@ -41,6 +44,9 @@ export function resolveCardImagePresentation(
 ): ResolvedCardImagePresentation {
   const imageStatus = normalizeLowerOrNull(card?.image_status);
   const imageNote = normalizeTextOrNull(card?.image_note);
+  const isFirstEdition = /(^|;)edition:first_edition(?:;|$)/i.test(
+    card?.printed_identity_modifier?.trim() ?? "",
+  );
   const rawDisplayKind = normalizeLowerOrNull(card?.display_image_kind);
   const statusImpliesMissingVariantVisual =
     imageStatus === "missing_variant_visual" ||
@@ -121,9 +127,9 @@ export function resolveCardImagePresentation(
       isMissingVariantVisual: true,
       isBlocked: false,
       isCollisionRepresentative: false,
-      compactBadgeLabel: "Variant Image Pending",
-      detailBadgeLabel: "Variant Image Pending",
-      detailNote: imageNote ?? DEFAULT_MISSING_VARIANT_VISUAL_NOTE,
+      compactBadgeLabel: isFirstEdition ? "1st Edition Image Pending" : "Variant Image Pending",
+      detailBadgeLabel: isFirstEdition ? "1st Edition Image Pending" : "Variant Image Pending",
+      detailNote: imageNote ?? (isFirstEdition ? DEFAULT_FIRST_EDITION_VISUAL_NOTE : DEFAULT_MISSING_VARIANT_VISUAL_NOTE),
     };
   }
 
@@ -153,6 +159,8 @@ export function getCardImageAltText(
   return presentation.isCollisionRepresentative
     ? `${baseAlt} representative image. Exact variant image pending.`
     : presentation.isMissingVariantVisual
-      ? `${baseAlt} representative image. Variant image pending.`
+      ? /(^|;)edition:first_edition(?:;|$)/i.test(card?.printed_identity_modifier?.trim() ?? "")
+        ? `${baseAlt} representative image. 1st Edition image pending.`
+        : `${baseAlt} representative image. Variant image pending.`
     : `${baseAlt} representative image.`;
 }

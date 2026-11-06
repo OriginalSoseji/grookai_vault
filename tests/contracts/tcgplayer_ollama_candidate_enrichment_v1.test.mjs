@@ -180,22 +180,63 @@ test('candidate index keeps MTG and Pokemon identity domains separate', () => {
   assert.deepEqual(pool.map((row) => row.card_print_id), ['mtg-1']);
 });
 
-test('cross-set base-name expansion is limited to Pokemon', () => {
+test('MTG base-name expansion remains advisory and requires the exact coordinate', () => {
   const mtg = {
     ...baseCard,
     card_print_id: 'mtg-promo',
     canonical_name: 'Lightning Bolt',
     canonical_number: '150',
     identity_domain: 'mtg_eng_paper_print',
+    variant_key: 'scryfall:286db2ad-ee23-4aeb-99f8-6786611264bb',
   };
   const index = buildTcgplayerOllamaCandidateIndexV1([mtg]);
-  const pool = candidatePoolForTcgplayerOllamaRowV1({
+  const row = {
     source_category_id: 1,
     source_product_name: 'Lightning Bolt - 150 (Event Promo)',
     normalized_source_name: 'lightning bolt event promo',
     printed_number: '150',
-  }, index);
-  assert.deepEqual(pool, []);
+  };
+  const pool = candidatePoolForTcgplayerOllamaRowV1(row, index);
+  assert.deepEqual(pool.map((card) => card.card_print_id), ['mtg-promo']);
+  assert.deepEqual(
+    rankTcgplayerOllamaCandidatesV1(row, pool).map((card) => card.card_print_id),
+    ['mtg-promo'],
+  );
+  assert.deepEqual(
+    rankTcgplayerOllamaCandidatesV1({ ...row, printed_number: '151' }, pool),
+    [],
+  );
+  assert.deepEqual(candidatePoolForTcgplayerOllamaRowV1({
+    ...row,
+    printed_number: '',
+  }, index), []);
+});
+
+test('MTG accepts only canonical Scryfall printing keys as ordinary identities', () => {
+  const row = {
+    source_category_id: 1,
+    source_product_name: 'Collected Company (Top 8)',
+    normalized_source_name: 'collected company top 8',
+    printed_number: '2',
+  };
+  const canonical = {
+    ...baseCard,
+    card_print_id: 'mtg-collected-company',
+    canonical_name: 'Collected Company',
+    canonical_number: '2',
+    identity_domain: 'mtg_eng_paper_print',
+    variant_key: 'scryfall:286db2ad-ee23-4aeb-99f8-6786611264bb',
+  };
+  const special = {
+    ...canonical,
+    card_print_id: 'mtg-special-variant',
+    variant_key: 'serialized:001',
+  };
+  assert.deepEqual(
+    rankTcgplayerOllamaCandidatesV1(row, [canonical, special])
+      .map((card) => card.card_print_id),
+    ['mtg-collected-company'],
+  );
 });
 
 test('diagnostic lookup retains identity-less catalog rows without making them candidates', () => {

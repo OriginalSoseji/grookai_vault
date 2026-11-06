@@ -542,6 +542,7 @@ async function scryfallEnglishPaperCount(code, sourceSnapshots) {
   url.searchParams.set("q", `set:${code} game:paper lang:en`);
   url.searchParams.set("unique", "prints");
   url.searchParams.set("include_extras", "true");
+  url.searchParams.set("include_variations", "true");
   const snapshot = await fetchSource(url.toString(), { responseType: "json", delayMs: 300 });
   sourceSnapshots.push(sourceMetadata(snapshot));
   return Number(snapshot.body.total_cards);

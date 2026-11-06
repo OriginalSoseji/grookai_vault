@@ -251,7 +251,7 @@ class _ImportCollectionScreenState extends State<ImportCollectionScreen> {
               const SizedBox(height: 12),
               const _StatusSurface(
                 tone: _StatusTone.pending,
-                message: 'Matching your cards against Grookai’s catalog…',
+                message: 'Matching your cards against grookai’s catalog…',
               ),
             ],
             if (preview != null) ...[

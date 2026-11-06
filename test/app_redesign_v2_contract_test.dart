@@ -15,9 +15,9 @@ void main() {
     expect(tokens, contains('Color(0xFF080B09)'));
     expect(tokens, contains('Color(0xFFF4F5ED)'));
     expect(tokens, contains('Color(0xFFB7F23A)'));
-    expect(tokens, contains('ThemeData buildGvRedesignV2Theme()'));
-    expect(shell, contains('data: buildGvRedesignV2Theme()'));
-    expect(detail, contains('data: buildGvRedesignV2Theme()'));
+    expect(tokens, contains('ThemeData buildGvRedesignV2Theme({'));
+    expect(shell, contains('buildGvRedesignV2Theme(brightness:'));
+    expect(detail, contains('buildGvRedesignV2Theme(brightness:'));
   });
 
   test('Pulse opens the collector feed with two familiar choices', () {
@@ -37,7 +37,8 @@ void main() {
     expect(vault, contains('class _VaultPrimaryTabs'));
     expect(vault, contains("('Cards', onCards)"));
     expect(vault, contains("('Sets', onSets)"));
-    expect(vault, contains("('Lists', onLists)"));
+    expect(vault, contains('BinderFeatureFlags.production.personalAvailable'));
+    expect(vault, contains("? 'Binders' : 'Lists'"));
     expect(vault, contains("maxLines: 1"));
     expect(vault, isNot(contains("'Recently Added'")));
   });
@@ -52,7 +53,7 @@ void main() {
       detail.indexOf('Widget build(BuildContext context)'),
     );
     expect(pricingIndex, greaterThan(-1));
-    expect(tabsIndex, greaterThan(pricingIndex));
+    expect(tabsIndex, inExclusiveRange(-1, pricingIndex));
     expect(detail, contains("'Manage copy'"));
     expect(detail, contains('Icons.bookmark_border_rounded'));
     expect(detail, contains("'Card family'"));

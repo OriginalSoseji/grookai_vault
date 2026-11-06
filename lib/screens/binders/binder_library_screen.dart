@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../controllers/binders/binder_controllers.dart';
 import '../../models/binders/binder_models.dart';
 import '../../services/binders/binder_feature_flags.dart';
+import '../../services/binders/binder_library_preferences.dart';
 import '../../services/binders/binder_repository.dart';
 import '../../widgets/binders/binder_widgets.dart';
 import 'binder_create_screen.dart';
@@ -31,6 +32,30 @@ class _BinderLibraryScreenState extends State<BinderLibraryScreen> {
   late final BinderRepository _repository;
   late final BinderLibraryController _controller;
   bool _openedInitial = false;
+  final _search = TextEditingController();
+  _LibraryScope _scope = _LibraryScope.all;
+  late final _preferences = BinderLibraryPreferences()..addListener(_onChanged);
+
+  Future<void> _selectSort(BinderLibrarySort sort) async {
+    final saved = await _preferences.select(sort);
+    if (!saved && mounted && _preferences.value == sort) {
+      ScaffoldMessenger.maybeOf(context)?.showSnackBar(
+        const SnackBar(
+          content: Text(
+            'Sort changed for this session, but could not be remembered on this device.',
+          ),
+        ),
+      );
+    }
+  }
+
+  bool get _filtering =>
+      _search.text.trim().isNotEmpty || _scope != _LibraryScope.all;
+
+  void _clearFilters() {
+    _search.clear();
+    setState(() => _scope = _LibraryScope.all);
+  }
 
   @override
   void initState() {
@@ -39,6 +64,7 @@ class _BinderLibraryScreenState extends State<BinderLibraryScreen> {
     _controller = BinderLibraryController(repository: _repository)
       ..addListener(_onChanged);
     if (widget.featureFlags.personalAvailable) {
+      unawaited(_preferences.ensureLoaded());
       unawaited(_controller.load());
     }
   }
@@ -59,6 +85,8 @@ class _BinderLibraryScreenState extends State<BinderLibraryScreen> {
 
   @override
   void dispose() {
+    _preferences.dispose();
+    _search.dispose();
     _controller
       ..removeListener(_onChanged)
       ..dispose();
@@ -327,6 +355,21 @@ class _BinderLibraryScreenState extends State<BinderLibraryScreen> {
 
   Widget _buildLibrary() {
     final page = _controller.page;
+    final terms = _search.text.toLowerCase().trim().split(RegExp(r'\s+'));
+    final visible = page.binders
+        .where((binder) {
+          final owner = binder.role == BinderRole.owner;
+          if (_scope == _LibraryScope.mine && !owner) return false;
+          if (_scope == _LibraryScope.shared && owner) return false;
+          final text =
+              '${binder.title} ${binder.description} ${binder.targetLabel}'
+                  .toLowerCase();
+          return terms.every(text.contains);
+        })
+        .toList(growable: false);
+    final filtered = BinderLibraryPage(
+      binders: _preferences.value.ordered(visible),
+    );
     final sections = <Widget>[
       if (_controller.isStale)
         BinderStaleBanner(
@@ -340,6 +383,91 @@ class _BinderLibraryScreenState extends State<BinderLibraryScreen> {
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             color: Theme.of(context).colorScheme.onSurfaceVariant,
           ),
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TextField(
+              key: const ValueKey('binder-library-search'),
+              controller: _search,
+              textInputAction: TextInputAction.search,
+              onChanged: (_) => setState(() {}),
+              onSubmitted: (_) => FocusScope.of(context).unfocus(),
+              decoration: InputDecoration(
+                labelText: 'Search your Binders',
+                prefixIcon: const Icon(Icons.search_rounded),
+                suffixIcon: _search.text.isEmpty
+                    ? null
+                    : IconButton(
+                        tooltip: 'Clear Binder search',
+                        onPressed: () {
+                          _search.clear();
+                          setState(() {});
+                        },
+                        icon: const Icon(Icons.close_rounded),
+                      ),
+              ),
+            ),
+            const SizedBox(height: 9),
+            Wrap(
+              spacing: 9,
+              runSpacing: 0,
+              children: [
+                for (final scope in _LibraryScope.values)
+                  ChoiceChip(
+                    label: Text(scope.label),
+                    selected: _scope == scope,
+                    onSelected: (_) => setState(() => _scope = scope),
+                  ),
+              ],
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: PopupMenuButton<BinderLibrarySort>(
+                key: const ValueKey('binder-library-sort'),
+                tooltip: 'Sort Binders',
+                initialValue: _preferences.value,
+                onSelected: (sort) => unawaited(_selectSort(sort)),
+                itemBuilder: (_) => [
+                  for (final sort in BinderLibrarySort.values)
+                    CheckedPopupMenuItem(
+                      value: sort,
+                      checked: sort == _preferences.value,
+                      child: Text(sort.label),
+                    ),
+                ],
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(minHeight: 48),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(Icons.sort_rounded, size: 20),
+                        const SizedBox(width: 6),
+                        Flexible(child: Text(_preferences.value.label)),
+                        const Icon(Icons.arrow_drop_down_rounded, size: 20),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            if (_filtering || page.hasMore)
+              Padding(
+                padding: const EdgeInsets.only(top: 4),
+                child: Text(
+                  '${visible.length} ${visible.length == 1 ? 'Binder' : 'Binders'}'
+                  '${page.hasMore ? ' in ${page.binders.length} loaded. Load more to include others.' : ' shown'}',
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              ),
+          ],
         ),
       ),
       if (page.invitations.isNotEmpty)
@@ -375,31 +503,57 @@ class _BinderLibraryScreenState extends State<BinderLibraryScreen> {
             ),
           ),
         )
+      else if (visible.isEmpty)
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16, 28, 16, 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'No matching Binders',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: 6),
+              Text(
+                page.hasMore
+                    ? 'Try another search or load more Binders below.'
+                    : 'Try another search or clear your filters.',
+              ),
+              TextButton(
+                onPressed: _clearFilters,
+                child: const Text('Clear filters'),
+              ),
+            ],
+          ),
+        )
       else ...[
-        _BinderLibrarySection(
-          title: 'Continue building',
-          emptyText: 'Everything active is complete.',
-          binders: page.continueBuilding,
-          onOpen: _openBinder,
-        ),
-        if (widget.featureFlags.sharedAvailable || page.sharedWithMe.isNotEmpty)
+        if (!_filtering || filtered.continueBuilding.isNotEmpty)
+          _BinderLibrarySection(
+            title: 'Continue building',
+            emptyText: 'Everything active is complete.',
+            binders: filtered.continueBuilding,
+            onOpen: _openBinder,
+          ),
+        if ((!_filtering && widget.featureFlags.sharedAvailable) ||
+            filtered.sharedWithMe.isNotEmpty)
           _BinderLibrarySection(
             title: 'Shared with me',
             emptyText: 'Build together—invite family or friends.',
-            binders: page.sharedWithMe,
+            binders: filtered.sharedWithMe,
             onOpen: _openBinder,
           ),
-        _BinderLibrarySection(
-          title: 'Completed',
-          emptyText: 'Completed Binders will appear here.',
-          binders: page.completed,
-          onOpen: _openBinder,
-        ),
-        if (page.archived.isNotEmpty)
+        if (!_filtering || filtered.completed.isNotEmpty)
+          _BinderLibrarySection(
+            title: 'Completed',
+            emptyText: 'Completed Binders will appear here.',
+            binders: filtered.completed,
+            onOpen: _openBinder,
+          ),
+        if (filtered.archived.isNotEmpty)
           _BinderLibrarySection(
             title: 'Archived',
             emptyText: '',
-            binders: page.archived,
+            binders: filtered.archived,
             onOpen: _openBinder,
           ),
       ],
@@ -428,9 +582,26 @@ class _BinderLibraryScreenState extends State<BinderLibraryScreen> {
       if (page.hasMore)
         Padding(
           padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
-          child: OutlinedButton(
-            onPressed: _controller.loadingMore ? null : _controller.loadMore,
-            child: Text(_controller.loadingMore ? 'Loading…' : 'Load more'),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              if (_controller.error != null && !_controller.isStale)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: Text(
+                    _controller.error!.message,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.error,
+                    ),
+                  ),
+                ),
+              OutlinedButton(
+                onPressed: _controller.loadingMore
+                    ? null
+                    : _controller.loadMore,
+                child: Text(_controller.loadingMore ? 'Loading…' : 'Load more'),
+              ),
+            ],
           ),
         ),
       const SizedBox(height: 100),
@@ -439,11 +610,21 @@ class _BinderLibraryScreenState extends State<BinderLibraryScreen> {
     return RefreshIndicator(
       onRefresh: () => _controller.load(refresh: true),
       child: ListView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         physics: const AlwaysScrollableScrollPhysics(),
         children: sections,
       ),
     );
   }
+}
+
+enum _LibraryScope {
+  all('All'),
+  mine('Mine'),
+  shared('Shared');
+
+  const _LibraryScope(this.label);
+  final String label;
 }
 
 class _BinderLibrarySection extends StatelessWidget {

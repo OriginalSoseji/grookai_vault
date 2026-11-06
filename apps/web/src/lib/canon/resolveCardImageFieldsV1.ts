@@ -23,6 +23,8 @@ export type CardImageLike = CanonImageLike & {
   number?: string | null;
   number_plain?: string | null;
   set_code?: string | null;
+  variant_key?: string | null;
+  printed_identity_modifier?: string | null;
   representative_image_url?: string | null;
   image_status?: string | null;
   image_note?: string | null;
@@ -69,6 +71,8 @@ const LEGENDARY_TREASURES_RC5_BLOCKED_IMAGE_NOTE =
   "Image blocked: known mismatched Legendary Treasures RC5 Torchic image candidate resolves to Carnivine.";
 const KNOWN_BROKEN_TCGDEX_IMAGE_NOTE =
   "Image blocked: known upstream TCGdex asset URL returns 404 and needs a verified replacement.";
+const KNOWN_BASE_SET_NORMAL_STAMPED_IMAGE_NOTE =
+  "Image withheld: the cataloged Base Set asset is a 1st Edition stamped reference, not verified normal Base Set artwork.";
 const POKEMON_TCG_TRAINER_KIT_SET_CODE_ALIASES: Record<string, string> = {
   "tk-ex-latia": "tk1a",
   "tk-ex-latio": "tk1b",
@@ -272,6 +276,15 @@ function isKnownWrongLegendaryTreasuresRc5Image(
   return (
     isLegendaryTreasuresRc5Torchic(cardPrint) &&
     hasKnownWrongLegendaryTreasuresRc5ImageReference(cardPrint)
+  );
+}
+
+function isKnownStampedNormalBaseSetImage(cardPrint: CardImageLike | null | undefined) {
+  return (
+    cardPrint?.set_code === "base1" &&
+    !normalizeTextOrNull(cardPrint?.variant_key) &&
+    !normalizeTextOrNull(cardPrint?.printed_identity_modifier) &&
+    (cardPrint?.image_url?.includes("assets.tcgdex.net/en/base/base1/") ?? false)
   );
 }
 
@@ -523,6 +536,23 @@ function getDisplayKindFromStatus(
 export async function resolveCardImageFieldsV1(
   cardPrint: CardImageLike | null | undefined,
 ): Promise<ResolvedCardImageFieldsV1> {
+  if (isKnownStampedNormalBaseSetImage(cardPrint)) {
+    return {
+      image_url: null,
+      external_image_fallback_url: null,
+      representative_image_url: null,
+      image_status: "missing",
+      image_note:
+        normalizeTextOrNull(cardPrint?.image_note) ??
+        KNOWN_BASE_SET_NORMAL_STAMPED_IMAGE_NOTE,
+      image_source: normalizeTextOrNull(cardPrint?.image_source),
+      display_image_url: null,
+      display_image_kind: "missing",
+      image_path: null,
+      exact_image_source: "none",
+    };
+  }
+
   const exactImage = await resolveCanonImageV1(cardPrint);
 
   if (isKnownWrongLegendaryTreasuresRc5Image(cardPrint)) {
