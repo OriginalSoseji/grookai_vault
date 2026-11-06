@@ -129,15 +129,19 @@ try {
   const cursors = readCursors();
   for (const source of SOURCES) {
     const offset = Number.isInteger(cursors[source]) ? cursors[source] : 0;
-    run(`card_harvest:${source}`, [
-      'scripts/audits/japanese_master_index_v4/card_acquisition_harvest_v1.mjs',
-      '--source', source,
-      '--resume',
-      '--max-containers', '10',
-      '--container-offset', String(offset),
-      '--source-timeout-seconds', '30',
-      '--source-retry-count', '0',
-    ]);
+    try {
+      run(`card_harvest:${source}`, [
+        'scripts/audits/japanese_master_index_v4/card_acquisition_harvest_v1.mjs',
+        '--source', source,
+        '--resume',
+        '--max-containers', '10',
+        '--container-offset', String(offset),
+        '--source-timeout-seconds', '30',
+        '--source-retry-count', '0',
+      ]);
+    } catch (error) {
+      emit({ status: 'deferred', step: `card_harvest:${source}`, reason: 'source_lane_partial_failure', error: error instanceof Error ? error.message : String(error) });
+    }
     for (const artifactSource of Object.keys(ASSERTION_ARTIFACTS)) {
       packageFreshAssertions(artifactSource);
     }
