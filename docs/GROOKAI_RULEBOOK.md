@@ -12,8 +12,10 @@ This rulebook consolidates all engineering contracts, guardrails, and workflows 
 - Any logo color or seasonal theme is allowed. Halloween spiders and Winter
   snowflakes may animate inside the profile frame; preserve the original
   emblem layer and support pause and reduced motion.
-- Interface accents follow the canonical electric-lime/deep-green palette.
-  Seasonal logo artwork may use any colors while preserving its original design.
+- The unthemed interaction baseline is electric lime/deep green. Active seasonal
+  website accents match the logo palette: Winter uses ice blue and an accessible
+  darker blue in light mode (owner clarification, 2026-11-06). Preserve semantic
+  status colors and the original logo design.
 - The shared visual system uses ink/bone/lime, compact headers, flat surfaces,
   tighter corners, and 9px card gaps. Older visual references do not override it.
 

@@ -91,10 +91,10 @@ for (const width of [320, 390, 1440]) {
     expect(fonts.some((font) => /roboto/i.test(font.family) && font.weight === "900")).toBe(true);
     await expect(page.locator("body")).toHaveCSS("background-color", "rgb(8, 11, 9)");
     await expect(page.locator("html")).toHaveAttribute("data-brand-accent", "#87ddfa");
-    expect(await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue("--gv-primary").trim())).toBe("#b7f23a");
+    expect(await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue("--gv-primary").trim())).toBe("#87ddfa");
     const primaryAction = width >= 900 ? header.locator('[data-primary-action="scan"]') : page.locator('[data-mobile-parity-dock] [data-dock-label="Scan"]');
     await expect(primaryAction).toBeVisible();
-    if (width >= 900) await expect(primaryAction).toHaveCSS("background-color", "rgb(183, 242, 58)");
+    if (width >= 900) await expect(primaryAction).toHaveCSS("background-color", "rgb(135, 221, 250)");
     const avatar = lockup.locator(".gv-brand-avatar");
     await expect.poll(() => avatar.evaluate((el) => el.getAnimations({ subtree: true }).some((animation) => animation.playState === "running"))).toBe(true);
     await header.getByRole("button", { name: "Pause logo animation", exact: true }).filter({ visible: true }).click();
@@ -103,6 +103,7 @@ for (const width of [320, 390, 1440]) {
     await expect(header.getByRole("button", { name: "Play logo animation", exact: true }).filter({ visible: true })).toBeVisible();
     await header.getByRole("button", { name: "Use light mode", exact: true }).filter({ visible: true }).click();
     await expect(page.locator("body")).toHaveCSS("background-color", "rgb(244, 245, 237)");
+    expect(await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue("--gv-primary").trim())).toBe("#00627d");
     expect(await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth)).toBe(false);
     await header.getByRole("button", { name: "Use dark mode", exact: true }).filter({ visible: true }).click();
     await expect(page.locator("body")).toHaveCSS("background-color", "rgb(8, 11, 9)");

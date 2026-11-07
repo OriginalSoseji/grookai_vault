@@ -32,17 +32,20 @@ meaning. Card artwork supplies the remaining visual color.
 
 Any logo color or multicolor treatment is allowed, including playful seasonal,
 holiday, and event themes, provided the original design and proportions remain
-intact. Interface colors continue to follow the canonical palette above.
+intact. The active seasonal website palette overrides interaction colors as
+specified below; the neutral and semantic palette remains unchanged.
 
-## Seasonal artwork and interface authority (owner clarification, 2026-10-27)
+## Seasonal artwork and interface authority (owner clarification, 2026-11-06)
 
-The owner's current repository instruction requires ink, bone and electric-lime
-interactions on every branch and platform. Seasonal, holiday, event and
-multicolor logo treatments remain unrestricted within the original artwork's
-proportions. They do not replace interface interaction colors. Light mode keeps
-the accessible deep-green counterpart. This supersedes the October22 seasonal
-interface override; semantic success, warning and destructive states retain
-their meaning.
+The owner explicitly selected ice-blue buttons and highlights to match the
+Winter logo and reaffirmed that active seasonal website accents match the logo.
+Use one shared theme definition for the emblem fill, primary actions, selected
+states, focus and interaction highlights. Winter uses `#87DDFA` in dark mode
+and accessible `#00627D` in light mode. The unthemed baseline remains electric
+lime/deep green. Ink/bone neutrals, market evidence and semantic success,
+warning and destructive states retain their meaning. This supersedes the
+October27 fixed-lime website interaction rule. Original logo geometry and
+proportions remain fixed across all seasonal treatments.
 
 ## Typography and hierarchy
 

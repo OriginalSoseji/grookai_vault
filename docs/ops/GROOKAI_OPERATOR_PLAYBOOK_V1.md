@@ -533,12 +533,21 @@ gain.
 
 Read `docs/checkpoints/2026-11-06_web_winter_identity.md` before publishing the
 Winter candidate. The shared theme selects twelve animated snowflakes and the
-ice-blue original emblem, preserving Roboto Black and motion preferences.
+ice-blue original emblem and matching primary controls, preserving Roboto Black
+and motion preferences. The owner explicitly selected matching blue accents,
+superseding the October27 fixed-lime website rule.
 The isolated source is `C:/grookai_web_winter_20261106`, branch
 `release/winter-brand-20261106`. Local brand/browser verification passes;
-managed checks and hosted Winter proof remain pending. The live domain points
-to a manual deployment whose feature source differs from main. Reconcile that
-baseline before activating the seasonal change; do not publish the dirty root.
+refreshed managed checks and hosted Winter proof remain pending. Preserve the
+latest manual live feature baseline (`dpl_ooY2WXDcVbR6etFvgrFRqLCZtTL3`): its
+archive was hash-verified and reconstructed in
+`C:/grookai_web_winter_current_20261106`. Apply only the three-file seasonal
+patch there, including scanner controls; do not publish the dirty root or replace live features
+with main incidentally. Use the existing Vercel project/environment, build with
+`--prod --skip-domain`, qualify the hosted candidate and promote that exact
+deployment. Keep all loopback credentials and local fixture builds out of the
+production deployment. The source manifest and subsequent hosted receipts live
+under `C:/grookai_vault_operator_artifacts/web_winter_20261106`.
 
 ## Website visual identity and Halloween release — October 22, 2026
 

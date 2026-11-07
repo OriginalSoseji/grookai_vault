@@ -83,7 +83,11 @@ visual presence; preserve its proportions and existing artwork when resizing.
 
 ## Matching seasonal accents
 
-The active logo theme also owns the interface accent. Halloween uses the logo's
+The active website logo theme also owns the interface accent. The owner
+reaffirmed this rule on November 6, 2026 by selecting ice-blue Winter buttons
+and highlights. Winter uses `#87DDFA` in dark mode and accessible `#00627D` in
+light mode. This overrides the October27 fixed-lime website exception.
+Halloween uses the logo's
 orange `#FF8A33` for primary actions, selected states, focus, and interaction
 highlights. Future seasonal themes must supply matching logo and interface
 colors together through one shared theme definition. Light mode may use a
