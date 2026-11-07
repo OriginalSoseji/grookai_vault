@@ -434,10 +434,14 @@ Inspect `receipt.json`, `selected_candidates.jsonl`,
 `review_candidates.json`, and `master_authority.json` together with the sibling
 `pokemon_mapping_authority_exact_candidates.jsonl` and
 `pokemon_mapping_authority_review_candidates.json`. The packager binds the
-current source run, live product and observation rows, one active canonical
-identity, one verified non-provisional child printing, and the checked-in
-English Master Index. Its database transaction is repeatable-read and read-only;
-the package grants no mapping, pricing, publication, canonical, or Vault write.
+selected completed pricing sync to its live observation rows and independently
+binds each current product row to its own completed reconciled catalog sync.
+Catalog refresh and pricing-observation run IDs are allowed to differ; the
+product's mapping coordinates and the observation's pricing provenance must
+both still match. The packager also binds one active canonical identity, one
+verified non-provisional child printing, and the checked-in English Master
+Index. Its database transaction is repeatable-read and read-only; the package
+grants no mapping, pricing, publication, canonical, or Vault write.
 
 The hosted route requires `PROD_SUPABASE_URL` (with `SUPABASE_URL` accepted as
 the local compatibility name), `SUPABASE_DB_URL`, `SUPABASE_DB_CA_CERT`, and
