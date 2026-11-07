@@ -52,7 +52,9 @@ function parseArgs(argv) {
 }
 
 function connectionConfig() {
-  const publicUrl = new URL(process.env.SUPABASE_URL);
+  const configuredPublicUrl = process.env.PROD_SUPABASE_URL ?? process.env.SUPABASE_URL;
+  assert.ok(configuredPublicUrl, "PROD_SUPABASE_URL_or_SUPABASE_URL_required");
+  const publicUrl = new URL(configuredPublicUrl);
   assert.equal(publicUrl.hostname.split(".")[0], PROJECT_REF, "production_project_ref_mismatch");
   assert.ok(process.env.SUPABASE_DB_URL, "SUPABASE_DB_URL_required");
   const databaseUrl = assertPrintingDatabaseTarget(process.env.SUPABASE_DB_URL);

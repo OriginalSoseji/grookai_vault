@@ -428,6 +428,38 @@ credential substitution or weakens the mapping-release gates. Backlog
 measurement, candidate enrichment, and review publication continue when the
 snapshot or offline plan is unavailable.
 
+When the exact planner and founder-review selection agree, the scheduled agent
+packages an executable-evidence review under `pokemon_mapping_authority/`.
+Inspect `receipt.json`, `selected_candidates.jsonl`,
+`review_candidates.json`, and `master_authority.json` together with the sibling
+`pokemon_mapping_authority_exact_candidates.jsonl` and
+`pokemon_mapping_authority_review_candidates.json`. The packager binds the
+current source run, live product and observation rows, one active canonical
+identity, one verified non-provisional child printing, and the checked-in
+English Master Index. Its database transaction is repeatable-read and read-only;
+the package grants no mapping, pricing, publication, canonical, or Vault write.
+
+The hosted route requires `PROD_SUPABASE_URL` (with `SUPABASE_URL` accepted as
+the local compatibility name), `SUPABASE_DB_URL`, `SUPABASE_DB_CA_CERT`, and
+the parent agent's `SUPABASE_SECRET_KEY`. The public URL must resolve to the
+canonical production project, and the database route must pass verified TLS and
+the canonical read-only target guard. Products with zero, multiple, or
+unsupported source finishes are held before batch selection under
+`mapping_authority_source_finish_not_unique` or
+`mapping_authority_source_finish_not_supported`; they cannot suppress unrelated
+single-finish candidates.
+
+Distinguish an empty queue from an unavailable authority package in
+`agent_run.json`. `pokemon_mapping_review.selected_count = 0` means no current
+review was selected. A positive selected count with `authority_status =
+unavailable` and an `authority_error_code` means packaging failed closed and no
+replacement work item was published; preserve the artifact and repair the
+named dependency before rerunning. `authority_status = available` publishes the
+evidence-rich `:master-authority-batch-01` founder review. That approval still
+does not write a mapping. The separate Pokemon mapping-outcome workflow must
+revalidate production, publish an execution-enabled outcome, and receive a
+second founder approval before the guarded insert-only mapping executor may run.
+
 GitHub schedule events remain the primary fifteen-minute clock, but the Windows
 task `Grookai Pricing Completion Dispatch Watchdog` is the redundant freshness
 route defined by `PRICING_COMPLETION_DISPATCH_WATCHDOG_V1`. It runs

@@ -322,6 +322,41 @@ export function applyPokemonPricingMappingReviewedHoldsV1(candidates, registry) 
   };
 }
 
+const POKEMON_MAPPING_AUTHORITY_FINISHES_V1 = new Set([
+  'Normal',
+  'Holofoil',
+  'Reverse Holofoil',
+]);
+
+export function partitionPokemonMappingAuthorityFinishCandidatesV1(candidates) {
+  const eligible = [];
+  const held = [];
+  const heldByReason = {};
+  for (const candidate of candidates) {
+    const sourceSubtypes = Array.isArray(candidate?.source_subtypes)
+      ? candidate.source_subtypes
+      : [];
+    let reason = null;
+    if (sourceSubtypes.length !== 1) {
+      reason = 'mapping_authority_source_finish_not_unique';
+    } else if (!POKEMON_MAPPING_AUTHORITY_FINISHES_V1.has(sourceSubtypes[0])) {
+      reason = 'mapping_authority_source_finish_not_supported';
+    }
+    if (!reason) {
+      eligible.push(candidate);
+      continue;
+    }
+    held.push({ ...candidate, mapping_authority_hold_reason: reason });
+    heldByReason[reason] = (heldByReason[reason] ?? 0) + 1;
+  }
+  return {
+    eligible,
+    held,
+    held_count: held.length,
+    held_by_reason: Object.fromEntries(Object.entries(heldByReason).sort()),
+  };
+}
+
 export function selectPokemonPricingMappingReviewBatchV1(candidates, limit = 50) {
   if (!Array.isArray(candidates)) throw new Error('Pokemon mapping candidates must be an array');
   if (!Number.isSafeInteger(limit) || limit < 1 || limit > 50) {

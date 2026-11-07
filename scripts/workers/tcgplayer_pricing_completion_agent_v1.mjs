@@ -16,6 +16,7 @@ import {
   buildPokemonPricingMappingReviewWorkItemV1,
   applyPokemonPricingMappingReviewedHoldsV1,
   classifyTcgplayerFutureReleaseBlocksV1,
+  partitionPokemonMappingAuthorityFinishCandidatesV1,
   selectPokemonPricingMappingReviewBatchV1,
   summarizeTcgplayerPricingCompletionRunV1,
 } from '../../backend/operations/tcgplayer_pricing_completion_agent_v1.mjs';
@@ -522,15 +523,21 @@ async function main() {
       pokemonOllamaCandidateQueue,
       pokemonReviewedHoldRegistry,
     );
+    const pokemonAuthorityFinishCandidates =
+      partitionPokemonMappingAuthorityFinishCandidatesV1(
+        pokemonReviewedHolds.eligible,
+      );
     const pokemonReviewBatch = selectPokemonPricingMappingReviewBatchV1(
-      pokemonReviewedHolds.eligible,
+      pokemonAuthorityFinishCandidates.eligible,
     );
     const pokemonReviewHeldByReason = Object.fromEntries(Object.entries({
       ...pokemonReviewBatch.held_by_reason,
       ...pokemonReviewedHolds.held_by_reason,
+      ...pokemonAuthorityFinishCandidates.held_by_reason,
     }).sort());
     const pokemonReviewHeldCount = pokemonReviewBatch.held_count
-      + pokemonReviewedHolds.held_count;
+      + pokemonReviewedHolds.held_count
+      + pokemonAuthorityFinishCandidates.held_count;
     const pokemonAuthorityReviewPath = path.join(
       args.outDir,
       'pokemon_mapping_authority_review_candidates.json',
