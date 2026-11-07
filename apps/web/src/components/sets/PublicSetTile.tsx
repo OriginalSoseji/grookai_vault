@@ -15,6 +15,10 @@ type PublicSetTileProps = {
 
 export default function PublicSetTile({ setInfo, compareCards, logoPath, priority = false }: PublicSetTileProps) {
   const accentColor = getSetAccentColor(setInfo.code);
+  const preferBundledLogo = setInfo.game_code === "pokemon" && Boolean(logoPath) &&
+    ["tcgdex", "pokemontcgapi"].includes(setInfo.hero_image_source?.trim().toLowerCase() ?? "");
+  const coverSrc = preferBundledLogo ? logoPath : setInfo.hero_image_url;
+  const fallbackSrc = preferBundledLogo ? setInfo.hero_image_url : logoPath;
   const routeParams = new URLSearchParams();
   if (setInfo.game_code !== "pokemon") {
     routeParams.set("game", setInfo.game_code);
@@ -34,8 +38,8 @@ export default function PublicSetTile({ setInfo, compareCards, logoPath, priorit
           other games retain their existing governed cover selection. */}
       <div className="gv-collector-set-cover relative z-10 aspect-[5/7] overflow-hidden rounded-[10px] bg-[var(--gv-surface-container)]">
         <PublicCardImage
-          src={setInfo.hero_image_url}
-          fallbackSrc={logoPath}
+          src={coverSrc}
+          fallbackSrc={fallbackSrc}
           alt={`${setInfo.name} cover art`}
           imageClassName="gv-collector-set-cover-image h-full w-full object-contain p-2.5"
           fallbackClassName="gv-collector-set-cover-empty flex h-full flex-col items-center justify-center gap-2 px-6 text-center text-sm text-slate-600 dark:text-slate-400"
@@ -48,7 +52,7 @@ export default function PublicSetTile({ setInfo, compareCards, logoPath, priorit
           sizes="(max-width: 639px) 50vw, (max-width: 1023px) 33vw, (max-width: 1279px) 20vw, 17vw"
           loading="lazy"
           priority={priority}
-          unoptimized={!setInfo.hero_image_url?.startsWith("/catalog-set-covers/")}
+          unoptimized={!coverSrc?.startsWith("/catalog-set-covers/")}
         />
       </div>
 

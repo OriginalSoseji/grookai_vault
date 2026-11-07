@@ -11,6 +11,9 @@ spacing/upright-grid correction in PR873.
 - Fall back to the matching set logo. Bundle the previously verified 30th,
   Ascended Heroes and Pitch Black PNGs locally; preserve their original bytes.
   `asc` uses the existing catalog shorthand identity `me02.5`.
+- Preserve the real `tcgdex`/`pokemontcgapi` labels used by SET_ART_SYSTEM_V1
+  for approved logos. Prefer bundled copies and keep the approved upstream logo
+  as an error fallback. Representative/manual card substitutions stay excluded.
 - Remove the staging-only rarity-ranked card substitution, so previews cannot
   present a card as evidence of set artwork.
 - Keep existing One Piece/MTG cover authority unchanged. Their governed covers

@@ -309,8 +309,10 @@ function getSetLevelHeroImage(row: Pick<SetRow, "game" | "hero_image_url" | "her
 
   // Restored from d8f5b70a7: Pokemon browsing uses set/package artwork, not a
   // representative card. Unknown or card-level provenance falls back to a logo.
+  // SET_ART_SYSTEM_V1 persists these labels for validated upstream set logos.
+  const isApprovedLogo = source === "tcgdex" || source === "pokemontcgapi";
   const isSetArtwork = /^(?:(?:official[_-])?(?:package|set)(?:[_-](?:cover|image|art|logo))?|sealed[_-]?product(?:[_-](?:cover|image|art))?)$/.test(source);
-  return isSetArtwork ? url : undefined;
+  return isApprovedLogo || isSetArtwork ? url : undefined;
 }
 
 function mapSetRowToSummary(

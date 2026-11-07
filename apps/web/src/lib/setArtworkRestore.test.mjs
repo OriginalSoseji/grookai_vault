@@ -57,6 +57,18 @@ test('set summary uses exact package evidence instead of the rejected card', () 
   assert.equal(result.hero_image_source, 'official_package');
 });
 
+test('persisted TCGdex and Pokemon TCG API provenance preserves approved set logos', () => {
+  presentation = { name: row.name, display_code: 'ASC' };
+  for (const [hero_image_source, hero_image_url] of [
+    ['tcgdex', 'https://assets.tcgdex.net/en/sv/sv06/logo.png'],
+    ['pokemontcgapi', 'https://images.pokemontcg.io/base1/logo.png'],
+  ]) {
+    const result = map({ ...row, hero_image_source, hero_image_url }, 217);
+    assert.equal(result.hero_image_url, hero_image_url);
+    assert.equal(result.hero_image_source, hero_image_source);
+  }
+});
+
 test('verified set and package provenance remains selected for every game', () => {
   presentation = { name: row.name, display_code: 'ASC', package_cover_url: pack };
   for (const game of ['pokemon', 'one_piece', 'mtg']) {
