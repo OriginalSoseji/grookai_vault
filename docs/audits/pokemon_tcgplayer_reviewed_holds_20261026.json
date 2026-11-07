@@ -1,14 +1,14 @@
 {
   "version": "TCGPLAYER_POKEMON_REVIEWED_HOLDS_V1",
-  "reviewed_at": "2026-10-27T03:07:48.181Z",
+  "reviewed_at": "2026-11-07T05:28:16.535Z",
   "source": {
-    "workflow_run_id": 40442118196,
-    "artifact_id": 12707071303,
-    "artifact_name": "tcgplayer-pricing-completion-40442118196-1",
+    "workflow_run_id": 42341242171,
+    "artifact_id": 13560884396,
+    "artifact_name": "tcgplayer-pricing-completion-42341242171-1",
     "file": "pokemon_ollama_identity_candidate_queue.jsonl",
-    "sha256": "234262090c0505c8cba5442ed74c969789665d646ec1d2e8d464ffa53a0db830",
-    "prior_adjudication": "docs/audits/pokemon_tcgplayer_reviewed_holds_20261026.json (24-row predecessor)",
-    "adjudication_note": "Ten newly surfaced cross-set promo leads were reviewed. Unrelated same-number parents and special distribution printings without exact printing authority are frozen below."
+    "sha256": "efd2838a8dab26289b19328840d663011107bbf20c07e2660b616ca45ad641bb",
+    "prior_adjudication": "docs/audits/pokemon_tcgplayer_reviewed_holds_20261026.json (34-row predecessor)",
+    "adjudication_note": "Five newly surfaced special-distribution leads were reviewed after the 2026-11-06 production pricing publication. GYM, Ultra Ball League, and Professor Program printings without exact printing authority are frozen below."
   },
   "holds": [
     {
@@ -903,10 +903,140 @@
           }
         ]
       }
+    },
+    {
+      "source_product_id": 683198,
+      "reason": "source_variant_requires_printing_authority",
+      "candidate_fingerprint": "1d572694f73f98eea225a80f85ce67fe8ef771ef5f71e438caeb27cf65bd5f7c",
+      "evidence": {
+        "source_product_id": 683198,
+        "source_product_name": "Dusclops - 019/064 (GYM)",
+        "source_group_id": 24864,
+        "source_group_name": "Southeast Asia Exclusives",
+        "printed_number": "019/064",
+        "source_subtypes": [
+          "Holofoil"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "b23e2e0b-2ad5-4997-900a-ac028bec4883",
+            "gv_id": "GV-PK-SFA-19",
+            "set_id": "100c97f1-6611-4cf4-8310-9b9b79b377bb",
+            "set_code": "sv6pt5",
+            "canonical_name": "Dusclops",
+            "canonical_number": "19",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 702302,
+      "reason": "source_variant_requires_printing_authority",
+      "candidate_fingerprint": "f336316a8e2942344667b4be0522b0801a8ea1a5dd4e48e7b50fcc07c39c5dc5",
+      "evidence": {
+        "source_product_id": 702302,
+        "source_product_name": "Colress's Tenacity - 057/064 (Ultra Ball League)",
+        "source_group_id": 24864,
+        "source_group_name": "Southeast Asia Exclusives",
+        "printed_number": "057/064",
+        "source_subtypes": [
+          "Holofoil"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "054e5bc2-4cad-4b78-8ed9-c868ddf22eaa",
+            "gv_id": "GV-PK-SFA-57",
+            "set_id": "100c97f1-6611-4cf4-8310-9b9b79b377bb",
+            "set_code": "sv6pt5",
+            "canonical_name": "Colress's Tenacity",
+            "canonical_number": "57",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 722818,
+      "reason": "source_variant_requires_printing_authority",
+      "candidate_fingerprint": "8a1aea4db82457ee64d4136f692fdef097c39e6f2235c0279b9ddf267bfeb822",
+      "evidence": {
+        "source_product_id": 722818,
+        "source_product_name": "Professor's Research [Professor Elm] - 123/131",
+        "source_group_id": 2332,
+        "source_group_name": "Professor Program Promos",
+        "printed_number": "123/131",
+        "source_subtypes": [
+          "Reverse Holofoil"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "984a16d4-e369-4f74-ae0a-1f3d0dc58c54",
+            "gv_id": "GV-PK-PRE-123",
+            "set_id": "dbe31bda-1177-4db5-8067-8efdbcf43d96",
+            "set_code": "sv8pt5",
+            "canonical_name": "Professor's Research",
+            "canonical_number": "123",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 722819,
+      "reason": "source_variant_requires_printing_authority",
+      "candidate_fingerprint": "c755366fd58f0997eab77261d6cc8d01ee82028ccdc4b23b9e2ad698ffc57e6d",
+      "evidence": {
+        "source_product_id": 722819,
+        "source_product_name": "Professor's Research [Professor Oak] - 122/131",
+        "source_group_id": 2332,
+        "source_group_name": "Professor Program Promos",
+        "printed_number": "122/131",
+        "source_subtypes": [
+          "Reverse Holofoil"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "3162a7f3-b6f7-427a-9f81-599a3ce440d9",
+            "gv_id": "GV-PK-PRE-122",
+            "set_id": "dbe31bda-1177-4db5-8067-8efdbcf43d96",
+            "set_code": "sv8pt5",
+            "canonical_name": "Professor's Research",
+            "canonical_number": "122",
+            "variant_key": ""
+          }
+        ]
+      }
+    },
+    {
+      "source_product_id": 722822,
+      "reason": "source_variant_requires_printing_authority",
+      "candidate_fingerprint": "cd1f9da2098ba9a7728b06f204b052d14c9b8fd6e6f0c90860fa1ab4f8026154",
+      "evidence": {
+        "source_product_id": 722822,
+        "source_product_name": "Professor's Research [Professor Sycamore] - 125/131",
+        "source_group_id": 2332,
+        "source_group_name": "Professor Program Promos",
+        "printed_number": "125/131",
+        "source_subtypes": [
+          "Reverse Holofoil"
+        ],
+        "review_targets": [
+          {
+            "card_print_id": "ab4abeaf-c348-4081-82d8-09f77dae782b",
+            "gv_id": "GV-PK-PRE-125",
+            "set_id": "dbe31bda-1177-4db5-8067-8efdbcf43d96",
+            "set_code": "sv8pt5",
+            "canonical_name": "Professor's Research",
+            "canonical_number": "125",
+            "variant_key": ""
+          }
+        ]
+      }
     }
   ],
   "boundary": {
-    "reviewed_hold_count": 24,
+    "reviewed_hold_count": 39,
     "reopen_only_when_candidate_evidence_changes": true,
     "mapping_authority": false,
     "publication_authority": false
