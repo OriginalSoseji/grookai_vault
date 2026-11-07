@@ -86,6 +86,9 @@ for (const width of [320, 390, 1440]) {
     await expect(lockup.locator(".gv-brand-avatar")).toHaveCSS("width", "64px");
     await expect(lockup.locator(".gv-brand-text")).toHaveText("grookai");
     await expect(lockup.locator(".gv-brand-text")).toHaveCSS("font-weight", "900");
+    const avatarBounds = await lockup.locator(".gv-brand-avatar").boundingBox();
+    const wordmarkBounds = await lockup.locator(".gv-brand-text").boundingBox();
+    expect(wordmarkBounds!.x - (avatarBounds!.x + avatarBounds!.width)).toBe(8);
     await page.evaluate(() => document.fonts.ready);
     const fonts = await page.evaluate(() => [...document.fonts].filter((font) => font.status === "loaded").map((font) => ({ family: font.family, weight: font.weight })));
     expect(fonts.some((font) => /roboto/i.test(font.family) && font.weight === "900")).toBe(true);

@@ -67,6 +67,9 @@ and is unavailable in production and Vercel environments.
 `BrandAvatar` adds the seasonal profile scene. Website lockups use a 64px
 emblem canvas beside the 20px text wordmark so the original logo has greater
 visual presence; preserve its proportions and existing artwork when resizing.
+Keep an 8px visible layout gap between the avatar and wordmark. Do not use
+negative emblem margins that collapse the gap or shift the logo outside its
+lockup; apply the same spacing in mobile and desktop headers.
 
 ### Text wordmarks
 

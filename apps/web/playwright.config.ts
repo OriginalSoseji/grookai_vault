@@ -34,6 +34,7 @@ export default defineConfig({
     "binder-refinement-completion.spec.ts",
     "vault-collection.pagination.spec.ts",
     "ebay-seller-workspace.spec.ts",
+    "sets-layout.spec.ts",
   ],
   outputDir: "./test-results/mobile-parity",
   snapshotPathTemplate:

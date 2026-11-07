@@ -69,6 +69,11 @@ proportions remain fixed across all seasonal treatments.
   may accommodate desktop navigation and browser-safe controls.
 - Flat functional surfaces and open sections are the default. Elevation is
   reserved for overlays, menus, and floating controls.
+- Set grids use the native upright 5:7 artwork frame, 10px artwork inset, and
+  compact title/metadata spacing. Keep at least two columns on phone widths
+  and increase density on desktop. Do not rotate or add decorative shadows
+  to set artwork. Preserve governed media selection, bilingual names, and
+  game-specific routes; long titles use a readable two-line slot.
 - Avoid decorative blue washes, large rounded panels, and gradients behind
   ordinary information. Preserve intact artwork and stable loading geometry.
 
