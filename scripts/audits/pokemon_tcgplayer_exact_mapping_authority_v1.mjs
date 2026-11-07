@@ -133,6 +133,10 @@ async function liveSnapshot(client, candidates, sourceSyncRunId) {
       (snapshot.source_product_id=any($1::integer[]) or snapshot.card_print_id=any($2::uuid[]))`,
     [productIds, parentIds]),
   ]);
+  const catalogSourceRunIds = [...new Set(products.rows.map((row) => row.last_seen_run_id))].sort();
+  const catalogSourceRuns = (await client.query(`select id::text,status,sync_mode,failed_count
+    from public.tcgcsv_source_sync_runs where id=any($1::uuid[]) order by id`,
+  [catalogSourceRunIds])).rows;
   return {
     maturity,
     sourceRun,
@@ -143,6 +147,7 @@ async function liveSnapshot(client, candidates, sourceSyncRunId) {
     observations: observations.rows,
     mappings: mappings.rows,
     publication: publication.rows,
+    catalogSourceRuns,
   };
 }
 
@@ -160,7 +165,7 @@ function exactFinish(candidate) {
   return finish;
 }
 
-function assertCandidateLive(candidate, live) {
+export function assertCandidateLive(candidate, live) {
   const product = live.products.find((row) => Number(row.product_id) === Number(candidate.source_product_id));
   const parent = live.parents.find((row) => row.id === candidate.target.card_print_id);
   assert.ok(product && parent, `live_identity_missing:${candidate.source_product_id}`);
@@ -168,7 +173,10 @@ function assertCandidateLive(candidate, live) {
   assert.equal(product.group_id, candidate.source_group_id, `source_group_changed:${candidate.source_product_id}`);
   assert.equal(product.name, candidate.source_product_name, `source_name_changed:${candidate.source_product_id}`);
   assert.equal(productNumber(product), candidate.printed_number, `source_number_changed:${candidate.source_product_id}`);
-  assert.equal(product.last_seen_run_id, live.sourceRun.id, `source_run_changed:${candidate.source_product_id}`);
+  const catalogSourceRun = live.catalogSourceRuns.find((row) => row.id === product.last_seen_run_id);
+  assert.ok(catalogSourceRun && catalogSourceRun.status === "completed" &&
+    catalogSourceRun.sync_mode === "current_full_sync" && Number(catalogSourceRun.failed_count) === 0,
+    `catalog_source_run_not_completed:${candidate.source_product_id}`);
   assert.equal(product.source_active, true, `source_inactive:${candidate.source_product_id}`);
   assert.equal(product.catalog_metadata_status, "current", `source_not_current:${candidate.source_product_id}`);
   assert.equal(parent.set_id, candidate.target.set_id, `target_set_changed:${candidate.source_product_id}`);
@@ -264,6 +272,7 @@ async function scopeForSet(candidates, live, reviewedAt) {
       raw_payload: row.product.raw_payload,
       payload_hash: row.product.payload_hash,
       source_sync_run_id: row.product.last_seen_run_id,
+      price_source_sync_run_id: live.sourceRun.id,
       supporting_gap_observation_ids: row.candidate.supporting_gap_observation_ids,
     });
     artifacts.set(sourceRef, sourceBytes);
@@ -318,7 +327,8 @@ async function scopeForSet(candidates, live, reviewedAt) {
     projection_sha256: printingManifestHash(body),
     reasoning: [
       "The credential-free exact planner selected one unique canonical parent for each source product.",
-      "The live source product, observation, active standard identity, and non-provisional child printing remain unchanged.",
+      "The current source product is backed by a completed reconciled catalog sync, while each supporting observation remains anchored to the selected completed pricing source sync.",
+      "The source product mapping coordinates, active standard identity, and non-provisional child printing remain unchanged.",
       "Checked-in English Master Index card and finish evidence agrees with the source and canonical coordinates.",
       "This evidence package does not authorize a database mutation."
     ],
@@ -400,6 +410,7 @@ export async function buildPokemonTcgplayerExactMappingAuthorityV1(options) {
     status: "verified_scope",
     reviewed_at: options.reviewedAt,
     source_sync_run_id: options.sourceSyncRunId,
+    catalog_source_sync_run_ids: [...new Set(live.products.map((row) => row.last_seen_run_id))].sort(),
     selected_candidates_sha256: sha256(candidateBytes),
     review_candidates_sha256: sha256(reviewBytes),
     master_authority_sha256: sha256(authorityBytes),
