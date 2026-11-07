@@ -567,6 +567,16 @@ gain.
 
 ## Website Winter release — November 6, 2026
 
+The November 7 artwork restoration supersedes the inline hosting command below.
+Vercel now runs `node ../../scripts/ci/check_web_visual_contract.mjs && npm run build`.
+The checked-in guard retains Winter, seasonal accent, positive logo-spacing and
+upright-artwork checks, and additionally requires Pokemon set-level artwork selection,
+no rarity-ranked staging cards, and the bundled set logos. This restores the
+already approved October 15 fix `d8f5b70a7`; do not publish a branch that loses it.
+For a deliberately approved future season, update the guard's active-season check
+and shared theme together. Read `docs/checkpoints/2026-11-07_set_artwork_restore.md`.
+Current proof is under `web_set_artwork_restore_20261107` operator artifacts.
+
 Vercel now enforces the active Winter brand before building any deployment:
 the existing project's custom build command checks the Winter selector in
 `brandTheme.ts` and both shared primary-accent bindings in `launch-identity.css`,
