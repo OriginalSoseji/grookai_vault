@@ -1,6 +1,6 @@
 # English Verified Master Set Index V1
 
-Generated: 2026-11-06T11:24:14.177Z
+Generated: 2026-11-07T10:37:22.288Z
 
 Audit only. No DB writes, migrations, cleanup, quarantine, or public hiding were performed.
 
@@ -13,7 +13,7 @@ Transport: Default Node TLS verification.
 | metric | count |
 | --- | --- |
 | sets | 207 |
-| evidence rows | 243289 |
+| evidence rows | 243270 |
 | conflicts | 0 |
 | manual review | 415 |
 
@@ -195,7 +195,7 @@ Transport: Default Node TLS verification.
 | tcgdex | 49421 |
 | tcgnav_exact_finish | 1 |
 | tcgplayer | 4 |
-| tcgplayer_price_guide | 24075 |
+| tcgplayer_price_guide | 24056 |
 | tcgplayer_pro_catalog_page | 1 |
 | tcgplayer_product_675813 | 1 |
 | tcgplayer_product_675814 | 1 |
@@ -793,15 +793,15 @@ Transport: Default Node TLS verification.
 | human_fixtures | collected | 1 |
 | pkmncards | collected | 154 |
 | pkmncards | error | 53 |
-| pokemontcg_api | cached_snapshot | 7 |
-| pokemontcg_api | collected | 152 |
+| pokemontcg_api | cached_snapshot | 16 |
+| pokemontcg_api | collected | 143 |
 | pokemontcg_api | collected_plus_cached_snapshot | 17 |
 | pokemontcg_api | unavailable | 31 |
 | tcgdex | collected | 201 |
 | tcgdex | unavailable | 6 |
-| tcgplayer_price_guide | cached_snapshot | 5 |
-| tcgplayer_price_guide | collected | 131 |
-| tcgplayer_price_guide | collected_plus_cached_snapshot | 17 |
+| tcgplayer_price_guide | cached_snapshot | 16 |
+| tcgplayer_price_guide | collected | 121 |
+| tcgplayer_price_guide | collected_plus_cached_snapshot | 16 |
 | tcgplayer_price_guide | unavailable | 54 |
 | thepricedex_price_list | collected | 178 |
 | thepricedex_price_list | error | 28 |

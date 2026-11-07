@@ -1,6 +1,6 @@
 # English Master Index Source Agreement V1
 
-Generated: 2026-11-06T11:24:14.177Z
+Generated: 2026-11-07T10:37:22.288Z
 
 API agreement is separated from master truth. Unknown or conflicting finish truth fails closed.
 
@@ -163,7 +163,7 @@ API agreement is separated from master truth. Unknown or conflicting finish trut
 | tcgdex | 49421 |
 | tcgnav_exact_finish | 1 |
 | tcgplayer | 4 |
-| tcgplayer_price_guide | 24075 |
+| tcgplayer_price_guide | 24056 |
 | tcgplayer_pro_catalog_page | 1 |
 | tcgplayer_product_675813 | 1 |
 | tcgplayer_product_675814 | 1 |
