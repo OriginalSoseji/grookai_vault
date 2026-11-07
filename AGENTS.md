@@ -12,9 +12,11 @@ snowflakes may animate inside the profile frame with pause/reduced-motion
 support. Never substitute a typed `G` or replacement monogram. The visual
 system uses ink/bone/lime, warm market highlights, compact headers, 8px surfaces,
 10px artwork corners, and 9px card gaps. Historical screenshots and branch-local
-defaults do not override these contracts. Interface interactions remain electric
-lime with the accessible deep-green light-mode counterpart. Seasonal logo
-artwork may use any colors while preserving the original design and proportions.
+defaults do not override these contracts. The unthemed interaction baseline is
+electric lime with an accessible deep-green light-mode counterpart. Active
+seasonal website interactions match the logo palette; Winter uses ice blue
+with a darker accessible blue in light mode (owner clarification, November 6).
+Seasonal logo artwork preserves the original design and proportions.
 
 ## Hosted Ollama candidate queue — October 22
 

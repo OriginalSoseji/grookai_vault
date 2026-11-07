@@ -89,8 +89,8 @@
   border-radius: 10px;
   background: rgb(16 19 16 / 90%);
   box-shadow:
-    0 0 0 1px rgb(183 242 58 / 55%),
-    0 0 26px rgb(183 242 58 / 10%);
+    0 0 0 1px color-mix(in srgb, var(--gv-brand-accent) 55%, transparent),
+    0 0 26px color-mix(in srgb, var(--gv-brand-accent) 10%, transparent);
 }
 
 .video,
@@ -120,7 +120,7 @@
   position: absolute;
   z-index: 2;
   inset: 0;
-  border: 2px solid rgb(168 202 255 / 86%);
+  border: 2px solid color-mix(in srgb, var(--gv-brand-accent) 86%, transparent);
   border-radius: 10px;
   pointer-events: none;
 }
@@ -129,7 +129,8 @@
   position: absolute;
   width: 30px;
   height: 30px;
-  border-color: #b7f23a;
+  color: var(--gv-brand-accent);
+  border-color: var(--gv-brand-accent);
 }
 
 .guide span:nth-child(1) {
@@ -193,7 +194,7 @@
   width: 34px;
   height: 34px;
   border: 3px solid rgb(203 213 225 / 24%);
-  border-top-color: #b7f23a;
+  border-top-color: var(--gv-brand-accent);
   border-radius: 999px;
   animation: scan-spin 800ms linear infinite;
 }
@@ -257,10 +258,10 @@
 
 .primaryButton {
   min-width: 164px;
-  border: 1px solid #b7f23a;
+  border: 1px solid var(--gv-brand-accent);
   padding: 10px 20px;
   color: #080b09;
-  background: #b7f23a;
+  background: var(--gv-brand-accent);
 }
 
 .secondaryButton {

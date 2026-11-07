@@ -41,14 +41,21 @@ test('canonical lowercase wordmarks share Roboto Black on both responsive header
   }
 });
 
-test('seasonal artwork preserves the original logo while interactions keep the canonical palette', () => {
+test('seasonal artwork and interactions share the active palette while preserving the original logo', () => {
   const layout = read('apps/web/src/app/layout.tsx');
   const brand = read('apps/web/src/components/brand/BrandText.tsx');
   const css = read('apps/web/src/app/launch-identity.css');
   assert.match(layout, /data-brand-theme=\{ACTIVE_BRAND_THEME\}/);
   assert.match(layout, /style=\{activeBrandStyle\}/);
   assert.match(brand, /fill=\{ACTIVE_BRAND_PALETTE\.logoFill\}/);
-  assert.match(css, /--gv-primary: #b7f23a;/);
-  assert.match(css, /--gv-primary: #466d00;/);
+  assert.match(css, /--gv-primary: var\(--gv-brand-accent\);/);
+  assert.match(css, /--gv-primary: var\(--gv-brand-accent-light\);/);
   assert.match(css, /mask-image: url\("\/grookai-logo-512.png"\)/);
+});
+
+test('immersive scanner accents follow the active logo palette', () => {
+  const css = read('apps/web/src/app/scan/scan.module.css');
+  assert.doesNotMatch(css, /#b7f23a|rgb\(183 242 58/i);
+  assert.match(css, /\.primaryButton\s*\{[^}]*background: var\(--gv-brand-accent\)/s);
+  assert.match(css, /\.spinner\s*\{[^}]*border-top-color: var\(--gv-brand-accent\)/s);
 });

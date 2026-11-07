@@ -529,6 +529,36 @@ plan fingerprint. Never collapse a Normal/Foil split into one parent mapping.
 After apply, run a fresh full shadow and promote only a reconciled eligibility
 gain.
 
+## Website Winter release — November 6, 2026
+
+Read `docs/checkpoints/2026-11-06_web_winter_identity.md`. Winter is live on
+`https://grookaivault.com` at deployment `dpl_5NeVV65RGPLjkNNurB27SaENK1Kk`.
+Anonymous hosted checks pass at 390px and 1440px. The shared theme selects twelve animated snowflakes and the
+ice-blue original emblem and matching primary controls, preserving Roboto Black
+and motion preferences. The owner explicitly selected matching blue accents,
+superseding the October27 fixed-lime website rule.
+The isolated source is `C:/grookai_web_winter_20261106`, branch
+`release/winter-brand-20261106`. Brand/browser verification, typecheck, lint,
+packaging guard and managed source checks pass. Preserve the
+latest manual live feature baseline (`dpl_ooY2WXDcVbR6etFvgrFRqLCZtTL3`): its
+archive was hash-verified and reconstructed in
+`C:/grookai_web_winter_current_20261106`. Apply only the three-file seasonal
+patch there, including scanner controls; do not publish the dirty root or replace live features
+with main incidentally. Use the existing Vercel project/environment, build with
+`--prod --skip-domain`, qualify the hosted candidate and promote that exact
+deployment. Keep all loopback credentials and local fixture builds out of the
+production deployment. The source manifest, hosted receipts and final integration status live
+under `C:/grookai_vault_operator_artifacts/web_winter_20261106`.
+
+The exact live candidate was staged with `--prod --skip-domain` and promoted
+only after hosted qualification. For canonical main integration, use the
+[staged-production workflow](https://vercel.com/docs/deployments/promoting-a-deployment):
+record the original `autoAssignCustomDomains` project setting, disable it during
+the Git-triggered main build, verify that the custom domain remains on Winter,
+and restore the original setting after that build is terminal. Preserve the
+manual deployment's newer eBay fixes; a main merge is not permission to replace
+its live feature baseline.
+
 ## Website visual identity and Halloween release — October 22, 2026
 
 Read `docs/contracts/APP_VISUAL_SYSTEM_CONTRACT_V1.md` and
