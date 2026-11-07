@@ -41,12 +41,12 @@ export default function LaunchIdentityFixture() {
             <section aria-label="Set layout preview">
               <Suspense>
                 <PublicSetsResults logoEntries={[]} sets={[
-                  { code: "sv1", name: "Scarlet & Violet", hero_image_url: "/api/canon/cards/GV-PK-FIXTURE-058/image" },
-                  { code: "sv2", name: "A deliberately long set name that wraps onto more than one line", hero_image_url: "/api/canon/cards/GV-PK-FIXTURE-173/image" },
+                  { code: "sv1", name: "Scarlet & Violet", hero_image_url: "/set-logos/30th.png" },
+                  { code: "sv2", name: "A deliberately long set name that wraps onto more than one line", hero_image_url: "/set-logos/me05.png" },
                   { code: "sv3", name: "スターターセット MEGA メガディアンシーex", name_ja: "拡張パック「メガシンフォニア」", hero_image_url: "/set-logos/base1.png" },
                   { code: "sv4", name: "Missing artwork" },
                   { code: "sv5", name: "Broken artwork", hero_image_url: "/set-logos/fixture-unavailable.png" },
-                  { code: "sv6", name: "Twilight Masquerade", hero_image_url: "/api/canon/cards/GV-PK-FIXTURE-058/image" },
+                  { code: "sv6", name: "Twilight Masquerade", hero_image_url: "/set-logos/me02.5.png" },
                 ].map(set => ({
                   ...set, game_code: "pokemon", card_count: 100, release_year: 2026,
                   normalized_code: set.code, normalized_name: set.name.toLowerCase(), normalized_tokens: [],

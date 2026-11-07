@@ -8,6 +8,9 @@ const SET_LOGO_EXTENSION = ".png";
 const SET_LOGO_DIRECTORY = path.join(process.cwd(), "public", "set-logos");
 const EXACT_ALIAS_ASSET_CODE_MAP = new Map<string, string>([
   ["bog", "bp"],
+  ["30c", "30th"],
+  ["30c-classic", "30th"],
+  ["asc", "me02.5"],
 ]);
 const MCD_SHARED_ASSET_CODE = "mcd11";
 const BLACK_STAR_PROMO_SHARED_ASSET_CODE = "swshp";

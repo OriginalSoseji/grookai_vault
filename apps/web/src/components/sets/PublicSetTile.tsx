@@ -30,8 +30,8 @@ export default function PublicSetTile({ setInfo, compareCards, logoPath, priorit
         className="gv-collector-set-accent absolute inset-x-0 top-0 z-20 h-[3px]"
         style={{ backgroundColor: accentColor }}
       />
-      {/* The summary has only the governed hero (card, package, or legacy logo),
-          not verified card candidates. Keep selection unchanged; never infer a hit card. */}
+      {/* Pokemon summaries use set/package artwork, then the exact set logo;
+          other games retain their existing governed cover selection. */}
       <div className="gv-collector-set-cover relative z-10 aspect-[5/7] overflow-hidden rounded-[10px] bg-[var(--gv-surface-container)]">
         <PublicCardImage
           src={setInfo.hero_image_url}

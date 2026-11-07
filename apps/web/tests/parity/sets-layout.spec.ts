@@ -3,9 +3,6 @@ import { expect, test } from "@playwright/test";
 for (const width of [320, 390, 1440]) {
   test(`sets retain upright artwork and readable names at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 1000 });
-    await page.route("**/api/canon/cards/GV-PK-FIXTURE-*/image", route => route.fulfill({
-      path: "./public/visual-fixtures/collector/pikachu-58.webp", contentType: "image/webp",
-    }));
     await page.goto("/visual-fixtures/launch-identity", { waitUntil: "networkidle" });
     // Exercise the production collector cascade as well as the shared launch theme.
     await page.evaluate(() => document.documentElement.classList.add("gv-collector"));
@@ -25,6 +22,7 @@ for (const width of [320, 390, 1440]) {
     expect(bounds!.width / bounds!.height).toBeCloseTo(5 / 7, 2);
     await expect(first.locator("img")).toHaveCSS("transform", "none");
     await expect(first.locator("img")).toHaveCSS("object-fit", "contain");
+    expect(await preview.locator('img[src*="/api/canon/cards/"]').count()).toBe(0);
     const longTitle = preview.getByRole("heading", { name: "A deliberately long set name that wraps onto more than one line" });
     expect((await longTitle.boundingBox())!.height).toBe(38);
     await expect(preview.getByRole("heading", { name: "スターターセット MEGA メガディアンシーex" })).toBeVisible();

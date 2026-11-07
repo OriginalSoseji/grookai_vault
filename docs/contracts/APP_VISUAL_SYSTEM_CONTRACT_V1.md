@@ -74,6 +74,11 @@ proportions remain fixed across all seasonal treatments.
   and increase density on desktop. Do not rotate or add decorative shadows
   to set artwork. Preserve governed media selection, bilingual names, and
   game-specific routes; long titles use a readable two-line slot.
+- Website Pokemon set-gallery artwork uses verified set/package art, then the matching set
+  logo. Do not substitute representative, rare, or random card artwork. Restore
+  the October 15 selection fix (`d8f5b70a7`) when integrating older branches.
+  Missing set-level artwork remains explicit rather than showing another image.
+  Other games retain their existing governed cover rules and media coverage.
 - Avoid decorative blue washes, large rounded panels, and gradients behind
   ordinary information. Preserve intact artwork and stable loading geometry.
 
