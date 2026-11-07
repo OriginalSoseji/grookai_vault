@@ -529,6 +529,17 @@ plan fingerprint. Never collapse a Normal/Foil split into one parent mapping.
 After apply, run a fresh full shadow and promote only a reconciled eligibility
 gain.
 
+## Website Winter activation candidate — November 6, 2026
+
+Read `docs/checkpoints/2026-11-06_web_winter_identity.md` before publishing the
+Winter candidate. The shared theme selects twelve animated snowflakes and the
+ice-blue original emblem, preserving Roboto Black and motion preferences.
+The isolated source is `C:/grookai_web_winter_20261106`, branch
+`release/winter-brand-20261106`. Local brand/browser verification passes;
+managed checks and hosted Winter proof remain pending. The live domain points
+to a manual deployment whose feature source differs from main. Reconcile that
+baseline before activating the seasonal change; do not publish the dirty root.
+
 ## Website visual identity and Halloween release — October 22, 2026
 
 Read `docs/contracts/APP_VISUAL_SYSTEM_CONTRACT_V1.md` and

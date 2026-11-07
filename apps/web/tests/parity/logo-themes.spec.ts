@@ -73,14 +73,16 @@ test("Halloween and Winter avatars animate, pause, and honor reduced motion", as
 });
 
 for (const width of [320, 390, 1440]) {
-  test(`live header uses Halloween and bundled Roboto at ${width}px`, async ({ page }, testInfo) => {
+  test(`live header uses Winter and bundled Roboto at ${width}px`, async ({ page }, testInfo) => {
     await page.setViewportSize({ width, height: 900 });
     await page.emulateMedia({ reducedMotion: "no-preference" });
     await page.goto("/brand-preview", { waitUntil: "networkidle" });
     const header = page.locator(".gv-site-header");
     const lockup = header.locator(".gv-brand-lockup").filter({ visible: true });
     await expect(lockup).toHaveCount(1);
-    await expect(lockup.locator(".gv-brand-avatar")).toHaveAttribute("data-avatar-theme", "halloween");
+    await expect(lockup.locator(".gv-brand-avatar")).toHaveAttribute("data-avatar-theme", "winter");
+    await expect(lockup.locator(".gv-logo-snowflake")).toHaveCount(12);
+    await expect(lockup.locator(".gv-logo-spider-hang-one")).toHaveCount(0);
     await expect(lockup.locator(".gv-brand-avatar")).toHaveCSS("width", "64px");
     await expect(lockup.locator(".gv-brand-text")).toHaveText("grookai");
     await expect(lockup.locator(".gv-brand-text")).toHaveCSS("font-weight", "900");
@@ -88,11 +90,11 @@ for (const width of [320, 390, 1440]) {
     const fonts = await page.evaluate(() => [...document.fonts].filter((font) => font.status === "loaded").map((font) => ({ family: font.family, weight: font.weight })));
     expect(fonts.some((font) => /roboto/i.test(font.family) && font.weight === "900")).toBe(true);
     await expect(page.locator("body")).toHaveCSS("background-color", "rgb(8, 11, 9)");
-    await expect(page.locator("html")).toHaveAttribute("data-brand-accent", "#ff8a33");
-    expect(await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue("--gv-primary").trim())).toBe("#ff8a33");
+    await expect(page.locator("html")).toHaveAttribute("data-brand-accent", "#87ddfa");
+    expect(await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue("--gv-primary").trim())).toBe("#b7f23a");
     const primaryAction = width >= 900 ? header.locator('[data-primary-action="scan"]') : page.locator('[data-mobile-parity-dock] [data-dock-label="Scan"]');
     await expect(primaryAction).toBeVisible();
-    if (width >= 900) await expect(primaryAction).toHaveCSS("background-color", "rgb(255, 138, 51)");
+    if (width >= 900) await expect(primaryAction).toHaveCSS("background-color", "rgb(183, 242, 58)");
     const avatar = lockup.locator(".gv-brand-avatar");
     await expect.poll(() => avatar.evaluate((el) => el.getAnimations({ subtree: true }).some((animation) => animation.playState === "running"))).toBe(true);
     await header.getByRole("button", { name: "Pause logo animation", exact: true }).filter({ visible: true }).click();
@@ -106,7 +108,7 @@ for (const width of [320, 390, 1440]) {
     await expect(page.locator("body")).toHaveCSS("background-color", "rgb(8, 11, 9)");
     const audit = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"]).analyze();
     expect(audit.violations.filter((violation) => ["critical", "serious"].includes(violation.impact ?? ""))).toEqual([]);
-    await page.screenshot({ path: testInfo.outputPath(`halloween-header-${width}.png`), fullPage: true });
+    await page.screenshot({ path: testInfo.outputPath(`winter-header-${width}.png`), fullPage: true });
     await page.emulateMedia({ reducedMotion: "reduce" });
     await expect.poll(() => avatar.evaluate((el) => el.getAnimations({ subtree: true }).length)).toBe(0);
     await expect(header.getByRole("button", { name: "Play logo animation", exact: true }).filter({ visible: true })).toHaveCount(0);
@@ -134,6 +136,6 @@ for (const width of [390, 900, 1440, 1920]) {
     expect(await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth)).toBe(false);
     const audit = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"]).analyze();
     expect(audit.violations.filter((violation) => ["critical", "serious"].includes(violation.impact ?? ""))).toEqual([]);
-    await page.screenshot({ path: testInfo.outputPath(`halloween-home-${width}.png`), fullPage: true });
+    await page.screenshot({ path: testInfo.outputPath(`winter-home-${width}.png`), fullPage: true });
   });
 }

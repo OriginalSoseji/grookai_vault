@@ -20,7 +20,7 @@ export const BRAND_THEMES = {
   },
 } as const;
 
-export const ACTIVE_BRAND_THEME = "halloween" as const;
+export const ACTIVE_BRAND_THEME = "winter" as const;
 export const ACTIVE_BRAND_PALETTE = BRAND_THEMES[ACTIVE_BRAND_THEME];
 
 export const activeBrandStyle = {
