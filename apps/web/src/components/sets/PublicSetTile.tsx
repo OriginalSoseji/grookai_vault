@@ -32,12 +32,12 @@ export default function PublicSetTile({ setInfo, compareCards, logoPath, priorit
       />
       {/* The summary has only the governed hero (card, package, or legacy logo),
           not verified card candidates. Keep selection unchanged; never infer a hit card. */}
-      <div className="gv-collector-set-cover relative z-10 h-[220px] overflow-hidden border-b border-slate-200/70 bg-slate-100 sm:h-[250px] dark:border-white/[0.08] dark:bg-slate-900">
+      <div className="gv-collector-set-cover relative z-10 aspect-[5/7] overflow-hidden rounded-[10px] bg-[var(--gv-surface-container)]">
         <PublicCardImage
           src={setInfo.hero_image_url}
           fallbackSrc={logoPath}
           alt={`${setInfo.name} cover art`}
-          imageClassName="gv-collector-set-cover-image h-full w-full rotate-[7deg] object-contain p-6 drop-shadow-md"
+          imageClassName="gv-collector-set-cover-image h-full w-full object-contain p-2.5"
           fallbackClassName="gv-collector-set-cover-empty flex h-full flex-col items-center justify-center gap-2 px-6 text-center text-sm text-slate-600 dark:text-slate-400"
           fallbackLabel={
             <>
@@ -45,20 +45,20 @@ export default function PublicSetTile({ setInfo, compareCards, logoPath, priorit
               <span>Cover artwork unavailable</span>
             </>
           }
-          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+          sizes="(max-width: 639px) 50vw, (max-width: 1023px) 33vw, (max-width: 1279px) 20vw, 17vw"
           loading="lazy"
           priority={priority}
           unoptimized={!setInfo.hero_image_url?.startsWith("/catalog-set-covers/")}
         />
       </div>
 
-      <div className="gv-collector-set-info relative z-10 space-y-3 break-words px-5 py-5">
-        <div className="space-y-2">
-          <p className="gv-eyebrow">{setInfo.display_code ?? setInfo.code}</p>
-          <h2 className="text-xl font-semibold text-slate-950 dark:text-slate-50">{setInfo.name}</h2>
-          {setInfo.name_ja ? <p lang="ja" className="text-sm text-slate-600 dark:text-slate-400">{setInfo.name_ja}</p> : null}
+      <div className="gv-collector-set-info relative z-10 min-w-0 break-words pt-1.5">
+        <div className="space-y-1">
+          <p className="gv-eyebrow truncate text-[10px]" title={setInfo.display_code ?? setInfo.code}>{setInfo.display_code ?? setInfo.code}</p>
+          <h2 className="line-clamp-2 min-h-[38px] text-sm font-semibold leading-[19px] text-slate-950 dark:text-slate-50" title={setInfo.name}>{setInfo.name}</h2>
+          {setInfo.name_ja ? <p lang="ja" className="line-clamp-2 text-xs leading-[17px] text-slate-600 dark:text-slate-400" title={setInfo.name_ja}>{setInfo.name_ja}</p> : null}
         </div>
-        <p className="text-sm text-slate-600 dark:text-slate-400">
+        <p className="mt-[3px] text-xs leading-[17px] text-slate-600 dark:text-slate-400">
           {[
             typeof setInfo.release_year === "number" ? String(setInfo.release_year) : undefined,
             typeof setInfo.printed_total === "number" ? `${setInfo.printed_total} cards` : undefined,

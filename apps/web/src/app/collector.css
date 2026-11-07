@@ -149,8 +149,8 @@ html.gv-collector .gv-command-surface { border: 0; border-radius: 0; background:
 html.gv-collector .gv-showcase-hero { border-radius: 0; background: var(--gv-surface-container-low); box-shadow: none; }
 html.gv-collector .gv-showcase-hero::before { display: none; }
 html.gv-collector .gv-collector-set-tile { border: 0; border-radius: 0; box-shadow: none; background: transparent; }
-html.gv-collector .gv-collector-set-cover { border-radius: 7px; background: var(--gv-surface-container); border: 0; }
-html.gv-collector .gv-collector-set-info { padding: 16px 0; }
+html.gv-collector .gv-collector-set-cover { border-radius: 10px; background: var(--gv-surface-container); border: 0; }
+html.gv-collector .gv-collector-set-info { padding: 6px 0 0; }
 html.gv-collector .gv-collector-set-accent { display: none; }
 html.gv-collector .gv-collector-discovery-feature { background: #e4e9df; color: #23382b; border: 0; border-radius: 0; }
 html.gv-collector .gv-collector-discovery-link { color: var(--gv-primary); }

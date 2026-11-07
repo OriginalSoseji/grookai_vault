@@ -531,6 +531,22 @@ gain.
 
 ## Website Winter release — November 6, 2026
 
+Vercel now enforces the active Winter brand before building any deployment:
+the existing project's custom build command checks the Winter selector in
+`brandTheme.ts` and both shared primary-accent bindings in `launch-identity.css`,
+then runs the unchanged `npm run build`. This blocks the observed stale
+Halloween publications from older feature branches. The command is recorded
+under `web_winter_20261106/republish_2347/project-build-guard.json` in operator
+artifacts. For a deliberately approved future season, update the canonical
+shared theme and this hosting check together. Never bypass it for a feature fix.
+Preserve feature work while integrating PR870; do not publish a pre-Winter HEAD.
+The November 7 layout correction extends that hosting check to reject rotated
+set artwork in `PublicSetTile.tsx`. Integrate the upright set grid and positive
+brand-lockup spacing before publishing another feature branch. The updated
+215-character build command, successful/blocked source checks, and cloud-build
+proof are recorded in `web_visual_repair_20261107` operator artifacts. Read
+`docs/checkpoints/2026-11-07_web_layout_repair.md` for the source-preserving repair.
+
 Read `docs/checkpoints/2026-11-06_web_winter_identity.md`. Winter is live on
 `https://grookaivault.com` at deployment `dpl_5NeVV65RGPLjkNNurB27SaENK1Kk`.
 Anonymous hosted checks pass at 390px and 1440px. The shared theme selects twelve animated snowflakes and the

@@ -379,7 +379,7 @@ export default function PublicSetsResults({ sets, logoEntries }: PublicSetsResul
                       Open group
                     </Link>
                   </div>
-                  <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                  <div className="gv-collector-set-grid grid grid-cols-2 gap-[9px] sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6">
                     {group.sets.map((setInfo) => (
                       <PublicSetTile
                         key={setInfo.code}
@@ -394,7 +394,7 @@ export default function PublicSetsResults({ sets, logoEntries }: PublicSetsResul
               ))}
             </div>
           ) : (
-            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            <div className="gv-collector-set-grid grid grid-cols-2 gap-[9px] sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6">
               {visibleSets.map((setInfo) => (
                 <PublicSetTile
                   key={setInfo.code}

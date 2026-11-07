@@ -8,6 +8,7 @@ import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
 import { POKEMON_CARD_BROWSE_GRID_CLASSNAME } from "@/components/cards/pokemonCardGridLayout";
 import { BrandText } from "@/components/brand/BrandText";
 import { isLocalVisualParityFixtureMode } from "@/lib/visualParity/fixtureMode";
+import PublicSetsResults from "@/components/sets/PublicSetsResults";
 
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Local launch identity fixture", robots: { index: false, follow: false } };
@@ -36,6 +37,21 @@ export default function LaunchIdentityFixture() {
               {["Pikachu", "Charizard", "Gardevoir", "Dragonite"].map((name) => (
                 <PokemonCardGridTile key={name} title={name} subtitle="Local visual fixture" imageAlt={`${name} artwork unavailable`} imageFallbackLabel="Artwork unavailable" meta="Exact printing" />
               ))}
+            </section>
+            <section aria-label="Set layout preview">
+              <Suspense>
+                <PublicSetsResults logoEntries={[]} sets={[
+                  { code: "sv1", name: "Scarlet & Violet", hero_image_url: "/api/canon/cards/GV-PK-FIXTURE-058/image" },
+                  { code: "sv2", name: "A deliberately long set name that wraps onto more than one line", hero_image_url: "/api/canon/cards/GV-PK-FIXTURE-173/image" },
+                  { code: "sv3", name: "スターターセット MEGA メガディアンシーex", name_ja: "拡張パック「メガシンフォニア」", hero_image_url: "/set-logos/base1.png" },
+                  { code: "sv4", name: "Missing artwork" },
+                  { code: "sv5", name: "Broken artwork", hero_image_url: "/set-logos/fixture-unavailable.png" },
+                  { code: "sv6", name: "Twilight Masquerade", hero_image_url: "/api/canon/cards/GV-PK-FIXTURE-058/image" },
+                ].map(set => ({
+                  ...set, game_code: "pokemon", card_count: 100, release_year: 2026,
+                  normalized_code: set.code, normalized_name: set.name.toLowerCase(), normalized_tokens: [],
+                }))} />
+              </Suspense>
             </section>
           </div>
         </PageContainer>
