@@ -4,6 +4,11 @@ on:
   push:
     branches: [ main ]
   workflow_dispatch:
+    inputs:
+      build_number:
+        description: Android versionCode; must be greater than the pubspec baseline.
+        required: false
+        type: string
 
 permissions:
   contents: read
@@ -66,8 +71,26 @@ jobs:
         run: flutter test --no-pub --concurrency=4 --exclude-tags golden
 
       - name: Build signed release APK
+        shell: bash
+        env:
+          REQUESTED_BUILD_NUMBER: ${{ inputs.build_number }}
         run: |
+          set -euo pipefail
+          BUILD_NUMBER_ARGS=()
+          if [[ -n "$REQUESTED_BUILD_NUMBER" ]]; then
+            if [[ ! "$REQUESTED_BUILD_NUMBER" =~ ^[0-9]+$ ]]; then
+              echo "build_number must contain digits only."
+              exit 1
+            fi
+            BASE_BUILD_NUMBER="$(sed -nE 's/^version: [^+]+\+([0-9]+)$/\1/p' pubspec.yaml)"
+            if [[ -z "$BASE_BUILD_NUMBER" ]] || (( REQUESTED_BUILD_NUMBER <= BASE_BUILD_NUMBER )); then
+              echo "build_number must exceed the pubspec baseline."
+              exit 1
+            fi
+            BUILD_NUMBER_ARGS+=("--build-number=$REQUESTED_BUILD_NUMBER")
+          fi
           flutter build apk --release \
+            "${BUILD_NUMBER_ARGS[@]}" \
             --dart-define=SUPABASE_URL="$MOBILE_SUPABASE_URL" \
             --dart-define=SUPABASE_PUBLISHABLE_KEY="$MOBILE_SUPABASE_PUBLISHABLE_KEY" \
             --dart-define=MTG_SEALED_CLIENT_V1_ENABLED="${{ vars.MTG_SEALED_CLIENT_V1_ENABLED || 'false' }}" \

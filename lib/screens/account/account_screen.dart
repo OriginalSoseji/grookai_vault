@@ -14,6 +14,7 @@ import '../../widgets/founder/founder_market_signals_section.dart';
 import '../founder/founder_notifications_screen.dart';
 import '../founder/founder_operations_screen.dart';
 import '../founder/founder_metrics_screen.dart';
+import '../ebay/ebay_seller_screen.dart';
 import 'following_screen.dart';
 import 'import_collection_screen.dart';
 import 'submit_missing_card_screen.dart';
@@ -560,6 +561,36 @@ class _AccountScreenState extends State<AccountScreen> {
           child: ListView(
             padding: const EdgeInsets.fromLTRB(14, 10, 14, 18),
             children: [
+              if (_client.auth.currentUser != null)
+                _AccountSurface(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Connected accounts',
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(fontWeight: FontWeight.w700),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        'Sign in to a marketplace account to manage listings.',
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.onSurface.withValues(alpha: 0.68),
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      _AccountLinkTile(
+                        icon: Icons.storefront_outlined,
+                        title: 'eBay seller account',
+                        subtitle: 'Connect or reconnect eBay for listings',
+                        onTap: () => openEbaySeller(context),
+                      ),
+                    ],
+                  ),
+                ),
+              if (_client.auth.currentUser != null) const SizedBox(height: 12),
               if (_client.auth.currentUser != null)
                 _AccountSurface(
                   child: _AccountLinkTile(
