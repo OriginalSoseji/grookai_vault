@@ -1,6 +1,6 @@
 {
   "version": "ENGLISH_MASTER_INDEX_SETS_V1",
-  "generated_at": "2026-11-07T10:37:22.288Z",
+  "generated_at": "2026-11-08T10:42:42.285Z",
   "audit_only": true,
   "db_writes": false,
   "sets": [
@@ -39,7 +39,7 @@
           "total": null
         },
         "tcgdex": {
-          "official": 0,
+          "official": 30,
           "total": 30
         }
       }
@@ -121,6 +121,46 @@
         "tcgdex": {
           "official": 30,
           "total": 30
+        }
+      }
+    },
+    {
+      "key": "me06",
+      "set_name": "Delta Reign",
+      "pokemontcg": null,
+      "tcgdex": "me06",
+      "manual_aliases": [],
+      "release_date": null,
+      "source_aliases": {
+        "pokemontcg_api": null,
+        "tcgdex": "me06",
+        "official_checklist_pdf": null,
+        "official_pokemon_checklist": null,
+        "thepricedex": "me06",
+        "thepricedex_price_list": "me06",
+        "pkmncards": "delta-reign",
+        "bulbapedia": "Delta_Reign_(TCG)",
+        "bulbapedia_set_list": "Delta_Reign_(TCG)"
+      },
+      "source_status": {
+        "pokemontcg_api": "unavailable",
+        "tcgdex": "available",
+        "official_checklist_pdf": "unavailable",
+        "official_pokemon_checklist": "unavailable",
+        "thepricedex": "candidate_url",
+        "thepricedex_price_list": "candidate_url",
+        "pkmncards": "candidate_url",
+        "bulbapedia": "candidate_url",
+        "bulbapedia_set_list": "candidate_url"
+      },
+      "source_totals": {
+        "pokemontcg_api": {
+          "printed_total": null,
+          "total": null
+        },
+        "tcgdex": {
+          "official": 103,
+          "total": 141
         }
       }
     },
@@ -439,8 +479,8 @@
           "total": null
         },
         "tcgdex": {
-          "official": 8,
-          "total": 8
+          "official": 16,
+          "total": 16
         }
       }
     },
@@ -480,7 +520,7 @@
         },
         "tcgdex": {
           "official": 0,
-          "total": 89
+          "total": 112
         }
       }
     },
@@ -5880,7 +5920,7 @@
         },
         "tcgdex": {
           "official": 18,
-          "total": 18
+          "total": 19
         }
       }
     },
@@ -8244,7 +8284,7 @@
         },
         "tcgdex": {
           "official": 128,
-          "total": 158
+          "total": 161
         }
       }
     },
