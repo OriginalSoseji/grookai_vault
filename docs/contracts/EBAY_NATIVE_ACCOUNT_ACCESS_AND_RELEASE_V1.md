@@ -41,13 +41,19 @@ authority and does not replace the collector's final Publish action.
 - Verify a saved draft read with the native route. Do not publish the draft as
   part of qualification; never use a prepared live draft for a write test that
   could discard its review, fee quote, or provider state.
-- The Samsung update keeps `applicationId = com.grookai.vault`, uses the
-  production signing key, and has a build number greater than the installed
-  build. If the installed device is ahead of the frozen `pubspec.yaml` baseline,
-  use the existing signed APK workflow's validated `build_number` input; do not
+- Before install, verify the installed package ID, version code, and signer.
+  An in-place update keeps `applicationId = com.grookai.vault`, uses the same
+  signing certificate as the installed package, and has a greater version
+  code. Never uninstall or create a second package to work around a signing
+  mismatch.
+- Production releases use the production signing key. A device already running
+  a debug-signed QA build may receive a same-certificate debug update for local
+  verification; that APK is not a production release and must be labelled as
+  such. Do not try to replace a debug install with a production-signed APK (or
+  the reverse).
+- If the installed device is ahead of the frozen `pubspec.yaml` baseline, use
+  the existing signed APK workflow's validated `build_number` input; do not
   rewrite frozen cross-platform release metadata to create a device-only bump.
-  Do not install a lower or differently signed APK or create an app variant to
-  test this feature.
 - Record source commit, deployment ID, Android build number, native endpoint
   result, and whether the custom domain was promoted. Promote only the exact
   candidate that passed these checks.
