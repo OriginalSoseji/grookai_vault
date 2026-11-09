@@ -1,0 +1,103 @@
+{
+  "version": "SPECIAL_CARD_ETB_MAIN_PRESERVATION_COMPARISON_V2",
+  "authority": "3bf51e8404f9052103b165922c385a06ee3f0316",
+  "source_commit": "d48ea00792787ca548c6d885a29bdf7fb128c7d2",
+  "web": {
+    "families": {
+      "added": [
+        "special_card_etb_snorlax_051_unstamped",
+        "special_card_etb_eevee_173_unstamped",
+        "special_card_etb_snorlax_051_pokemon_center",
+        "special_card_etb_eevee_173_pokemon_center"
+      ],
+      "removed": [],
+      "changed": [
+        "ancient_mew_power_of_one_movie_promo",
+        "best_of_game",
+        "bw_black_star_promos",
+        "celebrations_elite_trainer_box_greninja_star_promo",
+        "dp_black_star_promos",
+        "e3_pikachu_stamp",
+        "hgss_black_star_promos",
+        "mega_evolution_promos",
+        "new_legends_tins_bw_promo",
+        "nintendo_black_star_promos",
+        "pop_series",
+        "sm_black_star_promos",
+        "sv_black_star_promos",
+        "swsh_black_star_promos",
+        "wb_kids_stamp",
+        "wizards_black_star_promos",
+        "wotc_recognized_error",
+        "xy_black_star_promos"
+      ]
+    },
+    "by_gv_id": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        "GV-PK-PR-SV-051",
+        "GV-PK-PR-SV-173",
+        "GV-PK-SVP-051-POKEMON-CENTER-STAMP",
+        "GV-PK-SVP-173-POKEMON-CENTER-STAMP"
+      ]
+    },
+    "by_card_print_id": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        "a36f8d8a-353f-4cca-ba89-912eb7f10c3a",
+        "c7171ec8-743d-453d-bc8b-47517986916f",
+        "cffe987c-a680-4f7e-b1cf-96c89bc9e229",
+        "f605056d-5521-4dcf-a6e2-176b6d2ca7b5"
+      ]
+    }
+  },
+  "mobile": {
+    "families": {
+      "added": [
+        "special_card_etb_snorlax_051_unstamped",
+        "special_card_etb_eevee_173_unstamped",
+        "special_card_etb_snorlax_051_pokemon_center",
+        "special_card_etb_eevee_173_pokemon_center"
+      ],
+      "removed": [],
+      "changed": []
+    },
+    "by_gv_id": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        "GV-PK-PR-SV-051",
+        "GV-PK-PR-SV-173",
+        "GV-PK-SVP-051-POKEMON-CENTER-STAMP",
+        "GV-PK-SVP-173-POKEMON-CENTER-STAMP"
+      ]
+    },
+    "by_card_print_id": {
+      "added": [],
+      "removed": [],
+      "changed": [
+        "a36f8d8a-353f-4cca-ba89-912eb7f10c3a",
+        "c7171ec8-743d-453d-bc8b-47517986916f",
+        "cffe987c-a680-4f7e-b1cf-96c89bc9e229",
+        "f605056d-5521-4dcf-a6e2-176b6d2ca7b5"
+      ]
+    }
+  },
+  "source_v1_audit_files_unchanged": [
+    "artifacts.sha256",
+    "product_origins.json",
+    "read_only_audit.json",
+    "release_allowlist.txt",
+    "verification_summary.json"
+  ],
+  "original_packet_sha256": "501abac170ff71f17eb5857e1c5885cf4b004c3cb5ada43cdd7831945f61db25",
+  "mobile_web_payload_equal": true,
+  "other_row_references_preserved": 3326,
+  "all_54_prior_mobile_family_definitions_unchanged": true,
+  "baseline_mobile_payload_sha256": "f542f15c135c75a04d6331bc9f53bfe05cd5d3e5d8ed14bfab905446c4c13864",
+  "baseline_tree": "339c5a37d0e90486a1fee6a0f3a6d4cdd98ef8d4",
+  "authority_still_current": true,
+  "checked_at": "2026-11-06T06:12:50.503Z"
+}

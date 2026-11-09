@@ -1,15 +1,17 @@
 {
-  "generated_at": "2026-06-24T19:36:32.695Z",
-  "source_fingerprint_sha256": "ab1f3dfb94422247ea4d3f84445b2db130059ce2e3af48f003e3f10698d35d55",
-  "source_version": "VARIANT_ORIGIN_INDEX_V1+PROMO_ORIGIN_FAMILY_COPY_V1+PROMO_ORIGIN_FAMILY_COPY_V1+PROMO_ORIGIN_EXACT_COPY_V1",
+  "generated_at": "2026-11-06T06:09:57.238Z",
+  "source_fingerprint_sha256": "5ce9f1af45956fc18969293d943c87b9dfe69f52be6d7cc55c117b831c4dbb4c",
+  "source_version": "VARIANT_ORIGIN_INDEX_V1+PROMO_ORIGIN_FAMILY_COPY_V1+PROMO_ORIGIN_FAMILY_COPY_V1+PROMO_ORIGIN_EXACT_COPY_V1+SPECIAL_CARD_ETB_PRODUCT_ORIGINS_V1+SPECIAL_CARD_ETB_MAIN_BRAND_PARITY_V2",
   "summary": {
     "public_copy_safe_parent_rows": 3330,
-    "public_copy_safe_families": 54,
+    "public_copy_safe_families": 58,
     "blocked_parent_rows_excluded": 73,
     "promo_family_public_copy_rows_added": 1523,
     "promo_family_public_copy_families_added": 12,
     "promo_exact_public_copy_rows_added": 4,
-    "promo_exact_public_copy_families_added": 3
+    "promo_exact_public_copy_families_added": 3,
+    "special_card_etb_product_origin_rows": 4,
+    "special_card_etb_product_origin_families": 4
   },
   "families": {
     "ancient_mew_power_of_one_movie_promo": {
@@ -20,7 +22,7 @@
       "why_it_exists": "Ancient Mew was released as a 2000 theatrical promotional card for The Power of One and distributed through participating cinemas.",
       "why_collectors_care": "The movie-theater distribution, sealed wrapper, unusual card text, and separate international/Japanese print boundaries make Ancient Mew a distinct promo identity rather than a normal set card.",
       "how_to_identify": "Confirm the Ancient Mew card, Miscellaneous Promotional card lane, international movie-promo print, and absence of Japanese Nintedo/error-specific governance markers.",
-      "grookai_rule": "Grookai models this English Ancient Mew as an exact movie-promo parent identity. Japanese exclusive, Nintedo/error, and later pamphlet variants remain separate governance lanes.",
+      "grookai_rule": "grookai models this English Ancient Mew as an exact movie-promo parent identity. Japanese exclusive, Nintedo/error, and later pamphlet variants remain separate governance lanes.",
       "source_urls": [
         "https://bulbapedia.bulbagarden.net/wiki/Ancient_Mew_%28The_Power_of_One_promo%29",
         "https://pkmncards.com/card/ancient-mew-miscellaneous/"
@@ -89,7 +91,7 @@
       "why_it_exists": "Best of Game cards are promotional checklist cards released outside ordinary booster expansion numbering.",
       "why_collectors_care": "Collectors track Best of Game cards as their own promo lane because the checklist membership differs from a standard set copy.",
       "how_to_identify": "Confirm the Best of Game set label, promo checklist number, and card name. Exact distribution details may vary by card.",
-      "grookai_rule": "Grookai models this as a promo checklist identity. This family-level copy does not claim an exact product, event, or distribution source for every card.",
+      "grookai_rule": "grookai models this as a promo checklist identity. This family-level copy does not claim an exact product, event, or distribution source for every card.",
       "source_urls": []
     },
     "build_a_bear_workshop_stamp": {
@@ -130,7 +132,7 @@
       "why_it_exists": "BW Black Star Promos are Black & White-era promotional cards released through products, events, campaigns, and other non-booster channels.",
       "why_collectors_care": "The BW promo number identifies a separate Black Star promo checklist object rather than an ordinary expansion card.",
       "how_to_identify": "Look for a BW-prefixed promo number and Black Star promo checklist membership.",
-      "grookai_rule": "Grookai models BW Black Star Promos as parent promo identities. Exact product or event origin requires a separate card-level source.",
+      "grookai_rule": "grookai models BW Black Star Promos as parent promo identities. Exact product or event origin requires a separate card-level source.",
       "source_urls": []
     },
     "call_of_legends_sl_subset": {
@@ -154,7 +156,7 @@
       "why_it_exists": "Greninja Star SWSH144 was released as a SWSH Black Star Promo in the Celebrations Elite Trainer Box and Celebrations Pokemon Center Elite Trainer Box from October 8, 2021.",
       "why_collectors_care": "This card is a modern product-promo revival of Pokemon Star styling, tied specifically to the Celebrations ETB products rather than booster-pack checklist membership.",
       "how_to_identify": "Confirm Greninja Star, promo number SWSH144, SWSH Black Star Promo membership, and Celebrations ETB product origin.",
-      "grookai_rule": "Grookai models this as an exact Celebrations ETB product-promo parent identity, not as generic SWSH promo family copy.",
+      "grookai_rule": "grookai models this as an exact Celebrations ETB product-promo parent identity, not as generic SWSH promo family copy.",
       "source_urls": [
         "https://bulbapedia.bulbagarden.net/wiki/Greninja_%E2%98%86_%28SWSH_Promo_144%29"
       ]
@@ -210,7 +212,7 @@
       "why_it_exists": "DP Black Star Promos are Diamond & Pearl-era promotional cards released outside normal expansion packs.",
       "why_collectors_care": "The DP promo number places the card in a separate Black Star promo checklist that collectors track apart from expansion copies.",
       "how_to_identify": "Look for a DP-prefixed promo number and Black Star promo checklist membership.",
-      "grookai_rule": "Grookai models DP Black Star Promos as parent promo identities. This explanation is checklist-level, not an exact product-origin claim.",
+      "grookai_rule": "grookai models DP Black Star Promos as parent promo identities. This explanation is checklist-level, not an exact product-origin claim.",
       "source_urls": []
     },
     "dp_platinum_shiny_sh_subset": {
@@ -234,7 +236,7 @@
       "why_it_exists": "Base Set Pikachu has E3-stamped promotional versions; Bulbapedia records red-cheeked copies from Nintendo booth distribution at E3 in May 1999 and yellow-cheeked copies from Nintendo Power.",
       "why_collectors_care": "The stamp and cheek-color combination identifies a narrow early promotional distribution and separates these copies from ordinary Base Set Pikachu.",
       "how_to_identify": "Look for the gold E3 stamp and verify whether the Pikachu artwork has red or yellow cheeks.",
-      "grookai_rule": "Grookai models the E3 stamp and cheek color together because both are visible identity dimensions.",
+      "grookai_rule": "grookai models the E3 stamp and cheek color together because both are visible identity dimensions.",
       "source_urls": [
         "https://bulbapedia.bulbagarden.net/wiki/Pikachu_%28Base_Set_58%29",
         "https://www.elitefourum.com/t/base-pikachu-artwork-card-variations/15059"
@@ -306,7 +308,7 @@
       "why_it_exists": "HGSS Black Star Promos are HeartGold & SoulSilver-era promotional cards released outside ordinary expansion checklists.",
       "why_collectors_care": "The HGSS promo number identifies a dedicated Black Star promo lane with separate checklist and collecting context.",
       "how_to_identify": "Look for an HGSS-prefixed promo number and Black Star promo checklist membership.",
-      "grookai_rule": "Grookai models HGSS Black Star Promos as parent promo identities. Exact product or event origin remains card-level enrichment.",
+      "grookai_rule": "grookai models HGSS Black Star Promos as parent promo identities. Exact product or event origin remains card-level enrichment.",
       "source_urls": []
     },
     "holiday_calendar_snowflake_stamp": {
@@ -375,7 +377,7 @@
       "why_it_exists": "Mega Evolution Promos are promotional card identities tied to Mega Evolution-era checklist and product lanes rather than ordinary expansion numbering.",
       "why_collectors_care": "Collectors separate these promo cards because they belong to a promotional lane with different checklist membership and distribution context.",
       "how_to_identify": "Confirm the Mega Evolution promo set label, printed number, and card name against the promo checklist.",
-      "grookai_rule": "Grookai models Mega Evolution Promos as parent promo identities. This family-level explanation does not assert exact product origin.",
+      "grookai_rule": "grookai models Mega Evolution Promos as parent promo identities. This family-level explanation does not assert exact product origin.",
       "source_urls": []
     },
     "new_legends_tins_bw_promo": {
@@ -386,7 +388,7 @@
       "why_it_exists": "Reshiram BW04 and Zekrom BW05 were released as BW Black Star Promos with English-exclusive artwork in the New Legends Tins in May 2011.",
       "why_collectors_care": "These New Legends Tins prints are specific BW promo product identities, separate from the Black & White expansion prints and later box or set reprints.",
       "how_to_identify": "Confirm Reshiram BW04/BW004 or Zekrom BW05/BW005, BW Black Star Promo membership, and the New Legends Tins artwork.",
-      "grookai_rule": "Grookai models these as exact product-promo parent identities for the New Legends Tins prints, not as generic BW promo family copy.",
+      "grookai_rule": "grookai models these as exact product-promo parent identities for the New Legends Tins prints, not as generic BW promo family copy.",
       "source_urls": [
         "https://bulbapedia.bulbagarden.net/wiki/Reshiram_%28Black_%26_White_26%29",
         "https://bulbapedia.bulbagarden.net/wiki/Zekrom_%28Black_%26_White_47%29"
@@ -400,7 +402,7 @@
       "why_it_exists": "Nintendo Black Star Promos are promotional checklist cards from the Nintendo-published era, released outside standard booster expansion numbering.",
       "why_collectors_care": "The Nintendo promo checklist gives these cards separate identity and collecting context from ordinary set cards.",
       "how_to_identify": "Look for Nintendo-era Black Star promo checklist membership and the printed promo number.",
-      "grookai_rule": "Grookai models Nintendo Black Star Promos as parent promo identities. Exact distribution provenance remains a card-level lane.",
+      "grookai_rule": "grookai models Nintendo Black Star Promos as parent promo identities. Exact distribution provenance remains a card-level lane.",
       "source_urls": []
     },
     "pokemon_center_stamp": {
@@ -465,7 +467,7 @@
       "why_it_exists": "POP Series cards were promotional Organized Play-era checklist cards distributed through special POP Series products and programs.",
       "why_collectors_care": "POP Series cards are collected as their own promotional checklist lane, distinct from ordinary expansion copies.",
       "how_to_identify": "Confirm the POP Series set number, card number, and card name.",
-      "grookai_rule": "Grookai models POP Series rows as promo checklist identities. This family-level copy does not claim the exact event or product for each card.",
+      "grookai_rule": "grookai models POP Series rows as promo checklist identities. This family-level copy does not claim the exact event or product for each card.",
       "source_urls": []
     },
     "prerelease_or_staff_stamp": {
@@ -573,7 +575,7 @@
       "why_it_exists": "SM Black Star Promos are Sun & Moon-era promotional cards released through products, campaigns, events, and other non-booster channels.",
       "why_collectors_care": "The SM promo number identifies separate Black Star promo checklist membership rather than ordinary expansion membership.",
       "how_to_identify": "Look for an SM-prefixed promo number and Black Star promo checklist membership.",
-      "grookai_rule": "Grookai models SM Black Star Promos as parent promo identities. Exact product or event origin requires a separate card-level source.",
+      "grookai_rule": "grookai models SM Black Star Promos as parent promo identities. Exact product or event origin requires a separate card-level source.",
       "source_urls": []
     },
     "sv_black_star_promos": {
@@ -584,7 +586,7 @@
       "why_it_exists": "Scarlet & Violet Black Star Promos are current-era promotional cards released through products, campaigns, events, and other non-booster channels.",
       "why_collectors_care": "The SVP promo number places the card in a separate Black Star promo checklist that collectors track apart from expansion copies.",
       "how_to_identify": "Look for an SVP-prefixed promo number and Black Star promo checklist membership.",
-      "grookai_rule": "Grookai models Scarlet & Violet Black Star Promos as parent promo identities. Exact campaign or product origin remains separate enrichment.",
+      "grookai_rule": "grookai models Scarlet & Violet Black Star Promos as parent promo identities. Exact campaign or product origin remains separate enrichment.",
       "source_urls": []
     },
     "swsh_black_star_promos": {
@@ -595,7 +597,7 @@
       "why_it_exists": "Sword & Shield Black Star Promos are Sword & Shield-era promotional cards released through products, campaigns, events, and other non-booster channels.",
       "why_collectors_care": "The SWSH promo number identifies separate Black Star promo checklist membership rather than ordinary expansion membership.",
       "how_to_identify": "Look for an SWSH-prefixed promo number and Black Star promo checklist membership.",
-      "grookai_rule": "Grookai models Sword & Shield Black Star Promos as parent promo identities. Exact product or event origin requires a separate card-level source.",
+      "grookai_rule": "grookai models Sword & Shield Black Star Promos as parent promo identities. Exact product or event origin requires a separate card-level source.",
       "source_urls": []
     },
     "toys_r_us_stamp": {
@@ -661,7 +663,7 @@
       "why_it_exists": "WB Kids stamped Wizards Black Star Promos were tied to Pokémon movie-era promotional distribution; missing and inverted stamp states are recognized special cases for specific cards.",
       "why_collectors_care": "The stamp state identifies how the promo copy was distributed or mis-stamped, creating a physically distinct lane from the ordinary Black Star Promo.",
       "how_to_identify": "Check whether the WB Kids stamp is present, missing, or inverted on the card face.",
-      "grookai_rule": "Grookai models WB Kids stamp states as parent identity variants when card-specific evidence is strong enough.",
+      "grookai_rule": "grookai models WB Kids stamp states as parent identity variants when card-specific evidence is strong enough.",
       "source_urls": [
         "https://bulbapedia.bulbagarden.net/wiki/Miscellaneous_Promotional_cards_%28TCG%29",
         "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328"
@@ -688,7 +690,7 @@
       "why_it_exists": "Wizards Black Star Promos are WOTC-era promotional checklist cards released outside ordinary expansion numbering.",
       "why_collectors_care": "The Black Star promo symbol and promo checklist number identify a separate collector object from normal set cards.",
       "how_to_identify": "Look for the Black Star promo symbol, promo checklist number, and card name.",
-      "grookai_rule": "Grookai models Wizards Black Star Promos as parent promo identities. This family-level explanation does not assert exact distribution origin.",
+      "grookai_rule": "grookai models Wizards Black Star Promos as parent promo identities. This family-level explanation does not assert exact distribution origin.",
       "source_urls": []
     },
     "world_championships_stamp": {
@@ -712,7 +714,7 @@
       "why_it_exists": "WOTC-era production or text/artwork mistakes created repeatable physical variants such as no-damage Ninetales, missing Stage text Blastoise, and corrected/error text lanes.",
       "why_collectors_care": "Recognized repeatable errors are collected as distinct objects because they document a specific production state rather than ordinary wear or damage.",
       "how_to_identify": "Compare the affected text, artwork, HP, holo box, set symbol, or other documented error area against the corrected card.",
-      "grookai_rule": "Grookai only models error lanes when they are externally recognized and repeatable at card identity level.",
+      "grookai_rule": "grookai only models error lanes when they are externally recognized and repeatable at card identity level.",
       "source_urls": [
         "https://bulbapedia.bulbagarden.net/wiki/Error_cards",
         "https://www.elitefourum.com/t/masters-guide-for-pokemon-wotc-corrected-errors-test-cards/29328",
@@ -727,8 +729,62 @@
       "why_it_exists": "XY Black Star Promos are XY-era promotional cards released through products, campaigns, events, and other non-booster channels.",
       "why_collectors_care": "The XY promo number identifies a separate Black Star promo checklist object rather than an ordinary expansion card.",
       "how_to_identify": "Look for an XY-prefixed promo number and Black Star promo checklist membership.",
-      "grookai_rule": "Grookai models XY Black Star Promos as parent promo identities. Exact product or event provenance remains card-level enrichment.",
+      "grookai_rule": "grookai models XY Black Star Promos as parent promo identities. Exact product or event provenance remains card-level enrichment.",
       "source_urls": []
+    },
+    "special_card_etb_snorlax_051_unstamped": {
+      "family_key": "special_card_etb_snorlax_051_unstamped",
+      "family_label": "Snorlax SVP 051 · ETB Promo",
+      "variant_category": "product_promo_identity",
+      "confidence": "high",
+      "why_it_exists": "Snorlax SVP 051 is the full-art foil promo included in the Scarlet & Violet—151 Elite Trainer Box. The Pokémon Center edition also includes this unstamped promo alongside a separately stamped copy.",
+      "why_collectors_care": "Its SVP 051 number and boxed-product origin distinguish this Snorlax promo from expansion cards. The Pokémon Center logo version is cataloged separately.",
+      "how_to_identify": "Look for Snorlax, the SVP 051 promo number, the woodland Snorlax illustration, and the absence of the Pokémon Center logo above the retreat cost.",
+      "grookai_rule": "The unstamped promo and Pokémon Center logo version are cataloged separately. Product information describes documented distribution, not the origin of an individual owned card.",
+      "source_urls": [
+        "https://www.pokemon.com/uk/pokemon-tcg/product-gallery/scarlet-violet-151-elite-trainer-box",
+        "https://www.pokemon.com/us/pokemon-tcg/product-gallery/scarlet-violet-151-pokemon-center-elite-trainer-box/"
+      ]
+    },
+    "special_card_etb_eevee_173_unstamped": {
+      "family_key": "special_card_etb_eevee_173_unstamped",
+      "family_label": "Eevee SVP 173 · ETB Promo",
+      "variant_category": "product_promo_identity",
+      "confidence": "high",
+      "why_it_exists": "Eevee SVP 173 is the full-art foil promo included in the Scarlet & Violet—Prismatic Evolutions Elite Trainer Box. The Pokémon Center edition also includes this unstamped promo alongside a separately stamped copy.",
+      "why_collectors_care": "Its SVP 173 number and boxed-product origin distinguish this Eevee promo from expansion cards. The Pokémon Center logo version is cataloged separately.",
+      "how_to_identify": "Look for Eevee, the SVP 173 promo number, the sleeping Eevee illustration, and the absence of the Pokémon Center logo above the retreat cost.",
+      "grookai_rule": "The unstamped promo and Pokémon Center logo version are cataloged separately. Product information describes documented distribution, not the origin of an individual owned card.",
+      "source_urls": [
+        "https://www.pokemon.com/uk/pokemon-tcg/product-gallery/scarlet-violet-prismatic-evolutions-elite-trainer-box",
+        "https://press.pokemon.com/en/New-Pokemon-Trading-Card-Game-Scarlet-VioletPrismatic-Evolutions-Expan"
+      ]
+    },
+    "special_card_etb_snorlax_051_pokemon_center": {
+      "family_key": "special_card_etb_snorlax_051_pokemon_center",
+      "family_label": "Snorlax SVP 051 · Pokémon Center ETB",
+      "variant_category": "product_promo_identity",
+      "confidence": "high",
+      "why_it_exists": "The Pokémon Center logo version of Snorlax SVP 051 was included in the Scarlet & Violet—151 Pokémon Center Elite Trainer Box. The box also contains an unstamped copy of the promo.",
+      "why_collectors_care": "The Pokémon Center logo distinguishes this Snorlax promo from the unstamped card with the same number and artwork.",
+      "how_to_identify": "Look for Snorlax, the SVP 051 promo number, the woodland Snorlax illustration, and the Pokémon Center logo above the retreat cost.",
+      "grookai_rule": "The unstamped promo and Pokémon Center logo version are cataloged separately. Product information describes documented distribution, not the origin of an individual owned card.",
+      "source_urls": [
+        "https://www.pokemon.com/us/pokemon-tcg/product-gallery/scarlet-violet-151-pokemon-center-elite-trainer-box/"
+      ]
+    },
+    "special_card_etb_eevee_173_pokemon_center": {
+      "family_key": "special_card_etb_eevee_173_pokemon_center",
+      "family_label": "Eevee SVP 173 · Pokémon Center ETB",
+      "variant_category": "product_promo_identity",
+      "confidence": "high",
+      "why_it_exists": "The Pokémon Center logo version of Eevee SVP 173 was included in the Scarlet & Violet—Prismatic Evolutions Pokémon Center Elite Trainer Box. The box also contains an unstamped copy of the promo.",
+      "why_collectors_care": "The Pokémon Center logo distinguishes this Eevee promo from the unstamped card with the same number and artwork.",
+      "how_to_identify": "Look for Eevee, the SVP 173 promo number, the sleeping Eevee illustration, and the Pokémon Center logo above the retreat cost.",
+      "grookai_rule": "The unstamped promo and Pokémon Center logo version are cataloged separately. Product information describes documented distribution, not the origin of an individual owned card.",
+      "source_urls": [
+        "https://press.pokemon.com/en/New-Pokemon-Trading-Card-Game-Scarlet-VioletPrismatic-Evolutions-Expan"
+      ]
     }
   },
   "by_gv_id": {
@@ -11592,7 +11648,7 @@
     "GV-PK-PR-SV-051": {
       "card_print_id": "c7171ec8-743d-453d-bc8b-47517986916f",
       "gv_id": "GV-PK-PR-SV-051",
-      "origin_family_key": "sv_black_star_promos",
+      "origin_family_key": "special_card_etb_snorlax_051_unstamped",
       "variant_key": "",
       "printed_identity_modifier": null
     },
@@ -12446,7 +12502,7 @@
     "GV-PK-PR-SV-173": {
       "card_print_id": "a36f8d8a-353f-4cca-ba89-912eb7f10c3a",
       "gv_id": "GV-PK-PR-SV-173",
-      "origin_family_key": "sv_black_star_promos",
+      "origin_family_key": "special_card_etb_eevee_173_unstamped",
       "variant_key": "",
       "printed_identity_modifier": null
     },
@@ -21077,7 +21133,7 @@
     "GV-PK-SVP-051-POKEMON-CENTER-STAMP": {
       "card_print_id": "f605056d-5521-4dcf-a6e2-176b6d2ca7b5",
       "gv_id": "GV-PK-SVP-051-POKEMON-CENTER-STAMP",
-      "origin_family_key": "sv_black_star_promos",
+      "origin_family_key": "special_card_etb_snorlax_051_pokemon_center",
       "variant_key": "pokemon_center_stamp",
       "printed_identity_modifier": "pokemon_center_stamp"
     },
@@ -21252,7 +21308,7 @@
     "GV-PK-SVP-173-POKEMON-CENTER-STAMP": {
       "card_print_id": "cffe987c-a680-4f7e-b1cf-96c89bc9e229",
       "gv_id": "GV-PK-SVP-173-POKEMON-CENTER-STAMP",
-      "origin_family_key": "sv_black_star_promos",
+      "origin_family_key": "special_card_etb_eevee_173_pokemon_center",
       "variant_key": "pokemon_center_stamp",
       "printed_identity_modifier": "pokemon_center_stamp"
     },
@@ -39111,7 +39167,7 @@
     "a36f8d8a-353f-4cca-ba89-912eb7f10c3a": {
       "card_print_id": "a36f8d8a-353f-4cca-ba89-912eb7f10c3a",
       "gv_id": "GV-PK-PR-SV-173",
-      "origin_family_key": "sv_black_star_promos",
+      "origin_family_key": "special_card_etb_eevee_173_unstamped",
       "variant_key": "",
       "printed_identity_modifier": null
     },
@@ -42261,7 +42317,7 @@
     "c7171ec8-743d-453d-bc8b-47517986916f": {
       "card_print_id": "c7171ec8-743d-453d-bc8b-47517986916f",
       "gv_id": "GV-PK-PR-SV-051",
-      "origin_family_key": "sv_black_star_promos",
+      "origin_family_key": "special_card_etb_snorlax_051_unstamped",
       "variant_key": "",
       "printed_identity_modifier": null
     },
@@ -43059,7 +43115,7 @@
     "cffe987c-a680-4f7e-b1cf-96c89bc9e229": {
       "card_print_id": "cffe987c-a680-4f7e-b1cf-96c89bc9e229",
       "gv_id": "GV-PK-SVP-173-POKEMON-CENTER-STAMP",
-      "origin_family_key": "sv_black_star_promos",
+      "origin_family_key": "special_card_etb_eevee_173_pokemon_center",
       "variant_key": "pokemon_center_stamp",
       "printed_identity_modifier": "pokemon_center_stamp"
     },
@@ -46545,7 +46601,7 @@
     "f605056d-5521-4dcf-a6e2-176b6d2ca7b5": {
       "card_print_id": "f605056d-5521-4dcf-a6e2-176b6d2ca7b5",
       "gv_id": "GV-PK-SVP-051-POKEMON-CENTER-STAMP",
-      "origin_family_key": "sv_black_star_promos",
+      "origin_family_key": "special_card_etb_snorlax_051_pokemon_center",
       "variant_key": "pokemon_center_stamp",
       "printed_identity_modifier": "pokemon_center_stamp"
     },

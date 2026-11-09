@@ -1,0 +1,113 @@
+{
+  "version": "SPECIAL_CARD_ETB_READ_ONLY_AUDIT_V1",
+  "observed_at": "2026-11-06T04:25:07.834Z",
+  "sanity": {
+    "parents": 172418,
+    "sets": 3411,
+    "traits": 32903,
+    "vault_items": 317,
+    "snapshot_at": "2026-11-06T04:25:07.834Z"
+  },
+  "tls_verified": true,
+  "database_writes": 0,
+  "storage_uploads": 0,
+  "parent_images_downloaded": 4,
+  "parent_images_visually_verified": 4,
+  "parents": [
+    {
+      "card_print_id": "c7171ec8-743d-453d-bc8b-47517986916f",
+      "gv_id": "GV-PK-PR-SV-051",
+      "number": "051",
+      "variant_key": "",
+      "image_review": {
+        "status": "current_parent_visual_identity_matches",
+        "source_url": "https://assets.tcgdex.net/en/sv/svp/051/high.webp",
+        "storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/svp/gv-pk-pr-sv-051/17c345a33989cfa474d29493.webp",
+        "sha256": "17c345a33989cfa474d2949360ebfc39b5dd5458fe2d5e5c2cab0ce6aa5751b1",
+        "visually_checked_on": "2026-11-05",
+        "method": "direct_visual_inspection_of_current_downloaded_warehouse_object",
+        "name_matches": true,
+        "number_matches": true,
+        "artwork_matches": true,
+        "language": "English",
+        "pokemon_center_logo": "absent",
+        "intended_image_writes": 0,
+        "child_finish_claim": "No new exact child-finish certification; existing image/finish fields remain unchanged."
+      }
+    },
+    {
+      "card_print_id": "a36f8d8a-353f-4cca-ba89-912eb7f10c3a",
+      "gv_id": "GV-PK-PR-SV-173",
+      "number": "173",
+      "variant_key": "",
+      "image_review": {
+        "status": "current_parent_visual_identity_matches",
+        "source_url": "https://assets.tcgdex.net/en/sv/svp/173/high.webp",
+        "storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/svp/gv-pk-pr-sv-173/b049a37d94498f7e511ff84e.webp",
+        "sha256": "b049a37d94498f7e511ff84e16eda618e08e57ff1a40b603ccff9642b89ac715",
+        "visually_checked_on": "2026-11-05",
+        "method": "direct_visual_inspection_of_current_downloaded_warehouse_object",
+        "name_matches": true,
+        "number_matches": true,
+        "artwork_matches": true,
+        "language": "English",
+        "pokemon_center_logo": "absent",
+        "intended_image_writes": 0,
+        "child_finish_claim": "No new exact child-finish certification; existing image/finish fields remain unchanged."
+      }
+    },
+    {
+      "card_print_id": "f605056d-5521-4dcf-a6e2-176b6d2ca7b5",
+      "gv_id": "GV-PK-SVP-051-POKEMON-CENTER-STAMP",
+      "number": "051",
+      "variant_key": "pokemon_center_stamp",
+      "image_review": {
+        "status": "current_parent_visual_identity_matches",
+        "source_url": "https://tcgplayer-cdn.tcgplayer.com/product/517270_in_1000x1000.jpg",
+        "storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/svp/gv-pk-svp-051-pokemon-center-stamp/d75c140e2aa2aa0e3d879fc3d73f1a67acf2a0e8a0b846130935d231ee6f92c2.jpg",
+        "sha256": "d75c140e2aa2aa0e3d879fc3d73f1a67acf2a0e8a0b846130935d231ee6f92c2",
+        "visually_checked_on": "2026-11-05",
+        "method": "direct_visual_inspection_of_current_downloaded_warehouse_object",
+        "name_matches": true,
+        "number_matches": true,
+        "artwork_matches": true,
+        "language": "English",
+        "pokemon_center_logo": "present",
+        "intended_image_writes": 0,
+        "child_finish_claim": "No new exact child-finish certification; existing image/finish fields remain unchanged."
+      }
+    },
+    {
+      "card_print_id": "cffe987c-a680-4f7e-b1cf-96c89bc9e229",
+      "gv_id": "GV-PK-SVP-173-POKEMON-CENTER-STAMP",
+      "number": "173",
+      "variant_key": "pokemon_center_stamp",
+      "image_review": {
+        "status": "current_parent_visual_identity_matches",
+        "source_url": "https://tcgplayer-cdn.tcgplayer.com/product/610757_in_1000x1000.jpg",
+        "storage_path": "warehouse-derived/self-hosted-images-v1/card_prints/svp/gv-pk-svp-173-pokemon-center-stamp/24291b3ec064cb54bf7aea98c2d5f00de9e549c5752e032c6cf4d690c6c16b89.jpg",
+        "sha256": "24291b3ec064cb54bf7aea98c2d5f00de9e549c5752e032c6cf4d690c6c16b89",
+        "visually_checked_on": "2026-11-05",
+        "method": "direct_visual_inspection_of_current_downloaded_warehouse_object",
+        "name_matches": true,
+        "number_matches": true,
+        "artwork_matches": true,
+        "language": "English",
+        "pokemon_center_logo": "present",
+        "intended_image_writes": 0,
+        "child_finish_claim": "No new exact child-finish certification; existing image/finish fields remain unchanged."
+      }
+    }
+  ],
+  "child_image_scope": {
+    "total_existing_children": 6,
+    "children_with_direct_image_fields": 2,
+    "new_child_finish_certifications": 0,
+    "all_child_fields_preserved": true
+  },
+  "external_receipts": {
+    "live_readback_sha256": "2e5a76dd6711c30c18c90dc5c83967e072a3a16e371c42760326b791d1049d0a",
+    "current_image_acquisition_sha256": "b8580a4b55a4535f1534d95a785a951b1c2b326b5541b9c9ae794a5de497f00d",
+    "external_evidence_directory": "C:\\grookai_vault_operator_artifacts\\special_card_product_origins_20261105"
+  }
+}
