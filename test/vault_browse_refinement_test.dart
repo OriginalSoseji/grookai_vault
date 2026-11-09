@@ -158,4 +158,63 @@ void main() {
     );
     expect(selectedName, findsOneWidget);
   });
+
+  testWidgets('combined search and pricing empty state clears both filters', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: buildGrookaiTheme(Brightness.dark),
+        home: const Scaffold(body: VaultPage()),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Filter'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Unpriced'));
+    await tester.pumpAndSettle();
+    await tester.binding.handlePopRoute();
+    await tester.pumpAndSettle();
+
+    final search = find.byType(TextField).first;
+    await tester.enterText(search, 'Eevee');
+    await tester.pumpAndSettle();
+
+    expect(find.text('No cards match these filters'), findsOneWidget);
+    await tester.tap(find.text('Clear search and pricing filters'));
+    await tester.pumpAndSettle();
+
+    expect(tester.widget<TextField>(search).controller!.text, isEmpty);
+    expect(find.text('Filter'), findsOneWidget);
+    expect(find.text('Your vault is empty'), findsOneWidget);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('recent empty state returns directly to all cards', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: buildGrookaiTheme(Brightness.dark),
+        home: const Scaffold(body: VaultPage()),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Filter'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Recent'));
+    await tester.pumpAndSettle();
+    await tester.binding.handlePopRoute();
+    await tester.pumpAndSettle();
+
+    expect(find.text('Nothing recent'), findsOneWidget);
+    await tester.tap(find.text('View all cards'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Your vault is empty'), findsOneWidget);
+    expect(find.text('Nothing recent'), findsNothing);
+    expect(tester.takeException(), isNull);
+  });
 }
