@@ -9,6 +9,7 @@ const sellerRoute = read("apps/web/src/app/api/ebay/seller/route.ts");
 const accountScreen = read("lib/screens/account/account_screen.dart");
 const androidReleaseWorkflow = read(".github/workflows/flutter-build-apk.yml");
 const androidGradle = read("android/app/build.gradle.kts");
+const operatorPlaybook = read("docs/ops/GROOKAI_OPERATOR_PLAYBOOK_V1.md");
 
 test("native seller requests preserve the user's bearer identity for auth.uid RPCs", () => {
   assert.match(sellerHttp, /createServerComponentClient\(\)/);
@@ -34,5 +35,14 @@ test("signed Android update supports only a validated higher versionCode on the 
   assert.match(androidReleaseWorkflow, /REQUESTED_BUILD_NUMBER <= BASE_BUILD_NUMBER/);
   assert.match(androidReleaseWorkflow, /--build-number=\$REQUESTED_BUILD_NUMBER/);
   assert.match(androidGradle, /applicationId\s*=\s*["']com\.grookai\.vault["']/);
+});
+
+test("operator playbook documents the hosted build override and signer continuity", () => {
+  assert.match(operatorPlaybook, /Flutter Build Signed APK workflow/);
+  assert.match(operatorPlaybook, /optional `build_number`/);
+  assert.match(operatorPlaybook, /eBay Native Account Access and Release contract/);
+  assert.match(operatorPlaybook, /EBAY_NATIVE_ACCOUNT_ACCESS_20261107\.md/);
+  assert.match(operatorPlaybook, /same signing certificate/);
+  assert.match(operatorPlaybook, /do not treat it as a production release/);
 });
 

@@ -37,3 +37,11 @@ existing signed-in eBay listings workspace and displayed the collector's
 existing drafts. The live native seller API and a draft read both returned
 HTTP 200. No listing was published and no draft was modified. The installed
 build is a device QA build, not a production-signed release.
+
+## Operator workflow follow-up — November 9, 2026
+
+The hosted `build_number` override, production/debug signer rules, and
+post-install seller readback steps are now indexed in
+`docs/ops/GROOKAI_OPERATOR_PLAYBOOK_V1.md`. The native Account access contract
+test also guards these operator instructions so future workflow changes keep
+the durable instructions in sync.
