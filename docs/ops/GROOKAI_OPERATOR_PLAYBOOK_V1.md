@@ -1,5 +1,37 @@
 # Grookai Operator Playbook V1
 
+## eBay Account access and Android build continuity — November 9, 2026
+
+PR #877 adds the native **Account → Connected accounts → eBay seller account**
+entry and the active
+[eBay Native Account Access and Release contract](../contracts/EBAY_NATIVE_ACCOUNT_ACCESS_AND_RELEASE_V1.md).
+The current Samsung QA result and exact signer/build evidence are recorded in
+the [eBay Account access checkpoint](../checkpoints/EBAY_NATIVE_ACCOUNT_ACCESS_20261107.md).
+
+For a normal production Android artifact, use the
+[Flutter Build Signed APK workflow](../../.github/workflows/flutter-build-apk.yml).
+It runs for pushes to `main`; a manual run can supply optional `build_number`.
+When supplied, the workflow accepts digits only and requires the number to be
+higher than the frozen `pubspec.yaml` baseline. Use this input when an installed
+device is ahead of that baseline; do not edit shared package metadata just to
+advance one device. Download the `signed-release-apk` artifact from the
+successful run.
+
+Before installing any APK, record the installed application ID, version code,
+and signing certificate. An in-place update must keep
+`com.grookai.vault`, use the same signing certificate as the installed app, and
+have a higher version code. Never uninstall the user's app, change its package,
+or bypass a signer mismatch to make an update install. A device already running
+a debug-signed QA build can receive a same-key debug update for local
+verification; label it QA and do not treat it as a production release.
+Production releases use the production signing key. Do not try to update a
+debug-signed install with a production-signed artifact or the reverse.
+
+After installation, open Account → Connected accounts → eBay seller account,
+verify the native `GET /api/ebay/seller` state and a saved-draft read, and make
+no listing or draft writes during qualification. The collector remains the
+only actor who chooses to publish.
+
 ## Pricing continuation and seller renewal — October29,2026 UTC
 
 Read the final continuation section of

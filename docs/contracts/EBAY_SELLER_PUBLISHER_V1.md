@@ -100,3 +100,7 @@ labs, repair migration history, or use ad-hoc remote SQL mutation.
 
 Release requires normal hooks, hosted checks, an integrated signed build, actual
 seller consent and provider readback. Report unverified steps explicitly.
+
+Native Account entry, bearer identity context, exact-candidate verification and
+signed Android build continuity are additionally governed by
+[EBAY_NATIVE_ACCOUNT_ACCESS_AND_RELEASE_V1](EBAY_NATIVE_ACCOUNT_ACCESS_AND_RELEASE_V1.md).
