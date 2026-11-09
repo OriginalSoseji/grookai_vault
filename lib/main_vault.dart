@@ -1258,6 +1258,10 @@ class VaultPageState extends State<VaultPage> {
     });
   }
 
+  void _clearVaultSearch() {
+    _searchController.clear();
+  }
+
   void _setView(_VaultStructuralView view) {
     if (_view == view) {
       return;
@@ -2562,24 +2566,43 @@ class VaultPageState extends State<VaultPage> {
           );
         } else {
           final pricingFilterActive = _pricingFilter != _VaultPricingFilter.all;
+          final searchActive = _search.trim().isNotEmpty;
+          final bothFiltersActive = pricingFilterActive && searchActive;
           vaultContentSlivers.add(
             SliverToBoxAdapter(
               child: _buildVaultMessage(
-                _search.trim().isEmpty && !pricingFilterActive
+                !searchActive && !pricingFilterActive
                     ? 'Your vault is empty'
+                    : bothFiltersActive
+                    ? 'No cards match these filters'
                     : pricingFilterActive
                     ? _pricingFilter == _VaultPricingFilter.priced
                           ? 'No priced cards'
                           : 'No unpriced cards'
                     : 'No matching cards',
-                _search.trim().isEmpty && !pricingFilterActive
+                !searchActive && !pricingFilterActive
                     ? 'Scan or search to add your first card.'
+                    : bothFiltersActive
+                    ? 'Try another search or clear the search and pricing filters.'
                     : pricingFilterActive
                     ? 'No cards match the current pricing filter.'
                     : 'Try a different search term or clear the current query.',
-                actionLabel: pricingFilterActive ? 'Show all prices' : null,
-                onAction: pricingFilterActive
+                actionLabel: bothFiltersActive
+                    ? 'Clear search and pricing filters'
+                    : pricingFilterActive
+                    ? 'Show all prices'
+                    : searchActive
+                    ? 'Clear search'
+                    : null,
+                onAction: bothFiltersActive
+                    ? () {
+                        _clearVaultSearch();
+                        _setPricingFilter(_VaultPricingFilter.all);
+                      }
+                    : pricingFilterActive
                     ? () => _setPricingFilter(_VaultPricingFilter.all)
+                    : searchActive
+                    ? _clearVaultSearch
                     : null,
               ),
             ),
@@ -2602,6 +2625,8 @@ class VaultPageState extends State<VaultPage> {
                 _search.trim().isEmpty
                     ? 'Every card in your vault is one of a kind.'
                     : 'Try a different search term or clear the current query.',
+                actionLabel: _search.trim().isEmpty ? null : 'Clear search',
+                onAction: _search.trim().isEmpty ? null : _clearVaultSearch,
               ),
             ),
           );
@@ -2623,6 +2648,12 @@ class VaultPageState extends State<VaultPage> {
                 _search.trim().isEmpty
                     ? 'Nothing added in the last 30 days.'
                     : 'Try a different search term or clear the current query.',
+                actionLabel: _search.trim().isEmpty
+                    ? 'View all cards'
+                    : 'Clear search',
+                onAction: _search.trim().isEmpty
+                    ? () => _setView(_VaultStructuralView.all)
+                    : _clearVaultSearch,
               ),
             ),
           );
@@ -2655,6 +2686,12 @@ class VaultPageState extends State<VaultPage> {
                 _search.trim().isNotEmpty
                     ? 'Try a different search or clear the current query.'
                     : 'Cards you add to your wall will appear here.',
+                actionLabel: _search.trim().isNotEmpty
+                    ? 'Clear search'
+                    : 'Browse all cards',
+                onAction: _search.trim().isNotEmpty
+                    ? _clearVaultSearch
+                    : () => _setView(_VaultStructuralView.all),
               ),
             ),
           );
@@ -2745,6 +2782,16 @@ class VaultPageState extends State<VaultPage> {
                       : _pokemonSearch.trim().isNotEmpty
                       ? 'Try a different Pokemon name.'
                       : 'Add cards to start browsing by Pokemon name.',
+                  actionLabel: _canonicalSpeciesSlug != null
+                      ? 'Browse all Pokémon'
+                      : _pokemonSearch.trim().isNotEmpty
+                      ? 'Clear search'
+                      : null,
+                  onAction: _canonicalSpeciesSlug != null
+                      ? _clearCanonicalSpeciesFilter
+                      : _pokemonSearch.trim().isNotEmpty
+                      ? _clearVaultSearch
+                      : null,
                 ),
               ),
             );
