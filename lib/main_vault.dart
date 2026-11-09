@@ -1986,6 +1986,14 @@ class VaultPageState extends State<VaultPage> {
     };
   }
 
+  String _vaultSortLabel(_SortBy sortBy) {
+    return switch (sortBy) {
+      _SortBy.newest => 'Newest',
+      _SortBy.name => 'Name (A–Z)',
+      _SortBy.qty => 'Quantity (low–high)',
+    };
+  }
+
   int get _activeVaultFilterCount {
     return (_view == _VaultStructuralView.all ||
                 _view == _VaultStructuralView.bySet
@@ -2897,30 +2905,33 @@ class VaultPageState extends State<VaultPage> {
                           ],
                         ),
                       PopupMenuButton<_SortBy>(
-                        tooltip: 'Sort Vault',
+                        tooltip: 'Sort Vault · ${_vaultSortLabel(_sortBy)}',
                         onSelected: (value) {
                           setState(() {
                             _sortBy = value;
                             _recomputeDerivedData();
                           });
                         },
-                        itemBuilder: (_) => const [
-                          PopupMenuItem(
+                        itemBuilder: (_) => [
+                          CheckedPopupMenuItem(
                             value: _SortBy.newest,
-                            child: Text('Newest'),
+                            checked: _sortBy == _SortBy.newest,
+                            child: const Text('Newest'),
                           ),
-                          PopupMenuItem(
+                          CheckedPopupMenuItem(
                             value: _SortBy.name,
-                            child: Text('Name (A–Z)'),
+                            checked: _sortBy == _SortBy.name,
+                            child: const Text('Name (A–Z)'),
                           ),
-                          PopupMenuItem(
+                          CheckedPopupMenuItem(
                             value: _SortBy.qty,
-                            child: Text('Quantity (low–high)'),
+                            checked: _sortBy == _SortBy.qty,
+                            child: const Text('Quantity (low–high)'),
                           ),
                         ],
-                        child: const _VaultToolbarControl(
+                        child: _VaultToolbarControl(
                           icon: Icons.swap_vert_rounded,
-                          label: 'Sort',
+                          label: _vaultSortLabel(_sortBy),
                         ),
                       ),
                     ],

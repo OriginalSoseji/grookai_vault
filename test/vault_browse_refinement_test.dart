@@ -128,4 +128,34 @@ void main() {
     expect(find.text('Duplicates'), findsNothing);
     expect(tester.takeException(), isNull);
   });
+
+  testWidgets('Vault keeps the active sort visible and selected', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: buildGrookaiTheme(Brightness.dark),
+        home: const Scaffold(body: VaultPage()),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.text('Newest'), findsOneWidget);
+    await tester.tap(find.byTooltip('Sort Vault · Newest'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Name (A–Z)'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Name (A–Z)'), findsOneWidget);
+    expect(find.byTooltip('Sort Vault · Name (A–Z)'), findsOneWidget);
+    await tester.tap(find.byTooltip('Sort Vault · Name (A–Z)'));
+    await tester.pumpAndSettle();
+    final selectedName = find.ancestor(
+      of: find.text('Name (A–Z)'),
+      matching: find.byWidgetPredicate(
+        (widget) => widget is CheckedPopupMenuItem && widget.checked,
+      ),
+    );
+    expect(selectedName, findsOneWidget);
+  });
 }
