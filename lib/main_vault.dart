@@ -1987,8 +1987,95 @@ class VaultPageState extends State<VaultPage> {
   }
 
   int get _activeVaultFilterCount {
-    return (_view == _VaultStructuralView.all ? 0 : 1) +
+    return (_view == _VaultStructuralView.all ||
+                _view == _VaultStructuralView.bySet
+            ? 0
+            : 1) +
         (_pricingFilter == _VaultPricingFilter.all ? 0 : 1);
+  }
+
+  Widget _buildActiveVaultFilterChips(ThemeData theme) {
+    final activeView =
+        _view == _VaultStructuralView.all || _view == _VaultStructuralView.bySet
+        ? null
+        : _view;
+    final hasPricingFilter = _pricingFilter != _VaultPricingFilter.all;
+    if (activeView == null && !hasPricingFilter) {
+      return const SizedBox.shrink();
+    }
+
+    final colorScheme = theme.colorScheme;
+    final children = <Widget>[];
+    if (activeView != null) {
+      final label = switch (activeView) {
+        _VaultStructuralView.all => 'All',
+        _VaultStructuralView.onWall => 'On Wall',
+        _VaultStructuralView.duplicates => 'Duplicates',
+        _VaultStructuralView.recent => 'Recent',
+        _VaultStructuralView.bySet => 'Sets',
+        _VaultStructuralView.pokemon => 'Pokémon',
+      };
+      children.add(
+        _activeVaultFilterChip(
+          label: label,
+          tooltip: 'Clear $label view filter',
+          onClear: () => _setView(_VaultStructuralView.all),
+          colorScheme: colorScheme,
+        ),
+      );
+    }
+    if (hasPricingFilter) {
+      final label = switch (_pricingFilter) {
+        _VaultPricingFilter.all => 'All prices',
+        _VaultPricingFilter.priced => 'Priced only',
+        _VaultPricingFilter.unpriced => 'Unpriced only',
+      };
+      children.add(
+        _activeVaultFilterChip(
+          label: label,
+          tooltip: 'Clear $label filter',
+          onClear: () => _setPricingFilter(_VaultPricingFilter.all),
+          colorScheme: colorScheme,
+        ),
+      );
+    }
+    if (children.length > 1) {
+      children.add(
+        TextButton(
+          onPressed: () {
+            _setView(_VaultStructuralView.all);
+            _setPricingFilter(_VaultPricingFilter.all);
+          },
+          child: const Text('Clear all'),
+        ),
+      );
+    }
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 2),
+      child: Wrap(spacing: 6, runSpacing: 4, children: children),
+    );
+  }
+
+  Widget _activeVaultFilterChip({
+    required String label,
+    required String tooltip,
+    required VoidCallback onClear,
+    required ColorScheme colorScheme,
+  }) {
+    return Tooltip(
+      message: tooltip,
+      child: InputChip(
+        label: Text(label),
+        selected: true,
+        onPressed: onClear,
+        onDeleted: onClear,
+        deleteIcon: const Icon(Icons.close_rounded, size: 16),
+        visualDensity: VisualDensity.compact,
+        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        side: BorderSide(color: colorScheme.primary.withValues(alpha: 0.42)),
+      ),
+    );
   }
 
   Widget _buildVaultFilterButton(ThemeData theme) {
@@ -2838,6 +2925,7 @@ class VaultPageState extends State<VaultPage> {
                       ),
                     ],
                   ),
+                  _buildActiveVaultFilterChips(theme),
                   const SizedBox(height: 6),
                   Row(
                     children: [

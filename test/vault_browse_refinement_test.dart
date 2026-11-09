@@ -94,4 +94,38 @@ void main() {
       });
     }
   }
+
+  testWidgets('active Vault filters are visible and removable inline', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(390, 844);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: buildGrookaiTheme(Brightness.dark),
+        home: const Scaffold(body: VaultPage()),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Filter'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Duplicates'));
+    await tester.pumpAndSettle();
+    await tester.binding.handlePopRoute();
+    await tester.pumpAndSettle();
+
+    expect(find.text('Duplicates'), findsOneWidget);
+    expect(find.text('Filter · 1'), findsOneWidget);
+    await tester.tap(find.text('Duplicates'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Filter · 1'), findsNothing);
+    expect(find.text('Filter'), findsOneWidget);
+    expect(find.text('Duplicates'), findsNothing);
+    expect(tester.takeException(), isNull);
+  });
 }
