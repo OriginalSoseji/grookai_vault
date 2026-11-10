@@ -63,3 +63,43 @@ for (const mode of ['development', 'production']) {
     }
   });
 }
+
+const productPreview = 'https://product-images.tcgplayer.com/fit-in/1000x1000/648631.jpg';
+
+test('published product preview delivery keeps the original public source', () => {
+  assert.equal(normalizePublicCardImageSrc(productPreview), productPreview);
+  assert.equal(shouldBypassNextImageOptimization(productPreview), true);
+  const wrapped = `https://grookaivault.com/_next/image?url=${encodeURIComponent(productPreview)}&w=320&q=75`;
+  assert.equal(normalizePublicCardImageSrc(wrapped), productPreview);
+  assert.equal(shouldBypassNextImageOptimization(wrapped), true);
+});
+
+test('product preview delivery rejects lookalike hosts and unqualified URL shapes', () => {
+  for (const url of [
+    productPreview.replace('https:', 'http:'),
+    productPreview.replace('.com/', '.com.example.org/'),
+    productPreview.replace('.com/', '.com:8443/'),
+    productPreview.replace('https://', 'https://user:password@'),
+    productPreview.replace('/1000x1000/', '/other/'),
+    productPreview.replace('/648631.jpg', '/../648631.jpg'),
+    productPreview.replace('/648631.jpg', '/arbitrary.html'),
+    productPreview + '?redirect=https://example.org',
+    productPreview + '#fragment',
+  ]) assert.equal(shouldBypassNextImageOptimization(url), false, url);
+});
+
+for (const mode of ['development', 'production']) {
+  test(`Next image props deliver the published product preview directly in ${mode}`, () => {
+    const previous = process.env.NODE_ENV;
+    process.env.NODE_ENV = mode;
+    try {
+      const { getImageProps } = require('next/image');
+      const { props } = getImageProps({ src: productPreview, alt: 'Pikachu representative image', width: 1200, height: 1600, unoptimized: shouldBypassNextImageOptimization(productPreview) });
+      assert.equal(props.src, productPreview);
+      assert.equal(props.srcSet, undefined);
+    } finally {
+      if (previous === undefined) delete process.env.NODE_ENV;
+      else process.env.NODE_ENV = previous;
+    }
+  });
+}

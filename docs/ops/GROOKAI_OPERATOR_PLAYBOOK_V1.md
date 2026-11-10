@@ -4531,3 +4531,7 @@ reconciliation and health artifacts; do not hardcode a TCGplayer URL or weaken
 the freshness, mapping, quarantine, or publication guards. The successful
 terminal and health evidence is preserved with the APP511 live-verification
 checkpoint under the private recovery root.
+
+## Published product-preview image delivery — November 10, 2026
+
+See [the image transport checkpoint](../checkpoints/CATALOG_PUBLIC_CARD_IMAGE_TRANSPORT_20261110.md). Existing public TCGplayer 1000x1000 JPEG previews use the shared direct-delivery path, with strict host/path/URL checks. This preserves representative image truth and does not expand server optimizer access or mutate catalog data. Evidence is under catalog_public_card_image_transport_v1_20261110.
