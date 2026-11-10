@@ -33,11 +33,13 @@ class ScanCaptureV5Screen extends StatefulWidget {
   const ScanCaptureV5Screen({
     super.key,
     this.onStartBatch,
+    this.onOpenAccountHub,
     this.onBatchCapture,
     this.batchCount = 0,
     this.multipleCards = false,
   });
   final Future<void> Function()? onStartBatch;
+  final Future<void> Function()? onOpenAccountHub;
   final Future<void> Function(Uint8List bytes)? onBatchCapture;
   final int batchCount;
   final bool multipleCards;
@@ -398,10 +400,14 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
     if (_addingToVault) return;
     final userId = Supabase.instance.client.auth.currentUser?.id;
     if (userId == null || userId.trim().isEmpty) {
-      _showScanNotice(
-        'Sign in required',
-        'Sign in to add this card to your Vault.',
-      );
+      final messenger = ScaffoldMessenger.of(context);
+      messenger
+        ..hideCurrentSnackBar()
+        ..showSnackBar(
+          scannerV5SignInRequiredSnackBar(
+            onOpenAccountHub: widget.onOpenAccountHub,
+          ),
+        );
       return;
     }
     final cardPrintId = candidate.vaultCardPrintId;
@@ -775,6 +781,19 @@ class _ScanCaptureV5ScreenState extends State<ScanCaptureV5Screen>
     );
   }
 }
+
+SnackBar scannerV5SignInRequiredSnackBar({
+  required Future<void> Function()? onOpenAccountHub,
+}) => SnackBar(
+  content: const Text('Sign in to save this card. Your scan will stay here.'),
+  duration: const Duration(seconds: 8),
+  action: onOpenAccountHub == null
+      ? null
+      : SnackBarAction(
+          label: 'Open Account',
+          onPressed: () => unawaited(onOpenAccountHub()),
+        ),
+);
 
 String scannerV5ErrorType(Object error) {
   if (error is ScannerV5SecureConnectionException) return 'tls';
