@@ -48,7 +48,9 @@ void main() {
 
   testWidgets('terms flow saves exact-copy sale listing', (tester) async {
     _useTallViewport(tester);
-    final service = _FakeSaleListingService();
+    const ownerId = '22222222-2222-4222-8222-222222222222';
+    final service = _FakeSaleListingService(currentUserId: ownerId);
+    final handoffStore = _TrackingHandoffStore();
     await tester.pumpWidget(
       MaterialApp(
         home: ForSaleTermsScreen(
@@ -59,6 +61,7 @@ void main() {
             sellerHandle: 'Casey',
           ),
           service: service,
+          handoffStore: handoffStore,
           initialCopy: const SaleListingCopyContext(
             instanceId: 'INSTANCE-123',
             gvviId: 'GVVI-123',
@@ -79,7 +82,47 @@ void main() {
     expect(service.lastGvviId, 'GVVI-123');
     expect(service.lastVaultItemId, 'VAULT-123');
     expect(service.lastPrice, 42.5);
+    expect(handoffStore.clearedOwners, [ownerId]);
     expect(find.text('Sale listing saved.'), findsOneWidget);
+  });
+
+  testWidgets('ordinary editor opening never applies an old eBay handoff', (
+    tester,
+  ) async {
+    _useTallViewport(tester);
+    final handoffStore = _TrackingHandoffStore();
+    await tester.pumpWidget(
+      MaterialApp(
+        home: ForSaleTermsScreen(
+          gvviId: 'GVVI-123',
+          source: const GrookaiSaleListingSource(
+            cardName: 'Umbreon VMAX',
+            setLine: 'Evolving Skies #215',
+          ),
+          service: _FakeSaleListingService(),
+          handoffStore: handoffStore,
+          initialCopy: const SaleListingCopyContext(
+            instanceId: 'INSTANCE-123',
+            gvviId: 'GVVI-123',
+            vaultItemId: 'VAULT-123',
+            cardPrintId: 'CARD-123',
+            askingPriceAmount: 80,
+            askingPriceNote: 'New Vault terms',
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(handoffStore.loadCalls, 0);
+    expect(
+      tester.widget<TextField>(find.byType(TextField).first).controller!.text,
+      '80.00',
+    );
+    expect(
+      tester.widget<TextField>(find.byType(TextField).last).controller!.text,
+      'New Vault terms',
+    );
   });
 
   testWidgets('sale card is distinct from the exact-copy eBay listing path', (
@@ -267,7 +310,8 @@ void _useTallViewport(WidgetTester tester) {
 }
 
 class _FakeSaleListingService extends SaleListingService {
-  _FakeSaleListingService() : super(currentUserId: 'user-1');
+  _FakeSaleListingService({String currentUserId = 'user-1'})
+    : super(currentUserId: currentUserId);
 
   int saveCalls = 0;
   String? lastInstanceId;
@@ -300,5 +344,21 @@ class _FakeSaleListingService extends SaleListingService {
       currency: currency,
       note: note,
     );
+  }
+}
+
+class _TrackingHandoffStore extends SaleCardHandoffStore {
+  int loadCalls = 0;
+  final clearedOwners = <String>[];
+
+  @override
+  Future<SaleCardHandoffRecord?> load(String ownerId) async {
+    loadCalls += 1;
+    return null;
+  }
+
+  @override
+  Future<void> clear(String ownerId) async {
+    clearedOwners.add(ownerId);
   }
 }

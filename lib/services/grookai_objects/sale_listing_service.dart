@@ -20,6 +20,11 @@ class SaleListingService {
   final SaleListingPersist? _persist;
   final String? _currentUserIdOverride;
 
+  String? get currentUserIdOrNull {
+    final id = _currentUserId();
+    return id.isEmpty ? null : id;
+  }
+
   Future<SaleListingSaveResult> saveSingleCardListing({
     required String instanceId,
     required String gvviId,

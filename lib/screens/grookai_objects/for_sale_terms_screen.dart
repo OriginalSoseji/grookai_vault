@@ -119,17 +119,6 @@ class _ForSaleTermsScreenState extends State<ForSaleTermsScreen> {
 
   Future<void> _initializeForCopy(SaleListingCopyContext copy) async {
     SaleCardHandoff? draft = widget.initialDraft;
-    try {
-      final ownerId = _currentOwnerId;
-      if (draft == null && ownerId != null) {
-        final record = await widget.handoffStore.load(ownerId);
-        if (record?.instanceId == copy.instanceId) {
-          draft = record?.saleCard;
-        }
-      }
-    } catch (_) {
-      // A retained draft is optional; the current exact copy still opens.
-    }
     if (draft != null &&
         _source.cardImageUrl == null &&
         _source.cardImageFallbackUrl == null) {
@@ -185,7 +174,7 @@ class _ForSaleTermsScreenState extends State<ForSaleTermsScreen> {
 
   String? get _currentOwnerId {
     try {
-      return Supabase.instance.client.auth.currentUser?.id;
+      return widget.service.currentUserIdOrNull;
     } catch (_) {
       return null;
     }
@@ -252,6 +241,15 @@ class _ForSaleTermsScreenState extends State<ForSaleTermsScreen> {
         currency: 'USD',
         note: _blankToNull(_noteController.text),
       );
+      final ownerId = _currentOwnerId;
+      if (ownerId != null) {
+        try {
+          await widget.handoffStore.clear(ownerId);
+        } catch (_) {
+          // Local recovery cleanup must not turn a confirmed Vault save into
+          // an apparent failure.
+        }
+      }
       if (!mounted) {
         return;
       }
