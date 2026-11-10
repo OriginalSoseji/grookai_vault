@@ -23,6 +23,4 @@ export type ExploreResultCard = CardSummary & {
   display_discriminator?: string;
   route_query?: string;
   search_rank_score?: number;
-  release_date_scope?: "individual_print";
-  release_date_source?: "scryfall";
 };

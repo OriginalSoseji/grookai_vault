@@ -25,6 +25,28 @@ export async function withMtgPrintReleaseDates<T extends { id: string }>(
     release_date_scope: 'individual_print' as const, ...dates.get(row.id) }));
 }
 
+// Display-only consumers can retain the rest of a card when optional date
+// evidence is unavailable. Keep an explicit unknown individual-print scope;
+// never replace it with the collection's launch date. Search remains strict.
+export async function getMtgCardReleaseDates(
+  client: SupabaseClient,
+  rows: Array<{ id: string | null; identity_domain: string | null }>,
+): Promise<Map<string, IndividualPrintDate>> {
+  const ids = [...new Set(rows.filter(row => row.identity_domain === 'mtg_eng_paper_print')
+    .map(row => row.id).filter((id): id is string => Boolean(id)))];
+  if (!ids.length) return new Map();
+  try {
+    const dates = await withMtgPrintReleaseDates(client, ids.map(id => ({ id })));
+    return new Map(dates.map(date => [date.id, date]));
+  } catch {
+    console.error('[catalog-release-date] optional current print dates unavailable', {
+      code: 'MTG_PRINT_RELEASE_READ_UNAVAILABLE', card_count: ids.length,
+    });
+    return new Map(ids.map(id => [id, { release_date: null, release_year: null,
+      release_date_scope: 'individual_print' as const }]));
+  }
+}
+
 // Only public fields obtained with the request's own client leave this helper.
 // The private candidate IDs are never an authorization or a search result.
 export async function fetchMtgPrintDateCandidates(

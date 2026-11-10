@@ -3,6 +3,7 @@ import "server-only";
 import { getCompatiblePublicGvIdCandidates, pickResolvedPublicGvIdRow } from "@/lib/gvIdAlias";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { getChildDisplayImageFallbacks } from "@/lib/cards/childDisplayImageFallbacks";
+import { getMtgCardReleaseDates } from "@/lib/cards/mtgPrintReleaseDates";
 import { getPublicPricingByCardIds } from "@/lib/pricing/getPublicPricingByCardIds";
 import { createPublicServerClient } from "@/lib/supabase/publicServer";
 import { createServerComponentClient } from "@/lib/supabase/server";
@@ -21,6 +22,9 @@ export type ComparePublicCard = {
   number: string;
   rarity?: string;
   release_year?: number;
+  release_date?: string;
+  release_date_scope?: "individual_print";
+  release_date_source?: "scryfall";
   artist?: string;
   image_url?: string;
   representative_image_url?: string;
@@ -54,6 +58,7 @@ type PublicCompareCardRow = {
   id: string | null;
   gv_id: string | null;
   name: string | null;
+  identity_domain: string | null;
   set_code: string | null;
   number: string | null;
   rarity: string | null;
@@ -119,6 +124,7 @@ export async function getPublicCardsByGvIds(
       `
         gv_id,
         name,
+        identity_domain,
         set_code,
         number,
         rarity,
@@ -145,7 +151,7 @@ export async function getPublicCardsByGvIds(
 
   const rows = (data ?? []) as PublicCompareCardRow[];
   const cardIds = rows.map((row) => row.id).filter((value): value is string => Boolean(value));
-  const [pricesByCardId, childDisplayImageFallbacks] = await Promise.all([
+  const [pricesByCardId, childDisplayImageFallbacks, printDates] = await Promise.all([
     options.includePricing
       ? getPublicPricingByCardIds(
           options.pricingClient ?? await createServerComponentClient(),
@@ -153,6 +159,7 @@ export async function getPublicCardsByGvIds(
         )
       : Promise.resolve(new Map()),
     getChildDisplayImageFallbacks(supabase, rows),
+    getMtgCardReleaseDates(supabase, rows),
   ]);
 
   const cards: ComparePublicCard[] = [];
@@ -167,6 +174,8 @@ export async function getPublicCardsByGvIds(
     }
 
     const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
+    const individualPrint = row.identity_domain === "mtg_eng_paper_print";
+    const printDate = printDates.get(row.id ?? "");
     const imageFields = await resolveCardImageFieldsV1(row);
     const childDisplayImageFallback = row.id
       ? childDisplayImageFallbacks.get(row.id)
@@ -185,7 +194,10 @@ export async function getPublicCardsByGvIds(
       set_identity_model: setRecord?.identity_model?.trim() || undefined,
       number: row.number?.trim() || "",
       rarity: row.rarity?.trim() || undefined,
-      release_year: getReleaseYear(setRecord?.release_date),
+      release_year: individualPrint ? printDate?.release_year ?? undefined : getReleaseYear(setRecord?.release_date),
+      release_date: individualPrint ? printDate?.release_date ?? undefined : setRecord?.release_date ?? undefined,
+      release_date_scope: individualPrint ? "individual_print" : undefined,
+      release_date_source: printDate?.release_date_source,
       artist: row.artist?.trim() || undefined,
       image_url: imageFields.image_url ?? undefined,
       representative_image_url: imageFields.representative_image_url ?? undefined,

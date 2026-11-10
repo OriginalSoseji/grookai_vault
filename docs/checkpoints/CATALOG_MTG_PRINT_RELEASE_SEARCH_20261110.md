@@ -25,13 +25,17 @@ mapping, raw body or gameplay metadata is returned.
 
 Date filtering precedes child-printing enrichment and response pagination.
 Child identities and finishes remain intact. Display, newest and oldest sorting
-use the same qualified print date; other games retain their existing date scope.
+use the same qualified print date. Card detail, related-print and comparison
+records use that shared date scope too, so opening or comparing a search result
+does not substitute its collection's launch. Optional display-date transport
+failures preserve the card and an unknown print date; search completeness remains
+strict. Other games retain their existing date scope.
 There are no schema migrations, canonical writes, Storage operations, pricing
 changes or Vault mutations in this change.
 
 Verification includes actual rolling-set source fixtures, stale/ambiguous-owner
 and identity cases, unknown/invalid dates, requester visibility, complete evidence
-pagination, child-date retention and date-sort behavior. The original advertised
+pagination, child-date retention, date-sort and cross-consumer behavior. The original advertised
 Pokemon examples remain covered by the existing regressions. Production build
 and focused contracts pass. A real SDK qualification checked all 1,596 1993 date
 candidates with current requester visibility and source ownership; its longest

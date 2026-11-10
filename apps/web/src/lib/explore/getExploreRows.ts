@@ -40,7 +40,7 @@ import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
 import { getPublicCardPrintingOptions } from "@/lib/cards/getPublicCardPrintingOptions";
 import { governedStampCandidateFilter } from "@/lib/search/stampCandidateFilter";
 import { fetchConfirmedCameoGvIds } from "@/lib/search/confirmedCameoSearch";
-import { withMtgPrintReleaseDates, fetchMtgPrintDateCandidates } from "@/lib/search/mtgPrintReleaseDates";
+import { withMtgPrintReleaseDates, fetchMtgPrintDateCandidates } from "@/lib/cards/mtgPrintReleaseDates";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
 import type { VariantFlags } from "@/lib/cards/variantPresentation";
 import type { PublicGameScope } from "@/lib/publicGameScope";

@@ -30,7 +30,7 @@ function harness(rows,{error=null}={}){
   '@/lib/cards/childDisplayImageFallbacks':{},'@/lib/cards/getPublicCardPrintingOptions':{},
   // These Pokemon collector tests execute only the public lookup boundary.
   // Loading a Magic-only server dependency must not grant private reads here.
-  '@/lib/search/mtgPrintReleaseDates':{
+  '@/lib/cards/mtgPrintReleaseDates':{
    withMtgPrintReleaseDates(){assert.fail('Pokemon collector lookup cannot read private Magic date evidence');},
    fetchMtgPrintDateCandidates(){assert.fail('Pokemon collector lookup cannot discover private Magic date candidates');},
   },

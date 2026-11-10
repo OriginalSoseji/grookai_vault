@@ -67,6 +67,8 @@ export interface CardSummary {
   tcgdex_external_id?: string;
   release_date?: string;
   release_year?: number;
+  release_date_scope?: "individual_print";
+  release_date_source?: "scryfall";
   raw_price?: number;
   raw_price_source?: string;
   raw_price_ts?: string;
