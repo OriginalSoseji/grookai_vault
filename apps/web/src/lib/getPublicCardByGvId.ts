@@ -3,6 +3,7 @@ import { getCatalogSetPresentation } from "@/lib/catalogPresentation";
 import { resolveCollectorPrintedCoordinates } from "@/lib/catalogDisplayReference";
 import { resolveCardImageFieldsV1 } from "@/lib/canon/resolveCardImageFieldsV1";
 import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
+import { getMtgCardReleaseDates, type IndividualPrintDate } from "@/lib/cards/mtgPrintReleaseDates";
 import {
   getPublicCardPrintingOptions,
   type PublicCardPrintingOptionRow,
@@ -117,6 +118,7 @@ type RelatedCardRow = {
   name: string | null;
   number: string | null;
   number_plain: string | null;
+  identity_domain: string | null;
   rarity: string | null;
   image_url: string | null;
   image_alt_url: string | null;
@@ -371,6 +373,7 @@ async function getCardImageFaces(
 async function mapRelatedPrints(
   rows: RelatedCardRow[],
   childDisplayImageFallbacks = new Map<string, ChildDisplayImageFallback>(),
+  printDates = new Map<string, IndividualPrintDate>(),
 ): Promise<RelatedCardPrint[] | undefined> {
   if (rows.length === 0) {
     return undefined;
@@ -385,6 +388,8 @@ async function mapRelatedPrints(
     }
 
     const setRecord = Array.isArray(row.sets) ? row.sets[0] : row.sets;
+    const individualPrint = row.identity_domain === "mtg_eng_paper_print";
+    const printDate = printDates.get(row.id ?? "");
     const imageFields = await resolveCardImageFieldsV1(row);
     const childDisplayImageFallback = row.id
       ? childDisplayImageFallbacks.get(row.id)
@@ -424,8 +429,10 @@ async function mapRelatedPrints(
         ? fallbackDisplayImage.image_note
         : imageFields.image_note ?? undefined,
       tcgdex_external_id: extractTcgdexExternalId(row.external_ids),
-      release_date: setRecord?.release_date ?? undefined,
-      release_year: getReleaseYear(setRecord?.release_date),
+      release_date: individualPrint ? printDate?.release_date ?? undefined : setRecord?.release_date ?? undefined,
+      release_year: individualPrint ? printDate?.release_year ?? undefined : getReleaseYear(setRecord?.release_date),
+      release_date_scope: individualPrint ? "individual_print" : undefined,
+      release_date_source: printDate?.release_date_source,
       variant_key: row.variant_key?.trim() || undefined,
       printed_identity_modifier:
         row.printed_identity_modifier?.trim() || undefined,
@@ -622,12 +629,12 @@ async function getRelatedPrintsByName(
   }
 
   const rows = (data as RelatedCardRow[]).filter((row) => row.id !== excludeId);
-  const childDisplayImageFallbacks = await getChildDisplayImageFallbacks(
-    supabase,
-    rows,
-  );
+  const [childDisplayImageFallbacks, printDates] = await Promise.all([
+    getChildDisplayImageFallbacks(supabase, rows),
+    getMtgCardReleaseDates(supabase, rows),
+  ]);
 
-  return mapRelatedPrints(rows, childDisplayImageFallbacks);
+  return mapRelatedPrints(rows, childDisplayImageFallbacks, printDates);
 }
 
 async function getCameosByGvId(
@@ -748,6 +755,7 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
     printingRows,
     traitRecord,
     imageFaces,
+    printDates,
   ] =
     await Promise.all([
       getSetDetailsByCode(row.set_code),
@@ -762,6 +770,7 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
         : Promise.resolve([]),
       getPublicCardTraits(supabase, row.id),
       row.id ? getCardImageFaces(supabase, row.id) : Promise.resolve(undefined),
+      getMtgCardReleaseDates(supabase, [row]),
     ]);
   // Public pricing is resolved by the governed TCGPlayer market read model.
   const pricingByCardId = includePricing && row.id
@@ -782,7 +791,11 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
     setTotal: setRecord?.printed_total ?? fallbackSet.printedTotal,
     setIdentityModel: setRecord?.identity_model,
   });
-  const releaseDate = setRecord?.release_date ?? fallbackSet.releaseDate;
+  const individualPrint = row.identity_domain === "mtg_eng_paper_print";
+  const printDate = printDates.get(row.id ?? "");
+  const releaseDate = individualPrint
+    ? printDate?.release_date ?? undefined
+    : setRecord?.release_date ?? fallbackSet.releaseDate;
 
   return {
     id: row.id ?? "",
@@ -816,6 +829,8 @@ export const getPublicCardByGvId = cache(async function getPublicCardByGvId(
     printed_total: printedTotal,
     release_date: releaseDate ?? undefined,
     release_year: getReleaseYear(releaseDate),
+    release_date_scope: individualPrint ? "individual_print" : undefined,
+    release_date_source: printDate?.release_date_source,
     raw_price: priceRow?.raw_price,
     raw_price_source: priceRow?.raw_price_source,
     raw_price_ts: priceRow?.raw_price_ts,

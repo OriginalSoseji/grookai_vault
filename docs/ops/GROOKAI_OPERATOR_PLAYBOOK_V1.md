@@ -1,5 +1,19 @@
 # Grookai Operator Playbook V1
 
+## Magic print-date consumer repair - November 10, 2026
+
+Read [the Magic print-date checkpoint](../checkpoints/CATALOG_MTG_PRINT_RELEASE_SEARCH_20261110.md).
+Individual print release observations retain their own scope and current
+identity/source-owner checks. Never fill an undated rolling collection set with
+one member's date. Unknown print dates remain unknown. Search reads use the
+request's catalog visibility before publishing narrow verified date fields;
+private source candidates and evidence are never public search results.
+Card detail, related-print and comparison records share the same print-date
+projection. Display-only failures preserve the card with an unknown date;
+search filters still fail explicitly when complete verification is unavailable.
+Use the pinned full-cohort source proof and normal release gates. No schema or
+canonical write is part of this consumer change; other catalog queues remain open.
+
 ## Catalog baseline and advertised search - November 10, 2026
 
 Read [the current data/search checkpoint](../checkpoints/CATALOG_BASELINE_AND_SEARCH_20261110.md).

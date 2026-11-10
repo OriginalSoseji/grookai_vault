@@ -1,0 +1,298 @@
+{
+  "at": "2026-11-10T18:59:09.540Z",
+  "project": "ycdxbpibncqcchqiihfz",
+  "cases": [
+    {
+      "parent": {
+        "id": "0003e774-dab0-5b7b-a426-07800b35186c",
+        "gv_id": "GV-MTG-SF-D4DE5CE7-D6DF-48CB-9CB6-1F6F6A476B1D",
+        "name": "Vaevictis Asmadi, the Dire",
+        "number": "2239",
+        "set_code": "sld",
+        "identity_domain": "mtg_eng_paper_print",
+        "variant_key": "scryfall:d4de5ce7-d6df-48cb-9cb6-1f6f6a476b1d",
+        "print_identity_key": "scryfall:d4de5ce7-d6df-48cb-9cb6-1f6f6a476b1d",
+        "printed_identity_modifier": null,
+        "set_identity_model": "standard",
+        "external_ids": {
+          "scryfall": "d4de5ce7-d6df-48cb-9cb6-1f6f6a476b1d",
+          "scryfall_oracle": "c42ce2e9-4dfe-468a-8f41-49e187cb91d4"
+        },
+        "ai_metadata": {
+          "mtg_print_details_v1": {
+            "power": "6",
+            "colors": [
+              "B",
+              "G",
+              "R"
+            ],
+            "defense": null,
+            "loyalty": null,
+            "keywords": [
+              "Flying"
+            ],
+            "mana_cost": "{3}{B}{R}{G}",
+            "toughness": "6",
+            "mana_value": 6,
+            "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz",
+            "flavor_text": null,
+            "identity_id": "0f4ebba8-ad17-5c10-99eb-3b4ffc0ee8ea",
+            "oracle_text": "Flying\nWhenever Vaevictis Asmadi attacks, for each player, choose target permanent that player controls. Those players sacrifice those permanents. Each player who sacrificed a permanent this way reveals the top card of their library, then puts it onto the battlefield if it's a permanent card.",
+            "printed_name": null,
+            "printed_text": null,
+            "source_faces": null,
+            "produced_mana": null,
+            "source_artist": "Oxygen",
+            "source_layout": "normal",
+            "color_identity": [
+              "B",
+              "G",
+              "R"
+            ],
+            "color_indicator": null,
+            "illustration_id": "5c136c81-f839-4613-858c-33c221cd45d3",
+            "source_print_id": "d4de5ce7-d6df-48cb-9cb6-1f6f6a476b1d",
+            "source_provider": "scryfall",
+            "identity_binding": "historical_full_source_identity_and_identical_current_typed_observations",
+            "oracle_type_line": "Legendary Creature — Elder Dragon",
+            "identity_key_hash": "5517c22a2e7dc59e289f340084eca95cfddeec5abffdde4297eabe30f767bc99",
+            "printed_type_line": null,
+            "source_artist_ids": [
+              "26da0052-4b47-4369-a4be-6ee30ed7ff7a"
+            ],
+            "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+            "source_card_sha256": "9c7ed87ea51bcb2f73527e7df9a702eeba00d32ccbee4db282a911dabc648e79",
+            "source_coordinates": {
+              "name": "Vaevictis Asmadi, the Dire",
+              "set_code": "sld",
+              "collector_number": "2239"
+            },
+            "source_released_at": "2025-12-01",
+            "source_retrieved_at": "2026-11-10T10:35:48.783Z",
+            "verification_status": "source_supported",
+            "source_raw_import_id": "148881",
+            "normalization_version": "mtg_print_details:v1",
+            "source_bulk_updated_at": "2026-11-10T10:07:59.897+00:00",
+            "current_source_identity_flags_status": "conflicts_retained_as_evidence_not_promoted",
+            "current_source_identity_flag_conflicts": [
+              "full_art"
+            ],
+            "historical_identity_source_bulk_sha256": "4d74b3827c1de6cc882dede2f6a75e74f67974f2bc49054693ba7e3413fb6c7c",
+            "historical_identity_source_card_sha256": "35f847a22cf29507a151a4e2ae0190fa5a7d4d9a7d72de3fc33c022778fdbe4e"
+          }
+        }
+      },
+      "identities": [
+        {
+          "id": "0f4ebba8-ad17-5c10-99eb-3b4ffc0ee8ea",
+          "is_active": true,
+          "created_at": "2026-08-17T02:36:51.324156+00:00",
+          "updated_at": "2026-08-17T02:36:51.324156+00:00",
+          "card_print_id": "0003e774-dab0-5b7b-a426-07800b35186c",
+          "printed_number": "2239",
+          "identity_domain": "mtg_eng_paper_print",
+          "source_name_raw": "Vaevictis Asmadi, the Dire",
+          "identity_payload": {
+            "name": "Vaevictis Asmadi, the Dire",
+            "frame": "2015",
+            "promo": false,
+            "layout": "normal",
+            "finishes": [
+              "foil",
+              "nonfoil"
+            ],
+            "full_art": true,
+            "language": "en",
+            "set_code": "sld",
+            "textless": false,
+            "variation": false,
+            "promo_types": [
+              "universesbeyond"
+            ],
+            "border_color": "borderless",
+            "variation_of": null,
+            "frame_effects": [
+              "inverted",
+              "legendary"
+            ],
+            "security_stamp": "oval",
+            "scryfall_set_id": "4d92a8a7-ccb0-437d-abdc-9d70fc5ed672",
+            "collector_number": "2239",
+            "scryfall_print_id": "d4de5ce7-d6df-48cb-9cb6-1f6f6a476b1d",
+            "scryfall_oracle_id": "c42ce2e9-4dfe-468a-8f41-49e187cb91d4"
+          },
+          "identity_key_hash": "5517c22a2e7dc59e289f340084eca95cfddeec5abffdde4297eabe30f767bc99",
+          "set_code_identity": "sld",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "normalized_printed_name": "vaevictis asmadi, the dire"
+        }
+      ],
+      "owners": [
+        {
+          "id": 176541,
+          "meta": {
+            "oracle_id": "c42ce2e9-4dfe-468a-8f41-49e187cb91d4",
+            "image_policy": "reference_only_until_self_hosted_and_hashed",
+            "source_images": [
+              {
+                "png": "https://cards.scryfall.io/png/front/d/4/d4de5ce7-d6df-48cb-9cb6-1f6f6a476b1d.png?1783904676",
+                "large": "https://cards.scryfall.io/large/front/d/4/d4de5ce7-d6df-48cb-9cb6-1f6f6a476b1d.jpg?1783904676",
+                "normal": "https://cards.scryfall.io/normal/front/d/4/d4de5ce7-d6df-48cb-9cb6-1f6f6a476b1d.jpg?1783904676",
+                "face_index": 0
+              }
+            ],
+            "contract_version": "MTG_CANONICAL_CATALOG_SET_BATCH_V1",
+            "source_card_released_at": "2025-12-01"
+          },
+          "active": true,
+          "source": "scryfall",
+          "synced_at": "2026-08-17T02:36:51.324156+00:00",
+          "external_id": "d4de5ce7-d6df-48cb-9cb6-1f6f6a476b1d",
+          "card_print_id": "0003e774-dab0-5b7b-a426-07800b35186c"
+        }
+      ],
+      "set_release_date": null
+    },
+    {
+      "parent": {
+        "id": "000cab7d-18a4-50f6-8c22-8281279ddaa8",
+        "gv_id": "GV-MTG-SF-64263B28-C890-4D91-9FDA-AD06232E8623",
+        "name": "Llanowar Loamspeaker",
+        "number": "170s",
+        "set_code": "pdmu",
+        "identity_domain": "mtg_eng_paper_print",
+        "variant_key": "scryfall:64263b28-c890-4d91-9fda-ad06232e8623",
+        "print_identity_key": "scryfall:64263b28-c890-4d91-9fda-ad06232e8623",
+        "printed_identity_modifier": null,
+        "set_identity_model": "standard",
+        "external_ids": {
+          "scryfall": "64263b28-c890-4d91-9fda-ad06232e8623",
+          "scryfall_oracle": "08377424-619e-48ae-bc3c-fb199cd77cf9"
+        },
+        "ai_metadata": {
+          "mtg_print_details_v1": {
+            "power": "1",
+            "colors": [
+              "G"
+            ],
+            "defense": null,
+            "loyalty": null,
+            "keywords": [],
+            "mana_cost": "{1}{G}",
+            "toughness": "3",
+            "mana_value": 2,
+            "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz",
+            "flavor_text": "Twigs broken underfoot in Llanowar tend to return the favor.",
+            "identity_id": "56f6d800-7ea8-5f55-a954-eb73fc694e47",
+            "oracle_text": "{T}: Add one mana of any color.\n{T}: Target land you control becomes a 3/3 Elemental creature with haste until end of turn. It's still a land. Activate only as a sorcery.",
+            "printed_name": null,
+            "printed_text": null,
+            "source_faces": null,
+            "produced_mana": [
+              "B",
+              "G",
+              "R",
+              "U",
+              "W"
+            ],
+            "source_artist": "Zara Alfonso",
+            "source_layout": "normal",
+            "color_identity": [
+              "G"
+            ],
+            "color_indicator": null,
+            "illustration_id": "62d7a926-e897-4f89-90db-8f12d42d8372",
+            "source_print_id": "64263b28-c890-4d91-9fda-ad06232e8623",
+            "source_provider": "scryfall",
+            "oracle_type_line": "Creature — Elf Druid",
+            "identity_key_hash": "1dea1b706ee689346d81f1223b3b46ecd8bfe613af6888c1ee1c3a894dadbe05",
+            "printed_type_line": null,
+            "source_artist_ids": [
+              "329a7971-c37e-47f7-9143-58dc929420a7"
+            ],
+            "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+            "source_card_sha256": "e0b26504932b54d5c704df14bad98858ccd518783c5717624fefc2539b8e21c4",
+            "source_coordinates": {
+              "name": "Llanowar Loamspeaker",
+              "set_code": "pdmu",
+              "collector_number": "170s"
+            },
+            "source_released_at": "2022-09-09",
+            "source_retrieved_at": "2026-11-10T10:35:48.783Z",
+            "verification_status": "source_supported",
+            "source_raw_import_id": "148089",
+            "normalization_version": "mtg_print_details:v1",
+            "source_bulk_updated_at": "2026-11-10T10:07:59.897+00:00"
+          }
+        }
+      },
+      "identities": [
+        {
+          "id": "56f6d800-7ea8-5f55-a954-eb73fc694e47",
+          "is_active": true,
+          "created_at": "2026-08-19T03:54:12.379621+00:00",
+          "updated_at": "2026-08-19T03:54:12.379621+00:00",
+          "card_print_id": "000cab7d-18a4-50f6-8c22-8281279ddaa8",
+          "printed_number": "170s",
+          "identity_domain": "mtg_eng_paper_print",
+          "source_name_raw": "Llanowar Loamspeaker",
+          "identity_payload": {
+            "name": "Llanowar Loamspeaker",
+            "frame": "2015",
+            "promo": true,
+            "layout": "normal",
+            "finishes": [
+              "foil"
+            ],
+            "full_art": false,
+            "language": "en",
+            "set_code": "pdmu",
+            "textless": false,
+            "variation": false,
+            "promo_types": [
+              "datestamped",
+              "prerelease"
+            ],
+            "border_color": "black",
+            "variation_of": null,
+            "frame_effects": [],
+            "security_stamp": "oval",
+            "scryfall_set_id": "8d8c82dd-0cc2-43b8-8d1c-7620fc4d98d7",
+            "collector_number": "170s",
+            "scryfall_print_id": "64263b28-c890-4d91-9fda-ad06232e8623",
+            "scryfall_oracle_id": "08377424-619e-48ae-bc3c-fb199cd77cf9"
+          },
+          "identity_key_hash": "1dea1b706ee689346d81f1223b3b46ecd8bfe613af6888c1ee1c3a894dadbe05",
+          "set_code_identity": "pdmu",
+          "identity_key_version": "MTG_ENG_PAPER_PRINT_IDENTITY_V1",
+          "normalized_printed_name": "llanowar loamspeaker"
+        }
+      ],
+      "owners": [
+        {
+          "id": 205349,
+          "meta": {
+            "oracle_id": "08377424-619e-48ae-bc3c-fb199cd77cf9",
+            "image_policy": "reference_only_until_self_hosted_and_hashed",
+            "source_images": [
+              {
+                "png": "https://cards.scryfall.io/png/front/6/4/64263b28-c890-4d91-9fda-ad06232e8623.png?1783921073",
+                "large": "https://cards.scryfall.io/large/front/6/4/64263b28-c890-4d91-9fda-ad06232e8623.jpg?1783921073",
+                "normal": "https://cards.scryfall.io/normal/front/6/4/64263b28-c890-4d91-9fda-ad06232e8623.jpg?1783921073",
+                "face_index": 0
+              }
+            ],
+            "contract_version": "MTG_CANONICAL_CATALOG_SET_BATCH_V1",
+            "source_card_released_at": "2022-09-09"
+          },
+          "active": true,
+          "source": "scryfall",
+          "synced_at": "2026-08-19T03:54:12.379621+00:00",
+          "external_id": "64263b28-c890-4d91-9fda-ad06232e8623",
+          "card_print_id": "000cab7d-18a4-50f6-8c22-8281279ddaa8"
+        }
+      ],
+      "set_release_date": null
+    }
+  ]
+}
