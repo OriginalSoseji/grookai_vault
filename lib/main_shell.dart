@@ -1134,6 +1134,15 @@ class _AppShellState extends State<AppShell> {
   }
 
   Future<void> _openAccountHub() async {
+    if (Supabase.instance.client.auth.currentUser == null) {
+      await _pushPage<bool>(
+        const SignInContinuationScreen(
+          destinationLabel: 'save this card to your Vault',
+        ),
+      );
+      return;
+    }
+
     final action = await _pushPage<AccountHubAction>(const AccountScreen());
 
     if (!mounted || action == null) {

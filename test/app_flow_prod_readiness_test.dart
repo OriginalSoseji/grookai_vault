@@ -30,6 +30,33 @@ void main() {
   });
 
   test(
+    'scanner sign-in opens authentication before the account profile hub',
+    () {
+      final shell = File('lib/main_shell.dart').readAsStringSync();
+      final start = shell.indexOf('Future<void> _openAccountHub()');
+      final end = shell.indexOf('Future<void> _openOwnRelationships(', start);
+      expect(start, greaterThanOrEqualTo(0));
+      expect(end, greaterThan(start));
+      final accountFlow = shell.substring(start, end);
+
+      expect(
+        accountFlow,
+        contains('Supabase.instance.client.auth.currentUser == null'),
+      );
+      expect(accountFlow, contains('SignInContinuationScreen('));
+      expect(
+        accountFlow,
+        contains("destinationLabel: 'save this card to your Vault'"),
+      );
+      expect(
+        accountFlow.indexOf('SignInContinuationScreen('),
+        lessThan(accountFlow.indexOf('AccountScreen()')),
+      );
+      expect(shell, contains('onOpenAccountHub: _openAccountHub'));
+    },
+  );
+
+  test(
     'card detail keeps ownership primary and secondary actions discoverable',
     () {
       final screen = File('lib/card_detail_screen.dart').readAsStringSync();
