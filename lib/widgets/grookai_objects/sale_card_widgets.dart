@@ -13,31 +13,41 @@ class SaleCardFront extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = grookaiObjectTokens[data.skin]!;
+    final headerItems = [
+      GrookaiBrandText(
+        includeVault: true,
+        style: monoLabel(
+          t,
+          size: 10.5,
+          color: t.accent,
+          letterSpacing: 0.24,
+        ),
+        letterSpacing: 0.24,
+      ),
+      CardBadge(
+        tokens: t,
+        label: 'FOR SALE',
+        rotationDeg: data.skin == GrookaiObjectSkin.kraft ? 3 : 0,
+      ),
+    ];
+    final header = MediaQuery.textScalerOf(context).scale(1) > 1.3
+        ? Wrap(
+            alignment: WrapAlignment.spaceBetween,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            spacing: 8,
+            runSpacing: 4,
+            children: headerItems,
+          )
+        : Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: headerItems,
+          );
     return GrookaiObjectFrame(
       skin: data.skin,
       holePunch: data.skin == GrookaiObjectSkin.kraft,
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              GrookaiBrandText(
-                includeVault: true,
-                style: monoLabel(
-                  t,
-                  size: 10.5,
-                  color: t.accent,
-                  letterSpacing: 0.24,
-                ),
-                letterSpacing: 0.24,
-              ),
-              CardBadge(
-                tokens: t,
-                label: 'FOR SALE',
-                rotationDeg: data.skin == GrookaiObjectSkin.kraft ? 3 : 0,
-              ),
-            ],
-          ),
+          header,
           Expanded(
             child: Center(
               child: data.card.cardImageUrl != null

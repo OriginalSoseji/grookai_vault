@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:grookai_vault/models/grookai_sale_listing.dart';
 import 'package:grookai_vault/screens/grookai_objects/for_sale_terms_screen.dart';
 import 'package:grookai_vault/services/grookai_objects/sale_listing_service.dart';
+import 'package:grookai_vault/widgets/pricing/ebay_seller_button.dart';
 
 void main() {
   setUpAll(() {
@@ -107,6 +108,52 @@ void main() {
     );
     expect(find.text('Save sale card'), findsOneWidget);
     expect(find.text('List on eBay'), findsOneWidget);
+  });
+
+  testWidgets('exact-copy eBay action is visible above the editor on phone', (
+    tester,
+  ) async {
+    const instanceId = '11111111-1111-4111-8111-111111111111';
+    tester.view.physicalSize = const Size(390, 844);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    await tester.pumpWidget(
+      MaterialApp(
+        builder: (context, child) => MediaQuery(
+          data: MediaQuery.of(
+            context,
+          ).copyWith(textScaler: const TextScaler.linear(1.5)),
+          child: child!,
+        ),
+        home: ForSaleTermsScreen(
+          gvviId: 'GVVI-123',
+          source: const GrookaiSaleListingSource(
+            cardName: 'Umbreon VMAX',
+            setLine: 'Evolving Skies #215',
+          ),
+          service: _FakeSaleListingService(),
+          initialCopy: const SaleListingCopyContext(
+            instanceId: instanceId,
+            gvviId: 'GVVI-123',
+            vaultItemId: 'VAULT-123',
+            cardPrintId: 'CARD-123',
+          ),
+        ),
+      ),
+    );
+
+    final button = tester.widget<EbaySellerButton>(
+      find.byType(EbaySellerButton),
+    );
+    expect(button.instanceId, instanceId);
+    expect(find.text('List on eBay'), findsOneWidget);
+    expect(tester.getTopLeft(find.text('List on eBay')).dy, lessThan(400));
+    expect(
+      tester.getBottomLeft(find.byType(EbaySellerButton)).dy,
+      lessThan(tester.view.physicalSize.height / tester.view.devicePixelRatio),
+    );
+    expect(tester.takeException(), isNull);
   });
 
   testWidgets('terms flow accepts short raw vault condition labels', (
