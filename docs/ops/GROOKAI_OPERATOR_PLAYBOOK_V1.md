@@ -1,5 +1,19 @@
 # Grookai Operator Playbook V1
 
+## Catalog baseline and advertised search - November 10, 2026
+
+Read [the current data/search checkpoint](../checkpoints/CATALOG_BASELINE_AND_SEARCH_20261110.md).
+Use the shared private Pokemon reader only with current identity and one exact
+active source owner. Retain null/empty distinctions and forced RLS. Source-date
+and printed-total provenance are separate from individual card release scope.
+Stamp searches narrow by governed canonical keys before complete paging. Cameo
+search retains explicit artist constraints even outside the bundled artist list
+and uses the existing confirmed-only public RPC; imported associations cannot
+substitute for visual confirmation. Preserve unresolved row queues and historical
+rollback/readback evidence. This release carries source parity for already-applied
+migrations 482/483; do not reapply them or reset populated local proof labs.
+
+
 ## eBay Account access and Android build continuity — November 9, 2026
 
 PR #877 adds the native **Account → Connected accounts → eBay seller account**
