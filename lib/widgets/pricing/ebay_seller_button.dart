@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import '../../screens/ebay/ebay_seller_screen.dart';
 
 class EbaySellerButton extends StatelessWidget {
-  const EbaySellerButton({super.key, required this.instanceId});
+  const EbaySellerButton({
+    super.key,
+    required this.instanceId,
+    this.beforeOpen,
+  });
   final String instanceId;
+  final Future<void> Function()? beforeOpen;
   @override
   Widget build(BuildContext context) {
     if (!RegExp(
@@ -12,7 +17,20 @@ class EbaySellerButton extends StatelessWidget {
       return const SizedBox.shrink();
     }
     return TextButton.icon(
-      onPressed: () => openEbaySeller(context, instanceId: instanceId),
+      onPressed: () async {
+        try {
+          await beforeOpen?.call();
+          if (!context.mounted) return;
+          await openEbaySeller(context, instanceId: instanceId);
+        } catch (_) {
+          if (!context.mounted) return;
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Could not retain this copy for eBay. Try again.'),
+            ),
+          );
+        }
+      },
       style: TextButton.styleFrom(minimumSize: const Size(44, 44)),
       icon: const Icon(Icons.sell_outlined, size: 16),
       label: const Text('List on eBay'),

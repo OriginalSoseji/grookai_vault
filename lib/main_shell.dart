@@ -688,11 +688,38 @@ class _AppShellState extends State<AppShell> {
             (r) => r.settings.name == EbaySellerScreen.routeName || r.isFirst,
           );
         } else {
+          final handoffStore = SaleCardHandoffStore();
+          SaleCardHandoffRecord? handoff;
+          if (route.value.isEmpty && route.draftId == null) {
+            final ownerId = _supabase.auth.currentUser?.id;
+            if (ownerId != null) {
+              handoff = await handoffStore.load(ownerId);
+            }
+          }
+          if (!mounted) return;
+          final saleCard = handoff?.saleCard;
           unawaited(
             openEbaySeller(
               context,
-              instanceId: route.value.isEmpty ? null : route.value,
+              instanceId: route.value.isEmpty
+                  ? handoff?.instanceId
+                  : route.value,
               draftId: route.draftId,
+              onResumeSaleCard: saleCard == null
+                  ? null
+                  : () {
+                      Navigator.of(context, rootNavigator: true).push<void>(
+                        MaterialPageRoute<void>(
+                          builder: (_) => ForSaleTermsScreen(
+                            gvviId: saleCard.copy.gvviId,
+                            source: saleCard.source,
+                            initialCopy: saleCard.copy,
+                            handoffStore: handoffStore,
+                            initialDraft: saleCard,
+                          ),
+                        ),
+                      );
+                    },
             ),
           );
         }

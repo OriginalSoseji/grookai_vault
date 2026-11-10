@@ -4,7 +4,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:grookai_vault/models/grookai_sale_listing.dart';
 import 'package:grookai_vault/screens/grookai_objects/for_sale_terms_screen.dart';
 import 'package:grookai_vault/services/grookai_objects/sale_listing_service.dart';
+import 'package:grookai_vault/services/grookai_objects/grookai_object_export_service.dart';
+import 'package:grookai_vault/services/grookai_objects/sale_card_handoff_store.dart';
 import 'package:grookai_vault/widgets/pricing/ebay_seller_button.dart';
+import 'package:grookai_vault/widgets/grookai_objects/grookai_object_skin.dart';
+import 'package:grookai_vault/widgets/grookai_objects/grookai_object_skin_picker.dart';
 
 void main() {
   setUpAll(() {
@@ -44,7 +48,9 @@ void main() {
 
   testWidgets('terms flow saves exact-copy sale listing', (tester) async {
     _useTallViewport(tester);
-    final service = _FakeSaleListingService();
+    const ownerId = '22222222-2222-4222-8222-222222222222';
+    final service = _FakeSaleListingService(currentUserId: ownerId);
+    final handoffStore = _TrackingHandoffStore();
     await tester.pumpWidget(
       MaterialApp(
         home: ForSaleTermsScreen(
@@ -55,6 +61,7 @@ void main() {
             sellerHandle: 'Casey',
           ),
           service: service,
+          handoffStore: handoffStore,
           initialCopy: const SaleListingCopyContext(
             instanceId: 'INSTANCE-123',
             gvviId: 'GVVI-123',
@@ -75,7 +82,47 @@ void main() {
     expect(service.lastGvviId, 'GVVI-123');
     expect(service.lastVaultItemId, 'VAULT-123');
     expect(service.lastPrice, 42.5);
+    expect(handoffStore.clearedOwners, [ownerId]);
     expect(find.text('Sale listing saved.'), findsOneWidget);
+  });
+
+  testWidgets('ordinary editor opening never applies an old eBay handoff', (
+    tester,
+  ) async {
+    _useTallViewport(tester);
+    final handoffStore = _TrackingHandoffStore();
+    await tester.pumpWidget(
+      MaterialApp(
+        home: ForSaleTermsScreen(
+          gvviId: 'GVVI-123',
+          source: const GrookaiSaleListingSource(
+            cardName: 'Umbreon VMAX',
+            setLine: 'Evolving Skies #215',
+          ),
+          service: _FakeSaleListingService(),
+          handoffStore: handoffStore,
+          initialCopy: const SaleListingCopyContext(
+            instanceId: 'INSTANCE-123',
+            gvviId: 'GVVI-123',
+            vaultItemId: 'VAULT-123',
+            cardPrintId: 'CARD-123',
+            askingPriceAmount: 80,
+            askingPriceNote: 'New Vault terms',
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(handoffStore.loadCalls, 0);
+    expect(
+      tester.widget<TextField>(find.byType(TextField).first).controller!.text,
+      '80.00',
+    );
+    expect(
+      tester.widget<TextField>(find.byType(TextField).last).controller!.text,
+      'New Vault terms',
+    );
   });
 
   testWidgets('sale card is distinct from the exact-copy eBay listing path', (
@@ -156,6 +203,73 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
+  testWidgets('cold OAuth return resumes the unfinished exact-copy sale card', (
+    tester,
+  ) async {
+    _useTallViewport(tester);
+    const instanceId = '11111111-1111-4111-8111-111111111111';
+    const draft = SaleCardHandoff(
+      ownerId: '22222222-2222-4222-8222-222222222222',
+      copy: SaleListingCopyContext(
+        instanceId: instanceId,
+        gvviId: 'GVVI-123',
+        vaultItemId: '33333333-3333-4333-8333-333333333333',
+        cardPrintId: '44444444-4444-4444-8444-444444444444',
+      ),
+      source: GrookaiSaleListingSource(
+        cardName: 'Umbreon VMAX',
+        setLine: 'Evolving Skies #215',
+      ),
+      skin: GrookaiObjectSkin.kraft,
+      condition: 'Raw LP',
+      priceText: '42.50',
+      note: 'Ship in a sleeve',
+      firm: false,
+      allowDms: true,
+      showFront: false,
+      destination: GrookaiObjectExportDestination.story,
+      savedAtMillis: 1,
+    );
+    await tester.pumpWidget(
+      MaterialApp(
+        home: ForSaleTermsScreen(
+          gvviId: 'GVVI-123',
+          source: draft.source,
+          service: _FakeSaleListingService(),
+          initialCopy: draft.copy,
+          initialDraft: draft,
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.text('Create sale card'), findsOneWidget);
+    expect(
+      tester.widget<TextField>(find.byType(TextField).first).controller!.text,
+      '42.50',
+    );
+    expect(
+      tester.widget<TextField>(find.byType(TextField).last).controller!.text,
+      'Ship in a sleeve',
+    );
+    expect(
+      tester
+          .widget<GrookaiObjectSkinPicker>(find.byType(GrookaiObjectSkinPicker))
+          .selected,
+      GrookaiObjectSkin.kraft,
+    );
+    expect(
+      tester
+          .widget<DropdownButtonFormField<String>>(
+            find.byType(DropdownButtonFormField<String>),
+          )
+          .initialValue,
+      'Raw LP',
+    );
+    expect(find.text('Resume sale card'), findsNothing);
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('terms flow accepts short raw vault condition labels', (
     tester,
   ) async {
@@ -196,7 +310,8 @@ void _useTallViewport(WidgetTester tester) {
 }
 
 class _FakeSaleListingService extends SaleListingService {
-  _FakeSaleListingService() : super(currentUserId: 'user-1');
+  _FakeSaleListingService({String currentUserId = 'user-1'})
+    : super(currentUserId: currentUserId);
 
   int saveCalls = 0;
   String? lastInstanceId;
@@ -229,5 +344,21 @@ class _FakeSaleListingService extends SaleListingService {
       currency: currency,
       note: note,
     );
+  }
+}
+
+class _TrackingHandoffStore extends SaleCardHandoffStore {
+  int loadCalls = 0;
+  final clearedOwners = <String>[];
+
+  @override
+  Future<SaleCardHandoffRecord?> load(String ownerId) async {
+    loadCalls += 1;
+    return null;
+  }
+
+  @override
+  Future<void> clear(String ownerId) async {
+    clearedOwners.add(ownerId);
   }
 }
