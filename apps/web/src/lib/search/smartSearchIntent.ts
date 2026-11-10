@@ -5,7 +5,7 @@ import type { PublicLanguageScope } from "@/lib/publicLanguageScope";
 import { resolveGameScopedSetSearchIntent } from "@/lib/publicSets.shared";
 
 export type SearchQueryFilter = {
-  kind: "artist" | "finish" | "year" | "stamp" | "image" | "owned" | "text" | "game" | "language" | "rarity" | "number" | "set";
+  kind: "artist" | "finish" | "year" | "stamp" | "image" | "owned" | "text" | "game" | "language" | "rarity" | "number" | "set" | "cameo";
   label: string;
   sourceText: string;
   queryWithout?: string;
@@ -19,6 +19,7 @@ export type SmartSearchIntent = {
   releaseYearMax?: number;
   finishKeys: string[];
   artist?: string;
+  cameoSubject?: string;
   artistNames?: string[];
   artistCorrection?: { original: string; corrected: string };
   originalSpellingQuery?: string;
@@ -356,6 +357,18 @@ export function buildSmartSearchIntent(rawQuery: string, options: { gameScope?: 
 
   residual = normalizeWhitespace(residual);
 
+  let cameoSubject: string | undefined;
+  const cameo = (gameScope ?? options.gameScope ?? "pokemon") === "pokemon"
+    ? /^([\p{L}\p{N} .’'♀♂-]{1,64}?)\s+cameos?$/iu.exec(residual)
+    : null;
+  if (cameo) {
+    cameoSubject = normalizeWhitespace(cameo[1]);
+    const label = `Cameo: ${cameoSubject}`;
+    queryFilters.push({ kind: "cameo", label, sourceText: cameo[0] });
+    interpretedLabels.push(label);
+    residual = "";
+  }
+
   // These constraints remain in the resolver text, where catalog fields are
   // matched. Expose their individual removal without maintaining a second
   // client-side interpretation. Rare Candy is a card name, not a rarity filter.
@@ -381,6 +394,7 @@ export function buildSmartSearchIntent(rawQuery: string, options: { gameScope?: 
   return {
     originalQuery,
     residualQuery: residual,
+    cameoSubject,
     releaseYearMin: yearRange?.min,
     releaseYearMax: yearRange?.max,
     finishKeys: unique(finishKeys),

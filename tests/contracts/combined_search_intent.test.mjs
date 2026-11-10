@@ -25,6 +25,24 @@ function load(file) {
 const { buildSmartSearchIntent: parse } = load(path.join(web, 'lib/search/smartSearchIntent.ts'));
 const plain = (value) => JSON.parse(JSON.stringify(value));
 
+test('artwork cameo intent is separate from card-name text and preserves finish/year filters', () => {
+  for (const query of ['Gengar cameo', 'show me all Gengar cameos', 'Gengar cameos 2022-2024 reverse holo']) {
+    const result = parse(query);
+    assert.equal(result.cameoSubject, 'Gengar');
+    assert.equal(result.residualQuery, '');
+    assert.equal(result.queryFilters.find(f => f.kind === 'cameo').label, 'Cameo: Gengar');
+  }
+  const combined = parse('Gengar cameos 2022-2024 reverse holo');
+  assert.deepEqual(plain(combined.finishKeys), ['reverse']);
+  assert.equal(combined.releaseYearMin, 2022); assert.equal(combined.releaseYearMax, 2024);
+  assert.equal(parse('Gengar').cameoSubject, undefined);
+  assert.equal(parse('"Gengar cameo"').cameoSubject, undefined);
+  assert.equal(parse('Gengar cameo', { gameScope: 'one_piece' }).cameoSubject, undefined);
+  const byArtist = parse('Gengar cameo Ken Sugimori');
+  assert.equal(byArtist.cameoSubject, 'Gengar');
+  assert.equal(byArtist.artist, 'Ken Sugimori');
+});
+
 test('Game Stop is a retailer phrase, while a separate artist retains its exact span', () => {
   for (const q of ['gamestop', 'Game Stop', 'GAME STOP stamped']) {
     const result = parse(q);

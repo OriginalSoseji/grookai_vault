@@ -38,7 +38,8 @@ import {
 import { createServerComponentClient } from "@/lib/supabase/server";
 import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
 import { getPublicCardPrintingOptions } from "@/lib/cards/getPublicCardPrintingOptions";
-import { gameStopCandidateFilter } from "@/lib/search/stampCandidateFilter";
+import { governedStampCandidateFilter } from "@/lib/search/stampCandidateFilter";
+import { fetchConfirmedCameoGvIds } from "@/lib/search/confirmedCameoSearch";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
 import type { VariantFlags } from "@/lib/cards/variantPresentation";
 import type { PublicGameScope } from "@/lib/publicGameScope";
@@ -307,6 +308,8 @@ type SmartFilterDiscoveryOptions = {
   searchTimings?: Partial<Record<"name_pages" | "parent_read", number>>;
   sortMode: SortMode;
   textQuery?: string;
+  cameoSubject?: string;
+  cameoArtistNames?: string[];
   exactSetCode?: string;
   exactSetCodes?: string[];
   exactReleaseYear?: number;
@@ -3972,6 +3975,23 @@ export async function getExploreRowsForCombinedSearch(
   assertValueSortPricingEnabled(options.sortMode, Boolean(options.includePricing));
   const supabase = await createServerComponentClient();
   const gameScope = options.gameScope ?? "pokemon";
+  if (options.cameoSubject) {
+    if (gameScope !== "pokemon") return [];
+    const gvIds = await fetchConfirmedCameoGvIds(supabase, options.cameoSubject);
+    const parents: CardPrintLookupRow[] = [];
+    for (const ids of chunkArray(gvIds, 200)) {
+      const { data, error } = await supabase.from("v_card_prints_discovery_v1")
+        .select("id,gv_id,name,number,printed_total,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants")
+        .in("gv_id", ids);
+      if (error) throw new Error(error.message);
+      parents.push(...(data ?? []) as unknown as CardPrintLookupRow[]);
+    }
+    const artists = (options.cameoArtistNames ?? []).map(normalizeTextForMatch);
+    const artistScoped = artists.length
+      ? parents.filter((row) => artists.includes(normalizeTextForMatch(row.artist)))
+      : parents;
+    return enrichCompleteSearchParents(artistScoped, options, supabase);
+  }
   const explicitEditionRowsPromise = gameScope === "pokemon"
     ? fetchExplicitEditionParentRows(options.stampLabels ?? [])
     : Promise.resolve([] as CardPrintLookupRow[]);
@@ -4002,7 +4022,7 @@ export async function getExploreRowsForCombinedSearch(
   const parents: CardPrintLookupRow[] = [];
   const tokens = getSmartDiscoveryTextTokens(options.textQuery);
   const firstToken = tokens.find((token) => !/^\d+$/.test(token));
-  const stampCandidateFilter = !firstToken ? gameStopCandidateFilter(options.stampLabels) : null;
+  const stampCandidateFilter = !firstToken ? governedStampCandidateFilter(options.stampLabels) : null;
   // Set names are part of the searchable text too. If the narrowing token
   // occurs in a set name, keep its parents eligible regardless of card name.
   const matchingSets: string[] = [];

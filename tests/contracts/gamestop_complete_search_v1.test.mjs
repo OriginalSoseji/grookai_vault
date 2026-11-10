@@ -12,7 +12,7 @@ function compile(source, context = {}) {
   } }).outputText, { module, exports: module.exports, ...context });
   return module.exports;
 }
-const { gameStopCandidateFilter } = compile(fs.readFileSync('apps/web/src/lib/search/stampCandidateFilter.ts', 'utf8'));
+const { gameStopCandidateFilter, governedStampCandidateFilter } = compile(fs.readFileSync('apps/web/src/lib/search/stampCandidateFilter.ts', 'utf8'));
 const { normalizeSearchText } = compile(fs.readFileSync('apps/web/src/lib/search/normalizeSearchText.ts', 'utf8'));
 const source = fs.readFileSync('apps/web/src/lib/explore/getExploreRows.ts', 'utf8');
 const parsedSource = ts.createSourceFile('getExploreRows.ts', source, ts.ScriptTarget.Latest, true);
@@ -56,6 +56,22 @@ test('only explicit GameStop intent activates the candidate filter', () => {
   }
 });
 
+test('advertised stamp families retain ordinary, inverted, missing and legacy modifier candidates', () => {
+  const wb = governedStampCandidateFilter(['WB Kids Stamp']);
+  for (const key of ['wb_kids_stamp', 'inverted_wb_kids_stamp', 'missing_wb_kids_stamp']) {
+    assert.ok(wb.includes(`variant_key.eq.${key}`));
+  }
+  assert.ok(wb.includes('printed_identity_modifier.eq.stamp:wb_kids_first_movie'));
+  assert.ok(wb.includes('printed_identity_modifier.eq.recognized_error:missing_wb_kids_stamp'));
+  assert.ok(governedStampCandidateFilter(['Build-A-Bear Workshop Stamp']).includes('variant_key.eq.build_a_bear_workshop_stamp'));
+  const inverted = governedStampCandidateFilter(['Inverted WB Kids Stamp']);
+  assert.ok(inverted.includes('variant_key.eq.inverted_wb_kids_stamp'));
+  assert.ok(!inverted.includes('variant_key.eq.missing_wb_kids_stamp'));
+  for (const labels of [undefined, [], ['EB Games Stamp'], ['WB Kids Stamp,name.not.is.null'], ['kids']]) {
+    assert.equal(governedStampCandidateFilter(labels), null);
+  }
+});
+
 test('stamp-only combined search narrows every page using either canonical stamp field', async () => {
   const all = [
     ...Array.from({ length: 1500 }, (_, i) => ({ id: `base-${i}`, variant_key: '', variants: {} })),
@@ -82,7 +98,7 @@ test('stamp-only combined search narrows every page using either canonical stamp
     normalizeSearchText,
     assertValueSortPricingEnabled() {}, createServerComponentClient: async () => db,
     fetchCompleteNamedCardRows: async () => null, getSmartDiscoveryTextTokens: () => [],
-    gameStopCandidateFilter,
+    governedStampCandidateFilter,
     enrichCompleteSearchParents: async (rows, options) => {
       assert.equal(options.stampLabels[0], 'GameStop Stamp');
       assert.equal(rows.length, 503, 'all candidate pages reach final filtering');
@@ -94,4 +110,54 @@ test('stamp-only combined search narrows every page using either canonical stamp
   assert.equal(rows.length, 503);
   assert.ok(rows.some(r => r.id === 'stamp-legacy'));
   assert.ok(!rows.some(r => r.id === 'stamp-unrelated'));
+});
+
+test('WB and Build-A-Bear searches narrow every page and keep complete results for final filtering', async () => {
+  for (const label of ['WB Kids Stamp', 'Build-A-Bear Workshop Stamp']) {
+    const filter = governedStampCandidateFilter([label]);
+    const candidates = Array.from({ length: 503 }, (_, n) => ({ id: `stamp-${String(n).padStart(4, '0')}` }));
+    const calls = [];
+    const db = { from(table) {
+      assert.equal(table, 'v_card_prints_discovery_v1');
+      const call = { after: null, filter: null }; calls.push(call);
+      const q = { select() { return q; }, like() { return q; }, order() { return q; },
+        limit() { return q; }, gt(_, value) { call.after = value; return q; },
+        or(value) { call.filter = value; return q; },
+        then(resolve) { assert.equal(call.filter, filter); resolve({ data: candidates.filter(row => !call.after || row.id > call.after).slice(0, 500), error: null }); },
+      }; return q;
+    } };
+    const { getExploreRowsForCombinedSearch } = compile(reader, {
+      normalizeSearchText, assertValueSortPricingEnabled() {}, createServerComponentClient: async () => db,
+      fetchCompleteNamedCardRows: async () => null, getSmartDiscoveryTextTokens: () => [],
+      governedStampCandidateFilter, enrichCompleteSearchParents: async (rows, options) => {
+        assert.equal(options.stampLabels[0], label); return rows;
+      },
+    });
+    const result = await getExploreRowsForCombinedSearch({ textQuery: '', stampLabels: [label] });
+    assert.equal(result.length, 503); assert.equal(calls.length, 2);
+  }
+});
+
+test('cameo discovery hydrates only confirmed IDs and preserves artist and other combined constraints', async () => {
+  const scope = { cameoSubject: 'Gengar', cameoArtistNames: ['Ken Sugimori'], textQuery: '', sortMode: 'relevance',
+    releaseYearMin: 1999, releaseYearMax: 2024, finishKeys: ['normal'], languageScope: 'en', exactSetCode: 'base5' };
+  let ordinaryReads = 0;
+  const calls = [];
+  const parents = [{ id: 'one', gv_id: 'GV-PK-TR-76', artist: 'Ken Sugimori' },
+    { id: 'two', gv_id: 'GV-PK-UNB-187', artist: 'Ryo Ueda' }];
+  const db = { from(table) {
+    assert.equal(table, 'v_card_prints_discovery_v1');
+    const q = { select() { return q; }, in(column, ids) { assert.equal(column, 'gv_id'); calls.push(Array.from(ids)); return Promise.resolve({ data: parents, error: null }); } };
+    return q;
+  } };
+  const { getExploreRowsForCombinedSearch } = compile(reader, {
+    normalizeSearchText, assertValueSortPricingEnabled() {}, createServerComponentClient: async () => db,
+    fetchCompleteNamedCardRows: async () => { ordinaryReads++; return null; },
+    fetchConfirmedCameoGvIds: async (_, subject) => { assert.equal(subject, 'Gengar'); return parents.map(p => p.gv_id); },
+    chunkArray: (values, size) => { assert.equal(size, 200); return [values]; },
+    enrichCompleteSearchParents: async (rows, options) => { assert.equal(options, scope); return rows; },
+  });
+  const result = await getExploreRowsForCombinedSearch(scope);
+  assert.equal(ordinaryReads, 0); assert.equal(calls.length, 1);
+  assert.deepEqual(Array.from(result.map(r => r.id)), ['one']);
 });

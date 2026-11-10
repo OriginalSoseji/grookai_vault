@@ -450,7 +450,7 @@ export async function GET(request: NextRequest) {
   const artistSearch = gameScope === "pokemon"
     ? exactIllustrator ?? smartSearchIntent.artist ?? (isKnownArtistQuery(rawQuery) ? rawQuery.trim() : undefined)
     : undefined;
-  const completeCombinedSearch = !artistSearch && Boolean(
+  const completeCombinedSearch = (!artistSearch || Boolean(smartSearchIntent.cameoSubject)) && Boolean(
     literalNameSearch || smartSearchIntent.queryFilters?.length || explicitFinishKeys.length || explicitStampLabels.length ||
     effectiveExactSetCode || inlineSetIntent.setCodes.length || exactIllustrator || exactReleaseYear || explicitYearMin || explicitYearMax || explicitOwnedState || explicitImageState,
   );
@@ -622,7 +622,7 @@ export async function GET(request: NextRequest) {
       !exactIllustrator &&
       !effectiveSmartSearchIntent.ownedState &&
       !isIdentityFilterActive(identityFilter);
-    const resolvedSearchPromise = artistSearch
+    const resolvedSearchPromise = artistSearch && !effectiveSmartSearchIntent.cameoSubject
       ? getExploreRowsForArtistSearch(artistSearch, {
           searchSets,
           sortMode,
@@ -657,6 +657,8 @@ export async function GET(request: NextRequest) {
           exactSetCodes: exactSetCode ? undefined : inlineSetIntent.setCodes,
           sortMode,
           textQuery: routedQuery,
+          cameoSubject: effectiveSmartSearchIntent.cameoSubject,
+          cameoArtistNames: exactIllustrator ? undefined : smartSearchIntent.artistNames,
           exactSetCode: effectiveExactSetCode,
           exactReleaseYear,
           identityFilter,
