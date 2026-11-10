@@ -2414,7 +2414,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
                 child: ListTile(
                   contentPadding: EdgeInsets.zero,
                   leading: Icon(Icons.sell_outlined),
-                  title: Text('List for Sale'),
+                  title: Text('Create sale card'),
                 ),
               ),
             PopupMenuItem(

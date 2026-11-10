@@ -435,7 +435,7 @@ class _GrookaiObjectsHubScreenState extends State<GrookaiObjectsHubScreen> {
   String get _rowActionLabel {
     return switch (_mode) {
       _ObjectsBuilderMode.memory => 'Create Memory',
-      _ObjectsBuilderMode.sale => 'List for Sale',
+      _ObjectsBuilderMode.sale => 'Create sale card',
       _ObjectsBuilderMode.lot => 'Select',
     };
   }

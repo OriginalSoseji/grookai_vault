@@ -11,6 +11,7 @@ import '../../widgets/grookai_objects/grookai_object_destination_export_renderer
 import '../../widgets/grookai_objects/grookai_object_share_destination_sheet.dart';
 import '../../widgets/grookai_objects/grookai_object_skin.dart';
 import '../../widgets/grookai_objects/grookai_object_skin_picker.dart';
+import '../../widgets/pricing/ebay_seller_button.dart';
 
 typedef SaleListingCopyLoader =
     Future<SaleListingCopyContext?> Function(String gvviId);
@@ -274,7 +275,7 @@ class _ForSaleTermsScreenState extends State<ForSaleTermsScreen> {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     return Scaffold(
-      appBar: AppBar(title: const Text('List for Sale')),
+      appBar: AppBar(title: const Text('Create sale card')),
       body: SafeArea(
         child: _loading
             ? const Center(child: CircularProgressIndicator())
@@ -324,6 +325,35 @@ class _ForSaleTermsScreenState extends State<ForSaleTermsScreen> {
                     onChanged: (skin) => setState(() => _skin = skin),
                   ),
                   const SizedBox(height: 18),
+                  Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: colorScheme.surfaceContainerLow,
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: colorScheme.outlineVariant),
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          Icons.info_outline_rounded,
+                          size: 20,
+                          color: colorScheme.onSurfaceVariant,
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: Text(
+                            'Create a shareable grookai sale card for this copy. Use List on eBay to open its marketplace listing workflow.',
+                            style: theme.textTheme.bodySmall?.copyWith(
+                              height: 1.45,
+                              color: colorScheme.onSurfaceVariant,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 12),
                   TextField(
                     controller: _priceController,
                     keyboardType: const TextInputType.numberWithOptions(
@@ -408,6 +438,13 @@ class _ForSaleTermsScreenState extends State<ForSaleTermsScreen> {
                         : const Icon(Icons.sell_outlined),
                     label: Text(_saving ? 'Saving...' : 'Save sale card'),
                   ),
+                  if (_copy != null) ...[
+                    const SizedBox(height: 4),
+                    Align(
+                      alignment: Alignment.center,
+                      child: EbaySellerButton(instanceId: _copy!.instanceId),
+                    ),
+                  ],
                   const SizedBox(height: 10),
                   OutlinedButton.icon(
                     onPressed: _savedObject == null || _sharing

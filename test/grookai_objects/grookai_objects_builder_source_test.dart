@@ -21,6 +21,7 @@ void main() {
     expect(source, contains('printingIdentityLabel:'));
     expect(source, contains('MemoryCardCaptureScreen'));
     expect(source, contains('ForSaleTermsScreen'));
+    expect(source, contains("_ObjectsBuilderMode.sale => 'Create sale card'"));
     expect(source, contains('LotPricingScreen'));
     expect(source, contains('CollectorMemoriesScreen'));
     expect(source, contains('This card needs an exact copy'));
@@ -40,5 +41,6 @@ void main() {
     expect(source, contains("return 'Variant needed';"));
     expect(source, contains("return 'Variant assigned';"));
     expect(source, contains('return option.finishName;'));
+    expect(source, contains("title: Text('Create sale card')"));
   });
 }
