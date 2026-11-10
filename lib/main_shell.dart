@@ -1299,6 +1299,7 @@ class _AppShellState extends State<AppShell> {
             await _pushPage<void>(const IntakeHomeScreen());
             if (mounted) _vaultKey.currentState?.reload();
           },
+          onOpenAccountHub: _openAccountHub,
         ),
       );
       if (!mounted || action == null) {

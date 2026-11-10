@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:grookai_vault/screens/scanner_v5/scan_capture_v5_screen.dart';
 import 'package:grookai_vault/services/scanner_v5/scanner_v5_identity_service.dart';
@@ -10,6 +11,26 @@ import 'package:http/testing.dart';
 import 'package:image/image.dart' as img;
 
 void main() {
+  test(
+    'scanner sign-in recovery opens Accounts and preserves the scan',
+    () async {
+      var openedAccount = false;
+      final snackBar = scannerV5SignInRequiredSnackBar(
+        onOpenAccountHub: () async => openedAccount = true,
+      );
+
+      expect(
+        (snackBar.content as Text).data,
+        'Sign in to save this card. Your scan will stay here.',
+      );
+      expect(snackBar.duration, const Duration(seconds: 8));
+      expect(snackBar.action?.label, 'Open Account');
+      snackBar.action!.onPressed();
+      await Future<void>.delayed(Duration.zero);
+      expect(openedAccount, isTrue);
+    },
+  );
+
   group('Scanner V5 identity service failures', () {
     test(
       'TLS rejection stays strict and exposes safe recovery guidance',
