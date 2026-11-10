@@ -6,6 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../services/ebay/ebay_seller_controller.dart';
 import '../../services/ebay/ebay_seller_link_return.dart';
 import '../../services/ebay/ebay_seller_service.dart';
+import '../../services/grookai_objects/sale_card_handoff_store.dart';
 import 'ebay_seller_fields.dart';
 import 'ebay_seller_review.dart';
 
@@ -13,12 +14,27 @@ Future<void> openEbaySeller(
   BuildContext context, {
   String? instanceId,
   String? draftId,
-}) => Navigator.of(context, rootNavigator: true).push<void>(
-  MaterialPageRoute(
-    settings: const RouteSettings(name: EbaySellerScreen.routeName),
-    builder: (_) => EbaySellerScreen(instanceId: instanceId, draftId: draftId),
-  ),
-);
+  VoidCallback? onResumeSaleCard,
+}) async {
+  final ownerId = Supabase.instance.client.auth.currentUser?.id;
+  if (ownerId != null && instanceId != null) {
+    await SaleCardHandoffStore().saveSelectedCopy(
+      ownerId: ownerId,
+      instanceId: instanceId,
+    );
+  }
+  if (!context.mounted) return;
+  await Navigator.of(context, rootNavigator: true).push<void>(
+    MaterialPageRoute(
+      settings: const RouteSettings(name: EbaySellerScreen.routeName),
+      builder: (_) => EbaySellerScreen(
+        instanceId: instanceId,
+        draftId: draftId,
+        onResumeSaleCard: onResumeSaleCard,
+      ),
+    ),
+  );
+}
 
 class EbaySellerScreen extends StatefulWidget {
   const EbaySellerScreen({
@@ -26,10 +42,12 @@ class EbaySellerScreen extends StatefulWidget {
     this.instanceId,
     this.draftId,
     this.controller,
+    this.onResumeSaleCard,
   });
   static const routeName = '/vault/ebay';
   final String? instanceId, draftId;
   final EbaySellerController? controller;
+  final VoidCallback? onResumeSaleCard;
   @override
   State<EbaySellerScreen> createState() => _EbaySellerScreenState();
 }
@@ -214,6 +232,14 @@ class _EbaySellerScreenState extends State<EbaySellerScreen>
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
+                        if (widget.onResumeSaleCard != null) ...[
+                          OutlinedButton.icon(
+                            onPressed: widget.onResumeSaleCard,
+                            icon: const Icon(Icons.undo_rounded),
+                            label: const Text('Resume sale card'),
+                          ),
+                          const SizedBox(height: 12),
+                        ],
                         if (model.busy != null) ...[
                           const LinearProgressIndicator(minHeight: 2),
                           const SizedBox(height: 8),

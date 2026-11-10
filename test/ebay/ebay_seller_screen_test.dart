@@ -62,6 +62,30 @@ class _Api implements EbaySellerApi {
 
 void main() {
   setUp(() => SharedPreferences.setMockInitialValues({}));
+  testWidgets('cold OAuth return offers the saved sale-card resume action', (
+    tester,
+  ) async {
+    final model = EbaySellerController(api: _Api());
+    var resumed = false;
+    await tester.pumpWidget(
+      MaterialApp(
+        home: EbaySellerScreen(
+          controller: model,
+          onResumeSaleCard: () => resumed = true,
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    final resume = find.widgetWithText(OutlinedButton, 'Resume sale card');
+    expect(resume, findsOneWidget);
+    await tester.tap(resume);
+    expect(resumed, isTrue);
+
+    await tester.pumpWidget(const SizedBox.shrink());
+    model.dispose();
+  });
+
   for (final state in ['live', 'publishing', 'preparing']) {
     testWidgets('$state keeps an explicit provider-status recovery action', (
       tester,

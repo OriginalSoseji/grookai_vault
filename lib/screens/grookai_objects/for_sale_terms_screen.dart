@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../models/grookai_sale_listing.dart';
 import '../../services/diagnostics/grookai_crash_reporting_service.dart';
 import '../../services/grookai_objects/grookai_object_export_service.dart';
+import '../../services/grookai_objects/sale_card_handoff_store.dart';
 import '../../services/grookai_objects/sale_listing_service.dart';
 import '../../services/vault/vault_gvvi_service.dart';
 import '../../widgets/grookai_objects/grookai_object.dart';
@@ -23,18 +26,23 @@ class ForSaleTermsScreen extends StatefulWidget {
     required this.source,
     SaleListingService? service,
     GrookaiObjectExportService? exportService,
+    SaleCardHandoffStore? handoffStore,
     SaleListingCopyLoader? copyLoader,
     this.initialCopy,
+    this.initialDraft,
   }) : service = service ?? SaleListingService(),
        exportService = exportService ?? const GrookaiObjectExportService(),
+       handoffStore = handoffStore ?? SaleCardHandoffStore(),
        copyLoader = copyLoader ?? _defaultCopyLoader;
 
   final String gvviId;
   final GrookaiSaleListingSource source;
   final SaleListingService service;
   final GrookaiObjectExportService exportService;
+  final SaleCardHandoffStore handoffStore;
   final SaleListingCopyLoader copyLoader;
   final SaleListingCopyContext? initialCopy;
+  final SaleCardHandoff? initialDraft;
 
   @override
   State<ForSaleTermsScreen> createState() => _ForSaleTermsScreenState();
@@ -46,6 +54,7 @@ class _ForSaleTermsScreenState extends State<ForSaleTermsScreen> {
   final GlobalKey _exportBoundaryKey = GlobalKey();
 
   SaleListingCopyContext? _copy;
+  late GrookaiSaleListingSource _source;
   GrookaiObjectSkin _skin = GrookaiObjectSkin.onyx;
   GrookaiObjectExportDestination _exportDestination =
       GrookaiObjectExportDestination.saveImage;
@@ -62,10 +71,11 @@ class _ForSaleTermsScreenState extends State<ForSaleTermsScreen> {
   @override
   void initState() {
     super.initState();
+    _source = widget.source;
     final initial = widget.initialCopy;
     if (initial != null) {
-      _applyCopy(initial);
-      _loading = false;
+      _copy = initial;
+      unawaited(_initializeForCopy(initial));
     } else {
       _loadCopy();
     }
@@ -95,10 +105,7 @@ class _ForSaleTermsScreenState extends State<ForSaleTermsScreen> {
         });
         return;
       }
-      setState(() {
-        _applyCopy(copy);
-        _loading = false;
-      });
+      await _initializeForCopy(copy);
     } catch (error) {
       if (!mounted) {
         return;
@@ -108,6 +115,102 @@ class _ForSaleTermsScreenState extends State<ForSaleTermsScreen> {
         _error = error.toString().replaceFirst('Exception: ', '');
       });
     }
+  }
+
+  Future<void> _initializeForCopy(SaleListingCopyContext copy) async {
+    SaleCardHandoff? draft = widget.initialDraft;
+    try {
+      final ownerId = _currentOwnerId;
+      if (draft == null && ownerId != null) {
+        final record = await widget.handoffStore.load(ownerId);
+        if (record?.instanceId == copy.instanceId) {
+          draft = record?.saleCard;
+        }
+      }
+    } catch (_) {
+      // A retained draft is optional; the current exact copy still opens.
+    }
+    if (draft != null &&
+        _source.cardImageUrl == null &&
+        _source.cardImageFallbackUrl == null) {
+      try {
+        final ownerId = _currentOwnerId;
+        if (ownerId != null) {
+          final resolved = await VaultGvviService.loadPrivate(
+            client: Supabase.instance.client,
+            gvviId: copy.gvviId,
+          );
+          if (resolved?.instanceId == copy.instanceId &&
+              resolved?.cardPrintId == copy.cardPrintId) {
+            _source = GrookaiSaleListingSource(
+              cardName: _source.cardName,
+              setLine: _source.setLine,
+              printingIdentityLabel: _source.printingIdentityLabel,
+              cardImageUrl: resolved!.imageUrl,
+              cardImageFallbackUrl:
+                  resolved.representativeImageUrl ?? resolved.canonicalImageUrl,
+              sellerHandle: _source.sellerHandle,
+              sellerRating: _source.sellerRating,
+              sellerTradeCount: _source.sellerTradeCount,
+            );
+          }
+        }
+      } catch (_) {
+        // Artwork is optional; preserve the saved editor if Vault is offline.
+      }
+    }
+    if (!mounted) return;
+    setState(() {
+      _applyCopy(copy);
+      if (draft != null && draft.copy.instanceId == copy.instanceId) {
+        _applyHandoff(draft);
+      }
+      _loading = false;
+    });
+  }
+
+  void _applyHandoff(SaleCardHandoff draft) {
+    _skin = draft.skin;
+    _condition = _saleConditionOptions.contains(draft.condition)
+        ? draft.condition
+        : _condition;
+    _priceController.text = draft.priceText;
+    _noteController.text = draft.note;
+    _firm = draft.firm;
+    _allowDms = draft.allowDms;
+    _showFront = draft.showFront;
+    _exportDestination = draft.destination;
+    _savedObject = null;
+  }
+
+  String? get _currentOwnerId {
+    try {
+      return Supabase.instance.client.auth.currentUser?.id;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  Future<void> _saveHandoffForEbay() async {
+    final copy = _copy;
+    final ownerId = _currentOwnerId;
+    if (copy == null || ownerId == null) return;
+    await widget.handoffStore.save(
+      SaleCardHandoff(
+        ownerId: ownerId,
+        copy: copy,
+        source: _source,
+        skin: _skin,
+        condition: _condition,
+        priceText: _priceController.text,
+        note: _noteController.text,
+        firm: _firm,
+        allowDms: _allowDms,
+        showFront: _showFront,
+        destination: _exportDestination,
+        savedAtMillis: DateTime.now().millisecondsSinceEpoch,
+      ),
+    );
   }
 
   void _applyCopy(SaleListingCopyContext copy) {
@@ -154,7 +257,7 @@ class _ForSaleTermsScreenState extends State<ForSaleTermsScreen> {
       }
       setState(() {
         _savedObject = GrookaiSaleListingAdapter.fromSavedListing(
-          source: widget.source,
+          source: _source,
           skin: _skin,
           listing: saved,
           condition: _condition,
@@ -251,7 +354,7 @@ class _ForSaleTermsScreenState extends State<ForSaleTermsScreen> {
     }
     final price = double.tryParse(_priceController.text.trim()) ?? 0;
     return GrookaiSaleListingAdapter.fromTerms(
-      source: widget.source,
+      source: _source,
       skin: _skin,
       price: price,
       condition: _condition,
@@ -314,7 +417,10 @@ class _ForSaleTermsScreenState extends State<ForSaleTermsScreen> {
                             ],
                           ),
                           const SizedBox(height: 4),
-                          EbaySellerButton(instanceId: _copy!.instanceId),
+                          EbaySellerButton(
+                            instanceId: _copy!.instanceId,
+                            beforeOpen: _saveHandoffForEbay,
+                          ),
                         ],
                       ),
                     ),
@@ -465,26 +571,6 @@ class _ForSaleTermsScreenState extends State<ForSaleTermsScreen> {
       ),
     );
   }
-}
-
-class SaleListingCopyContext {
-  const SaleListingCopyContext({
-    required this.instanceId,
-    required this.gvviId,
-    required this.vaultItemId,
-    required this.cardPrintId,
-    this.conditionLabel,
-    this.askingPriceAmount,
-    this.askingPriceNote,
-  });
-
-  final String instanceId;
-  final String gvviId;
-  final String vaultItemId;
-  final String cardPrintId;
-  final String? conditionLabel;
-  final double? askingPriceAmount;
-  final String? askingPriceNote;
 }
 
 Future<SaleListingCopyContext?> _defaultCopyLoader(String gvviId) async {

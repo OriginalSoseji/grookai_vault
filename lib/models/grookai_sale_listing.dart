@@ -7,6 +7,26 @@ import '../widgets/grookai_objects/grookai_object_skin.dart';
 
 const int kGrookaiLotMaxCards = 12;
 
+class SaleListingCopyContext {
+  const SaleListingCopyContext({
+    required this.instanceId,
+    required this.gvviId,
+    required this.vaultItemId,
+    required this.cardPrintId,
+    this.conditionLabel,
+    this.askingPriceAmount,
+    this.askingPriceNote,
+  });
+
+  final String instanceId;
+  final String gvviId;
+  final String vaultItemId;
+  final String cardPrintId;
+  final String? conditionLabel;
+  final double? askingPriceAmount;
+  final String? askingPriceNote;
+}
+
 class GrookaiSaleListingSource {
   const GrookaiSaleListingSource({
     required this.cardName,

@@ -163,6 +163,24 @@ void main() {
   });
 
   test(
+    'cold eBay returns restore sale-card context from owner-local storage',
+    () {
+      final shell = File('lib/main_shell.dart').readAsStringSync();
+      final handoff = File(
+        'lib/services/grookai_objects/sale_card_handoff_store.dart',
+      ).readAsStringSync();
+      expect(shell, contains('SaleCardHandoffStore()'));
+      expect(shell, contains('handoffStore.load(ownerId)'));
+      expect(shell, contains('onResumeSaleCard:'));
+      expect(shell, contains('initialDraft: saleCard'));
+      expect(handoff, contains('shared_preferences'));
+      expect(handoff, contains('Duration(hours: 24)'));
+      expect(handoff, isNot(contains('accessToken')));
+      expect(handoff, isNot(contains('refreshToken')));
+    },
+  );
+
+  test(
     'root deep-link dispatch opens the exact Dex destination in the app',
     () {
       final source = File('lib/main_shell.dart').readAsStringSync();
