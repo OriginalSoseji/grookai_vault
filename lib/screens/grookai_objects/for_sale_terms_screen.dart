@@ -282,6 +282,44 @@ class _ForSaleTermsScreenState extends State<ForSaleTermsScreen> {
             : ListView(
                 padding: const EdgeInsets.fromLTRB(16, 10, 16, 24),
                 children: [
+                  if (_copy != null) ...[
+                    Container(
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: colorScheme.surfaceContainerLow,
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: colorScheme.outlineVariant),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Icon(
+                                Icons.info_outline_rounded,
+                                size: 20,
+                                color: colorScheme.onSurfaceVariant,
+                              ),
+                              const SizedBox(width: 10),
+                              Expanded(
+                                child: Text(
+                                  'Create a shareable grookai sale card for this exact copy. For a marketplace offer, open the eBay listing workflow below.',
+                                  style: theme.textTheme.bodySmall?.copyWith(
+                                    height: 1.45,
+                                    color: colorScheme.onSurfaceVariant,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 4),
+                          EbaySellerButton(instanceId: _copy!.instanceId),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                  ],
                   Center(
                     child: FittedBox(
                       fit: BoxFit.scaleDown,
@@ -325,35 +363,6 @@ class _ForSaleTermsScreenState extends State<ForSaleTermsScreen> {
                     onChanged: (skin) => setState(() => _skin = skin),
                   ),
                   const SizedBox(height: 18),
-                  Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: colorScheme.surfaceContainerLow,
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: colorScheme.outlineVariant),
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Icon(
-                          Icons.info_outline_rounded,
-                          size: 20,
-                          color: colorScheme.onSurfaceVariant,
-                        ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: Text(
-                            'Create a shareable grookai sale card for this copy. Use List on eBay to open its marketplace listing workflow.',
-                            style: theme.textTheme.bodySmall?.copyWith(
-                              height: 1.45,
-                              color: colorScheme.onSurfaceVariant,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 12),
                   TextField(
                     controller: _priceController,
                     keyboardType: const TextInputType.numberWithOptions(
@@ -438,13 +447,6 @@ class _ForSaleTermsScreenState extends State<ForSaleTermsScreen> {
                         : const Icon(Icons.sell_outlined),
                     label: Text(_saving ? 'Saving...' : 'Save sale card'),
                   ),
-                  if (_copy != null) ...[
-                    const SizedBox(height: 4),
-                    Align(
-                      alignment: Alignment.center,
-                      child: EbaySellerButton(instanceId: _copy!.instanceId),
-                    ),
-                  ],
                   const SizedBox(height: 10),
                   OutlinedButton.icon(
                     onPressed: _savedObject == null || _sharing
