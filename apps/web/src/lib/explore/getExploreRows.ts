@@ -40,6 +40,7 @@ import { getCardPrintingFinishLabel } from "@/lib/cards/displayDiscriminator";
 import { getPublicCardPrintingOptions } from "@/lib/cards/getPublicCardPrintingOptions";
 import { governedStampCandidateFilter } from "@/lib/search/stampCandidateFilter";
 import { fetchConfirmedCameoGvIds } from "@/lib/search/confirmedCameoSearch";
+import { withMtgPrintReleaseDates, fetchMtgPrintDateCandidates } from "@/lib/search/mtgPrintReleaseDates";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
 import type { VariantFlags } from "@/lib/cards/variantPresentation";
 import type { PublicGameScope } from "@/lib/publicGameScope";
@@ -249,6 +250,10 @@ type CardPrintLookupRow = {
   search_family_tokens?: string[];
   search_family_slug?: string | null;
   search_family_printed_name_match?: boolean;
+  release_date?: string | null;
+  release_year?: number | null;
+  release_date_scope?: "individual_print";
+  release_date_source?: "scryfall";
 };
 
 type DexSpeciesSearchRow = {
@@ -303,6 +308,7 @@ type SortMode =
 type SmartFilterImageState = "exact" | "representative" | "missing" | "any";
 
 type SmartFilterDiscoveryOptions = {
+  gameScope?: PublicGameScope;
   searchSets?: SearchSet[];
   namedFirstPage?: import("@/lib/search/completeNamedCardSearch").NamedCardFirstPage;
   searchTimings?: Partial<Record<"name_pages" | "parent_read", number>>;
@@ -538,7 +544,9 @@ function filterRowsByReleaseYear(
   }
 
   return rows.filter((row) => {
-    const releaseYear = setMetadataByCode.get(row.set_code ?? "")?.release_year;
+    const releaseYear = row.release_date_scope === "individual_print"
+      ? row.release_year
+      : setMetadataByCode.get(row.set_code ?? "")?.release_year;
     if (typeof releaseYear !== "number") return false;
     if (typeof releaseYearMin === "number" && releaseYear < releaseYearMin) {
       return false;
@@ -953,8 +961,12 @@ async function buildExploreRows(
         image_note: fallbackDisplayImage
           ? fallbackDisplayImage.image_note
           : imageFields.image_note ?? undefined,
-        release_date: setMetadata?.release_date,
-        release_year: setMetadata?.release_year,
+        release_date: row.release_date_scope === "individual_print"
+          ? row.release_date ?? undefined : setMetadata?.release_date,
+        release_year: row.release_date_scope === "individual_print"
+          ? row.release_year ?? undefined : setMetadata?.release_year,
+        release_date_scope: row.release_date_scope,
+        release_date_source: row.release_date_source,
         set_code: row.set_code ?? undefined,
         set_identity_model: setMetadata?.identity_model,
         printed_set_abbrev: row.printed_set_abbrev ?? undefined,
@@ -4020,6 +4032,15 @@ export async function getExploreRowsForCombinedSearch(
     );
   }
   const parents: CardPrintLookupRow[] = [];
+  const printYearMin = options.exactReleaseYear ?? options.releaseYearMin;
+  const printYearMax = options.exactReleaseYear ?? options.releaseYearMax;
+  if (gameScope === "mtg" && (printYearMin !== undefined || printYearMax !== undefined)) {
+    const datedParents = await fetchMtgPrintDateCandidates(supabase,
+      "id,gv_id,name,number,printed_total,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants",
+      { minYear: printYearMin, maxYear: printYearMax,
+        setCodes: options.exactSetCode ? [options.exactSetCode] : options.exactSetCodes });
+    return enrichCompleteSearchParents(datedParents as CardPrintLookupRow[], options, supabase);
+  }
   const tokens = getSmartDiscoveryTextTokens(options.textQuery);
   const firstToken = tokens.find((token) => !/^\d+$/.test(token));
   const stampCandidateFilter = !firstToken ? governedStampCandidateFilter(options.stampLabels) : null;
@@ -4079,6 +4100,9 @@ async function enrichCompleteSearchParents(
   supabase: Awaited<ReturnType<typeof createServerComponentClient>>,
 ): Promise<ExploreRow[]> {
   if (parentRows.length === 0) return [];
+  if (options.gameScope === "mtg") {
+    parentRows = await withMtgPrintReleaseDates(supabase, parentRows);
+  }
   const metadata = await fetchPublicSetMetadata(uniqueValues(
     parentRows.map((row) => row.set_code ?? "").filter(Boolean),
   ), options.searchSets);
@@ -4089,7 +4113,9 @@ async function enrichCompleteSearchParents(
   });
   const scopedParents = await filterSmartDiscoveryRowsByScope(
     applySmartStampParentFilter(parentsWithSetMetadata.filter((row) => {
-      const year = Number(metadata.get(row.set_code ?? "")?.release_date?.slice(0, 4));
+      const year = row.release_date_scope === "individual_print"
+        ? row.release_year ?? Number.NaN
+        : Number(metadata.get(row.set_code ?? "")?.release_date?.slice(0, 4));
       const min = options.exactReleaseYear ?? options.releaseYearMin;
       const max = options.exactReleaseYear ?? options.releaseYearMax;
       return (min === undefined || year >= min) && (max === undefined || year <= max);
@@ -4448,10 +4474,11 @@ export async function getExploreRowsForGameScopedTextSearch(
       }
     }
 
-    const parentRows = [...new Map(
+    let parentRows = [...new Map(
       ((data ?? []) as CardPrintLookupRow[]).map((row) => [row.id, row]),
     ).values()];
     if (parentRows.length === 0) return [];
+    if (gameScope === "mtg") parentRows = await withMtgPrintReleaseDates(supabase, parentRows);
     const setMetadataByCode = await fetchPublicSetMetadata(
       uniqueValues(parentRows.map((row) => row.set_code ?? "").filter(Boolean)),
     );
@@ -4504,7 +4531,7 @@ export async function getExploreRowsForGameScopedTextSearch(
   if (!gameId) return [];
 
   let releaseScopedSetCodes: string[] | null = null;
-  if (typeof releaseYearMin === "number" || typeof releaseYearMax === "number") {
+  if (gameScope !== "mtg" && (typeof releaseYearMin === "number" || typeof releaseYearMax === "number")) {
     let setQuery = supabase.from("sets").select("code").eq("game", gameScope);
     if (typeof releaseYearMin === "number") {
       setQuery = setQuery.gte("release_date", `${releaseYearMin}-01-01`);
@@ -4580,7 +4607,7 @@ export async function getExploreRowsForGameScopedTextSearch(
   }
   const normalizedNameText = nameText.toLowerCase();
   const normalizedCollectorToken = collectorToken.toLowerCase();
-  const scopedParentRows = applyLanguageScopeRows(
+  let scopedParentRows = applyLanguageScopeRows(
     [...rowsById.values()],
     gameScope === "pokemon" ? options.languageScope : "all",
   ).filter((row) => {
@@ -4599,6 +4626,10 @@ export async function getExploreRowsForGameScopedTextSearch(
     const identityMatches = matchesIdentityFilter(row, identityFilter);
     return nameMatches && collectorMatches && illustratorMatches && identityMatches;
   });
+  if (gameScope === "mtg") {
+    scopedParentRows = await withMtgPrintReleaseDates(supabase, scopedParentRows);
+    scopedParentRows = filterRowsByReleaseYear(scopedParentRows, new Map(), releaseYearMin, releaseYearMax);
+  }
   const resolverQuery = await buildResolverQuery(normalizeQuery(rawQuery));
   const parentRows = limitRowsBeforeEnrichment(
     scopedParentRows,
@@ -4950,7 +4981,15 @@ async function fetchSmartDiscoveryChildRows(
     await runChildQuery();
   }
 
-  return complete ? [...rowsByKey.values()] : [...rowsByKey.values()].slice(0, SMART_FILTER_DISCOVERY_LIMIT);
+  const projectedParents = new Map(parentRows.filter(row => row.release_date_scope === "individual_print")
+    .map(row => [row.id, row]));
+  const rows = [...rowsByKey.values()].map(row => {
+    const parent = projectedParents.get(row.id);
+    return parent ? { ...row, release_date: parent.release_date,
+      release_year: parent.release_year, release_date_scope: parent.release_date_scope,
+      release_date_source: parent.release_date_source } : row;
+  });
+  return complete ? rows : rows.slice(0, SMART_FILTER_DISCOVERY_LIMIT);
 }
 
 export async function getExploreRowsForSmartFilterDiscovery(
