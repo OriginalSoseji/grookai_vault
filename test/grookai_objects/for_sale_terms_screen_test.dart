@@ -77,6 +77,38 @@ void main() {
     expect(find.text('Sale listing saved.'), findsOneWidget);
   });
 
+  testWidgets('sale card is distinct from the exact-copy eBay listing path', (
+    tester,
+  ) async {
+    _useTallViewport(tester);
+    await tester.pumpWidget(
+      MaterialApp(
+        home: ForSaleTermsScreen(
+          gvviId: 'GVVI-123',
+          source: const GrookaiSaleListingSource(
+            cardName: 'Umbreon VMAX',
+            setLine: 'Evolving Skies #215',
+          ),
+          service: _FakeSaleListingService(),
+          initialCopy: const SaleListingCopyContext(
+            instanceId: '11111111-1111-4111-8111-111111111111',
+            gvviId: 'GVVI-123',
+            vaultItemId: 'VAULT-123',
+            cardPrintId: 'CARD-123',
+          ),
+        ),
+      ),
+    );
+
+    expect(find.text('Create sale card'), findsOneWidget);
+    expect(
+      find.textContaining('Create a shareable grookai sale card'),
+      findsOneWidget,
+    );
+    expect(find.text('Save sale card'), findsOneWidget);
+    expect(find.text('List on eBay'), findsOneWidget);
+  });
+
   testWidgets('terms flow accepts short raw vault condition labels', (
     tester,
   ) async {
