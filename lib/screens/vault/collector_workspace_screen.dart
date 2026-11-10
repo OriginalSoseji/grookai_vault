@@ -601,12 +601,7 @@ class _CollectorWorkspaceScreenState extends State<CollectorWorkspaceScreen> {
                               value: intakeMoney(receive),
                             ),
                             const Divider(),
-                            _TradeValueLine(
-                              label: 'Net received minus given',
-                              value: difference == null
-                                  ? 'Enter all agreed values'
-                                  : 'USD ${(difference / 100).toStringAsFixed(2)}',
-                            ),
+                            _TradeBalanceSummary(differenceCents: difference),
                             const SizedBox(height: 10),
                             const Text(
                               'Agreed values are your negotiation notes. Market references stay separate. Save this draft, then record each actual outcome through Sold / Traded. Incoming cards require their own reviewed Vault add.',
@@ -701,6 +696,74 @@ class _TradeValueLine extends StatelessWidget {
       ],
     ),
   );
+}
+
+String collectorTradeBalanceLabel(int? differenceCents) {
+  if (differenceCents == null) {
+    return 'Enter all agreed values to see the balance.';
+  }
+  if (differenceCents == 0) return 'Even on agreed value';
+  final amount = intakeMoney(differenceCents.abs());
+  return differenceCents > 0
+      ? 'You receive $amount more'
+      : 'You give $amount more';
+}
+
+class _TradeBalanceSummary extends StatelessWidget {
+  const _TradeBalanceSummary({required this.differenceCents});
+
+  final int? differenceCents;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colors = theme.colorScheme;
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 10),
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: colors.surfaceContainerHigh,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: colors.outlineVariant.withValues(alpha: 0.7)),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(Icons.compare_arrows_rounded, color: colors.primary),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Agreed-value balance',
+                  style: theme.textTheme.labelMedium?.copyWith(
+                    color: colors.onSurfaceVariant,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const SizedBox(height: 3),
+                Text(
+                  collectorTradeBalanceLabel(differenceCents),
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    color: colors.onSurface,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                const SizedBox(height: 3),
+                Text(
+                  'Negotiation note; market references stay separate.',
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: colors.onSurfaceVariant,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 class _TradeArtworkField extends StatelessWidget {

@@ -42,6 +42,16 @@ class _Service extends VendorPricingWorkspaceService {
 }
 
 void main() {
+  test('trade balance says who gives or receives more', () {
+    expect(
+      collectorTradeBalanceLabel(null),
+      'Enter all agreed values to see the balance.',
+    );
+    expect(collectorTradeBalanceLabel(0), 'Even on agreed value');
+    expect(collectorTradeBalanceLabel(125), 'You receive USD 1.25 more');
+    expect(collectorTradeBalanceLabel(-450), 'You give USD 4.50 more');
+  });
+
   TestWidgetsFlutterBinding.ensureInitialized();
   setUpAll(() async {
     SharedPreferences.setMockInitialValues({});
