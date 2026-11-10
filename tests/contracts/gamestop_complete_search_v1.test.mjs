@@ -161,3 +161,15 @@ test('cameo discovery hydrates only confirmed IDs and preserves artist and other
   assert.equal(ordinaryReads, 0); assert.equal(calls.length, 1);
   assert.deepEqual(Array.from(result.map(r => r.id)), ['one']);
 });
+
+test('confirmed cameo reader does not admit unrelated artwork for an unknown artist constraint', async()=>{
+ const parents=[{id:'one',gv_id:'GV-PK-TR-76',artist:'Ken Sugimori'}];
+ const db={from(){const q={select(){return q;},in(){return Promise.resolve({data:parents,error:null});}};return q;}};
+ const {getExploreRowsForCombinedSearch}=compile(reader,{
+  normalizeSearchText,assertValueSortPricingEnabled(){},createServerComponentClient:async()=>db,
+  fetchConfirmedCameoGvIds:async()=>['GV-PK-TR-76'],chunkArray:values=>[values],
+  enrichCompleteSearchParents:async rows=>rows,
+ });
+ const rows=await getExploreRowsForCombinedSearch({cameoSubject:'Gengar',cameoArtistNames:['Nobody']});
+ assert.equal(rows.length,0);
+});

@@ -159,3 +159,11 @@ test('negative ownership does not become positive ownership', () => {
 });
 
 test('Master Ball remains a card name alongside rarity, number and set constraints', () => {for(const q of ['Master Ball common 2024', 'Master Ball Base Set 7', 'Poke Ball uncommon']){const i=parse(q);assert.equal(i.finishKeys.length,0,q);assert.match(i.residualQuery,/ball/i);}});
+
+test('explicit artists outside the inventory remain constraints alongside a cameo subject',()=>{
+ const intent=parse('Gengar cameo artist Nobody');
+ assert.equal(intent.cameoSubject,'Gengar');assert.equal(intent.artist,'Nobody');
+ assert.equal(intent.artistNames,undefined);
+ assert.ok(intent.queryFilters.some(f=>f.kind==='artist'&&f.label==='Artist: Nobody'));
+ assert.equal(intent.residualQuery,'');
+});

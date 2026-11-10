@@ -18,12 +18,27 @@ of inapplicability. Do not rerun historical packages against later legitimate ch
   every hosted body. 525 image holds remain.
 - One Piece structured metadata 6898/6900; two edition-name conflicts held.
 - Japanese release dates: original 122 sets/4248 parents, plus 83 additional fixed
-  sets/6697 parents supported by three captured source lists. The latest package
+  sets/6697 parents supported by three captured source lists, followed by four
+  manufacturer-adjudicated set records/336 parents. The latest packages
   passed actual rollback, durable apply, zero-write replay and independent global
-  preservation checks. Four provider-date conflicts and three product-scope cases held.
+  preservation checks. Four provider-date conflicts were resolved with original
+  manufacturer announcements and two independent setlists; the rejected dates
+  remain in provenance. Three product-scope cases remain held.
 - Gengar cameo evidence: four exact image confirmations, including a separately
   labeled character representation. Two ambiguous silhouettes remain unconfirmed.
-  The other 1417 imported associations remain outside confirmed public search.
+  All 1417 unconfirmed associations, including those two cases, remain outside
+  confirmed public search.
+
+All 132,760 structured records pass their current domain identity/source-owner
+readers (Pokemon 20,302 / Magic 105,560 / One Piece 6,898), with zero rejections. Magic
+uses its frozen ordered candidate JSON identity hash, One Piece its frozen
+stableJson hash and Pokemon its SQL identity serialization. A generic hash
+recipe must not be used to rewrite another domain's identities.
+
+Of 12995 Magic parents linked to undated sets, 12973 already have verified
+per-print source_released_at observations; those are consumer projection work,
+not missing release facts. Twenty-two lack an admitted detailed-date record.
+Do not put an individual issue date on a rolling collection set.
 
 No physical printing or finish was inferred. UUIDs, GV IDs, ownership, pricing,
 other source owners and original provenance were preserved by bounded proofs.
@@ -48,17 +63,24 @@ canonical keys, retain complete pagination and final filter checks, and resolve
 cameos only through the existing confirmed public projection. No private profile
 or unreviewed imported association is exposed.
 Anonymous candidate database qualification: WB Kids 11, Build-A-Bear 11, Gengar 4;
-all database reads completed under 1.3 seconds. 77 focused contract tests passed,
+all database reads completed under 1.3 seconds. Focused contract tests passed,
 including complete paging, combined filters, private profile boundaries, pricing
-redaction and typography. Production build passed. Current branch includes main's
-06d4f137 OAuth handoff fix. Full shipcheck and hosted/live release proof pending.
+redaction and typography. Production build passed. The initial release revision
+passed both managed full
+shipchecks and all twenty hosted checks. An explicit artist outside the bundled
+inventory is retained as a cameo constraint; forty-two focused regressions pass,
+including known, unknown and explicit illustrator cases. The release branch
+includes main's 06d4f137 OAuth handoff fix. Every source update still requires the
+normal full gates and live readback before publication.
 
 ## Evidence locations
 
 Canonical operator artifacts are in C:/grookai_vault/docs/audits, specifically:
 `catalog_jpn_native_dates_v1_20261110`, `catalog_pokemon_gameplay_reads_v1_20261110`,
 `catalog_gengar_confirmations_v1_20261110`,
-`catalog_homepage_examples_readback_v1_20261110`, and the source-specific campaign
+`catalog_homepage_examples_readback_v1_20261110`,
+`catalog_all_details_current_reads_v1_20261110`,
+`catalog_jpn_primary_dates_v1_20261110`, and the source-specific campaign
 directories referenced by `catalog_full_completion_v1_20261109/COMPLETION_LEDGER.md`.
 These evidence packages retain actual original bytes, hashes, raw IDs, rollback,
 independent readback and zero-write replay. They are not credentials or fixtures
@@ -72,3 +94,10 @@ rarities, sealed contents, physical printings, images and historical release
 scopes still require appropriate evidence. Preserve row-level queues. Counts of
 missing fields overlap and must not be summed as distinct cards. Search release
 success does not turn these held cases into completed data cleanup.
+
+The actual production artifact also passed API/browser qualification: WB Kids 11,
+Build-A-Bear 11, confirmed Gengar 4 and 2022-2024 reverse-holo Pikachu 14. Pikachu
+identity/printing/finish/date order matches the original production response.
+Complete paging and combined artist/year constraints pass, and phone 390x844 has
+no horizontal overflow. Anonymous public image routing verified fourteen faces
+across all twelve newly enriched Magic sets by original source body SHA.

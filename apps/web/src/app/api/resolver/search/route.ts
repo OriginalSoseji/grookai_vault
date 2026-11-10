@@ -658,7 +658,8 @@ export async function GET(request: NextRequest) {
           sortMode,
           textQuery: routedQuery,
           cameoSubject: effectiveSmartSearchIntent.cameoSubject,
-          cameoArtistNames: exactIllustrator ? undefined : smartSearchIntent.artistNames,
+          cameoArtistNames: exactIllustrator ? undefined
+            : smartSearchIntent.artistNames ?? (smartSearchIntent.artist ? [smartSearchIntent.artist] : undefined),
           exactSetCode: effectiveExactSetCode,
           exactReleaseYear,
           identityFilter,

@@ -329,3 +329,23 @@ test('plain card-name queries expose all pages and complete legacy results', asy
   assert.equal(legacy.rows.length,195);assert.equal(legacy.pagination.total_count,195);
  }
 });
+
+test('cameo route preserves explicit artist constraints outside the bundled artist inventory', async () => {
+ for (const [query, illustrator, expected] of [
+  ['Gengar cameo artist Nobody', null, ['Nobody']],
+  ['Gengar cameo artist: "Nobody"', null, ['Nobody']],
+  ['Gengar cameo artist Ken Sugimori', null, ['Ken Sugimori']],
+  ['Gengar cameo artist Nobody', 'Ken Sugimori', undefined],
+  ['Gengar cameo', null, undefined],
+ ]) {
+  let scope;
+  const get=loadRoute({rows:[],capture:options=>{scope=options;}});
+  const url=new URL('https://fixture/explore');url.searchParams.set('q',query);
+  if(illustrator)url.searchParams.set('illustrator',illustrator);
+  const response=await get({nextUrl:url});
+  assert.equal(response.status,200,query);
+  assert.equal(scope.cameoSubject,'Gengar',query);
+  assert.deepEqual(scope.cameoArtistNames ? Array.from(scope.cameoArtistNames) : undefined,expected,query);
+  assert.equal(scope.exactIllustrator,illustrator ?? undefined,query);
+ }
+});
