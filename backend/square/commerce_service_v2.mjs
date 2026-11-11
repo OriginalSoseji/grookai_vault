@@ -5,6 +5,8 @@ const fail=code=>{throw new SquareApiError(code);};
 const code=error=>/^square_[a-z_]{1,80}$/.test(error?.code)?error.code:'square_commerce_unconfirmed';
 const safeError=error=>{const result=new SquareApiError(code(error));if(/^[0-9A-Z]{5}$/.test(error?.databaseCode??''))result.databaseCode=error.databaseCode;return result;};
 const uuid=value=>typeof value==='string'&&/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/.test(value)?value:fail('square_invalid_request');
+const reviewableEvidence=new Set(['square_order_unconfirmed','square_order_amount_unconfirmed','square_payment_unconfirmed',
+ 'square_payment_time_unconfirmed','square_sale_requires_review','square_sale_evidence_changed','square_refund_unconfirmed']);
 
 export class SquareCommerceService {
  constructor({catalog,rpc,config,now=Date.now}){this.catalog=catalog;this.rpc=rpc;this.config=config;this.now=now;}
@@ -13,7 +15,19 @@ export class SquareCommerceService {
   if(typeof autoEnroll!=='boolean'||typeof sellOnSquare!=='boolean'||confirmed!==true)fail('square_invalid_request');
   return this.rpc('preferences',{ownerId:uuid(ownerId),connectionId:uuid(connectionId),autoEnroll,sellOnSquare,confirmed});
  }
- async #observeOrder({connection,context,client},order){
+ async #reviewOrder({connection,context},order,error,mapped,evidence){
+  if(!reviewableEvidence.has(code(error)))throw error;
+  const review={id:order.id,locationId:connection.location_id,currency:'USD',state:'review',
+   lines:[...new Set(mapped)].sort().map(variationId=>({variationId})),errorCode:code(error),
+   sourceHash:squareEvidenceHash(evidence??{id:order.id,version:order.version??null})};
+  // The authority atomically records the observation and quarantines only this
+  // order's mapped claims. A durable review is a completed observation, not a
+  // reason to replay the same signal forever or stop unrelated seller work.
+  await this.rpc('order_observe',{...context,evidence:review,evidenceHash:squareEvidenceHash(review)});
+  return {review:true,orderId:order.id,errorCode:code(error)};
+ }
+ async #observeOrder(leased,order){
+  const {connection,context,client}=leased;
   const variationIds=(order.line_items??[]).map(row=>row.catalog_object_id).filter(value=>typeof value==='string');
   const mapped=await this.rpc('order_variations',{...context,variationIds});
   if(!Array.isArray(mapped))fail('square_orders_incomplete');
@@ -30,12 +44,22 @@ export class SquareCommerceService {
    }
    return result;
   }catch(error){
-   // A failed settlement transaction is rolled back. Persist a distinct review
-   // observation before propagating the sanitized failure to the run journal.
-   const review={id:order.id,locationId:connection.location_id,currency:'USD',state:'review',lines:[],
-    errorCode:code(error),sourceHash:squareEvidenceHash(evidence??{id:order.id,version:order.version??null})};
-   await this.rpc('order_observe',{...context,evidence:review,evidenceHash:squareEvidenceHash(review)});
-   throw error;
+   return this.#reviewOrder(leased,order,error,mapped,evidence);
+  }
+ }
+ async #observeRefund(leased,refund){
+  const {connection,context,client}=leased,payment=await client.payment(refund.payment_id);
+  if(!payment.order_id)return {ignored:true};
+  const order=await client.order(payment.order_id),observed=await this.#observeOrder(leased,order);
+  if(observed.ignored||observed.review)return observed;
+  try{
+   const evidence=squareRefundEvidence(refund,payment,{locationId:connection.location_id});
+   await this.rpc('refund_observe',{...context,evidence,evidenceHash:squareEvidenceHash(evidence)});
+   return observed;
+  }catch(error){
+   const mapped=await this.rpc('order_variations',{...context,variationIds:(order.line_items??[]).map(line=>line.catalog_object_id).filter(id=>typeof id==='string')});
+   if(!Array.isArray(mapped))fail('square_orders_incomplete');
+   return this.#reviewOrder(leased,order,error,mapped);
   }
  }
  async #reconcile(leased){
@@ -45,27 +69,24 @@ export class SquareCommerceService {
   const since=new Date(Math.max(Date.parse(connection.created_at),Date.parse(connection.reconcile_cursor??connection.created_at)-300000)).toISOString();
   const signals=await this.rpc('signals',context);
   if(!Array.isArray(signals)||signals.length>25)fail('square_signals_incomplete');
+  const reviews=new Map(),observe=result=>{if(result?.review)reviews.set(result.orderId,result.errorCode);return result;};
   for(const signal of signals){
    try{
+    let observed;
     if(signal.resource_type==='authorization'){
      try{await client.merchant(connection.merchant_id);}catch(error){
       if(error.code==='square_authorization_required')await this.rpc('signal_done',{...context,eventId:signal.event_id,errorCode:'square_authorization_required'});
       throw error;
      }
     }
-    if(signal.resource_type==='order')await this.#observeOrder(leased,await client.order(signal.resource_id));
+    if(signal.resource_type==='order')observed=observe(await this.#observeOrder(leased,await client.order(signal.resource_id)));
     else if(signal.resource_type==='payment'){
      const payment=await client.payment(signal.resource_id);
-     if(payment.order_id)await this.#observeOrder(leased,await client.order(payment.order_id));
+     if(payment.order_id)observed=observe(await this.#observeOrder(leased,await client.order(payment.order_id)));
     }else if(signal.resource_type==='refund'){
-     const refund=await client.refund(signal.resource_id),payment=await client.payment(refund.payment_id);
-     if(payment.order_id){
-      const value=squareRefundEvidence(refund,payment,{locationId:connection.location_id});
-      const observed=await this.#observeOrder(leased,await client.order(payment.order_id));
-      if(!observed.ignored)await this.rpc('refund_observe',{...context,evidence:value,evidenceHash:squareEvidenceHash(value)});
-     }
+     observed=observe(await this.#observeRefund(leased,await client.refund(signal.resource_id)));
     }
-    await this.rpc('signal_done',{...context,eventId:signal.event_id});
+    await this.rpc('signal_done',{...context,eventId:signal.event_id,...(observed?.review?{errorCode:observed.errorCode}:{})});
    }catch(error){
     // Keep an unmatched/failed signal pending; the worker's durable run exposes
     // the failure and a future tick rereads the provider instead of trusting it.
@@ -75,19 +96,14 @@ export class SquareCommerceService {
   const orders=await client.recentOrders(connection.location_id,since,through);
   if(!Array.isArray(orders))fail('square_orders_incomplete');
   let checked=0;
-  for(const order of orders){await this.#observeOrder(leased,order);checked++;}
+  for(const order of orders){observe(await this.#observeOrder(leased,order));checked++;}
   // Refund changes have their own provider update cursor. An old order need
   // not change when its payment is refunded, and webhook delivery may be lost.
   const refunds=await client.recentRefunds(connection.location_id,since,through,connection.created_at);
   if(!Array.isArray(refunds))fail('square_refunds_incomplete');
-  for(const refund of refunds){
-   const payment=await client.payment(refund.payment_id);if(!payment.order_id)continue;
-   const observed=await this.#observeOrder(leased,await client.order(payment.order_id));
-   if(!observed.ignored){const evidence=squareRefundEvidence(refund,payment,{locationId:connection.location_id});
-    await this.rpc('refund_observe',{...context,evidence,evidenceHash:squareEvidenceHash(evidence)});}
-  }
+  for(const refund of refunds)observe(await this.#observeRefund(leased,refund));
   await this.rpc('cursor',{...context,through});
-  return {checked};
+  return {checked,orderReviews:reviews.size};
  }
  async reconcile(ownerId,connectionId){
   return this.catalog.withConnection(ownerId,connectionId,leased=>this.#reconcile(leased));
@@ -119,7 +135,8 @@ export class SquareCommerceService {
     }else{
      const sold=state.allocation?.state==='sold';
      const shouldWithdraw=withdraw||sold||!state.sellEnabled||!state.offer;
-     if(!state.allocation&&!shouldWithdraw){
+     if(state.allocation?.review_order_id&&!sold&&!shouldWithdraw)fail('square_order_requires_review');
+     if((!state.allocation||state.allocation.state==='released')&&!shouldWithdraw){
       if(quantity!==0)fail('square_existing_stock_requires_review');
      }else if(!state.allocation)return {status:'not_allocated'};
      else if(state.allocation.state==='active'&&!shouldWithdraw){
@@ -161,7 +178,7 @@ export class SquareCommerceService {
    if(focusInstanceId)uuid(focusInstanceId);
    const result=await this.#processConnection(ownerId,connectionId,{maxTargets,manual,focusInstanceId,checkpoint});
    await this.rpc('commerce_run_finish',{...runContext,result:{status:result.failed?'failed':'succeeded',succeeded:result.succeeded,
-    failed:result.failed,skipped:result.reviews+result.skipped,errorCode:result.errorCode??''}});
+    failed:result.failed,skipped:result.reviews+result.skipped+(result.orderReviews??0),errorCode:result.errorCode??''}});
    await detail({...result.errorDetail,errorCode:result.errorCode??null});
    return {...result,runId};
   }catch(error){
@@ -178,13 +195,13 @@ export class SquareCommerceService {
  async #processConnection(ownerId,connectionId,{maxTargets,manual,focusInstanceId,checkpoint}){
   // Settlement always precedes stock reconciliation: a sold decrement must
   // never be mistaken for permission to put the same physical unit back.
-  await checkpoint('reconcile');await this.reconcile(ownerId,connectionId);
+  await checkpoint('reconcile');const reconciled=await this.reconcile(ownerId,connectionId);
   if(this.config.commerceEnabled){await checkpoint('enroll');await this.enroll(ownerId,connectionId,focusInstanceId);}
   await checkpoint('read_targets');
   const read=await this.catalog.withConnection(ownerId,connectionId,async({connection,context})=>({
    automatic:connection.auto_sync,targets:await this.rpc('commerce_targets',{...context,focusInstanceId})}));
   if(!Array.isArray(read.targets))fail('square_targets_incomplete');
-  const result={succeeded:0,failed:0,reviews:0,skipped:0,adoptions:[],focusStatus:'pending'};
+  const result={succeeded:0,failed:0,reviews:0,skipped:0,orderReviews:reconciled.orderReviews??0,adoptions:[],focusStatus:'pending'};
   const reviewTargets=new Set();
   const review=target=>{reviewTargets.add(target.id);result.reviews=reviewTargets.size;};
   for(const target of read.targets.slice(0,maxTargets)){

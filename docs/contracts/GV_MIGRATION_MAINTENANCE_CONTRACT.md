@@ -1389,3 +1389,24 @@ successful, reset a populated lab, change historical SQL, or run a generated dif
 The scoped replacement preserves the complete definition/owner/ACL/RLS comparison
 and requires empty differences before PrePush; it does not waive default gates
 for any unrelated migration set.
+
+### Square review-isolation release V6 — November 11, 2026
+
+The separate `-SquareCommerceReleaseV6` admits only AuditLinkedSchema or PrePush,
+canonical production483 and exactly the ten immutable candidates
+`20261111051000,20261111060000,20261111063000,20261111080000,20261111130000,20261111133000,20261111134500,20261111140000,20261111170000,20261111173000`.
+It targets493. Earlier scopes retain their exact payloads and cannot admit these
+two forward repairs. Review isolation quarantines only affected claims and their
+saved uncertain stock requests while unrelated work continues. Reacquired claims
+use their latest immutable allocation-request clock, retaining original history.
+
+The same genuine prefix reset/historical prerequisite, all unchanged historical
+sources and CLI replay, populated forward upgrades/no-op pushes, complete raw
+public/private schema and security comparison, committed-source hooks and exact
+production PrePush remain mandatory. The ninth upgrade compares every prior row
+field and separately verifies both new nullable review fields start empty; no
+existing claim is rewritten. The tenth preserves all existing row fields.
+PrePush also binds actual local-Auth HTTP review/stock regressions, the renewed
+sale/refund/return proof, rollback authority tests and actual Sandbox evidence.
+No populated lab is reset, generated diff executed, private grant widened or
+production feature enabled by this qualification.

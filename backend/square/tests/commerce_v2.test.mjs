@@ -63,10 +63,10 @@ test('signed unsupported event types are ignored; malformed identifiers and over
 });
 
 const ownerId='b1000000-0000-4000-8000-000000000001',connectionId='b1000000-0000-4000-8000-000000000002',targetId='b1000000-0000-4000-8000-000000000003';
-function stockHarness({acceptThenTimeout=false,existingQuantity=0,active=false,privateOffer=false}={}){
+function stockHarness({acceptThenTimeout=false,existingQuantity=0,active=false,allocationState,privateOffer=false}={}){
  const calls=[];let quantity=existingQuantity,writes=0;
  const now=Date.parse('2026-11-11T07:00:00Z');
- const state={target:{id:targetId,item_id:'item',variation_id:'variation'},allocation:active?{id:'allocation',state:'active'}:null,
+ const state={target:{id:targetId,item_id:'item',variation_id:'variation'},allocation:active||allocationState?{id:'allocation',state:allocationState??'active'}:null,
   offer:privateOffer?null:{gvviId:'GVVI-DEMO0000-000001'},sellEnabled:true,pending:null};
  const rpc=async(action,data)=>{
   calls.push({action,data:structuredClone(data)});
@@ -103,6 +103,16 @@ test('unknown existing Square stock and unexplained sold decrements never author
  for(const options of [{existingQuantity:1},{active:true,existingQuantity:0}]){
   const h=stockHarness(options);await assert.rejects(h.service().stock(ownerId,connectionId,targetId));assert.equal(h.writes,0);
  }
+});
+
+test('released allocation must observe zero again before reacquiring its physical stock',async()=>{
+ for(const quantity of [1,3]){
+  const h=stockHarness({allocationState:'released',existingQuantity:quantity});
+  await assert.rejects(h.service().stock(ownerId,connectionId,targetId),/square_existing_stock_requires_review/);
+  assert.equal(h.writes,0);assert.equal(h.calls.some(row=>row.action==='stock_prepare'),false);
+ }
+ const h=stockHarness({allocationState:'released',existingQuantity:0});
+ assert.equal((await h.service().stock(ownerId,connectionId,targetId)).status,'ready');assert.equal(h.writes,1);
 });
 test('privacy loss withdraws stock to zero and retains the claim for offline-sale/physical-copy review',async()=>{
  const h=stockHarness({active:true,existingQuantity:1,privateOffer:true});

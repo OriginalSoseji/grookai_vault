@@ -1,5 +1,51 @@
 # Square catalog sync checkpoint — November 10, 2026
 
+## Review isolation qualification — November 11, 2026, 09:46 Denver
+
+This is the latest state. PR897's5060ecfb4 candidate passed both normal hooks and
+all hosted checks, including CodeQL, Vercel and the full Samsung visual/accessibility
+suite. The protected branch still rejected merge because two automated review
+threads were unresolved. No policy was bypassed and no merge occurred. Both
+findings were valid and are addressed by the new candidate below.
+
+An unsupported mapped order now persists a scoped review, quarantines only its
+physical claims and retained uncertain stock request, completes its durable hint
+and lets other orders/listings/privacy withdrawals continue. Quarantined requests
+retain immutable bodies/keys and cannot release or reallocate the affected copy.
+Dormant reviews no longer monopolize the target batch. Provider outages and failed
+review persistence still retain signals/cursors for retry. A released allocation
+must observe zero stock again; quantity3 is preserved and flagged for review.
+The retained allocation row's original timestamp is also insufficient after
+reacquisition, so paid evidence now checks its latest immutable allocate request.
+
+Two new forward migrations,20261111170000 and20261111173000, are applied only in
+both existing isolated labs, bringing them to493. All earlier applied SQL remains
+immutable. Both CLI dry runs/applies/no-ops passed. All414 prior tables' existing
+fields were preserved, with only two new nullable private review fields added by
+the ninth migration. The tenth preserved every field. No populated lab was reset.
+The new release scope is `SquareCommerceReleaseV6`, exact483-to493/ten candidates;
+V5's eight-file admission remains unchanged and cannot authorize this payload.
+
+All54 Square tests pass. Actual rollback authority tests cover retained unknown
+stock obligations, blocked release/reallocation, continued independent allocation
+and sale, idempotent reviews and old-payment rejection after reacquisition.
+The real local-Auth HTTP regression proof
+`local-fresh-v1/review-http-1794415253348.json` passes6 stages and binds92 sources.
+The renewed original8-stage sale/refund/return proof also passes at
+`local-fresh-v1/http-commerce-1794415277032.json` with85 execution sources.
+All3 browser/API/desktop/phone-layout tests pass. The loopback provider is synthetic;
+these are distinct from the retained real Sandbox proofs and physical acceptance.
+Local controls are paused at catalog10/commerce8 with no released claims.
+
+Production remains483, hosting flags and the recovery timer remain off, and
+Samsung remains530. Native inputs are unchanged, so the separate531 artifacts
+remain applicable. Fresh V6 schema/security qualification, normal hooks, hosted
+checks and resolution of the two fixed review threads are required before merge.
+All earlier prepared production packages are source-bound and must not be used.
+Desktop/browser access, existing production credentials, seller OAuth and actual
+Samsung QR checkout/readback remain unresolved. No production-ready completion
+is claimed.
+
 ## Clean-install correction — November 11, 2026, 08:36 Denver
 
 The security refresh1bac69a2d passed both ordinary hooks, all1,979 Flutter tests,

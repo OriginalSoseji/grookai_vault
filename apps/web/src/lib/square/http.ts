@@ -40,6 +40,7 @@ export async function squareBody(request: Request): Promise<Record<string, unkno
   return body as Record<string, unknown>;
 }
 const messages: Record<string, [string, number]> = {
+  square_order_requires_review: ['A Square order needs review. This card stays held; unrelated cards can continue syncing.',409],
   square_withdraw_before_disconnect: ['Remove the allocated cards from Square and resolve pending stock before disconnecting.',409],
   square_stock_unavailable: ['This card is already reserved or is no longer available for Square.',409],
   square_existing_stock_requires_review: ['Square already has stock for this item. Review its quantity before allocating this copy.',409],

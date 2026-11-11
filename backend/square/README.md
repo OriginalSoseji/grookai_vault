@@ -93,12 +93,21 @@ It tests private add, automatic item/stock, sale replay, refund and confirmed re
 Actual Square Sandbox commerce qualification is `qualify_sandbox_commerce_v2.mjs`.
 Neither substitutes for the hosted/Samsung QR checkout acceptance.
 
-Current release admission is `SquareCommerceReleaseV5`, exact483→491/eight pinned
+Current release admission is `SquareCommerceReleaseV6`, exact483→493/ten pinned
 migrations. Earlier catalog/baseline scopes remain unchanged. Run details retain
 connection/owner/target, source version, last processing step and bounded database
 error codes; they never retain raw provider bodies or secrets. Temporary lease
 contention is pending work. A real catalog failure remains a failed run even if
 the existing allocated quantity can still be read successfully.
+
+Unsupported mapped orders record durable review and quarantine only their own
+claims. Their saved uncertain stock bodies/keys remain retained, and those claims
+cannot be automatically released or reallocated. Unrelated sales, new listings
+and privacy withdrawals continue; reviewed orders do not monopolize the target
+batch or leave webhook signals replaying forever. Provider outages and failed
+review persistence retain their signals/cursor for retry. Reacquiring a released
+copy requires a fresh zero count and uses the latest immutable allocation-request
+clock, preserving earlier allocation and payment history.
 
 The original payment creation clock must follow the physical allocation before
 an authenticated paid order can dispose that copy. A historical payment/refund

@@ -1,0 +1,54 @@
+set local request.jwt.claim.role='';
+set local request.jwt.claims='{"role":"service_role"}';
+do $proof$
+declare c grookai_square.connections; sample public.vault_item_instances; copy1 public.vault_item_instances; copy2 public.vault_item_instances;
+ bad grookai_square.targets; good grookai_square.targets; context jsonb; lease uuid:=gen_random_uuid(); source jsonb; payload jsonb;
+ first_op jsonb; good_op jsonb; reviewed jsonb; response jsonb; rows jsonb; bad_position bigint; good_position bigint; events_before bigint;
+begin
+ select * into strict c from grookai_square.connections where merchant_id='runtime-merchant';
+ select vx.* into strict sample from public.vault_item_instances vx join grookai_square.targets tx on tx.instance_id=vx.id where tx.connection_id=c.id order by tx.id limit 1;
+ copy1:=public.admin_vault_instance_create_v1(p_user_id=>c.owner_id,p_card_print_id=>sample.card_print_id,p_card_printing_id=>sample.card_printing_id,p_legacy_vault_item_id=>sample.legacy_vault_item_id,p_name=>'LOCAL order review isolation',p_condition_label=>'NM');
+ copy2:=public.admin_vault_instance_create_v1(p_user_id=>c.owner_id,p_card_print_id=>sample.card_print_id,p_card_printing_id=>sample.card_printing_id,p_legacy_vault_item_id=>sample.legacy_vault_item_id,p_name=>'LOCAL unrelated order',p_condition_label=>'NM');
+ update public.vault_item_instances set intent='sell',pricing_mode='asking',asking_price_amount=20,asking_price_currency='USD' where id in (copy1.id,copy2.id);
+ insert into grookai_square.targets(connection_id,owner_id,instance_id,item_id,variation_id) values(c.id,c.owner_id,copy1.id,'local-review-item-'||gen_random_uuid(),'local-review-var-'||gen_random_uuid()) returning * into bad;
+ insert into grookai_square.targets(connection_id,owner_id,instance_id,item_id,variation_id) values(c.id,c.owner_id,copy2.id,'local-good-item-'||gen_random_uuid(),'local-good-var-'||gen_random_uuid()) returning * into good;
+ perform public.square_controls_set_v1((select revision from grookai_square.controls where singleton),true,true,array[c.owner_id]);
+ perform public.square_commerce_controls_set_v2((select revision from grookai_square.commerce_controls where singleton),true,array[c.owner_id]);
+ perform public.square_commerce_service_v2('preferences',jsonb_build_object('ownerId',c.owner_id,'connectionId',c.id,'confirmed',true,'autoEnroll',true,'sellOnSquare',true));
+ c:=jsonb_populate_record(null::grookai_square.connections,public.square_service_v1('claim',jsonb_build_object('ownerId',c.owner_id,'connectionId',c.id,'leaseToken',lease)));
+ context:=jsonb_build_object('ownerId',c.owner_id,'connectionId',c.id,'leaseToken',lease,'fence',c.lease_fence,'targetId',bad.id);
+ source:=grookai_square.offer(c.owner_id,bad.instance_id);
+ payload:=jsonb_build_object('idempotency_key',gen_random_uuid(),'changes',jsonb_build_array(jsonb_build_object('type','PHYSICAL_COUNT','physical_count',jsonb_build_object('catalog_object_id',bad.variation_id,'location_id',c.location_id,'state','IN_STOCK','quantity','1','occurred_at',clock_timestamp()))));
+ first_op:=public.square_commerce_service_v2('stock_prepare',context||jsonb_build_object('kind','allocate','payload',payload,'sourceSnapshot',source));
+ perform public.square_commerce_service_v2('stock_begin',context||jsonb_build_object('operationId',first_op->>'id'));
+ reviewed:=jsonb_build_object('id','local-unsupported-order','locationId',c.location_id,'currency','USD','state','review','errorCode','square_sale_requires_review','lines',jsonb_build_array(jsonb_build_object('variationId',bad.variation_id)));
+ response:=public.square_commerce_service_v2('order_observe',context||jsonb_build_object('evidence',reviewed,'evidenceHash',repeat('a',64)));
+ if response->>'quarantined'<>'1' then raise exception 'PROOF_REVIEW_NOT_SCOPED'; end if;
+ if not exists(select 1 from grookai_square.allocations where target_id=bad.id and state='review' and review_order_id='local-unsupported-order' and review_stock_operation_id=(first_op->>'id')::uuid) then raise exception 'PROOF_UNCERTAIN_OBLIGATION_LOST'; end if;
+ if not exists(select 1 from grookai_square.stock_operations sx where sx.id=(first_op->>'id')::uuid and sx.status='failed' and sx.error_code='square_order_stock_unconfirmed' and sx.payload=first_op->'payload') then raise exception 'PROOF_REQUEST_EVIDENCE_LOST'; end if;
+ if not grookai_square.copy_claimed(bad.instance_id) then raise exception 'PROOF_REVIEW_RELEASED_COPY'; end if;
+ if exists(select 1 from public.vault_item_instance_dispositions where vault_item_instance_id=bad.instance_id) then raise exception 'PROOF_REVIEW_FABRICATED_SALE'; end if;
+ begin perform public.square_commerce_service_v2('release_stock',context||jsonb_build_object('confirmed',true,'physicalCopyPresent',true,'registerOnline',true));raise exception 'PROOF_REVIEW_RELEASE_ACCEPTED';
+ exception when sqlstate '55000' then if sqlerrm<>'square_order_requires_review' then raise; end if; end;
+ begin perform public.square_commerce_service_v2('stock_prepare',context||jsonb_build_object('kind','allocate','payload',payload,'sourceSnapshot',source));raise exception 'PROOF_REVIEW_REALLOCATION_ACCEPTED';
+ exception when sqlstate '55000' then if sqlerrm<>'square_order_requires_review' then raise; end if; end;
+ begin perform public.square_commerce_service_v2('stock_begin',context||jsonb_build_object('operationId',first_op->>'id'));raise exception 'PROOF_QUARANTINED_SEND_ACCEPTED';
+ exception when raise_exception then if sqlerrm<>'square_stock_operation_terminal' then raise; end if; end;
+ begin update public.vault_item_instances set archived_at=clock_timestamp() where id=bad.instance_id;raise exception 'PROOF_REVIEW_ARCHIVE_ACCEPTED';exception when sqlstate '55000' then null;end;
+ -- The retained uncertain request must no longer monopolize the connection's
+ -- one automated pending-stock slot. This unrelated copy can allocate and sell.
+ context:=context||jsonb_build_object('targetId',good.id);source:=grookai_square.offer(c.owner_id,good.instance_id);
+ payload:=jsonb_set(payload,'{idempotency_key}',to_jsonb(gen_random_uuid()::text));payload:=jsonb_set(payload,'{changes,0,physical_count,catalog_object_id}',to_jsonb(good.variation_id));
+ good_op:=public.square_commerce_service_v2('stock_prepare',context||jsonb_build_object('kind','allocate','payload',payload,'sourceSnapshot',source));
+ perform public.square_commerce_service_v2('stock_begin',context||jsonb_build_object('operationId',good_op->>'id'));
+ perform public.square_commerce_service_v2('stock_finish',context||jsonb_build_object('operationId',good_op->>'id','quantity',1));
+ rows:=public.square_commerce_service_v2('commerce_targets',context);
+ select ordinality into bad_position from jsonb_array_elements(rows) with ordinality q(value,ordinality) where value->>'id'=bad.id::text;
+ select ordinality into good_position from jsonb_array_elements(rows) with ordinality q(value,ordinality) where value->>'id'=good.id::text;
+ if bad_position is null or good_position is null or bad_position<=good_position then raise exception 'PROOF_REVIEW_STARVES_UNRELATED_TARGET'; end if;
+ response:=public.square_commerce_service_v2('order_observe',context||jsonb_build_object('evidence',jsonb_build_object('id','local-unrelated-paid-order','locationId',c.location_id,'currency','USD','state','paid','payments',jsonb_build_array(jsonb_build_object('id','local-paid-payment','createdAt',clock_timestamp()+interval '1 second')),'lines',jsonb_build_array(jsonb_build_object('id','local-paid-line','variationId',good.variation_id,'quantity','1','saleCents',2000,'taxCents',0))),'evidenceHash',repeat('b',64)));
+ if response->>'sales'<>'1' or not exists(select 1 from public.vault_item_instances where id=good.instance_id and archived_at is not null) then raise exception 'PROOF_UNRELATED_SALE_BLOCKED'; end if;
+ select count(*) into events_before from grookai_square.allocation_events where allocation_id=(select id from grookai_square.allocations where target_id=bad.id);
+ perform public.square_commerce_service_v2('order_observe',context||jsonb_build_object('evidence',reviewed,'evidenceHash',repeat('a',64)));
+ if (select count(*) from grookai_square.allocation_events where allocation_id=(select id from grookai_square.allocations where target_id=bad.id))<>events_before then raise exception 'PROOF_REVIEW_REPLAY_DUPLICATED_EFFECT'; end if;
+end $proof$;

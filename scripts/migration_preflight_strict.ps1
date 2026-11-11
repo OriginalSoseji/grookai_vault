@@ -24,6 +24,7 @@ param(
   [switch]$SquareCommerceReleaseV3,
   [switch]$SquareCommerceReleaseV4,
   [switch]$SquareCommerceReleaseV5,
+  [switch]$SquareCommerceReleaseV6,
 
   [switch]$EbaySellerPublisherBaselineV1,
   [switch]$EbaySellerPublisherReleaseV1,
@@ -109,6 +110,16 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($SquareCommerceReleaseV6) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','SquareCommerceReleaseV6','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested -join ',') -ne '20261111051000,20261111060000,20261111063000,20261111080000,20261111130000,20261111133000,20261111134500,20261111140000,20261111170000,20261111173000' -or [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Square commerce release V6 permits only exact ten pinned candidates from483 to493 with a new bounded private AuditOutDir; no combined scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_square_release_v6.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
 
 if ($SquareCommerceReleaseV5) {
   $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)

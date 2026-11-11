@@ -28,6 +28,11 @@ const server=http.createServer(async(request,response)=>{
   const body=size?JSON.parse(Buffer.concat(chunks).toString('utf8')):{};
   if(url.pathname.startsWith('/fixture/')){
    assert.equal(request.headers['x-grookai-fixture'],'local-only');
+   if(url.pathname==='/fixture/set-count'){
+    assert.ok(state.catalog.some(item=>item.item_data.variations.some(v=>v.id===body.variationId)));
+    assert.ok(Number.isInteger(body.quantity)&&body.quantity>=0&&body.quantity<=3);
+    state.counts[body.variationId]=body.quantity;save();send(response,200,{recorded:true});return;
+   }
    if(url.pathname==='/fixture/fail-next-catalog-write'){
     assert.equal(request.method,'POST');state.failNextCatalogWrite=true;save();send(response,200,{armed:true});return;
    }
@@ -41,9 +46,9 @@ const server=http.createServer(async(request,response)=>{
     const current=state.counts[body.variationId]??0;assert.equal(current,1);
     const item=state.catalog.find(row=>row.item_data.variations.some(v=>v.id===body.variationId));assert.ok(item);
     const variation=item.item_data.variations.find(v=>v.id===body.variationId),amount=body.amountCents??variation.item_variation_data.price_money.amount;
-    const paymentId='payment-'+id,orderId='order-'+id;
+    const paymentId='payment-'+id,orderId='order-'+id;assert.ok(['1','2'].includes(body.quantity??'1'));
     state.orders[orderId]={id:orderId,location_id:'runtime-location',state:'COMPLETED',version:1,total_money:usd(amount),updated_at:new Date().toISOString(),
-     line_items:[{uid:'line-'+id,catalog_object_id:body.variationId,quantity:'1',total_money:usd(amount),total_tax_money:usd(0)}],tenders:[{id:paymentId,amount_money:usd(amount)}]};
+     line_items:[{uid:'line-'+id,catalog_object_id:body.variationId,quantity:body.quantity??'1',total_money:usd(amount),total_tax_money:usd(0)}],tenders:[{id:paymentId,amount_money:usd(amount)}]};
     state.payments[paymentId]={id:paymentId,order_id:orderId,location_id:'runtime-location',status:'COMPLETED',created_at:new Date().toISOString(),total_money:usd(amount),refunded_money:usd(0),refund_ids:[]};
     state.counts[body.variationId]=0;save();send(response,200,{orderId,paymentId});return;
    }
