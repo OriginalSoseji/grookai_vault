@@ -1,5 +1,47 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Square commerce starting audit V2 — November 11, 2026
+
+The owner authorized the complete production Square flow, including stock/sales,
+Samsung and website deployment, without routine further approvals. The V2
+starting-audit scope is separately named `-SquareCommerceBaselineV2` and accepts
+only AuditLinkedSchema, the canonical project, unchanged483 historical sources
+and exactly the three byte-pinned local-only catalog candidates ending
+20261111051000/060000/063000. It reuses the original read-only protected483 lab
+and full fresh production schema/security comparison. It does not widen
+SquareBaselineV1, qualify the pending candidates, allow PrePush or execute SQL.
+Candidate release still requires full new replay, retained-data proof, exact
+schema/security comparison, normal source checks and a separate exact PrePush.
+
+## Square read-only starting baseline — November 10, 2026
+
+`-SquareBaselineV1` permits only `AuditLinkedSchema` with exactly483 unchanged
+historical files and no pending candidate, against the canonical linked project.
+It cannot accept PrePush, expected IDs, combined flags, alternate targets or apply.
+Use a new `baseline-*` immediate child of the private Square operator directory
+specified by the verifier. This is qualification of the starting baseline only.
+
+The ordinary empty-shadow failure remains failed evidence. This scope reuses the
+retained unlinked `catalog-482-v3-20261110` lab read-only, not its prior release
+flag. Hash pins preserve the genuine prefix reset, explicit synthetic647-pair
+historical prerequisite, complete482-file CLI replay/no-op and the separately
+applied483 source/readback. No existing migration or evidence is edited and no
+populated lab is reset or seeded. Live lab guards require its pinned image,
+internal network, loopback relay, disabled workers,1294 synthetic parents,
+647 aliases, zero Auth users and zero Vault copies.
+
+A fresh repeatable-read read-only snapshot from each database must have exactly
+483 matching ledger rows, zero public-schema SQL differences and all1395 security
+objects identical. Production is read through the official CLI; TLS verification
+is never disabled. Only the existing three-table physical column-order handling
+is permitted. Definition bytes, ACLs, RLS, duplicate rows and other differences
+remain significant. Generated diagnostic SQL is never executed.
+
+This baseline does not qualify any Square migration or enable account linking,
+publication, inventory, payments or production workers. Subsequent schema work
+requires its own exact forward candidate, fresh/retained replay and runtime proof,
+committed-source release gate and separately authorized official CLI apply.
+
 ## Reviewed intake acquisition-date release — October 28, 2026
 
 This exact scope was consumed by the verified production477-to479 release from
@@ -1311,3 +1353,39 @@ is an apply payload. Production writes use only the fixed CLI migration package;
 readback must preserve owner data, grants and payment controls. Rollback disables
 the workflow flag and retains metadata. Dormant grants may be retained or
 explicitly removed, but cannot be newly granted while disabled.
+
+## Square commerce exact release boundary (November 11, 2026)
+
+`-SquareCommerceReleaseV3` admits only AuditLinkedSchema and PrePush for the
+canonical production project at483 and the five immutable Square candidates
+`20261111051000,20261111060000,20261111063000,20261111080000,20261111130000`.
+Starting-baseline flags retain their audit-only restrictions. The release gate
+requires unchanged483 source, a current zero-drift production baseline, the
+retained genuine empty-prefix reset plus explicit647-pair historical prerequisite,
+fresh and retained488 upgrade/no-op receipts, full public/private schema and
+owner/ACL/RLS/function-definition equivalence, and no exposed private authority.
+PrePush additionally requires committed source and byte-bound runtime evidence.
+No generated schema diff is ever executed. Populated labs are never reset.
+The original four locally applied migrations remain immutable; the fifth fixes
+the private inventory anchor call discovered by real HTTP/Auth qualification.
+
+`-SquareCommerceReleaseV4` preserves its exact seven-candidate483→490 admission.
+The final `-SquareCommerceReleaseV5` admits only the exact eight immutable IDs
+`20261111051000,20261111060000,20261111063000,20261111080000,20261111130000,20261111133000,20261111134500,20261111140000`
+from483→491, with the same fixed project, genuine reset/prerequisite replay,
+upgrade/no-op, complete schema/security, committed-source and runtime gates.
+Additional forward repairs add private run diagnostics, prioritize retained
+catalog requests, and prevent historical payments from consuming a later claim.
+The executed HTTP proof must bind unchanged source hashes and real local Auth,
+concurrent wakeups and provider-failure recovery. PrePush also pins the independent
+actual Sandbox refund-update-feed readback. Earlier scopes are not widened to
+admit these candidates. None of these gates is a production apply command.
+
+For this exact Square scope, the shadow-pull comparison is the pinned read-only
+pgkit catalog/security comparison against the genuine CLI prefix-reset/replay
+lab plus explicit647-pair historical alias prerequisite. An ordinary empty shadow
+cannot supply that old data prerequisite. Do not report `supabase db pull` as
+successful, reset a populated lab, change historical SQL, or run a generated diff.
+The scoped replacement preserves the complete definition/owner/ACL/RLS comparison
+and requires empty differences before PrePush; it does not waive default gates
+for any unrelated migration set.

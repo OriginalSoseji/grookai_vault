@@ -124,7 +124,8 @@ export default function VaultManageCopyCurationControls({
         }
 
         setIntent(result.intent);
-        setStatusMessage({ ok: true, message: "Copy visibility saved." });
+        setStatusMessage({ ok: true, message: result.squareStatus==='pending'?'Copy visibility saved. Square stock sync is pending; check Account → Square before selling.':
+          result.squareStatus==='review'?'Copy visibility saved. Check Account → Square for an item that needs review.':'Copy visibility saved.' });
         router.refresh();
       } catch {
         setIntent(previousIntent);

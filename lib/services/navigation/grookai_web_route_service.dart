@@ -15,6 +15,7 @@ enum GrookaiCanonicalRouteKind {
   dex,
   feed,
   ebaySeller,
+  square,
   binderLibrary,
   binder,
   binderViewLink,
@@ -178,6 +179,11 @@ class GrookaiCanonicalRoute {
       draftId: draftId,
     );
   }
+  factory GrookaiCanonicalRoute.square() => const GrookaiCanonicalRoute._(
+    kind: GrookaiCanonicalRouteKind.square,
+    path: '/square/return',
+    value: '',
+  );
 
   factory GrookaiCanonicalRoute.binder(String publicId) {
     final normalized = publicId.trim();
@@ -340,6 +346,9 @@ class GrookaiWebRouteService {
       return null;
     }
     final head = segments.first.toLowerCase();
+    if (head == 'square' && segments.length == 2 && segments[1] == 'return') {
+      return _parseSquareReturn(uri);
+    }
     if (head == 'vault' &&
         segments.length == 2 &&
         segments[1].toLowerCase() == 'ebay') {
@@ -459,6 +468,11 @@ class GrookaiWebRouteService {
         .toList(growable: false);
 
     if (host == 'ebay-seller' && segments.isEmpty) return _parseSellerUri(uri);
+    if (host == 'square' &&
+        segments.length == 1 &&
+        segments.first == 'return') {
+      return _parseSquareReturn(uri);
+    }
     if (host == 'card' && segments.isNotEmpty) {
       return GrookaiCanonicalRoute.card(segments.first);
     }
@@ -577,6 +591,23 @@ class GrookaiWebRouteService {
       instanceId: values['instanceId'] ?? '',
       draftId: values['draftId'],
     );
+  }
+
+  static GrookaiCanonicalRoute? _parseSquareReturn(Uri uri) {
+    if (uri.userInfo.isNotEmpty ||
+        uri.hasPort ||
+        uri.hasFragment ||
+        !['', 'https', 'grookai', 'grookaivault'].contains(uri.scheme) ||
+        uri.queryParameters.keys.any((key) => key != 'status')) {
+      return null;
+    }
+    final status = uri.queryParametersAll['status'];
+    if (status != null &&
+        (status.length != 1 ||
+            !['connected', 'reconnect_required'].contains(status.single))) {
+      return null;
+    }
+    return GrookaiCanonicalRoute.square();
   }
 
   static bool _isSupportedAppDeepLink(Uri uri) {

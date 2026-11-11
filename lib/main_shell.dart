@@ -680,6 +680,20 @@ class _AppShellState extends State<AppShell> {
     // Canonical web URLs are the single source of truth for app deep-link
     // routing.
     switch (route.kind) {
+      case GrookaiCanonicalRouteKind.square:
+        if (SquareScreen.isOpen) {
+          Navigator.of(context, rootNavigator: true).popUntil(
+            (r) => r.settings.name == SquareScreen.routeName || r.isFirst,
+          );
+        } else {
+          await Navigator.of(context, rootNavigator: true).push<void>(
+            MaterialPageRoute<void>(
+              settings: const RouteSettings(name: SquareScreen.routeName),
+              builder: (_) => const SquareScreen(),
+            ),
+          );
+        }
+        break;
       case GrookaiCanonicalRouteKind.ebaySeller:
         if (route.value.isEmpty &&
             route.draftId == null &&

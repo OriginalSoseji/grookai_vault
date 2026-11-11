@@ -14,6 +14,10 @@ As of the current stabilization phase:
 
 | Secret | Purpose | .env.local | Supabase Project Secrets | GitHub Actions |
 | --- | --- | --- | --- | --- |
+| `SQUARE_WEBHOOK_SIGNATURE_KEY` | Existing Square subscription signature key; constant-time verification of the exact notification URL and raw body. Separate Sandbox/production values. | Synthetic fixtures only | Not used | Private web server runtime only |
+| `SQUARE_SANDBOX_ACCESS_TOKEN` | Existing default Sandbox test-account token; private operator transport qualification only. Never substitutes for an owner OAuth connection. | Never; private operator env outside every checkout | Not used | Not used |
+| `SQUARE_APP_SECRET` | Existing registered Square OAuth application secret; code exchange/refresh only. | Synthetic fixture only | Not used by public Edge | Private worker/web server runtime only; never required by fixture CI |
+| `SQUARE_TOKEN_ENCRYPTION_KEY` | Canonical base64 encoding of 32 random bytes; AES-256-GCM credentials and launch-state envelopes, bound to purpose/owner/connection/environment/merchant. | Synthetic fixture only | Not used by public Edge | Private worker/web server runtime only; never required by fixture CI |
 | `SUPABASE_URL` | Base URL for the Supabase project (used by backend workers and Edge functions). | ✅ | ✅ (`SUPABASE_URL`) | ✅ (`SUPABASE_URL`) |
 | `SUPABASE_PUBLISHABLE_KEY` | Public anon key for Edge functions and clients (this is the “anon key” in the Supabase dashboard). | ✅ | ✅ (`SUPABASE_PUBLISHABLE_KEY`) | ✅ (`SUPABASE_PUBLISHABLE_KEY`) |
 | `SUPABASE_SECRET_KEY` | Canonical service-role secret for backend workers and admin/edge boundaries. | ✅ (`SUPABASE_SECRET_KEY`) | ✅ (`SUPABASE_SECRET_KEY`) | ✅ (`SUPABASE_SECRET_KEY`) |
@@ -31,6 +35,27 @@ As of the current stabilization phase:
 > NOTE: Supabase project secrets live under Settings → Configuration → Secrets. GitHub Actions secrets must match these names in lowercase (e.g., `SUPABASE_SECRET_KEY`). `SUPABASE_PUBLISHABLE_KEY` maps to the “anon key” in the Supabase dashboard. Older runtime surfaces may still reference `SUPABASE_SERVICE_ROLE_KEY`, but current canonical authority is `SUPABASE_SECRET_KEY`.
 
 ## Naming Rules
+
+Square access/refresh tokens and provider authorization codes are server-only;
+`SQUARE_WEBHOOK_URL` is the exact registered HTTPS `/api/square/webhook` URL.
+`GROOKAI_SQUARE_COMMERCE_ENABLED` defaults false and cannot override the independent
+database commerce controls/owner consent. It requests only implemented inventory
+read/write, orders read and payments read permissions in addition to catalog scopes.
+never paste them into chat, logs, mobile defines or public environment aliases.
+The scheduled Square reconciliation workflow reuses the existing GitHub
+`SUPABASE_SECRET_KEY` and `PROD_SUPABASE_URL`, plus server-only GitHub secrets
+`SQUARE_APP_SECRET` and `SQUARE_TOKEN_ENCRYPTION_KEY`. `SQUARE_APP_ID` is a
+non-secret repository variable. The scheduler writes only a private temporary
+environment file, removes it after the worker, and never uploads credentials.
+Webhook signature credentials are needed only by the web ingress.
+`SQUARE_APP_ID`, `SQUARE_ENVIRONMENT` and the exact registered
+`SQUARE_CALLBACK_URL` are non-secret server configuration. Never invent a new app,
+merchant, redirect registration or credential because existing configuration is
+missing. Production and sandbox require separate keys/values. Both callbacks use
+HTTPS. `GROOKAI_SQUARE_LINKING_ENABLED` and `GROOKAI_SQUARE_CATALOG_ENABLED`
+default false and cannot override the independent database canary controls.
+Encryption-key rotation needs retained-key recovery/migration for existing
+encrypted records; do not replace a configured key as a deployment convenience.
 
 `EBAY_CLIENT_ID` is the existing public application identifier. The seller
 publisher's `EBAY_SELLER_RUNAME` is non-secret server configuration selecting the

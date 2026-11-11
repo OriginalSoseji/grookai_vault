@@ -6,6 +6,7 @@ import '../../utils/vault_printing_identity.dart';
 import '../identity/canon_image_url_service.dart';
 import '../network/intent_presentation.dart' as intent_presentation;
 import 'owned_copy_read_service.dart';
+import '../square/square_sync_notifier.dart';
 import '../public/jungle_edition_resolution_service.dart';
 
 class _InterestGraphCompletionSnapshot {
@@ -1985,6 +1986,7 @@ class VaultCardService {
       throw Exception('Copy intent could not be saved.');
     }
 
+    await SquareSyncNotifier.offerSaved(client, normalizedInstanceId);
     return savedIntent;
   }
 
@@ -2097,6 +2099,9 @@ class VaultCardService {
       throw Exception('Selected copies could not be updated.');
     }
 
+    if (normalizedInstanceIds.isNotEmpty) {
+      await SquareSyncNotifier.offerSaved(client, normalizedInstanceIds.first);
+    }
     return nextIntent;
   }
 

@@ -26,6 +26,7 @@ import 'screens/auth/sign_in_continuation_screen.dart';
 import 'screens/compare/compare_screen.dart';
 import 'screens/dex/grookai_dex_screen.dart';
 import 'screens/ebay/ebay_seller_screen.dart';
+import 'screens/square/square_screen.dart';
 import 'services/ebay/ebay_seller_link_return.dart';
 import 'services/grookai_objects/sale_card_handoff_store.dart';
 import 'screens/dex/grookai_dex_species_screen.dart';
@@ -3528,6 +3529,7 @@ class _MyAppState extends State<MyApp> {
                 case GrookaiCanonicalRouteKind.dex:
                 case GrookaiCanonicalRouteKind.feed:
                 case GrookaiCanonicalRouteKind.ebaySeller:
+                case GrookaiCanonicalRouteKind.square:
                 case GrookaiCanonicalRouteKind.binderLibrary:
                 case GrookaiCanonicalRouteKind.binderInvitation:
                 case GrookaiCanonicalRouteKind.founderNotifications:

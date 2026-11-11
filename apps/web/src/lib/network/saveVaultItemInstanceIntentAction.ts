@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { assertVaultIntentProof } from "@/lib/contracts/ownershipMutationGuards";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import { normalizeVaultIntent, type VaultIntent } from "@/lib/network/intent";
+import {notifySquareOfferSaved} from '@/lib/square/notifyOfferSaved';
 
 export type SaveVaultItemInstanceIntentInput = {
   instanceId: string;
@@ -15,6 +16,7 @@ export type SaveVaultItemInstanceIntentResult =
       ok: true;
       instanceId: string;
       intent: VaultIntent;
+      squareStatus?:'ready'|'pending'|'review'|'not_enabled';
     }
   | {
       ok: false;
@@ -104,5 +106,6 @@ export async function saveVaultItemInstanceIntentAction(
     ok: true,
     instanceId: data.id,
     intent: normalizeVaultIntent(data.intent) ?? "hold",
+    squareStatus:await notifySquareOfferSaved(user.id,normalizedInstanceId),
   };
 }

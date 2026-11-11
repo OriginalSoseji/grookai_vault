@@ -1,5 +1,33 @@
 # Grookai Operator Playbook V1
 
+## Square QR catalog automation preparation — November 10, 2026
+
+Read [the Square sync checkpoint](../checkpoints/SQUARE_CATALOG_SYNC_20261110.md).
+The owner reported the one-code Android Square pilot works and requested automatic
+item creation. Preserve grookai's existing `/q/{GVVI}` payload as the Square SKU;
+the intended workflow is one account connection plus selected-stock sync.
+Source is isolated in `C:/grookai_square_sync_20261110`, branch
+`feat/square-catalog-sync-v1`, based on current main. Backend, private database
+authority, thin web routes and the Account connection manager are implemented
+and tested locally. Real Square Sandbox catalog creation/readback and same-key
+duplicate prevention passed. Production linking and sync remain off.
+
+The initial ordinary shadow audit failed at the historical alias data
+prerequisite. A separately bounded read-only exact483 baseline subsequently
+passed; it does not qualify candidate release. A new unlinked owned lab replayed
+the unchanged history with an explicit synthetic prerequisite and reached486
+with three local-only candidates, no-op and retained-data proofs. Preserve those
+consumed proofs, applied bytes and populated labs. No production schema changed.
+
+With explicit owner approval, the **grookai vault** Square developer app was
+created under Grookai Vault LLC. Existing Sandbox credentials are private outside
+all checkouts. The exact HTTPS OAuth callback remains unregistered pending a
+verified deployment; the existing test-account token proves transport only.
+No production seller binding, quantity allocation, payment, source push,
+deployment or worker timer was performed. The checkpoint records the remaining
+schema/security, OAuth, hosted and activation gates. Existing Stripe/eBay/shared
+stock authority still governs any later sellable quantity integration.
+
 ## Magic print-date consumer repair - November 10, 2026
 
 Read [the Magic print-date checkpoint](../checkpoints/CATALOG_MTG_PRINT_RELEASE_SEARCH_20261110.md).
@@ -4540,3 +4568,46 @@ checkpoint under the private recovery root.
 ## Published product-preview image delivery — November 10, 2026
 
 See [the image transport checkpoint](../checkpoints/CATALOG_PUBLIC_CARD_IMAGE_TRANSPORT_20261110.md). Existing public TCGplayer 1000x1000 JPEG previews use the shared direct-delivery path, with strict host/path/URL checks. This preserves representative image truth and does not expand server optimizer access or mutate catalog data. Evidence is under catalog_public_card_image_transport_v1_20261110.
+
+## Square stock and sale recovery candidate — November 11, 2026
+
+Use [the current Square checkpoint](../checkpoints/SQUARE_CATALOG_SYNC_20261110.md)
+for exact release state. The source supports opt-in automatic public-offer inclusion,
+exclusive physical allocation, completed-sale reconciliation and confirmed returns.
+The grookai QR URL remains the Square variation SKU. Never create a second Square
+item to bypass adoption of an existing same-SKU item.
+
+The private `backend/square/run_commerce_worker_v2.mjs` accepts only `--once` or
+`--health` plus `--env-file=<private-file>`. Fixed canonical production routing
+requires NODE_ENV=production and SQUARE_ENVIRONMENT=production. The GitHub recovery
+workflow runs bounded rotating seller batches every five minutes after deployment
+and secret setup; its durable database run history is the operational source of
+truth. Immediate owner saves and authenticated webhooks also wake the same backend.
+Missing/late webhooks are recovered by authenticated order polling.
+
+Pause new enrollment/allocation with the independent database commerce controls
+and server flag; retain all existing allocations, requests and sale/refund evidence.
+Do not delete claims, reset labs, rewrite applied SQL, replenish an unexplained
+decrement, or clear an uncertain request. Withdraw stock through the saved request,
+reconcile orders, then require owner confirmation that the register is online and
+the physical copy remains present before releasing a withdrawn claim. A completed
+financial refund alone cannot put a disposed card back into active inventory.
+
+Strict schema qualification is `migration_preflight_strict.ps1 -Phase PrePush
+-SquareCommerceReleaseV3 -ExpectedLocalOnlyIds
+20261111051000,20261111060000,20261111063000,20261111080000,20261111130000
+-AuditOutDir <new-bounded-private-output>`. It is a read-only gate, not an apply
+command. Apply only the exact frozen CLI migration package after source and
+runtime gates; production controls are default-off. Do not claim release until
+real seller OAuth, hosted verification and Samsung unchanged-QR checkout pass.
+
+The final Square admission is now `-SquareCommerceReleaseV5` with exact pending
+IDs `20261111051000,20261111060000,20261111063000,20261111080000,20261111130000,20261111133000,20261111134500,20261111140000`
+(production483→491). Preserve the earlier gates/receipts as historical scopes;
+they cannot qualify the enlarged payload. Worker `--health` additionally returns
+private run diagnostics: connection, source version, step, target and bounded
+database code. Never replace these with raw SQL/provider error text. Saved catalog
+requests take priority over new card focus. Missing payment creation facts require
+review; payments predating allocation cannot archive its physical copy. Independent
+updated-refund polling recovers late/missed refund signals without relying on an
+old order update or automatically putting the physical card back into stock.

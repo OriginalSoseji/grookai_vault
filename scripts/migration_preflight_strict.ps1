@@ -19,6 +19,12 @@ param(
 
   [string[]]$ExpectedLocalOnlyIds = @(),
 
+  [switch]$SquareBaselineV1,
+  [switch]$SquareCommerceBaselineV2,
+  [switch]$SquareCommerceReleaseV3,
+  [switch]$SquareCommerceReleaseV4,
+  [switch]$SquareCommerceReleaseV5,
+
   [switch]$EbaySellerPublisherBaselineV1,
   [switch]$EbaySellerPublisherReleaseV1,
   [switch]$EbaySellerPublisherRecoveryReleaseV1,
@@ -103,6 +109,54 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($SquareCommerceReleaseV5) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','SquareCommerceReleaseV5','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested -join ',') -ne '20261111051000,20261111060000,20261111063000,20261111080000,20261111130000,20261111133000,20261111134500,20261111140000' -or [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Square commerce release V5 permits only exact eight pinned candidates from483 to491 with a new bounded private AuditOutDir; no combined scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_square_release_v5.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($SquareCommerceReleaseV4) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','SquareCommerceReleaseV4','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested -join ',') -ne '20261111051000,20261111060000,20261111063000,20261111080000,20261111130000,20261111133000,20261111134500' -or [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Square commerce release V4 permits only exact seven pinned candidates from483 to490 with a new bounded private AuditOutDir; no combined scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_square_release_v4.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($SquareCommerceReleaseV3) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','SquareCommerceReleaseV3','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested -join ',') -ne '20261111051000,20261111060000,20261111063000,20261111080000,20261111130000' -or [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Square commerce release permits only exact five pinned candidates from483 to488 with a new bounded private AuditOutDir; no combined scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_square_release_v3.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($SquareBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or [string]::IsNullOrWhiteSpace($AuditOutDir) -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','SquareBaselineV1','AuditOutDir') }).Count -gt 0) {
+    throw 'Square baseline permits only read-only AuditLinkedSchema at exact483, with new private AuditOutDir; no PrePush, candidates, combined scopes or target overrides.'
+  }
+  & node (Join-Path $PSScriptRoot 'schema/verify_square_baseline_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($SquareCommerceBaselineV2) {
+  if ($Phase -ne 'AuditLinkedSchema' -or [string]::IsNullOrWhiteSpace($AuditOutDir) -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','SquareCommerceBaselineV2','AuditOutDir') }).Count -gt 0) {
+    throw 'Square commerce starting baseline permits read-only AuditLinkedSchema only, exact483 history plus three pinned local candidates; no PrePush, apply, combined scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_square_commerce_baseline_v2.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
 
 if ($EbaySellerPublisherRecoveryReleaseV1) {
   $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)

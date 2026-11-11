@@ -1,0 +1,47 @@
+name: Square commerce reconciliation
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "3-58/5 * * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: square-commerce-reconciliation-production-v2
+  cancel-in-progress: false
+
+jobs:
+  reconcile:
+    if: vars.GROOKAI_SQUARE_RECONCILIATION_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      NODE_ENV: production
+      SUPABASE_URL: ${{ secrets.PROD_SUPABASE_URL }}
+      SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+      SQUARE_ENVIRONMENT: production
+      SQUARE_APP_ID: ${{ vars.SQUARE_APP_ID }}
+      SQUARE_CALLBACK_URL: https://grookaivault.com/api/square/oauth/callback
+      SQUARE_APP_SECRET: ${{ secrets.SQUARE_APP_SECRET }}
+      SQUARE_TOKEN_ENCRYPTION_KEY: ${{ secrets.SQUARE_TOKEN_ENCRYPTION_KEY }}
+      GROOKAI_SQUARE_LINKING_ENABLED: "true"
+      GROOKAI_SQUARE_CATALOG_ENABLED: "true"
+      GROOKAI_SQUARE_COMMERCE_ENABLED: "true"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: backend/package-lock.json
+      - name: Install locked worker dependencies
+        run: npm ci --prefix backend --ignore-scripts --include=dev
+        env:
+          NODE_ENV: development
+      - name: Reconcile saved Square obligations
+        shell: bash
+        run: |
+          set -euo pipefail
+          node backend/square/run_scheduled_commerce_v2.mjs

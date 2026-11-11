@@ -6,6 +6,7 @@ import '../identity/catalog_artwork_resolution.dart';
 import '../identity/display_identity.dart';
 import '../public/card_surface_pricing_service.dart';
 import '../vault/vault_gvvi_service.dart';
+import '../square/square_sync_notifier.dart';
 
 enum VendorMarketPosition { below, above, atMarket, unpriced, noExactMarket }
 
@@ -637,6 +638,7 @@ class VendorPricingWorkspaceService {
     if (row == null || _text(row['id']) != instanceId) {
       throw Exception('Card changes could not be saved.');
     }
+    await SquareSyncNotifier.offerSaved(client, instanceId);
     return Map<String, dynamic>.from(row as Map);
   }
 
