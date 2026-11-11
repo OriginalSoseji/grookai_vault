@@ -79,6 +79,7 @@
                 <data android:host="b" />
                 <data android:host="binder-invites" />
                 <data android:host="ebay-seller" />
+                <data android:host="square" />
                 <data android:host="binder-templates" />
                 <data android:host="founder" />
             </intent-filter>
@@ -106,6 +107,7 @@
                 <data android:pathPrefix="/feed/" />
                 <data android:path="/binders" />
                 <data android:path="/vault/ebay" />
+                <data android:path="/square/return" />
                 <data android:pathPrefix="/binders/" />
                 <data android:pathPrefix="/b/" />
                 <data android:pathPrefix="/binder-invites/" />

@@ -49,6 +49,8 @@ export default defineConfig([
     ".next-fixture/**",
     ".next-batch-intake/**",
     ".next-storefront/**",
+    ".next-square/**",
+    ".next-square-dev/**",
     "node_modules/**",
     "out/**",
     "build/**",

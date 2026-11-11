@@ -15,6 +15,7 @@ import '../founder/founder_notifications_screen.dart';
 import '../founder/founder_operations_screen.dart';
 import '../founder/founder_metrics_screen.dart';
 import '../ebay/ebay_seller_screen.dart';
+import '../square/square_screen.dart';
 import 'following_screen.dart';
 import 'import_collection_screen.dart';
 import 'submit_missing_card_screen.dart';
@@ -586,6 +587,19 @@ class _AccountScreenState extends State<AccountScreen> {
                         title: 'eBay seller account',
                         subtitle: 'Connect or reconnect eBay for listings',
                         onTap: () => openEbaySeller(context),
+                      ),
+                      _AccountLinkTile(
+                        icon: Icons.point_of_sale_outlined,
+                        title: 'Square',
+                        subtitle: 'Sync sale cards, QR codes and Square sales',
+                        onTap: () => Navigator.of(context).push(
+                          MaterialPageRoute<void>(
+                            settings: const RouteSettings(
+                              name: SquareScreen.routeName,
+                            ),
+                            builder: (_) => const SquareScreen(),
+                          ),
+                        ),
                       ),
                     ],
                   ),

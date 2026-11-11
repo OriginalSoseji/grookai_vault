@@ -1,0 +1,49 @@
+// Actual local SDK/Auth, canonical ownership authority and HTTPS-route handlers.
+// Only the explicitly synthetic loopback provider is mutated by this proof.
+import fs from 'node:fs';import assert from 'node:assert/strict';import {createRequire} from 'node:module';import {randomUUID,createHash,createHmac} from 'node:crypto';
+const root='C:/grookai_square_sync_20261110',lab='C:/grookai_vault_operator_artifacts/square_sync_20261110/local-fresh-v1',require=createRequire(root+'/backend/package.json');
+const cfg=require('dotenv').parse(fs.readFileSync(root+'/apps/web/.env.local')),fixture=JSON.parse(fs.readFileSync(lab+'/runtime-fixture.private.json'));
+assert.equal(cfg.SUPABASE_URL,'http://127.0.0.1:61841');assert.equal(cfg.SQUARE_APP_ID,'synthetic-fixture-app');assert.equal(fs.existsSync(lab+'/supabase/.temp/project-ref'),false);
+const hash=value=>createHash('sha256').update(value).digest('hex'),manifest=JSON.parse(fs.readFileSync(root+'/docs/audits/square_commerce_20261111/release-manifest-v5.json'));
+const sourceNames=[...new Set([...Object.keys(manifest.runtimeSources).filter(name=>!name.endsWith('.md')),
+ ...fs.readdirSync(root+'/backend/square',{recursive:true}).filter(name=>name.endsWith('.mjs')).map(name=>'backend/square/'+name.replaceAll('\\','/')),
+ 'scripts/schema/square_provider_fixture_v2.mjs','scripts/schema/square_provider_preload_v2.mjs','scripts/schema/qualify_square_review_http_v4.mjs',
+ 'backend/square/tests/review_isolation_v4.sql','backend/square/tests/reacquired_claim_clock_v4.sql',
+ 'supabase/migrations/20261111170000_square_order_review_isolation_v4.sql','supabase/migrations/20261111173000_square_reacquired_claim_clock_v4.sql'])].sort();
+const capture=()=>Object.fromEntries(sourceNames.map(name=>[name,hash(fs.readFileSync(root+'/'+name,'utf8').replaceAll('\r\n','\n'))]));
+const file=lab+'/review-http-'+Date.now()+'.json',proof={pass:false,at:new Date().toISOString(),productionWrites:0,provider:'synthetic loopback',sourceHashes:capture(),environmentFingerprint:hash(fs.readFileSync(root+'/apps/web/.env.local')),stages:[]};
+const save=()=>fs.writeFileSync(file,JSON.stringify(proof,null,2)+'\n',{mode:0o600});save();
+const client=require('@supabase/supabase-js').createClient(cfg.SUPABASE_URL,cfg.SUPABASE_PUBLISHABLE_KEY,{auth:{persistSession:false,autoRefreshToken:false}}),admin=require('@supabase/supabase-js').createClient(cfg.SUPABASE_URL,cfg.SUPABASE_SECRET_KEY,{auth:{persistSession:false,autoRefreshToken:false}});
+const login=await client.auth.signInWithPassword({email:fixture.owner.email,password:fixture.owner.password});assert.ifError(login.error);const actual=await client.auth.getUser();assert.ifError(actual.error);assert.equal(actual.data.user.id,fixture.owner.id);proof.actualLocalAuth=true;
+const headers={Authorization:'Bearer '+login.data.session.access_token,'Content-Type':'application/json'},pause=()=>new Promise(resolve=>setTimeout(resolve,250));
+async function request(path,body){for(let attempt=0;attempt<40;attempt++){const response=await fetch('http://127.0.0.1:61850'+path,{method:body?'POST':'GET',headers,...(body?{body:JSON.stringify(body)}:{}),signal:AbortSignal.timeout(90000)}),value=await response.json();if(response.status===409&&value.code==='square_connection_busy'&&attempt<39){await pause();continue;}assert.equal(response.status,200,JSON.stringify(value));return value;}}
+const action=body=>request('/api/square',{connectionId:fixture.connectionId,...body}),workspace=()=>request('/api/square'),inspect=()=>JSON.parse(fs.readFileSync(lab+'/provider-fixture-state-v2.private.json'));
+async function provider(path,body){const response=await fetch('http://127.0.0.1:61852/fixture/'+path,{method:'POST',headers:{'Content-Type':'application/json','x-grookai-fixture':'local-only'},body:JSON.stringify(body)});const value=await response.json();assert.equal(response.status,200);return value;}
+const stage=name=>{proof.stages.push(name);save();console.log('LOCAL REVIEW HTTP: '+name);};
+async function add(){const parent=await client.from('vault_item_instances').select('card_print_id,card_printing_id').eq('id',fixture.copies[0].copy_id).single();assert.ifError(parent.error);const result=await admin.rpc('vault_add_card_instance_service_v1',{p_actor_user_id:actual.data.user.id,p_card_print_id:parent.data.card_print_id,p_card_printing_id:parent.data.card_printing_id,p_quantity:1,p_condition_label:'NM'});assert.ifError(result.error);const copy=await client.from('vault_item_instances').select('id,gv_vi_id').eq('gv_vi_id',result.data.gv_vi_id).single();assert.ifError(copy.error);const offer=await client.from('vault_item_instances').update({intent:'sell',pricing_mode:'asking',asking_price_amount:19.75,asking_price_currency:'USD'}).eq('id',copy.data.id);assert.ifError(offer.error);return copy.data;}
+async function ready(copy){let value;for(let n=0;n<30;n++){value=await request('/api/square/notify',{instanceId:copy.id});if(value.status!=='pending')break;await pause();}assert.equal(value.status,'ready',JSON.stringify(value));const state=await workspace(),target=state.connections.find(c=>c.id===fixture.connectionId).targets.find(t=>t.instanceId===copy.id),variation=inspect().catalog.flatMap(i=>i.item_data.variations).find(v=>v.item_variation_data.sku==='https://grookaivault.com/q/'+copy.gv_vi_id);assert.ok(target&&variation);return {copy,target,variation};}
+async function webhook(paymentId){const eventId='review-'+randomUUID(),body=JSON.stringify({event_id:eventId,merchant_id:'runtime-merchant',type:'payment.updated',data:{object:{payment:{id:paymentId}}}}),signature=createHmac('sha256',cfg.SQUARE_WEBHOOK_SIGNATURE_KEY).update(cfg.SQUARE_WEBHOOK_URL).update(body).digest('base64');const response=await fetch('http://127.0.0.1:61850/api/square/webhook',{method:'POST',headers:{'Content-Type':'application/json','x-square-hmacsha256-signature':signature},body});assert.equal(response.status,200);return eventId;}
+try{
+ await action({action:'preferences',autoEnroll:true,sellOnSquare:true,confirmed:true});
+ const reacquired=await ready(await add());proof.reacquiredInstanceId=reacquired.copy.id;save();
+ await action({action:'withdraw',targetId:reacquired.target.id});assert.equal(inspect().counts[reacquired.variation.id],0);
+ await action({action:'releaseStock',targetId:reacquired.target.id,confirmed:true,physicalCopyPresent:true,registerOnline:true});
+ await action({action:'select',instanceIds:[reacquired.copy.id],confirmed:true});await provider('set-count',{variationId:reacquired.variation.id,quantity:3});
+ const rejected=await request('/api/square/notify',{instanceId:reacquired.copy.id});assert.equal(rejected.status,'review');assert.equal(inspect().counts[reacquired.variation.id],3);
+ stage('released allocation with external quantity3 is reviewed without overwriting Square');
+ await provider('set-count',{variationId:reacquired.variation.id,quantity:0});await ready(reacquired.copy);await ready(reacquired.copy);assert.equal(inspect().counts[reacquired.variation.id],1);
+ stage('verified zero permits one new stock unit and repeated notification does not replenish');
+ const bad=[];
+ for(const input of [{quantity:'2'},{amountCents:0}]){const row=await ready(await add()),sale=await provider('complete-sale',{variationId:row.variation.id,id:randomUUID(),...input});bad.push({...row,sale,eventId:await webhook(sale.paymentId)});await action({action:'reconcile'});}
+ proof.reviewedInstanceIds=bad.map(row=>row.copy.id);save();const state=await workspace(),commerce=state.commerce.connections.find(c=>c.id===fixture.connectionId);
+ for(const row of bad){const allocation=commerce.allocations.find(a=>a.targetId===row.target.id);assert.equal(allocation?.state,'review');assert.equal(allocation.orderReviewRequired,true);assert.equal(commerce.recentSales.some(s=>s.instanceId===row.copy.id),false);assert.equal(inspect().counts[row.variation.id],0);const copy=await admin.from('vault_item_instances').select('archived_at').eq('id',row.copy.id).single();assert.ifError(copy.error);assert.equal(copy.data.archived_at,null);}
+ stage('quantity2 and zero-price orders retain per-copy review holds without invented sales');
+ const independent=await ready(await add());proof.independentInstanceId=independent.copy.id;save();assert.equal(inspect().counts[independent.variation.id],1);
+ stage('new eligible card still creates its item and single unit while the two reviews remain');
+ await action({action:'withdraw',targetId:reacquired.target.id});assert.equal(inspect().counts[reacquired.variation.id],0);
+ stage('unrelated privacy and stock withdrawal continues despite unsupported orders');
+ const valid=await provider('complete-sale',{variationId:independent.variation.id,id:randomUUID()});await webhook(valid.paymentId);await action({action:'reconcile'});const final=await workspace(),sales=final.commerce.connections.find(c=>c.id===fixture.connectionId).recentSales.filter(s=>s.instanceId===independent.copy.id);assert.equal(sales.length,1);assert.equal(sales[0].saleCents,1975);assert.equal(inspect().counts[independent.variation.id],0);
+ const archived=await admin.from('vault_item_instances').select('archived_at').eq('id',independent.copy.id).single();assert.ifError(archived.error);assert.ok(archived.data.archived_at);const repeated=await action({action:'reconcile'});assert.ok(repeated.orderReviews>=2);
+ stage('unrelated completed payment still records exactly one canonical sale and advances reconciliation');
+ assert.deepEqual(capture(),proof.sourceHashes);assert.equal(hash(fs.readFileSync(root+'/apps/web/.env.local')),proof.environmentFingerprint);proof.sourceUnchangedSinceRuntimeStart=true;proof.pass=true;save();console.log(JSON.stringify({pass:true,stages:proof.stages.length,sourceFiles:sourceNames.length,output:file,productionWrites:0}));
+}catch(error){proof.failure=String(error.message);save();console.error(error.message);process.exitCode=1;}

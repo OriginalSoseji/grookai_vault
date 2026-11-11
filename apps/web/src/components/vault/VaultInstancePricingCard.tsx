@@ -142,7 +142,9 @@ export default function VaultInstancePricingCard({
       setAskingPriceAmount(result.askingPriceAmount !== null ? result.askingPriceAmount.toFixed(2) : "");
       setAskingPriceCurrency(result.askingPriceCurrency ?? "USD");
       setAskingPriceNote(result.askingPriceNote ?? "");
-      setStatusMessage({ tone: "success", body: "Pricing saved." });
+      setStatusMessage({ tone: "success", body: result.squareStatus==='ready'?'Pricing saved. Ready to scan in Square.':
+        result.squareStatus==='pending'?'Pricing saved. Square sync is pending; check Account → Square before selling.':
+        result.squareStatus==='review'?'Pricing saved. Check Account → Square for an item that needs review.':'Pricing saved.' });
       router.refresh();
     });
   }

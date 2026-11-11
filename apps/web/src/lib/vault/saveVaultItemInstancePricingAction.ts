@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { executeOwnerWriteV1 } from "@/lib/contracts/execute_owner_write_v1";
 import { createVaultInstancePricingProofV1 } from "@/lib/contracts/owner_write_proofs_v1";
 import { createServerComponentClient } from "@/lib/supabase/server";
+import {notifySquareOfferSaved} from '@/lib/square/notifyOfferSaved';
 import {
   normalizeVaultInstancePricingAmount,
   normalizeVaultInstancePricingCurrency,
@@ -29,6 +30,7 @@ export type SaveVaultItemInstancePricingResult =
       askingPriceCurrency: string | null;
       askingPriceNote: string | null;
       gvviId: string | null;
+      squareStatus?:'ready'|'pending'|'review'|'not_enabled';
     }
   | {
       ok: false;
@@ -179,5 +181,6 @@ export async function saveVaultItemInstancePricingAction(
   return {
     ...result,
     gvviId,
+    squareStatus:await notifySquareOfferSaved(user.id,normalizedInstanceId),
   };
 }

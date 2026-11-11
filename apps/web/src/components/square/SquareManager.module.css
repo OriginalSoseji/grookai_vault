@@ -1,0 +1,24 @@
+.page {max-width: 900px; margin: 0 auto; padding: 24px 0 80px; color: var(--gv-text-primary);}
+.page h1 {font-size: 24px; font-weight: 700; margin: 12px 0;}
+.page h2 {font-size: 17px; font-weight: 600; margin-bottom: 12px;}
+.page p {line-height: 1.6;}
+.muted {color: var(--gv-text-secondary); font-size: 14px;}
+.section {padding: 20px 0; border-top: 1px solid var(--gv-border-soft); margin-top: 20px;}
+.actions {display: flex; gap: 9px; flex-wrap: wrap; align-items: center; margin: 14px 0;}
+.button {min-height: 44px; padding: 10px 16px; border: 1px solid var(--gv-border-soft); border-radius: 8px; background: var(--gv-surface-base); color: var(--gv-text-primary); font: inherit; font-size: 14px; cursor: pointer;}
+.primary {background: var(--gv-primary); color: var(--gv-on-primary); border-color: var(--gv-primary); font-weight: 600;}
+.button:disabled {opacity: .5; cursor: default;}
+.button:focus-visible,.page input:focus-visible,.page select:focus-visible {outline: 2px solid var(--gv-primary); outline-offset: 3px;}
+.status {padding: 12px 14px; border-radius: 8px; background: var(--gv-surface-container); font-size: 14px; margin: 12px 0;}
+.error {border-left: 3px solid var(--gv-market);}
+.field {display: grid; gap: 6px; font-size: 14px; max-width: 360px;}
+.field select {min-height: 44px; padding: 10px; background: var(--gv-surface-base); color: var(--gv-text-primary); border: 1px solid var(--gv-border-soft); border-radius: 8px; font: inherit;}
+.check {display: flex; align-items: flex-start; gap: 12px; font-size: 14px; padding: 12px 0;}
+.check input {accent-color: var(--gv-primary); min-width: 20px; width: 20px; height: 20px; margin-top: 2px;}
+.rows {display: grid; gap: 9px; margin: 14px 0;}
+.row {border-bottom: 1px solid var(--gv-border-soft); display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: center; gap: 12px;}
+.row strong,.row small {display: block; overflow-wrap: anywhere;}
+.row small {margin-top: 4px; color: var(--gv-text-secondary);}
+.price {font-variant-numeric: tabular-nums; font-size: 15px;}
+.review {border: 1px solid var(--gv-border-soft); border-radius: 8px; padding: 14px; margin-top: 9px;}
+@media (max-width: 520px) {.page {padding-top: 16px;} .actions .button {flex-grow: 1;} .row {gap: 9px;}}

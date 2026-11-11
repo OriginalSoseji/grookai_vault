@@ -264,9 +264,18 @@ class _ForSaleTermsScreenState extends State<ForSaleTermsScreen> {
           allowDms: _allowDms,
         );
       });
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('Sale listing saved.')));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(switch (saved.squareStatus) {
+            'ready' => 'Sale listing saved. Ready to scan in Square.',
+            'pending' =>
+              'Sale listing saved. Square sync is pending; check Account → Square before selling.',
+            'review' =>
+              'Sale listing saved. Check Account → Square for an item that needs review.',
+            _ => 'Sale listing saved.',
+          }),
+        ),
+      );
     } catch (error) {
       if (!mounted) {
         return;

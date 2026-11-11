@@ -1,4 +1,5 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
+import '../square/square_sync_notifier.dart';
 
 typedef SaleListingPersist =
     Future<Map<String, dynamic>?> Function({
@@ -80,6 +81,12 @@ class SaleListingService {
       throw Exception('Sale listing could not be saved.');
     }
 
+    final squareStatus = _persist == null
+        ? await SquareSyncNotifier.offerSaved(
+            _requiredClient(),
+            normalizedInstanceId,
+          )
+        : 'not_enabled';
     return SaleListingSaveResult(
       instanceId: _fallback(row['id'], normalizedInstanceId),
       gvviId: _fallback(row['gv_vi_id'], gvviId),
@@ -89,6 +96,7 @@ class SaleListingService {
       price: savedPrice,
       currency: savedCurrency,
       note: _nullable(row['asking_price_note']),
+      squareStatus: squareStatus,
     );
   }
 
@@ -148,6 +156,7 @@ class SaleListingSaveResult {
     required this.price,
     required this.currency,
     this.note,
+    this.squareStatus = 'not_enabled',
   });
 
   final String instanceId;
@@ -158,6 +167,7 @@ class SaleListingSaveResult {
   final double price;
   final String currency;
   final String? note;
+  final String squareStatus;
 }
 
 String _clean(dynamic value) => (value ?? '').toString().trim();

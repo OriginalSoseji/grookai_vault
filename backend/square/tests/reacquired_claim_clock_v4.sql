@@ -1,0 +1,35 @@
+set local request.jwt.claim.role='';
+set local request.jwt.claims='{"role":"service_role"}';
+do $proof$
+declare c grookai_square.connections; sample public.vault_item_instances; copy public.vault_item_instances; target grookai_square.targets;
+ context jsonb; lease uuid:=gen_random_uuid(); source jsonb; payload jsonb; first_op jsonb; next_op jsonb; withdrawal jsonb; evidence jsonb; response jsonb;
+begin
+ select * into strict c from grookai_square.connections where merchant_id='runtime-merchant';
+ select vx.* into strict sample from public.vault_item_instances vx join grookai_square.targets tx on tx.instance_id=vx.id where tx.connection_id=c.id order by tx.id limit 1;
+ copy:=public.admin_vault_instance_create_v1(p_user_id=>c.owner_id,p_card_print_id=>sample.card_print_id,p_card_printing_id=>sample.card_printing_id,p_legacy_vault_item_id=>sample.legacy_vault_item_id,p_name=>'LOCAL reacquired claim clock',p_condition_label=>'NM');
+ update public.vault_item_instances set intent='sell',pricing_mode='asking',asking_price_amount=20,asking_price_currency='USD' where id=copy.id;
+ insert into grookai_square.targets(connection_id,owner_id,instance_id,item_id,variation_id) values(c.id,c.owner_id,copy.id,'local-reacquire-item-'||gen_random_uuid(),'local-reacquire-var-'||gen_random_uuid()) returning * into target;
+ perform public.square_controls_set_v1((select revision from grookai_square.controls where singleton),true,true,array[c.owner_id]);
+ perform public.square_commerce_controls_set_v2((select revision from grookai_square.commerce_controls where singleton),true,array[c.owner_id]);
+ perform public.square_commerce_service_v2('preferences',jsonb_build_object('ownerId',c.owner_id,'connectionId',c.id,'confirmed',true,'autoEnroll',true,'sellOnSquare',true));
+ c:=jsonb_populate_record(null::grookai_square.connections,public.square_service_v1('claim',jsonb_build_object('ownerId',c.owner_id,'connectionId',c.id,'leaseToken',lease)));
+ context:=jsonb_build_object('ownerId',c.owner_id,'connectionId',c.id,'leaseToken',lease,'fence',c.lease_fence,'targetId',target.id);source:=grookai_square.offer(c.owner_id,copy.id);
+ payload:=jsonb_build_object('idempotency_key',gen_random_uuid(),'changes',jsonb_build_array(jsonb_build_object('type','PHYSICAL_COUNT','physical_count',jsonb_build_object('catalog_object_id',target.variation_id,'location_id',c.location_id,'state','IN_STOCK','quantity','1','occurred_at',clock_timestamp()))));
+ first_op:=public.square_commerce_service_v2('stock_prepare',context||jsonb_build_object('kind','allocate','payload',payload,'sourceSnapshot',source));
+ perform public.square_commerce_service_v2('stock_begin',context||jsonb_build_object('operationId',first_op->>'id'));perform public.square_commerce_service_v2('stock_finish',context||jsonb_build_object('operationId',first_op->>'id','quantity',1));
+ payload:=jsonb_set(jsonb_set(payload,'{idempotency_key}',to_jsonb(gen_random_uuid()::text)),'{changes,0,physical_count,quantity}','"0"');
+ withdrawal:=public.square_commerce_service_v2('stock_prepare',context||jsonb_build_object('kind','withdraw','payload',payload));
+ perform public.square_commerce_service_v2('stock_begin',context||jsonb_build_object('operationId',withdrawal->>'id'));perform public.square_commerce_service_v2('stock_finish',context||jsonb_build_object('operationId',withdrawal->>'id','quantity',0));
+ perform public.square_commerce_service_v2('release_stock',context||jsonb_build_object('confirmed',true,'physicalCopyPresent',true,'registerOnline',true));
+ perform public.square_service_v1('select',context||jsonb_build_object('instanceIds',jsonb_build_array(copy.id),'confirmed',true));
+ payload:=jsonb_set(jsonb_set(payload,'{idempotency_key}',to_jsonb(gen_random_uuid()::text)),'{changes,0,physical_count,quantity}','"1"');
+ next_op:=public.square_commerce_service_v2('stock_prepare',context||jsonb_build_object('kind','allocate','payload',payload,'sourceSnapshot',source));
+ if (next_op->>'created_at')::timestamptz<=(first_op->>'created_at')::timestamptz then raise exception 'PROOF_NO_LATER_CLAIM_CLOCK'; end if;
+ perform public.square_commerce_service_v2('stock_begin',context||jsonb_build_object('operationId',next_op->>'id'));perform public.square_commerce_service_v2('stock_finish',context||jsonb_build_object('operationId',next_op->>'id','quantity',1));
+ evidence:=jsonb_build_object('id','local-old-allocation-payment','locationId',c.location_id,'currency','USD','state','paid','payments',jsonb_build_array(jsonb_build_object('id','local-old-payment','createdAt',first_op->>'created_at')),'lines',jsonb_build_array(jsonb_build_object('id','local-old-line','variationId',target.variation_id,'quantity','1','saleCents',2000,'taxCents',0)));
+ response:=public.square_commerce_service_v2('order_observe',context||jsonb_build_object('evidence',evidence,'evidenceHash',repeat('c',64)));
+ if response->>'sales'<>'0' or not exists(select 1 from public.vault_item_instances where id=copy.id and archived_at is null) then raise exception 'PROOF_OLD_PAYMENT_CONSUMED_REACQUIRED_COPY'; end if;
+ evidence:=evidence||jsonb_build_object('id','local-current-allocation-payment','payments',jsonb_build_array(jsonb_build_object('id','local-current-payment','createdAt',(next_op->>'created_at')::timestamptz+interval '1 second')));
+ response:=public.square_commerce_service_v2('order_observe',context||jsonb_build_object('evidence',evidence,'evidenceHash',repeat('d',64)));
+ if response->>'sales'<>'1' or not exists(select 1 from public.vault_item_instances where id=copy.id and archived_at is not null) then raise exception 'PROOF_CURRENT_PAYMENT_NOT_RECORDED'; end if;
+end $proof$;

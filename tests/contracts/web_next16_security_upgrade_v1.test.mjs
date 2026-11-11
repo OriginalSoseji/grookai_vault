@@ -15,10 +15,10 @@ function json(relativePath) {
 test("web runtime is pinned to the governed Next 16 and React 19 baseline", () => {
   const packageJson = json("apps/web/package.json");
 
-  assert.equal(packageJson.dependencies.next, "16.3.4");
+  assert.equal(packageJson.dependencies.next, "16.4.6");
   assert.equal(packageJson.dependencies.react, "19.2.8");
   assert.equal(packageJson.dependencies["react-dom"], "19.2.8");
-  assert.equal(packageJson.devDependencies["eslint-config-next"], "16.2.12");
+  assert.equal(packageJson.devDependencies["eslint-config-next"], "16.4.6");
   assert.equal(packageJson.devDependencies.eslint, "9.39.5");
   assert.equal(packageJson.scripts.lint, "eslint . --max-warnings=0");
 });
@@ -28,9 +28,11 @@ test("web dependency overrides retain the audited transitive security floor", ()
   const packageLock = json("apps/web/package-lock.json");
 
   assert.equal(packageJson.overrides.postcss, "$postcss");
-  assert.equal(packageJson.overrides.sharp, "0.35.4");
-  assert.equal(packageLock.packages["node_modules/sharp"].version, "0.35.4");
-  assert.equal(packageLock.packages["node_modules/next"].version, "16.3.4");
+  assert.equal(packageJson.overrides.sharp, "0.35.5");
+  assert.equal(packageLock.packages["node_modules/sharp"].version, "0.35.5");
+  assert.equal(packageLock.packages["node_modules/next"].version, "16.4.6");
+  assert.equal(packageJson.overrides["source-map-js"], "1.2.2");
+  assert.equal(packageLock.packages["node_modules/source-map-js"].version, "1.2.2");
   assert.equal(packageJson.overrides["brace-expansion"], "5.0.9");
   assert.equal(packageJson.overrides.minimatch, "10.2.6");
   // npm may nest a different optional wasm version under its consuming package.

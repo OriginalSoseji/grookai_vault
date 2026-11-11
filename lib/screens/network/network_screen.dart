@@ -1740,6 +1740,9 @@ class _PulseItemRow extends StatelessWidget {
 
     final navigator = Navigator.of(context, rootNavigator: true);
     switch (route.kind) {
+      case GrookaiCanonicalRouteKind.square:
+        await GrookaiWebRouteService.openPath('/account/connections/square');
+        return true;
       case GrookaiCanonicalRouteKind.ebaySeller:
         await openEbaySeller(
           context,

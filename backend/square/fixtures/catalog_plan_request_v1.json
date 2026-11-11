@@ -1,0 +1,50 @@
+{
+  "scope": {
+    "ownerId": "fixture-owner",
+    "merchantId": "fixture-merchant",
+    "locationId": "fixture-location",
+    "environment": "sandbox"
+  },
+  "offers": [
+    {
+      "ownerId": "fixture-owner",
+      "gvviId": "GVVI-DEMO0000-000001",
+      "selected": true,
+      "publicVendorOffer": true,
+      "available": true,
+      "name": "Aerodactyl · Fossil #1",
+      "variationName": "Holo · NM",
+      "askingPriceAmount": "20.00",
+      "currency": "USD"
+    },
+    {
+      "ownerId": "fixture-owner",
+      "gvviId": "GVVI-DEMO0000-000002",
+      "selected": true,
+      "publicVendorOffer": true,
+      "available": true,
+      "name": "Aerodactyl · Fossil #1",
+      "variationName": "Holo · LP",
+      "askingPriceAmount": "15.50",
+      "currency": "USD"
+    },
+    {
+      "ownerId": "fixture-owner",
+      "gvviId": "GVVI-DEMO0000-000003",
+      "selected": false,
+      "publicVendorOffer": false,
+      "available": true
+    }
+  ],
+  "catalog": {
+    "scope": {
+      "ownerId": "fixture-owner",
+      "merchantId": "fixture-merchant",
+      "locationId": "fixture-location",
+      "environment": "sandbox"
+    },
+    "complete": true,
+    "items": []
+  },
+  "mappings": []
+}

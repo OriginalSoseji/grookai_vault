@@ -1,0 +1,25 @@
+{
+  "version": "SQUARE_BASELINE_483_MANIFEST_V1",
+  "projectRef": "ycdxbpibncqcchqiihfz",
+  "versions": 483,
+  "securityObjects": 1395,
+  "lab": "C:/grookai_vault_completion_replay_v3_20261110",
+  "project": "catalog-482-v3-20261110",
+  "postgresImage": "sha256:4c39816ce8d9303a3aba1161c842929c73a40c7109a9ef1b644582478e31832e",
+  "privateProofs": {
+    "freeze.json": "89e548a8d5a229511ca69792e70b18a24794ce6a35109e1bc17815f09c7de8ac",
+    "replay-result.json": "35879f887ec326d47c7a401b8e4573421ceda7717851c4cc428ee0e319ad38c6",
+    "reset-prefix-result.json": "a2e2c1dfaeffd5f94c2ec7e51c344641fea30cc04eaf02d163432a468bcbcdef",
+    "reset-prefix.log": "644d45d8f8114a147d5dda91d87bbf2b3edcdd8d8647583f547bc6aec30bf5d0",
+    "seed-intent.json": "10bf506411c1d25dc5f3a046af949315d7210a9e7b88f152c2d084132f9288ee",
+    "synthetic-prerequisite.sql": "050302cce1ecae771e9995b03f68c81bf97bbb3471ea552146a71e54d9b3f6d1",
+    "complete-history.log": "4db118d1d2cbf78228a7b1bc04c48cc730b793a0a400187c9e0b058eeeacc44b",
+    "noop-history.log": "73928a5c5c03a246bbf3c8625315c0b3ebb0ec2921dc932eace8f325beda537a",
+    "pending-profile-migration.json": "6bef54168aa0bc72b14e5e719481c598207065ea22fe4ca9453b9d3161fd23a4",
+    "profile-candidate-apply.log": "0dcd410f037a817f8e00910d77d0e311ff21d986f918a56cb6de34614ac58f74",
+    "schema-qualification-profile-postapply-v1/summary.json": "2d7e98c7250cb493af9e3f606d9f734fe549200c13682a504a3089051df23d8c",
+    "supabase/config.toml": "985497bfcc4359acf75a35f55a3fcd971191ee0a3d7ac167da999f78e9f3f70b"
+  },
+  "querySha256": "a5dda9364406ff20238b63268805b9251de9676ad2ac543c561b6f4bdea28ad4",
+  "columnOrderHelperSha256": "afb90fffe35a6a309c442c1c3527218f2050cd15ec4a431b725a9dc26474cfb1"
+}
