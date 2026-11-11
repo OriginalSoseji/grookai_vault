@@ -1,5 +1,36 @@
 # Square catalog sync checkpoint — November 10, 2026
 
+## Clean-install correction — November 11, 2026, 08:36 Denver
+
+The security refresh1bac69a2d passed both ordinary hooks, all1,979 Flutter tests,
+the optimized build and Vercel preview. Hosted Windows/Linux jobs then failed
+before running tests: npm10.9.9 rejected two optional WebAssembly peer entries
+that the local npm11.6.2 accepted. The exact hosted failure was reproduced
+locally; a clean npm10 lock refresh also failed while inferring those peers.
+
+The resolver's `@emnapi/core` and `@emnapi/runtime` build peers are now explicitly
+pinned at1.11.3 in devDependencies. Only27 lockfile lines change. Actual clean
+installs pass with npm10.9.9 and11.6.2, including a fresh npm10 install in this
+checkout. Backend's clean npm10 install also passes. Web's renewed production
+dependency audit still reports zero advisories. The native package and all eight
+immutable SQL files are unchanged. Web agent guidance records the clean-install
+check so a populated local node_modules tree cannot conceal this again.
+
+The corrected lock passed all8 actual HTTP commerce stages in
+`local-fresh-v1/http-commerce-1794411335132.json` and all3 browser/API/layout tests.
+Local controls were paused at catalog8/commerce6 with no released claims; receipt
+`local-fresh-v1/runtime-controls-paused-v5.json`. Source/evidence pins are refreshed
+for the same exact V5 schema payload. Fresh normal hooks, hosted checks and a new
+committed-source PrePush remain required. The earlier prepared production
+package is source-bound and cannot be applied from this revision.
+
+Production remains483, with prepared hosting flags and recovery timer off.
+Samsung remains530; its in-place531 plan preserves UID10451 and first-install
+time. No production schema, inventory, payment, website deployment or app install
+has occurred. Browser and desktop access still report unavailable hosts.
+Existing production credentials, seller OAuth and physical QR checkout/readback
+remain unproven. The requested production-ready workflow is not yet complete.
+
 ## Dependency security refresh — November 11, 2026, 07:55 Denver
 
 This section supersedes earlier progress. Production remains483; no production

@@ -527,9 +527,13 @@
     "local-fresh-v1/http-commerce-1794408807137.json": "c1a956f9d4497b2a7dab32cfc6619e2061e4fce6eac0bd07106f740f098a9a42",
     "local-fresh-v1/runtime-controls-paused-v4.json": "6fefc05b8bc911e68e4f1bdbde22e060d6e7ee1f5da1efca874b6352c6c2dabb",
     "backend-production-audit-patched-v3.json": "df94d17f6650ed9e688718124159703e094db421b4457549a4f76ca9ce72755b",
-    "web-production-audit-patched-v3.json": "df2b802d37afdfd6caafaece420454311c888d0fff32540a091522b517b61e1d"
+    "web-production-audit-patched-v3.json": "df2b802d37afdfd6caafaece420454311c888d0fff32540a091522b517b61e1d",
+    "local-fresh-v1/http-commerce-1794411335132.json": "500cc1759b8aaadd781d1bfbba04a6a24fcf325316a28707ae17be043a3702d3",
+    "local-fresh-v1/runtime-controls-paused-v5.json": "c0f7ce3adde7fde524955a7e0d016d0365f1d5cc53ae068b51e83d299c19ee3c",
+    "web-production-audit-peer-v4.json": "3cfe8b269e1ff425be9da852ccaf44a5f4f0ace8557c48c181d864d647e6c90f",
+    "clean-install-npm-compat-v2.json": "96e989878d201bd1a6bd225f3d2451797e66b972fbb64a24ab46b3c73f934d75"
   },
-  "httpProof": "local-fresh-v1/http-commerce-1794408807137.json",
+  "httpProof": "local-fresh-v1/http-commerce-1794411335132.json",
   "runtimeSources": {
     ".github/workflows/square-commerce-reconciliation.yml": "65e6d710df6fdb949645236df9a64f2696d4f487d90db9c53cd6f48be67230e7",
     "android/app/src/main/AndroidManifest.xml": "b24cd1e669f2ddccd29fe7c7ab561b857a10c49b7eaa06ddb2557313e2fec98a",
@@ -609,8 +613,8 @@
     "lib/services/vault/vault_grid_artwork.dart": "4be94fa78e4ff44208e74177e9c9f08e9d79752db26b567c66060a2152c945e9",
     "lib/services/vault/vault_manage_artwork.dart": "b0977f30d4ac719f77ebc4e4f88396c30a3a1f84134edfe94f073f008d7bac4c",
     "package.json": "73a1230586314eff2d3d846552b020e9a96a1f9ed543531f3c791f4ef2f31b8d",
-    "apps/web/package.json": "d74a3637a3143227250ebf431527d307d8b2821c05a45dfaddf8aab63cc84689",
-    "apps/web/package-lock.json": "a4fe5894f1d4a72a3514a8a12ff0c5c8eae50817a41aca02d58b3734701e1f7d",
+    "apps/web/package.json": "fafa7ad7eaab3174cad4962128f4f390235132482e1dd845c4160853aa008f3c",
+    "apps/web/package-lock.json": "8b40715cc1e89214ec4dccfc93455df5facb84ae777e6b55faf1dc3e4f4f120d",
     "backend/package.json": "84c48fae0c58e0c90a8b56c2ee56228efd3f9721334441ae2507efefb3deb879",
     "backend/package-lock.json": "1c3c6d58c9c58ab0c0d34392bf53d7cba6e1ef069f885c1df2553c87e6ef1e64",
     "tests/contracts/backend_dependency_security_v1.test.mjs": "58c894af2197762ca316c096de9066381a448576f9b8d5c06d956e89d25159de",
@@ -628,5 +632,18 @@
       "admZip": "0.6.1",
       "sourceMapJs": "1.2.2"
     }
+  },
+  "lockCompatibility": {
+    "at": "2026-11-11T15:37:29.892Z",
+    "priorSource": "1bac69a2d8d91fb148254415d56723ca6fd6b10a",
+    "sqlPayloadUnchanged": true,
+    "explicitBuildPeers": {
+      "@emnapi/core": "1.11.3",
+      "@emnapi/runtime": "1.11.3"
+    },
+    "cleanNpmVersions": [
+      "10.9.9",
+      "11.6.2"
+    ]
   }
 }
