@@ -16,6 +16,18 @@ Private source records and receipts are not included in public results.
 
 Plan fingerprint:
 `3b0dccb6c1ffd7fd0b27e1b0829a45af333b632fdc19d5583cce68f2f0d84543`.
+The two original Scryfall default-card captures were
+`default-cards-20261110100759.jsonl.gz` (compressed SHA-256
+`42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f`) and
+`default-cards-20260813090526.jsonl.gz` (compressed SHA-256
+`4d74b3827c1de6cc882dede2f6a75e74f67974f2bc49054693ba7e3413fb6c7c`),
+both under `https://data.scryfall.io/default-cards/`. Exact original members
+and the pinned plan are in private `raw_imports` source receipt `174559`;
+apply receipt `174560` binds that source to the package. The execution ledger
+run is `78d5bb9f-e399-4000-b58c-4a2cad86a942`. Do not expose receipt bodies
+through public APIs or treat source metadata as physical-finish authority.
+The 48 date-only admissions do not fill the 436 full-metadata holds; 388
+other cases remain in source/identity review.
 The reader extends shared Magic detail, related, comparison and search
 consumers. Year candidate discovery includes both qualified date namespaces;
 unknown dates do not fall back to a collection launch date. It does not
