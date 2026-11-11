@@ -7,13 +7,16 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../card_detail_screen.dart';
 import '../../services/identity/catalog_artwork_resolution.dart';
+import '../../services/identity/canon_image_url_service.dart';
 import '../../services/identity/display_identity.dart';
 import '../../services/identity/image_presentation.dart';
 import '../../services/navigation/grookai_web_route_service.dart';
 import '../../services/public/card_surface_pricing_service.dart';
+import '../../services/public/public_card_printing_options_service.dart';
 import '../../services/vault/vault_card_service.dart';
 import '../../services/vault/vault_exact_pricing.dart';
 import '../../services/vault/vault_gvvi_service.dart';
+import '../../services/vault/vault_manage_artwork.dart';
 import '../../services/vault/slab_upgrade_service.dart';
 import '../../utils/display_image_contract.dart';
 import '../../theme/gv_tokens.dart';
@@ -121,6 +124,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
   String? _error;
   String? _statusMessage;
   String? _preferredExactCopyImageUrl;
+  String? _preferredExactPrintingImageUrl;
   List<VaultPrintingChoice> _variantOptions = const <VaultPrintingChoice>[];
 
   void _dismissKeyboard() {
@@ -182,6 +186,8 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
           cardPrintId: data.cardPrintId,
         );
       } catch (_) {}
+      final preferredExactPrintingImageUrl =
+          await _loadExactCopyPrintingImageUrl(data);
       final rawPricingTargets = data.copies
           .where((copy) => !copy.isGraded)
           .map(
@@ -225,6 +231,7 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
         _data = data;
         _pricing = pricing;
         _preferredExactCopyImageUrl = preferredExactCopyImageUrl;
+        _preferredExactPrintingImageUrl = preferredExactPrintingImageUrl;
         _variantOptions = variantOptions;
         _copySectionMemberships = copySectionMemberships;
         _selectedCopyIds = const <String>{};
@@ -246,6 +253,47 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
         _bulkSectionId = null;
         _loading = false;
       });
+    }
+  }
+
+  Future<String?> _loadExactCopyPrintingImageUrl(
+    VaultManageCardData data,
+  ) async {
+    if (data.copies.length != 1) {
+      return null;
+    }
+    final copy = data.copies.single;
+    final printingId = (copy.cardPrintingId ?? '').trim();
+    if (copy.isGraded || printingId.isEmpty) {
+      return null;
+    }
+
+    try {
+      final rows = await PublicCardPrintingOptionsService.fetch(
+        client: _client,
+        cardPrintIds: <String>[data.cardPrintId],
+      );
+      Map<String, dynamic>? selected;
+      for (final row in rows) {
+        if ((row['id'] ?? '').toString().trim() == printingId) {
+          selected = row;
+          break;
+        }
+      }
+      if (selected == null ||
+          (selected['image_status'] ?? '').toString().trim().toLowerCase() !=
+              'exact') {
+        return null;
+      }
+
+      final enriched = await CanonImageUrlService.enrichRows(
+        <Map<String, dynamic>>[selected],
+      );
+      return exactManagePrintingImageUrl(enriched.single);
+    } catch (_) {
+      // Exact-copy artwork is optional. Preserve the parent image when the
+      // public printing image read or its hosted-image resolution is offline.
+      return null;
     }
   }
 
@@ -1418,9 +1466,11 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
   ) {
     final identity = _manageCardDisplayIdentity(data);
     final presentation = _manageCardImagePresentation(data);
-    final artwork = _manageCardArtwork(
-      data,
+    final artwork = resolveVaultManageArtwork(
+      cardGvId: data.gvId,
+      parentProviderImageUrl: _manageCardProviderImageUrl(data),
       exactCopyImageUrl: _preferredExactCopyImageUrl,
+      exactPrintingImageUrl: _preferredExactPrintingImageUrl,
     );
     final details = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -1523,7 +1573,8 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
               Expanded(child: details),
             ],
           ),
-        if (presentation.detailNote != null) ...[
+        if (presentation.detailNote != null &&
+            _preferredExactPrintingImageUrl == null) ...[
           const SizedBox(height: 10),
           _ManageImageTruthNote(note: presentation.detailNote!),
         ],
@@ -2192,30 +2243,6 @@ String? _manageCardProviderImageUrl(VaultManageCardData data) {
     }
   }
   return null;
-}
-
-CatalogArtworkResolution _manageCardArtwork(
-  VaultManageCardData data, {
-  String? exactCopyImageUrl,
-}) {
-  final catalogArtwork = resolveCatalogArtwork(
-    gvId: data.gvId,
-    providerImageUrl: _manageCardProviderImageUrl(data),
-  );
-  final uploadedImageUrl = isCollectorUploadedCardImage(exactCopyImageUrl)
-      ? normalizeDisplayImageUrl(exactCopyImageUrl)
-      : isCollectorUploadedCardImage(data.imageUrl)
-      ? normalizeDisplayImageUrl(data.imageUrl)
-      : null;
-
-  if (uploadedImageUrl == null) {
-    return catalogArtwork;
-  }
-
-  return CatalogArtworkResolution(
-    primaryImageUrl: uploadedImageUrl,
-    fallbackImageUrl: catalogArtwork.primaryImageUrl,
-  );
 }
 
 class _ManageImageStatusBadge extends StatelessWidget {
