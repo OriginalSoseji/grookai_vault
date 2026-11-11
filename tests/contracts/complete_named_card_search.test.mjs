@@ -54,6 +54,14 @@ test('unknown residual words do not become a partial card-name match',async()=>{
  const calls=[];await fetchRows({rpc:async(_,a)=>{calls.push(a);return {data:[{id:'b',name:'Rare Candy',gv_id:'GV-PK-TEST-002'}],error:null};}},{textQuery:'Rare Candy common',gameScope:'pokemon',exactSetCode:'sv1'});
  assert.equal(calls[0].q,'Rare Candy');assert.equal(calls[0].set_code_in,'sv1');
 });
+test('punctuation-insensitive fallback verifies all name words across every candidate page',async()=>{
+ const full=Array.from({length:512},(_,i)=>({id:String(i),name:i===0?'Drakuseth, Maw of Flames':'Drakuseth, the Other',gv_id:`GV-MTG-${i}`}));
+ const tail=[{id:'last',name:'Drakuseth, Maw of Flames',gv_id:'GV-MTG-LAST'}],calls=[];
+ const rows=await fetchRows({rpc:async(_,a)=>{calls.push([a.q,a.offset_in]);if(a.q==='Drakuseth Maw of Flames')return {data:[]};
+   return {data:a.offset_in===0?full:a.offset_in===512?tail:[]};}},{textQuery:'Drakuseth Maw of Flames',gameScope:'mtg'});
+ assert.deepEqual(Array.from(rows,r=>r.id),['0','last']);
+ assert.deepEqual(calls,[['Drakuseth Maw of Flames',0],['drakuseth',0],['drakuseth',512],['drakuseth',1024],['drakuseth',1536],['drakuseth',2048]]);
+});
 test('later failures and offset-cap exhaustion never publish partial results',async()=>{
  let calls=0;await assert.rejects(()=>fetchRows({rpc:async()=>++calls===1?{data:Array.from({length:512},(_,i)=>({id:String(i),name:'Wurmple',gv_id:'GV-PK-TEST-001'})),error:null}:{data:null,error:{message:'catalog unavailable'}}},{textQuery:'Wurmple',gameScope:'pokemon'}),/catalog unavailable/);
  await assert.rejects(()=>fetchRows({rpc:async(_,a)=>({data:Array.from({length:512},(_,i)=>({id:String(a.offset_in+i),name:'Wurmple',gv_id:'GV-PK-TEST-001'})),error:null})},{textQuery:'Wurmple',gameScope:'pokemon'}),/too broad/);

@@ -3,6 +3,11 @@
 ## Magic print-date consumer repair - November 10, 2026
 
 Read [the Magic print-date checkpoint](../checkpoints/CATALOG_MTG_PRINT_RELEASE_SEARCH_20261110.md).
+For the separately admitted 48 date-only records, including their exact
+source, private receipt authority and remaining holds, also read
+[the November 11 date-only release checkpoint](../checkpoints/MTG_DATE_ONLY_RELEASE_20261111.md).
+The 48 dates are complete as date facts; they do not resolve the 436
+full-metadata holds or the remaining 388 source/identity-review cases.
 Individual print release observations retain their own scope and current
 identity/source-owner checks. Never fill an undated rolling collection set with
 one member's date. Unknown print dates remain unknown. Search reads use the

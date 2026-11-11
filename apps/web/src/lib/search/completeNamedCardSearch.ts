@@ -40,13 +40,14 @@ export async function fetchCompleteNamedCardRows(
     const words = normalize(row.name ?? "").split(" ");
     return fragments.every((fragment) => words.some((word) => word.includes(fragment)));
   };
+  let lookupName = name;
   const readPage = async (offset: number) => {
     const first = options.namedFirstPage;
     // A serialized server-action argument cannot supply a trusted RPC page.
-    if (offset === 0 && first && retainedPages.has(first) && first.query === name && first.gameScope === options.gameScope &&
+    if (offset === 0 && lookupName === name && first && retainedPages.has(first) && first.query === name && first.gameScope === options.gameScope &&
         (options.languageScope ?? "all") === "all" && !options.exactSetCode) return first.rows;
     const { data, error } = await client.rpc("search_game_card_prints_v5", {
-      game_code_in: options.gameScope, q: name,
+      game_code_in: options.gameScope, q: lookupName,
       set_code_in: options.exactSetCode ?? null, number_in: null,
       illustrator_in: null, language_scope_in: options.languageScope ?? "all",
       limit_in: NAMED_CARD_PAGE_SIZE, offset_in: offset,
@@ -54,6 +55,18 @@ export async function fetchCompleteNamedCardRows(
     if (error) throw new Error(error.message);
     return (data ?? []) as NamedRow[];
   };
+  let firstPage = await readPage(0);
+  // The name RPC may treat punctuation as significant even though the
+  // resolver normalizes it away. Retrying one distinctive name fragment is
+  // only candidate narrowing: all original words remain mandatory below.
+  if (!firstPage.some(matchesName) && fragments.length > 1) {
+    const fragment = fragments.reduce((best, value) => value.length > best.length ? value : best, "");
+    if (fragment && fragment !== normalize(name)) {
+      lookupName = fragment;
+      firstPage = await readPage(0);
+    }
+  }
+  if (!firstPage[0] || (!firstPage.some(matchesName) && firstPage.length < NAMED_CARD_PAGE_SIZE)) return null;
   const rows: NamedRow[] = [];
   const seen = new Set<string>();
   for (let offset = 0; offset < 10000;) {
@@ -61,7 +74,7 @@ export async function fetchCompleteNamedCardRows(
       .filter((value) => value < 10000);
     // Attach both handlers immediately: speculative pages after the first short
     // page cannot cause an unhandled rejection or delay a complete result.
-    const pending = offsets.map((value) => readPage(value).then(
+    const pending = offsets.map((value) => (value === 0 ? Promise.resolve(firstPage) : readPage(value)).then(
       (page) => ({ page, error: null }),
       (error: unknown) => ({ page: null, error }),
     ));
@@ -70,7 +83,6 @@ export async function fetchCompleteNamedCardRows(
       const result = await pending[i];
       if (result.page === null) throw result.error;
       const page = result.page;
-      if (offsets[i] === 0 && (!page[0] || !matchesName(page[0]))) return null;
       for (const row of page) {
         if (seen.has(row.id)) throw new Error("Named-card search could not advance to a complete result set");
         seen.add(row.id);
