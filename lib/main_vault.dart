@@ -13,7 +13,10 @@ String? _vaultProviderImageUrl(Map<String, dynamic> row) {
   );
 }
 
-CatalogArtworkResolution _vaultArtwork(Map<String, dynamic> row) {
+CatalogArtworkResolution _vaultArtwork(
+  Map<String, dynamic> row, {
+  String? exactPrintingImageUrl,
+}) {
   final sourceImageUrl = _vaultDisplayImageUrl(row);
   final hostedImageUrl =
       normalizeWarehouseDisplayImagePath(row['image_path']) ??
@@ -25,6 +28,17 @@ CatalogArtworkResolution _vaultArtwork(Map<String, dynamic> row) {
     );
   }
   final providerImageUrl = _vaultProviderImageUrl(row);
+  final exactImageUrl = normalizeDisplayImageUrl(exactPrintingImageUrl);
+  if (exactImageUrl != null) {
+    final fallbackImageUrl =
+        hostedImageUrl ?? sourceImageUrl ?? providerImageUrl;
+    return CatalogArtworkResolution(
+      primaryImageUrl: exactImageUrl,
+      fallbackImageUrl: fallbackImageUrl == exactImageUrl
+          ? null
+          : fallbackImageUrl,
+    );
+  }
   final primaryImageUrl = hostedImageUrl ?? sourceImageUrl ?? providerImageUrl;
   final fallbackImageUrl =
       providerImageUrl == null || providerImageUrl == primaryImageUrl
@@ -334,6 +348,7 @@ class _VaultGridLoadingTile extends StatelessWidget {
 class _VaultGridTile extends StatelessWidget {
   const _VaultGridTile({
     required this.row,
+    this.exactPrintingImageUrl,
     this.pricing,
     this.selectionMode = false,
     this.selected = false,
@@ -347,6 +362,7 @@ class _VaultGridTile extends StatelessWidget {
   });
 
   final Map<String, dynamic> row;
+  final String? exactPrintingImageUrl;
   final CardSurfacePricingData? pricing;
   final bool selectionMode;
   final bool selected;
@@ -370,7 +386,10 @@ class _VaultGridTile extends StatelessWidget {
       setCode: row['set_code']?.toString(),
       number: row['number']?.toString(),
     );
-    final artwork = _vaultArtwork(row);
+    final artwork = _vaultArtwork(
+      row,
+      exactPrintingImageUrl: exactPrintingImageUrl,
+    );
     final printingIdentity = resolveVaultPrintingIdentityPresentation(row);
 
     return Material(
@@ -596,6 +615,7 @@ class VaultPageState extends State<VaultPage> {
   List<OwnedSealedCopy> _selectedSealedCopies = [];
   int _sealedSelectionEpoch = 0;
   Map<String, CardSurfacePricingData> _pricingByCardPrintId = const {};
+  Map<String, String> _exactVaultGridImageUrlByCardPrintId = const {};
   Map<String, VaultExactPricingSummary> _pricingSummaryByCardPrintId =
       const <String, VaultExactPricingSummary>{};
   Map<String, VaultSharedCardState> _sharedStateByCardPrintId =
@@ -678,6 +698,7 @@ class VaultPageState extends State<VaultPage> {
     if (_uid == null) {
       setState(() {
         _items = const [];
+        _exactVaultGridImageUrlByCardPrintId = const {};
         _pricingByCardPrintId = const <String, CardSurfacePricingData>{};
         _pricingSummaryByCardPrintId =
             const <String, VaultExactPricingSummary>{};
@@ -699,6 +720,7 @@ class VaultPageState extends State<VaultPage> {
 
       setState(() {
         _items = rows;
+        _exactVaultGridImageUrlByCardPrintId = const {};
         _selectedCardPrintIds.removeWhere(
           (id) => rows.every((row) => (row['card_id'] ?? '').toString() != id),
         );
@@ -738,6 +760,13 @@ class VaultPageState extends State<VaultPage> {
     ]);
     final pricingTargets = initialResults[0] as List<VaultExactPricingTarget>;
     final sharedStates = initialResults[1] as Map<String, VaultSharedCardState>;
+    unawaited(
+      _loadExactVaultGridArtwork(
+        rows: rows,
+        pricingTargets: pricingTargets,
+        requestVersion: requestVersion,
+      ),
+    );
     final exactPricing = await CardSurfacePricingService.fetchByCardPrintingIds(
       client: supabase,
       cardPrintingIds: pricingTargets.map(
@@ -778,6 +807,61 @@ class VaultPageState extends State<VaultPage> {
       _sharedStateByCardPrintId = sharedStates;
       _recomputeDerivedData();
     });
+  }
+
+  Future<void> _loadExactVaultGridArtwork({
+    required List<Map<String, dynamic>> rows,
+    required List<VaultExactPricingTarget> pricingTargets,
+    required int requestVersion,
+  }) async {
+    try {
+      final printingIdByCardPrintId = uniqueOwnedPrintingIdsForVaultArtwork(
+        vaultRows: rows,
+        pricingTargets: pricingTargets
+            .map(
+              (target) => <String, dynamic>{
+                'card_print_id': target.cardPrintId,
+                'card_printing_id': target.cardPrintingId,
+              },
+            )
+            .toList(growable: false),
+      );
+      if (printingIdByCardPrintId.isEmpty) return;
+
+      final options = await PublicCardPrintingOptionsService.fetch(
+        client: supabase,
+        cardPrintIds: printingIdByCardPrintId.keys,
+      );
+      final selectedRows = exactVaultPrintingImageRows(
+        printingIdByCardPrintId: printingIdByCardPrintId,
+        printingOptions: options,
+      );
+      if (selectedRows.isEmpty) return;
+
+      final enrichedRows = await CanonImageUrlService.enrichRows(
+        selectedRows.values,
+      );
+      final imageUrls = <String, String>{};
+      for (final row in enrichedRows) {
+        final cardPrintId = (row['card_print_id'] ?? '').toString().trim();
+        final imageUrl = CanonImageUrlService.displayImageUrlFromRow(row);
+        if (cardPrintId.isNotEmpty && imageUrl != null) {
+          imageUrls[cardPrintId] = imageUrl;
+        }
+      }
+      if (!mounted ||
+          requestVersion != _reloadRequestVersion ||
+          imageUrls.isEmpty) {
+        return;
+      }
+      setState(() {
+        _exactVaultGridImageUrlByCardPrintId = Map<String, String>.unmodifiable(
+          imageUrls,
+        );
+      });
+    } catch (_) {
+      // Exact printing art is optional. Keep the existing parent fallback.
+    }
   }
 
   Future<List<VaultExactPricingTarget>> _loadVaultPricingTargets() async {
@@ -1867,6 +1951,7 @@ class VaultPageState extends State<VaultPage> {
 
     return _VaultGridTile(
       row: row,
+      exactPrintingImageUrl: _exactVaultGridImageUrlByCardPrintId[cardPrintId],
       pricing: _pricingByCardPrintId[cardPrintId],
       selectionMode: _selectionMode,
       selected: selected,

@@ -9,13 +9,20 @@ void main() {
       final source = File(
         'lib/screens/vault/vault_manage_card_screen.dart',
       ).readAsStringSync();
+      final artworkSource = File(
+        'lib/services/vault/vault_manage_artwork.dart',
+      ).readAsStringSync();
       final thumb = RegExp(
         r'Widget _buildHero\([\s\S]*?Widget _buildOverviewTab\(',
       ).firstMatch(source)!.group(0)!;
 
-      expect(source, contains('resolveCatalogArtwork('));
+      expect(source, contains('resolveVaultManageArtwork('));
+      expect(artworkSource, contains('resolveCatalogArtwork('));
+      expect(artworkSource, contains('exactPrintingImageUrl'));
+      expect(artworkSource, contains("!=\n      'exact'"));
       expect(source, contains('isCollectorUploadedCardImage('));
       expect(source, contains('_preferredExactCopyImageUrl'));
+      expect(source, contains('_preferredExactPrintingImageUrl'));
       expect(source, contains('fallbackImageUrl: artwork.fallbackImageUrl'));
       expect(thumb, contains('CardSurfaceArtwork('));
       expect(thumb, contains('imageUrl: artwork.primaryImageUrl'));
