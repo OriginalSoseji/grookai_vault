@@ -1,5 +1,58 @@
 # Square catalog sync checkpoint — November 10, 2026
 
+## Dependency security refresh — November 11, 2026, 07:55 Denver
+
+This section supersedes earlier progress. Production remains483; no production
+schema, inventory, payment, website deployment or Samsung install has changed.
+The normal commit/push hooks passed at5dcdee889 and again at69ef7c2c7, with1,979
+Flutter tests,50 Square tests and the complete web/contract checks. PR897 is open.
+Its original CodeQL alert602 was reviewed and dismissed as a false positive:
+the alleged password source always throws; reachable lookup digests consume
+random32-byte OAuth tokens, not passwords. The key guard remains enabled.
+
+An additional production dependency audit found existing critical Next.js and
+high image/archive/source-map advisories. Deployment is held for the patched
+runtime: Next/eslint-config-next16.4.6, sharp0.35.5, adm-zip0.6.1 and
+source-map-js1.2.2. Backend and web `npm audit --omit=dev` both report zero
+advisories. Existing dependency-floor tests now pin the patched releases.
+The updated linter exposed one existing internal checkout navigation call;
+`PurchaseReview` now uses the App Router rather than `window.location.assign`.
+Primary advisories include GHSA-2464-fhr4-w9xw, GHSA-673q-mjm6-r5xr and
+GHSA-wq5f-xc86-pv6w. No scanner/model API upgrade was required.
+
+The patched runtime passed all8 actual local-Auth HTTP commerce stages in
+`local-fresh-v1/http-commerce-1794408807137.json`, retaining84 execution source
+hashes, and all3 browser/API/desktop/phone-layout tests. The synthetic canary was
+paused at catalog revision6/commerce revision4 with empty allowlists and no
+released claims; receipt `local-fresh-v1/runtime-controls-paused-v4.json`.
+Fresh committed-source qualification and ordinary hooks must pass again before
+this changed dependency tree can ship. All eight applied local SQL files and
+previous proof receipts remain unchanged; release manifest V5 receives a new
+source/evidence revision for the same exact483-to491 SQL payload.
+
+Vercel production now has only the prepared Square app ID, exact URLs, one stable
+server-only sensitive encryption key and all three enable flags explicitly false.
+The same key is configured for the GitHub recovery worker, whose enabling variable
+is explicitly false. Existing Supabase configuration was preserved. Private
+readbacks: `host-default-off-v1/readback-v2.json` and
+`worker-default-off-v1/readback.json`. The prior production deployment remains
+`dpl_5xmhpiKPe8XeGN3gX1tBUo45u8q8` at main71aeeba6f. Verified-TLS official CLI
+dry runs accepted exactly8 pending migrations; no remote schema was applied.
+Those packages are bound to older source and cannot authorize the security refresh.
+
+Both Android531 artifacts are built and signature-verified. Official signed run
+43036247806 succeeded at5dcdee889. The same-package Samsung QA artifact retains
+the installed certificate; the official production certificate differs and must
+not replace the installed app by uninstalling it. Native source is unchanged by
+the dependency patches. Samsung is still530 with its existing data/session.
+
+The desktop/browser host still reports a missing native pipe. Restoring that
+connection is necessary for the existing production app secret, webhook setup
+and real seller OAuth. Automatic approval review separately rejected opening the
+Square developer console through the Samsung browser, stating "blocked by policy";
+that route is not retried. Live unchanged-QR Samsung checkout and grookai sale
+readback remain mandatory and unproven. No production-ready completion is claimed.
+
 ## Final candidate freeze — November 11, 2026, 06:40 Denver
 
 This is the latest state; earlier sections are retained historical evidence.

@@ -41,9 +41,10 @@ test("AI border service declares every unconditional third-party import", () => 
 test("backend npm tree retains the audited archive baseline and patched image release", () => {
   const packageJson = JSON.parse(source("backend/package.json"));
 
-  assert.equal(packageJson.dependencies.sharp, "0.35.4");
-  assert.equal(packageJson.overrides["adm-zip"], "0.6.0");
-  assert.equal(packageJson.overrides.sharp, "0.35.4");
+  assert.equal(packageJson.dependencies.sharp, "0.35.5");
+  assert.equal(packageJson.overrides["adm-zip"], "0.6.1");
+  assert.equal(packageJson.overrides.sharp, "0.35.5");
   const lock = JSON.parse(source("backend/package-lock.json"));
-  assert.equal(lock.packages["node_modules/sharp"].version, "0.35.4");
+  assert.equal(lock.packages["node_modules/sharp"].version, "0.35.5");
+  assert.equal(lock.packages["node_modules/adm-zip"].version, "0.6.1");
 });

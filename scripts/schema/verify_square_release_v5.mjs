@@ -78,7 +78,7 @@ async function main(){
     assert.equal(target.sql("select linking_enabled::text||':'||catalog_enabled::text||':'||cardinality(owner_allowlist)::text from grookai_square.controls where singleton").trim(),'false:false:0');
     assert.equal(target.sql("select enabled::text||':'||cardinality(owner_allowlist)::text from grookai_square.commerce_controls where singleton").trim(),'false:0');
    }
-   const paused=read(artifacts+'/local-fresh-v1/runtime-controls-paused-v3.json');assert.equal(paused.pass,true);assert.equal(paused.claimsReleased,0);
+   const paused=read(artifacts+'/local-fresh-v1/runtime-controls-paused-v4.json');assert.equal(paused.pass,true);assert.equal(paused.claimsReleased,0);
    assert.equal(execFileSync('git',['status','--porcelain'],{cwd:root,encoding:'utf8'}).trim(),'','PrePush requires exact committed checkout');
    assert.ok(Object.keys(manifest.runtimeSources).length>=40,'Freeze complete runtime source before PrePush');
    for(const [file,pin]of Object.entries(manifest.runtimeSources))assert.equal(sha(fs.readFileSync(root+'/'+file,'utf8').replaceAll('\r\n','\n')),pin,'Runtime source changed: '+file);

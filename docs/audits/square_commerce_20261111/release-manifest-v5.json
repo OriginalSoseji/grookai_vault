@@ -523,9 +523,13 @@
     "local-fresh-v1/http-commerce-1794404115823.json": "93ccadca6b4137711f7eabb02fa2cfbe1baafd4411a8f2e339f2f803712f35ff",
     "local-fresh-v1/http-commerce-1794404383141.json": "0d9660bcb9ddd9548c37f822ab7c0f17022e431d5dd05b49a03d565ab321dfeb",
     "release-gate-audit-v5-a/qualification.json": "6dd7a86182903477df6dcb15bd4ec85491bc8996107ad4b3fc21e0f3a3f595d1",
-    "local-fresh-v1/runtime-controls-paused-v3.json": "5268ca296344946e97e819d8a727a24a8b5beac7cdbd6c728559a2262eb2876f"
+    "local-fresh-v1/runtime-controls-paused-v3.json": "5268ca296344946e97e819d8a727a24a8b5beac7cdbd6c728559a2262eb2876f",
+    "local-fresh-v1/http-commerce-1794408807137.json": "c1a956f9d4497b2a7dab32cfc6619e2061e4fce6eac0bd07106f740f098a9a42",
+    "local-fresh-v1/runtime-controls-paused-v4.json": "6fefc05b8bc911e68e4f1bdbde22e060d6e7ee1f5da1efca874b6352c6c2dabb",
+    "backend-production-audit-patched-v3.json": "df94d17f6650ed9e688718124159703e094db421b4457549a4f76ca9ce72755b",
+    "web-production-audit-patched-v3.json": "df2b802d37afdfd6caafaece420454311c888d0fff32540a091522b517b61e1d"
   },
-  "httpProof": "local-fresh-v1/http-commerce-1794404383141.json",
+  "httpProof": "local-fresh-v1/http-commerce-1794408807137.json",
   "runtimeSources": {
     ".github/workflows/square-commerce-reconciliation.yml": "65e6d710df6fdb949645236df9a64f2696d4f487d90db9c53cd6f48be67230e7",
     "android/app/src/main/AndroidManifest.xml": "b24cd1e669f2ddccd29fe7c7ab561b857a10c49b7eaa06ddb2557313e2fec98a",
@@ -604,6 +608,25 @@
     "lib/services/vault/vault_card_service.dart": "87d3bdc4a0877401f93af5263ebe14b347d640eceb335b25abe3ffda28531cce",
     "lib/services/vault/vault_grid_artwork.dart": "4be94fa78e4ff44208e74177e9c9f08e9d79752db26b567c66060a2152c945e9",
     "lib/services/vault/vault_manage_artwork.dart": "b0977f30d4ac719f77ebc4e4f88396c30a3a1f84134edfe94f073f008d7bac4c",
-    "package.json": "73a1230586314eff2d3d846552b020e9a96a1f9ed543531f3c791f4ef2f31b8d"
+    "package.json": "73a1230586314eff2d3d846552b020e9a96a1f9ed543531f3c791f4ef2f31b8d",
+    "apps/web/package.json": "d74a3637a3143227250ebf431527d307d8b2821c05a45dfaddf8aab63cc84689",
+    "apps/web/package-lock.json": "a4fe5894f1d4a72a3514a8a12ff0c5c8eae50817a41aca02d58b3734701e1f7d",
+    "backend/package.json": "84c48fae0c58e0c90a8b56c2ee56228efd3f9721334441ae2507efefb3deb879",
+    "backend/package-lock.json": "1c3c6d58c9c58ab0c0d34392bf53d7cba6e1ef069f885c1df2553c87e6ef1e64",
+    "tests/contracts/backend_dependency_security_v1.test.mjs": "58c894af2197762ca316c096de9066381a448576f9b8d5c06d956e89d25159de",
+    "tests/contracts/web_next16_security_upgrade_v1.test.mjs": "518ef661059902eb7c2d19727b94683d45e1625d5f0e51f86d767d3189f0a2e8",
+    "apps/web/src/components/orders/PurchaseReview.tsx": "a5e637795c045b0fb45c830ed333f1b2e59f852e4352d77b8a653fed5be07a13"
+  },
+  "securityRefresh": {
+    "at": "2026-11-11T14:55:50.586Z",
+    "priorSource": "69ef7c2c75743260c9cbe6329da643961c1d4563",
+    "sqlPayloadUnchanged": true,
+    "productionDependencyAdvisories": 0,
+    "patched": {
+      "next": "16.4.6",
+      "sharp": "0.35.5",
+      "admZip": "0.6.1",
+      "sourceMapJs": "1.2.2"
+    }
   }
 }
