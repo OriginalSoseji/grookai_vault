@@ -126,6 +126,13 @@ export function shouldBypassNextImageOptimization(value: string | null | undefin
           /^\/api\/canon\/cards\/[^/?#]+\/image$/.test(url.pathname))) ||
       url.hostname === "assets.tcgdex.net" ||
       url.hostname === "images.pokemontcg.io" ||
+      // Existing public product previews use direct delivery without changing
+      // their representative/exact image classification.
+      (url.protocol === "https:" &&
+        url.hostname === "product-images.tcgplayer.com" &&
+        !url.port && !url.username && !url.password &&
+        !url.search && !url.hash &&
+        /^\/fit-in\/1000x1000\/[1-9]\d*\.jpg$/.test(url.pathname)) ||
       // Official Japanese catalog fallbacks must survive a failed canon proxy.
       // Keep direct delivery scoped to the official HTTPS card-image directory.
       (url.protocol === "https:" &&
