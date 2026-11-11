@@ -101,9 +101,16 @@ test('private year candidate discovery uses complete, bounded source-date pages 
     return query;
   } };
   assert.equal((await candidateIds(client, { minYear: 1993, maxYear: 1993, setCodes: ['lea'] })).length, 503);
-  assert.deepEqual(calls, [[0, 499], [0, 499]]);
+  assert.deepEqual(calls, [[0, 999], [0, 999], [0, 999], [0, 999]]);
   assert.ok(filters.some(([key, value]) => key.endsWith('source_released_at') && value === '1993-01-01'));
   assert.ok(filters.some(([key, value]) => key.endsWith('source_released_at') && value === '1994-01-01'));
   await assert.rejects(candidateIds(client, {}), /invalid/);
   await assert.rejects(candidateIds(client, { minYear: 2025, maxYear: 2020 }), /invalid/);
+});
+test('large keyset pages retain all candidates when the server caps pages below the request', async () => {
+  const ids=Array.from({length:1502},(_,n)=>`00000000-0000-0000-0000-${String(n+1).padStart(12,'0')}`);
+  const client={from(){let after,namespace;const q={select(){return q;},eq(k){if(k.includes('mtg_print_details_v1'))namespace='details';if(k.includes('mtg_print_release_date_v1'))namespace='date';return q;},
+    gte(){return q;},lt(){return q;},gt(k,v){after=v;return q;},in(){return q;},order(){return q;},
+    async range(){const values=namespace==='details'?ids.slice(0,1501):ids.slice(1501);return {data:values.filter(v=>!after||v>after).slice(0,750).map(id=>({id})),error:null};}};return q;}};
+  assert.deepEqual(await candidateIds(client,{minYear:2025,maxYear:2025}),ids);
 });

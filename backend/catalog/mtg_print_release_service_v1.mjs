@@ -1,4 +1,5 @@
 import { readMtgPrintReleaseV1 } from './mtg_print_release_read_v1.mjs';
+import { loadMtgDateOnlyReleaseDatesV1 } from './mtg_date_only_release_service_v1.mjs';
 const uuid = value => typeof value === 'string' && /^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i.test(value);
 
 const PARENT_FIELDS = 'id,gv_id,name,number,set_code,identity_domain,variant_key,print_identity_key,printed_identity_modifier,set_identity_model,external_ids,ai_metadata';
@@ -13,27 +14,32 @@ export async function findMtgPrintReleaseCandidateIdsV1(backendClient, { minYear
       (minYear !== undefined && maxYear !== undefined && minYear > maxYear)) {
     throw new Error('Print release year range is invalid.');
   }
-  const ids = [];
-  for (;;) {
-    let query = backendClient.from('card_prints').select('id')
-      .eq('identity_domain', 'mtg_eng_paper_print')
-      .eq('ai_metadata->mtg_print_details_v1->>verification_status', 'source_supported');
-    if (minYear !== undefined) query = query.gte('ai_metadata->mtg_print_details_v1->>source_released_at', `${String(minYear).padStart(4, '0')}-01-01`);
-    if (maxYear !== undefined) query = query.lt('ai_metadata->mtg_print_details_v1->>source_released_at', `${String(maxYear + 1).padStart(4, '0')}-01-01`);
-    if (setCodes.length) query = query.in('set_code', setCodes);
-    // Advance the UUID boundary rather than rescanning every prior JSON date
-    // match for an increasing OFFSET on a rolling collection.
-    if (ids.length) query = query.gt('id', ids.at(-1));
-    const { data, error } = await query.order('id').range(0, 499);
-    if (error) throw new Error('Print release date candidates could not be checked. Try again.');
-    const page = data ?? [];
-    for (const row of page) {
-      if (!uuid(row.id) || (ids.length && row.id <= ids.at(-1))) throw new Error('Print release date candidates could not be checked completely.');
-      ids.push(row.id);
+  const all=new Set();
+  for (const [statusField,statusValue,dateField] of [
+    ['ai_metadata->mtg_print_details_v1->>verification_status','source_supported','ai_metadata->mtg_print_details_v1->>source_released_at'],
+    ['ai_metadata->mtg_print_release_date_v1->>version','mtg_print_release_date:v1','ai_metadata->mtg_print_release_date_v1->>release_date'],
+  ]) {
+    let last;
+    for (;;) {
+      let query=backendClient.from('card_prints').select('id').eq('identity_domain','mtg_eng_paper_print').eq(statusField,statusValue);
+      if(minYear!==undefined)query=query.gte(dateField,`${String(minYear).padStart(4,'0')}-01-01`);
+      if(maxYear!==undefined)query=query.lt(dateField,`${String(maxYear+1).padStart(4,'0')}-01-01`);
+      if(setCodes.length)query=query.in('set_code',setCodes);
+      if(last)query=query.gt('id',last);
+      const {data,error}=await query.order('id').range(0,999);
+      if(error)throw new Error('Print release date candidates could not be checked. Try again.');
+      const page=data??[];
+      for(const row of page){
+        if(!uuid(row.id)||(last&&row.id<=last))throw new Error('Print release date candidates could not be checked completely.');
+        last=row.id;all.add(row.id);
+      }
+      if(all.size>20000)throw new Error('Print release date scope is too broad. Narrow the search.');
+      // Continue after a partial large page: a lower server-side cap must not
+      // silently truncate a result set. The existing minimum assumed cap is 500.
+      if(page.length<500)break;
     }
-    if (ids.length > 20000) throw new Error('Print release date scope is too broad. Narrow the search.');
-    if (page.length < 500) return ids;
   }
+  return [...all].sort();
 }
 
 async function pages(query) {
@@ -80,6 +86,11 @@ export async function loadMtgPrintReleaseDatesV1(publicClient, backendClient, ca
         identities.filter(i => i.card_print_id === parent.id),
         owners.filter(m => m.external_id === parent.ai_metadata?.mtg_print_details_v1?.source_print_id));
       if (date) result.set(parent.id, date);
+    }
+    const dateOnlyIds=parents.filter(p=>p.ai_metadata?.mtg_print_release_date_v1).map(p=>p.id);
+    if(dateOnlyIds.length){
+      const dates=await loadMtgDateOnlyReleaseDatesV1(publicClient,backendClient,dateOnlyIds);
+      for(const [id,date] of dates)if(!result.has(id))result.set(id,date);
     }
   }
   for (let n = 0; n < chunks.length; n += 4) {
