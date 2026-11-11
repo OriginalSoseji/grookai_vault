@@ -1,5 +1,6 @@
 import '../identity/canon_image_url_service.dart';
 import '../identity/catalog_artwork_resolution.dart';
+import '../identity/image_presentation.dart';
 import '../../utils/display_image_contract.dart';
 
 String? exactManagePrintingImageUrl(Map<String, dynamic> printing) {
@@ -8,6 +9,35 @@ String? exactManagePrintingImageUrl(Map<String, dynamic> printing) {
     return null;
   }
   return CanonImageUrlService.displayImageUrlFromRow(printing);
+}
+
+ResolvedImagePresentation resolveVaultManageImagePresentation({
+  String? exactImageUrl,
+  String? representativeImageUrl,
+  String? displayImageUrl,
+  String? displayImageKind,
+  String? imageStatus,
+  String? imageNote,
+  String? exactPrintingImageUrl,
+}) {
+  final exactPrintingUrl = normalizeDisplayImageUrl(exactPrintingImageUrl);
+  if (exactPrintingUrl != null) {
+    return resolveImagePresentationFromFields(
+      imageUrl: exactPrintingUrl,
+      displayImageUrl: exactPrintingUrl,
+      displayImageKind: 'exact',
+      imageStatus: 'exact',
+    );
+  }
+
+  return resolveImagePresentationFromFields(
+    imageUrl: exactImageUrl,
+    representativeImageUrl: representativeImageUrl,
+    displayImageUrl: displayImageUrl,
+    displayImageKind: displayImageKind,
+    imageStatus: imageStatus,
+    imageNote: imageNote,
+  );
 }
 
 CatalogArtworkResolution resolveVaultManageArtwork({

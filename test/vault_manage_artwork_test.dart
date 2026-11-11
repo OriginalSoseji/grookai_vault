@@ -33,6 +33,39 @@ void main() {
     );
   });
 
+  test('exact printing artwork clears parent representative status badges', () {
+    final presentation = resolveVaultManageImagePresentation(
+      exactImageUrl: 'https://images.example/parent.webp',
+      representativeImageUrl: 'https://images.example/representative.webp',
+      displayImageUrl: 'https://images.example/parent.webp',
+      displayImageKind: 'representative',
+      imageStatus: 'representative_shared_collision',
+      exactPrintingImageUrl: 'https://images.example/exact-holo.webp',
+    );
+
+    expect(presentation.displayImageKind, 'exact');
+    expect(presentation.compactBadgeLabel, isNull);
+    expect(presentation.detailBadgeLabel, isNull);
+    expect(presentation.detailNote, isNull);
+  });
+
+  test(
+    'parent image status remains visible when exact printing art is absent',
+    () {
+      final presentation = resolveVaultManageImagePresentation(
+        exactImageUrl: 'https://images.example/parent.webp',
+        representativeImageUrl: 'https://images.example/representative.webp',
+        displayImageUrl: 'https://images.example/parent.webp',
+        displayImageKind: 'representative',
+        imageStatus: 'representative_shared_collision',
+      );
+
+      expect(presentation.displayImageKind, 'representative');
+      expect(presentation.compactBadgeLabel, 'Exact Variant Image Pending');
+      expect(presentation.detailBadgeLabel, 'Exact Variant Image Pending');
+    },
+  );
+
   test('missing child image retains the canonical parent artwork path', () {
     final artwork = resolveVaultManageArtwork(
       cardGvId: 'GV-PK-MEP-081',

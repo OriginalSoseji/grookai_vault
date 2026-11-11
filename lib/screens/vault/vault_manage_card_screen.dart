@@ -1465,7 +1465,10 @@ class _VaultManageCardScreenState extends State<VaultManageCardScreen>
     VaultManageCardData data,
   ) {
     final identity = _manageCardDisplayIdentity(data);
-    final presentation = _manageCardImagePresentation(data);
+    final presentation = _manageCardImagePresentation(
+      data,
+      exactPrintingImageUrl: _preferredExactPrintingImageUrl,
+    );
     final artwork = resolveVaultManageArtwork(
       cardGvId: data.gvId,
       parentProviderImageUrl: _manageCardProviderImageUrl(data),
@@ -2216,11 +2219,12 @@ class _ManageSurface extends StatelessWidget {
 }
 
 ResolvedImagePresentation _manageCardImagePresentation(
-  VaultManageCardData data,
-) {
+  VaultManageCardData data, {
+  String? exactPrintingImageUrl,
+}) {
   final normalizedStatus = (data.imageStatus ?? '').trim().toLowerCase();
-  return resolveImagePresentationFromFields(
-    imageUrl: data.canonicalImageUrl,
+  return resolveVaultManageImagePresentation(
+    exactImageUrl: data.canonicalImageUrl,
     representativeImageUrl: data.representativeImageUrl,
     displayImageUrl: data.imageUrl,
     displayImageKind: normalizedStatus.startsWith('representative_')
@@ -2228,6 +2232,7 @@ ResolvedImagePresentation _manageCardImagePresentation(
         : null,
     imageStatus: data.imageStatus,
     imageNote: data.imageNote,
+    exactPrintingImageUrl: exactPrintingImageUrl,
   );
 }
 
