@@ -225,10 +225,12 @@ export class SquareCommerceService {
      if(['withdrawn_review','stock_requires_review'].includes(value.status))review(target);
     }
     if(targetFailed)result.failed++;else result.succeeded++;
-    if(!targetFailed&&this.config.artworkEnabled&&target.selected&&target.allocation_state!=='sold'){
+    if(!targetFailed&&this.config.catalogEnabled&&typeof this.catalog.syncArtwork==='function'){
      // Optional imagery runs after stock. An image failure never undoes a ready unit or a completed sale.
      failureStage='catalog';await checkpoint('catalog',target.id);
-     try{await this.catalog.syncArtwork(ownerId,connectionId,target.id,randomUUID());}
+     // The leased catalog reader gates new work on the current auto-sync setting,
+     // but still recovers retained image obligations when new artwork is disabled.
+     try{await this.catalog.syncArtwork(ownerId,connectionId,target.id,randomUUID(),{manual});}
      catch(error){result.artworkFailures=(result.artworkFailures??0)+1;result.errorCode=code(error);
       result.errorDetail={stage:'catalog',targetId:target.id,errorCode:code(error)};}
     }

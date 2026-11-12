@@ -218,11 +218,11 @@ export class SquareCatalogService {
       }
     });
   }
-  async syncArtwork(ownerId,connectionId,targetId,requestId){
+  async syncArtwork(ownerId,connectionId,targetId,requestId,{manual=false}={}){
     this.#configuration('catalogEnabled');uuid(targetId);uuid(requestId);
     return this.#leased(ownerId,connectionId,async({connection,context,client})=>{
       const state=await this.#call('target',{...context,targetId});
-      return syncSquareArtwork({connection,context,client,rpc:(a,d)=>this.#call(a,d),state,requestId,loadSource:this.#artworkSource,enabled:this.#config.artworkEnabled===true});
+      return syncSquareArtwork({connection,context,client,rpc:(a,d)=>this.#call(a,d),state,requestId,loadSource:this.#artworkSource,enabled:this.#config.artworkEnabled===true&&(manual||connection.auto_sync===true)});
     });
   }
   async adopt(ownerId, connectionId, targetId, {itemId, variationId, expectedReviewHash, requestId, confirmed}) {

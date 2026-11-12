@@ -14,11 +14,17 @@ function bundledFont(){
 const hosts=new Set(['assets.tcgdex.net','images.pokemontcg.io','cards.scryfall.io','images.ygoprodeck.com',
   'static.tcgcollector.com','limitlesstcg.nyc3.digitaloceanspaces.com','www.pokemon.com','images.pokemon.com',
   'assets.pokemon.com','en.onepiece-cardgame.com','www.onepiece-cardgame.com','ycdxbpibncqcchqiihfz.supabase.co']);
+const scopedHosts={
+ 'cdn.malie.io':/^\/file\/malie-io\/art\/cards\/jpg\/[A-Za-z0-9_/-]+\.jpg$/,
+ 'product-images.tcgplayer.com':/^\/fit-in\/1000x1000\/[1-9]\d*\.jpg$/,
+ 'www.pokemon-card.com':/^\/assets\/images\/card_images\/large\/[A-Za-z0-9_/-]+\.jpe?g$/,
+ 'raw.githubusercontent.com':/^\/PokeAPI\/sprites\/master\/sprites\/pokemon\/[A-Za-z0-9_/-]+\.png$/,
+};
 export function squareArtworkSourceUrl(value){
  let url;try{url=new URL(value,origin);}catch{fail('square_artwork_source_blocked');}
  if(url.protocol!=='https:'||url.username||url.password||url.port||url.hash)fail('square_artwork_source_blocked');
  if(url.origin===origin){if(!/^\/api\/canon\/cards\/GV-[A-Za-z0-9-]+\/image$/.test(url.pathname)&&url.pathname!=='/api/canon/image')fail('square_artwork_source_blocked');}
- else if(!hosts.has(url.hostname)||url.search||url.hostname.endsWith('.supabase.co')&&!url.pathname.startsWith('/storage/v1/object/public/external-card-images/'))fail('square_artwork_source_blocked');
+ else if(!(hosts.has(url.hostname)||Object.hasOwn(scopedHosts,url.hostname)&&scopedHosts[url.hostname].test(url.pathname))||url.search||url.hostname.endsWith('.supabase.co')&&!url.pathname.startsWith('/storage/v1/object/public/external-card-images/'))fail('square_artwork_source_blocked');
  return url.toString();
 }
 async function bounded(response,max){

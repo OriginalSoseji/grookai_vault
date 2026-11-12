@@ -35,7 +35,7 @@ function harness({cached=false,ownerPhoto=false,timeout=false,finishFail=false,d
   upsert:async request=>{providerCalls.push({method:'upsert',request:structuredClone(request)});assert.equal(calls.at(-1).action,'begin');Object.assign(item,structuredClone(request.object));return {itemId:'item',variationId:'variation'};}};
  const run=(extra={})=>syncSquareArtwork({connection:{id:'connection'},context:{ownerId:'owner',connectionId:'connection',leaseToken:'lease',fence:1},
   client,rpc,state,requestId:'request',loadSource:async()=>art,enabled:true,...extra});
- return {run,calls,providerCalls,state,item,get operation(){return op;}};
+ return {run,calls,providerCalls,state,item,images,client,get operation(){return op;}};
 }
 test('artwork rendering is deterministic, keeps the whole card, and visibly labels representative imagery',async()=>{
  assert.deepEqual(await renderSquareArtwork(input,'representative'),art);
@@ -57,6 +57,16 @@ test('public artwork descriptors are exact-GVVI bound; missing images are a norm
   new Response(input,{headers:{'content-type':'image/png'}});}});
  assert.equal(loaded.sha256,art.sha256);assert.ok(calls.every(c=>c.init.redirect==='error'));
 });
+
+test('canonical Malie and product-preview sources are supported only within their public image paths',()=>{
+ for(const url of ['https://cdn.malie.io/file/malie-io/art/cards/jpg/en_US/ex/EX1-Latias/en_US-EX1-001-pikachu.jpg',
+  'https://product-images.tcgplayer.com/fit-in/1000x1000/12345.jpg',
+  'https://www.pokemon-card.com/assets/images/card_images/large/SV1/12345_P_TEST.jpg',
+  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png'])assert.equal(squareArtworkSourceUrl(url),url);
+ for(const url of ['https://cdn.malie.io/private/card.jpg','https://cdn.malie.io/file/malie-io/art/cards/jpg/en_US/card.jpg?token=secret',
+  'https://product-images.tcgplayer.com/fit-in/1000x1000/not-a-product.jpg','https://product-images.tcgplayer.com/other/12345.jpg',
+  'https://cdn.malie.io.evil.test/file/malie-io/art/cards/jpg/card.jpg','https://raw.githubusercontent.com/other/repo/main/card.png'])assert.throws(()=>squareArtworkSourceUrl(url));
+});
 test('upload bytes, source digest and exact provider request are durable before sending; repeat sync does not upload again',async()=>{
  const h=harness();assert.equal((await h.run()).status,'synced');assert.equal(h.operation.status,'succeeded');
  assert.equal(h.operation.payload.artwork.fileBase64,art.fileBase64);assert.equal(h.operation.payload.artwork.sha256,art.sha256);
@@ -77,6 +87,20 @@ test('shared artwork reuses the existing image; attach preserves taxes, modifier
 });
 test('seller photos and their primary position are retained when adding canonical artwork',async()=>{
  const h=harness({ownerPhoto:true});await h.run();assert.equal(h.providerCalls[0].request.is_primary,false);assert.deepEqual(h.item.item_data.image_ids,['seller-photo','image-one']);
+});
+
+test('updated artwork already attached behind an old grookai primary is promoted and recovered only after exact order readback',async()=>{
+ const h=harness({cached:true});h.images.set('old-image',{id:'old-image',image_data:{name:'grookai-artwork-v1-'+ 'a'.repeat(64)+'.jpg',caption:'grookai card artwork. Representative image; exact variant image pending.'}});
+ h.item.item_data.image_ids=['old-image','image-one'];
+ const upsert=h.client.upsert;h.client.upsert=async request=>{await upsert(request);throw new SquareApiError('square_provider_unavailable',{uncertain:true});};
+ await assert.rejects(h.run());assert.equal(h.operation.status,'uncertain');assert.deepEqual(h.item.item_data.image_ids,['image-one','old-image']);
+ assert.equal(h.providerCalls.length,1);assert.equal((await h.run()).status,'reconciled');assert.equal(h.providerCalls.length,1);
+});
+
+test('an attach receipt with unchanged old primary remains uncertain instead of reporting success',async()=>{
+ const h=harness({cached:true});h.images.set('old-image',{id:'old-image',image_data:{name:'grookai-artwork-v1-'+ 'b'.repeat(64)+'.jpg',caption:'grookai card artwork. Exact selected printing.'}});
+ h.item.item_data.image_ids=['old-image','image-one'];h.client.upsert=async()=>({itemId:'item',variationId:'variation'});
+ await assert.rejects(h.run(),e=>e.code==='square_artwork_receipt_unconfirmed');assert.equal(h.operation.status,'uncertain');
 });
 test('disabled/private/unselected targets do not fetch or publish artwork; missing canonical images do not mutate Square',async()=>{
  for(const extra of [{enabled:false},{state:{target:{selected:false}}},{state:{target:{selected:true},offer:null}}]){
@@ -141,4 +165,17 @@ test('image recovery completes the current asking-price update and never downgra
  pending={id:'new-artwork',target_id:targetId,status:'prepared',source_snapshot:newOffer,projection:squareDesiredProjection(newOffer),payload:{artwork:{...art,version:'SQUARE_ARTWORK_V1',mode:'upload',imageIdsBefore:[],request:{object_id:'item'}}}};
  await assert.rejects(service.sync(owner,connectionId,targetId,'ab000000-0000-4000-8000-000000000005'));
  assert.equal(pending.status,'uncertain');assert.equal(priceWrites,1);
+});
+
+test('automatic-sync off blocks new images while manual sync and retained recovery still work',async()=>{
+ const owner='ab000000-0000-4000-8000-000000000001',connectionId='ab000000-0000-4000-8000-000000000002',targetId='ab000000-0000-4000-8000-000000000003',requestId='ab000000-0000-4000-8000-000000000004',key=Buffer.alloc(32,7).toString('base64');
+ const connection={id:connectionId,owner_id:owner,environment:'sandbox',merchant_id:'merchant',location_id:'location',lease_fence:1,refresh_status:'idle',auto_sync:false,
+  token_ciphertext:sealSquareCredential({accessToken:'fixture-token',merchantId:'merchant',expiresAt:'2030-01-01T00:00:00.000Z'},key,{purpose:'tokens',environment:'sandbox',ownerId:owner,connectionId,bindingId:'merchant'})};
+ const h=harness();h.state.target.id=targetId;h.client.uploadArtwork=async()=>{throw Error('new provider writes must not run');};let sourceReads=0,recovered=0;
+ const service=new SquareCatalogService({rpc:async(action)=>{if(action==='claim')return connection;if(action==='target')return h.state;if(action==='recover_finish'){h.state.pendingOperation=null;recovered++;}return {};},
+  clientFactory:()=>h.client,artworkSource:async()=>{sourceReads++;return null;},config:{environment:'sandbox',appId:'fixture-app',appSecret:'fixture-secret',encryptionKey:key,callbackUrl:'https://example.org/api/square/oauth/callback',catalogEnabled:true,artworkEnabled:true}});
+ assert.equal((await service.syncArtwork(owner,connectionId,targetId,requestId)).status,'not_enabled');assert.equal(sourceReads,0);
+ assert.equal((await service.syncArtwork(owner,connectionId,targetId,requestId,{manual:true})).status,'unavailable');assert.equal(sourceReads,1);
+ h.images.set('image-one',image());h.item.item_data.image_ids=['image-one'];h.state.pendingOperation={id:'retained',target_id:targetId,status:'uncertain',source_snapshot:offer,projection:squareDesiredProjection(offer),payload:{artwork:{...art,version:'SQUARE_ARTWORK_V1',mode:'upload',imageIdsBefore:[]}}};
+ assert.equal((await service.syncArtwork(owner,connectionId,targetId,requestId)).status,'reconciled');assert.equal(recovered,1);assert.equal(sourceReads,1);
 });

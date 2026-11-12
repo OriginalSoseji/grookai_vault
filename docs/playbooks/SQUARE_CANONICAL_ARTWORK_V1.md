@@ -7,6 +7,10 @@ the same GitHub repository variable for the scheduled worker. All existing
 owner/catalog/commerce controls still apply. Pause only the artwork flag to stop
 new uploads; pending artwork requests continue to reconcile under the ordinary
 catalog lease. Do not delete requests, image history or physical stock claims.
+New scheduled image work also respects the seller's automatic-sync setting;
+manual sync can request artwork. Recovery of retained image requests continues
+when new artwork is disabled. Verify requested image ordering for an attach or
+primary-image change, rather than treating image presence alone as completion.
 
 Qualification commands:
 

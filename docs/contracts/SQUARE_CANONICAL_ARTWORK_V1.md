@@ -49,6 +49,11 @@ replace an uncertain create. A changed image list or wrong mapping requires
 review. Already accepted artwork may be recorded as historical fact after an
 offer change, but stale publication is not resent. Disabling new artwork retains
 recovery of existing obligations. Ordinary item updates preserve all images.
+New automatic image work also requires the current leased connection's auto-sync
+setting. Manual sync may request images; disabled new-work flags/settings cannot
+discard retained recovery. Attach receipts must prove the exact requested image
+ordering, so an already attached newer image cannot leave obsolete grookai artwork
+permanently primary.
 
 Release requires source checks, real Square Sandbox upload/readback/reuse and
 lost-response recovery, live public descriptor checks, a bounded production

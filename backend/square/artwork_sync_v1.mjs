@@ -17,6 +17,7 @@ function validateItem(item,state){
  return variants[0];
 }
 const matches=(image,art)=>image.image_data?.name===art.name&&image.image_data?.caption===caption(art);
+const requestSatisfied=(item,art)=>art.mode!=='attach'||isDeepStrictEqual(imageIds(item),art.request?.object?.item_data?.image_ids);
 async function findAttached(client,item,art){
  for(const id of imageIds(item)){const image=await client.image(id);if(matches(image,art)||client.artworkImageMatches&&await client.artworkImageMatches(image,art.pixelSha256))return image;}
  return null;
@@ -67,7 +68,7 @@ export async function syncSquareArtwork({connection,context,client,rpc,state,req
   if(operation.status==='sending'){await rpc('fail',{...scoped,operationId:operation.id,errorCode:'square_artwork_unconfirmed',uncertain:true});operation.status='uncertain';}
   item=await client.item(state.target.item_id);validateItem(item,{...state,pendingOperation:operation});
   let image=await findAttached(client,item,art);
-  if(image){
+  if(image&&requestSatisfied(item,art)){
    if(operation.status!=='uncertain')await rpc('fail',{...scoped,operationId:operation.id,errorCode:'square_artwork_unconfirmed',uncertain:true});
    await rpc('recover_finish',{...scoped,operationId:operation.id,itemId:item.id,variationId:state.target.variation_id,observedProjection:operation.projection});
    return {status:'reconciled',imageId:image.id};
@@ -92,7 +93,7 @@ export async function syncSquareArtwork({connection,context,client,rpc,state,req
    confirmed=await client.item(state.target.item_id);validateItem(confirmed,{...state,pendingOperation:operation});
    image=await findAttached(client,confirmed,art);
   }
-  if(!image)fail('square_artwork_receipt_unconfirmed');
+  if(!image||!requestSatisfied(confirmed,art))fail('square_artwork_receipt_unconfirmed');
   await rpc('finish',{...scoped,operationId:operation.id,itemId:confirmed.id,variationId:state.target.variation_id});
   return {status:'synced',imageId:image.id};
  }catch(error){
