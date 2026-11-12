@@ -6,7 +6,8 @@ export const SQUARE_ARTWORK_VERSION='SQUARE_ARTWORK_V1';
 const fail=code=>{throw new SquareApiError(code);};
 const hash=value=>createHash('sha256').update(value).digest('hex');
 const imageIds=item=>item.item_data?.image_ids??[];
-const caption=art=>`grookai canonical card artwork; confidence:${art.kind}; sha256:${art.sha256}`;
+export const squareArtworkCaption=art=>art.kind==='exact'?'grookai card artwork. Exact selected printing.':'grookai card artwork. Representative image; exact variant image pending.';
+const caption=squareArtworkCaption;
 function validateItem(item,state){
  const variants=item.item_data?.variations;
  if(item.id!==state.target.item_id||!Array.isArray(variants)||variants.length!==1||variants[0].id!==state.target.variation_id||
@@ -22,7 +23,7 @@ async function findAttached(client,item,art){
 }
 async function attachRequest(client,item,art,imageId,connectionId){
  const first=imageIds(item)[0]?await client.image(imageIds(item)[0]):null;
- const primary=!first||/^grookai-artwork-v1-[a-f0-9]{64}\.jpg$/.test(first.image_data?.name??'')&&/^grookai canonical card artwork;/.test(first.image_data?.caption??'');
+ const primary=!first||/^grookai-artwork-v1-[a-f0-9]{64}\.jpg$/.test(first.image_data?.name??'')&&/^grookai card artwork\./.test(first.image_data?.caption??'');
  const updated=structuredClone(item),ids=imageIds(item).filter(id=>id!==imageId);
  updated.item_data.image_ids=primary?[imageId,...ids]:[...ids,imageId];
  return {idempotency_key:'gk-art-attach-'+hash(JSON.stringify({connection:connectionId,object:updated})),object:updated};
@@ -43,7 +44,7 @@ export async function syncSquareArtwork({connection,context,client,rpc,state,req
    const attached=await findAttached(client,item,art);
    const first=imageIds(item)[0]?await client.image(imageIds(item)[0]):null;
    // Preserve seller photos and their primary position. Only grookai-owned primaries may be superseded.
-   const primary=!first||/^grookai-artwork-v1-[a-f0-9]{64}\.jpg$/.test(first.image_data?.name??'')&&/^grookai canonical card artwork;/.test(first.image_data?.caption??'');
+   const primary=!first||/^grookai-artwork-v1-[a-f0-9]{64}\.jpg$/.test(first.image_data?.name??'')&&/^grookai card artwork\./.test(first.image_data?.caption??'');
    if(attached&&(!primary||imageIds(item)[0]===attached.id))return {status:'current'};
    const images=attached?[attached]:await client.imagesByName(art.name);
    if(images.some(image=>!matches(image,art)))fail('square_artwork_requires_review');

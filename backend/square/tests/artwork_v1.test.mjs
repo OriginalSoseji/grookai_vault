@@ -8,7 +8,7 @@ const gvvi='GVVI-DEMO0000-000001';
 const offer={gvviId:gvvi,name:'Fixture card',variationName:'Holo · NM',askingPriceAmount:'2.00',currency:'USD'};
 const input=await sharp({create:{width:240,height:336,channels:3,background:'#87ddfa'}}).png().toBuffer();
 const art=await renderSquareArtwork(input,'representative');
-const image=()=>({id:'image-one',type:'IMAGE',image_data:{name:art.name,caption:`grookai canonical card artwork; confidence:${art.kind}; sha256:${art.sha256}`}});
+const image=()=>({id:'image-one',type:'IMAGE',image_data:{name:art.name,caption:'grookai card artwork. Representative image; exact variant image pending.'}});
 function harness({cached=false,ownerPhoto=false,timeout=false,finishFail=false,deduplicated=false}={}){
  const calls=[],providerCalls=[],images=new Map(cached?[['image-one',image()]]:[]);
  if(ownerPhoto)images.set('seller-photo',{id:'seller-photo',type:'IMAGE',image_data:{name:'my photograph'}});
@@ -58,6 +58,7 @@ test('public artwork descriptors are exact-GVVI bound; missing images are a norm
 test('upload bytes, source digest and exact provider request are durable before sending; repeat sync does not upload again',async()=>{
  const h=harness();assert.equal((await h.run()).status,'synced');assert.equal(h.operation.status,'succeeded');
  assert.equal(h.operation.payload.artwork.fileBase64,art.fileBase64);assert.equal(h.operation.payload.artwork.sha256,art.sha256);
+ assert.equal(h.providerCalls[0].request.image.image_data.caption.includes(art.sha256),false);
  assert.equal((await h.run()).status,'current');assert.equal(h.providerCalls.length,1);
 });
 test('an accepted upload with a lost response is recovered by provider readback without another create',async()=>{

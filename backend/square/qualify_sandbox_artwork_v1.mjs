@@ -1,6 +1,7 @@
 import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';import {randomUUID,createHash} from 'node:crypto';
 import dotenv from 'dotenv';import {SquareClient} from './client_v1.mjs';import {renderSquareArtwork} from './artwork_source_v1.mjs';
 import {squareManagedProjection} from './catalog_plan_v1.mjs';
+import {squareArtworkCaption} from './artwork_sync_v1.mjs';
 const [envFile,out,reuseSuffix='000001']=process.argv.slice(2);assert.ok(envFile&&out&&process.argv.length<=5);assert.match(reuseSuffix,/^\d{6}$/);assert.equal(fs.existsSync(out),false);
 const cfg=dotenv.parse(fs.readFileSync(envFile));assert.equal(cfg.SQUARE_ENVIRONMENT,'sandbox');assert.ok(cfg.SQUARE_APP_ID.startsWith('sandbox-'));
 assert.ok(!path.resolve(out).startsWith(path.resolve('backend')));fs.mkdirSync(out,{recursive:true,mode:0o700});
@@ -12,7 +13,7 @@ try{
  const quantity=await client.inventoryQuantity(variation.id,locations[0].id),projection=squareManagedProjection(item,variation);
  const source='https://images.pokemontcg.io/base3/1_hires.png',response=await fetch(source,{redirect:'error',signal:AbortSignal.timeout(20000)});assert.equal(response.status,200);
  const bytes=Buffer.from(await response.arrayBuffer());assert.ok(bytes.length<8*1024*1024);const art=await renderSquareArtwork(bytes,'representative');
- const caption=`grookai canonical card artwork; confidence:${art.kind}; sha256:${art.sha256}`;
+ const caption=squareArtworkCaption(art);
  const request={idempotency_key:'sandbox-artwork-'+randomUUID(),object_id:item.id,is_primary:false,image:{id:'#grookai-artwork-'+art.sha256.slice(0,32),type:'IMAGE',image_data:{name:art.name,caption}}};
  save('upload-intent.private.json',{at:new Date().toISOString(),merchantId:merchant.id,request,art,source,inputSha256:createHash('sha256').update(bytes).digest('hex'),quantity});
  const image=await client.uploadArtwork(request,art.fileBase64,art.name,art.pixelSha256);save('upload-receipt.json',{id:image.id,name:image.image_data.name,caption:image.image_data.caption});
