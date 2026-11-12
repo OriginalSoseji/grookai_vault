@@ -13,6 +13,8 @@ test('MTG qualifier mapping rehearsal binds the exact immutable review package',
   assert.match(SCRIPT, /review_manifest_changed/);
   assert.match(SCRIPT, /package_source_commit_not_ancestor/);
   assert.match(SCRIPT, /review_source_commit/);
+  assert.match(SCRIPT, /content_addressed_input_queue_changed/);
+  assert.match(SCRIPT, /frozen_observation_scope_changed/);
   assert.match(SCRIPT, /duplicate_source_product/);
   assert.match(SCRIPT, /duplicate_target_card_print/);
 });
@@ -20,7 +22,8 @@ test('MTG qualifier mapping rehearsal binds the exact immutable review package',
 test('MTG qualifier mapping rehearsal revalidates live source and canonical truth', () => {
   assert.match(SCRIPT, /source_not_in_latest_run/);
   assert.match(SCRIPT, /group_consensus_changed/);
-  assert.match(SCRIPT, /source_price_lanes_changed/);
+  assert.match(SCRIPT, /frozen_price_observation_ids_changed/);
+  assert.match(SCRIPT, /current_price_availability/);
   assert.match(SCRIPT, /target_identity_not_unique/);
   assert.match(SCRIPT, /mapping_history_or_collision_now_exists/);
   assert.match(SCRIPT, /identity\.identity_domain='mtg_eng_paper_print'/);

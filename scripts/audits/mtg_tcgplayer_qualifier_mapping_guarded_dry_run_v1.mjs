@@ -139,12 +139,51 @@ async function loadPackage(options, headSha) {
   }));
   assert.equal(sha256(JSON.stringify(manifest)), summary.manifest_sha256,
     'review_manifest_changed');
+  const inputRoot = path.dirname(path.dirname(path.resolve(summary.input?.path ?? '')));
+  const inputHash = path.basename(inputRoot);
+  assert.match(inputHash, /^[a-f0-9]{64}$/, 'content_addressed_input_root_missing');
+  const queuePath = path.join(inputRoot, 'ollama_identity_candidate_queue.jsonl');
+  const completePath = path.join(inputRoot, 'COMPLETE_V2.json');
+  const [queue, complete] = await Promise.all([readJsonl(queuePath), readJson(completePath)]);
+  assert.equal(sha256(queue.raw), inputHash, 'content_addressed_input_queue_changed');
+  assert.equal(complete.input_sha256, inputHash, 'input_completion_hash_changed');
+  assert.equal(complete.total_rows, queue.rows.length, 'input_completion_count_changed');
+  const queueByProduct = new Map(queue.rows.map((row) => [Number(row.source_product_id), row]));
+  const evidenceRows = ready.rows.map((row) => {
+    const evidence = queueByProduct.get(Number(row.source_product_id));
+    assert.ok(evidence, `frozen_source_evidence_missing:${row.source_product_id}`);
+    assert.equal(evidence.schema_version, 'TCGPLAYER_IDENTITY_PRODUCT_QUEUE_V1',
+      `frozen_source_schema_changed:${row.source_product_id}`);
+    assert.equal(evidence.source_product_name, row.source_product_name,
+      `frozen_source_name_changed:${row.source_product_id}`);
+    assert.equal(Number(evidence.source_group_id), Number(row.source_group_id),
+      `frozen_source_group_changed:${row.source_product_id}`);
+    assert.equal(evidence.printed_number, row.printed_number,
+      `frozen_source_number_changed:${row.source_product_id}`);
+    assert.deepEqual([...evidence.source_subtypes].sort(), [...row.source_subtypes].sort(),
+      `frozen_source_subtypes_changed:${row.source_product_id}`);
+    assert.equal(Number(evidence.supporting_gap_row_count), Number(row.supporting_gap_row_count),
+      `frozen_source_observation_count_changed:${row.source_product_id}`);
+    assert.ok(evidence.review_targets.some((target) =>
+      target.card_print_id === row.target_card_print_id
+      && target.gv_id === row.target_gv_id
+      && target.set_id === row.target_set_id),
+    `frozen_target_binding_changed:${row.source_product_id}`);
+    assert.equal(evidence.supporting_gap_observation_ids.length,
+      Number(row.supporting_gap_row_count),
+    `frozen_observation_ids_changed:${row.source_product_id}`);
+    return evidence;
+  });
+  assert.equal(evidenceRows.flatMap((row) => row.supporting_gap_observation_ids).length,
+    summary.counts.projected_price_observations, 'frozen_observation_scope_changed');
   return {
     summary,
     ready: ready.rows,
     readyBytes: ready.raw,
     hashes,
     rehearsalSourceCommit: headSha,
+    inputHash,
+    evidenceRows,
   };
 }
 
@@ -195,10 +234,11 @@ async function protectedCounts(client) {
     ) value from public.external_mappings mapping`)).rows[0].value;
 }
 
-async function loadLiveState(client, mappings) {
+async function loadLiveState(client, mappings, evidenceRows) {
   const productIds = mappings.map((row) => Number(row.source_product_id));
   const targetIds = mappings.map((row) => row.target_card_print_id);
   const groupIds = [...new Set(mappings.map((row) => Number(row.source_group_id)))];
+  const observationIds = evidenceRows.flatMap((row) => row.supporting_gap_observation_ids);
   const sourceRun = await loadLatestSourceRun(client);
   const products = (await client.query(`select product.product_id,product.category_id,
     product.group_id,source_group.name group_name,product.name,product.extended_data,
@@ -206,11 +246,17 @@ async function loadLiveState(client, mappings) {
     from public.tcgcsv_source_products product
     join public.tcgcsv_source_groups source_group on source_group.group_id=product.group_id
     where product.product_id=any($1::integer[]) order by product.product_id`, [productIds])).rows;
-  const observations = (await client.query(`select id::text,product_id,subtype_name,
-    last_seen_run_id::text from public.tcgcsv_source_price_daily_observations
-    where last_seen_run_id=$1::uuid and observed_on=$2::date
-      and product_id=any($3::integer[])
-    order by product_id,subtype_name,id`, [sourceRun.id, sourceRun.observed_on, productIds])).rows;
+  const observations = (await client.query(`select observation.id::text,observation.product_id,
+    observation.subtype_name,observation.last_seen_run_id::text,observation.observed_on,
+    run.sync_mode,run.status,run.failed_count
+    from public.tcgcsv_source_price_daily_observations observation
+    join public.tcgcsv_source_sync_runs run on run.id=observation.last_seen_run_id
+    where observation.id=any($1::uuid[])
+    order by observation.product_id,observation.subtype_name,observation.id`, [observationIds])).rows;
+  const latestObservations = (await client.query(`select product_id,subtype_name,id::text
+    from public.tcgcsv_source_price_daily_observations
+    where last_seen_run_id=$1::uuid and product_id=any($2::integer[])
+    order by product_id,subtype_name,id`, [sourceRun.id, productIds])).rows;
   const targets = (await client.query(`select card.id::text card_print_id,card.gv_id,
     card.set_id::text,card.set_code,card.name,card.number,card.variant_key,
     count(distinct identity.id) filter(where identity.is_active
@@ -237,10 +283,18 @@ async function loadLiveState(client, mappings) {
     from public.external_mappings where source='tcgplayer'
       and (external_id=any($1::text[]) or card_print_id=any($2::uuid[]))
     order by external_id,id`, [productIds.map(String), targetIds])).rows;
-  return { sourceRun, products, observations, targets, groups, existingMappings };
+  return {
+    sourceRun,
+    products,
+    observations,
+    latestObservations,
+    targets,
+    groups,
+    existingMappings,
+  };
 }
 
-function assertLiveState(expected, live) {
+function assertLiveState(expected, evidenceRows, live) {
   assert.equal(live.products.length, expected.length, 'live_source_product_count_changed');
   assert.equal(live.targets.length, expected.length, 'live_target_count_changed');
   assert.equal(live.existingMappings.length, 0, 'mapping_history_or_collision_now_exists');
@@ -253,11 +307,21 @@ function assertLiveState(expected, live) {
     values.push(row);
     observations.set(Number(row.product_id), values);
   }
+  const evidenceByProduct = new Map(evidenceRows.map((row) =>
+    [Number(row.source_product_id), row]));
+  const frozenRunIds = new Set(live.observations.map((row) => row.last_seen_run_id));
+  assert.equal(frozenRunIds.size, 1, 'frozen_observations_cross_source_runs');
+  for (const observation of live.observations) {
+    assert.equal(observation.sync_mode, 'current_full_sync', 'frozen_source_run_mode_changed');
+    assert.equal(observation.status, 'completed', 'frozen_source_run_not_completed');
+    assert.equal(Number(observation.failed_count), 0, 'frozen_source_run_has_failures');
+  }
   for (const row of expected) {
     const product = products.get(Number(row.source_product_id));
     const target = targets.get(row.target_card_print_id);
     const consensus = groups.get(Number(row.source_group_id));
     const prices = observations.get(Number(row.source_product_id)) ?? [];
+    const evidence = evidenceByProduct.get(Number(row.source_product_id));
     assert.ok(product && target && consensus, `live_binding_missing:${row.source_product_id}`);
     assert.equal(Number(product.category_id), 1, `source_category_changed:${row.source_product_id}`);
     assert.equal(Number(product.group_id), Number(row.source_group_id), `source_group_changed:${row.source_product_id}`);
@@ -284,8 +348,10 @@ function assertLiveState(expected, live) {
       `target_mapping_now_exists:${row.source_product_id}`);
     assert.equal(Number(consensus.set_count), 1, `group_consensus_changed:${row.source_group_id}`);
     assert.equal(consensus.set_id, row.target_set_id, `group_target_changed:${row.source_group_id}`);
-    assert.equal(prices.length, Number(row.supporting_gap_row_count),
-      `source_price_lane_count_changed:${row.source_product_id}`);
+    assert.ok(evidence, `frozen_source_evidence_missing:${row.source_product_id}`);
+    assert.deepEqual(prices.map((price) => price.id).sort(),
+      [...evidence.supporting_gap_observation_ids].sort(),
+    `frozen_price_observation_ids_changed:${row.source_product_id}`);
     assert.deepEqual([...new Set(prices.map((price) => price.subtype_name))].sort(),
       [...row.source_subtypes].sort(), `source_price_lanes_changed:${row.source_product_id}`);
   }
@@ -311,12 +377,12 @@ function snapshot(rows) {
   return { rows: normalized, hash_sha256: stableHash(normalized) };
 }
 
-async function independentState(expected, applicationName) {
+async function independentState(expected, applicationName, evidenceRows) {
   const client = new pg.Client(connectionConfig(applicationName));
   await client.connect();
   try {
     await client.query('begin read only');
-    const live = await loadLiveState(client, expected);
+    const live = await loadLiveState(client, expected, evidenceRows);
     const counts = await protectedCounts(client);
     await client.query('rollback');
     return { live, counts, relevant_mappings: snapshot(live.existingMappings) };
@@ -329,6 +395,7 @@ async function independentState(expected, applicationName) {
 }
 
 function releaseCore(packageData, live) {
+  const currentProductIds = new Set(live.latestObservations.map((row) => Number(row.product_id)));
   return {
     version: MTG_TCGPLAYER_QUALIFIER_MAPPING_GUARDED_DRY_RUN_V1,
     package_id: PACKAGE_ID,
@@ -336,8 +403,14 @@ function releaseCore(packageData, live) {
     review_source_commit: packageData.summary.source_commit,
     review_manifest_sha256: packageData.summary.manifest_sha256,
     review_rows_sha256: packageData.hashes['ready_mappings.jsonl'],
-    latest_source_sync_run_id: live.sourceRun.id,
-    latest_source_artifact_hash: live.sourceRun.artifact_hash,
+    evidence_source_sync_run_id: live.observations[0]?.last_seen_run_id ?? null,
+    latest_catalog_sync_run_id: live.sourceRun.id,
+    latest_catalog_artifact_hash: live.sourceRun.artifact_hash,
+    current_price_availability: {
+      source_products_with_current_observations: currentProductIds.size,
+      source_products_without_current_observations: packageData.ready.length - currentProductIds.size,
+      current_observation_rows: live.latestObservations.length,
+    },
     source_products: packageData.ready.length,
     target_card_prints: packageData.ready.length,
     projected_price_observations: packageData.summary.counts.projected_price_observations,
@@ -363,8 +436,8 @@ function releaseCore(packageData, live) {
 
 async function rehearse(packageData) {
   const before = await independentState(packageData.ready,
-    'mtg_tcgplayer_qualifier_mapping_before_v1');
-  assertLiveState(packageData.ready, before.live);
+    'mtg_tcgplayer_qualifier_mapping_before_v1', packageData.evidenceRows);
+  assertLiveState(packageData.ready, packageData.evidenceRows, before.live);
   assert.equal(before.relevant_mappings.rows.length, 0, 'pre_rehearsal_mapping_history_exists');
   const core = releaseCore(packageData, before.live);
   const packageFingerprint = stableHash(core);
@@ -378,8 +451,8 @@ async function rehearse(packageData) {
       current_setting('transaction_read_only') read_only`)).rows[0];
     assert.deepEqual(server, { database: 'postgres', username: 'postgres', read_only: 'off' },
       'unexpected_database_execution_identity');
-    const live = await loadLiveState(client, packageData.ready);
-    assertLiveState(packageData.ready, live);
+    const live = await loadLiveState(client, packageData.ready, packageData.evidenceRows);
+    assertLiveState(packageData.ready, packageData.evidenceRows, live);
     assert.equal(live.sourceRun.id, before.live.sourceRun.id, 'source_run_changed_during_rehearsal');
     const payload = packageData.ready.map((row) => ({
       card_print_id: row.target_card_print_id,
@@ -392,7 +465,8 @@ async function rehearse(packageData) {
         review_rows_sha256: packageData.hashes['ready_mappings.jsonl'],
         source_commit: packageData.rehearsalSourceCommit,
         review_source_commit: packageData.summary.source_commit,
-        source_sync_run_id: live.sourceRun.id,
+        evidence_source_sync_run_id: core.evidence_source_sync_run_id,
+        latest_catalog_sync_run_id: live.sourceRun.id,
         source_group_id: row.source_group_id,
         source_group_name: row.source_group_name,
         source_product_name: row.source_product_name,
@@ -410,7 +484,7 @@ async function rehearse(packageData) {
       returning id::text,card_print_id::text,source,external_id,active,meta,synced_at`,
     [JSON.stringify(payload)])).rows;
     assert.equal(inserted.length, packageData.ready.length, 'transient_insert_count_mismatch');
-    const afterInsert = await loadLiveState(client, packageData.ready);
+    const afterInsert = await loadLiveState(client, packageData.ready, packageData.evidenceRows);
     assert.equal(afterInsert.existingMappings.length, packageData.ready.length,
       'transient_mapping_readback_count_mismatch');
     for (const row of packageData.ready) {
@@ -434,7 +508,7 @@ async function rehearse(packageData) {
     await client.end();
   }
   const after = await independentState(packageData.ready,
-    'mtg_tcgplayer_qualifier_mapping_after_v1');
+    'mtg_tcgplayer_qualifier_mapping_after_v1', packageData.evidenceRows);
   assert.deepEqual(after.relevant_mappings, before.relevant_mappings,
     'rollback_did_not_restore_mapping_snapshot');
   assert.deepEqual(after.counts, before.counts, 'rollback_did_not_restore_protected_counts');
@@ -445,7 +519,8 @@ async function rehearse(packageData) {
     + `Fingerprint: ${packageFingerprint}. Scope: ${core.source_products} insert-only active TCGPlayer `
     + `parent mappings covering ${core.projected_price_observations} MTG price observations. `
     + `Dry-run rollback proof: ${before.relevant_mappings.hash_sha256} == `
-    + `${after.relevant_mappings.hash_sha256}. Source sync: ${core.latest_source_sync_run_id}. `
+    + `${after.relevant_mappings.hash_sha256}. Evidence source sync: `
+    + `${core.evidence_source_sync_run_id}. Latest catalog sync: ${core.latest_catalog_sync_run_id}. `
     + 'No canonical identity, pricing, publication, Vault, update, delete, merge, or migration writes.';
   return {
     ...core,
@@ -500,7 +575,8 @@ if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.ar
     .then((receipt) => process.stdout.write(`${JSON.stringify({
       status: receipt.status,
       package_fingerprint_sha256: receipt.package_fingerprint_sha256,
-      source_sync_run_id: receipt.latest_source_sync_run_id,
+      evidence_source_sync_run_id: receipt.evidence_source_sync_run_id,
+      latest_catalog_sync_run_id: receipt.latest_catalog_sync_run_id,
       transient_mapping_inserts: receipt.proof.transient_mapping_inserts,
       durable_database_writes: receipt.proof.durable_database_writes,
       approval_text_required: receipt.approval_text_required,
