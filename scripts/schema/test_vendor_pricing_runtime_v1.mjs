@@ -1,11 +1,11 @@
 import {localSupabaseStatusSecret} from '../lib/local_supabase_cli_status_v1.mjs';
-import fs from 'node:fs';import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import {randomUUID} from 'node:crypto';
+import fs from 'node:fs';import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import {randomUUID,createHash} from 'node:crypto';
 import {createClient} from '@supabase/supabase-js';import pg from 'pg';
-const lab='C:/grookai_vault_operator_artifacts/vendor_rules_labels_20261112/fresh-494',container='supabase_db_vendor-pricing-fresh-494-20261112';
+const lab='C:/grookai_vault_operator_artifacts/vendor_rules_labels_20261112/fresh-v2-494',container='supabase_db_vendor-pricing-fresh-v2-494-20261112';
 assert.equal(fs.existsSync(lab+'/supabase/.temp/project-ref'),false);assert.equal(JSON.parse(fs.readFileSync(lab+'/runtime-fixture-result.json')).pass,true);
-const cfg=JSON.parse(execFileSync('supabase',['status','--workdir',lab,'--output','json'],{encoding:'utf8',stdio:['ignore','pipe','ignore']}));assert.equal(cfg.API_URL,'http://127.0.0.1:62341');
-const dbUrl=new URL(cfg.DB_URL);assert.equal(dbUrl.hostname,'127.0.0.1');assert.equal(dbUrl.port,'62340');assert.equal(dbUrl.pathname,'/postgres');
-assert.equal(JSON.parse(execFileSync('docker',['network','inspect','vendor-pricing-fresh-494-20261112'],{encoding:'utf8'}))[0].Internal,true);
+const cfg=JSON.parse(execFileSync('supabase',['status','--workdir',lab,'--output','json'],{encoding:'utf8',stdio:['ignore','pipe','ignore']}));assert.equal(cfg.API_URL,'http://127.0.0.1:62541');
+const dbUrl=new URL(cfg.DB_URL);assert.equal(dbUrl.hostname,'127.0.0.1');assert.equal(dbUrl.port,'62540');assert.equal(dbUrl.pathname,'/postgres');
+assert.equal(JSON.parse(execFileSync('docker',['network','inspect','vendor-pricing-fresh-v2-494-20261112'],{encoding:'utf8'}))[0].Internal,true);
 const fixture=JSON.parse(fs.readFileSync(lab+'/runtime-fixture.private.json'));
 const admin=createClient(cfg.API_URL,localSupabaseStatusSecret(cfg),{auth:{persistSession:false,autoRefreshToken:false}});
 const clients={};for(const role of ['owner','other']){const client=createClient(cfg.API_URL,cfg.ANON_KEY,{auth:{persistSession:false,autoRefreshToken:false}});const login=await client.auth.signInWithPassword(fixture[role]);assert.ifError(login.error);clients[role]=client;}
@@ -44,14 +44,24 @@ result=await reprice(automatic);check(result.status==='ready'&&result.amountMino
 assert.deepEqual(JSON.parse(sql(`select json_build_object('amount',asking_price_amount,'note',asking_price_note) from public.vault_item_instances where id='${automatic}'`)),{amount:13.5,note:'Retain this seller note'});check(true,'automatic write preserves seller notes');
 const locker=new pg.Client({connectionString:cfg.DB_URL,application_name:'vendor_pricing_local_concurrency_proof'});await locker.connect();
 try {await locker.query('begin');await locker.query('select id from public.vault_item_instances where id=$1 for update',[automatic]);result=await apply(automatic);check(result.error==='vendor_pricing_copy_busy','concurrent exact-copy lock rejects rather than overwrites owner changes');await locker.query('rollback');}finally{await locker.end();}
-const hold=randomUUID(),store=randomUUID(),seller=randomUUID();
+let hold=randomUUID();const store=randomUUID(),seller=randomUUID();
 sql(`begin;insert into public.vendor_stores(id,owner_id,slug,display_name) values('${store}','${fixture.owner.id}','local-pricing-${store.slice(0,8)}','Local pricing fixture');insert into public.vendor_seller_accounts(id,owner_id,store_id,stripe_account_id,livemode,controller,creation_attempt_id) values('${seller}','${fixture.owner.id}','${store}','acct_localFixture',false,'{"feesPayer":"account","paymentLosses":"stripe","requirementCollection":"stripe","dashboard":"full"}',gen_random_uuid());insert into public.vendor_stock_reservations(id,buyer_id,owner_id,store_id,seller_id,instance_id,quantity,offer,expires_at) values('${hold}','${fixture.other.id}','${fixture.owner.id}','${store}','${seller}','${automatic}',1,'{}',clock_timestamp()+interval '90 seconds');select pricing_test_fixture.publish(20);commit;`);
 result=await reprice(automatic);check(result.status==='held','checkout hold freezes the advertised asking price');
 check(Number(sql(`select asking_price_amount from public.vault_item_instances where id='${automatic}'`))===13.50,'held checkout keeps its confirmed amount');
+result=await apply(automatic);check(result.error==='vendor_pricing_checkout_in_progress','active checkout also rejects explicit automatic saves');
+sql(`update public.vendor_stock_reservations set state='released',released_at=clock_timestamp(),release_reason='expired' where id='${hold}'`);
+hold=randomUUID();sql(`insert into public.vendor_stock_reservations(id,buyer_id,owner_id,store_id,seller_id,instance_id,quantity,offer,created_at,expires_at) values('${hold}','${fixture.other.id}','${fixture.owner.id}','${store}','${seller}','${automatic}',1,'{}',clock_timestamp()-interval '122 seconds',clock_timestamp()-interval '3 seconds')`);
+result=await reprice(automatic);check(result.status==='ready'&&result.amountMinor===2200,'expired held reservation permits background repricing without cleanup');
+result=await apply(automatic);check(result.ok&&result.amountMinor===2200,'expired held reservation permits explicit automatic save');
 sql(`update public.vendor_stock_reservations set state='released',released_at=clock_timestamp(),release_reason='expired' where id='${hold}';select pricing_test_fixture.publish(20,interval '48 hours')`);
 result=await reprice(automatic);check(result.status==='stale','real governed reader rejects an expired source');
-check(Number(sql(`select asking_price_amount from public.vault_item_instances where id='${automatic}'`))===13.50,'stale source retains the last confirmed ask');
+check(Number(sql(`select asking_price_amount from public.vault_item_instances where id='${automatic}'`))===22,'stale source retains the last confirmed ask');
 sql('select pricing_test_fixture.publish(14.10)');result=await reprice(automatic);check(result.status==='ready'&&result.amountMinor===1600,'fresh source recovers automatic pricing after a stale interval');
 check(Number(sql(`select asking_price_amount from public.vault_item_instances where id='${copy}'`))===11.50,'manual price survives every later publication');
+hold=randomUUID();sql(`insert into public.vendor_stock_reservations(id,buyer_id,owner_id,store_id,seller_id,instance_id,quantity,offer,state,created_at,expires_at,payment_started_at) values('${hold}','${fixture.other.id}','${fixture.owner.id}','${store}','${seller}','${automatic}',1,'{}','payment_pending',clock_timestamp()-interval '122 seconds',clock_timestamp()-interval '3 seconds',clock_timestamp()-interval '60 seconds');select pricing_test_fixture.publish(30)`);
+result=await reprice(automatic);check(result.status==='held','payment pending remains protected after hold expiry');
+result=await apply(automatic);check(result.error==='vendor_pricing_checkout_in_progress','expired payment pending rejects explicit automatic save');
+check(Number(sql(`select asking_price_amount from public.vault_item_instances where id='${automatic}'`))===16,'pending payment preserves its confirmed ask');
 assert.deepEqual(counts(),before);check(true,'repricing creates no stock operations, sales, or additional inventory');
-const output={pass:true,at:new Date().toISOString(),proof,realLocalAuth:true,actualReaderUnchanged:true,productionWrites:0};fs.writeFileSync(lab+'/runtime-proof.json',JSON.stringify(output,null,2));console.log(JSON.stringify({pass:true,scenarios:proof.length,productionWrites:0}));
+const candidateSha256=createHash('sha256').update(fs.readFileSync('supabase/migrations/20261112180000_vendor_pricing_rules_v1.sql')).digest('hex');
+const output={pass:true,at:new Date().toISOString(),proof,candidateSha256,expiredHoldRecovery:true,paymentPendingProtected:true,realLocalAuth:true,actualReaderUnchanged:true,productionWrites:0};fs.writeFileSync(lab+'/runtime-proof.json',JSON.stringify(output,null,2),{flag:'wx'});console.log(JSON.stringify({pass:true,scenarios:proof.length,productionWrites:0}));

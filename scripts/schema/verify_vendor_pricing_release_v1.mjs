@@ -38,7 +38,7 @@ async function main(){
  };
  try{
   const baseline=local('square-commerce-fresh-487-20261111','C:/grookai_vault_operator_artifacts/square_sync_20261110/commerce-fresh-v2',oldSecurityQuery);
-  const fresh=local('vendor-pricing-fresh-494-20261112',artifacts+'/fresh-494'),retained=local('vendor-pricing-retained-493-20261112',artifacts+'/retained-493');
+  const fresh=local('vendor-pricing-fresh-v2-494-20261112',artifacts+'/fresh-v2-494'),retained=local('vendor-pricing-retained-v2-493-20261112',artifacts+'/retained-v2-493');
   const live=remote(root+'/scripts/schema/reviewed_intake_public_catalog_v1.sql','production-catalog'),liveSecurity=remote(root+'/scripts/schema/square_security_snapshot_v3.sql','production-security');
   assert.equal(live.read_only,'on');assert.ok(live.sanity.cards>=40000&&live.sanity.sets>=150&&live.sanity.traits>=5000);assert.deepEqual(live.LEDGER.map(r=>r.version),history,'Production is no longer the pinned493 baseline');assert.deepEqual(baseline.catalog.LEDGER.map(r=>r.version),history);
   for(const t of[fresh,retained])assert.deepEqual(t.catalog.LEDGER.map(r=>r.version),versions);
@@ -49,8 +49,8 @@ async function main(){
   async function compare(a,b,schema,label){const left=await inspect(a,schema),right=await inspect(b,schema);if(schema==='public')reconcileKnownTableColumnOrderV1(left,right);const diff=await Migration.create(left,right,{schema});diff.set_safety(false);diff.add_all_changes(true);fs.writeFileSync(out+'/'+label+'-'+schema+'-NEVER-EXECUTE.sql',diff.sql);assert.equal(diff.sql.trim(),'','Schema differs: '+label+'/'+schema);}
   for(const schema of['public','grookai_square','grookai_inventory'])await compare(baseline.catalog,live,schema,'baseline');
   for(const schema of['public','grookai_square','grookai_inventory','grookai_vendor_pricing'])await compare(fresh.catalog,retained.catalog,schema,'fresh-retained');
-  const upgraded=read(artifacts+'/retained-493/upgrade-proof.json');assert.equal(upgraded.pass,true);assert.equal(upgraded.unchangedDataTables,414);assert.equal(upgraded.noop,true);assert.equal(upgraded.defaultOff,true);
-  assert.equal(read(artifacts+'/fresh-494/replay-result.json').pass,true);const runtime=read(artifacts+'/fresh-494/runtime-proof.json');assert.equal(runtime.pass,true);assert.equal(runtime.actualReaderUnchanged,true);assert.ok(runtime.proof.length>=24);
+  const upgraded=read(artifacts+'/retained-v2-493/upgrade-proof.json');assert.equal(upgraded.pass,true);assert.equal(upgraded.unchangedDataTables,414);assert.equal(upgraded.noop,true);assert.equal(upgraded.defaultOff,true);
+  assert.equal(read(artifacts+'/fresh-v2-494/replay-result.json').pass,true);const runtime=read(artifacts+'/fresh-v2-494/runtime-proof.json');assert.equal(runtime.pass,true);assert.equal(runtime.actualReaderUnchanged,true);assert.ok(runtime.proof.length>=30);assert.equal(runtime.candidateSha256,manifest.candidates['20261112180000_vendor_pricing_rules_v1.sql']);assert.equal(runtime.expiredHoldRecovery,true);assert.equal(runtime.paymentPendingProtected,true);
   if(phase==='PrePush'){
    assert.equal(execFileSync('git',['status','--porcelain'],{cwd:root,encoding:'utf8'}).trim(),'','PrePush needs the committed, qualified checkout');assert.ok(Object.keys(manifest.runtimeSources).length>=50,'Freeze complete runtime source');
    for(const [file,pin]of Object.entries(manifest.runtimeSources))assert.equal(sha(fs.readFileSync(root+'/'+file,'utf8').replaceAll('\r\n','\n')),pin,'Runtime source changed: '+file);

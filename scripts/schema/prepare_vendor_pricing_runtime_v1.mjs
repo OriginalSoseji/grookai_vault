@@ -2,12 +2,12 @@ import {localSupabaseStatusSecret} from '../lib/local_supabase_cli_status_v1.mjs
 // Exact new local494 lab only. Actual GoTrue sign-in; no forged owner JWTs.
 import fs from 'node:fs';import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import {randomUUID} from 'node:crypto';
 import {createClient} from '@supabase/supabase-js';
-const lab='C:/grookai_vault_operator_artifacts/vendor_rules_labels_20261112/fresh-494',project='vendor-pricing-fresh-494-20261112',container='supabase_db_'+project;
+const lab='C:/grookai_vault_operator_artifacts/vendor_rules_labels_20261112/fresh-v2-494',project='vendor-pricing-fresh-v2-494-20261112',container='supabase_db_'+project;
 assert.equal(JSON.parse(fs.readFileSync(lab+'/replay-result.json')).pass,true);
 assert.equal(fs.existsSync(lab+'/supabase/.temp/project-ref'),false);
 assert.equal(JSON.parse(execFileSync('docker',['network','inspect',project],{encoding:'utf8'}))[0].Internal,true);
 const cfg=JSON.parse(execFileSync('supabase',['status','--workdir',lab,'--output','json'],{encoding:'utf8',stdio:['ignore','pipe','ignore']}));
-assert.equal(cfg.API_URL,'http://127.0.0.1:62341');
+assert.equal(cfg.API_URL,'http://127.0.0.1:62541');
 const admin=createClient(cfg.API_URL,localSupabaseStatusSecret(cfg),{auth:{persistSession:false,autoRefreshToken:false}});
 const file=lab+'/runtime-fixture.private.json';
 const fixture=fs.existsSync(file)?JSON.parse(fs.readFileSync(file)):{};

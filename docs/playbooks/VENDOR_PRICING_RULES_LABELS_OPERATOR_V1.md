@@ -52,7 +52,9 @@ The private pricing strategy is metadata; existing exact-copy asking fields
 remain price authority. No market evidence, inventory, or sales are created by
 repricing or printing. A missing first reference cannot publish. Stale later
 references keep the last confirmed asking price and show a warning. Active
-checkout/eBay holds defer repricing. Conflicting owner edits fail for reload.
+checkout/eBay holds defer repricing. An expired `held` checkout no longer blocks
+pricing; `payment_pending` remains protected even after expiry. Conflicting owner
+edits fail for reload.
 
 The background clock is `/api/vendor-pricing/recovery`, every five minutes,
 offset from Square recovery. It requires the existing authenticated cron secret,

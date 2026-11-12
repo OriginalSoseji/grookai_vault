@@ -13,7 +13,7 @@ create temporary table pricing_fixture_state(key text primary key,value jsonb);
 create function pg_temp.pricing_service(action text,data jsonb default '{}') returns jsonb language sql as $$
  select public.vendor_pricing_service_v1(action,coalesce((select value from pg_temp.pricing_fixture_state where key='run'),'{}'::jsonb)||data);
 $$;
-do $$declare r jsonb; s jsonb; rule uuid; parent uuid; printing uuid; legacy uuid:=gen_random_uuid(); copy uuid:=gen_random_uuid(); old_copy uuid:=gen_random_uuid(); definition jsonb:='{"markupBps":1000,"flatMinor":0,"rounding":"up","stepMinor":50,"minMinor":1,"maxMinor":null}';begin
+do $$declare r jsonb; s jsonb; rule uuid; parent uuid; printing uuid; store uuid:=gen_random_uuid(); seller uuid:=gen_random_uuid(); hold uuid:=gen_random_uuid(); legacy uuid:=gen_random_uuid(); copy uuid:=gen_random_uuid(); old_copy uuid:=gen_random_uuid(); definition jsonb:='{"markupBps":1000,"flatMinor":0,"rounding":"up","stepMinor":50,"minMinor":1,"maxMinor":null}';begin
  perform pg_temp.check_pricing(grookai_vendor_pricing.calculate(10.10,definition)=1150,'markup then up');
  perform pg_temp.check_pricing(grookai_vendor_pricing.calculate(10,definition)=1100,'exact boundary unchanged');
  perform pg_temp.check_pricing(grookai_vendor_pricing.calculate(10.10,definition||'{"rounding":"down"}')=1100,'round down');
@@ -45,6 +45,17 @@ do $$declare r jsonb; s jsonb; rule uuid; parent uuid; printing uuid; legacy uui
  perform pg_temp.check_pricing(r->>'error'='vendor_pricing_no_exact_market','missing reference cannot publish');
  perform pg_temp.check_pricing((select intent='hold' and asking_price_amount is null from public.vault_item_instances where id=copy),'failed write rolls back its copy mutation');
  perform pg_temp.check_pricing((select count(*)=1 from grookai_vendor_pricing.requests where state='failed'),'failure persisted');
+ insert into public.vendor_stores(id,owner_id,slug,display_name) values(store,'ac000000-0000-4000-8000-000000000001','local-pricing-'||left(store::text,8),'Local pricing fixture');
+ insert into public.vendor_seller_accounts(id,owner_id,store_id,stripe_account_id,livemode,controller,creation_attempt_id) values(seller,'ac000000-0000-4000-8000-000000000001',store,'acct_localFixture',false,'{"feesPayer":"account","paymentLosses":"stripe","requirementCollection":"stripe","dashboard":"full"}',gen_random_uuid());
+ insert into public.vendor_stock_reservations(id,buyer_id,owner_id,store_id,seller_id,instance_id,quantity,offer,expires_at) values(hold,'ac000000-0000-4000-8000-000000000002','ac000000-0000-4000-8000-000000000001',store,seller,copy,1,'{}',clock_timestamp()+interval '90 seconds');
+ r:=public.vendor_pricing_v1('apply',jsonb_build_object('requestId',gen_random_uuid(),'instanceId',copy,'mode','default','expectedRevision',1,'publish',true));
+ perform pg_temp.check_pricing(r->>'error'='vendor_pricing_checkout_in_progress','active held reservation protects explicit price save');
+ update public.vendor_stock_reservations set state='released',released_at=clock_timestamp(),release_reason='expired' where id=hold;
+ hold:=gen_random_uuid();
+ insert into public.vendor_stock_reservations(id,buyer_id,owner_id,store_id,seller_id,instance_id,quantity,offer,created_at,expires_at) values(hold,'ac000000-0000-4000-8000-000000000002','ac000000-0000-4000-8000-000000000001',store,seller,copy,1,'{}',clock_timestamp()-interval '122 seconds',clock_timestamp()-interval '3 seconds');
+ r:=public.vendor_pricing_v1('apply',jsonb_build_object('requestId',gen_random_uuid(),'instanceId',copy,'mode','default','expectedRevision',1,'publish',true));
+ perform pg_temp.check_pricing(r->>'error'='vendor_pricing_no_exact_market','expired held reservation reaches governed quote without cleanup');
+ update public.vendor_stock_reservations set state='released',released_at=clock_timestamp(),release_reason='expired' where id=hold;
  insert into public.vault_item_instances(id,user_id,card_print_id,card_printing_id,legacy_vault_item_id,gv_vi_id,intent,asking_price_amount,asking_price_currency,pricing_mode)
  values(old_copy,'ac000000-0000-4000-8000-000000000001',parent,printing,legacy,'GVVI-AC000001-000002','hold',5,'USD','asking');
  perform pg_temp.check_pricing(not exists(select 1 from grookai_vendor_pricing.copies where instance_id=old_copy),'existing-priced copies never inherit automation');
@@ -52,6 +63,9 @@ do $$declare r jsonb; s jsonb; rule uuid; parent uuid; printing uuid; legacy uui
  perform pg_temp.check_pricing((select mode='manual' and revision=1 and resolved_minor=500 from grookai_vendor_pricing.copies where instance_id=old_copy),'first intentional same-value manual save establishes a revision');
  r:=public.vendor_pricing_v1('apply',jsonb_build_object('requestId',gen_random_uuid(),'instanceId',old_copy,'mode','default','expectedRevision',0,'publish',true));
  perform pg_temp.check_pricing(r->>'error'='vendor_pricing_copy_changed','stale revision-zero automatic form cannot overwrite first manual save');
+ insert into public.vendor_stock_reservations(id,buyer_id,owner_id,store_id,seller_id,instance_id,quantity,offer,state,created_at,expires_at,payment_started_at) values(gen_random_uuid(),'ac000000-0000-4000-8000-000000000002','ac000000-0000-4000-8000-000000000001',store,seller,old_copy,1,'{}','payment_pending',clock_timestamp()-interval '122 seconds',clock_timestamp()-interval '3 seconds',clock_timestamp()-interval '60 seconds');
+ r:=public.vendor_pricing_v1('apply',jsonb_build_object('requestId',gen_random_uuid(),'instanceId',old_copy,'mode','default','expectedRevision',1,'publish',true));
+ perform pg_temp.check_pricing(r->>'error'='vendor_pricing_checkout_in_progress','expired payment pending still protects explicit save');
  insert into pricing_fixture_state values('context',jsonb_build_object('copy',copy,'parent',parent,'printing',printing,'rule',rule,'definition',definition));
 end$$;
 

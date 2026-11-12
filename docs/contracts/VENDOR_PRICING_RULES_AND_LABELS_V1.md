@@ -32,7 +32,9 @@ when the entered amount equals the old amount. Private transaction-bound write
 markers distinguish the governed repricer; no client-set flag can bypass this.
 
 Automatic work locks settings/rule/copy/strategy consistently, rechecks ownership,
-active state and revision, and refuses checkout/eBay holds. New fresh publication
+active state and revision, and refuses live checkout/eBay holds. Expired `held`
+checkout reservations do not block pricing; `payment_pending` remains protected
+after the reservation expiry. New fresh publication
 and rule revisions make copies due; a bounded background clock recovers work with
 the app closed. Missing initial evidence cannot publish. Missing/stale later
 evidence retains the last confirmed ask and records an update warning. No zero,

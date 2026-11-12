@@ -1,14 +1,14 @@
 import {localSupabaseStatusSecret} from '../lib/local_supabase_cli_status_v1.mjs';
 // New task-owned retained493 lab ->494. No remote command, reset or history repair.
 import fs from 'node:fs';import assert from 'node:assert/strict';import {execFileSync,spawnSync} from 'node:child_process';import {randomUUID,createHash} from 'node:crypto';import {createClient} from '@supabase/supabase-js';
-const root='C:/grookai_vendor_rules_20261112',lab='C:/grookai_vault_operator_artifacts/vendor_rules_labels_20261112/retained-493',project='vendor-pricing-retained-493-20261112',container='supabase_db_'+project;
+const root='C:/grookai_vendor_rules_20261112',lab='C:/grookai_vault_operator_artifacts/vendor_rules_labels_20261112/retained-v2-493',project='vendor-pricing-retained-v2-493-20261112',container='supabase_db_'+project;
 const migration='20261112180000_vendor_pricing_rules_v1.sql',sha=b=>createHash('sha256').update(b).digest('hex');
 assert.equal(fs.existsSync(lab+'/supabase/.temp/project-ref'),false);assert.equal(JSON.parse(fs.readFileSync(lab+'/replay-result.json')).pass,true);assert.equal(JSON.parse(execFileSync('docker',['network','inspect',project],{encoding:'utf8'}))[0].Internal,true);
 assert.equal(fs.existsSync(lab+'/upgrade-intent.json'),false,'Upgrade intent is single-use; retain uncertain attempts');
 const freeze=JSON.parse(fs.readFileSync(lab+'/freeze.json'));
 for(const [file,pin] of Object.entries(freeze.sources))assert.equal(sha(fs.readFileSync(root+'/supabase/migrations/'+file)),pin);
-const pin=JSON.parse(fs.readFileSync('C:/grookai_vault_operator_artifacts/vendor_rules_labels_20261112/fresh-494/freeze.json')).sources[migration];assert.equal(sha(fs.readFileSync(root+'/supabase/migrations/'+migration)),pin);
-const cfg=JSON.parse(execFileSync('supabase',['status','--workdir',lab,'--output','json'],{encoding:'utf8',stdio:['ignore','pipe','ignore']}));assert.equal(cfg.API_URL,'http://127.0.0.1:62441');
+const pin=JSON.parse(fs.readFileSync('C:/grookai_vault_operator_artifacts/vendor_rules_labels_20261112/fresh-v2-494/freeze.json')).sources[migration];assert.equal(sha(fs.readFileSync(root+'/supabase/migrations/'+migration)),pin);
+const cfg=JSON.parse(execFileSync('supabase',['status','--workdir',lab,'--output','json'],{encoding:'utf8',stdio:['ignore','pipe','ignore']}));assert.equal(cfg.API_URL,'http://127.0.0.1:62641');
 const sql=input=>execFileSync('docker',['exec','-i',container,'psql','-X','-qAt','-U','postgres','-d','postgres','-v','ON_ERROR_STOP=1'],{input,encoding:'utf8',timeout:120000,maxBuffer:64000000,windowsHide:true}).trim();
 assert.equal(sql("select (select count(*) from supabase_migrations.schema_migrations)||':'||current_setting('max_worker_processes')"),'493:0');
 const file=lab+'/runtime-fixture.private.json',fixture=fs.existsSync(file)?JSON.parse(fs.readFileSync(file)):{};const save=()=>fs.writeFileSync(file,JSON.stringify(fixture,null,2),{mode:0o600});

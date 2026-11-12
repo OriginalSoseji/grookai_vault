@@ -207,7 +207,7 @@ begin
  if not p_background and coalesce(c.revision,0) is distinct from p_expected then raise exception 'vendor_pricing_copy_changed';end if;
  if p_background then p_mode:=c.mode;p_rule:=c.rule_id;end if;
  select publication_set_id into publication from public.market_price_current_publication where singleton for share;
- if exists(select 1 from public.vendor_stock_reservations where instance_id=v.id and state in ('held','payment_pending'))
+ if exists(select 1 from public.vendor_stock_reservations where instance_id=v.id and (state='payment_pending' or (state='held' and expires_at>clock_timestamp())))
   or exists(select 1 from public.ebay_seller_reservations_v1 where instance_id=v.id and released_at is null) then
   if not p_background then raise exception 'vendor_pricing_checkout_in_progress';end if;
   update grookai_vendor_pricing.copies set state='held',reason='Checkout in progress.',checked_at=clock_timestamp(),next_check_at=clock_timestamp()+interval '5 minutes' where instance_id=v.id;
