@@ -19,6 +19,11 @@ My price freezes that copy even when saving the same amount. To resume automatic
 pricing, explicitly choose a rule again. Updating a preset affects its automatic
 copies; changing the vendor default affects copies using Vendor default.
 
+An open website editor refreshes its automatic quote as pricing inputs change.
+If another view changes the copy while you have unsaved edits, the editor stops
+saving and offers Reload latest price. Background polling never advances the
+revision against which those edits began.
+
 Print label is available after saving For sale, from the native QR tools, and
 from the website's QR and label page. Vendor Mode and the account's Print card
 labels link offer a bounded batch picker. Select physical copies explicitly.

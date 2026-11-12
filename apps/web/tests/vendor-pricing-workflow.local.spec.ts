@@ -3,7 +3,7 @@ import fs from "node:fs";
 import {randomUUID, createHash} from "node:crypto";
 
 const lab="C:/grookai_vault_operator_artifacts/vendor_rules_labels_20261112/fresh-494";
-const output="C:/grookai_vault_operator_artifacts/vendor_rules_labels_20261112/web-qa-v1";
+const output="C:/grookai_vault_operator_artifacts/vendor_rules_labels_20261112/web-qa-v3";
 test.use({baseURL:"http://127.0.0.1:62380",viewport:{width:1365,height:900}});
 test("vendor preset, exact-copy automatic sale, fixed override and reusable label", async ({page}) => {
   test.setTimeout(240000);
@@ -51,6 +51,40 @@ test("vendor preset, exact-copy automatic sale, fixed override and reusable labe
   await page.reload();
   await expect(sale.getByLabel("Pricing",{exact:true})).toHaveValue("manual");
   await expect(sale.getByLabel("Asking price · USD",{exact:true})).toHaveValue("17.25");
+  // A second real owner tab changes the rule while the first editor is open.
+  // Polling must refresh its quote without navigation or a manual refresh.
+  await sale.getByLabel("Pricing",{exact:true}).selectOption("default");
+  await expect(sale.getByText(/\$16.00/)).toBeVisible();
+  const other = await page.context().newPage();
+  await other.goto("http://127.0.0.1:62380/account/pricing");
+  await other.getByRole("listitem").filter({hasText:name}).getByRole("button",{name:"Edit",exact:true}).click();
+  await other.getByLabel("Percent above market",{exact:false}).fill("25");
+  await other.getByRole("button",{name:"Save preset",exact:true}).click();
+  await expect(other.getByRole("status").filter({hasText:"Saved."})).toBeVisible();
+  await page.bringToFront();
+  await expect(sale.getByText(/\$17.75/)).toBeVisible({timeout:40000});
+  await expect(sale.getByText(/\$16.00/)).toHaveCount(0);
+  // The second tab then fixes a manual price. The dirty automatic editor may
+  // retain its selection, but must not adopt that new revision and overwrite it.
+  await other.goto(`http://127.0.0.1:62380/vault/gvvi/${copy.gvvi}`);
+  const otherSale = other.locator("#copy-sale");
+  await otherSale.getByLabel("Pricing",{exact:true}).selectOption("manual");
+  await otherSale.getByLabel("Asking price · USD",{exact:true}).fill("19.00");
+  await otherSale.getByRole("button",{name:"Save sale price",exact:true}).click();
+  await expect(otherSale.getByRole("status")).toContainText("For sale saved.");
+  await page.bringToFront();
+  await expect(sale.getByRole("alert")).toContainText("changed in another view",{timeout:40000});
+  await expect(sale.getByRole("button",{name:"Save sale price",exact:true})).toBeDisabled();
+  await expect(sale.getByLabel("Pricing",{exact:true})).toHaveValue("default");
+  await other.reload();
+  await expect(otherSale.getByLabel("Asking price · USD",{exact:true})).toHaveValue("19.00");
+  await sale.getByRole("button",{name:"Reload latest price",exact:true}).click();
+  await expect(sale.getByLabel("Pricing",{exact:true})).toHaveValue("manual");
+  await expect(sale.getByLabel("Asking price · USD",{exact:true})).toHaveValue("19.00");
+  await sale.getByLabel("Asking price · USD",{exact:true}).fill("17.25");
+  await sale.getByRole("button",{name:"Save sale price",exact:true}).click();
+  await expect(sale.getByRole("status")).toContainText("For sale saved.");
+  await other.close();
   await page.goto(`/vault/gvvi/${copy.gvvi}/qr`);
   await expect(page.getByRole("heading",{name:"Physical card label"})).toBeVisible();
   await page.evaluate(()=>{window.print=()=>{};});
@@ -71,5 +105,5 @@ test("vendor preset, exact-copy automatic sale, fixed override and reusable labe
   await page.getByRole("link",{name:"Preview 1 label",exact:true}).click();
   await expect(page.getByRole("button",{name:"Print label",exact:true})).toBeVisible();
   expect(hashes()).toEqual(sourceHashes);
-  fs.writeFileSync(output+"/workflow-proof.json",JSON.stringify({pass:true,actualLocalAuth:true,actualServerPricing:true,manualOverride:true,priceFreeLabels:true,batchPicker:true,sourceUnchanged:true,sourceHashes,productionWrites:0},null,2));
+  fs.writeFileSync(output+"/workflow-proof.json",JSON.stringify({pass:true,actualLocalAuth:true,actualServerPricing:true,manualOverride:true,liveQuoteRefresh:true,concurrentManualChoiceProtected:true,priceFreeLabels:true,batchPicker:true,sourceUnchanged:true,sourceHashes,productionWrites:0},null,2));
 });
