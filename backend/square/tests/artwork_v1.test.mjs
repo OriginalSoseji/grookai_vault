@@ -40,8 +40,15 @@ function harness({cached=false,ownerPhoto=false,timeout=false,finishFail=false,d
 test('artwork rendering is deterministic, keeps the whole card, and visibly labels representative imagery',async()=>{
  assert.deepEqual(await renderSquareArtwork(input,'representative'),art);
  const exact=await renderSquareArtwork(input,'exact');assert.notEqual(exact.sha256,art.sha256);
- assert.equal((await sharp(Buffer.from(art.fileBase64,'base64')).metadata()).height,436);
- assert.equal((await sharp(Buffer.from(exact.fileBase64,'base64')).metadata()).height,336);
+ const representativeSize=await sharp(Buffer.from(art.fileBase64,'base64')).metadata(),exactSize=await sharp(Buffer.from(exact.fileBase64,'base64')).metadata();
+ assert.equal(representativeSize.height,436);assert.equal(representativeSize.width,436);
+ assert.equal(exactSize.height,336);assert.equal(exactSize.width,336);
+ // The square POS crop must retain every card edge and the confidence footer.
+ const {data,info}=await sharp(Buffer.from(art.fileBase64,'base64')).raw().toBuffer({resolveWithObject:true});
+ const pixel=(x,y)=>[...data.subarray((y*info.width+x)*info.channels,(y*info.width+x)*info.channels+3)];
+ assert.ok(pixel(2,100).every(channel=>channel>245));
+ assert.ok(pixel(218,2)[2]>200&&pixel(218,2)[0]<180);
+ assert.ok(pixel(218,430).every(channel=>channel>245));
  await assert.rejects(renderSquareArtwork(input,'blocked'));
 });
 test('image IO rejects private addresses, credentials, arbitrary proxies, redirects and untrusted origins',()=>{
@@ -95,6 +102,13 @@ test('updated artwork already attached behind an old grookai primary is promoted
  const upsert=h.client.upsert;h.client.upsert=async request=>{await upsert(request);throw new SquareApiError('square_provider_unavailable',{uncertain:true});};
  await assert.rejects(h.run());assert.equal(h.operation.status,'uncertain');assert.deepEqual(h.item.item_data.image_ids,['image-one','old-image']);
  assert.equal(h.providerCalls.length,1);assert.equal((await h.run()).status,'reconciled');assert.equal(h.providerCalls.length,1);
+});
+
+test('a new renderer image replaces an older grookai primary in the same sync through a separate durable attach',async()=>{
+ const h=harness();h.images.set('old-image',{id:'old-image',image_data:{name:'grookai-artwork-v1-'+ 'c'.repeat(64)+'.jpg',caption:'grookai card artwork. Representative image; exact variant image pending.'}});
+ h.item.item_data.image_ids=['old-image'];assert.equal((await h.run()).status,'synced');
+ assert.deepEqual(h.providerCalls.map(call=>call.method),['upload','upsert']);assert.equal(h.calls.filter(call=>call.action==='prepare').length,2);
+ assert.deepEqual(h.item.item_data.image_ids,['image-one','old-image']);assert.equal((await h.run()).status,'current');assert.equal(h.providerCalls.length,2);
 });
 
 test('an attach receipt with unchanged old primary remains uncertain instead of reporting success',async()=>{

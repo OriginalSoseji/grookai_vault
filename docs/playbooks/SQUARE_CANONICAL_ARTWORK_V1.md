@@ -33,7 +33,12 @@ descriptor for an eligible copy. Verify that a private/ineligible copy is 404 an
 that an unavailable/blocked image cannot be uploaded. Upload one live canary
 through SquareCatalogService.syncArtwork, then independently retrieve its item
 and IMAGE object. Verify its SKU, name, price, tax settings and quantity against
-the prior snapshot. Inspect the actual image in Square POS. Backfill active mapped
+the prior snapshot. Inspect the actual image in Square POS and confirm its square
+thumbnail retains the full card and confidence footer.
+Renderer V2 uses a square padded canvas because the portrait V1 canary was cropped
+by the real Samsung POS. Its changed stable artwork identity must create/reuse the
+corrected image and verify its primary position; never erase the prior receipt.
+Backfill active mapped
 copies under the same leases and bounded worker operations; never recreate a
 missing mapping or unarchive a disposed card to add an image.
 

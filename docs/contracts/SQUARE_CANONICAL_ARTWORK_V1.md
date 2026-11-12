@@ -12,7 +12,11 @@ The public exact-copy reader must reprove a currently public vendor offer and
 the selected printing. The existing canonical image resolver supplies artwork;
 private owner photos are never exported. Exact child images retain their truth
 status. Parent fallback is representative, with a visible baked-in Roboto label
-that survives POS thumbnails. Blocked, missing or unavailable artwork never
+that survives POS thumbnails. Renderer V2 pads the complete card and centered
+confidence footer into a square canvas; the portrait V1 live canary demonstrated
+that POS center-cropping otherwise removes the card edges and footer. The renderer
+version changes its stable identity, so prior accepted uploads remain historical
+facts while a versioned attach promotes the corrected grookai image. Blocked, missing or unavailable artwork never
 authorizes a guess and does not revoke a ready physical unit.
 
 Fixed HTTPS origins, no redirects, bounded input/decoded pixels/output, JPEG

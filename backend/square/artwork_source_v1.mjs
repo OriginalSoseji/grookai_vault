@@ -43,11 +43,19 @@ export async function renderSquareArtwork(bytes,kind){
    const normalized=await result.png().toBuffer(),size=await sharp(normalized).metadata(),height=100;
    // The confidence label is part of the image, so POS thumbnails cannot silently claim exact variant artwork.
    const label=await sharp({text:{text:'<span foreground="#202020">Representative artwork\nExact variant image pending</span>',font:`Roboto ${Math.max(12,Math.floor(size.width/29))}`,fontfile:bundledFont(),width:size.width-20,align:'center',rgba:true}}).png().toBuffer();
-   result=sharp(normalized).extend({bottom:height,background:'#ffffff'}).composite([{input:label,gravity:'south'}]);
+   const labelSize=await sharp(label).metadata();
+   result=sharp(normalized).extend({bottom:height,background:'#ffffff'}).composite([{input:label,
+    left:Math.floor((size.width-labelSize.width)/2),top:size.height+Math.floor((height-labelSize.height)/2)}]);
   }
+  // POS uses square center-cropped thumbnails. Pad the complete card and label,
+  // rather than letting Square discard the portrait card's top/bottom edges.
+  const framed=await result.png().toBuffer(),size=await sharp(framed).metadata(),side=Math.max(size.width,size.height);
+  const horizontal=side-size.width,vertical=side-size.height;
+  result=sharp(framed).extend({left:Math.floor(horizontal/2),right:Math.ceil(horizontal/2),
+   top:Math.floor(vertical/2),bottom:Math.ceil(vertical/2),background:'#ffffff'});
   // Identity is based on immutable source bytes and policy, not platform-specific JPEG/font encoding.
   const sourceSha256=createHash('sha256').update(bytes).digest('hex');
-  const sha256=createHash('sha256').update(JSON.stringify({version:'SQUARE_ARTWORK_RENDER_V1',sourceSha256,kind})).digest('hex');
+  const sha256=createHash('sha256').update(JSON.stringify({version:'SQUARE_ARTWORK_RENDER_V2',sourceSha256,kind})).digest('hex');
   // Preserve the stable source identity in the retained JPEG metadata as well.
   const data=await result.withExif({IFD0:{ImageDescription:`grookai canonical artwork v1; identity:${sha256}`}}).jpeg({quality:88,mozjpeg:true}).toBuffer();
   if(data.length>524288)fail('square_artwork_too_large');
