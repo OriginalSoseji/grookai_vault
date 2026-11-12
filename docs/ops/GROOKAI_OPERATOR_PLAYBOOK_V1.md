@@ -4588,6 +4588,12 @@ The actual Samsung POS crops portrait thumbnails to a square. Renderer V2 adds a
 square canvas around the full card and centers its footer. Verify the on-device
 thumbnail, including the footer and card bounds, before mass activation; a provider
 file readback alone cannot qualify that UI behavior.
+Artwork qualification also requires a real website card save: its Server Action
+continues sync in the page function after responding. Preserve the global route
+trace for the single bundled Roboto runtime font and verify the generated page
+and API traces as described in the artwork playbook. An endpoint-only font trace
+passed manual sync but failed the real page continuation; read the durable run
+diagnostics rather than treating a successful price save as artwork completion.
 
 ## Square stock and sale recovery candidate — November 11, 2026
 
