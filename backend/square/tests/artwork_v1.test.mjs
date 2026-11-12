@@ -4,6 +4,8 @@ import {renderSquareArtwork,loadSquareArtwork,squareArtworkSourceUrl} from '../a
 import {SquareClient,SquareApiError} from '../client_v1.mjs';
 import {squareDesiredProjection} from '../catalog_plan_v1.mjs';
 import {SquareCommerceService} from '../commerce_service_v2.mjs';
+import {SquareCatalogService} from '../service_v1.mjs';
+import {sealSquareCredential} from '../credential_envelope_v1.mjs';
 const gvvi='GVVI-DEMO0000-000001';
 const offer={gvviId:gvvi,name:'Fixture card',variationName:'Holo · NM',askingPriceAmount:'2.00',currency:'USD'};
 const input=await sharp({create:{width:240,height:336,channels:3,background:'#87ddfa'}}).png().toBuffer();
@@ -113,4 +115,30 @@ test('an artwork outage is durably failed after stock is ready; it cannot revoke
  service.reconcile=async()=>({});service.enroll=async()=>({});service.stock=async()=>{calls.push('stock-ready');return {status:'ready'};};
  const result=await service.processConnection(owner,connection,{manual:true,focusInstanceId:target});assert.equal(result.focusStatus,'ready');assert.equal(result.failed,0);assert.equal(result.artworkFailures,1);
  assert.ok(calls.indexOf('stock-ready')<calls.indexOf('artwork'));const finish=calls.find(c=>c.action==='commerce_run_finish');assert.equal(finish.data.result.status,'failed');assert.equal(finish.data.result.errorCode,'square_artwork_unavailable');
+});
+test('image recovery completes the current asking-price update and never downgrades uncertain image writes',async()=>{
+ const owner='ab000000-0000-4000-8000-000000000001',connectionId='ab000000-0000-4000-8000-000000000002',targetId='ab000000-0000-4000-8000-000000000003',requestId='ab000000-0000-4000-8000-000000000004';
+ const oldOffer={...offer,ownerId:owner,selected:true,publicVendorOffer:true,available:true},newOffer={...oldOffer,askingPriceAmount:'3.00'},key=Buffer.alloc(32,7).toString('base64');
+ const connection={id:connectionId,owner_id:owner,environment:'sandbox',merchant_id:'merchant',location_id:'location',lease_fence:1,refresh_status:'idle',
+  token_ciphertext:sealSquareCredential({accessToken:'fixture-token',merchantId:'merchant',expiresAt:'2030-01-01T00:00:00.000Z'},key,{purpose:'tokens',environment:'sandbox',ownerId:owner,connectionId,bindingId:'merchant'})};
+ const item={id:'item',type:'ITEM',version:2,item_data:{name:offer.name,image_ids:['image-one'],variations:[{id:'variation',type:'ITEM_VARIATION',version:2,item_variation_data:{item_id:'item',name:offer.variationName,sku:`https://grookaivault.com/q/${gvvi}`,pricing_type:'FIXED_PRICING',price_money:{amount:200,currency:'USD'}}}]}};
+ const target={id:targetId,selected:true,item_id:'item',variation_id:'variation',last_synced_projection:squareDesiredProjection(oldOffer)};
+ let pending={id:'old-artwork',target_id:targetId,status:'uncertain',source_snapshot:oldOffer,projection:squareDesiredProjection(oldOffer),payload:{artwork:{...art,version:'SQUARE_ARTWORK_V1',mode:'upload',imageIdsBefore:[]}}},priceWrites=0;
+ const rpc=async(action,data)=>{
+  if(action==='claim')return connection;
+  if(action==='target')return {target,offer:newOffer,pendingOperation:pending};
+  if(action==='recover_finish'){pending=null;return {};}
+  if(action==='prepare'){pending={id:'price-operation',target_id:targetId,status:'prepared',source_snapshot:data.sourceSnapshot,projection:data.projection,payload:data.payload};return pending;}
+  if(action==='begin'){pending.status='sending';return pending;}
+  if(action==='finish'){target.last_synced_projection=pending.projection;pending=null;return {};}
+  if(action==='fail'){pending.status=data.uncertain?'uncertain':'failed';return {};}
+  return {};
+ };
+ const provider={item:async()=>structuredClone(item),image:async()=>image(),itemsForExactSku:async()=>[structuredClone(item)],uploadArtwork:async()=>{throw new SquareApiError('square_provider_unavailable',{uncertain:true});},upsert:async request=>{priceWrites++;Object.assign(item,structuredClone(request.object));return {itemId:'item',variationId:'variation'};}};
+ const service=new SquareCatalogService({rpc,clientFactory:()=>provider,config:{environment:'sandbox',appId:'fixture-app',appSecret:'fixture-secret',encryptionKey:key,callbackUrl:'https://example.org/api/square/oauth/callback',catalogEnabled:true,artworkEnabled:false}});
+ assert.equal((await service.sync(owner,connectionId,targetId,requestId)).status,'synced');assert.equal(priceWrites,1);assert.equal(item.item_data.variations[0].item_variation_data.price_money.amount,300);assert.deepEqual(item.item_data.image_ids,['image-one']);
+ item.item_data.image_ids=[];
+ pending={id:'new-artwork',target_id:targetId,status:'prepared',source_snapshot:newOffer,projection:squareDesiredProjection(newOffer),payload:{artwork:{...art,version:'SQUARE_ARTWORK_V1',mode:'upload',imageIdsBefore:[],request:{object_id:'item'}}}};
+ await assert.rejects(service.sync(owner,connectionId,targetId,'ab000000-0000-4000-8000-000000000005'));
+ assert.equal(pending.status,'uncertain');assert.equal(priceWrites,1);
 });

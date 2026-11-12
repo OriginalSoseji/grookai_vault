@@ -157,10 +157,16 @@ export class SquareCatalogService {
     return this.#leased(ownerId, connectionId, async ({connection, context, client}) => {
       const scoped = {...context, targetId}; let operation = null; let sent = false; let accepted = false;
       try {
-        const state = await this.#call('target', scoped), {target, offer} = state;
+        let state = await this.#call('target', scoped), {target, offer} = state;
         operation = state.pendingOperation;
         if (operation && operation.target_id !== targetId) fail('square_connection_busy');
-        if(operation?.payload?.artwork)return syncSquareArtwork({connection,context,client,rpc:(a,d)=>this.#call(a,d),state,requestId,loadSource:this.#artworkSource,enabled:this.#config.artworkEnabled===true});
+        if(operation?.payload?.artwork){
+          // Artwork owns its durable outcome; the catalog catch must not overwrite its uncertainty.
+          operation=null;
+          await syncSquareArtwork({connection,context,client,rpc:(a,d)=>this.#call(a,d),state,requestId,loadSource:this.#artworkSource,enabled:this.#config.artworkEnabled===true});
+          state=await this.#call('target',scoped);({target,offer}=state);operation=state.pendingOperation;
+          if(operation)fail('square_connection_busy');
+        }
         if (operation?.status === 'uncertain') {
           const sku = squareQrSku(operation.source_snapshot.gvviId), {match} = await this.#lookup(client, sku);
           if (match && same(squareManagedProjection(match.item, match.variation), operation.projection)) {
