@@ -1,3 +1,4 @@
+import {localSupabaseStatusSecret} from '../lib/local_supabase_cli_status_v1.mjs';
 // Exact new local494 lab only. Actual GoTrue sign-in; no forged owner JWTs.
 import fs from 'node:fs';import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import {randomUUID} from 'node:crypto';
 import {createClient} from '@supabase/supabase-js';
@@ -7,7 +8,7 @@ assert.equal(fs.existsSync(lab+'/supabase/.temp/project-ref'),false);
 assert.equal(JSON.parse(execFileSync('docker',['network','inspect',project],{encoding:'utf8'}))[0].Internal,true);
 const cfg=JSON.parse(execFileSync('supabase',['status','--workdir',lab,'--output','json'],{encoding:'utf8',stdio:['ignore','pipe','ignore']}));
 assert.equal(cfg.API_URL,'http://127.0.0.1:62341');
-const admin=createClient(cfg.API_URL,cfg.SERVICE_ROLE_KEY,{auth:{persistSession:false,autoRefreshToken:false}});
+const admin=createClient(cfg.API_URL,localSupabaseStatusSecret(cfg),{auth:{persistSession:false,autoRefreshToken:false}});
 const file=lab+'/runtime-fixture.private.json';
 const fixture=fs.existsSync(file)?JSON.parse(fs.readFileSync(file)):{};
 const save=()=>fs.writeFileSync(file,JSON.stringify(fixture,null,2),{mode:0o600});

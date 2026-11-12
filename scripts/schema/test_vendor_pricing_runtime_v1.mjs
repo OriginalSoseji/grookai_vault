@@ -1,3 +1,4 @@
+import {localSupabaseStatusSecret} from '../lib/local_supabase_cli_status_v1.mjs';
 import fs from 'node:fs';import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import {randomUUID} from 'node:crypto';
 import {createClient} from '@supabase/supabase-js';import pg from 'pg';
 const lab='C:/grookai_vault_operator_artifacts/vendor_rules_labels_20261112/fresh-494',container='supabase_db_vendor-pricing-fresh-494-20261112';
@@ -6,7 +7,7 @@ const cfg=JSON.parse(execFileSync('supabase',['status','--workdir',lab,'--output
 const dbUrl=new URL(cfg.DB_URL);assert.equal(dbUrl.hostname,'127.0.0.1');assert.equal(dbUrl.port,'62340');assert.equal(dbUrl.pathname,'/postgres');
 assert.equal(JSON.parse(execFileSync('docker',['network','inspect','vendor-pricing-fresh-494-20261112'],{encoding:'utf8'}))[0].Internal,true);
 const fixture=JSON.parse(fs.readFileSync(lab+'/runtime-fixture.private.json'));
-const admin=createClient(cfg.API_URL,cfg.SERVICE_ROLE_KEY,{auth:{persistSession:false,autoRefreshToken:false}});
+const admin=createClient(cfg.API_URL,localSupabaseStatusSecret(cfg),{auth:{persistSession:false,autoRefreshToken:false}});
 const clients={};for(const role of ['owner','other']){const client=createClient(cfg.API_URL,cfg.ANON_KEY,{auth:{persistSession:false,autoRefreshToken:false}});const login=await client.auth.signInWithPassword(fixture[role]);assert.ifError(login.error);clients[role]=client;}
 const sql=input=>execFileSync('docker',['exec','-i',container,'psql','-X','-qAt','-U','postgres','-d','postgres','-v','ON_ERROR_STOP=1'],{input,encoding:'utf8',timeout:60000,maxBuffer:16000000,windowsHide:true}).trim();
 const owned=fixture.copies.filter(c=>c.owner_id===fixture.owner.id),copy=owned[0].instance_id,automatic=owned[1].instance_id;

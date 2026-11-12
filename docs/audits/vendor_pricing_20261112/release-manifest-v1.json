@@ -514,9 +514,11 @@
     "label-qa-v1/qr-decode-proof.json": "dd6c3f410cb194f8726d9c36c802d4a129cb6abcd2a1d9b755805cc43f9b37dc",
     "web-qa-v1/workflow-proof.json": "417b363b9fa4bf8998c66b5a2caf44fb2f95e21ea62357019ff84c33a2510137",
     "label-qa-set-names-v2/qr-decode-proof.json": "b70a88efa988b98d1e5eb15d5c8115419b03d3918ff2ed7b30ee78d9f5121de7",
-    "fresh-494/runtime-controls-paused-v1.json": "642380214994aebdabfd24edb2ad1ac6de44bdb4df8922f9a415351420a0c581"
+    "fresh-494/runtime-controls-paused-v1.json": "642380214994aebdabfd24edb2ad1ac6de44bdb4df8922f9a415351420a0c581",
+    "credential-adapter-proof-v2.json": "3e4d2d7812e9e613fa0940095fae920c653614cb772494610ffbf4785f674956"
   },
   "runtimeSources": {
+    ".gitignore": "8c27139aeee8e968c19d5af9e3a129220b2d748820b7b7691a236194169af3b0",
     "android/app/src/main/AndroidManifest.xml": "fc627a64817f2d9c1b4db62c7d491f0304bb9e092751f0cbcd0a66bc4be3006a",
     "android/app/src/main/kotlin/com/grookai/vault/MainActivity.kt": "09488ecb7f1713166c37c5d63cd4ba36e66608911b99efc59973a3f47ca32089",
     "android/app/src/main/kotlin/com/grookai/vault/printing/P21PrinterBridge.kt": "5e5c60405246a35ab24857e5e9506bb349639024752d99a6293764f1923ada4e",
@@ -525,6 +527,7 @@
     "apps/web/playwright.vendor-pricing.config.ts": "fc0ce1eb37fe3ba8897ad4d04e1b6ac8b17087417fba30f04b0822b01623eb31",
     "apps/web/src/app/account/page.tsx": "ea8fec4e8597dc678df5b0b31a4f2f35de496677b293906e452ed23b9970c021",
     "apps/web/src/app/account/pricing/page.tsx": "3c375dd8d613fd7aa930b11d76732f5a297b0881a45367658eebe5b41f5cc5b0",
+    "apps/web/src/app/api/vendor-pricing/recovery/route.ts": "f5101e0dbf35e7be66aeef897dc19421753ebd0f172f25955b41d3fa2d84c033",
     "apps/web/src/app/vault/gvvi/[gvvi_id]/qr/page.tsx": "8f000cffc849849711bbdf4d894cbd4ce50ec3d2d1aa9a56228631c0814c444a",
     "apps/web/src/app/vault/labels/page.tsx": "0163f1a8040ade23b279519b24d4979a822cc441a79328228ec3ac99b33b0c41",
     "apps/web/src/components/gvvi/VendorIdentityLabels.tsx": "8f58283af0d7700a7e263b66677e839708aeafb7072bb77e6dd3a96d959cf3c3",
@@ -669,12 +672,13 @@
     "lib/services/vault/vault_manage_artwork.dart": "b0977f30d4ac719f77ebc4e4f88396c30a3a1f84134edfe94f073f008d7bac4c",
     "lib/widgets/vault/vault_copy_sale_sheet.dart": "0a8c1d9b655a36c3421fddc9634810049a7ad94e64623c824ed49c8fbfb7c580",
     "package.json": "f70b34c3f844fa4ec1adee6e670bc82401baba13ff673fbe1152e17e7b4c02cc",
+    "scripts/lib/local_supabase_cli_status_v1.mjs": "d6e5247ebeb57b932608b8c916619a475c18f117c3087a5fc32764a327c54048",
     "scripts/migration_preflight_strict.ps1": "23d965540def60bd965c70a474fe21a852b26f314ee09e75261868f2e4230c23",
-    "scripts/schema/prepare_vendor_pricing_runtime_v1.mjs": "ddb46bfd586ce2b2faa868c7703c8b22c875e124dbb20ee51c3bd17ef4a308b7",
-    "scripts/schema/qualify_vendor_pricing_retained_v1.mjs": "d1ccbc0222056a63d6c87475245c55078a9b0f0ecbf6cf1bac553ae97bee136b",
-    "scripts/schema/start_vendor_pricing_web_lab_v1.mjs": "689d4527a644746bbcfa03de9dc0de76f01714be560974d3544df0d646339e3a",
+    "scripts/schema/prepare_vendor_pricing_runtime_v1.mjs": "06e216383bd60be1050c7282a705cc921e2554026f693ad283c1f2bb8c359334",
+    "scripts/schema/qualify_vendor_pricing_retained_v1.mjs": "cfbe8a8741da5861f7ad91e0bde0c1eedf9b02088aa96a7d82fa8abbe03acd10",
+    "scripts/schema/start_vendor_pricing_web_lab_v1.mjs": "ab78c2a50f697f0546014bae718e9c82f624003f2dc330b7f08781caa78d953c",
     "scripts/schema/test_vendor_pricing_candidate_v1.mjs": "2523e41c26d62fb1e5d080dd001df712f752775d1d45574ffbe24ee08e20e2b7",
-    "scripts/schema/test_vendor_pricing_runtime_v1.mjs": "8944f5e5383fa74c8e232efe643fa7e951d746b09f43fa7de4bd9ee98b8ff0a0",
+    "scripts/schema/test_vendor_pricing_runtime_v1.mjs": "4c0d4bbfae81491f7a16144a2fee8b6deafcccc7427d71b618a18303c9c70aad",
     "scripts/schema/vendor_pricing_fresh_replay_v1.mjs": "0b5080d61b94b0a64e5e48f74f73536f5c038a4ba4fa5d01036f18092950f00e",
     "scripts/schema/vendor_pricing_retained_baseline_v1.mjs": "1aa22e04127fb29d5a08156b371719aa7537f9c77b19c82500ef14f7ed49f251",
     "scripts/schema/vendor_pricing_security_snapshot_v1.sql": "0a60a8e826cf6565b5fce007b9e1ca95aba1942cc4468b1541d50b3077646853",
@@ -687,6 +691,6 @@
     "test/vendor_mode_workspace_test.dart": "9e2526b15b31012d550b19d663db7f3e46407375d7cde4a35aa1dcee38d8e670",
     "tests/contracts/vendor_label_set_names_v1.test.mjs": "ecce0f7140ec7831c115fae3e36fc02a1269b95e69bd186e737fd0e03e7796fd",
     "tests/contracts/vendor_pricing_environment_v1.test.mjs": "3f5559c7090df2139dcea93b3077f65666dbf50a1c82c4c7c6c485034ee2754f",
-    "tests/contracts/vendor_pricing_release_scope_v1.test.mjs": "848f3191f63ff3f4df8160c110ace07dd6dfbce4f9adc570ef2e5409b4bf834e"
+    "tests/contracts/vendor_pricing_release_scope_v1.test.mjs": "8ed6919e60f12a9f57c89df9c38c4e6d07350e6a036aff2f0e1f84788126cdd3"
   }
 }

@@ -1,3 +1,4 @@
+import {localSupabaseStatusSecret} from '../lib/local_supabase_cli_status_v1.mjs';
 // New task-owned retained493 lab ->494. No remote command, reset or history repair.
 import fs from 'node:fs';import assert from 'node:assert/strict';import {execFileSync,spawnSync} from 'node:child_process';import {randomUUID,createHash} from 'node:crypto';import {createClient} from '@supabase/supabase-js';
 const root='C:/grookai_vendor_rules_20261112',lab='C:/grookai_vault_operator_artifacts/vendor_rules_labels_20261112/retained-493',project='vendor-pricing-retained-493-20261112',container='supabase_db_'+project;
@@ -11,7 +12,7 @@ const cfg=JSON.parse(execFileSync('supabase',['status','--workdir',lab,'--output
 const sql=input=>execFileSync('docker',['exec','-i',container,'psql','-X','-qAt','-U','postgres','-d','postgres','-v','ON_ERROR_STOP=1'],{input,encoding:'utf8',timeout:120000,maxBuffer:64000000,windowsHide:true}).trim();
 assert.equal(sql("select (select count(*) from supabase_migrations.schema_migrations)||':'||current_setting('max_worker_processes')"),'493:0');
 const file=lab+'/runtime-fixture.private.json',fixture=fs.existsSync(file)?JSON.parse(fs.readFileSync(file)):{};const save=()=>fs.writeFileSync(file,JSON.stringify(fixture,null,2),{mode:0o600});
-const admin=createClient(cfg.API_URL,cfg.SERVICE_ROLE_KEY,{auth:{persistSession:false,autoRefreshToken:false}});
+const admin=createClient(cfg.API_URL,localSupabaseStatusSecret(cfg),{auth:{persistSession:false,autoRefreshToken:false}});
 for(const role of ['owner','other']){if(fixture[role])continue;const email='retained-pricing-'+randomUUID()+'@fixture.invalid',password='Local-'+randomUUID()+'!';const r=await admin.auth.admin.createUser({email,password,email_confirm:true});assert.ifError(r.error);fixture[role]={id:r.data.user.id,email,password};save();}
 if(!fixture.seeded){sql(fs.readFileSync(root+'/backend/vendor_pricing/tests/runtime_fixture_v1.sql','utf8').replaceAll('__OWNER__',fixture.owner.id).replaceAll('__OTHER__',fixture.other.id));fixture.copies=JSON.parse(sql('select json_agg(c order by gvvi) from pricing_test_fixture.copies c'));fixture.seeded=true;save();}
 const copy=fixture.copies.find(c=>c.owner_id===fixture.owner.id).instance_id;
