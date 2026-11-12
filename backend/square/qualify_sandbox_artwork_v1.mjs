@@ -1,0 +1,29 @@
+import fs from 'node:fs';import path from 'node:path';import assert from 'node:assert/strict';import {randomUUID,createHash} from 'node:crypto';
+import dotenv from 'dotenv';import {SquareClient} from './client_v1.mjs';import {renderSquareArtwork} from './artwork_source_v1.mjs';
+import {squareManagedProjection} from './catalog_plan_v1.mjs';
+const [envFile,out,reuseSuffix='000001']=process.argv.slice(2);assert.ok(envFile&&out&&process.argv.length<=5);assert.match(reuseSuffix,/^\d{6}$/);assert.equal(fs.existsSync(out),false);
+const cfg=dotenv.parse(fs.readFileSync(envFile));assert.equal(cfg.SQUARE_ENVIRONMENT,'sandbox');assert.ok(cfg.SQUARE_APP_ID.startsWith('sandbox-'));
+assert.ok(!path.resolve(out).startsWith(path.resolve('backend')));fs.mkdirSync(out,{recursive:true,mode:0o700});
+const save=(name,value)=>fs.writeFileSync(path.join(out,name),JSON.stringify(value,null,2)+'\n',{flag:'wx',mode:0o600});
+const client=new SquareClient({environment:'sandbox',accessToken:cfg.SQUARE_SANDBOX_ACCESS_TOKEN});
+try{
+ const merchant=await client.currentMerchant(),sku='https://grookaivault.com/q/GVVI-065CAB28-001441',items=await client.itemsForExactSku(sku);assert.equal(items.length,1);
+ const item=items[0],variation=item.item_data.variations.find(v=>v.item_variation_data.sku===sku),locations=await client.locations(merchant.id);assert.equal(locations.length,1);
+ const quantity=await client.inventoryQuantity(variation.id,locations[0].id),projection=squareManagedProjection(item,variation);
+ const source='https://images.pokemontcg.io/base3/1_hires.png',response=await fetch(source,{redirect:'error',signal:AbortSignal.timeout(20000)});assert.equal(response.status,200);
+ const bytes=Buffer.from(await response.arrayBuffer());assert.ok(bytes.length<8*1024*1024);const art=await renderSquareArtwork(bytes,'representative');
+ const caption=`grookai canonical card artwork; confidence:${art.kind}; sha256:${art.sha256}`;
+ const request={idempotency_key:'sandbox-artwork-'+randomUUID(),object_id:item.id,is_primary:false,image:{id:'#grookai-artwork-'+art.sha256.slice(0,32),type:'IMAGE',image_data:{name:art.name,caption}}};
+ save('upload-intent.private.json',{at:new Date().toISOString(),merchantId:merchant.id,request,art,source,inputSha256:createHash('sha256').update(bytes).digest('hex'),quantity});
+ const image=await client.uploadArtwork(request,art.fileBase64,art.name,art.pixelSha256);save('upload-receipt.json',{id:image.id,name:image.image_data.name,caption:image.image_data.caption});
+ const repeated=await client.uploadArtwork(request,art.fileBase64,art.name,art.pixelSha256);assert.equal(repeated.id,image.id);const found=await client.imagesByName(image.image_data.name);assert.equal(found.length,1);assert.equal(found[0].id,image.id);
+ assert.equal(await client.artworkImageMatches(image,art.pixelSha256),true);
+ const current=await client.item(item.id);assert.ok(current.item_data.image_ids.includes(image.id));assert.deepEqual(squareManagedProjection(current,current.item_data.variations.find(v=>v.id===variation.id)),projection);
+ const clone=structuredClone(current);clone.id='#artwork-reuse-item';delete clone.version;delete clone.updated_at;clone.item_data.name='grookai Sandbox artwork reuse proof';clone.item_data.variations=[structuredClone(variation)];
+ clone.item_data.variations[0].id='#artwork-reuse-variation';delete clone.item_data.variations[0].version;delete clone.item_data.variations[0].updated_at;clone.item_data.variations[0].item_variation_data.item_id=clone.id;
+ const reuseSku='https://grookaivault.com/q/GVVI-ARTWORKQA-'+reuseSuffix;clone.item_data.variations[0].item_variation_data.sku=reuseSku;assert.equal((await client.itemsForExactSku(reuseSku)).length,0);
+ const reuse={idempotency_key:'sandbox-artwork-reuse-'+randomUUID(),object:clone};save('reuse-intent.json',reuse);const receipt=await client.upsert(reuse,reuseSku);const reused=await client.item(receipt.itemId);assert.ok(reused.item_data.image_ids.includes(image.id));
+ assert.equal(await client.inventoryQuantity(variation.id,locations[0].id),quantity);
+ save('proof.json',{pass:true,at:new Date().toISOString(),environment:'sandbox',uploadIdempotent:true,uniqueDigestImages:1,attachedImageReadback:true,reusedAcrossItems:true,managedFieldsPreserved:true,quantityUnchanged:true,productionRequests:0,stockWrites:0,paymentRequests:0,imageId:image.id,itemId:item.id,reuseItemId:receipt.itemId});
+ console.log(JSON.stringify({pass:true,environment:'sandbox',uploadIdempotent:true,reusedAcrossItems:true,managedFieldsPreserved:true,quantityUnchanged:true}));
+}catch(e){save('failure.json',{at:new Date().toISOString(),code:e.code??'sandbox_artwork_unconfirmed',providerStatus:e.status??null,uncertain:e.uncertain===true});console.error(JSON.stringify({pass:false,code:e.code??'sandbox_artwork_unconfirmed',providerStatus:e.status??null,message:e.code==='ERR_ASSERTION'?e.message:undefined}));process.exitCode=1;}

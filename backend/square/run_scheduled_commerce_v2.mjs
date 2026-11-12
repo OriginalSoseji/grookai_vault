@@ -3,7 +3,7 @@
 import fs from 'node:fs';import os from 'node:os';import path from 'node:path';import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 const names=['NODE_ENV','SUPABASE_URL','SUPABASE_SECRET_KEY','SQUARE_ENVIRONMENT','SQUARE_APP_ID','SQUARE_CALLBACK_URL',
- 'SQUARE_APP_SECRET','SQUARE_TOKEN_ENCRYPTION_KEY','GROOKAI_SQUARE_LINKING_ENABLED','GROOKAI_SQUARE_CATALOG_ENABLED','GROOKAI_SQUARE_COMMERCE_ENABLED'];
+ 'SQUARE_APP_SECRET','SQUARE_TOKEN_ENCRYPTION_KEY','GROOKAI_SQUARE_LINKING_ENABLED','GROOKAI_SQUARE_CATALOG_ENABLED','GROOKAI_SQUARE_COMMERCE_ENABLED','GROOKAI_SQUARE_ARTWORK_ENABLED'];
 let directory;
 try{
  if(process.env.GITHUB_ACTIONS!=='true'||process.env.NODE_ENV!=='production'||process.env.SUPABASE_URL!=='https://ycdxbpibncqcchqiihfz.supabase.co'||process.env.SQUARE_ENVIRONMENT!=='production')throw Error();

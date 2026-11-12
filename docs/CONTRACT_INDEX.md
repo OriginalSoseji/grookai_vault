@@ -13,6 +13,7 @@ If a contract is missing from this index, it is not authoritative.
 
 | Contract | Status | Description |
 |--------|--------|-------------|
+| SQUARE_CANONICAL_ARTWORK_V1 | Active implementation and release contract; default-off candidate | docs/contracts/SQUARE_CANONICAL_ARTWORK_V1.md — Optional canonical artwork uploads, visible representative labels, durable retries and existing-item backfill without inventory or schema changes |
 | SQUARE_CATALOG_SYNC_V1 | Active implementation contract; default-off local candidate | docs/contracts/SQUARE_CATALOG_SYNC_V1.md — Owner-bound Square linking, unchanged grookai QR URL as SKU, selected exact-copy catalog sync, durable attempts and explicit adoption; no stock allocation or payment reconciliation |
 | SQUARE_COMMERCE_SYNC_V2 | Active implementation and release contract; default-off candidate | docs/contracts/SQUARE_COMMERCE_SYNC_V2.md — Authorized complete Samsung/web flow, automatic eligible offer enrollment, exclusive stock allocation, verified Square sales, retained refunds/returns and production/device acceptance |
 | EBAY_SELLER_PUBLISHER_V1 | Active; integrated511/web, schema481, verified-collector activation | docs/contracts/EBAY_SELLER_PUBLISHER_V1.md — Owner-bound OAuth, exact-copy drafts, fee/policy/photo review and durable reservations/recovery; actual collector OAuth/provider/native checks passed, controls revision4 enabled for one verified collector; no real listing published; see docs/checkpoints/APP_511_LIVE_VERIFICATION_20261028.md |
