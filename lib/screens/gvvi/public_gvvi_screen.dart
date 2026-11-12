@@ -370,7 +370,7 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
           labels: [
             P21LabelContent(
               title: _publicGvviDisplayIdentity(data).displayName,
-              setName: data.setName,
+              setName: data.canonicalSetName ?? '',
               number: data.number,
               qrUri: buildPersistentGvviQrUri(data.gvviId),
             ),

@@ -643,7 +643,7 @@
     "docs/contracts/VENDOR_PRICING_RULES_AND_LABELS_V1.md": "1e468517c024a4bb997184c09de3c670f70ef20fd6b157d6d0bed893f36d5aca",
     "docs/ops/GROOKAI_OPERATOR_PLAYBOOK_V1.md": "83f036e4e6366e22594f78c246862da8a17369bd90e2453347ef726de59182ad",
     "docs/playbooks/VENDOR_PRICING_RULES_LABELS_OPERATOR_V1.md": "536f536a222174ab232145bf8c1c1ade8236bf6893725cde1f3587c10d524597",
-    "lib/screens/gvvi/public_gvvi_screen.dart": "a8ce62a97de5715bbdc72a9d44ebcde5d50f104b4d31dfa9a984448e59643030",
+    "lib/screens/gvvi/public_gvvi_screen.dart": "5ce183bb31c5f3f2518bd52455b459531729c0720a88ae5ba84b1b1761fdc979",
     "lib/screens/gvvi/vendor_pricing_rules_screen.dart": "58945eb1283b774dc081e968bb45b59839f2b2f5751eaf3764de6d596b6477f5",
     "lib/screens/gvvi/vendor_pricing_workspace_screen.dart": "83aa1936485103d4f0f607ed1e59a610c87ddf781c66fd6ea466419a6f2f390c",
     "lib/screens/printing/identity_label_print_screen.dart": "c0d37677152accaa15e4ff3e1bae80156a815871d87c83cdb1468cd9cef1746a",
@@ -691,7 +691,7 @@
     "test/p21_batch_print_service_test.dart": "c7ef6c7559e7dd7c709a2d80f6c0a811b41ec6747d6fc8ae80a3a9168e8f509c",
     "test/p21_label_test.dart": "0466b632d99c03481e30609384958e46f61340b0649f1440fbdbcc5633f19f25",
     "test/vendor_mode_workspace_test.dart": "9e2526b15b31012d550b19d663db7f3e46407375d7cde4a35aa1dcee38d8e670",
-    "tests/contracts/vendor_label_set_names_v1.test.mjs": "ecce0f7140ec7831c115fae3e36fc02a1269b95e69bd186e737fd0e03e7796fd",
+    "tests/contracts/vendor_label_set_names_v1.test.mjs": "2d5571458d84d16ccc36b43e09d2a4fc268e3bd65a55dc8a8b4eea81c08b4b2c",
     "tests/contracts/vendor_pricing_environment_v1.test.mjs": "3f5559c7090df2139dcea93b3077f65666dbf50a1c82c4c7c6c485034ee2754f",
     "tests/contracts/vendor_pricing_release_scope_v1.test.mjs": "8ed6919e60f12a9f57c89df9c38c4e6d07350e6a036aff2f0e1f84788126cdd3"
   }
