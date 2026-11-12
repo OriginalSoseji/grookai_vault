@@ -27,6 +27,11 @@ the same copy and check its saved state before retrying. Reconciliation retains
 existing requests and provider operation keys. Never invent a replacement copy
 or replenish sold inventory as recovery.
 
+Card Detail's ownership shortcut reports the known copy count only. It must not
+infer a private/public state or raw/graded format from the aggregate ownership
+count. Open the exact copy or Your copies for authoritative publication and
+physical-format details.
+
 ## Verification
 
 - `node --test tests/contracts/new_copy_sale_action_v1.test.mjs` checks one

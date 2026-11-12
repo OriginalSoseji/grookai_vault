@@ -21,6 +21,11 @@ Samsung updates require normal gates and a higher-version, same-signer,
 data-preserving installation. Do not treat a prepared APK as an installed or
 production-store-signed release; the checkpoint records the actual build proof.
 
+The Card Detail collection shortcut displays the owned copy count, without a
+hardcoded Private or raw-copy assertion. Aggregate ownership does not establish
+an exact copy's publication state or physical format. Read those details from
+Your copies or the exact-copy page when verifying an offer.
+
 The live new-copy test exposed a temporary nonphysical operator fixture ending
 003421. With the owner's explicit one-time exception to the no-direct-DB-edits
 rule, a guarded administrative void archived only that fixture after provider

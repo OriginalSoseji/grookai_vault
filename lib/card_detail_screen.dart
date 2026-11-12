@@ -3566,9 +3566,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         _buildTrustRow(
           icon: Icons.inventory_2_outlined,
           label: 'Your collection',
-          actionLabel: ownedCount > 1
-              ? '$ownedCount copies · Private'
-              : '1 raw copy · Private',
+          actionLabel: ownedCount > 1 ? '$ownedCount copies' : '1 copy',
           onAction: _openResolvedOwnedCopy,
           theme: theme,
           colorScheme: colorScheme,
