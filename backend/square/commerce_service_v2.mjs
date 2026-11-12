@@ -177,8 +177,8 @@ export class SquareCommerceService {
    await detail();
    if(focusInstanceId)uuid(focusInstanceId);
    const result=await this.#processConnection(ownerId,connectionId,{maxTargets,manual,focusInstanceId,checkpoint});
-   await this.rpc('commerce_run_finish',{...runContext,result:{status:result.failed?'failed':'succeeded',succeeded:result.succeeded,
-    failed:result.failed,skipped:result.reviews+result.skipped+(result.orderReviews??0),errorCode:result.errorCode??''}});
+   await this.rpc('commerce_run_finish',{...runContext,result:{status:result.failed||result.artworkFailures?'failed':'succeeded',succeeded:result.succeeded,
+    failed:result.failed+(result.artworkFailures??0),skipped:result.reviews+result.skipped+(result.orderReviews??0),errorCode:result.errorCode??''}});
    await detail({...result.errorDetail,errorCode:result.errorCode??null});
    return {...result,runId};
   }catch(error){
@@ -225,6 +225,15 @@ export class SquareCommerceService {
      if(['withdrawn_review','stock_requires_review'].includes(value.status))review(target);
     }
     if(targetFailed)result.failed++;else result.succeeded++;
+    if(!targetFailed&&this.config.catalogEnabled&&typeof this.catalog.syncArtwork==='function'){
+     // Optional imagery runs after stock. An image failure never undoes a ready unit or a completed sale.
+     failureStage='catalog';await checkpoint('catalog',target.id);
+     // The leased catalog reader gates new work on the current auto-sync setting,
+     // but still recovers retained image obligations when new artwork is disabled.
+     try{await this.catalog.syncArtwork(ownerId,connectionId,target.id,randomUUID(),{manual});}
+     catch(error){result.artworkFailures=(result.artworkFailures??0)+1;result.errorCode=code(error);
+      result.errorDetail={stage:'catalog',targetId:target.id,errorCode:code(error)};}
+    }
    }catch(error){
     if(code(error)==='square_connection_busy'){result.skipped++;if(target.instance_id===focusInstanceId)result.focusStatus='pending';}
     else{result.failed++;result.errorCode=code(error);result.errorDetail={stage:failureStage??'stock',targetId:target.id,databaseCode:error.databaseCode};if(target.instance_id===focusInstanceId)result.focusStatus='review';}

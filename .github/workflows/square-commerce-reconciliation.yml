@@ -29,6 +29,7 @@ jobs:
       GROOKAI_SQUARE_LINKING_ENABLED: "true"
       GROOKAI_SQUARE_CATALOG_ENABLED: "true"
       GROOKAI_SQUARE_COMMERCE_ENABLED: "true"
+      GROOKAI_SQUARE_ARTWORK_ENABLED: ${{ vars.GROOKAI_SQUARE_ARTWORK_ENABLED || 'false' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
