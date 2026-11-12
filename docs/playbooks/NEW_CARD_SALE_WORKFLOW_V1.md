@@ -48,3 +48,11 @@ This client workflow changes no schema, canonical identity, Square operation
 semantics, payment authority, or recovery schedule. Bind final source, hosting
 deployment, installed build and distinct live/local evidence in the private
 operator release checkpoint.
+
+Visual acceptance: the transport-safe client action wrapper removes a 12px form
+gap in the canonical mobile/desktop Card Detail fixtures. The two resulting
+screenshots were inspected against the prior references and retained from the
+hosted canonical runner before updating those references. All 160 functional
+and accessibility cases passed in that run; the screenshot comparison tolerance
+and assertions remain unchanged. The native reference change is the visible
+48px **Add and set sale price** action, inspected in both Windows themes.
