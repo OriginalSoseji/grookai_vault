@@ -2,9 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart' as pw;
-import 'package:printing/printing.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -16,7 +13,6 @@ import '../../services/identity/image_presentation.dart';
 import '../../services/identity/display_identity.dart';
 import '../../services/gvvi/gvvi_vendor_offer_service.dart';
 import '../../services/printing/p21_label.dart';
-import '../../services/printing/p21_printer_service.dart';
 import '../../services/pricing/ebay_sold_search_uri.dart';
 import '../../services/sales/sales_card_reference.dart';
 import '../../services/vault/ownership_resolver_adapter.dart';
@@ -30,7 +26,7 @@ import '../public_collector/public_collector_screen.dart';
 import '../vault/vault_manage_card_screen.dart';
 import '../../services/sealed/owned_sealed_service_v1.dart';
 import 'sealed_copy_view.dart';
-import '../printing/p21_label_print_screen.dart';
+import '../printing/identity_label_print_screen.dart';
 
 ResolvedDisplayIdentity _publicGvviDisplayIdentity(PublicGvviData data) {
   return resolveDisplayIdentityFromFields(
@@ -232,7 +228,7 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
                     : state.primaryGvviId,
                 gvId: data.gvId,
                 name: _publicGvviDisplayIdentity(data).displayName,
-                setName: data.setName,
+                setName: data.canonicalSetName ?? '',
                 number: data.number == '—' ? null : data.number,
                 imageUrl: data.imageUrl,
                 condition: data.conditionLabel,
@@ -368,113 +364,19 @@ class _PublicGvviScreenState extends State<PublicGvviScreen> {
     PublicGvviData data,
     GvviVendorOffer offer,
   ) async {
-    if (P21PrinterService.supported) {
-      final destination = await showDialog<String>(
-        context: context,
-        builder: (context) => SimpleDialog(
-          title: const Text('Print with'),
-          children: [
-            SimpleDialogOption(
-              onPressed: () => Navigator.pop(context, 'p21'),
-              child: const ListTile(
-                leading: Icon(Icons.bluetooth),
-                title: Text('Nelko P21'),
-                subtitle: Text('14 × 40 mm label'),
-              ),
-            ),
-            SimpleDialogOption(
-              onPressed: () => Navigator.pop(context, 'airprint'),
-              child: const ListTile(
-                leading: Icon(Icons.print_outlined),
-                title: Text('AirPrint'),
-                subtitle: Text('Full vendor card'),
-              ),
-            ),
-          ],
-        ),
-      );
-      if (!mounted || destination == null) return;
-      if (destination == 'p21') {
-        await Navigator.of(context).push(
-          MaterialPageRoute<void>(
-            builder: (_) => P21LabelPrintScreen(
-              content: P21LabelContent(
-                title: _publicGvviDisplayIdentity(data).displayName,
-                setName: data.setName,
-                number: data.number,
-                qrUri: buildPersistentGvviQrUri(data.gvviId),
-              ),
-            ),
-          ),
-        );
-        return;
-      }
-    }
-    final uri = buildPersistentGvviQrUri(data.gvviId);
-    final document = pw.Document();
-    final format = PdfPageFormat(
-      2.5 * PdfPageFormat.inch,
-      3.5 * PdfPageFormat.inch,
-      marginAll: 0.16 * PdfPageFormat.inch,
-    );
-    final displayName = _publicGvviDisplayIdentity(data).displayName;
-    final price = VaultGvviService.formatPrice(
-      offer.askingPriceAmount,
-      currency: offer.askingPriceCurrency,
-    );
-    document.addPage(
-      pw.Page(
-        pageFormat: format,
-        build: (_) => pw.Column(
-          crossAxisAlignment: pw.CrossAxisAlignment.stretch,
-          children: [
-            pw.Text(
-              offer.vendorDisplayName,
-              textAlign: pw.TextAlign.center,
-              style: pw.TextStyle(fontSize: 11, fontWeight: pw.FontWeight.bold),
-            ),
-            pw.SizedBox(height: 5),
-            pw.Text(
-              displayName,
-              maxLines: 2,
-              textAlign: pw.TextAlign.center,
-              style: pw.TextStyle(fontSize: 10, fontWeight: pw.FontWeight.bold),
-            ),
-            pw.SizedBox(height: 4),
-            pw.Text(
-              'VENDOR PRICE  ${price ?? 'Available'}',
-              textAlign: pw.TextAlign.center,
-              style: pw.TextStyle(fontSize: 13, fontWeight: pw.FontWeight.bold),
-            ),
-            if ((offer.conditionLabel ?? '').isNotEmpty)
-              pw.Text(
-                offer.conditionLabel!,
-                textAlign: pw.TextAlign.center,
-                style: const pw.TextStyle(fontSize: 9),
-              ),
-            pw.Spacer(),
-            pw.Center(
-              child: pw.BarcodeWidget(
-                barcode: pw.Barcode.qrCode(),
-                data: uri.toString(),
-                width: 1.45 * PdfPageFormat.inch,
-                height: 1.45 * PdfPageFormat.inch,
-              ),
-            ),
-            pw.SizedBox(height: 4),
-            pw.Text(
-              data.gvviId,
-              textAlign: pw.TextAlign.center,
-              style: const pw.TextStyle(fontSize: 7),
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => IdentityLabelPrintScreen(
+          labels: [
+            P21LabelContent(
+              title: _publicGvviDisplayIdentity(data).displayName,
+              setName: data.setName,
+              number: data.number,
+              qrUri: buildPersistentGvviQrUri(data.gvviId),
             ),
           ],
         ),
       ),
-    );
-    await Printing.layoutPdf(
-      name: '${data.gvviId}-vendor-qr',
-      format: format,
-      onLayout: (_) => document.save(),
     );
   }
 

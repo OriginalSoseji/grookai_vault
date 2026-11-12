@@ -1,6 +1,7 @@
 {
   "crons": [
-    {"path": "/api/square/recovery", "schedule": "2-57/5 * * * *"}
+    {"path": "/api/square/recovery", "schedule": "2-57/5 * * * *"},
+    {"path": "/api/vendor-pricing/recovery", "schedule": "1-56/5 * * * *"}
   ],
   "functions": {
     "src/app/api/stores/owner/intake/match/route.ts": {

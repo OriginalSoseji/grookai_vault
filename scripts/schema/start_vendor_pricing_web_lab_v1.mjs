@@ -1,0 +1,9 @@
+import fs from 'node:fs';import assert from 'node:assert/strict';import {execFileSync,spawn} from 'node:child_process';
+const lab='C:/grookai_vault_operator_artifacts/vendor_rules_labels_20261112/fresh-494';
+assert.equal(fs.existsSync(lab+'/supabase/.temp/project-ref'),false);
+assert.equal(JSON.parse(fs.readFileSync(lab+'/runtime-proof.json')).pass,true);
+const cfg=JSON.parse(execFileSync('supabase',['status','--workdir',lab,'--output','json'],{encoding:'utf8',stdio:['ignore','pipe','ignore']}));assert.equal(cfg.API_URL,'http://127.0.0.1:62341');
+const env={...process.env};for(const key of Object.keys(env))if(/^(SUPABASE_|NEXT_PUBLIC_|GROOKAI_|STRIPE_|SQUARE_|VERCEL|SITE_URL|GV_USER_)/.test(key))delete env[key];
+Object.assign(env,{SUPABASE_URL:cfg.API_URL,SUPABASE_PUBLISHABLE_KEY:cfg.ANON_KEY,SUPABASE_SECRET_KEY:cfg.SERVICE_ROLE_KEY,NEXT_PUBLIC_COLLECTOR_STAGING:'true',NEXT_PUBLIC_VENDOR_PRICING_LOCAL_TEST:'true',GROOKAI_DISABLE_TELEMETRY:'1',NEXT_PUBLIC_SITE_URL:'http://127.0.0.1:62380',SITE_URL:'http://127.0.0.1:62380',NODE_USE_SYSTEM_CA:'1'});
+const child=spawn(process.execPath,['node_modules/next/dist/bin/next','dev','--webpack','--hostname','127.0.0.1','--port','62380'],{cwd:'C:/grookai_vendor_rules_20261112/apps/web',env,windowsHide:true,stdio:'inherit'});
+child.once('exit',code=>{process.exitCode=code??1;});

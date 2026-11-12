@@ -7,6 +7,10 @@ import '../../services/grookai_objects/sale_listing_service.dart';
 import '../../services/gvvi/gvvi_vendor_offer_service.dart';
 import '../../services/vault/vault_gvvi_service.dart';
 import '../../screens/square/square_screen.dart';
+import '../../screens/gvvi/vendor_pricing_rules_screen.dart';
+import '../../services/gvvi/vendor_pricing_rules_service.dart';
+import '../../services/printing/p21_label.dart';
+import '../../screens/printing/identity_label_print_screen.dart';
 
 Future<bool> showVaultCopySaleSheet(BuildContext context, String gvviId) async {
   final data = await VaultGvviService.loadPrivate(
@@ -29,6 +33,12 @@ Future<bool> showVaultCopySaleSheet(BuildContext context, String gvviId) async {
         builder: (_) => VaultCopySaleSheet(
           onSaved: () => committed = true,
           cardName: data.cardName,
+          labelContent: P21LabelContent(
+            title: data.cardName,
+            setName: data.canonicalSetName ?? '',
+            number: data.number,
+            qrUri: buildPersistentGvviQrUri(data.gvviId),
+          ),
           copy: SaleListingCopyContext(
             instanceId: data.instanceId,
             gvviId: data.gvviId,
@@ -54,11 +64,15 @@ class VaultCopySaleSheet extends StatefulWidget {
     required this.copy,
     this.service,
     this.onSaved,
+    this.pricingService,
+    this.labelContent,
   });
   final String cardName;
   final SaleListingCopyContext copy;
   final SaleListingService? service;
   final VoidCallback? onSaved;
+  final VendorPricingRulesService? pricingService;
+  final P21LabelContent? labelContent;
   @override
   State<VaultCopySaleSheet> createState() => _VaultCopySaleSheetState();
 }
@@ -70,6 +84,74 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet> {
   final _focus = FocusNode();
   bool _busy = false, _saved = false, _committed = false;
   String? _error, _squareStatus;
+  Map<String, dynamic>? _pricing, _quote;
+  String _selection = 'manual';
+  bool _quoting = false;
+  int _quoteGeneration = 0;
+  VendorPricingRulesService get _pricingService =>
+      widget.pricingService ?? VendorPricingRulesService();
+  @override
+  void initState() {
+    super.initState();
+    // Existing injected listing tests do not acquire a global session.
+    if (widget.service == null || widget.pricingService != null) _loadPricing();
+  }
+
+  Future<void> _loadPricing() async {
+    try {
+      final w = await _pricingService.workspace(widget.copy.instanceId);
+      if (!mounted) return;
+      final c = w['copy'] as Map?;
+      setState(() {
+        _pricing = w;
+        _selection = c?['mode'] == 'preset'
+            ? c!['rule_id'] as String
+            : c?['mode'] == 'default'
+            ? 'default'
+            : 'manual';
+      });
+      if (_selection != 'manual') await _preview();
+    } catch (_) {
+      /* Manual sale flow remains available during staged rollout. */
+    }
+  }
+
+  Future<void> _preview() async {
+    final generation = ++_quoteGeneration;
+    if (_selection == 'manual') {
+      setState(() {
+        _quote = null;
+        _quoting = false;
+      });
+      return;
+    }
+    setState(() {
+      _quoting = true;
+      _quote = null;
+    });
+    try {
+      final q = await _pricingService.preview(
+        widget.copy.instanceId,
+        _selection,
+      );
+      if (mounted && generation == _quoteGeneration) setState(() => _quote = q);
+    } catch (_) {
+      if (mounted && generation == _quoteGeneration) {
+        setState(
+          () => _quote = {
+            'status': 'waiting',
+            'reason':
+                'Price preview is unavailable. Choose My price or try later.',
+          },
+        );
+      }
+    } finally {
+      if (mounted && generation == _quoteGeneration) {
+        setState(() => _quoting = false);
+      }
+    }
+  }
+
   @override
   void dispose() {
     _price.dispose();
@@ -81,10 +163,11 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet> {
     if (_busy) return;
     final raw = _price.text.trim();
     final price = double.tryParse(raw);
-    if (!RegExp(r'^(?:0|[1-9]\d*)(?:\.\d{1,2})?$').hasMatch(raw) ||
-        price == null ||
-        !price.isFinite ||
-        price <= 0) {
+    if (_selection == 'manual' &&
+        (!RegExp(r'^(?:0|[1-9]\d*)(?:\.\d{1,2})?$').hasMatch(raw) ||
+            price == null ||
+            !price.isFinite ||
+            price <= 0)) {
       setState(
         () => _error =
             'Enter a USD price greater than 0, with up to 2 decimal places.',
@@ -99,22 +182,37 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet> {
     });
     try {
       final copy = widget.copy;
-      final result = await (widget.service ?? SaleListingService())
-          .saveSingleCardListing(
-            instanceId: copy.instanceId,
-            gvviId: copy.gvviId,
-            vaultItemId: copy.vaultItemId,
-            cardPrintId: copy.cardPrintId,
-            price: price,
-            currency: 'USD',
-            preserveNote: true,
-            waitForSquareConfirmation: true,
-          );
+      String squareStatus;
+      if (_selection != 'manual') {
+        squareStatus = await _pricingService.apply(
+          instanceId: copy.instanceId,
+          selection: _selection,
+          revision: ((_pricing?['copy'] as Map?)?['revision'] as int?) ?? 0,
+        );
+        try {
+          _pricing = await _pricingService.workspace(copy.instanceId);
+        } catch (_) {
+          /* The committed sale and Square result remain confirmed. */
+        }
+      } else {
+        final result = await (widget.service ?? SaleListingService())
+            .saveSingleCardListing(
+              instanceId: copy.instanceId,
+              gvviId: copy.gvviId,
+              vaultItemId: copy.vaultItemId,
+              cardPrintId: copy.cardPrintId,
+              price: price!,
+              currency: 'USD',
+              preserveNote: true,
+              waitForSquareConfirmation: true,
+            );
+        squareStatus = result.squareStatus;
+      }
       if (mounted) {
         setState(() {
           _saved = true;
           _committed = true;
-          _squareStatus = result.squareStatus;
+          _squareStatus = squareStatus;
         });
         widget.onSaved?.call();
       }
@@ -172,30 +270,109 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet> {
                 'Saving makes this exact copy public and For sale. Square syncs it automatically when automatic stock is enabled for your account.',
               ),
               const SizedBox(height: 16),
-              TextField(
-                controller: _price,
-                focusNode: _focus,
-                enabled: !_busy,
-                keyboardType: const TextInputType.numberWithOptions(
-                  decimal: true,
+              if (_pricing != null) ...[
+                DropdownButtonFormField<String>(
+                  initialValue: _selection,
+                  isExpanded: true,
+                  decoration: const InputDecoration(labelText: 'Pricing'),
+                  items: [
+                    const DropdownMenuItem(
+                      value: 'manual',
+                      child: Text('My price · fixed'),
+                    ),
+                    DropdownMenuItem(
+                      value: 'default',
+                      enabled:
+                          _pricing!['enabled'] == true &&
+                          (_pricing!['settings'] as Map)['default_rule_id'] !=
+                              null,
+                      child: const Text('Vendor default · automatic'),
+                    ),
+                    ...((_pricing!['rules'] as List?) ?? []).map(
+                      (r) => DropdownMenuItem(
+                        value: r['id'] as String,
+                        enabled: _pricing!['enabled'] == true,
+                        child: Text('${r['name']} · automatic'),
+                      ),
+                    ),
+                  ],
+                  onChanged: _busy
+                      ? null
+                      : (v) {
+                          setState(() {
+                            _selection = v!;
+                            _saved = false;
+                            _squareStatus = null;
+                            _error = null;
+                          });
+                          _preview();
+                        },
                 ),
-                textInputAction: TextInputAction.done,
-                decoration: InputDecoration(
-                  labelText: 'Asking price · USD',
-                  prefixText: r'$',
-                  errorText: _error,
-                  errorMaxLines: 4,
+                TextButton(
+                  onPressed: _busy
+                      ? null
+                      : () async {
+                          await Navigator.of(context).push(
+                            MaterialPageRoute<void>(
+                              builder: (_) => const VendorPricingRulesScreen(),
+                            ),
+                          );
+                          if (mounted) await _loadPricing();
+                        },
+                  child: const Text('Manage pricing rules'),
                 ),
-                onChanged: (_) => setState(() {
-                  _saved = false;
-                  _squareStatus = null;
-                  _error = null;
-                }),
-                onSubmitted: (_) => _save(),
-              ),
+              ],
+              if (_selection == 'manual')
+                TextField(
+                  controller: _price,
+                  focusNode: _focus,
+                  enabled: !_busy,
+                  keyboardType: const TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
+                  textInputAction: TextInputAction.done,
+                  decoration: InputDecoration(
+                    labelText: 'Asking price · USD',
+                    prefixText: r'$',
+                    errorText: _error,
+                    errorMaxLines: 4,
+                  ),
+                  onChanged: (_) => setState(() {
+                    _saved = false;
+                    _squareStatus = null;
+                    _error = null;
+                  }),
+                  onSubmitted: (_) => _save(),
+                ),
+              if (_selection != 'manual')
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  child: Semantics(
+                    liveRegion: true,
+                    child: Text(
+                      _pricing?['enabled'] != true
+                          ? 'Automatic repricing is paused. Your last confirmed asking price is retained.'
+                          : _quoting
+                          ? 'Checking fresh market…'
+                          : _quote?['status'] == 'ready'
+                          ? '\$${((_quote!['amountMinor'] as num) / 100).toStringAsFixed(2)} · ${_quote!['ruleName']}. Updates automatically.'
+                          : _quote?['reason'] as String? ??
+                                'Choose a pricing rule.',
+                    ),
+                  ),
+                ),
+              if (_selection != 'manual' && _error != null)
+                Text(_error!, style: TextStyle(color: theme.colorScheme.error)),
               const SizedBox(height: 16),
               FilledButton(
-                onPressed: _busy ? null : _save,
+                onPressed:
+                    _busy ||
+                        (_selection != 'manual' &&
+                            (_quoting ||
+                                _quote?['status'] != 'ready' ||
+                                _pricing?['enabled'] != true))
+                    ? null
+                    : _save,
                 child: Text(
                   _busy ? 'Saving and syncing…' : 'Make public and For sale',
                 ),
@@ -244,6 +421,18 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet> {
                   ),
                 ),
                 const SizedBox(height: 12),
+                if (widget.labelContent != null)
+                  OutlinedButton.icon(
+                    onPressed: () => Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (_) => IdentityLabelPrintScreen(
+                          labels: [widget.labelContent!],
+                        ),
+                      ),
+                    ),
+                    icon: const Icon(Icons.print_outlined),
+                    label: const Text('Print label'),
+                  ),
                 OutlinedButton(
                   onPressed: () => Navigator.pop(context, true),
                   child: const Text('Done'),

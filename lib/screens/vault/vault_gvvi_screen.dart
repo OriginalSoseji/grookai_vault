@@ -96,15 +96,22 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
   String? _error;
   String? _status;
   String? _memoryError;
+  Timer? _askingPriceRefresh;
+  bool _readingAskingPrice = false;
 
   @override
   void initState() {
     super.initState();
     _load();
+    _askingPriceRefresh = Timer.periodic(
+      const Duration(seconds: 30),
+      (_) => unawaited(_refreshAskingPrice()),
+    );
   }
 
   @override
   void dispose() {
+    _askingPriceRefresh?.cancel();
     for (final timer in _pendingMemoryArchiveTimers.values) {
       timer.cancel();
     }
@@ -181,6 +188,41 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
         _sectionMemberships = const <VaultGvviSectionMembership>[];
         _error = error.toString().replaceFirst('Exception: ', '');
       });
+    }
+  }
+
+  Future<void> _refreshAskingPrice() async {
+    final previous = _data;
+    if (!mounted ||
+        previous == null ||
+        _readingAskingPrice ||
+        _loading ||
+        _savingNotes ||
+        _savingIntent ||
+        _openingSaleEditor ||
+        _removing ||
+        ModalRoute.of(context)?.isCurrent != true ||
+        WidgetsBinding.instance.lifecycleState != AppLifecycleState.resumed) {
+      return;
+    }
+    _readingAskingPrice = true;
+    try {
+      final current = await VaultGvviService.loadPrivate(
+        client: _client,
+        gvviId: widget.gvviId,
+      );
+      if (!mounted ||
+          !identical(_data, previous) ||
+          _savingNotes ||
+          _savingIntent ||
+          _openingSaleEditor) {
+        return;
+      }
+      if (current != null) setState(() => _data = current);
+    } catch (_) {
+      /* Keep the last confirmed copy visible on transient read failure. */
+    } finally {
+      _readingAskingPrice = false;
     }
   }
 

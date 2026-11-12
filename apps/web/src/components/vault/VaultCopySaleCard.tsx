@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useEffect, useId, useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { saveVaultItemInstancePricingAction } from "@/lib/vault/saveVaultItemInstancePricingAction";
+import {vendorPricingAction} from "@/lib/vendorPricing/actions";
+import type {PricingWorkspace, PricingQuote} from "@/lib/vendorPricing/types";
 
 export default function VaultCopySaleCard({ instanceId, intent, amount, currency, qrHref }: {
   instanceId: string; intent: string; amount: number | null; currency: string | null;
@@ -15,22 +17,67 @@ export default function VaultCopySaleCard({ instanceId, intent, amount, currency
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState(false);
   const [pending, startTransition] = useTransition();
+  const [workspace, setWorkspace] = useState<PricingWorkspace | null>(null);
+  const [mode, setMode] = useState("manual");
+  const [quote, setQuote] = useState<PricingQuote | null>(null);
+  const [quoting, setQuoting] = useState(false);
   const priceInput = useRef<HTMLInputElement>(null);
   const submitting = useRef(false);
+  const dirty = useRef(false);
   const listed = intent === "sell";
-  useEffect(() => { if (!submitting.current) setPrice(currency === "USD" && amount !== null ? amount.toFixed(2) : ""); }, [amount, currency]);
+  useEffect(() => { if (!submitting.current && !dirty.current) setPrice(currency === "USD" && amount !== null ? amount.toFixed(2) : ""); }, [amount, currency]);
+  useEffect(() => {
+    let alive = true;
+    void vendorPricingAction("workspace", {instanceId}).then(result => {
+      if (!alive || !result.ok) return;
+      const w = result.value; setWorkspace(w);
+      setMode(w.copy?.mode === "preset" ? w.copy.rule_id ?? "manual"
+        : w.copy?.mode === "default" ? "default" : "manual");
+    }).catch(() => {});
+    return () => {alive = false;};
+  }, [instanceId]);
+  useEffect(() => {
+    if (mode === "manual") {setQuote(null); return;}
+    let alive = true;
+    setQuoting(true);
+    void vendorPricingAction("preview", {instanceId, mode: mode === "default" ? "default" : "preset", ruleId: mode === "default" ? null : mode}).then(result => {
+      if (alive) setQuote(result.ok ? result.value : {status: "waiting", reason: result.message});
+    }).catch(() => {if (alive) setQuote({status: "waiting", reason: "Price preview is unavailable. Try again or choose My price."});})
+      .finally(() => {if (alive) setQuoting(false);});
+    return () => {alive = false;};
+  }, [instanceId, mode]);
+  useEffect(() => {
+    if (!workspace?.copy || workspace.copy.mode === "manual") return;
+    let alive = true;
+    const timer = setInterval(() => {
+      if (document.visibilityState !== "visible" || submitting.current) return;
+      void vendorPricingAction("workspace", {instanceId}).then(result => {
+        if (!alive || !result.ok) return;
+        const current = result.value.copy;
+        setWorkspace(result.value);
+        if (current?.resolved_minor !== workspace.copy?.resolved_minor || current?.revision !== workspace.copy?.revision) {
+          if (!dirty.current && current?.mode !== "manual" && current?.resolved_minor !== workspace.copy?.resolved_minor) setMessage("Asking price updated. Check Square status before checkout.");
+          router.refresh();
+        }
+      }).catch(() => {});
+    }, 15000);
+    return () => {alive = false; clearInterval(timer);};
+  }, [instanceId, router, workspace?.copy]);
 
   function save(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (submitting.current) return;
-    if (!/^(?:0|[1-9]\d*)(?:\.\d{1,2})?$/.test(price.trim()) || Number(price) <= 0) {
+    if (mode === "manual" && (!/^(?:0|[1-9]\d*)(?:\.\d{1,2})?$/.test(price.trim()) || Number(price) <= 0)) {
       setError(true); setMessage("Enter a USD asking price greater than 0, with up to 2 decimal places.");
       priceInput.current?.focus(); return;
     }
     submitting.current = true; setError(false); setMessage(null);
     startTransition(async () => {
       try {
-        const result = await saveVaultItemInstancePricingAction({
+        const result = mode !== "manual" ? await vendorPricingAction("apply", {
+          requestId: crypto.randomUUID(), instanceId, mode: mode === "default" ? "default" : "preset",
+          ruleId: mode === "default" ? null : mode, expectedRevision: workspace?.copy?.revision ?? 0, publish: true,
+        }) : await saveVaultItemInstancePricingAction({
           instanceId, pricingMode: "asking", askingPriceAmount: price.trim(),
           askingPriceCurrency: "USD", publishForSale: true,
         });
@@ -39,6 +86,9 @@ export default function VaultCopySaleCard({ instanceId, intent, amount, currency
           : result.squareStatus === "pending" ? "For sale saved. Square is still syncing. Wait for confirmation before checkout."
           : result.squareStatus === "review" ? "For sale saved. Square needs attention before checkout."
           : "For sale saved. Your profile and sharing settings still apply.");
+        dirty.current = false;
+        const fresh = await vendorPricingAction("workspace", {instanceId}).catch(() => null);
+        if (fresh?.ok) setWorkspace(fresh.value);
         router.refresh();
       } catch {
         setError(true); setMessage("The save could not be confirmed. Reload this copy before retrying.");
@@ -50,15 +100,21 @@ export default function VaultCopySaleCard({ instanceId, intent, amount, currency
     <h2 id={`${priceId}-title`} className="text-lg font-semibold">{listed ? "For sale" : "Sell this copy"}</h2>
     <p className="text-sm text-[var(--gv-text-secondary)]">Set a price to make this exact copy public and For sale. Connected Square accounts with automatic stock enabled sync it automatically.</p>
     <form onSubmit={save} className="flex flex-wrap items-end gap-3">
-      <label htmlFor={priceId} className="grid gap-2 text-sm">Asking price · USD
+      {workspace && <label className="grid gap-2 text-sm">Pricing<select aria-label="Pricing" className="min-h-11 rounded-lg border border-[var(--gv-border-soft)] bg-[var(--gv-surface)] px-3" value={mode} disabled={pending} onChange={e => {dirty.current = true; setMode(e.target.value); setMessage(null);}}>
+        <option value="manual">My price · fixed</option><option value="default" disabled={!workspace.settings.default_rule_id || !workspace.enabled}>Vendor default · automatic</option>
+        {workspace.rules.map(rule => <option key={rule.id} value={rule.id} disabled={!workspace.enabled}>{rule.name} · automatic</option>)}
+      </select></label>}
+      {mode === "manual" ? <label htmlFor={priceId} className="grid gap-2 text-sm">Asking price · USD
         <input id={priceId} ref={priceInput} name="sale_price" type="text" inputMode="decimal" autoComplete="off"
-          value={price} disabled={pending} onChange={event => { setPrice(event.target.value); setMessage(null); setError(false); }}
+          value={price} disabled={pending} onChange={event => { dirty.current = true; setPrice(event.target.value); setMessage(null); setError(false); }}
           aria-invalid={error} aria-describedby={message ? `${priceId}-status` : undefined}
           placeholder="0.00" className="min-h-11 w-40 rounded-lg border border-[var(--gv-border-soft)] bg-transparent px-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current" />
-      </label>
-      <button type="submit" className="gv-primary-button" disabled={pending}>{pending ? "Saving and syncing…" : listed ? "Save sale price" : "Make public and For sale"}</button>
-      {qrHref && <Link href={qrHref} className="gv-secondary-button">Show grookai QR</Link>}
+      </label> : <p aria-live="polite" className="max-w-sm pb-3 text-sm">{!workspace?.enabled ? "Automatic repricing is paused. Your last confirmed asking price is retained." : quoting ? "Checking fresh market…" : quote?.status === "ready" ? `$${((quote.amountMinor ?? 0) / 100).toFixed(2)} · ${quote.ruleName}. Updates automatically.` : quote?.reason ?? "Choose a pricing rule."}</p>}
+      <button type="submit" className="gv-primary-button" disabled={pending || (mode !== "manual" && (quoting || quote?.status !== "ready" || !workspace?.enabled))}>{pending ? "Saving and syncing…" : listed ? "Save sale price" : "Make public and For sale"}</button>
+      {qrHref && <Link href={qrHref} className="gv-secondary-button">QR and label</Link>}
+      <Link href="/account/pricing" className="text-sm underline">Manage pricing rules</Link>
     </form>
+    {workspace?.copy?.reason && <p className="text-sm" role="status">{workspace.copy.reason} Last confirmed asking price is retained.</p>}
     {message && <p id={`${priceId}-status`} role={error ? "alert" : "status"} aria-live="polite" className="text-sm">{message}</p>}
     {!error && message?.includes("Square") && !message.includes("Ready to scan") && <Link href="/account/connections/square" className="gv-secondary-button">Check Square status</Link>}
   </section>;
