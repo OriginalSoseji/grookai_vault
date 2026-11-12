@@ -49,6 +49,16 @@ semantics, payment authority, or recovery schedule. Bind final source, hosting
 deployment, installed build and distinct live/local evidence in the private
 operator release checkpoint.
 
+The native quick sale editor waits for the focused Square confirmation within
+a 55-second overall budget, covering a new catalog item, stock and optional
+artwork. Explicit pending/busy server replies can retry that same fenced wakeup
+at most five times with backoff. The price/intent write is performed once.
+Unknown replies and transport failures remain pending; the timer never claims
+readiness, and late replies cannot start more requests after the wait ends.
+Ordinary background collection notifications keep their existing short deadline.
+`test/square/square_sync_confirmation_test.dart` covers slow success, busy
+recovery, bounded retries, late replies and uncertain results using virtual time.
+
 Visual acceptance: the transport-safe client action wrapper removes a 12px form
 gap in the canonical mobile/desktop Card Detail fixtures. The two resulting
 screenshots were inspected against the prior references and retained from the

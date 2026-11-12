@@ -108,6 +108,7 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet> {
             price: price,
             currency: 'USD',
             preserveNote: true,
+            waitForSquareConfirmation: true,
           );
       if (mounted) {
         setState(() {
@@ -215,11 +216,15 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet> {
                 ),
                 if (_squareStatus == 'pending' || _squareStatus == 'review')
                   TextButton(
-                    onPressed: () => Navigator.of(context).push(
-                      MaterialPageRoute<void>(
-                        builder: (_) => const SquareScreen(),
-                      ),
-                    ),
+                    onPressed: () async {
+                      _focus.unfocus();
+                      await Navigator.of(context).push(
+                        MaterialPageRoute<void>(
+                          builder: (_) => const SquareScreen(),
+                        ),
+                      );
+                      if (mounted) _focus.unfocus();
+                    },
                     child: const Text('Check Square status'),
                   ),
                 const SizedBox(height: 12),

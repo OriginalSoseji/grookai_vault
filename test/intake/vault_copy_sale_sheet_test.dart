@@ -22,12 +22,14 @@ class _Service extends SaleListingService {
     String currency = 'USD',
     String? note,
     bool preserveNote = false,
+    bool waitForSquareConfirmation = false,
   }) async {
     calls++;
     savedPrice = price;
     expect(instanceId, 'copy-1');
     expect(currency, 'USD');
     expect(preserveNote, true);
+    expect(waitForSquareConfirmation, true);
     if (wait != null) await wait!.future;
     if (fail) throw StateError('fixture failure');
     return SaleListingSaveResult(
