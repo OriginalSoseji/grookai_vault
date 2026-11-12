@@ -1,5 +1,38 @@
 # Grookai Operator Playbook V1
 
+## Square live workflow and native confirmation — November 12, 2026
+
+The November 10 preparation entry below is historical. Production is linked
+under schema493; automatic catalog, stock, artwork and recovery are enabled for
+the verified seller. A genuine Square cash checkout has been reconciled to the
+exact-copy sale and zero-stock state. Preserve its existing connection, stable
+grookai `/q/{GVVI}` SKU, retained operation receipts and recovery schedule.
+Do not repeat migrations, OAuth setup or inventory enrollment as routine recovery.
+
+Read [New card to Square checkout](../playbooks/NEW_CARD_SALE_WORKFLOW_V1.md)
+for reviewed intake, the exact-copy sale editor and truthful Square status.
+The native foreground editor's confirmation uses one 55-second budget
+and at most five wakeups after explicit pending responses; background notices
+keep their short deadline. Unknown/transport results remain pending. Price and
+sale intent are written once, and the fenced server worker retains authority.
+Release evidence lives in the private `new_card_workflow_20261112` checkpoint;
+source qualification, hosted deployment and installed Samsung proof are distinct.
+Samsung updates require normal gates and a higher-version, same-signer,
+data-preserving installation. Do not treat a prepared APK as an installed or
+production-store-signed release; the checkpoint records the actual build proof.
+
+The live new-copy test exposed a temporary nonphysical operator fixture ending
+003421. With the owner's explicit one-time exception to the no-direct-DB-edits
+rule, a guarded administrative void archived only that fixture after provider
+zero-stock and no-sale checks. Independent readback confirmed228 active owner
+copies,94 real active allocations, one prior genuine sale and unchanged schema493
+and guard sources. The original cleanup guard failed before writes on an invalid
+worker column; readback proved no mutation, then the corrected environment guard
+passed a full read-only validation before successful cleanup. Retain both
+attempts and their private receipts. This exception does not authorize future
+direct edits. Never assert physical possession or fabricate a payment to retire
+test inventory; future live acceptance must use an actual owned physical card.
+
 ## Square QR catalog automation preparation — November 10, 2026
 
 Read [the Square sync checkpoint](../checkpoints/SQUARE_CATALOG_SYNC_20261110.md).

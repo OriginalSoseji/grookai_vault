@@ -35,6 +35,7 @@ class SaleListingService {
     String currency = 'USD',
     String? note,
     bool preserveNote = false,
+    bool waitForSquareConfirmation = false,
   }) async {
     final userId = _currentUserId();
     if (userId.isEmpty) {
@@ -86,6 +87,7 @@ class SaleListingService {
         ? await SquareSyncNotifier.offerSaved(
             _requiredClient(),
             normalizedInstanceId,
+            waitForConfirmation: waitForSquareConfirmation,
           )
         : 'not_enabled';
     return SaleListingSaveResult(
