@@ -3,7 +3,7 @@ import fs from "node:fs";
 import {randomUUID, createHash} from "node:crypto";
 
 const lab="C:/grookai_vault_operator_artifacts/vendor_rules_labels_20261112/fresh-494";
-const output="C:/grookai_vault_operator_artifacts/vendor_rules_labels_20261112/web-qa-v3";
+const output="C:/grookai_vault_operator_artifacts/vendor_rules_labels_20261112/web-qa-v5";
 test.use({baseURL:"http://127.0.0.1:62380",viewport:{width:1365,height:900}});
 test("vendor preset, exact-copy automatic sale, fixed override and reusable label", async ({page}) => {
   test.setTimeout(240000);

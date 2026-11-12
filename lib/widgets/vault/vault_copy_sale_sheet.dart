@@ -87,32 +87,55 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet> {
   Map<String, dynamic>? _pricing, _quote;
   String _selection = 'manual';
   bool _quoting = false;
-  int _quoteGeneration = 0;
+  bool _edited = false, _pricingCurrent = false, _pricingConflict = false;
+  int _quoteGeneration = 0, _workspaceGeneration = 0;
+  int? _editRevision;
+  bool get _usesPricing =>
+      widget.service == null || widget.pricingService != null;
   VendorPricingRulesService get _pricingService =>
       widget.pricingService ?? VendorPricingRulesService();
   @override
   void initState() {
     super.initState();
     // Existing injected listing tests do not acquire a global session.
-    if (widget.service == null || widget.pricingService != null) _loadPricing();
+    if (_usesPricing) _loadPricing();
   }
 
-  Future<void> _loadPricing() async {
+  Future<bool> _loadPricing() async {
+    final generation = ++_workspaceGeneration;
     try {
-      final w = await _pricingService.workspace(widget.copy.instanceId);
-      if (!mounted) return;
+      final w = await _pricingService
+          .workspace(widget.copy.instanceId)
+          .timeout(const Duration(seconds: 12));
+      if (!mounted || generation != _workspaceGeneration) return false;
       final c = w['copy'] as Map?;
+      final revision = (c?['revision'] as int?) ?? 0;
       setState(() {
         _pricing = w;
-        _selection = c?['mode'] == 'preset'
-            ? c!['rule_id'] as String
-            : c?['mode'] == 'default'
-            ? 'default'
-            : 'manual';
+        _pricingCurrent = true;
+        if (_editRevision == null || !_edited) {
+          _editRevision = revision;
+        } else if (_editRevision != revision) {
+          _pricingConflict = true;
+          _error =
+              'This copy\'s pricing changed in another view. Close this sheet and reload the copy before saving your edits.';
+        }
+        if (!_edited) {
+          _selection = c?['mode'] == 'preset'
+              ? c!['rule_id'] as String
+              : c?['mode'] == 'default'
+              ? 'default'
+              : 'manual';
+        }
       });
-      if (_selection != 'manual') await _preview();
+      if (_selection != 'manual' && !_pricingConflict) await _preview();
+      return true;
     } catch (_) {
       /* Manual sale flow remains available during staged rollout. */
+      if (mounted && generation == _workspaceGeneration) {
+        setState(() => _pricingCurrent = false);
+      }
+      return false;
     }
   }
 
@@ -130,10 +153,9 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet> {
       _quote = null;
     });
     try {
-      final q = await _pricingService.preview(
-        widget.copy.instanceId,
-        _selection,
-      );
+      final q = await _pricingService
+          .preview(widget.copy.instanceId, _selection)
+          .timeout(const Duration(seconds: 12));
       if (mounted && generation == _quoteGeneration) setState(() => _quote = q);
     } catch (_) {
       if (mounted && generation == _quoteGeneration) {
@@ -160,7 +182,7 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet> {
   }
 
   Future<void> _save() async {
-    if (_busy) return;
+    if (_busy || _pricingConflict) return;
     final raw = _price.text.trim();
     final price = double.tryParse(raw);
     if (_selection == 'manual' &&
@@ -176,6 +198,8 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet> {
       return;
     }
     FocusScope.of(context).unfocus();
+    // A response started before this write cannot replace its refreshed base.
+    _workspaceGeneration++;
     setState(() {
       _busy = true;
       _error = null;
@@ -187,13 +211,8 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet> {
         squareStatus = await _pricingService.apply(
           instanceId: copy.instanceId,
           selection: _selection,
-          revision: ((_pricing?['copy'] as Map?)?['revision'] as int?) ?? 0,
+          revision: _editRevision ?? 0,
         );
-        try {
-          _pricing = await _pricingService.workspace(copy.instanceId);
-        } catch (_) {
-          /* The committed sale and Square result remain confirmed. */
-        }
       } else {
         final result = await (widget.service ?? SaleListingService())
             .saveSingleCardListing(
@@ -208,11 +227,18 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet> {
             );
         squareStatus = result.squareStatus;
       }
+      _edited = false;
+      _pricingCurrent = false;
+      final pricingRefreshed = !_usesPricing || await _loadPricing();
       if (mounted) {
         setState(() {
           _saved = true;
           _committed = true;
           _squareStatus = squareStatus;
+          if (!pricingRefreshed) {
+            _error =
+                'Sale saved. Close this sheet and reload the copy before changing its pricing again.';
+          }
         });
         widget.onSaved?.call();
       }
@@ -272,6 +298,7 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet> {
               const SizedBox(height: 16),
               if (_pricing != null) ...[
                 DropdownButtonFormField<String>(
+                  key: ValueKey('copy-pricing-$_selection'),
                   initialValue: _selection,
                   isExpanded: true,
                   decoration: const InputDecoration(labelText: 'Pricing'),
@@ -283,6 +310,7 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet> {
                     DropdownMenuItem(
                       value: 'default',
                       enabled:
+                          _pricingCurrent &&
                           _pricing!['enabled'] == true &&
                           (_pricing!['settings'] as Map)['default_rule_id'] !=
                               null,
@@ -291,7 +319,8 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet> {
                     ...((_pricing!['rules'] as List?) ?? []).map(
                       (r) => DropdownMenuItem(
                         value: r['id'] as String,
-                        enabled: _pricing!['enabled'] == true,
+                        enabled:
+                            _pricingCurrent && _pricing!['enabled'] == true,
                         child: Text('${r['name']} · automatic'),
                       ),
                     ),
@@ -300,10 +329,11 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet> {
                       ? null
                       : (v) {
                           setState(() {
+                            _edited = true;
                             _selection = v!;
                             _saved = false;
                             _squareStatus = null;
-                            _error = null;
+                            if (!_pricingConflict) _error = null;
                           });
                           _preview();
                         },
@@ -314,7 +344,9 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet> {
                       : () async {
                           await Navigator.of(context).push(
                             MaterialPageRoute<void>(
-                              builder: (_) => const VendorPricingRulesScreen(),
+                              builder: (_) => VendorPricingRulesScreen(
+                                service: _pricingService,
+                              ),
                             ),
                           );
                           if (mounted) await _loadPricing();
@@ -338,9 +370,10 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet> {
                     errorMaxLines: 4,
                   ),
                   onChanged: (_) => setState(() {
+                    _edited = true;
                     _saved = false;
                     _squareStatus = null;
-                    _error = null;
+                    if (!_pricingConflict) _error = null;
                   }),
                   onSubmitted: (_) => _save(),
                 ),
@@ -367,8 +400,10 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet> {
               FilledButton(
                 onPressed:
                     _busy ||
+                        _pricingConflict ||
                         (_selection != 'manual' &&
-                            (_quoting ||
+                            (!_pricingCurrent ||
+                                _quoting ||
                                 _quote?['status'] != 'ready' ||
                                 _pricing?['enabled'] != true))
                     ? null

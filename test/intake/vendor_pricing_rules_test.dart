@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:grookai_vault/models/grookai_sale_listing.dart';
@@ -26,8 +27,9 @@ void main() {
   );
   Future<void> render(
     WidgetTester tester,
-    VendorPricingRulesService service,
-  ) async {
+    VendorPricingRulesService service, {
+    SaleListingService? listing,
+  }) async {
     tester.view.physicalSize = const Size(400, 1000);
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.resetPhysicalSize);
@@ -38,7 +40,7 @@ void main() {
           body: VaultCopySaleSheet(
             cardName: 'Venusaur ex',
             copy: copy,
-            service: SaleListingService(),
+            service: listing ?? SaleListingService(),
             pricingService: service,
           ),
         ),
@@ -46,6 +48,273 @@ void main() {
     );
     await tester.pumpAndSettle();
   }
+
+  Map<String, dynamic> state(int revision, String mode) => {
+    ...workspace,
+    'copy': {'mode': mode, 'revision': revision, 'state': 'ready'},
+  };
+  Future<void> choose(WidgetTester tester, String label) async {
+    final field = find.byType(DropdownButtonFormField<String>);
+    await tester.ensureVisible(field);
+    await tester.tap(field);
+    await tester.pumpAndSettle();
+    await tester.tap(find.text(label).last);
+    await tester.pumpAndSettle();
+  }
+
+  Future<void> save(WidgetTester tester) async {
+    final button = find.widgetWithText(
+      FilledButton,
+      'Make public and For sale',
+    );
+    await tester.ensureVisible(button);
+    await tester.tap(button);
+    await tester.pumpAndSettle();
+  }
+
+  SaleListingService manualWriter(void Function() committed) =>
+      SaleListingService(
+        currentUserId: 'owner-1',
+        persist:
+            ({required userId, required instanceId, required values}) async {
+              committed();
+              return {
+                ...values,
+                'id': instanceId,
+                'gv_vi_id': copy.gvviId,
+                'card_print_id': copy.cardPrintId,
+              };
+            },
+      );
+
+  testWidgets(
+    'manual save then automatic uses the new revision in the same sheet',
+    (tester) async {
+      var current = state(3, 'default');
+      int? appliedRevision;
+      final pricing = VendorPricingRulesService(
+        call: (action, data) async {
+          if (action == 'workspace') return current;
+          if (action == 'preview') {
+            return {
+              'status': 'ready',
+              'amountMinor': 1150,
+              'ruleName': 'Show pricing',
+            };
+          }
+          if (action == 'apply') {
+            appliedRevision = data['expectedRevision'] as int;
+            if (appliedRevision != (current['copy'] as Map)['revision']) {
+              return {'ok': false, 'error': 'vendor_pricing_copy_changed'};
+            }
+            current = state(5, 'default');
+            return {
+              'ok': true,
+              'status': 'ready',
+              'id': 'copy-1',
+              'amountMinor': 1150,
+            };
+          }
+          throw StateError('unexpected action');
+        },
+      );
+      await render(
+        tester,
+        pricing,
+        listing: manualWriter(() => current = state(4, 'manual')),
+      );
+      await choose(tester, 'My price · fixed');
+      await tester.enterText(find.byType(TextField), '2.50');
+      await save(tester);
+      await choose(tester, 'Vendor default · automatic');
+      await save(tester);
+      expect(appliedRevision, 4);
+      expect(find.textContaining('For sale saved.'), findsOneWidget);
+      expect(find.textContaining('could not be confirmed'), findsNothing);
+    },
+  );
+
+  testWidgets(
+    'late initial strategy cannot replace a fixed price being typed',
+    (tester) async {
+      final initial = Completer<Map<String, dynamic>>();
+      var current = state(3, 'default');
+      var reads = 0, applies = 0;
+      final pricing = VendorPricingRulesService(
+        call: (action, data) async {
+          if (action == 'workspace') {
+            return ++reads == 1 ? initial.future : current;
+          }
+          if (action == 'preview') {
+            return {
+              'status': 'ready',
+              'amountMinor': 1150,
+              'ruleName': 'Show pricing',
+            };
+          }
+          applies++;
+          throw StateError('manual choice must not invoke automatic apply');
+        },
+      );
+      double? entered;
+      final listing = SaleListingService(
+        currentUserId: 'owner-1',
+        persist:
+            ({required userId, required instanceId, required values}) async {
+              entered = values['asking_price_amount'] as double;
+              current = state(4, 'manual');
+              return {
+                ...values,
+                'id': instanceId,
+                'gv_vi_id': copy.gvviId,
+                'card_print_id': copy.cardPrintId,
+              };
+            },
+      );
+      await render(tester, pricing, listing: listing);
+      await tester.enterText(find.byType(TextField), '2.50');
+      initial.complete(state(3, 'default'));
+      await tester.pumpAndSettle();
+      expect(find.byType(TextField), findsOneWidget);
+      expect(
+        tester.widget<TextField>(find.byType(TextField)).controller!.text,
+        '2.50',
+      );
+      await save(tester);
+      expect(entered, 2.5);
+      expect(applies, 0);
+    },
+  );
+
+  testWidgets(
+    'initial response arriving after a confirmed save cannot restore its old strategy',
+    (tester) async {
+      final initial = Completer<Map<String, dynamic>>();
+      var current = state(3, 'default');
+      var reads = 0;
+      int? appliedRevision;
+      final pricing = VendorPricingRulesService(
+        call: (action, data) async {
+          if (action == 'workspace') {
+            return ++reads == 1 ? initial.future : current;
+          }
+          if (action == 'preview') {
+            return {
+              'status': 'ready',
+              'amountMinor': 1150,
+              'ruleName': 'Show pricing',
+            };
+          }
+          if (action == 'apply') {
+            appliedRevision = data['expectedRevision'] as int;
+            if (appliedRevision != 4) {
+              return {'ok': false, 'error': 'vendor_pricing_copy_changed'};
+            }
+            current = state(5, 'default');
+            return {
+              'ok': true,
+              'status': 'ready',
+              'id': 'copy-1',
+              'amountMinor': 1150,
+            };
+          }
+          throw StateError('unexpected action');
+        },
+      );
+      await render(
+        tester,
+        pricing,
+        listing: manualWriter(() => current = state(4, 'manual')),
+      );
+      await tester.enterText(find.byType(TextField), '2.50');
+      await save(tester);
+      initial.complete(state(3, 'default'));
+      await tester.pumpAndSettle();
+      expect(find.byType(TextField), findsOneWidget);
+      expect(
+        tester.widget<TextField>(find.byType(TextField)).controller!.text,
+        '2.50',
+      );
+      await choose(tester, 'Vendor default · automatic');
+      await save(tester);
+      expect(appliedRevision, 4);
+    },
+  );
+
+  testWidgets(
+    'failed refresh keeps the confirmed manual sale and blocks stale automatic edits',
+    (tester) async {
+      var reads = 0;
+      final pricing = VendorPricingRulesService(
+        call: (action, data) async {
+          if (action == 'workspace') {
+            if (++reads == 1) return state(3, 'manual');
+            throw StateError('fixture read outage');
+          }
+          throw StateError('automatic calls must stay disabled');
+        },
+      );
+      await render(tester, pricing, listing: manualWriter(() {}));
+      await tester.enterText(find.byType(TextField), '2.50');
+      await save(tester);
+      expect(find.textContaining('For sale saved.'), findsOneWidget);
+      expect(
+        find.textContaining('Sale saved. Close this sheet'),
+        findsOneWidget,
+      );
+      final field = tester.widget<DropdownButton<String>>(
+        find.byType(DropdownButton<String>),
+      );
+      expect(
+        field.items!.singleWhere((item) => item.value == 'default').enabled,
+        false,
+      );
+    },
+  );
+
+  testWidgets(
+    'managing rules cannot advance an unsaved editor past an external manual change',
+    (tester) async {
+      var current = state(3, 'default');
+      final pricing = VendorPricingRulesService(
+        call: (action, data) async {
+          if (action == 'workspace') return current;
+          if (action == 'preview') {
+            return {
+              'status': 'ready',
+              'amountMinor': 1150,
+              'ruleName': 'Show pricing',
+            };
+          }
+          throw StateError('must not write');
+        },
+      );
+      await render(tester, pricing);
+      await choose(tester, 'My price · fixed');
+      await tester.enterText(find.byType(TextField), '2.50');
+      current = state(7, 'manual');
+      await tester.tap(find.text('Manage pricing rules'));
+      await tester.pumpAndSettle();
+      await tester.pageBack();
+      await tester.pumpAndSettle();
+      expect(
+        find.textContaining('pricing changed in another view'),
+        findsOneWidget,
+      );
+      expect(
+        tester
+            .widget<FilledButton>(
+              find.widgetWithText(FilledButton, 'Make public and For sale'),
+            )
+            .onPressed,
+        isNull,
+      );
+      expect(
+        tester.widget<TextField>(find.byType(TextField)).controller!.text,
+        '2.50',
+      );
+    },
+  );
 
   testWidgets(
     'opted-in new copy previews server price and applies no client amount',

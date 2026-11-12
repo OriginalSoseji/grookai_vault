@@ -24,6 +24,12 @@ If another view changes the copy while you have unsaved edits, the editor stops
 saving and offers Reload latest price. Background polling never advances the
 revision against which those edits began.
 
+The native sale sheet also preserves a fixed price entered while settings load.
+After either a confirmed manual or automatic save it refreshes its edit revision,
+so switching back to a rule works without closing the sheet. Responses begun
+before the save cannot restore an old strategy. If that refresh fails, the sale
+stays confirmed and automatic editing requires reopening the copy.
+
 Print label is available after saving For sale, from the native QR tools, and
 from the website's QR and label page. Vendor Mode and the account's Print card
 labels link offer a bounded batch picker. Select physical copies explicitly.

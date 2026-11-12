@@ -37,10 +37,10 @@ export default function VaultCopySaleCard({ instanceId, intent, amount, currency
   useEffect(() => { if (!submitting.current && !dirty.current) setPrice(currency === "USD" && amount !== null ? amount.toFixed(2) : ""); }, [amount, currency]);
   useEffect(() => {
     let alive = true;
-    workspaceGeneration.current++;
+    const generation = ++workspaceGeneration.current;
     editRevision.current = null;
     void vendorPricingAction("workspace", {instanceId}).then(result => {
-      if (!alive || !result.ok) return;
+      if (!alive || !result.ok || generation !== workspaceGeneration.current) return;
       const w = result.value; setWorkspace(w);
       editRevision.current = w.copy?.revision ?? 0;
       if (!dirty.current) setMode(pricingSelection(w));
@@ -115,7 +115,7 @@ export default function VaultCopySaleCard({ instanceId, intent, amount, currency
           : "For sale saved. Your profile and sharing settings still apply.");
         dirty.current = false;
         const fresh = await vendorPricingAction("workspace", {instanceId}).catch(() => null);
-        if (fresh?.ok) {setWorkspace(fresh.value); editRevision.current = fresh.value.copy?.revision ?? 0;}
+        if (fresh?.ok) {setWorkspace(fresh.value); editRevision.current = fresh.value.copy?.revision ?? 0; setMode(pricingSelection(fresh.value));}
         router.refresh();
       } catch {
         setError(true); setMessage("The save could not be confirmed. Reload this copy before retrying.");
