@@ -27,6 +27,18 @@ an operator's canonical production environment in a local build/server. The
 Sandbox qualifier writes no production request, stock count or payment. Its
 versioned intents, receipts and proof stay outside the checkout.
 
+The renderer's bundled Roboto file must be traced into page functions as well as
+Square API functions. Owner card saves call the same backend from a Server Action's
+`after()` continuation; an API-only include caused the live page continuation to
+fail with `square_artwork_font_unavailable` while manual API sync still succeeded.
+Keep the narrow font asset under the global `/*` route include. After a strict
+build, resolve the `files` entries relative to the generated `.nft.json` files for
+`vault/gvvi/[gvvi_id]/page`, `vault/page`, and `api/square/route` and prove each
+contains `assets/fonts/Roboto/Roboto-Regular.ttf`. After deployment, exercise a
+real owner card save and read its terminal worker run; endpoint-only proof is
+insufficient. A same-value formatting edit may exercise pricing save without
+changing the actual asking amount, currency, or note.
+
 Before activation, verify the unchanged production project/schema and current
 source, hosted checks and original Samsung531 installation. Read a public artwork
 descriptor for an eligible copy. Verify that a private/ineligible copy is 404 and

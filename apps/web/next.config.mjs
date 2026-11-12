@@ -86,7 +86,9 @@ const nextConfig = {
   outputFileTracingRoot: repoRoot,
   serverExternalPackages: ["tesseract.js", "@tesseract.js-data/eng", "@techstark/opencv-js"],
   outputFileTracingIncludes: {
-      "/api/square{,/**}": ["../../assets/fonts/Roboto/Roboto-Regular.ttf"],
+      // Owner Server Actions can continue Square sync from any page after the
+      // response. Include the one runtime font in page functions as well as APIs.
+      "/*": ["../../assets/fonts/Roboto/Roboto-Regular.ttf"],
       "/api/stores/owner/intake/match": [
         "./src/lib/stores/scan*.mjs",
         "./src/lib/stores/scanExpanded*.json*",
