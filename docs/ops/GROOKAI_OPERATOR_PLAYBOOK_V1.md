@@ -4584,6 +4584,10 @@ backfill. Read back the actual Square image and a hosted worker run. Preserve se
 photos and their primary position; promote newer grookai artwork with verified image
 ordering. Parent fallback is visibly representative. Do not repeat database migrations
 or reinstall Samsung531 for this extension. Do not replace uncertain image requests.
+The actual Samsung POS crops portrait thumbnails to a square. Renderer V2 adds a
+square canvas around the full card and centers its footer. Verify the on-device
+thumbnail, including the footer and card bounds, before mass activation; a provider
+file readback alone cannot qualify that UI behavior.
 
 ## Square stock and sale recovery candidate — November 11, 2026
 

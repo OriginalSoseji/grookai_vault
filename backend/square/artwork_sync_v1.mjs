@@ -81,11 +81,13 @@ export async function syncSquareArtwork({connection,context,client,rpc,state,req
   accepted=true;
   let confirmed=await client.item(state.target.item_id);validateItem(confirmed,{...state,pendingOperation:operation});
   image=await findAttached(client,confirmed,art);
-  if(!image&&uploaded){
-   // A deduplicated upload can return an existing unattached image. Retain the completed upload, then prepare a separate exact attach request.
+  const attach=uploaded?await attachRequest(client,confirmed,art,uploaded.id,connection.id):null;
+  if(uploaded&&(!image||!isDeepStrictEqual(imageIds(confirmed),attach.object.item_data.image_ids))){
+   // Retain the upload fact before separately attaching a deduplicated image or
+   // promoting newer grookai artwork. The fresh item read preserves seller photos.
    await rpc('finish',{...scoped,operationId:operation.id,itemId:confirmed.id,variationId:state.target.variation_id});
    operation=null;accepted=false;sent=false;wasUncertain=false;
-   const request=await attachRequest(client,confirmed,art,uploaded.id,connection.id);
+   const request=attach;
    art={...art,mode:'attach',request,imageIdsBefore:imageIds(confirmed)};delete art.fileBase64;
    operation=await rpc('prepare',{...scoped,requestId:randomUUID(),payload:{artwork:art},sourceSnapshot:state.offer,projection:squareDesiredProjection(state.offer)});
    operation=await rpc('begin',{...scoped,operationId:operation.id});sent=true;
