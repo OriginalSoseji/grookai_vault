@@ -11,6 +11,7 @@ import { requireServerUser } from "@/lib/auth/requireServerUser";
 import { resolveServerUserEntitlement } from "@/lib/entitlements/resolveServerUserEntitlement";
 import { getVendorQrDestinationUrl, renderVendorQrSvg, svgToDataUrl } from "@/lib/gvvi/vendorQr";
 import VaultInstancePricingCard from "@/components/vault/VaultInstancePricingCard";
+import VaultCopySaleCard from "@/components/vault/VaultCopySaleCard";
 import VaultInstanceNotesMediaCard from "@/components/vault/VaultInstanceNotesMediaCard";
 import VaultInstanceSectionMembershipCard from "@/components/vault/VaultInstanceSectionMembershipCard";
 import VaultInstanceSettingsCard from "@/components/vault/VaultInstanceSettingsCard";
@@ -189,11 +190,12 @@ export default async function VaultInstancePage(
             >
               Back to {returnContext.label}
             </Link>
+            {isActive && <Link href="#copy-sale" className="gv-primary-button">{detail.intent === "sell" ? "Edit sale price" : "Set sale price"}</Link>}
             {detail.gvId ? (
               <Link
                 href={addCardReturnPath(`/card/${detail.gvId}`, managementPath)}
                 prefetch={false}
-                className="gv-primary-button"
+                className="gv-secondary-button"
               >
                 View card
               </Link>
@@ -207,6 +209,10 @@ export default async function VaultInstancePage(
           </>
         }
       />
+
+      {isActive && <VaultCopySaleCard instanceId={detail.instanceId} intent={detail.intent}
+        amount={detail.askingPriceAmount} currency={detail.askingPriceCurrency}
+        qrHref={canManageVendorQr ? `/vault/gvvi/${encodeURIComponent(detail.gvviId)}/qr` : null} />}
 
       <section className="border-y border-slate-200/80 py-5" aria-labelledby="manage-copy-title">
         <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Exact-copy workspace</p>
@@ -308,19 +314,6 @@ export default async function VaultInstancePage(
           {/* LOCK: GVVI is the only product surface for exact-copy Wall and Section curation. */}
           <VaultDispositionCard key={detail.instanceId} instanceId={detail.instanceId} gvviId={detail.gvviId}
             isActive={isActive} receipt={disposition.receipt} receiptUnavailable={disposition.unavailable} />
-          {isActive && <><VaultInstanceSettingsCard
-            instanceId={detail.instanceId}
-            initialIntent={detail.intent}
-            initialConditionLabel={detail.conditionLabel}
-            initialImageDisplayMode={detail.imageDisplayMode}
-            isActive={isActive}
-            isGraded={detail.isGraded}
-          />
-
-          <VaultInstanceSectionMembershipCard
-            model={sectionMembershipModel}
-            isActive={isActive}
-          /></>}
 
         <PageSection surface="card" spacing="compact" className="space-y-4 border-t border-slate-200 px-4 py-7 sm:px-5">
             <SectionHeader

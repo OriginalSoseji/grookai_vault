@@ -102,6 +102,7 @@ export default function CardPageMarketVaultPanels({
   const initialPrinting = useMemo(() => getInitialPrinting(printings, initialPrintingId), [initialPrintingId, printings]);
   const [selectedPrinting, setSelectedPrinting] = useState<CardPrinting | null>(initialPrinting);
   const addDialog = useRef<HTMLDialogElement>(null);
+  const [addBusy, setAddBusy] = useState(false);
   useEffect(() => {
     if (initialAddOpen) addDialog.current?.showModal();
     else addDialog.current?.close();
@@ -155,16 +156,15 @@ export default function CardPageMarketVaultPanels({
         {cardPrintId ? <SaveCardButton cardPrintId={cardPrintId} isAuthenticated={isAuthenticated} loginHref={loginHref} /> : null}
       </div>
       <dialog ref={addDialog} className="gv-collector-sheet" aria-label="Add to Vault"
-        onClick={event => { if (event.target === event.currentTarget) addDialog.current?.close(); }}>
+        onCancel={event => { if (addBusy) event.preventDefault(); }}
+        onClick={event => { if (!addBusy && event.target === event.currentTarget) addDialog.current?.close(); }}>
         <div className="gv-sheet-handle" />
         <div className="gv-sheet-heading"><h2>Add to Vault</h2>
-          <button type="button" aria-label="Close add to Vault" onClick={() => addDialog.current?.close()}>×</button></div>
+          <button type="button" aria-label="Close add to Vault" disabled={addBusy} onClick={() => addDialog.current?.close()}>×</button></div>
         <CollectorCardContext name={cardName} context={[setName, selectedPrinting?.finish_name].filter(Boolean).join(" · ")} imageUrl={imageUrl} />
 
       <div className="gv-detail-vault gv-action-panel order-1 space-y-5 p-5 sm:p-6 lg:order-2" data-card-vault-panel>
         <div className="gv-detail-ownership" data-owned={rawCount > 0 || slabCount > 0}>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">Your collection</p>
-          <h2 className="mt-1 text-lg font-semibold tracking-tight text-slate-950 dark:text-white">Add to Vault</h2>
           <p className="gv-hi-card-identity mt-2 text-sm leading-6">{ownershipLabel}.</p>
           {rawCount > 0 || slabCount > 0 ? (
             <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">
@@ -178,6 +178,7 @@ export default function CardPageMarketVaultPanels({
         {editionResolution && ["selection_required", "unavailable"].includes(editionResolution.status)
           ? <JungleEditionChoices resolution={editionResolution} /> : <AddToVaultCardAction
           compactPresentation
+          onPendingChange={setAddBusy}
           action={addToVaultAction}
           isAuthenticated={isAuthenticated}
           loginHref={loginHref}
