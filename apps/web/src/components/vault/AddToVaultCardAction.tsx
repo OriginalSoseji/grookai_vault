@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { type ReactNode, useActionState, useEffect, useId, useRef, useState } from "react";
+import { type ReactNode, useActionState, useCallback, useEffect, useId, useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import { isCollectorAcquisition, localCollectorAcquisition, localCollectorToday, type CollectorAcquisition } from "@/lib/vault/collectorAcquisitionDate";
@@ -51,6 +51,7 @@ type AddToVaultCardActionProps = {
   onSelectedPrintingChange?: (printing: CardPrinting) => void;
   telemetryEnabled?: boolean;
   compactPresentation?: boolean;
+  onPendingChange?: (pending: boolean) => void;
 };
 
 function getDefaultPrinting(
@@ -177,10 +178,16 @@ export default function AddToVaultCardAction({
   onSelectedPrintingChange,
   telemetryEnabled = true,
   compactPresentation = false,
+  onPendingChange,
 }: AddToVaultCardActionProps) {
   const router = useRouter();
   const viewer = useClientViewer(null);
-  const [state, formAction, actionPending] = useActionState(action, null);
+  const retryableAction = useCallback(async (previous: AddToVaultActionResult | null, formData: FormData): Promise<AddToVaultActionResult> => {
+    try { return await action(previous, formData); }
+    catch { return { ok: false, status: "error", message: "The save could not be confirmed. Your review is retained; retry uses the same request.", submissionKey: Date.now() }; }
+  }, [action]);
+  const [state, formAction, actionPending] = useActionState(retryableAction, null);
+  useEffect(() => { onPendingChange?.(actionPending); }, [actionPending, onPendingChange]);
   const finishSelectId = useId();
   const [requestId, setRequestId] = useState("");
   const [quantity, setQuantity] = useState(1);
@@ -556,7 +563,7 @@ export default function AddToVaultCardAction({
                 </label>
                 <VaultSubmitButton
                   disabled={!reviewed || !acquisition || !requestId || restoredKey !== requestStorageKey || !selectedChildPrintingId}
-                  label="Add to Vault"
+                  label={state && !state.ok ? "Retry addition" : "Add to Vault"}
                   successActive={successPulse !== null}
                   successLabel={successPulse === "incremented"
                     ? "Updated"
@@ -610,12 +617,15 @@ export default function AddToVaultCardAction({
               : null}
             {state?.ok && state.gvvi_id
               ? (
+                <div className="mt-3 flex flex-wrap gap-3">
                 <Link
                   href={`/vault/gvvi/${encodeURIComponent(state.gvvi_id)}`}
                   className="mt-3 inline-flex min-h-11 items-center rounded-full border border-current px-4 py-2 text-sm font-medium transition active:scale-[0.98]"
                 >
                   View exact copy
                 </Link>
+                {state.quantity === 1 && <Link href={`/vault/gvvi/${encodeURIComponent(state.gvvi_id)}#copy-sale`} className="gv-primary-button">Set sale price</Link>}
+                </div>
               )
               : null}
             {state?.status === "login-required" || !effectiveIsAuthenticated

@@ -34,6 +34,7 @@ class SaleListingService {
     required double price,
     String currency = 'USD',
     String? note,
+    bool preserveNote = false,
   }) async {
     final userId = _currentUserId();
     if (userId.isEmpty) {
@@ -59,7 +60,7 @@ class SaleListingService {
       'pricing_mode': 'asking',
       'asking_price_amount': normalizedPrice,
       'asking_price_currency': normalizedCurrency,
-      'asking_price_note': _nullable(note),
+      if (!preserveNote) 'asking_price_note': _nullable(note),
     };
 
     final row = await _persistListing(
