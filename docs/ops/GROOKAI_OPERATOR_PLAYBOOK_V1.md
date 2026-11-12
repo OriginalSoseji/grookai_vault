@@ -4571,6 +4571,18 @@ See [the image transport checkpoint](../checkpoints/CATALOG_PUBLIC_CARD_IMAGE_TR
 
 ## Square canonical artwork — November 11, 2026
 
+The independent cloud recovery clock follows
+[SQUARE_CLOUD_RECOVERY_V1](../contracts/SQUARE_CLOUD_RECOVERY_V1.md) and
+[its verification playbook](../playbooks/SQUARE_CLOUD_RECOVERY_V1.md).
+The existing Pro hosting project supports its five-minute schedule. The standard
+production-only `CRON_SECRET` authenticates `/api/square/recovery`; new execution
+also requires `GROOKAI_SQUARE_CLOUD_RECOVERY_ENABLED=true`. GitHub scheduling stays
+enabled as a second clock. Both call the existing fenced commerce service; no new
+stock, payment, identity or owner-session authority is introduced. Qualify the
+exact deployment with authenticated and natural invocations plus database receipts,
+not configuration alone. Pause each clock independently; preserve requests and
+claims. No schema migration or Samsung reinstall is part of this extension.
+
 Follow [Square canonical artwork verification and recovery](../playbooks/SQUARE_CANONICAL_ARTWORK_V1.md)
 and [its active contract](../contracts/SQUARE_CANONICAL_ARTWORK_V1.md).
 Website and scheduled worker independently require `GROOKAI_SQUARE_ARTWORK_ENABLED=true`
