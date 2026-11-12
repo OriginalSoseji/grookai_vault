@@ -58,8 +58,11 @@ export default async function VendorQrPrintPage(
             {formatVaultInstancePrice(detail.askingPriceAmount, detail.askingPriceCurrency)}
           </p>
           <p className="mt-1 truncate text-[8.5pt] font-semibold">{detail.cardName}</p>
-          <p className="truncate text-[7pt] text-slate-600">
-            {detail.setCode} #{detail.number} · {detail.conditionLabel ?? "Condition not specified"}
+          <p className="flex min-w-0 gap-1 text-[7pt] text-slate-600">
+            <span className="min-w-0 truncate">{detail.setName}</span>
+            <span className="shrink-0 whitespace-nowrap">
+              #{detail.number} · {detail.conditionLabel ?? "Condition not specified"}
+            </span>
           </p>
         </div>
 
