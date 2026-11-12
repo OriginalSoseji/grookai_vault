@@ -86,14 +86,15 @@ function parseArgs(argv) {
 }
 
 async function readJson(file) {
-  return JSON.parse(await fs.readFile(file, 'utf8'));
+  return JSON.parse((await fs.readFile(file, 'utf8')).replace(/^\uFEFF/, ''));
 }
 
 async function readJsonl(file) {
   const raw = await fs.readFile(file, 'utf8');
   return {
     raw,
-    rows: raw.split(/\r?\n/).filter(Boolean).map((line) => JSON.parse(line)),
+    rows: raw.split(/\r?\n/).filter(Boolean)
+      .map((line, index) => JSON.parse(index === 0 ? line.replace(/^\uFEFF/, '') : line)),
   };
 }
 
