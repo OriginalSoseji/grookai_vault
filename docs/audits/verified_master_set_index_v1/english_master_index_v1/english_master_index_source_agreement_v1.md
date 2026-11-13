@@ -1,6 +1,6 @@
 # English Master Index Source Agreement V1
 
-Generated: 2026-11-12T11:43:57.560Z
+Generated: 2026-11-13T11:27:22.741Z
 
 API agreement is separated from master truth. Unknown or conflicting finish truth fails closed.
 
@@ -114,7 +114,7 @@ API agreement is separated from master truth. Unknown or conflicting finish trut
 | pokemasters_ascended_heroes | 7 |
 | pokemoncard_io_price_breakdown | 18 |
 | pokemonflashfire_league_reverse_exact | 14 |
-| pokemontcg_api | 52184 |
+| pokemontcg_api | 52183 |
 | pokemonwizard_variant_exact | 1 |
 | pokescope_ascended_heroes_mimikyu_097 | 2 |
 | pokescope_ascended_heroes_tarountula_018 | 1 |
@@ -160,10 +160,10 @@ API agreement is separated from master truth. Unknown or conflicting finish trut
 | tcgcsv_tcgplayer_catalog | 1035 |
 | tcgcsv_tcgplayer_catalog_identity | 9 |
 | tcgcsv_tcgplayer_catalog_live | 4 |
-| tcgdex | 50782 |
+| tcgdex | 50781 |
 | tcgnav_exact_finish | 1 |
 | tcgplayer | 4 |
-| tcgplayer_price_guide | 25132 |
+| tcgplayer_price_guide | 25116 |
 | tcgplayer_pro_catalog_page | 1 |
 | tcgplayer_product_675813 | 1 |
 | tcgplayer_product_675814 | 1 |
@@ -760,7 +760,7 @@ API agreement is separated from master truth. Unknown or conflicting finish trut
 | api_agreed | 1 |
 | candidate_unconfirmed | 142 |
 | human_source_verified | 2714 |
-| master_verified | 38041 |
+| master_verified | 38040 |
 
 ## Reverse Holo Disagreement Sample
 
