@@ -25,6 +25,7 @@ param(
   [switch]$SquareCommerceReleaseV4,
   [switch]$SquareCommerceReleaseV5,
   [switch]$SquareCommerceReleaseV6,
+  [switch]$VendorPricingReleaseV1,
 
   [switch]$EbaySellerPublisherBaselineV1,
   [switch]$EbaySellerPublisherReleaseV1,
@@ -110,6 +111,16 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($VendorPricingReleaseV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','VendorPricingReleaseV1','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested -join ',') -ne '20261112180000' -or [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Vendor pricing release permits only the single pinned493-to494 candidate, a new bounded audit directory, and no combined scope or target override.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_vendor_pricing_release_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
 
 if ($SquareCommerceReleaseV6) {
   $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)

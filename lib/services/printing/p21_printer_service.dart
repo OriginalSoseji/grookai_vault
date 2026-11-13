@@ -41,18 +41,33 @@ class P21PrinterService {
   const P21PrinterService();
   static const _channel = MethodChannel('grookai/p21');
   static bool get supported =>
-      !kIsWeb && defaultTargetPlatform == TargetPlatform.iOS;
+      !kIsWeb &&
+      (defaultTargetPlatform == TargetPlatform.iOS ||
+          defaultTargetPlatform == TargetPlatform.android);
 
   Future<List<P21Device>> scan() async {
     final rows = await _channel.invokeListMethod<dynamic>('scan') ?? [];
-    return rows
+    final devices = rows
         .map((row) => P21Device(row['id'] as String, row['name'] as String))
         .toList();
+    final preferences = await SharedPreferences.getInstance();
+    final last = preferences.getString('grookai.p21.last-printer.v1');
+    devices.sort(
+      (a, b) => a.id == last
+          ? -1
+          : b.id == last
+          ? 1
+          : a.name.compareTo(b.name),
+    );
+    return devices;
   }
 
   Future<P21Status> connect(P21Device device) async {
     await _channel.invokeMethod<void>('connect', {'id': device.id});
-    return status();
+    final current = await status();
+    final preferences = await SharedPreferences.getInstance();
+    await preferences.setString('grookai.p21.last-printer.v1', device.id);
+    return current;
   }
 
   Future<P21Status> status() async {

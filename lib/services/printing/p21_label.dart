@@ -29,6 +29,12 @@ class P21Label {
   final Uint8List bitmap;
 
   static Future<P21Label> render(P21LabelContent content) async {
+    if (content.setName.trim().isEmpty ||
+        content.setName.trim().toLowerCase() == 'unknown set') {
+      throw const FormatException(
+        'The full set name is unavailable. A set code will never be printed. Reload the card after its set name is available.',
+      );
+    }
     final qr = QrImage(
       QrCode.fromData(
         data: content.qrUri.toString(),
@@ -79,7 +85,7 @@ class P21Label {
             text: value,
             style: TextStyle(
               color: Colors.black,
-              fontFamily: 'Arial',
+              fontFamily: 'Roboto',
               fontSize: candidate,
               height: 1.05,
               fontWeight: bold ? FontWeight.w700 : FontWeight.w400,
@@ -113,8 +119,8 @@ class P21Label {
     final logo = (await codec.getNextFrame()).image;
     canvas.drawImageRect(
       logo,
-      const Rect.fromLTWH(250, 230, 510, 610),
-      const Rect.fromLTWH(253, 64, 27, 32),
+      Rect.fromLTWH(0, 0, logo.width.toDouble(), logo.height.toDouble()),
+      const Rect.fromLTWH(248, 64, 32, 32),
       Paint()
         ..filterQuality = FilterQuality.high
         ..colorFilter = const ColorFilter.matrix([
@@ -185,5 +191,5 @@ class P21Label {
   }
 
   // Stable, non-sensitive receipt metadata, never a copy ID or printed payload.
-  String get layoutVersion => 'p21_14x40_v2';
+  String get layoutVersion => 'p21_14x40_v3_roboto';
 }

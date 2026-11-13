@@ -38,6 +38,6 @@ test('HEAD checks are harmless and cannot trigger GET side effects',async()=>{co
 test('the HTTP callback waits for the durable worker result before replying',async()=>{
  let release,settled=false;const work=new Promise(resolve=>{release=resolve;}),h=route({work:()=>work});const pending=h.get('Bearer '+secret).then(response=>{settled=true;return response;});await new Promise(resolve=>setImmediate(resolve));assert.equal(h.calls(),1);assert.equal(settled,false);release({status:'succeeded',succeeded:1,failed:0,skipped:0});assert.equal((await pending).status,200);
 });
-test('production cron configuration preserves existing deployment settings and registers only the bounded recovery route',()=>{
- const config=JSON.parse(fs.readFileSync(new URL('../../../vercel.json',import.meta.url)));assert.deepEqual(config.crons,[{path:'/api/square/recovery',schedule:'2-57/5 * * * *'}]);assert.equal(config.functions['src/app/api/stores/owner/intake/match/route.ts'].supportsCancellation,true);assert.equal(config.env.NEXT_PUBLIC_POKEMON_SEALED_CLIENT_V1_ENABLED,'true');assert.equal(config.build.env.NEXT_PUBLIC_POKEMON_SEALED_CLIENT_V1_ENABLED,'true');
+test('production cron configuration preserves the Square recovery and independent pricing clock',()=>{
+ const config=JSON.parse(fs.readFileSync(new URL('../../../vercel.json',import.meta.url)));assert.deepEqual(config.crons,[{path:'/api/square/recovery',schedule:'2-57/5 * * * *'},{path:'/api/vendor-pricing/recovery',schedule:'1-56/5 * * * *'}]);assert.equal(config.functions['src/app/api/stores/owner/intake/match/route.ts'].supportsCancellation,true);assert.equal(config.env.NEXT_PUBLIC_POKEMON_SEALED_CLIENT_V1_ENABLED,'true');assert.equal(config.build.env.NEXT_PUBLIC_POKEMON_SEALED_CLIENT_V1_ENABLED,'true');
 });

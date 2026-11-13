@@ -51,6 +51,7 @@ export default defineConfig([
     ".next-storefront/**",
     ".next-square/**",
     ".next-square-dev/**",
+    ".next-vendor-pricing-dev/**",
     "node_modules/**",
     "out/**",
     "build/**",

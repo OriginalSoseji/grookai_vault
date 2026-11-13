@@ -1,5 +1,14 @@
 # Grookai Operator Playbook V1
 
+## Vendor pricing and price-free labels — candidate, November 12, 2026
+
+Read [Vendor pricing rules and reusable labels](../playbooks/VENDOR_PRICING_RULES_LABELS_OPERATOR_V1.md)
+for default/preset/manual precedence, stale-reference behavior, Square recovery,
+exact-size printing and physical-output acceptance. This candidate adds one
+default-off migration after schema493. Preparation is not evidence of live
+activation or a Samsung update; use its separate release checkpoint. Existing
+Square enrollment, stable QR SKUs, genuine sales, stock and artwork are retained.
+
 ## Square live workflow and native confirmation — November 12, 2026
 
 The November 10 preparation entry below is historical. Production is linked

@@ -11,6 +11,9 @@ import '../../services/gvvi/vendor_pricing_workspace_service.dart';
 import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/card_surface_price.dart';
 import 'public_gvvi_screen.dart';
+import 'vendor_pricing_rules_screen.dart';
+import '../../services/printing/p21_label.dart';
+import '../printing/identity_label_print_screen.dart';
 import '../../services/sealed/owned_sealed_service_v1.dart';
 import '../../widgets/vault/owned_sealed_panel.dart';
 
@@ -56,16 +59,26 @@ class _VendorPricingWorkspaceScreenState
   bool _loading = true;
   bool _showSealed = false;
   String? _loadError;
+  Timer? _priceRefresh;
+  bool _fetching = false;
 
   @override
   void initState() {
     super.initState();
     _searchController.addListener(_refreshFilter);
     unawaited(_load());
+    _priceRefresh = Timer.periodic(const Duration(seconds: 30), (_) {
+      if (mounted &&
+          ModalRoute.of(context)?.isCurrent == true &&
+          WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed) {
+        unawaited(_load(quiet: true));
+      }
+    });
   }
 
   @override
   void dispose() {
+    _priceRefresh?.cancel();
     _searchController
       ..removeListener(_refreshFilter)
       ..dispose();
@@ -84,24 +97,54 @@ class _VendorPricingWorkspaceScreenState
     }
   }
 
-  Future<void> _load() async {
-    setState(() {
-      _loading = true;
-      _loadError = null;
-    });
+  bool get _hasPriceEdits => _rows.any(
+    (row) =>
+        (_priceControllers[row.instanceId]?.text ?? '') !=
+        (row.askingPrice?.toStringAsFixed(2) ?? ''),
+  );
+
+  Future<void> _load({bool quiet = false}) async {
+    if (quiet &&
+        FocusManager.instance.primaryFocus?.context
+                ?.findAncestorStateOfType<EditableTextState>() !=
+            null) {
+      return;
+    }
+    if (_fetching ||
+        (quiet &&
+            (_busyIds.isNotEmpty ||
+                _saveTimers.isNotEmpty ||
+                _errors.isNotEmpty ||
+                _hasPriceEdits))) {
+      return;
+    }
+    _fetching = true;
+    if (!quiet) {
+      setState(() {
+        _loading = true;
+        _loadError = null;
+      });
+    }
     try {
       final data = await widget.service.load();
       if (!mounted) {
         return;
       }
-      for (final controller in _priceControllers.values) {
-        controller.dispose();
+      if (quiet &&
+          (_busyIds.isNotEmpty || _saveTimers.isNotEmpty || _hasPriceEdits)) {
+        return;
       }
-      _priceControllers.clear();
+      final ids = data.rows.map((row) => row.instanceId).toSet();
+      for (final id in _priceControllers.keys.toList()) {
+        if (!ids.contains(id)) _priceControllers.remove(id)?.dispose();
+      }
       for (final row in data.rows) {
-        _priceControllers[row.instanceId] = TextEditingController(
-          text: row.askingPrice?.toStringAsFixed(2) ?? '',
+        final text = row.askingPrice?.toStringAsFixed(2) ?? '';
+        final controller = _priceControllers.putIfAbsent(
+          row.instanceId,
+          () => TextEditingController(),
         );
+        if (controller.text != text) controller.text = text;
       }
       setState(() {
         _rows = data.rows;
@@ -112,11 +155,100 @@ class _VendorPricingWorkspaceScreenState
       if (!mounted) {
         return;
       }
+      if (quiet) return;
       setState(() {
         _loading = false;
         _loadError = _message(error);
       });
+    } finally {
+      _fetching = false;
     }
+  }
+
+  Future<void> _printLabels() async {
+    final eligible = _visibleRows
+        .where(
+          (row) =>
+              row.intent == 'sell' &&
+              row.askingPrice != null &&
+              row.askingPrice! > 0,
+        )
+        .toList();
+    final selected = <String>{};
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => StatefulBuilder(
+        builder: (context, update) => AlertDialog(
+          title: const Text('Choose card labels'),
+          content: SizedBox(
+            width: 440,
+            height: 400,
+            child: eligible.isEmpty
+                ? const Text('Save a copy For sale to print its label.')
+                : ListView(
+                    children: [
+                      const Text(
+                        'Select up to 50 physical copies. No price is printed.',
+                      ),
+                      ...eligible.map(
+                        (row) => CheckboxListTile(
+                          contentPadding: EdgeInsets.zero,
+                          title: Text(row.displayName),
+                          subtitle: Text(
+                            '${row.setName ?? row.setCode ?? ''} · #${row.number} · ${row.gvviId.substring(row.gvviId.length - 6)}',
+                          ),
+                          value: selected.contains(row.instanceId),
+                          onChanged:
+                              selected.length >= 50 &&
+                                  !selected.contains(row.instanceId)
+                              ? null
+                              : (value) => update(() {
+                                  if (value == true) {
+                                    selected.add(row.instanceId);
+                                  } else {
+                                    selected.remove(row.instanceId);
+                                  }
+                                }),
+                        ),
+                      ),
+                    ],
+                  ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(dialogContext, false),
+              child: const Text('Cancel'),
+            ),
+            FilledButton(
+              onPressed: selected.isEmpty
+                  ? null
+                  : () => Navigator.pop(dialogContext, true),
+              child: Text(
+                'Preview ${selected.length} ${selected.length == 1 ? 'label' : 'labels'}',
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+    if (!mounted || confirmed != true) return;
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => IdentityLabelPrintScreen(
+          labels: eligible
+              .where((row) => selected.contains(row.instanceId))
+              .map(
+                (row) => P21LabelContent(
+                  title: row.displayName,
+                  setName: row.setName ?? '',
+                  number: row.number,
+                  qrUri: buildPersistentGvviQrUri(row.gvviId),
+                ),
+              )
+              .toList(),
+        ),
+      ),
+    );
   }
 
   List<VendorPricingWorkspaceRow> get _visibleRows {
@@ -686,14 +818,35 @@ class _VendorPricingWorkspaceScreenState
               )
             : null,
         actions: [
-          IconButton(
-            tooltip: 'Inventory economics · purchase, aging, P&L',
-            onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute<void>(
-                builder: (_) => const InventoryEconomicsScreen(),
+          PopupMenuButton<String>(
+            tooltip: 'Vendor tools',
+            enabled: !_loading,
+            onSelected: (value) async {
+              if (value == 'labels') {
+                await _printLabels();
+              } else if (value == 'pricing') {
+                await Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => const VendorPricingRulesScreen(),
+                  ),
+                );
+                if (mounted) await _load();
+              } else if (value == 'economics') {
+                await Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => const InventoryEconomicsScreen(),
+                  ),
+                );
+              }
+            },
+            itemBuilder: (_) => const [
+              PopupMenuItem(value: 'pricing', child: Text('Pricing rules')),
+              PopupMenuItem(value: 'labels', child: Text('Print card labels')),
+              PopupMenuItem(
+                value: 'economics',
+                child: Text('Inventory economics'),
               ),
-            ),
-            icon: const Icon(Icons.calculate_outlined),
+            ],
           ),
           IconButton(
             tooltip: 'Sales desk · quick-add and cart',

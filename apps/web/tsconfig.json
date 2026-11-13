@@ -40,7 +40,9 @@
     ".next-square/types/**/*.ts",
     ".next-square/dev/types/**/*.ts",
     ".next-square-dev/types/**/*.ts",
-    ".next-square-dev/dev/types/**/*.ts"
+    ".next-square-dev/dev/types/**/*.ts",
+    ".next-vendor-pricing-dev/types/**/*.ts",
+    ".next-vendor-pricing-dev/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

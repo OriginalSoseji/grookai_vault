@@ -1,5 +1,6 @@
 export declare const collectorStaging: boolean;
 export declare const squareLocalTest: boolean;
+export declare const vendorPricingLocalTest: boolean;
 export declare const collectorHostedStaging: boolean;
 export declare const collectorFixtureLab: boolean;
 export declare const storefrontLocalTest: boolean;
