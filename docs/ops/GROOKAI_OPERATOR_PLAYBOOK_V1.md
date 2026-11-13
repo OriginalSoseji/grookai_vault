@@ -4696,3 +4696,43 @@ requests take priority over new card focus. Missing payment creation facts requi
 review; payments predating allocation cannot archive its physical copy. Independent
 updated-refund polling recovers late/missed refund signals without relying on an
 old order update or automatically putting the physical card back into stock.
+
+## MTG TCGPlayer qualifier mapping release V1 — November 13, 2026
+
+This release is the bounded, insert-only production mapping gate implemented by
+`scripts/audits/mtg_tcgplayer_qualifier_mapping_release_apply_v1.mjs`. It covers
+exactly 452 reviewed MTG TCGPlayer parent mappings in 19 sequential batches of
+at most 25 rows. It does not authorize canonical identity, pricing,
+publication-pointer, Vault, update, delete, merge, or migration writes.
+
+Before any batch, retain the content-addressed review package, the successful
+rollback-only rehearsal directory, the exact founder approval text, and a clean
+source commit containing the approved planner and apply runner. The apply runner
+must compare the package's `ready_mappings.jsonl` hash and manifest hash with the
+corresponding hashes in `guarded_dry_run.json`; a self-consistent replacement
+package is not approved authority. Invoke one batch at a time with the exact
+`--package-root`, `--rehearsal-root`, new `--out-root`, full
+`--expected-head-sha`, approved fingerprint, and `--batch-index=1..19`. Do not
+skip a batch: every invocation verifies that all prior rows exist with the exact
+release fingerprint and that no future row exists.
+
+Each batch directory contains `rollback_plan.json` before database access. Once
+the transaction has assigned mapping IDs, it also contains
+`rollback_manifest.json`; preserve this file even when COMMIT returns an error.
+Normal success requires `apply_receipt.json` with
+`committed_zero_mismatch_readback`, exact mapping IDs, protected non-MTG counts
+unchanged, and the expected cumulative mapping count. The complete production
+evidence root is
+`C:\grookai_vault_operator_artifacts\mtg_tcgplayer_qualifier_mapping_release_v1\e308e50dd-0b38d24e`.
+
+If COMMIT returns an error, never rerun the batch immediately and never call the
+same connection's rollback proof of non-commit. The runner performs an
+independent connection readback using the captured mapping IDs. Exact rows may
+be classified `committed_by_independent_readback` and continue through the
+normal full readback. Zero scoped rows may be classified
+`not_committed_zero_mappings`. Any unavailable or mismatched readback produces
+`commit_outcome_unknown_requires_operator_readback`, records `committed: null`,
+and retains the rollback-manifest reference. Stop the release, preserve the
+entire batch directory, and independently inspect those exact IDs before a
+separately reviewed recovery or retry. Never delete mappings or replay a batch
+to resolve uncertainty.
