@@ -3,18 +3,20 @@ import fs from 'node:fs';
 import {execFileSync} from 'node:child_process';
 import {createHash,randomUUID} from 'node:crypto';
 import {pathToFileURL} from 'node:url';
+import {createRequire} from 'node:module';
 import {createClient} from '@supabase/supabase-js';
 import AxeBuilder from '@axe-core/playwright';
 
 const root='C:/grookai_square_onboarding_20261112';
-const qualification='C:/grookai_vault_operator_artifacts/square_onboarding_20261112/candidate-v2';
-const artifacts=qualification+'/web-v6';
+const qualification='C:/grookai_vault_operator_artifacts/square_onboarding_20261112/candidate-v3';
+const artifacts=qualification+'/web-v2';
 fs.mkdirSync(artifacts,{recursive:true});
-const lab=qualification+'/fresh-495',project='square-onboarding-fresh-v2-495-20261112';
+const lab=qualification+'/fresh-495',project='square-onboard-fresh-v3-495-20261113';
 const cfg=JSON.parse(execFileSync('supabase',['status','--workdir',lab,'--output','json'],{encoding:'utf8',stdio:['ignore','pipe','ignore']}));
-if(cfg.API_URL!=='http://127.0.0.1:62941'||fs.existsSync(lab+'/supabase/.temp/project-ref'))throw Error('Unqualified local test target');
+if(cfg.API_URL!=='http://127.0.0.1:63341'||fs.existsSync(lab+'/supabase/.temp/project-ref'))throw Error('Unqualified local test target');
 if(!JSON.parse(execFileSync('docker',['network','inspect',project],{encoding:'utf8'}))[0].Internal)throw Error('Local network must be isolated');
-const admin=createClient(cfg.API_URL,cfg.SERVICE_ROLE_KEY,{auth:{persistSession:false,autoRefreshToken:false}});
+const {localSupabaseStatusSecret}=createRequire(root+'/backend/package.json')(root+'/scripts/lib/local_supabase_cli_status_v1.mjs') as {localSupabaseStatusSecret:(status:Record<string,unknown>)=>string};
+const admin=createClient(cfg.API_URL,localSupabaseStatusSecret(cfg),{auth:{persistSession:false,autoRefreshToken:false}});
 const sql=(query:string)=>execFileSync('docker',['exec','-i','supabase_db_'+project,'psql','-X','-qAt','-U','postgres','-d','postgres','-v','ON_ERROR_STOP=1'],{input:query,encoding:'utf8',windowsHide:true}).trim();
 const pin=createHash('sha256').update(fs.readFileSync(root+'/supabase/migrations/20261113050000_square_self_service_onboarding_v1.sql')).digest('hex');
 type BrowserUser={id:string;email:string;password:string};
@@ -101,7 +103,7 @@ test('new vendor can start Square after actual grookai website sign-in and cance
       expect(launch.origin).toBe('https://example.invalid');expect(launch.pathname).toBe('/api/square/oauth/launch');
       // Local HTTP transport substitutes only the test callback origin. The
       // actual one-use capability, server state, cookies and routes are retained.
-      value.launchUrl='http://127.0.0.1:62980'+launch.pathname+launch.search;
+      value.launchUrl='http://127.0.0.1:63380'+launch.pathname+launch.search;
       await route.fulfill({response,json:value});return;
     }await route.continue();
   });
@@ -127,7 +129,7 @@ test('leaving a slow connection request cannot redirect the user back into Squar
   await page.route('**/api/square',async route=>{
     if(route.request().method()==='POST'&&route.request().postDataJSON()?.action==='link'){
       requested=true;await held;
-      await route.fulfill({json:{launchUrl:'http://127.0.0.1:62980/api/square/oauth/launch?capability='+'a'.repeat(43)}});return;
+      await route.fulfill({json:{launchUrl:'http://127.0.0.1:63380/api/square/oauth/launch?capability='+'a'.repeat(43)}});return;
     }await route.continue();
   });
   await signIn(page,browserUser);
@@ -228,5 +230,30 @@ test('an existing seller can recover from authorization failure without losing s
   await expect(page.getByRole('heading',{name:'Reconnect Square',exact:true})).toBeVisible();
   expect(sql(`select p.auto_enroll and p.sell_on_square from grookai_square.preferences p join grookai_square.connections c on c.id=p.connection_id where c.owner_id='${setupUser.id}'`)).toBe('t');
   expect(sql('select count(*) from grookai_square.allocations')).toBe('0');
-  checks.push('existing seller authorization failure is visible; retry refreshes server authorization without resetting preferences');
+  const grant=sql(`select to_json(g) from grookai_square.onboarding_grants g where owner_id='${setupUser.id}'`);
+  const revision=Number(sql('select revision from grookai_square.onboarding_controls where singleton'));
+  expect((await admin.rpc('square_onboarding_controls_set_v1',{p_expected_revision:revision,p_enabled:false})).error).toBeNull();
+  let reconnectStarted=false;
+  await page.route('**/api/square/oauth/launch?*',async route=>{
+    // Stop at the external consent boundary; this test verifies the real owner
+    // POST route without contacting Square or consuming the launch capability.
+    await route.fulfill({status:200,contentType:'text/html',body:'<h1>Reconnect consent boundary</h1>'});
+  });
+  await page.route('**/api/square',async route=>{
+    if(route.request().method()==='POST'&&route.request().postDataJSON()?.action==='link'){
+      const response=await route.fetch();expect(response.status()).toBe(200);
+      const value=await response.json(),launch=new URL(value.launchUrl);
+      expect(launch.origin).toBe('https://example.invalid');expect(launch.pathname).toBe('/api/square/oauth/launch');
+      // As in the new-vendor test, substitute only the fixture callback origin
+      // so the production same-origin launch guard remains fully exercised.
+      value.launchUrl='http://127.0.0.1:63380'+launch.pathname+launch.search;
+      reconnectStarted=true;await route.fulfill({response,json:value});return;
+    }await route.fallback();
+  });
+  await page.getByRole('button',{name:'Reconnect Square',exact:true}).click();
+  await expect(page.getByRole('heading',{name:'Reconnect consent boundary',exact:true})).toBeVisible();
+  expect(reconnectStarted).toBe(true);
+  expect(sql(`select to_json(g) from grookai_square.onboarding_grants g where owner_id='${setupUser.id}'`)).toBe(grant);
+  expect(sql(`select p.auto_enroll and p.sell_on_square from grookai_square.preferences p join grookai_square.connections c on c.id=p.connection_id where c.owner_id='${setupUser.id}'`)).toBe('t');
+  checks.push('existing seller authorization recovery preserves preferences and the actual owner POST can reconnect while new enrollment is paused, without changing the grant or contacting Square');
 });

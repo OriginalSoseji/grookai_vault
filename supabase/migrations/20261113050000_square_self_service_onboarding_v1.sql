@@ -56,8 +56,11 @@ language plpgsql volatile security definer set search_path='' as $$
 declare actor uuid:=auth.uid(); revision bigint;
 begin
  if actor is null then raise exception 'square_sign_in_required' using errcode='28000'; end if;
- -- Previously authorized owners retain their existing release path.
- if exists(select 1 from grookai_square.controls where singleton and actor=any(owner_allowlist))
+ -- Enrollment is idempotent for an already admitted owner. Pausing new grants
+ -- or changing plans must not prevent credential recovery. OAuth still uses
+ -- the backend's independent global linking guard; publication reproves offers.
+ if public.square_onboarding_owner_v1(actor)
+  or exists(select 1 from grookai_square.controls where singleton and actor=any(owner_allowlist))
   then return jsonb_build_object('existing',true); end if;
  select o.revision into revision from grookai_square.onboarding_controls o where o.singleton and o.enabled for share;
  if revision is null or not public.square_onboarding_eligible_v1(actor)

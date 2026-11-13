@@ -1,5 +1,54 @@
 # Grookai Operator Playbook V1
 
+## Square vendor self-service onboarding — candidate, November 13, 2026
+
+Read [Square onboarding V1](../contracts/SQUARE_ONBOARDING_V1.md) and its
+[qualification record](../audits/square_onboarding_20261112/QUALIFICATION.md).
+Website entry is **Account → Sell with Square**; native entry is
+**Account → Square**. Eligible vendors enroll themselves through authenticated,
+no-owner-argument authority, then authorize their own Square seller account.
+No developer account, manual operator allowlist edit or per-card Square item
+creation belongs in vendor setup. Locations load automatically; enabling sales
+is an explicit confirmation for current/future eligible public For sale cards.
+
+Production remains schema494 with the existing seller, genuine cash sale,
+stock, artwork and recovery clock retained. The only pending migration is
+`20261113050000_square_self_service_onboarding_v1.sql` (494→495). Its separate
+onboarding control defaults off. Pausing enrollment or losing vendor eligibility
+does not revoke an existing grant: reenrollment/reconnect is idempotent, while
+global linking controls and per-copy publication eligibility remain authoritative.
+
+Both bounded admission phases require the exact candidate ID and a fresh output:
+
+```powershell
+pwsh -NoProfile -File scripts/migration_preflight_strict.ps1 `
+  -Phase AuditLinkedSchema -SquareOnboardingReleaseV1 `
+  -ExpectedLocalOnlyIds 20261113050000 -AuditOutDir <new-private-audit-directory>
+# After current source qualification, use the same exact scope with -Phase PrePush.
+```
+
+The reviewed candidate's immutable migration/source/proof pins are in
+`docs/audits/square_onboarding_20261112/release-manifest-v1.json`. Current private
+qualification is `C:/grookai_vault_operator_artifacts/square_onboarding_20261112/candidate-v3`;
+candidate-v2 is superseded review evidence, including an uninstalled APK.
+Use new unlinked internal-network fresh/retained labs; preserve all consumed labs,
+receipts and historical migration bytes. Require actual local Auth isolation and
+paused/inactive-owner reconnect tests, unchanged retained data, exact schema/ACL
+comparison, website/native workflows, normal hooks, hosted checks and independent
+exact-head review. Simulated Square responses never qualify a real payment.
+
+Production promotion is one official forward495 apply with the control still
+off, then qualified website/source binding and a higher-version same-signer,
+data-preserving Samsung update with live owner readback. Enable self-service only
+through the audited revision/CAS `square_onboarding_controls_set_v1` after those
+gates. A consumed apply/install/activation intent must be inspected, never blindly
+repeated. Retain existing merchant binding, stable QR SKUs, prices, allocations,
+sales and both recovery schedules; never unlink the working seller or invent
+production inventory/payments. Each new vendor supplies their own Square consent.
+Prior owner consent/release authorization remains valid within its approved scope.
+Pricing activation/policy selection and physical label acceptance remain separate;
+do not activate pricing, choose an owner policy or send another print here.
+
 ## Vendor pricing and price-free labels — candidate, November 12, 2026
 
 Read [Vendor pricing rules and reusable labels](../playbooks/VENDOR_PRICING_RULES_LABELS_OPERATOR_V1.md)

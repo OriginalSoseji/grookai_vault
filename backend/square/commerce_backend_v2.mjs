@@ -6,7 +6,7 @@ export function createSquareCommerceBackend({client,config=squareEnvironmentConf
  if(process.env.GV_USER_ACCESS_TOKEN)throw new SquareApiError('square_database_target_unqualified');
  if(!client){
   const target=process.env.SUPABASE_URL;
-  const onboardingLab=target==='http://127.0.0.1:62941'&&process.env.NEXT_PUBLIC_SQUARE_ONBOARDING_LOCAL_TEST==='true'&&process.env.NEXT_PUBLIC_COLLECTOR_STAGING==='true'&&process.env.GROOKAI_DISABLE_TELEMETRY==='1'&&process.env.NODE_ENV==='development'&&!process.env.VERCEL&&!process.env.VERCEL_ENV;
+  const onboardingLab=target==='http://127.0.0.1:63341'&&process.env.NEXT_PUBLIC_SQUARE_ONBOARDING_LOCAL_TEST==='true'&&process.env.NEXT_PUBLIC_COLLECTOR_STAGING==='true'&&process.env.GROOKAI_DISABLE_TELEMETRY==='1'&&process.env.NODE_ENV==='development'&&!process.env.VERCEL&&!process.env.VERCEL_ENV;
   if(!onboardingLab&&target!=='http://127.0.0.1:61841'&&!(target==='https://ycdxbpibncqcchqiihfz.supabase.co'&&process.env.NODE_ENV==='production'))throw new SquareApiError('square_database_target_unqualified');
   client=createBackendClient();
  }

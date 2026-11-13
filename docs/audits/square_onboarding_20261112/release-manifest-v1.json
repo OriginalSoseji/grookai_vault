@@ -498,23 +498,23 @@
     "20261112180000_vendor_pricing_rules_v1.sql": "8f95acbeb74fe2ec0b2841a96704eeee4308a74e27b5c0d36f46019b8ef1b6e7"
   },
   "candidates": {
-    "20261113050000_square_self_service_onboarding_v1.sql": "2985a0a5eb413bbd5fdcabf75d6b131b50243284eb954a839f2a7743f669ee06"
+    "20261113050000_square_self_service_onboarding_v1.sql": "b016821220e18a53eb2d0174b394d888893bed297fdfe13a5fdccfbeb8c0aa86"
   },
   "proofPins": {
-    "fresh-495/replay-proof.json": "020304d1b48a465a69a3d5ef88af6f440c4fb6bae5b915b4d8bfe71dd7060407",
-    "retained-494b/upgrade-proof.json": "1b5019ccfb644d0450673e084de1b56f56c1a80e97e19997a1a7e86347ca3614",
-    "fresh-495/runtime-proof.json": "254bbfefdd851d59cbda9636552d33e7115673934d1ea74d23432eee0709f78d",
-    "retained-494b/runtime-proof.json": "28d5e7ae83d27cbdcb2474bccacab37958e02fa6206cd081e7f1559d86b1b899",
-    "runtime-proof.json": "254bbfefdd851d59cbda9636552d33e7115673934d1ea74d23432eee0709f78d",
-    "web-v6/web-proof.json": "93034fe1e966f50604853950d4dc078bde4b519746215429089b0600370255a0",
-    "native-square-v6.log": "56d763476da6c86b5dfac0d2ce06e24dc57b7e011f33b93ff68014f28860d67c",
-    "native-analyze-v6.log": "cd7416570e59a92f39ccb6825a93036413581f30fd2810c81315e683c1c8b79e",
-    "square-unit-v4.log": "b97ab6cd8ca3588a529fb7c059cd8c2a6b3dfc9448cc25c70ab022846ec438aa"
+    "fresh-495/replay-proof.json": "37f157144940b8f78c83bd3e126c1be9379f8df3e6a79cc320c9371897fc1a0f",
+    "retained-494/upgrade-proof.json": "776860c5f87c358ac1a0dcbece895df78ced533fbbc3af1ebd05e31aa77d941e",
+    "fresh-495/runtime-proof.json": "dc024ffe678ce774ed04b7faab9211d1a886df0674052bc3ee27e8a730b0d616",
+    "retained-494/runtime-proof.json": "8f104cf54f626172aec62be91e8ca0cd27f21bfb1c41953d725e6717ed856f83",
+    "runtime-proof.json": "dc024ffe678ce774ed04b7faab9211d1a886df0674052bc3ee27e8a730b0d616",
+    "web-v2/web-proof.json": "937f77d9f3b39dd5afa00b6c516ec0bbd871ad66800aeae2443df40c2c1801bb",
+    "native-square-v1.log": "4143435cfdad7ccb9f07e018e26297534c11c6c0125bd40c565f9f1b6ae7d416",
+    "native-analyze-v1.log": "76e9670c85d289c45d079e0037952c151e3317ac60c6e5505d50936eee723272",
+    "square-unit-v1.log": "4df288f1a6115dbb0120985e2dbbad9e73c430a09c585ed56032796f2d627b87"
   },
   "runtimeSources": {
     "apps/web/eslint.config.mjs": "02db57c646dd06ea258b23ad76d0adca4d65f542e19727e3515abbae003e83f1",
     "apps/web/next.config.mjs": "9e1f565070866328dc5e51f53b27ea30b73090cf51ea7f3808bc384d0b869e5c",
-    "apps/web/playwright.square-onboarding.config.ts": "80790a52ffd84689fc05f468eea14397056e20552be08e739a4054805cfa0b1f",
+    "apps/web/playwright.square-onboarding.config.ts": "d26e95aba747e26375a38547ae7882253cf417d58f6d8bee99d72007032dd4c6",
     "apps/web/src/app/account/page.tsx": "33a984649e6042599c0161c04b6908d17dc9a33d93777b4451298620524ef501",
     "apps/web/src/app/api/square/oauth/callback/route.ts": "ea62f4692799923e1d891db71fb45df3fc3a443b92e21f18af8efde748097b31",
     "apps/web/src/app/api/square/oauth/launch/route.ts": "a90d5555b0475d80c93602c0988ab12422b460a91ae2df6e1bed0da15d702913",
@@ -526,11 +526,11 @@
     "apps/web/src/components/square/SquareReturn.tsx": "196c2002dfb4503889793baec8745ae996a96837a1bb8ba4081dbaf6fc5913b6",
     "apps/web/src/lib/collectorRelease.mjs": "4b673f465543c9f89aec8ab8fcbadd0286404feefb2bc41b4bd23bb0c4d259fd",
     "apps/web/src/lib/collectorStaging.d.mts": "42c8967f16b8045656c7cc011f8dadc41408ac19e7dfc3cda099538fdb6126d6",
-    "apps/web/src/lib/collectorStaging.mjs": "a9873f6fe6833aa388487ab72e1da536a777ef0b8584ffbf3bbf158934d0e7c9",
+    "apps/web/src/lib/collectorStaging.mjs": "69b2e80115ccd1f087e51fdcd368ed68c7fbfbf34369e5c981448104e3b207ba",
     "apps/web/src/lib/square/oauthRoute.test.mjs": "3a40001b989253ec0cb69e37ab1bb7a7ad7a317b3267b8a90ad56fc67ac5cfd2",
-    "apps/web/tests/square/onboarding.spec.ts": "a7661e63d8983e0f03f1b635d8c27bfa14bb2b6276c57eb6cdb9ff4154513377",
+    "apps/web/tests/square/onboarding.spec.ts": "16d1ab1d831d50f63be9f4ce0adcdaeec123d84c81e984ef2b2d64a979cf5634",
     "backend/square/backend_service_v1.d.mts": "fb40c2685f8193d42212a375f1b6b90a2477de0ee19932d3ffe8dfce1d87b7e5",
-    "backend/square/commerce_backend_v2.mjs": "80708662edf8c36698b65c63cb04efc7881806c7c8963937cbbe79d8e9fa4621",
+    "backend/square/commerce_backend_v2.mjs": "b60ddd6be47741f7136b3ba5c9d7a24ce5e87c59eb740dedd441796cf2ef4dc2",
     "backend/square/service_v1.mjs": "344f47ab1a23f6dc72dfb6ee2e83fbec69cdf86cd9730c11296e337de8d3c483",
     "backend/square/tests/onboarding_fixture_v1.sql": "3a24e380ef38406b6fbd9b6c2b3bb061d27a2f91ca8850c34eb9ebdf8bd470e0",
     "backend/square/tests/onboarding_oauth_v1.test.mjs": "dd64bf28a151948c715546570479640a2e13a269b426501bbbfcb3fda1ac54f9",
@@ -542,13 +542,13 @@
     "lib/widgets/vault/vault_copy_sale_sheet.dart": "ae1267d076a56d521c4b5f01a1fb48a28317a976da89d0cd2c9e217f9a40bde8",
     "scripts/schema/column_order_reconciliation_v1.mjs": "afb90fffe35a6a309c442c1c3527218f2050cd15ec4a431b725a9dc26474cfb1",
     "scripts/schema/reviewed_intake_public_catalog_v1.sql": "a5dda9364406ff20238b63268805b9251de9676ad2ac543c561b6f4bdea28ad4",
-    "scripts/schema/square_onboarding_fresh_replay_v1.mjs": "7177e7ec5506bf81b1322e192069569b3bcdee7f2561936e0b2a8a2635c19e19",
-    "scripts/schema/square_onboarding_lab_v1.mjs": "f359425828dc2c610b5cffa3c4e5e7094a0b53a4524956cc1e660bf221683e71",
-    "scripts/schema/square_onboarding_local_control_v1.mjs": "ea86ef729a90bad98c6856b729b207249f855d6292c88ca776f114315e576e51",
-    "scripts/schema/start_square_onboarding_web_lab_v1.mjs": "dd5d7ebea5c81aa9d1a0f74fb9cf4cea7d5051dd678db7751a9aee32fc1dc914",
+    "scripts/schema/square_onboarding_fresh_replay_v1.mjs": "c076928443e172b783abde602f412489c1d08d7f0060afea052e34699065b8d1",
+    "scripts/schema/square_onboarding_lab_v1.mjs": "9fdc868043e68710a644d3b6a28b0d772566250ed36c7c171b4b541cc4263e3f",
+    "scripts/schema/square_onboarding_local_control_v1.mjs": "d674f28fec277a52e15919f19a2d5ab8e7920be1e55e2cb70492232d5197722e",
+    "scripts/schema/start_square_onboarding_web_lab_v1.mjs": "b5d9c14d564e195b3f572a8c796635f174f3f5e14d4c576c7dd75ce9c72ed185",
     "scripts/schema/vendor_pricing_security_snapshot_v1.sql": "0a60a8e826cf6565b5fce007b9e1ca95aba1942cc4468b1541d50b3077646853",
-    "scripts/schema/verify_square_onboarding_release_v1.mjs": "d49c89e7f9ce71dd6b2e62c5288a5822294bba78620061892c482b3828fa2e12",
-    "supabase/migrations/20261113050000_square_self_service_onboarding_v1.sql": "2985a0a5eb413bbd5fdcabf75d6b131b50243284eb954a839f2a7743f669ee06",
+    "scripts/schema/verify_square_onboarding_release_v1.mjs": "1e6f27ca69e7c9d33996c123ea1bfc3a3168c04e83a1f49cc8b713f0af1b908f",
+    "supabase/migrations/20261113050000_square_self_service_onboarding_v1.sql": "b016821220e18a53eb2d0174b394d888893bed297fdfe13a5fdccfbeb8c0aa86",
     "test/square/square_onboarding_test.dart": "ec6bb25d3fb03bbe77a1cfffef8110c92cca041c19af841181f03b6705ac69f5"
   }
 }

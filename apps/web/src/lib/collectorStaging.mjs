@@ -18,7 +18,7 @@ export const squareOnboardingLocalTest = process.env.NEXT_PUBLIC_SQUARE_ONBOARDI
 export function assertCollectorStagingTarget(url, fixtureLab = collectorFixtureLab, hosted = collectorHostedStaging) {
   const target = new URL(url);
   if (squareOnboardingLocalTest) {
-    if (vendorPilot || fixtureLab || hosted || storefrontLocalTest || vendorBatchLocalTest || collectrImportLocalTest || receiptCloudLocalTest || salesCartLocalTest || salesDeskProLocalTest || salesTradeLocalTest || receiptDeliveryLocalTest || salesPaymentsLocalTest || squareLocalTest || vendorPricingLocalTest || target.href !== "http://127.0.0.1:62941/") throw new Error("Square onboarding proof requires its exact separate local database.");
+    if (vendorPilot || fixtureLab || hosted || storefrontLocalTest || vendorBatchLocalTest || collectrImportLocalTest || receiptCloudLocalTest || salesCartLocalTest || salesDeskProLocalTest || salesTradeLocalTest || receiptDeliveryLocalTest || salesPaymentsLocalTest || squareLocalTest || vendorPricingLocalTest || target.href !== "http://127.0.0.1:63341/") throw new Error("Square onboarding proof requires its exact separate local database.");
     return;
   }
   if (vendorPricingLocalTest) {

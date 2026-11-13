@@ -7,7 +7,7 @@ import {execFileSync,spawnSync} from 'node:child_process';
 import {createRequire} from 'node:module';
 import {reconcileKnownTableColumnOrderV1} from './column_order_reconciliation_v1.mjs';
 const root='C:/grookai_square_onboarding_20261112';
-const artifacts='C:/grookai_vault_operator_artifacts/square_onboarding_20261112/candidate-v2';
+const artifacts='C:/grookai_vault_operator_artifacts/square_onboarding_20261112/candidate-v3';
 const read=file=>JSON.parse(fs.readFileSync(file));
 const sha=value=>createHash('sha256').update(value).digest('hex');
 const [phase,arg,...extra]=process.argv.slice(2);
@@ -72,12 +72,12 @@ try{
  await compare(baseline.catalog,live,'baseline');
  if(phase==='PrePush'){
   assert.equal(execFileSync('git',['status','--porcelain'],{cwd:root,encoding:'utf8'}).trim(),'','PrePush requires qualified committed source');
-  const fresh=local('square-onboarding-fresh-v2-495-20261112',artifacts+'/fresh-495');
-  const retained=local('square-onboard-retained-v2-494-20261112',artifacts+'/retained-494b');
+  const fresh=local('square-onboard-fresh-v3-495-20261113',artifacts+'/fresh-495');
+  const retained=local('square-onboard-retained-v3-494-20261113',artifacts+'/retained-494');
   const versions=[...history,'20261113050000'];
   for(const lab of[fresh,retained])assert.deepEqual(lab.catalog.LEDGER.map(row=>row.version),versions);
   await compare(fresh.catalog,retained.catalog,'fresh-retained');assert.deepEqual(fresh.security,retained.security);
-  for(const file of['fresh-495/replay-proof.json','retained-494b/upgrade-proof.json','fresh-495/runtime-proof.json','retained-494b/runtime-proof.json','runtime-proof.json','web-v6/web-proof.json']){
+  for(const file of['fresh-495/replay-proof.json','retained-494/upgrade-proof.json','fresh-495/runtime-proof.json','retained-494/runtime-proof.json','runtime-proof.json','web-v2/web-proof.json']){
    const proof=read(artifacts+'/'+file);assert.equal(proof.pass,true,file);assert.equal(proof.candidateSha256,manifest.candidates['20261113050000_square_self_service_onboarding_v1.sql']);
    assert.equal(sha(fs.readFileSync(artifacts+'/'+file)),manifest.proofPins[file],'Proof changed: '+file);
    if(proof.sourceHashes)for(const[source,pin]of Object.entries(proof.sourceHashes))assert.equal(sha(fs.readFileSync(root+'/'+source,'utf8').replaceAll('\r\n','\n')),pin,'Executed source changed: '+source);
