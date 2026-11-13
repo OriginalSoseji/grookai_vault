@@ -94,9 +94,11 @@ fresh lab; a previous browser receipt is not current evidence. The retained
 fresh-v2 profile uses loopback database/API ports 62540/62541 and website port
 62580. Older receipts remain immutable.
 
-The full `shipcheck` uses Flutter's supported `--ipv6` loopback harness. The
-Windows IPv4 harness intermittently established a socket but failed to load
-test suites, then closed the connection after five minutes. The complete IPv6
-run passed all 2,012 native tests with the two existing skips. Test selection,
-concurrency, assertions and timeouts are unchanged; normal Git hooks still run
-every release check. A stalled or failed run never qualifies a source.
+The full `shipcheck` runs the native suite serially. Parallel Windows harness
+connections intermittently closed before test files loaded. The serial run
+passed all 2,012 native tests with the two existing skips. Test selection,
+assertions and timeouts are unchanged; normal Git hooks still run every release
+check. The installed Flutter 3.44.9 tool accepts `--ipv6` without passing it to
+its test engines, so that ineffective flag was removed. Earlier complete passes
+remain genuine test passes, but do not establish IPv6 transport. A stalled or
+failed run never qualifies a source.

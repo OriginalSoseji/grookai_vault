@@ -536,7 +536,9 @@
     "native-sale-poll-old-red-v8.log": "aa52bed1ac2a378a9b821d10a9e039ba6710fb1a4bf206dd525549c5341a5d9b",
     "native-sale-poll-green-v8d.log": "e2bb7b077aea8f080722372ad49d3d61cb7967fffcc2616135dc5224051908b3",
     "native-sale-poll-analyze-v8d.log": "77864a7247f6378ce3ee8e12c0dd636e51b00d491b1208ed7a3bed7364242ece",
-    "native-ipv6-full-v9.log": "23ffa3aecb2d83b367f9ba93d809bffe1bdf43f198b3164fa6549fd745bf7ddc"
+    "native-ipv6-full-v9.log": "23ffa3aecb2d83b367f9ba93d809bffe1bdf43f198b3164fa6549fd745bf7ddc",
+    "native-serial-full-v10.log": "6143b76af973f7a4ed1c89e7e055edec7c66fc9a6157fe95ccb5a1137aa3c3c9",
+    "ipv6-claim-correction-v10.json": "150ca7758fbdf6431d198187f70180a718fd111435cd9b20338673c6f8b4a4ae"
   },
   "runtimeSources": {
     ".gitignore": "8c27139aeee8e968c19d5af9e3a129220b2d748820b7b7691a236194169af3b0",
@@ -661,7 +663,7 @@
     "docs/contracts/P21_NATIVE_LABEL_PRINTING_V1.md": "b28734698c52a31032409481db13ac2ca3a7b609b6a2277edd757d7700bcaeb2",
     "docs/contracts/VENDOR_PRICING_RULES_AND_LABELS_V1.md": "7c56edab2835fcb8ce6c74522386d125898c55e8b2b62cd6c80a7863af4d420a",
     "docs/ops/GROOKAI_OPERATOR_PLAYBOOK_V1.md": "83f036e4e6366e22594f78c246862da8a17369bd90e2453347ef726de59182ad",
-    "docs/playbooks/VENDOR_PRICING_RULES_LABELS_OPERATOR_V1.md": "3f0cfb773c54d23c4488c9904aad4c709c3471be582b8da0199b02721779b078",
+    "docs/playbooks/VENDOR_PRICING_RULES_LABELS_OPERATOR_V1.md": "9652df7758be8d594969af871e23f12d422ab40b55f3af420085c7d04e155783",
     "lib/screens/gvvi/public_gvvi_screen.dart": "5ce183bb31c5f3f2518bd52455b459531729c0720a88ae5ba84b1b1761fdc979",
     "lib/screens/gvvi/vendor_pricing_rules_screen.dart": "58945eb1283b774dc081e968bb45b59839f2b2f5751eaf3764de6d596b6477f5",
     "lib/screens/gvvi/vendor_pricing_workspace_screen.dart": "83aa1936485103d4f0f607ed1e59a610c87ddf781c66fd6ea466419a6f2f390c",
@@ -692,7 +694,7 @@
     "lib/services/vault/vault_gvvi_service.dart": "ab9d9ca5a28973735ccf2ef56abee35d305acae981802a06b758f097719e1dd0",
     "lib/services/vault/vault_manage_artwork.dart": "b0977f30d4ac719f77ebc4e4f88396c30a3a1f84134edfe94f073f008d7bac4c",
     "lib/widgets/vault/vault_copy_sale_sheet.dart": "1fabc0463ab66e72d6089016cfa9a198c54987d995297117876e854b6dfa837d",
-    "package.json": "4f50689846445818e14347b3810232624584d57aea4acd78726b854c32da58ea",
+    "package.json": "2c8945b8fed03715ea494f89a0221379ac9d89a132da5141dc891bb8fe180e57",
     "scripts/lib/local_supabase_cli_status_v1.mjs": "d6e5247ebeb57b932608b8c916619a475c18f117c3087a5fc32764a327c54048",
     "scripts/migration_preflight_strict.ps1": "23d965540def60bd965c70a474fe21a852b26f314ee09e75261868f2e4230c23",
     "scripts/schema/prepare_vendor_pricing_runtime_v1.mjs": "ca48e1bef080e0facb9942c3724f34c37978a800ee07e5415ee19d9c2b6315ea",
