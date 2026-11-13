@@ -49,4 +49,49 @@ test.describe("Vault collection pagination", () => {
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
     expect(overflow).toBeLessThanOrEqual(1);
   });
+
+  test("mobile Vault lets collectors choose and retain 2, 3, or 4 card columns", async ({ page }) => {
+    await page.setViewportSize({ width: 384, height: 824 });
+    await page.goto(FIXTURE_PATH, { waitUntil: "networkidle" });
+
+    const grid = page.locator("[data-vault-grid-columns]").first();
+    await expect(grid).toHaveAttribute("data-vault-grid-columns", "2");
+    const columnControl = page.getByRole("radiogroup", { name: "Choose Vault grid columns" });
+    await columnControl.getByRole("radio", { name: "3", exact: true }).click();
+    await expect(grid).toHaveAttribute("data-vault-grid-columns", "3");
+    await expect(grid).toHaveCSS("grid-template-columns", /\d+px \d+px \d+px/);
+
+    await page.reload({ waitUntil: "networkidle" });
+    await expect(page.locator("[data-vault-grid-columns]").first()).toHaveAttribute("data-vault-grid-columns", "3");
+    await columnControl.getByRole("radio", { name: "4", exact: true }).click();
+    await expect(page.locator("[data-vault-grid-columns]").first()).toHaveAttribute("data-vault-grid-columns", "4");
+
+    const viewControl = page.getByRole("radiogroup", { name: "Choose vault mobile view" });
+    await viewControl.getByRole("radio", { name: "Detail", exact: true }).click();
+    await expect(columnControl).toHaveCount(0);
+    await viewControl.getByRole("radio", { name: "Grid", exact: true }).click();
+    await expect(page.locator("[data-vault-grid-columns]").first()).toHaveAttribute("data-vault-grid-columns", "4");
+  });
+
+  test("price filtering and sorting are clear and preserved in the Vault URL", async ({ page }) => {
+    await page.setViewportSize({ width: 384, height: 824 });
+    await page.goto(FIXTURE_PATH, { waitUntil: "networkidle" });
+    const cards = page.locator("[data-vault-page-items] .gv-visual-card:visible");
+    await expect(cards).toHaveCount(24);
+
+    await page.getByRole("radiogroup", { name: "Filter Vault by market price" })
+      .getByRole("radio", { name: "Unpriced" }).click();
+    await expect(page).toHaveURL(/price=unpriced/);
+    await expect(cards).toHaveCount(12);
+
+    await page.getByRole("combobox", { name: "Sort Vault cards" }).selectOption("name");
+    await expect(page).toHaveURL(/sort=name/);
+    await expect(cards.first()).toContainText("Blastoise");
+
+    await page.reload({ waitUntil: "networkidle" });
+    await expect(page.getByRole("radiogroup", { name: "Filter Vault by market price" })
+      .getByRole("radio", { name: "Unpriced" })).toHaveAttribute("aria-checked", "true");
+    await expect(page.getByRole("combobox", { name: "Sort Vault cards" })).toHaveValue("name");
+    await expect(cards).toHaveCount(12);
+  });
 });

@@ -45,6 +45,7 @@ function makeVaultItem(index: number): VaultCardData {
   const ownedCount = index % 7 === 0 ? 3 : index % 4 === 0 ? 2 : 1;
   const intent = index % 6 === 0 ? "sell" : index % 9 === 0 ? "trade" : "hold";
   const createdAt = new Date(Date.UTC(2026, 9, 13 - (index % 12))).toISOString();
+  const priced = index % 5 !== 0;
   const cardId = `fixture-card-${index + 1}`;
   const instanceId = `fixture-instance-${index + 1}`;
 
@@ -85,15 +86,15 @@ function makeVaultItem(index: number): VaultCardData {
         cert_number: null,
         notes: null,
         created_at: createdAt,
-        market_price: 4.25 + index * 1.17,
+        market_price: priced ? 4.25 + index * 1.17 : null,
         pricing_observed_at: createdAt,
         pricing_published_at: createdAt,
       },
     ],
-    effective_price: (4.25 + index * 1.17) * ownedCount,
-    pricing_updated_at: createdAt,
-    priced_raw_copy_count: ownedCount,
-    unpriced_raw_copy_count: 0,
+    effective_price: priced ? (4.25 + index * 1.17) * ownedCount : null,
+    pricing_updated_at: priced ? createdAt : null,
+    priced_raw_copy_count: priced ? ownedCount : 0,
+    unpriced_raw_copy_count: priced ? 0 : ownedCount,
     image_url: buildCardArtwork(name, index),
     created_at: createdAt,
     is_slab: false,
@@ -131,12 +132,12 @@ export default function VaultCollectionFixturePage() {
       initialItems={items}
       recent={recent}
       valueSummary={{
-        totalEstimatedValue: 4286.44,
-        pricedGroupedCount: items.length,
+        totalEstimatedValue: items.reduce((total, item) => total + (item.effective_price ?? 0), 0),
+        pricedGroupedCount: items.filter((item) => item.effective_price !== null).length,
         totalGroupedCount: items.length,
-        pricedCopyCount: items.reduce((total, item) => total + item.owned_count, 0),
+        pricedCopyCount: items.reduce((total, item) => total + item.priced_raw_copy_count, 0),
         totalRawCopyCount: items.reduce((total, item) => total + item.owned_count, 0),
-        unpricedCopyCount: 0,
+        unpricedCopyCount: items.reduce((total, item) => total + item.unpriced_raw_copy_count, 0),
         latestPricingUpdateAt: "2026-10-13T16:30:00.000Z",
       }}
       publicProfileHref="/u/fixture-collector"

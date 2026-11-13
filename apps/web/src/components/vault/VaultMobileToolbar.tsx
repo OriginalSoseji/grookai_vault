@@ -3,6 +3,7 @@
 import { SearchToolbar, SearchToolbarButton, SearchToolbarField, SearchToolbarInput } from "@/components/common/SearchToolbar";
 import { SegmentedControl, type SegmentedControlOption } from "@/components/common/SegmentedControl";
 import type { VaultMobileViewMode } from "@/hooks/useVaultMobileViewMode";
+import type { VaultGridColumns } from "@/hooks/useVaultGridColumns";
 
 type VaultMobileToolbarProps = {
   searchQuery: string;
@@ -10,6 +11,8 @@ type VaultMobileToolbarProps = {
   onClearSearch: () => void;
   mode: VaultMobileViewMode;
   onModeChange: (mode: VaultMobileViewMode) => void;
+  columns: VaultGridColumns;
+  onColumnsChange: (columns: VaultGridColumns) => void;
 };
 
 const VIEW_MODE_OPTIONS: Array<SegmentedControlOption<VaultMobileViewMode>> = [
@@ -18,12 +21,20 @@ const VIEW_MODE_OPTIONS: Array<SegmentedControlOption<VaultMobileViewMode>> = [
   { value: "compact", label: "Compact" },
 ];
 
+const GRID_COLUMN_OPTIONS: Array<SegmentedControlOption<VaultGridColumns>> = [
+  { value: "2", label: "2" },
+  { value: "3", label: "3" },
+  { value: "4", label: "4" },
+];
+
 export function VaultMobileToolbar({
   searchQuery,
   onSearchChange,
   onClearSearch,
   mode,
   onModeChange,
+  columns,
+  onColumnsChange,
 }: VaultMobileToolbarProps) {
   return (
     <SearchToolbar surface="card" className="space-y-3 md:hidden">
@@ -57,6 +68,18 @@ export function VaultMobileToolbar({
           className="w-full justify-between bg-slate-50"
         />
       </SearchToolbarField>
+
+      {mode === "grid" ? (
+        <SearchToolbarField label="Grid size">
+          <SegmentedControl
+            options={GRID_COLUMN_OPTIONS}
+            value={columns}
+            onChange={onColumnsChange}
+            ariaLabel="Choose Vault grid columns"
+            className="w-full justify-between bg-slate-50"
+          />
+        </SearchToolbarField>
+      ) : null}
     </SearchToolbar>
   );
 }

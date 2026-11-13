@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
 import { getPokemonCardCollectionGridClassName } from "@/components/cards/pokemonCardGridLayout";
 import { SearchToolbar, SearchToolbarButton, SearchToolbarInput } from "@/components/common/SearchToolbar";
+import SegmentedControl, { type SegmentedControlOption } from "@/components/common/SegmentedControl";
 import { ViewDensityToggle } from "@/components/collection/ViewDensityToggle";
 import PageIntro from "@/components/layout/PageIntro";
 import { useClientReady } from "@/components/layout/useClientReady";
@@ -19,6 +20,7 @@ import { VaultMobileViews } from "@/components/vault/VaultMobileViews";
 import { VaultCardTile, type VaultCardData } from "@/components/vault/VaultCardTile";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import { useVaultMobileViewMode } from "@/hooks/useVaultMobileViewMode";
+import { useVaultGridColumns } from "@/hooks/useVaultGridColumns";
 import { useViewDensity, type ViewDensity } from "@/hooks/useViewDensity";
 import type { ReactNode } from "react";
 import { addCardReturnPath } from "@/lib/navigation/cardDetailNavigation";
@@ -39,6 +41,8 @@ export type RecentCardData = {
 };
 
 type SmartViewKey = "all" | "duplicates" | "recent" | "by-set" | "pokemon" | "shared";
+type VaultPriceFilter = "all" | "priced" | "unpriced";
+type VaultSortKey = "newest" | "name" | "quantity";
 
 type VaultHeaderValueSummary = {
   totalEstimatedValue: number | null;
@@ -67,6 +71,11 @@ const VAULT_SHORT_DATE_FORMATTER = new Intl.DateTimeFormat("en-US", {
   month: "short",
   day: "numeric",
 });
+const VAULT_PRICE_FILTERS: Array<SegmentedControlOption<VaultPriceFilter>> = [
+  { value: "all", label: "All" },
+  { value: "priced", label: "Priced" },
+  { value: "unpriced", label: "Unpriced" },
+];
 
 function parseVaultPage(value: string | null) {
   const parsed = Number.parseInt(value ?? "1", 10);
@@ -80,6 +89,12 @@ function parseVaultView(value: string | null): SmartViewKey {
     value === "shared"
     ? value
     : "all";
+}
+function parseVaultPriceFilter(value: string | null): VaultPriceFilter {
+  return value === "priced" || value === "unpriced" ? value : "all";
+}
+function parseVaultSort(value: string | null): VaultSortKey {
+  return value === "name" || value === "quantity" ? value : "newest";
 }
 function VaultPagination({
   page,
@@ -318,6 +333,7 @@ export function VaultCollectionView({
   const searchParams = useSearchParams();
   const { density, setDensity } = useViewDensity();
   const { mode: mobileViewMode, setMode: setMobileViewMode } = useVaultMobileViewMode();
+  const { columns: mobileGridColumns, setColumns: setMobileGridColumns } = useVaultGridColumns();
   const [items, setItems] = useState(initialItems);
   const [sealedTotals, setSealedTotals] = useState<SealedTotals | null>(null);
   const [vaultReturnPath, setVaultReturnPath] = useState(() =>
@@ -327,6 +343,8 @@ export function VaultCollectionView({
   const [searchQuery, setSearchQuery] = useState(() => searchParams.get("q") ?? "");
   const [pokemonQuery, setPokemonQuery] = useState(() => searchParams.get("pokemon") ?? "");
   const [activeView, setActiveView] = useState<SmartViewKey>(() => parseVaultView(searchParams.get("view")));
+  const [priceFilter, setPriceFilter] = useState<VaultPriceFilter>(() => parseVaultPriceFilter(searchParams.get("price")));
+  const [sortBy, setSortBy] = useState<VaultSortKey>(() => parseVaultSort(searchParams.get("sort")));
   const [currentPage, setCurrentPage] = useState(() => parseVaultPage(searchParams.get("page")));
 
   useEffect(() => {
@@ -483,11 +501,15 @@ export function VaultCollectionView({
     view = activeView,
     query = searchQuery,
     pokemon = pokemonQuery,
+    price = priceFilter,
+    sort = sortBy,
   }: {
     page?: number;
     view?: SmartViewKey;
     query?: string;
     pokemon?: string;
+    price?: VaultPriceFilter;
+    sort?: VaultSortKey;
   }) {
     const url = new URL(window.location.href);
 
@@ -502,6 +524,12 @@ export function VaultCollectionView({
 
     if (view === "pokemon" && pokemon.trim()) url.searchParams.set("pokemon", pokemon.trim());
     else url.searchParams.delete("pokemon");
+
+    if (price !== "all") url.searchParams.set("price", price);
+    else url.searchParams.delete("price");
+
+    if (sort !== "newest") url.searchParams.set("sort", sort);
+    else url.searchParams.delete("sort");
 
     window.history.replaceState(window.history.state, "", url);
     setVaultReturnPath(`/vault${url.search}`);
@@ -536,6 +564,20 @@ export function VaultCollectionView({
     updateVaultUrl({ page: 1, pokemon: nextQuery });
   }
 
+  function handlePriceFilterChange(nextFilter: VaultPriceFilter) {
+    setPriceFilter(nextFilter);
+    setCurrentPage(1);
+    setExpandedCardId(null);
+    updateVaultUrl({ page: 1, price: nextFilter });
+  }
+
+  function handleSortChange(nextSort: VaultSortKey) {
+    setSortBy(nextSort);
+    setCurrentPage(1);
+    setExpandedCardId(null);
+    updateVaultUrl({ page: 1, sort: nextSort });
+  }
+
   function paginateItems(sourceItems: VaultCardData[], page: number) {
     const firstIndex = (page - 1) * VAULT_PAGE_SIZE;
     return sourceItems.slice(firstIndex, firstIndex + VAULT_PAGE_SIZE);
@@ -549,6 +591,7 @@ export function VaultCollectionView({
         expandedCardId={expandedCardId}
         returnPath={vaultReturnPath}
         onExpansionToggle={handleExpansionToggle}
+        gridColumns={mobileGridColumns}
       />
     );
   }
@@ -576,7 +619,7 @@ export function VaultCollectionView({
     );
   }
 
-  const activeSourceItems =
+  const baseSourceItems =
     activeView === "duplicates"
       ? applySearch(duplicateItems)
       : activeView === "recent"
@@ -588,6 +631,22 @@ export function VaultCollectionView({
             : activeView === "pokemon"
               ? applyPokemonNameFilter(items)
               : applySearch(items);
+  const activeSourceItems = baseSourceItems
+    .filter((item) => priceFilter === "all"
+      || (priceFilter === "priced"
+        ? item.priced_raw_copy_count > 0
+        : item.priced_raw_copy_count === 0 && item.unpriced_raw_copy_count > 0))
+    .sort((left, right) => {
+      if (sortBy === "name") {
+        return left.name.localeCompare(right.name) || left.number.localeCompare(right.number);
+      }
+      if (sortBy === "quantity") {
+        return left.owned_count - right.owned_count || left.name.localeCompare(right.name);
+      }
+      const leftTime = left.created_at ? new Date(left.created_at).getTime() : 0;
+      const rightTime = right.created_at ? new Date(right.created_at).getTime() : 0;
+      return rightTime - leftTime || left.name.localeCompare(right.name);
+    });
   const activeResultCount = activeSourceItems.length;
   const activePageCount = Math.max(1, Math.ceil(activeResultCount / VAULT_PAGE_SIZE));
   const renderedPage = Math.min(currentPage, activePageCount);
@@ -984,12 +1043,39 @@ export function VaultCollectionView({
             onClearSearch={() => handleSearchChange("")}
             mode={mobileViewMode}
             onModeChange={setMobileViewMode}
+            columns={mobileGridColumns}
+            onColumnsChange={setMobileGridColumns}
           />
 
           <PageSection
             spacing="compact"
             className="gv-command-surface p-2.5 md:p-3"
           >
+            <div className="mb-2.5 flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex min-w-0 flex-wrap items-center gap-2">
+                <span className="text-xs font-medium text-slate-500">Market price</span>
+                <SegmentedControl
+                  options={VAULT_PRICE_FILTERS}
+                  value={priceFilter}
+                  onChange={handlePriceFilterChange}
+                  ariaLabel="Filter Vault by market price"
+                  size="compact"
+                />
+              </div>
+              <label className="flex min-h-11 items-center gap-2 text-xs font-medium text-slate-500">
+                <span>Sort</span>
+                <select
+                  aria-label="Sort Vault cards"
+                  value={sortBy}
+                  onChange={(event) => handleSortChange(event.target.value as VaultSortKey)}
+                  className="min-h-11 rounded-lg border border-slate-200 bg-white px-3 text-sm text-slate-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
+                >
+                  <option value="newest">Newest</option>
+                  <option value="name">Name (A–Z)</option>
+                  <option value="quantity">Quantity (low–high)</option>
+                </select>
+              </label>
+            </div>
             <div className="flex gap-1.5 overflow-x-auto md:flex-wrap">
               {smartViews.map((view) => (
                 <SmartViewButton
