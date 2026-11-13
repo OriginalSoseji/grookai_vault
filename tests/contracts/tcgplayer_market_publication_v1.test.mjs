@@ -836,7 +836,7 @@ test("worker enriches candidates with source-group evidence before qualification
     WORKER,
     /publication scope evidence missing for \$\{missingScopeEvidence\.length\} Pokemon candidates/i,
   );
-  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_22/);
+  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_23/);
   assert.match(WORKER, /v_tcgplayer_market_qualification_candidates_v7/);
   assert.match(WORKER, /prepare_tcgplayer_jungle_edition_assignments_v1/);
   assert.match(WORKER, /prepare_tcgplayer_gym_challenge_edition_assignments_v1/);
@@ -1194,6 +1194,15 @@ test("publication database timeout covers measured assignment preparation", () =
   assert.match(
     PIPELINE,
     /database_timeout_minutes: args\.databaseTimeoutMinutes/,
+  );
+  assert.match(PIPELINE, /ACTIVE_ASK_MAX_TIMEOUT_MINUTES = 120/);
+  assert.match(
+    PIPELINE,
+    /active_ask_timeout_minutes: activeAskTimeoutMinutes/,
+  );
+  assert.match(
+    PIPELINE,
+    /--timeout-minutes=\$\{activeAskTimeoutMinutes\}/,
   );
   assert.match(
     SCHEDULED_RUNNER,

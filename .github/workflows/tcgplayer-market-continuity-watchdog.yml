@@ -1,0 +1,110 @@
+name: TCGPlayer Market Continuity Watchdog
+
+on:
+  schedule:
+    - cron: "47 */2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tcgplayer-market-continuity-v1
+  cancel-in-progress: false
+
+jobs:
+  continuity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    env:
+      SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      SUPABASE_DB_CA_CERT: ${{ secrets.SUPABASE_DB_CA_CERT }}
+      TCGPLAYER_MARKET_SCHEDULE_ALLOW_RUN: "1"
+      TCGPLAYER_MARKET_SCHEDULE_MODE: production
+      TCGPLAYER_MARKET_REPLACEMENT_VERIFIED: "1"
+      TCGPLAYER_MARKET_SCHEDULE_MAX_ATTEMPTS: "2"
+      TCGPLAYER_MARKET_SCHEDULE_RETRY_DELAYS_SECONDS: "60"
+      TCGPLAYER_MARKET_SCHEDULE_REQUEST_CEILING: "10000"
+      TCGPLAYER_MARKET_PHASE_TIMEOUT_MINUTES: "240"
+      TCGPLAYER_MARKET_DATABASE_TIMEOUT_MINUTES: "180"
+      TCGPLAYER_MARKET_SCHEDULE_FRESHNESS_HOURS: "36"
+      TCGPLAYER_MARKET_SCHEDULE_EXPECTED_COMMIT_SHA: ${{ github.sha }}
+      TCGPLAYER_MARKET_SCHEDULE_RUN_KEY: TCGPLAYER-MARKET-CONTINUITY-PRODUCTION-${{ github.run_id }}-${{ github.run_attempt }}
+      GROOKAI_OPERATIONS_WEBHOOK_URL: ${{ secrets.GROOKAI_OPERATIONS_WEBHOOK_URL }}
+      GROOKAI_OPERATIONS_WEBHOOK_BEARER_TOKEN: ${{ secrets.GROOKAI_OPERATIONS_WEBHOOK_BEARER_TOKEN }}
+
+    steps:
+      - name: Check out exact watchdog SHA
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+
+      - name: Verify continuity boundaries
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$SUPABASE_DB_URL"
+          test "$GITHUB_SHA" = "$TCGPLAYER_MARKET_SCHEDULE_EXPECTED_COMMIT_SHA"
+          test -z "$(git status --porcelain --untracked-files=no)"
+          node --check backend/pricing/tcgcsv_current_source_lock_v1.mjs
+          node --check backend/pricing/tcgplayer_market_continuity_policy_v1.mjs
+          node --check scripts/audits/tcgplayer_market_continuity_watchdog_v1.mjs
+          node --test tests/contracts/tcgplayer_market_continuity_v1.test.mjs
+
+      - name: Evaluate live pricing continuity
+        id: continuity
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/audits/tcgplayer_market_continuity_watchdog_v1.mjs \
+            --refresh-at-hours=26 \
+            --failed-run-recovery-at-hours=18 \
+            --active-run-grace-hours=6 \
+            "--expected-commit-sha=$GITHUB_SHA" \
+            "--out-dir=$RUNNER_TEMP/continuity-readback" \
+            "--github-output=$GITHUB_OUTPUT"
+
+      - name: Run guarded production recovery
+        if: ${{ steps.continuity.outputs.refresh_required == 'true' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/workers/tcgplayer_market_scheduled_runner_v1.mjs \
+            --run \
+            --mode=production \
+            "--run-key=$TCGPLAYER_MARKET_SCHEDULE_RUN_KEY" \
+            "--out-root=$RUNNER_TEMP/tcgplayer-market-continuity-$GITHUB_RUN_ID" \
+            --max-attempts=2 \
+            "--expected-commit-sha=$TCGPLAYER_MARKET_SCHEDULE_EXPECTED_COMMIT_SHA"
+
+      - name: Notify operations on failure
+        if: ${{ failure() }}
+        continue-on-error: true
+        shell: bash
+        run: |
+          node scripts/ops/grookai_operations_webhook_v1.mjs \
+            --event=github_continuity_failure \
+            --unit=tcgplayer-market-continuity-watchdog \
+            "--state-dir=$RUNNER_TEMP/operations-notifications"
+
+      - name: Upload continuity evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: tcgplayer-market-continuity-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/continuity-readback
+            ${{ runner.temp }}/tcgplayer-market-continuity-${{ github.run_id }}
+            ${{ runner.temp }}/operations-notifications
+          if-no-files-found: warn
+          retention-days: 30

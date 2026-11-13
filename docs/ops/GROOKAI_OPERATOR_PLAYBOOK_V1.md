@@ -9,8 +9,20 @@ for new unpriced copies. The five-minute repricer is live, but investigation
 found daily publication failing on the older V1_17 producer. Source collection,
 publication, automatic asks, QR readback and Square confirmation require distinct
 evidence. Preserve My price, private publication intent, stock and genuine sales.
-The current reviewed V1_22 runtime is prepared separately; never infer activation
-or successful publication from a prepared checkout or a workflow dispatch.
+The initial V1_22 runtime correction is intermediate. Final continuity source
+`786ec75d9b010bff4db202b0f2ac8a58944117b5` includes V1_23 shared source locking,
+the independent two-hour recovery watchdog and an isolated active-ask timeout.
+Retain the daily 08:15 UTC timer and 36-hour client cutoff. Consult actual private
+runtime and terminal publication receipts; a prepared checkout or dispatch does
+not establish activation or a fresh publication. Do not restart the superseded
+V1_22 production coordinator or compete with an active recovery.
+
+As of this continuation, Square self-service is already deployed on schema495
+and Samsung542. The candidate migration/install instructions below are historical;
+do not repeat them, reconnect the seller, re-enable pricing or send another print
+as daily-price recovery. The accepted Munbyn label and existing genuine cash sale
+remain separate physical/checkout evidence. Live automatic-price verification
+uses an existing real unpriced copy, preserving inventory and all other asks.
 
 ## Square vendor self-service onboarding — candidate, November 13, 2026
 
