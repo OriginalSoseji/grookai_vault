@@ -4787,6 +4787,15 @@ Japanese-name candidates, they must resolve to the same single name. A missing
 or conflicting name is held for identity review; a matching coordinate alone
 must not attach the official assertion to an existing parent.
 
+The Japanese V4 final admission stage preserves historical source labels but
+does not count them as independent corroboration without a corresponding
+captured source assertion. It requires explicit finish assertions for printing
+support and holds conflicting Japanese names. Before replacing the published
+V4 index, it verifies the existing card and printing descriptors and fails if
+any prior identity or printing key would disappear. Run stricter reviews to a
+separate output directory and reconcile held rows; do not treat an unreviewed
+drop in count as catalog cleanup.
+
 ## MTG TCGPlayer qualifier mapping release V1 — November 13, 2026
 
 This release is the bounded, insert-only production mapping gate implemented by
