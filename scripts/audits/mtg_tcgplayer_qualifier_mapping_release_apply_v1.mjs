@@ -83,6 +83,13 @@ async function bindRehearsal(root) {
   return receipt.value;
 }
 
+function bindPackageToRehearsal(packageData, rehearsal) {
+  assert.equal(packageData.hashes['ready_mappings.jsonl'], rehearsal.review_rows_sha256,
+    'package_rows_do_not_match_approved_rehearsal');
+  assert.equal(packageData.summary.manifest_sha256, rehearsal.review_manifest_sha256,
+    'package_manifest_does_not_match_approved_rehearsal');
+}
+
 async function scopedMappings(client, rows) {
   const sourceIds = rows.map((row) => String(row.source_product_id));
   const targetIds = rows.map((row) => row.target_card_print_id);
@@ -129,6 +136,43 @@ function assertBatchReadback(batchRows, mappings, rollbackIdentities, applyCommi
   }
 }
 
+async function reconcileCommitAttempt(batchRows, rollbackIdentities, applyCommit, batchIndex,
+  expectedIds) {
+  let readback;
+  try {
+    readback = new pg.Client(connectionConfig(`mtg_qualifier_commit_reconcile_${batchIndex}_v1`));
+    await readback.connect();
+    const mappings = await scopedMappings(readback, batchRows);
+    if (mappings.length === 0) {
+      return { outcome: 'not_committed_zero_mappings', mapping_ids: [] };
+    }
+    try {
+      assertBatchReadback(batchRows, mappings, rollbackIdentities, applyCommit, batchIndex,
+        expectedIds);
+    } catch (error) {
+      return {
+        outcome: 'unknown_mismatched_independent_readback',
+        mapping_ids: mappings.map((row) => row.id),
+        error_code: error.code ?? error.name ?? 'READBACK_MISMATCH',
+        error_detail: error.message,
+      };
+    }
+    return {
+      outcome: 'committed_by_independent_readback',
+      mapping_ids: mappings.map((row) => row.id),
+    };
+  } catch (error) {
+    return {
+      outcome: 'unknown_independent_readback_unavailable',
+      mapping_ids: [],
+      error_code: error.code ?? error.name ?? 'READBACK_UNAVAILABLE',
+      error_detail: error.message,
+    };
+  } finally {
+    if (readback) await readback.end().catch(() => {});
+  }
+}
+
 async function sanity(client) {
   const server = (await client.query(`select current_database() database,current_user username,
     current_setting('transaction_read_only') read_only`)).rows[0];
@@ -158,8 +202,9 @@ export async function runMtgTcgplayerQualifierMappingReleaseApplyV1(argv) {
   const applyCommit = git(['rev-parse', 'HEAD']);
   assert.equal(applyCommit, options.expectedHeadSha, 'expected_head_sha_changed');
   git(['merge-base', '--is-ancestor', AUTHORIZED_SOURCE_COMMIT, applyCommit]);
-  await bindRehearsal(options.rehearsalRoot);
+  const rehearsal = await bindRehearsal(options.rehearsalRoot);
   const packageData = await loadPackage({ packageRoot: options.packageRoot }, AUTHORIZED_SOURCE_COMMIT);
+  bindPackageToRehearsal(packageData, rehearsal);
   assert.equal(packageData.ready.length, TOTAL_ROWS, 'authorized_scope_count_changed');
   assert.equal(packageData.summary.source_commit, REVIEW_SOURCE_COMMIT, 'review_source_commit_changed');
   const start = (options.batchIndex - 1) * BATCH_SIZE;
@@ -169,8 +214,12 @@ export async function runMtgTcgplayerQualifierMappingReleaseApplyV1(argv) {
   const outDir = path.join(options.outRoot, `batch-${String(options.batchIndex).padStart(2, '0')}`);
   await fs.mkdir(outDir, { recursive: false });
   let committed = false;
+  let commitAttempted = false;
+  let commitOutcome = 'not_attempted';
   let transactionOpen = false;
   let client;
+  let insertedIds = new Map();
+  let rollbackManifestWritten = false;
   const rollbackIdentities = new Map(batchRows.map((row) => [String(row.source_product_id),
     `${AUTHORIZED_FINGERPRINT}:batch:${options.batchIndex}:source:${row.source_product_id}`]));
   const rollbackPlan = {
@@ -245,7 +294,7 @@ export async function runMtgTcgplayerQualifierMappingReleaseApplyV1(argv) {
       order by item.external_id::bigint
       returning id::text,card_print_id::text,source,external_id,active,meta,synced_at`,
     [JSON.stringify(payload)])).rows;
-    const insertedIds = new Map(inserted.map((row) => [row.external_id, row.id]));
+    insertedIds = new Map(inserted.map((row) => [row.external_id, row.id]));
     assertBatchReadback(batchRows, inserted, rollbackIdentities, applyCommit,
       options.batchIndex, insertedIds);
     const insideMappings = await scopedMappings(client, batchRows);
@@ -270,11 +319,38 @@ export async function runMtgTcgplayerQualifierMappingReleaseApplyV1(argv) {
     };
     await writeExclusive(path.join(outDir, 'rollback_manifest.json'),
       `${JSON.stringify(rollbackManifest, null, 2)}\n`);
-    await client.query('commit');
-    transactionOpen = false;
-    committed = true;
-    await client.end();
-    client = undefined;
+    rollbackManifestWritten = true;
+    commitAttempted = true;
+    try {
+      await client.query('commit');
+      transactionOpen = false;
+      committed = true;
+      commitOutcome = 'commit_response_confirmed';
+    } catch (commitError) {
+      transactionOpen = false;
+      await client.end().catch(() => {});
+      client = undefined;
+      const reconciliation = await reconcileCommitAttempt(batchRows, rollbackIdentities,
+        applyCommit, options.batchIndex, insertedIds);
+      commitOutcome = reconciliation.outcome;
+      if (reconciliation.outcome === 'committed_by_independent_readback') {
+        committed = true;
+      } else {
+        const error = new Error(reconciliation.outcome === 'not_committed_zero_mappings'
+          ? 'commit_not_applied_after_independent_readback'
+          : 'commit_outcome_unknown_after_independent_readback');
+        error.code = reconciliation.outcome === 'not_committed_zero_mappings'
+          ? 'COMMIT_NOT_APPLIED'
+          : 'COMMIT_OUTCOME_UNKNOWN';
+        error.commit_error_code = commitError.code ?? commitError.name ?? 'COMMIT_RESPONSE_LOST';
+        error.reconciliation = reconciliation;
+        throw error;
+      }
+    }
+    if (client) {
+      await client.end();
+      client = undefined;
+    }
     const readback = new pg.Client(connectionConfig(`mtg_qualifier_readback_${options.batchIndex}_v1`));
     await readback.connect();
     try {
@@ -307,6 +383,7 @@ export async function runMtgTcgplayerQualifierMappingReleaseApplyV1(argv) {
         protected_counts_before: countsBefore,
         protected_counts_after: countsAfter,
         mapping_ids: [...insertedIds.values()],
+        commit_outcome: commitOutcome,
         boundaries: {
           mapping_inserts: batchRows.length,
           canonical_writes: 0,
@@ -328,19 +405,28 @@ export async function runMtgTcgplayerQualifierMappingReleaseApplyV1(argv) {
       await readback.end();
     }
   } catch (error) {
-    if (transactionOpen && client) await client.query('rollback').catch(() => {});
+    if (transactionOpen && client && !commitAttempted) await client.query('rollback').catch(() => {});
     if (client) await client.end().catch(() => {});
+    const commitUnknown = commitOutcome.startsWith('unknown_');
     const failure = {
       version: MTG_TCGPLAYER_QUALIFIER_MAPPING_RELEASE_APPLY_V1,
-      status: committed ? 'post_commit_readback_failed' : 'failed_zero_committed_writes',
+      status: committed
+        ? 'post_commit_readback_failed'
+        : commitUnknown
+          ? 'commit_outcome_unknown_requires_operator_readback'
+          : 'failed_zero_committed_writes',
       package_fingerprint_sha256: AUTHORIZED_FINGERPRINT,
       apply_commit: applyCommit,
       batch_index: options.batchIndex,
-      committed,
+      committed: commitUnknown ? null : committed,
+      commit_attempted: commitAttempted,
+      commit_outcome: commitOutcome,
       error_code: error.code ?? error.name ?? 'APPLY_FAILURE',
       error_detail: error.message,
+      commit_error_code: error.commit_error_code ?? null,
+      commit_reconciliation: error.reconciliation ?? null,
       rollback_plan: 'rollback_plan.json',
-      rollback_manifest: committed ? 'rollback_manifest.json' : null,
+      rollback_manifest: rollbackManifestWritten ? 'rollback_manifest.json' : null,
     };
     await writeExclusive(path.join(outDir, 'failure.json'), `${JSON.stringify(failure, null, 2)}\n`)
       .catch(() => {});
