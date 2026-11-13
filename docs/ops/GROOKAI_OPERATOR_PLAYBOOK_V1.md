@@ -1,5 +1,17 @@
 # Grookai Operator Playbook V1
 
+## Daily automatic vendor prices — November 13, 2026 continuation
+
+Read [daily pricing and QR continuity](../checkpoints/pricing/VENDOR_DAILY_PRICE_COMPLETION_20261113.md)
+and the protected `vendor_daily_completion_20261113` continuation before changing
+the market producer. The owner has enabled a zero-markup round-up-to-USD1 default
+for new unpriced copies. The five-minute repricer is live, but investigation
+found daily publication failing on the older V1_17 producer. Source collection,
+publication, automatic asks, QR readback and Square confirmation require distinct
+evidence. Preserve My price, private publication intent, stock and genuine sales.
+The current reviewed V1_22 runtime is prepared separately; never infer activation
+or successful publication from a prepared checkout or a workflow dispatch.
+
 ## Square vendor self-service onboarding — candidate, November 13, 2026
 
 Read [Square onboarding V1](../contracts/SQUARE_ONBOARDING_V1.md) and its
