@@ -29,6 +29,13 @@ After either a confirmed manual or automatic save it refreshes its edit revision
 so switching back to a rule works without closing the sheet. Responses begun
 before the save cannot restore an old strategy. If that refresh fails, the sale
 stays confirmed and automatic editing requires reopening the copy.
+While an automatic sale sheet remains visible, it refreshes its server quote
+every 15 seconds and on app resume. It keeps the original edit revision, so an
+external manual change blocks saving for a reload. Refreshes pause for manual
+typing, background or covered screens, and saves; closing cancels the timer.
+The confirmed quote stays visible during a normal background refresh.
+If the automatic amount changes after a saved sale, the prior Square Ready
+message becomes pending; use Check Square status before checkout at that price.
 
 Print label is available after saving For sale, from the native QR tools, and
 from the website's QR and label page. Vendor Mode and the account's Print card
@@ -86,3 +93,10 @@ changing the candidate SQL, rerun the owner workflow against the corrected
 fresh lab; a previous browser receipt is not current evidence. The retained
 fresh-v2 profile uses loopback database/API ports 62540/62541 and website port
 62580. Older receipts remain immutable.
+
+The full `shipcheck` uses Flutter's supported `--ipv6` loopback harness. The
+Windows IPv4 harness intermittently established a socket but failed to load
+test suites, then closed the connection after five minutes. The complete IPv6
+run passed all 2,012 native tests with the two existing skips. Test selection,
+concurrency, assertions and timeouts are unchanged; normal Git hooks still run
+every release check. A stalled or failed run never qualifies a source.

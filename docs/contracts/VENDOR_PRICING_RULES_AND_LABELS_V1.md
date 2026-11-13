@@ -42,6 +42,10 @@ new inventory, changed quantity, resurrected sale, historical-price rewrite or
 automatic private publication is allowed. Existing Square queues, leases, object
 versions and readback retain catalog/stock/payment authority. Pending provider
 acknowledgement never claims that a new price is already in POS.
+Open automatic editors refresh server quotes while active without advancing an
+unsaved edit's baseline revision. Native refreshes stop on close and pause for
+background/covered screens, manual typing and writes. External manual changes
+require reload before an automatic save.
 
 Reusable labels include full card name, set, collector number, original emblem
 and unchanged `/q/{GVVI}` QR; no price, condition or visible GVVI. The set line

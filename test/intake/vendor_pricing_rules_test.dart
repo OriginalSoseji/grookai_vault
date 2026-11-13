@@ -34,6 +34,7 @@ void main() {
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
+    addTearDown(() => tester.pumpWidget(const SizedBox.shrink()));
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
@@ -86,6 +87,206 @@ void main() {
               };
             },
       );
+
+  testWidgets(
+    'open automatic editor refreshes market and preset quotes without advancing its edit revision',
+    (tester) async {
+      var current = state(3, 'default');
+      var amount = 1150;
+      int? appliedRevision;
+      final pricing = VendorPricingRulesService(
+        call: (action, data) async {
+          if (action == 'workspace') return current;
+          if (action == 'preview') {
+            return {
+              'status': 'ready',
+              'amountMinor': amount,
+              'ruleName': 'Live rule',
+            };
+          }
+          if (action == 'apply') {
+            appliedRevision = data['expectedRevision'] as int;
+            current = state(4, 'default');
+            return {
+              'ok': true,
+              'status': 'ready',
+              'id': 'copy-1',
+              'amountMinor': amount,
+            };
+          }
+          throw StateError('unexpected action');
+        },
+      );
+      await render(tester, pricing);
+      expect(find.textContaining(r'$11.50'), findsOneWidget);
+      amount = 1375;
+      current = {
+        ...current,
+        'settings': {...workspace['settings'] as Map, 'revision': 4},
+      };
+      await tester.pump(const Duration(seconds: 16));
+      await tester.pumpAndSettle();
+      expect(find.textContaining(r'$13.75'), findsOneWidget);
+      expect(find.textContaining(r'$11.50'), findsNothing);
+      await save(tester);
+      expect(appliedRevision, 3);
+    },
+  );
+
+  testWidgets(
+    'automatic polling cannot adopt an external manual revision and overwrite it',
+    (tester) async {
+      var current = state(3, 'default');
+      var writes = 0;
+      final pricing = VendorPricingRulesService(
+        call: (action, data) async {
+          if (action == 'workspace') return current;
+          if (action == 'preview') {
+            return {
+              'status': 'ready',
+              'amountMinor': 1150,
+              'ruleName': 'Live rule',
+            };
+          }
+          writes++;
+          throw StateError('competing manual choice must remain protected');
+        },
+      );
+      await render(tester, pricing);
+      current = state(7, 'manual');
+      await tester.pump(const Duration(seconds: 16));
+      await tester.pumpAndSettle();
+      expect(
+        find.textContaining('pricing changed in another view'),
+        findsOneWidget,
+      );
+      expect(
+        tester
+            .widget<FilledButton>(
+              find.widgetWithText(FilledButton, 'Make public and For sale'),
+            )
+            .onPressed,
+        isNull,
+      );
+      expect(
+        tester
+            .widget<DropdownButton<String>>(find.byType(DropdownButton<String>))
+            .value,
+        'default',
+      );
+      expect(writes, 0);
+    },
+  );
+
+  testWidgets(
+    'a refreshed automatic amount invalidates the previous Square readiness',
+    (tester) async {
+      var amount = 1150;
+      var current = state(2, 'default');
+      final pricing = _ReadyPricingService(
+        call: (action, data) async {
+          if (action == 'workspace') return current;
+          if (action == 'preview') {
+            return {
+              'status': 'ready',
+              'amountMinor': amount,
+              'ruleName': 'Live rule',
+            };
+          }
+          throw StateError('read only');
+        },
+        applied: () => current = state(3, 'default'),
+      );
+      await render(tester, pricing);
+      await save(tester);
+      expect(
+        find.text('For sale saved. Ready to scan in Square.'),
+        findsOneWidget,
+      );
+      amount = 1375;
+      await tester.pump(const Duration(seconds: 16));
+      await tester.pumpAndSettle();
+      expect(find.textContaining(r'$13.75'), findsOneWidget);
+      expect(
+        find.text('For sale saved. Ready to scan in Square.'),
+        findsNothing,
+      );
+      expect(find.text('Check Square status'), findsOneWidget);
+      expect(find.text('grookai QR'), findsOneWidget);
+    },
+  );
+
+  testWidgets(
+    'automatic refresh pauses in background, resumes fresh, and stops after closing',
+    (tester) async {
+      var amount = 1150, reads = 0;
+      final pricing = VendorPricingRulesService(
+        call: (action, data) async {
+          if (action == 'workspace') {
+            reads++;
+            return state(3, 'default');
+          }
+          if (action == 'preview') {
+            return {
+              'status': 'ready',
+              'amountMinor': amount,
+              'ruleName': 'Live rule',
+            };
+          }
+          throw StateError('read only');
+        },
+      );
+      await render(tester, pricing);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+      addTearDown(
+        () => tester.binding.handleAppLifecycleStateChanged(
+          AppLifecycleState.resumed,
+        ),
+      );
+      amount = 1425;
+      await tester.pump(const Duration(seconds: 16));
+      expect(reads, 1);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      await tester.pumpAndSettle();
+      expect(find.textContaining(r'$14.25'), findsOneWidget);
+      await tester.pumpWidget(const SizedBox.shrink());
+      final closedReads = reads;
+      await tester.pump(const Duration(seconds: 31));
+      expect(reads, closedReads);
+    },
+  );
+
+  testWidgets('automatic refresh never replaces a fixed price being typed', (
+    tester,
+  ) async {
+    var reads = 0;
+    final pricing = VendorPricingRulesService(
+      call: (action, data) async {
+        if (action == 'workspace') {
+          reads++;
+          return state(3, 'default');
+        }
+        if (action == 'preview') {
+          return {
+            'status': 'ready',
+            'amountMinor': 1150,
+            'ruleName': 'Live rule',
+          };
+        }
+        throw StateError('read only');
+      },
+    );
+    await render(tester, pricing);
+    await choose(tester, 'My price · fixed');
+    await tester.enterText(find.byType(TextField), '2.50');
+    await tester.pump(const Duration(seconds: 31));
+    await tester.pumpAndSettle();
+    expect(
+      tester.widget<TextField>(find.byType(TextField)).controller!.text,
+      '2.50',
+    );
+    expect(reads, 1);
+  });
 
   testWidgets(
     'manual save then automatic uses the new revision in the same sheet',
@@ -415,4 +616,18 @@ void main() {
       );
     }
   });
+}
+
+class _ReadyPricingService extends VendorPricingRulesService {
+  _ReadyPricingService({required super.call, required this.applied});
+  final VoidCallback applied;
+  @override
+  Future<String> apply({
+    required String instanceId,
+    required String selection,
+    required int revision,
+  }) async {
+    applied();
+    return 'ready';
+  }
 }

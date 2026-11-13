@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -77,7 +79,8 @@ class VaultCopySaleSheet extends StatefulWidget {
   State<VaultCopySaleSheet> createState() => _VaultCopySaleSheetState();
 }
 
-class _VaultCopySaleSheetState extends State<VaultCopySaleSheet> {
+class _VaultCopySaleSheetState extends State<VaultCopySaleSheet>
+    with WidgetsBindingObserver {
   late final _price = TextEditingController(
     text: widget.copy.askingPriceAmount?.toStringAsFixed(2) ?? '',
   );
@@ -90,6 +93,11 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet> {
   bool _edited = false, _pricingCurrent = false, _pricingConflict = false;
   int _quoteGeneration = 0, _workspaceGeneration = 0;
   int? _editRevision;
+  Timer? _refreshTimer;
+  bool _polling = false;
+  bool _appActive =
+      WidgetsBinding.instance.lifecycleState == null ||
+      WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed;
   bool get _usesPricing =>
       widget.service == null || widget.pricingService != null;
   VendorPricingRulesService get _pricingService =>
@@ -98,10 +106,41 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet> {
   void initState() {
     super.initState();
     // Existing injected listing tests do not acquire a global session.
-    if (_usesPricing) _loadPricing();
+    if (_usesPricing) {
+      WidgetsBinding.instance.addObserver(this);
+      _loadPricing();
+      _refreshTimer = Timer.periodic(const Duration(seconds: 15), (_) {
+        unawaited(_refreshPricing());
+      });
+    }
   }
 
-  Future<bool> _loadPricing() async {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    _appActive = state == AppLifecycleState.resumed;
+    if (_appActive && _usesPricing) unawaited(_refreshPricing());
+  }
+
+  Future<void> _refreshPricing() async {
+    if (!mounted ||
+        !_appActive ||
+        _busy ||
+        _quoting ||
+        _polling ||
+        _pricingConflict ||
+        _selection == 'manual' ||
+        !(ModalRoute.of(context)?.isCurrent ?? true)) {
+      return;
+    }
+    _polling = true;
+    try {
+      await _loadPricing(preserveEditBaseline: true);
+    } finally {
+      _polling = false;
+    }
+  }
+
+  Future<bool> _loadPricing({bool preserveEditBaseline = false}) async {
     final generation = ++_workspaceGeneration;
     try {
       final w = await _pricingService
@@ -113,14 +152,14 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet> {
       setState(() {
         _pricing = w;
         _pricingCurrent = true;
-        if (_editRevision == null || !_edited) {
+        if (_editRevision == null || (!_edited && !preserveEditBaseline)) {
           _editRevision = revision;
         } else if (_editRevision != revision) {
           _pricingConflict = true;
           _error =
               'This copy\'s pricing changed in another view. Close this sheet and reload the copy before saving your edits.';
         }
-        if (!_edited) {
+        if (!_edited && !preserveEditBaseline) {
           _selection = c?['mode'] == 'preset'
               ? c!['rule_id'] as String
               : c?['mode'] == 'default'
@@ -128,18 +167,29 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet> {
               : 'manual';
         }
       });
-      if (_selection != 'manual' && !_pricingConflict) await _preview();
+      if (_selection != 'manual' && !_pricingConflict) {
+        await _preview(retainQuote: preserveEditBaseline);
+      }
       return true;
     } catch (_) {
       /* Manual sale flow remains available during staged rollout. */
       if (mounted && generation == _workspaceGeneration) {
-        setState(() => _pricingCurrent = false);
+        setState(() {
+          _pricingCurrent = false;
+          if (preserveEditBaseline && _selection != 'manual') {
+            _quote = {
+              'status': 'waiting',
+              'reason':
+                  'Price refresh is unavailable. Your last confirmed price is retained. It will retry automatically.',
+            };
+          }
+        });
       }
       return false;
     }
   }
 
-  Future<void> _preview() async {
+  Future<void> _preview({bool retainQuote = false}) async {
     final generation = ++_quoteGeneration;
     if (_selection == 'manual') {
       setState(() {
@@ -150,13 +200,23 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet> {
     }
     setState(() {
       _quoting = true;
-      _quote = null;
+      if (!retainQuote) _quote = null;
     });
     try {
       final q = await _pricingService
           .preview(widget.copy.instanceId, _selection)
           .timeout(const Duration(seconds: 12));
-      if (mounted && generation == _quoteGeneration) setState(() => _quote = q);
+      if (mounted && generation == _quoteGeneration) {
+        setState(() {
+          if (retainQuote &&
+              q['status'] == 'ready' &&
+              q['amountMinor'] != _quote?['amountMinor'] &&
+              _squareStatus == 'ready') {
+            _squareStatus = 'pending';
+          }
+          _quote = q;
+        });
+      }
     } catch (_) {
       if (mounted && generation == _quoteGeneration) {
         setState(
@@ -176,6 +236,8 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet> {
 
   @override
   void dispose() {
+    _refreshTimer?.cancel();
+    WidgetsBinding.instance.removeObserver(this);
     _price.dispose();
     _focus.dispose();
     super.dispose();
@@ -385,7 +447,7 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet> {
                     child: Text(
                       _pricing?['enabled'] != true
                           ? 'Automatic repricing is paused. Your last confirmed asking price is retained.'
-                          : _quoting
+                          : _quoting && _quote == null
                           ? 'Checking fresh market…'
                           : _quote?['status'] == 'ready'
                           ? '\$${((_quote!['amountMinor'] as num) / 100).toStringAsFixed(2)} · ${_quote!['ruleName']}. Updates automatically.'
