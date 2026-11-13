@@ -46,7 +46,7 @@ export class SquareCatalogService {
     const context = {id: attemptId, ownerId, environment: config.environment};
     await this.#call('oauth_start', {ownerId, environment: config.environment, attemptId,
       stateHash: hash(state), launchHash: hash(launch),
-      stateCiphertext: sealSquareCredential({state}, config.encryptionKey, launchContext(context)), clientReturn});
+      stateCiphertext: sealSquareCredential({state, clientReturn}, config.encryptionKey, launchContext(context)), clientReturn});
     const launchUrl = new URL('/api/square/oauth/launch', config.callbackUrl);
     launchUrl.searchParams.set('capability', launch);
     return {launchUrl: launchUrl.toString()};
@@ -55,8 +55,8 @@ export class SquareCatalogService {
     const config = this.#configuration('linkingEnabled'), nonce = randomBytes(32).toString('base64url');
     const attempt = await this.#call('oauth_launch', {launchHash: hash(capability(rawCapability)), browserHash: hash(nonce)});
     if (attempt.environment !== config.environment) fail('square_environment_mismatch');
-    const {state} = openSquareCredential(attempt.state_ciphertext, config.encryptionKey, launchContext(attempt));
-    return {browserNonce: nonce, authorizationUrl: this.#client({environment: config.environment}).authorizationUrl({
+    const {state, clientReturn} = openSquareCredential(attempt.state_ciphertext, config.encryptionKey, launchContext(attempt));
+    return {browserNonce: nonce, clientReturn: clientReturn === 'native' ? 'native' : 'web', authorizationUrl: this.#client({environment: config.environment}).authorizationUrl({
       appId: config.appId, redirectUri: config.callbackUrl, state: capability(state), commerce: config.commerceEnabled === true})};
   }
   async callback({state, browserNonce, code, denied = false}) {

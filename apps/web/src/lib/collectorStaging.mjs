@@ -13,9 +13,14 @@ export const salesPaymentsLocalTest = process.env.NEXT_PUBLIC_SALES_PAYMENTS_LOC
 export const receiptDeliveryLocalTest = process.env.NEXT_PUBLIC_RECEIPT_DELIVERY_LOCAL_TEST === "true";
 export const squareLocalTest = process.env.NEXT_PUBLIC_SQUARE_LOCAL_TEST === "true";
 export const vendorPricingLocalTest = process.env.NEXT_PUBLIC_VENDOR_PRICING_LOCAL_TEST === "true";
+export const squareOnboardingLocalTest = process.env.NEXT_PUBLIC_SQUARE_ONBOARDING_LOCAL_TEST === "true";
 
 export function assertCollectorStagingTarget(url, fixtureLab = collectorFixtureLab, hosted = collectorHostedStaging) {
   const target = new URL(url);
+  if (squareOnboardingLocalTest) {
+    if (vendorPilot || fixtureLab || hosted || storefrontLocalTest || vendorBatchLocalTest || collectrImportLocalTest || receiptCloudLocalTest || salesCartLocalTest || salesDeskProLocalTest || salesTradeLocalTest || receiptDeliveryLocalTest || salesPaymentsLocalTest || squareLocalTest || vendorPricingLocalTest || target.href !== "http://127.0.0.1:62941/") throw new Error("Square onboarding proof requires its exact separate local database.");
+    return;
+  }
   if (vendorPricingLocalTest) {
     if (vendorPilot || fixtureLab || hosted || storefrontLocalTest || vendorBatchLocalTest || collectrImportLocalTest || receiptCloudLocalTest || salesCartLocalTest || salesDeskProLocalTest || salesTradeLocalTest || receiptDeliveryLocalTest || salesPaymentsLocalTest || squareLocalTest || target.href !== "http://127.0.0.1:62541/") throw new Error("Vendor pricing proof requires its exact separate local database.");
     return;

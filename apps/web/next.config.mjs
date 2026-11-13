@@ -3,7 +3,7 @@ import path from "path";
 import { createRequire } from "node:module";
 import { scanRuntimeTracePatterns } from "./src/lib/stores/scanRuntimeFiles.mjs";
 import { assertCollectorReleaseEnvironment } from "./src/lib/collectorRelease.mjs";
-import { collectorStaging, collectorFixtureLab, collectorHostedStaging, storefrontLocalTest, vendorBatchLocalTest, collectrImportLocalTest, receiptCloudLocalTest, salesTradeLocalTest, receiptDeliveryLocalTest, salesPaymentsLocalTest, squareLocalTest, vendorPricingLocalTest, assertCollectorStagingTarget } from "./src/lib/collectorStaging.mjs";
+import { collectorStaging, collectorFixtureLab, collectorHostedStaging, storefrontLocalTest, vendorBatchLocalTest, collectrImportLocalTest, receiptCloudLocalTest, salesTradeLocalTest, receiptDeliveryLocalTest, salesPaymentsLocalTest, squareLocalTest, vendorPricingLocalTest, squareOnboardingLocalTest, assertCollectorStagingTarget } from "./src/lib/collectorStaging.mjs";
 
 /**
  * Env contract reuse:
@@ -24,7 +24,7 @@ if (vendorPilot && (process.env.NEXT_PUBLIC_COLLECTOR_STAGING !== "true" || proc
   throw new Error("Vendor preview requires isolated staging, disabled telemetry and no payment configuration.");
 }
 const collectorPreview = process.env.NEXT_PUBLIC_COLLECTOR_PREVIEW_READ_ONLY === "true";
-if ((storefrontLocalTest || vendorBatchLocalTest || collectrImportLocalTest || receiptCloudLocalTest || salesTradeLocalTest || receiptDeliveryLocalTest || salesPaymentsLocalTest || squareLocalTest || vendorPricingLocalTest) && (!collectorStaging || collectorPreview || process.env.VERCEL || process.env.VERCEL_ENV || process.env.GROOKAI_DISABLE_TELEMETRY !== "1")) {
+if ((storefrontLocalTest || vendorBatchLocalTest || collectrImportLocalTest || receiptCloudLocalTest || salesTradeLocalTest || receiptDeliveryLocalTest || salesPaymentsLocalTest || squareLocalTest || vendorPricingLocalTest || squareOnboardingLocalTest) && (!collectorStaging || collectorPreview || process.env.VERCEL || process.env.VERCEL_ENV || process.env.GROOKAI_DISABLE_TELEMETRY !== "1")) {
   throw new Error("Storefront tests require isolated local staging with telemetry disabled and no Vercel target.");
 }
 if (!collectorPreview && !collectorStaging) {
@@ -82,7 +82,7 @@ const nextConfig = {
   },
   // Hide the developer badge only in the existing local visual test mode.
   devIndicators: process.env.GROOKAI_VISUAL_TEST_MODE === "1" ? false : undefined,
-  distDir: vendorPricingLocalTest ? ".next-vendor-pricing-dev" : squareLocalTest ? (process.env.NODE_ENV === "development" ? ".next-square-dev" : ".next-square") : vendorBatchLocalTest ? ".next-batch-intake" : storefrontLocalTest ? ".next-storefront" : collectorFixtureLab ? ".next-fixture" : ".next",
+  distDir: squareOnboardingLocalTest ? ".next-square-onboarding-dev" : vendorPricingLocalTest ? ".next-vendor-pricing-dev" : squareLocalTest ? (process.env.NODE_ENV === "development" ? ".next-square-dev" : ".next-square") : vendorBatchLocalTest ? ".next-batch-intake" : storefrontLocalTest ? ".next-storefront" : collectorFixtureLab ? ".next-fixture" : ".next",
   outputFileTracingRoot: repoRoot,
   serverExternalPackages: ["tesseract.js", "@tesseract.js-data/eng", "@techstark/opencv-js"],
   outputFileTracingIncludes: {
@@ -124,6 +124,7 @@ const nextConfig = {
     cpus: 1,
   },
   env: {
+    NEXT_PUBLIC_SQUARE_ONBOARDING_LOCAL_TEST: squareOnboardingLocalTest ? "true" : "false",
     NEXT_PUBLIC_VENDOR_PRICING_LOCAL_TEST: vendorPricingLocalTest ? "true" : "false",
     NEXT_PUBLIC_SQUARE_LOCAL_TEST: squareLocalTest ? "true" : "false",
     NEXT_PUBLIC_STOREFRONT_LOCAL_TEST: storefrontLocalTest ? "true" : "false",

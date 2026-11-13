@@ -1,20 +1,58 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:uuid/uuid.dart';
 import '../../services/square/square_service.dart';
+import '../../services/square/square_link_return.dart';
 
 class SquareScreen extends StatefulWidget {
-  const SquareScreen({super.key});
+  const SquareScreen({super.key, this.gateway, this.openAuthorization});
+  final SquareGateway? gateway;
+  final Future<bool> Function(Uri)? openAuthorization;
   static const routeName = '/vault/square';
   static bool isOpen = false;
+  static bool _pushing = false;
+
+  static Future<void> open(
+    BuildContext context, {
+    SquareGateway? gateway,
+  }) async {
+    final navigator = Navigator.of(context, rootNavigator: true);
+    if (isOpen || _pushing) {
+      navigator.popUntil(
+        (route) => route.settings.name == routeName || route.isFirst,
+      );
+      return;
+    }
+    _pushing = true;
+    try {
+      await navigator.push<void>(
+        MaterialPageRoute<void>(
+          settings: const RouteSettings(name: routeName),
+          builder: (_) => SquareScreen(gateway: gateway),
+        ),
+      );
+    } finally {
+      _pushing = false;
+    }
+  }
+
+  static Future<void> handleReturn(BuildContext context) {
+    SquareLinkReturn.deliver();
+    return open(context);
+  }
+
   @override
   State<SquareScreen> createState() => _SquareScreenState();
 }
 
 class _SquareScreenState extends State<SquareScreen>
     with WidgetsBindingObserver {
-  late final SquareService _service;
+  late final SquareGateway _service;
+  StreamSubscription<void>? _linkReturns;
+  bool _refreshPending = false, _awaitingSquare = false;
+  String? _locationError;
   Map<String, dynamic>? _workspace;
   List<Map<String, dynamic>> _locations = [];
   String? _location;
@@ -26,11 +64,13 @@ class _SquareScreenState extends State<SquareScreen>
   void initState() {
     super.initState();
     SquareScreen.isOpen = true;
-    final client = Supabase.instance.client;
-    _service = SquareService(
-      client,
-      ownerId: client.auth.currentUser?.id ?? '',
-    );
+    _service =
+        widget.gateway ??
+        SquareService(
+          Supabase.instance.client,
+          ownerId: Supabase.instance.client.auth.currentUser?.id ?? '',
+        );
+    _linkReturns = SquareLinkReturn.stream.listen((_) => _refreshFromSquare());
     WidgetsBinding.instance.addObserver(this);
     _run(_reload);
   }
@@ -38,6 +78,7 @@ class _SquareScreenState extends State<SquareScreen>
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    _linkReturns?.cancel();
     SquareScreen.isOpen = false;
     _service.dispose();
     super.dispose();
@@ -45,7 +86,15 @@ class _SquareScreenState extends State<SquareScreen>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.resumed && !_busy) _run(_reload);
+    if (state == AppLifecycleState.resumed) _refreshFromSquare();
+  }
+
+  void _refreshFromSquare() {
+    if (_busy) {
+      _refreshPending = true;
+      return;
+    }
+    unawaited(_run(_reload));
   }
 
   List<Map<String, dynamic>> _rows(dynamic value) => value is List
@@ -82,7 +131,41 @@ class _SquareScreenState extends State<SquareScreen>
       _location = _connection?['locationId'] as String?;
       _automatic = _commerce?['autoEnroll'] == true;
       _selling = _commerce?['sellOnSquare'] == true;
+      if (_awaitingSquare && _connection?['status'] != 'connected') {
+        _message = 'Square is not connected yet. You can try signing in again.';
+      }
+      _awaitingSquare = false;
     });
+    if (_connection?['status'] == 'connected') await _loadLocations();
+  }
+
+  Future<void> _loadLocations() async {
+    final id = _connection?['id'];
+    if (id == null) return;
+    setState(() => _locationError = null);
+    try {
+      final value = await _service.call('locations', {'connectionId': id});
+      if (!mounted) return;
+      setState(() {
+        _locations = _rows(value['locations']);
+        final saved = _connection?['locationId'];
+        if (saved != null && !_locations.any((row) => row['id'] == saved)) {
+          _locationError =
+              'Your saved Square location is unavailable. Check it in Square, then retry here.';
+        }
+        _location = _locations.any((r) => r['id'] == saved)
+            ? saved as String
+            : saved == null && _locations.length == 1
+            ? _locations.single['id'] as String
+            : null;
+      });
+    } catch (_) {
+      if (mounted) {
+        setState(
+          () => _locationError = 'Could not load Square locations. Try again.',
+        );
+      }
+    }
   }
 
   Future<void> _run(Future<void> Function() action) async {
@@ -101,20 +184,59 @@ class _SquareScreenState extends State<SquareScreen>
         );
       }
     } finally {
-      if (mounted) setState(() => _busy = false);
+      if (mounted) {
+        setState(() => _busy = false);
+        if (_refreshPending) {
+          _refreshPending = false;
+          unawaited(_run(_reload));
+        }
+      }
     }
   }
 
   Future<void> _connect() async {
     final result = await _service.call('link', {'clientReturn': 'native'});
+    if (!mounted) return;
     final uri = Uri.parse(result['launchUrl'] as String);
     if (uri.scheme != 'https' ||
         uri.host != 'grookaivault.com' ||
         uri.path != '/api/square/oauth/launch') {
       throw StateError('Square connection is unavailable.');
     }
-    if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
+    setState(() {
+      _awaitingSquare = true;
+      _message =
+          'Finish signing in and approving grookai in Square. You will return here to finish setup.';
+    });
+    final opened =
+        await (widget.openAuthorization?.call(uri) ??
+            launchUrl(uri, mode: LaunchMode.externalApplication));
+    if (!opened) {
+      if (mounted) setState(() => _awaitingSquare = false);
       throw StateError('Could not open Square.');
+    }
+  }
+
+  Future<void> _enableSales() async {
+    final id = _connection?['id'];
+    if (id == null || _location == null) return;
+    await _service.call('configure', {
+      'connectionId': id,
+      'locationId': _location,
+      'autoSync': true,
+    });
+    await _service.call('preferences', {
+      'connectionId': id,
+      'autoEnroll': true,
+      'sellOnSquare': true,
+      'confirmed': true,
+    });
+    await _reload();
+    if (mounted) {
+      setState(
+        () => _message =
+            'Automatic Square sales enabled. Eligible cards sync in the background. Check Ready in Square before checkout.',
+      );
     }
   }
 
@@ -177,6 +299,12 @@ class _SquareScreenState extends State<SquareScreen>
     final id = connection?['id'];
     final connected = connection?['status'] == 'connected';
     final enabled = (_workspace?['commerce'] as Map?)?['enabled'] == true;
+    final ready =
+        connected &&
+        connection?['locationId'] != null &&
+        connection?['autoSync'] == true &&
+        commerce?['autoEnroll'] == true &&
+        commerce?['sellOnSquare'] == true;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Square'),
@@ -219,263 +347,353 @@ class _SquareScreenState extends State<SquareScreen>
                 child: Text(_message!),
               ),
             const SizedBox(height: 16),
-            FilledButton(
-              onPressed: _busy || _workspace?['linkingEnabled'] != true
-                  ? null
-                  : () => _run(_connect),
-              child: Text(
-                connected ? 'Reconnect Square' : 'Connect Square account',
+            if (_workspace != null && _workspace?['linkingEnabled'] != true)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: Text(
+                  (_workspace?['onboarding'] as Map?)?['eligible'] == false
+                      ? 'Square selling requires an active vendor plan with vendor tools.'
+                      : 'Square connections are temporarily unavailable. Try again later.',
+                ),
               ),
-            ),
+            if (!connected)
+              FilledButton(
+                onPressed: _busy || _workspace?['linkingEnabled'] != true
+                    ? null
+                    : () => _run(_connect),
+                child: Text(
+                  _awaitingSquare
+                      ? 'Try Square sign-in again'
+                      : connection?['status'] == 'reconnect_required'
+                      ? 'Reconnect Square'
+                      : 'Connect Square',
+                ),
+              ),
             if (!connected)
               const Padding(
                 padding: EdgeInsets.only(top: 12),
                 child: Text(
-                  'Connect your Square account, then return here to choose your location.',
+                  'Sign in to your Square seller account and approve grookai. Then confirm your location here. You do not need a Square developer account.',
                 ),
               ),
             if (connected) ...[
-              const SizedBox(height: 24),
+              const SizedBox(height: 16),
               Text(
-                'Location and automatic updates',
+                ready ? 'Automatic Square sales are on' : 'Finish Square setup',
                 style: Theme.of(context).textTheme.titleLarge,
               ),
-              TextButton(
-                onPressed: _busy
-                    ? null
-                    : () => _run(() async {
-                        final value = await _service.call('locations', {
-                          'connectionId': id,
-                        });
-                        if (!mounted) return;
-                        setState(() {
-                          _locations = _rows(value['locations']);
-                          _location ??=
-                              _locations.firstOrNull?['id'] as String?;
-                        });
-                      }),
-                child: const Text('Load Square locations'),
-              ),
-              if (_locations.isNotEmpty)
-                DropdownButtonFormField<String>(
-                  initialValue: _location,
-                  decoration: const InputDecoration(
-                    labelText: 'Square location',
-                  ),
-                  items: _locations
-                      .map(
-                        (row) => DropdownMenuItem(
-                          value: row['id'] as String,
-                          child: Text(row['name'] as String),
-                        ),
-                      )
-                      .toList(),
-                  onChanged: _busy
-                      ? null
-                      : (value) => setState(() => _location = value),
-                ),
-              SwitchListTile(
-                contentPadding: EdgeInsets.zero,
-                title: const Text('Automatically include public sale cards'),
-                subtitle: const Text(
-                  'Include current and future public For sale cards with a valid asking price. Private collection cards stay private.',
-                ),
-                value: _automatic,
-                onChanged: _busy || !enabled
-                    ? null
-                    : (value) => setState(() => _automatic = value),
-              ),
-              SwitchListTile(
-                contentPadding: EdgeInsets.zero,
-                title: const Text('Make these cards sellable in Square'),
-                subtitle: const Text(
-                  'Assign each physical card to Square. It cannot be sold through another grookai channel until sold or safely removed from Square.',
-                ),
-                value: _selling,
-                onChanged: _busy || !enabled
-                    ? null
-                    : (value) => setState(() => _selling = value),
-              ),
-              if (!enabled)
+              if (!ready) ...[
+                const SizedBox(height: 8),
                 const Text(
-                  'Square stock and sales are not enabled for this account yet.',
+                  'Enable automatic sync for your current and future public For sale cards with a USD price. Each physical card is reserved for Square until sold or safely removed. Private cards stay private.',
                 ),
-              FilledButton(
-                onPressed: _busy || !enabled || _location == null
-                    ? null
-                    : () => _run(() async {
-                        await _service.call('configure', {
-                          'connectionId': id,
-                          'locationId': _location,
-                          'autoSync': _automatic || _selling,
-                        });
-                        await _service.call('preferences', {
-                          'connectionId': id,
-                          'autoEnroll': _automatic,
-                          'sellOnSquare': _selling,
-                          'confirmed': true,
-                        });
-                        await _syncPending(id);
-                        if (mounted) {
-                          setState(
-                            () => _message =
-                                'Preferences saved. Check the ready and review counts below.',
-                          );
-                        }
-                      }),
-                child: const Text('Save and sync'),
-              ),
-              const SizedBox(height: 20),
+                if (_locationError != null) Text(_locationError!),
+                if (_locationError != null || _locations.isEmpty)
+                  TextButton(
+                    onPressed: _busy ? null : () => _run(_reload),
+                    child: const Text('Retry locations'),
+                  ),
+                if (!_busy && _locationError == null && _locations.isEmpty)
+                  const Text(
+                    'No active USD location was found. Finish setting up a location in your Square Dashboard, then retry here.',
+                  ),
+                if (_locations.isNotEmpty)
+                  DropdownButtonFormField<String>(
+                    key: ValueKey('setup-$_location'),
+                    initialValue: _location,
+                    decoration: const InputDecoration(
+                      labelText: 'Square location',
+                    ),
+                    hint: const Text('Choose a location'),
+                    items: _locations
+                        .map(
+                          (row) => DropdownMenuItem(
+                            value: row['id'] as String,
+                            child: Text(row['name'] as String),
+                          ),
+                        )
+                        .toList(),
+                    onChanged: _busy
+                        ? null
+                        : (value) => setState(() => _location = value),
+                  ),
+                const SizedBox(height: 12),
+                FilledButton(
+                  onPressed:
+                      _busy ||
+                          !enabled ||
+                          _location == null ||
+                          _locationError != null
+                      ? null
+                      : () => _run(_enableSales),
+                  child: const Text('Enable automatic Square sales'),
+                ),
+              ],
+              if (ready)
+                const Text(
+                  'Add a card in grookai, mark it Public / For sale, and set its price. Its item and artwork sync automatically. Scan the same grookai QR in Square to sell it.',
+                ),
+              if (ready && _locationError != null) ...[
+                Text(
+                  _locationError!,
+                  style: TextStyle(color: Theme.of(context).colorScheme.error),
+                ),
+                TextButton(
+                  onPressed: _busy ? null : () => _run(_reload),
+                  child: const Text('Retry locations'),
+                ),
+              ],
+              const SizedBox(height: 16),
               Text(
                 '${commerce?['allocated'] ?? 0} ready in Square · ${commerce?['pending'] ?? 0} pending · ${commerce?['reviews'] ?? 0} need review',
               ),
-              Text(
-                '${commerce?['sales'] ?? 0} recorded Square sales · ${commerce?['refunds'] ?? 0} refunds reported',
-              ),
-              Wrap(
-                spacing: 8,
+              ExpansionTile(
+                title: const Text('Settings and stock details'),
+                tilePadding: EdgeInsets.zero,
                 children: [
-                  OutlinedButton(
-                    onPressed: _busy
+                  TextButton(
+                    onPressed: _busy || _workspace?['linkingEnabled'] != true
                         ? null
-                        : () => _run(() async {
-                            await _syncPending(id);
-                          }),
-                    child: const Text('Sync now'),
+                        : () => _run(_connect),
+                    child: const Text('Reconnect Square'),
+                  ),
+                  const SizedBox(height: 24),
+                  Text(
+                    'Location and automatic updates',
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
                   TextButton(
-                    onPressed: _busy
+                    onPressed: _busy ? null : () => _run(_loadLocations),
+                    child: const Text('Refresh locations'),
+                  ),
+                  if (_locations.isNotEmpty)
+                    DropdownButtonFormField<String>(
+                      initialValue: _location,
+                      decoration: const InputDecoration(
+                        labelText: 'Square location',
+                      ),
+                      items: _locations
+                          .map(
+                            (row) => DropdownMenuItem(
+                              value: row['id'] as String,
+                              child: Text(row['name'] as String),
+                            ),
+                          )
+                          .toList(),
+                      onChanged: _busy
+                          ? null
+                          : (value) => setState(() => _location = value),
+                    ),
+                  SwitchListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: const Text(
+                      'Automatically include public sale cards',
+                    ),
+                    subtitle: const Text(
+                      'Include current and future public For sale cards with a valid asking price. Private collection cards stay private.',
+                    ),
+                    value: _automatic,
+                    onChanged: _busy || !enabled
+                        ? null
+                        : (value) => setState(() => _automatic = value),
+                  ),
+                  SwitchListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: const Text('Make these cards sellable in Square'),
+                    subtitle: const Text(
+                      'Assign each physical card to Square. It cannot be sold through another grookai channel until sold or safely removed from Square.',
+                    ),
+                    value: _selling,
+                    onChanged: _busy || !enabled
+                        ? null
+                        : (value) => setState(() => _selling = value),
+                  ),
+                  if (!enabled)
+                    const Text(
+                      'Square stock and sales are not enabled for this account yet.',
+                    ),
+                  FilledButton(
+                    onPressed: _busy || !enabled || _location == null
                         ? null
                         : () => _run(() async {
-                            await _service.call('reconcile', {
+                            await _service.call('configure', {
                               'connectionId': id,
+                              'locationId': _location,
+                              'autoSync': _automatic || _selling,
                             });
-                            await _reload();
+                            await _service.call('preferences', {
+                              'connectionId': id,
+                              'autoEnroll': _automatic,
+                              'sellOnSquare': _selling,
+                              'confirmed': true,
+                            });
+                            await _syncPending(id);
+                            if (mounted) {
+                              setState(
+                                () => _message =
+                                    'Preferences saved. Check the ready and review counts below.',
+                              );
+                            }
                           }),
-                    child: const Text('Check Square sales'),
+                    child: const Text('Save and sync'),
                   ),
-                  TextButton(
-                    onPressed: _busy
-                        ? null
-                        : () => _run(() async {
-                            await _service.call('pause', {'connectionId': id});
-                            await _reload();
-                          }),
-                    child: const Text('Pause automatic sync'),
+                  const SizedBox(height: 20),
+                  Text(
+                    '${commerce?['allocated'] ?? 0} ready in Square · ${commerce?['pending'] ?? 0} pending · ${commerce?['reviews'] ?? 0} need review',
                   ),
-                ],
-              ),
-              const SizedBox(height: 16),
-              for (final review in _adoptions)
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  Text(
+                    '${commerce?['sales'] ?? 0} recorded Square sales · ${commerce?['refunds'] ?? 0} refunds reported',
+                  ),
+                  Wrap(
+                    spacing: 8,
                     children: [
-                      Text(
-                        'Link existing Square item',
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
-                      Text(
-                        '${(review['observed'] as Map?)?['name'] ?? 'Existing item'} uses this card’s grookai QR. Confirm the link to keep one item for this exact card.',
-                      ),
                       OutlinedButton(
                         onPressed: _busy
                             ? null
                             : () => _run(() async {
-                                await _service.call('adopt', {
-                                  'connectionId': id,
-                                  'targetId': review['targetId'],
-                                  'itemId': review['itemId'],
-                                  'variationId': review['variationId'],
-                                  'expectedReviewHash': review['reviewHash'],
-                                  'confirmed': true,
-                                  'requestId': const Uuid().v4(),
-                                });
                                 await _syncPending(id);
                               }),
-                        child: const Text('Confirm and link existing item'),
+                        child: const Text('Sync now'),
                       ),
-                    ],
-                  ),
-                ),
-              for (final row in _rows(commerce?['allocations']))
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '${row['name'] ?? row['gvvi']} · ${row['state'] == 'active'
-                            ? 'Ready in Square'
-                            : row['state'] == 'review'
-                            ? 'Needs review'
-                            : 'Pending'}',
-                      ),
-                      Text(row['gvvi']?.toString() ?? ''),
                       TextButton(
                         onPressed: _busy
                             ? null
                             : () => _run(() async {
-                                await _service.call('withdraw', {
+                                await _service.call('reconcile', {
                                   'connectionId': id,
-                                  'targetId': row['targetId'],
                                 });
                                 await _reload();
                               }),
-                        child: const Text('Remove from Square stock'),
+                        child: const Text('Check Square sales'),
                       ),
-                      if (row['state'] == 'review' && row['quantity'] == 0)
-                        OutlinedButton(
-                          onPressed: _busy
-                              ? null
-                              : () => _run(() async {
-                                  if (!await _confirmRelease()) return;
-                                  await _service.call('releaseStock', {
-                                    'connectionId': id,
-                                    'targetId': row['targetId'],
-                                    'confirmed': true,
-                                    'physicalCopyPresent': true,
-                                    'registerOnline': true,
-                                  });
-                                  await _reload();
-                                }),
-                          child: const Text('Confirm stock release'),
-                        ),
+                      TextButton(
+                        onPressed: _busy
+                            ? null
+                            : () => _run(() async {
+                                await _service.call('pause', {
+                                  'connectionId': id,
+                                });
+                                await _reload();
+                              }),
+                        child: const Text('Pause automatic sync'),
+                      ),
                     ],
                   ),
-                ),
-              for (final sale in _rows(commerce?['recentSales']))
-                ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  title: Text(
-                    'Square sale · \$${((sale['saleCents'] as num) / 100).toStringAsFixed(2)}',
-                  ),
-                  subtitle: Text(
-                    sale['returned'] == true
-                        ? 'Returned to Vault with a new QR'
-                        : sale['refundReported'] == true
-                        ? 'Refund reported. Confirm physical return before restocking.'
-                        : 'Sale recorded in your Vault history',
-                  ),
-                  trailing:
-                      sale['refundReported'] == true && sale['returned'] != true
-                      ? TextButton(
-                          onPressed: _busy
-                              ? null
-                              : () => _run(() async {
-                                  if (!await _confirmReturn()) return;
-                                  await _service.call('return', {
-                                    'connectionId': id,
-                                    'saleId': sale['id'],
-                                    'confirmed': true,
-                                  });
-                                  await _reload();
-                                }),
-                          child: const Text('Receive return'),
-                        )
-                      : null,
-                ),
+                  const SizedBox(height: 16),
+                  for (final review in _adoptions)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Link existing Square item',
+                            style: Theme.of(context).textTheme.titleMedium,
+                          ),
+                          Text(
+                            '${(review['observed'] as Map?)?['name'] ?? 'Existing item'} uses this card’s grookai QR. Confirm the link to keep one item for this exact card.',
+                          ),
+                          OutlinedButton(
+                            onPressed: _busy
+                                ? null
+                                : () => _run(() async {
+                                    await _service.call('adopt', {
+                                      'connectionId': id,
+                                      'targetId': review['targetId'],
+                                      'itemId': review['itemId'],
+                                      'variationId': review['variationId'],
+                                      'expectedReviewHash':
+                                          review['reviewHash'],
+                                      'confirmed': true,
+                                      'requestId': const Uuid().v4(),
+                                    });
+                                    await _syncPending(id);
+                                  }),
+                            child: const Text('Confirm and link existing item'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  for (final row in _rows(commerce?['allocations']))
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '${row['name'] ?? row['gvvi']} · ${row['state'] == 'active'
+                                ? 'Ready in Square'
+                                : row['state'] == 'review'
+                                ? 'Needs review'
+                                : 'Pending'}',
+                          ),
+                          Text(row['gvvi']?.toString() ?? ''),
+                          TextButton(
+                            onPressed: _busy
+                                ? null
+                                : () => _run(() async {
+                                    await _service.call('withdraw', {
+                                      'connectionId': id,
+                                      'targetId': row['targetId'],
+                                    });
+                                    await _reload();
+                                  }),
+                            child: const Text('Remove from Square stock'),
+                          ),
+                          if (row['state'] == 'review' && row['quantity'] == 0)
+                            OutlinedButton(
+                              onPressed: _busy
+                                  ? null
+                                  : () => _run(() async {
+                                      if (!await _confirmRelease()) return;
+                                      await _service.call('releaseStock', {
+                                        'connectionId': id,
+                                        'targetId': row['targetId'],
+                                        'confirmed': true,
+                                        'physicalCopyPresent': true,
+                                        'registerOnline': true,
+                                      });
+                                      await _reload();
+                                    }),
+                              child: const Text('Confirm stock release'),
+                            ),
+                        ],
+                      ),
+                    ),
+                  for (final sale in _rows(commerce?['recentSales']))
+                    ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      title: Text(
+                        'Square sale · \$${((sale['saleCents'] as num) / 100).toStringAsFixed(2)}',
+                      ),
+                      subtitle: Text(
+                        sale['returned'] == true
+                            ? 'Returned to Vault with a new QR'
+                            : sale['refundReported'] == true
+                            ? 'Refund reported. Confirm physical return before restocking.'
+                            : 'Sale recorded in your Vault history',
+                      ),
+                      trailing:
+                          sale['refundReported'] == true &&
+                              sale['returned'] != true
+                          ? TextButton(
+                              onPressed: _busy
+                                  ? null
+                                  : () => _run(() async {
+                                      if (!await _confirmReturn()) return;
+                                      await _service.call('return', {
+                                        'connectionId': id,
+                                        'saleId': sale['id'],
+                                        'confirmed': true,
+                                      });
+                                      await _reload();
+                                    }),
+                              child: const Text('Receive return'),
+                            )
+                          : null,
+                    ),
+                ],
+              ),
             ],
           ],
         ),

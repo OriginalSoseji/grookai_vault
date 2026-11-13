@@ -117,6 +117,7 @@ apps/web/out/
 **/node_modules/
 apps/web/playwright-report/
 apps/web/test-results/
+/apps/web/.playwright-cli/
 tmp_schema_local.sql
 
 # Grookai Local Artifacts Ignore

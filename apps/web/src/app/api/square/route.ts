@@ -12,7 +12,9 @@ export async function GET() {
     if (error || !data) throw new Error('square_state_unavailable');
     const commerce=await owner.client.rpc('square_commerce_workspace_v2');
     if(commerce.error)throw new Error('square_state_unavailable');
-    return squareReply({...data,commerce:{...commerce.data,enabled:commerce.data.enabled&&process.env.GROOKAI_SQUARE_COMMERCE_ENABLED==='true'},linkingEnabled: data.linkingEnabled && process.env.GROOKAI_SQUARE_LINKING_ENABLED === 'true',
+    const onboarding=await owner.client.rpc('square_onboarding_access_v1');
+    if(onboarding.error)throw new Error('square_state_unavailable');
+    return squareReply({...data,onboarding:onboarding.data,commerce:{...commerce.data,enabled:commerce.data.enabled&&process.env.GROOKAI_SQUARE_COMMERCE_ENABLED==='true'},linkingEnabled: (data.linkingEnabled || onboarding.data.available) && process.env.GROOKAI_SQUARE_LINKING_ENABLED === 'true',
       catalogEnabled: data.catalogEnabled && process.env.GROOKAI_SQUARE_CATALOG_ENABLED === 'true'});
   } catch (error) {return squareFailure(error);}
 }
@@ -22,7 +24,11 @@ export async function POST(request: NextRequest) {
     const owner = await squareOwner();
     if (!owner) return squareReply({error: 'Sign in to your grookai account.'}, 401);
     const body = await squareBody(request), backend = squareBackend();
-    if (body.action === 'link') return squareReply(await backend.start(owner.actorId,{clientReturn:body.clientReturn==='native'?'native':'web'}));
+    if (body.action === 'link') {
+      const access=await owner.client.rpc('square_onboarding_enroll_v1');
+      if(access.error)throw new Error(/^square_[a-z_]{1,80}$/.test(access.error.message)?access.error.message:'square_state_unavailable');
+      return squareReply(await backend.start(owner.actorId,{clientReturn:body.clientReturn==='native'?'native':'web'}));
+    }
     const connectionId = squareId(body.connectionId);
     if(body.action==='preferences')return squareReply(await backend.commerce.preferences(owner.actorId,connectionId,
       {autoEnroll:body.autoEnroll===true,sellOnSquare:body.sellOnSquare===true,confirmed:body.confirmed===true}));
