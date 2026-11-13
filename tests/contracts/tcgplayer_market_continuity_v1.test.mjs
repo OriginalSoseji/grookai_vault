@@ -132,11 +132,14 @@ test("source-generation lock fails closed and is retryable", async () => {
 });
 
 test("watchdog runs before expiry and uses the governed production runner", () => {
+  const jobEnvironment = WORKFLOW.match(/    env:\n([\s\S]*?)\n    steps:/)?.[1] ?? "";
   assert.match(WORKFLOW, /cron: "47 \*\/2 \* \* \*"/);
   assert.match(WORKFLOW, /--refresh-at-hours=26/);
   assert.match(WORKFLOW, /steps\.continuity\.outputs\.refresh_required == 'true'/);
   assert.match(WORKFLOW, /tcgplayer_market_scheduled_runner_v1\.mjs/);
   assert.match(WORKFLOW, /TCGPLAYER_MARKET_SCHEDULE_MODE: production/);
   assert.match(WORKFLOW, /TCGPLAYER_MARKET_REPLACEMENT_VERIFIED: "1"/);
+  assert.doesNotMatch(jobEnvironment, /runner\.temp/);
+  assert.match(WORKFLOW, /\$RUNNER_TEMP\/tcgplayer-market-continuity-\$GITHUB_RUN_ID/);
   assert.match(WORKFLOW, /github_continuity_failure/);
 });
