@@ -4715,8 +4715,7 @@ or treat a matching number as a name match. A previously captured overlay is not
 evidence of independent agreement.
 
 When a parsed Japanese full checklist has fewer rows than the independently
-observed numbered base checklist, discovery records `incomplete_parsed_checklist`
-and excludes that fragment from full-set and identity authority. A full-list
-count disagreement is recorded as `full_checklist_disagreement` and that list is
-excluded from admission for the affected set. Investigate and reacquire the
-source before attempting admission; do not turn either case into an empty set.
+observed numbered base checklist, or disagrees with the TCGdex full count,
+discovery fails its integrity gate and reports the counts. Investigate and
+reacquire the source before attempting admission; do not turn either case into
+an empty set. Official detail HTTP 401/403 remains a fatal access denial.

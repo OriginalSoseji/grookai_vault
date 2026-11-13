@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import test from 'node:test';
 import { collectOfficialJapaneseIdentitySnapshotsV1, officialJapaneseNamesByCoordinateV1 } from '../../backend/catalog/japanese_official_identity_evidence_v1.mjs';
+import { isOptionalCatalogSourceFallbackV1 } from '../../backend/catalog/universal_catalog_discovery_v1.mjs';
 
 const pool = async (items, _concurrency, fn) => Promise.all(items.map(fn));
 const snapshot = (id, name, number = '039', set = 'SI') => {
@@ -28,4 +29,14 @@ test('bounds and deduplicates source requests and isolates failed details', asyn
   assert.equal(calls.length, 2);
   assert.deepEqual(await collectOfficialJapaneseIdentitySnapshotsV1({ ...args, cards: [{card_id:'3'}] }), []);
   await assert.rejects(collectOfficialJapaneseIdentitySnapshotsV1({ ...args, cache: new Map(), fetchDetail: async () => { throw Error('unexpected corruption'); } }), /unexpected corruption/);
+});
+test('official detail access denials fail instead of being cached as missing', async () => {
+  for (const status of [401, 403]) {
+    const denied = Object.assign(new Error('access denied'), { httpStatus: status, catalogSourceFailureClass: 'SOURCE_ACCESS_DENIED' });
+    const cache = new Map();
+    await assert.rejects(collectOfficialJapaneseIdentitySnapshotsV1({ cards: [{ card_id: '1' }], cache, limit: 1, pool, isExpectedFailure: isOptionalCatalogSourceFallbackV1, fetchDetail: async () => { throw denied; } }), /access denied/);
+    assert.equal(cache.has('1'), false);
+  }
+  assert.equal(isOptionalCatalogSourceFallbackV1({ httpStatus: 404, catalogSourceFailureClass: 'SOURCE_INTEGRITY_FAILURE' }), true);
+  assert.equal(isOptionalCatalogSourceFallbackV1({ httpStatus: 403, catalogSourceFailureClass: 'SOURCE_UNAVAILABLE' }), false);
 });

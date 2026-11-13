@@ -16,7 +16,7 @@ import {
   classifyCatalogSourceTransportFailureV1,
   classifyPokemonDatabaseSetScopesV1,
   isOptionalCatalogSourceFallbackV1,
-  isIncompleteJapaneseFullChecklistV1,
+  assertJapaneseFullChecklistAgreementV1,
   JAPANESE_CARD_COVERAGE_STATUSES,
   mapPoolSettledV1,
   projectOfficialJapaneseProductCardV1,
@@ -988,32 +988,8 @@ async function discoverJapaneseProducts(sourceSnapshots, options, japaneseCandid
       }
       const baseChecklistCount = checklist?.cards?.length ?? null;
       const tcgdexFullCount = tcgdexSet?.cards?.length ?? null;
-      if (isIncompleteJapaneseFullChecklistV1(fullChecklist, checklist)) {
-        independentChecklistFailure = {
-          authority: "bulbapedia_modern_japanese_set_list",
-          failure_class: "incomplete_parsed_checklist",
-          observed_count: fullChecklist.cards.length,
-          numbered_base_count: checklist.set.card_count,
-          source_url: fullChecklist.cards[0]?.source_url ?? null,
-          containment_evidence: "partial_rows_are_not_full_set_or_identity_authority",
-        };
-        fullChecklist = null;
-      }
-      let bulbapediaFullCount = fullChecklist?.cards?.length ?? null;
-      if (tcgdexFullCount !== null && bulbapediaFullCount !== null &&
-          tcgdexFullCount !== bulbapediaFullCount) {
-        independentChecklistFailure = {
-          authority: "bulbapedia_modern_japanese_set_list",
-          failure_class: "full_checklist_disagreement",
-          observed_count: bulbapediaFullCount,
-          tcgdex_count: tcgdexFullCount,
-          printed_total: sourcePrintedTotal,
-          source_url: fullChecklist.cards[0]?.source_url ?? null,
-          containment_evidence: "conflicting_list_excluded_from_full_set_and_identity_authority",
-        };
-        fullChecklist = null;
-        bulbapediaFullCount = null;
-      }
+      assertJapaneseFullChecklistAgreementV1(fullChecklist, checklist, tcgdexFullCount, sourceSetCode);
+      const bulbapediaFullCount = fullChecklist?.cards?.length ?? null;
       const fullChecklistCount = tcgdexFullCount ?? bulbapediaFullCount ??
         officialExpansionFullChecklistCount;
       // Official detail pages bind printed Japanese names to coordinates. Keep
@@ -1023,9 +999,7 @@ async function discoverJapaneseProducts(sourceSnapshots, options, japaneseCandid
       if (fullChecklist && tcgdexSet) {
         officialIdentitySnapshots = await collectOfficialJapaneseIdentitySnapshotsV1({
           cards: cardList.cards, cache: officialDetailCache, limit: options.maxDetailFetches,
-          isExpectedFailure: (error) =>
-            ["SOURCE_UNAVAILABLE", "SOURCE_ACCESS_DENIED"].includes(error.catalogSourceFailureClass) ||
-            error.httpStatus === 404,
+          isExpectedFailure: isOptionalCatalogSourceFallbackV1,
           pool: mapPoolSettledV1, fetchDetail: async (id) => {
             const url = `https://www.pokemon-card.com/card-search/details.php/card/${id}/regu/all`;
             const detail = await fetchSource(url, { delayMs: 150 });

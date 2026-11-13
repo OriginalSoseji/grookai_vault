@@ -15,7 +15,7 @@ import {
   classifyCatalogSourceTransportFailureV1,
   classifyPokemonDatabaseSetScopesV1,
   isOptionalCatalogSourceFallbackV1,
-  isIncompleteJapaneseFullChecklistV1,
+  assertJapaneseFullChecklistAgreementV1,
   JAPANESE_CARD_COVERAGE_STATUSES,
   mapPoolSettledV1,
   projectOfficialJapaneseProductCardV1,
@@ -43,12 +43,14 @@ test("official Japanese product projection preserves normalized printed names", 
   assert.equal(projectOfficialJapaneseProductCardV1({ card_id: '1', card_name: 'wrong upstream field' }).printed_name_ja, null);
 });
 
-test("partial Japanese checklist is retained as incomplete evidence, never full authority", () => {
+test("partial and conflicting Japanese checklists fail the discovery integrity gate", () => {
   const numbered = { set: { card_count: 111 } };
-  assert.equal(isIncompleteJapaneseFullChecklistV1({ cards: [{}, {}] }, numbered), true);
-  assert.equal(isIncompleteJapaneseFullChecklistV1({ cards: Array(111).fill({}) }, numbered), false);
-  assert.equal(isIncompleteJapaneseFullChecklistV1({ cards: [] }, numbered), false);
-  assert.equal(isIncompleteJapaneseFullChecklistV1({ cards: [{}] }, { set: {} }), false);
+  assert.throws(() => assertJapaneseFullChecklistAgreementV1({}, numbered, null, 'M6a'), /incomplete checklist/);
+  assert.throws(() => assertJapaneseFullChecklistAgreementV1({ cards: [] }, numbered, null, 'M6a'), /incomplete checklist/);
+  assert.throws(() => assertJapaneseFullChecklistAgreementV1({ cards: [{}, {}] }, numbered, 176, 'M6a'), /incomplete checklist.*Bulbapedia=2/);
+  assert.throws(() => assertJapaneseFullChecklistAgreementV1({ cards: Array(165).fill({}) }, numbered, 176, 'M6a'), /full-checklist disagreement.*TCGdex=176.*Bulbapedia=165/);
+  assert.doesNotThrow(() => assertJapaneseFullChecklistAgreementV1({ cards: Array(111).fill({}) }, numbered, 111, 'M6a'));
+  assert.doesNotThrow(() => assertJapaneseFullChecklistAgreementV1(null, numbered, 176, 'M6a'));
 });
 
 function source(relativePath) {

@@ -14,13 +14,21 @@ export function projectOfficialJapaneseProductCardV1(card) {
   };
 }
 
-// A parsed fragment smaller than the independently observed numbered base is
-// incomplete evidence, not a complete conflicting list or an empty set.
-export function isIncompleteJapaneseFullChecklistV1(fullChecklist, numberedChecklist) {
+// Parsed partial or disagreeing checklists are integrity failures, not an
+// optional source outage or a complete set with fewer cards.
+export function assertJapaneseFullChecklistAgreementV1(fullChecklist, numberedChecklist, tcgdexCount, setCode) {
+  if (!fullChecklist) return;
   const observed = fullChecklist?.cards?.length;
+  if (!Array.isArray(fullChecklist.cards) || observed === 0) {
+    throw new Error(`Japanese set ${setCode} incomplete checklist: Bulbapedia has no cards`);
+  }
   const base = Number(numberedChecklist?.set?.card_count);
-  return Number.isSafeInteger(observed) && observed > 0 &&
-    Number.isSafeInteger(base) && base > 0 && observed < base;
+  if (Number.isSafeInteger(observed) && Number.isSafeInteger(base) && base > 0 && observed < base) {
+    throw new Error(`Japanese set ${setCode} incomplete checklist: Bulbapedia=${observed}, numbered base=${base}`);
+  }
+  if (tcgdexCount !== null && observed !== tcgdexCount) {
+    throw new Error(`Japanese set ${setCode} full-checklist disagreement: TCGdex=${tcgdexCount}, Bulbapedia=${observed}`);
+  }
 }
 
 export function classifyCatalogSourceTransportFailureV1(error) {
@@ -36,6 +44,8 @@ export function classifyCatalogSourceTransportFailureV1(error) {
 }
 
 export function isOptionalCatalogSourceFallbackV1(error) {
+  if (error?.catalogSourceFailureClass === "SOURCE_ACCESS_DENIED" ||
+      error?.httpStatus === 401 || error?.httpStatus === 403) return false;
   return error?.catalogSourceFailureClass === "SOURCE_UNAVAILABLE" ||
     error?.httpStatus === 404;
 }
