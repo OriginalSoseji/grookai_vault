@@ -30,10 +30,8 @@ jobs:
       TCGPLAYER_MARKET_SCHEDULE_FRESHNESS_HOURS: "36"
       TCGPLAYER_MARKET_SCHEDULE_EXPECTED_COMMIT_SHA: ${{ github.sha }}
       TCGPLAYER_MARKET_SCHEDULE_RUN_KEY: TCGPLAYER-MARKET-CONTINUITY-PRODUCTION-${{ github.run_id }}-${{ github.run_attempt }}
-      TCGPLAYER_MARKET_SCHEDULE_OUT_ROOT: ${{ runner.temp }}/tcgplayer-market-continuity-${{ github.run_id }}
       GROOKAI_OPERATIONS_WEBHOOK_URL: ${{ secrets.GROOKAI_OPERATIONS_WEBHOOK_URL }}
       GROOKAI_OPERATIONS_WEBHOOK_BEARER_TOKEN: ${{ secrets.GROOKAI_OPERATIONS_WEBHOOK_BEARER_TOKEN }}
-      GROOKAI_OPERATIONS_NOTIFICATION_STATE_DIR: ${{ runner.temp }}/operations-notifications
 
     steps:
       - name: Check out exact watchdog SHA
@@ -85,7 +83,7 @@ jobs:
             --run \
             --mode=production \
             "--run-key=$TCGPLAYER_MARKET_SCHEDULE_RUN_KEY" \
-            "--out-root=$TCGPLAYER_MARKET_SCHEDULE_OUT_ROOT" \
+            "--out-root=$RUNNER_TEMP/tcgplayer-market-continuity-$GITHUB_RUN_ID" \
             --max-attempts=2 \
             "--expected-commit-sha=$TCGPLAYER_MARKET_SCHEDULE_EXPECTED_COMMIT_SHA"
 
@@ -97,7 +95,7 @@ jobs:
           node scripts/ops/grookai_operations_webhook_v1.mjs \
             --event=github_continuity_failure \
             --unit=tcgplayer-market-continuity-watchdog \
-            "--state-dir=$GROOKAI_OPERATIONS_NOTIFICATION_STATE_DIR"
+            "--state-dir=$RUNNER_TEMP/operations-notifications"
 
       - name: Upload continuity evidence
         if: ${{ always() }}
@@ -106,7 +104,7 @@ jobs:
           name: tcgplayer-market-continuity-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
             ${{ runner.temp }}/continuity-readback
-            ${{ env.TCGPLAYER_MARKET_SCHEDULE_OUT_ROOT }}
-            ${{ env.GROOKAI_OPERATIONS_NOTIFICATION_STATE_DIR }}
+            ${{ runner.temp }}/tcgplayer-market-continuity-${{ github.run_id }}
+            ${{ runner.temp }}/operations-notifications
           if-no-files-found: warn
           retention-days: 30
