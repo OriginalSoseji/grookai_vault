@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 import assert from 'node:assert/strict';
-import { randomUUID } from 'node:crypto';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -112,19 +111,21 @@ function assertSequenceState(allRows, mappings, expectedCount) {
   }
 }
 
-function assertBatchReadback(batchRows, mappings, plannedIds, applyCommit, batchIndex) {
+function assertBatchReadback(batchRows, mappings, rollbackIdentities, applyCommit, batchIndex,
+  expectedIds = undefined) {
   assert.equal(mappings.length, batchRows.length, 'batch_readback_count_mismatch');
   const bySource = new Map(mappings.map((row) => [row.external_id, row]));
   for (const row of batchRows) {
     const actual = bySource.get(String(row.source_product_id));
     assert.ok(actual, `batch_readback_missing:${row.source_product_id}`);
-    assert.equal(actual.id, plannedIds.get(String(row.source_product_id)));
+    if (expectedIds) assert.equal(actual.id, expectedIds.get(String(row.source_product_id)));
     assert.equal(actual.card_print_id, row.target_card_print_id);
     assert.equal(actual.active, true);
     assert.equal(actual.meta?.package_fingerprint, AUTHORIZED_FINGERPRINT);
     assert.equal(actual.meta?.apply_commit, applyCommit);
     assert.equal(Number(actual.meta?.batch_index), batchIndex);
-    assert.equal(actual.meta?.rollback_identity, actual.id);
+    assert.equal(actual.meta?.rollback_identity,
+      rollbackIdentities.get(String(row.source_product_id)));
   }
 }
 
@@ -170,25 +171,25 @@ export async function runMtgTcgplayerQualifierMappingReleaseApplyV1(argv) {
   let committed = false;
   let transactionOpen = false;
   let client;
-  const plannedIds = new Map(batchRows.map((row) => [String(row.source_product_id), randomUUID()]));
-  const rollbackManifest = {
+  const rollbackIdentities = new Map(batchRows.map((row) => [String(row.source_product_id),
+    `${AUTHORIZED_FINGERPRINT}:batch:${options.batchIndex}:source:${row.source_product_id}`]));
+  const rollbackPlan = {
     version: MTG_TCGPLAYER_QUALIFIER_MAPPING_RELEASE_APPLY_V1,
     package_id: PACKAGE_ID,
     package_fingerprint_sha256: AUTHORIZED_FINGERPRINT,
     apply_commit: applyCommit,
     batch_index: options.batchIndex,
-    mapping_ids: [...plannedIds.values()],
     mappings: batchRows.map((row) => ({
-      id: plannedIds.get(String(row.source_product_id)),
       source: 'tcgplayer',
       external_id: String(row.source_product_id),
       card_print_id: row.target_card_print_id,
+      rollback_identity: rollbackIdentities.get(String(row.source_product_id)),
     })),
     automatic_rollback_authority: false,
     rollback_requires_separate_review_and_approval: true,
   };
-  await writeExclusive(path.join(outDir, 'rollback_manifest.json'),
-    `${JSON.stringify(rollbackManifest, null, 2)}\n`);
+  await writeExclusive(path.join(outDir, 'rollback_plan.json'),
+    `${JSON.stringify(rollbackPlan, null, 2)}\n`);
   try {
     const before = await independentState(batchRows,
       `mtg_qualifier_apply_before_${options.batchIndex}_v1`, batchEvidence);
@@ -211,7 +212,6 @@ export async function runMtgTcgplayerQualifierMappingReleaseApplyV1(argv) {
     assert.equal(live.sourceRun.id, AUTHORIZED_LATEST_CATALOG, 'latest_catalog_changed_in_transaction');
     assertSequenceState(packageData.ready, await scopedMappings(client, packageData.ready), start);
     const payload = batchRows.map((row) => ({
-      id: plannedIds.get(String(row.source_product_id)),
       card_print_id: row.target_card_print_id,
       external_id: String(row.source_product_id),
       meta: {
@@ -228,7 +228,7 @@ export async function runMtgTcgplayerQualifierMappingReleaseApplyV1(argv) {
         latest_catalog_sync_run_id: AUTHORIZED_LATEST_CATALOG,
         batch_index: options.batchIndex,
         batch_count: BATCH_COUNT,
-        rollback_identity: plannedIds.get(String(row.source_product_id)),
+        rollback_identity: rollbackIdentities.get(String(row.source_product_id)),
         source_group_id: row.source_group_id,
         source_group_name: row.source_group_name,
         source_product_name: row.source_product_name,
@@ -239,20 +239,37 @@ export async function runMtgTcgplayerQualifierMappingReleaseApplyV1(argv) {
       },
     }));
     const inserted = (await client.query(`insert into public.external_mappings
-      (id,card_print_id,source,external_id,meta,active,synced_at)
-      select item.id,item.card_print_id,'tcgplayer',item.external_id,item.meta,true,now()
-      from jsonb_to_recordset($1::jsonb) as item(id uuid,card_print_id uuid,external_id text,meta jsonb)
+      (card_print_id,source,external_id,meta,active,synced_at)
+      select item.card_print_id,'tcgplayer',item.external_id,item.meta,true,now()
+      from jsonb_to_recordset($1::jsonb) as item(card_print_id uuid,external_id text,meta jsonb)
       order by item.external_id::bigint
       returning id::text,card_print_id::text,source,external_id,active,meta,synced_at`,
     [JSON.stringify(payload)])).rows;
-    assertBatchReadback(batchRows, inserted, plannedIds, applyCommit, options.batchIndex);
+    const insertedIds = new Map(inserted.map((row) => [row.external_id, row.id]));
+    assertBatchReadback(batchRows, inserted, rollbackIdentities, applyCommit,
+      options.batchIndex, insertedIds);
     const insideMappings = await scopedMappings(client, batchRows);
-    assertBatchReadback(batchRows, insideMappings, plannedIds, applyCommit, options.batchIndex);
+    assertBatchReadback(batchRows, insideMappings, rollbackIdentities, applyCommit,
+      options.batchIndex, insertedIds);
     const countsInside = await protectedCounts(client);
     assert.equal(Number(countsInside.active_mtg) - Number(countsBefore.active_mtg), batchRows.length,
       'transaction_mtg_mapping_delta_changed');
     assert.equal(Number(countsInside.active_non_mtg), Number(countsBefore.active_non_mtg),
       'protected_non_mtg_mapping_count_changed');
+    const rollbackManifest = {
+      ...rollbackPlan,
+      status: 'exact_inserted_ids_captured_before_commit',
+      mapping_ids: inserted.map((row) => row.id),
+      mappings: inserted.map((row) => ({
+        id: row.id,
+        source: row.source,
+        external_id: row.external_id,
+        card_print_id: row.card_print_id,
+        rollback_identity: row.meta.rollback_identity,
+      })),
+    };
+    await writeExclusive(path.join(outDir, 'rollback_manifest.json'),
+      `${JSON.stringify(rollbackManifest, null, 2)}\n`);
     await client.query('commit');
     transactionOpen = false;
     committed = true;
@@ -264,7 +281,8 @@ export async function runMtgTcgplayerQualifierMappingReleaseApplyV1(argv) {
       const allMappings = await scopedMappings(readback, packageData.ready);
       assertSequenceState(packageData.ready, allMappings, expectedAfter);
       const batchMappings = await scopedMappings(readback, batchRows);
-      assertBatchReadback(batchRows, batchMappings, plannedIds, applyCommit, options.batchIndex);
+      assertBatchReadback(batchRows, batchMappings, rollbackIdentities, applyCommit,
+        options.batchIndex, insertedIds);
       const countsAfter = await protectedCounts(readback);
       assert.equal(Number(countsAfter.active_mtg) - Number(countsBefore.active_mtg), batchRows.length,
         'post_commit_mtg_mapping_delta_changed');
@@ -288,7 +306,7 @@ export async function runMtgTcgplayerQualifierMappingReleaseApplyV1(argv) {
         environment,
         protected_counts_before: countsBefore,
         protected_counts_after: countsAfter,
-        mapping_ids: [...plannedIds.values()],
+        mapping_ids: [...insertedIds.values()],
         boundaries: {
           mapping_inserts: batchRows.length,
           canonical_writes: 0,
@@ -303,7 +321,8 @@ export async function runMtgTcgplayerQualifierMappingReleaseApplyV1(argv) {
       };
       await writeExclusive(path.join(outDir, 'apply_receipt.json'),
         `${JSON.stringify(receipt, null, 2)}\n`);
-      await writeHashes(outDir, ['rollback_manifest.json', 'apply_receipt.json']);
+      await writeHashes(outDir,
+        ['rollback_plan.json', 'rollback_manifest.json', 'apply_receipt.json']);
       return receipt;
     } finally {
       await readback.end();
@@ -320,7 +339,8 @@ export async function runMtgTcgplayerQualifierMappingReleaseApplyV1(argv) {
       committed,
       error_code: error.code ?? error.name ?? 'APPLY_FAILURE',
       error_detail: error.message,
-      rollback_manifest: 'rollback_manifest.json',
+      rollback_plan: 'rollback_plan.json',
+      rollback_manifest: committed ? 'rollback_manifest.json' : null,
     };
     await writeExclusive(path.join(outDir, 'failure.json'), `${JSON.stringify(failure, null, 2)}\n`)
       .catch(() => {});
