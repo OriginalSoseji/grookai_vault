@@ -1,0 +1,79 @@
+{
+  "envelope_version": "RUFLO_TASK_ENVELOPE_V1",
+  "task_id": "ruflo-readonly-catalog-health-20261017",
+  "parent_goal": "Observe registered Grookai agent health without dispatching work",
+  "agent": {
+    "agent_key": "universal-catalog-discovery-v1",
+    "lifecycle_state": "registered",
+    "topology_role": "operations_agent",
+    "action_risk": "read_only",
+    "permission_tier": "R0",
+    "memory_namespace": "grookai/catalog/universal-catalog-discovery-v1/ruflo-readonly-catalog-health-20261017/87c42ea2be181221aa8cf5641d31b1212594d46b"
+  },
+  "lifecycle": {
+    "initial_state": "validated",
+    "execution_state": "not_started"
+  },
+  "repository": {
+    "remote": "OriginalSoseji/grookai_vault",
+    "commit_sha": "87c42ea2be181221aa8cf5641d31b1212594d46b",
+    "ref": "feat/ruflo-readonly-operations-adapter-v1",
+    "worktree_path": "C:/gv_ruflo_readonly_adapter_20261017",
+    "initial_status_sha256": "858cdbbe1ae8acd6fe538c688f3e9ae86eac9db3f1387e272c488225bc457e69",
+    "inventory_fingerprint_sha256": "512c322ae51561a412a972921f9aed714f9830dd654d9aa30948ede0fb917210",
+    "protection": "protected",
+    "write_allowed": false
+  },
+  "scope": {
+    "objective": "Build a sanitized read-only health summary from a frozen local snapshot.",
+    "inclusions": [
+      "Registered agent health and evidence references"
+    ],
+    "exclusions": [
+      "Production mutation"
+    ],
+    "non_goals": [
+      "Agent execution",
+      "Workflow dispatch",
+      "Worktree cleanup"
+    ]
+  },
+  "inputs": [
+    {
+      "locator": "tests/fixtures/ruflo/operations_health_snapshot_v1.json",
+      "sha256": "6cdaa59efa5cd752b093f04f4417276d89c0f488932d651dd706fbfd9cec6b47"
+    }
+  ],
+  "resource_locks": [
+    {
+      "key": "catalog:all:discovery",
+      "mode": "read"
+    }
+  ],
+  "budgets": {
+    "time_seconds": 60,
+    "row_limit": 100,
+    "request_limit": 0,
+    "cost_usd": 0,
+    "concurrency": 1
+  },
+  "expected_artifacts": [
+    "docs/audits/ruflo_operations_adapter_v1/sample/operations_read_model_v1.json"
+  ],
+  "acceptance_tests": [
+    "Ruflo adapter contract suite passes"
+  ],
+  "evidence_expectations": {
+    "direct_readback_required": true,
+    "retention_class": "repository_checkpoint"
+  },
+  "boundaries": {
+    "execution_enabled": false,
+    "workflow_dispatch": false,
+    "production_writes": false,
+    "external_actions": false,
+    "cleanup": false,
+    "cross_worktree_writes": false
+  },
+  "fingerprint_sha256": "9049b3c023df3279f94ccdcefdc40a89f1490a91ef85b90006a4b62a8df12545"
+}
