@@ -175,6 +175,25 @@ append-only receipt, and route the exact alert through the service-owned
 notification dispatcher to active founder devices. Operations alerts are not
 card activity and must not require a card anchor.
 
+Current-source ingestion and every write-mode publication share the same
+PostgreSQL current-source advisory lock. Publication acquires that lock before
+selecting its source run and retains it through qualification, snapshot build,
+reconciliation, and any guarded activation. A newer current sync therefore
+cannot replace the assignment/view generation underneath a long publication;
+lock contention is a retryable source-overlap condition, never permission to
+continue against mixed generations.
+
+The daily systemd schedule remains the primary executor. An independent
+GitHub continuity watchdog evaluates production every two hours from the exact
+default-branch commit. It is read-only while healthy. It starts the same
+guarded production scheduled runner when current source evidence reaches 26
+hours, when a failed production run leaves evidence at least 18 hours old, or
+when the pointer/snapshots are missing. It defers to a production run started
+within the preceding six hours, uses the same database/source/publication
+locks, activates only after the existing production guard and zero-mismatch
+readback pass, and routes terminal failure through the operations webhook.
+This recovery margin must remain strictly below the 36-hour reader cutoff.
+
 The standalone TCGCSV current-sync timer may be retired only after combined
 pipeline shadow verification. Historical backfill remains independently
 governed and must continue to yield during the current-price window.
@@ -206,6 +225,8 @@ Production health is critical when:
 - current exact prices fall below the configured minimum
 - eligible decisions do not reconcile to snapshots
 - any source-to-publication trace is broken
+- the primary production runner commit drifts from the current recovery
+  executor while a scheduled run is failing
 
 No pipeline run is successful when reconciliation mismatches exist.
 

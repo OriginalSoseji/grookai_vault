@@ -22,6 +22,7 @@ const NON_RETRYABLE_PATTERNS = [
 ];
 
 const RETRYABLE_PATTERNS = [
+  /TCGCSV_CURRENT_SOURCE_LOCKED/i,
   /\b429\b/,
   /\b5\d\d\b/,
   /econnreset/i,

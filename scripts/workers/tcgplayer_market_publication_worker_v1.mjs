@@ -45,6 +45,10 @@ import {
 import {
   assertTcgplayerMarketSourceRunwayV1,
 } from "../../backend/pricing/tcgplayer_market_source_runway_v1.mjs";
+import {
+  acquireTcgcsvCurrentSourceLockV1,
+  releaseTcgcsvCurrentSourceLockV1,
+} from "../../backend/pricing/tcgcsv_current_source_lock_v1.mjs";
 
 const { Client } = pg;
 const execFileAsync = promisify(execFile);
@@ -56,7 +60,7 @@ const DEFAULT_OUT_ROOT = path.join(
   "artifacts",
   "market_pricing_product_v1",
 );
-const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_22";
+const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_23";
 const PIPELINE_VERSION = "TCGPLAYER_MARKET_PIPELINE_V1";
 const SCHEMA_VERSION = "TCGPLAYER_MARKET_PUBLICATION_SCHEMA_V1";
 const SNAPSHOT_SCHEMA_VERSION = "MARKET_PRICE_PUBLICATION_SNAPSHOT_V1";
@@ -1934,7 +1938,12 @@ async function main() {
     "select set_config('statement_timeout', $1, false)",
     [`${args.databaseTimeoutMinutes}min`],
   );
+  let sourceContinuityLockAcquired = false;
   try {
+    if (WRITE_MODES.has(args.runMode)) {
+      await acquireTcgcsvCurrentSourceLockV1(client);
+      sourceContinuityLockAcquired = true;
+    }
     const sourceRun = await latestSourceRun(client);
     const sourceRunway = WRITE_MODES.has(args.runMode)
       ? assertTcgplayerMarketSourceRunwayV1(sourceRun, {
@@ -2066,6 +2075,13 @@ async function main() {
       )}\n`,
     );
   } finally {
+    if (sourceContinuityLockAcquired) {
+      await releaseTcgcsvCurrentSourceLockV1(client).catch((error) => {
+        process.stderr.write(
+          `[tcgplayer-market-publication] source continuity unlock failed: ${error.message}\n`,
+        );
+      });
+    }
     await client.end();
   }
 }
