@@ -142,6 +142,24 @@ test("coordinate agreement alone or conflicting official evidence cannot admit a
   }
 });
 
+test("matching special-label coordinates still require official printed identity", () => {
+  const source = sourceSet({ code: "M6a" });
+  source.tcgdex_cards[1] = { source_external_id: "M6-R", card_number_raw: "R", printed_name_ja: "ミュウ" };
+  source.independent_full_checklist_cards[1] = { source_external_id: "M6:R/RGB", card_number_raw: "R/RGB", english_display_name: "Mew" };
+  source.official_identity_snapshots.pop();
+  const result = buildJapanesePokemonMasterIndexIncrementalV1({
+    sourceSets: [source], baseSets: [], baseCards: [], asOf: "2026-08-27",
+  });
+  assert.equal(result.cards.length, 0);
+  assert.deepEqual(result.decisions[0].reasons, ["official_printed_name_missing_or_conflicting:R"]);
+  source.independent_full_checklist_cards[1].card_number_raw = "R/OTHER";
+  const unsupported = buildJapanesePokemonMasterIndexIncrementalV1({
+    sourceSets: [source], baseSets: [], baseCards: [], asOf: "2026-08-27",
+  });
+  assert.equal(unsupported.cards.length, 0);
+  assert.deepEqual(unsupported.decisions[0].reasons, ["unsupported_special_coordinate_mapping:R"]);
+});
+
 test("unverified historical names do not remove already admitted cards", () => {
   const overlay = buildJapanesePokemonMasterIndexIncrementalV1({
     sourceSets: [sourceSet()], baseSets: [], baseCards: [], asOf: "2026-08-27",

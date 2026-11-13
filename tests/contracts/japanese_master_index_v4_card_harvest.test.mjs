@@ -808,6 +808,22 @@ test('Bulbapedia Japanese list keeps anniversary badges and excludes other-langu
   assert.equal(checklist.cards[0].source_fields.article_table_heading, 'Card list');
 });
 
+test('Bulbapedia keeps special labels only in the matched Japanese numbered table', () => {
+  const table = (rows) => `<table><tr><th>No.</th><th>Card name</th></tr>${rows}</table>`;
+  const row = (number, name) => `<tr><td>${number}</td><td><a href="/wiki/Card_(Set_1)">${name}</a></td></tr>`;
+  const html = `<h3>English</h3>${table(row('001/002', 'English') + row('R/RGB', 'English Mew'))}` +
+    `<h3>Japanese</h3>${table(row('001/002', 'One') + row('002/002', 'Two') + row('R/RGB', 'Mew') + row('GRA', 'Basic Grass Energy') + row('not-a-coordinate', 'Invalid'))}` +
+    table(row('999/999', 'Other set') + row('FIR', 'Other energy')) +
+    `<h3>Simplified Chinese</h3>${table(row('001/002', 'Chinese') + row('G/RGB', 'Chinese Mew'))}`;
+  const checklist = parseBulbapediaJapaneseCardList(html, {
+    source_container_id: 'Example', source_container_url: 'https://example.com/example', source_expected_card_count: 2,
+  });
+  assert.deepEqual(checklist.cards.map((card) => card.card_number_raw), ['001/002', '002/002', 'R/RGB', 'GRA']);
+  assert.equal(checklist.diagnostics.special_label_row_count, 2);
+  assert.equal(checklist.cards[2].card_number_numerator, null);
+  assert.equal(checklist.cards[2].source_fields.special_label_from_explicit_japanese_numbered_table, 'R/RGB');
+});
+
 test('Bulbapedia adapter preserves an exact older unnumbered Japanese list without inventing numbers', () => {
   const workItem = {
     lane_id: 'bulbapedia_jp_card_lists',

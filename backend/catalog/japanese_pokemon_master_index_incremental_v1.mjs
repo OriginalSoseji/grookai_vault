@@ -179,6 +179,20 @@ export function buildJapanesePokemonMasterIndexIncrementalV1({
       decisions.push(decision);
       continue;
     }
+    // TCGdex abbreviates the M6a RGB coordinates to R/G/B. Do not silently
+    // equate other alphabetic slash labels merely because normalization drops
+    // their suffix: that suffix can be identity-bearing in another set.
+    const unsupportedSpecialCoordinate = [...independentByCoordinate.entries()].find(([key, card]) => {
+      const raw = clean(card.card_number_raw).toUpperCase();
+      const provider = clean(tcgdexByCoordinate.get(key)?.card_number_raw).toUpperCase();
+      if (!/^[A-Z]+\/[A-Z]+$/.test(raw) || raw === provider) return false;
+      return !(code === "M6A" && /^[RGB]\/RGB$/.test(raw) && provider === raw.split("/")[0]);
+    });
+    if (unsupportedSpecialCoordinate) {
+      decision.reasons.push(`unsupported_special_coordinate_mapping:${unsupportedSpecialCoordinate[0]}`);
+      decisions.push(decision);
+      continue;
+    }
     const missingPrintedName = [...tcgdexByCoordinate.entries()].find(([, card]) =>
       !clean(card.printed_name_ja)
     );
