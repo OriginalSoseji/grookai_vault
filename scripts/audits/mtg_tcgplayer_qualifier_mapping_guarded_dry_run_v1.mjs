@@ -26,7 +26,7 @@ const PROJECT_REF = 'ycdxbpibncqcchqiihfz';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const EXPECTED_POLICY = 'MTG_TCGPLAYER_QUALIFIER_REVIEW_PLAN_V1';
 
-function sha256(value) {
+export function sha256(value) {
   return createHash('sha256').update(value).digest('hex');
 }
 
@@ -41,7 +41,7 @@ function stable(value) {
   return value;
 }
 
-function stableHash(value) {
+export function stableHash(value) {
   return sha256(JSON.stringify(stable(value)));
 }
 
@@ -58,7 +58,7 @@ function foldedName(value) {
     .trim();
 }
 
-function git(args) {
+export function git(args) {
   return execFileSync('git', args, {
     cwd: ROOT,
     encoding: 'utf8',
@@ -98,7 +98,7 @@ async function readJsonl(file) {
   };
 }
 
-async function loadPackage(options, headSha) {
+export async function loadPackage(options, headSha) {
   const summaryPath = path.join(options.packageRoot, 'summary.json');
   const readyPath = path.join(options.packageRoot, 'ready_mappings.jsonl');
   const heldPath = path.join(options.packageRoot, 'held_rows.jsonl');
@@ -196,7 +196,7 @@ function numberField(extendedData) {
   return values.length === 1 ? values[0] : '';
 }
 
-function connectionConfig(applicationName) {
+export function connectionConfig(applicationName) {
   const publicUrl = new URL(process.env.SUPABASE_URL);
   assert.equal(publicUrl.hostname.split('.')[0], PROJECT_REF, 'production_project_ref_mismatch');
   assert.ok(process.env.SUPABASE_DB_URL, 'SUPABASE_DB_URL_required');
@@ -221,7 +221,7 @@ async function loadLatestSourceRun(client) {
   return row;
 }
 
-async function protectedCounts(client) {
+export async function protectedCounts(client) {
   return (await client.query(`select jsonb_build_object(
     'active_total', count(*) filter(where mapping.active),
     'active_mtg', count(*) filter(where mapping.active and exists(
@@ -235,7 +235,7 @@ async function protectedCounts(client) {
     ) value from public.external_mappings mapping`)).rows[0].value;
 }
 
-async function loadLiveState(client, mappings, evidenceRows) {
+export async function loadLiveState(client, mappings, evidenceRows) {
   const productIds = mappings.map((row) => Number(row.source_product_id));
   const targetIds = mappings.map((row) => row.target_card_print_id);
   const groupIds = [...new Set(mappings.map((row) => Number(row.source_group_id)))];
@@ -295,7 +295,7 @@ async function loadLiveState(client, mappings, evidenceRows) {
   };
 }
 
-function assertLiveState(expected, evidenceRows, live) {
+export function assertLiveState(expected, evidenceRows, live) {
   assert.equal(live.products.length, expected.length, 'live_source_product_count_changed');
   assert.equal(live.targets.length, expected.length, 'live_target_count_changed');
   assert.equal(live.existingMappings.length, 0, 'mapping_history_or_collision_now_exists');
@@ -373,12 +373,12 @@ function normalizeMappingRows(rows) {
   }));
 }
 
-function snapshot(rows) {
+export function snapshot(rows) {
   const normalized = normalizeMappingRows(rows);
   return { rows: normalized, hash_sha256: stableHash(normalized) };
 }
 
-async function independentState(expected, applicationName, evidenceRows) {
+export async function independentState(expected, applicationName, evidenceRows) {
   const client = new pg.Client(connectionConfig(applicationName));
   await client.connect();
   try {
@@ -395,7 +395,7 @@ async function independentState(expected, applicationName, evidenceRows) {
   }
 }
 
-function releaseCore(packageData, live) {
+export function releaseCore(packageData, live) {
   const currentProductIds = new Set(live.latestObservations.map((row) => Number(row.product_id)));
   return {
     version: MTG_TCGPLAYER_QUALIFIER_MAPPING_GUARDED_DRY_RUN_V1,
@@ -545,7 +545,7 @@ async function rehearse(packageData) {
   };
 }
 
-async function writeExclusive(file, bytes) {
+export async function writeExclusive(file, bytes) {
   await fs.mkdir(path.dirname(file), { recursive: true });
   await fs.writeFile(file, bytes, { flag: 'wx' });
 }
