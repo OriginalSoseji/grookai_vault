@@ -77,7 +77,7 @@ try{
   const versions=[...history,'20261113050000'];
   for(const lab of[fresh,retained])assert.deepEqual(lab.catalog.LEDGER.map(row=>row.version),versions);
   await compare(fresh.catalog,retained.catalog,'fresh-retained');assert.deepEqual(fresh.security,retained.security);
-  for(const file of['fresh-495/replay-proof.json','retained-494/upgrade-proof.json','fresh-495/runtime-proof.json','retained-494/runtime-proof.json','runtime-proof.json','web-v2/web-proof.json']){
+  for(const file of['fresh-495/replay-proof.json','retained-494/upgrade-proof.json','fresh-495/runtime-proof.json','retained-494/runtime-proof.json','runtime-proof.json','web-v4/web-proof.json']){
    const proof=read(artifacts+'/'+file);assert.equal(proof.pass,true,file);assert.equal(proof.candidateSha256,manifest.candidates['20261113050000_square_self_service_onboarding_v1.sql']);
    assert.equal(sha(fs.readFileSync(artifacts+'/'+file)),manifest.proofPins[file],'Proof changed: '+file);
    if(proof.sourceHashes)for(const[source,pin]of Object.entries(proof.sourceHashes))assert.equal(sha(fs.readFileSync(root+'/'+source,'utf8').replaceAll('\r\n','\n')),pin,'Executed source changed: '+source);

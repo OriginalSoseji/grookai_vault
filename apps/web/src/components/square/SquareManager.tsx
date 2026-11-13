@@ -33,7 +33,7 @@ export default function SquareManager({initialStatus}: {initialStatus?: 'connect
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [connectionId, setConnectionId] = useState(''), [locations, setLocations] = useState<Array<{id: string; name: string}>>([]);
   const [locationId, setLocationId] = useState(''), [autoSync, setAutoSync] = useState(false);
-  const [confirmed, setConfirmed] = useState(false), [busy, setBusy] = useState(false);
+  const [confirmed, setConfirmed] = useState(false), [operationBusy, setBusy] = useState(false);
   const [message, setMessage] = useState(''), [error, setError] = useState('');
   const [adoptions, setAdoptions] = useState<Adoption[]>([]);
   const [autoEnroll,setAutoEnroll]=useState(false),[sellOnSquare,setSellOnSquare]=useState(false);
@@ -42,6 +42,11 @@ export default function SquareManager({initialStatus}: {initialStatus?: 'connect
   const live = useRef(true);
   useEffect(() => {live.current = true;return () => {live.current = false;};}, []);
   const [loadingLocations, setLoadingLocations] = useState(false), [locationError, setLocationError] = useState('');
+  const [locationsRevision, setLocationsRevision] = useState(0);
+  const locationReadInFlight = useRef(false);
+  const locationRequest = useRef<{key:string;promise:Promise<{locations:Array<{id:string;name:string}>}>} | null>(null);
+  const appliedLocationKey = useRef('');
+  const busy = operationBusy || loadingLocations;
   const reload = useCallback(async () => {const value = await read<Workspace>('/api/square'); setWorkspace(value); return value;}, []);
   useEffect(() => {void reload().then(value => {
     const current=value.connections.find(row=>row.status==='connected' && row.environment==='production')??value.connections.find(row=>row.status==='connected')??value.connections[0];
@@ -53,23 +58,38 @@ export default function SquareManager({initialStatus}: {initialStatus?: 'connect
   const connection = workspace?.connections.find(row => row.id === connectionId) ?? workspace?.connections.find(row => row.status === 'connected' && row.environment === 'production') ?? workspace?.connections.find(row => row.status === 'connected') ?? workspace?.connections[0];
   const commerce=workspace?.commerce?.connections.find(row=>row.id===connection?.id);
   const ready = connection?.status === 'connected' && !!connection.locationId && connection.autoSync && commerce?.autoEnroll && commerce.sellOnSquare;
+  const locationConnectionId = connection?.id, locationStatus = connection?.status, savedLocationId = connection?.locationId;
+  useEffect(() => {setAutoSync(connection?.autoSync ?? false);}, [connection?.id, connection?.autoSync]);
   useEffect(() => {
+    // Location reads use the same exclusive provider lease as sync and sales
+    // operations. Defer them until the current operation finishes, and key them
+    // by saved identity rather than each new workspace response object.
+    if (operationBusy || inFlight.current) return;
+    const key = JSON.stringify([locationConnectionId,locationStatus,savedLocationId,locationsRevision]);
+    if (appliedLocationKey.current === key) return;
     let active = true;
     setLocations([]); setLocationId(''); setLocationError('');
-    setAutoSync(connection?.autoSync ?? false);
-    if (connection?.status !== 'connected') {setLoadingLocations(false); return;}
+    if (!locationConnectionId || locationStatus !== 'connected') {appliedLocationKey.current=key;setLoadingLocations(false); return;}
     setLoadingLocations(true);
-    void read<{locations: Array<{id:string;name:string}>}>('/api/square', {action:'locations',connectionId:connection.id})
+    // Reuse a pending read across React's effect cleanup/replay. Cleanup stops
+    // stale state updates; it must not launch another provider lease request.
+    if (locationRequest.current?.key !== key) {
+      locationReadInFlight.current = true;
+      locationRequest.current = {key,promise:read<{locations: Array<{id:string;name:string}>}>('/api/square', {action:'locations',connectionId:locationConnectionId})};
+    }
+    const request = locationRequest.current;
+    void request.promise
       .then(value => {if (!active) return; setLocations(value.locations);
-        if(connection.locationId&&!value.locations.some(row=>row.id===connection.locationId))setLocationError('Your saved Square location is unavailable. Check it in Square, then retry here.');
-        setLocationId(value.locations.some(row=>row.id===connection.locationId) ? connection.locationId! : !connection.locationId && value.locations.length===1 ? value.locations[0].id : '');})
-      .catch(() => {if (active) setLocationError('Could not load Square locations. Try again.');})
-      .finally(() => {if (active) setLoadingLocations(false);});
+        appliedLocationKey.current=key;
+        if(savedLocationId&&!value.locations.some(row=>row.id===savedLocationId))setLocationError('Your saved Square location is unavailable. Check it in Square, then retry here.');
+        setLocationId(value.locations.some(row=>row.id===savedLocationId) ? savedLocationId! : !savedLocationId && value.locations.length===1 ? value.locations[0].id : '');})
+      .catch(() => {if (active) {appliedLocationKey.current=key;setLocationError('Could not load Square locations. Try again.');}})
+      .finally(() => {if(locationRequest.current===request)locationReadInFlight.current=false;if (active) setLoadingLocations(false);});
     return () => {active = false;};
-  }, [connection]);
-  useEffect(() => {setAutoEnroll(commerce?.autoEnroll??false);setSellOnSquare(commerce?.sellOnSquare??false);}, [commerce]);
+  }, [locationConnectionId,locationStatus,savedLocationId,locationsRevision,operationBusy]);
+  useEffect(() => {setAutoEnroll(commerce?.autoEnroll??false);setSellOnSquare(commerce?.sellOnSquare??false);}, [commerce?.id,commerce?.autoEnroll,commerce?.sellOnSquare]);
   const run = async (task: () => Promise<void>) => {
-    if (inFlight.current) return;
+    if (inFlight.current || locationReadInFlight.current) return;
     inFlight.current = true;
     setBusy(true); setError(''); setMessage('');
     try {await task();} catch (err) {if(live.current)setError(err instanceof Error ? err.message : 'Square could not be updated.');}
@@ -141,7 +161,7 @@ export default function SquareManager({initialStatus}: {initialStatus?: 'connect
           {loadingLocations && <p role="status">Loading your Square locations…</p>}
           {locationError && <p role="alert">{locationError}</p>}
           {!loadingLocations && !locationError && !locations.length && <p>No active USD location was found. Finish setting up a location in your Square Dashboard, then retry here.</p>}
-          {!loadingLocations && (locationError || !locations.length) && <button className={s.button} disabled={busy} onClick={()=>void run(async()=>{await reload();})}>Retry locations</button>}
+          {!loadingLocations && (locationError || !locations.length) && <button className={s.button} disabled={busy} onClick={()=>void run(async()=>{await reload();setLocationsRevision(value=>value+1);})}>Retry locations</button>}
         {locations.length > 0 && <>
           <label className={s.field}>Square location<select value={locationId} disabled={busy} onChange={event => setLocationId(event.target.value)}>
             <option value="" disabled>Choose a location</option>
@@ -152,10 +172,10 @@ export default function SquareManager({initialStatus}: {initialStatus?: 'connect
             await read('/api/square',{action:'configure',connectionId:connection.id,locationId,autoSync:true});
             await read('/api/square',{action:'preferences',connectionId:connection.id,autoEnroll:true,sellOnSquare:true,confirmed:true});
             await reload();setMessage('Automatic Square sales enabled. Eligible cards sync in the background. Check Ready in Square before checkout.');
-          })}>{busy ? 'Saving Square setup…' : 'Enable automatic Square sales'}</button></div>
+          })}>{operationBusy ? 'Saving Square setup…' : 'Enable automatic Square sales'}</button></div>
         </>}
         {ready && <p>Add your next card in grookai, mark it Public / For sale, and set its price. Once it is Ready in Square, scan its grookai QR to sell it.</p>}
-        {ready && locationError && <><p role="alert">{locationError}</p><button className={s.button} disabled={busy} onClick={()=>void run(async()=>{await reload();})}>Retry locations</button></>}
+        {ready && locationError && <><p role="alert">{locationError}</p><button className={s.button} disabled={busy} onClick={()=>void run(async()=>{await reload();setLocationsRevision(value=>value+1);})}>Retry locations</button></>}
         <details className={s.details}><summary>Connection settings</summary>
           <div className={s.actions}>
             <button className={s.button} disabled={busy||!workspace.linkingEnabled} onClick={()=>void run(connectSquare)}>Reconnect Square</button>

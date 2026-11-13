@@ -506,7 +506,7 @@
     "fresh-495/runtime-proof.json": "dc024ffe678ce774ed04b7faab9211d1a886df0674052bc3ee27e8a730b0d616",
     "retained-494/runtime-proof.json": "8f104cf54f626172aec62be91e8ca0cd27f21bfb1c41953d725e6717ed856f83",
     "runtime-proof.json": "dc024ffe678ce774ed04b7faab9211d1a886df0674052bc3ee27e8a730b0d616",
-    "web-v2/web-proof.json": "937f77d9f3b39dd5afa00b6c516ec0bbd871ad66800aeae2443df40c2c1801bb",
+    "web-v4/web-proof.json": "5a13cef92e201deb773e730d550ee96fc28fdbab675f713345040993650510ba",
     "native-square-v1.log": "4143435cfdad7ccb9f07e018e26297534c11c6c0125bd40c565f9f1b6ae7d416",
     "native-analyze-v1.log": "76e9670c85d289c45d079e0037952c151e3317ac60c6e5505d50936eee723272",
     "square-unit-v1.log": "4df288f1a6115dbb0120985e2dbbad9e73c430a09c585ed56032796f2d627b87"
@@ -514,7 +514,7 @@
   "runtimeSources": {
     "apps/web/eslint.config.mjs": "02db57c646dd06ea258b23ad76d0adca4d65f542e19727e3515abbae003e83f1",
     "apps/web/next.config.mjs": "9e1f565070866328dc5e51f53b27ea30b73090cf51ea7f3808bc384d0b869e5c",
-    "apps/web/playwright.square-onboarding.config.ts": "d26e95aba747e26375a38547ae7882253cf417d58f6d8bee99d72007032dd4c6",
+    "apps/web/playwright.square-onboarding.config.ts": "3d793c430bbcb7dc4b9d5d1d246a8c9c14161327b582ca235de17873d307c84e",
     "apps/web/src/app/account/page.tsx": "33a984649e6042599c0161c04b6908d17dc9a33d93777b4451298620524ef501",
     "apps/web/src/app/api/square/oauth/callback/route.ts": "ea62f4692799923e1d891db71fb45df3fc3a443b92e21f18af8efde748097b31",
     "apps/web/src/app/api/square/oauth/launch/route.ts": "a90d5555b0475d80c93602c0988ab12422b460a91ae2df6e1bed0da15d702913",
@@ -522,13 +522,13 @@
     "apps/web/src/app/square/reconnect/page.tsx": "84d8b73bb8f9e09c237a4f46c402f1e93d2df929aae163afd4e198d8460ce542",
     "apps/web/src/app/square/return/page.tsx": "d4ad37aaf5d536c77721ad1f30080626796eeba0e3224fdbd108f46e0b0bf102",
     "apps/web/src/components/square/SquareManager.module.css": "1a7e0112fb9977854688293d8673df5d41fda9773f137dd6ee5ba37b92bedd9f",
-    "apps/web/src/components/square/SquareManager.tsx": "c3c74c420a9c5fcf855629f95c440c54a8fdb5324d46aacac5381ed130e0fa72",
+    "apps/web/src/components/square/SquareManager.tsx": "23c669ffefacaa60d480617bfd9741fc8b55a489675031a9d80d39d2899ef2d3",
     "apps/web/src/components/square/SquareReturn.tsx": "196c2002dfb4503889793baec8745ae996a96837a1bb8ba4081dbaf6fc5913b6",
     "apps/web/src/lib/collectorRelease.mjs": "4b673f465543c9f89aec8ab8fcbadd0286404feefb2bc41b4bd23bb0c4d259fd",
     "apps/web/src/lib/collectorStaging.d.mts": "42c8967f16b8045656c7cc011f8dadc41408ac19e7dfc3cda099538fdb6126d6",
     "apps/web/src/lib/collectorStaging.mjs": "69b2e80115ccd1f087e51fdcd368ed68c7fbfbf34369e5c981448104e3b207ba",
     "apps/web/src/lib/square/oauthRoute.test.mjs": "3a40001b989253ec0cb69e37ab1bb7a7ad7a317b3267b8a90ad56fc67ac5cfd2",
-    "apps/web/tests/square/onboarding.spec.ts": "16d1ab1d831d50f63be9f4ce0adcdaeec123d84c81e984ef2b2d64a979cf5634",
+    "apps/web/tests/square/onboarding.spec.ts": "75940e3aced759bb3ff6a69fa3febfb857dedd2c04f1a8945d1b1e5e9568cf60",
     "backend/square/backend_service_v1.d.mts": "fb40c2685f8193d42212a375f1b6b90a2477de0ee19932d3ffe8dfce1d87b7e5",
     "backend/square/commerce_backend_v2.mjs": "b60ddd6be47741f7136b3ba5c9d7a24ce5e87c59eb740dedd441796cf2ef4dc2",
     "backend/square/service_v1.mjs": "344f47ab1a23f6dc72dfb6ee2e83fbec69cdf86cd9730c11296e337de8d3c483",
@@ -547,7 +547,7 @@
     "scripts/schema/square_onboarding_local_control_v1.mjs": "d674f28fec277a52e15919f19a2d5ab8e7920be1e55e2cb70492232d5197722e",
     "scripts/schema/start_square_onboarding_web_lab_v1.mjs": "b5d9c14d564e195b3f572a8c796635f174f3f5e14d4c576c7dd75ce9c72ed185",
     "scripts/schema/vendor_pricing_security_snapshot_v1.sql": "0a60a8e826cf6565b5fce007b9e1ca95aba1942cc4468b1541d50b3077646853",
-    "scripts/schema/verify_square_onboarding_release_v1.mjs": "1e6f27ca69e7c9d33996c123ea1bfc3a3168c04e83a1f49cc8b713f0af1b908f",
+    "scripts/schema/verify_square_onboarding_release_v1.mjs": "c35eed2edb016fe3de9d3767489a5cda4d3ce877966e41698a017102399ef0ff",
     "supabase/migrations/20261113050000_square_self_service_onboarding_v1.sql": "b016821220e18a53eb2d0174b394d888893bed297fdfe13a5fdccfbeb8c0aa86",
     "test/square/square_onboarding_test.dart": "ec6bb25d3fb03bbe77a1cfffef8110c92cca041c19af841181f03b6705ac69f5"
   }

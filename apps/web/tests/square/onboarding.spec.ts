@@ -9,7 +9,7 @@ import AxeBuilder from '@axe-core/playwright';
 
 const root='C:/grookai_square_onboarding_20261112';
 const qualification='C:/grookai_vault_operator_artifacts/square_onboarding_20261112/candidate-v3';
-const artifacts=qualification+'/web-v2';
+const artifacts=qualification+'/web-v4';
 fs.mkdirSync(artifacts,{recursive:true});
 const lab=qualification+'/fresh-495',project='square-onboard-fresh-v3-495-20261113';
 const cfg=JSON.parse(execFileSync('supabase',['status','--workdir',lab,'--output','json'],{encoding:'utf8',stdio:['ignore','pipe','ignore']}));
@@ -51,7 +51,7 @@ test.beforeAll(async()=>{
   await catalog.callback({state,browserNonce:launch.browserNonce,code:'local-fixture-only'});
 });
 test.afterAll(()=>{
-  if(checks.length!==8)return;
+  if(checks.length!==9)return;
   for(const[file,pin]of Object.entries(sourceHashes))expect(hashSource(file)).toBe(pin);
   fs.writeFileSync(artifacts+'/web-proof.json',JSON.stringify({pass:true,candidateSha256:pin,checks,actualLocalAuth:true,simulatedSquareProvider:true,noInventoryPublished:true,sourceHashes,productionWrites:0},null,2),{flag:'wx'});
 });
@@ -209,6 +209,48 @@ test('explicit enable persists actual owner settings; phone and desktop show the
   await page.screenshot({path:artifacts+'/web-ready-phone-light.png',fullPage:true});
   checks.push('explicit owner confirmation persists real configuration/preferences without inventory publication; desktop/phone layout and Roboto checked');
 });
+test('slow location reads serialize with seller operations and ordinary reloads preserve draft choices',async({page})=>{
+  let locationsCalled=0,processed=0;
+  let releaseLocations!:()=>void;
+  const held=new Promise<void>(resolve=>{releaseLocations=resolve;});
+  await page.route('**/api/square',async route=>{
+    const body=route.request().method()==='POST'?route.request().postDataJSON():null;
+    if(body?.action==='locations'){
+      locationsCalled++;
+      const leaseToken=randomUUID(),connectionId=body.connectionId;
+      const lease=await admin.rpc('square_commerce_service_v2',{p_action:'claim',p_data:{ownerId:setupUser.id,connectionId,leaseToken}});expect(lease.error).toBeNull();
+      try{await held;}finally{expect((await admin.rpc('square_commerce_service_v2',{p_action:'release',p_data:{ownerId:setupUser.id,connectionId,leaseToken,fence:lease.data.lease_fence}})).error).toBeNull();}
+      await route.fulfill({json:{locations:[{id:'fixtureLocation',name:'My shop'},{id:'draftLocation',name:'Other shop'}]}});return;
+    }
+    if(body?.action==='process'){processed++;await route.fulfill({json:{succeeded:0,failed:0,reviews:0,adoptions:[]}});return;}
+    await route.continue();
+  });
+  try{
+    await signIn(page,setupUser);
+    await expect.poll(()=>locationsCalled).toBe(1);
+    await expect(page.getByRole('button',{name:'Sync pending cards',exact:true})).toBeDisabled();
+    await expect(page.getByRole('button',{name:'Check Square sales',exact:true})).toBeDisabled();
+    await page.getByText('Connection settings',{exact:true}).click();
+    await expect(page.getByRole('button',{name:'Reconnect Square',exact:true})).toBeDisabled();
+    expect(sql(`select lease_token is not null from grookai_square.connections where owner_id='${setupUser.id}'`)).toBe('t');
+    expect(processed).toBe(0);
+    releaseLocations();
+    const sync=page.getByRole('button',{name:'Sync pending cards',exact:true});await expect(sync).toBeEnabled();
+    const location=page.getByRole('combobox',{name:'Square location',exact:true});await location.selectOption('draftLocation');
+    const autoSync=page.getByRole('checkbox',{name:'Keep names, conditions and asking prices updated automatically.',exact:true});await autoSync.uncheck();
+    for(let n=1;n<=2;n++){
+      const refreshed=page.waitForResponse(response=>response.request().method()==='GET'&&new URL(response.url()).pathname==='/api/square');
+      await sync.click();await refreshed;await expect(sync).toBeEnabled();
+      await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));
+      expect(processed).toBe(n);expect(locationsCalled).toBe(1);
+      await expect(location).toHaveValue('draftLocation');await expect(autoSync).not.toBeChecked();
+    }
+    expect(sql(`select location_id='fixtureLocation' and auto_sync from grookai_square.connections where owner_id='${setupUser.id}'`)).toBe('t');
+    expect(sql('select count(*) from grookai_square.allocations')).toBe('0');
+    checks.push('a held actual local connection lease disables competing operations; two actual workspace reloads neither reread locations nor discard unsaved location/catalog choices; command/provider replies are simulated and publish no inventory');
+  }finally{releaseLocations();}
+});
+
 test('an existing seller can recover from authorization failure without losing settings',async({page})=>{
   let failed=false;
   await page.route('**/api/square',async route=>{

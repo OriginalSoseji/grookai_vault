@@ -29,13 +29,18 @@ pwsh -NoProfile -File scripts/migration_preflight_strict.ps1 `
 
 The reviewed candidate's immutable migration/source/proof pins are in
 `docs/audits/square_onboarding_20261112/release-manifest-v1.json`. Current private
-qualification is `C:/grookai_vault_operator_artifacts/square_onboarding_20261112/candidate-v3`;
-candidate-v2 is superseded review evidence, including an uninstalled APK.
+qualification is `C:/grookai_vault_operator_artifacts/square_onboarding_20261112/candidate-v4`;
+actual acceptance proofs and unchanged SQL labs remain in candidate-v3. Prior
+candidate-v2/v3 source receipts and uninstalled APKs are superseded review evidence.
 Use new unlinked internal-network fresh/retained labs; preserve all consumed labs,
 receipts and historical migration bytes. Require actual local Auth isolation and
 paused/inactive-owner reconnect tests, unchanged retained data, exact schema/ACL
 comparison, website/native workflows, normal hooks, hosted checks and independent
 exact-head review. Simulated Square responses never qualify a real payment.
+Automatic location reads share the seller-operation guard and use stable saved
+connection/location identity. Status reloads retain unsaved choices; explicit
+Retry locations refreshes authorization before another read. Verify a held-lease
+read disables competing sync/reconciliation and ordinary reloads do not refetch.
 
 Production promotion is one official forward495 apply with the control still
 off, then qualified website/source binding and a higher-version same-signer,

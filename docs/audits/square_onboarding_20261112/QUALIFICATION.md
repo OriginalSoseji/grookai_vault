@@ -56,7 +56,7 @@ backend linking guard and per-copy publication authority. These are new SQL
 proofs; the prior candidate's successful hooks and uninstalled APK are preserved
 as historical evidence and cannot authorize this revised release.
 
-Eight website interactions passed with actual local GoTrue and the real grookai
+Nine website interactions passed with actual local GoTrue and the real grookai
 login: fresh vendor connection and safe cancellation, leaving a slow handoff,
 single/multiple/no locations, provider read recovery, explicit setup and expired
 authorization recovery, including the actual owner POST reconnect route while
@@ -73,6 +73,18 @@ are in web-v2. The production same-origin guard was not changed. The local CLI
 status credential is read through the shared canonical helper; the legacy-key
 guard passes without an exception or scan-rule change.
 
+A second independent review identified automatic location reads racing sync and
+sales operations for the same exclusive connection lease. Reads now share the
+synchronous operation guard, defer until an operation completes, reuse a pending
+read across effect cleanup/replay, and depend on saved connection/location identity
+rather than a new workspace object. Explicit retry refreshes authorization first.
+Ordinary status reloads preserve unsaved location, catalog and stock preferences.
+The added browser regression holds an actual local connection lease, verifies
+competing controls are disabled, then performs two real workspace reloads with
+simulated command replies and proves no extra location read or lost draft. All
+nine flows passed in web-v3; web-v4 freezes the final loading-label correction.
+No inventory or payment is published by these tests.
+
 Native checks cover explicit setup, location recovery, partial saves, queued
 returns, preserved existing settings, named root routing and leaving slow link
 requests. Both normal hooks, complete repository tests, hosted exact-head review,
@@ -86,6 +98,13 @@ complete normal verification still runs analysis and the full native suite.
 Private, non-secret proof receipts and separate private fixture credentials are
 retained under
 `C:/grookai_vault_operator_artifacts/square_onboarding_20261112/candidate-v3`.
+Normal source/push qualification and promotion receipts for the location-read
+correction use the new candidate-v4 sibling directory. Its proof receipts name
+candidate-v3 as their actual acceptance-artifact root. The SQL candidate and DB
+runtime source are unchanged, so the existing real fresh/retained495 proofs and
+labs remain authoritative for that SQL; they are preserved without another reset
+or migration. Native source is unchanged; complete normal hooks still rerun full
+analysis, native tests and all other required gates for the final source tree.
 The manifest pins the acceptance proofs and runtime source. Earlier failed local
 fixture attempts and the overlong retained project-name startup are preserved;
 they are not release authority. Candidate-v2 also remains preserved. Existing production/schema494, Samsung541,
