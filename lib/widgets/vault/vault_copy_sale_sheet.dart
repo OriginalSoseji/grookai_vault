@@ -492,11 +492,7 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet>
                   TextButton(
                     onPressed: () async {
                       _focus.unfocus();
-                      await Navigator.of(context).push(
-                        MaterialPageRoute<void>(
-                          builder: (_) => const SquareScreen(),
-                        ),
-                      );
+                      await SquareScreen.open(context);
                       if (mounted) _focus.unfocus();
                     },
                     child: const Text('Check Square status'),

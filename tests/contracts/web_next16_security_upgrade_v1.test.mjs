@@ -33,8 +33,10 @@ test("web dependency overrides retain the audited transitive security floor", ()
   assert.equal(packageLock.packages["node_modules/next"].version, "16.4.6");
   assert.equal(packageJson.overrides["source-map-js"], "1.2.2");
   assert.equal(packageLock.packages["node_modules/source-map-js"].version, "1.2.2");
-  assert.equal(packageJson.overrides["brace-expansion"], "5.0.9");
-  assert.equal(packageJson.overrides.minimatch, "10.2.6");
+  assert.equal(packageJson.overrides["brace-expansion"], "5.0.12");
+  assert.equal(packageLock.packages["node_modules/brace-expansion"].version, "5.0.12");
+  assert.equal(packageJson.overrides.minimatch, "11.0.1");
+  assert.equal(packageLock.packages["node_modules/minimatch"].version, "11.0.1");
   // npm may nest a different optional wasm version under its consuming package.
   // Preserve the dependency check without requiring one hoisting arrangement.
   for (const name of ["@emnapi/core", "@emnapi/runtime"]) {

@@ -113,6 +113,22 @@ export function buildJapaneseOfficialEvidenceEnrichmentV1({
   if (!cardPrint?.id || !identity?.id || identity.card_print_id !== cardPrint.id) {
     throw new Error("Official evidence enrichment lacks one exact canonical identity");
   }
+  const normalizeName = (value) => clean(value).replace(/\s+/gu, "");
+  const setKey = (value) => clean(value).toLowerCase().replace(/^jpn[-_]*/, "").replace(/[^a-z0-9]/g, "");
+  const officialName = normalizeName(officialCard?.printed_name);
+  const storedName = normalizeName(identity.source_name_raw);
+  const officialNumber = numericNumber(officialCard?.card_number_raw);
+  const storedNumber = numericNumber(identity.printed_number);
+  const officialSet = setKey(officialCard?.source_set_code);
+  const storedSet = setKey(identity.set_code_identity);
+  const candidates = identity.identity_payload?.card_name_ja_candidates;
+  if (identity.identity_domain !== "pokemon_jpn" || !officialName || !storedName ||
+      officialName !== storedName || !officialNumber || officialNumber !== storedNumber ||
+      !officialSet || officialSet !== storedSet ||
+      (candidates !== undefined && (!Array.isArray(candidates) || candidates.length !== 1 ||
+        normalizeName(candidates[0]) !== officialName))) {
+    throw new Error("Official evidence enrichment conflicts with canonical Japanese identity");
+  }
   const subject = {
     identity_domain: identity.identity_domain,
     language_scope: "ja",

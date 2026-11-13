@@ -143,7 +143,7 @@ export default async function AccountPage(props: AccountPageProps) {
         <div className="rounded-lg border border-slate-200 bg-slate-50 p-6">
           <h2 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">Quick Links</h2>
           <div className="mt-4 flex flex-col gap-3">
-            <Link href="/account/connections/square" className="gv-secondary-button">Square catalog connection</Link>
+            <Link href="/account/connections/square" className="gv-secondary-button">Sell with Square</Link>
             {showFounderSignals && <Link href="/account/pricing" className="gv-secondary-button">Pricing rules</Link>}
             {showFounderSignals && <Link href="/vault/labels" className="gv-secondary-button">Print card labels</Link>}
             <Link href="/account/orders" className="rounded-full border border-slate-300 px-5 py-2.5 text-center text-sm font-medium text-slate-700">Your purchases</Link>

@@ -681,18 +681,7 @@ class _AppShellState extends State<AppShell> {
     // routing.
     switch (route.kind) {
       case GrookaiCanonicalRouteKind.square:
-        if (SquareScreen.isOpen) {
-          Navigator.of(context, rootNavigator: true).popUntil(
-            (r) => r.settings.name == SquareScreen.routeName || r.isFirst,
-          );
-        } else {
-          await Navigator.of(context, rootNavigator: true).push<void>(
-            MaterialPageRoute<void>(
-              settings: const RouteSettings(name: SquareScreen.routeName),
-              builder: (_) => const SquareScreen(),
-            ),
-          );
-        }
+        await SquareScreen.handleReturn(context);
         break;
       case GrookaiCanonicalRouteKind.ebaySeller:
         if (route.value.isEmpty &&
