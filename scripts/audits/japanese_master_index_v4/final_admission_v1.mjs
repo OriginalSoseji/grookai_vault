@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { requiresJapaneseComponentReconciliation } from './card_assertion_contract_v1.mjs';
+import { verifyAdmissionSourceReceiptsV1 } from './admission_receipt_verification_v1.mjs';
 
 import {
   loadVerifiedDatasetFromManifest,
@@ -16,7 +17,7 @@ import {
 } from './deterministic_artifact_v1.mjs';
 
 export const FINAL_ADMISSION_VERSION =
-  'JPN-MASTER-INDEX-FINAL-ADMISSION-V3';
+  'JPN-MASTER-INDEX-FINAL-ADMISSION-V4';
 
 const DEFAULT_CANDIDATE_MANIFEST =
   'docs/audits/japanese_master_index_v4/index/'
@@ -1632,6 +1633,7 @@ export async function runFinalAdmission(options = {}) {
   ]);
 
   const sourceAssertions = [];
+  const assertionsByLane = new Map();
   const sourceArtifactFingerprints = [];
   for (const spec of SOURCE_ARTIFACTS) {
     const record = await readVerifiedArtifact(spec.path, {
@@ -1652,6 +1654,7 @@ export async function runFinalAdmission(options = {}) {
       );
     }
     sourceAssertions.push(...assertions);
+    assertionsByLane.set(spec.laneId, assertions);
     sourceArtifactFingerprints.push({
       lane_id: spec.laneId,
       path: spec.path,
@@ -1667,6 +1670,7 @@ export async function runFinalAdmission(options = {}) {
   ) {
     throw new Error('Fresh source assertion count drift');
   }
+  await verifyAdmissionSourceReceiptsV1(assertionsByLane);
 
   const futureRegistryKeys = new Set(
     (futureQueueRecord.artifact.content.work_items ?? [])
