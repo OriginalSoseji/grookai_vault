@@ -17,7 +17,7 @@ import {
 } from './deterministic_artifact_v1.mjs';
 
 export const FINAL_ADMISSION_VERSION =
-  'JPN-MASTER-INDEX-FINAL-ADMISSION-V4';
+  'JPN-MASTER-INDEX-FINAL-ADMISSION-V5';
 
 const DEFAULT_CANDIDATE_MANIFEST =
   'docs/audits/japanese_master_index_v4/index/'
@@ -654,6 +654,14 @@ function cardResolutionRows({
     const supportedNameKeys = unique(assertions.filter((row) => receiptSourceFamily(row))
       .map((row) => normalizedText(row.printed_name)).filter(hasJapaneseScript)
       .map(printedNameEquivalenceKey));
+    // A family that only reports a coordinate or an English label does not,
+    // by itself, corroborate this Japanese printed name. Keep it as evidence,
+    // but require explicit support from two families for non-official cards.
+    const japaneseNameFamilies = japaneseNameKeys.length === 1
+      ? unique(assertions.filter((row) => hasJapaneseScript(row.printed_name)
+        && printedNameEquivalenceKey(row.printed_name) === japaneseNameKeys[0])
+        .map(receiptSourceFamily))
+      : [];
     const officialJapaneseNames = unique(
       assertions
         .filter((row) => receiptSourceFamily(row) === OFFICIAL_FAMILY)
@@ -745,15 +753,22 @@ function cardResolutionRows({
           : 'human_readable_source_requirement_not_met',
       );
     }
+    if (!hasOfficial && families.length >= 2 && japaneseNameFamilies.length < 2) {
+      reasons.push('independent_japanese_printed_name_support_missing');
+    } else if (!hasOfficial && japaneseNameFamilies.length >= 2
+      && !japaneseNameFamilies.some((family) => HUMAN_READABLE_FAMILIES.has(family))) {
+      reasons.push('human_readable_japanese_name_support_missing');
+    }
     if (family.status === 'blocked') {
       reasons.push(family.reason);
     }
     if (disposition !== 'adjudicated_excluded' && reasons.length > 0) {
       disposition = 'blocked';
     }
-    const evidenceStatus = hasOfficial
+    const evidenceStatus = hasOfficial && japaneseNameFamilies.includes(OFFICIAL_FAMILY)
       ? 'official_identity_supported'
-      : families.length >= 2 && hasHumanReadable
+      : japaneseNameFamilies.length >= 2
+        && japaneseNameFamilies.some((family) => HUMAN_READABLE_FAMILIES.has(family))
         ? 'multi_source_identity_supported'
         : families.length === 1
           ? 'single_source_only'
@@ -807,6 +822,7 @@ function cardResolutionRows({
       source_ids: unique(candidate.source_ids ?? []),
       independent_source_families: families,
       independent_source_count: families.length,
+      japanese_name_source_families: japaneseNameFamilies,
       human_readable_source_present: hasHumanReadable,
       official_source_present: hasOfficial,
       evidence_status: evidenceStatus,

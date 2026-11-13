@@ -238,6 +238,20 @@ test('single non-official source remains blocked', () => {
   );
 });
 
+test('a non-official coordinate-only source cannot corroborate the Japanese printed name', () => {
+  const first = assertion({ key: 'named', sourceId: 'limitless_jp_cards', sourceFamily: 'limitless_tcg_jp' });
+  const second = assertion({ key: 'coordinate', sourceId: 'serebii_jp_cards', sourceFamily: 'serebii_jp', name: null });
+  const card = candidate({ key: 'two-sources', assertionKeys: [first.assertion_key, second.assertion_key], sourceIds: [first.source_id, second.source_id] });
+  const family = [{ candidate_key: card.candidate_key, projection_status: 'projected_exact', species_id: 'pikachu', projection_methods: ['exact_japanese_name'] }];
+  const held = buildFixture({ sourceAssertions: [first, second], identityCandidates: [card], familyProjectionRows: family });
+  assert.equal(held.datasets.master_admissible_card_rows_v1.length, 0);
+  assert.ok(held.datasets.master_card_resolution_rows_v1[0].disposition_reasons.includes('independent_japanese_printed_name_support_missing'));
+  assert.notEqual(held.datasets.master_card_resolution_rows_v1[0].evidence_status, 'multi_source_identity_supported');
+  const corroborated = buildFixture({ sourceAssertions: [first, { ...second, printed_name: 'ピカチュウ' }], identityCandidates: [card], familyProjectionRows: family });
+  assert.equal(corroborated.datasets.master_admissible_card_rows_v1.length, 1);
+  assert.equal(corroborated.datasets.master_card_resolution_rows_v1[0].evidence_status, 'multi_source_identity_supported');
+});
+
 test('historical source labels alone cannot claim official or independent identity support', () => {
   const card = candidate({ key: 'historical', assertionKeys: [], sourceIds: [
     'pokemon_card_official_jp', 'artofpkm_jp', 'limitless_tcg_jp', 'pokellector_jp', 'tcgcollector_jp',
