@@ -40,7 +40,9 @@ export async function POST(request: NextRequest) {
     const backend = sellerBackend();
     if (body.action === 'link') return sellerReply(await backend.oauth.start(owner.actorId));
     if (body.action === 'metadata') return sellerReply(await backend.metadata(owner.actorId, {
-      instanceId: sellerId(body.instanceId), accountId: sellerId(body.accountId) }));
+      instanceId: sellerId(body.instanceId), accountId: sellerId(body.accountId),
+      categoryQuery: typeof body.categoryQuery === 'string' ? body.categoryQuery : undefined,
+      categoryId: typeof body.categoryId === 'string' ? body.categoryId : undefined }));
     const draftId = sellerId(body.draftId);
     const revision = sellerRevision(body.revision, body.action === 'save');
     if (body.action === 'save') {

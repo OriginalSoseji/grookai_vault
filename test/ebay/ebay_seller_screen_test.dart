@@ -19,6 +19,7 @@ class _Api implements EbaySellerApi {
   @override
   Future<Map<String, dynamic>> workspace({String? instanceId}) async => {
     'account': {
+      'accountId': 'ef000000-0000-4000-8000-000000000004',
       'linked': true,
       'username': 'Collector seller',
       'linkingEnabled': true,
@@ -45,6 +46,25 @@ class _Api implements EbaySellerApi {
     Map<String, dynamic> payload,
   ) async {
     actions.add(action);
+    if (action == 'metadata') {
+      const categories = [
+        {'categoryId': '183454', 'categoryName': 'Trading Card Singles'},
+        {'categoryId': '999', 'categoryName': 'Alternative CCG category'},
+      ];
+      return {
+        'categoryId': payload['categoryId'] ?? categories.first['categoryId'],
+        'categoryOptions': categories,
+        'policies': {'fulfillment': [], 'payment': [], 'return': []},
+        'locations': [],
+        'aspects': [],
+        'conditionChoices': [],
+        'suggestedCondition': {
+          'conditionId': '4000',
+          'description': '',
+          'descriptors': <dynamic>[],
+        },
+      };
+    }
     throw StateError('Synthetic fixture does not perform provider operations.');
   }
 
@@ -85,6 +105,53 @@ void main() {
     await tester.pumpWidget(const SizedBox.shrink());
     model.dispose();
   });
+
+  testWidgets(
+    'the seller can change category and refresh category-specific metadata',
+    (tester) async {
+      final api = _Api();
+      final model = EbaySellerController(
+        api: api,
+        initialInstanceId: _instance,
+      );
+      addTearDown(model.dispose);
+      await model.refresh();
+      await model.updateInput({
+        'aspects': {
+          'Game': ['Pokemon'],
+        },
+        'condition': {
+          'conditionId': '4000',
+          'description': 'Card details',
+          'descriptors': [
+            {
+              'id': '40001',
+              'values': ['400015'],
+            },
+          ],
+        },
+      });
+      await model.loadMetadata();
+      await tester.pumpWidget(
+        MaterialApp(home: EbaySellerScreen(controller: model)),
+      );
+      await tester.pumpAndSettle();
+      final category = find.byType(DropdownButtonFormField<String>).first;
+      await tester.tap(category);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Alternative CCG category').last);
+      await tester.pumpAndSettle();
+
+      expect(model.local!.input['categoryId'], '999');
+      expect(model.local!.input['aspects'], isEmpty);
+      expect(model.local!.input['condition']['conditionId'], '4000');
+      expect(
+        api.actions.where((action) => action == 'metadata').length,
+        2,
+        reason: 'The selected category reloads its live provider evidence.',
+      );
+    },
+  );
 
   for (final state in ['live', 'publishing', 'preparing']) {
     testWidgets('$state keeps an explicit provider-status recovery action', (

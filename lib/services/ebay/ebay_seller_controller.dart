@@ -224,31 +224,80 @@ class EbaySellerController extends ChangeNotifier {
     await _refresh();
   }
 
-  Future<void> loadMetadata() => run('Loading selling options', () async {
+  Future<void> loadMetadata({
+    String? categoryId,
+  }) => run('Loading selling options', () async {
     if (copy['id'] is! String || account['accountId'] is! String) return;
-    metadata = await api.call('metadata', {
-      'instanceId': copy['id'],
-      'accountId': account['accountId'],
-    });
     final current = local;
-    if (current != null) {
-      final condition = sellerMap(current.input['condition']);
-      final useDefaults =
-          sellerRows(condition['descriptors']).isEmpty &&
-          (condition['description'] ?? '') == '';
-      await _retain(
-        current.copyWith(
-          input: {
-            ...current.input,
-            'categoryId': metadata['categoryId'],
-            'condition': useDefaults
-                ? sellerMap(metadata['suggestedCondition'])
-                : condition,
-          },
-          dirty: true,
-        ),
+    if (current == null) return;
+    final queryParts = [copy['name'], copy['setCode'], copy['number']]
+        .whereType<String>()
+        .map((value) => value.trim())
+        .where((value) => value.isNotEmpty)
+        .toList();
+    final identity = queryParts.join(' ');
+    final fallbackTitle = current.input['title']?.toString().trim() ?? '';
+    final queryBase = identity.isEmpty ? fallbackTitle : identity;
+    if (queryBase.isEmpty) {
+      throw StateError(
+        'The card identity is not ready for eBay category search.',
       );
     }
+    var categoryQuery = '$queryBase Trading Card Single';
+    categoryQuery = categoryQuery.trim().characters.take(300).toString();
+    final metadataInput = <String, dynamic>{
+      'instanceId': copy['id'],
+      'accountId': account['accountId'],
+      'categoryQuery': categoryQuery,
+    };
+    if (categoryId != null) metadataInput['categoryId'] = categoryId;
+    var loaded = await api.call('metadata', metadataInput);
+    final previousCategory = current.input['categoryId']?.toString() ?? '';
+    final options = sellerRows(loaded['categoryOptions']);
+    final retainedCategoryIsSuggested = options.any(
+      (option) => option['categoryId'] == previousCategory,
+    );
+    final desiredCategory =
+        categoryId ?? (retainedCategoryIsSuggested ? previousCategory : null);
+    if (desiredCategory != null &&
+        desiredCategory.isNotEmpty &&
+        desiredCategory != loaded['categoryId']) {
+      loaded = await api.call('metadata', {
+        'instanceId': copy['id'],
+        'accountId': account['accountId'],
+        'categoryQuery': categoryQuery,
+        'categoryId': desiredCategory,
+      });
+    }
+    metadata = loaded;
+    if (categoryId == null &&
+        previousCategory.isNotEmpty &&
+        !retainedCategoryIsSuggested) {
+      notice =
+          'The saved category is no longer suggested by eBay. Review the current category before preparing.';
+    }
+    final condition = sellerMap(current.input['condition']);
+    final categoryChanged =
+        current.input['categoryId'] != metadata['categoryId'];
+    final useDefaults =
+        categoryChanged ||
+        (sellerRows(condition['descriptors']).isEmpty &&
+            (condition['description'] ?? '') == '');
+    await _retain(
+      current.copyWith(
+        input: {
+          ...current.input,
+          'categoryId': metadata['categoryId'],
+          'aspects': categoryChanged
+              ? <String, dynamic>{}
+              : sellerMap(current.input['aspects']),
+          'condition': useDefaults
+              ? sellerMap(metadata['suggestedCondition'])
+              : condition,
+        },
+        dirty: true,
+      ),
+    );
     _changed();
   });
 
