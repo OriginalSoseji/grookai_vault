@@ -230,6 +230,12 @@ Production health is critical when:
 
 No pipeline run is successful when reconciliation mismatches exist.
 
+The scheduled pipeline keeps phase timeouts separate. Publication may retain
+the longer database window required for assignment preparation, but the
+active-ask refresh must cap its own database timeout at 120 minutes. A longer
+publication timeout must never be forwarded unchanged to the active-ask
+worker or prevent pricing recovery from reaching qualification and readback.
+
 ## Expansion Gates
 
 The following are explicitly outside Production V1:
