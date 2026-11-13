@@ -1195,6 +1195,15 @@ test("publication database timeout covers measured assignment preparation", () =
     PIPELINE,
     /database_timeout_minutes: args\.databaseTimeoutMinutes/,
   );
+  assert.match(PIPELINE, /ACTIVE_ASK_MAX_TIMEOUT_MINUTES = 120/);
+  assert.match(
+    PIPELINE,
+    /active_ask_timeout_minutes: activeAskTimeoutMinutes/,
+  );
+  assert.match(
+    PIPELINE,
+    /--timeout-minutes=\$\{activeAskTimeoutMinutes\}/,
+  );
   assert.match(
     SCHEDULED_RUNNER,
     /--database-timeout-minutes=\$\{args\.databaseTimeoutMinutes\}/,

@@ -303,6 +303,9 @@ npm run pricing:market:active-ask:refresh -- --apply
 
 Do not run this command from a dirty tracked worktree. Shadow and dry-run
 pipelines read and validate the existing snapshot but do not refresh it.
+The pipeline caps the active-ask database timeout at 120 minutes even when the
+publication database timeout is longer; this preserves the active-ask worker's
+bounded contract without shortening publication assignment preparation.
 
 ## Full Eligible Signed-In Rollout
 
