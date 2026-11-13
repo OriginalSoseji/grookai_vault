@@ -26,6 +26,7 @@ param(
   [switch]$SquareCommerceReleaseV5,
   [switch]$SquareCommerceReleaseV6,
   [switch]$VendorPricingReleaseV1,
+  [switch]$SquareOnboardingReleaseV1,
 
   [switch]$EbaySellerPublisherBaselineV1,
   [switch]$EbaySellerPublisherReleaseV1,
@@ -111,6 +112,16 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($SquareOnboardingReleaseV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','SquareOnboardingReleaseV1','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested -join ',') -ne '20261113050000' -or [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Square onboarding permits only the pinned494-to495 candidate, a new bounded audit directory, and no combined scope or target override.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_square_onboarding_release_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
 
 if ($VendorPricingReleaseV1) {
   $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)

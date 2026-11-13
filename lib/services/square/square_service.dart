@@ -5,7 +5,13 @@ import 'package:http/http.dart' as http;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 /// Thin owner-bound transport. Eligibility, stock and sales live on the server.
-class SquareService {
+abstract interface class SquareGateway {
+  Future<Map<String, dynamic>> workspace();
+  Future<Map<String, dynamic>> call(String action, Map<String, dynamic> data);
+  void dispose();
+}
+
+class SquareService implements SquareGateway {
   SquareService(this.client, {required this.ownerId, http.Client? transport})
     : _transport = transport ?? http.Client();
   final SupabaseClient client;
@@ -21,7 +27,9 @@ class SquareService {
     }
   }
 
+  @override
   Future<Map<String, dynamic>> workspace() => _request();
+  @override
   Future<Map<String, dynamic>> call(String action, Map<String, dynamic> data) =>
       _request({...data, 'action': action});
   Future<Map<String, dynamic>> notifyOffer(String instanceId) => _request({
@@ -75,5 +83,6 @@ class SquareService {
     }
   }
 
+  @override
   void dispose() => _transport.close();
 }
