@@ -2,20 +2,21 @@ import {test, expect} from "@playwright/test";
 import fs from "node:fs";
 import {randomUUID, createHash} from "node:crypto";
 
-const lab="C:/grookai_vault_operator_artifacts/vendor_rules_labels_20261112/fresh-494";
-const output="C:/grookai_vault_operator_artifacts/vendor_rules_labels_20261112/web-qa-v5";
-test.use({baseURL:"http://127.0.0.1:62380",viewport:{width:1365,height:900}});
+const lab="C:/grookai_vault_operator_artifacts/vendor_rules_labels_20261112/fresh-v2-494";
+const output="C:/grookai_vault_operator_artifacts/vendor_rules_labels_20261112/web-qa-v8";
+test.use({baseURL:"http://127.0.0.1:62580",viewport:{width:1365,height:900}});
 test("vendor preset, exact-copy automatic sale, fixed override and reusable label", async ({page}) => {
   test.setTimeout(240000);
   const sourceRoot="C:/grookai_vendor_rules_20261112";
   const runtimeFiles=["apps/web/src/components/vault/VaultCopySaleCard.tsx","apps/web/src/components/vault/VendorPricingSettings.tsx","apps/web/src/components/gvvi/VendorIdentityLabels.tsx","apps/web/src/components/gvvi/VendorLabelPicker.tsx","apps/web/src/lib/vendorPricing/actions.ts","apps/web/src/lib/vendorPricing/types.ts","apps/web/src/lib/gvvi/vendorQr.ts","apps/web/src/lib/vault/saveVaultItemInstancePricingAction.ts","apps/web/src/lib/square/notifyOfferSaved.ts","apps/web/src/app/account/pricing/page.tsx","apps/web/src/app/vault/labels/page.tsx","apps/web/src/app/vault/gvvi/[gvvi_id]/qr/page.tsx","apps/web/src/lib/collectorStaging.mjs","supabase/migrations/20261112180000_vendor_pricing_rules_v1.sql"];
   const hashes=()=>Object.fromEntries(runtimeFiles.map(file=>[file,createHash("sha256").update(fs.readFileSync(sourceRoot+"/"+file,"utf8").replaceAll("\r\n","\n")).digest("hex")]));
   runtimeFiles.push("apps/web/src/lib/vault/getPublicVaultInstanceByGvvi.ts");
+  runtimeFiles.push("apps/web/tests/vendor-pricing-workflow.local.spec.ts","scripts/schema/start_vendor_pricing_web_lab_v1.mjs");
   const sourceHashes=hashes();
   const fixture=JSON.parse(fs.readFileSync(lab+"/runtime-fixture.private.json","utf8"));
   expect(JSON.parse(fs.readFileSync(lab+"/runtime-proof.json","utf8")).pass).toBe(true);
   fs.mkdirSync(output,{recursive:true});
-  await page.route("**/*",route=>{const url=new URL(route.request().url());return url.hostname==="127.0.0.1"&&["62380","62341"].includes(url.port)?route.continue():route.abort();});
+  await page.route("**/*",route=>{const url=new URL(route.request().url());return url.hostname==="127.0.0.1"&&["62580","62541"].includes(url.port)?route.continue():route.abort();});
   await page.goto("/login?next=/account/pricing");
   await page.getByLabel("Email",{exact:true}).fill(fixture.owner.email);
   await page.getByLabel("Password",{exact:true}).fill(fixture.owner.password);
@@ -56,7 +57,7 @@ test("vendor preset, exact-copy automatic sale, fixed override and reusable labe
   await sale.getByLabel("Pricing",{exact:true}).selectOption("default");
   await expect(sale.getByText(/\$16.00/)).toBeVisible();
   const other = await page.context().newPage();
-  await other.goto("http://127.0.0.1:62380/account/pricing");
+  await other.goto("http://127.0.0.1:62580/account/pricing");
   await other.getByRole("listitem").filter({hasText:name}).getByRole("button",{name:"Edit",exact:true}).click();
   await other.getByLabel("Percent above market",{exact:false}).fill("25");
   await other.getByRole("button",{name:"Save preset",exact:true}).click();
@@ -66,7 +67,7 @@ test("vendor preset, exact-copy automatic sale, fixed override and reusable labe
   await expect(sale.getByText(/\$16.00/)).toHaveCount(0);
   // The second tab then fixes a manual price. The dirty automatic editor may
   // retain its selection, but must not adopt that new revision and overwrite it.
-  await other.goto(`http://127.0.0.1:62380/vault/gvvi/${copy.gvvi}`);
+  await other.goto(`http://127.0.0.1:62580/vault/gvvi/${copy.gvvi}`);
   const otherSale = other.locator("#copy-sale");
   await otherSale.getByLabel("Pricing",{exact:true}).selectOption("manual");
   await otherSale.getByLabel("Asking price · USD",{exact:true}).fill("19.00");
@@ -87,8 +88,22 @@ test("vendor preset, exact-copy automatic sale, fixed override and reusable labe
   await other.close();
   await page.goto(`/vault/gvvi/${copy.gvvi}/qr`);
   await expect(page.getByRole("heading",{name:"Physical card label"})).toBeVisible();
-  await page.evaluate(()=>{window.print=()=>{};});
+  await page.locator("#grookai-label-print-root .label-emblem").waitFor({state:"attached"});
+  await page.evaluate(()=>{
+    const probe={printed:0,requested:0,release:()=>{}};
+    Object.assign(window,{__labelPortalProbe:probe});
+    window.print=()=>{probe.printed++;};
+    const image=document.querySelector<HTMLImageElement>("#grookai-label-print-root .label-emblem")!;
+    const original=image.decode.bind(image);
+    image.decode=async()=>{probe.requested++;await new Promise<void>(resolve=>{probe.release=resolve;});await original();image.decode=original;};
+  });
   await page.getByRole("button",{name:"Print label",exact:true}).click();
+  await expect(page.getByRole("button",{name:"Preparing labels…",exact:true})).toBeVisible();
+  expect(await page.evaluate(()=>Reflect.get(window,"__labelPortalProbe").printed)).toBe(0);
+  expect(await page.evaluate(()=>Reflect.get(window,"__labelPortalProbe").requested)).toBe(1);
+  await page.evaluate(()=>Reflect.get(window,"__labelPortalProbe").release());
+  await expect.poll(()=>page.evaluate(()=>Reflect.get(window,"__labelPortalProbe").printed)).toBe(1);
+  await expect(page.getByRole("button",{name:"Print label",exact:true})).toBeEnabled();
   await expect(page.getByRole("alert").filter({hasText:/\S/})).toHaveCount(0);
   await page.pdf({path:output+"/web-p21-label.pdf",preferCSSPageSize:true,printBackground:true});
   await page.getByLabel("Label format",{exact:true}).selectOption("munbyn_102x152");
@@ -105,5 +120,5 @@ test("vendor preset, exact-copy automatic sale, fixed override and reusable labe
   await page.getByRole("link",{name:"Preview 1 label",exact:true}).click();
   await expect(page.getByRole("button",{name:"Print label",exact:true})).toBeVisible();
   expect(hashes()).toEqual(sourceHashes);
-  fs.writeFileSync(output+"/workflow-proof.json",JSON.stringify({pass:true,actualLocalAuth:true,actualServerPricing:true,manualOverride:true,liveQuoteRefresh:true,concurrentManualChoiceProtected:true,priceFreeLabels:true,batchPicker:true,sourceUnchanged:true,sourceHashes,productionWrites:0},null,2));
+  fs.writeFileSync(output+"/workflow-proof.json",JSON.stringify({pass:true,actualLocalAuth:true,actualServerPricing:true,manualOverride:true,liveQuoteRefresh:true,concurrentManualChoiceProtected:true,portalImagesDecoded:true,priceFreeLabels:true,batchPicker:true,sourceUnchanged:true,sourceHashes,productionWrites:0},null,2));
 });

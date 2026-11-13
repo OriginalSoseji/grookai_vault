@@ -17,7 +17,7 @@ export const vendorPricingLocalTest = process.env.NEXT_PUBLIC_VENDOR_PRICING_LOC
 export function assertCollectorStagingTarget(url, fixtureLab = collectorFixtureLab, hosted = collectorHostedStaging) {
   const target = new URL(url);
   if (vendorPricingLocalTest) {
-    if (vendorPilot || fixtureLab || hosted || storefrontLocalTest || vendorBatchLocalTest || collectrImportLocalTest || receiptCloudLocalTest || salesCartLocalTest || salesDeskProLocalTest || salesTradeLocalTest || receiptDeliveryLocalTest || salesPaymentsLocalTest || squareLocalTest || target.href !== "http://127.0.0.1:62341/") throw new Error("Vendor pricing proof requires its exact separate local database.");
+    if (vendorPilot || fixtureLab || hosted || storefrontLocalTest || vendorBatchLocalTest || collectrImportLocalTest || receiptCloudLocalTest || salesCartLocalTest || salesDeskProLocalTest || salesTradeLocalTest || receiptDeliveryLocalTest || salesPaymentsLocalTest || squareLocalTest || target.href !== "http://127.0.0.1:62541/") throw new Error("Vendor pricing proof requires its exact separate local database.");
     return;
   }
   if (squareLocalTest && (vendorPilot || fixtureLab || hosted || storefrontLocalTest || vendorBatchLocalTest || collectrImportLocalTest || receiptCloudLocalTest || salesCartLocalTest || salesDeskProLocalTest || salesTradeLocalTest || receiptDeliveryLocalTest || salesPaymentsLocalTest)) throw new Error("Square proof requires its own local database.");

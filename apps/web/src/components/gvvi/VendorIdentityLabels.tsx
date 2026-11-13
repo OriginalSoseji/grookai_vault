@@ -25,8 +25,10 @@ export default function VendorIdentityLabels({labels}: {labels: VendorIdentityLa
     if (missingSetName) {setError("The full set name is unavailable. Reload the card after its set name is available."); return;}
     setBusy(true); setError("");
     try {
+      if (!root.current || !portal) throw Error("The label preview is not ready. Try again.");
       await document.fonts.ready;
-      await Promise.all(Array.from(root.current?.querySelectorAll("img") ?? []).map(img => img.decode()));
+      const images = [...root.current.querySelectorAll("img"), ...portal.querySelectorAll("img")];
+      await Promise.all(images.map(img => img.decode()));
       const text = root.current?.querySelectorAll<HTMLElement>("[data-label-text]") ?? [];
       for (const element of text) {
         const maximum = Number(element.dataset.maxFont);

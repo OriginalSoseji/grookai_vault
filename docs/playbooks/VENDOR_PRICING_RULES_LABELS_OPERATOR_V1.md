@@ -37,6 +37,8 @@ Use P21 14 × 40 mm or the existing Munbyn 102 × 152 mm preset, matching actual
 loaded stock. The format is remembered locally; system print dialogs retain
 their printer selection, and P21 discovery lists the last connected printer first.
 Use Actual size / 100%, no margins, and no headers or footers.
+Print preparation waits for fonts and every image in both the visible preview
+and the hidden print copy, including the emblem on the first small label.
 
 Labels contain full card identity, the original emblem, and the permanent QR.
 The set line uses only the actual full set name, such as Prismatic Evolutions
@@ -78,3 +80,9 @@ gates, canonical production readback, a higher-version same-signer Samsung
 installation, and actual printer/label/scan acceptance are distinct proofs.
 Android P21 compiles; physical readiness, roll and output must still be checked
 on Android. Previous iOS acceptance does not qualify the new Android transport.
+
+Browser qualification binds the exact migration bytes as well as the UI. After
+changing the candidate SQL, rerun the owner workflow against the corrected
+fresh lab; a previous browser receipt is not current evidence. The retained
+fresh-v2 profile uses loopback database/API ports 62540/62541 and website port
+62580. Older receipts remain immutable.

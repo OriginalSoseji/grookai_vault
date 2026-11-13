@@ -55,7 +55,7 @@ async function main(){
    assert.equal(execFileSync('git',['status','--porcelain'],{cwd:root,encoding:'utf8'}).trim(),'','PrePush needs the committed, qualified checkout');assert.ok(Object.keys(manifest.runtimeSources).length>=50,'Freeze complete runtime source');
    for(const [file,pin]of Object.entries(manifest.runtimeSources))assert.equal(sha(fs.readFileSync(root+'/'+file,'utf8').replaceAll('\r\n','\n')),pin,'Runtime source changed: '+file);
    for(const t of[fresh,retained])assert.equal(t.sql('select enabled from grookai_vendor_pricing.controls where singleton').trim(),'f','Local pricing control must be paused after qualification');
-   const http=read(artifacts+'/web-qa-v5/workflow-proof.json');assert.equal(http.pass,true);assert.equal(http.actualLocalAuth,true);assert.equal(http.liveQuoteRefresh,true);assert.equal(http.concurrentManualChoiceProtected,true);assert.equal(http.sourceUnchanged,true);assert.ok(Object.keys(http.sourceHashes).length>=10);
+   const http=read(artifacts+'/web-qa-v8/workflow-proof.json');assert.equal(http.pass,true);assert.equal(http.actualLocalAuth,true);assert.equal(http.liveQuoteRefresh,true);assert.equal(http.concurrentManualChoiceProtected,true);assert.equal(http.portalImagesDecoded,true);assert.equal(http.sourceUnchanged,true);assert.ok(Object.keys(http.sourceHashes).length>=10);
    for(const[file,pin]of Object.entries(http.sourceHashes))assert.equal(sha(fs.readFileSync(root+'/'+file,'utf8').replaceAll('\r\n','\n')),pin,'Web execution source changed: '+file);
    assert.equal(read(artifacts+'/label-qa-set-names-v2/qr-decode-proof.json').pass,true);
   }
