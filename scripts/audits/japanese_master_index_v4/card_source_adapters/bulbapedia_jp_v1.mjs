@@ -4,7 +4,7 @@ import {
 } from '../card_assertion_contract_v1.mjs';
 
 export const BULBAPEDIA_JP_CARD_PARSER_VERSION =
-  'JPN-MASTER-INDEX-BULBAPEDIA-JP-CARD-PARSER-V3';
+  'JPN-MASTER-INDEX-BULBAPEDIA-JP-CARD-PARSER-V4';
 export const BULBAPEDIA_JP_SOURCE_ID = 'bulbapedia_jp_card_lists';
 export const BULBAPEDIA_JP_SOURCE_FAMILY =
   'bulbapedia_jp_card_list';
@@ -60,6 +60,30 @@ function parseNumberCell(value) {
     numerator: Number.parseInt(match.groups.numerator, 10),
     denominator: Number.parseInt(match.groups.denominator, 10),
   };
+}
+
+function parseNumberCellFirstLine(cell) {
+  // Some anniversary rows add a separate badge number after a line break.
+  // The printed coordinate is the complete first line, not both numbers joined.
+  return parseNumberCell(String(cell?.html ?? '').split(/<br\s*\/?\s*>/i)[0]);
+}
+
+function isExplicitOtherLanguageHeading(heading) {
+  return /^(?:english|simplified chinese|traditional chinese|chinese|korean|thai|indonesian|german|french|italian|spanish|portuguese)(?:\s|$)/i.test(String(heading ?? '').trim());
+}
+
+function languageSectionAt(html, offset) {
+  const stack = new Map();
+  for (const match of html.slice(0, offset).matchAll(/<h([2-4])\b[^>]*>([\s\S]*?)<\/h\1>/gi)) {
+    const level = Number(match[1]);
+    for (const existing of stack.keys()) if (existing >= level) stack.delete(existing);
+    stack.set(level, stripHtml(match[2]));
+  }
+  for (const heading of [...stack.values()].reverse()) {
+    if (/^japanese(?:\s|$)/i.test(heading)) return 'japanese';
+    if (isExplicitOtherLanguageHeading(heading)) return 'other';
+  }
+  return 'unknown';
 }
 
 function visibleLinks(rowHtml) {
@@ -129,12 +153,14 @@ function cardListTables(html) {
     const typeCellIndex = labels.findIndex((label) => label === 'type');
     const rarityCellIndex = labels.findIndex((label) => label === 'rarity');
     const cards = [];
+    const tableHeading = nearestHeading(html, tableMatch.index);
+    const languageSection = languageSectionAt(html, tableMatch.index);
 
     for (const row of parsedRows.slice(header.row_index + 1)) {
       const numberCell = row.cells[numberCellIndex];
       const nameCell = row.cells[nameCellIndex];
       if (!numberCell || !nameCell?.text) continue;
-      const number = parseNumberCell(numberCell.text);
+      const number = parseNumberCellFirstLine(numberCell);
       const unnumbered = /^(?:—|–|-)$/.test(numberCell.text);
       if (!number && !unnumbered) continue;
       const cardLink = visibleLinks(nameCell.html)
@@ -142,7 +168,8 @@ function cardListTables(html) {
       if (!cardLink && !/[\p{L}\p{N}]/u.test(nameCell.text)) continue;
       cards.push({
         table_index: tableIndex,
-        table_heading: nearestHeading(html, tableMatch.index),
+        table_heading: tableHeading,
+        source_language_section: languageSection,
         article_row_index: row.row_index,
         number,
         unnumbered,
@@ -161,7 +188,7 @@ function cardListTables(html) {
     if (cards.length > 0) {
       tables.push({
         table_index: tableIndex,
-        table_heading: nearestHeading(html, tableMatch.index),
+        table_heading: tableHeading,
         cards,
         numbered_cards: cards.filter((card) => card.number),
         unnumbered_cards: cards.filter((card) => card.unnumbered),
@@ -179,11 +206,11 @@ function modernNumberedRows(html, expectedDenominator) {
   ].entries()) {
     const cells = rowCells(row.groups.body);
     const numberCellIndex = cells.findIndex((cell) => {
-      const number = parseNumberCell(cell.text);
+      const number = parseNumberCellFirstLine(cell);
       return number?.denominator === expectedDenominator;
     });
     if (numberCellIndex < 0) continue;
-    const number = parseNumberCell(cells[numberCellIndex].text);
+    const number = parseNumberCellFirstLine(cells[numberCellIndex]);
     const nameCell = cells.slice(numberCellIndex + 1).find((cell) =>
       visibleLinks(cell.html).some((link) =>
         /\/wiki\/[^/]+_\([^)]*\d+\)/i.test(link.href)));
@@ -192,7 +219,8 @@ function modernNumberedRows(html, expectedDenominator) {
       /\/wiki\/[^/]+_\([^)]*\d+\)/i.test(link.href));
     cards.push({
       table_index: -1,
-      table_heading: null,
+      table_heading: nearestHeading(html, row.index),
+      source_language_section: languageSectionAt(html, row.index),
       article_row_index: rowIndex,
       number,
       unnumbered: false,
@@ -212,10 +240,14 @@ export function parseBulbapediaJapaneseCardList(body, workItem) {
   const tables = cardListTables(html);
   const cards = [];
   const coordinateOccurrences = new Map();
-  const tableNumberedRows = tables.flatMap((table) => table.numbered_cards);
+  const japaneseTables = tables.map((table) => ({ ...table,
+    numbered_cards: table.numbered_cards.filter((row) => row.source_language_section !== 'other'),
+    unnumbered_cards: table.unnumbered_cards.filter((row) => row.source_language_section !== 'other'),
+  }));
+  const tableNumberedRows = japaneseTables.flatMap((table) => table.numbered_cards);
   const numberedRows = tableNumberedRows.length > 0
     ? tableNumberedRows
-    : modernNumberedRows(html, expected);
+    : modernNumberedRows(html, expected).filter((row) => row.source_language_section !== 'other');
   const candidateNumberedRowCount = numberedRows.length;
   const rejectedOtherDenominatorCount = expected === null
     ? 0
@@ -227,7 +259,7 @@ export function parseBulbapediaJapaneseCardList(body, workItem) {
     : numberedRows.filter(
       (card) => card.number.denominator === expected,
     );
-  const unnumberedTables = tables.filter(
+  const unnumberedTables = japaneseTables.filter(
     (table) =>
       table.unnumbered_cards.length > 0
       && table.numbered_cards.length === 0,

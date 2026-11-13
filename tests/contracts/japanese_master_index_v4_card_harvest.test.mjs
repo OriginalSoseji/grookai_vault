@@ -793,6 +793,21 @@ test('Bulbapedia adapter reads modern exact numbered rows including secret cards
   assert.equal(checklist.diagnostics.modern_numbered_row_fallback_used, true);
 });
 
+test('Bulbapedia Japanese list keeps anniversary badges and excludes other-language tables', () => {
+  const table = (name, number) => `<table><tr><th>No.</th><th>Card name</th></tr>
+    <tr><td>${number}</td><td><a href="/wiki/Card_(Set_1)">${name}</a></td></tr></table>`;
+  const checklist = parseBulbapediaJapaneseCardList(
+    `<h3>English</h3><h4>Card list</h4>${table('English card', '017/103')}` +
+    `<h3>Japanese</h3><h4>Card list</h4>${table('Japanese card', '017/103<br><span>01/30</span>')}` +
+    `<h3>Simplified Chinese</h3><h4>Card list</h4>${table('Chinese card', '017/103')}`,
+    { source_container_id: 'Example', source_container_url: 'https://example.com/example', source_expected_card_count: 103 },
+  );
+  assert.equal(checklist.cards.length, 1);
+  assert.equal(checklist.cards[0].card_number_raw, '017/103');
+  assert.equal(checklist.cards[0].english_display_name, 'Japanese card');
+  assert.equal(checklist.cards[0].source_fields.article_table_heading, 'Card list');
+});
+
 test('Bulbapedia adapter preserves an exact older unnumbered Japanese list without inventing numbers', () => {
   const workItem = {
     lane_id: 'bulbapedia_jp_card_lists',

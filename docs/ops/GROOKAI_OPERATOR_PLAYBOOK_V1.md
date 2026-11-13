@@ -4696,3 +4696,27 @@ requests take priority over new card focus. Missing payment creation facts requi
 review; payments predating allocation cannot archive its physical copy. Independent
 updated-refund polling recovers late/missed refund signals without relying on an
 old order update or automatically putting the physical card back into stock.
+
+### Japanese incremental printed-name gate
+
+The Japanese incremental Master Index refresh checks each new coordinate and
+printed name against independently fetched official card-detail pages. The
+discovery output and admitted rows retain original bodies and SHA-256 hashes;
+the builder reparses them, checks the official host, final URL, set and number,
+and requires one unambiguous matching Japanese name. Missing, failed, capped or
+conflicting evidence blocks the whole new set delta with
+`official_printed_name_missing_or_conflicting:<coordinate>`. Existing base and
+overlay rows are preserved; this gate does not certify or repair them.
+
+Official detail requests are bounded by the discovery `maxDetailFetches` limit.
+When that limit or source availability prevents evidence collection, retain the
+held result and recover the original source evidence; do not copy the TCGdex name
+or treat a matching number as a name match. A previously captured overlay is not
+evidence of independent agreement.
+
+When a parsed Japanese full checklist has fewer rows than the independently
+observed numbered base checklist, discovery records `incomplete_parsed_checklist`
+and excludes that fragment from full-set and identity authority. A full-list
+count disagreement is recorded as `full_checklist_disagreement` and that list is
+excluded from admission for the affected set. Investigate and reacquire the
+source before attempting admission; do not turn either case into an empty set.

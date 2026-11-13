@@ -15,8 +15,10 @@ import {
   classifyCatalogSourceTransportFailureV1,
   classifyPokemonDatabaseSetScopesV1,
   isOptionalCatalogSourceFallbackV1,
+  isIncompleteJapaneseFullChecklistV1,
   JAPANESE_CARD_COVERAGE_STATUSES,
   mapPoolSettledV1,
+  projectOfficialJapaneseProductCardV1,
   normalizeCatalogSetCode,
   normalizeCatalogText,
   reconcileJapaneseOfficialCardCoverage,
@@ -34,6 +36,20 @@ import {
 } from "../../backend/catalog/english_pokemon_master_index_ownership_v1.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
+
+test("official Japanese product projection preserves normalized printed names", () => {
+  assert.deepEqual(projectOfficialJapaneseProductCardV1({ card_id: '50745', printed_name: '基本草エネルギー', image_url: 'https://example.com/card.jpg' }),
+    { source_external_id: '50745', printed_name_ja: '基本草エネルギー', image_url: 'https://example.com/card.jpg' });
+  assert.equal(projectOfficialJapaneseProductCardV1({ card_id: '1', card_name: 'wrong upstream field' }).printed_name_ja, null);
+});
+
+test("partial Japanese checklist is retained as incomplete evidence, never full authority", () => {
+  const numbered = { set: { card_count: 111 } };
+  assert.equal(isIncompleteJapaneseFullChecklistV1({ cards: [{}, {}] }, numbered), true);
+  assert.equal(isIncompleteJapaneseFullChecklistV1({ cards: Array(111).fill({}) }, numbered), false);
+  assert.equal(isIncompleteJapaneseFullChecklistV1({ cards: [] }, numbered), false);
+  assert.equal(isIncompleteJapaneseFullChecklistV1({ cards: [{}] }, { set: {} }), false);
+});
 
 function source(relativePath) {
   return fs.readFileSync(path.join(ROOT, relativePath), "utf8");

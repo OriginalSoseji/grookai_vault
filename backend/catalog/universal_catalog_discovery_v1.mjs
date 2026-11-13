@@ -3,6 +3,26 @@ import crypto from "node:crypto";
 export const UNIVERSAL_CATALOG_DISCOVERY_VERSION =
   "UNIVERSAL_CATALOG_DISCOVERY_V1";
 
+// Accept the normalized official adapter shape; the upstream search payload's
+// raw cardName* fields are handled by that adapter, not guessed here.
+export function projectOfficialJapaneseProductCardV1(card) {
+  const clean = (value) => String(value ?? "").trim();
+  return {
+    source_external_id: clean(card?.card_id),
+    printed_name_ja: clean(card?.printed_name) || null,
+    image_url: clean(card?.image_url) || null,
+  };
+}
+
+// A parsed fragment smaller than the independently observed numbered base is
+// incomplete evidence, not a complete conflicting list or an empty set.
+export function isIncompleteJapaneseFullChecklistV1(fullChecklist, numberedChecklist) {
+  const observed = fullChecklist?.cards?.length;
+  const base = Number(numberedChecklist?.set?.card_count);
+  return Number.isSafeInteger(observed) && observed > 0 &&
+    Number.isSafeInteger(base) && base > 0 && observed < base;
+}
+
 export function classifyCatalogSourceTransportFailureV1(error) {
   const status = error?.httpStatus;
   if (status === 401 || status === 403) return "SOURCE_ACCESS_DENIED";

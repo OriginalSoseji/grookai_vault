@@ -1,10 +1,15 @@
 import crypto from "node:crypto";
+import { officialJapaneseNamesByCoordinateV1 } from "./japanese_official_identity_evidence_v1.mjs";
 
 export const JAPANESE_POKEMON_MASTER_INDEX_INCREMENTAL_VERSION =
   "JAPANESE_POKEMON_MASTER_INDEX_INCREMENTAL_V1";
 
 function clean(value) {
   return String(value ?? "").trim();
+}
+
+function normalizePrintedName(value) {
+  return clean(value).normalize("NFKC").replace(/\s+/gu, "");
 }
 
 function stableValue(value) {
@@ -190,6 +195,24 @@ export function buildJapanesePokemonMasterIndexIncrementalV1({
       continue;
     }
     let owner = owners[0] ?? null;
+    // Coordinate agreement cannot prove the Japanese printed identity.  Only
+    // evaluate missing coordinates here: existing reviewed records and prior
+    // overlays must remain untouched by a refresh.
+    const ownerKey = owner?.jpn_set_key ?? ownerKeyForCode(code);
+    const officialNames = officialJapaneseNamesByCoordinateV1(
+      source.official_identity_snapshots, code, normalizeJapaneseCardCoordinateV1,
+    );
+    const unresolvedIdentity = [...tcgdexByCoordinate.entries()].find(([coordinate, card]) => {
+      if (cardsByCoordinate.has(`${ownerKey}|${coordinate}`) ||
+          overlayCards.has(`${ownerKey}|${coordinate}`)) return false;
+      const official = officialNames.get(coordinate);
+      return official?.names.size !== 1 || !official.names.has(normalizePrintedName(card.printed_name_ja));
+    });
+    if (unresolvedIdentity) {
+      decision.reasons.push(`official_printed_name_missing_or_conflicting:${unresolvedIdentity[0]}`);
+      decisions.push(decision);
+      continue;
+    }
     if (owner) {
       const expectedValues = new Set(
         (owner.expected_card_count_evidence ?? []).map(Number).filter(Number.isSafeInteger),
@@ -256,6 +279,7 @@ export function buildJapanesePokemonMasterIndexIncrementalV1({
         distribution_mark_evidence: [],
         edition_mark_evidence: [],
         evidence_status: "independent_coordinate_and_identity_supported",
+        official_identity_evidence: officialNames.get(coordinate).refs,
         existing_card_print_id: null,
         existing_gv_id: null,
         family_key: null,
@@ -266,13 +290,13 @@ export function buildJapanesePokemonMasterIndexIncrementalV1({
         human_readable_source_present: true,
         identity_modifiers: [],
         image_urls: [tcgdexCard.image_url].filter(Boolean),
-        independent_source_count: 2,
-        independent_source_families: ["bulbapedia", "tcgdex"],
+        independent_source_count: 3,
+        independent_source_families: ["bulbapedia", "tcgdex", "pokemon_card_official_jp"],
         jpn_card_identity_key: `incremental:${owner.jpn_set_key}:${coordinate}`,
         jpn_set_key: owner.jpn_set_key,
         language: "ja",
         market: "JP",
-        official_source_present: false,
+        official_source_present: true,
         printed_name_ja: printedName,
         printed_name_ja_candidates: [printedName],
         printed_number: clean(tcgdexCard.card_number_raw),
@@ -291,8 +315,11 @@ export function buildJapanesePokemonMasterIndexIncrementalV1({
             coordinate,
             english_name: independentCard.english_display_name,
           }),
+          ...officialNames.get(coordinate).refs.map((ref) => japaneseIncrementalFingerprint({
+            source: "official_jp_cards", url: ref.url, body_sha256: ref.body_sha256,
+          })),
         ],
-        source_ids: ["bulbapedia_jp_card_lists", "tcgdex_ja_cards"],
+        source_ids: ["bulbapedia_jp_card_lists", "tcgdex_ja_cards", "official_jp_cards"],
       };
       overlayCards.set(key, row);
       cardsByCoordinate.set(key, row);
