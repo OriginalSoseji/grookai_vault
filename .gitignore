@@ -126,6 +126,11 @@ tmp_schema_local.sql
 *.webp
 *_report.md
 apps/web/src/app/api/*
+!apps/web/src/app/api/vendor-pricing/
+apps/web/src/app/api/vendor-pricing/*
+!apps/web/src/app/api/vendor-pricing/recovery/
+apps/web/src/app/api/vendor-pricing/recovery/*
+!apps/web/src/app/api/vendor-pricing/recovery/route.ts
 !apps/web/src/app/api/square/
 !apps/web/src/app/api/square/**
 !apps/web/src/app/api/ebay/

@@ -5,6 +5,48 @@ import 'package:grookai_vault/services/gvvi/vendor_pricing_workspace_service.dar
 
 void main() {
   testWidgets(
+    'vendor tools exposes pricing and an exact-copy batch label picker',
+    (tester) async {
+      final service = _FakeVendorService(
+        VendorPricingWorkspaceData(
+          rows: [
+            _row(
+              instanceId: 'label-copy',
+              gvviId: 'GVVI-AC000001-000001',
+              name: 'Eevee',
+              askingPrice: 20,
+              intent: 'sell',
+            ),
+          ],
+          sections: const [],
+        ),
+      );
+      await tester.pumpWidget(
+        MaterialApp(home: VendorPricingWorkspaceScreen(service: service)),
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(find.byTooltip('Vendor tools'));
+      await tester.pumpAndSettle();
+      expect(find.text('Pricing rules'), findsOneWidget);
+      await tester.tap(find.text('Print card labels'));
+      await tester.pumpAndSettle();
+      expect(find.text('Choose card labels'), findsOneWidget);
+      await tester.tap(find.byType(CheckboxListTile));
+      await tester.pumpAndSettle();
+      expect(
+        tester
+            .widget<FilledButton>(
+              find.widgetWithText(FilledButton, 'Preview 1 label'),
+            )
+            .onPressed,
+        isNotNull,
+      );
+      await tester.tap(find.text('Cancel'));
+      await tester.pumpAndSettle();
+      expect(service.priceSaves, isEmpty);
+    },
+  );
+  testWidgets(
     'unknown condition is unselected until the collector chooses a grade',
     (tester) async {
       final service = _FakeVendorService(

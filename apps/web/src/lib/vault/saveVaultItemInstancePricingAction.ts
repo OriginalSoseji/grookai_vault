@@ -5,6 +5,7 @@ import { executeOwnerWriteV1 } from "@/lib/contracts/execute_owner_write_v1";
 import { createVaultInstancePricingProofV1 } from "@/lib/contracts/owner_write_proofs_v1";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import {notifySquareOfferSaved} from '@/lib/square/notifyOfferSaved';
+import { assertVaultIntentProof } from '@/lib/contracts/ownershipMutationGuards';
 import {
   normalizeVaultInstancePricingAmount,
   normalizeVaultInstancePricingCurrency,
@@ -19,6 +20,7 @@ export type SaveVaultItemInstancePricingInput = {
   askingPriceAmount?: number | string | null;
   askingPriceCurrency?: string | null;
   askingPriceNote?: string | null;
+  publishForSale?: boolean;
 };
 
 export type SaveVaultItemInstancePricingResult =
@@ -70,6 +72,14 @@ export async function saveVaultItemInstancePricingAction(
   const askingPriceCurrency =
     pricingMode === "asking" ? normalizeVaultInstancePricingCurrency(input.askingPriceCurrency) : null;
   const askingPriceNote = pricingMode === "asking" ? normalizeVaultInstancePricingNote(input.askingPriceNote) : null;
+
+  if (input.publishForSale !== undefined && typeof input.publishForSale !== "boolean") {
+    return { ok: false, instanceId: normalizedInstanceId, message: "Choose a valid sale action." };
+  }
+  if (input.publishForSale && (pricingMode !== "asking" || askingPriceAmount === null || askingPriceAmount <= 0 || askingPriceCurrency !== "USD" ||
+    !/^(?:0|[1-9]\d*)(?:\.\d{1,2})?$/.test(String(input.askingPriceAmount).trim()))) {
+    return { ok: false, instanceId: normalizedInstanceId, message: "Enter a USD asking price greater than 0." };
+  }
 
   if (pricingMode === "asking" && (askingPriceAmount === null || askingPriceCurrency === null)) {
     return {
@@ -123,7 +133,7 @@ export async function saveVaultItemInstancePricingAction(
             pricing_mode: pricingMode,
             asking_price_amount: askingPriceAmount,
             asking_price_currency: askingPriceCurrency,
-            asking_price_note: askingPriceNote,
+            ...(input.publishForSale ? { intent: "sell" } : { asking_price_note: askingPriceNote }),
           })
           .eq("id", normalizedInstanceId)
           .eq("user_id", user.id)
@@ -134,6 +144,11 @@ export async function saveVaultItemInstancePricingAction(
         if (error || !data) {
           throw new Error("Pricing could not be saved.");
         }
+
+        if (input.publishForSale) await assertVaultIntentProof({
+          adminClient: context.adminClient, instanceId: normalizedInstanceId,
+          userId: user.id, expectedIntent: "sell",
+        });
 
         return {
           ok: true,
@@ -148,7 +163,7 @@ export async function saveVaultItemInstancePricingAction(
           askingPriceNote:
             typeof data.asking_price_note === "string" && data.asking_price_note.trim().length > 0
               ? data.asking_price_note.trim()
-              : askingPriceNote,
+              : null,
           gvviId: typeof data.gv_vi_id === "string" ? data.gv_vi_id.trim() : null,
         };
       },
@@ -181,6 +196,6 @@ export async function saveVaultItemInstancePricingAction(
   return {
     ...result,
     gvviId,
-    squareStatus:await notifySquareOfferSaved(user.id,normalizedInstanceId),
+    squareStatus:await notifySquareOfferSaved(user.id,normalizedInstanceId,{waitForResult:input.publishForSale===true}),
   };
 }

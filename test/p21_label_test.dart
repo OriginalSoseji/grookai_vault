@@ -24,16 +24,10 @@ void main() {
     'render actual label preview and reject unreadably dense QR links',
     (tester) async {
       await tester.runAsync(() async {
-        final fontPath = Platform.environment['P21_PREVIEW_FONT'];
-        if (fontPath != null) {
-          final loader = FontLoader('Arial')
-            ..addFont(
-              Future.value(
-                ByteData.sublistView(await File(fontPath).readAsBytes()),
-              ),
-            );
-          await loader.load();
-        }
+        final loader = FontLoader('Roboto')
+          ..addFont(rootBundle.load('assets/fonts/Roboto/Roboto-Regular.ttf'))
+          ..addFont(rootBundle.load('assets/fonts/Roboto/Roboto-Bold.ttf'));
+        await loader.load();
         final label = await P21Label.render(
           P21LabelContent(
             title: 'Eevee',

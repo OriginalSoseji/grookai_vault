@@ -375,7 +375,11 @@ class VendorPricingWorkspaceService {
           gvId: _text(card['gv_id']),
           name: identity.baseName,
           displayName: identity.displayName,
-          setName: _nullable(set['name']) ?? _nullable(card['set_code']),
+          setName:
+              _nullable(set['name']) ==
+                  (_nullable(set['code']) ?? _nullable(card['set_code']))
+              ? null
+              : _nullable(set['name']),
           setCode: _nullable(set['code']) ?? _nullable(card['set_code']),
           number: _nullable(card['number']) ?? '—',
           printingLabel: isGraded

@@ -1,5 +1,52 @@
 # Grookai Operator Playbook V1
 
+## Vendor pricing and price-free labels — candidate, November 12, 2026
+
+Read [Vendor pricing rules and reusable labels](../playbooks/VENDOR_PRICING_RULES_LABELS_OPERATOR_V1.md)
+for default/preset/manual precedence, stale-reference behavior, Square recovery,
+exact-size printing and physical-output acceptance. This candidate adds one
+default-off migration after schema493. Preparation is not evidence of live
+activation or a Samsung update; use its separate release checkpoint. Existing
+Square enrollment, stable QR SKUs, genuine sales, stock and artwork are retained.
+
+## Square live workflow and native confirmation — November 12, 2026
+
+The November 10 preparation entry below is historical. Production is linked
+under schema493; automatic catalog, stock, artwork and recovery are enabled for
+the verified seller. A genuine Square cash checkout has been reconciled to the
+exact-copy sale and zero-stock state. Preserve its existing connection, stable
+grookai `/q/{GVVI}` SKU, retained operation receipts and recovery schedule.
+Do not repeat migrations, OAuth setup or inventory enrollment as routine recovery.
+
+Read [New card to Square checkout](../playbooks/NEW_CARD_SALE_WORKFLOW_V1.md)
+for reviewed intake, the exact-copy sale editor and truthful Square status.
+The native foreground editor's confirmation uses one 55-second budget
+and at most five wakeups after explicit pending responses; background notices
+keep their short deadline. Unknown/transport results remain pending. Price and
+sale intent are written once, and the fenced server worker retains authority.
+Release evidence lives in the private `new_card_workflow_20261112` checkpoint;
+source qualification, hosted deployment and installed Samsung proof are distinct.
+Samsung updates require normal gates and a higher-version, same-signer,
+data-preserving installation. Do not treat a prepared APK as an installed or
+production-store-signed release; the checkpoint records the actual build proof.
+
+The Card Detail collection shortcut displays the owned copy count, without a
+hardcoded Private or raw-copy assertion. Aggregate ownership does not establish
+an exact copy's publication state or physical format. Read those details from
+Your copies or the exact-copy page when verifying an offer.
+
+The live new-copy test exposed a temporary nonphysical operator fixture ending
+003421. With the owner's explicit one-time exception to the no-direct-DB-edits
+rule, a guarded administrative void archived only that fixture after provider
+zero-stock and no-sale checks. Independent readback confirmed228 active owner
+copies,94 real active allocations, one prior genuine sale and unchanged schema493
+and guard sources. The original cleanup guard failed before writes on an invalid
+worker column; readback proved no mutation, then the corrected environment guard
+passed a full read-only validation before successful cleanup. Retain both
+attempts and their private receipts. This exception does not authorize future
+direct edits. Never assert physical possession or fabricate a payment to retire
+test inventory; future live acceptance must use an actual owned physical card.
+
 ## Square QR catalog automation preparation — November 10, 2026
 
 Read [the Square sync checkpoint](../checkpoints/SQUARE_CATALOG_SYNC_20261110.md).
@@ -4570,6 +4617,18 @@ checkpoint under the private recovery root.
 See [the image transport checkpoint](../checkpoints/CATALOG_PUBLIC_CARD_IMAGE_TRANSPORT_20261110.md). Existing public TCGplayer 1000x1000 JPEG previews use the shared direct-delivery path, with strict host/path/URL checks. This preserves representative image truth and does not expand server optimizer access or mutate catalog data. Evidence is under catalog_public_card_image_transport_v1_20261110.
 
 ## Square canonical artwork — November 11, 2026
+
+The independent cloud recovery clock follows
+[SQUARE_CLOUD_RECOVERY_V1](../contracts/SQUARE_CLOUD_RECOVERY_V1.md) and
+[its verification playbook](../playbooks/SQUARE_CLOUD_RECOVERY_V1.md).
+The existing Pro hosting project supports its five-minute schedule. The standard
+production-only `CRON_SECRET` authenticates `/api/square/recovery`; new execution
+also requires `GROOKAI_SQUARE_CLOUD_RECOVERY_ENABLED=true`. GitHub scheduling stays
+enabled as a second clock. Both call the existing fenced commerce service; no new
+stock, payment, identity or owner-session authority is introduced. Qualify the
+exact deployment with authenticated and natural invocations plus database receipts,
+not configuration alone. Pause each clock independently; preserve requests and
+claims. No schema migration or Samsung reinstall is part of this extension.
 
 Follow [Square canonical artwork verification and recovery](../playbooks/SQUARE_CANONICAL_ARTWORK_V1.md)
 and [its active contract](../contracts/SQUARE_CANONICAL_ARTWORK_V1.md).

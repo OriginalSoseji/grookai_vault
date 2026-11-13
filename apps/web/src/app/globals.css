@@ -910,7 +910,7 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
   z-index: 40;
   display: grid;
   min-height: 3.5rem;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  grid-template-columns: minmax(2.75rem, 1fr) minmax(0, 2fr) minmax(2.75rem, 1fr);
   align-items: center;
   gap: 0.5rem;
   width: calc(100% + 2.5rem);
@@ -925,6 +925,7 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
 .gv-mobile-pushed-route-back {
   display: inline-flex;
   min-width: 0;
+  max-width: 100%;
   min-height: 2.75rem;
   align-items: center;
   gap: 0.25rem;
@@ -935,11 +936,20 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
 }
 
 .gv-mobile-pushed-route-title {
-  max-width: 11rem;
+  min-width: 0;
+  max-width: 100%;
   overflow: hidden;
   color: var(--gv-text-primary);
   font-size: 0.9rem;
   font-weight: 680;
+  text-overflow: ellipsis;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+
+.gv-mobile-pushed-route-back span {
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }

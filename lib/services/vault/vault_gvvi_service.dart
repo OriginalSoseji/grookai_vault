@@ -26,6 +26,7 @@ class PublicGvviData {
     required this.cardName,
     required this.setCode,
     required this.setName,
+    this.canonicalSetName,
     required this.number,
     required this.intent,
     required this.isDiscoverable,
@@ -67,6 +68,7 @@ class PublicGvviData {
   final String cardName;
   final String setCode;
   final String setName;
+  final String? canonicalSetName;
   final String number;
   final String intent;
   final bool isDiscoverable;
@@ -174,6 +176,7 @@ class VaultGvviData {
     required this.cardName,
     required this.setCode,
     required this.setName,
+    this.canonicalSetName,
     required this.number,
     required this.intent,
     required this.isGraded,
@@ -221,6 +224,7 @@ class VaultGvviData {
   final String cardName;
   final String setCode;
   final String setName;
+  final String? canonicalSetName;
   final String number;
   final String intent;
   final bool isGraded;
@@ -302,6 +306,7 @@ class VaultGvviData {
       cardName: cardName,
       setCode: setCode,
       setName: setName,
+      canonicalSetName: canonicalSetName,
       number: number,
       intent: intent ?? this.intent,
       isGraded: isGraded,
@@ -358,6 +363,7 @@ class VaultGvviService {
       String? variantKey,
       String? printedIdentityModifier,
       String? setIdentityModel,
+      String? canonicalSetName,
       String? displayImageUrl,
       String? canonicalImageUrl,
       String? representativeImageUrl,
@@ -378,7 +384,7 @@ class VaultGvviService {
       final row = await client
           .from('card_prints')
           .select(
-            'variant_key,printed_identity_modifier,image_url,image_alt_url,representative_image_url,image_status,image_note,sets(identity_model)',
+            'variant_key,printed_identity_modifier,image_url,image_alt_url,representative_image_url,image_status,image_note,sets(name,code,identity_model)',
           )
           .eq('id', normalizedCardPrintId)
           .maybeSingle();
@@ -394,6 +400,11 @@ class VaultGvviService {
           normalizedRow['printed_identity_modifier'],
         ),
         setIdentityModel: _nullable(setRecord?['identity_model']),
+        canonicalSetName:
+            _nullable(setRecord?['name'])?.toLowerCase() ==
+                _nullable(setRecord?['code'])?.toLowerCase()
+            ? null
+            : _nullable(setRecord?['name']),
         displayImageUrl: _displayImageUrl(normalizedRow),
         canonicalImageUrl: _nullable(normalizedRow['image_url']),
         representativeImageUrl: _nullable(
@@ -500,6 +511,7 @@ class VaultGvviService {
       cardName: _nullable(data['card_name']) ?? 'Unknown card',
       setCode: _nullable(data['card_set_code']) ?? 'Unknown set',
       setName: _nullable(data['card_set_name']) ?? 'Unknown set',
+      canonicalSetName: identity?.canonicalSetName,
       number: _nullable(data['card_number']) ?? '—',
       imageUrl:
           identity?.displayImageUrl ??
@@ -599,6 +611,7 @@ class VaultGvviService {
       cardName: _nullable(data['card_name']) ?? 'Unknown card',
       setCode: _nullable(data['card_set_code']) ?? 'Unknown set',
       setName: _nullable(data['card_set_name']) ?? 'Unknown set',
+      canonicalSetName: identity?.canonicalSetName,
       number: _nullable(data['card_number']) ?? '—',
       intent: _normalizeIntent(data['intent']),
       isGraded: _nullable(data['cert_number']) != null,

@@ -79,10 +79,12 @@ export default function SquareManager({initialStatus}: {initialStatus?: 'connect
   };
   return <div className={s.page} aria-busy={busy}>
     <Link href="/account" className={s.muted}>Back to account</Link>
-    <h1>Connect Square</h1>
+    <h1>{connection?.status === 'connected' ? 'Square' : 'Connect Square'}</h1>
     <p className={s.muted}>Create your Square items from selected grookai cards. Your existing grookai QR opens the card page on a phone and finds the item in Square.</p>
     {error && <p className={`${s.status} ${s.error}`} role="alert">{error}</p>}
-    <p className={s.status} role="status" aria-live="polite">{message || (workspace ? 'Choose your Square account and cards to begin.' : 'Loading Square connection…')}</p>
+    <p className={s.status} role="status" aria-live="polite">{message || (connection?.status === 'connected' && connection.locationId
+      ? connection.autoSync && workspace?.catalogEnabled && workspace.commerce?.enabled && commerce?.autoEnroll && commerce.sellOnSquare ? 'Automatic sync is on. Add a card in grookai and set its sale price; no manual Square item entry is needed.' : 'Square is connected. Review automatic stock settings below.'
+      : workspace ? 'Choose your Square account and location to begin.' : 'Loading Square connection…')}</p>
     {workspace && <section className={s.section} aria-label="Square connection">
       {!workspace.linkingEnabled && <p className={s.muted}>Square connection is not available for this account yet.</p>}
       {workspace.connections.length > 1 && <label className={s.field}>Connection<select value={connection?.id ?? ''} disabled={busy} onChange={event => {setConnectionId(event.target.value); setLocations([]); setLocationId('');}}>
