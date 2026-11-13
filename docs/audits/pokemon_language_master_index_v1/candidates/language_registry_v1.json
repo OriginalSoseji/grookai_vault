@@ -2,11 +2,11 @@
   "canonical_authority": false,
   "languages": [
     {
-      "card_count": 20658,
-      "cards_fingerprint_sha256": "1fe4dfdc1c4bc8ae06db683d79900e604a9774cacf041a67fd74407aaee6f0de",
+      "card_count": 20810,
+      "cards_fingerprint_sha256": "038e3c14ef0209aebd907923f70096174cae3d73722e42b87b4d094a8020330d",
       "language": "de",
-      "set_count": 172,
-      "sets_fingerprint_sha256": "95e149583e8f02303899339371a5d20c596e8c33419bf852ce235bee056256f2",
+      "set_count": 173,
+      "sets_fingerprint_sha256": "3131893980cc0822682ea8ad5772cb7a702eda150224e1ee667a90087b0572d5",
       "source": "tcgdex_v2",
       "source_anomalies_fingerprint_sha256": "5fd0d29861474aa65e9a8ab8e5a38f1f59fae2c4a3ae53837e907dca6d05c3a0",
       "source_anomaly_count": 262,
@@ -15,7 +15,7 @@
     },
     {
       "card_count": 23912,
-      "cards_fingerprint_sha256": "f47745062b7ec425c2d35e574ade4f1b6ad14041be9721da252989dc4f1d426c",
+      "cards_fingerprint_sha256": "d5eaec0d7f83ec840c5b0939165299d7f6d281607661c8b947b5293db7fe4397",
       "language": "en",
       "set_count": 221,
       "sets_fingerprint_sha256": "c1f6bfbb4d8f4aae8e2721d2355db61fffe216343db036c457950626333a512a",
@@ -26,11 +26,11 @@
       "status": "candidate_index_ready"
     },
     {
-      "card_count": 15783,
-      "cards_fingerprint_sha256": "a32e9e74e74741aa8377db2ed81c7ebe888d75c3499ecd6542e69feb4d3037f1",
+      "card_count": 15954,
+      "cards_fingerprint_sha256": "e1357f0465047fdfd3badb55abb871d38ed1a3c7b45f3917a8fa25ba2eedcb8d",
       "language": "es",
       "set_count": 160,
-      "sets_fingerprint_sha256": "c868659b9361f17d586e45a5c1c401fbb5183c9512e8c30d5d316c28c4cb20a3",
+      "sets_fingerprint_sha256": "2372937e888b361c7170876d5d36521d709da718e5b652ba22c297546f4f58f6",
       "source": "tcgdex_v2",
       "source_anomalies_fingerprint_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
       "source_anomaly_count": 0,
@@ -39,7 +39,7 @@
     },
     {
       "card_count": 1799,
-      "cards_fingerprint_sha256": "300bcee3f824811c9cb79f639f131d43e2b20dc0782a679c311959ee3f36d22a",
+      "cards_fingerprint_sha256": "b852f4a0a5ae529db4755b41393e83460a6c9324f49442cf3397ab5e848eb4f2",
       "language": "es-mx",
       "set_count": 12,
       "sets_fingerprint_sha256": "05eb9147ce46aea4c213fe99470a8f60b6a7343531879139639d7240ed40df63",
@@ -51,7 +51,7 @@
     },
     {
       "card_count": 22343,
-      "cards_fingerprint_sha256": "6864453bcebc8f86a24345b04c78fd4325675836086232f4d1619151ae3b989a",
+      "cards_fingerprint_sha256": "475b11904518f4bc9f30c64f139678c940a9b4e3e695c8901b98969a40ab1747",
       "language": "fr",
       "set_count": 203,
       "sets_fingerprint_sha256": "4ab9f9a956542fd551605fbbfd2e20613005f2f118c7b2da298430f4b4065c47",
@@ -75,7 +75,7 @@
     },
     {
       "card_count": 15893,
-      "cards_fingerprint_sha256": "5ca5a29d4f1282e0b73c1b21414bd82ec58bfc9e661f93be8f44e91d8f3ff9dd",
+      "cards_fingerprint_sha256": "c03cd2c56f7fae81de0526e137959232060a5e53c2e9c23f5d2e75da6c5f3235",
       "language": "it",
       "set_count": 194,
       "sets_fingerprint_sha256": "053aea4ebe97d5dae68213049771970995b27d12e6116f01b68f2250373ecbe3",
@@ -86,13 +86,13 @@
       "status": "candidate_index_ready"
     },
     {
-      "card_count": 13098,
-      "cards_fingerprint_sha256": "6c50162cce418a5aa12683278cf0d5dd6a0c728918198c9a5cdefc1779deccb1",
+      "card_count": 13156,
+      "cards_fingerprint_sha256": "f4b2c1f349b697cb0e5cdf5d501a21f90bdd203c0ede4488f1daf4f5512eb211",
       "language": "ja",
-      "set_count": 200,
-      "sets_fingerprint_sha256": "c7ae2535d8725b129091544589c227981dae899c60992f01feed39f36163d72d",
+      "set_count": 204,
+      "sets_fingerprint_sha256": "793368431241dc0d5f2a3ea0b0f69fc486e7316f017a31d9ecb0cda26b709170",
       "source": "tcgdex_v2",
-      "source_anomalies_fingerprint_sha256": "4ac1c9eba4da9a8cad6e2e0c2d46d79d25859f018b8499a67c8ddca1a6ac5a48",
+      "source_anomalies_fingerprint_sha256": "e7f610cc3de3ac319947407f4b6d09c41520b6e62af8ec5afde32b0393c1fb67",
       "source_anomaly_count": 62,
       "source_commit_sha": null,
       "status": "candidate_index_ready"
@@ -135,7 +135,7 @@
     },
     {
       "card_count": 14215,
-      "cards_fingerprint_sha256": "02d877fd12dc2f5c257f9b9a1bcf453a56e270752246d763d6fd1d6468adea70",
+      "cards_fingerprint_sha256": "9967eb56dd6d74323d2495760621900ab5d40c7ae586bea74594cdbff4110c72",
       "language": "pt",
       "set_count": 126,
       "sets_fingerprint_sha256": "ac734deeb049fe6a344671d10a7e4c9c2be9eb496d99c79569a50cfac17c1cef",
