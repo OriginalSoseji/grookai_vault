@@ -2,7 +2,10 @@
 
 ## Status
 
-Evidence preparation only. Legacy apply retired as of 2026-09-17.
+Evidence preparation by the legacy runner only. Legacy apply retired as of
+2026-09-17. A separate governed English missing-set writer is active under
+`ENGLISH_POKEMON_MISSING_SET_PROMOTION_V1` for sets that pass its complete
+Master Index, source, collision, rollback, and hidden-release gates.
 
 The historical apply commands below are retained for provenance, not execution.
 `new_set_release_ingest_v1.mjs --apply` rejects before acquisition or mutation;
