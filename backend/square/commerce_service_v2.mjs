@@ -270,6 +270,13 @@ export class SquareCommerceService {
     const state=await this.rpc('allocation',{...context,targetId});
     if(state?.target?.instance_id!==instanceId||state.target.id!==targetId)fail('square_removal_unconfirmed');
     if(await client.inventoryQuantity(state.target.variation_id,connection.location_id)!==0)fail('square_removal_stock_not_zero');
+    if(state.allocation?.state==='released'){
+     // A prepared allocation can be canceled without ever publishing stock.
+     // Recheck all exact-copy claims instead of requiring a nonexistent withdraw.
+     const current=await this.rpc('vault_removal_context',{ownerId,instanceId});
+     if(current?.instanceId!==instanceId||current.gvvi!==scope.gvvi||current.archived||!Array.isArray(current.claims)||current.claims.length)fail('square_removal_unconfirmed');
+     return {status:'ready_to_archive',instanceId,gvvi:scope.gvvi};
+    }
     return this.rpc('vault_removal_attest',{...context,targetId,instanceId,runId,quantity:0});
    });
    if(result?.status!=='ready_to_archive'||result.instanceId!==instanceId||result.gvvi!==scope.gvvi)fail('square_removal_unconfirmed');

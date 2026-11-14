@@ -44,7 +44,10 @@ after five minutes; reconciliation must remain within two minutes. Owner archive
 then retires that claim and archives the copy in one transaction. It must reject
 changed identity/source, live leases, competing holds, sales, unsettled operations,
 mapped pending/review orders, pending webhook signals, stale/null reconciliation
-or missing/failed evidence. Lock contention fails closed without waiting in the
+or missing/failed evidence. A never-sent prepared allocation may instead cancel
+through the existing stock authority. After actual provider zero and a fresh
+empty exact-copy claim recheck, retry the original owner archive without inventing
+a withdrawal operation or attestation. Lock contention fails closed without waiting in the
 opposite provider lock order. No claim becomes available between withdrawal and
 archive, and genuine sale/disposition behavior remains unchanged.
 

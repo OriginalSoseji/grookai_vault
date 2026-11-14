@@ -16,7 +16,7 @@ const out=arg.slice(10).replaceAll('\\','/');
 assert.equal(path.win32.dirname(out).replaceAll('\\','/'),artifacts);
 assert.match(path.win32.basename(out),/^release-gate-[a-z0-9-]{1,80}$/);
 assert.equal(fs.existsSync(out),false,'Consumed audit directory');
-const manifest=read(artifacts+'/release-manifest-v2.json');
+const manifest=read(artifacts+'/release-manifest-v3.json');
 assert.equal(manifest.version,'SQUARE_VAULT_REMOVAL_495_TO_496_V1');
 assert.equal(Object.keys(manifest.history).length,495);
 assert.equal(fs.readFileSync(root+'/supabase/.temp/project-ref','utf8').trim(),'ycdxbpibncqcchqiihfz');
@@ -82,7 +82,7 @@ try{
   const fresh=local(manifest.fresh.project,manifest.fresh.path),retained=local(manifest.retained.project,manifest.retained.path);
   for(const lab of[fresh,retained])assert.deepEqual(lab.catalog.LEDGER.map(row=>row.version),[...history,'20261114080000']);
   await compare(fresh.catalog,retained.catalog,'fresh-retained');assert.deepEqual(fresh.security,retained.security);
-  const proofs=['fresh-v2-496/replay-proof.json','retained-v2-495/upgrade-proof.json','runtime-proof.json'];
+  const proofs=['fresh-v2-496/replay-proof.json','retained-v2-495/upgrade-proof.json','runtime-proof-v2.json'];
   for(const name of proofs){
    const bytes=fs.readFileSync(artifacts+'/'+name),proof=read(artifacts+'/'+name);
    assert.equal(proof.pass,true,name);assert.equal(proof.candidateSha256,manifest.candidates['20261114080000_square_aware_vault_removal_v1.sql']);

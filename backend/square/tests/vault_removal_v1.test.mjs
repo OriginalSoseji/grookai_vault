@@ -40,12 +40,13 @@ test('uncertain transport never replays archive and repeated or mismatched proof
  const wrong=await squareAwareVaultArchive({archive:async()=>({error:reserved(instance)}),prepare:async()=>({status:'ready_to_archive',instanceId:target,gvvi})});
  assert.equal(wrong.error.message,'square_removal_unconfirmed');
 });
-function serviceFixture({quantity=0,attestError=false}={}){
+function serviceFixture({quantity=0,attestError=false,canceled=false,reclaimed=false}={}){
  const calls=[];
+ let withdrawn=false;
  const rpc=async(action,data)=>{
   calls.push({action,data});
-  if(action==='vault_removal_context')return{instanceId:instance,gvvi,archived:false,claims:[{connectionId:connection,targetId:target}]};
-  if(action==='allocation')return{target:{id:target,instance_id:instance,variation_id:'local-variation'}};
+  if(action==='vault_removal_context')return{instanceId:instance,gvvi,archived:false,claims:canceled&&withdrawn&&!reclaimed?[]:[{connectionId:connection,targetId:target}]};
+  if(action==='allocation')return{target:{id:target,instance_id:instance,variation_id:'local-variation'},allocation:{state:canceled?'released':'review'}};
   if(action==='vault_removal_attest'){if(attestError)throw Object.assign(Error('square_removal_unconfirmed'),{code:'square_removal_unconfirmed'});return{status:'ready_to_archive',instanceId:instance,gvvi};}
   return{recorded:true};
  };
@@ -55,7 +56,7 @@ function serviceFixture({quantity=0,attestError=false}={}){
    client:{inventoryQuantity:async(variation,location)=>{calls.push({action:'provider_quantity'});assert.equal(variation,'local-variation');assert.equal(location,'local-location');return quantity;}}});
  }};
  const service=new SquareCommerceService({catalog,rpc,config:{}});
- service.withdraw=async(actor,id,t)=>{assert.equal(actor,owner);assert.equal(id,connection);assert.equal(t,target);calls.push({action:'withdraw'});};
+ service.withdraw=async(actor,id,t)=>{assert.equal(actor,owner);assert.equal(id,connection);assert.equal(t,target);withdrawn=true;calls.push({action:'withdraw'});};
  service.reconcile=async()=>{calls.push({action:'reconcile'});};
  return{service,calls};
 }
@@ -78,4 +79,15 @@ test('nonzero provider stock or rejected authority is persisted as failed and ne
 test('invalid target identities are rejected before provider work',async()=>{
  const{service,calls}=serviceFixture();await assert.rejects(service.prepareVaultRemoval(owner,'not-an-instance'));
  assert.equal(calls.length,0);
+});
+test('never-sent cancellation returns ready only after provider zero and a fresh empty claim recheck',async()=>{
+ const {service,calls}=serviceFixture({canceled:true});
+ assert.equal((await service.prepareVaultRemoval(owner,instance)).status,'ready_to_archive');
+ assert.deepEqual(calls.map(c=>c.action),['vault_removal_context','commerce_run_start','withdraw','reconcile','allocation','provider_quantity','vault_removal_context','commerce_run_finish']);
+ assert.equal(calls.at(-1).data.result.status,'succeeded');
+ for(const options of [{canceled:true,quantity:1},{canceled:true,reclaimed:true}]){
+  const f=serviceFixture(options);await assert.rejects(f.service.prepareVaultRemoval(owner,instance));
+  assert.equal(f.calls.some(c=>c.action==='vault_removal_attest'),false);
+  assert.equal(f.calls.at(-1).data.result.status,'failed');
+ }
 });
