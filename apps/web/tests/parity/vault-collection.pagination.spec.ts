@@ -94,4 +94,28 @@ test.describe("Vault collection pagination", () => {
     await expect(page.getByRole("combobox", { name: "Sort Vault cards" })).toHaveValue("name");
     await expect(cards).toHaveCount(12);
   });
+
+  test("By Set keeps groups contiguous while sort and pagination change", async ({ page }) => {
+    await page.setViewportSize({ width: 384, height: 824 });
+    await page.goto(`${FIXTURE_PATH}?view=by-set`, { waitUntil: "networkidle" });
+
+    const groups = page.locator("[data-vault-set-group]:visible");
+    for (const sort of ["newest", "name", "quantity"] as const) {
+      if (sort !== "newest") {
+        await page.getByRole("combobox", { name: "Sort Vault cards" }).selectOption(sort);
+      }
+      for (let pageIndex = 0; pageIndex < 3; pageIndex += 1) {
+        const setCodes = await groups.evaluateAll((elements) =>
+          elements.map((element) => element.getAttribute("data-vault-set-group")));
+        expect(setCodes.length).toBe(new Set(setCodes).size);
+        if (pageIndex < 2) {
+          await page.getByRole("button", { name: "Next", exact: true }).click();
+        }
+      }
+      if (sort !== "quantity") {
+        await page.getByRole("button", { name: "Previous", exact: true }).click();
+        await page.getByRole("button", { name: "Previous", exact: true }).click();
+      }
+    }
+  });
 });

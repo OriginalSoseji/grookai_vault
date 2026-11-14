@@ -7,6 +7,8 @@
 - eBay listing category selection now uses current provider suggestions and
   refreshes category-specific aspects and condition metadata. Market language
   distinguishes active-listing medians from sold results.
+- Vault sort is applied inside each By Set group, preserving contiguous set
+  sections through filtering and pagination.
 - Existing collector workspaces retain exact-copy selection, qualified raw
   price coverage, private trade-draft recovery, agreed-value notes, and explicit
   sale/trade outcome review. The reviewed add flow preserves unknown cost and
@@ -22,11 +24,16 @@
   desktop market-link destinations, selection and draft restoration, reviewed
   add, provider-backed eBay category changes, draft recovery and publication
   safeguards, and responsive seller review.
-- Vault grid/filter/sort parity: 4/4 passed, including 384px overflow,
+- Vault grid/filter/sort/set-group parity: 5/5 passed, including unique set
+  groups across all sort modes and pages, 384px overflow,
   2/3/4-column persistence, URL restoration, price filters and sort order.
 - The mobile trade workspace capture shows selected exact copies, qualified
   raw-price coverage, agreed values and net value together without horizontal
   overflow.
+- Hosted checks for PR #917 passed, including Vercel preview, both Flutter CI
+  runs, both runtime-protection and drift-gate runs, Samsung visual/accessibility,
+  browser audits, and CodeQL. Automated review's By Set grouping finding was
+  fixed and its regression now passes locally; the updated PR checks must rerun.
 
 ## Live-device boundary
 

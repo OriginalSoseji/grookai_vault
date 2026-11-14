@@ -600,7 +600,7 @@ export function VaultCollectionView({
     return (
       <div className="space-y-6 md:hidden">
         {groups.map((group) => (
-          <section key={group.setCode} className="space-y-3">
+          <section key={group.setCode} data-vault-set-group={group.setCode} className="space-y-3">
             <PageSection surface="subtle" spacing="compact" className="px-4 py-3.5">
               <div className="space-y-1">
                 <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Set</p>
@@ -631,12 +631,12 @@ export function VaultCollectionView({
             : activeView === "pokemon"
               ? applyPokemonNameFilter(items)
               : applySearch(items);
-  const activeSourceItems = baseSourceItems
-    .filter((item) => priceFilter === "all"
-      || (priceFilter === "priced"
-        ? item.priced_raw_copy_count > 0
-        : item.priced_raw_copy_count === 0 && item.unpriced_raw_copy_count > 0))
-    .sort((left, right) => {
+  const matchesPriceFilter = (item: VaultCardData) =>
+    priceFilter === "all"
+    || (priceFilter === "priced"
+      ? item.priced_raw_copy_count > 0
+      : item.priced_raw_copy_count === 0 && item.unpriced_raw_copy_count > 0);
+  const compareVaultItems = (left: VaultCardData, right: VaultCardData) => {
       if (sortBy === "name") {
         return left.name.localeCompare(right.name) || left.number.localeCompare(right.number);
       }
@@ -646,7 +646,11 @@ export function VaultCollectionView({
       const leftTime = left.created_at ? new Date(left.created_at).getTime() : 0;
       const rightTime = right.created_at ? new Date(right.created_at).getTime() : 0;
       return rightTime - leftTime || left.name.localeCompare(right.name);
-    });
+    };
+  const activeSourceItems = activeView === "by-set"
+    ? bySetGroups.flatMap((group) =>
+      [...applySearch(group.items)].filter(matchesPriceFilter).sort(compareVaultItems))
+    : baseSourceItems.filter(matchesPriceFilter).sort(compareVaultItems);
   const activeResultCount = activeSourceItems.length;
   const activePageCount = Math.max(1, Math.ceil(activeResultCount / VAULT_PAGE_SIZE));
   const renderedPage = Math.min(currentPage, activePageCount);
@@ -704,7 +708,8 @@ export function VaultCollectionView({
     const filteredBySetGroups = bySetGroups
       .map((group) => ({
         ...group,
-        items: applySearch(group.items),
+        items: activeSourceItems.filter((item) =>
+          (item.set_code.trim() || "Unknown set") === group.setCode),
       }))
       .filter((group) => group.items.length > 0);
     const visibleBySetGroups = visiblePageItems.reduce<SetGroup[]>((groups, item) => {
@@ -728,7 +733,7 @@ export function VaultCollectionView({
       filteredBySetGroups.length > 0 ? (
         <div className="space-y-8">
           {visibleBySetGroups.map((group) => (
-            <section key={group.setCode} className="space-y-4">
+            <section key={group.setCode} data-vault-set-group={group.setCode} className="space-y-4">
               <PageSection surface="subtle" spacing="compact" className="px-5 py-4">
                 <div className="space-y-1">
                   <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Set</p>
