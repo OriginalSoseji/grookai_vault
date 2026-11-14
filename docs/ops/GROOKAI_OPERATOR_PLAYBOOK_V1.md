@@ -4453,6 +4453,24 @@ the reviewed child printing, source mapping and image workflows.
 GitHub Actions runs `scripts/agents/japanese_master_index_continuous_verification_agent_v1.mjs` every 15 minutes from `main` through `.github/workflows/japanese-master-index-continuous-verification.yml`. The worker performs a fresh read-only database baseline, harvests the governed Japanese source lanes, packages fresh assertion evidence into the compressed inputs used by the downstream union and adjudication steps, and emits Ruflo-compatible progress events to `docs/audits/ruflo_notifications/progress.jsonl`.
 
 The worker is fail-closed: it never writes production or promotion tables. A database outage produces a deferred evidence-only result; a source timeout is bounded and recorded, and the per-source cursor in `docs/audits/japanese_master_index_v4/continuous_verification/container_cursors_v1.json` rotates the next batch of containers on the following run. Review the uploaded workflow artifacts before any separately authorized promotion.
+
+When the candidate-union preservation guard is present, a rebuild targeting
+the canonical `docs/audits/japanese_master_index_v4/index` directory must first
+verify the retained final card and printing descriptors and preserve every
+published key and printing's parent identity in the new candidate rows. If the guard reports missing keys or changed printing ownership,
+stop the canonical rebuild and use a separate review output directory while
+reconciling the identities and their source, printing and family dependencies.
+A review output does not authorize publication, deletion, database writes or
+reassigning evidence. Never bypass the guard or discard prior keys to force a
+rebuild.
+
+The continuous verifier may request a separate candidate shadow when published
+keys would be lost. In that case it writes coverage there, records
+`published_candidate_keys_require_reconciliation`, and defers strict admission
+and finalization; it must not treat a complete shadow as a publishable result.
+Malformed descriptors and other errors remain fatal rather than selecting the
+shadow. This route is a code candidate until merged and verified by the normal
+scheduled workflow; do not dispatch discovery merely to test it.
 ## Pokemon Countdown Calendar rollback rehearsal — October 27, 2026
 
 Use the manual GitHub Actions workflow `Pokemon Countdown Calendar Rollback

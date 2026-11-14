@@ -1508,7 +1508,7 @@ export function assertPublishedPrintingPreservationV1(previousRows, nextRows) {
   assertPublishedRowsPreserved(previousRows, nextRows, 'printing_fact_key', 'printings');
 }
 
-async function loadPublishedRowsV1(descriptorName, key, packageId) {
+export async function loadPublishedRowsV1(descriptorName, key, packageId) {
   const descriptorPath = path.join(DEFAULT_OUTPUT_ROOT, descriptorName);
   const { artifact } = await readVerifiedArtifact(descriptorPath, {
     expectedPackageId: packageId,
