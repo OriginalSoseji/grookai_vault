@@ -7,6 +7,9 @@ import { fileURLToPath } from "node:url";
 import pg from "pg";
 
 import "../../backend/env.mjs";
+import {
+  evaluateTcgplayerMarketActiveAskRefreshV1,
+} from "../../backend/pricing/tcgplayer_market_active_ask_refresh_policy_v1.mjs";
 
 const { Client } = pg;
 const __filename = fileURLToPath(import.meta.url);
@@ -177,27 +180,20 @@ async function main() {
       );
     }
     const after = await readback(client);
+    const evaluation = evaluateTcgplayerMarketActiveAskRefreshV1(after);
     const result = {
       worker_version: WORKER_VERSION,
-      status:
-        Number(after.invalid_row_count) === 0 &&
-        Number(after.stale_row_count) === 0
-          ? "passed"
-          : "failed",
+      policy_version: evaluation.policy_version,
+      status: evaluation.status,
       mode: runPlan.mode,
       started_at: startedAt,
       finished_at: new Date().toISOString(),
       database_session: databaseSession,
       before,
       after,
-      findings: [
-        ...(Number(after.invalid_row_count) > 0
-          ? ["invalid_active_ask_cache_rows"]
-          : []),
-        ...(Number(after.stale_row_count) > 0
-          ? ["stale_active_ask_cache_rows"]
-          : []),
-      ],
+      blocking_findings: evaluation.blocking_findings,
+      warning_findings: evaluation.warning_findings,
+      findings: evaluation.findings,
     };
     const summaryContents = `${JSON.stringify(result, null, 2)}\n`;
     await fs.writeFile(path.join(runDir, "summary.json"), summaryContents);
@@ -224,7 +220,7 @@ async function main() {
         2,
       )}\n`,
     );
-    if (result.status !== "passed") process.exitCode = 1;
+    if (result.status === "failed") process.exitCode = 1;
   } finally {
     await client.end().catch(() => {});
   }
