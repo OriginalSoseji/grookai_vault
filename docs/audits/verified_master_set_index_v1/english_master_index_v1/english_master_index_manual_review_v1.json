@@ -1,6 +1,6 @@
 {
   "version": "ENGLISH_MASTER_INDEX_MANUAL_REVIEW_V1",
-  "generated_at": "2026-11-13T11:27:22.741Z",
+  "generated_at": "2026-11-14T10:50:24.819Z",
   "audit_only": true,
   "db_writes": false,
   "manual_review": [
@@ -204,7 +204,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-001"
         }
       ]
@@ -250,7 +250,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-001"
         }
       ]
@@ -318,7 +318,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-010"
         }
       ]
@@ -364,7 +364,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-010"
         }
       ]
@@ -432,7 +432,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-011"
         }
       ]
@@ -478,7 +478,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-011"
         }
       ]
@@ -546,7 +546,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-012"
         }
       ]
@@ -592,7 +592,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-012"
         }
       ]
@@ -660,7 +660,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-013"
         }
       ]
@@ -706,7 +706,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-013"
         }
       ]
@@ -774,7 +774,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-014"
         }
       ]
@@ -820,7 +820,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-014"
         }
       ]
@@ -888,7 +888,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-015"
         }
       ]
@@ -934,7 +934,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-015"
         }
       ]
@@ -1002,7 +1002,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-016"
         }
       ]
@@ -1048,7 +1048,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-016"
         }
       ]
@@ -1116,7 +1116,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-017"
         }
       ]
@@ -1162,7 +1162,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-017"
         }
       ]
@@ -1230,7 +1230,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-018"
         }
       ]
@@ -1276,7 +1276,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-018"
         }
       ]
@@ -1344,7 +1344,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-019"
         }
       ]
@@ -1390,7 +1390,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-019"
         }
       ]
@@ -1458,7 +1458,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-002"
         }
       ]
@@ -1504,7 +1504,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-002"
         }
       ]
@@ -1572,7 +1572,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-020"
         }
       ]
@@ -1618,7 +1618,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-020"
         }
       ]
@@ -1686,7 +1686,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-021"
         }
       ]
@@ -1732,7 +1732,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-021"
         }
       ]
@@ -1800,7 +1800,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-022"
         }
       ]
@@ -1846,7 +1846,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-022"
         }
       ]
@@ -1914,7 +1914,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-023"
         }
       ]
@@ -1960,7 +1960,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-023"
         }
       ]
@@ -2028,7 +2028,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-024"
         }
       ]
@@ -2074,7 +2074,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-024"
         }
       ]
@@ -2142,7 +2142,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-025"
         }
       ]
@@ -2188,7 +2188,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-025"
         }
       ]
@@ -2256,7 +2256,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-026"
         }
       ]
@@ -2302,7 +2302,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-026"
         }
       ]
@@ -2370,7 +2370,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-027"
         }
       ]
@@ -2416,7 +2416,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-027"
         }
       ]
@@ -2484,7 +2484,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-028"
         }
       ]
@@ -2530,7 +2530,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-028"
         }
       ]
@@ -2598,7 +2598,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-029"
         }
       ]
@@ -2644,7 +2644,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-029"
         }
       ]
@@ -2712,7 +2712,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-003"
         }
       ]
@@ -2758,7 +2758,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-003"
         }
       ]
@@ -2826,7 +2826,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-030"
         }
       ]
@@ -2872,7 +2872,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-030"
         }
       ]
@@ -2940,7 +2940,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-004"
         }
       ]
@@ -2986,7 +2986,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-004"
         }
       ]
@@ -3054,7 +3054,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-005"
         }
       ]
@@ -3100,7 +3100,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-005"
         }
       ]
@@ -3168,7 +3168,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-006"
         }
       ]
@@ -3214,7 +3214,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-006"
         }
       ]
@@ -3282,7 +3282,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-007"
         }
       ]
@@ -3328,7 +3328,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-007"
         }
       ]
@@ -3396,7 +3396,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-008"
         }
       ]
@@ -3442,7 +3442,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-008"
         }
       ]
@@ -3510,7 +3510,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-009"
         }
       ]
@@ -3556,7 +3556,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:30th-c-009"
         }
       ]
@@ -5001,34 +5001,6 @@
     },
     {
       "fact_type": "printing_finish_source_revalidation",
-      "key": "black white|110|fighting energy|reverse|historical-source-revalidation",
-      "status": "needs_manual_review",
-      "set_key": "bw1",
-      "set_name": "Black & White",
-      "card_number": "110",
-      "card_name": "Fighting Energy",
-      "finish_key": "reverse",
-      "source_count": 3,
-      "sources": [
-        "pokemontcg_api",
-        "tcgdex",
-        "tcgplayer_price_guide"
-      ],
-      "source_authorities": [
-        "api.pokemontcg.io",
-        "api.tcgdex.net",
-        "tcgplayer.com"
-      ],
-      "source_kinds": [
-        "structured_api",
-        "structured_api",
-        "marketplace_checklist"
-      ],
-      "evidence": [],
-      "review_reason": "Previously admitted printing authority was not re-observed in the latest source refresh; authority was preserved pending explicit revalidation or revocation."
-    },
-    {
-      "fact_type": "printing_finish_source_revalidation",
       "key": "brilliant stars|109|garchomp|normal|historical-source-revalidation",
       "status": "needs_manual_review",
       "set_key": "swsh9",
@@ -5538,7 +5510,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC001"
         }
       ]
@@ -5584,7 +5556,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC001"
         }
       ]
@@ -5630,7 +5602,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC002"
         }
       ]
@@ -5676,7 +5648,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC002"
         }
       ]
@@ -5722,7 +5694,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC003"
         }
       ]
@@ -5768,7 +5740,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC003"
         }
       ]
@@ -5814,7 +5786,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC004"
         }
       ]
@@ -5860,7 +5832,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC004"
         }
       ]
@@ -5906,7 +5878,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC005"
         }
       ]
@@ -5952,7 +5924,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC005"
         }
       ]
@@ -5998,7 +5970,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC006"
         }
       ]
@@ -6044,7 +6016,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC006"
         }
       ]
@@ -6090,7 +6062,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC007"
         }
       ]
@@ -6136,7 +6108,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC007"
         }
       ]
@@ -6182,7 +6154,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC008"
         }
       ]
@@ -6228,7 +6200,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC008"
         }
       ]
@@ -6274,7 +6246,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC009"
         }
       ]
@@ -6320,7 +6292,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC009"
         }
       ]
@@ -6366,7 +6338,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC010"
         }
       ]
@@ -6412,7 +6384,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC010"
         }
       ]
@@ -6458,7 +6430,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC011"
         }
       ]
@@ -6504,7 +6476,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC011"
         }
       ]
@@ -6550,7 +6522,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC012"
         }
       ]
@@ -6596,7 +6568,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC012"
         }
       ]
@@ -6642,7 +6614,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC013"
         }
       ]
@@ -6688,7 +6660,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC013"
         }
       ]
@@ -6734,7 +6706,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC014"
         }
       ]
@@ -6780,7 +6752,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC014"
         }
       ]
@@ -6826,7 +6798,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC015"
         }
       ]
@@ -6872,7 +6844,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC015"
         }
       ]
@@ -6918,7 +6890,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC016"
         }
       ]
@@ -6964,7 +6936,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC016"
         }
       ]
@@ -7010,7 +6982,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC017"
         }
       ]
@@ -7056,7 +7028,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC017"
         }
       ]
@@ -7102,7 +7074,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC018"
         }
       ]
@@ -7148,7 +7120,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC018"
         }
       ]
@@ -7194,7 +7166,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC019"
         }
       ]
@@ -7240,7 +7212,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC019"
         }
       ]
@@ -7286,7 +7258,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC020"
         }
       ]
@@ -7332,7 +7304,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC020"
         }
       ]
@@ -7378,7 +7350,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC021"
         }
       ]
@@ -7424,7 +7396,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC021"
         }
       ]
@@ -7470,7 +7442,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC022"
         }
       ]
@@ -7516,7 +7488,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC022"
         }
       ]
@@ -7562,7 +7534,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC023"
         }
       ]
@@ -7608,7 +7580,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC023"
         }
       ]
@@ -7654,7 +7626,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC024"
         }
       ]
@@ -7700,7 +7672,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC024"
         }
       ]
@@ -7746,7 +7718,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC025"
         }
       ]
@@ -7792,7 +7764,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Classic Collection",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:cel25cc-CC025"
         }
       ]
@@ -10375,7 +10347,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "Promo",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:det1-25"
         }
       ]
@@ -10421,7 +10393,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Promo",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:det1-25"
         }
       ]
@@ -11043,7 +11015,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Ultra Rare",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:xy10-105a"
         }
       ]
@@ -11089,7 +11061,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Uncommon",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:xy10-111a"
         }
       ]
@@ -11135,7 +11107,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Rare",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:xy10-43a"
         }
       ]
@@ -11181,7 +11153,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Rare",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:xy10-54a"
         }
       ]
@@ -11227,7 +11199,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Rare",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:xy3-55a"
         }
       ]
@@ -11498,7 +11470,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-1"
         }
       ]
@@ -11544,7 +11516,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-1"
         }
       ]
@@ -11590,7 +11562,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-10"
         }
       ]
@@ -11636,7 +11608,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-10"
         }
       ]
@@ -11682,7 +11654,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-11"
         }
       ]
@@ -11728,7 +11700,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-11"
         }
       ]
@@ -11774,7 +11746,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-12"
         }
       ]
@@ -11820,7 +11792,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-12"
         }
       ]
@@ -11866,7 +11838,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-13"
         }
       ]
@@ -11912,7 +11884,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-13"
         }
       ]
@@ -11958,7 +11930,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-14"
         }
       ]
@@ -12004,7 +11976,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-14"
         }
       ]
@@ -12050,7 +12022,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-15"
         }
       ]
@@ -12096,7 +12068,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-15"
         }
       ]
@@ -12142,7 +12114,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-16"
         }
       ]
@@ -12188,7 +12160,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-16"
         }
       ]
@@ -12234,7 +12206,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-17"
         }
       ]
@@ -12280,7 +12252,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-17"
         }
       ]
@@ -12326,7 +12298,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-18"
         }
       ]
@@ -12372,7 +12344,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-18"
         }
       ]
@@ -12418,7 +12390,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-19"
         }
       ]
@@ -12464,7 +12436,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-19"
         }
       ]
@@ -12510,7 +12482,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-2"
         }
       ]
@@ -12556,7 +12528,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-2"
         }
       ]
@@ -12602,7 +12574,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-21"
         }
       ]
@@ -12648,7 +12620,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-21"
         }
       ]
@@ -12694,7 +12666,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-22"
         }
       ]
@@ -12740,7 +12712,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-22"
         }
       ]
@@ -12786,7 +12758,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-23"
         }
       ]
@@ -12832,7 +12804,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-23"
         }
       ]
@@ -12878,7 +12850,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-24"
         }
       ]
@@ -12924,7 +12896,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-24"
         }
       ]
@@ -12970,7 +12942,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-25"
         }
       ]
@@ -13016,7 +12988,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-25"
         }
       ]
@@ -13062,7 +13034,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-26"
         }
       ]
@@ -13108,7 +13080,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-26"
         }
       ]
@@ -13154,7 +13126,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-27"
         }
       ]
@@ -13200,7 +13172,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-27"
         }
       ]
@@ -13246,7 +13218,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-28"
         }
       ]
@@ -13292,7 +13264,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-28"
         }
       ]
@@ -13338,7 +13310,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-29"
         }
       ]
@@ -13384,7 +13356,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-29"
         }
       ]
@@ -13430,7 +13402,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-3"
         }
       ]
@@ -13476,7 +13448,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-3"
         }
       ]
@@ -13522,7 +13494,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-30"
         }
       ]
@@ -13568,7 +13540,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-30"
         }
       ]
@@ -13614,7 +13586,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-4"
         }
       ]
@@ -13660,7 +13632,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-4"
         }
       ]
@@ -13706,7 +13678,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-5"
         }
       ]
@@ -13752,7 +13724,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-5"
         }
       ]
@@ -13798,7 +13770,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-6"
         }
       ]
@@ -13844,7 +13816,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-6"
         }
       ]
@@ -13890,7 +13862,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-7"
         }
       ]
@@ -13936,7 +13908,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-7"
         }
       ]
@@ -13982,7 +13954,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-8"
         }
       ]
@@ -14028,7 +14000,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-8"
         }
       ]
@@ -14074,7 +14046,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-9"
         }
       ]
@@ -14120,7 +14092,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-g-9"
         }
       ]
@@ -14166,7 +14138,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-1"
         }
       ]
@@ -14212,7 +14184,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-1"
         }
       ]
@@ -14258,7 +14230,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-10"
         }
       ]
@@ -14304,7 +14276,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-10"
         }
       ]
@@ -14350,7 +14322,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-11"
         }
       ]
@@ -14396,7 +14368,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-11"
         }
       ]
@@ -14442,7 +14414,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-12"
         }
       ]
@@ -14488,7 +14460,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-12"
         }
       ]
@@ -14534,7 +14506,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-13"
         }
       ]
@@ -14580,7 +14552,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-13"
         }
       ]
@@ -14626,7 +14598,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-14"
         }
       ]
@@ -14672,7 +14644,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-14"
         }
       ]
@@ -14718,7 +14690,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-15"
         }
       ]
@@ -14764,7 +14736,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-15"
         }
       ]
@@ -14810,7 +14782,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-16"
         }
       ]
@@ -14856,7 +14828,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-16"
         }
       ]
@@ -14902,7 +14874,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-17"
         }
       ]
@@ -14948,7 +14920,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-17"
         }
       ]
@@ -14994,7 +14966,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-18"
         }
       ]
@@ -15040,7 +15012,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-18"
         }
       ]
@@ -15086,7 +15058,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-2"
         }
       ]
@@ -15132,7 +15104,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-2"
         }
       ]
@@ -15178,7 +15150,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-20"
         }
       ]
@@ -15224,7 +15196,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-20"
         }
       ]
@@ -15270,7 +15242,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-21"
         }
       ]
@@ -15316,7 +15288,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-21"
         }
       ]
@@ -15362,7 +15334,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-22"
         }
       ]
@@ -15408,7 +15380,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-22"
         }
       ]
@@ -15454,7 +15426,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-23"
         }
       ]
@@ -15500,7 +15472,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-23"
         }
       ]
@@ -15546,7 +15518,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-24"
         }
       ]
@@ -15592,7 +15564,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-24"
         }
       ]
@@ -15638,7 +15610,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-25"
         }
       ]
@@ -15684,7 +15656,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-25"
         }
       ]
@@ -15730,7 +15702,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-26"
         }
       ]
@@ -15776,7 +15748,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-26"
         }
       ]
@@ -15822,7 +15794,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-27"
         }
       ]
@@ -15868,7 +15840,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-27"
         }
       ]
@@ -15914,7 +15886,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-28"
         }
       ]
@@ -15960,7 +15932,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-28"
         }
       ]
@@ -16006,7 +15978,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-29"
         }
       ]
@@ -16052,7 +16024,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-29"
         }
       ]
@@ -16098,7 +16070,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-3"
         }
       ]
@@ -16144,7 +16116,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-3"
         }
       ]
@@ -16190,7 +16162,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-30"
         }
       ]
@@ -16236,7 +16208,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-30"
         }
       ]
@@ -16282,7 +16254,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-4"
         }
       ]
@@ -16328,7 +16300,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-4"
         }
       ]
@@ -16374,7 +16346,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-5"
         }
       ]
@@ -16420,7 +16392,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-5"
         }
       ]
@@ -16466,7 +16438,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-6"
         }
       ]
@@ -16512,7 +16484,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-6"
         }
       ]
@@ -16558,7 +16530,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-7"
         }
       ]
@@ -16604,7 +16576,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-7"
         }
       ]
@@ -16650,7 +16622,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-8"
         }
       ]
@@ -16696,7 +16668,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-8"
         }
       ]
@@ -16742,7 +16714,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-9"
         }
       ]
@@ -16788,7 +16760,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-hs-r-9"
         }
       ]
@@ -17014,7 +16986,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Rare",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:sv09-095"
         }
       ]
@@ -17779,7 +17751,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "Promo",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:mep-Museum"
         }
       ]
@@ -17825,7 +17797,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "Promo",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:miscp-001"
         }
       ]
@@ -17871,7 +17843,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Promo",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:miscp-001"
         }
       ]
@@ -17917,7 +17889,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Rare",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:sv02-172"
         }
       ]
@@ -17963,7 +17935,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Rare",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:sv02-172"
         }
       ]
@@ -18054,7 +18026,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Ultra Rare",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:sv02-248"
         }
       ]
@@ -18100,7 +18072,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Special illustration rare",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:sv02-265"
         }
       ]
@@ -18540,7 +18512,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Ultra Rare",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:swsh2-189"
         }
       ]
@@ -18586,7 +18558,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Rare",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:sv01-189"
         }
       ]
@@ -18632,7 +18604,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Rare",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:sv01-189"
         }
       ]
@@ -18678,7 +18650,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Ultra Rare",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:sv01-240"
         }
       ]
@@ -18724,7 +18696,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Ultra Rare",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:sv01-241"
         }
       ]
@@ -19085,7 +19057,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-sm-r-1"
         }
       ]
@@ -19131,7 +19103,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-sm-r-1"
         }
       ]
@@ -19177,7 +19149,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-sm-r-10"
         }
       ]
@@ -19223,7 +19195,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-sm-r-10"
         }
       ]
@@ -19269,7 +19241,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-sm-r-12"
         }
       ]
@@ -19315,7 +19287,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-sm-r-12"
         }
       ]
@@ -19361,7 +19333,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-sm-r-24"
         }
       ]
@@ -19407,7 +19379,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-sm-r-24"
         }
       ]
@@ -19453,7 +19425,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-sm-r-27"
         }
       ]
@@ -19499,7 +19471,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-sm-r-27"
         }
       ]
@@ -19545,7 +19517,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-sm-r-28"
         }
       ]
@@ -19591,7 +19563,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-sm-r-28"
         }
       ]
@@ -19637,7 +19609,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-sm-r-3"
         }
       ]
@@ -19683,7 +19655,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-sm-r-3"
         }
       ]
@@ -19729,7 +19701,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-sm-r-5"
         }
       ]
@@ -19775,7 +19747,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-sm-r-5"
         }
       ]
@@ -19821,7 +19793,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-sm-r-7"
         }
       ]
@@ -19867,7 +19839,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-sm-r-7"
         }
       ]
@@ -19913,7 +19885,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-sm-r-8"
         }
       ]
@@ -19959,7 +19931,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-sm-r-8"
         }
       ]
@@ -20005,7 +19977,7 @@
           "finish_key_raw": null,
           "notes": "Structured API card identity evidence.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-sm-r-9"
         }
       ]
@@ -20051,7 +20023,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "None",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:tk-sm-r-9"
         }
       ]
@@ -20861,7 +20833,7 @@
           "finish_key_raw": null,
           "notes": "Structured API finish evidence is not final printing truth without a human-readable, official, or checklist-style source.",
           "rarity": "Rare",
-          "retrieved_at": "2026-11-13T11:27:22.741Z",
+          "retrieved_at": "2026-11-14T10:50:24.819Z",
           "raw_snapshot_ref": "tcgdex:sv05-021"
         }
       ]
