@@ -1,5 +1,19 @@
 # CHECKPOINT_INDEX
 
+- `APP_NONSCANNER_REFINEMENT_PROGRESS_20261113` - `2026-11-13` - Current non-scanner refinement status, 170 web parity passes and focused eBay/Binder verification; local Flutter loader failures and external release gates remain explicit
+
+- `MINIMATCH_DEPENDABOT_UPDATE_CLOSED_20261113` - `2026-11-13` - Prior Dependabot minimatch failure is resolved by merged PR #911; `origin/main` pins 11.0.1
+
+- `COLLABORATIVE_BINDER_MAIN_BUILD_QA_20261113` - `2026-11-13` - Private/family/community Binder entry points are integrated and local mobile/web tests pass; production database rollout remains prepared but unapplied, and real-account sharing has not been exercised
+
+- `EBAY_SELLER_WORKSPACE_RELEASE_FLOW_QA_20261113` - `2026-11-13` - Seller draft/prepare/review/publish and recovery UI passes 17 browser checks; live seller has 18 drafts, but no exact target was identified or published
+
+- `COLLECTOR_OUTCOME_ACTION_CLARITY_20261113` - `2026-11-13` - The sale/trade action now explains its one-exact-copy scope; focused 384px collector parity passes
+
+- `COLLECTOR_TRADE_ARTWORK_REVIEW_20261113` - `2026-11-13` - Incoming trade card artwork now persists through draft and appears in the mobile give/receive review; focused Playwright verifies the loaded image
+
+- `COLLECTOR_TRADE_REVIEW_VISUAL_REFINEMENT_20261113` - `2026-11-13` - Trade workspace now separates give/receive sides and emphasizes the agreed-value/net review; targeted mobile parity, typecheck, and lint pass; full push gate hit a repeated Windows Flutter loader connection failure
+
 - `SELLING_REPORTS_VISUAL_CONVERGENCE_20261113` - `2026-11-13` - Event/profit reports and Sales navigation now share Winter accents, compact surfaces and clear return links; local shipcheck and hosted checks pending; no physical Samsung claim
 
 - `SELLING_WORKSPACE_VISUAL_CONVERGENCE_20261113` - `2026-11-13` - Sales desk now follows Winter brand tokens, compact ink/bone surfaces, 8px working corners, 9px card gaps and 44px controls; stylesheet-only regression check and repository shipcheck pending; no physical Samsung claim

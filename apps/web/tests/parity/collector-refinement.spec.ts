@@ -74,6 +74,20 @@ for (const width of [384, 1280]) {
 }
 
 test("selection reports unpriced coverage, reviews GVVIs and retains private trade draft", async ({ page }) => {
+  await page.route("**/vault/card-options?**", (route) =>
+    route.fulfill({
+      json: {
+        items: [{
+          cardPrintId: "incoming-print-fixture",
+          gvId: "incoming-gv-fixture",
+          name: "Pikachu",
+          context: "Base Set · 58",
+          imageUrl: "https://images.pokemontcg.io/base1/58.png",
+          finishes: [{ id: "incoming-holo-fixture", label: "Holofoil" }],
+        }],
+      },
+    })
+  );
   await page.goto("/visual-fixtures/collector-refinement?view=workspace");
   await page.getByRole("checkbox").nth(0).check();
   await page.getByRole("checkbox").nth(2).check();
@@ -81,6 +95,9 @@ test("selection reports unpriced coverage, reviews GVVIs and retains private tra
     page.getByText(
       "2 selected · 1 priced · 1 without a qualified raw reference",
     ),
+  ).toBeVisible();
+  await expect(
+    page.getByText("Record a completed sale or trade one exact copy at a time."),
   ).toBeVisible();
   await page.getByRole("button", { name: "Review bulk intent" }).click();
   await expect(page.getByRole("dialog")).toContainText("GVVI-FIXTURE-000001");
@@ -102,11 +119,53 @@ test("selection reports unpriced coverage, reviews GVVIs and retains private tra
   await expect(page.getByLabel("Agreed value · USD").nth(0)).toHaveValue(
     "10.07",
   );
+  await page.getByLabel("Find an incoming card").fill("Pikachu");
+  await page.getByText("Base Set · 58").waitFor();
+  await page.getByText("Base Set · 58").click();
+  await page.getByRole("button", { name: "Add Holofoil" }).click();
+  const incomingArtwork = page.locator(
+    'img[src="https://images.pokemontcg.io/base1/58.png"]',
+  );
+  await expect(incomingArtwork).toBeVisible();
+  await expect.poll(() =>
+    incomingArtwork.evaluate((image) => (image as HTMLImageElement).naturalWidth)
+  ).toBeGreaterThan(0);
   await page.screenshot({
     path: "test-results/collector-workspace-mobile.png",
     fullPage: true,
   });
 });
+
+for (const width of [384, 1280]) {
+  for (const theme of ["light", "dark"]) {
+    test(`trade workspace layout ${width}px ${theme}`, async ({ page }) => {
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto("/visual-fixtures/collector-refinement?view=workspace");
+      await page.evaluate(
+        (dark) => document.documentElement.classList.toggle("gv-dark", dark),
+        theme === "dark",
+      );
+      await page.getByRole("button", { name: "Trade workspace", exact: true })
+        .click();
+      const give = page.getByRole("region", { name: "Outgoing exact copies" });
+      const receive = page.getByRole("region", { name: "Incoming trade cards" });
+      const [giveBox, receiveBox] = await Promise.all([
+        give.boundingBox(),
+        receive.boundingBox(),
+      ]);
+      expect(giveBox).not.toBeNull();
+      expect(receiveBox).not.toBeNull();
+      if (!giveBox || !receiveBox) throw new Error("Trade panels were not laid out.");
+      if (width === 384) {
+        expect(receiveBox.y).toBeGreaterThan(giveBox.y);
+      } else {
+        expect(receiveBox.x).toBeGreaterThan(giveBox.x);
+      }
+      expect(await page.evaluate(() => document.documentElement.scrollWidth))
+        .toBeLessThanOrEqual(width);
+    });
+  }
+}
 
 test("binder can move a card across pages with keyboard-accessible pocket controls", async ({ page }) => {
   await page.goto("/visual-fixtures/collector-refinement?view=binder");

@@ -1,0 +1,137 @@
+.tradeGrid {
+  display: grid;
+  align-items: start;
+  gap: 16px;
+}
+
+.tradePanel {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--gv-border-soft);
+  border-radius: 8px;
+  background: var(--gv-surface-container-low);
+}
+
+.tradePanel > h2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.tradePanel > h2::after {
+  color: var(--gv-text-secondary);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.givePanel > h2::after {
+  content: "OUTGOING";
+}
+
+.receivePanel > h2::after {
+  content: "INCOMING";
+}
+
+.tradePanel input:not([type="checkbox"]),
+.tradePanel select {
+  color: var(--gv-text-primary);
+  background: var(--gv-surface-base);
+}
+
+.tradePanel input::placeholder {
+  color: var(--gv-text-secondary);
+  opacity: 0.8;
+}
+
+.tradePanel details > summary {
+  padding: 8px 0;
+  color: var(--gv-text-primary);
+}
+
+.tradePanel details[open] > summary {
+  color: var(--gv-primary);
+}
+
+.tradePanel [role="status"] {
+  min-height: 20px;
+  color: var(--gv-text-secondary);
+}
+
+.tradeValueSummary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 16px;
+  margin: 4px 0 0;
+  padding: 14px 0;
+  border-top: 1px solid var(--gv-border-soft);
+  border-bottom: 1px solid var(--gv-border-soft);
+  font-size: 12px;
+}
+
+.tradeValueSummary dt {
+  color: var(--gv-text-secondary);
+}
+
+.tradeValueSummary dd {
+  margin: 4px 0 0;
+  color: var(--gv-text-primary);
+  font-size: 16px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.tradeNet {
+  grid-column: 1 / -1;
+  padding-top: 10px;
+  border-top: 1px solid var(--gv-border-soft);
+}
+
+.tradeNet dd {
+  color: var(--gv-market);
+}
+
+.tradeNotes {
+  color: var(--gv-text-secondary);
+}
+
+.incomingOption {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  padding-block: 8px;
+}
+
+.incomingRow {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  align-items: start;
+  gap: 10px;
+  padding-block: 12px;
+  border-bottom: 1px solid var(--gv-border-soft);
+}
+
+.incomingArtwork {
+  width: 36px;
+  height: 50px;
+  flex: none;
+  border-radius: 5px;
+  object-fit: contain;
+  background: var(--gv-surface-base);
+}
+
+.incomingDetails {
+  min-width: 0;
+}
+
+@media (min-width: 768px) {
+  .tradeGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
