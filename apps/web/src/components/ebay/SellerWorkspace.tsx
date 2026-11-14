@@ -48,6 +48,7 @@ export default function SellerWorkspace({ actorId, instanceId, draftId: selected
   const [salePrice, setSalePrice] = useState('');
   const [saleConfirmed, setSaleConfirmed] = useState(false);
   const [referenceImageFailed, setReferenceImageFailed] = useState(false);
+  const [confirmDiscard, setConfirmDiscard] = useState(false);
   const persist = useCallback((value: SellerLocalDraft) => {
     if (!storageKey.current) throw new Error('Select an owned copy first.');
     localStorage.setItem(storageKey.current, JSON.stringify(value));
@@ -240,7 +241,7 @@ export default function SellerWorkspace({ actorId, instanceId, draftId: selected
         location.assign(url.href);
       })}>Connect eBay<ArrowUpRight size={15} /></button>}</div>}
     {account && !account.linkingEnabled && <p className={s.status}>eBay seller listings aren’t available yet. Active and sold searches remain available from your card details.</p>}
-    {!copy && workspace && <section><h2>Recent listings</h2><p className={s.muted}>Choose an exact copy from your Vault to start a listing.</p><div className={s.drafts}>{workspace.drafts.map(item => <Link className={s.draftLink} href={`/vault/ebay?draftId=${item.id}`} key={item.id}><div>{item.title ?? 'Listing draft'}<small>{stateLabel(item.state)}</small></div><ArrowUpRight size={16} /></Link>)}</div></section>}
+    {!copy && workspace && <section><h2>Recent listings</h2><p className={s.muted}>Choose an exact copy from your Vault to start a listing. Removed drafts stay out of this list.</p><div className={s.drafts}>{workspace.drafts.filter(item => item.state !== 'abandoned').map(item => <Link className={s.draftLink} href={`/vault/ebay?draftId=${item.id}`} key={item.id}><div>{item.title ?? 'Listing draft'}<small>{stateLabel(item.state)}</small></div><ArrowUpRight size={16} /></Link>)}</div></section>}
     {copy && input && <><div className={s.copy}><span className={s.copyIcon}>{!referenceImageFailed && copy.gvId
       ? <Image src={`/api/canon/cards/${encodeURIComponent(copy.gvId)}/image`} alt={`${copy.name} catalog reference`} width={64} height={90} unoptimized onError={() => setReferenceImageFailed(true)} />
       : <Package size={23} />}</span><div><strong>{copy.name}</strong><small>{copy.setCode} · {copy.number} · {copy.isGraded ? `${copy.grader ?? 'Graded'} ${copy.grade ?? ''}` : copy.condition ?? 'Condition unknown'}</small><small>{copy.gvviId} · {draft ? stateLabel(draft.state) : 'New draft'}</small></div></div>
@@ -294,8 +295,15 @@ export default function SellerWorkspace({ actorId, instanceId, draftId: selected
         {draft?.state === 'sale_reported' && <><p className={s.hint}>eBay reports a sale. Verify the listing ended, then enter the actual sale price to record it in your Vault.</p><button className={s.button} disabled={Boolean(busy)} onClick={() => void run('Verifying ended sale', () => operate('reconcile'))}>Verify ended sale</button><label className={s.field}>Actual sale price · USD<input inputMode="decimal" value={salePrice} disabled={Boolean(busy) || local.pending?.action === 'record_sale'} onChange={e => setSalePrice(e.target.value)} /></label><label className={s.check}><input type="checkbox" checked={saleConfirmed} disabled={Boolean(busy)} onChange={e => setSaleConfirmed(e.target.checked)} />I confirmed this sale completed and entered its actual sale price.</label><button className={`${s.button} ${s.primary}`} disabled={Boolean(busy) || !saleConfirmed || !salePrice} onClick={() => void run('Recording completed sale', () => operate('record_sale'))}>Record eBay sale</button></>}
         {draft?.state === 'sold' && <p className={s.hint}>Recorded in your existing Vault sale history. Actual selling fees and net proceeds are not inferred.</p>}
         {draft && !copy.isArchived && ['withdrawn', 'ended', 'abandoned'].includes(draft.state) && <button className={s.button} disabled={Boolean(busy)} onClick={startNewDraft}>Start a new listing</button>}
-        {draft && ['editing', 'prepared', 'uncertain'].includes(draft.state) && <button className={s.button} disabled={Boolean(busy)} onClick={() => void run('Discarding draft', () => operate('abandon'))}>Discard draft</button>}
+        {draft && ['editing', 'prepared'].includes(draft.state) && <button className={s.button} disabled={Boolean(busy)} onClick={() => setConfirmDiscard(true)}>Remove draft</button>}
         {draft?.state === 'withdrawn' && <p className={s.hint}><Check size={16} />eBay confirmed the listing ended. This copy remains in your Vault.</p>}
       </aside></div></>}
+    {confirmDiscard && <div className={s.confirmBackdrop} role="presentation" onMouseDown={event => { if (event.target === event.currentTarget) setConfirmDiscard(false); }}>
+      <section className={s.confirmDialog} role="alertdialog" aria-modal="true" aria-labelledby="discard-title" aria-describedby="discard-description">
+        <h2 id="discard-title">Remove this draft?</h2>
+        <p id="discard-description">This removes the draft from your grookai eBay drafts list. It does not delete anything from eBay or remove the card from your Vault.</p>
+        <div className={s.confirmActions}><button className={s.button} disabled={Boolean(busy)} onClick={() => setConfirmDiscard(false)}>Keep draft</button><button className={`${s.button} ${s.primary}`} disabled={Boolean(busy)} onClick={() => { setConfirmDiscard(false); void run('Removing draft', () => operate('abandon')); }}>Remove draft</button></div>
+      </section>
+    </div>}
   </section>;
 }

@@ -49,5 +49,10 @@
 .draftLink small { display: block; margin-top: 4px; color: var(--gv-text-secondary); }
 .actions { flex-wrap: wrap; margin-top: 12px; }
 .readonly { opacity: .8; }
+.confirmBackdrop { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 20px; background: rgb(0 0 0 / 58%); }
+.confirmDialog { width: min(100%, 420px); padding: 20px; border: 1px solid var(--gv-border-soft); border-radius: 8px; background: var(--gv-surface-base); box-shadow: 0 16px 48px rgb(0 0 0 / 28%); }
+.confirmDialog h2 { margin: 0 0 10px; font-size: 18px; }
+.confirmDialog p { margin: 0; color: var(--gv-text-secondary); font-size: 14px; line-height: 1.55; }
+.confirmActions { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
 @media(max-width: 720px) { .body { grid-template-columns: 1fr; gap: 0; } .review { position: static; padding: 16px 0; border: 0; border-top: 1px solid var(--gv-border-soft); } .header { margin-bottom: 12px; } .row { grid-template-columns: 1fr; } .account { align-items: flex-start; } .workspace { padding-top: 8px; } }
 @media(prefers-reduced-motion: reduce) { .workspace * { scroll-behavior: auto; } }
