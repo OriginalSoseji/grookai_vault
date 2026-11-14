@@ -2,15 +2,17 @@ param(
   [string]$Repository = 'OriginalSoseji/grookai_vault',
   [string]$Workflow = 'tcgplayer-pricing-completion-agent.yml',
   [string]$Ref = 'main',
-  [ValidateRange(5, 120)][int]$MaxAgeMinutes = 20,
-  [ValidateRange(15, 180)][int]$ActiveMaxAgeMinutes = 45,
+  [ValidateRange(5, 180)][int]$MaxAgeMinutes = 20,
+  [ValidateRange(15, 360)][int]$ActiveMaxAgeMinutes = 45,
   [ValidateRange(1, 30)][int]$FailureRetryDelayMinutes = 5,
   [string]$ArtifactRoot = 'C:\grookai_vault_operator_artifacts\pricing_completion_dispatch_watchdog_v1',
+  [string]$ReceiptSchemaVersion = 'PRICING_COMPLETION_DISPATCH_WATCHDOG_V1',
+  [string]$MutexName = 'Local\GrookaiPricingCompletionDispatchWatchdogV1',
   [switch]$DryRun
 )
 
 $ErrorActionPreference = 'Stop'
-$mutex = [System.Threading.Mutex]::new($false, 'Local\GrookaiPricingCompletionDispatchWatchdogV1')
+$mutex = [System.Threading.Mutex]::new($false, $MutexName)
 $hasMutex = $false
 $priorDispatchRequestedAt = $null
 
@@ -90,7 +92,7 @@ try {
 
   $shouldDispatch = $decision -like 'dispatch_*'
   $receipt = [ordered]@{
-    schema_version = 'PRICING_COMPLETION_DISPATCH_WATCHDOG_V1'
+    schema_version = $ReceiptSchemaVersion
     observed_at = $now.ToString('o')
     repository = $Repository
     workflow = $Workflow
@@ -138,7 +140,7 @@ try {
   $receipt | ConvertTo-Json -Depth 12
 } catch {
   $failure = [ordered]@{
-    schema_version = 'PRICING_COMPLETION_DISPATCH_WATCHDOG_V1'
+    schema_version = $ReceiptSchemaVersion
     observed_at = [DateTimeOffset]::UtcNow.ToString('o')
     decision = 'watchdog_failed'
     dry_run = [bool]$DryRun

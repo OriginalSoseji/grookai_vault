@@ -109,6 +109,27 @@ than six hours old is treated as in progress to prevent overlap. The watchdog
 does not bypass reconciliation, the production activation guard, the shared
 source/publication locks, or zero-mismatch readback.
 
+GitHub schedule delivery may be delayed. On the owner workstation, install the
+five-minute dispatch-only continuity clock with:
+
+```powershell
+pwsh -NoProfile -File .\scripts\ops\install_market_continuity_dispatch_watchdog_v1.ps1
+```
+
+The local task dispatches only
+`tcgplayer-market-continuity-watchdog.yml` on `main` when its latest run is more
+than 135 minutes old. A queued or running continuity job receives the workflow's
+full six-hour grace window. The task has no Supabase credential or database,
+mapping, publication, or customer-state authority. Its latest decision and
+append-only history are retained under
+`C:\grookai_vault_operator_artifacts\tcgplayer_market_continuity_dispatch_watchdog_v1`.
+
+The active-ask refresh records `passed_with_warning` plus
+`empty_active_ask_cache` when no exact fresh eBay listing row qualifies. Empty
+availability evidence never substitutes for TCGPlayer Market and does not block
+an otherwise verified TCGPlayer publication. Invalid or stale cache rows remain
+blocking failures.
+
 The source warehouse worker and write-mode publication worker share
 `grookai:tcgcsv:current:v1`. If a current sync owns it, publication exits with
 `TCGCSV_CURRENT_SOURCE_LOCKED` and the scheduled retry policy retries. If a
