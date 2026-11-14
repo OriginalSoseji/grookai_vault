@@ -1,5 +1,33 @@
 # Grookai Operator Playbook V1
 
+## TCGPlayer Market continuity dispatch clock — November 14, 2026
+
+Read the [TCGPlayer Market pricing product runbook](../runbooks/TCGPLAYER_MARKET_PRICING_PRODUCT_V1.md)
+before changing pricing continuity automation. The owner workstation task is
+`Grookai TCGPlayer Market Continuity Dispatch Watchdog`; install or repair it
+from a current qualified checkout with:
+
+```powershell
+pwsh -NoProfile -File .\scripts\ops\install_market_continuity_dispatch_watchdog_v1.ps1
+```
+
+The task checks every five minutes and may dispatch only
+`tcgplayer-market-continuity-watchdog.yml` on `main` when the latest continuity
+run is more than 135 minutes old. A queued or running job receives a six-hour
+grace window, so this clock must not compete with an active hosted recovery.
+Operator receipts are under
+`C:\grookai_vault_operator_artifacts\tcgplayer_market_continuity_dispatch_watchdog_v1`;
+inspect `latest.json`, Task Scheduler history, and the linked GitHub run before
+manual dispatch or repair. A healthy receipt has decision
+`healthy_recent_success`, `dispatched=false`, and a successful latest run.
+
+This workstation clock holds no database credentials and has no database-read,
+database-write, mapping, pricing-publication, or customer-state authority. It
+supplements GitHub schedule delivery only; it does not replace the daily 08:15
+UTC producer, the hosted two-hour recovery workflow, reconciliation, activation
+guards, or zero-mismatch publication readback. Never treat a local dispatch
+receipt as proof that prices were published or visible in the app.
+
 ## Square-reserved copy removal repair — November 14, 2026
 
 Read [the removal checkpoint](../checkpoints/SQUARE_VAULT_REMOVAL_20261114.md)

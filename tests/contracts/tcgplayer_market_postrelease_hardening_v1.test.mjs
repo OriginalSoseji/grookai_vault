@@ -44,6 +44,10 @@ test("continuity dispatcher has a separate receipt, mutex, and six-hour active g
     path.join(ROOT, "scripts", "ops", "install_market_continuity_dispatch_watchdog_v1.ps1"),
     "utf8",
   );
+  const playbook = fs.readFileSync(
+    path.join(ROOT, "docs", "ops", "GROOKAI_OPERATOR_PLAYBOOK_V1.md"),
+    "utf8",
+  );
   assert.match(watchdog, /ValidateRange\(5, 180\)/);
   assert.match(watchdog, /ValidateRange\(15, 360\)/);
   assert.match(watchdog, /\$ReceiptSchemaVersion/);
@@ -54,4 +58,10 @@ test("continuity dispatcher has a separate receipt, mutex, and six-hour active g
   assert.match(installer, /TCGPLAYER_MARKET_CONTINUITY_DISPATCH_WATCHDOG_V1/);
   assert.match(installer, /GrookaiTcgplayerMarketContinuityDispatchWatchdogV1/);
   assert.match(installer, /RepetitionInterval \(New-TimeSpan -Minutes 5\)/);
+  assert.match(playbook, /Grookai TCGPlayer Market Continuity Dispatch Watchdog/);
+  assert.match(playbook, /tcgplayer-market-continuity-watchdog\.yml/);
+  assert.match(
+    playbook,
+    /tcgplayer_market_continuity_dispatch_watchdog_v1/,
+  );
 });
