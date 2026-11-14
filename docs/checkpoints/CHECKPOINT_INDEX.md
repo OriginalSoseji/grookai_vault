@@ -1,5 +1,7 @@
 # CHECKPOINT_INDEX
 
+- `SELLING_REPORTS_VISUAL_CONVERGENCE_20261113` - `2026-11-13` - Event/profit reports and Sales navigation now share Winter accents, compact surfaces and clear return links; local shipcheck and hosted checks pending; no physical Samsung claim
+
 - `SELLING_WORKSPACE_VISUAL_CONVERGENCE_20261113` - `2026-11-13` - Sales desk now follows Winter brand tokens, compact ink/bone surfaces, 8px working corners, 9px card gaps and 44px controls; stylesheet-only regression check and repository shipcheck pending; no physical Samsung claim
 
 - `VAULT_MOBILE_BROWSE_HIERARCHY_20261114` - `2026-11-14` - Compact mobile Vault header/value hierarchy brings cards higher in the first viewport; 384px first-card threshold and four other browser parity cases pass; full hooks/hosted checks pending; no physical Samsung display verified
