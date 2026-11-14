@@ -8,6 +8,8 @@ import {
 } from "@/lib/contracts/ownershipMutationGuards";
 import { createServerAdminClient } from "@/lib/supabase/admin";
 import { createServerComponentClient } from "@/lib/supabase/server";
+import {squareAwareVaultArchive} from "../../../../../backend/square/vault_archive_recovery_v1.mjs";
+import {squareBackend} from "@/lib/square/http";
 
 type ArchiveVaultItemInstanceRpcRow = {
   archived_instance_id?: string | null;
@@ -60,6 +62,11 @@ function normalizeOptionalInteger(value: number | string | null | undefined) {
 
 function mapArchiveErrorMessage(message: string | null) {
   switch (message) {
+    case "square_stock_reserved":
+    case "square_removal_unconfirmed":
+      return {errorCode: "SQUARE_REMOVAL_PENDING", message: "Square withdrawal could not be confirmed. Reload this card and check Square before trying removal again."};
+    case "square_removal_busy":
+      return {errorCode: "SQUARE_REMOVAL_BUSY", message: "Square is updating this card. Wait a moment, then try removing it again."};
     case "instance_id_required":
       return {
         errorCode: "INSTANCE_ID_REQUIRED",
@@ -124,9 +131,17 @@ export async function archiveVaultItemInstanceAction(
     };
   }
 
-  const { data, error } = await client.rpc("vault_archive_exact_instance_v1", {
-    p_instance_id: instanceId,
-  });
+  let archivedResult;
+  try {
+    archivedResult = await squareAwareVaultArchive({
+      archive: () => client.rpc("vault_archive_exact_instance_v1", {p_instance_id: instanceId}),
+      prepare: (target: string) => squareBackend().commerce.prepareVaultRemoval(user.id, target),
+    });
+  } catch {
+    return {ok:false,status:"error",submissionKey,errorCode:"SQUARE_REMOVAL_UNCONFIRMED",
+      message:"Removal could not be confirmed. Reload this card and check Square before trying again."};
+  }
+  const {data, error} = archivedResult;
 
   if (error) {
     const mapped = mapArchiveErrorMessage(normalizeOptionalText(error.message));

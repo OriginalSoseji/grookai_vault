@@ -1,5 +1,21 @@
 # Grookai Operator Playbook V1
 
+## Square-reserved copy removal repair — November 14, 2026
+
+Read [the removal checkpoint](../checkpoints/SQUARE_VAULT_REMOVAL_20261114.md)
+before continuing this release. The owner reported an incorrect Charizard ex
+from151 that could not be removed because Square still reserved its exact copy.
+Containment withdrew only that item's Square stock and deselected its target;
+canonical removal remains an authenticated owner action after release proof.
+
+The isolated source is `C:/grookai_vault_remove_fix_20261114`; protected evidence
+is under `C:/grookai_vault_operator_artifacts/card_remove_repair_20261114`.
+Never rerun consumed withdrawal/apply/install intents, reset populated proof labs,
+use direct production data edits, assert physical possession for this copy, or
+restore older inventory/sales counts. Read current device/source/schema state.
+Developer Options must remain enabled on the owner's development Samsung.
+The pricing timer/runtime and the unrelated dirty checkout remain unchanged.
+
 ## Daily automatic vendor prices — November 13, 2026 continuation
 
 Read [daily pricing and QR continuity](../checkpoints/pricing/VENDOR_DAILY_PRICE_COMPLETION_20261113.md)

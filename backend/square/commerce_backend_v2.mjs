@@ -11,7 +11,9 @@ export function createSquareCommerceBackend({client,config=squareEnvironmentConf
   client=createBackendClient();
  }
  const rpc=async(action,data)=>{
-  const result=action==='commerce_run_detail'?await client.rpc('square_commerce_run_detail_v3',{p_run_id:data.runId,p_owner:data.ownerId,p_connection:data.connectionId,
+  const result=['vault_removal_context','vault_removal_attest'].includes(action)?await client.rpc('square_vault_removal_service_v1',{
+    p_action:action==='vault_removal_context'?'context':'attest',p_data:data})
+   :action==='commerce_run_detail'?await client.rpc('square_commerce_run_detail_v3',{p_run_id:data.runId,p_owner:data.ownerId,p_connection:data.connectionId,
     p_stage:data.stage,p_error_code:data.errorCode??null,p_database_code:data.databaseCode??null,p_target:data.targetId??null})
    :action==='defer'?await client.rpc('square_connection_defer_v1',{p_connection:data.connectionId,p_owner:data.ownerId,p_token:data.leaseToken,p_fence:data.fence,p_seconds:data.seconds})
    :action==='authorization_failed'?await client.rpc('square_connection_authorization_failed_v1',{p_connection:data.connectionId,p_owner:data.ownerId,p_token:data.leaseToken,p_fence:data.fence})

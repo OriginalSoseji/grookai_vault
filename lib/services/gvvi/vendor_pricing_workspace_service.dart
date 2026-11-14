@@ -6,6 +6,7 @@ import '../identity/catalog_artwork_resolution.dart';
 import '../identity/display_identity.dart';
 import '../public/card_surface_pricing_service.dart';
 import '../vault/vault_gvvi_service.dart';
+import '../vault/square_aware_vault_archive.dart';
 import '../square/square_sync_notifier.dart';
 
 enum VendorMarketPosition { below, above, atMarket, unpriced, noExactMarket }
@@ -538,9 +539,12 @@ class VendorPricingWorkspaceService {
   }
 
   Future<void> archiveCopy({required VendorPricingWorkspaceRow row}) async {
-    final result = await _requiredClient().rpc(
-      'vault_archive_exact_instance_v1',
-      params: {'p_instance_id': row.instanceId},
+    final result = await squareAwareVaultArchive(
+      client: _requiredClient(),
+      archive: () => _requiredClient().rpc(
+        'vault_archive_exact_instance_v1',
+        params: {'p_instance_id': row.instanceId},
+      ),
     );
     if (result is! Map ||
         _text(result['archived_instance_id']) != row.instanceId ||

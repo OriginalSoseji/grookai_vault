@@ -29,6 +29,7 @@ export async function POST(request: NextRequest) {
       if(access.error)throw new Error(/^square_[a-z_]{1,80}$/.test(access.error.message)?access.error.message:'square_state_unavailable');
       return squareReply(await backend.start(owner.actorId,{clientReturn:body.clientReturn==='native'?'native':'web'}));
     }
+    if(body.action==='prepareRemoval')return squareReply(await backend.commerce.prepareVaultRemoval(owner.actorId,squareId(body.instanceId)));
     const connectionId = squareId(body.connectionId);
     if(body.action==='preferences')return squareReply(await backend.commerce.preferences(owner.actorId,connectionId,
       {autoEnroll:body.autoEnroll===true,sellOnSquare:body.sellOnSquare===true,confirmed:body.confirmed===true}));

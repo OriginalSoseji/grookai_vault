@@ -6,6 +6,7 @@ import '../../utils/vault_printing_identity.dart';
 import '../identity/canon_image_url_service.dart';
 import '../network/intent_presentation.dart' as intent_presentation;
 import 'owned_copy_read_service.dart';
+import 'square_aware_vault_archive.dart';
 import '../square/square_sync_notifier.dart';
 import '../public/jungle_edition_resolution_service.dart';
 
@@ -1682,12 +1683,15 @@ class VaultCardService {
     required String cardId,
   }) async {
     debugPrint('vault.mobile.archive.begin: $cardId');
-    await client.rpc(
-      'vault_archive_one_instance_v1',
-      params: {
-        'p_vault_item_id': _trimmedOrNull(vaultItemId),
-        'p_card_print_id': cardId,
-      },
+    await squareAwareVaultArchive(
+      client: client,
+      archive: () => client.rpc(
+        'vault_archive_one_instance_v1',
+        params: {
+          'p_vault_item_id': _trimmedOrNull(vaultItemId),
+          'p_card_print_id': cardId,
+        },
+      ),
     );
   }
 
@@ -1698,12 +1702,15 @@ class VaultCardService {
     required String cardId,
   }) async {
     debugPrint('vault.mobile.archive.begin: $cardId');
-    await client.rpc(
-      'vault_archive_all_instances_v1',
-      params: {
-        'p_vault_item_id': _trimmedOrNull(vaultItemId),
-        'p_card_print_id': cardId,
-      },
+    await squareAwareVaultArchive(
+      client: client,
+      archive: () => client.rpc(
+        'vault_archive_all_instances_v1',
+        params: {
+          'p_vault_item_id': _trimmedOrNull(vaultItemId),
+          'p_card_print_id': cardId,
+        },
+      ),
     );
   }
 
@@ -1734,9 +1741,12 @@ class VaultCardService {
     debugPrint(
       'vault.mobile.bulk_archive.begin: ${normalizedIds.length} cards',
     );
-    final raw = await client.rpc(
-      'vault_archive_selected_cards_v1',
-      params: {'p_card_print_ids': normalizedIds},
+    final raw = await squareAwareVaultArchive(
+      client: client,
+      archive: () => client.rpc(
+        'vault_archive_selected_cards_v1',
+        params: {'p_card_print_ids': normalizedIds},
+      ),
     );
     if (raw is! Map) {
       throw Exception('Vault bulk remove returned an invalid response.');

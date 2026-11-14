@@ -27,6 +27,7 @@ param(
   [switch]$SquareCommerceReleaseV6,
   [switch]$VendorPricingReleaseV1,
   [switch]$SquareOnboardingReleaseV1,
+  [switch]$SquareVaultRemovalReleaseV1,
 
   [switch]$EbaySellerPublisherBaselineV1,
   [switch]$EbaySellerPublisherReleaseV1,
@@ -112,6 +113,18 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($SquareVaultRemovalReleaseV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','SquareVaultRemovalReleaseV1','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261114080000') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261114080000') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Square Vault removal permits only the bounded495-to496 candidate, a new audit directory, and no combined scope or target override.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_square_vault_removal_release_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
 
 if ($SquareOnboardingReleaseV1) {
   $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
