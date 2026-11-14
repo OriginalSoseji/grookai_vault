@@ -52,6 +52,12 @@ server authority. It does not fabricate an order, payment or sale receipt.
   and category condition policies through the current official APIs. Validate
   required category aspects and provider condition descriptors. Do not guess
   numeric IDs, seller eligibility or category requirements.
+- Let the seller choose among current eBay Taxonomy suggestions for the exact
+  copy. A category change must reload that category's live aspects and condition
+  policies and clear previously selected category-specific values. Only a
+  provider-verified card category with the required `Game` aspect and supported
+  copy-condition mapping may proceed; no category ID is hard-coded in the client
+  or treated as valid solely because it was saved before.
 - The collector supplies photos of the physical copy. Store them privately,
   validate ownership, size and decoded dimensions, strip metadata server-side,
   and upload bytes through the Media API. Do not publish catalog artwork, expose

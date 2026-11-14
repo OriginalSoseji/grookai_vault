@@ -1,5 +1,27 @@
 # CHECKPOINT_INDEX
 
+- `APP_NONSCANNER_REFINEMENT_PROGRESS_20261113` - `2026-11-13` - Current non-scanner refinement status, 170 web parity passes and focused eBay/Binder verification; local Flutter loader failures and external release gates remain explicit
+
+- `MINIMATCH_DEPENDABOT_UPDATE_CLOSED_20261113` - `2026-11-13` - Prior Dependabot minimatch failure is resolved by merged PR #911; `origin/main` pins 11.0.1
+
+- `COLLABORATIVE_BINDER_MAIN_BUILD_QA_20261113` - `2026-11-13` - Private/family/community Binder entry points are integrated and local mobile/web tests pass; production database rollout remains prepared but unapplied, and real-account sharing has not been exercised
+
+- `EBAY_SELLER_WORKSPACE_RELEASE_FLOW_QA_20261113` - `2026-11-13` - Seller draft/prepare/review/publish and recovery UI passes 17 browser checks; live seller has 18 drafts, but no exact target was identified or published
+
+- `COLLECTOR_OUTCOME_ACTION_CLARITY_20261113` - `2026-11-13` - The sale/trade action now explains its one-exact-copy scope; focused 384px collector parity passes
+
+- `COLLECTOR_TRADE_ARTWORK_REVIEW_20261113` - `2026-11-13` - Incoming trade card artwork now persists through draft and appears in the mobile give/receive review; focused Playwright verifies the loaded image
+
+- `COLLECTOR_TRADE_REVIEW_VISUAL_REFINEMENT_20261113` - `2026-11-13` - Trade workspace now separates give/receive sides and emphasizes the agreed-value/net review; targeted mobile parity, typecheck, and lint pass; full push gate hit a repeated Windows Flutter loader connection failure
+
+- `SELLING_REPORTS_VISUAL_CONVERGENCE_20261113` - `2026-11-13` - Event/profit reports and Sales navigation now share Winter accents, compact surfaces and clear return links; local shipcheck and hosted checks pending; no physical Samsung claim
+
+- `SELLING_WORKSPACE_VISUAL_CONVERGENCE_20261113` - `2026-11-13` - Sales desk now follows Winter brand tokens, compact ink/bone surfaces, 8px working corners, 9px card gaps and 44px controls; stylesheet-only regression check and repository shipcheck pending; no physical Samsung claim
+
+- `VAULT_MOBILE_BROWSE_HIERARCHY_20261114` - `2026-11-14` - Compact mobile Vault header/value hierarchy brings cards higher in the first viewport; 384px first-card threshold and four other browser parity cases pass; full hooks/hosted checks pending; no physical Samsung display verified
+
+- `APP_REFINEMENT_NONSCANNER_20261113` - `2026-11-13` - Vault density/filter/sort and contiguous By Set grouping, provider-backed eBay category selection, collector/trade review and draft recovery pass local gates; updated PR #917 checks and preview pass; Samsung physical display remains inaccessible through Duet and scanner work is deferred
+
 - `SEALED_OWNERSHIP_SCHEMA_APPLIED_20260907` - `2026-09-07` - Four approved migrations committed atomically; 391/391 ledger parity, empty reconciled schema diff and 888 security objects match; 3,401 copies unchanged; ownership disabled; client deployment/canary remain
 
 - `SEALED_OWNERSHIP_RELEASE_PREFLIGHT_20260907` - `2026-09-07` - Live read-only ledger/data preconditions pass; inherited service-role grants caught and removed before production; 97 targeted contracts, 36 SQL scenarios and fresh replay pass; replacement frozen plan and production rollout remain gated

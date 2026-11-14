@@ -27,6 +27,7 @@ export type SellerDescriptor = { conditionDescriptorId: string; conditionDescrip
   conditionDescriptorConstraint: { usage?: string; mode: string; cardinality: string; maxLength?: number };
   conditionDescriptorValues?: { conditionDescriptorValueId: string; conditionDescriptorValueName: string }[] };
 export type SellerMetadata = { categoryId: string; fetchedAt: number;
+  categoryOptions: { categoryId: string; categoryName: string }[];
   policies: Record<'fulfillment' | 'payment' | 'return', Record<string, unknown>[]>;
   locations: { merchantLocationKey: string; name?: string; merchantLocationStatus: string }[];
   aspects: { localizedAspectName: string; aspectConstraint: { aspectRequired: boolean;

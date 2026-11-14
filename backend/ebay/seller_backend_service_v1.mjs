@@ -10,6 +10,7 @@ import { suggestedCopyCondition } from './seller_copy_condition_v1.mjs';
 import { EbaySellerPreparationWorkflow } from './seller_preparation_workflow_v1.mjs';
 import { EbaySellerPublicationWorkflow } from './seller_publication_workflow_v1.mjs';
 import { verifySellerPublicationReview } from './seller_publication_review_v1.mjs';
+import { qualifySellerCategorySuggestions, requireTradingCardCategory, selectSellerCategory } from './seller_category_suggestions_v1.mjs';
 
 const fail = code => { throw new EbaySellerApiError(code); };
 const uuid = value => typeof value === 'string'
@@ -66,11 +67,12 @@ export function createEbaySellerBackendService() {
     if (!Array.isArray(photos) || photos.length > 12) fail('seller_photo_limit');
     return { draft, copy, photos };
   };
-  const evidenceForCopy = async ({ actorId, accountId, copy, input, client }) => {
+  const evidenceForCopy = async ({ actorId, accountId, copy, input, client, categoryTree }) => {
     owner(actorId);
-    if (copy.user_id !== actorId || input.categoryId !== '183454') fail('listing_copy_condition_unsupported');
+    if (copy.user_id !== actorId || typeof input.categoryId !== 'string'
+        || !/^\d{1,20}$/.test(input.categoryId)) fail('listing_copy_condition_unsupported');
     const fetchedAt = Date.now();
-    const tree = await client.getDefaultCategoryTree();
+    const tree = categoryTree ?? await client.getDefaultCategoryTree();
     if (typeof tree?.categoryTreeId !== 'string' || !/^\d{1,20}$/.test(tree.categoryTreeId)) fail('seller_category_tree_changed');
     const [fulfillment, payment, returns, locationPage, aspects, conditionPolicies, slabCert] = await Promise.all([
       client.getPolicies('fulfillment'), client.getPolicies('payment'), client.getPolicies('return'),
@@ -85,6 +87,7 @@ export function createEbaySellerBackendService() {
     if (![fulfillment?.fulfillmentPolicies, payment?.paymentPolicies, returns?.returnPolicies]
       .every(values => Array.isArray(values) && values.length > 0)
         || !locations.some(location => location.merchantLocationStatus === 'ENABLED')) fail('seller_setup_required');
+    requireTradingCardCategory(aspects);
     return { sellerAccountId: accountId, categoryId: input.categoryId, marketplaceId: 'EBAY_US', fetchedAt,
       policies: { fulfillment: fulfillment?.fulfillmentPolicies,
         payment: payment?.paymentPolicies, return: returns?.returnPolicies },
@@ -138,13 +141,24 @@ export function createEbaySellerBackendService() {
         p_draft_id: input.draftId, p_request_id: input.requestId,
         p_expected_revision: input.revision, p_action: input.action });
     },
-    metadata: async (actorId, { instanceId, accountId }) => {
+    metadata: async (actorId, { instanceId, accountId, categoryQuery, categoryId }) => {
       owner(actorId);
       await rpc(db, 'ebay_seller_assert_enabled_v1', { p_actor: actorId, p_lane: 'preparation' });
       const copy = await loadCopy(actorId, instanceId);
       const client = (await clientsForAccount({ actorId, accountId })).listing;
-      const evidence = await evidenceForCopy({ actorId, accountId, copy, input: { categoryId: '183454' }, client });
-      return { ...evidence, suggestedCondition: suggestedCopyCondition({ copy,
+      // Older installed clients do not send a category query. Keep their
+      // Account → seller flow working while still sourcing choices from eBay.
+      const query = typeof categoryQuery === 'string' && categoryQuery.trim()
+        ? categoryQuery.trim() : 'Trading Card Single';
+      if (query.length > 300) fail('invalid_category_query');
+      const tree = await client.getDefaultCategoryTree();
+      if (typeof tree?.categoryTreeId !== 'string' || !/^\d{1,20}$/.test(tree.categoryTreeId)) fail('seller_category_tree_changed');
+      const categoryOptions = qualifySellerCategorySuggestions(
+        await client.getCategorySuggestions(tree.categoryTreeId, query));
+      const selectedCategory = selectSellerCategory(categoryOptions, categoryId);
+      const evidence = await evidenceForCopy({ actorId, accountId, copy,
+        input: { categoryId: selectedCategory.categoryId }, client, categoryTree: tree });
+      return { ...evidence, categoryOptions, suggestedCondition: suggestedCopyCondition({ copy,
         choices: evidence.conditionChoices, slabCert: evidence.slabCert }) };
     },
   };

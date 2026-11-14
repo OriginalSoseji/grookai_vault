@@ -27,6 +27,7 @@ import {
   VaultStatPill,
 } from "@/components/vault/VaultCardPrimitives";
 import { type VaultMobileViewMode } from "@/hooks/useVaultMobileViewMode";
+import { type VaultGridColumns } from "@/hooks/useVaultGridColumns";
 import { getVaultIntentLabel } from "@/lib/network/intent";
 import {
   addCardReturnPath,
@@ -39,6 +40,7 @@ type VaultMobileCommonProps = {
   expandedCardId: string | null;
   returnPath: string;
   onExpansionToggle: (item: VaultCardData) => void;
+  gridColumns: VaultGridColumns;
 };
 
 function formatIntentMixSummary(item: Pick<VaultCardData, "sell_count" | "trade_count" | "showcase_count">) {
@@ -436,7 +438,7 @@ function MobileDetailRow({
 }
 
 export function VaultMobileViews(props: VaultMobileCommonProps) {
-  const { items, mode } = props;
+  const { items, mode, gridColumns } = props;
 
   if (mode === "compact") {
     return (
@@ -459,7 +461,11 @@ export function VaultMobileViews(props: VaultMobileCommonProps) {
   }
 
   return (
-    <div className="grid grid-cols-2 gap-3 md:hidden">
+    <div
+      className="gv-vault-mobile-grid grid gap-[9px] md:hidden"
+      data-vault-grid-columns={gridColumns}
+      style={{ gridTemplateColumns: `repeat(${Number(gridColumns)}, minmax(0, 1fr))` }}
+    >
       {items.map((item) => (
         <VaultLongPressTarget key={item.id} cardPrintId={item.card_id}><MobileGridCard item={item} returnPath={props.returnPath} /></VaultLongPressTarget>
       ))}
