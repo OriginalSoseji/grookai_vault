@@ -1,0 +1,92 @@
+{
+  "package_id": "NEW-POKEMON-SET-RELEASE-INGESTION-V1",
+  "playbook": "NEW_POKEMON_SET_RELEASE_INGESTION_PLAYBOOK_V1",
+  "release_slug": "20261114_delta_reign",
+  "generated_at": "2026-11-14T15:59:50.187Z",
+  "mode": "dry-run",
+  "manifest_path": "data\\set_ingest\\20261114_delta_reign_new_set_v1.json",
+  "source_snapshot_dir": "docs\\audits\\new_set_release_ingestion_v1\\20261114_delta_reign\\raw_sources",
+  "summary_json": "docs\\audits\\new_set_release_ingestion_v1\\20261114_delta_reign\\summary_v1.json",
+  "sets": [
+    {
+      "target_key": "delta_reign_en",
+      "name": "Delta Reign",
+      "language": "en",
+      "canonical_set_code": "me06",
+      "acquired_rows": null,
+      "db_applied": false,
+      "readback": null,
+      "status": "pending_source"
+    }
+  ],
+  "phases": {
+    "validation": {
+      "findings": []
+    },
+    "printing_preflight": [],
+    "tcgdex_discovery": [
+      {
+        "set_key": "delta_reign_en",
+        "lang": "en",
+        "configured_id": "me06",
+        "available": true,
+        "matched_id": "me06",
+        "matched_name": "Delta Reign",
+        "count": {
+          "firstEd": 0,
+          "holo": 0,
+          "normal": 0,
+          "official": 103,
+          "reverse": 0,
+          "total": 141
+        },
+        "findings": [],
+        "probe_url": "https://api.tcgdex.net/v2/en/sets/me06",
+        "status": 200
+      }
+    ],
+    "acquisitions": [],
+    "master_indexes": [
+      {
+        "set_key": "delta_reign_en",
+        "applied": false,
+        "active_path": "docs\\audits\\verified_master_set_index_v1\\english_master_index_v1\\english_master_index_sets_v1.json",
+        "preview_path": "docs\\audits\\new_set_release_ingestion_v1\\20261114_delta_reign\\english_master_index_sets_v1.preview.json",
+        "existing": true
+      }
+    ],
+    "db_apply": [
+      {
+        "set_key": "delta_reign_en",
+        "applied": false,
+        "dry_run": true
+      }
+    ],
+    "readbacks": [
+      {
+        "set_key": "delta_reign_en",
+        "row": null,
+        "printing_readiness": null
+      }
+    ],
+    "tests": [
+      {
+        "command": "node --test tests/contracts/new_pokemon_set_release_ingestion_playbook_v1.test.mjs",
+        "code": 0,
+        "stdout_tail": " set release playbook remains the standing ingestion contract\n  ---\n  duration_ms: 0.4832\n  type: 'test'\n  ...\n# Subtest: Abyss Eye and Pitch Black release manifest has identity guards\nok 2 - Abyss Eye and Pitch Black release manifest has identity guards\n  ---\n  duration_ms: 0.4869\n  type: 'test'\n  ...\n# Subtest: runner exposes manifest-backed one-command workflow\nok 3 - runner exposes manifest-backed one-command workflow\n  ---\n  duration_ms: 0.118\n  type: 'test'\n  ...\n# Subtest: Abyss Eye selected image artifact has no Pitch Black or placeholder images\nok 4 - Abyss Eye selected image artifact has no Pitch Black or placeholder images\n  ---\n  duration_ms: 0.2596\n  type: 'test'\n  ...\n# Subtest: Delta Reign intake is source-bound and parent-identity only\nok 5 - Delta Reign intake is source-bound and parent-identity only\n  ---\n  duration_ms: 0.0994\n  type: 'test'\n  ...\n# Subtest: Delta Reign master-index preview preserves stronger existing source evidence\nok 6 - Delta Reign master-index preview preserves stronger existing source evidence\n  ---\n  duration_ms: 0.1838\n  type: 'test'\n  ...\n1..6\n# tests 6\n# suites 0\n# pass 6\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 129.025\n",
+        "stderr_tail": ""
+      }
+    ]
+  },
+  "stop_findings": [],
+  "status": "identity_only_printings_pending",
+  "release_scope": "identity_only",
+  "collector_ready": false,
+  "printing_follow_up": [
+    {
+      "set_code": "me06",
+      "unresolved_variants": [],
+      "status": "printing_review_required"
+    }
+  ]
+}

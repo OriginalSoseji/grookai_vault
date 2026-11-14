@@ -701,34 +701,64 @@ async function runCommand(command, args, envPatch = {}) {
 async function updateEnglishMasterIndex(set, outDir, apply) {
   const index = await readJson(ENGLISH_MASTER_INDEX);
   const existingIndex = (index.sets ?? []).findIndex((row) => row.key === set.canonical_set_code);
+  const existingEntry = existingIndex >= 0 ? index.sets[existingIndex] : {};
+  const tcgdexId = set.source_ids?.tcgdex ?? null;
+  const pokemonTcgId = set.source_ids?.pokemontcg_api ?? set.source_ids?.pokemontcg ?? null;
+  const officialId = set.source_ids?.pokemon_official ?? null;
+  const bulbapediaId = set.source_ids?.bulbapedia ?? null;
+  const preserveAvailableStatus = (current, proposed) =>
+    current === 'available' ? current : (proposed ?? current ?? 'unavailable');
   const entry = {
     key: set.canonical_set_code,
     set_name: set.name,
-    pokemontcg: null,
-    tcgdex: set.source_ids?.tcgdex ?? null,
-    manual_aliases: [],
-    release_date: set.release_date,
+    pokemontcg: pokemonTcgId ?? existingEntry.pokemontcg ?? null,
+    tcgdex: tcgdexId ?? existingEntry.tcgdex ?? null,
+    manual_aliases: existingEntry.manual_aliases ?? [],
+    release_date: existingEntry.release_date ?? set.release_date,
     source_aliases: {
-      pokemontcg_api: null,
-      tcgdex: set.source_ids?.tcgdex ?? null,
-      official_pokemon_checklist: set.source_ids?.pokemon_official ?? null,
-      bulbapedia: 'Pitch_Black_(TCG)',
-      bulbapedia_set_list: 'Pitch_Black_(TCG)',
+      ...(existingEntry.source_aliases ?? {}),
+      ...(pokemonTcgId && !existingEntry.source_aliases?.pokemontcg_api
+        ? { pokemontcg_api: pokemonTcgId }
+        : {}),
+      ...(tcgdexId && !existingEntry.source_aliases?.tcgdex
+        ? { tcgdex: tcgdexId }
+        : {}),
+      ...(officialId && !existingEntry.source_aliases?.official_pokemon_checklist
+        ? { official_pokemon_checklist: officialId }
+        : {}),
+      ...(bulbapediaId && !existingEntry.source_aliases?.bulbapedia
+        ? { bulbapedia: bulbapediaId, bulbapedia_set_list: bulbapediaId }
+        : {}),
     },
     source_status: {
-      pokemontcg_api: 'unavailable',
-      tcgdex: set.source_ids?.tcgdex ? 'candidate_url' : 'unavailable',
-      official_pokemon_checklist: 'candidate_url',
-      bulbapedia: 'candidate_url',
-      bulbapedia_set_list: 'candidate_url',
+      ...(existingEntry.source_status ?? {}),
+      ...(pokemonTcgId
+        ? { pokemontcg_api: preserveAvailableStatus(existingEntry.source_status?.pokemontcg_api, 'candidate_url') }
+        : {}),
+      ...(tcgdexId
+        ? { tcgdex: preserveAvailableStatus(existingEntry.source_status?.tcgdex, 'candidate_url') }
+        : {}),
+      ...(officialId
+        ? { official_pokemon_checklist: preserveAvailableStatus(existingEntry.source_status?.official_pokemon_checklist, 'candidate_url') }
+        : {}),
+      ...(bulbapediaId
+        ? {
+            bulbapedia: preserveAvailableStatus(existingEntry.source_status?.bulbapedia, 'candidate_url'),
+            bulbapedia_set_list: preserveAvailableStatus(existingEntry.source_status?.bulbapedia_set_list, 'candidate_url'),
+          }
+        : {}),
     },
     source_totals: {
-      pokemontcg_api: { printed_total: null, total: null },
-      tcgdex: { official: null, total: null },
-      official_pokemon_checklist: {
-        official: set.expected_counts?.official ?? null,
-        total: set.expected_counts?.total ?? null,
-      },
+      ...(existingEntry.source_totals ?? {}),
+      ...(tcgdexId
+        ? {
+            tcgdex: {
+              ...(existingEntry.source_totals?.tcgdex ?? {}),
+              official: set.expected_counts?.official ?? existingEntry.source_totals?.tcgdex?.official ?? null,
+              total: set.expected_counts?.total ?? existingEntry.source_totals?.tcgdex?.total ?? null,
+            },
+          }
+        : {}),
     },
     new_set_release_ingestion_v1: {
       package_id: PACKAGE_ID,
