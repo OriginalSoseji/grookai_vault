@@ -215,22 +215,37 @@ function tarOctal(header, offset, length) {
   return value ? Number.parseInt(value, 8) : 0;
 }
 
-async function verifyRawArchive(outputPath, expected) {
+export async function verifyRawArchive(outputPath, expected) {
   const compressed = await fs.readFile(outputPath);
+  return verifyRawArchiveBytes(compressed, expected, outputPath);
+}
+
+export function verifyRawArchiveBytes(compressed, expected, outputPath = 'archive') {
   if (sha256(compressed) !== expected.archive_sha256) {
     throw new Error(`Raw archive hash mismatch: ${outputPath}`);
   }
   const tar = zlib.gunzipSync(compressed);
   const entries = [];
+  const names = new Set();
   let offset = 0;
+  let ended = false;
   while (offset + 512 <= tar.byteLength) {
     const header = tar.subarray(offset, offset + 512);
-    if (header.every((value) => value === 0)) break;
+    if (header.every((value) => value === 0)) {
+      ended = true;
+      break;
+    }
     const name = tarText(header, 0, 100);
     const prefix = tarText(header, 345, 155);
     const entryPath = prefix ? `${prefix}/${name}` : name;
     const size = tarOctal(header, 124, 12);
     const bodyStart = offset + 512;
+    if (!entryPath || names.has(entryPath) || !Number.isSafeInteger(size)
+      || size < 0 || bodyStart + size > tar.byteLength
+      || ![0, 48].includes(header[156])) {
+      throw new Error(`Invalid or duplicate raw archive entry: ${entryPath}`);
+    }
+    names.add(entryPath);
     const body = tar.subarray(bodyStart, bodyStart + size);
     entries.push({
       entry_path: entryPath,
@@ -240,7 +255,7 @@ async function verifyRawArchive(outputPath, expected) {
     offset = bodyStart + size + ((512 - (size % 512)) % 512);
   }
   if (
-    contentFingerprint(entries)
+    !ended || contentFingerprint(entries)
     !== expected.entry_manifest_fingerprint_sha256
   ) {
     throw new Error(`Raw archive entry proof mismatch: ${outputPath}`);

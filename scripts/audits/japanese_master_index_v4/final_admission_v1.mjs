@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { requiresJapaneseComponentReconciliation } from './card_assertion_contract_v1.mjs';
+import { verifyAdmissionSourceReceiptsV1 } from './admission_receipt_verification_v1.mjs';
 
 import {
   loadVerifiedDatasetFromManifest,
@@ -16,7 +17,7 @@ import {
 } from './deterministic_artifact_v1.mjs';
 
 export const FINAL_ADMISSION_VERSION =
-  'JPN-MASTER-INDEX-FINAL-ADMISSION-V2';
+  'JPN-MASTER-INDEX-FINAL-ADMISSION-V5';
 
 const DEFAULT_CANDIDATE_MANIFEST =
   'docs/audits/japanese_master_index_v4/index/'
@@ -283,16 +284,35 @@ function sourceFamily(value) {
   return SOURCE_FAMILY_ALIASES.get(normalized) ?? null;
 }
 
+function hasCapturedSourceReceipt(assertion) {
+  return Boolean(assertion?.source_url && assertion?.raw_snapshot_ref &&
+    /^[a-f0-9]{64}$/.test(String(assertion?.raw_snapshot_sha256 ?? '')));
+}
+
+function receiptSourceFamily(assertion) {
+  if (!hasCapturedSourceReceipt(assertion)) return null;
+  const idFamily = sourceFamily(assertion.source_id);
+  const declaredFamily = sourceFamily(assertion.source_family);
+  if (idFamily && declaredFamily && idFamily !== declaredFamily) return null;
+  const family = idFamily ?? declaredFamily;
+  if (family === OFFICIAL_FAMILY) {
+    try {
+      if (new URL(assertion.source_url).origin !== 'https://www.pokemon-card.com') return null;
+    } catch { return null; }
+  }
+  return family;
+}
+
 function sourceFamiliesForCandidate(candidate, assertionByKey) {
-  return unique([
-    ...(candidate.source_ids ?? []).map(sourceFamily),
-    ...(candidate.assertion_keys ?? []).map(
-      (key) => sourceFamily(assertionByKey.get(key)?.source_id),
-    ),
-    ...(candidate.assertion_keys ?? []).map(
-      (key) => sourceFamily(assertionByKey.get(key)?.source_family),
-    ),
-  ]);
+  // Historical source labels retain provenance, but they do not establish
+  // independent source assertions or an official printed-name observation.
+  return unique((candidate.assertion_keys ?? [])
+    .map((key) => assertionByKey.get(key))
+    .filter(Boolean)
+    .map((row) => {
+      const family = receiptSourceFamily(row);
+      return family === OFFICIAL_FAMILY && !hasJapaneseScript(row.printed_name) ? null : family;
+    }));
 }
 
 function hasJapaneseScript(value) {
@@ -628,10 +648,23 @@ function cardResolutionRows({
     const japaneseNameKeys = unique(
       japaneseNames.map(printedNameEquivalenceKey),
     );
+    const sourceNameKeys = unique(assertions.filter(hasCapturedSourceReceipt)
+      .map((row) => normalizedText(row.printed_name)).filter(hasJapaneseScript)
+      .map(printedNameEquivalenceKey));
+    const supportedNameKeys = unique(assertions.filter((row) => receiptSourceFamily(row))
+      .map((row) => normalizedText(row.printed_name)).filter(hasJapaneseScript)
+      .map(printedNameEquivalenceKey));
+    // A family that only reports a coordinate or an English label does not,
+    // by itself, corroborate this Japanese printed name. Keep it as evidence,
+    // but require explicit support from two families for non-official cards.
+    const japaneseNameFamilies = japaneseNameKeys.length === 1
+      ? unique(assertions.filter((row) => hasJapaneseScript(row.printed_name)
+        && printedNameEquivalenceKey(row.printed_name) === japaneseNameKeys[0])
+        .map(receiptSourceFamily))
+      : [];
     const officialJapaneseNames = unique(
       assertions
-        .filter((row) => sourceFamily(row.source_id) === OFFICIAL_FAMILY
-          || sourceFamily(row.source_family) === OFFICIAL_FAMILY)
+        .filter((row) => receiptSourceFamily(row) === OFFICIAL_FAMILY)
         .map((row) => normalizedText(row.printed_name))
         .filter(hasJapaneseScript),
     );
@@ -699,6 +732,10 @@ function cardResolutionRows({
           ? 'japanese_printed_name_missing'
           : 'japanese_printed_name_conflicting',
       );
+    } else if (sourceNameKeys.some((key) => key !== japaneseNameKeys[0])) {
+      reasons.push('japanese_printed_name_conflicting');
+    } else if (!supportedNameKeys.includes(japaneseNameKeys[0])) {
+      reasons.push('japanese_printed_name_source_missing');
     }
     if (hardConflict) reasons.push('unresolved_exact_identity_collision');
     if (candidate.promotion_status === 'review_required') {
@@ -716,15 +753,22 @@ function cardResolutionRows({
           : 'human_readable_source_requirement_not_met',
       );
     }
+    if (!hasOfficial && families.length >= 2 && japaneseNameFamilies.length < 2) {
+      reasons.push('independent_japanese_printed_name_support_missing');
+    } else if (!hasOfficial && japaneseNameFamilies.length >= 2
+      && !japaneseNameFamilies.some((family) => HUMAN_READABLE_FAMILIES.has(family))) {
+      reasons.push('human_readable_japanese_name_support_missing');
+    }
     if (family.status === 'blocked') {
       reasons.push(family.reason);
     }
     if (disposition !== 'adjudicated_excluded' && reasons.length > 0) {
       disposition = 'blocked';
     }
-    const evidenceStatus = hasOfficial
+    const evidenceStatus = hasOfficial && japaneseNameFamilies.includes(OFFICIAL_FAMILY)
       ? 'official_identity_supported'
-      : families.length >= 2 && hasHumanReadable
+      : japaneseNameFamilies.length >= 2
+        && japaneseNameFamilies.some((family) => HUMAN_READABLE_FAMILIES.has(family))
         ? 'multi_source_identity_supported'
         : families.length === 1
           ? 'single_source_only'
@@ -778,6 +822,7 @@ function cardResolutionRows({
       source_ids: unique(candidate.source_ids ?? []),
       independent_source_families: families,
       independent_source_count: families.length,
+      japanese_name_source_families: japaneseNameFamilies,
       human_readable_source_present: hasHumanReadable,
       official_source_present: hasOfficial,
       evidence_status: evidenceStatus,
@@ -877,11 +922,9 @@ function printingFactRows({
         .map((assertion) => assertion.assertion_key);
     const evidenceAssertions = unique(explicitKeys)
       .map((key) => assertionByKey.get(key))
-      .filter(Boolean);
-    const families = unique(evidenceAssertions.flatMap((row) => [
-      sourceFamily(row.source_id),
-      sourceFamily(row.source_family),
-    ]));
+      .filter((row) => receiptSourceFamily(row) &&
+        (row.finish_labels ?? []).map(normalizedFinish).includes(finish));
+    const families = unique(evidenceAssertions.map(receiptSourceFamily));
     const hasHumanReadable = families.some(
       (family) => HUMAN_READABLE_FAMILIES.has(family),
     );
@@ -903,7 +946,7 @@ function printingFactRows({
       printing_fact_key: printing.printing_candidate_key,
       parent_jpn_card_identity_key: printing.identity_candidate_key,
       canonical_finish_key: finish || null,
-      exact_source_assertion_keys: unique(explicitKeys),
+      exact_source_assertion_keys: unique(evidenceAssertions.map((row) => row.assertion_key)),
       independent_source_families: families,
       independent_source_count: families.length,
       human_readable_source_present: hasHumanReadable,
@@ -1440,6 +1483,53 @@ export function buildFinalAdmission({
   };
 }
 
+// A stricter audit can identify historically weak identities, but it must not
+// silently remove them from the published index. A separate reviewed repair
+// must reconcile each missing key before the published artifact is replaced.
+function assertPublishedRowsPreserved(previousRows, nextRows, field, label) {
+  const keys = (rows, label) => {
+    if (!Array.isArray(rows)) throw new Error(`Published ${field} preservation: ${label} rows missing`);
+    const result = rows.map((row) => String(row?.[field] ?? '').trim());
+    if (result.some((key) => !key) || new Set(result).size !== result.length) {
+      throw new Error(`Published ${field} preservation: invalid or duplicate ${label} identity key`);
+    }
+    return result;
+  };
+  const previous = keys(previousRows, 'prior'), next = new Set(keys(nextRows, 'next'));
+  const missing = previous.filter((key) => !next.has(key));
+  if (missing.length) throw new Error(`Published ${field} preservation: ${missing.length} prior ${label} would be removed; reconcile in a separate reviewed repair`);
+}
+
+export function assertPublishedIdentityPreservationV1(previousRows, nextRows) {
+  assertPublishedRowsPreserved(previousRows, nextRows, 'jpn_card_identity_key', 'identities');
+}
+
+export function assertPublishedPrintingPreservationV1(previousRows, nextRows) {
+  assertPublishedRowsPreserved(previousRows, nextRows, 'printing_fact_key', 'printings');
+}
+
+export async function loadPublishedRowsV1(descriptorName, key, packageId) {
+  const descriptorPath = path.join(DEFAULT_OUTPUT_ROOT, descriptorName);
+  const { artifact } = await readVerifiedArtifact(descriptorPath, {
+    expectedPackageId: packageId,
+  });
+  const descriptor = artifact.content?.dataset;
+  if (descriptor?.dataset_key !== key || !Array.isArray(descriptor.shard_paths) ||
+      descriptor.shard_paths.length !== descriptor.shard_count) throw new Error('Published identity descriptor invalid');
+  const rows = [];
+  for (const [index, shardPath] of descriptor.shard_paths.entries()) {
+    const { artifact: shard } = await readVerifiedArtifact(shardPath);
+    if (shard.content?.dataset_key !== key || shard.content?.shard_index !== index + 1 ||
+        shard.content?.shard_count !== descriptor.shard_count || !Array.isArray(shard.content?.rows) ||
+        shard.content.row_count !== shard.content.rows.length) throw new Error('Published identity shard invalid');
+    rows.push(...shard.content.rows);
+  }
+  if (rows.length !== descriptor.row_count || contentFingerprint(rows) !== descriptor.content_fingerprint_sha256) {
+    throw new Error('Published identity dataset fingerprint mismatch');
+  }
+  return rows;
+}
+
 async function ensureOutputPathSafe(outputRoot) {
   const repoRoot = path.resolve(process.cwd());
   const absolute = path.resolve(outputRoot);
@@ -1559,6 +1649,7 @@ export async function runFinalAdmission(options = {}) {
   ]);
 
   const sourceAssertions = [];
+  const assertionsByLane = new Map();
   const sourceArtifactFingerprints = [];
   for (const spec of SOURCE_ARTIFACTS) {
     const record = await readVerifiedArtifact(spec.path, {
@@ -1579,6 +1670,7 @@ export async function runFinalAdmission(options = {}) {
       );
     }
     sourceAssertions.push(...assertions);
+    assertionsByLane.set(spec.laneId, assertions);
     sourceArtifactFingerprints.push({
       lane_id: spec.laneId,
       path: spec.path,
@@ -1594,6 +1686,7 @@ export async function runFinalAdmission(options = {}) {
   ) {
     throw new Error('Fresh source assertion count drift');
   }
+  await verifyAdmissionSourceReceiptsV1(assertionsByLane);
 
   const futureRegistryKeys = new Set(
     (futureQueueRecord.artifact.content.work_items ?? [])
@@ -1623,6 +1716,27 @@ export async function runFinalAdmission(options = {}) {
       .filter(([, passed]) => !passed)
       .map(([key]) => key);
     throw new Error(`Static admission checks failed: ${failed.join(', ')}`);
+  }
+
+  const samePath = (left, right) => process.platform === 'win32'
+    ? left.toLowerCase() === right.toLowerCase() : left === right;
+  const publishedRoot = await fs.realpath(DEFAULT_OUTPUT_ROOT).catch((error) => {
+    if (error.code === 'ENOENT') return path.resolve(DEFAULT_OUTPUT_ROOT);
+    throw error;
+  });
+  const outputRoot = await fs.realpath(resolved.outputRoot).catch((error) => {
+    if (error.code === 'ENOENT') return path.resolve(resolved.outputRoot);
+    throw error;
+  });
+  if (samePath(outputRoot, publishedRoot)) {
+    assertPublishedIdentityPreservationV1(
+      await loadPublishedRowsV1('jpn_master_admissible_cards_v1.json', 'master_admissible_card_rows_v1', 'JPN-MASTER-ADMISSIBLE-CARD-ROWS-SHARD-V1-DESCRIPTOR'),
+      result.datasets.master_admissible_card_rows_v1,
+    );
+    assertPublishedPrintingPreservationV1(
+      await loadPublishedRowsV1('jpn_master_admissible_printings_v1.json', 'master_admissible_printing_rows_v1', 'JPN-MASTER-ADMISSIBLE-PRINTING-ROWS-SHARD-V1-DESCRIPTOR'),
+      result.datasets.master_admissible_printing_rows_v1,
+    );
   }
 
   const retrieval = {

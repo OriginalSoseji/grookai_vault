@@ -4477,6 +4477,24 @@ the reviewed child printing, source mapping and image workflows.
 GitHub Actions runs `scripts/agents/japanese_master_index_continuous_verification_agent_v1.mjs` every 15 minutes from `main` through `.github/workflows/japanese-master-index-continuous-verification.yml`. The worker performs a fresh read-only database baseline, harvests the governed Japanese source lanes, packages fresh assertion evidence into the compressed inputs used by the downstream union and adjudication steps, and emits Ruflo-compatible progress events to `docs/audits/ruflo_notifications/progress.jsonl`.
 
 The worker is fail-closed: it never writes production or promotion tables. A database outage produces a deferred evidence-only result; a source timeout is bounded and recorded, and the per-source cursor in `docs/audits/japanese_master_index_v4/continuous_verification/container_cursors_v1.json` rotates the next batch of containers on the following run. Review the uploaded workflow artifacts before any separately authorized promotion.
+
+When the candidate-union preservation guard is present, a rebuild targeting
+the canonical `docs/audits/japanese_master_index_v4/index` directory must first
+verify the retained final card and printing descriptors and preserve every
+published key and printing's parent identity in the new candidate rows. If the guard reports missing keys or changed printing ownership,
+stop the canonical rebuild and use a separate review output directory while
+reconciling the identities and their source, printing and family dependencies.
+A review output does not authorize publication, deletion, database writes or
+reassigning evidence. Never bypass the guard or discard prior keys to force a
+rebuild.
+
+The continuous verifier may request a separate candidate shadow when published
+keys would be lost. In that case it writes coverage there, records
+`published_candidate_keys_require_reconciliation`, and defers strict admission
+and finalization; it must not treat a complete shadow as a publishable result.
+Malformed descriptors and other errors remain fatal rather than selecting the
+shadow. This route is a code candidate until merged and verified by the normal
+scheduled workflow; do not dispatch discovery merely to test it.
 ## Pokemon Countdown Calendar rollback rehearsal — October 27, 2026
 
 Use the manual GitHub Actions workflow `Pokemon Countdown Calendar Rollback
@@ -4774,6 +4792,51 @@ requests take priority over new card focus. Missing payment creation facts requi
 review; payments predating allocation cannot archive its physical copy. Independent
 updated-refund polling recovers late/missed refund signals without relying on an
 old order update or automatically putting the physical card back into stock.
+
+### Japanese incremental printed-name gate
+
+The Japanese incremental Master Index refresh checks each new coordinate and
+printed name against independently fetched official card-detail pages. The
+discovery output and admitted rows retain original bodies and SHA-256 hashes;
+the builder reparses them, checks the official host, final URL, set and number,
+and requires one unambiguous matching Japanese name. Missing, failed, capped or
+conflicting evidence blocks the whole new set delta with
+`official_printed_name_missing_or_conflicting:<coordinate>`. Existing base and
+overlay rows are preserved; this gate does not certify or repair them.
+
+Official detail requests are bounded by the discovery `maxDetailFetches` limit.
+When that limit or source availability prevents evidence collection, retain the
+held result and recover the original source evidence; do not copy the TCGdex name
+or treat a matching number as a name match. A previously captured overlay is not
+evidence of independent agreement.
+
+When a parsed Japanese full checklist has fewer rows than the independently
+observed numbered base checklist, or disagrees with the TCGdex full count,
+discovery fails its integrity gate and reports the counts. Investigate and
+reacquire the source before attempting admission; do not turn either case into
+an empty set. Official detail HTTP 401/403 remains a source-lane access denial.
+
+The Japanese checklist parser preserves alphabetic printed labels only from an
+explicit Japanese table that also contains the expected numbered checklist.
+For M6a, the three RGB labels and eight Energy labels reconcile the independent
+176-card coordinate lists. This does not prove printed Japanese names or exact
+finishes; missing official identity still holds the entire incremental delta.
+
+Official evidence enrichment of an existing Japanese identity requires the
+manufacturer's printed name, numeric coordinate and set to agree with the
+existing identity's source name, coordinate and set. If the identity carries
+Japanese-name candidates, they must resolve to the same single name. A missing
+or conflicting name is held for identity review; a matching coordinate alone
+must not attach the official assertion to an existing parent.
+
+The Japanese V4 final admission stage preserves historical source labels but
+does not count them as independent corroboration without a corresponding
+captured source assertion. It requires explicit finish assertions for printing
+support and holds conflicting Japanese names. Before replacing the published
+V4 index, it verifies the existing card and printing descriptors and fails if
+any prior identity or printing key would disappear. Run stricter reviews to a
+separate output directory and reconcile held rows; do not treat an unreviewed
+drop in count as catalog cleanup.
 
 ## MTG TCGPlayer qualifier mapping release V1 — November 13, 2026
 

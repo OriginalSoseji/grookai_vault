@@ -11,6 +11,7 @@ import { gzipSync } from 'node:zlib';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import process from 'node:process';
+import { planJapaneseCandidateContinuationV1, resolveJapaneseCandidateManifestV1, validateJapaneseCandidateManifestV1 } from './japanese_master_index_candidate_route_v1.mjs';
 
 const ROOT = process.cwd();
 const DEFAULT_SOURCES = [
@@ -66,6 +67,16 @@ function run(command, args) {
     env: process.env,
   });
   emit({ status: 'completed', step: command });
+}
+
+function runCapture(command, args) {
+  emit({ status: 'started', step: command });
+  const output = execFileSync(process.execPath, ['--use-system-ca', ...args], {
+    cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'inherit'], maxBuffer: 4 * 1024 * 1024, env: process.env,
+  });
+  const result = JSON.parse(output);
+  emit({ status: 'completed', step: command });
+  return result;
 }
 
 function readCursors() {
@@ -147,19 +158,27 @@ try {
     }
     writeCursor(source, offset + 10);
   }
-  run('candidate_union', [
+  const candidateShadowRoot = path.join('docs', 'audits', 'japanese_master_index_v4', 'continuous_verification', 'candidate_shadow');
+  const candidateResult = runCapture('candidate_union', [
     'scripts/audits/japanese_master_index_v4/candidate_union_v1.mjs',
     '--allow-incomplete-sources',
+    `--preservation-shadow-root=${candidateShadowRoot}`,
   ]);
+  const { indexRoot: candidateIndexRoot, manifestPath: expectedManifest } = resolveJapaneseCandidateManifestV1(ROOT, candidateResult);
   const candidateManifest = JSON.parse(readFileSync(
-    path.join(ROOT, 'docs', 'audits', 'japanese_master_index_v4', 'index', 'candidate_union_manifest_v1.json'),
+    expectedManifest,
     'utf8',
   ));
-  const unionComplete = candidateManifest.content?.status === 'complete';
+  const continuation = planJapaneseCandidateContinuationV1({
+    preservationDeferred: candidateResult.preservation_deferred,
+    unionStatus: validateJapaneseCandidateManifestV1(candidateManifest, candidateResult),
+    liveBaselineAvailable,
+  });
   run('coverage', [
     'scripts/audits/japanese_master_index_v4/coverage_gap_report_v1.mjs',
+    `--index-root=${candidateIndexRoot}`,
   ]);
-  if (unionComplete) {
+  if (continuation.runStrictAdmission) {
     run('strict_admission', [
       'scripts/audits/japanese_master_index_v4/final_admission_v1.mjs',
     ]);
@@ -170,9 +189,9 @@ try {
       'scripts/audits/japanese_master_index_v4/promotion_package_v1.mjs',
     ]);
   } else {
-    emit({ status: 'deferred', step: 'strict_admission', reason: 'waiting_for_complete_accumulated_source_set' });
+    emit({ status: 'deferred', step: 'strict_admission', reason: continuation.deferredReason });
   }
-  if (liveBaselineAvailable && unionComplete) {
+  if (continuation.runFinalize) {
     run('finalize_no_write', [
       'scripts/audits/japanese_master_index_v4/finalize_v1.mjs',
       `--live-recheck-root=${liveRecheckRoot}`,
@@ -181,7 +200,7 @@ try {
     emit({
       status: 'deferred',
       step: 'finalize_no_write',
-      reason: 'waiting_for_live_read_only_baseline',
+      reason: continuation.deferredReason,
     });
   }
 
@@ -189,15 +208,16 @@ try {
     package_id: 'JPN-MASTER-INDEX-CONTINUOUS-VERIFICATION-AGENT-V1',
     generated_at: new Date().toISOString(),
     sources: SOURCES,
-    status: liveBaselineAvailable && unionComplete
-      ? 'completed_no_write'
-      : 'completed_evidence_only_waiting_for_complete_source_set',
+    status: continuation.reportStatus,
     proof_policy: 'two_independent_verified_proofs_required_before_promotion',
     production_writes: false,
     promotion_writes: false,
     next_run_required: true,
     live_baseline_available: liveBaselineAvailable,
-    union_complete: unionComplete,
+    union_complete: continuation.unionComplete,
+    candidate_preservation_deferred: candidateResult.preservation_deferred,
+    candidate_preservation_reason: candidateResult.preservation_reason,
+    candidate_manifest: candidateResult.manifest_path,
   };
   const output = path.join(REPORT_DIR, 'latest_progress_v1.json');
   writeFileSync(output, `${JSON.stringify(report, null, 2)}\n`);

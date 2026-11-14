@@ -48,7 +48,9 @@ jobs:
             tests/contracts/english_pokemon_master_index_refresh_v1.test.mjs \
             tests/contracts/pokemon_language_master_index_v1.test.mjs \
             tests/contracts/pokemon_language_anomaly_evidence_v1.test.mjs \
-            tests/contracts/japanese_pokemon_master_index_incremental_v1.test.mjs
+            tests/contracts/japanese_pokemon_master_index_incremental_v1.test.mjs \
+            tests/contracts/japanese_official_identity_evidence_v1.test.mjs \
+            tests/contracts/japanese_master_index_v4_card_harvest.test.mjs
 
       - name: Initialize refresh evidence
         shell: bash
@@ -182,6 +184,8 @@ jobs:
             tests/contracts/english_pokemon_master_index_refresh_v1.test.mjs \
             tests/contracts/pokemon_language_master_index_v1.test.mjs \
             tests/contracts/japanese_pokemon_master_index_incremental_v1.test.mjs \
+            tests/contracts/japanese_official_identity_evidence_v1.test.mjs \
+            tests/contracts/japanese_master_index_v4_card_harvest.test.mjs \
             tests/contracts/english_pokemon_incremental_promotion_v1.test.mjs \
             tests/contracts/universal_catalog_discovery_v1.test.mjs
           git diff --check
@@ -213,6 +217,8 @@ jobs:
             tests/contracts/english_pokemon_master_index_refresh_v1.test.mjs \
             tests/contracts/pokemon_language_master_index_v1.test.mjs \
             tests/contracts/japanese_pokemon_master_index_incremental_v1.test.mjs \
+            tests/contracts/japanese_official_identity_evidence_v1.test.mjs \
+            tests/contracts/japanese_master_index_v4_card_harvest.test.mjs \
             tests/contracts/universal_catalog_discovery_v1.test.mjs
           git push origin "HEAD:$BRANCH"
           echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"

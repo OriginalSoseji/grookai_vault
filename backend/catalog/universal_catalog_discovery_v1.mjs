@@ -3,6 +3,34 @@ import crypto from "node:crypto";
 export const UNIVERSAL_CATALOG_DISCOVERY_VERSION =
   "UNIVERSAL_CATALOG_DISCOVERY_V1";
 
+// Accept the normalized official adapter shape; the upstream search payload's
+// raw cardName* fields are handled by that adapter, not guessed here.
+export function projectOfficialJapaneseProductCardV1(card) {
+  const clean = (value) => String(value ?? "").trim();
+  return {
+    source_external_id: clean(card?.card_id),
+    printed_name_ja: clean(card?.printed_name) || null,
+    image_url: clean(card?.image_url) || null,
+  };
+}
+
+// Parsed partial or disagreeing checklists are integrity failures, not an
+// optional source outage or a complete set with fewer cards.
+export function assertJapaneseFullChecklistAgreementV1(fullChecklist, numberedChecklist, tcgdexCount, setCode) {
+  if (!fullChecklist) return;
+  const observed = fullChecklist?.cards?.length;
+  if (!Array.isArray(fullChecklist.cards) || observed === 0) {
+    throw new Error(`Japanese set ${setCode} incomplete checklist: Bulbapedia has no cards`);
+  }
+  const base = Number(numberedChecklist?.set?.card_count);
+  if (Number.isSafeInteger(observed) && Number.isSafeInteger(base) && base > 0 && observed < base) {
+    throw new Error(`Japanese set ${setCode} incomplete checklist: Bulbapedia=${observed}, numbered base=${base}`);
+  }
+  if (tcgdexCount !== null && observed !== tcgdexCount) {
+    throw new Error(`Japanese set ${setCode} full-checklist disagreement: TCGdex=${tcgdexCount}, Bulbapedia=${observed}`);
+  }
+}
+
 export function classifyCatalogSourceTransportFailureV1(error) {
   const status = error?.httpStatus;
   if (status === 401 || status === 403) return "SOURCE_ACCESS_DENIED";
@@ -16,6 +44,8 @@ export function classifyCatalogSourceTransportFailureV1(error) {
 }
 
 export function isOptionalCatalogSourceFallbackV1(error) {
+  if (error?.catalogSourceFailureClass === "SOURCE_ACCESS_DENIED" ||
+      error?.httpStatus === 401 || error?.httpStatus === 403) return false;
   return error?.catalogSourceFailureClass === "SOURCE_UNAVAILABLE" ||
     error?.httpStatus === 404;
 }
