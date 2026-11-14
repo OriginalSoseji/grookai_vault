@@ -251,6 +251,42 @@ export class SquareCommerceService {
    return this.rpc('release_stock',{...context,targetId,...input});
   });
  }
+ async prepareVaultRemoval(ownerId,instanceId){
+  uuid(ownerId);uuid(instanceId);
+  const scope=await this.rpc('vault_removal_context',{ownerId,instanceId});
+  if(scope?.instanceId!==instanceId||typeof scope.gvvi!=='string'||!Array.isArray(scope.claims)||scope.claims.length>1)fail('square_removal_unconfirmed');
+  if(scope.archived)fail('square_copy_already_archived');
+  if(!scope.claims.length)return {status:'ready_to_archive',instanceId,gvvi:scope.gvvi};
+  const {connectionId,targetId}=scope.claims[0];uuid(connectionId);uuid(targetId);
+  const runId=randomUUID();
+  await this.rpc('commerce_run_start',{ownerId,connectionId,runId});
+  let result;
+  try{
+   // Withdrawal records stock evidence. It never asserts possession or makes
+   // this copy available for resale. Archive remains an authenticated owner RPC.
+   await this.withdraw(ownerId,connectionId,targetId);
+   await this.reconcile(ownerId,connectionId);
+   result=await this.catalog.withConnection(ownerId,connectionId,async({connection,context,client})=>{
+    const state=await this.rpc('allocation',{...context,targetId});
+    if(state?.target?.instance_id!==instanceId||state.target.id!==targetId)fail('square_removal_unconfirmed');
+    if(await client.inventoryQuantity(state.target.variation_id,connection.location_id)!==0)fail('square_removal_stock_not_zero');
+    if(state.allocation?.state==='released'){
+     // A prepared allocation can be canceled without ever publishing stock.
+     // Recheck all exact-copy claims instead of requiring a nonexistent withdraw.
+     const current=await this.rpc('vault_removal_context',{ownerId,instanceId});
+     if(current?.instanceId!==instanceId||current.gvvi!==scope.gvvi||current.archived||!Array.isArray(current.claims)||current.claims.length)fail('square_removal_unconfirmed');
+     return {status:'ready_to_archive',instanceId,gvvi:scope.gvvi};
+    }
+    return this.rpc('vault_removal_attest',{...context,targetId,instanceId,runId,quantity:0});
+   });
+   if(result?.status!=='ready_to_archive'||result.instanceId!==instanceId||result.gvvi!==scope.gvvi)fail('square_removal_unconfirmed');
+  }catch(error){
+   await this.rpc('commerce_run_finish',{ownerId,connectionId,runId,result:{status:'failed',succeeded:0,failed:1,skipped:0,errorCode:code(error)}});
+   throw safeError(error);
+  }
+  await this.rpc('commerce_run_finish',{ownerId,connectionId,runId,result:{status:'succeeded',succeeded:1,failed:0,skipped:0,errorCode:''}});
+  return result;
+ }
  async withdraw(ownerId,connectionId,targetId){
   await this.catalog.withConnection(ownerId,connectionId,async({context})=>{
    const state=await this.rpc('allocation',{...context,targetId:uuid(targetId)});

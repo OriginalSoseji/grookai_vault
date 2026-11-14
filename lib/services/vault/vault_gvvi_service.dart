@@ -5,6 +5,7 @@ import '../../secrets.dart';
 import '../../utils/display_image_contract.dart';
 import '../identity/catalog_artwork_resolution.dart';
 import '../public/card_surface_pricing_service.dart';
+import 'square_aware_vault_archive.dart';
 
 enum GvviImageSide { front, back }
 
@@ -1030,9 +1031,12 @@ class VaultGvviService {
       throw Exception('This card copy is not available yet.');
     }
 
-    final result = await client.rpc(
-      'vault_archive_exact_instance_v1',
-      params: {'p_instance_id': normalizedInstanceId},
+    final result = await squareAwareVaultArchive(
+      client: client,
+      archive: () => client.rpc(
+        'vault_archive_exact_instance_v1',
+        params: {'p_instance_id': normalizedInstanceId},
+      ),
     );
     if (result == null) {
       return;

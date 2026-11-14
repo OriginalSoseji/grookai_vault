@@ -1,5 +1,27 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Square-aware Vault removal — November 14, 2026
+
+`-SquareVaultRemovalReleaseV1` is a separate canonical495-to496 gate for only
+`20261114080000_square_aware_vault_removal_v1.sql`. It accepts AuditLinkedSchema
+and exact-ID PrePush, rejects combined scopes and target overrides, and does not
+widen the consumed onboarding gate. The protected removal-release manifest pins
+all495 historical files, the candidate, actual fresh/retained replay and Auth
+runtime proofs, and executed sources. PrePush requires clean committed source.
+
+Qualification compares complete public/Square/inventory/vendor-pricing schemas
+and security definitions, using the retained isolated495 baseline read-only.
+Fresh496 uses a genuine local prefix reset plus the declared frozen historical
+647-pair prerequisite and complete CLI push/no-op. The separately populated495
+lab upgrades through the official CLI with identical protected data afterward.
+Do not reset populated labs or execute generated schema differences. The first
+removal candidate's labs remain superseded evidence; release binds the v2 labs.
+
+The official production dry-run/apply, independent schema/security and inventory
+readback, normal hosted review/checks and same-package Samsung continuity remain
+required. This migration adds removal proof/receipt authority; it does not change
+pricing, onboarding, stock controls or an existing archive RPC/stock guard.
+
 ## Square commerce starting audit V2 — November 11, 2026
 
 The owner authorized the complete production Square flow, including stock/sales,

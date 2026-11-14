@@ -23,6 +23,34 @@ can synchronize while the owner and exact identity remain fixed. Privacy and
 unpublication remain possible and schedule withdrawal. No expiration, disconnect,
 pause, failed lookup or missing webhook can silently release an external claim.
 
+### Owner removal after confirmed withdrawal
+
+An owner may permanently remove an incorrect inventory copy without asserting
+that they physically possess it. This is separate from releasing stock for
+resale. Existing exact, one, all and selected archive RPCs remain the sole owner
+writers, with the existing Square stock guard unchanged.
+
+A claimed copy first produces a structured transactional rollback naming its
+exact identity. Thin native/web adapters may prepare only that named copy and
+retry the original archive request. Uncertain transport, unrelated errors or a
+repeated target stop the flow. Multi-copy archive requests retain their original
+atomic database semantics; no failed archive request partially removes copies.
+
+Server preparation withdraws and deselects the existing Square target, reconciles
+orders and rereads actual provider stock zero under the existing fenced lease.
+Append-only, private evidence binds the source snapshot, allocation, successful
+withdrawal, reconcile cursor and durable successful worker run. Readback expires
+after five minutes; reconciliation must remain within two minutes. Owner archive
+then retires that claim and archives the copy in one transaction. It must reject
+changed identity/source, live leases, competing holds, sales, unsettled operations,
+mapped pending/review orders, pending webhook signals, stale/null reconciliation
+or missing/failed evidence. A never-sent prepared allocation may instead cancel
+through the existing stock authority. After actual provider zero and a fresh
+empty exact-copy claim recheck, retry the original owner archive without inventing
+a withdrawal operation or attestation. Lock contention fails closed without waiting in the
+opposite provider lock order. No claim becomes available between withdrawal and
+archive, and genuine sale/disposition behavior remains unchanged.
+
 Inventory operations use fixed location/variation identity, retained idempotency
 keys and absolute physical counts only for a newly verified zero-stock item or
 explicit withdrawal. Never rewrite an existing unknown count or add one unit on
