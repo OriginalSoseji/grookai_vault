@@ -30,10 +30,11 @@
 - The mobile trade workspace capture shows selected exact copies, qualified
   raw-price coverage, agreed values and net value together without horizontal
   overflow.
-- Hosted checks for PR #917 passed, including Vercel preview, both Flutter CI
-  runs, both runtime-protection and drift-gate runs, Samsung visual/accessibility,
-  browser audits, and CodeQL. Automated review's By Set grouping finding was
-  fixed and its regression now passes locally; the updated PR checks must rerun.
+- Hosted checks for PR #917 at `e90b6eb93` passed, including Vercel preview,
+  Flutter tests and goldens, runtime protection, drift gate, Samsung visual and
+  accessibility gates, browser audits, CodeQL, and all five CodeQL language
+  analyses. The preview is live at
+  `https://grookai-vault-git-codex-ebay-category-s-b1eab1-sosejis-projects.vercel.app`.
 
 ## Live-device boundary
 
@@ -49,6 +50,7 @@ separate deferred item.
 
 - `f573ff41f` — `feat(ebay): allow provider-backed category selection`
 - `6b2510715` — `feat(vault): add mobile grid sizing and browse controls`
+- `e90b6eb93` — `fix(vault): preserve By Set groups when sorting`
 - Earlier step details: [eBay category checkpoint](EBAY_CATEGORY_AND_MARKET_LABEL_20261113.md),
   [Vault mobile density checkpoint](VAULT_MOBILE_GRID_DENSITY_20261113.md), and
   [Vault filter/sort checkpoint](VAULT_WEB_FILTER_SORT_20261113.md).

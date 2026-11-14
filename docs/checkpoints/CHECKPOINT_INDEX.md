@@ -1,6 +1,6 @@
 # CHECKPOINT_INDEX
 
-- `APP_REFINEMENT_NONSCANNER_20261113` - `2026-11-13` - Vault density/filter/sort and contiguous By Set grouping, provider-backed eBay category selection, collector/trade review and draft recovery pass local gates; PR #917 hosted checks passed before the By Set review fix, which now has regression coverage; Samsung physical display remains inaccessible through Duet and scanner work is deferred
+- `APP_REFINEMENT_NONSCANNER_20261113` - `2026-11-13` - Vault density/filter/sort and contiguous By Set grouping, provider-backed eBay category selection, collector/trade review and draft recovery pass local gates; updated PR #917 checks and preview pass; Samsung physical display remains inaccessible through Duet and scanner work is deferred
 
 - `SEALED_OWNERSHIP_SCHEMA_APPLIED_20260907` - `2026-09-07` - Four approved migrations committed atomically; 391/391 ledger parity, empty reconciled schema diff and 888 security objects match; 3,401 copies unchanged; ownership disabled; client deployment/canary remain
 
