@@ -48,6 +48,10 @@ test.describe("Vault collection pagination", () => {
 
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
     expect(overflow).toBeLessThanOrEqual(1);
+
+    const firstCardTop = await page.locator("[data-vault-page-items] .gv-visual-card:visible").first()
+      .evaluate((element) => element.getBoundingClientRect().top + window.scrollY);
+    expect(firstCardTop).toBeLessThan(700);
   });
 
   test("mobile Vault lets collectors choose and retain 2, 3, or 4 card columns", async ({ page }) => {

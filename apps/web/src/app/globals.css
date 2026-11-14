@@ -1505,6 +1505,13 @@ html.gv-dark .gv-dex-species-grid .gv-dex-species-card:hover {
   padding-block: 1.5rem 2rem;
 }
 
+@media (max-width: 639px) {
+  .gv-vault-overview {
+    padding-block: 0.5rem 0.75rem;
+  }
+
+}
+
 .gv-vault-overview .gv-display-title {
   font-size: clamp(2.8rem, 6vw, 5.35rem);
   letter-spacing: -0.045em;
@@ -1686,7 +1693,10 @@ html.gv-dark .gv-vault-value {
 }
 
 @media (max-width: 639px) {
-  .gv-vault-overview .gv-display-title,
+  .gv-vault-overview .gv-display-title {
+    font-size: 1.45rem;
+  }
+
   .gv-network-intro .gv-display-title {
     font-size: 2.65rem;
   }

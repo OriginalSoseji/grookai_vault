@@ -37,8 +37,8 @@ export function VaultMobileToolbar({
   onColumnsChange,
 }: VaultMobileToolbarProps) {
   return (
-    <SearchToolbar surface="card" className="space-y-3 md:hidden">
-      <SearchToolbarField label="Search Vault">
+    <SearchToolbar surface="none" className="space-y-2.5 md:hidden">
+      <SearchToolbarField label="Search Vault" compactLabel>
         <div className="flex items-center gap-2">
           <SearchToolbarInput
             id="vault-mobile-search"
@@ -59,27 +59,33 @@ export function VaultMobileToolbar({
         </div>
       </SearchToolbarField>
 
-      <SearchToolbarField label="View">
-        <SegmentedControl
-          options={VIEW_MODE_OPTIONS}
-          value={mode}
-          onChange={onModeChange}
-          ariaLabel="Choose vault mobile view"
-          className="w-full justify-between bg-slate-50"
-        />
-      </SearchToolbarField>
-
-      {mode === "grid" ? (
-        <SearchToolbarField label="Grid size">
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+        <div className="flex min-h-10 items-center gap-1.5">
+          <span className="text-[11px] font-medium text-slate-500">View</span>
           <SegmentedControl
-            options={GRID_COLUMN_OPTIONS}
-            value={columns}
-            onChange={onColumnsChange}
-            ariaLabel="Choose Vault grid columns"
-            className="w-full justify-between bg-slate-50"
+            options={VIEW_MODE_OPTIONS}
+            value={mode}
+            onChange={onModeChange}
+            ariaLabel="Choose vault mobile view"
+            size="compact"
+            className="bg-slate-50"
           />
-        </SearchToolbarField>
-      ) : null}
+        </div>
+
+        {mode === "grid" ? (
+          <div className="flex min-h-10 items-center gap-1.5">
+            <span className="text-[11px] font-medium text-slate-500">Grid</span>
+            <SegmentedControl
+              options={GRID_COLUMN_OPTIONS}
+              value={columns}
+              onChange={onColumnsChange}
+              ariaLabel="Choose Vault grid columns"
+              size="compact"
+              className="bg-slate-50"
+            />
+          </div>
+        ) : null}
+      </div>
     </SearchToolbar>
   );
 }

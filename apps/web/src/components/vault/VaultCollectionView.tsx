@@ -254,7 +254,7 @@ function SmartViewButton({
     <button
       type="button"
       onClick={onClick}
-      className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+      className={`whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-medium transition sm:px-4 sm:py-2 sm:text-sm ${
         selected
           ? "border border-slate-200 bg-white text-slate-950 shadow-[0_12px_24px_-20px_rgba(15,23,42,0.35)] dark:border-slate-700 dark:bg-slate-100 dark:text-slate-950"
           : "border border-transparent text-slate-500 hover:bg-white/80 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/[0.06] dark:hover:text-slate-100"
@@ -879,12 +879,12 @@ export function VaultCollectionView({
   }
 
   return (
-    <div className="gv-vault-page space-y-7 py-7 md:space-y-10 md:py-9">
+    <div className="gv-vault-page space-y-4 py-3 md:space-y-10 md:py-9">
       <section className="gv-vault-overview">
         <PageIntro
           title="grookai vault"
-          eyebrow="Vault"
-          description="Your collection, organized by exact printing."
+          eyebrow={<span className="hidden sm:block">Vault</span>}
+          description={<span className="hidden sm:inline">Your collection, organized by exact printing.</span>}
           actions={
             <div className="flex flex-wrap items-center gap-2.5">
               <Link
@@ -913,17 +913,17 @@ export function VaultCollectionView({
             </div>
           }
         />
-        <div className="gv-vault-summary mt-7">
+        <div className="gv-vault-summary mt-2 md:mt-7">
           {valueSummary.totalGroupedCount > 0 || (sealedTotals?.active_copy_count ?? 0) > 0 ? (
-          <div className="gv-vault-value py-5 md:py-6">
-            <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-              <div className="min-w-0 space-y-2.5">
+          <div className="gv-vault-value py-2 md:py-6">
+            <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+              <div className="min-w-0 space-y-1 md:space-y-2.5">
                 <p className="text-[9px] font-semibold uppercase tracking-[0.24em] text-slate-400/90">
                   {sealedOwnershipEnabled && !sealedTotals ? "Card subtotal" : "Estimated Vault Value"}
                 </p>
                 <div className="space-y-1">
                   <p
-                    className="text-[2.15rem] font-semibold text-slate-950 sm:text-[2.7rem]"
+                    className="text-2xl font-semibold text-slate-950 sm:text-[2.7rem]"
                     data-pricing-proof="vault-exact-total"
                     data-pricing-scope="vault_total"
                     data-vault-market-value-usd={
@@ -958,7 +958,7 @@ export function VaultCollectionView({
                         ))}
                     </>
                   ) : null}
-                  <p className="text-xs text-slate-400">TCGPlayer Market for eligible exact printings and sealed products.</p>
+                  <p className="hidden text-xs text-slate-400 sm:block">TCGPlayer Market for eligible exact printings and sealed products.</p>
                 </div>
               </div>
               <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate-400 md:justify-end">
@@ -971,17 +971,17 @@ export function VaultCollectionView({
             </div>
           </div>
           ) : null}
-        <div className="gv-vault-stats grid grid-cols-2 divide-x divide-slate-200/70 text-sm text-slate-500 dark:divide-slate-700/70 sm:grid-cols-4">
-          <span className="px-4 py-2 font-medium text-slate-700 first:pl-0">
+        <div className="gv-vault-stats grid grid-cols-3 divide-x divide-slate-200/70 text-sm text-slate-500 dark:divide-slate-700/70 sm:grid-cols-4">
+          <span className="min-w-0 truncate px-2 py-1.5 text-xs font-medium text-slate-700 first:pl-0 md:px-4 md:py-2 md:text-sm">
             {summary.cards} {summary.cards === 1 ? "card" : "cards"}
           </span>
-          <span className="px-4 py-2">
+          <span className="min-w-0 truncate px-2 py-1.5 text-xs md:px-4 md:py-2 md:text-sm">
             {summary.uniqueCards} unique
           </span>
-          <span className="px-4 py-2">
+          <span className="min-w-0 truncate px-2 py-1.5 text-xs md:px-4 md:py-2 md:text-sm">
             {summary.sets} {summary.sets === 1 ? "set" : "sets"}
           </span>
-          <span className="px-4 py-2 text-slate-400">
+          <span className="hidden min-w-0 truncate px-2 py-1.5 text-xs text-slate-400 md:px-4 md:py-2 md:text-sm sm:block">
             Last added {summary.lastAdded}
           </span>
         </div>
@@ -1006,13 +1006,14 @@ export function VaultCollectionView({
           secondaryAction={<Link href="/vault/import" className="gv-secondary-button">Import collection</Link>}
         />
       )) : (
-        <PageSection spacing="default" className="space-y-6">
+        <PageSection spacing="compact" className="space-y-3 md:space-y-6">
           <div id="vault-cards" className="scroll-mt-32">
-            <SectionHeader
-              title="Vault Cards"
-              description="Cards currently in your collection."
-            />
-            <Link href="/vault/workspace" className="gv-secondary-button mt-3">Select copies · Trade workspace</Link>
+            <div className="flex items-center justify-between gap-3">
+              <h2 className="gv-section-title text-xl">Vault Cards</h2>
+              <Link href="/vault/workspace" className="text-xs font-medium text-slate-500 underline-offset-4 hover:text-slate-950 hover:underline dark:hover:text-slate-100 sm:hidden">Select copies · Trade workspace</Link>
+              <Link href="/vault/workspace" className="gv-secondary-button hidden sm:inline-flex">Select copies · Trade workspace</Link>
+            </div>
+            <p className="gv-quiet-line mt-1.5 hidden sm:block">Cards currently in your collection.</p>
           </div>
 
           <div className="gv-command-surface hidden md:flex md:flex-row md:items-center md:justify-between md:gap-4 md:p-3.5">
@@ -1054,17 +1055,18 @@ export function VaultCollectionView({
 
           <PageSection
             spacing="compact"
-            className="gv-command-surface p-2.5 md:p-3"
+            className="gv-command-surface p-2 md:p-3"
           >
-            <div className="mb-2.5 flex flex-col gap-2.5 sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex min-w-0 flex-wrap items-center gap-2">
-                <span className="text-xs font-medium text-slate-500">Market price</span>
+            <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+              <div className="flex min-w-0 flex-wrap items-center gap-1.5">
+                <span className="text-xs font-medium text-slate-500">Price</span>
                 <SegmentedControl
                   options={VAULT_PRICE_FILTERS}
                   value={priceFilter}
                   onChange={handlePriceFilterChange}
                   ariaLabel="Filter Vault by market price"
                   size="compact"
+                  className="bg-slate-50"
                 />
               </div>
               <label className="flex min-h-11 items-center gap-2 text-xs font-medium text-slate-500">
@@ -1073,7 +1075,7 @@ export function VaultCollectionView({
                   aria-label="Sort Vault cards"
                   value={sortBy}
                   onChange={(event) => handleSortChange(event.target.value as VaultSortKey)}
-                  className="min-h-11 rounded-lg border border-slate-200 bg-white px-3 text-sm text-slate-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100"
+                  className="min-h-10 w-[110px] rounded-lg border border-slate-200 bg-white px-2 text-xs text-slate-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 sm:w-auto sm:px-3 sm:text-sm"
                 >
                   <option value="newest">Newest</option>
                   <option value="name">Name (A–Z)</option>
