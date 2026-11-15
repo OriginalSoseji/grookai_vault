@@ -7,6 +7,8 @@ import { buildCardPrintGvIdV1 } from "../warehouse/buildCardPrintGvIdV1.mjs";
 
 export const ENGLISH_POKEMON_INCREMENTAL_PROMOTION_VERSION =
   "ENGLISH_POKEMON_INCREMENTAL_PROMOTION_V1";
+export const ENGLISH_POKEMON_MISSING_SET_PROMOTION_VERSION =
+  "ENGLISH_POKEMON_MISSING_SET_PROMOTION_V1";
 export const ENGLISH_POKEMON_IDENTITY_VERSION = "pokemon_eng_standard:v1";
 
 function clean(value) {
@@ -57,10 +59,17 @@ function sourcePairs(card) {
   }));
 }
 
-function evidenceRow({ cardPrintId, identityId, setCode, card, source }) {
+function evidenceRow({
+  cardPrintId,
+  identityId,
+  setCode,
+  card,
+  source,
+  promotionVersion = ENGLISH_POKEMON_INCREMENTAL_PROMOTION_VERSION,
+}) {
   const sourceExternalId = `${setCode}:${normalizeEnglishPokemonCardNumberV1(card.card_number)}`;
   const acquisitionKey = [
-    ENGLISH_POKEMON_INCREMENTAL_PROMOTION_VERSION,
+    promotionVersion,
     source.source_key,
     sourceExternalId,
   ].join("|");
@@ -82,7 +91,7 @@ function evidenceRow({ cardPrintId, identityId, setCode, card, source }) {
   };
   return {
     id: deterministicUuidV5(
-      `${ENGLISH_POKEMON_INCREMENTAL_PROMOTION_VERSION}:evidence:${source.source_key}:${sourceExternalId}`,
+      `${promotionVersion}:evidence:${source.source_key}:${sourceExternalId}`,
     ),
     card_print_identity_id: identityId,
     card_print_id: cardPrintId,
@@ -102,10 +111,17 @@ function evidenceRow({ cardPrintId, identityId, setCode, card, source }) {
 
 function speciesNameCandidates(name) {
   const value = clean(name);
+  const withoutBattleSuffix = value.replace(
+    /\s+(?:ex|gx|v|max|vmax|vstar|break|lv\.?\s*x)$/i,
+    "",
+  );
   return [...new Set([
     value,
     value.replace(/^(?:Dark|Light)\s+/i, ""),
     value.replace(/^[^']+'s\s+/i, ""),
+    withoutBattleSuffix,
+    withoutBattleSuffix.replace(/^Mega\s+/i, ""),
+    withoutBattleSuffix.replace(/^(?:Heat|Wash|Frost|Fan|Mow)\s+(Rotom)$/i, "$1"),
   ].map(normalizeEnglishPokemonCardNameV1).filter(Boolean))];
 }
 
@@ -147,8 +163,14 @@ function resolveFamily(card, detail, speciesRows) {
   }
   const dexIds = [...new Set((detail?.dexId ?? []).map(Number)
     .filter((value) => Number.isSafeInteger(value) && value > 0))];
-  let matches = dexIds.length === 1 && speciesByDex.has(dexIds[0])
-    ? [speciesByDex.get(dexIds[0])]
+  const printedName = clean(card.card_name);
+  const exactDexIds = dexIds.length > 0
+    ? dexIds
+    : printedName.includes("♀") ? [29]
+      : printedName.includes("♂") ? [32]
+        : [];
+  let matches = exactDexIds.length === 1 && speciesByDex.has(exactDexIds[0])
+    ? [speciesByDex.get(exactDexIds[0])]
     : [];
   if (matches.length === 0) {
     matches = speciesNameCandidates(card.card_name)
@@ -258,6 +280,7 @@ export function buildEnglishPokemonIncrementalSetPlanV1({
   existingCards = [],
   speciesRows = [],
   tcgdexDetails = [],
+  promotionVersion = ENGLISH_POKEMON_INCREMENTAL_PROMOTION_VERSION,
 }) {
   const expected = Number(sourceSet?.cardCount?.total);
   if (!Number.isSafeInteger(expected) || expected < 1) {
@@ -315,10 +338,10 @@ export function buildEnglishPokemonIncrementalSetPlanV1({
     const family = resolveFamily(card, detail, speciesRows);
     const number = clean(card.card_number);
     const cardPrintId = deterministicUuidV5(
-      `${ENGLISH_POKEMON_INCREMENTAL_PROMOTION_VERSION}:card:${set.code}:${number}:${card.card_name}`,
+      `${promotionVersion}:card:${set.code}:${number}:${card.card_name}`,
     );
     const identityId = deterministicUuidV5(
-      `${ENGLISH_POKEMON_INCREMENTAL_PROMOTION_VERSION}:identity:${set.code}:${number}:${card.card_name}`,
+      `${promotionVersion}:identity:${set.code}:${number}:${card.card_name}`,
     );
     const identityPayload = {
       language_code: "en",
@@ -339,6 +362,7 @@ export function buildEnglishPokemonIncrementalSetPlanV1({
       setCode: set.code,
       card,
       source,
+      promotionVersion,
     }));
     const rarityValues = (card.rarity_values ?? []).map(clean)
       .filter((value) => value && value !== "None" && value !== "—");
@@ -380,6 +404,7 @@ export function buildEnglishPokemonIncrementalSetPlanV1({
         image_note: "No external image is admitted by the English identity promotion gate.",
         external_ids: {
           english_pokemon_incremental_promotion_v1: {
+            promotion_version: promotionVersion,
             master_index_fact_key: card.key,
             source_set_id: sourceSet.id,
             source_urls: evidence.map((row) => row.evidence_payload.source_url),
@@ -391,6 +416,7 @@ export function buildEnglishPokemonIncrementalSetPlanV1({
         ai_metadata: null,
         data_quality_flags: {
           english_pokemon_incremental_promotion_v1: {
+            promotion_version: promotionVersion,
             source_count: evidence.length,
             family_status: family.family_status,
             public_child_status: "deferred_visibility_and_storage_gate",
@@ -432,11 +458,11 @@ export function buildEnglishPokemonIncrementalSetPlanV1({
       evidence,
       family_review: {
         id: deterministicUuidV5(
-          `${ENGLISH_POKEMON_INCREMENTAL_PROMOTION_VERSION}:family:${set.code}:${number}:${card.card_name}`,
+          `${promotionVersion}:family:${set.code}:${number}:${card.card_name}`,
         ),
         card_print_identity_id: identityId,
         card_print_id: cardPrintId,
-        acquisition_key: `${ENGLISH_POKEMON_INCREMENTAL_PROMOTION_VERSION}|${set.code}|${number}`,
+        acquisition_key: `${promotionVersion}|${set.code}|${number}`,
         family_status: family.family_status,
         family_candidate_source: "english_pokemon_incremental_promotion_v1",
         normalized_family_candidate: family.normalized_family_candidate,
@@ -472,7 +498,7 @@ export function buildEnglishPokemonIncrementalSetPlanV1({
         }))),
   };
   return {
-    version: ENGLISH_POKEMON_INCREMENTAL_PROMOTION_VERSION,
+    version: promotionVersion,
     target: `pokemon_en:${sourceSet.id}`,
     counts: {
       card_prints: rows.length,
@@ -486,10 +512,87 @@ export function buildEnglishPokemonIncrementalSetPlanV1({
   };
 }
 
-export function validateEnglishPokemonIncrementalSetPlanV1(plan) {
+export function buildEnglishPokemonMissingSetPlanV1({
+  asOf,
+  set,
+  sourceSet,
+  masterCards = [],
+  speciesRows = [],
+  tcgdexDetails = [],
+}) {
+  const releaseDate = clean(set?.release_date);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(clean(asOf)) ||
+      !/^\d{4}-\d{2}-\d{2}$/.test(releaseDate)) {
+    throw new Error("English Pokemon missing-set promotion requires exact ISO dates");
+  }
+  if (releaseDate > clean(asOf)) {
+    throw new Error("English Pokemon missing-set promotion cannot admit a future release");
+  }
+  if (clean(set?.code).toLocaleLowerCase("en") !==
+      clean(sourceSet?.id).toLocaleLowerCase("en")) {
+    throw new Error("English Pokemon missing-set source and canonical codes differ");
+  }
+  const plan = buildEnglishPokemonIncrementalSetPlanV1({
+    set,
+    sourceSet,
+    masterCards,
+    existingCards: [],
+    speciesRows,
+    tcgdexDetails,
+    promotionVersion: ENGLISH_POKEMON_MISSING_SET_PROMOTION_VERSION,
+  });
+  for (const row of plan.payload.rows) {
+    row.card_print.data_quality_flags = {
+      ...row.card_print.data_quality_flags,
+      app_visibility_v1: {
+        status: "suppressed",
+        reason: "new_set_requires_separate_visibility_release",
+      },
+    };
+  }
+  plan.payload.set = {
+    id: set.id,
+    game: "pokemon",
+    code: set.code,
+    name: set.name,
+    release_date: releaseDate,
+    printed_set_abbrev: set.printed_set_abbrev,
+    identity_domain_default: "pokemon_eng_standard",
+    source: set.source,
+  };
+  plan.payload.set_release_control = {
+    set_id: set.id,
+    release_status: "hidden",
+    release_version: ENGLISH_POKEMON_MISSING_SET_PROMOTION_VERSION,
+    evidence: {
+      staged_by: ENGLISH_POKEMON_MISSING_SET_PROMOTION_VERSION,
+      default: "fail_closed",
+      canonical_promotion_authorizes_visibility: false,
+      image_promotion_authorizes_visibility: false,
+      price_publication_authorizes_visibility: false,
+    },
+    activated_at: null,
+    activated_by: null,
+  };
+  plan.counts = {
+    sets: 1,
+    set_release_controls: 1,
+    card_prints: plan.counts.card_prints,
+    identities: plan.counts.identities,
+    evidence: plan.counts.evidence,
+    family_reviews: plan.counts.family_reviews,
+    image_candidates: plan.counts.image_candidates,
+  };
+  plan.payload_fingerprint_sha256 = sha256(stableJson(plan.payload));
+  return plan;
+}
+
+export function validateEnglishPokemonIncrementalSetPlanV1(plan, {
+  expectedVersion = ENGLISH_POKEMON_INCREMENTAL_PROMOTION_VERSION,
+} = {}) {
   const findings = [];
   const rows = plan?.payload?.rows ?? [];
-  if (plan?.version !== ENGLISH_POKEMON_INCREMENTAL_PROMOTION_VERSION) {
+  if (plan?.version !== expectedVersion) {
     findings.push("version_mismatch");
   }
   for (const key of ["number", "card_print.id", "card_print.gv_id", "identity.id"]) {
@@ -520,6 +623,32 @@ export function validateEnglishPokemonIncrementalSetPlanV1(plan) {
   }
   if (plan?.payload_fingerprint_sha256 !== sha256(stableJson(plan?.payload))) {
     findings.push("payload_fingerprint_mismatch");
+  }
+  return { valid: findings.length === 0, findings: [...new Set(findings)] };
+}
+
+export function validateEnglishPokemonMissingSetPlanV1(plan) {
+  const result = validateEnglishPokemonIncrementalSetPlanV1(plan, {
+    expectedVersion: ENGLISH_POKEMON_MISSING_SET_PROMOTION_VERSION,
+  });
+  const findings = [...result.findings];
+  const set = plan?.payload?.set;
+  const control = plan?.payload?.set_release_control;
+  if (!set?.id || set?.game !== "pokemon" || !set?.code || !set?.name ||
+      !set?.release_date || !set?.printed_set_abbrev ||
+      set?.identity_domain_default !== "pokemon_eng_standard") {
+    findings.push("missing_set_container_fields");
+  }
+  if (!control || control.set_id !== set?.id || control.release_status !== "hidden" ||
+      control.activated_at !== null || control.activated_by !== null) {
+    findings.push("missing_atomic_hidden_release_control");
+  }
+  if ((plan?.payload?.rows ?? []).some((row) =>
+    row.card_print.data_quality_flags?.app_visibility_v1?.status !== "suppressed")) {
+    findings.push("new_set_row_not_suppressed");
+  }
+  if (plan?.counts?.sets !== 1 || plan?.counts?.set_release_controls !== 1) {
+    findings.push("missing_set_counts");
   }
   return { valid: findings.length === 0, findings: [...new Set(findings)] };
 }

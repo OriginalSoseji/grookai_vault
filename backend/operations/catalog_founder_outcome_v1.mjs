@@ -59,6 +59,18 @@ export const CATALOG_OUTCOME_WRITER_REGISTRY_V1 = Object.freeze({
     target_fields: Object.freeze(["source_set_code", "database_set_code"]),
     count_fields: Object.freeze(["card_prints", "identities", "evidence", "family_reviews"]),
   }),
+  english_pokemon_missing_set_promotion_v1: Object.freeze({
+    worker: "scripts/workers/english_pokemon_incremental_promotion_v1.mjs",
+    summary_file: "report.json",
+    preflight_file: "report.json",
+    fingerprint_field: "payload_fingerprint_sha256",
+    producer_version: "ENGLISH_POKEMON_MISSING_SET_PROMOTION_V1",
+    target_fields: Object.freeze(["source_set_code", "database_set_code"]),
+    count_fields: Object.freeze([
+      "sets", "set_release_controls", "card_prints", "identities", "evidence",
+      "family_reviews",
+    ]),
+  }),
   japanese_structured_incremental_promotion_v1: Object.freeze({
     worker: "scripts/workers/catalog_incremental_promotion_v1.mjs",
     summary_file: "summary.json",
@@ -77,6 +89,13 @@ function clean(value) {
 
 function isOnePieceWriter(key) {
   return ["one_piece_incremental_promotion_v1", "one_piece_incremental_printing_promotion_v2"].includes(key);
+}
+
+function isEnglishPokemonWriter(key) {
+  return [
+    "english_pokemon_incremental_promotion_v1",
+    "english_pokemon_missing_set_promotion_v1",
+  ].includes(key);
 }
 
 function safeKey(value) {
@@ -98,13 +117,13 @@ function normalizeExpectedCounts(writerKey, summary) {
     source = summary.execution_row_counts ?? summary.promotion_row_counts;
   }
   else if (isOnePieceWriter(writerKey)) source = summary.counts;
-  else if (writerKey === "english_pokemon_incremental_promotion_v1") {
-    source = {
-      card_prints: summary.counts?.card_prints,
-      identities: summary.counts?.identities,
-      evidence: summary.counts?.evidence,
-      family_reviews: summary.counts?.family_reviews,
-    };
+  else if (isEnglishPokemonWriter(writerKey)) {
+    source = Object.fromEntries(
+      CATALOG_OUTCOME_WRITER_REGISTRY_V1[writerKey].count_fields.map((key) => [
+        key,
+        summary.counts?.[key],
+      ]),
+    );
   } else if (writerKey === "japanese_structured_incremental_promotion_v1") {
     source = summary.transaction_result?.expected;
   }
@@ -129,7 +148,7 @@ function normalizeExpectedCounts(writerKey, summary) {
 }
 
 function sourceConstraints(writerKey, summary) {
-  if (writerKey !== "english_pokemon_incremental_promotion_v1") return {};
+  if (!isEnglishPokemonWriter(writerKey)) return {};
   return {
     master_package_fingerprint_sha256: summary.master_index_hashes?.package_sha256 ?? null,
     source_snapshot_fingerprint_sha256: summary.source_snapshot?.body_sha256 ?? null,
@@ -243,7 +262,7 @@ export function validateCatalogFounderOutcomePackageV1(outcomePackage, {
     ? `mtg:${clean(target.set_code).toLowerCase()}`
     : isOnePieceWriter(outcomePackage.writer_key)
       ? `one_piece:${clean(target.set_code).toUpperCase()}`
-      : outcomePackage.writer_key === "english_pokemon_incremental_promotion_v1"
+      : isEnglishPokemonWriter(outcomePackage.writer_key)
         ? `pokemon_en:${clean(target.source_set_code).toLowerCase()}`
         : `pokemon_jpn:${clean(target.pokemon_set_code).toUpperCase()}`;
   if (clean(outcomePackage.target_key) !== expectedTargetKey) {
@@ -300,7 +319,7 @@ export function validateCatalogFounderOutcomePackageV1(outcomePackage, {
     throw new Error("Catalog founder outcome boundaries changed");
   }
   assertPlainObject(outcomePackage.source_constraints, "Catalog founder outcome source constraints");
-  if (outcomePackage.writer_key === "english_pokemon_incremental_promotion_v1") {
+  if (isEnglishPokemonWriter(outcomePackage.writer_key)) {
     const expectedConstraintKeys = [
       "master_package_fingerprint_sha256", "source_snapshot_fingerprint_sha256",
     ];
@@ -440,13 +459,16 @@ export function buildCatalogWriterInvocationV1(outcomePackage, {
     args.push(`--set-code=${target.set_code}`);
   } else if (isOnePieceWriter(outcomePackage.writer_key)) {
     args.push(`--set-code=${target.set_code}`, `--official-series-id=${target.official_series_id}`);
-  } else if (outcomePackage.writer_key === "english_pokemon_incremental_promotion_v1") {
+  } else if (isEnglishPokemonWriter(outcomePackage.writer_key)) {
     args.push(
       `--source-set-code=${target.source_set_code}`,
       `--database-set-code=${target.database_set_code}`,
       `--expected-master-package-fingerprint=${outcomePackage.source_constraints.master_package_fingerprint_sha256}`,
       `--expected-source-snapshot-fingerprint=${outcomePackage.source_constraints.source_snapshot_fingerprint_sha256}`,
     );
+    if (outcomePackage.writer_key === "english_pokemon_missing_set_promotion_v1") {
+      args.push("--create-missing-set");
+    }
   } else if (outcomePackage.writer_key === "japanese_structured_incremental_promotion_v1") {
     args.push(
       `--pokemon-set-code=${target.pokemon_set_code}`,
@@ -456,12 +478,16 @@ export function buildCatalogWriterInvocationV1(outcomePackage, {
     );
   }
   const env = {};
-  if (mode === "apply" &&
-      outcomePackage.writer_key === "english_pokemon_incremental_promotion_v1") {
+  if (mode === "apply" && isEnglishPokemonWriter(outcomePackage.writer_key)) {
+    const missingSet = outcomePackage.writer_key ===
+      "english_pokemon_missing_set_promotion_v1";
     env.ENGLISH_POKEMON_INCREMENTAL_APPLY_APPROVAL = [
-      "I approve ENGLISH_POKEMON_INCREMENTAL_PROMOTION_V1 apply only",
+      missingSet
+        ? "I approve ENGLISH_POKEMON_MISSING_SET_PROMOTION_V1 apply only"
+        : "I approve ENGLISH_POKEMON_INCREMENTAL_PROMOTION_V1 apply only",
       `source_set=${target.source_set_code}`,
       `database_set=${target.database_set_code}`,
+      ...(missingSet ? ["create_missing_set=true"] : []),
       `payload_fingerprint=${outcomePackage.payload_fingerprint_sha256}`,
       `master_package_fingerprint=${outcomePackage.source_constraints.master_package_fingerprint_sha256}`,
       `source_snapshot_fingerprint=${outcomePackage.source_constraints.source_snapshot_fingerprint_sha256}`,
@@ -504,7 +530,7 @@ export function validateCatalogWriterRollbackProofV1(outcomePackage, summary) {
     throw new Error("Catalog rollback proof fingerprint does not match the frozen package");
   }
 
-  if (outcomePackage.writer_key === "english_pokemon_incremental_promotion_v1") {
+  if (isEnglishPokemonWriter(outcomePackage.writer_key)) {
     assertSimpleReadbackCounts(
       summary.inserted_readback,
       outcomePackage.expected_counts,
@@ -570,8 +596,7 @@ export function validateCatalogWriterResultV1(outcomePackage, summary) {
     throw new Error("Catalog writer result fingerprint does not match the approved package");
   }
   const result = summary.transaction_result;
-  const englishWriter = outcomePackage.writer_key ===
-    "english_pokemon_incremental_promotion_v1";
+  const englishWriter = isEnglishPokemonWriter(outcomePackage.writer_key);
   if ((!englishWriter && result?.action !== "committed") ||
       (englishWriter && (!summary.inserted_readback || summary.rollback_absence_readback))) {
     throw new Error("Catalog writer did not report a committed durable result");

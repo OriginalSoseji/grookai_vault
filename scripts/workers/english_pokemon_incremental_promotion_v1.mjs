@@ -7,11 +7,16 @@ import pg from "pg";
 
 import {
   buildEnglishPokemonIncrementalSetPlanV1,
+  buildEnglishPokemonMissingSetPlanV1,
   ENGLISH_POKEMON_INCREMENTAL_PROMOTION_VERSION,
+  ENGLISH_POKEMON_MISSING_SET_PROMOTION_VERSION,
   normalizeEnglishPokemonCardNameV1,
   normalizeEnglishPokemonCardNumberV1,
   validateEnglishPokemonIncrementalSetPlanV1,
+  validateEnglishPokemonMissingSetPlanV1,
 } from "../../backend/catalog/english_pokemon_incremental_promotion_v1.mjs";
+import { deterministicUuidV5 } from
+  "../../backend/pricing/one_piece_canonical_import_staging_v1.mjs";
 import {
   sha256,
   stableJson,
@@ -45,6 +50,7 @@ function parseArgs(argv) {
     expectedSourceSnapshotFingerprint: null,
     sourceSetFile: null,
     skipCardDetailFetch: false,
+    createMissingSet: false,
     masterDir: DEFAULT_MASTER_DIR,
     outDir: path.join("docs", "audits", "english_pokemon_incremental_promotion_v1", stamp),
   };
@@ -64,6 +70,7 @@ function parseArgs(argv) {
     }
     else if (token.startsWith("--source-set-file=")) options.sourceSetFile = path.resolve(token.slice(18));
     else if (token === "--skip-card-detail-fetch") options.skipCardDetailFetch = true;
+    else if (token === "--create-missing-set") options.createMissingSet = true;
     else if (token.startsWith("--master-dir=")) options.masterDir = path.resolve(token.slice(13));
     else if (token.startsWith("--out-dir=")) options.outDir = path.resolve(token.slice(10));
     else throw new Error(`Unknown argument: ${token}`);
@@ -150,6 +157,18 @@ function expectedApplyApproval(
   masterPackageFingerprint,
   sourceSnapshotFingerprint,
 ) {
+  if (options.createMissingSet) {
+    return [
+      "I approve ENGLISH_POKEMON_MISSING_SET_PROMOTION_V1 apply only",
+      `source_set=${options.sourceSetCode}`,
+      `database_set=${options.databaseSetCode}`,
+      "create_missing_set=true",
+      `payload_fingerprint=${payloadFingerprint}`,
+      `master_package_fingerprint=${masterPackageFingerprint}`,
+      `source_snapshot_fingerprint=${sourceSnapshotFingerprint}`,
+      `commit_sha=${options.expectedHeadSha}`,
+    ].join("; ");
+  }
   return [
     "I approve ENGLISH_POKEMON_INCREMENTAL_PROMOTION_V1 apply only",
     `source_set=${options.sourceSetCode}`,
@@ -277,16 +296,46 @@ async function fetchMissingTcgdexDetails({ sourceSet, masterCards, existingCards
   };
 }
 
-async function loadDatabase(client, options) {
+async function loadDatabase(client, options, { sourceSet, masterSet }) {
   const setResult = await client.query(`
     select id::text, code, name, printed_set_abbrev
     from public.sets
     where game = 'pokemon' and lower(code) = lower($1)
   `, [options.databaseSetCode]);
-  if (setResult.rows.length !== 1) throw new Error("Target English set is not uniquely canonical");
-  const set = setResult.rows[0];
+  if (options.createMissingSet && setResult.rows.length !== 0) {
+    throw new Error("Missing-set promotion requires zero existing canonical set owners");
+  }
+  if (!options.createMissingSet && setResult.rows.length !== 1) {
+    throw new Error("Target English set is not uniquely canonical");
+  }
+  const sourceCode = clean(sourceSet?.id);
+  const releaseDate = clean(sourceSet?.releaseDate).replaceAll("/", "-") ||
+    clean(masterSet?.release_date).replaceAll("/", "-");
+  const printedSetAbbrev = clean(
+    sourceSet?.abbreviation?.official ?? sourceSet?.abbreviation,
+  ).toUpperCase();
+  const set = options.createMissingSet ? {
+    id: deterministicUuidV5(
+      `${ENGLISH_POKEMON_MISSING_SET_PROMOTION_VERSION}:set:${sourceCode}`,
+    ),
+    code: options.databaseSetCode.toLocaleLowerCase("en"),
+    name: clean(sourceSet?.name) || clean(masterSet?.set_name),
+    release_date: releaseDate,
+    printed_set_abbrev: printedSetAbbrev,
+    source: {
+      canonical_authority: "english_master_index_plus_tcgdex_structured_set",
+      master_index_set_key: clean(masterSet?.key),
+      tcgdex_set_id: sourceCode,
+      release_gate: "not_before_source_release_date",
+      image_policy: "evidence_only_until_self_hosted",
+      visibility_policy: "hidden_until_separate_release",
+    },
+  } : setResult.rows[0];
+  if (options.createMissingSet && (!set.name || !set.release_date || !set.printed_set_abbrev)) {
+    throw new Error("Missing-set promotion lacks exact set name, release date, or abbreviation");
+  }
   const [cards, species] = await Promise.all([
-    client.query(`
+    options.createMissingSet ? Promise.resolve({ rows: [] }) : client.query(`
       select id::text, name, number, number_plain, gv_id
       from public.card_prints
       where set_id = $1::uuid
@@ -324,10 +373,15 @@ async function computeIdentityHashes(client, plan) {
 async function collisionPreflight(client, plan) {
   const rows = plan.payload.rows;
   const evidence = rows.flatMap((row) => row.evidence);
-  if (rows.length === 0) return {
-    card_prints: 0, natural_coordinates: 0, identities: 0, evidence: 0, family_reviews: 0,
-  };
   const checks = {
+    sets: plan.payload.set_release_control ? Number((await client.query(`
+      select count(*)::int as count from public.sets
+      where id=$1::uuid or (game='pokemon' and lower(code)=lower($2))
+    `, [plan.payload.set.id, plan.payload.set.code])).rows[0].count) : 0,
+    set_release_controls: plan.payload.set_release_control ? Number((await client.query(`
+      select count(*)::int as count from public.catalog_set_release_controls
+      where set_id=$1::uuid
+    `, [plan.payload.set.id])).rows[0].count) : 0,
     card_prints: Number((await client.query(`
       select count(*)::int as count from public.card_prints
       where id = any($1::uuid[]) or gv_id = any($2::text[])
@@ -361,6 +415,30 @@ async function collisionPreflight(client, plan) {
 
 async function insertRows(client, plan) {
   const rows = plan.payload.rows;
+  if (plan.payload.set_release_control) {
+    await client.query(`insert into public.sets (
+      id,game,code,name,release_date,source,identity_domain_default,printed_set_abbrev
+    ) values ($1::uuid,$2,$3,$4,$5::date,$6::jsonb,$7,$8)`, [
+      plan.payload.set.id,
+      plan.payload.set.game,
+      plan.payload.set.code,
+      plan.payload.set.name,
+      plan.payload.set.release_date,
+      JSON.stringify(plan.payload.set.source),
+      plan.payload.set.identity_domain_default,
+      plan.payload.set.printed_set_abbrev,
+    ]);
+    await client.query(`insert into public.catalog_set_release_controls (
+      set_id,release_status,release_version,evidence,activated_at,activated_by
+    ) values ($1::uuid,$2,$3,$4::jsonb,$5::timestamptz,$6)`, [
+      plan.payload.set_release_control.set_id,
+      plan.payload.set_release_control.release_status,
+      plan.payload.set_release_control.release_version,
+      JSON.stringify(plan.payload.set_release_control.evidence),
+      plan.payload.set_release_control.activated_at,
+      plan.payload.set_release_control.activated_by,
+    ]);
+  }
   if (rows.length === 0) return;
   await client.query(`insert into public.card_prints (
     id,set_id,name,number,variant_key,rarity,artist,image_url,image_alt_url,
@@ -423,12 +501,15 @@ async function insertRows(client, plan) {
 
 async function readback(client, plan) {
   const ids = plan.payload.rows.map((row) => row.card_print.id);
-  if (ids.length === 0) return {
-    card_prints: 0, identities: 0, evidence: 0, family_reviews: 0,
-    child_printings: 0, mappings: 0, vault_items: 0, image_pointer_rows: 0,
-  };
   const result = await client.query(`
     select
+      case when $3::boolean then
+        (select count(*)::int from public.sets where id=$2::uuid)
+      else 0 end as sets,
+      case when $3::boolean then
+        (select count(*)::int from public.catalog_set_release_controls
+          where set_id=$2::uuid and release_status='hidden')
+      else 0 end as set_release_controls,
       (select count(*)::int from public.card_prints where id=any($1::uuid[])) as card_prints,
       (select count(*)::int from public.card_print_identity where card_print_id=any($1::uuid[])) as identities,
       (select count(*)::int from public.card_print_identity_source_evidence where card_print_id=any($1::uuid[])) as evidence,
@@ -439,13 +520,16 @@ async function readback(client, plan) {
       (select count(*)::int from public.card_prints where id=any($1::uuid[])
         and (image_url is not null or representative_image_url is not null or image_path is not null))
         as image_pointer_rows
-  `, [ids]);
+  `, [ids, plan.payload.set.id, Boolean(plan.payload.set_release_control)]);
   return Object.fromEntries(Object.entries(result.rows[0]).map(([key, value]) => [key, Number(value)]));
 }
 
 function assertReadback(plan, readback) {
   const expected = plan.counts;
-  if (readback.card_prints !== expected.card_prints ||
+  if ((expected.sets != null && readback.sets !== expected.sets) ||
+      (expected.set_release_controls != null &&
+        readback.set_release_controls !== expected.set_release_controls) ||
+      readback.card_prints !== expected.card_prints ||
       readback.identities !== expected.identities ||
       readback.evidence !== expected.evidence ||
       readback.family_reviews !== expected.family_reviews) {
@@ -466,7 +550,9 @@ async function main() {
     if (trackedStatus) throw new Error("Apply requires a clean tracked working tree");
   }
   const runPlan = {
-    version: "ENGLISH_POKEMON_INCREMENTAL_PROMOTION_RUN_V1",
+    version: options.createMissingSet
+      ? ENGLISH_POKEMON_MISSING_SET_PROMOTION_VERSION
+      : "ENGLISH_POKEMON_INCREMENTAL_PROMOTION_RUN_V1",
     started_at: new Date().toISOString(),
     mode: options.mode,
     as_of: options.asOf,
@@ -474,6 +560,7 @@ async function main() {
     branch,
     source_set_code: options.sourceSetCode,
     database_set_code: options.databaseSetCode,
+    create_missing_set: options.createMissingSet,
     boundaries: {
       insert_only: true,
       child_printing_writes: false,
@@ -493,13 +580,18 @@ async function main() {
   ]);
   const client = new Client(clientOptions(
     options.databaseUrl,
-    `english_pokemon_incremental_promotion_v1_${options.mode}`,
+    `${options.createMissingSet
+      ? "english_pokemon_missing_set_promotion_v1"
+      : "english_pokemon_incremental_promotion_v1"}_${options.mode}`,
   ));
   await client.connect();
   let transactionOpen = false;
   let report;
   try {
-    const database = await loadDatabase(client, options);
+    const database = await loadDatabase(client, options, {
+      sourceSet: tcgdex.set,
+      masterSet: master.sourceSet,
+    });
     const tcgdexDetails = options.skipCardDetailFetch
       ? { details: [], snapshots: [] }
       : await fetchMissingTcgdexDetails({
@@ -507,17 +599,28 @@ async function main() {
         masterCards: master.cards,
         existingCards: database.existingCards,
       });
-    const plan = buildEnglishPokemonIncrementalSetPlanV1({
-      set: database.set,
-      sourceSet: tcgdex.set,
-      masterCards: master.cards,
-      existingCards: database.existingCards,
-      speciesRows: database.speciesRows,
-      tcgdexDetails: tcgdexDetails.details,
-    });
+    const plan = options.createMissingSet
+      ? buildEnglishPokemonMissingSetPlanV1({
+        asOf: options.asOf,
+        set: database.set,
+        sourceSet: tcgdex.set,
+        masterCards: master.cards,
+        speciesRows: database.speciesRows,
+        tcgdexDetails: tcgdexDetails.details,
+      })
+      : buildEnglishPokemonIncrementalSetPlanV1({
+        set: database.set,
+        sourceSet: tcgdex.set,
+        masterCards: master.cards,
+        existingCards: database.existingCards,
+        speciesRows: database.speciesRows,
+        tcgdexDetails: tcgdexDetails.details,
+      });
     await computeIdentityHashes(client, plan);
     plan.payload_fingerprint_sha256 = sha256(stableJson(plan.payload));
-    const validation = validateEnglishPokemonIncrementalSetPlanV1(plan);
+    const validation = options.createMissingSet
+      ? validateEnglishPokemonMissingSetPlanV1(plan)
+      : validateEnglishPokemonIncrementalSetPlanV1(plan);
     if (!validation.valid) throw new Error(`Plan validation failed: ${validation.findings.join(",")}`);
     if (options.expectedPayloadFingerprint &&
         options.expectedPayloadFingerprint !== plan.payload_fingerprint_sha256) {
@@ -593,6 +696,7 @@ async function main() {
     await writeJson(path.join(options.outDir, "payload.json"), plan);
     await writeJson(path.join(options.outDir, "image_candidate_manifest.json"), {
       version: ENGLISH_POKEMON_INCREMENTAL_PROMOTION_VERSION,
+      promotion_version: plan.version,
       policy: "candidate_only_requires_separate_self_hosting_promotion",
       candidates: plan.payload.image_candidates,
     });

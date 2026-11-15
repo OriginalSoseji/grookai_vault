@@ -624,11 +624,16 @@ export function buildPokemonLanguageMasterIndexReconciliationV1({
       masterIndexStatus = "master_verified";
       promotionDecision = row.status === CATALOG_GAP_STATUSES.INCOMPLETE_CARDS && row.database_code
         ? "canonical_delta_eligible"
+        : row.status === CATALOG_GAP_STATUSES.MISSING_SET && !row.database_code
+          ? "canonical_missing_set_eligible"
         : row.status === CATALOG_GAP_STATUSES.EXACT_COMPLETE
           ? "no_write_exact_complete"
           : row.status === CATALOG_GAP_STATUSES.SOURCE_BEHIND
             ? "no_write_source_scope_behind"
             : "blocked_master_set_owner_unresolved";
+      if (promotionDecision === "canonical_missing_set_eligible") {
+        canonicalOwnerCode = sourceCode.toLocaleLowerCase("en");
+      }
     } else if (language === "ja" && japaneseMasterSet) {
       masterIndexStatus = completeJapaneseAuthority
         ? "master_verified"
@@ -725,7 +730,10 @@ export function buildCanonicalPromotionCandidatesV1({
       gap.source_set_id,
       gap.source_code,
     ].join("|"));
-    if (gate?.promotion_decision !== "canonical_delta_eligible") return [];
+    if (!new Set([
+      "canonical_delta_eligible",
+      "canonical_missing_set_eligible",
+    ]).has(gate?.promotion_decision)) return [];
     return [{
       ...gap,
       master_index_gate: {

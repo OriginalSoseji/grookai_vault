@@ -136,6 +136,27 @@ test("English Pokemon routes only with complete Master Index authority", () => {
   assert.equal(partial.targets.length, 0);
 });
 
+test("Master-verified missing English sets route to the atomic hidden-set writer", () => {
+  const plan = buildCatalogIncrementalSupervisorPlanV1([{
+    game_code: "pokemon",
+    source_id: "tcgdex_english_set_registry",
+    status: "missing_set",
+    source_code: "me06",
+    source_set_id: "me06",
+    database_code: null,
+    master_index_gate: { decision: "canonical_missing_set_eligible", language: "en" },
+    expected_card_count: 141,
+    count_evidence: [{
+      authority: "english_master_index_completion_v1",
+      scope: "full_set",
+      count: 141,
+    }],
+  }]);
+  assert.deepEqual(plan.targets.map((row) => row.key), ["pokemon_en:me06"]);
+  assert.equal(plan.targets[0].writer_key, "english_pokemon_missing_set_promotion_v1");
+  assert.ok(plan.targets[0].args.includes("--create-missing-set"));
+});
+
 test("Japanese product gaps without the writer's TCGdex authority stay held", () => {
   const plan = buildCatalogIncrementalSupervisorPlanV1([{
     game_code: "pokemon",

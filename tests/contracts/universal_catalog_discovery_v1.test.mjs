@@ -723,6 +723,20 @@ test("new Pokemon sources stage in the Master Index before canonical writes", ()
     actionableGaps: [gap],
     pokemonMasterIndexReconciliation: master,
   }), []);
+
+  const admitted = buildPokemonLanguageMasterIndexReconciliationV1({
+    reconciliation: [gap],
+    englishMasterCards: [
+      { set_key: "new1", card_number: "1", card_name: "One", status: "master_verified", source_count: 2 },
+      { set_key: "new1", card_number: "2", card_name: "Two", status: "master_verified", source_count: 2 },
+    ],
+  });
+  assert.equal(admitted.rows[0].promotion_decision, "canonical_missing_set_eligible");
+  assert.equal(admitted.rows[0].canonical_owner_code, "new1");
+  assert.equal(buildCanonicalPromotionCandidatesV1({
+    actionableGaps: [gap],
+    pokemonMasterIndexReconciliation: admitted,
+  }).length, 1);
 });
 
 test("Japanese source counts cannot bypass the checked-in Japanese Master Index", () => {

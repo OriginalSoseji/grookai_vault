@@ -123,6 +123,32 @@ export function catalogIncrementalTargetForGapV1(gap) {
       ],
     };
   }
+  if (gap.status === "missing_set" && gap.game_code === "pokemon" &&
+      gap.source_id === "tcgdex_english_set_registry" &&
+      gap.master_index_gate?.decision === "canonical_missing_set_eligible" &&
+      gap.master_index_gate?.language === "en" &&
+      (gap.count_evidence ?? []).some((evidence) =>
+        evidence.authority === "english_master_index_completion_v1" &&
+        evidence.scope === "full_set" &&
+        Number(evidence.count) === Number(gap.expected_card_count)) &&
+      gap.source_code && !gap.database_code) {
+    return {
+      key: `pokemon_en:${String(gap.source_code).toLowerCase()}`,
+      writer_key: "english_pokemon_missing_set_promotion_v1",
+      founder_outcome_eligible: true,
+      worker: "scripts/workers/english_pokemon_incremental_promotion_v1.mjs",
+      target: {
+        source_set_code: String(gap.source_code),
+        database_set_code: String(gap.source_code).toLowerCase(),
+      },
+      gap_shape: "master_index_verified_missing_set",
+      args: [
+        `--source-set-code=${gap.source_code}`,
+        `--database-set-code=${String(gap.source_code).toLowerCase()}`,
+        "--create-missing-set",
+      ],
+    };
+  }
   if (gap.status === "incomplete_cards" && gap.game_code === "pokemon" &&
       gap.source_id === "pokemon_card_official_jp_products" &&
       gap.master_index_gate?.decision === "canonical_delta_eligible" &&
