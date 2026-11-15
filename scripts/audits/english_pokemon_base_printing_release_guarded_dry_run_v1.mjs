@@ -85,7 +85,7 @@ async function assertExact(client,context,before){
  const reviews=state.reviews.map(row=>({...Object.fromEntries(REVIEW_FIELDS.map(field=>[field,row[field]])),reviewed_at:new Date(row.reviewed_at).toISOString()}));assert.deepEqual(sortRows(reviews),sortRows(context.reviews));
  const counts=await queryRows(client,`select finish_key,count(*)::integer count from public.card_printings where card_print_id=any($1::uuid[]) group by finish_key order by finish_key`,[context.manifest.parents.map(row=>row.id)]);assert.deepEqual(counts,[{finish_key:'holo',count:58},{finish_key:'normal',count:83}]);
  const options=await queryRows(client,`select id::text,card_print_id::text,finish_key,printing_gv_id,finish_is_active from public.get_public_card_printing_options_v1($1::uuid[],1000,0) order by id`,[context.manifest.parents.map(row=>row.id)]);
- assert.equal(options.length,141,'public_option_count_changed');const expectedOptions=sortRows(context.children.map(row=>({id:row.id,card_print_id:row.card_print_id,finish_key:row.finish_key,printing_gv_id:row.printing_gv_id,finish_is_active:true})));assert.deepEqual(options,expectedOptions,'public_option_readback_mismatch');return state;
+ assert.deepEqual(options,[],'hidden_set_or_suppressed_parent_public_option_leak');return state;
 }
 async function connect(databaseUrl,name){const client=new pg.Client({connectionString:databaseUrl.href,ssl:databaseUrl.hostname==='localhost'?false:{rejectUnauthorized:false},application_name:name,statement_timeout:120000,query_timeout:125000});await client.connect();return client;}
 

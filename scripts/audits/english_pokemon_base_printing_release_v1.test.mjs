@@ -41,3 +41,13 @@ test('Delta Reign manifest is source-bound, complete, and holds reverse leads', 
   assert.ok(manifest.unresolved_variants.every(row => row.scope === 'outside_base_release' &&
     row.status === 'needs_review'));
 });
+
+test('hidden Delta Reign rehearsal keeps public options empty after internal truth readback', async () => {
+  const dryRun = await fs.readFile(path.join(root,
+    'scripts', 'audits', 'english_pokemon_base_printing_release_guarded_dry_run_v1.mjs'), 'utf8');
+  assert.match(dryRun,
+    /assert\.deepEqual\(sortRows\(reviews\),sortRows\(context\.reviews\)\)/);
+  assert.match(dryRun,
+    /assert\.deepEqual\(options,\[\],'hidden_set_or_suppressed_parent_public_option_leak'\)/);
+  assert.doesNotMatch(dryRun, /public_option_count_changed|public_option_readback_mismatch/);
+});

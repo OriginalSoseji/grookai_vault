@@ -42,9 +42,11 @@ parents, identities, mappings, prices, publications, images, Storage, Vault,
 ownership, customer data, or set visibility.
 
 `card_printing_truth_reviews.public_visibility = visible` means that the child
-fact is eligible as a printing option. It does not activate the set. The set
-release control must remain `hidden`, and every parent suppression marker must
-remain unchanged.
+fact is eligible once catalog visibility is separately activated. It does not
+activate the set or make the child appear through the public printing-options
+RPC while the set is hidden or its parent is suppressed. The set release
+control must remain `hidden`, and every parent suppression marker must remain
+unchanged.
 
 ## Execution Gates
 
