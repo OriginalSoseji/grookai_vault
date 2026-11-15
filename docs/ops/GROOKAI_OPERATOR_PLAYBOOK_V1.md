@@ -3091,6 +3091,24 @@ coverage audit do not authorize canonical mutation. The existing 161-card 30th
 Celebration Holo repair is complete; do not repeat it. Check the checkpoint for
 deployment state rather than assuming local code is scheduled in production.
 
+## English Pokemon fresh-set base printing release — November 15, 2026
+
+Follow `ENGLISH_POKEMON_BASE_PRINTING_RELEASE_V1` after a complete English set
+has been admitted as hidden parents. Freeze the complete parent scope and exact
+base finish for every parent from an official or governed checklist. A
+TCGPlayer subtype or another price-bearing field is corroboration only and may
+not create a child printing. Preserve unsupported Reverse Holo and specialty
+finishes as explicit outside-base review leads.
+
+The first package covers Delta Reign (`me06`): 141 base children, comprising 83
+Normal and 58 Holo. Its current 87 Reverse Holo subtype rows remain held. Run
+the bounded serializable rehearsal, preserve the exact package fingerprint and
+rollback-absence hashes, then obtain exact founder approval before apply. The
+apply may insert one raw receipt, 141 child rows, and 141 verified truth reviews
+only. It must leave the set release control hidden and all parent suppression,
+mapping, publication, image, Vault, and customer state unchanged. Mapping,
+pricing, image readiness, and visibility are separate later releases.
+
 ## Native Anniversary Delivery - September 16
 
 Read `NATIVE_ANNIVERSARY_RELEASE_20260916.md` for the isolated release candidate.

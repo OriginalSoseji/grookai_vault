@@ -1,0 +1,14 @@
+[
+  {
+    "ref": "docs/audits/delta_reign_base_printing_release_v1/authority_20261115_v1/master.json",
+    "path": "master.json"
+  },
+  {
+    "ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+    "path": "../official_checklist_projection_v1.json"
+  },
+  {
+    "ref": "docs/audits/delta_reign_base_printing_release_v1/authority_20261115_v1/review.json",
+    "path": "review.json"
+  }
+]

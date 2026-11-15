@@ -1,0 +1,5061 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "me06",
+  "scope": "base_release",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "docs/audits/delta_reign_base_printing_release_v1/authority_20261115_v1/master.json",
+  "master_index_sha256": "2c8c11a91cb57c700f4b586e0f343c32dabbcbb414676cb5aefc853103c8703d",
+  "parents": [
+    {
+      "id": "f4946ae5-2fea-5d6a-871a-42851473021c",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-1",
+      "name": "Heracross",
+      "printed_coordinate": "1",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "09a287a2-e96b-5d6c-9782-aca0bebd6fae",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-2",
+      "name": "Surskit",
+      "printed_coordinate": "2",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "6e8cfe3a-3581-55a4-b647-703a5c4fb58e",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-3",
+      "name": "Masquerain",
+      "printed_coordinate": "3",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "32dd1d10-6eb6-5f77-91a5-3d9409d22c9c",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-4",
+      "name": "Cacnea",
+      "printed_coordinate": "4",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "683b1417-6e4a-5e9a-ba3f-040e6f7a569e",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-5",
+      "name": "Cacturne",
+      "printed_coordinate": "5",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "ee416779-a5a4-5fb4-aa3c-ea3edfe50991",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-6",
+      "name": "Combee",
+      "printed_coordinate": "6",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "6bd66f39-4ed5-5f87-9028-69bc3d0b41e6",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-7",
+      "name": "Vespiquen",
+      "printed_coordinate": "7",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "00eb4800-4f63-5e3f-b0ed-518f90aadcc9",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-8",
+      "name": "Shaymin",
+      "printed_coordinate": "8",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "6ce11f73-9b93-5d9a-9839-ccd863f1207e",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-9",
+      "name": "Virizion",
+      "printed_coordinate": "9",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "5030d070-1782-5989-9190-019c68ceaf17",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-10",
+      "name": "Wimpod",
+      "printed_coordinate": "10",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "018749b0-66ba-5c81-907b-b4b10e3ea461",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-11",
+      "name": "Mega Golisopod ex",
+      "printed_coordinate": "11",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "f1da33de-068f-5b65-ab3e-5bbebc47380f",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-12",
+      "name": "Sprigatito",
+      "printed_coordinate": "12",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "1f219375-d135-5da5-ad53-3730cf8280b6",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-13",
+      "name": "Floragato",
+      "printed_coordinate": "13",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "3e6dec52-78d8-5fe9-b6aa-d84096270a2c",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-14",
+      "name": "Meowscarada ex",
+      "printed_coordinate": "14",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "30a648b7-8ca8-5e82-9a39-bf24900c231e",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-15",
+      "name": "Smoliv",
+      "printed_coordinate": "15",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "6c501804-b81f-5c1e-9d2e-dc887a4b6007",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-16",
+      "name": "Dolliv",
+      "printed_coordinate": "16",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "964c0440-db8d-57a5-bdd6-4043f372eca8",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-17",
+      "name": "Arboliva",
+      "printed_coordinate": "17",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "3aba7795-a244-5442-8a03-47316c2f0617",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-18",
+      "name": "Growlithe",
+      "printed_coordinate": "18",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "a2d32a0c-27b0-5434-ba52-2359a68e0d3e",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-19",
+      "name": "Arcanine",
+      "printed_coordinate": "19",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "436a337b-5a91-5510-a708-7a75d34c665d",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-20",
+      "name": "Magmar",
+      "printed_coordinate": "20",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "5d28a32d-5157-5a9f-8ac6-4ea5eeaaf34e",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-21",
+      "name": "Magmortar",
+      "printed_coordinate": "21",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "910ee31b-175f-57ba-b332-5ee15a3dc5e1",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-22",
+      "name": "Torkoal",
+      "printed_coordinate": "22",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "540e1b7c-1a6e-5f6c-baee-10985c3ed24f",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-23",
+      "name": "Heat Rotom ex",
+      "printed_coordinate": "23",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "f534a18d-f3e6-5e4b-9c37-20f3b13f185c",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-24",
+      "name": "Heatmor",
+      "printed_coordinate": "24",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "5d61efea-6ea4-5175-a504-40ccca2dd353",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-25",
+      "name": "Mantine",
+      "printed_coordinate": "25",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "600438ca-b04b-5352-ada8-3e06caee9f5d",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-26",
+      "name": "Kyogre",
+      "printed_coordinate": "26",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "27a48aa2-cdd1-585c-9d20-1870abfbe450",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-27",
+      "name": "Frillish",
+      "printed_coordinate": "27",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "114eb190-9959-57b4-988e-d69f54099ed5",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-28",
+      "name": "Jellicent",
+      "printed_coordinate": "28",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "028e394a-f80a-5a15-b063-91ca19b414dc",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-29",
+      "name": "Wishiwashi ex",
+      "printed_coordinate": "29",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "0914b36f-82f9-59cb-90bc-6becb5b35131",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-30",
+      "name": "Electabuzz",
+      "printed_coordinate": "30",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "bc5238d4-fe0f-5edc-acf9-8857aeae9f2a",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-31",
+      "name": "Electivire",
+      "printed_coordinate": "31",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "db3e62f5-b92b-57a6-815e-e4bc3793398b",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-32",
+      "name": "Jolteon",
+      "printed_coordinate": "32",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "8d040dc2-0825-5f05-be23-577404016900",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-33",
+      "name": "Raikou ex",
+      "printed_coordinate": "33",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "50eea9d8-0944-5734-af26-a058edb4110a",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-34",
+      "name": "Rotom",
+      "printed_coordinate": "34",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "74dcfc9f-3a0e-5d50-9932-4b8744557c8f",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-35",
+      "name": "Thundurus",
+      "printed_coordinate": "35",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "996bb661-f439-5ffc-9305-b3c2108b2e12",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-36",
+      "name": "Pincurchin",
+      "printed_coordinate": "36",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "8eaed34c-682e-5999-b93e-11294a9f1076",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-37",
+      "name": "Pawmi",
+      "printed_coordinate": "37",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "79a82de4-2318-5125-b383-217552752652",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-38",
+      "name": "Pawmo",
+      "printed_coordinate": "38",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "07e9ac86-d8ed-5032-afcf-c89259ba771a",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-39",
+      "name": "Pawmot",
+      "printed_coordinate": "39",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "31d9d1a1-ee78-54a1-adc9-7d8df21a5bb9",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-40",
+      "name": "Wattrel",
+      "printed_coordinate": "40",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "e2518f44-04e1-5230-b89b-d17e36dab813",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-41",
+      "name": "Kilowattrel",
+      "printed_coordinate": "41",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "79a9f3d3-ec0c-5bb4-9ce2-db11b8913da2",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-42",
+      "name": "Miraidon",
+      "printed_coordinate": "42",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "03544f8e-ab6b-5ee5-814b-e0b2187bbd84",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-43",
+      "name": "Drowzee",
+      "printed_coordinate": "43",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "3f47f7ad-63bc-56dc-87ba-c0beb4f65a2a",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-44",
+      "name": "Hypno",
+      "printed_coordinate": "44",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "7c039794-523a-5061-9f9f-936268f5e545",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-45",
+      "name": "Giratina",
+      "printed_coordinate": "45",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "240d7efd-c846-5280-8f2d-142cb5c3a40e",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-46",
+      "name": "Golett",
+      "printed_coordinate": "46",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "9afbef97-c175-5f0a-9670-16ffc1fce63a",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-47",
+      "name": "Mega Golurk ex",
+      "printed_coordinate": "47",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "a0ce79b0-4e21-5b35-878c-bd50d41df688",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-48",
+      "name": "Enamorus",
+      "printed_coordinate": "48",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "9dd9ddd6-c828-50bf-ac78-9f5a4c479f43",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-49",
+      "name": "Sandshrew",
+      "printed_coordinate": "49",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "b309a4eb-5cc0-5873-8507-1a9182c22a2d",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-50",
+      "name": "Sandslash",
+      "printed_coordinate": "50",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "768ce86b-bec4-5101-8c44-6c420ed6dd98",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-51",
+      "name": "Onix",
+      "printed_coordinate": "51",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "124246ef-0030-59cc-90ff-2910abf25f66",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-52",
+      "name": "Steelix",
+      "printed_coordinate": "52",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "baa71605-8190-54a7-af52-3ec03612d3b1",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-53",
+      "name": "Groudon",
+      "printed_coordinate": "53",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "dd575e35-30a1-5f01-b028-1396754b578b",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-54",
+      "name": "Landorus",
+      "printed_coordinate": "54",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "e01d1bb7-375f-5944-8194-5fd755a887fe",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-55",
+      "name": "Nidoran♀",
+      "printed_coordinate": "55",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "6081e8de-486d-5b2f-a5aa-fc64a11f338e",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-56",
+      "name": "Nidorina",
+      "printed_coordinate": "56",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "a19bdd1f-5c0b-52a6-a5ef-8dcc8fa506a8",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-57",
+      "name": "Nidoqueen",
+      "printed_coordinate": "57",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "448cbf57-8ab1-50b3-b444-0412b20b4c25",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-58",
+      "name": "Spinarak",
+      "printed_coordinate": "58",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "c50b9f9e-2272-5819-9f06-7c5c9859b307",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-59",
+      "name": "Ariados",
+      "printed_coordinate": "59",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "f3571eb7-6a32-50a4-9b09-5e7f96f33b35",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-60",
+      "name": "Sableye",
+      "printed_coordinate": "60",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "c72dbe67-d6af-56f4-862a-0915b48dd561",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-61",
+      "name": "Carvanha",
+      "printed_coordinate": "61",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "df631573-377c-5ee2-8571-19a6628e2420",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-62",
+      "name": "Sharpedo",
+      "printed_coordinate": "62",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "e75adc90-d17f-5774-acb2-89c2b2ef21c6",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-63",
+      "name": "Darkrai",
+      "printed_coordinate": "63",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "735e999d-bf83-5f99-bc5a-b678e9f071b9",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-64",
+      "name": "Purrloin",
+      "printed_coordinate": "64",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "7e1f8e7e-6722-5132-8879-a7cd27044ef9",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-65",
+      "name": "Liepard",
+      "printed_coordinate": "65",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "b45eee53-20f1-5bc0-a790-76310f26cdda",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-66",
+      "name": "Zorua",
+      "printed_coordinate": "66",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "d8e4468b-55bf-5725-974e-98219e664506",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-67",
+      "name": "Zoroark ex",
+      "printed_coordinate": "67",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "4b8cae46-5e81-574f-bd38-db73d8466397",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-68",
+      "name": "Inkay",
+      "printed_coordinate": "68",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "9498a1e7-9ea7-5006-a0e8-dc13215a3380",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-69",
+      "name": "Mega Malamar ex",
+      "printed_coordinate": "69",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "f92f2c53-ab55-5939-ae81-00a2ba8adda8",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-70",
+      "name": "Morpeko",
+      "printed_coordinate": "70",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "2f543e76-bdb0-579f-97cd-9ffc04ac15e5",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-71",
+      "name": "Zarude",
+      "printed_coordinate": "71",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "69cfd553-78e7-51e2-a864-da499c1e231d",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-72",
+      "name": "Druddigon",
+      "printed_coordinate": "72",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "43f4c405-db4e-5952-bf85-5fccc119d2c2",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-73",
+      "name": "Jangmo-o",
+      "printed_coordinate": "73",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "e5427af0-6714-583e-a50b-1f0d0ed8ca8d",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-74",
+      "name": "Hakamo-o",
+      "printed_coordinate": "74",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "a05f169a-7eef-59c2-9264-d70e8548d5af",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-75",
+      "name": "Kommo-o",
+      "printed_coordinate": "75",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "e451cc21-17d6-5bb4-ae21-cc43a407a316",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-76",
+      "name": "Cyclizar",
+      "printed_coordinate": "76",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "266dda0c-a50f-5d9d-a7bc-b8207a417a6f",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-77",
+      "name": "Tauros",
+      "printed_coordinate": "77",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "bef3769c-a5e2-5513-a7bc-cc06dc9fc5f1",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-78",
+      "name": "Eevee",
+      "printed_coordinate": "78",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "00926a65-8122-5017-ba18-5a0ea2cd7b52",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-79",
+      "name": "Delibird",
+      "printed_coordinate": "79",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "8eda6c06-3835-5a07-ac5b-5f4939c79af3",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-80",
+      "name": "Azurill",
+      "printed_coordinate": "80",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "ccf2e190-c785-5293-a9f1-23db51ec832a",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-81",
+      "name": "Swablu",
+      "printed_coordinate": "81",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "0ab7c950-a459-53a1-8ae4-b914f5462c6d",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-82",
+      "name": "Altaria",
+      "printed_coordinate": "82",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "6eb6b8ad-b69c-5681-aba2-fdd7ada72f38",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-83",
+      "name": "Kecleon",
+      "printed_coordinate": "83",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "cf48629e-16ed-5428-b30b-4adb989dbab1",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-84",
+      "name": "Mega Rayquaza ex",
+      "printed_coordinate": "84",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "570b544e-59d2-5d4d-89c9-6360251d76b7",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-85",
+      "name": "Tornadus",
+      "printed_coordinate": "85",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "f469e30e-8d46-5d36-9192-b58350ab111b",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-86",
+      "name": "Fletchling",
+      "printed_coordinate": "86",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "4f2c60c4-94ad-5f54-ab4c-0874f60a2ac7",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-87",
+      "name": "Fletchinder",
+      "printed_coordinate": "87",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "59d2caeb-178f-56a9-b969-b82709b50c24",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-88",
+      "name": "Talonflame ex",
+      "printed_coordinate": "88",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "7b9e7f2c-a510-5615-91cc-ad05647829a6",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-89",
+      "name": "Aarune",
+      "printed_coordinate": "89",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "6dcada4e-9909-510d-9ed6-7cab39fc76f9",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-90",
+      "name": "Adventure Lantern",
+      "printed_coordinate": "90",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "0255f74e-8294-575e-8534-a4e4be191402",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-91",
+      "name": "Custom Vest",
+      "printed_coordinate": "91",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "f610c33d-64c6-5d67-89ea-55383a77480d",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-92",
+      "name": "Emcee's Hype",
+      "printed_coordinate": "92",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "3e17616f-8efd-5d2d-85f6-60c83b988398",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-93",
+      "name": "Grisham",
+      "printed_coordinate": "93",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "10c51a94-0f1e-562d-88fa-1c6d441ef7ac",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-94",
+      "name": "Legendary Pyroduct",
+      "printed_coordinate": "94",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "081782ae-361c-59ed-b03e-d66fa1faf2f1",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-95",
+      "name": "Legendary Pyroduct",
+      "printed_coordinate": "95",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "e7fa5057-5beb-513c-b26c-a59b1c8533be",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-96",
+      "name": "Legendary Summit",
+      "printed_coordinate": "96",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "b2b5eb93-7051-58e2-98de-5587e2a038aa",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-97",
+      "name": "Legendary Summit",
+      "printed_coordinate": "97",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "1a5d2637-5772-5604-b5e9-920ef4b88b7f",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-98",
+      "name": "Legendary Trench",
+      "printed_coordinate": "98",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "a207d4a7-dd92-5a02-9aa7-cf4db55aa711",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-99",
+      "name": "Legendary Trench",
+      "printed_coordinate": "99",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "155e80f3-9ad4-55bb-bf4a-a71c04f3c77b",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-100",
+      "name": "Mega Rayquaza Cap",
+      "printed_coordinate": "100",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "2e5d750e-6b08-5892-8b1f-1966b148dc04",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-101",
+      "name": "Tasty Rice Ball",
+      "printed_coordinate": "101",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "c716d88c-0e72-5c75-b43f-3998f08ae06f",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-102",
+      "name": "Tate & Liza's Training",
+      "printed_coordinate": "102",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "22cf9826-dd73-5c53-a68f-f4aa365ae82d",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-103",
+      "name": "Zinnia's Trust",
+      "printed_coordinate": "103",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "c7902635-0ed3-50f2-8254-0f90714488cb",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-104",
+      "name": "Masquerain",
+      "printed_coordinate": "104",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "a367bc84-5abc-504f-b299-a8c90eddc889",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-105",
+      "name": "Sprigatito",
+      "printed_coordinate": "105",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "dbab5adf-4b09-552c-acbe-4539b3897a57",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-106",
+      "name": "Growlithe",
+      "printed_coordinate": "106",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "abafa677-31ec-5e57-b230-06c359bf20ab",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-107",
+      "name": "Magmortar",
+      "printed_coordinate": "107",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "d3f98e15-9c10-5977-b4ca-94d8eeb9633f",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-108",
+      "name": "Electivire",
+      "printed_coordinate": "108",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "049d11e2-6042-5b67-9c0d-1615a94264d5",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-109",
+      "name": "Pincurchin",
+      "printed_coordinate": "109",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "f835f2b8-6620-5377-9cda-b74895ecd616",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-110",
+      "name": "Enamorus",
+      "printed_coordinate": "110",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "0e0877d9-16fe-5437-b023-c9e0f13b3664",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-111",
+      "name": "Groudon",
+      "printed_coordinate": "111",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "3744bdf2-e482-5f85-b14c-463c53cd686d",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-112",
+      "name": "Zorua",
+      "printed_coordinate": "112",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "142c7b25-bc24-5f4e-aa40-c71aac89e216",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-113",
+      "name": "Inkay",
+      "printed_coordinate": "113",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "3d4574be-1487-5dc9-9dec-f9a79da38dd6",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-114",
+      "name": "Eevee",
+      "printed_coordinate": "114",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "fe2b117d-d9d0-557c-bb81-4168d47b864f",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-115",
+      "name": "Azurill",
+      "printed_coordinate": "115",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "cabe196b-e599-56b3-a9eb-746ccc4d0a30",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-116",
+      "name": "Altaria",
+      "printed_coordinate": "116",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "4e60b99b-d6b6-551b-b30c-e1ff97f63e70",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-117",
+      "name": "Kecleon",
+      "printed_coordinate": "117",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "8d99272d-7800-5255-a166-34f1a6449e4d",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-118",
+      "name": "Mega Golisopod ex",
+      "printed_coordinate": "118",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "7d6b1bd9-e570-5105-ae10-c86d9a0abc12",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-119",
+      "name": "Heat Rotom ex",
+      "printed_coordinate": "119",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "220e6fde-7133-55f7-a988-0a1c9b56494b",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-120",
+      "name": "Wishiwashi ex",
+      "printed_coordinate": "120",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "12b20608-5768-57a0-ace9-fa6467fad2ff",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-121",
+      "name": "Raikou ex",
+      "printed_coordinate": "121",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "ab3e9816-e8a2-5327-a175-1870fbae118c",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-122",
+      "name": "Mega Golurk ex",
+      "printed_coordinate": "122",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "48dbf17e-069c-54fc-91b5-d37df04e7d9c",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-123",
+      "name": "Mega Malamar ex",
+      "printed_coordinate": "123",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "d22282a3-5137-5758-8478-dcbeee3b6fe4",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-124",
+      "name": "Talonflame ex",
+      "printed_coordinate": "124",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "725f8dad-a15e-54a6-8232-3e6450accb99",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-125",
+      "name": "Aarune",
+      "printed_coordinate": "125",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "f94ca4dc-207e-5985-b7af-42ed14a659c2",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-126",
+      "name": "Adventure Lantern",
+      "printed_coordinate": "126",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "55b05a8b-d833-51a4-9f05-92ea40c915a4",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-127",
+      "name": "Custom Vest",
+      "printed_coordinate": "127",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "3642fef9-e07c-54a4-820b-2daef71d70b1",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-128",
+      "name": "Emcee's Hype",
+      "printed_coordinate": "128",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "6175fd9d-b2eb-5f15-9d89-af6991a5ac38",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-129",
+      "name": "Pokémon Catcher",
+      "printed_coordinate": "129",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "1d95ae2a-0648-5b8a-a050-cb432178c9ac",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-130",
+      "name": "Tate & Liza's Training",
+      "printed_coordinate": "130",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "4491c2e9-a11d-50b1-8385-9062e972a722",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-131",
+      "name": "Zinnia's Trust",
+      "printed_coordinate": "131",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "7ef9f400-208a-5ea6-b2ff-628277c10c79",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-132",
+      "name": "Bubbly Water Energy",
+      "printed_coordinate": "132",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "4dabe37f-74f3-5a81-9432-a13f02f0924b",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-133",
+      "name": "Growing Grass Energy",
+      "printed_coordinate": "133",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "9293c9ea-1c59-5684-8e69-1df1b86b4fff",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-134",
+      "name": "Nitro Fire Energy",
+      "printed_coordinate": "134",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "3822c737-1f6c-5c47-9de6-570d4bd77e77",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-135",
+      "name": "Mega Golisopod ex",
+      "printed_coordinate": "135",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "f78b20b3-fc73-5daf-8e2e-a1ae4c0240cc",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-136",
+      "name": "Raikou ex",
+      "printed_coordinate": "136",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "ff05c9e2-2d2f-5928-9dcb-ec4a7a767cc5",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-137",
+      "name": "Mega Golurk ex",
+      "printed_coordinate": "137",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "1c73425c-ec60-5618-b634-e8ceb81ef5f6",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-138",
+      "name": "Mega Rayquaza ex",
+      "printed_coordinate": "138",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "b0c52151-27f7-5b48-b651-8886076ba7cf",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-139",
+      "name": "Aarune",
+      "printed_coordinate": "139",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "e9ba6411-4865-5005-a895-86c0792b26b6",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-140",
+      "name": "Zinnia's Trust",
+      "printed_coordinate": "140",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "71d1aaa9-8199-5eea-be3f-51e6d1349862",
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "gv_id": "GV-PK-DLR-141",
+      "name": "Mega Rayquaza ex",
+      "printed_coordinate": "141",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "f4946ae5-2fea-5d6a-871a-42851473021c",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-1-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "f4946ae5-2fea-5d6a-871a-42851473021c",
+          "finish_key": "normal",
+          "official_collector_number": 1
+        }
+      ]
+    },
+    {
+      "card_print_id": "09a287a2-e96b-5d6c-9782-aca0bebd6fae",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-2-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "09a287a2-e96b-5d6c-9782-aca0bebd6fae",
+          "finish_key": "normal",
+          "official_collector_number": 2
+        }
+      ]
+    },
+    {
+      "card_print_id": "6e8cfe3a-3581-55a4-b647-703a5c4fb58e",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-3-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "6e8cfe3a-3581-55a4-b647-703a5c4fb58e",
+          "finish_key": "normal",
+          "official_collector_number": 3
+        }
+      ]
+    },
+    {
+      "card_print_id": "32dd1d10-6eb6-5f77-91a5-3d9409d22c9c",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-4-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "32dd1d10-6eb6-5f77-91a5-3d9409d22c9c",
+          "finish_key": "normal",
+          "official_collector_number": 4
+        }
+      ]
+    },
+    {
+      "card_print_id": "683b1417-6e4a-5e9a-ba3f-040e6f7a569e",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-5-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "683b1417-6e4a-5e9a-ba3f-040e6f7a569e",
+          "finish_key": "holo",
+          "official_collector_number": 5
+        }
+      ]
+    },
+    {
+      "card_print_id": "ee416779-a5a4-5fb4-aa3c-ea3edfe50991",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-6-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "ee416779-a5a4-5fb4-aa3c-ea3edfe50991",
+          "finish_key": "normal",
+          "official_collector_number": 6
+        }
+      ]
+    },
+    {
+      "card_print_id": "6bd66f39-4ed5-5f87-9028-69bc3d0b41e6",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-7-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "6bd66f39-4ed5-5f87-9028-69bc3d0b41e6",
+          "finish_key": "normal",
+          "official_collector_number": 7
+        }
+      ]
+    },
+    {
+      "card_print_id": "00eb4800-4f63-5e3f-b0ed-518f90aadcc9",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-8-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "00eb4800-4f63-5e3f-b0ed-518f90aadcc9",
+          "finish_key": "normal",
+          "official_collector_number": 8
+        }
+      ]
+    },
+    {
+      "card_print_id": "6ce11f73-9b93-5d9a-9839-ccd863f1207e",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-9-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "6ce11f73-9b93-5d9a-9839-ccd863f1207e",
+          "finish_key": "normal",
+          "official_collector_number": 9
+        }
+      ]
+    },
+    {
+      "card_print_id": "5030d070-1782-5989-9190-019c68ceaf17",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-10-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "5030d070-1782-5989-9190-019c68ceaf17",
+          "finish_key": "normal",
+          "official_collector_number": 10
+        }
+      ]
+    },
+    {
+      "card_print_id": "018749b0-66ba-5c81-907b-b4b10e3ea461",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-11-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "018749b0-66ba-5c81-907b-b4b10e3ea461",
+          "finish_key": "holo",
+          "official_collector_number": 11
+        }
+      ]
+    },
+    {
+      "card_print_id": "f1da33de-068f-5b65-ab3e-5bbebc47380f",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-12-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "f1da33de-068f-5b65-ab3e-5bbebc47380f",
+          "finish_key": "normal",
+          "official_collector_number": 12
+        }
+      ]
+    },
+    {
+      "card_print_id": "1f219375-d135-5da5-ad53-3730cf8280b6",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-13-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "1f219375-d135-5da5-ad53-3730cf8280b6",
+          "finish_key": "normal",
+          "official_collector_number": 13
+        }
+      ]
+    },
+    {
+      "card_print_id": "3e6dec52-78d8-5fe9-b6aa-d84096270a2c",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-14-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "3e6dec52-78d8-5fe9-b6aa-d84096270a2c",
+          "finish_key": "holo",
+          "official_collector_number": 14
+        }
+      ]
+    },
+    {
+      "card_print_id": "30a648b7-8ca8-5e82-9a39-bf24900c231e",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-15-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "30a648b7-8ca8-5e82-9a39-bf24900c231e",
+          "finish_key": "normal",
+          "official_collector_number": 15
+        }
+      ]
+    },
+    {
+      "card_print_id": "6c501804-b81f-5c1e-9d2e-dc887a4b6007",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-16-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "6c501804-b81f-5c1e-9d2e-dc887a4b6007",
+          "finish_key": "normal",
+          "official_collector_number": 16
+        }
+      ]
+    },
+    {
+      "card_print_id": "964c0440-db8d-57a5-bdd6-4043f372eca8",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-17-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "964c0440-db8d-57a5-bdd6-4043f372eca8",
+          "finish_key": "normal",
+          "official_collector_number": 17
+        }
+      ]
+    },
+    {
+      "card_print_id": "3aba7795-a244-5442-8a03-47316c2f0617",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-18-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "3aba7795-a244-5442-8a03-47316c2f0617",
+          "finish_key": "normal",
+          "official_collector_number": 18
+        }
+      ]
+    },
+    {
+      "card_print_id": "a2d32a0c-27b0-5434-ba52-2359a68e0d3e",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-19-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "a2d32a0c-27b0-5434-ba52-2359a68e0d3e",
+          "finish_key": "holo",
+          "official_collector_number": 19
+        }
+      ]
+    },
+    {
+      "card_print_id": "436a337b-5a91-5510-a708-7a75d34c665d",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-20-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "436a337b-5a91-5510-a708-7a75d34c665d",
+          "finish_key": "normal",
+          "official_collector_number": 20
+        }
+      ]
+    },
+    {
+      "card_print_id": "5d28a32d-5157-5a9f-8ac6-4ea5eeaaf34e",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-21-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "5d28a32d-5157-5a9f-8ac6-4ea5eeaaf34e",
+          "finish_key": "holo",
+          "official_collector_number": 21
+        }
+      ]
+    },
+    {
+      "card_print_id": "910ee31b-175f-57ba-b332-5ee15a3dc5e1",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-22-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "910ee31b-175f-57ba-b332-5ee15a3dc5e1",
+          "finish_key": "normal",
+          "official_collector_number": 22
+        }
+      ]
+    },
+    {
+      "card_print_id": "540e1b7c-1a6e-5f6c-baee-10985c3ed24f",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-23-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "540e1b7c-1a6e-5f6c-baee-10985c3ed24f",
+          "finish_key": "holo",
+          "official_collector_number": 23
+        }
+      ]
+    },
+    {
+      "card_print_id": "f534a18d-f3e6-5e4b-9c37-20f3b13f185c",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-24-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "f534a18d-f3e6-5e4b-9c37-20f3b13f185c",
+          "finish_key": "normal",
+          "official_collector_number": 24
+        }
+      ]
+    },
+    {
+      "card_print_id": "5d61efea-6ea4-5175-a504-40ccca2dd353",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-25-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "5d61efea-6ea4-5175-a504-40ccca2dd353",
+          "finish_key": "normal",
+          "official_collector_number": 25
+        }
+      ]
+    },
+    {
+      "card_print_id": "600438ca-b04b-5352-ada8-3e06caee9f5d",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-26-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "600438ca-b04b-5352-ada8-3e06caee9f5d",
+          "finish_key": "holo",
+          "official_collector_number": 26
+        }
+      ]
+    },
+    {
+      "card_print_id": "27a48aa2-cdd1-585c-9d20-1870abfbe450",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-27-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "27a48aa2-cdd1-585c-9d20-1870abfbe450",
+          "finish_key": "normal",
+          "official_collector_number": 27
+        }
+      ]
+    },
+    {
+      "card_print_id": "114eb190-9959-57b4-988e-d69f54099ed5",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-28-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "114eb190-9959-57b4-988e-d69f54099ed5",
+          "finish_key": "normal",
+          "official_collector_number": 28
+        }
+      ]
+    },
+    {
+      "card_print_id": "028e394a-f80a-5a15-b063-91ca19b414dc",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-29-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "028e394a-f80a-5a15-b063-91ca19b414dc",
+          "finish_key": "holo",
+          "official_collector_number": 29
+        }
+      ]
+    },
+    {
+      "card_print_id": "0914b36f-82f9-59cb-90bc-6becb5b35131",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-30-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "0914b36f-82f9-59cb-90bc-6becb5b35131",
+          "finish_key": "normal",
+          "official_collector_number": 30
+        }
+      ]
+    },
+    {
+      "card_print_id": "bc5238d4-fe0f-5edc-acf9-8857aeae9f2a",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-31-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "bc5238d4-fe0f-5edc-acf9-8857aeae9f2a",
+          "finish_key": "normal",
+          "official_collector_number": 31
+        }
+      ]
+    },
+    {
+      "card_print_id": "db3e62f5-b92b-57a6-815e-e4bc3793398b",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-32-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "db3e62f5-b92b-57a6-815e-e4bc3793398b",
+          "finish_key": "normal",
+          "official_collector_number": 32
+        }
+      ]
+    },
+    {
+      "card_print_id": "8d040dc2-0825-5f05-be23-577404016900",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-33-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "8d040dc2-0825-5f05-be23-577404016900",
+          "finish_key": "holo",
+          "official_collector_number": 33
+        }
+      ]
+    },
+    {
+      "card_print_id": "50eea9d8-0944-5734-af26-a058edb4110a",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-34-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "50eea9d8-0944-5734-af26-a058edb4110a",
+          "finish_key": "normal",
+          "official_collector_number": 34
+        }
+      ]
+    },
+    {
+      "card_print_id": "74dcfc9f-3a0e-5d50-9932-4b8744557c8f",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-35-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "74dcfc9f-3a0e-5d50-9932-4b8744557c8f",
+          "finish_key": "normal",
+          "official_collector_number": 35
+        }
+      ]
+    },
+    {
+      "card_print_id": "996bb661-f439-5ffc-9305-b3c2108b2e12",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-36-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "996bb661-f439-5ffc-9305-b3c2108b2e12",
+          "finish_key": "normal",
+          "official_collector_number": 36
+        }
+      ]
+    },
+    {
+      "card_print_id": "8eaed34c-682e-5999-b93e-11294a9f1076",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-37-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "8eaed34c-682e-5999-b93e-11294a9f1076",
+          "finish_key": "normal",
+          "official_collector_number": 37
+        }
+      ]
+    },
+    {
+      "card_print_id": "79a82de4-2318-5125-b383-217552752652",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-38-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "79a82de4-2318-5125-b383-217552752652",
+          "finish_key": "normal",
+          "official_collector_number": 38
+        }
+      ]
+    },
+    {
+      "card_print_id": "07e9ac86-d8ed-5032-afcf-c89259ba771a",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-39-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "07e9ac86-d8ed-5032-afcf-c89259ba771a",
+          "finish_key": "normal",
+          "official_collector_number": 39
+        }
+      ]
+    },
+    {
+      "card_print_id": "31d9d1a1-ee78-54a1-adc9-7d8df21a5bb9",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-40-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "31d9d1a1-ee78-54a1-adc9-7d8df21a5bb9",
+          "finish_key": "normal",
+          "official_collector_number": 40
+        }
+      ]
+    },
+    {
+      "card_print_id": "e2518f44-04e1-5230-b89b-d17e36dab813",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-41-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "e2518f44-04e1-5230-b89b-d17e36dab813",
+          "finish_key": "normal",
+          "official_collector_number": 41
+        }
+      ]
+    },
+    {
+      "card_print_id": "79a9f3d3-ec0c-5bb4-9ce2-db11b8913da2",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-42-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "79a9f3d3-ec0c-5bb4-9ce2-db11b8913da2",
+          "finish_key": "normal",
+          "official_collector_number": 42
+        }
+      ]
+    },
+    {
+      "card_print_id": "03544f8e-ab6b-5ee5-814b-e0b2187bbd84",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-43-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "03544f8e-ab6b-5ee5-814b-e0b2187bbd84",
+          "finish_key": "normal",
+          "official_collector_number": 43
+        }
+      ]
+    },
+    {
+      "card_print_id": "3f47f7ad-63bc-56dc-87ba-c0beb4f65a2a",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-44-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "3f47f7ad-63bc-56dc-87ba-c0beb4f65a2a",
+          "finish_key": "normal",
+          "official_collector_number": 44
+        }
+      ]
+    },
+    {
+      "card_print_id": "7c039794-523a-5061-9f9f-936268f5e545",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-45-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "7c039794-523a-5061-9f9f-936268f5e545",
+          "finish_key": "holo",
+          "official_collector_number": 45
+        }
+      ]
+    },
+    {
+      "card_print_id": "240d7efd-c846-5280-8f2d-142cb5c3a40e",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-46-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "240d7efd-c846-5280-8f2d-142cb5c3a40e",
+          "finish_key": "normal",
+          "official_collector_number": 46
+        }
+      ]
+    },
+    {
+      "card_print_id": "9afbef97-c175-5f0a-9670-16ffc1fce63a",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-47-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "9afbef97-c175-5f0a-9670-16ffc1fce63a",
+          "finish_key": "holo",
+          "official_collector_number": 47
+        }
+      ]
+    },
+    {
+      "card_print_id": "a0ce79b0-4e21-5b35-878c-bd50d41df688",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-48-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "a0ce79b0-4e21-5b35-878c-bd50d41df688",
+          "finish_key": "normal",
+          "official_collector_number": 48
+        }
+      ]
+    },
+    {
+      "card_print_id": "9dd9ddd6-c828-50bf-ac78-9f5a4c479f43",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-49-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "9dd9ddd6-c828-50bf-ac78-9f5a4c479f43",
+          "finish_key": "normal",
+          "official_collector_number": 49
+        }
+      ]
+    },
+    {
+      "card_print_id": "b309a4eb-5cc0-5873-8507-1a9182c22a2d",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-50-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "b309a4eb-5cc0-5873-8507-1a9182c22a2d",
+          "finish_key": "normal",
+          "official_collector_number": 50
+        }
+      ]
+    },
+    {
+      "card_print_id": "768ce86b-bec4-5101-8c44-6c420ed6dd98",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-51-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "768ce86b-bec4-5101-8c44-6c420ed6dd98",
+          "finish_key": "normal",
+          "official_collector_number": 51
+        }
+      ]
+    },
+    {
+      "card_print_id": "124246ef-0030-59cc-90ff-2910abf25f66",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-52-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "124246ef-0030-59cc-90ff-2910abf25f66",
+          "finish_key": "holo",
+          "official_collector_number": 52
+        }
+      ]
+    },
+    {
+      "card_print_id": "baa71605-8190-54a7-af52-3ec03612d3b1",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-53-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "baa71605-8190-54a7-af52-3ec03612d3b1",
+          "finish_key": "holo",
+          "official_collector_number": 53
+        }
+      ]
+    },
+    {
+      "card_print_id": "dd575e35-30a1-5f01-b028-1396754b578b",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-54-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "dd575e35-30a1-5f01-b028-1396754b578b",
+          "finish_key": "normal",
+          "official_collector_number": 54
+        }
+      ]
+    },
+    {
+      "card_print_id": "e01d1bb7-375f-5944-8194-5fd755a887fe",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-55-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "e01d1bb7-375f-5944-8194-5fd755a887fe",
+          "finish_key": "normal",
+          "official_collector_number": 55
+        }
+      ]
+    },
+    {
+      "card_print_id": "6081e8de-486d-5b2f-a5aa-fc64a11f338e",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-56-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "6081e8de-486d-5b2f-a5aa-fc64a11f338e",
+          "finish_key": "normal",
+          "official_collector_number": 56
+        }
+      ]
+    },
+    {
+      "card_print_id": "a19bdd1f-5c0b-52a6-a5ef-8dcc8fa506a8",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-57-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "a19bdd1f-5c0b-52a6-a5ef-8dcc8fa506a8",
+          "finish_key": "holo",
+          "official_collector_number": 57
+        }
+      ]
+    },
+    {
+      "card_print_id": "448cbf57-8ab1-50b3-b444-0412b20b4c25",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-58-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "448cbf57-8ab1-50b3-b444-0412b20b4c25",
+          "finish_key": "normal",
+          "official_collector_number": 58
+        }
+      ]
+    },
+    {
+      "card_print_id": "c50b9f9e-2272-5819-9f06-7c5c9859b307",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-59-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "c50b9f9e-2272-5819-9f06-7c5c9859b307",
+          "finish_key": "normal",
+          "official_collector_number": 59
+        }
+      ]
+    },
+    {
+      "card_print_id": "f3571eb7-6a32-50a4-9b09-5e7f96f33b35",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-60-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "f3571eb7-6a32-50a4-9b09-5e7f96f33b35",
+          "finish_key": "normal",
+          "official_collector_number": 60
+        }
+      ]
+    },
+    {
+      "card_print_id": "c72dbe67-d6af-56f4-862a-0915b48dd561",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-61-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "c72dbe67-d6af-56f4-862a-0915b48dd561",
+          "finish_key": "normal",
+          "official_collector_number": 61
+        }
+      ]
+    },
+    {
+      "card_print_id": "df631573-377c-5ee2-8571-19a6628e2420",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-62-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "df631573-377c-5ee2-8571-19a6628e2420",
+          "finish_key": "normal",
+          "official_collector_number": 62
+        }
+      ]
+    },
+    {
+      "card_print_id": "e75adc90-d17f-5774-acb2-89c2b2ef21c6",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-63-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "e75adc90-d17f-5774-acb2-89c2b2ef21c6",
+          "finish_key": "normal",
+          "official_collector_number": 63
+        }
+      ]
+    },
+    {
+      "card_print_id": "735e999d-bf83-5f99-bc5a-b678e9f071b9",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-64-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "735e999d-bf83-5f99-bc5a-b678e9f071b9",
+          "finish_key": "normal",
+          "official_collector_number": 64
+        }
+      ]
+    },
+    {
+      "card_print_id": "7e1f8e7e-6722-5132-8879-a7cd27044ef9",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-65-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "7e1f8e7e-6722-5132-8879-a7cd27044ef9",
+          "finish_key": "normal",
+          "official_collector_number": 65
+        }
+      ]
+    },
+    {
+      "card_print_id": "b45eee53-20f1-5bc0-a790-76310f26cdda",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-66-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "b45eee53-20f1-5bc0-a790-76310f26cdda",
+          "finish_key": "normal",
+          "official_collector_number": 66
+        }
+      ]
+    },
+    {
+      "card_print_id": "d8e4468b-55bf-5725-974e-98219e664506",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-67-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "d8e4468b-55bf-5725-974e-98219e664506",
+          "finish_key": "holo",
+          "official_collector_number": 67
+        }
+      ]
+    },
+    {
+      "card_print_id": "4b8cae46-5e81-574f-bd38-db73d8466397",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-68-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "4b8cae46-5e81-574f-bd38-db73d8466397",
+          "finish_key": "normal",
+          "official_collector_number": 68
+        }
+      ]
+    },
+    {
+      "card_print_id": "9498a1e7-9ea7-5006-a0e8-dc13215a3380",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-69-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "9498a1e7-9ea7-5006-a0e8-dc13215a3380",
+          "finish_key": "holo",
+          "official_collector_number": 69
+        }
+      ]
+    },
+    {
+      "card_print_id": "f92f2c53-ab55-5939-ae81-00a2ba8adda8",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-70-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "f92f2c53-ab55-5939-ae81-00a2ba8adda8",
+          "finish_key": "normal",
+          "official_collector_number": 70
+        }
+      ]
+    },
+    {
+      "card_print_id": "2f543e76-bdb0-579f-97cd-9ffc04ac15e5",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-71-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "2f543e76-bdb0-579f-97cd-9ffc04ac15e5",
+          "finish_key": "normal",
+          "official_collector_number": 71
+        }
+      ]
+    },
+    {
+      "card_print_id": "69cfd553-78e7-51e2-a864-da499c1e231d",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-72-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "69cfd553-78e7-51e2-a864-da499c1e231d",
+          "finish_key": "normal",
+          "official_collector_number": 72
+        }
+      ]
+    },
+    {
+      "card_print_id": "43f4c405-db4e-5952-bf85-5fccc119d2c2",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-73-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "43f4c405-db4e-5952-bf85-5fccc119d2c2",
+          "finish_key": "normal",
+          "official_collector_number": 73
+        }
+      ]
+    },
+    {
+      "card_print_id": "e5427af0-6714-583e-a50b-1f0d0ed8ca8d",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-74-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "e5427af0-6714-583e-a50b-1f0d0ed8ca8d",
+          "finish_key": "normal",
+          "official_collector_number": 74
+        }
+      ]
+    },
+    {
+      "card_print_id": "a05f169a-7eef-59c2-9264-d70e8548d5af",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-75-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "a05f169a-7eef-59c2-9264-d70e8548d5af",
+          "finish_key": "holo",
+          "official_collector_number": 75
+        }
+      ]
+    },
+    {
+      "card_print_id": "e451cc21-17d6-5bb4-ae21-cc43a407a316",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-76-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "e451cc21-17d6-5bb4-ae21-cc43a407a316",
+          "finish_key": "normal",
+          "official_collector_number": 76
+        }
+      ]
+    },
+    {
+      "card_print_id": "266dda0c-a50f-5d9d-a7bc-b8207a417a6f",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-77-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "266dda0c-a50f-5d9d-a7bc-b8207a417a6f",
+          "finish_key": "normal",
+          "official_collector_number": 77
+        }
+      ]
+    },
+    {
+      "card_print_id": "bef3769c-a5e2-5513-a7bc-cc06dc9fc5f1",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-78-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "bef3769c-a5e2-5513-a7bc-cc06dc9fc5f1",
+          "finish_key": "normal",
+          "official_collector_number": 78
+        }
+      ]
+    },
+    {
+      "card_print_id": "00926a65-8122-5017-ba18-5a0ea2cd7b52",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-79-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "00926a65-8122-5017-ba18-5a0ea2cd7b52",
+          "finish_key": "normal",
+          "official_collector_number": 79
+        }
+      ]
+    },
+    {
+      "card_print_id": "8eda6c06-3835-5a07-ac5b-5f4939c79af3",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-80-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "8eda6c06-3835-5a07-ac5b-5f4939c79af3",
+          "finish_key": "normal",
+          "official_collector_number": 80
+        }
+      ]
+    },
+    {
+      "card_print_id": "ccf2e190-c785-5293-a9f1-23db51ec832a",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-81-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "ccf2e190-c785-5293-a9f1-23db51ec832a",
+          "finish_key": "normal",
+          "official_collector_number": 81
+        }
+      ]
+    },
+    {
+      "card_print_id": "0ab7c950-a459-53a1-8ae4-b914f5462c6d",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-82-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "0ab7c950-a459-53a1-8ae4-b914f5462c6d",
+          "finish_key": "holo",
+          "official_collector_number": 82
+        }
+      ]
+    },
+    {
+      "card_print_id": "6eb6b8ad-b69c-5681-aba2-fdd7ada72f38",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-83-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "6eb6b8ad-b69c-5681-aba2-fdd7ada72f38",
+          "finish_key": "normal",
+          "official_collector_number": 83
+        }
+      ]
+    },
+    {
+      "card_print_id": "cf48629e-16ed-5428-b30b-4adb989dbab1",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-84-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "cf48629e-16ed-5428-b30b-4adb989dbab1",
+          "finish_key": "holo",
+          "official_collector_number": 84
+        }
+      ]
+    },
+    {
+      "card_print_id": "570b544e-59d2-5d4d-89c9-6360251d76b7",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-85-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "570b544e-59d2-5d4d-89c9-6360251d76b7",
+          "finish_key": "normal",
+          "official_collector_number": 85
+        }
+      ]
+    },
+    {
+      "card_print_id": "f469e30e-8d46-5d36-9192-b58350ab111b",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-86-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "f469e30e-8d46-5d36-9192-b58350ab111b",
+          "finish_key": "normal",
+          "official_collector_number": 86
+        }
+      ]
+    },
+    {
+      "card_print_id": "4f2c60c4-94ad-5f54-ab4c-0874f60a2ac7",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-87-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "4f2c60c4-94ad-5f54-ab4c-0874f60a2ac7",
+          "finish_key": "normal",
+          "official_collector_number": 87
+        }
+      ]
+    },
+    {
+      "card_print_id": "59d2caeb-178f-56a9-b969-b82709b50c24",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-88-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "59d2caeb-178f-56a9-b969-b82709b50c24",
+          "finish_key": "holo",
+          "official_collector_number": 88
+        }
+      ]
+    },
+    {
+      "card_print_id": "7b9e7f2c-a510-5615-91cc-ad05647829a6",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-89-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "7b9e7f2c-a510-5615-91cc-ad05647829a6",
+          "finish_key": "normal",
+          "official_collector_number": 89
+        }
+      ]
+    },
+    {
+      "card_print_id": "6dcada4e-9909-510d-9ed6-7cab39fc76f9",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-90-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "6dcada4e-9909-510d-9ed6-7cab39fc76f9",
+          "finish_key": "normal",
+          "official_collector_number": 90
+        }
+      ]
+    },
+    {
+      "card_print_id": "0255f74e-8294-575e-8534-a4e4be191402",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-91-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "0255f74e-8294-575e-8534-a4e4be191402",
+          "finish_key": "normal",
+          "official_collector_number": 91
+        }
+      ]
+    },
+    {
+      "card_print_id": "f610c33d-64c6-5d67-89ea-55383a77480d",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-92-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "f610c33d-64c6-5d67-89ea-55383a77480d",
+          "finish_key": "normal",
+          "official_collector_number": 92
+        }
+      ]
+    },
+    {
+      "card_print_id": "3e17616f-8efd-5d2d-85f6-60c83b988398",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-93-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "3e17616f-8efd-5d2d-85f6-60c83b988398",
+          "finish_key": "normal",
+          "official_collector_number": 93
+        }
+      ]
+    },
+    {
+      "card_print_id": "10c51a94-0f1e-562d-88fa-1c6d441ef7ac",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-94-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "10c51a94-0f1e-562d-88fa-1c6d441ef7ac",
+          "finish_key": "normal",
+          "official_collector_number": 94
+        }
+      ]
+    },
+    {
+      "card_print_id": "081782ae-361c-59ed-b03e-d66fa1faf2f1",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-95-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "081782ae-361c-59ed-b03e-d66fa1faf2f1",
+          "finish_key": "normal",
+          "official_collector_number": 95
+        }
+      ]
+    },
+    {
+      "card_print_id": "e7fa5057-5beb-513c-b26c-a59b1c8533be",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-96-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "e7fa5057-5beb-513c-b26c-a59b1c8533be",
+          "finish_key": "normal",
+          "official_collector_number": 96
+        }
+      ]
+    },
+    {
+      "card_print_id": "b2b5eb93-7051-58e2-98de-5587e2a038aa",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-97-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "b2b5eb93-7051-58e2-98de-5587e2a038aa",
+          "finish_key": "normal",
+          "official_collector_number": 97
+        }
+      ]
+    },
+    {
+      "card_print_id": "1a5d2637-5772-5604-b5e9-920ef4b88b7f",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-98-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "1a5d2637-5772-5604-b5e9-920ef4b88b7f",
+          "finish_key": "normal",
+          "official_collector_number": 98
+        }
+      ]
+    },
+    {
+      "card_print_id": "a207d4a7-dd92-5a02-9aa7-cf4db55aa711",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-99-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "a207d4a7-dd92-5a02-9aa7-cf4db55aa711",
+          "finish_key": "normal",
+          "official_collector_number": 99
+        }
+      ]
+    },
+    {
+      "card_print_id": "155e80f3-9ad4-55bb-bf4a-a71c04f3c77b",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-100-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "155e80f3-9ad4-55bb-bf4a-a71c04f3c77b",
+          "finish_key": "normal",
+          "official_collector_number": 100
+        }
+      ]
+    },
+    {
+      "card_print_id": "2e5d750e-6b08-5892-8b1f-1966b148dc04",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-101-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "2e5d750e-6b08-5892-8b1f-1966b148dc04",
+          "finish_key": "normal",
+          "official_collector_number": 101
+        }
+      ]
+    },
+    {
+      "card_print_id": "c716d88c-0e72-5c75-b43f-3998f08ae06f",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-102-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "c716d88c-0e72-5c75-b43f-3998f08ae06f",
+          "finish_key": "normal",
+          "official_collector_number": 102
+        }
+      ]
+    },
+    {
+      "card_print_id": "22cf9826-dd73-5c53-a68f-f4aa365ae82d",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DLR-103-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "22cf9826-dd73-5c53-a68f-f4aa365ae82d",
+          "finish_key": "normal",
+          "official_collector_number": 103
+        }
+      ]
+    },
+    {
+      "card_print_id": "c7902635-0ed3-50f2-8254-0f90714488cb",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-104-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "c7902635-0ed3-50f2-8254-0f90714488cb",
+          "finish_key": "holo",
+          "official_collector_number": 104
+        }
+      ]
+    },
+    {
+      "card_print_id": "a367bc84-5abc-504f-b299-a8c90eddc889",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-105-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "a367bc84-5abc-504f-b299-a8c90eddc889",
+          "finish_key": "holo",
+          "official_collector_number": 105
+        }
+      ]
+    },
+    {
+      "card_print_id": "dbab5adf-4b09-552c-acbe-4539b3897a57",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-106-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "dbab5adf-4b09-552c-acbe-4539b3897a57",
+          "finish_key": "holo",
+          "official_collector_number": 106
+        }
+      ]
+    },
+    {
+      "card_print_id": "abafa677-31ec-5e57-b230-06c359bf20ab",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-107-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "abafa677-31ec-5e57-b230-06c359bf20ab",
+          "finish_key": "holo",
+          "official_collector_number": 107
+        }
+      ]
+    },
+    {
+      "card_print_id": "d3f98e15-9c10-5977-b4ca-94d8eeb9633f",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-108-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "d3f98e15-9c10-5977-b4ca-94d8eeb9633f",
+          "finish_key": "holo",
+          "official_collector_number": 108
+        }
+      ]
+    },
+    {
+      "card_print_id": "049d11e2-6042-5b67-9c0d-1615a94264d5",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-109-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "049d11e2-6042-5b67-9c0d-1615a94264d5",
+          "finish_key": "holo",
+          "official_collector_number": 109
+        }
+      ]
+    },
+    {
+      "card_print_id": "f835f2b8-6620-5377-9cda-b74895ecd616",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-110-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "f835f2b8-6620-5377-9cda-b74895ecd616",
+          "finish_key": "holo",
+          "official_collector_number": 110
+        }
+      ]
+    },
+    {
+      "card_print_id": "0e0877d9-16fe-5437-b023-c9e0f13b3664",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-111-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "0e0877d9-16fe-5437-b023-c9e0f13b3664",
+          "finish_key": "holo",
+          "official_collector_number": 111
+        }
+      ]
+    },
+    {
+      "card_print_id": "3744bdf2-e482-5f85-b14c-463c53cd686d",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-112-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "3744bdf2-e482-5f85-b14c-463c53cd686d",
+          "finish_key": "holo",
+          "official_collector_number": 112
+        }
+      ]
+    },
+    {
+      "card_print_id": "142c7b25-bc24-5f4e-aa40-c71aac89e216",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-113-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "142c7b25-bc24-5f4e-aa40-c71aac89e216",
+          "finish_key": "holo",
+          "official_collector_number": 113
+        }
+      ]
+    },
+    {
+      "card_print_id": "3d4574be-1487-5dc9-9dec-f9a79da38dd6",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-114-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "3d4574be-1487-5dc9-9dec-f9a79da38dd6",
+          "finish_key": "holo",
+          "official_collector_number": 114
+        }
+      ]
+    },
+    {
+      "card_print_id": "fe2b117d-d9d0-557c-bb81-4168d47b864f",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-115-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "fe2b117d-d9d0-557c-bb81-4168d47b864f",
+          "finish_key": "holo",
+          "official_collector_number": 115
+        }
+      ]
+    },
+    {
+      "card_print_id": "cabe196b-e599-56b3-a9eb-746ccc4d0a30",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-116-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "cabe196b-e599-56b3-a9eb-746ccc4d0a30",
+          "finish_key": "holo",
+          "official_collector_number": 116
+        }
+      ]
+    },
+    {
+      "card_print_id": "4e60b99b-d6b6-551b-b30c-e1ff97f63e70",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-117-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "4e60b99b-d6b6-551b-b30c-e1ff97f63e70",
+          "finish_key": "holo",
+          "official_collector_number": 117
+        }
+      ]
+    },
+    {
+      "card_print_id": "8d99272d-7800-5255-a166-34f1a6449e4d",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-118-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "8d99272d-7800-5255-a166-34f1a6449e4d",
+          "finish_key": "holo",
+          "official_collector_number": 118
+        }
+      ]
+    },
+    {
+      "card_print_id": "7d6b1bd9-e570-5105-ae10-c86d9a0abc12",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-119-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "7d6b1bd9-e570-5105-ae10-c86d9a0abc12",
+          "finish_key": "holo",
+          "official_collector_number": 119
+        }
+      ]
+    },
+    {
+      "card_print_id": "220e6fde-7133-55f7-a988-0a1c9b56494b",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-120-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "220e6fde-7133-55f7-a988-0a1c9b56494b",
+          "finish_key": "holo",
+          "official_collector_number": 120
+        }
+      ]
+    },
+    {
+      "card_print_id": "12b20608-5768-57a0-ace9-fa6467fad2ff",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-121-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "12b20608-5768-57a0-ace9-fa6467fad2ff",
+          "finish_key": "holo",
+          "official_collector_number": 121
+        }
+      ]
+    },
+    {
+      "card_print_id": "ab3e9816-e8a2-5327-a175-1870fbae118c",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-122-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "ab3e9816-e8a2-5327-a175-1870fbae118c",
+          "finish_key": "holo",
+          "official_collector_number": 122
+        }
+      ]
+    },
+    {
+      "card_print_id": "48dbf17e-069c-54fc-91b5-d37df04e7d9c",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-123-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "48dbf17e-069c-54fc-91b5-d37df04e7d9c",
+          "finish_key": "holo",
+          "official_collector_number": 123
+        }
+      ]
+    },
+    {
+      "card_print_id": "d22282a3-5137-5758-8478-dcbeee3b6fe4",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-124-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "d22282a3-5137-5758-8478-dcbeee3b6fe4",
+          "finish_key": "holo",
+          "official_collector_number": 124
+        }
+      ]
+    },
+    {
+      "card_print_id": "725f8dad-a15e-54a6-8232-3e6450accb99",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-125-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "725f8dad-a15e-54a6-8232-3e6450accb99",
+          "finish_key": "holo",
+          "official_collector_number": 125
+        }
+      ]
+    },
+    {
+      "card_print_id": "f94ca4dc-207e-5985-b7af-42ed14a659c2",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-126-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "f94ca4dc-207e-5985-b7af-42ed14a659c2",
+          "finish_key": "holo",
+          "official_collector_number": 126
+        }
+      ]
+    },
+    {
+      "card_print_id": "55b05a8b-d833-51a4-9f05-92ea40c915a4",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-127-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "55b05a8b-d833-51a4-9f05-92ea40c915a4",
+          "finish_key": "holo",
+          "official_collector_number": 127
+        }
+      ]
+    },
+    {
+      "card_print_id": "3642fef9-e07c-54a4-820b-2daef71d70b1",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-128-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "3642fef9-e07c-54a4-820b-2daef71d70b1",
+          "finish_key": "holo",
+          "official_collector_number": 128
+        }
+      ]
+    },
+    {
+      "card_print_id": "6175fd9d-b2eb-5f15-9d89-af6991a5ac38",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-129-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "6175fd9d-b2eb-5f15-9d89-af6991a5ac38",
+          "finish_key": "holo",
+          "official_collector_number": 129
+        }
+      ]
+    },
+    {
+      "card_print_id": "1d95ae2a-0648-5b8a-a050-cb432178c9ac",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-130-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "1d95ae2a-0648-5b8a-a050-cb432178c9ac",
+          "finish_key": "holo",
+          "official_collector_number": 130
+        }
+      ]
+    },
+    {
+      "card_print_id": "4491c2e9-a11d-50b1-8385-9062e972a722",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-131-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "4491c2e9-a11d-50b1-8385-9062e972a722",
+          "finish_key": "holo",
+          "official_collector_number": 131
+        }
+      ]
+    },
+    {
+      "card_print_id": "7ef9f400-208a-5ea6-b2ff-628277c10c79",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-132-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "7ef9f400-208a-5ea6-b2ff-628277c10c79",
+          "finish_key": "holo",
+          "official_collector_number": 132
+        }
+      ]
+    },
+    {
+      "card_print_id": "4dabe37f-74f3-5a81-9432-a13f02f0924b",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-133-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "4dabe37f-74f3-5a81-9432-a13f02f0924b",
+          "finish_key": "holo",
+          "official_collector_number": 133
+        }
+      ]
+    },
+    {
+      "card_print_id": "9293c9ea-1c59-5684-8e69-1df1b86b4fff",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-134-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "9293c9ea-1c59-5684-8e69-1df1b86b4fff",
+          "finish_key": "holo",
+          "official_collector_number": 134
+        }
+      ]
+    },
+    {
+      "card_print_id": "3822c737-1f6c-5c47-9de6-570d4bd77e77",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-135-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "3822c737-1f6c-5c47-9de6-570d4bd77e77",
+          "finish_key": "holo",
+          "official_collector_number": 135
+        }
+      ]
+    },
+    {
+      "card_print_id": "f78b20b3-fc73-5daf-8e2e-a1ae4c0240cc",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-136-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "f78b20b3-fc73-5daf-8e2e-a1ae4c0240cc",
+          "finish_key": "holo",
+          "official_collector_number": 136
+        }
+      ]
+    },
+    {
+      "card_print_id": "ff05c9e2-2d2f-5928-9dcb-ec4a7a767cc5",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-137-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "ff05c9e2-2d2f-5928-9dcb-ec4a7a767cc5",
+          "finish_key": "holo",
+          "official_collector_number": 137
+        }
+      ]
+    },
+    {
+      "card_print_id": "1c73425c-ec60-5618-b634-e8ceb81ef5f6",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-138-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "1c73425c-ec60-5618-b634-e8ceb81ef5f6",
+          "finish_key": "holo",
+          "official_collector_number": 138
+        }
+      ]
+    },
+    {
+      "card_print_id": "b0c52151-27f7-5b48-b651-8886076ba7cf",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-139-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "b0c52151-27f7-5b48-b651-8886076ba7cf",
+          "finish_key": "holo",
+          "official_collector_number": 139
+        }
+      ]
+    },
+    {
+      "card_print_id": "e9ba6411-4865-5005-a895-86c0792b26b6",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-140-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "e9ba6411-4865-5005-a895-86c0792b26b6",
+          "finish_key": "holo",
+          "official_collector_number": 140
+        }
+      ]
+    },
+    {
+      "card_print_id": "71d1aaa9-8199-5eea-be3f-51e6d1349862",
+      "finish_key": "holo",
+      "printing_gv_id": "GV-PK-DLR-141-HOLO",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+          "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+          "card_print_id": "71d1aaa9-8199-5eea-be3f-51e6d1349862",
+          "finish_key": "holo",
+          "official_collector_number": 141
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [
+    {
+      "key": "tcgplayer:726510:reverse_holofoil",
+      "card_print_id": "6e8cfe3a-3581-55a4-b647-703a5c4fb58e",
+      "source_ref": "tcgcsv_source_price_daily_observations:6e916bbd-0e11-4f50-bb45-f4a6e7fc3a9e",
+      "source_product_id": 726510,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726511:reverse_holofoil",
+      "card_print_id": "6ce11f73-9b93-5d9a-9839-ccd863f1207e",
+      "source_ref": "tcgcsv_source_price_daily_observations:85f385c5-2897-4944-8070-4f619edfa9b1",
+      "source_product_id": 726511,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726513:reverse_holofoil",
+      "card_print_id": "f1da33de-068f-5b65-ab3e-5bbebc47380f",
+      "source_ref": "tcgcsv_source_price_daily_observations:19f0175b-1d01-4006-bf7d-f441791c3c86",
+      "source_product_id": 726513,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726514:reverse_holofoil",
+      "card_print_id": "1f219375-d135-5da5-ad53-3730cf8280b6",
+      "source_ref": "tcgcsv_source_price_daily_observations:0571f609-ff76-4d0e-b956-4497c6b3a1bf",
+      "source_product_id": 726514,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726516:reverse_holofoil",
+      "card_print_id": "3aba7795-a244-5442-8a03-47316c2f0617",
+      "source_ref": "tcgcsv_source_price_daily_observations:9dd98263-70ee-4069-ad20-38e5cdb6c0c0",
+      "source_product_id": 726516,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726517:reverse_holofoil",
+      "card_print_id": "a2d32a0c-27b0-5434-ba52-2359a68e0d3e",
+      "source_ref": "tcgcsv_source_price_daily_observations:1724e3c8-c668-42b0-9b89-3d10ed6ebc8a",
+      "source_product_id": 726517,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726519:reverse_holofoil",
+      "card_print_id": "600438ca-b04b-5352-ada8-3e06caee9f5d",
+      "source_ref": "tcgcsv_source_price_daily_observations:df85279f-d35f-436b-885c-c91a15ab71f8",
+      "source_product_id": 726519,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726521:reverse_holofoil",
+      "card_print_id": "bc5238d4-fe0f-5edc-acf9-8857aeae9f2a",
+      "source_ref": "tcgcsv_source_price_daily_observations:0e24495b-306b-43d5-8a45-576543be5d55",
+      "source_product_id": 726521,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726522:reverse_holofoil",
+      "card_print_id": "db3e62f5-b92b-57a6-815e-e4bc3793398b",
+      "source_ref": "tcgcsv_source_price_daily_observations:bc01602e-f03a-4ba2-a090-80e5e00ad0e5",
+      "source_product_id": 726522,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726524:reverse_holofoil",
+      "card_print_id": "74dcfc9f-3a0e-5d50-9932-4b8744557c8f",
+      "source_ref": "tcgcsv_source_price_daily_observations:3fe24d7f-f153-44f3-8f8f-0bcd281e5e10",
+      "source_product_id": 726524,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726525:reverse_holofoil",
+      "card_print_id": "996bb661-f439-5ffc-9305-b3c2108b2e12",
+      "source_ref": "tcgcsv_source_price_daily_observations:743ba6fe-d5d5-4dac-83bf-c719c18f4316",
+      "source_product_id": 726525,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726526:reverse_holofoil",
+      "card_print_id": "3f47f7ad-63bc-56dc-87ba-c0beb4f65a2a",
+      "source_ref": "tcgcsv_source_price_daily_observations:b9f8e04d-4d33-4e6e-8172-af427e207926",
+      "source_product_id": 726526,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726527:reverse_holofoil",
+      "card_print_id": "7c039794-523a-5061-9f9f-936268f5e545",
+      "source_ref": "tcgcsv_source_price_daily_observations:50a4ca4e-c87e-4042-a080-4ff4c2e781e2",
+      "source_product_id": 726527,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726529:reverse_holofoil",
+      "card_print_id": "baa71605-8190-54a7-af52-3ec03612d3b1",
+      "source_ref": "tcgcsv_source_price_daily_observations:770bc7fe-d179-4495-89a6-e7ab5f1d4781",
+      "source_product_id": 726529,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726530:reverse_holofoil",
+      "card_print_id": "dd575e35-30a1-5f01-b028-1396754b578b",
+      "source_ref": "tcgcsv_source_price_daily_observations:81c15cb6-3c2d-4077-9b21-dd1cf34cefa9",
+      "source_product_id": 726530,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726531:reverse_holofoil",
+      "card_print_id": "e01d1bb7-375f-5944-8194-5fd755a887fe",
+      "source_ref": "tcgcsv_source_price_daily_observations:c6ac8703-ddb6-4ae2-bcbc-4caec6565517",
+      "source_product_id": 726531,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726532:reverse_holofoil",
+      "card_print_id": "448cbf57-8ab1-50b3-b444-0412b20b4c25",
+      "source_ref": "tcgcsv_source_price_daily_observations:129b3054-05a9-4627-8f49-35c41795f86c",
+      "source_product_id": 726532,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726533:reverse_holofoil",
+      "card_print_id": "f3571eb7-6a32-50a4-9b09-5e7f96f33b35",
+      "source_ref": "tcgcsv_source_price_daily_observations:ca09687c-dcc3-4f87-bd6f-44fd743d279c",
+      "source_product_id": 726533,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726535:reverse_holofoil",
+      "card_print_id": "f92f2c53-ab55-5939-ae81-00a2ba8adda8",
+      "source_ref": "tcgcsv_source_price_daily_observations:2103ac96-22b7-4dea-90d6-d55796fdbc2d",
+      "source_product_id": 726535,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726536:reverse_holofoil",
+      "card_print_id": "2f543e76-bdb0-579f-97cd-9ffc04ac15e5",
+      "source_ref": "tcgcsv_source_price_daily_observations:c611208d-5bba-4646-9364-26d8c96fe79e",
+      "source_product_id": 726536,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726537:reverse_holofoil",
+      "card_print_id": "69cfd553-78e7-51e2-a864-da499c1e231d",
+      "source_ref": "tcgcsv_source_price_daily_observations:fd54307a-a500-47eb-9267-07f759ecd425",
+      "source_product_id": 726537,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726538:reverse_holofoil",
+      "card_print_id": "a05f169a-7eef-59c2-9264-d70e8548d5af",
+      "source_ref": "tcgcsv_source_price_daily_observations:59063201-aaaf-40b6-b604-3f869257ae57",
+      "source_product_id": 726538,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726539:reverse_holofoil",
+      "card_print_id": "bef3769c-a5e2-5513-a7bc-cc06dc9fc5f1",
+      "source_ref": "tcgcsv_source_price_daily_observations:e2e21a72-5584-49e7-bf0b-f4c1ad3c2c9a",
+      "source_product_id": 726539,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726540:reverse_holofoil",
+      "card_print_id": "00926a65-8122-5017-ba18-5a0ea2cd7b52",
+      "source_ref": "tcgcsv_source_price_daily_observations:0665a5ec-47cf-4963-90da-a89b87cb056e",
+      "source_product_id": 726540,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726541:reverse_holofoil",
+      "card_print_id": "8eda6c06-3835-5a07-ac5b-5f4939c79af3",
+      "source_ref": "tcgcsv_source_price_daily_observations:a4dfc5ea-f565-4123-94df-7ae96fb37485",
+      "source_product_id": 726541,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726542:reverse_holofoil",
+      "card_print_id": "6eb6b8ad-b69c-5681-aba2-fdd7ada72f38",
+      "source_ref": "tcgcsv_source_price_daily_observations:75f3b821-645e-4394-acd7-dc2240ff70cb",
+      "source_product_id": 726542,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726544:reverse_holofoil",
+      "card_print_id": "570b544e-59d2-5d4d-89c9-6360251d76b7",
+      "source_ref": "tcgcsv_source_price_daily_observations:ef3e499c-57d6-40fc-bf9e-8e26dabad210",
+      "source_product_id": 726544,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726545:reverse_holofoil",
+      "card_print_id": "7b9e7f2c-a510-5615-91cc-ad05647829a6",
+      "source_ref": "tcgcsv_source_price_daily_observations:56c473d6-30f8-4af2-ae28-da24dd2bf491",
+      "source_product_id": 726545,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726546:reverse_holofoil",
+      "card_print_id": "6dcada4e-9909-510d-9ed6-7cab39fc76f9",
+      "source_ref": "tcgcsv_source_price_daily_observations:55c691df-1e5b-4e6a-ad8a-c7816a96a55c",
+      "source_product_id": 726546,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726547:reverse_holofoil",
+      "card_print_id": "0255f74e-8294-575e-8534-a4e4be191402",
+      "source_ref": "tcgcsv_source_price_daily_observations:f382e647-fb41-4db5-a70b-edeac7921f52",
+      "source_product_id": 726547,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726548:reverse_holofoil",
+      "card_print_id": "f610c33d-64c6-5d67-89ea-55383a77480d",
+      "source_ref": "tcgcsv_source_price_daily_observations:c329b0b8-6bf3-4a54-b288-0c0671538baf",
+      "source_product_id": 726548,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726549:reverse_holofoil",
+      "card_print_id": "3e17616f-8efd-5d2d-85f6-60c83b988398",
+      "source_ref": "tcgcsv_source_price_daily_observations:dbf423c8-fdc9-49b4-bca7-e29e9e133e1a",
+      "source_product_id": 726549,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726553:reverse_holofoil",
+      "card_print_id": "155e80f3-9ad4-55bb-bf4a-a71c04f3c77b",
+      "source_ref": "tcgcsv_source_price_daily_observations:4ac1b816-5eb2-4569-a74e-90ab424baffa",
+      "source_product_id": 726553,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726554:reverse_holofoil",
+      "card_print_id": "2e5d750e-6b08-5892-8b1f-1966b148dc04",
+      "source_ref": "tcgcsv_source_price_daily_observations:cabb0874-c9d8-43bc-ba33-194cdacd2011",
+      "source_product_id": 726554,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726555:reverse_holofoil",
+      "card_print_id": "c716d88c-0e72-5c75-b43f-3998f08ae06f",
+      "source_ref": "tcgcsv_source_price_daily_observations:548628d1-f00c-4d78-a2aa-b1076703eda1",
+      "source_product_id": 726555,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:726556:reverse_holofoil",
+      "card_print_id": "22cf9826-dd73-5c53-a68f-f4aa365ae82d",
+      "source_ref": "tcgcsv_source_price_daily_observations:19d9c95c-59c2-4c83-bc11-7adeb3fe30f8",
+      "source_product_id": 726556,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:727563:reverse_holofoil",
+      "card_print_id": "f4946ae5-2fea-5d6a-871a-42851473021c",
+      "source_ref": "tcgcsv_source_price_daily_observations:2f03fc11-06e3-4dc5-af44-bff837d2ca86",
+      "source_product_id": 727563,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:727564:reverse_holofoil",
+      "card_print_id": "09a287a2-e96b-5d6c-9782-aca0bebd6fae",
+      "source_ref": "tcgcsv_source_price_daily_observations:7c0e0323-b9c8-4a0b-bd40-80450dab3e88",
+      "source_product_id": 727564,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:727565:reverse_holofoil",
+      "card_print_id": "32dd1d10-6eb6-5f77-91a5-3d9409d22c9c",
+      "source_ref": "tcgcsv_source_price_daily_observations:49aea8b5-ca18-491f-969d-d65aedd845e5",
+      "source_product_id": 727565,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:727566:reverse_holofoil",
+      "card_print_id": "683b1417-6e4a-5e9a-ba3f-040e6f7a569e",
+      "source_ref": "tcgcsv_source_price_daily_observations:884eb072-3f3c-4e6e-85da-2c38bbdd2551",
+      "source_product_id": 727566,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:727567:reverse_holofoil",
+      "card_print_id": "ee416779-a5a4-5fb4-aa3c-ea3edfe50991",
+      "source_ref": "tcgcsv_source_price_daily_observations:7f0afa15-2e9a-4003-8fba-defc83d5bfa0",
+      "source_product_id": 727567,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:727568:reverse_holofoil",
+      "card_print_id": "6bd66f39-4ed5-5f87-9028-69bc3d0b41e6",
+      "source_ref": "tcgcsv_source_price_daily_observations:bf359675-17ea-42c2-b7c7-24795c71b342",
+      "source_product_id": 727568,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:727569:reverse_holofoil",
+      "card_print_id": "00eb4800-4f63-5e3f-b0ed-518f90aadcc9",
+      "source_ref": "tcgcsv_source_price_daily_observations:85cb60e1-8fb0-4e60-bbbf-121a2e080a30",
+      "source_product_id": 727569,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:727570:reverse_holofoil",
+      "card_print_id": "5030d070-1782-5989-9190-019c68ceaf17",
+      "source_ref": "tcgcsv_source_price_daily_observations:d034b0c6-d0d6-410f-bdb2-0ff2f727ce8d",
+      "source_product_id": 727570,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:727571:reverse_holofoil",
+      "card_print_id": "30a648b7-8ca8-5e82-9a39-bf24900c231e",
+      "source_ref": "tcgcsv_source_price_daily_observations:435247c6-9058-471b-a31a-2f964572f715",
+      "source_product_id": 727571,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:727572:reverse_holofoil",
+      "card_print_id": "6c501804-b81f-5c1e-9d2e-dc887a4b6007",
+      "source_ref": "tcgcsv_source_price_daily_observations:b695b9cf-f690-4719-97f3-6981fd5e68c1",
+      "source_product_id": 727572,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:727573:reverse_holofoil",
+      "card_print_id": "964c0440-db8d-57a5-bdd6-4043f372eca8",
+      "source_ref": "tcgcsv_source_price_daily_observations:ae611ccc-3a6b-4c33-a6d4-e7718b2cbd55",
+      "source_product_id": 727573,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:727574:reverse_holofoil",
+      "card_print_id": "436a337b-5a91-5510-a708-7a75d34c665d",
+      "source_ref": "tcgcsv_source_price_daily_observations:b462a39f-8cca-49be-b9fe-a02170dd25d7",
+      "source_product_id": 727574,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:727575:reverse_holofoil",
+      "card_print_id": "5d28a32d-5157-5a9f-8ac6-4ea5eeaaf34e",
+      "source_ref": "tcgcsv_source_price_daily_observations:6aeb5b7f-5372-4999-ba51-fcd72d31b428",
+      "source_product_id": 727575,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:727576:reverse_holofoil",
+      "card_print_id": "910ee31b-175f-57ba-b332-5ee15a3dc5e1",
+      "source_ref": "tcgcsv_source_price_daily_observations:953ff9f7-ac0e-400b-8071-d02acee76e5b",
+      "source_product_id": 727576,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:727577:reverse_holofoil",
+      "card_print_id": "f534a18d-f3e6-5e4b-9c37-20f3b13f185c",
+      "source_ref": "tcgcsv_source_price_daily_observations:7ab5b800-22d0-4ae5-ad3f-3e08361c1d19",
+      "source_product_id": 727577,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:727578:reverse_holofoil",
+      "card_print_id": "5d61efea-6ea4-5175-a504-40ccca2dd353",
+      "source_ref": "tcgcsv_source_price_daily_observations:6a933546-766c-4e86-b353-fb7ed97701a6",
+      "source_product_id": 727578,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:727579:reverse_holofoil",
+      "card_print_id": "27a48aa2-cdd1-585c-9d20-1870abfbe450",
+      "source_ref": "tcgcsv_source_price_daily_observations:d4353f8c-b957-4933-aac3-6e2782001021",
+      "source_product_id": 727579,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:727580:reverse_holofoil",
+      "card_print_id": "114eb190-9959-57b4-988e-d69f54099ed5",
+      "source_ref": "tcgcsv_source_price_daily_observations:421148cb-86f2-47e9-b5ce-0397ef2da574",
+      "source_product_id": 727580,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:727581:reverse_holofoil",
+      "card_print_id": "0914b36f-82f9-59cb-90bc-6becb5b35131",
+      "source_ref": "tcgcsv_source_price_daily_observations:7e15f110-247e-426c-902c-fb8805b928df",
+      "source_product_id": 727581,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:727582:reverse_holofoil",
+      "card_print_id": "50eea9d8-0944-5734-af26-a058edb4110a",
+      "source_ref": "tcgcsv_source_price_daily_observations:30becb3e-6931-4f54-af99-d0acd8e94b0d",
+      "source_product_id": 727582,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:727583:reverse_holofoil",
+      "card_print_id": "8eaed34c-682e-5999-b93e-11294a9f1076",
+      "source_ref": "tcgcsv_source_price_daily_observations:61b932ed-84d5-4bec-b118-1964ab1353ce",
+      "source_product_id": 727583,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:727584:reverse_holofoil",
+      "card_print_id": "79a82de4-2318-5125-b383-217552752652",
+      "source_ref": "tcgcsv_source_price_daily_observations:18206b7a-5b9a-435b-8eb4-d6b55d344eb3",
+      "source_product_id": 727584,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:727585:reverse_holofoil",
+      "card_print_id": "07e9ac86-d8ed-5032-afcf-c89259ba771a",
+      "source_ref": "tcgcsv_source_price_daily_observations:b596d32a-9b71-4299-b641-ad08bbdc7c12",
+      "source_product_id": 727585,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:727586:reverse_holofoil",
+      "card_print_id": "31d9d1a1-ee78-54a1-adc9-7d8df21a5bb9",
+      "source_ref": "tcgcsv_source_price_daily_observations:359edeed-f746-43f7-8e6f-8a91b712731a",
+      "source_product_id": 727586,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:728021:reverse_holofoil",
+      "card_print_id": "e2518f44-04e1-5230-b89b-d17e36dab813",
+      "source_ref": "tcgcsv_source_price_daily_observations:9a97ae5c-d10c-4194-a40b-cf6df117acc8",
+      "source_product_id": 728021,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:728022:reverse_holofoil",
+      "card_print_id": "79a9f3d3-ec0c-5bb4-9ce2-db11b8913da2",
+      "source_ref": "tcgcsv_source_price_daily_observations:a5e097ac-1b3e-448a-b7f8-68c1eb0a05ac",
+      "source_product_id": 728022,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:728023:reverse_holofoil",
+      "card_print_id": "03544f8e-ab6b-5ee5-814b-e0b2187bbd84",
+      "source_ref": "tcgcsv_source_price_daily_observations:1d919ec9-1ff4-4450-b6c4-a39aad6651dd",
+      "source_product_id": 728023,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:728024:reverse_holofoil",
+      "card_print_id": "240d7efd-c846-5280-8f2d-142cb5c3a40e",
+      "source_ref": "tcgcsv_source_price_daily_observations:c0537152-2c61-47a6-9d98-d56af66df592",
+      "source_product_id": 728024,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:728025:reverse_holofoil",
+      "card_print_id": "a0ce79b0-4e21-5b35-878c-bd50d41df688",
+      "source_ref": "tcgcsv_source_price_daily_observations:13bbaf79-cc7b-44e8-9361-5a27f14cb85a",
+      "source_product_id": 728025,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:728026:reverse_holofoil",
+      "card_print_id": "9dd9ddd6-c828-50bf-ac78-9f5a4c479f43",
+      "source_ref": "tcgcsv_source_price_daily_observations:efd6da8e-1af2-4fc3-b372-45dea73df328",
+      "source_product_id": 728026,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:728027:reverse_holofoil",
+      "card_print_id": "b309a4eb-5cc0-5873-8507-1a9182c22a2d",
+      "source_ref": "tcgcsv_source_price_daily_observations:b0c9c337-5654-484e-a0e9-a4429a4a47be",
+      "source_product_id": 728027,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:728028:reverse_holofoil",
+      "card_print_id": "768ce86b-bec4-5101-8c44-6c420ed6dd98",
+      "source_ref": "tcgcsv_source_price_daily_observations:91d0d6a4-b5f0-4c4d-8d3f-62690b0e9850",
+      "source_product_id": 728028,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:728029:reverse_holofoil",
+      "card_print_id": "124246ef-0030-59cc-90ff-2910abf25f66",
+      "source_ref": "tcgcsv_source_price_daily_observations:cd1ea943-fbf1-4680-885f-272660fcc614",
+      "source_product_id": 728029,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:728031:reverse_holofoil",
+      "card_print_id": "6081e8de-486d-5b2f-a5aa-fc64a11f338e",
+      "source_ref": "tcgcsv_source_price_daily_observations:38851aa4-1c6a-4b60-ac24-1e61d11aa33a",
+      "source_product_id": 728031,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:728032:reverse_holofoil",
+      "card_print_id": "a19bdd1f-5c0b-52a6-a5ef-8dcc8fa506a8",
+      "source_ref": "tcgcsv_source_price_daily_observations:7c8a1e73-ab07-493d-bc83-ab75fe3711be",
+      "source_product_id": 728032,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:728033:reverse_holofoil",
+      "card_print_id": "c50b9f9e-2272-5819-9f06-7c5c9859b307",
+      "source_ref": "tcgcsv_source_price_daily_observations:76ac90af-b020-449c-95d3-0f07527f83a0",
+      "source_product_id": 728033,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:728034:reverse_holofoil",
+      "card_print_id": "c72dbe67-d6af-56f4-862a-0915b48dd561",
+      "source_ref": "tcgcsv_source_price_daily_observations:c428c031-7068-46b1-b1a9-f78c2a46fcac",
+      "source_product_id": 728034,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:728035:reverse_holofoil",
+      "card_print_id": "df631573-377c-5ee2-8571-19a6628e2420",
+      "source_ref": "tcgcsv_source_price_daily_observations:9d114ab6-3240-46c5-aa21-04263ffc682d",
+      "source_product_id": 728035,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:728036:reverse_holofoil",
+      "card_print_id": "e75adc90-d17f-5774-acb2-89c2b2ef21c6",
+      "source_ref": "tcgcsv_source_price_daily_observations:7ef2f94a-09b9-4611-97ed-8f7658af817a",
+      "source_product_id": 728036,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:728037:reverse_holofoil",
+      "card_print_id": "735e999d-bf83-5f99-bc5a-b678e9f071b9",
+      "source_ref": "tcgcsv_source_price_daily_observations:fb5f8805-f038-4e53-8d88-34d34444abc4",
+      "source_product_id": 728037,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:728038:reverse_holofoil",
+      "card_print_id": "7e1f8e7e-6722-5132-8879-a7cd27044ef9",
+      "source_ref": "tcgcsv_source_price_daily_observations:109de7f6-74d8-4362-aed3-28be159cd4cc",
+      "source_product_id": 728038,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:728039:reverse_holofoil",
+      "card_print_id": "b45eee53-20f1-5bc0-a790-76310f26cdda",
+      "source_ref": "tcgcsv_source_price_daily_observations:0891a7e5-9544-4697-9790-db51990cb925",
+      "source_product_id": 728039,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:728041:reverse_holofoil",
+      "card_print_id": "4b8cae46-5e81-574f-bd38-db73d8466397",
+      "source_ref": "tcgcsv_source_price_daily_observations:29017f36-e6ba-4fdc-89d7-d06ed86d2cc9",
+      "source_product_id": 728041,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:728042:reverse_holofoil",
+      "card_print_id": "43f4c405-db4e-5952-bf85-5fccc119d2c2",
+      "source_ref": "tcgcsv_source_price_daily_observations:f94cd305-e9e9-4d31-8437-f6569b068f2c",
+      "source_product_id": 728042,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:728043:reverse_holofoil",
+      "card_print_id": "e5427af0-6714-583e-a50b-1f0d0ed8ca8d",
+      "source_ref": "tcgcsv_source_price_daily_observations:c4db2ce0-b2c8-4057-b180-63e528442cec",
+      "source_product_id": 728043,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:728044:reverse_holofoil",
+      "card_print_id": "e451cc21-17d6-5bb4-ae21-cc43a407a316",
+      "source_ref": "tcgcsv_source_price_daily_observations:6dd41e0d-05a8-476b-b3fc-4c22d4a3ed79",
+      "source_product_id": 728044,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:728045:reverse_holofoil",
+      "card_print_id": "266dda0c-a50f-5d9d-a7bc-b8207a417a6f",
+      "source_ref": "tcgcsv_source_price_daily_observations:443b646d-05de-4390-9c7f-930357726e88",
+      "source_product_id": 728045,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:728046:reverse_holofoil",
+      "card_print_id": "ccf2e190-c785-5293-a9f1-23db51ec832a",
+      "source_ref": "tcgcsv_source_price_daily_observations:04b11788-52e2-4fbf-b84d-e839528ccdf3",
+      "source_product_id": 728046,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:728047:reverse_holofoil",
+      "card_print_id": "0ab7c950-a459-53a1-8ae4-b914f5462c6d",
+      "source_ref": "tcgcsv_source_price_daily_observations:491620bc-cbfb-4297-b055-e37e76f03f8f",
+      "source_product_id": 728047,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:728048:reverse_holofoil",
+      "card_print_id": "f469e30e-8d46-5d36-9192-b58350ab111b",
+      "source_ref": "tcgcsv_source_price_daily_observations:3aaca51d-7669-4319-ab8f-20430ec6bce2",
+      "source_product_id": 728048,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    },
+    {
+      "key": "tcgplayer:728049:reverse_holofoil",
+      "card_print_id": "4f2c60c4-94ad-5f54-ab4c-0874f60a2ac7",
+      "source_ref": "tcgcsv_source_price_daily_observations:e5645b43-8c20-483a-bec3-6033ad0e02b4",
+      "source_product_id": 728049,
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "reason": "TCGPlayer Reverse Holo price subtype is retained as a lead but is not checklist authority for canonical printing creation."
+    }
+  ],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 141,
+    "printings": 141,
+    "finishes": {
+      "normal": 83,
+      "holo": 58
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+    "source_artifacts": [
+      {
+        "ref": "docs/audits/delta_reign_base_printing_release_v1/official_checklist_projection_v1.json",
+        "sha256": "d4b296f27d6f7d1f57d9f1cd3105b156296d1b1144af4a0543d2e15f490e0a9b",
+        "kind": "checked_checklist",
+        "url_or_identifier": "https://www.pokemon.com/static-assets/content-assets/cms2-es-xl/pdf/trading-card-game/checklist/dlr_web_cardlist_latam.pdf",
+        "retrieved_at": "2026-11-15T17:00:00.000Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "f4946ae5-2fea-5d6a-871a-42851473021c",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "09a287a2-e96b-5d6c-9782-aca0bebd6fae",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "6e8cfe3a-3581-55a4-b647-703a5c4fb58e",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "32dd1d10-6eb6-5f77-91a5-3d9409d22c9c",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "683b1417-6e4a-5e9a-ba3f-040e6f7a569e",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "ee416779-a5a4-5fb4-aa3c-ea3edfe50991",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "6bd66f39-4ed5-5f87-9028-69bc3d0b41e6",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "00eb4800-4f63-5e3f-b0ed-518f90aadcc9",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "6ce11f73-9b93-5d9a-9839-ccd863f1207e",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "5030d070-1782-5989-9190-019c68ceaf17",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "018749b0-66ba-5c81-907b-b4b10e3ea461",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "f1da33de-068f-5b65-ab3e-5bbebc47380f",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "1f219375-d135-5da5-ad53-3730cf8280b6",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "3e6dec52-78d8-5fe9-b6aa-d84096270a2c",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "30a648b7-8ca8-5e82-9a39-bf24900c231e",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "6c501804-b81f-5c1e-9d2e-dc887a4b6007",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "964c0440-db8d-57a5-bdd6-4043f372eca8",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "3aba7795-a244-5442-8a03-47316c2f0617",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "a2d32a0c-27b0-5434-ba52-2359a68e0d3e",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "436a337b-5a91-5510-a708-7a75d34c665d",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "5d28a32d-5157-5a9f-8ac6-4ea5eeaaf34e",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "910ee31b-175f-57ba-b332-5ee15a3dc5e1",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "540e1b7c-1a6e-5f6c-baee-10985c3ed24f",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "f534a18d-f3e6-5e4b-9c37-20f3b13f185c",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "5d61efea-6ea4-5175-a504-40ccca2dd353",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "600438ca-b04b-5352-ada8-3e06caee9f5d",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "27a48aa2-cdd1-585c-9d20-1870abfbe450",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "114eb190-9959-57b4-988e-d69f54099ed5",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "028e394a-f80a-5a15-b063-91ca19b414dc",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "0914b36f-82f9-59cb-90bc-6becb5b35131",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "bc5238d4-fe0f-5edc-acf9-8857aeae9f2a",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "db3e62f5-b92b-57a6-815e-e4bc3793398b",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "8d040dc2-0825-5f05-be23-577404016900",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "50eea9d8-0944-5734-af26-a058edb4110a",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "74dcfc9f-3a0e-5d50-9932-4b8744557c8f",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "996bb661-f439-5ffc-9305-b3c2108b2e12",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "8eaed34c-682e-5999-b93e-11294a9f1076",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "79a82de4-2318-5125-b383-217552752652",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "07e9ac86-d8ed-5032-afcf-c89259ba771a",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "31d9d1a1-ee78-54a1-adc9-7d8df21a5bb9",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "e2518f44-04e1-5230-b89b-d17e36dab813",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "79a9f3d3-ec0c-5bb4-9ce2-db11b8913da2",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "03544f8e-ab6b-5ee5-814b-e0b2187bbd84",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "3f47f7ad-63bc-56dc-87ba-c0beb4f65a2a",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "7c039794-523a-5061-9f9f-936268f5e545",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "240d7efd-c846-5280-8f2d-142cb5c3a40e",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "9afbef97-c175-5f0a-9670-16ffc1fce63a",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "a0ce79b0-4e21-5b35-878c-bd50d41df688",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "9dd9ddd6-c828-50bf-ac78-9f5a4c479f43",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "b309a4eb-5cc0-5873-8507-1a9182c22a2d",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "768ce86b-bec4-5101-8c44-6c420ed6dd98",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "124246ef-0030-59cc-90ff-2910abf25f66",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "baa71605-8190-54a7-af52-3ec03612d3b1",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "dd575e35-30a1-5f01-b028-1396754b578b",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "e01d1bb7-375f-5944-8194-5fd755a887fe",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "6081e8de-486d-5b2f-a5aa-fc64a11f338e",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "a19bdd1f-5c0b-52a6-a5ef-8dcc8fa506a8",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "448cbf57-8ab1-50b3-b444-0412b20b4c25",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "c50b9f9e-2272-5819-9f06-7c5c9859b307",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "f3571eb7-6a32-50a4-9b09-5e7f96f33b35",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "c72dbe67-d6af-56f4-862a-0915b48dd561",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "df631573-377c-5ee2-8571-19a6628e2420",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "e75adc90-d17f-5774-acb2-89c2b2ef21c6",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "735e999d-bf83-5f99-bc5a-b678e9f071b9",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "7e1f8e7e-6722-5132-8879-a7cd27044ef9",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "b45eee53-20f1-5bc0-a790-76310f26cdda",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "d8e4468b-55bf-5725-974e-98219e664506",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "4b8cae46-5e81-574f-bd38-db73d8466397",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "9498a1e7-9ea7-5006-a0e8-dc13215a3380",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "f92f2c53-ab55-5939-ae81-00a2ba8adda8",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "2f543e76-bdb0-579f-97cd-9ffc04ac15e5",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "69cfd553-78e7-51e2-a864-da499c1e231d",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "43f4c405-db4e-5952-bf85-5fccc119d2c2",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "e5427af0-6714-583e-a50b-1f0d0ed8ca8d",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "a05f169a-7eef-59c2-9264-d70e8548d5af",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "e451cc21-17d6-5bb4-ae21-cc43a407a316",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "266dda0c-a50f-5d9d-a7bc-b8207a417a6f",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "bef3769c-a5e2-5513-a7bc-cc06dc9fc5f1",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "00926a65-8122-5017-ba18-5a0ea2cd7b52",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "8eda6c06-3835-5a07-ac5b-5f4939c79af3",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "ccf2e190-c785-5293-a9f1-23db51ec832a",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "0ab7c950-a459-53a1-8ae4-b914f5462c6d",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "6eb6b8ad-b69c-5681-aba2-fdd7ada72f38",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "cf48629e-16ed-5428-b30b-4adb989dbab1",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "570b544e-59d2-5d4d-89c9-6360251d76b7",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "f469e30e-8d46-5d36-9192-b58350ab111b",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "4f2c60c4-94ad-5f54-ab4c-0874f60a2ac7",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "59d2caeb-178f-56a9-b969-b82709b50c24",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "7b9e7f2c-a510-5615-91cc-ad05647829a6",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "6dcada4e-9909-510d-9ed6-7cab39fc76f9",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "0255f74e-8294-575e-8534-a4e4be191402",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "f610c33d-64c6-5d67-89ea-55383a77480d",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "3e17616f-8efd-5d2d-85f6-60c83b988398",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "10c51a94-0f1e-562d-88fa-1c6d441ef7ac",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "081782ae-361c-59ed-b03e-d66fa1faf2f1",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "e7fa5057-5beb-513c-b26c-a59b1c8533be",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "b2b5eb93-7051-58e2-98de-5587e2a038aa",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "1a5d2637-5772-5604-b5e9-920ef4b88b7f",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "a207d4a7-dd92-5a02-9aa7-cf4db55aa711",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "155e80f3-9ad4-55bb-bf4a-a71c04f3c77b",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "2e5d750e-6b08-5892-8b1f-1966b148dc04",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "c716d88c-0e72-5c75-b43f-3998f08ae06f",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "22cf9826-dd73-5c53-a68f-f4aa365ae82d",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "c7902635-0ed3-50f2-8254-0f90714488cb",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "a367bc84-5abc-504f-b299-a8c90eddc889",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "dbab5adf-4b09-552c-acbe-4539b3897a57",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "abafa677-31ec-5e57-b230-06c359bf20ab",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "d3f98e15-9c10-5977-b4ca-94d8eeb9633f",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "049d11e2-6042-5b67-9c0d-1615a94264d5",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "f835f2b8-6620-5377-9cda-b74895ecd616",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "0e0877d9-16fe-5437-b023-c9e0f13b3664",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "3744bdf2-e482-5f85-b14c-463c53cd686d",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "142c7b25-bc24-5f4e-aa40-c71aac89e216",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "3d4574be-1487-5dc9-9dec-f9a79da38dd6",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "fe2b117d-d9d0-557c-bb81-4168d47b864f",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "cabe196b-e599-56b3-a9eb-746ccc4d0a30",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "4e60b99b-d6b6-551b-b30c-e1ff97f63e70",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "8d99272d-7800-5255-a166-34f1a6449e4d",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "7d6b1bd9-e570-5105-ae10-c86d9a0abc12",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "220e6fde-7133-55f7-a988-0a1c9b56494b",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "12b20608-5768-57a0-ace9-fa6467fad2ff",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "ab3e9816-e8a2-5327-a175-1870fbae118c",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "48dbf17e-069c-54fc-91b5-d37df04e7d9c",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "d22282a3-5137-5758-8478-dcbeee3b6fe4",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "725f8dad-a15e-54a6-8232-3e6450accb99",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "f94ca4dc-207e-5985-b7af-42ed14a659c2",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "55b05a8b-d833-51a4-9f05-92ea40c915a4",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "3642fef9-e07c-54a4-820b-2daef71d70b1",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "6175fd9d-b2eb-5f15-9d89-af6991a5ac38",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "1d95ae2a-0648-5b8a-a050-cb432178c9ac",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "4491c2e9-a11d-50b1-8385-9062e972a722",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "7ef9f400-208a-5ea6-b2ff-628277c10c79",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "4dabe37f-74f3-5a81-9432-a13f02f0924b",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "9293c9ea-1c59-5684-8e69-1df1b86b4fff",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "3822c737-1f6c-5c47-9de6-570d4bd77e77",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "f78b20b3-fc73-5daf-8e2e-a1ae4c0240cc",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "ff05c9e2-2d2f-5928-9dcb-ec4a7a767cc5",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "1c73425c-ec60-5618-b634-e8ceb81ef5f6",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "b0c52151-27f7-5b48-b651-8886076ba7cf",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "e9ba6411-4865-5005-a895-86c0792b26b6",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "71d1aaa9-8199-5eea-be3f-51e6d1349862",
+        "finish_key": "holo"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "docs/audits/delta_reign_base_printing_release_v1/authority_20261115_v1/review.json",
+      "sha256": "b6b60fffd0db8eeba356bb048196ce7da8b440bb4fda5b24664b9685e8d51f30"
+    }
+  },
+  "fingerprint": "b1a11c6cbcd741b4a2eb6d10a90eaf5a2c7755fc06f41729974c5989e7567b69"
+}
