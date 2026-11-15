@@ -62,6 +62,68 @@ class _Api implements EbaySellerApi {
 
 void main() {
   setUp(() => SharedPreferences.setMockInitialValues({}));
+  for (final state in ['editing', 'prepared']) {
+    testWidgets('$state draft removal requires explicit confirmation', (
+      tester,
+    ) async {
+      final api = _Api();
+      final model = EbaySellerController(api: api);
+      addTearDown(model.dispose);
+      model.local = const EbaySellerLocalDraft(
+        ownerId: _owner,
+        instanceId: _instance,
+        draftId: _draft,
+        revision: 1,
+        dirty: false,
+        input: {},
+      );
+      model.draft = {'id': _draft, 'revision': 1, 'state': state};
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: SingleChildScrollView(
+              child: EbaySellerReview(controller: model, nowMillis: 0),
+            ),
+          ),
+        ),
+      );
+      final remove = find.widgetWithText(OutlinedButton, 'Remove draft');
+      await tester.ensureVisible(remove);
+      await tester.tap(remove);
+      await tester.pumpAndSettle();
+      expect(find.text('Remove this draft?'), findsOneWidget);
+      expect(api.actions, isEmpty);
+      await tester.tap(find.text('Keep draft'));
+      await tester.pumpAndSettle();
+      expect(api.actions, isEmpty);
+      await tester.tap(remove);
+      await tester.pumpAndSettle();
+      await tester.tap(find.widgetWithText(FilledButton, 'Remove draft'));
+      await tester.pumpAndSettle();
+      expect(api.actions, ['abandon']);
+    });
+  }
+  for (final state in ['uncertain', 'preparing', 'publishing', 'live', 'sold']) {
+    testWidgets('$state cannot remove a draft from the review surface', (
+      tester,
+    ) async {
+      final api = _Api();
+      final model = EbaySellerController(api: api);
+      addTearDown(model.dispose);
+      model.draft = {'id': _draft, 'revision': 1, 'state': state};
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: SingleChildScrollView(
+              child: EbaySellerReview(controller: model, nowMillis: 0),
+            ),
+          ),
+        ),
+      );
+      expect(find.text('Remove draft'), findsNothing);
+      expect(api.actions, isEmpty);
+    });
+  }
   testWidgets('cold OAuth return offers the saved sale-card resume action', (
     tester,
   ) async {

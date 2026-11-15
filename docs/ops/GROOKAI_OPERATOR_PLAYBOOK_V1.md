@@ -1,5 +1,30 @@
 # Grookai Operator Playbook V1
 
+## Samsung vendor navigation composition — November 15, 2026
+
+The website Vendor Mode navigation is live from PR923. Before installing its
+prepared Android544 candidate, device readback found a different debug544
+containing the native eBay category and confirmed draft-removal changes from
+`2d69d5e41`. Its embedded Dart sources establish that provenance; version numbers
+alone do not. Preserve the two working draft-removal screen changes when
+composing the higher Samsung update with PR923 and the Square-aware card-removal
+fix from PR918. The installed category code has no matching production API
+support and exposes no category selector through the real metadata response.
+Leave that unfinished feature with PR917; retain the shipped metadata controller
+and fields so this update continues to use the actual server response contract.
+This device composition does not publish the separate eBay backend or website
+changes, change schema, reconnect Square, or authorize a provider mutation.
+
+Current evidence and the next acceptance checkpoint live under
+`C:/grookai_vault_operator_artifacts/vendor_home_20261114/`. Verify the actual
+installed APK hash, same certificate, UID and first-install time before and
+after an in-place update; retain login and keep Developer Options enabled.
+Finish Add card return, keyboard, Pricing, Labels and Square navigation checks
+on the phone without creating inventory, changing prices or sending a print.
+The prepared PR923-only544 and the uninstalled first-composition545 APK are
+superseded for this Samsung. Use the corrected higher build after its own
+qualification; never infer acceptance from a successful build.
+
 ## TCGPlayer Market continuity dispatch clock — November 14, 2026
 
 Read the [TCGPlayer Market pricing product runbook](../runbooks/TCGPLAYER_MARKET_PRICING_PRODUCT_V1.md)
