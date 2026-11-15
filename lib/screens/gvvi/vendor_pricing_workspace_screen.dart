@@ -914,15 +914,17 @@ class _VendorPricingWorkspaceScreenState
       ),
       body: Column(
         children: [
-          VendorWorkspaceNavigation(
-            onPricing: _openPricing,
-            onLabels: _loading || _loadError != null ? null : _printLabels,
-            onSquare: () async {
-              await SquareScreen.open(context);
-              if (mounted) await _load(quiet: true, afterNavigation: true);
-            },
-          ),
-          const Divider(height: 1),
+          if (MediaQuery.viewInsetsOf(context).bottom == 0) ...[
+            VendorWorkspaceNavigation(
+              onPricing: _openPricing,
+              onLabels: _loading || _loadError != null ? null : _printLabels,
+              onSquare: () async {
+                await SquareScreen.open(context);
+                if (mounted) await _load(quiet: true, afterNavigation: true);
+              },
+            ),
+            const Divider(height: 1),
+          ],
           Expanded(
             child: _showSealed
                 ? const SingleChildScrollView(child: OwnedSealedPanel())

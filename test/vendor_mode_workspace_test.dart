@@ -4,6 +4,44 @@ import 'package:grookai_vault/screens/gvvi/vendor_pricing_workspace_screen.dart'
 import 'package:grookai_vault/services/gvvi/vendor_pricing_workspace_service.dart';
 
 void main() {
+  testWidgets('keyboard leaves the enlarged-text inventory scrollable', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(375, 640);
+    tester.view.devicePixelRatio = 1;
+    tester.view.viewInsets = const FakeViewPadding(bottom: 280);
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    addTearDown(tester.view.resetViewInsets);
+    final service = _FakeVendorService(
+      VendorPricingWorkspaceData(
+        rows: [
+          _row(instanceId: 'keyboard', askingPrice: 20, marketPrice: 19.2),
+        ],
+        sections: const [],
+      ),
+    );
+    await tester.pumpWidget(
+      MaterialApp(
+        builder: (context, child) => MediaQuery(
+          data: MediaQuery.of(
+            context,
+          ).copyWith(textScaler: TextScaler.linear(2)),
+          child: child!,
+        ),
+        home: VendorPricingWorkspaceScreen(service: service),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull);
+    expect(find.text('Pricing'), findsNothing);
+    await tester.tap(find.byTooltip('Vendor tools'));
+    await tester.pumpAndSettle();
+    expect(find.text('Pricing rules'), findsOneWidget);
+    expect(find.text('Print card labels'), findsOneWidget);
+    expect(find.text('Square setup'), findsOneWidget);
+    expect(service.priceSaves, isEmpty);
+  });
   testWidgets('enlarged text keeps the full asking price readable', (
     tester,
   ) async {

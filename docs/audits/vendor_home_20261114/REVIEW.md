@@ -18,6 +18,8 @@ authorities. This change has no migrations, provider writes, or automatic prints
 - At enlarged text sizes, narrow native rows stack condition, market, and asking
   price fields. Read-only amounts and price inputs grow with their text instead
   of clipping into a fixed 44px height.
+- The visible shortcut row folds away while the keyboard is open, leaving room
+  for the inventory editor. The same tools remain available in Vendor tools.
 - Website Account → Vendor Mode opens `/account/vendor`. The same navigation is
   available in eligible owners’ Vault, pricing, label selection, and Square pages.
   Existing deep links and authentication destinations remain valid.
