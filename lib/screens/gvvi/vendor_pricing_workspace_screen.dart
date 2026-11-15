@@ -16,6 +16,8 @@ import '../../services/printing/p21_label.dart';
 import '../printing/identity_label_print_screen.dart';
 import '../../services/sealed/owned_sealed_service_v1.dart';
 import '../../widgets/vault/owned_sealed_panel.dart';
+import '../../widgets/vault/vendor_workspace_navigation.dart';
+import '../square/square_screen.dart';
 
 enum _VendorWorkspaceFilter {
   all,
@@ -103,8 +105,9 @@ class _VendorPricingWorkspaceScreenState
         (row.askingPrice?.toStringAsFixed(2) ?? ''),
   );
 
-  Future<void> _load({bool quiet = false}) async {
+  Future<void> _load({bool quiet = false, bool afterNavigation = false}) async {
     if (quiet &&
+        !afterNavigation &&
         FocusManager.instance.primaryFocus?.context
                 ?.findAncestorStateOfType<EditableTextState>() !=
             null) {
@@ -249,6 +252,21 @@ class _VendorPricingWorkspaceScreenState
         ),
       ),
     );
+  }
+
+  Future<void> _openPricing() async {
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(builder: (_) => const VendorPricingRulesScreen()),
+    );
+    if (mounted) await _load(quiet: true, afterNavigation: true);
+  }
+
+  Future<void> _addCard() async {
+    await Navigator.of(
+      context,
+      rootNavigator: true,
+    ).pushNamed<void>('/search', arguments: Uri.parse('/search'));
+    if (mounted) await _load(quiet: true, afterNavigation: true);
   }
 
   List<VendorPricingWorkspaceRow> get _visibleRows {
@@ -788,7 +806,9 @@ class _VendorPricingWorkspaceScreenState
   @override
   Widget build(BuildContext context) {
     final visibleRows = _visibleRows;
-    final compactAppBar = MediaQuery.sizeOf(context).width < 420;
+    final compactActions =
+        MediaQuery.sizeOf(context).width < 360 ||
+        MediaQuery.textScalerOf(context).scale(16) > 22;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Vendor Mode'),
@@ -818,19 +838,43 @@ class _VendorPricingWorkspaceScreenState
               )
             : null,
         actions: [
+          if (compactActions)
+            IconButton(
+              onPressed: _addCard,
+              tooltip: 'Add card',
+              icon: const Icon(Icons.add_rounded),
+            )
+          else
+            TextButton.icon(
+              onPressed: _addCard,
+              icon: const Icon(Icons.add_rounded),
+              label: const Text('Add card'),
+            ),
           PopupMenuButton<String>(
             tooltip: 'Vendor tools',
-            enabled: !_loading,
             onSelected: (value) async {
-              if (value == 'labels') {
+              if (value == 'labels' && !_loading && _loadError == null) {
                 await _printLabels();
               } else if (value == 'pricing') {
+                await _openPricing();
+              } else if (value == 'square') {
+                await SquareScreen.open(context);
+                if (mounted) await _load(quiet: true, afterNavigation: true);
+              } else if (value == 'sales') {
                 await Navigator.of(context).push(
                   MaterialPageRoute<void>(
-                    builder: (_) => const VendorPricingRulesScreen(),
+                    builder: (_) => const SalesDeskScreen(),
                   ),
                 );
                 if (mounted) await _load();
+              } else if (value == 'store') {
+                await Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => const StoreManagementScreen(),
+                  ),
+                );
+              } else if (value == 'refresh') {
+                await _load();
               } else if (value == 'economics') {
                 await Navigator.of(context).push(
                   MaterialPageRoute<void>(
@@ -839,140 +883,150 @@ class _VendorPricingWorkspaceScreenState
                 );
               }
             },
-            itemBuilder: (_) => const [
-              PopupMenuItem(value: 'pricing', child: Text('Pricing rules')),
-              PopupMenuItem(value: 'labels', child: Text('Print card labels')),
+            itemBuilder: (_) => [
+              const PopupMenuItem(
+                value: 'pricing',
+                child: Text('Pricing rules'),
+              ),
               PopupMenuItem(
+                value: 'labels',
+                enabled: !_loading && _loadError == null,
+                child: const Text('Print card labels'),
+              ),
+              const PopupMenuItem(value: 'square', child: Text('Square setup')),
+              const PopupMenuItem(
+                value: 'sales',
+                child: Text('Sales desk · quick-add and cart'),
+              ),
+              const PopupMenuItem(value: 'store', child: Text('Manage store')),
+              const PopupMenuItem(
                 value: 'economics',
                 child: Text('Inventory economics'),
               ),
+              PopupMenuItem(
+                value: 'refresh',
+                enabled: !_loading,
+                child: const Text('Refresh inventory'),
+              ),
             ],
-          ),
-          IconButton(
-            tooltip: 'Sales desk · quick-add and cart',
-            onPressed: () async {
-              await Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (_) => const SalesDeskScreen(),
-                ),
-              );
-              if (mounted) await _load();
-            },
-            icon: const Icon(Icons.point_of_sale),
-          ),
-          if (compactAppBar)
-            IconButton(
-              tooltip: 'Manage store',
-              onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (_) => const StoreManagementScreen(),
-                ),
-              ),
-              icon: const Icon(Icons.storefront_outlined),
-            )
-          else
-            TextButton.icon(
-              onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (_) => const StoreManagementScreen(),
-                ),
-              ),
-              icon: const Icon(Icons.storefront_outlined),
-              label: const Text('Manage store'),
-            ),
-          IconButton(
-            tooltip: 'Refresh inventory',
-            onPressed: _loading ? null : _load,
-            icon: const Icon(Icons.refresh_rounded),
           ),
         ],
       ),
-      body: _showSealed
-          ? const SingleChildScrollView(child: OwnedSealedPanel())
-          : _loading
-          ? const Center(child: CircularProgressIndicator())
-          : _loadError != null
-          ? _WorkspaceState(
-              title: 'Unable to load vendor inventory',
-              body: _loadError!,
-              onRetry: _load,
-            )
-          : _rows.isEmpty
-          ? const _WorkspaceState(
-              title: 'No vendor inventory yet',
-              body: 'Add a card to your Vault to manage it here.',
-            )
-          : Column(
-              children: [
-                _WorkspaceHeader(
-                  rowCount: _rows.length,
-                  visibleCount: visibleRows.length,
-                  searchController: _searchController,
-                  selectedFilter: _filter,
-                  countFor: _countFor,
-                  onFilterChanged: (value) => setState(() => _filter = value),
-                ),
-                const Divider(height: 1),
-                Expanded(
-                  child: visibleRows.isEmpty
-                      ? const Center(child: Text('No matching cards.'))
-                      : RefreshIndicator(
-                          onRefresh: _load,
-                          child: ListView.separated(
-                            padding: const EdgeInsets.fromLTRB(12, 10, 12, 32),
-                            itemCount: visibleRows.length,
-                            separatorBuilder: (_, _) =>
-                                const Divider(height: 18),
-                            itemBuilder: (context, index) {
-                              final row = visibleRows[index];
-                              return Dismissible(
-                                key: Key('vendor_dismiss_${row.instanceId}'),
-                                direction: DismissDirection.horizontal,
-                                background: _DispositionBackground(
-                                  busy: _busyIds.contains(row.instanceId),
+      body: Column(
+        children: [
+          VendorWorkspaceNavigation(
+            onPricing: _openPricing,
+            onLabels: _loading || _loadError != null ? null : _printLabels,
+            onSquare: () async {
+              await SquareScreen.open(context);
+              if (mounted) await _load(quiet: true, afterNavigation: true);
+            },
+          ),
+          const Divider(height: 1),
+          Expanded(
+            child: _showSealed
+                ? const SingleChildScrollView(child: OwnedSealedPanel())
+                : _loading
+                ? const Center(child: CircularProgressIndicator())
+                : _loadError != null
+                ? _WorkspaceState(
+                    title: 'Unable to load vendor inventory',
+                    body: _loadError!,
+                    onRetry: _load,
+                  )
+                : _rows.isEmpty
+                ? const _WorkspaceState(
+                    title: 'No vendor inventory yet',
+                    body: 'Add a card to your Vault to manage it here.',
+                  )
+                : Column(
+                    children: [
+                      _WorkspaceHeader(
+                        rowCount: _rows.length,
+                        visibleCount: visibleRows.length,
+                        searchController: _searchController,
+                        selectedFilter: _filter,
+                        countFor: _countFor,
+                        onFilterChanged: (value) =>
+                            setState(() => _filter = value),
+                      ),
+                      const Divider(height: 1),
+                      Expanded(
+                        child: visibleRows.isEmpty
+                            ? const Center(child: Text('No matching cards.'))
+                            : RefreshIndicator(
+                                onRefresh: _load,
+                                child: ListView.separated(
+                                  padding: const EdgeInsets.fromLTRB(
+                                    12,
+                                    10,
+                                    12,
+                                    32,
+                                  ),
+                                  itemCount: visibleRows.length,
+                                  separatorBuilder: (_, _) =>
+                                      const Divider(height: 18),
+                                  itemBuilder: (context, index) {
+                                    final row = visibleRows[index];
+                                    return Dismissible(
+                                      key: Key(
+                                        'vendor_dismiss_${row.instanceId}',
+                                      ),
+                                      direction: DismissDirection.horizontal,
+                                      background: _DispositionBackground(
+                                        busy: _busyIds.contains(row.instanceId),
+                                      ),
+                                      secondaryBackground: _RemoveBackground(
+                                        busy: _busyIds.contains(row.instanceId),
+                                      ),
+                                      confirmDismiss: (direction) async {
+                                        if (direction ==
+                                            DismissDirection.startToEnd) {
+                                          await _chooseDisposition(row);
+                                        } else {
+                                          await _confirmRemove(row);
+                                        }
+                                        return false;
+                                      },
+                                      child: _VendorInventoryRow(
+                                        key: Key(
+                                          'vendor_row_${row.instanceId}',
+                                        ),
+                                        row: row,
+                                        sections: _sections,
+                                        controller:
+                                            _priceControllers[row.instanceId]!,
+                                        busy: _busyIds.contains(row.instanceId),
+                                        saved: _savedIds.contains(
+                                          row.instanceId,
+                                        ),
+                                        error: _errors[row.instanceId],
+                                        onPriceChanged: (_) =>
+                                            _schedulePriceSave(row),
+                                        onSavePrice: () =>
+                                            _savePrice(row.instanceId),
+                                        onConditionChanged: (value) =>
+                                            _saveCondition(row, value),
+                                        onPrintingChanged: (value) =>
+                                            _savePrinting(row, value),
+                                        onWallChanged: (value) =>
+                                            _saveWallVisibility(row, value),
+                                        onSections: () => _openSections(row),
+                                        onShare: () => _share(row),
+                                        onPreview: () =>
+                                            _previewCustomerCard(row),
+                                        onQr: () => _openVendorQr(row),
+                                      ),
+                                    );
+                                  },
                                 ),
-                                secondaryBackground: _RemoveBackground(
-                                  busy: _busyIds.contains(row.instanceId),
-                                ),
-                                confirmDismiss: (direction) async {
-                                  if (direction ==
-                                      DismissDirection.startToEnd) {
-                                    await _chooseDisposition(row);
-                                  } else {
-                                    await _confirmRemove(row);
-                                  }
-                                  return false;
-                                },
-                                child: _VendorInventoryRow(
-                                  key: Key('vendor_row_${row.instanceId}'),
-                                  row: row,
-                                  sections: _sections,
-                                  controller:
-                                      _priceControllers[row.instanceId]!,
-                                  busy: _busyIds.contains(row.instanceId),
-                                  saved: _savedIds.contains(row.instanceId),
-                                  error: _errors[row.instanceId],
-                                  onPriceChanged: (_) =>
-                                      _schedulePriceSave(row),
-                                  onSavePrice: () => _savePrice(row.instanceId),
-                                  onConditionChanged: (value) =>
-                                      _saveCondition(row, value),
-                                  onPrintingChanged: (value) =>
-                                      _savePrinting(row, value),
-                                  onWallChanged: (value) =>
-                                      _saveWallVisibility(row, value),
-                                  onSections: () => _openSections(row),
-                                  onShare: () => _share(row),
-                                  onPreview: () => _previewCustomerCard(row),
-                                  onQr: () => _openVendorQr(row),
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                ),
-              ],
-            ),
+                              ),
+                      ),
+                    ],
+                  ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -1674,98 +1728,83 @@ class _VendorInventoryRow extends StatelessWidget {
                 ),
         ),
         const SizedBox(height: 10),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: _LabeledField(
-                label: row.isGraded ? 'Grade' : 'Condition',
-                child: row.isGraded
-                    ? _ReadOnlyValue(
-                        value: [row.gradeCompany, row.gradeLabel]
-                            .whereType<String>()
-                            .where((value) => value.trim().isNotEmpty)
-                            .join(' '),
-                      )
-                    : DropdownButtonFormField<String>(
-                        key: Key('vendor_condition_${row.instanceId}'),
-                        initialValue: condition,
-                        hint: const Text('Unknown'),
-                        isExpanded: true,
-                        decoration: const InputDecoration(isDense: true),
-                        items: _conditions
-                            .map(
-                              (value) => DropdownMenuItem(
-                                value: value,
-                                child: Text(value),
-                              ),
-                            )
-                            .toList(growable: false),
-                        onChanged: busy
-                            ? null
-                            : (value) {
-                                if (value != null && value != condition) {
-                                  onConditionChanged(value);
-                                }
-                              },
-                      ),
-              ),
+        _VendorPriceFields(
+          condition: _LabeledField(
+            label: row.isGraded ? 'Grade' : 'Condition',
+            child: row.isGraded
+                ? _ReadOnlyValue(
+                    value: [row.gradeCompany, row.gradeLabel]
+                        .whereType<String>()
+                        .where((value) => value.trim().isNotEmpty)
+                        .join(' '),
+                  )
+                : DropdownButtonFormField<String>(
+                    key: Key('vendor_condition_${row.instanceId}'),
+                    initialValue: condition,
+                    hint: const Text('Unknown'),
+                    isExpanded: true,
+                    decoration: const InputDecoration(isDense: true),
+                    items: _conditions
+                        .map(
+                          (value) => DropdownMenuItem(
+                            value: value,
+                            child: Text(value),
+                          ),
+                        )
+                        .toList(growable: false),
+                    onChanged: busy
+                        ? null
+                        : (value) {
+                            if (value != null && value != condition) {
+                              onConditionChanged(value);
+                            }
+                          },
+                  ),
+          ),
+          market: _LabeledField(
+            label: 'TCGPlayer Market',
+            child: _ReadOnlyValue(
+              value: row.marketPrice == null
+                  ? '—'
+                  : formatCardSurfaceMoney(row.marketPrice!, currency: 'USD'),
             ),
-            const SizedBox(width: 8),
-            Expanded(
-              child: _LabeledField(
-                label: 'TCGPlayer Market',
-                child: _ReadOnlyValue(
-                  value: row.marketPrice == null
-                      ? '—'
-                      : formatCardSurfaceMoney(
-                          row.marketPrice!,
-                          currency: 'USD',
+          ),
+          asking: _LabeledField(
+            label: 'My price',
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(minHeight: 48),
+              child: TextField(
+                key: Key('vendor_price_${row.instanceId}'),
+                controller: controller,
+                enabled: !busy,
+                keyboardType: const TextInputType.numberWithOptions(
+                  decimal: true,
+                ),
+                textInputAction: TextInputAction.done,
+                onChanged: onPriceChanged,
+                onSubmitted: (_) => onSavePrice(),
+                decoration: InputDecoration(
+                  prefixText: r'$ ',
+                  isDense: true,
+                  suffixIcon: busy
+                      ? const Padding(
+                          padding: EdgeInsets.all(12),
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        )
+                      : IconButton(
+                          tooltip: saved ? 'Saved' : 'Save price',
+                          onPressed: onSavePrice,
+                          icon: Icon(
+                            saved
+                                ? Icons.check_circle_rounded
+                                : Icons.check_rounded,
+                            color: saved ? Colors.green : null,
+                          ),
                         ),
                 ),
               ),
             ),
-            const SizedBox(width: 8),
-            Expanded(
-              flex: 2,
-              child: _LabeledField(
-                label: 'My price',
-                child: SizedBox(
-                  height: 44,
-                  child: TextField(
-                    key: Key('vendor_price_${row.instanceId}'),
-                    controller: controller,
-                    enabled: !busy,
-                    keyboardType: const TextInputType.numberWithOptions(
-                      decimal: true,
-                    ),
-                    textInputAction: TextInputAction.done,
-                    onChanged: onPriceChanged,
-                    onSubmitted: (_) => onSavePrice(),
-                    decoration: InputDecoration(
-                      prefixText: r'$ ',
-                      isDense: true,
-                      suffixIcon: busy
-                          ? const Padding(
-                              padding: EdgeInsets.all(12),
-                              child: CircularProgressIndicator(strokeWidth: 2),
-                            )
-                          : IconButton(
-                              tooltip: saved ? 'Saved' : 'Save price',
-                              onPressed: onSavePrice,
-                              icon: Icon(
-                                saved
-                                    ? Icons.check_circle_rounded
-                                    : Icons.check_rounded,
-                                color: saved ? Colors.green : null,
-                              ),
-                            ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
+          ),
         ),
         const SizedBox(height: 7),
         _MarketPositionLabel(row: row),
@@ -1841,6 +1880,46 @@ class _VendorInventoryRow extends StatelessWidget {
   }
 }
 
+class _VendorPriceFields extends StatelessWidget {
+  const _VendorPriceFields({
+    required this.condition,
+    required this.market,
+    required this.asking,
+  });
+  final Widget condition;
+  final Widget market;
+  final Widget asking;
+
+  @override
+  Widget build(BuildContext context) => LayoutBuilder(
+    builder: (context, constraints) {
+      final scale = MediaQuery.textScalerOf(context).scale(14) / 14;
+      if (constraints.maxWidth / scale < 280) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            condition,
+            const SizedBox(height: 10),
+            market,
+            const SizedBox(height: 10),
+            asking,
+          ],
+        );
+      }
+      return Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(child: condition),
+          const SizedBox(width: 8),
+          Expanded(child: market),
+          const SizedBox(width: 8),
+          Expanded(flex: 2, child: asking),
+        ],
+      );
+    },
+  );
+}
+
 class _LabeledField extends StatelessWidget {
   const _LabeledField({required this.label, required this.child});
 
@@ -1869,12 +1948,12 @@ class _ReadOnlyValue extends StatelessWidget {
   Widget build(BuildContext context) {
     final display = value.trim().isEmpty ? '—' : value;
     return Container(
-      height: 44,
+      constraints: const BoxConstraints(minHeight: 48),
       alignment: Alignment.centerLeft,
-      padding: const EdgeInsets.symmetric(horizontal: 9),
+      padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 10),
       decoration: BoxDecoration(
         border: Border.all(color: Theme.of(context).colorScheme.outlineVariant),
-        borderRadius: BorderRadius.circular(6),
+        borderRadius: BorderRadius.circular(8),
       ),
       child: Text(
         display,
