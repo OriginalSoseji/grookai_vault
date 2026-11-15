@@ -4711,10 +4711,27 @@ workflow artifact.
 
 The workflow is insert-only. It cannot update or delete canonical rows, change
 Storage or image pointers, write pricing or publication state, mutate Vault or
-customer data, or activate public visibility. `30th-c` and other raw English
-Pokemon missing sets remain held until Master Index admission. On any commit,
-source, package, collision, rollback, or readback mismatch, inspect the durable
-agent run and artifact; never retry blindly or broaden the target.
+customer data, or activate public visibility.
+
+Verified English Pokemon sets that do not yet have a canonical set owner use
+the registered `english_pokemon_incremental` writer with
+`--create-missing-set`. This mode is governed by
+[`ENGLISH_POKEMON_MISSING_SET_PROMOTION_V1`](../contracts/ENGLISH_POKEMON_MISSING_SET_PROMOTION_V1.md).
+It atomically inserts exactly one hidden set, one hidden release control, the
+complete suppressed parent-card scope, one active identity per parent,
+preserved source evidence, and pending non-promotable family reviews. It does
+not create child printings, mappings, prices, publications, images, or public
+visibility. The workflow must prove the same payload fingerprint through the
+transactional dry run, rollback absence, apply, and durable readback.
+
+`30th-c` and other raw English Pokemon missing sets remain held until Master
+Index admission. When diagnosing this lane, inspect the durable
+`catalog-continuous-promotion-v1` agent run and its 90-day artifact for the
+source commit, `create_missing_set` flag, payload and Master Index fingerprints,
+collision preflight, rollback-absence readback, and durable readback. On any
+commit, source, package, collision, rollback, or readback mismatch, never retry
+blindly or broaden the target. Repair the evidence or code, regenerate the
+fingerprinted plan and dry run, and obtain a fresh exact apply approval.
 
 ## Completed TCGplayer publication recovery — October 29, 2026
 

@@ -336,3 +336,15 @@ test("worker source enforces rollback and forbidden-write boundaries", () => {
   assert.doesNotMatch(worker, /insert into public\.external_mappings/);
   assert.doesNotMatch(worker, /insert into public\.vault_items/);
 });
+
+test("operator playbook documents missing-set execution and recovery", () => {
+  const playbook = fs.readFileSync(
+    new URL("../../docs/ops/GROOKAI_OPERATOR_PLAYBOOK_V1.md", import.meta.url),
+    "utf8",
+  );
+  assert.match(playbook, /ENGLISH_POKEMON_MISSING_SET_PROMOTION_V1/);
+  assert.match(playbook, /--create-missing-set/);
+  assert.match(playbook, /one hidden set, one hidden release control/);
+  assert.match(playbook, /rollback-absence readback/);
+  assert.match(playbook, /obtain a fresh exact apply approval/);
+});
