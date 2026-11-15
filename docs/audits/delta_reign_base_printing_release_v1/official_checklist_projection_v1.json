@@ -1,0 +1,62 @@
+{
+  "version": "DELTA_REIGN_OFFICIAL_CHECKLIST_PROJECTION_V1",
+  "status": "checked_transcription",
+  "set_code": "me06",
+  "set_name": "Delta Reign",
+  "source_language": "es-XL",
+  "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2-es-xl/pdf/trading-card-game/checklist/dlr_web_cardlist_latam.pdf",
+  "source_owner": "The Pokemon Company International",
+  "retrieved_at": "2026-11-15T17:00:00.000Z",
+  "reviewed_at": "2026-11-15T17:00:00.000Z",
+  "reviewed_by": "Codex source adjudication under founder-directed catalog completion",
+  "collector_number_scope": {
+    "first": 1,
+    "last": 141,
+    "count": 141,
+    "unique_within_set": true
+  },
+  "legend_transcription": {
+    "standard_box": "Set estándar",
+    "red_outline_box": "Set estándar holográfico (casilla con contorno rojo)",
+    "normal_finish_key": "normal",
+    "red_outline_finish_key": "holo"
+  },
+  "holo_numbers": [
+    5, 11, 14, 19, 21, 23, 26, 29, 33, 45, 47, 52, 53, 57, 67, 69, 75, 82, 84, 88,
+    104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118,
+    119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133,
+    134, 135, 136, 137, 138, 139, 140, 141
+  ],
+  "expected_finish_counts": {
+    "normal": 83,
+    "holo": 58
+  },
+  "tcgplayer_corroboration": {
+    "group_id": 24831,
+    "group_name": "ME06: Delta Reign",
+    "source_sync_id": "473ff153-12f6-4b7d-8821-a04d12a5c33a",
+    "numbered_products": 141,
+    "base_finish_rows": 141,
+    "reverse_holo_review_leads": 87,
+    "authority": false,
+    "reason": "Provider price subtypes corroborate base scope and preserve reverse-holo leads but do not authorize canonical printing creation."
+  },
+  "reviewed_name_aliases": [
+    { "product_id": 726550, "number": 94, "source_name": "Legendary Pyroduct - 094/103 (Left)", "canonical_name": "Legendary Pyroduct" },
+    { "product_id": 726722, "number": 95, "source_name": "Legendary Pyroduct - 095/103 (Right)", "canonical_name": "Legendary Pyroduct" },
+    { "product_id": 726551, "number": 96, "source_name": "Legendary Summit - 096/103 (Left)", "canonical_name": "Legendary Summit" },
+    { "product_id": 726721, "number": 97, "source_name": "Legendary Summit - 097/103 (Right)", "canonical_name": "Legendary Summit" },
+    { "product_id": 726786, "number": 98, "source_name": "Legendary Trench - 098/103 (Left)", "canonical_name": "Legendary Trench" },
+    { "product_id": 726552, "number": 99, "source_name": "Legendary Trench - 099/103 (Right)", "canonical_name": "Legendary Trench" },
+    { "product_id": 728057, "number": 132, "source_name": "Bubbly W Energy", "canonical_name": "Bubbly Water Energy" },
+    { "product_id": 728058, "number": 133, "source_name": "Growing G Energy", "canonical_name": "Growing Grass Energy" },
+    { "product_id": 728059, "number": 134, "source_name": "Nitro R Energy", "canonical_name": "Nitro Fire Energy" }
+  ],
+  "boundaries": {
+    "reverse_holo_authorized": false,
+    "specialty_finishes_authorized": false,
+    "mapping_authorized": false,
+    "pricing_authorized": false,
+    "visibility_activation_authorized": false
+  }
+}
