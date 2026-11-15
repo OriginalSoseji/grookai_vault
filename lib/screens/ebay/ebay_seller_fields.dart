@@ -165,6 +165,7 @@ class EbaySellerFields extends StatelessWidget {
     final policies = sellerMap(metadata['policies']);
     final selectedPolicies = sellerMap(input['policies']);
     final aspects = sellerRows(metadata['aspects']);
+    final categories = sellerRows(metadata['categoryOptions']);
     final requiredAspects = aspects
         .where(
           (v) => sellerMap(v['aspectConstraint'])['aspectRequired'] == true,
@@ -183,6 +184,25 @@ class EbaySellerFields extends StatelessWidget {
           child: controller.editable
               ? Column(
                   children: [
+                    if (categories.isNotEmpty)
+                      _choice(
+                        'category',
+                        'eBay category',
+                        categories
+                            .map(
+                              (category) => {
+                                'id': category['categoryId'].toString(),
+                                'label': category['categoryName'].toString(),
+                              },
+                            )
+                            .toList(),
+                        input['categoryId']?.toString(),
+                        (value) {
+                          if (value != null && value != input['categoryId']) {
+                            controller.loadMetadata(categoryId: value);
+                          }
+                        },
+                      ),
                     _field(
                       'title',
                       'Title',

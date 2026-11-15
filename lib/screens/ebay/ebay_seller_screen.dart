@@ -325,7 +325,7 @@ class _EbaySellerScreenState extends State<EbaySellerScreen>
                           const SizedBox(height: 16),
                           for (final summary in sellerRows(
                             model.workspace['drafts'],
-                          ))
+                          ).where((row) => row['state'] != 'abandoned'))
                             ListTile(
                               contentPadding: EdgeInsets.zero,
                               leading: const Icon(Icons.sell_outlined),

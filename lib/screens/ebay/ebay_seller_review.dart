@@ -350,10 +350,37 @@ class _EbaySellerReviewState extends State<EbaySellerReview> {
         if (['withdrawn', 'ended', 'abandoned'].contains(state) &&
             model.copy['isArchived'] != true)
           _button('Start a new listing', busy ? null : model.startNewDraft),
-        if (['editing', 'prepared', 'uncertain'].contains(state))
+        if (['editing', 'prepared'].contains(state))
           _button(
-            'Discard draft',
-            busy ? null : () => model.operate('abandon'),
+            'Remove draft',
+            busy
+                ? null
+                : () async {
+                    final confirmed = await showDialog<bool>(
+                      context: context,
+                      builder: (dialogContext) => AlertDialog(
+                        title: const Text('Remove this draft?'),
+                        content: const Text(
+                          'This removes the draft from your grookai eBay drafts list. '
+                          'It does not delete anything from eBay or remove the card from your Vault.',
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () =>
+                                Navigator.pop(dialogContext, false),
+                            child: const Text('Keep draft'),
+                          ),
+                          FilledButton(
+                            onPressed: () => Navigator.pop(dialogContext, true),
+                            child: const Text('Remove draft'),
+                          ),
+                        ],
+                      ),
+                    );
+                    if (confirmed == true && context.mounted) {
+                      model.operate('abandon');
+                    }
+                  },
           ),
         if (['withdrawn', 'ended'].contains(state))
           Padding(

@@ -19,6 +19,7 @@ class _Api implements EbaySellerApi {
   @override
   Future<Map<String, dynamic>> workspace({String? instanceId}) async => {
     'account': {
+      'accountId': 'ef000000-0000-4000-8000-000000000004',
       'linked': true,
       'username': 'Collector seller',
       'linkingEnabled': true,
@@ -45,6 +46,25 @@ class _Api implements EbaySellerApi {
     Map<String, dynamic> payload,
   ) async {
     actions.add(action);
+    if (action == 'metadata') {
+      const categories = [
+        {'categoryId': '183454', 'categoryName': 'Trading Card Singles'},
+        {'categoryId': '999', 'categoryName': 'Alternative CCG category'},
+      ];
+      return {
+        'categoryId': payload['categoryId'] ?? categories.first['categoryId'],
+        'categoryOptions': categories,
+        'policies': {'fulfillment': [], 'payment': [], 'return': []},
+        'locations': [],
+        'aspects': [],
+        'conditionChoices': [],
+        'suggestedCondition': {
+          'conditionId': '4000',
+          'description': '',
+          'descriptors': <dynamic>[],
+        },
+      };
+    }
     throw StateError('Synthetic fixture does not perform provider operations.');
   }
 
@@ -62,6 +82,68 @@ class _Api implements EbaySellerApi {
 
 void main() {
   setUp(() => SharedPreferences.setMockInitialValues({}));
+  for (final state in ['editing', 'prepared']) {
+    testWidgets('$state draft removal requires explicit confirmation', (
+      tester,
+    ) async {
+      final api = _Api();
+      final model = EbaySellerController(api: api);
+      addTearDown(model.dispose);
+      model.local = const EbaySellerLocalDraft(
+        ownerId: _owner,
+        instanceId: _instance,
+        draftId: _draft,
+        revision: 1,
+        dirty: false,
+        input: {},
+      );
+      model.draft = {'id': _draft, 'revision': 1, 'state': state};
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: SingleChildScrollView(
+              child: EbaySellerReview(controller: model, nowMillis: 0),
+            ),
+          ),
+        ),
+      );
+      final remove = find.widgetWithText(OutlinedButton, 'Remove draft');
+      await tester.ensureVisible(remove);
+      await tester.tap(remove);
+      await tester.pumpAndSettle();
+      expect(find.text('Remove this draft?'), findsOneWidget);
+      expect(api.actions, isEmpty);
+      await tester.tap(find.text('Keep draft'));
+      await tester.pumpAndSettle();
+      expect(api.actions, isEmpty);
+      await tester.tap(remove);
+      await tester.pumpAndSettle();
+      await tester.tap(find.widgetWithText(FilledButton, 'Remove draft'));
+      await tester.pumpAndSettle();
+      expect(api.actions, ['abandon']);
+    });
+  }
+  for (final state in ['uncertain', 'preparing', 'publishing', 'live', 'sold']) {
+    testWidgets('$state cannot remove a draft from the review surface', (
+      tester,
+    ) async {
+      final api = _Api();
+      final model = EbaySellerController(api: api);
+      addTearDown(model.dispose);
+      model.draft = {'id': _draft, 'revision': 1, 'state': state};
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: SingleChildScrollView(
+              child: EbaySellerReview(controller: model, nowMillis: 0),
+            ),
+          ),
+        ),
+      );
+      expect(find.text('Remove draft'), findsNothing);
+      expect(api.actions, isEmpty);
+    });
+  }
   testWidgets('cold OAuth return offers the saved sale-card resume action', (
     tester,
   ) async {
@@ -85,6 +167,53 @@ void main() {
     await tester.pumpWidget(const SizedBox.shrink());
     model.dispose();
   });
+
+  testWidgets(
+    'the seller can change category and refresh category-specific metadata',
+    (tester) async {
+      final api = _Api();
+      final model = EbaySellerController(
+        api: api,
+        initialInstanceId: _instance,
+      );
+      addTearDown(model.dispose);
+      await model.refresh();
+      await model.updateInput({
+        'aspects': {
+          'Game': ['Pokemon'],
+        },
+        'condition': {
+          'conditionId': '4000',
+          'description': 'Card details',
+          'descriptors': [
+            {
+              'id': '40001',
+              'values': ['400015'],
+            },
+          ],
+        },
+      });
+      await model.loadMetadata();
+      await tester.pumpWidget(
+        MaterialApp(home: EbaySellerScreen(controller: model)),
+      );
+      await tester.pumpAndSettle();
+      final category = find.byType(DropdownButtonFormField<String>).first;
+      await tester.tap(category);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Alternative CCG category').last);
+      await tester.pumpAndSettle();
+
+      expect(model.local!.input['categoryId'], '999');
+      expect(model.local!.input['aspects'], isEmpty);
+      expect(model.local!.input['condition']['conditionId'], '4000');
+      expect(
+        api.actions.where((action) => action == 'metadata').length,
+        2,
+        reason: 'The selected category reloads its live provider evidence.',
+      );
+    },
+  );
 
   for (final state in ['live', 'publishing', 'preparing']) {
     testWidgets('$state keeps an explicit provider-status recovery action', (
