@@ -4,6 +4,165 @@ import 'package:grookai_vault/screens/gvvi/vendor_pricing_workspace_screen.dart'
 import 'package:grookai_vault/services/gvvi/vendor_pricing_workspace_service.dart';
 
 void main() {
+  testWidgets('keyboard leaves the enlarged-text inventory scrollable', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(375, 640);
+    tester.view.devicePixelRatio = 1;
+    tester.view.viewInsets = const FakeViewPadding(bottom: 280);
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    addTearDown(tester.view.resetViewInsets);
+    final service = _FakeVendorService(
+      VendorPricingWorkspaceData(
+        rows: [
+          _row(instanceId: 'keyboard', askingPrice: 20, marketPrice: 19.2),
+        ],
+        sections: const [],
+      ),
+    );
+    await tester.pumpWidget(
+      MaterialApp(
+        builder: (context, child) => MediaQuery(
+          data: MediaQuery.of(
+            context,
+          ).copyWith(textScaler: TextScaler.linear(2)),
+          child: child!,
+        ),
+        home: VendorPricingWorkspaceScreen(service: service),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull);
+    expect(find.text('Pricing'), findsNothing);
+    await tester.tap(find.byTooltip('Vendor tools'));
+    await tester.pumpAndSettle();
+    expect(find.text('Pricing rules'), findsOneWidget);
+    expect(find.text('Print card labels'), findsOneWidget);
+    expect(find.text('Square setup'), findsOneWidget);
+    expect(service.priceSaves, isEmpty);
+  });
+  testWidgets('enlarged text keeps the full asking price readable', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(375, 812);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    final service = _FakeVendorService(
+      VendorPricingWorkspaceData(
+        rows: [
+          _row(instanceId: 'large-text', askingPrice: 20, marketPrice: 19.2),
+        ],
+        sections: const [],
+      ),
+    );
+    await tester.pumpWidget(
+      MaterialApp(
+        builder: (context, child) => MediaQuery(
+          data: MediaQuery.of(
+            context,
+          ).copyWith(textScaler: TextScaler.linear(2)),
+          child: child!,
+        ),
+        home: VendorPricingWorkspaceScreen(service: service),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(
+      tester.getTopLeft(find.text('TCGPlayer Market')).dy,
+      greaterThan(tester.getTopLeft(find.text('Condition')).dy),
+    );
+    expect(
+      tester.getTopLeft(find.text('My price')).dy,
+      greaterThan(tester.getTopLeft(find.text('TCGPlayer Market')).dy),
+    );
+    expect(
+      tester.getSize(find.byKey(const Key('vendor_price_large-text'))).height,
+      greaterThan(44),
+    );
+    expect(
+      tester
+          .widget<TextField>(find.byKey(const Key('vendor_price_large-text')))
+          .controller!
+          .text,
+      '20.00',
+    );
+    expect(tester.takeException(), isNull);
+    expect(service.priceSaves, isEmpty);
+  });
+  testWidgets(
+    'Add card returns to the same filtered inventory without pricing writes',
+    (tester) async {
+      final service = _FakeVendorService(
+        VendorPricingWorkspaceData(
+          rows: [
+            _row(instanceId: 'copy-1', name: 'Eevee'),
+            _row(instanceId: 'copy-2', name: 'Pikachu'),
+          ],
+          sections: const [],
+        ),
+      );
+      await tester.pumpWidget(
+        MaterialApp(
+          home: VendorPricingWorkspaceScreen(service: service),
+          onGenerateRoute: (settings) {
+            expect(settings.name, '/search');
+            expect(settings.arguments, Uri.parse('/search'));
+            return MaterialPageRoute<void>(
+              builder: (context) => Scaffold(
+                appBar: AppBar(title: const Text('Search')),
+                body: TextButton(
+                  onPressed: () {
+                    service.data = VendorPricingWorkspaceData(
+                      rows: [
+                        ...service.data.rows,
+                        _row(instanceId: 'new-copy', name: 'Eevee VMAX'),
+                      ],
+                      sections: const [],
+                    );
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Return to vendor'),
+                ),
+              ),
+            );
+          },
+        ),
+      );
+      await tester.pumpAndSettle();
+      await tester.enterText(find.byKey(const Key('vendor_search')), 'Eevee');
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Add card'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Return to vendor'));
+      await tester.pumpAndSettle();
+      expect(
+        tester
+            .widget<TextField>(find.byKey(const Key('vendor_search')))
+            .controller!
+            .text,
+        'Eevee',
+      );
+      expect(find.byKey(const Key('vendor_row_copy-1')), findsOneWidget);
+      expect(find.byKey(const Key('vendor_row_copy-2')), findsNothing);
+      expect(find.text('3 exact copies'), findsOneWidget);
+      await tester.scrollUntilVisible(
+        find.byKey(const Key('vendor_row_new-copy')),
+        300,
+        scrollable: find
+            .descendant(
+              of: find.byType(ListView),
+              matching: find.byType(Scrollable),
+            )
+            .first,
+      );
+      expect(find.byKey(const Key('vendor_row_new-copy')), findsOneWidget);
+      expect(service.priceSaves, isEmpty);
+      expect(service.archivedCopies, isEmpty);
+      expect(tester.takeException(), isNull);
+    },
+  );
   testWidgets(
     'vendor tools exposes pricing and an exact-copy batch label picker',
     (tester) async {
@@ -140,7 +299,15 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Vendor Mode'), findsOneWidget);
-    expect(find.byTooltip('Manage store'), findsOneWidget);
+    expect(find.text('Add card'), findsOneWidget);
+    expect(find.text('Pricing'), findsOneWidget);
+    expect(find.text('Labels'), findsOneWidget);
+    expect(find.text('Square'), findsOneWidget);
+    await tester.tap(find.byTooltip('Vendor tools'));
+    await tester.pumpAndSettle();
+    expect(find.text('Manage store'), findsOneWidget);
+    await tester.tapAt(const Offset(5, 300));
+    await tester.pumpAndSettle();
     expect(find.text('Manage store'), findsNothing);
     expect(find.text('2 exact copies'), findsOneWidget);
     expect(find.byKey(const Key('vendor_row_copy-1')), findsOneWidget);
@@ -323,7 +490,7 @@ void main() {
 class _FakeVendorService extends VendorPricingWorkspaceService {
   _FakeVendorService(this.data);
 
-  final VendorPricingWorkspaceData data;
+  VendorPricingWorkspaceData data;
   final List<(String, double)> priceSaves = [];
   final List<(String, String)> conditionSaves = [];
   final List<(String, String)> printingSaves = [];

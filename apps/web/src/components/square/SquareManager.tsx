@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import {useCallback, useEffect, useRef, useState} from 'react';
 import s from './SquareManager.module.css';
+import VendorWorkspaceNavigation from '@/components/vendor/VendorWorkspaceNavigation';
 
 type Target = {id: string; instanceId: string; selected: boolean; mapped: boolean; errorCode: string | null};
 type Connection = {id: string; environment: string; status: string; locationId: string | null; autoSync: boolean; targets: Target[]};
@@ -135,7 +136,7 @@ export default function SquareManager({initialStatus}: {initialStatus?: 'connect
     if(result.failed)setError('Some cards need attention. Check their saved Square status before selling.');
   };
   return <div className={s.page} aria-busy={busy}>
-    <Link href="/account" className={s.muted}>Back to account</Link>
+    <VendorWorkspaceNavigation active="Square" />
     <h1>{connection?.status === 'connected' ? 'Square' : connection?.status === 'reconnect_required' ? 'Reconnect Square' : 'Connect Square'}</h1>
     <p className={s.muted}>Connect once. Add a public For sale card in grookai, and its item, artwork and price sync to Square. Use the same grookai QR on a phone or at your register.</p>
     {error && <p className={`${s.status} ${s.error}`} role="alert">{error}</p>}
