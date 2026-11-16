@@ -7,6 +7,7 @@ import {
 } from "../../backend/operations/tcgplayer_pricing_completion_agent_v1.mjs";
 import {
   assertCandidateLive,
+  projectReviewedMasterSourceOverrideV1,
 } from "../../scripts/audits/pokemon_tcgplayer_exact_mapping_authority_v1.mjs";
 
 const SCRIPT = fs.readFileSync(new URL(
@@ -51,6 +52,27 @@ test("Pokemon authority binds source, observation, parent, identity, and exact f
   assert.match(SCRIPT, /master_card_evidence_changed/);
   assert.match(SCRIPT, /master_printing_evidence_changed/);
   assert.match(SCRIPT, /english_master_index_publishable_v1/);
+});
+
+test("Delta Reign authority reuses the frozen hidden-set Master and base-printing evidence", () => {
+  const master = JSON.parse(fs.readFileSync(new URL(
+    "../../docs/audits/delta_reign_base_printing_release_v1/authority_20261115_v1/master.json",
+    import.meta.url,
+  ), "utf8"));
+  const manifest = JSON.parse(fs.readFileSync(new URL(
+    "../../docs/audits/delta_reign_base_printing_release_v1/authority_20261115_v1/manifest.json",
+    import.meta.url,
+  ), "utf8"));
+  const cards = projectReviewedMasterSourceOverrideV1("me06", "cards", master);
+  const printings = projectReviewedMasterSourceOverrideV1("me06", "printings", manifest);
+  assert.equal(cards.cards.length, 141);
+  assert.equal(printings.printings.length, 141);
+  assert.equal(printings.printings.filter((row) => row.finish_key === "normal").length, 83);
+  assert.equal(printings.printings.filter((row) => row.finish_key === "holo").length, 58);
+  assert.ok(printings.printings.every((row) => row.status === "master_verified"));
+  assert.equal(projectReviewedMasterSourceOverrideV1("sv1", "cards", {}), null);
+  assert.match(SCRIPT, /delta_reign_base_printing_release_v1\/authority_20261115_v1\/master\.json/);
+  assert.match(SCRIPT, /delta_reign_base_printing_release_v1\/authority_20261115_v1\/manifest\.json/);
 });
 
 test("catalog refresh and pricing observation runs are validated independently", () => {

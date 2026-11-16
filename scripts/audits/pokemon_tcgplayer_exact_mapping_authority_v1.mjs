@@ -23,6 +23,12 @@ export const POKEMON_TCGPLAYER_EXACT_MAPPING_AUTHORITY_V1 =
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 const PROJECT_REF = "ycdxbpibncqcchqiihfz";
+const REVIEWED_MASTER_SOURCE_OVERRIDES = Object.freeze({
+  me06: Object.freeze({
+    cards: "docs/audits/delta_reign_base_printing_release_v1/authority_20261115_v1/master.json",
+    printings: "docs/audits/delta_reign_base_printing_release_v1/authority_20261115_v1/manifest.json",
+  }),
+});
 const FINISH_BY_SUBTYPE = Object.freeze({
   Normal: "normal",
   Holofoil: "holo",
@@ -151,10 +157,64 @@ async function liveSnapshot(client, candidates, sourceSyncRunId) {
   };
 }
 
+export function projectReviewedMasterSourceOverrideV1(setCode, kind, value) {
+  if (setCode !== "me06") return null;
+  if (kind === "cards") {
+    assert.equal(value?.version, "ENGLISH_POKEMON_BASE_PRINTING_MASTER_PROJECTION_V1",
+      "delta_reign_master_version_changed");
+    assert.equal(value?.set_code, "me06", "delta_reign_master_set_changed");
+    assert.equal(value?.expected_rows, 141, "delta_reign_master_expected_rows_changed");
+    assert.equal(value?.cards?.length, 141, "delta_reign_master_card_count_changed");
+    assert.ok(value.cards.every((row) => row.set_key === "me06" &&
+      row.set_name === "Delta Reign" && row.status === "master_verified"),
+    "delta_reign_master_card_status_changed");
+    return { set_key: "me06", cards: value.cards };
+  }
+  assert.equal(kind, "printings", "reviewed_master_source_kind_invalid");
+  assert.equal(value?.version, "PRINTING_COMPLETENESS_GATE_V1",
+    "delta_reign_printing_manifest_version_changed");
+  assert.equal(value?.set_code, "me06", "delta_reign_printing_manifest_set_changed");
+  assert.equal(value?.expected?.parents, 141, "delta_reign_printing_parent_count_changed");
+  assert.equal(value?.expected?.printings, 141, "delta_reign_printing_count_changed");
+  assert.deepEqual(value?.expected?.finishes, { normal: 83, holo: 58 },
+    "delta_reign_printing_finish_counts_changed");
+  const parentsById = new Map((value.parents ?? []).map((row) => [row.id, row]));
+  assert.equal(parentsById.size, 141, "delta_reign_printing_parent_scope_changed");
+  const printings = (value.printings ?? []).map((row) => {
+    const parent = parentsById.get(row.card_print_id);
+    assert.ok(parent, `delta_reign_printing_parent_missing:${row.card_print_id}`);
+    assert.equal(row.review_status, "verified",
+      `delta_reign_printing_review_changed:${row.card_print_id}`);
+    assert.ok(["normal", "holo"].includes(row.finish_key),
+      `delta_reign_printing_finish_changed:${row.card_print_id}`);
+    return {
+      set_key: "me06",
+      set_name: "Delta Reign",
+      card_number: String(parent.printed_coordinate),
+      card_name: parent.name,
+      finish_key: row.finish_key,
+      language: "en",
+      source_count: row.evidence?.length ?? 0,
+      sources: ["delta_reign_official_checklist_projection_v1"],
+      source_kinds: ["official_checklist"],
+      status: "master_verified",
+      evidence_urls: (row.evidence ?? []).map((entry) => entry.source_ref),
+    };
+  });
+  assert.equal(printings.length, 141, "delta_reign_printing_projection_count_changed");
+  return { set_key: "me06", printings };
+}
+
 async function masterSource(setCode, kind) {
-  const relative = `docs/audits/english_master_index_publishable_v1/sets/${setCode}/${kind}.json`;
+  const relative = REVIEWED_MASTER_SOURCE_OVERRIDES[setCode]?.[kind] ??
+    `docs/audits/english_master_index_publishable_v1/sets/${setCode}/${kind}.json`;
   const bytes = await fs.readFile(path.join(ROOT, relative));
-  return { relative, bytes, value: JSON.parse(bytes.toString("utf8")) };
+  const value = JSON.parse(bytes.toString("utf8"));
+  return {
+    relative,
+    bytes,
+    value: projectReviewedMasterSourceOverrideV1(setCode, kind, value) ?? value,
+  };
 }
 
 function exactFinish(candidate) {
