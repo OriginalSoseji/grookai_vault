@@ -11,6 +11,7 @@ import {
   contentFingerprint,
   stableJson,
 } from '../../scripts/audits/japanese_master_index_v4/deterministic_artifact_v1.mjs';
+import { provesConsistentReadOnlyBaseline } from '../../scripts/audits/japanese_master_index_v4/finalize_v1.mjs';
 
 test('Japanese Master Index rejects every mutation-capable CLI flag', () => {
   for (const flag of [
@@ -106,6 +107,47 @@ test('read-only client proves session state and rolls back', async () => {
     'rollback',
     'END',
   ]);
+});
+
+test('consistent read proves isolation before exposing the client', async () => {
+  for (const actualIsolation of ['repeatable read', 'read committed']) {
+    const statements = [];
+    const fakeClient = {
+      async connect() {},
+      async query(sql) {
+        statements.push(sql);
+        if (sql === 'show transaction_read_only') return { rows: [{ transaction_read_only: 'on' }] };
+        if (sql === 'show default_transaction_read_only') return { rows: [{ default_transaction_read_only: 'on' }] };
+        if (sql === 'show transaction_isolation') return { rows: [{ transaction_isolation: actualIsolation }] };
+        return { rows: [] };
+      },
+      async end() { statements.push('END'); },
+    };
+    let called = false;
+    const operation = withReadOnlyClient({
+      connectionString: 'postgresql://reader:secret@localhost:5432/grookai',
+      clientFactory: () => fakeClient,
+      consistentSnapshot: true,
+    }, async (_db, proof) => {
+      called = true;
+      assert.equal(proof.transaction_isolation, 'repeatable read');
+    });
+    if (actualIsolation === 'repeatable read') await operation;
+    else await assert.rejects(operation, /could not prove repeatable-read isolation/);
+    assert.equal(called, actualIsolation === 'repeatable read');
+    assert.ok(statements.includes('begin isolation level repeatable read read only'));
+    assert.deepEqual(statements.slice(-2), ['rollback', 'END']);
+  }
+});
+
+test('finalization rejects incomplete or inconsistent baseline proof', () => {
+  const proof = { guard_version: 'v1', transaction_read_only: 'on', default_transaction_read_only: 'on', transaction_isolation: 'repeatable read' };
+  const boundary = { database_writes: false, storage_writes: false, pricing_writes: false, identity_writes: false, family_promotion_writes: false };
+  assert.equal(provesConsistentReadOnlyBaseline(proof, boundary), true);
+  assert.equal(provesConsistentReadOnlyBaseline({ ...proof, transaction_isolation: 'read committed' }, boundary), false);
+  assert.equal(provesConsistentReadOnlyBaseline({ ...proof, transaction_isolation: undefined }, boundary), false);
+  assert.equal(provesConsistentReadOnlyBaseline(proof, {}), false);
+  assert.equal(provesConsistentReadOnlyBaseline(proof, { ...boundary, database_writes: true }), false);
 });
 
 test('environment fingerprint never contains credentials', () => {
