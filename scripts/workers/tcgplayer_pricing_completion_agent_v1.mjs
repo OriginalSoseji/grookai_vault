@@ -17,6 +17,7 @@ import {
   applyPokemonPricingMappingReviewedHoldsV1,
   classifyTcgplayerFutureReleaseBlocksV1,
   partitionPokemonMappingAuthorityFinishCandidatesV1,
+  partitionPokemonVerifiedExactMappingCandidatesV1,
   selectPokemonPricingMappingReviewBatchV1,
   summarizeTcgplayerPricingCompletionRunV1,
 } from '../../backend/operations/tcgplayer_pricing_completion_agent_v1.mjs';
@@ -519,8 +520,13 @@ async function main() {
       path.resolve('docs/audits/pokemon_tcgplayer_reviewed_holds_20261026.json'),
       'utf8',
     ));
+    const pokemonVerifiedExactCandidates =
+      partitionPokemonVerifiedExactMappingCandidatesV1(
+        pokemonOllamaCandidateQueue,
+        exactPlan?.candidates ?? [],
+      );
     const pokemonReviewedHolds = applyPokemonPricingMappingReviewedHoldsV1(
-      pokemonOllamaCandidateQueue,
+      pokemonVerifiedExactCandidates.eligible,
       pokemonReviewedHoldRegistry,
     );
     const pokemonAuthorityFinishCandidates =
@@ -534,10 +540,12 @@ async function main() {
       ...pokemonReviewBatch.held_by_reason,
       ...pokemonReviewedHolds.held_by_reason,
       ...pokemonAuthorityFinishCandidates.held_by_reason,
+      ...pokemonVerifiedExactCandidates.held_by_reason,
     }).sort());
     const pokemonReviewHeldCount = pokemonReviewBatch.held_count
       + pokemonReviewedHolds.held_count
-      + pokemonAuthorityFinishCandidates.held_count;
+      + pokemonAuthorityFinishCandidates.held_count
+      + pokemonVerifiedExactCandidates.held_count;
     const pokemonAuthorityReviewPath = path.join(
       args.outDir,
       'pokemon_mapping_authority_review_candidates.json',
@@ -621,6 +629,12 @@ async function main() {
       },
       pokemon_mapping_review: {
         candidate_count: pokemonOllamaCandidateQueue.length,
+        verified_exact_candidate_count:
+          pokemonVerifiedExactCandidates.exact_candidate_count,
+        matched_exact_candidate_count:
+          pokemonVerifiedExactCandidates.matched_exact_candidate_count,
+        missing_review_evidence_count:
+          pokemonVerifiedExactCandidates.missing_review_evidence_count,
         selected_count: pokemonReviewBatch.selected_count,
         held_count: pokemonReviewHeldCount,
         held_by_reason: pokemonReviewHeldByReason,
