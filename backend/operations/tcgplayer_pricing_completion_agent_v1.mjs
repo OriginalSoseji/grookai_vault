@@ -16,6 +16,9 @@ export const TCGPLAYER_PRICING_COMPLETION_AGENT_VERSION =
 export const TCGPLAYER_POKEMON_MAPPING_REVIEW_VERSION =
   'TCGPLAYER_POKEMON_MAPPING_REVIEW_V1';
 
+export const TCGPLAYER_POKEMON_MAPPING_AUTHORITY_REVIEW_KEY =
+  'pokemon-pricing-mapping-review:master-authority-batch-01';
+
 export const TCGPLAYER_POKEMON_REVIEWED_HOLDS_VERSION =
   'TCGPLAYER_POKEMON_REVIEWED_HOLDS_V1';
 
@@ -594,7 +597,10 @@ export function buildPokemonPricingMappingAuthorityReviewWorkItemV1({
   };
   return validateFounderWorkItemV1({
     ...base,
-    work_item_key: `${base.work_item_key}:master-authority-batch-01`,
+    // Keep one actionable first-batch review lane. Fresh source evidence may
+    // supersede an unresolved plan, but repeated agent runs for the same
+    // frozen pricing run must not create parallel founder decisions.
+    work_item_key: TCGPLAYER_POKEMON_MAPPING_AUTHORITY_REVIEW_KEY,
     title: `Approve ${candidates.length} evidence-bound Pokemon price mappings`,
     summary: 'Each source product is bound to one live grookai parent, one matching Master Index finish, and frozen source bytes. Approval enables the guarded mapping outcome preflight.',
     plan_payload: planPayload,

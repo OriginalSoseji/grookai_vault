@@ -598,7 +598,10 @@ async function main() {
           reviewCandidates: pokemonAuthorityReviewPath,
           exactCandidates: authorityExactCandidatePath,
           outDir: pokemonAuthorityPackageDir,
-          reviewedAt: new Date().toISOString(),
+          // Bind evidence time to the frozen pricing run. Wall-clock time made
+          // otherwise identical reviews acquire a new fingerprint every
+          // fifteen-minute agent cycle and supersede pending founder approval.
+          reviewedAt: report.run.completed_at,
           sourceSyncRunId: report.run.source_sync_run_id,
         });
         const [receipt, exactMappingCandidates, masterMappingAuthority] = await Promise.all([

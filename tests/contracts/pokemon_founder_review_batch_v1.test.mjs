@@ -16,6 +16,8 @@ import { operationsSha256V1 } from
   "../../backend/operations/operations_control_plane_v1.mjs";
 import { buildPokemonPricingMappingAuthorityReviewWorkItemV1 } from
   "../../backend/operations/tcgplayer_pricing_completion_agent_v1.mjs";
+import { TCGPLAYER_POKEMON_MAPPING_AUTHORITY_REVIEW_KEY } from
+  "../../backend/operations/tcgplayer_pricing_completion_agent_v1.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 const review = JSON.parse(readFileSync(path.join(ROOT,
@@ -123,7 +125,7 @@ test("evidence-rich review item carries exact candidates and Master Index author
     sourceCommitSha: "43ccc34e2da595382fffa76400e5e480568c067c",
     sourceRunUri: "https://github.com/OriginalSoseji/grookai_vault/actions/runs/40271141832",
   });
-  assert.match(workItem.work_item_key, /:master-authority-batch-01$/);
+  assert.equal(workItem.work_item_key, TCGPLAYER_POKEMON_MAPPING_AUTHORITY_REVIEW_KEY);
   assert.deepEqual(workItem.plan_payload.exact_mapping_candidates, exact);
   assert.equal(workItem.plan_payload.master_mapping_authority.version, "MASTER_INDEX_MAPPING_AUTHORITY_V1");
   assert.equal(workItem.plan_fingerprint, operationsSha256V1(workItem.plan_payload));

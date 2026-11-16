@@ -581,6 +581,8 @@ test('scheduled workflow measures production without treating backlog as a crash
   assert.match(worker, /buildPokemonPricingMappingReviewWorkItemV1/);
   assert.match(worker, /buildPokemonPricingMappingAuthorityReviewWorkItemV1/);
   assert.match(worker, /pokemon_tcgplayer_exact_mapping_authority_v1\.mjs/);
+  assert.match(worker, /reviewedAt: report\.run\.completed_at/);
+  assert.doesNotMatch(worker, /reviewedAt: new Date\(\)\.toISOString\(\)/);
   assert.match(worker, /pokemonMappingAuthorityExpected\s*\? null/);
   assert.match(worker, /pokemon_mapping_review:\s*\{[\s\S]*selected_count: pokemonReviewBatch\.selected_count/);
   assert.match(worker, /pricingMappingAuthorityFailureDetailV1/);
