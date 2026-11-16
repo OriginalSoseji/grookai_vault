@@ -357,6 +357,77 @@ export function partitionPokemonMappingAuthorityFinishCandidatesV1(candidates) {
   };
 }
 
+export function partitionPokemonVerifiedExactMappingCandidatesV1(
+  candidates,
+  exactCandidates,
+) {
+  if (!Array.isArray(candidates) || !Array.isArray(exactCandidates)) {
+    throw new Error('Pokemon mapping candidate inputs must be arrays');
+  }
+  const exactByProduct = new Map();
+  for (const exact of exactCandidates) {
+    const productId = integer(exact?.source_product_id);
+    if (!productId || exactByProduct.has(productId)) {
+      throw new Error('Pokemon exact mapping candidates require unique source products');
+    }
+    exactByProduct.set(productId, exact);
+  }
+  const eligible = [];
+  const held = [];
+  const heldByReason = {};
+  const matchedExactProducts = new Set();
+  const hold = (candidate, reason) => {
+    held.push({ ...candidate, mapping_authority_hold_reason: reason });
+    heldByReason[reason] = (heldByReason[reason] ?? 0) + 1;
+  };
+  for (const candidate of candidates) {
+    const productId = integer(candidate?.source_product_id);
+    const exact = exactByProduct.get(productId);
+    if (!exact) {
+      hold(candidate, 'mapping_authority_not_verified_exact_candidate');
+      continue;
+    }
+    const targets = Array.isArray(candidate?.review_targets)
+      ? candidate.review_targets
+      : [];
+    const target = targets[0] ?? {};
+    const exactTarget = exact?.target ?? {};
+    const sameSource = candidate.source_product_name === exact.source_product_name
+      && integer(candidate.source_group_id) === integer(exact.source_group_id)
+      && candidate.source_group_name === exact.source_group_name
+      && candidate.printed_number === exact.printed_number
+      && JSON.stringify([...(candidate.source_subtypes ?? [])].sort())
+        === JSON.stringify([...(exact.source_subtypes ?? [])].sort())
+      && JSON.stringify([...(candidate.supporting_gap_observation_ids ?? [])].sort())
+        === JSON.stringify([...(exact.supporting_gap_observation_ids ?? [])].sort());
+    const sameTarget = targets.length === 1
+      && target.card_print_id === exactTarget.card_print_id
+      && target.gv_id === exactTarget.gv_id
+      && target.set_id === exactTarget.set_id
+      && target.set_code === exactTarget.set_code
+      && target.canonical_name === exactTarget.canonical_name
+      && target.canonical_number === exactTarget.canonical_number
+      && String(target.variant_key ?? '') === String(exactTarget.variant_key ?? '');
+    if (!sameSource || !sameTarget) {
+      hold(candidate, 'mapping_authority_exact_candidate_evidence_mismatch');
+      continue;
+    }
+    matchedExactProducts.add(productId);
+    eligible.push(candidate);
+  }
+  return {
+    eligible,
+    held,
+    held_count: held.length,
+    held_by_reason: Object.fromEntries(Object.entries(heldByReason).sort()),
+    exact_candidate_count: exactByProduct.size,
+    matched_exact_candidate_count: matchedExactProducts.size,
+    missing_review_evidence_count: [...exactByProduct.keys()].filter(
+      (productId) => !matchedExactProducts.has(productId),
+    ).length,
+  };
+}
+
 export function selectPokemonPricingMappingReviewBatchV1(candidates, limit = 50) {
   if (!Array.isArray(candidates)) throw new Error('Pokemon mapping candidates must be an array');
   if (!Number.isSafeInteger(limit) || limit < 1 || limit > 50) {
