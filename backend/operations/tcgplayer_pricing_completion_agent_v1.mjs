@@ -20,7 +20,7 @@ export const TCGPLAYER_POKEMON_MAPPING_AUTHORITY_REVIEW_KEY =
   'pokemon-pricing-mapping-review:master-authority-batch-01';
 
 export const TCGPLAYER_POKEMON_LEGACY_MAPPING_AUTHORITY_REVIEW_KEY_PATTERN =
-  /^pokemon-pricing-mapping-review:[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}:master-authority-batch-01$/i;
+  /^pokemon-pricing-mapping-review:[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}(?::master-authority-batch-01)?$/i;
 
 const UUID = /^[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i;
 const ACTIONABLE_REVIEW_STATES = new Set([
@@ -52,7 +52,12 @@ function integer(value) {
 }
 
 function pokemonMappingReviewIdentityProjectionV1(planPayload) {
-  const rows = planPayload?.exact_mapping_candidates;
+  const proposalVersion = String(planPayload?.proposal_version ?? '');
+  const exactAuthority = proposalVersion ===
+    'TCGPLAYER_POKEMON_MAPPING_AUTHORITY_REVIEW_V1';
+  const rows = exactAuthority
+    ? planPayload?.exact_mapping_candidates
+    : planPayload?.review_candidates;
   if (!Array.isArray(rows) || rows.length < 1 || rows.length > 100) {
     throw new Error('Pokemon mapping review identity projection is invalid');
   }
@@ -60,7 +65,12 @@ function pokemonMappingReviewIdentityProjectionV1(planPayload) {
   const targetParents = new Set();
   const projection = rows.map((row) => {
     const sourceProductId = Number(row?.source_product_id);
-    const cardPrintId = String(row?.target?.card_print_id ?? '').trim().toLowerCase();
+    const reviewTargets = row?.review_targets;
+    const cardPrintId = String(exactAuthority
+      ? row?.target?.card_print_id
+      : Array.isArray(reviewTargets) && reviewTargets.length === 1
+        ? reviewTargets[0]?.card_print_id
+        : '').trim().toLowerCase();
     if (!Number.isSafeInteger(sourceProductId) || sourceProductId < 1 || !UUID.test(cardPrintId)
         || sourceProducts.has(sourceProductId) || targetParents.has(cardPrintId)) {
       throw new Error('Pokemon mapping review identity projection contains invalid identities');
@@ -73,22 +83,27 @@ function pokemonMappingReviewIdentityProjectionV1(planPayload) {
 }
 
 function assertPokemonMappingReviewQueueBoundaryV1(row, { stable = false } = {}) {
+  const proposalVersion = String(row?.plan_payload?.proposal_version ?? '');
   if (!row || typeof row !== 'object'
       || row.domain !== 'pricing'
       || row.work_item_type !== 'tcgplayer_pricing_backlog_repair'
       || row.action_type !== 'advance_tcgplayer_pricing_backlog'
       || row.agent_key !== TCGPLAYER_PRICING_COMPLETION_AGENT_KEY
-      || row.plan_payload?.proposal_version !== 'TCGPLAYER_POKEMON_MAPPING_AUTHORITY_REVIEW_V1'
       || row.command_policy?.execution_enabled !== false) {
     throw new Error('Pokemon mapping review queue boundary mismatch');
   }
   if (stable) {
     if (row.work_item_key !== TCGPLAYER_POKEMON_MAPPING_AUTHORITY_REVIEW_KEY
+        || proposalVersion !== 'TCGPLAYER_POKEMON_MAPPING_AUTHORITY_REVIEW_V1'
         || !STABLE_REVIEW_STATES.has(row.state)) {
       throw new Error('Stable Pokemon mapping review replacement is invalid');
     }
   } else if (!TCGPLAYER_POKEMON_LEGACY_MAPPING_AUTHORITY_REVIEW_KEY_PATTERN
     .test(String(row.work_item_key ?? ''))
+      || ![
+        TCGPLAYER_POKEMON_MAPPING_REVIEW_VERSION,
+        'TCGPLAYER_POKEMON_MAPPING_AUTHORITY_REVIEW_V1',
+      ].includes(proposalVersion)
       || !ACTIONABLE_REVIEW_STATES.has(row.state)) {
     throw new Error('Legacy Pokemon mapping review is invalid');
   }
@@ -124,10 +139,7 @@ export async function supersedeLegacyPokemonMappingAuthorityReviewsV1(
       throw new Error('Stable Pokemon mapping review replacement was not found');
     }
     const replacement = replacementResult.rows[0];
-    const replacementProjection = assertPokemonMappingReviewQueueBoundaryV1(
-      replacement,
-      { stable: true },
-    );
+    assertPokemonMappingReviewQueueBoundaryV1(replacement, { stable: true });
     const legacyResult = await client.query(`
       select w.id, w.work_item_key, w.work_item_type, w.action_type, w.domain,
         w.state, w.plan_fingerprint, w.plan_payload, w.command_policy,
@@ -135,7 +147,7 @@ export async function supersedeLegacyPokemonMappingAuthorityReviewsV1(
       from public.founder_work_items w
       join public.operations_agents a on a.id = w.agent_id
       where w.work_item_key ~
-        '^pokemon-pricing-mapping-review:[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}:master-authority-batch-01$'
+        '^pokemon-pricing-mapping-review:[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}(:master-authority-batch-01)?$'
         and w.state in ('ready_for_review', 'deferred', 'repair_requested')
       order by w.created_at, w.id
       limit 17
@@ -146,8 +158,7 @@ export async function supersedeLegacyPokemonMappingAuthorityReviewsV1(
     }
     let supersededCount = 0;
     for (const legacy of legacyResult.rows) {
-      const legacyProjection = assertPokemonMappingReviewQueueBoundaryV1(legacy);
-      if (legacyProjection !== replacementProjection) continue;
+      assertPokemonMappingReviewQueueBoundaryV1(legacy);
       const updated = await client.query(`
         update public.founder_work_items
         set state = 'superseded',

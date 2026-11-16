@@ -144,7 +144,7 @@ function queueRow(workItem, overrides = {}) {
   };
 }
 
-test("stable Pokemon review atomically supersedes only equivalent legacy review lanes", async () => {
+test("stable Pokemon authority atomically supersedes all older actionable review formats", async () => {
   const authorities = TCGPLAYER_FOUNDER_REVIEW_BATCH_PRODUCT_IDENTITIES_V1;
   const exact = authorities.map((authority) => planTcgplayerExactMappingCandidateV1({
     source: source(authority),
@@ -193,13 +193,24 @@ test("stable Pokemon review atomically supersedes only equivalent legacy review 
       } : row),
     },
   });
+  const rawReviewLegacy = queueRow(workItem, {
+    id: "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+    work_item_key:
+      "pokemon-pricing-mapping-review:7ca0463c-98e1-430c-9a28-aa94b23de778",
+    plan_fingerprint: "3".repeat(64),
+    plan_payload: {
+      ...workItem.plan_payload,
+      proposal_version: "TCGPLAYER_POKEMON_MAPPING_REVIEW_V1",
+      exact_mapping_candidates: undefined,
+    },
+  });
   const calls = [];
   const client = {
     async query(sql, params = []) {
       calls.push({ sql: String(sql), params });
       if (/where w\.id = \$1::uuid/.test(sql)) return { rows: [replacement] };
       if (/w\.work_item_key ~/.test(sql)) {
-        return { rows: [equivalentLegacy, differentLegacy] };
+        return { rows: [equivalentLegacy, differentLegacy, rawReviewLegacy] };
       }
       if (/update public\.founder_work_items/.test(sql)) {
         return { rows: [{ id: params[0] }] };
@@ -212,14 +223,16 @@ test("stable Pokemon review atomically supersedes only equivalent legacy review 
   });
   assert.deepEqual(result, {
     replacement_work_item_id: replacement.id,
-    legacy_review_count: 2,
-    superseded_review_count: 1,
+    legacy_review_count: 3,
+    superseded_review_count: 3,
   });
   const updates = calls.filter((call) => /update public\.founder_work_items/.test(call.sql));
   const events = calls.filter((call) => /insert into public\.founder_work_item_events/.test(call.sql));
-  assert.equal(updates.length, 1);
-  assert.equal(events.length, 1);
+  assert.equal(updates.length, 3);
+  assert.equal(events.length, 3);
   assert.equal(updates[0].params[0], equivalentLegacy.id);
+  assert.equal(updates[1].params[0], differentLegacy.id);
+  assert.equal(updates[2].params[0], rawReviewLegacy.id);
   assert.equal(calls.at(-1).sql, "commit");
   assert.ok(calls.every((call) => !/update public\.(?:card_prints|external_mappings|tcgplayer_market)/i
     .test(call.sql)));
