@@ -51,3 +51,16 @@ test('hidden Delta Reign rehearsal keeps public options empty after internal tru
     /assert\.deepEqual\(options,\[\],'hidden_set_or_suppressed_parent_public_option_leak'\)/);
   assert.doesNotMatch(dryRun, /public_option_count_changed|public_option_readback_mismatch/);
 });
+
+test('Delta Reign real apply is exact, insert-only, and independently verified', async () => {
+  const apply = await fs.readFile(path.join(root,
+    'scripts', 'audits', 'english_pokemon_base_printing_release_real_apply_v1.mjs'), 'utf8');
+  assert.match(apply, /assert\.equal\(options\.apply,true,'--apply is required'\)/);
+  assert.match(apply, /exact_founder_approval_text_required/);
+  assert.match(apply, /production_state_changed_since_dry_run/);
+  assert.match(apply, /begin isolation level serializable/);
+  assert.match(apply, /begin isolation level repeatable read read only/);
+  assert.match(apply, /committed_by_independent_readback/);
+  assert.equal((apply.match(/insert into public\./g) ?? []).length, 3);
+  assert.doesNotMatch(apply, /\bupdate public\.|\bdelete from public\.|\bupsert\b/i);
+});

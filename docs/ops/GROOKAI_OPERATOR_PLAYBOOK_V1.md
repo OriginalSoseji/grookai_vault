@@ -3109,6 +3109,16 @@ only. It must leave the set release control hidden and all parent suppression,
 mapping, publication, image, Vault, and customer state unchanged. Mapping,
 pricing, image readiness, and visibility are separate later releases.
 
+Use
+`scripts/audits/english_pokemon_base_printing_release_guarded_dry_run_v1.mjs`
+from a clean merged SHA and save its immutable receipt outside the repository.
+The apply path is
+`scripts/audits/english_pokemon_base_printing_release_real_apply_v1.mjs`; it
+requires `--apply`, the same SHA and fingerprint, the exact dry-run artifact,
+and the exact approval text in `GROOKAI_PRODUCTION_APPROVAL`. Its output must
+also stay outside the repository. Never retry after a lost commit response;
+use the runner's independent exact readback outcome.
+
 ## Native Anniversary Delivery - September 16
 
 Read `NATIVE_ANNIVERSARY_RELEASE_20260916.md` for the isolated release candidate.

@@ -68,6 +68,12 @@ The planner and the transaction must each prove:
 Commit acknowledgement uncertainty stops the release. Never retry blindly.
 Read the exact candidate IDs through a new connection before any recovery.
 
+The checked-in real-apply runner must be part of the dry-run code fingerprint.
+It accepts only the exact merged source SHA, package fingerprint, rollback
+artifact, and founder approval text. It writes its durable receipt outside the
+worktree, performs one serializable insert-only transaction, and treats an
+independent exact readback as the only authority after any uncertain commit.
+
 ## Delta Reign V1 Scope
 
 The first package is `me06` / Delta Reign, set UUID
