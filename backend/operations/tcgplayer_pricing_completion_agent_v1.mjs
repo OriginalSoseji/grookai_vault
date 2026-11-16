@@ -19,6 +19,18 @@ export const TCGPLAYER_POKEMON_MAPPING_REVIEW_VERSION =
 export const TCGPLAYER_POKEMON_MAPPING_AUTHORITY_REVIEW_KEY =
   'pokemon-pricing-mapping-review:master-authority-batch-01';
 
+export const TCGPLAYER_POKEMON_LEGACY_MAPPING_AUTHORITY_REVIEW_KEY_PATTERN =
+  /^pokemon-pricing-mapping-review:[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}:master-authority-batch-01$/i;
+
+const UUID = /^[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i;
+const ACTIONABLE_REVIEW_STATES = new Set([
+  'ready_for_review', 'deferred', 'repair_requested',
+]);
+const STABLE_REVIEW_STATES = new Set([
+  ...ACTIONABLE_REVIEW_STATES,
+  'approved', 'rejected', 'cancelled', 'expired',
+]);
+
 export const TCGPLAYER_POKEMON_REVIEWED_HOLDS_VERSION =
   'TCGPLAYER_POKEMON_REVIEWED_HOLDS_V1';
 
@@ -37,6 +49,153 @@ export const TCGPLAYER_FUTURE_RELEASE_GROUP_HOLDS_V1 = Object.freeze([
 function integer(value) {
   const parsed = Number(value);
   return Number.isFinite(parsed) ? Math.max(0, Math.trunc(parsed)) : 0;
+}
+
+function pokemonMappingReviewIdentityProjectionV1(planPayload) {
+  const rows = planPayload?.exact_mapping_candidates;
+  if (!Array.isArray(rows) || rows.length < 1 || rows.length > 100) {
+    throw new Error('Pokemon mapping review identity projection is invalid');
+  }
+  const sourceProducts = new Set();
+  const targetParents = new Set();
+  const projection = rows.map((row) => {
+    const sourceProductId = Number(row?.source_product_id);
+    const cardPrintId = String(row?.target?.card_print_id ?? '').trim().toLowerCase();
+    if (!Number.isSafeInteger(sourceProductId) || sourceProductId < 1 || !UUID.test(cardPrintId)
+        || sourceProducts.has(sourceProductId) || targetParents.has(cardPrintId)) {
+      throw new Error('Pokemon mapping review identity projection contains invalid identities');
+    }
+    sourceProducts.add(sourceProductId);
+    targetParents.add(cardPrintId);
+    return `${sourceProductId}:${cardPrintId}`;
+  });
+  return projection.sort().join('|');
+}
+
+function assertPokemonMappingReviewQueueBoundaryV1(row, { stable = false } = {}) {
+  if (!row || typeof row !== 'object'
+      || row.domain !== 'pricing'
+      || row.work_item_type !== 'tcgplayer_pricing_backlog_repair'
+      || row.action_type !== 'advance_tcgplayer_pricing_backlog'
+      || row.agent_key !== TCGPLAYER_PRICING_COMPLETION_AGENT_KEY
+      || row.plan_payload?.proposal_version !== 'TCGPLAYER_POKEMON_MAPPING_AUTHORITY_REVIEW_V1'
+      || row.command_policy?.execution_enabled !== false) {
+    throw new Error('Pokemon mapping review queue boundary mismatch');
+  }
+  if (stable) {
+    if (row.work_item_key !== TCGPLAYER_POKEMON_MAPPING_AUTHORITY_REVIEW_KEY
+        || !STABLE_REVIEW_STATES.has(row.state)) {
+      throw new Error('Stable Pokemon mapping review replacement is invalid');
+    }
+  } else if (!TCGPLAYER_POKEMON_LEGACY_MAPPING_AUTHORITY_REVIEW_KEY_PATTERN
+    .test(String(row.work_item_key ?? ''))
+      || !ACTIONABLE_REVIEW_STATES.has(row.state)) {
+    throw new Error('Legacy Pokemon mapping review is invalid');
+  }
+  return pokemonMappingReviewIdentityProjectionV1(row.plan_payload);
+}
+
+export async function supersedeLegacyPokemonMappingAuthorityReviewsV1(
+  client,
+  { replacementWorkItemId } = {},
+) {
+  if (!client || typeof client.query !== 'function') {
+    throw new Error('Pokemon mapping review supersession client is required');
+  }
+  if (!UUID.test(String(replacementWorkItemId ?? ''))) {
+    throw new Error('Pokemon mapping review replacement ID is invalid');
+  }
+  let begun = false;
+  try {
+    await client.query('begin');
+    begun = true;
+    await client.query("set local lock_timeout = '5s'");
+    await client.query("set local statement_timeout = '30s'");
+    const replacementResult = await client.query(`
+      select w.id, w.work_item_key, w.work_item_type, w.action_type, w.domain,
+        w.state, w.plan_fingerprint, w.plan_payload, w.command_policy,
+        a.agent_key
+      from public.founder_work_items w
+      join public.operations_agents a on a.id = w.agent_id
+      where w.id = $1::uuid
+      for update of w
+    `, [replacementWorkItemId]);
+    if (replacementResult.rows.length !== 1) {
+      throw new Error('Stable Pokemon mapping review replacement was not found');
+    }
+    const replacement = replacementResult.rows[0];
+    const replacementProjection = assertPokemonMappingReviewQueueBoundaryV1(
+      replacement,
+      { stable: true },
+    );
+    const legacyResult = await client.query(`
+      select w.id, w.work_item_key, w.work_item_type, w.action_type, w.domain,
+        w.state, w.plan_fingerprint, w.plan_payload, w.command_policy,
+        a.agent_key
+      from public.founder_work_items w
+      join public.operations_agents a on a.id = w.agent_id
+      where w.work_item_key ~
+        '^pokemon-pricing-mapping-review:[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}:master-authority-batch-01$'
+        and w.state in ('ready_for_review', 'deferred', 'repair_requested')
+      order by w.created_at, w.id
+      limit 17
+      for update of w
+    `);
+    if (legacyResult.rows.length > 16) {
+      throw new Error('Legacy Pokemon mapping review supersession exceeds its bound');
+    }
+    let supersededCount = 0;
+    for (const legacy of legacyResult.rows) {
+      const legacyProjection = assertPokemonMappingReviewQueueBoundaryV1(legacy);
+      if (legacyProjection !== replacementProjection) continue;
+      const updated = await client.query(`
+        update public.founder_work_items
+        set state = 'superseded',
+          state_reason = 'stable_pokemon_mapping_review_published',
+          updated_at = now()
+        where id = $1::uuid
+          and work_item_key = $2::text
+          and state = $3::text
+          and plan_fingerprint = $4::text
+        returning id
+      `, [legacy.id, legacy.work_item_key, legacy.state, legacy.plan_fingerprint]);
+      if (updated.rows.length !== 1) {
+        throw new Error('Legacy Pokemon mapping review changed during supersession');
+      }
+      await client.query(`
+        insert into public.founder_work_item_events (
+          work_item_id, event_type, actor_type, actor_key, payload
+        ) values (
+          $1::uuid, 'superseded', 'agent', $2::text,
+          jsonb_build_object(
+            'replacement_work_item_id', $3::uuid,
+            'replacement_work_item_key', $4::text,
+            'replacement_plan_fingerprint', $5::text,
+            'reason', 'stable_pokemon_mapping_review_published'
+          )
+        )
+      `, [
+        legacy.id,
+        TCGPLAYER_PRICING_COMPLETION_AGENT_KEY,
+        replacement.id,
+        replacement.work_item_key,
+        replacement.plan_fingerprint,
+      ]);
+      supersededCount += 1;
+    }
+    await client.query('commit');
+    begun = false;
+    return {
+      replacement_work_item_id: replacement.id,
+      legacy_review_count: legacyResult.rows.length,
+      superseded_review_count: supersededCount,
+    };
+  } catch (error) {
+    if (begun) {
+      try { await client.query('rollback'); } catch {}
+    }
+    throw error;
+  }
 }
 
 function isoDay(value, label) {

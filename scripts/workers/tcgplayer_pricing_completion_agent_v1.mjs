@@ -4,6 +4,7 @@ import { spawn } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { Client } from 'pg';
 
 import '../../backend/env.mjs';
 import {
@@ -19,8 +20,12 @@ import {
   partitionPokemonMappingAuthorityFinishCandidatesV1,
   partitionPokemonVerifiedExactMappingCandidatesV1,
   selectPokemonPricingMappingReviewBatchV1,
+  supersedeLegacyPokemonMappingAuthorityReviewsV1,
   summarizeTcgplayerPricingCompletionRunV1,
 } from '../../backend/operations/tcgplayer_pricing_completion_agent_v1.mjs';
+import {
+  pokemonTcgplayerMappingDatabaseConfigV1,
+} from '../../backend/operations/pokemon_tcgplayer_mapping_outcome_v1.mjs';
 import {
   buildPokemonSpecialPrintingReferenceProposalV1,
 } from '../../backend/pricing/pokemon_special_printing_reference_proposal_v1.mjs';
@@ -722,6 +727,30 @@ async function main() {
           body: { p_item: pokemonReviewWorkItem },
         })
       : null;
+    let pokemonLegacyReviewSupersession = null;
+    if (pokemonMappingAuthority && pokemonReviewPublication) {
+      const replacementWorkItemId = Array.isArray(pokemonReviewPublication)
+        ? pokemonReviewPublication[0]?.work_item_id
+        : pokemonReviewPublication?.work_item_id;
+      const databaseConfig = pokemonTcgplayerMappingDatabaseConfigV1(
+        process.env.SUPABASE_DB_URL,
+        { mode: 'apply' },
+      );
+      const client = new Client({
+        ...databaseConfig,
+        application_name: 'pokemon-mapping-review-supersession-v1',
+        options: '-c default_transaction_read_only=off',
+      });
+      await client.connect();
+      try {
+        pokemonLegacyReviewSupersession =
+          await supersedeLegacyPokemonMappingAuthorityReviewsV1(client, {
+            replacementWorkItemId,
+          });
+      } finally {
+        await client.end();
+      }
+    }
     const receipt = {
       schema_version: 'TCGPLAYER_PRICING_COMPLETION_AGENT_RUN_V4',
       observed_at: new Date().toISOString(),
@@ -822,6 +851,7 @@ async function main() {
         work_item_key: pokemonReviewWorkItem?.work_item_key ?? null,
         plan_fingerprint: pokemonReviewWorkItem?.plan_fingerprint ?? null,
         publication_receipt: pokemonReviewPublication,
+        legacy_review_supersession: pokemonLegacyReviewSupersession,
       },
       boundaries: {
         pricing_database_reads: true,
