@@ -82,7 +82,7 @@ async function main(){
  const databaseUrl=assertPrintingDatabaseTarget(process.env.SUPABASE_DB_URL??'');
  const authority=await loadAuthority(),code=await codeBinding();
  const client=await connect(databaseUrl,'english_pokemon_base_printing_release_real_apply_v1');
- let context,before,afterCommit=null,counts,environmentSanity,writerError=null,commitAttempted=false,commitAcknowledged=false;
+ let context,before,afterCommit=null,counts,environmentSanity,writerError=null,commitIntent=null,commitAttempted=false,commitAcknowledged=false;
  try{
   environmentSanity=await sanity(client);
   const existing=(await client.query(`select id::text,card_print_id::text,finish_key,printing_gv_id from public.card_printings where card_print_id=any($1::uuid[]) order by id`,[authority.manifest.parents.map(row=>row.id)])).rows;
@@ -106,17 +106,21 @@ async function main(){
   const insideBefore=await readState(client,context);assert.equal(insideBefore.hash_sha256,before.hash_sha256,'precommit_state_drift');assertBefore(insideBefore,context);
   counts=await insertExact(client,context);
   await assertExact(client,context,before);
+  commitIntent={version:APPLY_VERSION,package_id:PACKAGE_ID,generated_at:new Date().toISOString(),production_project_ref:PROJECT_REF,source_commit:options.expectedHead,package_fingerprint_sha256:context.packageFingerprint,manifest_fingerprint_sha256:context.manifest.fingerprint,dry_run_artifact_sha256:dryRun.sha256,approval_sha256:sha256(process.env.GROOKAI_PRODUCTION_APPROVAL??''),status:'commit_intent_persisted',commit_outcome:'unknown_until_independent_readback',planned_counts:counts,before_snapshot_hash_sha256:before.hash_sha256,recovery:'do_not_retry_writes; perform independent readback'};
+  await writeExclusive(path.join(options.outDir,'commit_intent.json'),commitIntent);
   commitAttempted=true;await client.query('commit');commitAcknowledged=true;
   afterCommit=await assertExact(client,context,before);
  }catch(error){
   writerError=error;
   if(!commitAttempted)await client.query('rollback').catch(()=>{});
- }finally{await client.end();}
+ }finally{
+  try{await client.end();}catch(error){if(!writerError)writerError=error;}
+ }
  if(writerError&&!commitAttempted)throw writerError;
 
- const verify=await connect(databaseUrl,'english_pokemon_base_printing_release_independent_readback_v1');
- let independent,independentOutcome='unknown';
+ let verify=null,independent,independentOutcome='unknown_independent_readback_not_started',independentError=null,independentCloseError=null;
  try{
+  verify=await connect(databaseUrl,'english_pokemon_base_printing_release_independent_readback_v1');
   await verify.query('begin isolation level repeatable read read only');
   try{independent=await assertExact(verify,context,before);independentOutcome='applied_exact';}
   catch(exactError){
@@ -125,10 +129,14 @@ async function main(){
    else{independent=candidate;independentOutcome='unknown_mismatched_state';}
   }
   await verify.query('commit');
- }finally{await verify.end();}
+ }catch(error){
+  independentError=error;independentOutcome='unknown_independent_readback_failed';
+ }finally{
+  if(verify)try{await verify.end();}catch(error){independentCloseError=error;}
+ }
 
  const status=independentOutcome==='applied_exact'?(commitAcknowledged?'applied_and_verified':'committed_by_independent_readback'):independentOutcome;
- const report={version:APPLY_VERSION,package_id:PACKAGE_ID,generated_at:new Date().toISOString(),production_project_ref:PROJECT_REF,source_commit:options.expectedHead,package_fingerprint_sha256:context?.packageFingerprint??options.fingerprint,manifest_fingerprint_sha256:context?.manifest?.fingerprint??null,dry_run_artifact:options.dryRunArtifact,dry_run_artifact_sha256:dryRun.sha256,dry_run_rollback_proof:`${dryRun.value.proof.before_snapshot.hash_sha256} == ${dryRun.value.proof.after_snapshot.hash_sha256}`,approval_sha256:sha256(process.env.GROOKAI_PRODUCTION_APPROVAL??''),execution:{status,commit_attempted:commitAttempted,commit_acknowledged:commitAcknowledged,writer_error:writerError?String(writerError.message??writerError):null,counts:counts??null,boundaries:context?.packageAuthority?.boundaries??null,environment_sanity:environmentSanity,before_snapshot:before,after_commit_snapshot:afterCommit,independent_readback:independent,independent_outcome:independentOutcome}};
+ const report={version:APPLY_VERSION,package_id:PACKAGE_ID,generated_at:new Date().toISOString(),production_project_ref:PROJECT_REF,source_commit:options.expectedHead,package_fingerprint_sha256:context?.packageFingerprint??options.fingerprint,manifest_fingerprint_sha256:context?.manifest?.fingerprint??null,dry_run_artifact:options.dryRunArtifact,dry_run_artifact_sha256:dryRun.sha256,dry_run_rollback_proof:`${dryRun.value.proof.before_snapshot.hash_sha256} == ${dryRun.value.proof.after_snapshot.hash_sha256}`,approval_sha256:sha256(process.env.GROOKAI_PRODUCTION_APPROVAL??''),commit_intent_artifact:path.join(options.outDir,'commit_intent.json'),commit_intent_sha256:commitIntent?stableHash(commitIntent):null,execution:{status,commit_attempted:commitAttempted,commit_acknowledged:commitAcknowledged,writer_error:writerError?String(writerError.message??writerError):null,counts:counts??null,boundaries:context?.packageAuthority?.boundaries??null,environment_sanity:environmentSanity,before_snapshot:before,after_commit_snapshot:afterCommit,independent_readback:independent??null,independent_outcome:independentOutcome,independent_error:independentError?String(independentError.message??independentError):null,independent_close_error:independentCloseError?String(independentCloseError.message??independentCloseError):null}};
  await writeExclusive(path.join(options.outDir,'real_apply.json'),report);
  if(independentOutcome!=='applied_exact')throw new Error(independentOutcome==='not_applied'?'commit_not_applied_after_independent_readback':'commit_outcome_unknown_after_independent_readback');
  if(afterCommit)assert.equal(independent.hash_sha256,afterCommit.hash_sha256,'independent_readback_mismatch');

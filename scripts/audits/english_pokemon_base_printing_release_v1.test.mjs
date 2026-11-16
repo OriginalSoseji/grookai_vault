@@ -61,6 +61,13 @@ test('Delta Reign real apply is exact, insert-only, and independently verified',
   assert.match(apply, /begin isolation level serializable/);
   assert.match(apply, /begin isolation level repeatable read read only/);
   assert.match(apply, /committed_by_independent_readback/);
+  const intentWrite = apply.indexOf("writeExclusive(path.join(options.outDir,'commit_intent.json')");
+  const commitSend = apply.indexOf("client.query('commit')");
+  assert.ok(intentWrite >= 0 && commitSend > intentWrite,
+    'durable commit intent must precede the commit send');
+  assert.match(apply, /unknown_independent_readback_failed/);
+  assert.match(apply, /independent_error:/);
+  assert.match(apply, /do_not_retry_writes; perform independent readback/);
   assert.equal((apply.match(/insert into public\./g) ?? []).length, 3);
   assert.doesNotMatch(apply, /\bupdate public\.|\bdelete from public\.|\bupsert\b/i);
 });

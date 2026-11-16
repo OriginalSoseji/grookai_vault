@@ -73,6 +73,10 @@ It accepts only the exact merged source SHA, package fingerprint, rollback
 artifact, and founder approval text. It writes its durable receipt outside the
 worktree, performs one serializable insert-only transaction, and treats an
 independent exact readback as the only authority after any uncertain commit.
+Immediately before sending `COMMIT`, it must persist a separate commit-intent
+receipt outside the worktree. A failed independent connection or readback must
+still produce an explicit unknown-outcome report that preserves the writer
+error and forbids automatic write retry.
 
 ## Delta Reign V1 Scope
 
