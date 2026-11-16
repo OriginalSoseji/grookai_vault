@@ -49,6 +49,10 @@ test('hidden Delta Reign rehearsal keeps public options empty after internal tru
     /assert\.deepEqual\(sortRows\(reviews\),sortRows\(context\.reviews\)\)/);
   assert.match(dryRun,
     /assert\.deepEqual\(options,\[\],'hidden_set_or_suppressed_parent_public_option_leak'\)/);
+  assert.match(dryRun, /JSON\.stringify\(context\.raw\.payload\)/);
+  assert.match(dryRun, /JSON\.stringify\(context\.children\)/);
+  assert.match(dryRun, /JSON\.stringify\(context\.reviews\)/);
+  assert.doesNotMatch(dryRun, /\[raw\.id,raw\.source|JSON\.stringify\(children\)|JSON\.stringify\(reviews\)/);
   assert.doesNotMatch(dryRun, /public_option_count_changed|public_option_readback_mismatch/);
 });
 
