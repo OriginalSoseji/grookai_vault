@@ -1556,6 +1556,18 @@ test("planner carries reviewed 30th Celebration Classic Collection authority", (
   assert.match(SCRIPT, /only exact normalized name and printed-coordinate matches/);
 });
 
+test("planner carries evidence-bound Delta Reign set authority", () => {
+  assert.match(SCRIPT, /source_group_id:\s*24831/);
+  assert.match(SCRIPT, /source_group_name:\s*"ME06: Delta Reign"/);
+  assert.match(SCRIPT, /target_set_code:\s*"me06"/);
+  assert.match(SCRIPT, /target_set_name:\s*"Delta Reign"/);
+  assert.match(SCRIPT, /complete 141-parent official-checklist projection/);
+  assert.match(SCRIPT,
+    /b1a11c6cbcd741b4a2eb6d10a90eaf5a2c7755fc06f41729974c5989e7567b69/);
+  assert.match(SCRIPT, /reviewed set authority group .* changed identity/);
+  assert.match(SCRIPT, /reviewed set authority .* changed set name/);
+});
+
 test("Classic Collection authority is read-only, evidence-bound, and keeps aliases out", () => {
   assert.match(CLASSIC_AUTHORITY_SCRIPT, /begin transaction isolation level repeatable read read only/);
   assert.match(CLASSIC_AUTHORITY_SCRIPT, /SUPABASE_DB_CA_CERT/);
