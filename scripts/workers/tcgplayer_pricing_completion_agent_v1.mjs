@@ -267,6 +267,20 @@ function pricingMappingAuthorityFailureCodeV1(error) {
   return known?.toUpperCase() ?? 'POKEMON_MAPPING_AUTHORITY_UNAVAILABLE';
 }
 
+function pricingMappingAuthorityFailureDetailV1(error) {
+  const message = String(error?.message ?? error ?? '');
+  const redacted = message
+    .replace(/\b(?:postgres(?:ql)?):\/\/[^\s]+/gi, '[redacted_database_url]')
+    .replace(/\bhttps?:\/\/[^\s]+/gi, '[redacted_url]')
+    .replace(/\b(?:password|token|secret|key|SUPABASE_[A-Z0-9_]+)=\S+/gi,
+      '[redacted_credential]');
+  const lines = redacted.split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+  const diagnostic = lines.find((line) => /^(?:AssertionError|Error)(?:\s*\[[^\]]+\])?:/.test(line))
+    ?? lines[0]
+    ?? 'Pokemon mapping authority failed without diagnostic output';
+  return diagnostic.slice(0, 500);
+}
+
 async function heartbeat({ credentials, agent, runKey, status, summary }) {
   return callOperationsRpcV1({
     ...credentials,
@@ -564,6 +578,7 @@ async function main() {
       status: 'unavailable',
       stdout: '',
       error_code: 'POKEMON_MAPPING_AUTHORITY_UNAVAILABLE',
+      error_detail: null,
     };
     const pokemonMappingAuthorityExpected = pokemonReviewBatch.selected_count > 0
       && authorityExactCandidates.length === pokemonReviewBatch.selected_count
@@ -600,17 +615,21 @@ async function main() {
           status: 'available',
           stdout: authorityResult.stdout,
           error_code: null,
+          error_detail: null,
         };
       } catch (error) {
         pokemonMappingAuthorityProcess = {
           status: 'unavailable',
           stdout: '',
           error_code: pricingMappingAuthorityFailureCodeV1(error),
+          error_detail: pricingMappingAuthorityFailureDetailV1(error),
         };
       }
     } else if (pokemonReviewBatch.selected_count > 0) {
       pokemonMappingAuthorityProcess.error_code =
         'POKEMON_REVIEW_EXACT_CANDIDATE_MISMATCH';
+      pokemonMappingAuthorityProcess.error_detail =
+        'Selected review candidates did not exactly match the hosted exact mapping plan';
     }
     const summary = {
       ...summarizeTcgplayerPricingCompletionRunV1(report, {
@@ -642,6 +661,7 @@ async function main() {
         reviewed_hold_changed_evidence_count: pokemonReviewedHolds.changed_evidence_count,
         authority_status: pokemonMappingAuthorityProcess.status,
         authority_error_code: pokemonMappingAuthorityProcess.error_code,
+        authority_error_detail: pokemonMappingAuthorityProcess.error_detail,
       },
       pokemon_mapping_diagnostics: {
         queued_products: enrichmentSummary.pokemon_diagnostic_output?.rows ?? null,
@@ -794,6 +814,7 @@ async function main() {
         reviewed_hold_changed_evidence_count: pokemonReviewedHolds.changed_evidence_count,
         authority_status: pokemonMappingAuthorityProcess.status,
         authority_error_code: pokemonMappingAuthorityProcess.error_code,
+        authority_error_detail: pokemonMappingAuthorityProcess.error_detail,
         authority_receipt: pokemonMappingAuthority?.receipt ?? null,
         work_item_key: pokemonReviewWorkItem?.work_item_key ?? null,
         plan_fingerprint: pokemonReviewWorkItem?.plan_fingerprint ?? null,
