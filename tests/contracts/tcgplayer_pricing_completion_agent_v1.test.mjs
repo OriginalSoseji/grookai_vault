@@ -558,6 +558,10 @@ test('scheduled workflow measures production without treating backlog as a crash
     path.join(ROOT, 'scripts/workers/tcgplayer_pricing_completion_agent_v1.mjs'),
     'utf8',
   );
+  const agentSource = fs.readFileSync(
+    path.join(ROOT, 'backend/operations/tcgplayer_pricing_completion_agent_v1.mjs'),
+    'utf8',
+  );
   assert.match(worker, /mtg_identity_product_queue\.jsonl/);
   assert.match(worker, /pokemon_identity_product_queue\.jsonl/);
   assert.match(worker, /sha256: sha256\(mtgIdentityQueueJsonl\)/);
@@ -581,6 +585,17 @@ test('scheduled workflow measures production without treating backlog as a crash
   assert.match(worker, /buildPokemonPricingMappingReviewWorkItemV1/);
   assert.match(worker, /buildPokemonPricingMappingAuthorityReviewWorkItemV1/);
   assert.match(worker, /pokemon_tcgplayer_exact_mapping_authority_v1\.mjs/);
+  assert.match(worker, /reviewedAt: report\.run\.completed_at/);
+  assert.doesNotMatch(worker, /reviewedAt: new Date\(\)\.toISOString\(\)/);
+  assert.match(worker, /supersedeLegacyPokemonMappingAuthorityReviewsV1/);
+  assert.match(worker, /pokemon-mapping-review-supersession-v1/);
+  assert.match(worker, /default_transaction_read_only=off/);
+  assert.match(worker, /legacy_review_supersession: pokemonLegacyReviewSupersession/);
+  assert.match(agentSource, /limit 17[\s\S]*for update of w/);
+  assert.match(agentSource, /state = 'superseded'/);
+  assert.match(agentSource, /insert into public\.founder_work_item_events/);
+  assert.doesNotMatch(agentSource,
+    /update public\.(?:card_prints|external_mappings|tcgplayer_market)/);
   assert.match(worker, /pokemonMappingAuthorityExpected\s*\? null/);
   assert.match(worker, /pokemon_mapping_review:\s*\{[\s\S]*selected_count: pokemonReviewBatch\.selected_count/);
   assert.match(worker, /pricingMappingAuthorityFailureDetailV1/);
