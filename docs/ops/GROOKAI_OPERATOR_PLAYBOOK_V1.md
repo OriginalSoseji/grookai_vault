@@ -1,5 +1,26 @@
 # Grookai Operator Playbook V1
 
+## Vendor inventory sale review — November 17, 2026
+
+Each native Vendor Mode inventory row opens the shared Review → Publish → Label
+sheet through `Review sale`. The selected GVVI is reloaded by the existing owner
+reader before editing. Pending or unsaved inline prices must finish saving before
+review opens, and the selected row stays locked through review and readback.
+Returning refreshes only that exact instance through `loadCopies`, retaining the
+inventory search, scroll position and other copies' drafts. An inactive copy
+leaves the list only after that readback. Load failures remain visible on the row
+and allow retry. Background list requests begun before review are invalidated
+so they cannot overwrite the newer exact-copy readback. Review and cancellation
+themselves make no inventory writes.
+
+Run `test/vendor_mode_workspace_test.dart` together with the shared sale and
+intake tests. The added checks cover selected-copy routing, retained list context,
+targeted readback, stale background reads, queued and failed price saves,
+duplicate taps, cancellation,
+identity mismatch, inactive copies and 320px enlarged-text layout in both modes.
+Release evidence is under
+`C:/grookai_vault_operator_artifacts/vendor_review_20261117/`.
+
 ## Vendor Review → Publish → Label — November 16, 2026
 
 The native exact-copy sale sheet and website copy workspace keep card identity

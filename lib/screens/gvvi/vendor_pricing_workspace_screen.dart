@@ -17,6 +17,7 @@ import '../printing/identity_label_print_screen.dart';
 import '../../services/sealed/owned_sealed_service_v1.dart';
 import '../../widgets/vault/owned_sealed_panel.dart';
 import '../../widgets/vault/vendor_workspace_navigation.dart';
+import '../../widgets/vault/vault_copy_sale_sheet.dart';
 import '../square/square_screen.dart';
 
 enum _VendorWorkspaceFilter {
@@ -36,10 +37,13 @@ enum _TradeCashMode { none, received, paid }
 class VendorPricingWorkspaceScreen extends StatefulWidget {
   const VendorPricingWorkspaceScreen({
     this.service = const VendorPricingWorkspaceService(),
+    this.saleSheetOpener = showVaultCopySaleSheet,
     super.key,
   });
 
   final VendorPricingWorkspaceService service;
+  final Future<bool> Function(BuildContext context, String gvviId)
+  saleSheetOpener;
 
   @override
   State<VendorPricingWorkspaceScreen> createState() =>
@@ -63,6 +67,8 @@ class _VendorPricingWorkspaceScreenState
   String? _loadError;
   Timer? _priceRefresh;
   bool _fetching = false;
+  int _loadGeneration = 0;
+  String? _reviewingId;
 
   @override
   void initState() {
@@ -99,11 +105,11 @@ class _VendorPricingWorkspaceScreenState
     }
   }
 
-  bool get _hasPriceEdits => _rows.any(
-    (row) =>
-        (_priceControllers[row.instanceId]?.text ?? '') !=
-        (row.askingPrice?.toStringAsFixed(2) ?? ''),
-  );
+  bool _hasPriceEdit(VendorPricingWorkspaceRow row) =>
+      (_priceControllers[row.instanceId]?.text ?? '') !=
+      (row.askingPrice?.toStringAsFixed(2) ?? '');
+
+  bool get _hasPriceEdits => _rows.any(_hasPriceEdit);
 
   Future<void> _load({bool quiet = false, bool afterNavigation = false}) async {
     if (quiet &&
@@ -114,6 +120,7 @@ class _VendorPricingWorkspaceScreenState
       return;
     }
     if (_fetching ||
+        _reviewingId != null ||
         (quiet &&
             (_busyIds.isNotEmpty ||
                 _saveTimers.isNotEmpty ||
@@ -121,6 +128,7 @@ class _VendorPricingWorkspaceScreenState
                 _hasPriceEdits))) {
       return;
     }
+    final generation = _loadGeneration;
     _fetching = true;
     if (!quiet) {
       setState(() {
@@ -130,7 +138,7 @@ class _VendorPricingWorkspaceScreenState
     }
     try {
       final data = await widget.service.load();
-      if (!mounted) {
+      if (!mounted || generation != _loadGeneration) {
         return;
       }
       if (quiet &&
@@ -164,7 +172,7 @@ class _VendorPricingWorkspaceScreenState
         _loadError = _message(error);
       });
     } finally {
-      _fetching = false;
+      if (generation == _loadGeneration) _fetching = false;
     }
   }
 
@@ -267,6 +275,60 @@ class _VendorPricingWorkspaceScreenState
       rootNavigator: true,
     ).pushNamed<void>('/search', arguments: Uri.parse('/search'));
     if (mounted) await _load(quiet: true, afterNavigation: true);
+  }
+
+  Future<void> _reviewSale(VendorPricingWorkspaceRow row) async {
+    if (_loading ||
+        _reviewingId != null ||
+        _busyIds.contains(row.instanceId) ||
+        _saveTimers.containsKey(row.instanceId) ||
+        _hasPriceEdit(row)) {
+      return;
+    }
+    FocusManager.instance.primaryFocus?.unfocus();
+    setState(() {
+      _loadGeneration++;
+      _fetching = false;
+      _reviewingId = row.instanceId;
+      _busyIds.add(row.instanceId);
+      _errors.remove(row.instanceId);
+    });
+    try {
+      await widget.saleSheetOpener(context, row.gvviId);
+      if (!mounted) return;
+      final data = await widget.service.loadCopies({row.instanceId});
+      if (!mounted) return;
+      final refreshed = data.rows
+          .where((copy) => copy.instanceId == row.instanceId)
+          .firstOrNull;
+      if (refreshed != null &&
+          (refreshed.gvviId != row.gvviId ||
+              refreshed.cardPrintId != row.cardPrintId)) {
+        throw StateError('Reload your inventory to verify this exact copy.');
+      }
+      setState(() {
+        if (refreshed == null) {
+          _rows = _rows
+              .where((copy) => copy.instanceId != row.instanceId)
+              .toList(growable: false);
+          _priceControllers.remove(row.instanceId)?.dispose();
+        } else {
+          _replaceRow(refreshed);
+          _priceControllers[row.instanceId]?.text =
+              refreshed.askingPrice?.toStringAsFixed(2) ?? '';
+          _sections = data.sections;
+        }
+      });
+    } catch (error) {
+      if (mounted) _setError(row.instanceId, _message(error));
+    } finally {
+      if (mounted) {
+        setState(() {
+          _reviewingId = null;
+          _busyIds.remove(row.instanceId);
+        });
+      }
+    }
   }
 
   List<VendorPricingWorkspaceRow> get _visibleRows {
@@ -1018,6 +1080,13 @@ class _VendorPricingWorkspaceScreenState
                                         onPreview: () =>
                                             _previewCustomerCard(row),
                                         onQr: () => _openVendorQr(row),
+                                        onReviewSale:
+                                            _saveTimers.containsKey(
+                                                  row.instanceId,
+                                                ) ||
+                                                _hasPriceEdit(row)
+                                            ? null
+                                            : () => _reviewSale(row),
                                       ),
                                     );
                                   },
@@ -1586,6 +1655,7 @@ class _VendorInventoryRow extends StatelessWidget {
     required this.onShare,
     required this.onPreview,
     required this.onQr,
+    required this.onReviewSale,
     this.error,
     super.key,
   });
@@ -1607,6 +1677,7 @@ class _VendorInventoryRow extends StatelessWidget {
   final VoidCallback onShare;
   final VoidCallback onPreview;
   final VoidCallback onQr;
+  final VoidCallback? onReviewSale;
 
   @override
   Widget build(BuildContext context) {
@@ -1821,6 +1892,21 @@ class _VendorInventoryRow extends StatelessWidget {
             ),
           ),
         const SizedBox(height: 8),
+        Tooltip(
+          message: onReviewSale == null
+              ? 'Save your price before reviewing this sale.'
+              : 'Review this copy, publish it and prepare its label.',
+          child: SizedBox(
+            width: double.infinity,
+            child: OutlinedButton.icon(
+              key: Key('vendor_review_sale_${row.instanceId}'),
+              onPressed: busy ? null : onReviewSale,
+              icon: const Icon(Icons.sell_outlined, size: 18),
+              label: const Text('Review sale'),
+            ),
+          ),
+        ),
+        const SizedBox(height: 4),
         Row(
           children: [
             Expanded(
