@@ -19,6 +19,12 @@ param(
 
   [string[]]$ExpectedLocalOnlyIds = @(),
 
+  [switch]$PrismaticAliasDiscoveryBaselineV1,
+  [switch]$PrismaticAliasDiscoveryBaselineV2,
+  [switch]$PrismaticAliasDiscoveryReleaseV3,
+  [switch]$PrismaticAliasDiscoveryReleaseV5,
+  [switch]$PrismaticAliasDiscoveryReleaseV4,
+
   [switch]$SquareBaselineV1,
   [switch]$SquareCommerceBaselineV2,
   [switch]$SquareCommerceReleaseV3,
@@ -113,6 +119,67 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($PrismaticAliasDiscoveryReleaseV5) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  $exactIds = '20261117220000'
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','PrismaticAliasDiscoveryReleaseV5','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne $exactIds) -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne $exactIds) -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Prismatic release V5 requires the exact forward guard, a new audit directory and the canonical target.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_prismatic_alias_release_v5.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($PrismaticAliasDiscoveryReleaseV4) {
+  if (Test-Path (Join-Path $PSScriptRoot 'schema/prismatic_alias_candidate_v5.json')) {
+    throw 'The production identity-query guard requires the V5 forward release scope.'
+  }
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  $exactIds = '20261117190000,20261117200000'
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','PrismaticAliasDiscoveryReleaseV4','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne $exactIds) -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne $exactIds) -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Prismatic release V4 requires both exact candidates and a new audit directory, with one release scope and the canonical target.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_prismatic_alias_release_v4.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($PrismaticAliasDiscoveryReleaseV3) {
+  if (Test-Path (Join-Path $PSScriptRoot 'schema/prismatic_alias_candidate_v4.json')) {
+    throw 'The free-text legacy set repair requires the complete V4 candidate pair.'
+  }
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','PrismaticAliasDiscoveryReleaseV3','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261117190000') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261117190000') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Prismatic release V3 requires the exact atomic candidate and a new audit directory, with one release scope and the canonical target.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_prismatic_alias_release_v3.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($PrismaticAliasDiscoveryBaselineV1 -or $PrismaticAliasDiscoveryBaselineV2) {
+  if (Test-Path (Join-Path $PSScriptRoot 'schema/prismatic_alias_candidate_v3.json')) {
+    throw 'The atomic Prismatic package requires its separately bounded V3 release scope.'
+  }
+  if ($Phase -ne 'AuditLinkedSchema' -or
+      ($PrismaticAliasDiscoveryBaselineV1 -and $PrismaticAliasDiscoveryBaselineV2) -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','PrismaticAliasDiscoveryBaselineV1','PrismaticAliasDiscoveryBaselineV2','AuditOutDir') }).Count -gt 0 -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Prismatic baseline admits read-only AuditLinkedSchema only; no PrePush, apply, target override, pending IDs, or combined modes.'
+  }
+  if ($PrismaticAliasDiscoveryBaselineV1 -and (Test-Path (Join-Path $PSScriptRoot 'schema/prismatic_alias_candidate_v2.json'))) {
+    throw 'The two-candidate forward repair requires the separately bounded Prismatic V2 baseline mode.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_prismatic_alias_baseline_v1.mjs') "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
 
 if ($SquareVaultRemovalReleaseV1) {
   $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)

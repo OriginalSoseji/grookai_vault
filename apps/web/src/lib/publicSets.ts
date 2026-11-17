@@ -22,7 +22,6 @@ import { createServerComponentClient } from "@/lib/supabase/server";
 import {
   chooseCanonicalSetRow,
   choosePreferredEquivalentSetRow,
-  escapePostgrestLikePattern,
   getManifestCardPrintCount,
 } from "@/lib/publicSetCanonicalization";
 import {
@@ -438,10 +437,12 @@ export const getPublicSetByCode = cache(async function getPublicSetByCode(
   }
 
   const supabase = await createServerSupabase();
+  const references = await resolveVisiblePublicSetReferences(supabase, normalizedCode, gameCode);
+  if (references.length === 0) return null;
   let query = supabase
     .from("sets")
     .select(PUBLIC_SET_DETAIL_SELECT)
-    .ilike("code", escapePostgrestLikePattern(normalizedCode));
+    .in("id", references.map((reference) => reference.id));
   const normalizedGameCode = gameCode?.trim().toLowerCase();
   if (normalizedGameCode) {
     query = query.eq("game", normalizedGameCode);

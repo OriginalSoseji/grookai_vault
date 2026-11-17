@@ -1,0 +1,19 @@
+{
+  "version": "PRISMATIC_ALIAS_DISCOVERY_CANDIDATE_V4",
+  "migration": "20261117200000_prismatic_identity_free_set_code_v4.sql",
+  "sha256": "b875743b87646e0b495c5cb9bfe32b73238a3babc647588d32794052ba771f07",
+  "candidates": {
+    "20261117190000_prismatic_alias_discovery_v3.sql": "c156db90c92db979ad4cca995cf7fd83293e613fa5edafeac3fbadd6d44c35c5",
+    "20261117200000_prismatic_identity_free_set_code_v4.sql": "b875743b87646e0b495c5cb9bfe32b73238a3babc647588d32794052ba771f07"
+  },
+  "baselineMigrations": 496,
+  "targetMigrations": 498,
+  "releaseQualificationRequired": true,
+  "archivedDrafts": {
+    "supabase/migration_drafts/prismatic_alias_discovery_20261116/20261117063000_prismatic_alias_discovery_v1.sql.gz": "81e9acfc4688a956e73933439687e20a91e8dcba7646e7c7a397665c1dddf05b",
+    "supabase/migration_drafts/prismatic_alias_discovery_20261116/20261117064000_prismatic_alias_query_initplans_v2.sql.gz": "e019fc49d02a87ed53a27d9f41cf13c5cb582dd4a7ae5ff70805008014bebb6d",
+    "supabase/migration_drafts/prismatic_alias_discovery_20261116/20261117200000_prismatic_identity_free_set_code_v4.draft-r1.sql.gz": "b82a35ead8b98504621c85df7c7d00c4d926639b9d678cbcdf137c8a5937c05e",
+    "supabase/migration_drafts/prismatic_alias_discovery_20261116/20261117200000_prismatic_identity_free_set_code_v4.draft-r2.sql.gz": "69fdeb4a16fc78b981ebb8b3320d1e4fb85cc763db750e7553bb5ac778f08693"
+  },
+  "revision": 3
+}
