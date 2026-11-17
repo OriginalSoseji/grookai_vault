@@ -161,3 +161,13 @@ or claim production duplicates are corrected before live publication/readback.
 ## V4 revision 3 final qualification
 
 Revision 3 normalizes legacy set-code tokens once before identity matching, tokenization and ranking. Both anonymous and authenticated rollback probes passed whole-code, mixed-name, prefix, suffix, middle and repeated-token inputs with canonical ranking equality. Revision 2 sources, populated labs and receipts remain preserved. Final proof paths use `final-v4-r3-fresh-498`, `final-v4-r3-retained-496` and `local-qualification-v4-r3`; the production package remains two pending migrations above the linked 496 baseline.
+
+## Production V4 and forward V5 guard
+
+V4 revision3 was committed as `f4b212a6b7bdae5592c31c3ae9a95481a0dba0cd` and published in PR942 after both normal managed hooks passed. Exact PrePush and CLI dry run passed; the official CLI applied the two bound migrations to production at498. Independent readback confirmed qualified schema/security and all120 protected production table fingerprints unchanged. Live catalog and set search returned one canonical194-parent set with raw legacy180 retained. Identity RPCs hit the production statement timeout.
+
+The read-only query plan exposed a filtered-browse scan even for a nonempty query. V5 changes only that guard to a scalar InitPlan. Read-only full-data prepared-query results and ranking matched exactly, reducing whole-set query execution to about1.5–1.6seconds in the recorded probes. V5 keeps all498 applied sources immutable and adds only `20261117220000`. Its fresh499 replay and populated498-to499 upgrade are recorded under `final-v5-fresh-499` and the retained `final-v4-r3-retained-496`; complete proof is `local-qualification-v5`. Production V5 apply remains pending until its exact release gates pass.
+
+### V5 revision2: retained scoped identities
+
+Automated review942 found that exact legacy GV parent/printing IDs were rejected when a legacy set filter was supplied. Revision2 preserves the raw explicit set coordinate for exact GV queries, matching game-search v4/v5, while keeping the scalar empty-query performance guard. The scoped proposal passed both reader roles with explicit synthetic printing IDs assigned only inside rolled-back local transactions: four parent/finish documents, one exact printing, identical ordered document identity to unscoped queries, wrong-set rejection and all449 protected tables restored. Revision1 SQL/source/labs/receipts remain preserved; no applied production history changed. Final proofs use `final-v5-r2-fresh-499`, retained `final-v4-r3-fresh-498` and `local-qualification-v5-r2`.

@@ -22,6 +22,7 @@ param(
   [switch]$PrismaticAliasDiscoveryBaselineV1,
   [switch]$PrismaticAliasDiscoveryBaselineV2,
   [switch]$PrismaticAliasDiscoveryReleaseV3,
+  [switch]$PrismaticAliasDiscoveryReleaseV5,
   [switch]$PrismaticAliasDiscoveryReleaseV4,
 
   [switch]$SquareBaselineV1,
@@ -119,7 +120,23 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
+if ($PrismaticAliasDiscoveryReleaseV5) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  $exactIds = '20261117220000'
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','PrismaticAliasDiscoveryReleaseV5','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne $exactIds) -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne $exactIds) -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Prismatic release V5 requires the exact forward guard, a new audit directory and the canonical target.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_prismatic_alias_release_v5.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
 if ($PrismaticAliasDiscoveryReleaseV4) {
+  if (Test-Path (Join-Path $PSScriptRoot 'schema/prismatic_alias_candidate_v5.json')) {
+    throw 'The production identity-query guard requires the V5 forward release scope.'
+  }
   $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
   $exactIds = '20261117190000,20261117200000'
   if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','PrismaticAliasDiscoveryReleaseV4','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or

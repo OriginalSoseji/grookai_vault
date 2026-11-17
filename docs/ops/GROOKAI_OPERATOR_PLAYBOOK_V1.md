@@ -1,3 +1,7 @@
+# Prismatic identity query guard V5 — November17,2026
+
+Production is at498 after the approved alias projection. Use `-PrismaticAliasDiscoveryReleaseV5` for the exact forward candidate `20261117220000`, with fresh canonical498 parity, complete499 replay/upgrade proofs and clean committed source. The existing three-second API limit stays in force. All498 applied SQL files, physical printings, ownership and market history remain immutable. See `docs/contracts/PRISMATIC_ALIAS_DISCOVERY_READ_REPAIR_V5.md` and the Prismatic qualification checkpoint.
+
 # Grookai Operator Playbook V1
 
 ## Prismatic discovery repair — November 17, 2026
