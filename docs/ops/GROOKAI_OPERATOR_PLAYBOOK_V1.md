@@ -784,11 +784,16 @@ The hosted route requires `PROD_SUPABASE_URL` (with `SUPABASE_URL` accepted as
 the local compatibility name), `SUPABASE_DB_URL`, `SUPABASE_DB_CA_CERT`, and
 the parent agent's `SUPABASE_SECRET_KEY`. The public URL must resolve to the
 canonical production project, and the database route must pass verified TLS and
-the canonical read-only target guard. Products with zero, multiple, or
-unsupported source finishes are held before batch selection under
-`mapping_authority_source_finish_not_unique` or
-`mapping_authority_source_finish_not_supported`; they cannot suppress unrelated
-single-finish candidates.
+the canonical read-only target guard. Products with zero or unsupported source finishes are held before batch
+selection. A product with exactly one verified base subtype (Normal or Holofoil)
+plus Reverse Holofoil may enter the review only through
+`POKEMON_MAPPING_AUTHORITY_BASE_FINISH_PROJECTION_V1`. That projection binds
+only the base observation to the already-verified Master Index child, recomputes
+the exact-candidate fingerprint, and preserves every Reverse Holo observation
+under `reverse_holo_printing_authority_not_proven`. The parent mapping review
+does not create a Reverse Holo child or authorize its price. All other
+multi-finish products remain held under
+`mapping_authority_source_finish_not_unique`; unrelated candidates continue.
 
 Distinguish an empty queue from an unavailable authority package in
 `agent_run.json`. `pokemon_mapping_review.selected_count = 0` means no current

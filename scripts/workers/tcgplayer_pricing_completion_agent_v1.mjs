@@ -17,7 +17,7 @@ import {
   buildPokemonPricingMappingReviewWorkItemV1,
   applyPokemonPricingMappingReviewedHoldsV1,
   classifyTcgplayerFutureReleaseBlocksV1,
-  partitionPokemonMappingAuthorityFinishCandidatesV1,
+  projectPokemonMappingAuthorityBaseFinishCandidatesV1,
   partitionPokemonVerifiedExactMappingCandidatesV1,
   selectPokemonPricingMappingReviewBatchV1,
   supersedeLegacyPokemonMappingAuthorityReviewsV1,
@@ -549,9 +549,11 @@ async function main() {
       pokemonReviewedHoldRegistry,
     );
     const pokemonAuthorityFinishCandidates =
-      partitionPokemonMappingAuthorityFinishCandidatesV1(
-        pokemonReviewedHolds.eligible,
-      );
+      projectPokemonMappingAuthorityBaseFinishCandidatesV1({
+        reviewCandidates: pokemonReviewedHolds.eligible,
+        exactCandidates: exactPlan?.candidates ?? [],
+        gapRows: identityGaps.filter((row) => row.source_category_id === 3),
+      });
     const pokemonReviewBatch = selectPokemonPricingMappingReviewBatchV1(
       pokemonAuthorityFinishCandidates.eligible,
     );
@@ -576,8 +578,9 @@ async function main() {
     const authorityCandidateIds = new Set(
       pokemonReviewBatch.selected.map((row) => Number(row.source_product_id)),
     );
-    const authorityExactCandidates = (exactPlan?.candidates ?? []).filter((row) =>
-      authorityCandidateIds.has(Number(row.source_product_id)));
+    const authorityExactCandidates =
+      pokemonAuthorityFinishCandidates.exact_candidates.filter((row) =>
+        authorityCandidateIds.has(Number(row.source_product_id)));
     let pokemonMappingAuthority = null;
     let pokemonMappingAuthorityProcess = {
       status: 'unavailable',
@@ -665,6 +668,10 @@ async function main() {
         selected_count: pokemonReviewBatch.selected_count,
         held_count: pokemonReviewHeldCount,
         held_by_reason: pokemonReviewHeldByReason,
+        base_finish_projected_product_count:
+          pokemonAuthorityFinishCandidates.projected_product_count,
+        held_non_base_observation_count:
+          pokemonAuthorityFinishCandidates.held_observation_count,
         reviewed_hold_count: pokemonReviewedHolds.held_count,
         reviewed_hold_changed_evidence_count: pokemonReviewedHolds.changed_evidence_count,
         authority_status: pokemonMappingAuthorityProcess.status,
@@ -842,6 +849,10 @@ async function main() {
         selected_count: pokemonReviewBatch.selected_count,
         held_count: pokemonReviewHeldCount,
         held_by_reason: pokemonReviewHeldByReason,
+        base_finish_projected_product_count:
+          pokemonAuthorityFinishCandidates.projected_product_count,
+        held_non_base_observation_count:
+          pokemonAuthorityFinishCandidates.held_observation_count,
         reviewed_hold_count: pokemonReviewedHolds.held_count,
         reviewed_hold_changed_evidence_count: pokemonReviewedHolds.changed_evidence_count,
         authority_status: pokemonMappingAuthorityProcess.status,

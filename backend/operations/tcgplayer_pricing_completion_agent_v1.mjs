@@ -7,11 +7,14 @@ import {
 import {
   classifyTcgplayerMarketProductScopeV1_5,
 } from '../pricing/tcgplayer_market_product_scope_v1.mjs';
+import {
+  tcgplayerExactMappingCandidateFingerprintV1,
+} from '../pricing/tcgplayer_market_exact_mapping_plan_policy_v1.mjs';
 
 export const TCGPLAYER_PRICING_COMPLETION_AGENT_KEY =
   'tcgplayer-pricing-completion-v1';
 export const TCGPLAYER_PRICING_COMPLETION_AGENT_VERSION =
-  'TCGPLAYER_PRICING_COMPLETION_AGENT_V4';
+  'TCGPLAYER_PRICING_COMPLETION_AGENT_V6';
 
 export const TCGPLAYER_POKEMON_MAPPING_REVIEW_VERSION =
   'TCGPLAYER_POKEMON_MAPPING_REVIEW_V1';
@@ -527,6 +530,159 @@ export function partitionPokemonMappingAuthorityFinishCandidatesV1(candidates) {
     held,
     held_count: held.length,
     held_by_reason: Object.fromEntries(Object.entries(heldByReason).sort()),
+  };
+}
+
+export const POKEMON_MAPPING_AUTHORITY_BASE_FINISH_PROJECTION_V1 =
+  'POKEMON_MAPPING_AUTHORITY_BASE_FINISH_PROJECTION_V1';
+
+const POKEMON_MAPPING_AUTHORITY_BASE_FINISHES_V1 = new Set([
+  'Normal',
+  'Holofoil',
+]);
+
+export function projectPokemonMappingAuthorityBaseFinishCandidatesV1({
+  reviewCandidates,
+  exactCandidates,
+  gapRows,
+} = {}) {
+  if (!Array.isArray(reviewCandidates)
+      || !Array.isArray(exactCandidates)
+      || !Array.isArray(gapRows)) {
+    throw new Error('Pokemon base-finish projection inputs must be arrays');
+  }
+  const exactByProduct = new Map();
+  for (const exact of exactCandidates) {
+    const productId = integer(exact?.source_product_id);
+    if (!productId || exactByProduct.has(productId)) {
+      throw new Error('Pokemon base-finish projection requires unique exact products');
+    }
+    exactByProduct.set(productId, exact);
+  }
+  const gapsById = new Map();
+  for (const gap of gapRows) {
+    const id = String(gap?.source_observation_id ?? '').trim();
+    if (!id || gapsById.has(id)) {
+      throw new Error('Pokemon base-finish projection requires unique gap observations');
+    }
+    gapsById.set(id, gap);
+  }
+  const eligible = [];
+  const projectedExactCandidates = [];
+  const held = [];
+  const heldByReason = {};
+  const heldObservations = [];
+  const hold = (candidate, reason) => {
+    held.push({ ...candidate, mapping_authority_hold_reason: reason });
+    heldByReason[reason] = (heldByReason[reason] ?? 0) + 1;
+  };
+  for (const candidate of reviewCandidates) {
+    const productId = integer(candidate?.source_product_id);
+    const exact = exactByProduct.get(productId);
+    if (!exact) {
+      hold(candidate, 'mapping_authority_exact_candidate_missing');
+      continue;
+    }
+    const reviewSubtypes = [...new Set(candidate?.source_subtypes ?? [])].sort();
+    const exactSubtypes = [...new Set(exact?.source_subtypes ?? [])].sort();
+    const reviewObservationIds = [...new Set(
+      candidate?.supporting_gap_observation_ids ?? [],
+    )].sort();
+    const exactObservationIds = [...new Set(
+      exact?.supporting_gap_observation_ids ?? [],
+    )].sort();
+    if (JSON.stringify(reviewSubtypes) !== JSON.stringify(exactSubtypes)
+        || JSON.stringify(reviewObservationIds) !== JSON.stringify(exactObservationIds)) {
+      hold(candidate, 'mapping_authority_exact_candidate_evidence_mismatch');
+      continue;
+    }
+    if (reviewSubtypes.length === 1) {
+      if (!POKEMON_MAPPING_AUTHORITY_FINISHES_V1.has(reviewSubtypes[0])) {
+        hold(candidate, 'mapping_authority_source_finish_not_supported');
+        continue;
+      }
+      eligible.push(candidate);
+      projectedExactCandidates.push(exact);
+      continue;
+    }
+    const baseSubtypes = reviewSubtypes.filter((subtype) =>
+      POKEMON_MAPPING_AUTHORITY_BASE_FINISHES_V1.has(subtype));
+    const heldSubtypes = reviewSubtypes.filter((subtype) => subtype === 'Reverse Holofoil');
+    if (baseSubtypes.length !== 1
+        || heldSubtypes.length < 1
+        || baseSubtypes.length + heldSubtypes.length !== reviewSubtypes.length) {
+      hold(candidate, 'mapping_authority_source_finish_not_unique');
+      continue;
+    }
+    const selectedSubtype = baseSubtypes[0];
+    const observationRows = exactObservationIds.map((id) => gapsById.get(id));
+    if (observationRows.some((row) => !row
+        || integer(row.source_product_id) !== productId)) {
+      hold(candidate, 'mapping_authority_observation_evidence_missing');
+      continue;
+    }
+    const selectedObservationIds = observationRows
+      .filter((row) => row.source_subtype_name === selectedSubtype)
+      .map((row) => row.source_observation_id)
+      .sort();
+    const heldObservationRows = observationRows
+      .filter((row) => row.source_subtype_name !== selectedSubtype);
+    if (selectedObservationIds.length < 1
+        || heldObservationRows.length < 1
+        || heldObservationRows.some((row) => row.source_subtype_name !== 'Reverse Holofoil')) {
+      hold(candidate, 'mapping_authority_base_finish_projection_incomplete');
+      continue;
+    }
+    const projectedReview = {
+      ...candidate,
+      source_subtypes: [selectedSubtype],
+      supporting_gap_observation_ids: selectedObservationIds,
+      supporting_gap_row_count: selectedObservationIds.length,
+    };
+    const { candidate_fingerprint: ignoredFingerprint, ...exactPayload } = exact;
+    const projectedExactPayload = {
+      ...exactPayload,
+      source_subtypes: [selectedSubtype],
+      supporting_gap_observation_ids: selectedObservationIds,
+      supporting_gap_row_count: selectedObservationIds.length,
+      authority_finish_projection: {
+        version: POKEMON_MAPPING_AUTHORITY_BASE_FINISH_PROJECTION_V1,
+        original_source_subtypes: reviewSubtypes,
+        original_supporting_gap_observation_ids: exactObservationIds,
+        selected_source_subtype: selectedSubtype,
+        held_source_subtypes: heldSubtypes,
+        held_observation_ids: heldObservationRows
+          .map((row) => row.source_observation_id)
+          .sort(),
+        held_reason: 'reverse_holo_printing_authority_not_proven',
+      },
+    };
+    const projectedExact = {
+      ...projectedExactPayload,
+      candidate_fingerprint:
+        tcgplayerExactMappingCandidateFingerprintV1(projectedExactPayload),
+    };
+    eligible.push(projectedReview);
+    projectedExactCandidates.push(projectedExact);
+    heldObservations.push(...heldObservationRows.map((row) => ({
+      source_product_id: productId,
+      source_observation_id: row.source_observation_id,
+      source_subtype_name: row.source_subtype_name,
+      reason: 'reverse_holo_printing_authority_not_proven',
+    })));
+  }
+  return {
+    eligible,
+    exact_candidates: projectedExactCandidates,
+    held,
+    held_count: held.length,
+    held_by_reason: Object.fromEntries(Object.entries(heldByReason).sort()),
+    projected_product_count: eligible.filter((row) =>
+      exactByProduct.get(integer(row.source_product_id))?.source_subtypes?.length > 1).length,
+    held_observations: heldObservations.sort((left, right) =>
+      left.source_product_id - right.source_product_id
+      || left.source_observation_id.localeCompare(right.source_observation_id)),
+    held_observation_count: heldObservations.length,
   };
 }
 
