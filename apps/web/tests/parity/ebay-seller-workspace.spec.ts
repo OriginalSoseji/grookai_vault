@@ -22,7 +22,7 @@ const frozenReview = { reviewDetails: { condition: 'Ungraded', conditionDescript
   policies: { fulfillment: { name: 'Tracked shipping', terms: ['DOMESTIC · USPSGroundAdvantage · USD 3.99'] },
     payment: { name: 'eBay payments', terms: [] }, return: { name: '30-day returns', terms: ['Returns accepted: 30 day'] } } } };
 
-async function setup(page: Page, options: { saved?: boolean; prepared?: boolean; stale?: boolean; lostSave?: boolean; lostPublish?: boolean; state?: string } = {}) {
+async function setup(page: Page, options: { saved?: boolean; prepared?: boolean; stale?: boolean; lostSave?: boolean; lostPublish?: boolean; state?: string; withoutCopy?: boolean } = {}) {
   const requests: Record<string, unknown>[] = [];
   let firstSave = true;
   let prepareStep = 0;
@@ -42,8 +42,11 @@ async function setup(page: Page, options: { saved?: boolean; prepared?: boolean;
       const url = new URL(req.url());
       return route.fulfill({ json: url.searchParams.has('draftId') ? { draft } : {
         account: { accountId: id(5), username: 'Fixture seller', linked: true, reconnectRequired: false,
-          linkingEnabled: true, preparationEnabled: true, publicationEnabled: true }, copy,
-        drafts: draft ? [{ id: draft.id, instanceId: copy.id, revision: draft.revision, state: draft.state, title: 'Eevee' }] : [],
+          linkingEnabled: true, preparationEnabled: true, publicationEnabled: true }, copy: options.withoutCopy ? null : copy,
+        drafts: options.withoutCopy ? [
+          { id: id(11), instanceId: copy.id, revision: 1, state: 'editing', title: 'Active listing' },
+          { id: id(12), instanceId: copy.id, revision: 2, state: 'abandoned', title: 'Discarded listing' },
+        ] : draft ? [{ id: draft.id, instanceId: copy.id, revision: draft.revision, state: draft.state, title: 'Eevee' }] : [],
       } });
     }
     const body = req.postDataJSON(); requests.push(body);
@@ -94,6 +97,16 @@ test('unknown copy condition stays unselected while current selling options load
   await page.getByRole('button', { name: 'Load eBay options' }).click();
   await expect(page.getByLabel('Card Condition')).toHaveValue('');
   await expect(page.getByText('Condition unknown', { exact: false })).toBeVisible();
+});
+
+test('discarded drafts leave recent listings but remain available in collapsed history', async ({ page }) => {
+  await setup(page, { withoutCopy: true });
+  await page.goto('/visual-fixtures/ebay-seller');
+  await expect(page.getByRole('link', { name: 'Active listing Draft' })).toBeVisible();
+  const discarded = page.getByRole('link', { name: 'Discarded listing Discarded' });
+  await expect(discarded).toBeHidden();
+  await page.getByText('Discarded drafts', { exact: false }).click();
+  await expect(discarded).toBeVisible();
 });
 
 for (const state of ['live', 'publishing', 'preparing']) {
