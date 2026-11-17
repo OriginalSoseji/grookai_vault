@@ -12,7 +12,7 @@ const fixture = Array.from({ length: 195 }, (_, index) => ({
   name: `Card ${index}`, artist: 'Yuka Morii', number: String(index),
 }));
 
-function loadRoute({ fail = false, sets = [], catalogFail = false, capture = () => {}, exactCardName, exactCardNames = [], partialCardNames = {}, rows = fixture } = {}) {
+function loadRoute({ fail = false, fastSearchTimeout = false, softTimeout = false, sets = [], catalogFail = false, capture = () => {}, exactCardName, exactCardNames = [], partialCardNames = {}, rows = fixture } = {}) {
   const cache = new Map();
   const mocks = {
     'server-only': {},
@@ -24,7 +24,11 @@ function loadRoute({ fail = false, sets = [], catalogFail = false, capture = () 
         if (fail) throw new Error('canceling statement due to statement timeout');
         return rows;
       },
-      getExploreRowsForLanguageScopedTextSearch: async () => fixture,
+      getExploreRowsForLanguageScopedTextSearch: async () => {
+        if (fastSearchTimeout) throw new Error('canceling statement due to statement timeout');
+        if (softTimeout) return new Promise(() => {});
+        return fixture;
+      },
     },
     '@/lib/provisional/getPublicProvisionalCards': { getPublicProvisionalCards: async () => [] },
     '@/lib/provisional/getPromotionTransitionState': {
@@ -58,7 +62,7 @@ function loadRoute({ fail = false, sets = [], catalogFail = false, capture = () 
       compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, esModuleInterop: true },
     }).outputText;
     vm.runInNewContext(code, { module, exports: module.exports, process, console, Error, performance,
-      setTimeout, clearTimeout, require: (id) => {
+      setTimeout: (callback, delay) => setTimeout(callback, softTimeout && delay === 4200 ? 1 : delay), clearTimeout, require: (id) => {
         if (Object.hasOwn(mocks, id)) return mocks[id];
         if (id.startsWith('@/') || id.startsWith('.')) {
           let target = id.startsWith('@/') ? path.join(web, id.slice(2)) : path.resolve(path.dirname(file), id);
@@ -73,6 +77,18 @@ function loadRoute({ fail = false, sets = [], catalogFail = false, capture = () 
   const get = load(path.join(web, 'app/api/resolver/search/route.ts')).GET;
   return request => get({headers:new Headers(),...request});
 }
+
+test('timed-out searches are never cached as empty successful results', async () => {
+  for (const options of [{ fastSearchTimeout: true }, { softTimeout: true }]) {
+    const response = await loadRoute(options)({ nextUrl: new URL('https://fixture?q=Pikachu&limit=32') });
+    assert.equal(response.status, 200);
+    assert.equal(response.headers.get('cache-control'), 'private, no-store');
+    const payload = await response.json();
+    assert.equal(payload.sort_degraded_reason, 'resolver_timeout');
+    assert.equal(payload.source, options.softTimeout ? 'web_ranked_resolver_v2_degraded_soft_timeout' : 'web_ranked_resolver_v2_degraded_timeout');
+    assert.equal(payload.rows.length, 0);
+  }
+});
 
 test('credentialed catalog searches are private and reuse the same request catalog', async () => {
  const sets=[{id:'visible',code:'base1',name:'Base Set',printed_total:102}];
