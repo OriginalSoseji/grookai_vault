@@ -19,7 +19,8 @@ and canonical parent, without delaying price editing or inferring a finish.
 Pricing opens with the vendor default, new-card opt-in and a server-calculated
 example. Edit or New preset opens the full editor; More options retains fixed
 adjustments and minimum/maximum limits even when collapsed. Cancel never writes.
-Examples do not change inventory. Labels retain the current printer preference,
+Examples do not change inventory. Enter in either example field runs only the
+calculator; settings/preset saves have separate forms. Labels retain the current printer preference,
 full canonical set name and permanent QR, without price, set code or condition;
 previewing never sends a print job. Qualify this phase with the sale/pricing
 widget tests and local owner browser workflow before deployment and a higher,

@@ -29,6 +29,7 @@ export default function VendorPricingSettings({initial}: {initial: PricingWorksp
   const [message, setMessage] = useState(""); const [error, setError] = useState(false);
   const [sample, setSample] = useState("10.00"); const [preview, setPreview] = useState("");
   const [pending, start] = useTransition(); const prefix = useId();
+  const [activeAction, setActiveAction] = useState<string | null>(null);
   function edit(rule: PricingRule | null, open = true) {
     setEditorOpen(open);
     setMessage(""); setError(false);
@@ -51,7 +52,7 @@ export default function VendorPricingSettings({initial}: {initial: PricingWorksp
     return value;
   }
   function perform(action: string, payload: () => Record<string, unknown>) {
-    setMessage(""); setError(false);
+    setMessage(""); setError(false); setActiveAction(action);
     start(async () => {try {
       const result = await vendorPricingAction(action, payload());
       if (!result.ok) throw Error(result.message);
@@ -59,7 +60,8 @@ export default function VendorPricingSettings({initial}: {initial: PricingWorksp
       setWorkspace(result.value); setDefaultId(result.value.settings.default_rule_id ?? ""); setAuto(result.value.settings.auto_for_new);
       if (action === "save_rule") edit(null, false);
       setMessage("Saved. Existing My price cards keep their price. Rule-based cards update automatically.");
-    } catch (e) {setError(true); setMessage(e instanceof Error ? e.message : "Save could not be confirmed. Reload before retrying.");}});
+    } catch (e) {setError(true); setMessage(e instanceof Error ? e.message : "Save could not be confirmed. Reload before retrying.");}
+      finally {setActiveAction(null);}});
   }
   function field(label: string, value: string, change: (s: string) => void, helper?: string) {
     const id = `${prefix}-${label.replace(/\W/g, "")}`;
@@ -72,17 +74,18 @@ export default function VendorPricingSettings({initial}: {initial: PricingWorksp
       <label className="grid gap-2 text-sm">Default pricing preset<select aria-label="Default pricing preset" className={input} value={defaultId} disabled={pending} onChange={e => {setDefaultId(e.target.value); setPreview("");}}><option value="">Choose a preset</option>{workspace.rules.map(r => <option key={r.id} value={r.id}>{r.name}</option>)}</select></label>
       <label className="flex items-start gap-3 text-sm"><input type="checkbox" checked={auto} disabled={pending || !defaultId} onChange={e => setAuto(e.target.checked)} className="mt-1" />Use my default for new, unpriced cards. Adding a card keeps it private until I choose For sale.</label>
       <button className="gv-primary-button" disabled={pending || (auto && !defaultId)}>Save default</button>
-      {!editorOpen && defaultId && <div className="flex flex-wrap items-end gap-3 border-t border-[var(--gv-border-soft)] pt-4">
-        <div className="w-40">{field("Example market USD", sample, setSample)}</div>
-        <button type="button" className="gv-secondary-button" disabled={pending} onClick={() => perform("calculate", () => ({definition: workspace.rules.find(r => r.id === defaultId)?.definition, marketAmount: sample}))}>Preview default</button>
-        {preview && <output className="pb-3 text-sm" aria-live="polite">Example price: {preview} · Preview only</output>}
-      </div>}
     </form>
+      {!editorOpen && defaultId && <form className="flex flex-wrap items-end gap-3" onSubmit={e => {e.preventDefault(); perform("calculate", () => ({definition: workspace.rules.find(r => r.id === defaultId)?.definition, marketAmount: sample}));}}>
+        <div className="w-40">{field("Example market USD", sample, setSample)}</div>
+        <button type="submit" className="gv-secondary-button" disabled={pending}>{pending && activeAction === "calculate" ? "Calculating…" : "Preview default"}</button>
+        {preview && <output className="pb-3 text-sm" aria-live="polite">Example price: {preview} · Preview only</output>}
+      </form>}
     <section className="space-y-3"><h2 className="text-lg font-semibold">Presets</h2>
       {workspace.rules.length === 0 ? <p className="text-sm text-[var(--gv-text-secondary)]">Create a preset to choose how your prices follow market.</p> : <ul className="divide-y divide-[var(--gv-border-soft)]">{workspace.rules.map(r => <li key={r.id} className="flex items-center justify-between gap-3 py-3"><span className="min-w-0 break-words">{r.name}</span><button disabled={pending} aria-label={`Edit ${r.name}`} onClick={event => {opener.current = event.currentTarget; edit(r);}} className="gv-secondary-button">Edit</button></li>)}</ul>}
       {!editorOpen && <button ref={newPresetButton} type="button" className="gv-secondary-button" disabled={pending} onClick={event => {opener.current = event.currentTarget; edit(null);}}>New preset</button>}
     </section>
-    {editorOpen && <form className="space-y-4 border-t border-[var(--gv-border-soft)] pt-5" onSubmit={e => {e.preventDefault(); perform("save_rule", () => ({requestId: crypto.randomUUID(), name, definition: definition(), ruleId: editing?.id, expectedRevision: editing?.revision}));}}>
+    {editorOpen && <section className="space-y-4 border-t border-[var(--gv-border-soft)] pt-5">
+    <form id={`${prefix}-preset-form`} className="space-y-4" onSubmit={e => {e.preventDefault(); perform("save_rule", () => ({requestId: crypto.randomUUID(), name, definition: definition(), ruleId: editing?.id, expectedRevision: editing?.revision}));}}>
       <div className="flex flex-wrap items-center justify-between gap-3"><h2 ref={editor} tabIndex={-1} className="text-lg font-semibold">{editing ? `Edit ${editing.name}` : "New preset"}</h2><button type="button" disabled={pending} className="gv-secondary-button" onClick={() => edit(null, false)}>Cancel edit</button></div>
       {field("Preset name", name, setName)}
       {field("Percent above market", percent, setPercent, "Use a negative percentage for below market.")}
@@ -90,9 +93,10 @@ export default function VendorPricingSettings({initial}: {initial: PricingWorksp
       <button type="button" disabled={pending} aria-expanded={advanced} className="text-sm underline" onClick={() => setAdvanced(value => !value)}>{advanced ? "Hide more options" : "More options · adjustments and limits"}</button>
       {advanced && <div className="grid gap-4 sm:grid-cols-2">{field("USD adjustment", flat, setFlat, "Added after the percentage. Negative amounts subtract.")}{field("Minimum USD (optional)", min, setMin)}{field("Maximum USD (optional)", max, setMax)}</div>}
       <p className="text-xs text-[var(--gv-text-secondary)]">Fresh exact market → percentage → USD adjustment → rounding → minimum / maximum. Only exact raw-card USD references are eligible. Missing or stale references retain the last confirmed price.</p>
-      <div className="flex flex-wrap items-end gap-3"><div className="w-40">{field("Example market USD", sample, setSample)}</div><button type="button" className="gv-secondary-button" disabled={pending} onClick={() => perform("calculate", () => ({definition: definition(), marketAmount: sample}))}>Preview rule</button>{preview && <output className="pb-3 text-sm">Example price: {preview}</output>}</div>
-      <button className="gv-primary-button" disabled={pending || !name.trim()}>{pending ? "Saving…" : "Save preset"}</button>
-    </form>}
+    </form>
+      <form className="flex flex-wrap items-end gap-3" onSubmit={e => {e.preventDefault(); perform("calculate", () => ({definition: definition(), marketAmount: sample}));}}><div className="w-40">{field("Example market USD", sample, setSample)}</div><button type="submit" className="gv-secondary-button" disabled={pending}>{pending && activeAction === "calculate" ? "Calculating…" : "Preview rule"}</button>{preview && <output className="pb-3 text-sm" aria-live="polite">Example price: {preview}</output>}</form>
+      <button type="submit" form={`${prefix}-preset-form`} className="gv-primary-button" disabled={pending || !name.trim()}>{pending && activeAction === "save_rule" ? "Saving…" : "Save preset"}</button>
+    </section>}
     {message && <p role={error ? "alert" : "status"} aria-live="polite" className="text-sm">{message}</p>}
   </div>;
 }

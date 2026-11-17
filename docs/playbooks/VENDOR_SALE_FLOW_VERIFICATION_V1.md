@@ -34,7 +34,8 @@ node apps/web/node_modules/@playwright/test/cli.js test --config apps/web/playwr
 
 The test signs in through the real local UI and writes only synthetic fixture
 presets and copies. It verifies server calculations, retained limits while
-collapsed, cancel/focus behavior, explicit automatic publication, a fixed-price
+collapsed, cancel/focus behavior, Enter calculating examples without saving
+unsaved defaults, opt-in or preset edits, explicit automatic publication, a fixed-price
 override, live quote refresh and an external manual-price conflict. It captures
 320/375/1365px dark/light views and confirms the saved label stage. Label printing
 is intercepted in the test browser; image decoding, print portal readiness,

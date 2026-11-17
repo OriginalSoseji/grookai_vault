@@ -49,8 +49,27 @@ test("vendor preset, exact-copy automatic sale, fixed override and reusable labe
   await expect(page.getByLabel("USD adjustment",{exact:false})).toHaveValue("0.10");
   await expect(page.getByLabel("Minimum USD (optional)",{exact:true})).toHaveValue("2.00");
   await expect(page.getByLabel("Maximum USD (optional)",{exact:true})).toHaveValue("50.00");
+  const originalPercent = await page.getByLabel("Percent above market",{exact:false}).inputValue();
+  await page.getByLabel("Percent above market",{exact:false}).fill("25");
+  await page.getByLabel("Example market USD",{exact:true}).press("Enter");
+  await expect(page.getByText("Example price: $12.75",{exact:true})).toBeVisible();
+  await expect(page.getByLabel("Preset name",{exact:true})).toHaveValue(name);
+  await page.getByRole("button",{name:"Cancel edit",exact:true}).click();
+  await page.getByRole("button",{name:`Edit ${name}`,exact:true}).click();
+  await expect(page.getByLabel("Percent above market",{exact:false})).toHaveValue(originalPercent);
   await page.getByRole("button",{name:"Cancel edit",exact:true}).click();
   await expect(page.getByLabel("Preset name",{exact:true})).toHaveCount(0);
+  // Enter in a preview must calculate only, even with unsaved default settings.
+  const savedDefault = await page.getByLabel("Default pricing preset",{exact:true}).inputValue();
+  const defaultOptIn = page.getByRole("checkbox",{name:/Use my default for new, unpriced cards/});
+  const savedOptIn = await defaultOptIn.isChecked();
+  await page.getByLabel("Default pricing preset",{exact:true}).selectOption({label:name});
+  await defaultOptIn.setChecked(!savedOptIn);
+  await page.getByLabel("Example market USD",{exact:true}).press("Enter");
+  await expect(page.getByText("Example price: $11.50 · Preview only",{exact:true})).toBeVisible();
+  await page.reload();
+  await expect(page.getByLabel("Default pricing preset",{exact:true})).toHaveValue(savedDefault);
+  await expect(defaultOptIn).toBeChecked({checked:savedOptIn});
   await page.getByLabel("Default pricing preset",{exact:true}).selectOption({label:name});
   await page.getByRole("button",{name:"Save default",exact:true}).click();
   await expect(page.getByRole("status").filter({hasText:"Saved."})).toBeVisible();
@@ -160,5 +179,5 @@ test("vendor preset, exact-copy automatic sale, fixed override and reusable labe
   await expect(page.getByRole("button",{name:"Print label",exact:true})).toBeVisible();
   expect(errors).toEqual([]);
   expect(hashes()).toEqual(sourceHashes);
-  fs.writeFileSync(output+"/workflow-proof.json",JSON.stringify({pass:true,actualLocalAuth:true,actualServerPricing:true,manualOverride:true,liveQuoteRefresh:true,concurrentManualChoiceProtected:true,portalImagesDecoded:true,priceFreeLabels:true,batchPicker:true,sourceUnchanged:true,sourceHashes,productionWrites:0},null,2));
+  fs.writeFileSync(output+"/workflow-proof.json",JSON.stringify({pass:true,actualLocalAuth:true,actualServerPricing:true,previewEnterNeverSavesSettingsOrRules:true,manualOverride:true,liveQuoteRefresh:true,concurrentManualChoiceProtected:true,portalImagesDecoded:true,priceFreeLabels:true,batchPicker:true,sourceUnchanged:true,sourceHashes,productionWrites:0},null,2));
 });
