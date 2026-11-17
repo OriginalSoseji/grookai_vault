@@ -13,6 +13,13 @@ from app import app
 
 
 class ImagePipelineDependencyTest(unittest.TestCase):
+    def test_missing_service_token_fails_closed(self):
+        with patch.dict(os.environ, {"GV_AI_ENDPOINT_TOKEN": ""}):
+            with TestClient(app) as client:
+                response = client.post("/detect-card-border", content=b"not an image")
+                self.assertEqual(response.status_code, 503)
+                self.assertEqual(response.json()["detail"], "service_unconfigured")
+
     def test_authenticated_image_processing_and_rejection(self):
         with patch.dict(os.environ, {"GV_AI_ENDPOINT_TOKEN": "test-only-token"}):
             with TestClient(app) as client:
