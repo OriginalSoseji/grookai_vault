@@ -52,6 +52,7 @@ import type { PublicProvisionalCard } from "@/lib/provisional/publicProvisionalT
 import type { SmartSearchIntent } from "@/lib/search/smartSearchIntent";
 import type { ArtistSearchPagination } from "@/lib/search/artistSearchPagination";
 import { getCollectorSearchSuggestions } from "@/lib/search/collectorSearchSuggestions";
+import { fetchResolverWithRetry } from "@/lib/search/fetchResolverWithRetry";
 import {
   VARIANT_FAMILY_DISCOVERY_COPY,
   type VariantOriginFamilyCopy,
@@ -695,14 +696,7 @@ export default function ExplorePageClient({
           params.set("identity", identityFilter);
         }
 
-        const response = await fetch(
-          `/api/resolver/search?${params.toString()}`,
-          {
-            signal: controller.signal,
-          },
-        );
-
-        const payload = (await response.json()) as {
+        const { response, payload } = await fetchResolverWithRetry<{
           ok: boolean;
           error?: string;
           rows?: ExploreRow[];
@@ -714,7 +708,12 @@ export default function ExplorePageClient({
           applied_sort?: SortMode | null;
           sort_degraded_reason?: string | null;
           pagination?: ArtistSearchPagination;
-        };
+        }>(
+          `/api/resolver/search?${params.toString()}`,
+          controller.signal,
+          fetch,
+          sortMode !== "value_high" && sortMode !== "value_low",
+        );
 
         if (controller.signal.aborted) return;
         setSortDegradedReason(payload.sort_degraded_reason ?? null);
