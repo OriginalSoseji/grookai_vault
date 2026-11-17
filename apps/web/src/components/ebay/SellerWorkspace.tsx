@@ -121,15 +121,35 @@ export default function SellerWorkspace({ actorId, instanceId, draftId: selected
     persist({ ...value, revision: result.revision, dirty: false });
     await refresh();
   }
-  async function loadMetadata() {
+  async function loadMetadata(categoryId?: string) {
     if (!workspace?.copy || !workspace.account.accountId) return;
-    const data = await post<SellerMetadata>({ action: 'metadata', instanceId: workspace.copy.id, accountId: workspace.account.accountId });
-    setMetadata(data);
+    const query = ([workspace.copy.name, workspace.copy.setCode, workspace.copy.number]
+      .map(value => value.trim()).filter(Boolean).join(' ') + ' Trading Card Single').slice(0, 300)
+      || localRef.current?.input.title.slice(0, 300) || '';
+    if (!query) throw new Error('The card identity is not ready for eBay category search.');
+    const input = localRef.current?.input;
+    let data = await post<SellerMetadata>({ action: 'metadata', instanceId: workspace.copy.id,
+      accountId: workspace.account.accountId, categoryQuery: query,
+      ...(categoryId ? { categoryId } : {}) });
     const value = localRef.current;
     if (value) {
+      const savedCategoryId = categoryId ?? input?.categoryId;
+      const retainedCategoryIsSuggested = data.categoryOptions.some(category => category.categoryId === savedCategoryId);
+      const desiredCategory = categoryId ?? (retainedCategoryIsSuggested ? savedCategoryId : undefined);
+      if (desiredCategory && desiredCategory !== data.categoryId) {
+        data = await post<SellerMetadata>({ action: 'metadata', instanceId: workspace.copy.id,
+          accountId: workspace.account.accountId, categoryQuery: query, categoryId: desiredCategory });
+      }
+      if (!categoryId && savedCategoryId && !retainedCategoryIsSuggested) {
+        setNotice('The saved category is no longer suggested by eBay. Review the current category before preparing.');
+      }
+      setMetadata(data);
+      const categoryChanged = value.input.categoryId !== data.categoryId;
+      const conditionHasDetails = value.input.condition.descriptors.length > 0 || Boolean(value.input.condition.description);
       persist({ ...value, dirty: true, input: { ...value.input, categoryId: data.categoryId,
-        condition: !value.input.condition.descriptors.length && !value.input.condition.description ? data.suggestedCondition : value.input.condition } });
-    }
+        aspects: categoryChanged ? {} : value.input.aspects,
+        condition: categoryChanged || !conditionHasDetails ? data.suggestedCondition : value.input.condition } });
+    } else setMetadata(data);
   }
   async function upload(file: File) {
     if (!localRef.current) return;
@@ -226,6 +246,7 @@ export default function SellerWorkspace({ actorId, instanceId, draftId: selected
       : <Package size={23} />}</span><div><strong>{copy.name}</strong><small>{copy.setCode} · {copy.number} · {copy.isGraded ? `${copy.grader ?? 'Graded'} ${copy.grade ?? ''}` : copy.condition ?? 'Condition unknown'}</small><small>{copy.gvviId} · {draft ? stateLabel(draft.state) : 'New draft'}</small></div></div>
       <div className={s.body}><div className={s.form}><fieldset disabled={Boolean(busy) || !editable || !account?.preparationEnabled}>
         <section className={s.section}><h2>Listing details</h2>{!editable ? <div className={s.fields}><h3 className={s.listingTitle}>{input.title}</h3><p className={s.description}>{input.description}</p></div> : <div className={s.fields}>
+          {metadata && <label className={s.field}>eBay category<select aria-label="eBay category" value={input.categoryId} onChange={e => { const value = e.target.value; if (value && value !== input.categoryId) void run('Loading category details', () => loadMetadata(value)); }}><option value="" disabled>Choose an eBay category</option>{metadata.categoryOptions.map(category => <option key={category.categoryId} value={category.categoryId}>{category.categoryName}</option>)}</select></label>}
           <label className={s.field}>Title<input maxLength={80} value={input.title} onChange={e => change({ title: e.target.value })} /><span className={s.hint}>{input.title.length}/80</span></label>
           <div className={s.row}><label className={s.field}>Description<textarea maxLength={5000} value={input.description} onChange={e => change({ description: e.target.value })} /></label><label className={s.field}>Asking price · USD<input key={`${local.draftId}:${local.revision}`} inputMode="decimal" aria-label="Asking price in USD" defaultValue={input.priceCents ? (input.priceCents / 100).toFixed(2) : ''} onChange={e => { const raw = e.target.value; if (/^\d*(?:\.\d{0,2})?$/.test(raw)) change({ priceCents: raw ? Math.round(Number(raw) * 100) : 0 }); else change({ priceCents: 0 }); }} /></label></div>
         </div>}</section>

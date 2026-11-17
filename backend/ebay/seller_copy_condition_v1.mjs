@@ -43,7 +43,8 @@ export function suggestedCopyCondition({ copy, choices, slabCert }) {
 // Invoked after live provider constraints have validated the descriptors. This
 // second check binds their meaning to the canonical saved copy and certificate.
 export function bindListingConditionToCopy({ copy, input, condition, slabCert }) {
-  if (input.categoryId !== '183454' || typeof copy.is_graded !== 'boolean') {
+  if (typeof input.categoryId !== 'string' || !/^\d{1,20}$/.test(input.categoryId)
+      || typeof copy.is_graded !== 'boolean') {
     fail('listing_copy_condition_unsupported');
   }
   const descriptors = condition.conditionDescriptors ?? [];

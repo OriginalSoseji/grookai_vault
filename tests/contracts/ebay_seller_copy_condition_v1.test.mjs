@@ -72,3 +72,7 @@ test('unsupported categories and contradictory raw/slab identities fail closed',
   args.input.categoryId = '183454'; args.copy.slab_cert_id = 'certificate';
   assert.throws(() => bind(args), e => e.code === 'listing_copy_grade_mismatch');
 });
+test('a provider-suggested alternate numeric category can use the same verified copy condition', () => {
+  const args = fixture(); args.input.categoryId = '123456';
+  assert.deepEqual(bind(args), args.condition);
+});

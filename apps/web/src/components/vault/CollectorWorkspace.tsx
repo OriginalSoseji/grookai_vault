@@ -5,6 +5,7 @@ import PublicCardImage from "@/components/PublicCardImage";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { VaultCardData } from "./VaultCardTile";
+import styles from "./CollectorWorkspace.module.css";
 import { parseCollectorMoney } from "@/lib/vault/collectorMoney";
 import {
   recordCollectorOutcome,
@@ -17,6 +18,7 @@ type Incoming = {
   gvId: string;
   name: string;
   context: string;
+  imageUrl?: string | null;
   printingId: string;
   finish: string;
   agreed: string;
@@ -26,6 +28,7 @@ type Option = {
   gvId: string;
   name: string;
   context: string;
+  imageUrl?: string | null;
   finishes: { id: string; label: string }[];
 };
 const input =
@@ -307,7 +310,7 @@ export default function CollectorWorkspace(
               outcomeDialog.current?.showModal();
             }}
           >
-            Sold / Traded
+            Record sale or trade
           </button>
           <button
             className="gv-primary-button"
@@ -334,15 +337,22 @@ export default function CollectorWorkspace(
             Save trade draft
           </button>
         </div>
+        {mode === "select" && chosen.length > 1
+          ? (
+            <p className="mt-2 text-xs text-[var(--gv-text-secondary)]">
+              Record a completed sale or trade one exact copy at a time.
+            </p>
+          )
+          : null}
         {message ? <p role="status" className="text-sm">{message}</p> : null}
       </div>
       <div
         className={mode === "trade"
-          ? "grid gap-6 lg:grid-cols-2"
+          ? styles.tradeGrid
           : "gv-selection-list"}
       >
         <section
-          className="min-w-0 space-y-3"
+          className={`min-w-0 space-y-3 ${mode === "trade" ? `${styles.tradePanel} ${styles.givePanel}` : ""}`}
           aria-label="Outgoing exact copies"
         >
           <h2 className="text-lg font-bold">
@@ -451,7 +461,7 @@ export default function CollectorWorkspace(
         </section>
         <section
           hidden={mode !== "trade"}
-          className="min-w-0 space-y-3"
+          className={`min-w-0 space-y-3 ${styles.tradePanel} ${styles.receivePanel}`}
           aria-label="Incoming trade cards"
         >
           <h2 className="text-lg font-bold">You receive</h2>
@@ -469,8 +479,22 @@ export default function CollectorWorkspace(
               key={option.cardPrintId}
               className="border-b border-[var(--gv-border-soft)] py-2"
             >
-              <summary className="min-h-11 cursor-pointer text-sm">
-                {option.name} · {option.context}
+              <summary className={`${styles.incomingOption} min-h-11 cursor-pointer text-sm`}>
+                <PublicCardImage
+                  src={option.imageUrl ?? undefined}
+                  alt=""
+                  imageClassName={styles.incomingArtwork}
+                  fallbackClassName={styles.incomingArtwork}
+                  fallbackLabel=""
+                  sizes="48px"
+                  unoptimized
+                />
+                <span>
+                  <span className="block font-semibold">{option.name}</span>
+                  <span className="mt-1 block text-xs text-[var(--gv-text-secondary)]">
+                    {option.context}
+                  </span>
+                </span>
               </summary>
               <div className="flex flex-wrap gap-2 py-2">
                 {option.finishes.map((finish) => (
@@ -485,6 +509,7 @@ export default function CollectorWorkspace(
                         gvId: option.gvId,
                         name: option.name,
                         context: option.context,
+                        imageUrl: option.imageUrl,
                         printingId: finish.id,
                         finish: finish.label,
                         agreed: "",
@@ -505,11 +530,22 @@ export default function CollectorWorkspace(
           {incoming.map((row) => (
             <div
               key={row.key}
-              className="space-y-2 border-b border-[var(--gv-border-soft)] py-3"
+              className={styles.incomingRow}
             >
+              <PublicCardImage
+                src={row.imageUrl ?? undefined}
+                alt=""
+                imageClassName={styles.incomingArtwork}
+                fallbackClassName={styles.incomingArtwork}
+                fallbackLabel=""
+                loading="eager"
+                sizes="48px"
+                unoptimized
+              />
+              <div className={styles.incomingDetails}>
               <p className="font-semibold">{row.name}</p>
-              <p className="text-xs">{row.context} · {row.finish}</p>
-              <label className="block text-sm">
+              <p className="text-xs text-[var(--gv-text-secondary)]">{row.context} · {row.finish}</p>
+              <label className="mt-2 block text-sm">
                 Agreed value · USD<input
                   className={input}
                   inputMode="decimal"
@@ -534,6 +570,7 @@ export default function CollectorWorkspace(
               >
                 Remove incoming card
               </button>
+              </div>
             </div>
           ))}
           <label className="block text-sm">
@@ -559,15 +596,21 @@ export default function CollectorWorkspace(
               </label>
             )
             : null}
-          <dl className="grid grid-cols-2 gap-3 border-y border-[var(--gv-border-soft)] py-4 text-sm">
-            <dt>Agreed outgoing</dt>
-            <dd>{money(outgoing)}</dd>
-            <dt>Agreed incoming</dt>
-            <dd>{money(receiving)}</dd>
-            <dt>Net received minus given</dt>
-            <dd>{net === null ? "Enter all agreed values" : money(net)}</dd>
+          <dl className={styles.tradeValueSummary}>
+            <div>
+              <dt>Agreed outgoing</dt>
+              <dd>{money(outgoing)}</dd>
+            </div>
+            <div>
+              <dt>Agreed incoming</dt>
+              <dd>{money(receiving)}</dd>
+            </div>
+            <div className={styles.tradeNet}>
+              <dt>Net received minus given</dt>
+              <dd>{net === null ? "Enter all agreed values" : money(net)}</dd>
+            </div>
           </dl>
-          <p className="text-xs leading-5">
+          <p className={`${styles.tradeNotes} text-xs leading-5`}>
             Agreed values are negotiation notes. Market references stay
             separate. Save the draft, then record each actual outcome using Sold
             / Traded. Add incoming copies through the reviewed Vault add flow.

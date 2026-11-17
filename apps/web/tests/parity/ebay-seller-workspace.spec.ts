@@ -7,7 +7,10 @@ const listing = () => ({ title: 'Eevee 173 exact physical copy', description: 'A
   priceCents: 1250, categoryId: '183454', locationKey: 'home', policies: { fulfillment: '20', payment: '21', return: '22' },
   aspects: { Game: ['Pokemon'] }, condition: { conditionId: '4000', description: 'Edge wear shown in photos.',
     descriptors: [{ id: '40001', values: ['400015'] }] } });
-const metadata = { categoryId: '183454', fetchedAt: Date.now(),
+const metadata = { categoryId: '183454', categoryOptions: [
+    { categoryId: '183454', categoryName: 'Trading Card Singles' },
+    { categoryId: '999', categoryName: 'Collectible Card Games' },
+  ], fetchedAt: Date.now(),
   policies: Object.fromEntries(['fulfillment', 'payment', 'return'].map((kind, i) => [kind, [{ [kind + 'PolicyId']: String(20 + i), name: `${kind} policy` }]])),
   locations: [{ merchantLocationKey: 'home', merchantLocationStatus: 'ENABLED', name: 'Home stock' }],
   aspects: [{ localizedAspectName: 'Game', aspectConstraint: { aspectRequired: true, aspectMode: 'SELECTION_ONLY', itemToAspectCardinality: 'SINGLE' }, aspectValues: [{ localizedValue: 'Pokemon' }] }],
@@ -47,7 +50,7 @@ async function setup(page: Page, options: { saved?: boolean; prepared?: boolean;
       } });
     }
     const body = req.postDataJSON(); requests.push(body);
-    if (body.action === 'metadata') return route.fulfill({ json: metadata });
+    if (body.action === 'metadata') return route.fulfill({ json: { ...metadata, categoryId: body.categoryId ?? metadata.categoryId } });
     if (body.action === 'save') {
       draft = { ...(draft ?? {}), id: body.draftId, instanceId: copy.id, accountId: id(5),
         revision: 1, state: 'editing', input: body.listing, photos: draft?.photos ?? [], operations: [],
@@ -94,6 +97,21 @@ test('unknown copy condition stays unselected while current selling options load
   await page.getByRole('button', { name: 'Load eBay options' }).click();
   await expect(page.getByLabel('Card Condition')).toHaveValue('');
   await expect(page.getByText('Condition unknown', { exact: false })).toBeVisible();
+});
+
+test('eBay category can be changed from current suggestions and the selected category is saved', async ({ page }) => {
+  const calls = await setup(page); await page.goto('/visual-fixtures/ebay-seller');
+  await page.getByRole('button', { name: 'Load eBay options' }).click();
+  const category = page.getByLabel('eBay category');
+  await expect(category).toHaveValue('183454');
+  await category.selectOption('999');
+  await expect(category).toHaveValue('999');
+  const selection = calls.filter(c => c.action === 'metadata').at(-1);
+  expect(selection?.categoryId).toBe('999');
+  expect(selection?.categoryQuery).toBe('Eevee PR-SV 173 Trading Card Single');
+  await page.getByRole('button', { name: 'Save draft', exact: true }).click();
+  await expect.poll(() => calls.filter(c => c.action === 'save').length).toBe(1);
+  expect((calls.find(c => c.action === 'save')?.listing as { categoryId: string }).categoryId).toBe('999');
 });
 
 for (const state of ['live', 'publishing', 'preparing']) {

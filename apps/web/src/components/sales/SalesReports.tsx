@@ -92,7 +92,13 @@ export default function SalesReports({ ownerId, profitEnabled=false,eventsEnable
     <p>Your account changed. Reopen reports to continue.</p><a href="/account/store/reports">Reopen reports</a></section>;
 
   return <section className={`${s.shell} ${s.reportShell}`} aria-label="Reports">
-    <header className={s.header}><h1>Reports</h1><Link href="/account/store/receipts/cloud">Receipts & customers</Link></header>
+    <header className={s.header}>
+      <div><Link href="/account/store">Store workspace</Link><h1>Sales reports</h1></div>
+      <nav className={s.actions} aria-label="Sales destinations">
+        <Link href="/account/store/sales">Sales desk</Link>
+        <Link href="/account/store/receipts/cloud">Receipts & customers</Link>
+      </nav>
+    </header>
     {(eventsEnabled||eventRecovery)&&<div className={s.tabs} role="group" aria-label="Report views"><button aria-pressed={view==='overview'} onClick={()=>setView('overview')}>Overview</button><button aria-pressed={view==='events'} onClick={()=>{setEventsVisited(true);setView('events');}}>{eventsEnabled?'Events':'Saved event edit'}</button></div>}
     <div hidden={view!=='overview'}>
     {error && <p role="alert">{error} <button onClick={() => void load()} disabled={loading}>Try again</button></p>}

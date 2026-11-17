@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
 import { getPokemonCardCollectionGridClassName } from "@/components/cards/pokemonCardGridLayout";
 import { SearchToolbar, SearchToolbarButton, SearchToolbarInput } from "@/components/common/SearchToolbar";
+import SegmentedControl, { type SegmentedControlOption } from "@/components/common/SegmentedControl";
 import { ViewDensityToggle } from "@/components/collection/ViewDensityToggle";
 import PageIntro from "@/components/layout/PageIntro";
 import { useClientReady } from "@/components/layout/useClientReady";
@@ -19,6 +20,7 @@ import { VaultMobileViews } from "@/components/vault/VaultMobileViews";
 import { VaultCardTile, type VaultCardData } from "@/components/vault/VaultCardTile";
 import { resolveDisplayIdentity } from "@/lib/cards/resolveDisplayIdentity";
 import { useVaultMobileViewMode } from "@/hooks/useVaultMobileViewMode";
+import { useVaultGridColumns } from "@/hooks/useVaultGridColumns";
 import { useViewDensity, type ViewDensity } from "@/hooks/useViewDensity";
 import type { ReactNode } from "react";
 import { addCardReturnPath } from "@/lib/navigation/cardDetailNavigation";
@@ -39,6 +41,8 @@ export type RecentCardData = {
 };
 
 type SmartViewKey = "all" | "duplicates" | "recent" | "by-set" | "pokemon" | "shared";
+type VaultPriceFilter = "all" | "priced" | "unpriced";
+type VaultSortKey = "newest" | "name" | "quantity";
 
 type VaultHeaderValueSummary = {
   totalEstimatedValue: number | null;
@@ -67,6 +71,11 @@ const VAULT_SHORT_DATE_FORMATTER = new Intl.DateTimeFormat("en-US", {
   month: "short",
   day: "numeric",
 });
+const VAULT_PRICE_FILTERS: Array<SegmentedControlOption<VaultPriceFilter>> = [
+  { value: "all", label: "All" },
+  { value: "priced", label: "Priced" },
+  { value: "unpriced", label: "Unpriced" },
+];
 
 function parseVaultPage(value: string | null) {
   const parsed = Number.parseInt(value ?? "1", 10);
@@ -80,6 +89,12 @@ function parseVaultView(value: string | null): SmartViewKey {
     value === "shared"
     ? value
     : "all";
+}
+function parseVaultPriceFilter(value: string | null): VaultPriceFilter {
+  return value === "priced" || value === "unpriced" ? value : "all";
+}
+function parseVaultSort(value: string | null): VaultSortKey {
+  return value === "name" || value === "quantity" ? value : "newest";
 }
 function VaultPagination({
   page,
@@ -239,7 +254,7 @@ function SmartViewButton({
     <button
       type="button"
       onClick={onClick}
-      className={`rounded-full px-4 py-2 text-sm font-medium transition ${
+      className={`whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-medium transition sm:px-4 sm:py-2 sm:text-sm ${
         selected
           ? "border border-slate-200 bg-white text-slate-950 shadow-[0_12px_24px_-20px_rgba(15,23,42,0.35)] dark:border-slate-700 dark:bg-slate-100 dark:text-slate-950"
           : "border border-transparent text-slate-500 hover:bg-white/80 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/[0.06] dark:hover:text-slate-100"
@@ -318,6 +333,7 @@ export function VaultCollectionView({
   const searchParams = useSearchParams();
   const { density, setDensity } = useViewDensity();
   const { mode: mobileViewMode, setMode: setMobileViewMode } = useVaultMobileViewMode();
+  const { columns: mobileGridColumns, setColumns: setMobileGridColumns } = useVaultGridColumns();
   const [items, setItems] = useState(initialItems);
   const [sealedTotals, setSealedTotals] = useState<SealedTotals | null>(null);
   const [vaultReturnPath, setVaultReturnPath] = useState(() =>
@@ -327,6 +343,8 @@ export function VaultCollectionView({
   const [searchQuery, setSearchQuery] = useState(() => searchParams.get("q") ?? "");
   const [pokemonQuery, setPokemonQuery] = useState(() => searchParams.get("pokemon") ?? "");
   const [activeView, setActiveView] = useState<SmartViewKey>(() => parseVaultView(searchParams.get("view")));
+  const [priceFilter, setPriceFilter] = useState<VaultPriceFilter>(() => parseVaultPriceFilter(searchParams.get("price")));
+  const [sortBy, setSortBy] = useState<VaultSortKey>(() => parseVaultSort(searchParams.get("sort")));
   const [currentPage, setCurrentPage] = useState(() => parseVaultPage(searchParams.get("page")));
 
   useEffect(() => {
@@ -483,11 +501,15 @@ export function VaultCollectionView({
     view = activeView,
     query = searchQuery,
     pokemon = pokemonQuery,
+    price = priceFilter,
+    sort = sortBy,
   }: {
     page?: number;
     view?: SmartViewKey;
     query?: string;
     pokemon?: string;
+    price?: VaultPriceFilter;
+    sort?: VaultSortKey;
   }) {
     const url = new URL(window.location.href);
 
@@ -502,6 +524,12 @@ export function VaultCollectionView({
 
     if (view === "pokemon" && pokemon.trim()) url.searchParams.set("pokemon", pokemon.trim());
     else url.searchParams.delete("pokemon");
+
+    if (price !== "all") url.searchParams.set("price", price);
+    else url.searchParams.delete("price");
+
+    if (sort !== "newest") url.searchParams.set("sort", sort);
+    else url.searchParams.delete("sort");
 
     window.history.replaceState(window.history.state, "", url);
     setVaultReturnPath(`/vault${url.search}`);
@@ -536,6 +564,20 @@ export function VaultCollectionView({
     updateVaultUrl({ page: 1, pokemon: nextQuery });
   }
 
+  function handlePriceFilterChange(nextFilter: VaultPriceFilter) {
+    setPriceFilter(nextFilter);
+    setCurrentPage(1);
+    setExpandedCardId(null);
+    updateVaultUrl({ page: 1, price: nextFilter });
+  }
+
+  function handleSortChange(nextSort: VaultSortKey) {
+    setSortBy(nextSort);
+    setCurrentPage(1);
+    setExpandedCardId(null);
+    updateVaultUrl({ page: 1, sort: nextSort });
+  }
+
   function paginateItems(sourceItems: VaultCardData[], page: number) {
     const firstIndex = (page - 1) * VAULT_PAGE_SIZE;
     return sourceItems.slice(firstIndex, firstIndex + VAULT_PAGE_SIZE);
@@ -549,6 +591,7 @@ export function VaultCollectionView({
         expandedCardId={expandedCardId}
         returnPath={vaultReturnPath}
         onExpansionToggle={handleExpansionToggle}
+        gridColumns={mobileGridColumns}
       />
     );
   }
@@ -557,7 +600,7 @@ export function VaultCollectionView({
     return (
       <div className="space-y-6 md:hidden">
         {groups.map((group) => (
-          <section key={group.setCode} className="space-y-3">
+          <section key={group.setCode} data-vault-set-group={group.setCode} className="space-y-3">
             <PageSection surface="subtle" spacing="compact" className="px-4 py-3.5">
               <div className="space-y-1">
                 <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Set</p>
@@ -576,7 +619,7 @@ export function VaultCollectionView({
     );
   }
 
-  const activeSourceItems =
+  const baseSourceItems =
     activeView === "duplicates"
       ? applySearch(duplicateItems)
       : activeView === "recent"
@@ -588,6 +631,26 @@ export function VaultCollectionView({
             : activeView === "pokemon"
               ? applyPokemonNameFilter(items)
               : applySearch(items);
+  const matchesPriceFilter = (item: VaultCardData) =>
+    priceFilter === "all"
+    || (priceFilter === "priced"
+      ? item.priced_raw_copy_count > 0
+      : item.priced_raw_copy_count === 0 && item.unpriced_raw_copy_count > 0);
+  const compareVaultItems = (left: VaultCardData, right: VaultCardData) => {
+      if (sortBy === "name") {
+        return left.name.localeCompare(right.name) || left.number.localeCompare(right.number);
+      }
+      if (sortBy === "quantity") {
+        return left.owned_count - right.owned_count || left.name.localeCompare(right.name);
+      }
+      const leftTime = left.created_at ? new Date(left.created_at).getTime() : 0;
+      const rightTime = right.created_at ? new Date(right.created_at).getTime() : 0;
+      return rightTime - leftTime || left.name.localeCompare(right.name);
+    };
+  const activeSourceItems = activeView === "by-set"
+    ? bySetGroups.flatMap((group) =>
+      [...applySearch(group.items)].filter(matchesPriceFilter).sort(compareVaultItems))
+    : baseSourceItems.filter(matchesPriceFilter).sort(compareVaultItems);
   const activeResultCount = activeSourceItems.length;
   const activePageCount = Math.max(1, Math.ceil(activeResultCount / VAULT_PAGE_SIZE));
   const renderedPage = Math.min(currentPage, activePageCount);
@@ -645,7 +708,8 @@ export function VaultCollectionView({
     const filteredBySetGroups = bySetGroups
       .map((group) => ({
         ...group,
-        items: applySearch(group.items),
+        items: activeSourceItems.filter((item) =>
+          (item.set_code.trim() || "Unknown set") === group.setCode),
       }))
       .filter((group) => group.items.length > 0);
     const visibleBySetGroups = visiblePageItems.reduce<SetGroup[]>((groups, item) => {
@@ -669,7 +733,7 @@ export function VaultCollectionView({
       filteredBySetGroups.length > 0 ? (
         <div className="space-y-8">
           {visibleBySetGroups.map((group) => (
-            <section key={group.setCode} className="space-y-4">
+            <section key={group.setCode} data-vault-set-group={group.setCode} className="space-y-4">
               <PageSection surface="subtle" spacing="compact" className="px-5 py-4">
                 <div className="space-y-1">
                   <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-400">Set</p>
@@ -815,12 +879,12 @@ export function VaultCollectionView({
   }
 
   return (
-    <div className="gv-vault-page space-y-7 py-7 md:space-y-10 md:py-9">
+    <div className="gv-vault-page space-y-4 py-3 md:space-y-10 md:py-9">
       <section className="gv-vault-overview">
         <PageIntro
           title="grookai vault"
-          eyebrow="Vault"
-          description="Your collection, organized by exact printing."
+          eyebrow={<span className="hidden sm:block">Vault</span>}
+          description={<span className="hidden sm:inline">Your collection, organized by exact printing.</span>}
           actions={
             <div className="flex flex-wrap items-center gap-2.5">
               <Link
@@ -849,17 +913,17 @@ export function VaultCollectionView({
             </div>
           }
         />
-        <div className="gv-vault-summary mt-7">
+        <div className="gv-vault-summary mt-2 md:mt-7">
           {valueSummary.totalGroupedCount > 0 || (sealedTotals?.active_copy_count ?? 0) > 0 ? (
-          <div className="gv-vault-value py-5 md:py-6">
-            <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-              <div className="min-w-0 space-y-2.5">
+          <div className="gv-vault-value py-2 md:py-6">
+            <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+              <div className="min-w-0 space-y-1 md:space-y-2.5">
                 <p className="text-[9px] font-semibold uppercase tracking-[0.24em] text-slate-400/90">
                   {sealedOwnershipEnabled && !sealedTotals ? "Card subtotal" : "Estimated Vault Value"}
                 </p>
                 <div className="space-y-1">
                   <p
-                    className="text-[2.15rem] font-semibold text-slate-950 sm:text-[2.7rem]"
+                    className="text-2xl font-semibold text-slate-950 sm:text-[2.7rem]"
                     data-pricing-proof="vault-exact-total"
                     data-pricing-scope="vault_total"
                     data-vault-market-value-usd={
@@ -894,7 +958,7 @@ export function VaultCollectionView({
                         ))}
                     </>
                   ) : null}
-                  <p className="text-xs text-slate-400">TCGPlayer Market for eligible exact printings and sealed products.</p>
+                  <p className="hidden text-xs text-slate-400 sm:block">TCGPlayer Market for eligible exact printings and sealed products.</p>
                 </div>
               </div>
               <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate-400 md:justify-end">
@@ -907,17 +971,17 @@ export function VaultCollectionView({
             </div>
           </div>
           ) : null}
-        <div className="gv-vault-stats grid grid-cols-2 divide-x divide-slate-200/70 text-sm text-slate-500 dark:divide-slate-700/70 sm:grid-cols-4">
-          <span className="px-4 py-2 font-medium text-slate-700 first:pl-0">
+        <div className="gv-vault-stats grid grid-cols-3 divide-x divide-slate-200/70 text-sm text-slate-500 dark:divide-slate-700/70 sm:grid-cols-4">
+          <span className="min-w-0 truncate px-2 py-1.5 text-xs font-medium text-slate-700 first:pl-0 md:px-4 md:py-2 md:text-sm">
             {summary.cards} {summary.cards === 1 ? "card" : "cards"}
           </span>
-          <span className="px-4 py-2">
+          <span className="min-w-0 truncate px-2 py-1.5 text-xs md:px-4 md:py-2 md:text-sm">
             {summary.uniqueCards} unique
           </span>
-          <span className="px-4 py-2">
+          <span className="min-w-0 truncate px-2 py-1.5 text-xs md:px-4 md:py-2 md:text-sm">
             {summary.sets} {summary.sets === 1 ? "set" : "sets"}
           </span>
-          <span className="px-4 py-2 text-slate-400">
+          <span className="hidden min-w-0 truncate px-2 py-1.5 text-xs text-slate-400 md:px-4 md:py-2 md:text-sm sm:block">
             Last added {summary.lastAdded}
           </span>
         </div>
@@ -942,13 +1006,14 @@ export function VaultCollectionView({
           secondaryAction={<Link href="/vault/import" className="gv-secondary-button">Import collection</Link>}
         />
       )) : (
-        <PageSection spacing="default" className="space-y-6">
+        <PageSection spacing="compact" className="space-y-3 md:space-y-6">
           <div id="vault-cards" className="scroll-mt-32">
-            <SectionHeader
-              title="Vault Cards"
-              description="Cards currently in your collection."
-            />
-            <Link href="/vault/workspace" className="gv-secondary-button mt-3">Select copies · Trade workspace</Link>
+            <div className="flex items-center justify-between gap-3">
+              <h2 className="gv-section-title text-xl">Vault Cards</h2>
+              <Link href="/vault/workspace" className="text-xs font-medium text-slate-500 underline-offset-4 hover:text-slate-950 hover:underline dark:hover:text-slate-100 sm:hidden">Select copies · Trade workspace</Link>
+              <Link href="/vault/workspace" className="gv-secondary-button hidden sm:inline-flex">Select copies · Trade workspace</Link>
+            </div>
+            <p className="gv-quiet-line mt-1.5 hidden sm:block">Cards currently in your collection.</p>
           </div>
 
           <div className="gv-command-surface hidden md:flex md:flex-row md:items-center md:justify-between md:gap-4 md:p-3.5">
@@ -984,12 +1049,40 @@ export function VaultCollectionView({
             onClearSearch={() => handleSearchChange("")}
             mode={mobileViewMode}
             onModeChange={setMobileViewMode}
+            columns={mobileGridColumns}
+            onColumnsChange={setMobileGridColumns}
           />
 
           <PageSection
             spacing="compact"
-            className="gv-command-surface p-2.5 md:p-3"
+            className="gv-command-surface p-2 md:p-3"
           >
+            <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+              <div className="flex min-w-0 flex-wrap items-center gap-1.5">
+                <span className="text-xs font-medium text-slate-500">Price</span>
+                <SegmentedControl
+                  options={VAULT_PRICE_FILTERS}
+                  value={priceFilter}
+                  onChange={handlePriceFilterChange}
+                  ariaLabel="Filter Vault by market price"
+                  size="compact"
+                  className="bg-slate-50"
+                />
+              </div>
+              <label className="flex min-h-11 items-center gap-2 text-xs font-medium text-slate-500">
+                <span>Sort</span>
+                <select
+                  aria-label="Sort Vault cards"
+                  value={sortBy}
+                  onChange={(event) => handleSortChange(event.target.value as VaultSortKey)}
+                  className="min-h-10 w-[110px] rounded-lg border border-slate-200 bg-white px-2 text-xs text-slate-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-500 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 sm:w-auto sm:px-3 sm:text-sm"
+                >
+                  <option value="newest">Newest</option>
+                  <option value="name">Name (A–Z)</option>
+                  <option value="quantity">Quantity (low–high)</option>
+                </select>
+              </label>
+            </div>
             <div className="flex gap-1.5 overflow-x-auto md:flex-wrap">
               {smartViews.map((view) => (
                 <SmartViewButton
