@@ -588,12 +588,18 @@ class PublicSetsService {
       return null;
     }
 
+    final exactSetCodes = await _resolveVisibleExactSetCodes(
+      client: client,
+      normalizedCode: normalizedCode,
+    );
+    if (exactSetCodes.isEmpty) return null;
+
     final rawRows = await client
         .from('sets')
         .select(
           'game,code,name,hero_image_url,printed_set_abbrev,printed_total,release_date,created_at',
         )
-        .ilike('code', _escapePostgrestLikePattern(normalizedCode));
+        .inFilter('code', exactSetCodes);
     final rows = (rawRows as List<dynamic>)
         .map((row) => Map<String, dynamic>.from(row as Map))
         .toList();
@@ -1431,13 +1437,6 @@ class PublicSetsService {
     ].join('|');
   }
 
-  static String _escapePostgrestLikePattern(String value) {
-    return value
-        .replaceAll(r'\', r'\\')
-        .replaceAll('%', r'\%')
-        .replaceAll('_', r'\_');
-  }
-
   static PublicSetSummary? _mapSetRowToSummary(
     Map<String, dynamic> row, {
     required int cardCount,
@@ -1470,10 +1469,10 @@ class PublicSetsService {
     required SupabaseClient client,
     required String normalizedCode,
   }) async {
-    final rawRows = await client
-        .from('sets')
-        .select('code')
-        .ilike('code', _escapePostgrestLikePattern(normalizedCode));
+    final rawRows = await client.rpc(
+      'resolve_visible_set_references_v1',
+      params: {'code_in': normalizedCode, 'game_code_in': null},
+    );
     return (rawRows as List<dynamic>)
         .map((raw) => _cleanText((raw as Map)['code']))
         .where((code) => code.isNotEmpty)

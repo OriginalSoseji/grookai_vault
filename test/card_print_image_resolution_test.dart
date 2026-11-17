@@ -23,9 +23,10 @@ void main() {
         'public-anon-key',
         httpClient: MockClient((request) async {
           final data = switch (request.url.path) {
-            '/rest/v1/sets' => <Map<String, dynamic>>[
-              {'code': '30c'},
-            ],
+            '/rest/v1/rpc/resolve_visible_set_references_v1' =>
+              <Map<String, dynamic>>[
+                {'code': '30c'},
+              ],
             '/rest/v1/card_prints' => <Map<String, dynamic>>[
               {
                 'id': '20735fca-078b-5034-a65b-781ce6ba75fb',
@@ -105,9 +106,10 @@ void main() {
         'public-anon-key',
         httpClient: MockClient((request) async {
           final data = switch (request.url.path) {
-            '/rest/v1/sets' => <Map<String, dynamic>>[
-              {'code': 'wp'},
-            ],
+            '/rest/v1/rpc/resolve_visible_set_references_v1' =>
+              <Map<String, dynamic>>[
+                {'code': 'wp'},
+              ],
             '/rest/v1/card_prints' => <Map<String, dynamic>>[
               {
                 'id': '20735fca-078b-5034-a65b-781ce6ba75fb',

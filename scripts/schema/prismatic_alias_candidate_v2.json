@@ -1,0 +1,9 @@
+{
+  "version": "PRISMATIC_ALIAS_DISCOVERY_CANDIDATE_V2",
+  "candidates": {
+    "20261117063000_prismatic_alias_discovery_v1.sql": "81e9acfc4688a956e73933439687e20a91e8dcba7646e7c7a397665c1dddf05b",
+    "20261117064000_prismatic_alias_query_initplans_v2.sql": "e019fc49d02a87ed53a27d9f41cf13c5cb582dd4a7ae5ff70805008014bebb6d"
+  },
+  "baselineMigrations": 496,
+  "productionApplyAvailable": false
+}

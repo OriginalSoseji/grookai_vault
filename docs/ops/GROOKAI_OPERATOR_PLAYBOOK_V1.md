@@ -1,5 +1,30 @@
 # Grookai Operator Playbook V1
 
+## Prismatic discovery repair — November 17, 2026
+
+The [V4 release contract](../contracts/PRISMATIC_ALIAS_DISCOVERY_READ_REPAIR_V4.md)
+binds the 496-to-498 package with the atomic alias projection, InitPlan query
+repair and free-text legacy set resolution. The earlier drafts and their
+receipts are retained as historical local evidence. The migration package
+contains the projection and its forward identity-query repair.
+
+The [original qualification record](../checkpoints/PRISMATIC_ALIAS_DISCOVERY_QUALIFICATION_20261116.md)
+records the initial V2 reader tests. Current V4 qualification and publication
+receipts are in
+`C:/grookai_vault_operator_artifacts/prismatic_alias_discovery_20261116`.
+Use the V4 exact-pair preflight and official CLI package for this release.
+
+The source-backed180 approved aliases select
+`sv8pt5` for discovery, including its194 parents and14 stamped variants.
+Direct retained-object reads and existing ownership/history use their original
+identities. Fresh replay, populated upgrade, both SQL roles, anonymous HTTP,
+rollback, idempotence and complete schema/security comparison qualify the
+release. Production readback is recorded separately against the applied package.
+
+The [baseline record](../checkpoints/PRISMATIC_ALIAS_REPLAY_BASELINE_20261116.md)
+explains the explicit synthetic647-pair historical prerequisite. The original
+populated labs and failed receipts remain available for audit.
+
 ## Vendor inventory sale review — November 17, 2026
 
 Each native Vendor Mode inventory row opens the shared Review → Publish → Label
