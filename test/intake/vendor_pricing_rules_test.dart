@@ -327,6 +327,9 @@ void main() {
       await choose(tester, 'My price · fixed');
       await tester.enterText(find.byType(TextField), '2.50');
       await save(tester);
+      await tester.ensureVisible(find.text('Edit price'));
+      await tester.tap(find.text('Edit price'));
+      await tester.pumpAndSettle();
       await choose(tester, 'Vendor default · automatic');
       await save(tester);
       expect(appliedRevision, 4);
@@ -431,6 +434,9 @@ void main() {
       await save(tester);
       initial.complete(state(3, 'default'));
       await tester.pumpAndSettle();
+      await tester.ensureVisible(find.text('Edit price'));
+      await tester.tap(find.text('Edit price'));
+      await tester.pumpAndSettle();
       expect(find.byType(TextField), findsOneWidget);
       expect(
         tester.widget<TextField>(find.byType(TextField)).controller!.text,
@@ -463,12 +469,12 @@ void main() {
         find.textContaining('Sale saved. Close this sheet'),
         findsOneWidget,
       );
-      final field = tester.widget<DropdownButton<String>>(
-        find.byType(DropdownButton<String>),
-      );
+      expect(find.byType(DropdownButton<String>), findsNothing);
       expect(
-        field.items!.singleWhere((item) => item.value == 'default').enabled,
-        false,
+        tester
+            .widget<TextButton>(find.widgetWithText(TextButton, 'Edit price'))
+            .onPressed,
+        isNull,
       );
     },
   );

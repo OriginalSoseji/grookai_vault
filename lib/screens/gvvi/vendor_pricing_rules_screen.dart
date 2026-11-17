@@ -22,6 +22,8 @@ class _VendorPricingRulesScreenState extends State<VendorPricingRulesScreen> {
   String _rounding = 'up';
   String? _defaultId, _message, _example;
   bool _auto = false, _busy = false, _error = false;
+  bool _editorOpen = false, _advanced = false;
+  final _editorKey = GlobalKey();
   List<Map<String, dynamic>> get _rules =>
       ((_workspace?['rules'] as List?) ?? [])
           .map((r) => Map<String, dynamic>.from(r as Map))
@@ -125,10 +127,18 @@ class _VendorPricingRulesScreenState extends State<VendorPricingRulesScreen> {
     return definition;
   }
 
-  void _edit(Map<String, dynamic>? rule) {
+  void _edit(Map<String, dynamic>? rule, {bool open = true}) {
     setState(() {
+      _editorOpen = open;
+      _message = null;
+      _error = false;
       _editing = rule;
       final d = rule?['definition'] as Map?;
+      _advanced =
+          d != null &&
+          (d['flatMinor'] != 0 ||
+              d['minMinor'] != null ||
+              d['maxMinor'] != null);
       String amount(String key, String fallback) => d?[key] == null
           ? fallback
           : ((d![key] as num) / 100).toStringAsFixed(2);
@@ -141,6 +151,12 @@ class _VendorPricingRulesScreenState extends State<VendorPricingRulesScreen> {
       _rounding = d?['rounding'] as String? ?? 'up';
       _example = null;
     });
+    if (open) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        final editor = _editorKey.currentContext;
+        if (mounted && editor != null) Scrollable.ensureVisible(editor);
+      });
+    }
   }
 
   Widget _field(
@@ -179,201 +195,260 @@ class _VendorPricingRulesScreenState extends State<VendorPricingRulesScreen> {
       ],
     ),
     body: SafeArea(
-      child: ListView(
+      child: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
-        children: [
-          const Text(
-            'Set your default once. Automatic prices follow fresh market updates, including in Square. My price stays fixed until you choose a rule again.',
-          ),
-          if (_busy)
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 16),
-              child: LinearProgressIndicator(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const Text(
+              'Set your default once. Automatic prices follow fresh market updates, including in Square. My price stays fixed until you choose a rule again.',
             ),
-          if (_message != null)
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              child: Semantics(
-                liveRegion: true,
-                child: Text(
-                  _message!,
-                  style: TextStyle(
-                    color: _error ? Theme.of(context).colorScheme.error : null,
-                  ),
-                ),
-              ),
-            ),
-          if (_workspace != null) ...[
-            if (_workspace!['enabled'] != true)
+            if (_busy)
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 16),
-                child: Text(
-                  'Automatic repricing is paused. You can prepare presets. Existing prices are retained.',
-                ),
+                child: LinearProgressIndicator(),
               ),
-            const SizedBox(height: 20),
-            Text('Your default', style: Theme.of(context).textTheme.titleLarge),
-            const SizedBox(height: 12),
-            DropdownButtonFormField<String>(
-              key: ValueKey(_defaultId),
-              initialValue: _defaultId ?? '',
-              isExpanded: true,
-              decoration: const InputDecoration(
-                labelText: 'Default pricing preset',
-              ),
-              items: [
-                const DropdownMenuItem(
-                  value: '',
-                  child: Text('Choose a preset'),
-                ),
-                ..._rules.map(
-                  (r) => DropdownMenuItem(
-                    value: r['id'] as String,
-                    child: Text(r['name'] as String),
-                  ),
-                ),
-              ],
-              onChanged: _busy
-                  ? null
-                  : (v) => setState(() => _defaultId = v == '' ? null : v),
-            ),
-            SwitchListTile(
-              contentPadding: EdgeInsets.zero,
-              title: const Text('Use my default for new, unpriced cards'),
-              subtitle: const Text(
-                'New cards remain private until you choose For sale.',
-              ),
-              value: _auto,
-              onChanged: _busy || _defaultId == null
-                  ? null
-                  : (v) => setState(() => _auto = v),
-            ),
-            FilledButton(
-              onPressed: _busy || (_auto && _defaultId == null)
-                  ? null
-                  : () => _run(() async {
-                      _accept(
-                        await _service.saveSettings(
-                          defaultId: _defaultId,
-                          autoForNew: _auto,
-                          revision:
-                              (_workspace!['settings'] as Map)['revision']
-                                  as int,
-                        ),
-                      );
-                      _message =
-                          'Default saved. Existing My price cards keep their price.';
-                    }),
-              child: const Text('Save default'),
-            ),
-            const SizedBox(height: 28),
-            Text('Presets', style: Theme.of(context).textTheme.titleLarge),
-            if (_rules.isEmpty)
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 12),
-                child: Text('Create your first pricing preset below.'),
-              ),
-            ..._rules.map(
-              (r) => ListTile(
-                contentPadding: EdgeInsets.zero,
-                title: Text(r['name'] as String),
-                trailing: TextButton(
-                  onPressed: _busy ? null : () => _edit(r),
-                  child: const Text('Edit'),
-                ),
-              ),
-            ),
-            const Divider(height: 32),
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    _editing == null ? 'New preset' : 'Edit preset',
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                ),
-                if (_editing != null)
-                  TextButton(
-                    onPressed: _busy ? null : () => _edit(null),
-                    child: const Text('Cancel edit'),
-                  ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            _field('Preset name', _name, name: true),
-            _field(
-              'Percent above market',
-              _percent,
-              helper: 'Use a negative percentage for below market.',
-            ),
-            _field(
-              'USD adjustment',
-              _flat,
-              helper: 'Added after the percentage. Negative amounts subtract.',
-            ),
-            DropdownButtonFormField<String>(
-              key: ValueKey(_rounding),
-              initialValue: _rounding,
-              decoration: const InputDecoration(labelText: 'Rounding'),
-              items: const [
-                DropdownMenuItem(value: 'none', child: Text('No rounding')),
-                DropdownMenuItem(value: 'up', child: Text('Round up')),
-                DropdownMenuItem(value: 'down', child: Text('Round down')),
-                DropdownMenuItem(value: 'nearest', child: Text('Nearest')),
-              ],
-              onChanged: _busy ? null : (v) => setState(() => _rounding = v!),
-            ),
-            const SizedBox(height: 16),
-            _field(
-              'Round to USD',
-              _step,
-              helper: 'For example: 0.25, 0.50 or 1.00.',
-            ),
-            _field('Minimum USD (optional)', _min),
-            _field('Maximum USD (optional)', _max),
-            const Text(
-              'Fresh exact market → percentage → USD adjustment → rounding → minimum / maximum. Missing or stale references retain the last confirmed price. Only exact raw-card USD references are eligible.',
-            ),
-            const SizedBox(height: 16),
-            _field('Example market USD', _sample),
-            OutlinedButton(
-              onPressed: _busy
-                  ? null
-                  : () => _run(() async {
-                      final value = await _service.invoke('calculate', {
-                        'definition': _definition(),
-                        'marketAmount': _sample.text.trim(),
-                      });
-                      _example =
-                          'Example price: \$${((value['amountMinor'] as num) / 100).toStringAsFixed(2)}';
-                    }),
-              child: const Text('Preview rule'),
-            ),
-            if (_example != null)
+            if (_message != null)
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                child: Text(_example!),
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                child: Semantics(
+                  liveRegion: true,
+                  child: Text(
+                    _message!,
+                    style: TextStyle(
+                      color: _error
+                          ? Theme.of(context).colorScheme.error
+                          : null,
+                    ),
+                  ),
+                ),
               ),
-            FilledButton(
-              onPressed: _busy
-                  ? null
-                  : () => _run(() async {
-                      _accept(
-                        await _service.saveRule(
-                          name: _name.text.trim(),
-                          definition: _definition(),
-                          ruleId: _editing?['id'] as String?,
-                          revision: _editing?['revision'] as int?,
-                        ),
-                      );
-                      _edit(null);
-                      _message =
-                          'Preset saved. Rule-based cards update automatically.';
-                    }),
-              child: const Text('Save preset'),
-            ),
+            if (_workspace != null) ...[
+              if (_workspace!['enabled'] != true)
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 16),
+                  child: Text(
+                    'Automatic repricing is paused. You can prepare presets. Existing prices are retained.',
+                  ),
+                ),
+              const SizedBox(height: 20),
+              Text(
+                'Your default',
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              const SizedBox(height: 12),
+              DropdownButtonFormField<String>(
+                key: ValueKey(_defaultId),
+                initialValue: _defaultId ?? '',
+                isExpanded: true,
+                decoration: const InputDecoration(
+                  labelText: 'Default pricing preset',
+                ),
+                items: [
+                  const DropdownMenuItem(
+                    value: '',
+                    child: Text('Choose a preset'),
+                  ),
+                  ..._rules.map(
+                    (r) => DropdownMenuItem(
+                      value: r['id'] as String,
+                      child: Text(r['name'] as String),
+                    ),
+                  ),
+                ],
+                onChanged: _busy
+                    ? null
+                    : (v) => setState(() {
+                        _defaultId = v == '' ? null : v;
+                        _example = null;
+                      }),
+              ),
+              SwitchListTile(
+                contentPadding: EdgeInsets.zero,
+                title: const Text('Use my default for new, unpriced cards'),
+                subtitle: const Text(
+                  'New cards remain private until you choose For sale.',
+                ),
+                value: _auto,
+                onChanged: _busy || _defaultId == null
+                    ? null
+                    : (v) => setState(() => _auto = v),
+              ),
+              FilledButton(
+                onPressed: _busy || (_auto && _defaultId == null)
+                    ? null
+                    : () => _run(() async {
+                        _accept(
+                          await _service.saveSettings(
+                            defaultId: _defaultId,
+                            autoForNew: _auto,
+                            revision:
+                                (_workspace!['settings'] as Map)['revision']
+                                    as int,
+                          ),
+                        );
+                        _message =
+                            'Default saved. Existing My price cards keep their price.';
+                      }),
+                child: const Text('Save default'),
+              ),
+              if (!_editorOpen && _defaultId != null) ...[
+                const SizedBox(height: 20),
+                _field('Example market USD', _sample),
+                OutlinedButton(
+                  onPressed: _busy
+                      ? null
+                      : () => _run(() async {
+                          final rule = _rules.firstWhere(
+                            (r) => r['id'] == _defaultId,
+                          );
+                          final value = await _service.invoke('calculate', {
+                            'definition': rule['definition'],
+                            'marketAmount': _sample.text.trim(),
+                          });
+                          _example =
+                              'Example price: \$${((value['amountMinor'] as num) / 100).toStringAsFixed(2)} · Preview only';
+                        }),
+                  child: const Text('Preview default'),
+                ),
+                if (_example != null) Text(_example!),
+              ],
+              const SizedBox(height: 28),
+              Text('Presets', style: Theme.of(context).textTheme.titleLarge),
+              if (_rules.isEmpty)
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 12),
+                  child: Text(
+                    'Create a preset to choose how your prices follow market.',
+                  ),
+                ),
+              ..._rules.map(
+                (r) => ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(r['name'] as String),
+                  trailing: TextButton(
+                    onPressed: _busy ? null : () => _edit(r),
+                    child: const Text('Edit'),
+                  ),
+                ),
+              ),
+              if (!_editorOpen)
+                OutlinedButton.icon(
+                  onPressed: _busy ? null : () => _edit(null),
+                  icon: const Icon(Icons.add),
+                  label: const Text('New preset'),
+                ),
+              if (_editorOpen) ...[
+                Divider(key: _editorKey, height: 32),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      _editing == null ? 'New preset' : 'Edit preset',
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    TextButton(
+                      onPressed: _busy ? null : () => _edit(null, open: false),
+                      child: const Text('Cancel edit'),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                _field('Preset name', _name, name: true),
+                _field(
+                  'Percent above market',
+                  _percent,
+                  helper: 'Use a negative percentage for below market.',
+                ),
+                DropdownButtonFormField<String>(
+                  key: ValueKey(_rounding),
+                  initialValue: _rounding,
+                  isExpanded: true,
+                  decoration: const InputDecoration(labelText: 'Rounding'),
+                  items: const [
+                    DropdownMenuItem(value: 'none', child: Text('No rounding')),
+                    DropdownMenuItem(value: 'up', child: Text('Round up')),
+                    DropdownMenuItem(value: 'down', child: Text('Round down')),
+                    DropdownMenuItem(value: 'nearest', child: Text('Nearest')),
+                  ],
+                  onChanged: _busy
+                      ? null
+                      : (v) => setState(() {
+                          _rounding = v!;
+                          _example = null;
+                        }),
+                ),
+                const SizedBox(height: 16),
+                _field(
+                  'Round to USD',
+                  _step,
+                  helper: 'For example: 0.25, 0.50 or 1.00.',
+                ),
+                TextButton(
+                  onPressed: _busy
+                      ? null
+                      : () => setState(() => _advanced = !_advanced),
+                  child: Text(
+                    _advanced
+                        ? 'Hide more options'
+                        : 'More options · adjustments and limits',
+                  ),
+                ),
+                if (_advanced) ...[
+                  _field(
+                    'USD adjustment',
+                    _flat,
+                    helper:
+                        'Added after the percentage. Negative amounts subtract.',
+                  ),
+                  _field('Minimum USD (optional)', _min),
+                  _field('Maximum USD (optional)', _max),
+                ],
+                const Text(
+                  'Fresh exact market → percentage → USD adjustment → rounding → minimum / maximum. Missing or stale references retain the last confirmed price. Only exact raw-card USD references are eligible.',
+                ),
+                const SizedBox(height: 16),
+                _field('Example market USD', _sample),
+                OutlinedButton(
+                  onPressed: _busy
+                      ? null
+                      : () => _run(() async {
+                          final value = await _service.invoke('calculate', {
+                            'definition': _definition(),
+                            'marketAmount': _sample.text.trim(),
+                          });
+                          _example =
+                              'Example price: \$${((value['amountMinor'] as num) / 100).toStringAsFixed(2)}';
+                        }),
+                  child: const Text('Preview rule'),
+                ),
+                if (_example != null)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    child: Text(_example!),
+                  ),
+                FilledButton(
+                  onPressed: _busy
+                      ? null
+                      : () => _run(() async {
+                          _accept(
+                            await _service.saveRule(
+                              name: _name.text.trim(),
+                              definition: _definition(),
+                              ruleId: _editing?['id'] as String?,
+                              revision: _editing?['revision'] as int?,
+                            ),
+                          );
+                          _edit(null, open: false);
+                          _message =
+                              'Preset saved. Rule-based cards update automatically.';
+                        }),
+                  child: const Text('Save preset'),
+                ),
+              ],
+            ],
           ],
-        ],
+        ),
       ),
     ),
   );

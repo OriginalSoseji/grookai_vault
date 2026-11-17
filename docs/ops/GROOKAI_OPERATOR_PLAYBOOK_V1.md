@@ -1,5 +1,33 @@
 # Grookai Operator Playbook V1
 
+## Vendor Review → Publish → Label — November 16, 2026
+
+The native exact-copy sale sheet and website copy workspace keep card identity
+visible through review, explicit publication and the saved label action. Keyboard
+Done closes the native price keyboard; publication requires the sale button.
+Keep private and Cancel changes only leave the editor. They never unpublish an
+existing listing. After a confirmed save, Edit price reopens the same copy;
+Add another card enters search. An uncertain save requires reloading that copy
+before another submission. Pending Square acknowledgement never claims checkout
+readiness. Existing owner writers, revision checks and Square recovery remain
+authoritative; no new migration or production fixture is needed.
+Nested add-card review defers Add another until both sheets have closed and holds
+the caller's post-add navigation until search returns. Exact finish presentation
+uses the existing public printing reader, matched to both the copy's printing ID
+and canonical parent, without delaying price editing or inferring a finish.
+
+Pricing opens with the vendor default, new-card opt-in and a server-calculated
+example. Edit or New preset opens the full editor; More options retains fixed
+adjustments and minimum/maximum limits even when collapsed. Cancel never writes.
+Examples do not change inventory. Labels retain the current printer preference,
+full canonical set name and permanent QR, without price, set code or condition;
+previewing never sends a print job. Qualify this phase with the sale/pricing
+widget tests and local owner browser workflow before deployment and a higher,
+same-signer in-place Samsung update. Preserve login and Developer Options.
+
+Release evidence: `C:/grookai_vault_operator_artifacts/vendor_sale_flow_20261116/`.
+Repeatable checks: [Vendor sale flow verification](../playbooks/VENDOR_SALE_FLOW_VERIFICATION_V1.md).
+
 ## Samsung vendor navigation composition — November 15, 2026
 
 The website Vendor Mode navigation is live from PR923. Before installing its
