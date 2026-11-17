@@ -7,7 +7,7 @@ QR and Square reconciliation retain authority. This change needs no migration.
 Run the focused native checks:
 
 ```powershell
-flutter test test/intake/vault_copy_sale_sheet_test.dart test/intake/vendor_pricing_rules_test.dart test/intake/vendor_pricing_settings_screen_test.dart test/intake/vault_add_review_sheet_test.dart
+flutter test test/vendor_mode_workspace_test.dart test/intake/vault_copy_sale_sheet_test.dart test/intake/vendor_pricing_rules_test.dart test/intake/vendor_pricing_settings_screen_test.dart test/intake/vault_add_review_sheet_test.dart
 ```
 
 These cover explicit publication, keyboard Done without a write, cancelled public
@@ -17,6 +17,15 @@ fixed-price protection, quote
 refresh, external revision conflicts, asynchronous exact-finish display without
 overwriting a typed price, server-only default examples, collapsed
 adjustments/limits and 320px layout with 200% text.
+
+Vendor Mode row review additionally verifies the selected GVVI, exact-instance
+readback, retained search and scroll position, other copies' drafts, pending and
+failed inline-save exclusion, duplicate-open prevention, retryable read failures,
+identity mismatch rejection and removal of a copy observed inactive. Opening or
+cancelling review must not invoke an inventory writer. On the Samsung, open
+Review sale from a filtered inventory row and cancel back to the same list.
+Resolve a pre-review background read after the exact-copy refresh and verify
+that the newer confirmed price remains visible.
 
 The browser check uses an existing unlinked, isolated vendor-pricing runtime lab
 with its synthetic owner and four copies, unchanged governed reader and current
