@@ -533,8 +533,6 @@ export function partitionPokemonMappingAuthorityFinishCandidatesV1(candidates) {
   };
 }
 
-
-
 export const POKEMON_MAPPING_AUTHORITY_BASE_FINISH_PROJECTION_V1 =
   'POKEMON_MAPPING_AUTHORITY_BASE_FINISH_PROJECTION_V1';
 
@@ -599,6 +597,10 @@ export function projectPokemonMappingAuthorityBaseFinishCandidatesV1({
       continue;
     }
     if (reviewSubtypes.length === 1) {
+      if (!POKEMON_MAPPING_AUTHORITY_FINISHES_V1.has(reviewSubtypes[0])) {
+        hold(candidate, 'mapping_authority_source_finish_not_supported');
+        continue;
+      }
       eligible.push(candidate);
       projectedExactCandidates.push(exact);
       continue;

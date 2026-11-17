@@ -189,8 +189,6 @@ test("multi-finish products are held without stalling unrelated authority candid
   });
 });
 
-
-
 test("base finish projection advances a parent mapping while retaining Reverse Holo evidence", () => {
   const review = {
     source_product_id: 726510,
@@ -236,6 +234,28 @@ test("base finish projection advances a parent mapping while retaining Reverse H
     source_subtype_name: "Reverse Holofoil",
     reason: "reverse_holo_printing_authority_not_proven",
   }]);
+
+  const unsupported = projectPokemonMappingAuthorityBaseFinishCandidatesV1({
+    reviewCandidates: [{
+      source_product_id: 700002,
+      source_subtypes: ["Cosmos Holofoil"],
+      supporting_gap_observation_ids: ["obs-cosmos"],
+    }],
+    exactCandidates: [{
+      source_product_id: 700002,
+      source_subtypes: ["Cosmos Holofoil"],
+      supporting_gap_observation_ids: ["obs-cosmos"],
+    }],
+    gapRows: [{
+      source_observation_id: "obs-cosmos",
+      source_product_id: 700002,
+      source_subtype_name: "Cosmos Holofoil",
+    }],
+  });
+  assert.equal(unsupported.eligible.length, 0);
+  assert.deepEqual(unsupported.held_by_reason, {
+    mapping_authority_source_finish_not_supported: 1,
+  });
 });
 
 test("operators can distinguish an empty review from unavailable authority packaging", () => {
