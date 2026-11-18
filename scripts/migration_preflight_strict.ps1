@@ -19,6 +19,8 @@ param(
 
   [string[]]$ExpectedLocalOnlyIds = @(),
 
+  [switch]$PokemonGoAliasDiscoveryBaselineV1,
+  [switch]$PokemonGoAliasDiscoveryReleaseV1,
   [switch]$PaldeanAliasDiscoveryBaselineV1,
   [switch]$PaldeanAliasDiscoveryReleaseV1,
   [switch]$PaldeanAliasDiscoveryBaselineV3,
@@ -125,6 +127,28 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($PokemonGoAliasDiscoveryBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','PokemonGoAliasDiscoveryBaselineV1','AuditOutDir') }).Count -gt 0 -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Pokemon GO baseline V1 is audit-only with a new bounded directory and canonical502 target.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_pokemon_go_alias_baseline_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($PokemonGoAliasDiscoveryReleaseV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','PokemonGoAliasDiscoveryReleaseV1','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261118050000') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261118050000') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Pokemon GO release V1 requires the exact503 discovery candidate, a new audit directory and canonical502 baseline.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_pokemon_go_alias_release_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
 
 if ($PaldeanAliasDiscoveryBaselineV3) {
   if ($Phase -ne 'AuditLinkedSchema' -or

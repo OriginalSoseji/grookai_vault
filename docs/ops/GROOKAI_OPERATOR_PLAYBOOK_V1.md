@@ -1,5 +1,18 @@
 # Prismatic identity query guard V5 — November17,2026
 
+Pokemon GO starts at502 after PR945. The owner selected only the approved88
+`swsh10.5` to `pgo` aliases; preserve90 canonical parents, both stamped Mewtwo
+identities and every retained ID/reference. Use audit-only
+`-PokemonGoAliasDiscoveryBaselineV1`, followed by the separate exact
+`-PokemonGoAliasDiscoveryReleaseV1` scope for20261118050000. Revision2 limits
+discovery membership to the requested set only for blank typed queries. Require
+new503 replay, populated502 upgrade, all449 local fingerprints, both roles,
+actual full-size function proof, normal managed checks and hosted review before
+the frozen503-file official CLI apply. Keep three-second API limits and all
+unsuccessful receipts. Production/API/schema/security/data and canonical/legacy
+website readback precede closure. See
+[the Pokemon GO contract](../contracts/POKEMON_GO_ALIAS_DISCOVERY_READ_REPAIR_V1.md).
+
 Paldean V3 starts at501. V2 is applied and its source is immutable; actual
 anonymous blank typed-set browsing still timed out. Use the audit-only
 `-PaldeanAliasDiscoveryBaselineV3`, then the separately bound exact
