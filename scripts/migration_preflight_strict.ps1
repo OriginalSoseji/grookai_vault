@@ -21,6 +21,8 @@ param(
 
   [switch]$PaldeanAliasDiscoveryBaselineV1,
   [switch]$PaldeanAliasDiscoveryReleaseV1,
+  [switch]$PaldeanAliasDiscoveryBaselineV2,
+  [switch]$PaldeanAliasDiscoveryReleaseV2,
   [switch]$PrismaticAliasDiscoveryBaselineV1,
   [switch]$PrismaticAliasDiscoveryBaselineV2,
   [switch]$PrismaticAliasDiscoveryReleaseV3,
@@ -121,6 +123,28 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($PaldeanAliasDiscoveryBaselineV2) {
+  if ($Phase -ne 'AuditLinkedSchema' -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','PaldeanAliasDiscoveryBaselineV2','AuditOutDir') }).Count -gt 0 -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Paldean baseline V2 is audit-only with a new bounded directory and canonical500 target.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_paldean_alias_baseline_v2.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($PaldeanAliasDiscoveryReleaseV2) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','PaldeanAliasDiscoveryReleaseV2','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261118021500') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261118021500') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Paldean release V2 requires the exact501 cache candidate, a new audit directory and canonical500 baseline.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_paldean_alias_release_v2.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
 
 if ($PaldeanAliasDiscoveryBaselineV1) {
   if ($Phase -ne 'AuditLinkedSchema' -or

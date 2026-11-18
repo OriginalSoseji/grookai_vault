@@ -1,6 +1,16 @@
 # Prismatic identity query guard V5 — November17,2026
 
-Production is at499 after the completed Prismatic repair (PR942). Its release
+Paldean V2 starts at500 after the applied catalog projection. Its data/schema
+readback matches all120 protected tables and the qualified package; identity
+RPC timing requires the forward cache in `20261118021500`. Use only
+`-PaldeanAliasDiscoveryBaselineV2` for the500 starting audit, followed by the
+separate exact `-PaldeanAliasDiscoveryReleaseV2` PrePush scope. Require new501
+replay, populated500 upgrade, unchanged449 local fingerprints, real helper/RPC
+query probes, normal commit/push checks and the fixed501-file CLI package.
+Never edit any applied SQL or relax the three-second API limit. See
+[the V2 contract](../contracts/PALDEAN_ALIAS_DISCOVERY_READ_REPAIR_V2.md).
+
+The preceding499-to500 release started after Prismatic (PR942). Its release
 gate is consumed and all499 applied SQL files remain immutable. Paldean Fates
 preparation uses `-PaldeanAliasDiscoveryBaselineV1 -Phase AuditLinkedSchema`
 with a new private `-AuditOutDir` under the Paldean artifact root. It verifies
