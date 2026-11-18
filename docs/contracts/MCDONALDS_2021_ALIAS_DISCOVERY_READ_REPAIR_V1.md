@@ -1,0 +1,15 @@
+# McDonald's Collection 2021 alias discovery repair V1
+
+The owner requested the next duplicate repair after Pokemon GO. Start at canonical production503. All503 applied migration files remain immutable. The sole prospective migration is `20261118080000_mcdonalds_2021_alias_discovery_v1.sql`.
+
+Use only the25 active approved `2021swsh` to `mcd21` aliases from `collectr_catalog_review_20261009`, classification hash `87c1916e78103667c75a5b68e1bd235dd41257852597107b2298b1d6a69fa0b7` and collision hash `3d558f036afb0d0080819c6976b1343018c9750585ba4ada9f6383a16823cfc4`. Require current source/target identity, game, domain, visibility and no active alias chain. Hide each legacy discovery row only while its evidence is eligible. Resolve the entire legacy set only with exactly25 eligible pairs and25 raw legacy parents.
+
+Preserve every parent, physical printing, public identifier, ownership copy, external mapping and market record. Existing Prismatic194, Paldean248 and Pokemon GO90 discovery parents and their special variants remain unchanged. Other alias families are outside this repair.
+
+Allowed changes: four discovery views, `resolve_catalog_discovery_set_code_v1`, `get_public_catalog_sets_v2`, `get_search_set_catalog_v1`, `search_print_identity_v1`, and additive `get_mcdonalds_2021_discovery_exclusions_v1`. Preserve owners, signatures, grants and RLS. The stable definer helper uses an empty search path, revokes PUBLIC execute and grants only established reader roles. Preserve all prior helpers, hashed exclusions, scoped blank-query membership cache, document branch guards, nonempty query seed/ranking behavior, and exact retained GV coordinates.
+
+`-Mcdonalds2021AliasDiscoveryBaselineV1` permits only AuditLinkedSchema at503: exact source history/ledger, canonical project/maturity, complete four-schema/security comparison against the qualified503 package. Continue the explicit647-pair historical prerequisite and existing three-table column-order handling. Do not claim an ordinary empty-shadow pull succeeded, execute generated differences, overwrite consumed receipts, or reset a populated lab.
+
+A separate exact503-to504 release gate must bind the candidate, genuine fresh504 CLI reset/replay, populated503 upgrade, rollback/no-op/idempotence, both reader roles, invalid/partial evidence, finishes, pagination, mixed tokens, exact IDs, owned-copy continuity, all449 local fingerprints and complete schema/security comparisons. Compare the actual replacement identity function at production scale in a rolled-back local transaction. Retain failed evidence and the three-second API limit.
+
+Normal managed commit/push checks, platform coverage, clean committed source, hosted review/checks, exact source/proof pins and a frozen504-file official CLI package precede apply. Independent readback must prove ledger504, API/web routing equivalence, continuity of earlier repairs, all120 protected production fingerprints and full schema/security parity. Record actual merge/deployment before closure. Preserve evidence volumes and shared verification services.

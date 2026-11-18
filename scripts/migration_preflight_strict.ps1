@@ -19,6 +19,8 @@ param(
 
   [string[]]$ExpectedLocalOnlyIds = @(),
 
+  [switch]$Mcdonalds2021AliasDiscoveryBaselineV1,
+  [switch]$Mcdonalds2021AliasDiscoveryReleaseV1,
   [switch]$PokemonGoAliasDiscoveryBaselineV1,
   [switch]$PokemonGoAliasDiscoveryReleaseV1,
   [switch]$PaldeanAliasDiscoveryBaselineV1,
@@ -127,6 +129,28 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($Mcdonalds2021AliasDiscoveryBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','Mcdonalds2021AliasDiscoveryBaselineV1','AuditOutDir') }).Count -gt 0 -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'McDonalds 2021 baseline V1 is audit-only with a new bounded directory and canonical503 target.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_mcdonalds_2021_alias_baseline_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($Mcdonalds2021AliasDiscoveryReleaseV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','Mcdonalds2021AliasDiscoveryReleaseV1','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261118080000') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261118080000') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'McDonalds 2021 release V1 requires the exact504 discovery candidate, a new audit directory and canonical503 baseline.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_mcdonalds_2021_alias_release_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
 
 if ($PokemonGoAliasDiscoveryBaselineV1) {
   if ($Phase -ne 'AuditLinkedSchema' -or
