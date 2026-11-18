@@ -81,6 +81,40 @@ and [the checkpoint](../checkpoints/LATIOS_ALIAS_DISCOVERY_20261118.md).
 
 # Grookai Operator Playbook V1
 
+## Native condition reference candidate — November 18, 2026
+
+Web condition references are deployed through PR946/main
+`17f0f81aaa986968a870a9dfa1f316e2e739dacf`; preserve its release receipts and
+do not repeat the completed intake or hosting promotion. The native candidate
+is isolated at `C:/grookai_native_condition_20261118` on
+`codex/native-condition-pricing-20261118`, based on PR948/main `66d09f6299`.
+Read [the native checkpoint](../checkpoints/pricing/NATIVE_CONDITION_PRICING_20261118.md)
+and [V2](../contracts/TCGTRACKING_CONDITION_PRICING_V2.md).
+
+Native Add review and active raw-copy Vendor Mode use the same authenticated
+web reader with the existing SDK session. Debug references are loopback-only;
+profile/release accepts the canonical HTTPS origin. No direct provider request,
+percentage conversion or valuation cutover is added. Failed condition/printing
+saves restore the matching reference; graded entries omit it.
+
+Replay the checkpoint's focused tests and dedicated local Android driver. The
+existing QA AVD uses explicit `emulator-5582` and the isolated locked-acceptance
+debug package, with synthetic HTTP/session data and no inventory writes. Preserve
+the physical Samsung application. Screenshots/logs live under the candidate's
+`artifacts/native_condition_pricing_v1/20261118/`. Normal managed full shipcheck
+hooks remain required; local Windows Sharp worker bounds are one thread, as
+qualified for the web release. A source candidate/local fixture pass does not
+establish production-native acceptance, iOS qualification or store distribution.
+
+The live QA549 follow-up retained the Samsung's account/data and verified real
+NM2.51 / LP1.16 through the production condition reader. Cancelling Add review
+exposed the existing Search drawer's stale busy props; the follow-up refreshes
+that mounted drawer on the cancellation return path. Preserve QA549 and its
+separate CI-signed production artifact as superseded evidence, and qualify a
+higher same-signer build before advancing. The checkpoint's private
+`release-preparation/` receipts track this progress; never replay installation
+intents or infer store distribution from either APK.
+
 ## Condition pricing release candidate — November 17, 2026
 
 Use `C:/grookai_condition_release_20261117` on

@@ -18,6 +18,8 @@ import '../../services/sealed/owned_sealed_service_v1.dart';
 import '../../widgets/vault/owned_sealed_panel.dart';
 import '../../widgets/vault/vendor_workspace_navigation.dart';
 import '../../widgets/vault/vault_copy_sale_sheet.dart';
+import '../../services/pricing/condition_price_service.dart';
+import '../../widgets/pricing/condition_price_panel.dart';
 import '../square/square_screen.dart';
 
 enum _VendorWorkspaceFilter {
@@ -38,10 +40,12 @@ class VendorPricingWorkspaceScreen extends StatefulWidget {
   const VendorPricingWorkspaceScreen({
     this.service = const VendorPricingWorkspaceService(),
     this.saleSheetOpener = showVaultCopySaleSheet,
+    this.conditionPriceReader,
     super.key,
   });
 
   final VendorPricingWorkspaceService service;
+  final ConditionPriceReaderFactory? conditionPriceReader;
   final Future<bool> Function(BuildContext context, String gvviId)
   saleSheetOpener;
 
@@ -58,6 +62,8 @@ class _VendorPricingWorkspaceScreenState
   final Set<String> _busyIds = {};
   final Map<String, String> _errors = {};
   final Set<String> _savedIds = {};
+  final Map<String, String> _pendingConditions = {};
+  final Map<String, String> _pendingPrintings = {};
 
   List<VendorPricingWorkspaceRow> _rows = const [];
   List<VendorWorkspaceSection> _sections = const [];
@@ -421,22 +427,34 @@ class _VendorPricingWorkspaceScreenState
     VendorPricingWorkspaceRow row,
     String condition,
   ) async {
-    await _runMutation(
-      row,
-      () => widget.service.saveCondition(row: row, condition: condition),
-    );
+    setState(() => _pendingConditions[row.instanceId] = condition);
+    try {
+      await _runMutation(
+        row,
+        () => widget.service.saveCondition(row: row, condition: condition),
+      );
+    } finally {
+      if (mounted) setState(() => _pendingConditions.remove(row.instanceId));
+    }
   }
 
   Future<void> _savePrinting(
     VendorPricingWorkspaceRow row,
     String cardPrintingId,
   ) async {
-    await _runMutation(
-      row,
-      () =>
-          widget.service.savePrinting(row: row, cardPrintingId: cardPrintingId),
-      successMessage: 'Variant saved.',
-    );
+    setState(() => _pendingPrintings[row.instanceId] = cardPrintingId);
+    try {
+      await _runMutation(
+        row,
+        () => widget.service.savePrinting(
+          row: row,
+          cardPrintingId: cardPrintingId,
+        ),
+        successMessage: 'Variant saved.',
+      );
+    } finally {
+      if (mounted) setState(() => _pendingPrintings.remove(row.instanceId));
+    }
   }
 
   Future<void> _saveWallVisibility(
@@ -1056,7 +1074,15 @@ class _VendorPricingWorkspaceScreenState
                                         key: Key(
                                           'vendor_row_${row.instanceId}',
                                         ),
-                                        row: row,
+                                        row: row.copyWith(
+                                          conditionLabel:
+                                              _pendingConditions[row
+                                                  .instanceId],
+                                          cardPrintingId:
+                                              _pendingPrintings[row.instanceId],
+                                        ),
+                                        conditionPriceReader:
+                                            widget.conditionPriceReader,
                                         sections: _sections,
                                         controller:
                                             _priceControllers[row.instanceId]!,
@@ -1642,6 +1668,7 @@ class _VendorSecondaryFilterSheet extends StatelessWidget {
 class _VendorInventoryRow extends StatelessWidget {
   const _VendorInventoryRow({
     required this.row,
+    this.conditionPriceReader,
     required this.sections,
     required this.controller,
     required this.busy,
@@ -1663,6 +1690,7 @@ class _VendorInventoryRow extends StatelessWidget {
   static const _conditions = ['NM', 'LP', 'MP', 'HP', 'DMG'];
 
   final VendorPricingWorkspaceRow row;
+  final ConditionPriceReaderFactory? conditionPriceReader;
   final List<VendorWorkspaceSection> sections;
   final TextEditingController controller;
   final bool busy;
@@ -1963,6 +1991,14 @@ class _VendorInventoryRow extends StatelessWidget {
             ),
           ],
         ),
+        if (!row.isGraded) ...[
+          const SizedBox(height: 10),
+          ConditionPricePanel(
+            printingId: row.cardPrintingId,
+            condition: condition,
+            createReader: conditionPriceReader,
+          ),
+        ],
       ],
     );
   }

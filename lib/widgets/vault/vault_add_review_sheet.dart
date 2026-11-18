@@ -11,6 +11,8 @@ import '../../services/public/jungle_edition_resolution_service.dart';
 import 'vault_printing_picker.dart';
 import 'vault_copy_sale_sheet.dart';
 import '../../screens/vault/slab_upgrade_screen.dart';
+import '../../services/pricing/condition_price_service.dart';
+import '../pricing/condition_price_panel.dart';
 
 /// Keeps the caller's post-add navigation behind an explicitly requested search.
 /// The intake modal must finish first; neither nested sheet pushes over it.
@@ -89,12 +91,14 @@ class VaultAddReviewSheet extends StatefulWidget {
     this.service,
     this.initialAcquiredOn,
     this.onAddAnother,
+    this.conditionPriceReader,
   });
   final String cardPrintId, gvId, name, setName, printingId, finish;
   final String? imageUrl;
   final IntakeService? service;
   final DateTime? initialAcquiredOn;
   final VoidCallback? onAddAnother;
+  final ConditionPriceReaderFactory? conditionPriceReader;
   @override
   State<VaultAddReviewSheet> createState() => _VaultAddReviewSheetState();
 }
@@ -364,6 +368,14 @@ class _VaultAddReviewSheetState extends State<VaultAddReviewSheet> {
                 ],
               ),
               const SizedBox(height: 10),
+              if (!_graded) ...[
+                ConditionPricePanel(
+                  printingId: widget.printingId,
+                  condition: _condition,
+                  createReader: widget.conditionPriceReader,
+                ),
+                const SizedBox(height: 10),
+              ],
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 child: Row(
