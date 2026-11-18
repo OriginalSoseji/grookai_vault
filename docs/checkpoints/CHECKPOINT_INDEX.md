@@ -1,5 +1,7 @@
 # CHECKPOINT_INDEX
 
+- [NATIVE_CONDITION_PRICING_20261118](pricing/NATIVE_CONDITION_PRICING_20261118.md) - `2026-11-18` - Native exact-condition reference candidate follows Add to Vault and active raw-copy controls through the deployed reader; local synthetic Android/transport/widget proof, existing valuations preserved, native distribution remains separate
+
 - `SEALED_OWNERSHIP_SCHEMA_APPLIED_20260907` - `2026-09-07` - Four approved migrations committed atomically; 391/391 ledger parity, empty reconciled schema diff and 888 security objects match; 3,401 copies unchanged; ownership disabled; client deployment/canary remain
 
 - `SEALED_OWNERSHIP_RELEASE_PREFLIGHT_20260907` - `2026-09-07` - Live read-only ledger/data preconditions pass; inherited service-role grants caught and removed before production; 97 targeted contracts, 36 SQL scenarios and fresh replay pass; replacement frozen plan and production rollout remain gated

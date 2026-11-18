@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:grookai_vault/services/pricing/condition_price_service.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -6,6 +7,85 @@ import 'package:grookai_vault/screens/gvvi/vendor_pricing_workspace_screen.dart'
 import 'package:grookai_vault/services/gvvi/vendor_pricing_workspace_service.dart';
 
 void main() {
+  testWidgets(
+    'exact references follow pending condition and printing and restore failed saves',
+    (tester) async {
+      final service = _FakeVendorService(
+        VendorPricingWorkspaceData(
+          rows: [_row(instanceId: 'reference-copy', askingPrice: 20)],
+          sections: const [],
+        ),
+      );
+      final requests = <(String, String)>[];
+      await tester.pumpWidget(
+        MaterialApp(
+          home: VendorPricingWorkspaceScreen(
+            service: service,
+            conditionPriceReader: () => _ReferencePrices(requests),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('2.51'), findsOneWidget);
+      final pending = Completer<VendorPricingWorkspaceRow>();
+      service.pendingConditionSave = pending;
+      final field = find.byKey(const Key('vendor_condition_reference-copy'));
+      await tester.ensureVisible(field);
+      await tester.tap(field);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('LP').last);
+      await tester.pump();
+      await tester.pump();
+      expect(find.text('1.16'), findsOneWidget);
+      expect(find.text('2.51'), findsNothing);
+      pending.completeError(StateError('fixture save failed'));
+      await tester.pumpAndSettle();
+      expect(find.text('2.51'), findsOneWidget);
+      expect(find.text('1.16'), findsNothing);
+      expect(
+        tester.widget<DropdownButtonFormField<String>>(field).initialValue,
+        'NM',
+      );
+      expect(requests, [
+        ('printing-reference-copy', 'NM'),
+        ('printing-reference-copy', 'LP'),
+        ('printing-reference-copy', 'NM'),
+      ]);
+      expect(service.priceSaves, isEmpty);
+      expect(
+        tester
+            .widget<TextField>(
+              find.byKey(const Key('vendor_price_reference-copy')),
+            )
+            .controller!
+            .text,
+        '20.00',
+      );
+      final printingSave = Completer<VendorPricingWorkspaceRow>();
+      service.pendingPrintingSave = printingSave;
+      final printingField = find.byKey(
+        const Key('vendor_printing_reference-copy'),
+      );
+      await tester.ensureVisible(printingField);
+      await tester.pumpAndSettle();
+      await tester.tap(printingField);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Reverse Holo').last);
+      await tester.pump();
+      await tester.pump();
+      expect(find.text('5.34'), findsOneWidget);
+      expect(find.text('2.51'), findsNothing);
+      printingSave.completeError(StateError('fixture printing save failed'));
+      await tester.pumpAndSettle();
+      expect(find.text('2.51'), findsOneWidget);
+      expect(find.text('5.34'), findsNothing);
+      expect(requests.skip(3), [
+        ('printing-reverse-reference-copy', 'NM'),
+        ('printing-reference-copy', 'NM'),
+      ]);
+      expect(tester.takeException(), isNull);
+    },
+  );
   testWidgets(
     'sale review refreshes the selected copy and retains search and scroll',
     (tester) async {
@@ -874,6 +954,8 @@ class _FakeVendorService extends VendorPricingWorkspaceService {
   int loadCount = 0;
   String? copyLoadError;
   Completer<VendorPricingWorkspaceRow>? pendingPriceSave;
+  Completer<VendorPricingWorkspaceRow>? pendingConditionSave;
+  Completer<VendorPricingWorkspaceRow>? pendingPrintingSave;
   Completer<VendorPricingWorkspaceData>? pendingLoad;
 
   @override
@@ -912,6 +994,7 @@ class _FakeVendorService extends VendorPricingWorkspaceService {
     required String condition,
   }) async {
     conditionSaves.add((row.instanceId, condition));
+    if (pendingConditionSave != null) return pendingConditionSave!.future;
     return row.copyWith(conditionLabel: condition);
   }
 
@@ -921,6 +1004,7 @@ class _FakeVendorService extends VendorPricingWorkspaceService {
     required String cardPrintingId,
   }) async {
     printingSaves.add((row.instanceId, cardPrintingId));
+    if (pendingPrintingSave != null) return pendingPrintingSave!.future;
     final option = row.printingOptions.firstWhere(
       (value) => value.id == cardPrintingId,
     );
@@ -958,6 +1042,31 @@ class _FakeVendorService extends VendorPricingWorkspaceService {
   }) async {
     dispositions.add((row.instanceId, submission));
   }
+}
+
+class _ReferencePrices implements ConditionPriceReader {
+  _ReferencePrices(this.requests);
+  final List<(String, String)> requests;
+  @override
+  Future<ConditionPriceReference> read(
+    String printingId,
+    String condition,
+  ) async {
+    requests.add((printingId, condition));
+    return ConditionPriceReference(
+      printingId: printingId,
+      condition: condition,
+      amount: printingId.contains('reverse')
+          ? 5.34
+          : condition == 'NM'
+          ? 2.51
+          : 1.16,
+      updatedAt: DateTime.utc(2026, 11, 17),
+    );
+  }
+
+  @override
+  void dispose() {}
 }
 
 VendorPricingWorkspaceRow _row({

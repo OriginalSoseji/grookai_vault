@@ -1,7 +1,8 @@
 # TCGTracking condition pricing V2
 
-Status: Active implementation contract, November 17, 2026. Source candidate;
-not deployed. This version extends V1 private inspection to signed-in collector
+Status: Active implementation contract. Web deployed November 18, 2026 through
+PR946 / main `17f0f81aaa986968a870a9dfa1f316e2e739dacf`; native integration is a
+separate source candidate. This version extends V1 private inspection to signed-in collector
 condition references and records the owner's source-use clarification.
 
 ## Owner decision and supersession
@@ -78,6 +79,41 @@ Confidence is medium when available and unavailable otherwise. Since the feed
 does not specify currency, retain null currency, an unverified USD hint and a
 visible "USD assumed" label; this uncertainty does not stop source integration.
 Preserve shared fonts/theme tokens and 8px functional surfaces.
+
+## Native reference client — November 18, 2026
+
+Flutter uses `ConditionPriceService` with the existing Supabase SDK session's
+access token against the same `/api/condition-pricing/v1` endpoint. This is an
+additional reference display, not a replacement for the canonical market view.
+No raw provider or Supabase REST pricing requests, client pricing calculations,
+service keys, new source imports or condition multipliers belong in this client.
+
+The transport binds the response to its exact printing/condition, version,
+reference lane, source and currency uncertainty. Require positive finite numeric
+amounts and a provider timestamp for available values. Bound responses to 32 KiB
+and the whole operation to 25 seconds; disable redirects, use no-store and discard
+responses if the account changes. Native profile/release uses the existing
+canonical HTTPS origin. Debug fixtures use loopback only (including Android's
+emulator host alias); never send a development session to production or an
+arbitrary configured origin.
+
+The shared `ConditionPricePanel` follows manual/scanned Add to Vault review and
+the active raw-copy Vendor Mode condition/printing controls. It cancels prior
+transports, rejects late/mismatched results, clears old amounts immediately and
+supports retry. Unknown/unresolved selections perform no price request. Slab
+review and graded inventory omit the panel. Existing archive filtering remains
+in the instance-backed workspace reader. Pending condition/printing edits follow
+the selected controls and roll back the control/reference after save failure.
+Place inventory references below existing copy actions to preserve their position
+while a response loads. Never copy the reference into an asking-price field,
+market label, variance calculation or Vault total.
+
+Native qualification includes parser/transport boundaries, actual review and
+workspace controls, failed saves, enlarged-text layouts and dark/light rendering.
+The local Android journey uses an isolated debug application, loopback HTTP and
+synthetic sessions/DTOs; it must not create inventory or use production credentials.
+This fixture proof does not establish authenticated production-native acceptance,
+store distribution or iOS acceptance. Record those separately for any release.
 
 ## Writes and release
 
