@@ -1432,3 +1432,18 @@ PrePush also binds actual local-Auth HTTP review/stock regressions, the renewed
 sale/refund/return proof, rollback authority tests and actual Sandbox evidence.
 No populated lab is reset, generated diff executed, private grant widened or
 production feature enabled by this qualification.
+
+
+## Latios search forward release V3 — November18
+
+The separately named Latios baseline V3 is schema/security audit-only at505;
+known API failures remain failed evidence. Release V3 admits only AuditLinkedSchema
+and exact-ID PrePush for20261118140000/20261118143000, canonical505-to507.
+V1/V2 scopes retain their earlier exact targets. Preserve all applied505 and
+locally replayed506 bytes. New507 caches fallback text without changing tokens,
+ranking or the three-second API budget. Full reset/replay with the647 historical
+prerequisites, populated506 upgrade, four-schema/security equivalence, both roles,
+449 local fingerprints, actual full-sized performance, normal hooks and independent
+production readback remain mandatory. Follow LATIOS_ALIAS_DISCOVERY_READ_REPAIR_V3
+for the pinned baseline-ID comparison in the two append-only market tables;
+all retained rows and other120-table fingerprints remain completely protected.

@@ -5223,3 +5223,22 @@ and retains the rollback-manifest reference. Stop the release, preserve the
 entire batch directory, and independently inspect those exact IDs before a
 separately reviewed recovery or retry. Never delete mappings or replay a batch
 to resolve uncertainty.
+
+
+## Latios identity search forward correction (November18)
+
+The505 catalog repair passed counts/routing but failed identity API acceptance.
+Preserve505 and its failed receipts. Use only the V3 exact505-to507 baseline and
+release scopes for20261118140000/20261118143000. V2/506 remains immutable local
+replay evidence;507 supplies mixed-word performance margin. Do not reset populated
+labs or weaken timeouts. The final88-call actual-function synthetic proof uses
+173837 parents,244259 printings, production settings and representative widths.
+All449 local tables/security/indexes restore after rollback. Production still
+requires live API proof, all120 retained-row fingerprints, exact schema/security,
+finishes/ownership, canonical routes, merged source and deployment.
+
+Two established append-only market tables can grow while readback runs. Freeze
+every baseline ID privately, compare complete retained rows, verify their immutable
+guards and report new append-only rows separately. Square rows compare in full.
+Never replace a failed earlier fingerprint receipt or claim its four live deltas
+were unchanged; the505 concurrency audit independently explains them.
