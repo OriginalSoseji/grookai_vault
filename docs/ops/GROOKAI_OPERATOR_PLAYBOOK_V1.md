@@ -5357,3 +5357,14 @@ Actual representative performance includes173837 parents,244259 printings and
 128 Jungle exclusion IDs through the unchanged real helper. NULL helper stubs
 serve only rollback equivalence tests. External-only/set-name-only and wildcard
 inputs must compare exactly against507 before committed qualification.
+
+# Pokémon playable artwork versions — November 18, 2026
+
+Current usage mechanics V2 excludes only the additional known artwork field
+`cameoDexIds`; unknown fields and gameplay differences remain distinct. Legacy
+profile integrity checks and source originals retain their existing meaning.
+Verified full-art, IR, SIR and other premium versions join the private refresh
+seed through existing active canonical mappings. The daily worker recomputes
+their usage support with ordinary printings. Missing or ambiguous mappings stay
+outside the positive pool. See [the artwork-version checkpoint](../checkpoints/2026-11-18_pokemon_playables_art_versions_v1.md)
+for the metadata cohort and release readback; never publish source originals.

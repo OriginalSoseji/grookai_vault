@@ -8,6 +8,19 @@ import {catalogSourceNameMatches} from '../../catalog/catalog_source_name_bindin
 import {hasCompletedStandings} from './adapters/limitless_v1.mjs';
 import {readLimitlessPublishedLists, verifyLimitlessPublishedOriginals} from './adapters/limitless_published_decklists_v1.mjs';
 
+export const STANDARD_USAGE_MECHANICS_VERSION = 'pokemon_standard_usage_mechanics:v2';
+
+export function standardUsageMechanics(card) {
+  // TCGdex defines cameoDexIds as additional Pokemon depicted in the artwork.
+  // Keep the retained original and legacy profile comparison intact. Only the
+  // current usage grouping excludes this known artwork field; unknown fields
+  // continue to distinguish profiles.
+  const {mechanics} = tcgdexGameplayProposal(card);
+  const gameplay = Object.fromEntries(Object.entries(mechanics).filter(([key]) => key !== 'cameoDexIds'));
+  return {version: STANDARD_USAGE_MECHANICS_VERSION, mechanics: gameplay,
+    fingerprint: digest({version: STANDARD_USAGE_MECHANICS_VERSION, mechanics: gameplay})};
+}
+
 function validateUsagePolicy(policy) {
   assert(policy?.version === 'pokemon_current_standard_usage_policy:v1' && policy.window_days === 30 &&
     policy.game === 'pokemon' && policy.format === 'standard' && policy.language === 'en' && policy.platform === 'paper' &&
@@ -38,7 +51,7 @@ function verifiedIndex(context, bindings, asOf) {
       const {card: profile} = readTcgdexProfileReceipt(receipt, sources.get(receipt.source_id), {providerCardId: member.provider_card_id});
       assert(catalogSourceNameMatches(card, profile.name, mappings[0]) && normalize(card.set_code) === normalize(profile.set.id) &&
         collectorNumber(card.number) === collectorNumber(profile.localId), 'STANDARD_USAGE_COORDINATE_CONFLICT');
-      const fingerprint = tcgdexGameplayProposal(profile).fingerprint;
+      const fingerprint = standardUsageMechanics(profile).fingerprint;
       if (!groups.has(fingerprint)) groups.set(fingerprint, {id: fingerprint, name: profile.name, members: [], decks: new Set(), events: new Set()});
       const group = groups.get(fingerprint);
       assert(!memberGroups.has(card.id), 'STANDARD_USAGE_DUPLICATE_MEMBER');
@@ -132,6 +145,7 @@ export function buildCurrentStandardUsage(input, policy, {asOf} = {}) {
       reason: playable ? 'REPEATED_CURRENT_STANDARD_DECKLIST_INCLUSION' : 'INSUFFICIENT_CURRENT_SUPPORT'}));
   }).sort((a, b) => Number(b.playable) - Number(a.playable) || b.support.lists - a.support.lists || a.card_print_id.localeCompare(b.card_print_id));
   const result = {version: 'pokemon_current_standard_usage:v1', as_of: asOf, valid_until: new Date(validUntil).toISOString(),
+    mechanics_version: STANDARD_USAGE_MECHANICS_VERSION,
     definition: policy.definition, date_basis: policy.date_basis, policy_hash: digest(policy),
     state: sufficient ? 'ready' : 'insufficient_evidence', rows,
     coverage: {events: eventIds.size, lists, mapped_card_lines: mappedLines, total_card_lines: totalLines,

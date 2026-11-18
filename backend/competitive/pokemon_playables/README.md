@@ -9,7 +9,9 @@ The backend computes recent Standard decklist usage for existing canonical cards
 - Exact current provider/catalog bindings and retained source metadata. Identical structured mechanics share support across known artwork/rarity versions. Unknown coordinates remain unmatched.
 - Coverage, attribution and a maximum 24-hour publication lifetime. Expired or unavailable output never becomes an unrestricted playable search.
 
-The initial cohort contains 292 catalog members. This is bounded coverage, not an exhaustive claim about the entire Pokémon catalog.
+The starting cohort contained 292 catalog members. Additional verified artwork versions can join the same retained metadata seed; coverage remains bounded rather than an exhaustive claim about the entire Pokémon catalog.
+
+Current usage grouping records `pokemon_standard_usage_mechanics:v2`. It ignores TCGdex's artwork-only `cameoDexIds` alongside the established presentation exclusions. Attacks, abilities, rules, costs, types, HP and unrecognized fields still distinguish profiles. Retained source bodies and the legacy exact-profile comparison are preserved. A full-art, IR or SIR label alone never establishes matching mechanics or canonical ownership.
 
 ## Worker
 
