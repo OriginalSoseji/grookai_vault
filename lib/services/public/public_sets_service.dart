@@ -1015,6 +1015,11 @@ class PublicSetsService {
   }
 
   static PublicSetEra getSetEra(PublicSetSummary setInfo) {
+    if (setInfo.game == PublicCatalogGame.pokemon) {
+      final code = setInfo.code.trim().toLowerCase();
+      if (code == 'swshp') return PublicSetEra.swordShield;
+      if (code == 'svp') return PublicSetEra.scarletViolet;
+    }
     final year = setInfo.releaseYear;
     if (year == null) {
       return PublicSetEra.datePending;

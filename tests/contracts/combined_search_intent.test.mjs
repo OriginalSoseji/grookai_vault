@@ -43,6 +43,24 @@ test('artwork cameo intent is separate from card-name text and preserves finish/
   assert.equal(byArtist.artist, 'Ken Sugimori');
 });
 
+test('image filters consume their connecting word without losing card names', () => {
+  for (const [query, state, residual] of [
+    ['all cards with no exact image', 'missing', ''],
+    ['Pikachu with missing images', 'missing', 'Pikachu'],
+    ['Pikachu with exact images', 'exact', 'Pikachu'],
+    ['Pikachu with representative image', 'representative', 'Pikachu'],
+  ]) {
+    const intent = parse(query);
+    assert.equal(intent.imageState, state, query);
+    assert.equal(intent.residualQuery, residual, query);
+    const image = intent.queryFilters.find(filter => filter.kind === 'image');
+    assert.match(image.sourceText, /^with /i);
+    assert.equal(parse(image.queryWithout).imageState, undefined);
+    assert.doesNotMatch(parse(image.queryWithout).residualQuery, /\bwith\b/i);
+  }
+  assert.equal(parse('"With No Exact Image"').residualQuery, 'With No Exact Image');
+});
+
 test('Game Stop is a retailer phrase, while a separate artist retains its exact span', () => {
   for (const q of ['gamestop', 'Game Stop', 'GAME STOP stamped']) {
     const result = parse(q);
