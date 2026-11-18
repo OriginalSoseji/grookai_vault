@@ -52,6 +52,31 @@ verify protected records, schema/security, public APIs and legacy web routing.
 
 # Grookai Operator Playbook V1
 
+## Condition pricing release candidate — November 17, 2026
+
+Use `C:/grookai_condition_release_20261117` on
+`codex/tcgtracking-condition-release-20261117`, based on main `ad05da8049`.
+The implementation and original intake artifacts are preserved in the older
+`C:/grookai_condition_pricing_20261117` worktree. Read
+[the release checkpoint](../checkpoints/pricing/TCGTRACKING_CONDITION_RELEASE_20261117.md)
+for exact build/preflight proofs and managed-check receipts. Root test dependencies
+must use the complete root installation, not backend-only node_modules; backend
+and web also require their complete locked installations.
+
+Strict isolated web builds pass. Verified-TLS runtime preflight has zero critical
+failures and ten known deferred checks. Existing database CA trust is supplied
+through Node's normal extra-CA mechanism; do not disable verification. The
+intake worker/readback now use a canonical-target TLS helper, included in the
+executing worker hash. No old batch, acknowledgement or historical receipt is
+reused. A live read-only transport check still finds 559 private source receipts.
+The corrected checkout passes every required phase separately: contracts,
+commerce, web and Flutter (2,058 mobile tests, two existing skips). One transient
+Windows native Square artwork failure is retained with its successful focused
+and complete reruns. Use the final managed-hook receipt to establish commit success.
+Normal shipcheck and Git hooks remain mandatory. A successful local build is not
+public release evidence; publishing still follows explicit external-action
+authorization. Do not treat the old provider inquiry as a source-use gate.
+
 ## Prismatic discovery repair — November 17, 2026
 
 The [V4 release contract](../contracts/PRISMATIC_ALIAS_DISCOVERY_READ_REPAIR_V4.md)
@@ -76,6 +101,115 @@ release. Production readback is recorded separately against the applied package.
 The [baseline record](../checkpoints/PRISMATIC_ALIAS_REPLAY_BASELINE_20261116.md)
 explains the explicit synthetic647-pair historical prerequisite. The original
 populated labs and failed receipts remain available for audit.
+## Condition price integration V2 — November 17, 2026
+
+The owner explicitly authorized using TCGTracking's published free API without
+separate permission absent an applicable explicit restriction. Do not require
+the old provider inquiry to continue source use. Read
+[V2](../contracts/TCGTRACKING_CONDITION_PRICING_V2.md) and
+[the checkpoint](../checkpoints/pricing/TCGTRACKING_CONDITION_PRICING_V2_20261117.md).
+The previous source-qualification section below records historical findings;
+its custom-permission prerequisite is superseded by this owner decision.
+
+The source candidate now has `/api/condition-pricing/v1` for ordinary signed-in
+collectors using SDK-validated cookie/bearer auth. Add to Vault and active raw-copy
+settings follow their exact printing/condition controls automatically. The
+backend revalidates mappings each time and fetches the daily set SKU feed through
+bounded caching. Missing and stale prices remain unavailable. No source fallback,
+percentage pricing or valuation cutover is permitted by this integration.
+
+Run the five targeted Node files in the checkpoint plus web type checking and
+targeted lint. `scripts/audits/condition_price_read_model_live_v1.mjs` performs
+read-only backend/source checks with the owner's existing `DOTENV_CONFIG_PATH`;
+use a new artifact directory, Node system CAs and the shared backend client.
+The successful sampled readback covered seven printings/35 conditions across
+four categories: 23 prices and 12 unavailable. Browser evidence uses actual
+control components with mocked sessions/save actions, not deployed auth proof.
+No new imports, production writes, scheduled refresh, deployment or native
+integration occurred. Existing market prices, Vault totals and asks are unchanged.
+
+## TCGTracking source qualification — November 17, 2026
+
+Read the [source qualification report](../audits/pricing/tcgtracking_source_qualification_v1/REPORT.md)
+before changing display or currency status. The credential-free audit script is
+`scripts/audits/tcgtracking_source_qualification_v1.mjs`. Audit keyword text is
+extracted with pinned `parse5`; script, style and template contents are excluded.
+This text is evidence for searching, never HTML for rendering. It fetches five public
+provider pages and one bounded Dragons Exalted SKU feed, records hashes, and
+compares the four-printing saved private fixture. Use a new output directory for
+each run; full captures remain in ignored artifacts. It never contacts production
+or sends a provider message. A keyword match cannot grant rights or verify money.
+
+All 20 selections matched the same published source snapshot, but the reviewed
+pages still did not establish commercial-display rights or explicit SKU currency.
+The report links a concrete provider inquiry draft; it has not been submitted.
+Retain a real provider response or published policy before revising qualification.
+Do not infer a newly updated price from a later GET of identical source bytes.
+
+## Private condition pricing preview — November 17, 2026
+
+The source branch now includes `/founder/pricing/conditions` and
+`/api/founder/condition-pricing/v1` for private founder inspection. They are not
+deployed. Read the [canary contract](../contracts/CONDITION_PRICING_PRIVATE_CANARY_V1.md)
+and [verification checkpoint](../checkpoints/pricing/CONDITION_PRICING_PRIVATE_CANARY_20261117.md).
+The backend rechecks exact printing and mapping eligibility against the private
+receipt; do not broaden it by name matching or bypassing printing reviews.
+The current Dragons Exalted scope is four eligible printings and 18 available
+amounts across 20 condition selections, not the earlier 128-card source trial.
+
+Run the three targeted Node test files named in the checkpoint, web TypeScript
+checking and targeted ESLint. Browser evidence uses a captured-data loopback
+fixture, not a deployed authenticated application. Preserve that distinction.
+This preview makes no writes and cannot change market publications, Vault
+totals or asks. Do not reuse the consumed intake acknowledgement for deployment
+or source refresh. Source-use, currency and public activation remain separate
+qualification work.
+
+## TCGTracking condition reference intake — November 17, 2026
+
+The owner requested the free condition-price trial be extended across existing
+database mappings. Read [the intake contract](../contracts/TCGTRACKING_CONDITION_REFERENCE_INTAKE_V1.md).
+Source is isolated in `C:/grookai_condition_pricing_20261117`, branch
+`codex/tcgtracking-condition-pricing-v1`, based on current `origin/main`.
+The old dirty purchase-lots checkout is preserved. Its remote-only migration
+finding is branch age: the clean checkout has full canonical496 ledger parity.
+Generic replay still fails the historical October 12 alias evidence prerequisite
+(`pairs 0`); this intake introduces no schema changes and does not bypass it.
+
+The worker is `backend/pricing/tcgtracking_condition_reference_worker_v1.mjs`.
+Use `--prepare`, `--fetch`, `--replay`, `--apply`, then `--verify` with the same
+explicit `--out` directory. The current complete-scope artifact root is
+`artifacts/tcgtracking_condition_reference_v1/full_database_v3_20261117`.
+Preparation freezes canonical mappings; fetching is resumable and source-rate
+limited; replay uses saved source files. No database writes occur in these modes.
+The existing `DOTENV_CONFIG_PATH` can point to the owner's existing environment;
+never copy its credentials into artifacts. On this Windows host, use Node's
+`--use-system-ca` to preserve TLS verification through the installed trust store.
+
+Apply requires `GROOKAI_PREFLIGHT_ACK=1`, `--expected-plan-hash`,
+`--expected-receipts-hash` and `--expected-worker-hash` from reviewed artifacts.
+It appends only provider-specific staged `raw_imports` rows. It does not write
+canonical cards, printings, mappings, price publications, inventory or asks.
+The shared raw store remains private; existing source-specific pending
+normalizers do not consume these staged rows. Verify the independent DB receipt
+before claiming a completed backfill. Missing acknowledgement blocks writes.
+
+The owner authorized this exact batch and the import completed on November 17:
+559 receipts, 487,067 condition-price candidates, zero stored source-value/hash
+mismatches, and the same existing price publication pointer. The anonymous DB
+role was denied raw-table access (`42501`); the live private condition reader
+matched stored source evidence and did not fill missing conditions from NM.
+Read the [completed checkpoint](../checkpoints/pricing/TCGTRACKING_CONDITION_REFERENCE_20261117.md)
+and preserve `apply.json`, `verification.json`, `payload_readback.json`,
+`private_reader_readback.json` and `anonymous_boundary_readback.json` under the
+artifact root. The acknowledgement flag was removed after this command.
+Do not repeat the consumed batch as an activation or refresh action.
+
+No schedule, public endpoint, website or native deployment has been enabled.
+Source licensing, currency proof and official SKU corroboration remain open.
+The internal reader is for reference inspection only. Future condition UI and
+totals must use a separately qualified versioned integration; never silently
+replace existing TCGCSV Market pricing with this reference lane.
 
 ## Vendor inventory sale review — November 17, 2026
 

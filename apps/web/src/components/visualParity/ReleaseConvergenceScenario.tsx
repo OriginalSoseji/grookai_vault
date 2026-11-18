@@ -957,6 +957,7 @@ function VaultExactCopy() {
         <div className="mt-8 grid gap-8 xl:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] xl:items-start">
           <VaultInstanceSettingsCard
             instanceId="fixture-copy-instance"
+            cardPrintingId="fixture-printing"
             initialIntent="hold"
             initialConditionLabel="NM"
             initialImageDisplayMode="canonical"

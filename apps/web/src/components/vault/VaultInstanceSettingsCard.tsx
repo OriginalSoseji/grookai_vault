@@ -3,6 +3,7 @@
 import { useEffect, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction";
+import ConditionPrice from "@/components/pricing/ConditionPrice";
 import {
   getVaultIntentHelper,
   getVaultIntentLabel,
@@ -24,6 +25,7 @@ type VaultInstanceSettingsCardProps = {
   initialImageDisplayMode: VaultInstanceImageDisplayMode;
   isActive: boolean;
   isGraded: boolean;
+  cardPrintingId?: string | null;
 };
 
 export default function VaultInstanceSettingsCard({
@@ -33,6 +35,7 @@ export default function VaultInstanceSettingsCard({
   initialImageDisplayMode,
   isActive,
   isGraded,
+  cardPrintingId=null,
 }: VaultInstanceSettingsCardProps) {
   const router = useRouter();
   const [intent, setIntent] = useState(initialIntent);
@@ -223,6 +226,8 @@ export default function VaultInstanceSettingsCard({
         </label>
 
       </div>
+
+      {!isGraded && isActive ? <ConditionPrice cardPrintingId={cardPrintingId} condition={conditionLabel} /> : null}
 
       <details className="group border-t border-slate-200 pt-2">
         <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 py-2 text-sm font-medium text-slate-800 marker:content-none">
