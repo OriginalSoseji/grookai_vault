@@ -137,10 +137,11 @@ export async function collectCurrentStandardUsage({seed, bindingsLoader, onRecei
     for (const receipt of metadata.values()) {
       const source = sources.get(receipt.source_id); assert(source, 'REFRESH_METADATA_SOURCE');
       let next;
-      if (source.adapter === 'tcgdex_repository_card_v1') {
+      const repositorySet = source.adapter === 'tcgdex_repository_set_v1';
+      if (source.adapter === 'tcgdex_repository_card_v1' || repositorySet) {
         const value = JSON.parse(receipt.body_text);
         const snapshots = [];
-        for (const original of boundedArray(value.snapshots, 3)) {
+        for (const original of boundedArray(value.snapshots, repositorySet ? 502 : 3)) {
           const fresh = await get(source, original.url);
           snapshots.push({url: fresh.url, observed_at: observedAt, body_text: fresh.body_text, body_sha256: fresh.body_sha256});
         }
@@ -148,7 +149,9 @@ export async function collectCurrentStandardUsage({seed, bindingsLoader, onRecei
         next = {id: `refresh-wrapper-${digest({url: receipt.url, observedAt, source: source.id})}`, source_id: source.id,
           kind: 'gameplay', url: receipt.url, observed_at: observedAt, body_text, body_sha256: sha256(body_text),
           retain_until: new Date(timestamp(observedAt) + source.retention_days * DAY_MS).toISOString()};
-        readTcgdexProfileReceipt(next, source); await onReceipt(next, source);
+        if (repositorySet) readTcgdexSetReceipt(next, source);
+        else readTcgdexProfileReceipt(next, source);
+        await onReceipt(next, source);
       } else {
         assert(!source.adapter || !source.adapter.startsWith('tcgdex_repository'), 'REFRESH_UNSUPPORTED_METADATA_ADAPTER');
         next = await get(source, receipt.url);

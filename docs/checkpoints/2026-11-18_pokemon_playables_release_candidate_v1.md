@@ -84,6 +84,17 @@ normal managed commit and push hooks must verify the integrated candidate.
 
 ## Publication boundary
 
+PR #953 review identified two supported failure cases before merge. Repository
+set captures now renew every pinned set/card/license original and revalidate the
+wrapper with the existing set reader. Insufficient overall decklist evidence
+now produces an explanatory, uncached HTTP 503 search response instead of a
+normal empty result. Regression coverage passes 19 backend tests and ten web
+feature tests, including changed pinned bytes and suppressed search discovery.
+The reviewed fixes must pass the normal commit/push hooks and hosted checks.
+CodeQL also identified a dynamic regular expression in the project sanity
+check. Static config parsing now precedes the exact canonical-project comparison;
+CLI input is never compiled as a regular expression.
+
 The twice-daily refresh workflow is prepared for 06:23 and 18:23 UTC. Canonical
 repository Actions secret names `SUPABASE_URL` and `SUPABASE_SECRET_KEY` exist;
 the former was configured with the canonical public URL, and the existing

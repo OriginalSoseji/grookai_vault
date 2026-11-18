@@ -124,6 +124,49 @@ test('repository renewal retains the pinned commit, original Git blob proofs and
   await assert.rejects(collectCurrentStandardUsage(f.options), /REPOSITORY_ORIGINAL_HASH/);
 });
 
+test('repository-set renewal refreshes every pinned card, set and license original and rejects changed bytes', async () => {
+  const f = setup(); f.seed.retain_until = '2026-11-13T00:00:00.000Z';
+  const setReceipt = f.seed.metadata_receipts.find(receipt => receipt.id === f.seed.set_receipt_ids[0]);
+  const profiles = f.seed.members.map(member => JSON.parse(f.seed.metadata_receipts
+    .find(receipt => receipt.id === member.profile_receipt_id).body_text));
+  const commit = 'b'.repeat(40), name = 'Synthetic Set', setPath = `data/Mega Evolution/${name}.ts`;
+  const bodies = {[setPath]: `import { Set } from '../../interfaces'\nimport serie from '../Mega Evolution'\nconst set: Set = {id:'test',name:{en:'Synthetic Set'},serie:serie,tcgOnline:'TEST',cardCount:{official:200}}\nexport default set`,
+    LICENSE: 'MIT License\nSynthetic set renewal fixture.'};
+  for (const {id, localId, set, ...fields} of profiles) {
+    bodies[`data/Mega Evolution/${name}/${localId}.ts`] = `import { Card } from '../../../interfaces'\nimport Set from '../Synthetic Set'\nconst card: Card = {set:Set,${JSON.stringify(fields).slice(1, -1)}}\nexport default card`;
+  }
+  const blob = body => createHash('sha1').update(`blob ${Buffer.byteLength(body)}\0`).update(body).digest('hex');
+  const scope = {repository: 'tcgdex/cards-database', commit_sha: commit,
+    sets: [{id: 'test', name, local_ids: profiles.map(profile => profile.localId)}],
+    blobs: Object.fromEntries(Object.entries(bodies).map(([file, body]) => [file, blob(body)])), license_sha256: sha256(bodies.LICENSE)};
+  const source = {id: 'repo-set-renewal', adapter: 'tcgdex_repository_set_v1', allow_ingest: true, retention_days: 7,
+    allowed_origins: ['https://raw.githubusercontent.com'], repository: scope, review: {repository_scope_hash: digest(scope)}};
+  const base = `https://raw.githubusercontent.com/tcgdex/cards-database/${commit}/`;
+  const url = file => base + file.split('/').map(encodeURIComponent).join('/');
+  const capture = {version: 'tcgdex_repository_set_capture:v1', repository: scope.repository, commit_sha: commit, set_id: 'test',
+    snapshots: Object.entries(bodies).map(([file, body_text]) => ({url: url(file), observed_at: setReceipt.observed_at, body_text, body_sha256: sha256(body_text)}))};
+  Object.assign(setReceipt, {source_id: source.id, url: url(setPath), body_text: JSON.stringify(capture)});
+  setReceipt.body_sha256 = sha256(setReceipt.body_text); f.seed.sources.push(source);
+  const before = digest(f.seed), original = f.options.fetchImpl, fetched = [];
+  f.options.fetchImpl = async address => address.startsWith(base)
+    ? (fetched.push(address), new Response(bodies[decodeURIComponent(address.slice(base.length))])) : original(address);
+  const result = await collectCurrentStandardUsage(f.options);
+  const renewed = result.next_seed.metadata_receipts.find(receipt => receipt.source_id === source.id);
+  assert.equal(result.collection.metadata_renewed, true);
+  assert.equal(new Set(fetched).size, 6);
+  assert.equal(JSON.parse(renewed.body_text).snapshots.length, 6);
+  assert.equal(renewed.observed_at, AS_OF);
+  assert.notEqual(result.next_seed.set_receipt_ids[0], setReceipt.id);
+  assert.equal(buildCurrentStandardUsage(result.input, f.policy, {asOf: result.as_of}).coverage.qualified_members, 4);
+  assert.equal(digest(f.seed), before);
+  for (const tampered of [setPath, 'LICENSE', `data/Mega Evolution/${name}/002.ts`]) {
+    f.options.fetchImpl = async address => address.startsWith(base)
+      ? new Response(decodeURIComponent(address.slice(base.length)) === tampered ? 'changed pinned original' : bodies[decodeURIComponent(address.slice(base.length))])
+      : original(address);
+    await assert.rejects(collectCurrentStandardUsage(f.options), /REPOSITORY_ORIGINAL_HASH/);
+  }
+});
+
 test('discovery duplicates, online events, future dates and exact-window events do not inflate usage', async () => {
   const f = setup(), original = f.options.fetchImpl;
   f.options.fetchImpl = async url => {

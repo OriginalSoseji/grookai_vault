@@ -578,6 +578,11 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ok: false, error: "Current playables are temporarily unavailable. Please try again later."},
         {status: 503, headers: {"Cache-Control": "no-store"}});
     }
+    if (playableRequested && playables?.state === "insufficient_evidence") {
+      return NextResponse.json({ok: false, state: "insufficient_evidence",
+        error: "Not enough recent Standard decklists are available to identify playables yet. Please try again later."},
+        {status: 503, headers: {"Cache-Control": "no-store"}});
+    }
     let userId: string | null = null;
     let requestSupabase: Awaited<ReturnType<typeof createServerComponentClient>> | null = null;
 

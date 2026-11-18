@@ -24,10 +24,10 @@ function load(source, imports = {}) {
   return testModule.exports;
 }
 
-function setup({available = true, userId = null, owned = []} = {}) {
+function setup({available = true, state = 'ready', userId = null, owned = []} = {}) {
   const members = Array.from({length: 90}, (_, index) => ({card_print_id: `card-${index}`, gv_id: `GV-PK-TEST-${index}`}));
   const calls = [];
-  const snapshot = {rows: members, valid_until: new Date(Date.now() + 3600000).toISOString()};
+  const snapshot = {state, rows: state === 'ready' ? members : [], valid_until: new Date(Date.now() + 3600000).toISOString()};
   const unrestricted = () => {throw Error('UNRESTRICTED_SEARCH_FORBIDDEN');};
   const imports = {
     '@/lib/search/catalogSetSearch': {readSearchSets: async () => [], resolveCatalogSetSearchIntent: query => ({matchedAlias: null, setCodes: [], remainingQuery: query}), isCatalogCardNameQuery: async () => false},
@@ -113,6 +113,17 @@ test('an explicit playable filter alone is valid search criteria', async () => {
   const f = setup();
   assert.equal((await f.get('playable=1')).status, 200);
   assert.equal(f.calls.length, 1);
+});
+
+test('insufficient recent coverage is explained instead of reported as an empty playable search', async () => {
+  const f = setup({state: 'insufficient_evidence'});
+  const response = await f.get('q=playables');
+  assert.equal(response.status, 503);
+  assert.equal(response.body.state, 'insufficient_evidence');
+  assert.match(response.body.error, /Not enough recent Standard decklists/);
+  assert.equal(response.headers['Cache-Control'], 'no-store');
+  assert.equal(f.calls.length, 0);
+  assert.equal(response.body.rows, undefined);
 });
 
 test('serialized server-action input cannot grant playable membership', async () => {

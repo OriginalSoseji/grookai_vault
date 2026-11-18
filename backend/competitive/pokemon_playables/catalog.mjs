@@ -94,7 +94,8 @@ export async function loadTcgdexCohortBindings(client, externalIds) {
 export async function assertRemoteEnvironment(client, expectedProject) {
   assert(expectedProject === 'ycdxbpibncqcchqiihfz' && new URL(process.env.SUPABASE_URL).hostname === `${expectedProject}.supabase.co`, 'ENVIRONMENT_MISMATCH');
   const config = await fs.readFile(new URL('../../../supabase/config.toml', import.meta.url), 'utf8');
-  assert(new RegExp(`^project_id\\s*=\\s*"${expectedProject}"\\s*$`, 'm').test(config), 'CLI_PROJECT_MISMATCH');
+  const configuredProject = /^project_id\s*=\s*"([^"]+)"\s*$/m.exec(config)?.[1];
+  assert(configuredProject === expectedProject, 'CLI_PROJECT_MISMATCH');
   assert(!process.env.GV_USER_ACCESS_TOKEN, 'WORKER_REQUIRES_SYSTEM_CONTEXT');
   const counts = {};
   for (const [table, minimum] of [['card_prints', 40000], ['sets', 150], ['card_print_traits', 5000]]) {
