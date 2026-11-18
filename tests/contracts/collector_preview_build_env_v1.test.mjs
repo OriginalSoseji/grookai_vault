@@ -1,7 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { createCollectorPreviewBuildEnv } from '../../scripts/ci/collector_preview_build_env.mjs';
+import {
+  createCollectorPreviewBuildEnv,
+  parseLocalEnv,
+} from '../../scripts/ci/collector_preview_build_env.mjs';
 
 const staging = {
   SUPABASE_URL_STAGING: 'http://127.0.0.1:54321/',
@@ -37,6 +40,19 @@ test('local web verification uses only the task-owned local preview target', () 
   assert.equal(env.VERCEL, undefined);
   assert.equal(env.VERCEL_ENV, undefined);
   assert.equal(env.VERCEL_PROJECT_ID, undefined);
+});
+
+test('root local environment parsing supports export, quoting, comments and escaped newlines', () => {
+  assert.deepEqual(parseLocalEnv([
+    '# comment',
+    'export SUPABASE_URL_STAGING=http://127.0.0.1:54321/ # local target',
+    'SUPABASE_PUBLISHABLE_KEY_STAGING="local\\nkey"',
+    "IGNORED='single quoted # value'",
+  ].join('\n')), {
+    SUPABASE_URL_STAGING: 'http://127.0.0.1:54321/',
+    SUPABASE_PUBLISHABLE_KEY_STAGING: 'local\nkey',
+    IGNORED: 'single quoted # value',
+  });
 });
 
 test('local web verification rejects missing settings and all non-local targets', () => {
