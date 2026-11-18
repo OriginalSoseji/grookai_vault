@@ -1,0 +1,23 @@
+select jsonb_build_object(
+ 'exclusions',cardinality(public.get_pokemon_go_discovery_exclusions_v1()),
+ 'route',public.resolve_catalog_discovery_set_code_v1(' SWSH10.5 ','pokemon'),
+ 'otherGame',public.resolve_catalog_discovery_set_code_v1('swsh10.5','mtg'),
+ 'unrelatedRoutes',jsonb_build_array(public.resolve_catalog_discovery_set_code_v1('sv06.5','pokemon'),public.resolve_catalog_discovery_set_code_v1('2021swsh','pokemon'),public.resolve_catalog_discovery_set_code_v1('tk-ex-latio','pokemon')),
+ 'catalog',(select jsonb_agg(jsonb_build_object('code',code,'count',card_count) order by code) from public.get_public_catalog_sets_v2('pokemon') where code in('swsh10.5','pgo','sv04.5','sv4pt5','sv08.5','sv8pt5')),
+ 'legacyDiscovery',(select count(*) from public.v_card_prints_discovery_v1 where set_code='swsh10.5'),
+ 'canonicalDiscovery',(select count(*) from public.v_card_prints_discovery_v1 where set_code='pgo'),
+ 'stamps',(select count(*) from public.v_card_prints_discovery_v1 where set_code='pgo' and variant_key='play_pokemon_stamp'),
+ 'unrelatedDiscovery',(select count(*) from public.v_card_prints_discovery_v1 where set_code not in('swsh10.5','pgo','sv04.5','sv4pt5','sv08.5','sv8pt5')),
+ 'legacyFinishes',(select count(*) from public.v_card_printings_discovery_v1 p join public.card_prints c on c.id=p.card_print_id where c.set_code='swsh10.5'),
+ 'canonicalFinishes',(select count(*) from public.v_card_printings_discovery_v1 p join public.card_prints c on c.id=p.card_print_id where c.set_code='pgo'),
+ 'identityFree',(select count(*) from public.search_print_identity_v1('SWSH10.5',null,null,'parent_print',512,0)),
+ 'identityTyped',(select count(*) from public.search_print_identity_v1(null,'swsh10.5',null,'parent_print',512,0)),
+ 'childIdentity',(select count(*) from public.search_print_identity_v1(null,'swsh10.5',null,'child_printing',512,0)),
+ 'paldeanIdentity',(select count(*) from public.search_print_identity_v1('sv04.5',null,null,'parent_print',512,0)),
+ 'prismaticIdentity',(select count(*) from public.search_print_identity_v1('sv08.5',null,null,'parent_print',512,0)),
+ 'exactLegacyParent',(select count(*) from public.search_print_identity_v1((select gv_id from public.card_prints where set_code='swsh10.5' and number='1'),'swsh10.5',null,'parent_print',512,0)),
+ 'exactLegacyChild',(select count(*) from public.search_print_identity_v1((select p.printing_gv_id from public.card_printings p join public.card_prints c on c.id=p.card_print_id where c.set_code='swsh10.5' and p.finish_key='normal'),'swsh10.5',null,'child_printing',512,0)),
+ 'wrongSet',(select count(*) from public.search_print_identity_v1((select gv_id from public.card_prints where set_code='swsh10.5' and number='1'),'pgo',null,'parent_print',512,0)),
+ 'paldeanLegacyParent',(select count(*) from public.search_print_identity_v1((select gv_id from public.card_prints where set_code='sv04.5' and number='1'),'sv04.5',null,'parent_print',512,0)),
+ 'prismaticLegacyChild',(select count(*) from public.search_print_identity_v1((select p.printing_gv_id from public.card_printings p join public.card_prints c on c.id=p.card_print_id where c.set_code='sv08.5' and p.finish_key='normal'),'sv08.5',null,'child_printing',512,0))
+);
