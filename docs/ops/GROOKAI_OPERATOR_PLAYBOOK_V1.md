@@ -1,5 +1,18 @@
 # Prismatic identity query guard V5 — November17,2026
 
+Paldean V3 starts at501. V2 is applied and its source is immutable; actual
+anonymous blank typed-set browsing still timed out. Use the audit-only
+`-PaldeanAliasDiscoveryBaselineV3`, then the separately bound exact
+`-PaldeanAliasDiscoveryReleaseV3` for only `20261118033000`. The forward
+function materializes parent/child document branches independently and skips
+unrequested types. Require new502 replay, populated501 upgrade, both roles,
+all449 local fingerprints, full-size actual RPC comparisons, normal managed
+checks, hosted review and the frozen502-file official CLI package. Independent
+API-first readback must pass blank typed browsing for both families plus all120
+protected production fingerprints and full schema/security parity. Keep failed
+receipts and the existing three-second API limit. See
+[the V3 contract](../contracts/PALDEAN_ALIAS_DISCOVERY_READ_REPAIR_V3.md).
+
 Paldean V2 starts at500 after the applied catalog projection. Its data/schema
 readback matches all120 protected tables and the qualified package; identity
 RPC timing requires the forward cache in `20261118021500`. Use only
