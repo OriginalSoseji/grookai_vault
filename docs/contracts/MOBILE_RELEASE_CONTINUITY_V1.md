@@ -21,6 +21,9 @@ Android signing continuity is absent.
 - A manually dispatched build-number override is a candidate only. Before it
   becomes the release baseline, update `pubspec.yaml` and the App Store Connect
   metadata together, then rebuild both platforms from the same merged commit.
+- Before choosing a candidate build number, read the installed version on the
+  target Samsung. The candidate must be greater than that version; do not reuse
+  a cached artifact or an older baseline just because its CI run succeeded.
 
 ## Android update safety
 

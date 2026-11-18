@@ -1,7 +1,8 @@
 # CHECKPOINT_INDEX
 
 - [NATIVE_CONDITION_PRICING_20261118](pricing/NATIVE_CONDITION_PRICING_20261118.md) - `2026-11-18` - Native exact-condition reference candidate follows Add to Vault and active raw-copy controls through the deployed reader; local synthetic Android/transport/widget proof, existing valuations preserved, native distribution remains separate
-- `MOBILE_RELEASE_CONTINUITY_20261118` — `2026-11-18` — Established paired Android/iOS build and signer continuity contract; raised baseline to 551, added Android APK provenance and an ADB preflight that blocks signer mismatch/downgrade without uninstalling; current Samsung build550 is debug-signed and Mac is offline, so no paired install or TestFlight release is claimed
+- [MOBILE_BUILD_553_20261118](2026-11-18_mobile_build_553.md) - `2026-11-18` - Samsung is build 552 with debug signer; paired baseline raised to 553, older release candidate blocked, no install or data reset
+- `MOBILE_RELEASE_CONTINUITY_20261118` — `2026-11-18` — Established paired Android/iOS build and signer continuity contract; raised baseline to 551, added Android APK provenance and an ADB preflight that blocks signer mismatch/downgrade without uninstalling; Samsung was build 550 at this checkpoint and Mac was offline, so no paired install or TestFlight release was claimed
 
 - `SEALED_OWNERSHIP_SCHEMA_APPLIED_20260907` - `2026-09-07` - Four approved migrations committed atomically; 391/391 ledger parity, empty reconciled schema diff and 888 security objects match; 3,401 copies unchanged; ownership disabled; client deployment/canary remain
 
