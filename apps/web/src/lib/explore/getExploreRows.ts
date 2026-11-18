@@ -4191,10 +4191,15 @@ async function fetchCollectorScopedTextRows(
 
   const requests = ["number", "number_plain"].flatMap((field) =>
     collectorTokens.map(async (collectorToken) => {
-      const scopedRequest = applyLanguageScopeQuery(
+      let scopedRequest = applyLanguageScopeQuery(
         supabase.from("card_prints").select(selectClause),
         languageScope,
       );
+      // Push known collector-family constraints down before case-insensitive
+      // number/name matching; a global scan can exhaust the database budget.
+      if (query.expectedSetCodes.length > 0) {
+        scopedRequest = scopedRequest.in("set_code", query.expectedSetCodes);
+      }
       let request = /^\d+$/.test(collectorToken)
         ? scopedRequest.eq(field, collectorToken)
         : scopedRequest.ilike(field, collectorToken.replace(/[\\%_]/g, "\\$&"));
