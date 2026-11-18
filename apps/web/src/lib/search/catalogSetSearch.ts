@@ -47,7 +47,7 @@ export function removeSetPhrase(query: string, phrase: string) {
   return cleanRemainingText(`${before} ${query.slice(match.index + match[0].length)}`);
 }
 
-export function resolveCatalogSetSearchIntent(query: string, game: Game, sets: SearchSet[], ignoredOpeningWords: string[] = []) {
+export function resolveCatalogSetSearchIntent(query: string, game: Game, sets: SearchSet[], ignoredOpeningWords: string[] = [], collectorSetCodes: readonly string[] = []) {
   const empty = { matchedAlias: null as string | null, setCodes: [] as string[], remainingQuery: query.trim(), requiresCardNameCheck: false, openingWordMatch: false };
   if (!query.trim() || /^GV-/i.test(query)) return empty;
   // Reject impossible aliases before compiling thousands of Unicode phrase
@@ -59,7 +59,7 @@ export function resolveCatalogSetSearchIntent(query: string, game: Game, sets: S
   if (query.includes("&")) queryWords.push("and");
   const queryWordPattern = new RegExp(`^(?:${queryWords.map(escape).join("|")})$`, "iu");
   const candidates = new Map<string, { source: string; codes: Set<string>; size: number; requiresCardNameCheck: boolean }>();
-  function add(alias: string, codes: string[], code = false, curated = false) {
+  function add(alias: string, codes: string[], code = false, curated = false, openingWord = false) {
     const requiredWords = code ? alias.match(/[\p{L}\p{N}]+/giu) ?? [] : words(alias);
     if (requiredWords.some((word) => !queryWordPattern.test(word))) return;
     const match = phraseMatch(query, alias, code);
@@ -70,6 +70,11 @@ export function resolveCatalogSetSearchIntent(query: string, game: Game, sets: S
     const prefix = query.slice(0, match.index);
     const requiresCardNameCheck = !code && !curated &&
       stripSetConnector(prefix) === prefix;
+    // A printed promo family is stronger evidence than an implicit opening
+    // word such as Pikachu (World Collection). Keep explicit connectors and
+    // complete set names/codes, even when they conflict with that family.
+    if (openingWord && requiresCardNameCheck && collectorSetCodes.length > 0 &&
+        !codes.some((value) => collectorSetCodes.includes(value))) return;
     const key = `${match.index}:${match[0].length}`;
     const candidate = candidates.get(key) ?? { source: match[0], codes: new Set<string>(), size: match[0].length, requiresCardNameCheck };
     codes.forEach((value) => candidate.codes.add(value));
@@ -115,7 +120,7 @@ export function resolveCatalogSetSearchIntent(query: string, game: Game, sets: S
     if (!candidates.size && game === "pokemon") {
       openingWordMatch = true;
       for (const [alias, codes] of openingWords) {
-        if (!ignoredOpeningWords.some((ignored) => words(ignored).join(" ") === alias)) add(alias, [...codes]);
+        if (!ignoredOpeningWords.some((ignored) => words(ignored).join(" ") === alias)) add(alias, [...codes], false, false, true);
       }
     }
   }

@@ -379,6 +379,13 @@ export async function GET(request: NextRequest) {
   const gameScope = smartSearchIntent.gameScope ?? selectedGameScope;
   let query = resolveSmartSearchQuery(rawQuery, smartSearchIntent);
   let resolverQuery = normalizeQuery(query);
+  // Only an attached, unambiguous printed promo token supplies this hint.
+  // Quoted text, GV IDs and spaced numeric filters retain their own meaning.
+  const collectorSetCodes = gameScope === "pokemon" && !resolverQuery.normalizedGvId &&
+    !rawQuery.includes('"') && resolverQuery.expectedSetCodes.length === 1 &&
+    resolverQuery.collectorExpectations.length === 1 && resolverQuery.promoTokens.length === 1 &&
+    resolverQuery.normalizedTokens.includes(resolverQuery.promoTokens[0].toLowerCase())
+    ? resolverQuery.expectedSetCodes : [];
   const exactSetCode = resolvePublicSetRouteCode(normalizeSetCode(request.nextUrl.searchParams.get("set")));
   let inlineSetIntent = resolveGameScopedSetSearchIntent(query, gameScope);
   let literalNameSearch = false;
@@ -391,11 +398,11 @@ export async function GET(request: NextRequest) {
       const catalogStarted = performance.now();
       searchSets = await readSearchSets(catalog, gameScope);
       searchTimings.catalog = performance.now() - catalogStarted;
-      let candidate = resolveCatalogSetSearchIntent(rawQuery, gameScope, searchSets);
+      let candidate = resolveCatalogSetSearchIntent(rawQuery, gameScope, searchSets, [], collectorSetCodes);
       const ignoredOpeningWords: string[] = [];
       while (candidate.openingWordMatch && candidate.matchedAlias) {
         const ignored = [...ignoredOpeningWords, candidate.matchedAlias];
-        const alternative = resolveCatalogSetSearchIntent(rawQuery, gameScope, searchSets, ignored);
+        const alternative = resolveCatalogSetSearchIntent(rawQuery, gameScope, searchSets, ignored, collectorSetCodes);
         // Charizard is also the opening word of Charizard Half Deck. In
         // "Charizard Evolving", retain the card name and prefer Evolving Skies.
         if (!alternative.matchedAlias || !await isExactCatalogCardName(catalog, candidate.matchedAlias, gameScope)) break;

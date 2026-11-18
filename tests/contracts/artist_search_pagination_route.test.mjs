@@ -120,6 +120,31 @@ test('retained GV identifiers keep identifier resolution ahead of printed promo 
  }
 });
 
+test('a real catalog opening-word collision cannot turn full-name promo searches into set searches',async()=>{
+ const sets=[{id:'pwc',code:'pwc',name:'Pikachu World Collection'},
+  {id:'xyp',code:'xyp',name:'XY Black Star Promos'}];
+ const row={id:'pikachu-xy124',gv_id:'GV-PK-PR-XY-XY124',name:'Pikachu-EX',number:'XY124',set_code:'xyp'};
+ for(const query of ['Pikachu XY124','PIKACHU XY124','pika xy124']){
+  const calls=[];
+  const get=loadRoute({sets,rows:[],collectorRows:[row],captureCollector:args=>calls.push(args)});
+  const response=await get({nextUrl:new URL(`https://fixture?q=${encodeURIComponent(query)}&game=pokemon`)});
+  const body=await response.json();
+  assert.equal(response.status,200);assert.equal(body.sort_degraded_reason,null);
+  assert.deepEqual(body.rows.map(card=>card.id),[row.id]);
+  assert.equal(calls.length,1);
+  assert.ok(!(body.smart_search.queryFilters??[]).some(filter=>filter.kind==='set'&&filter.sourceText.toLowerCase()==='pikachu'));
+ }
+});
+
+test('an explicit set parameter is retained when it conflicts with a printed promo family',async()=>{
+ const calls=[];
+ const get=loadRoute({rows:[],capture:options=>calls.push(options),collectorRows:[]});
+ const response=await get({nextUrl:new URL('https://fixture?q=Pikachu+XY124&game=pokemon&set=base1')});
+ const body=await response.json();
+ assert.equal(response.status,200);assert.deepEqual(body.rows,[]);
+ assert.equal(calls.length,1);assert.equal(calls[0].exactSetCode,'base1');
+});
+
 test('credentialed catalog searches are private and reuse the same request catalog', async () => {
  const sets=[{id:'visible',code:'base1',name:'Base Set',printed_total:102}];
  let options;
