@@ -1,5 +1,7 @@
 # CHECKPOINT_INDEX
 
+- [SEARCH_PROMO_NAME_SET_PRECEDENCE_20261118](SEARCH_PROMO_NAME_SET_PRECEDENCE_20261118.md) - `2026-11-18` - Printed promo family outranks conflicting implicit opening-word set shortcuts; preserve explicit set constraints, quoted text and retained identities; 77 focused tests and public SDK proof, terminal release gates pending
+
 - [SEARCH_XY_PROMO_COLLECTOR_TIMEOUT_20261118](SEARCH_XY_PROMO_COLLECTOR_TIMEOUT_20261118.md) - `2026-11-18` - Correct printed XY promo interpretation and bound caller-visible collector reads; preserve exact identities, filters and timeout budgets; live deployment and Samsung readback remain gated by terminal receipts
 
 - [NATIVE_CONDITION_PRICING_20261118](pricing/NATIVE_CONDITION_PRICING_20261118.md) - `2026-11-18` - Native exact-condition reference candidate follows Add to Vault and active raw-copy controls through the deployed reader; local synthetic Android/transport/widget proof, existing valuations preserved, native distribution remains separate

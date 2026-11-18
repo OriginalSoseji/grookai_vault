@@ -93,6 +93,14 @@ and [the checkpoint](../checkpoints/LATIOS_ALIAS_DISCOVERY_20261118.md).
 
 ## Printed XY promo search correction — November 18, 2026
 
+PR956 is deployed: `pika xy124` returns the retained Pikachu-EX XY124 parent.
+Follow-up acceptance exposed a separate full-name collision with Pikachu World
+Collection. The attached promo family must outrank conflicting implicit opening
+words while explicit set constraints remain binding. See
+[the follow-up checkpoint](../checkpoints/SEARCH_PROMO_NAME_SET_PRECEDENCE_20261118.md)
+and private `artifacts/search_xy124_names_v1/20261118/` receipts. Preserve the
+current mobile baseline553; neither server correction requires installing an APK.
+
 The `pika xy124` failure is a search interpretation/query-bound issue. Printed
 three-digit XY numbers belong to the existing `xyp` family, while one/two-digit
 XY expansion tokens keep their meaning. Preserve exact collector suffixes,
