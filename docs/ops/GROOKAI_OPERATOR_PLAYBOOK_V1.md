@@ -1,6 +1,41 @@
 # Prismatic identity query guard V5 — November17,2026
 
-Production is at498 after the approved alias projection. Use `-PrismaticAliasDiscoveryReleaseV5` for the exact forward candidate `20261117220000`, with fresh canonical498 parity, complete499 replay/upgrade proofs and clean committed source. The existing three-second API limit stays in force. All498 applied SQL files, physical printings, ownership and market history remain immutable. See `docs/contracts/PRISMATIC_ALIAS_DISCOVERY_READ_REPAIR_V5.md` and the Prismatic qualification checkpoint.
+Paldean V3 starts at501. V2 is applied and its source is immutable; actual
+anonymous blank typed-set browsing still timed out. Use the audit-only
+`-PaldeanAliasDiscoveryBaselineV3`, then the separately bound exact
+`-PaldeanAliasDiscoveryReleaseV3` for only `20261118033000`. The forward
+function materializes parent/child document branches independently and skips
+unrequested types. Require new502 replay, populated501 upgrade, both roles,
+all449 local fingerprints, full-size actual RPC comparisons, normal managed
+checks, hosted review and the frozen502-file official CLI package. Independent
+API-first readback must pass blank typed browsing for both families plus all120
+protected production fingerprints and full schema/security parity. Keep failed
+receipts and the existing three-second API limit. See
+[the V3 contract](../contracts/PALDEAN_ALIAS_DISCOVERY_READ_REPAIR_V3.md).
+
+Paldean V2 starts at500 after the applied catalog projection. Its data/schema
+readback matches all120 protected tables and the qualified package; identity
+RPC timing requires the forward cache in `20261118021500`. Use only
+`-PaldeanAliasDiscoveryBaselineV2` for the500 starting audit, followed by the
+separate exact `-PaldeanAliasDiscoveryReleaseV2` PrePush scope. Require new501
+replay, populated500 upgrade, unchanged449 local fingerprints, real helper/RPC
+query probes, normal commit/push checks and the fixed501-file CLI package.
+Never edit any applied SQL or relax the three-second API limit. See
+[the V2 contract](../contracts/PALDEAN_ALIAS_DISCOVERY_READ_REPAIR_V2.md).
+
+The preceding499-to500 release started after Prismatic (PR942). Its release
+gate is consumed and all499 applied SQL files remain immutable. Paldean Fates
+preparation uses `-PaldeanAliasDiscoveryBaselineV1 -Phase AuditLinkedSchema`
+with a new private `-AuditOutDir` under the Paldean artifact root. It verifies
+the full499 baseline and245 approved aliases; it does not permit PrePush or
+apply. See [the Paldean contract](../contracts/PALDEAN_ALIAS_DISCOVERY_READ_REPAIR_V1.md).
+Preserve physical printings, ownership, market history and the three-second API
+limit. The separate `-PaldeanAliasDiscoveryReleaseV1` scope accepts only this
+499 baseline and pending ID `20261118000000`. Complete fresh500/retained499
+qualification, normal managed commit/push checks and the pinned release manifest
+before `-Phase PrePush -ExpectedLocalOnlyIds 20261118000000`. Apply only the
+frozen500-file canonical package through the official CLI, then independently
+verify protected records, schema/security, public APIs and legacy web routing.
 
 # Grookai Operator Playbook V1
 
