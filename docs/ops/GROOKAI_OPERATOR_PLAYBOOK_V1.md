@@ -50,6 +50,20 @@ before `-Phase PrePush -ExpectedLocalOnlyIds 20261118000000`. Apply only the
 frozen500-file canonical package through the official CLI, then independently
 verify protected records, schema/security, public APIs and legacy web routing.
 
+## McDonald's Collection 2021 discovery — November 18, 2026
+
+Use the separate `-Mcdonalds2021AliasDiscoveryBaselineV1` audit scope at503,
+then `-Mcdonalds2021AliasDiscoveryReleaseV1` for only the forward504 migration
+`20261118080000`. The25 approved `2021swsh` to `mcd21` pairs affect discovery
+only; preserve all parents,50 printings per raw set and existing ownership.
+Require genuine fresh replay, retained populated upgrade without reset, both
+roles, protected fingerprints, complete schema/security parity, actual
+production-scale RPC qualification, normal managed checks and hosted review.
+Apply only the frozen official CLI package after exact PrePush. Independently
+verify APIs, all prior repaired families, records and canonical/legacy web
+routes. See [the contract](../contracts/MCDONALDS_2021_ALIAS_DISCOVERY_READ_REPAIR_V1.md)
+and [the preparation checkpoint](../checkpoints/MCDONALDS_2021_ALIAS_DISCOVERY_20261118.md).
+
 # Grookai Operator Playbook V1
 
 ## Condition pricing release candidate — November 17, 2026

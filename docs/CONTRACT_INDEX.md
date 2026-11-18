@@ -13,6 +13,7 @@ If a contract is missing from this index, it is not authoritative.
 
 | Contract | Status | Description |
 |--------|--------|-------------|
+| MCDONALDS_2021_ALIAS_DISCOVERY_READ_REPAIR_V1 | Active | docs/contracts/MCDONALDS_2021_ALIAS_DISCOVERY_READ_REPAIR_V1.md — Exact503-to504 approved McDonald's Collection2021 discovery aliases; retained parents, finishes and ownership |
 | VENDOR_PRICING_RULES_AND_LABELS_V1 | Active implementation; candidate default-off | docs/contracts/VENDOR_PRICING_RULES_AND_LABELS_V1.md — Owner pricing defaults/presets, exact-market automatic asking prices, manual precedence, durable recovery and price-free reusable labels |
 | SQUARE_CANONICAL_ARTWORK_V1 | Active implementation and release contract; default-off candidate | docs/contracts/SQUARE_CANONICAL_ARTWORK_V1.md — Optional canonical artwork uploads, visible representative labels, durable retries and existing-item backfill without inventory or schema changes |
 | SQUARE_CATALOG_SYNC_V1 | Active implementation contract; default-off local candidate | docs/contracts/SQUARE_CATALOG_SYNC_V1.md — Owner-bound Square linking, unchanged grookai QR URL as SKU, selected exact-copy catalog sync, durable attempts and explicit adoption; no stock allocation or payment reconciliation |
