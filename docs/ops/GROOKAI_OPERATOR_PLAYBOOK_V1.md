@@ -1,3 +1,14 @@
+# Pokémon playable artwork versions — November 18, 2026
+
+Current usage mechanics V2 excludes only the additional known artwork field
+`cameoDexIds`; unknown fields and gameplay differences remain distinct. Legacy
+profile integrity checks and source originals retain their existing meaning.
+Verified full-art, IR, SIR and other premium versions join the private refresh
+seed through existing active canonical mappings. The daily worker recomputes
+their usage support with ordinary printings. Missing or ambiguous mappings stay
+outside the positive pool. See [the artwork-version checkpoint](../checkpoints/2026-11-18_pokemon_playables_art_versions_v1.md)
+for the metadata cohort and release readback; never publish source originals.
+
 # Pokémon playable usage release candidate — November 18, 2026
 
 The isolated release branch adds `playable` / `playables` search and shared expiring badges using the precomputed Pokémon Standard usage signal. Current main search, pagination, catalog visibility and Winter branding are retained. No schema or canonical writer is part of this release.

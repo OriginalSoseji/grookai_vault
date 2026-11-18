@@ -9,7 +9,8 @@ import {setupCurrentSampleFixture} from './current_sample_fixtures.mjs';
 import {createCurrentSampleGameplayTemplate} from '../current_gameplay_template_v1.mjs';
 import {limitlessPublishedReceipt} from '../adapters/limitless_published_decklists_v1.mjs';
 import {digest, sha256} from '../common.mjs';
-import {buildCurrentStandardUsage, readCurrentStandardUsage} from '../current_standard_usage_v1.mjs';
+import {buildCurrentStandardUsage, readCurrentStandardUsage, standardUsageMechanics, STANDARD_USAGE_MECHANICS_VERSION} from '../current_standard_usage_v1.mjs';
+import {tcgdexGameplayProposal} from '../cohort.mjs';
 import {FileArtifactStore} from '../store.mjs';
 import {publishCurrentStandardUsage, STANDARD_USAGE_PUBLIC_KEY} from '../current_standard_worker_v1.mjs';
 
@@ -53,6 +54,30 @@ test('recent Standard lists qualify exact Common/full-art mechanics together wit
   assert(variants.every(row => row.playable && row.support.events === 2 && row.support.lists === 4));
   assert.equal(variants[0].gameplay_id, variants[1].gameplay_id);
   assert.equal(snapshot.date_basis, 'publisher_event_date_with_completed_decklists');
+});
+
+test('artwork cameos do not split playable full-art or SIR usage, while mechanics and source originals stay distinct', () => {
+  const f = setup(), group = f.input.context.packet.groups.find(value => value.members.some(member =>
+    f.input.current_bindings.catalog.find(card => card.id === member.card_print_id)?.rarity === 'Ultra Rare'));
+  assert(group);
+  const member = group.members[0];
+  const receipt = f.input.context.receipts.find(value => value.id === member.profile_original.id);
+  const originalCard = JSON.parse(receipt.body_text), card = {...originalCard, cameoDexIds: [25, 133]};
+  receipt.body_text = JSON.stringify(card); receipt.body_sha256 = sha256(receipt.body_text);
+  member.profile_original.receipt_hash = digest(receipt);
+  member.profile_hash = digest(card);
+  member.mechanics_hash = tcgdexGameplayProposal(card).fingerprint;
+  const before = digest(f.input), snapshot = build(f);
+  const variants = snapshot.rows.filter(row => row.name === originalCard.name);
+  assert.equal(snapshot.mechanics_version, STANDARD_USAGE_MECHANICS_VERSION);
+  assert.equal(variants.length, 2);
+  assert(variants.every(row => row.playable && row.support.events === 2 && row.support.lists === 4));
+  assert.equal(variants[0].gameplay_id, variants[1].gameplay_id);
+  assert.equal(digest(f.input), before);
+  assert.notEqual(tcgdexGameplayProposal(originalCard).fingerprint, tcgdexGameplayProposal(card).fingerprint);
+  assert.equal(standardUsageMechanics(originalCard).fingerprint, standardUsageMechanics(card).fingerprint);
+  assert.notEqual(standardUsageMechanics({...card, effect: 'Different gameplay text.'}).fingerprint, standardUsageMechanics(card).fingerprint);
+  assert.notEqual(standardUsageMechanics({...card, futureMechanic: 'unrecognized rule'}).fingerprint, standardUsageMechanics(card).fingerprint);
 });
 
 test('different mechanics stay separate and current canonical/source ownership drift is rejected', () => {
