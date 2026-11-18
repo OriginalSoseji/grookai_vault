@@ -13,6 +13,8 @@ If a contract is missing from this index, it is not authoritative.
 
 | Contract | Status | Description |
 |--------|--------|-------------|
+| LATIOS_ALIAS_DISCOVERY_READ_REPAIR_V5 | Active | docs/contracts/LATIOS_ALIAS_DISCOVERY_READ_REPAIR_V5.md — Exact507-to509 final indexed fallback release; safe literal superset, direct unprobed scan, unchanged data/security and three-second API budget |
+| LATIOS_ALIAS_DISCOVERY_READ_REPAIR_V4 | Active | docs/contracts/LATIOS_ALIAS_DISCOVERY_READ_REPAIR_V4.md — Exact507-to508 indexed-probe preparation with immutable local source; superseded for final release by V5 |
 | LATIOS_ALIAS_DISCOVERY_READ_REPAIR_V3 | Active | docs/contracts/LATIOS_ALIAS_DISCOVERY_READ_REPAIR_V3.md — Exact505-to507 final search release; cached fallback text, original three-second budget, full retained-row and live append-only readback |
 | LATIOS_ALIAS_DISCOVERY_READ_REPAIR_V2 | Active | docs/contracts/LATIOS_ALIAS_DISCOVERY_READ_REPAIR_V2.md — Exact505-to506 search performance and retained mixed-case GV lookup correction; unchanged data and API budget |
 | LATIOS_ALIAS_DISCOVERY_READ_REPAIR_V1 | Active | docs/contracts/LATIOS_ALIAS_DISCOVERY_READ_REPAIR_V1.md — Exact504-to505 approved EX Trainer Kit Latios discovery aliases; retained identities, nine normal printings, holo Latios and ownership |

@@ -5242,3 +5242,20 @@ every baseline ID privately, compare complete retained rows, verify their immuta
 guards and report new append-only rows separately. Square rows compare in full.
 Never replace a failed earlier fingerprint receipt or claim its four live deltas
 were unchanged; the505 concurrency audit independently explains them.
+
+
+## Latios search final indexed probe (November18)
+
+Applied507 improved set discovery but canonical identity API acceptance still
+failed. Its independent data-only readback passes all120 retained fingerprints
+and full schema/security parity. Preserve its failed API receipt. Use only V5
+for the exact507-to509 release (20261118160000/20261118163000); V4 remains the
+sole508 preparation. Preserve local508 bytes and never reset populated labs.
+
+508 avoids unused NULL-scope resolution, hashes exclusions with explicit Jungle
+NULL semantics, and adds an indexed literal-token superset.509 preserves a direct
+scan without a safe token. Both keep final predicates/ranking and stored data.
+Actual representative performance includes173837 parents,244259 printings and
+128 Jungle exclusion IDs through the unchanged real helper. NULL helper stubs
+serve only rollback equivalence tests. External-only/set-name-only and wildcard
+inputs must compare exactly against507 before committed qualification.

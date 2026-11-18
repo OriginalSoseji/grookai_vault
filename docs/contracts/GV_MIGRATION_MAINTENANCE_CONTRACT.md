@@ -1447,3 +1447,18 @@ prerequisites, populated506 upgrade, four-schema/security equivalence, both role
 production readback remain mandatory. Follow LATIOS_ALIAS_DISCOVERY_READ_REPAIR_V3
 for the pinned baseline-ID comparison in the two append-only market tables;
 all retained rows and other120-table fingerprints remain completely protected.
+
+
+## Latios indexed search release V5 — November18
+
+Canonical507's retained data and full schema/security passed independent readback,
+but identity API acceptance remained failed. V5 is the separately named507-to509
+scope for exactly20261118160000/20261118163000. Preserve all507 production and
+locally applied508 SQL. V4's sole508 scope is not widened. Baseline V5 remains
+read-only; require complete four-schema/security equivalence, new509 full CLI
+prefix-reset/prerequisite replay and a populated508 upgrade without reset.
+The indexed literal probe is a superset; original final matching/ranking stays.
+Jungle NULL semantics and the unprobed direct scan remain equivalent. Qualified
+performance includes actual128-ID Jungle exclusions and both reader roles.
+Normal hooks, exact source/proof pins, official CLI and full independent live
+readback remain required; the public API budget stays three seconds.
