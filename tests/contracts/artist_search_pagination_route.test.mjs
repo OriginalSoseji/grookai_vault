@@ -19,6 +19,7 @@ function loadRoute({ fail = false, fastSearchTimeout = false, softTimeout = fals
     'next/server': { NextResponse: { json: (body, init) => Response.json(body, init) } },
     '@/lib/explore/getExploreRows': {
       getExploreRowsForCombinedSearch: async (options) => { capture(options); return rows; },
+      getExploreRowsForSmartFilterDiscovery: async (options) => { capture(options); return rows; },
       getExploreRowsForArtistSearch: async (artist, options) => {
         capture({ ...options, artist });
         if (fail) throw new Error('canceling statement due to statement timeout');
@@ -88,6 +89,19 @@ test('timed-out searches are never cached as empty successful results', async ()
     assert.equal(payload.source, options.softTimeout ? 'web_ranked_resolver_v2_degraded_soft_timeout' : 'web_ranked_resolver_v2_degraded_timeout');
     assert.equal(payload.rows.length, 0);
   }
+});
+
+test('missing-image sentence routes to image discovery without spurious text', async () => {
+  let options;
+  const response = await loadRoute({ capture: value => { options = value; } })({
+    nextUrl: new URL('https://fixture?q=all+cards+with+no+exact+image&limit=5'),
+  });
+  assert.equal(response.status, 200);
+  const data = await response.json();
+  assert.equal(data.smart_search.residualQuery, '');
+  assert.equal(data.smart_search.imageState, 'missing');
+  assert.equal(options.imageState, 'missing');
+  assert.ok(data.rows.length > 0);
 });
 
 test('credentialed catalog searches are private and reuse the same request catalog', async () => {
