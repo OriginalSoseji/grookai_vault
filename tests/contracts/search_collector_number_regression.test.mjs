@@ -20,6 +20,7 @@ function harness(rows,{error=null}={}){
   assert.equal(table,'card_prints');
   const filters=[];
   return {select(){return this;},eq(field,value){operations.push({operator:'eq',field,value});filters.push(row=>row[field]===value);return this;},
+   in(field,values){operations.push({operator:'in',field,value:[...values]});filters.push(row=>values.includes(row[field]));return this;},
    ilike(field,pattern){operations.push({operator:'ilike',field,value:pattern});const value=new RegExp('^'+pattern.replace(/[.*+?^${}()|[\]\\]/g,'\\$&').replaceAll('%','.*').replaceAll('_','.')+'$','i');filters.push(row=>value.test(String(row[field]??'')));return this;},
    not(field,operator,pattern){assert.equal(operator,'ilike');const prefix=pattern.replaceAll('%','').toLowerCase();filters.push(row=>!String(row[field]??'').toLowerCase().startsWith(prefix));return this;},
    limit(n){requests.push({table,filters:filters.length,limit:n});return Promise.resolve({data:rows.filter(row=>filters.every(f=>f(row))).slice(0,n),error});}};
@@ -114,3 +115,39 @@ test('lookup errors propagate rather than claiming the catalog has no card',asyn
  const h=harness([],{error:{message:'catalog unavailable'}});
  await assert.rejects(h.lookup('mega greninja 081'),/catalog unavailable/);
 });
+
+for(const raw of ['pika xy124','Pikachu XY124','PIKA XY124','XY124']){
+ test(`printed XY promo stays an exact, set-scoped collector lookup: ${raw}`,async()=>{
+  const correct={...greninja,id:'pikachu-xy124',name:'Pikachu-EX',number:'xY124',number_plain:'124',set_code:'xyp'};
+  const h=harness([correct,{...correct,id:'wrong-set',set_code:'xy12'},
+   {...correct,id:'wrong-number',number:'XY125',number_plain:'125'},
+   {...correct,id:'wrong-prefix',number:'XYP124'},
+   {...correct,id:'wrong-suffix',number:'XY124A'},
+   {...correct,id:'japanese',gv_id:'GV-PK-JPN-XYP-XY124'},
+   {...correct,id:'wrong-name',name:'Charizard-EX'}]);
+  assert.deepEqual(Array.from(h.query(raw).expectedSetCodes),['xyp']);
+  assert.deepEqual(Array.from(h.query(raw).numberTokens),['XY124']);
+  assert.deepEqual(Array.from(h.query(raw).promoTokens),['XY124']);
+  const found=Array.from(await h.lookup(raw),row=>row.id);
+  assert.deepEqual(found,raw==='XY124'?['pikachu-xy124','wrong-name']:['pikachu-xy124']);
+  assert.ok(h.operations.some(op=>op.field==='set_code'&&op.operator==='in'&&op.value.join(',')==='xyp'));
+ });
+}
+
+test('XY expansion codes and different printed promo suffixes retain their identities',async()=>{
+ const h=harness([]);
+ for(const code of ['xy1','xy2','xy10','xy12']){
+  assert.deepEqual(Array.from(h.query(`pikachu ${code}`).expectedSetCodes),[code]);
+  assert.equal(h.query(`pikachu ${code}`).promoTokens.length,0);
+ }
+ assert.deepEqual(Array.from(h.query('pika XY124A').numberTokens),['XY124A']);
+});
+
+for(const [token,setCode] of [['SWSH020','swshp'],['SVP027','svp']]){
+ test(`existing printed promo family remains scoped: ${token}`,async()=>{
+  const correct={...greninja,id:token,name:'Pikachu',number:token,set_code:setCode};
+  const h=harness([correct,{...correct,id:'wrong-family',set_code:'xyp'}]);
+  assert.deepEqual(Array.from(await h.lookup(`pika ${token}`),row=>row.id),[token]);
+  assert.ok(h.operations.some(op=>op.field==='set_code'&&op.value.join(',')===setCode));
+ });
+}

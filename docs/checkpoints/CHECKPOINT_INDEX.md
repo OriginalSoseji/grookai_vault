@@ -1,5 +1,7 @@
 # CHECKPOINT_INDEX
 
+- [SEARCH_XY_PROMO_COLLECTOR_TIMEOUT_20261118](SEARCH_XY_PROMO_COLLECTOR_TIMEOUT_20261118.md) - `2026-11-18` - Correct printed XY promo interpretation and bound caller-visible collector reads; preserve exact identities, filters and timeout budgets; live deployment and Samsung readback remain gated by terminal receipts
+
 - [NATIVE_CONDITION_PRICING_20261118](pricing/NATIVE_CONDITION_PRICING_20261118.md) - `2026-11-18` - Native exact-condition reference candidate follows Add to Vault and active raw-copy controls through the deployed reader; local synthetic Android/transport/widget proof, existing valuations preserved, native distribution remains separate
 - `MOBILE_RELEASE_CONTINUITY_20261118` — `2026-11-18` — Established paired Android/iOS build and signer continuity contract; raised baseline to 551, added Android APK provenance and an ADB preflight that blocks signer mismatch/downgrade without uninstalling; current Samsung build550 is debug-signed and Mac is offline, so no paired install or TestFlight release is claimed
 
