@@ -234,6 +234,7 @@ export default async function VaultInstancePage(
               instanceId={detail.instanceId}
               initialIntent={detail.intent}
               initialConditionLabel={detail.conditionLabel}
+              cardPrintingId={detail.cardPrintingId}
               initialImageDisplayMode={detail.imageDisplayMode}
               isActive={isActive}
               isGraded={detail.isGraded}

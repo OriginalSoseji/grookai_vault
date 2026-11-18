@@ -7,6 +7,7 @@ import { useFormStatus } from "react-dom";
 import { resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import { isCollectorAcquisition, localCollectorAcquisition, localCollectorToday, type CollectorAcquisition } from "@/lib/vault/collectorAcquisitionDate";
 import PrintingSelector from "@/components/cards/PrintingSelector";
+import ConditionPrice from "@/components/pricing/ConditionPrice";
 import VaultSubmitButton from "@/components/VaultSubmitButton";
 import { useClientViewer } from "@/lib/auth/useClientViewer";
 import { findPrintingByReference } from "@/lib/cards/printingSelection";
@@ -470,6 +471,7 @@ export default function AddToVaultCardAction({
                     )}
                   </div>
                 </fieldset>
+                <ConditionPrice cardPrintingId={selectedChildPrintingId} condition={condition} />
                 <div className="gv-collector-field-row">
                   <label htmlFor="review-copy-quantity">Quantity</label>
                   <div className="gv-quantity-stepper">

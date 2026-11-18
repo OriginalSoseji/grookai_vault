@@ -1,0 +1,349 @@
+{
+  "version": "TCGTRACKING_SOURCE_QUALIFICATION_V1",
+  "checked_at": "2026-11-18T03:59:13.376Z",
+  "local_date": "2026-11-17",
+  "timezone": "America/Denver",
+  "mode": "credential_free_public_get_and_saved_fixture_only",
+  "production_reads": false,
+  "production_writes": false,
+  "provider_messages_sent": false,
+  "captures": [
+    {
+      "name": "openapi_docs",
+      "url": "https://openapi.tcgtracking.com/",
+      "http_status": 200,
+      "fetched_at": "2026-11-18T03:59:13.323Z",
+      "bytes": 70110,
+      "sha256": "a408862afbd14078cdcc44b5ca4b2d6a61d5c766f2096352835ada2babfa77fd",
+      "headers": {
+        "content-type": "text/html; charset=UTF-8",
+        "etag": null,
+        "last-modified": null,
+        "cache-control": "public, max-age=60, s-maxage=300, must-revalidate, stale-while-revalidate=120"
+      }
+    },
+    {
+      "name": "provider_home",
+      "url": "https://tcgtracking.com/",
+      "http_status": 200,
+      "fetched_at": "2026-11-18T03:59:13.260Z",
+      "bytes": 51948,
+      "sha256": "c90028e2c07cca6a8ac4e99bb9d016d975297975c30234c80b2152386a393c5a",
+      "headers": {
+        "content-type": "text/html; charset=UTF-8",
+        "etag": null,
+        "last-modified": null,
+        "cache-control": "no-store, no-cache, must-revalidate"
+      }
+    },
+    {
+      "name": "provider_disclaimer",
+      "url": "https://tcgtracking.com/disclaimer.php",
+      "http_status": 200,
+      "fetched_at": "2026-11-18T03:59:13.268Z",
+      "bytes": 18908,
+      "sha256": "576025d2961c363a239a91e8068327fb8027ca1e97d22cd4990c8ffdeb1e00b8",
+      "headers": {
+        "content-type": "text/html; charset=UTF-8",
+        "etag": null,
+        "last-modified": null,
+        "cache-control": "no-store, no-cache, must-revalidate"
+      }
+    },
+    {
+      "name": "provider_privacy",
+      "url": "https://tcgtracking.com/privacy.php",
+      "http_status": 200,
+      "fetched_at": "2026-11-18T03:59:13.294Z",
+      "bytes": 19146,
+      "sha256": "d512118b6cc7070cbcfa10865de27fdafd7dec93aeacea15ac304daf1509829f",
+      "headers": {
+        "content-type": "text/html; charset=UTF-8",
+        "etag": null,
+        "last-modified": null,
+        "cache-control": "no-store, no-cache, must-revalidate"
+      }
+    },
+    {
+      "name": "provider_contact",
+      "url": "https://tcgtracking.com/contact.php",
+      "http_status": 200,
+      "fetched_at": "2026-11-18T03:59:13.257Z",
+      "bytes": 9189,
+      "sha256": "109506b0b9ef72f0a5b92de64fc3c9885bf46da2f55cafa34a9a9177ac3988c6",
+      "headers": {
+        "content-type": "text/html; charset=UTF-8",
+        "etag": null,
+        "last-modified": null,
+        "cache-control": "no-store, no-cache, must-revalidate"
+      }
+    },
+    {
+      "name": "dragons_exalted_skus",
+      "url": "https://openapi.tcgtracking.com/v1/3/sets/1394/skus",
+      "http_status": 200,
+      "fetched_at": "2026-11-18T03:59:13.371Z",
+      "bytes": 133287,
+      "sha256": "715628f8740f7e6a7fc02508aeeb560b3bb75777d2659143639a86c53dd5fda8",
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "etag": "W/\"842e751406e192fc8ef2a08c13d9691e\"",
+        "last-modified": "Tue, 17 Nov 2026 18:42:02 GMT",
+        "cache-control": "public, max-age=3600, s-maxage=21600, must-revalidate, stale-while-revalidate=3600"
+      }
+    }
+  ],
+  "failed_captures": [],
+  "document_search": [
+    {
+      "name": "openapi_docs",
+      "licence_or_terms_word_present": false,
+      "commercial_word_present": false,
+      "usd_word_present": false,
+      "note": "Keyword presence is search evidence, not a grant, prohibition or currency guarantee."
+    },
+    {
+      "name": "provider_home",
+      "licence_or_terms_word_present": false,
+      "commercial_word_present": true,
+      "usd_word_present": false,
+      "note": "Keyword presence is search evidence, not a grant, prohibition or currency guarantee."
+    },
+    {
+      "name": "provider_disclaimer",
+      "licence_or_terms_word_present": true,
+      "commercial_word_present": false,
+      "usd_word_present": true,
+      "note": "Keyword presence is search evidence, not a grant, prohibition or currency guarantee."
+    },
+    {
+      "name": "provider_privacy",
+      "licence_or_terms_word_present": false,
+      "commercial_word_present": false,
+      "usd_word_present": false,
+      "note": "Keyword presence is search evidence, not a grant, prohibition or currency guarantee."
+    },
+    {
+      "name": "provider_contact",
+      "licence_or_terms_word_present": false,
+      "commercial_word_present": false,
+      "usd_word_present": false,
+      "note": "Keyword presence is search evidence, not a grant, prohibition or currency guarantee."
+    }
+  ],
+  "sku_sample": {
+    "url": "https://openapi.tcgtracking.com/v1/3/sets/1394/skus",
+    "set_id": 1394,
+    "provider_updated_at": "2026-11-17T13:36:40-05:00",
+    "sku_count": 1207,
+    "product_count": 131,
+    "envelope_fields": [
+      "product_count",
+      "products",
+      "set_id",
+      "sku_count",
+      "updated"
+    ],
+    "sku_fields": [
+      "cnd",
+      "cnt",
+      "hi",
+      "lng",
+      "low",
+      "mkt",
+      "var",
+      "var_a",
+      "vid"
+    ],
+    "conditions": [
+      "DMG",
+      "HP",
+      "LP",
+      "MP",
+      "NM"
+    ],
+    "explicit_currency_fields": [],
+    "scope_printings": 4,
+    "selections": 20,
+    "available": 18,
+    "unavailable": 2,
+    "unchanged_from_saved_preview": 20,
+    "comparisons": [
+      {
+        "card_printing_id": "9e6e0c7f-8258-4ad3-bced-24e794e078a9",
+        "condition": "NM",
+        "stored_amount": 2.51,
+        "fresh_amount": 2.51,
+        "unchanged": true,
+        "sku_matches": 1
+      },
+      {
+        "card_printing_id": "9e6e0c7f-8258-4ad3-bced-24e794e078a9",
+        "condition": "LP",
+        "stored_amount": 1.16,
+        "fresh_amount": 1.16,
+        "unchanged": true,
+        "sku_matches": 1
+      },
+      {
+        "card_printing_id": "9e6e0c7f-8258-4ad3-bced-24e794e078a9",
+        "condition": "MP",
+        "stored_amount": 1.42,
+        "fresh_amount": 1.42,
+        "unchanged": true,
+        "sku_matches": 1
+      },
+      {
+        "card_printing_id": "9e6e0c7f-8258-4ad3-bced-24e794e078a9",
+        "condition": "HP",
+        "stored_amount": 0.91,
+        "fresh_amount": 0.91,
+        "unchanged": true,
+        "sku_matches": 1
+      },
+      {
+        "card_printing_id": "9e6e0c7f-8258-4ad3-bced-24e794e078a9",
+        "condition": "DMG",
+        "stored_amount": 1.03,
+        "fresh_amount": 1.03,
+        "unchanged": true,
+        "sku_matches": 1
+      },
+      {
+        "card_printing_id": "2d67b786-d7cd-471e-921f-2ea4c9a2f0c8",
+        "condition": "NM",
+        "stored_amount": 5.34,
+        "fresh_amount": 5.34,
+        "unchanged": true,
+        "sku_matches": 1
+      },
+      {
+        "card_printing_id": "2d67b786-d7cd-471e-921f-2ea4c9a2f0c8",
+        "condition": "LP",
+        "stored_amount": 3.34,
+        "fresh_amount": 3.34,
+        "unchanged": true,
+        "sku_matches": 1
+      },
+      {
+        "card_printing_id": "2d67b786-d7cd-471e-921f-2ea4c9a2f0c8",
+        "condition": "MP",
+        "stored_amount": 2.77,
+        "fresh_amount": 2.77,
+        "unchanged": true,
+        "sku_matches": 1
+      },
+      {
+        "card_printing_id": "2d67b786-d7cd-471e-921f-2ea4c9a2f0c8",
+        "condition": "HP",
+        "stored_amount": 2.4,
+        "fresh_amount": 2.4,
+        "unchanged": true,
+        "sku_matches": 1
+      },
+      {
+        "card_printing_id": "2d67b786-d7cd-471e-921f-2ea4c9a2f0c8",
+        "condition": "DMG",
+        "stored_amount": null,
+        "fresh_amount": null,
+        "unchanged": true,
+        "sku_matches": 1
+      },
+      {
+        "card_printing_id": "1742d906-279c-4773-a5ae-9fe8a2e0bc56",
+        "condition": "NM",
+        "stored_amount": 3.96,
+        "fresh_amount": 3.96,
+        "unchanged": true,
+        "sku_matches": 1
+      },
+      {
+        "card_printing_id": "1742d906-279c-4773-a5ae-9fe8a2e0bc56",
+        "condition": "LP",
+        "stored_amount": 2.94,
+        "fresh_amount": 2.94,
+        "unchanged": true,
+        "sku_matches": 1
+      },
+      {
+        "card_printing_id": "1742d906-279c-4773-a5ae-9fe8a2e0bc56",
+        "condition": "MP",
+        "stored_amount": 3.12,
+        "fresh_amount": 3.12,
+        "unchanged": true,
+        "sku_matches": 1
+      },
+      {
+        "card_printing_id": "1742d906-279c-4773-a5ae-9fe8a2e0bc56",
+        "condition": "HP",
+        "stored_amount": 2.69,
+        "fresh_amount": 2.69,
+        "unchanged": true,
+        "sku_matches": 1
+      },
+      {
+        "card_printing_id": "1742d906-279c-4773-a5ae-9fe8a2e0bc56",
+        "condition": "DMG",
+        "stored_amount": 2.13,
+        "fresh_amount": 2.13,
+        "unchanged": true,
+        "sku_matches": 1
+      },
+      {
+        "card_printing_id": "279cf80e-af67-4b15-be93-392395da4fad",
+        "condition": "NM",
+        "stored_amount": 9.14,
+        "fresh_amount": 9.14,
+        "unchanged": true,
+        "sku_matches": 1
+      },
+      {
+        "card_printing_id": "279cf80e-af67-4b15-be93-392395da4fad",
+        "condition": "LP",
+        "stored_amount": 5.95,
+        "fresh_amount": 5.95,
+        "unchanged": true,
+        "sku_matches": 1
+      },
+      {
+        "card_printing_id": "279cf80e-af67-4b15-be93-392395da4fad",
+        "condition": "MP",
+        "stored_amount": 6.51,
+        "fresh_amount": 6.51,
+        "unchanged": true,
+        "sku_matches": 1
+      },
+      {
+        "card_printing_id": "279cf80e-af67-4b15-be93-392395da4fad",
+        "condition": "HP",
+        "stored_amount": null,
+        "fresh_amount": null,
+        "unchanged": true,
+        "sku_matches": 1
+      },
+      {
+        "card_printing_id": "279cf80e-af67-4b15-be93-392395da4fad",
+        "condition": "DMG",
+        "stored_amount": 3.93,
+        "fresh_amount": 3.93,
+        "unchanged": true,
+        "sku_matches": 1
+      }
+    ]
+  },
+  "qualification": {
+    "intentionally_published_api": "documented",
+    "condition_market_field": "documented_as_tcgplayer_market",
+    "daily_refresh": "documented",
+    "commercial_display_permission": "not_established_in_reviewed_pages",
+    "sku_currency": "unverified",
+    "official_per_sku_accuracy": "not_independently_corroborated",
+    "public_activation": "not_qualified",
+    "note": "Human-reviewed findings are limited to the captured pages. Missing terms are not proof of a prohibition. A dollar sign or third-party consumer is not explicit SKU currency evidence."
+  },
+  "next_evidence": [
+    "Provider confirmation of display/cache/retention rights in free and paid grookai surfaces, attribution and request limits.",
+    "Provider confirmation that SKU mkt is USD across categories/languages and its missing/stale semantics.",
+    "Independent official SKU comparison with matching product, finish, language, condition and observation time."
+  ]
+}
