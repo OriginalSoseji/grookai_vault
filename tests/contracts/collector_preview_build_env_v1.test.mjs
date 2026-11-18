@@ -4,6 +4,7 @@ import fs from 'node:fs';
 import {
   createCollectorPreviewBuildEnv,
   parseLocalEnv,
+  resolveCollectorPreviewBuildConfig,
 } from '../../scripts/ci/collector_preview_build_env.mjs';
 
 const staging = {
@@ -53,6 +54,29 @@ test('root local environment parsing supports export, quoting, comments and esca
     SUPABASE_PUBLISHABLE_KEY_STAGING: 'local\nkey',
     IGNORED: 'single quoted # value',
   });
+});
+
+test('CI preview inputs are accepted only for the exact loopback staging target', () => {
+  const workflowEnv = {
+    SUPABASE_URL: 'http://127.0.0.1:54321',
+    SUPABASE_PUBLISHABLE_KEY: 'sb_publishable_typecheck_only',
+  };
+  const resolved = resolveCollectorPreviewBuildConfig(workflowEnv, {});
+  const env = createCollectorPreviewBuildEnv(workflowEnv, resolved);
+  assert.equal(env.SUPABASE_URL, 'http://127.0.0.1:54321/');
+  assert.equal(env.SUPABASE_PUBLISHABLE_KEY, 'sb_publishable_typecheck_only');
+
+  const productionEnv = {
+    ...workflowEnv,
+    SUPABASE_URL: 'https://ycdxbpibncqcchqiihfz.supabase.co',
+  };
+  assert.throws(
+    () => createCollectorPreviewBuildEnv(
+      productionEnv,
+      resolveCollectorPreviewBuildConfig(productionEnv, {}),
+    ),
+    /task-owned local Supabase target/,
+  );
 });
 
 test('local web verification rejects missing settings and all non-local targets', () => {

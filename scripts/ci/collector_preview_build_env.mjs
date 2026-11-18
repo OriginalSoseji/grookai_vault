@@ -27,6 +27,15 @@ export function parseLocalEnv(source) {
   return config;
 }
 
+export function resolveCollectorPreviewBuildConfig(baseEnv, localConfig) {
+  return {
+    ...localConfig,
+    SUPABASE_URL_STAGING: localConfig.SUPABASE_URL_STAGING ?? baseEnv.SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY_STAGING:
+      localConfig.SUPABASE_PUBLISHABLE_KEY_STAGING ?? baseEnv.SUPABASE_PUBLISHABLE_KEY,
+  };
+}
+
 export function createCollectorPreviewBuildEnv(baseEnv, localConfig) {
   const stagingUrl = localConfig.SUPABASE_URL_STAGING;
   const stagingKey = localConfig.SUPABASE_PUBLISHABLE_KEY_STAGING;
@@ -82,9 +91,14 @@ export function createCollectorPreviewBuildEnv(baseEnv, localConfig) {
 
 export function loadCollectorPreviewBuildEnv(baseEnv = process.env) {
   const envPath = path.join(repoRoot, ".env.local");
-  if (!fs.existsSync(envPath)) {
-    throw new Error("Local web verification requires the root .env.local file.");
+  if (!fs.existsSync(envPath) && (!baseEnv.SUPABASE_URL || !baseEnv.SUPABASE_PUBLISHABLE_KEY)) {
+    throw new Error("Local web verification requires root .env.local or explicit local Supabase settings.");
   }
-  const localConfig = parseLocalEnv(fs.readFileSync(envPath, "utf8"));
-  return createCollectorPreviewBuildEnv(baseEnv, localConfig);
+  const localConfig = fs.existsSync(envPath)
+    ? parseLocalEnv(fs.readFileSync(envPath, "utf8"))
+    : {};
+  return createCollectorPreviewBuildEnv(
+    baseEnv,
+    resolveCollectorPreviewBuildConfig(baseEnv, localConfig),
+  );
 }

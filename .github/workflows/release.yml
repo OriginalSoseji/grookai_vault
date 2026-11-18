@@ -102,12 +102,18 @@ jobs:
         run: npm run contracts:runtime-health
 
       - name: Web typecheck
+        env:
+          SUPABASE_URL: "http://127.0.0.1:54321"
+          SUPABASE_PUBLISHABLE_KEY: "sb_publishable_typecheck_only"
         run: npm --prefix apps/web run typecheck
 
       - name: Web lint
         run: npm --prefix apps/web run lint
 
       - name: Web production build
+        env:
+          SUPABASE_URL: "http://127.0.0.1:54321"
+          SUPABASE_PUBLISHABLE_KEY: "sb_publishable_release_build_only"
         run: npm run web:build:strict
 
       - name: Flutter analyze
