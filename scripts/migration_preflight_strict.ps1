@@ -19,6 +19,8 @@ param(
 
   [string[]]$ExpectedLocalOnlyIds = @(),
 
+  [switch]$ShroudedAliasDiscoveryReleaseV2,
+  [switch]$ShroudedAliasDiscoveryBaselineV1,
   [switch]$LatiosAliasDiscoveryBaselineV5,
   [switch]$LatiosAliasDiscoveryReleaseV5,
   [switch]$LatiosAliasDiscoveryBaselineV4,
@@ -139,6 +141,28 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($ShroudedAliasDiscoveryReleaseV2) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ShroudedAliasDiscoveryReleaseV2','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261118180000,20261118181500') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261118180000,20261118181500') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Shrouded release V2 requires the exact510+511 candidates and canonical509 baseline.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_shrouded_alias_release_v2.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($ShroudedAliasDiscoveryBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ShroudedAliasDiscoveryBaselineV1','AuditOutDir') }).Count -gt 0 -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Shrouded Fable baseline V1 is audit-only at canonical509 with a new bounded directory.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_shrouded_alias_baseline_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
 
 if ($LatiosAliasDiscoveryBaselineV5) {
   if ($Phase -ne 'AuditLinkedSchema' -or

@@ -1,3 +1,34 @@
+# Shrouded Fable final release V2 — November18,2026
+
+The qualified candidate starts from main6b7a4818f after native release950.
+Use `-ShroudedAliasDiscoveryReleaseV2` only for canonical509 and exact pending
+IDs `20261118180000,20261118181500`. The first locally applied source remains
+immutable; the forward grant correction makes the new non-updatable projection
+SELECT-only for all three reader roles. Fresh511 and the populated509-to511
+chain are qualified; use `shrouded_alias_runtime_v2_r2.mjs` and
+`verify_shrouded_alias_local_v2_r2.mjs`. Final qualification is in the private
+`local-qualification-v2-r2` directory. V1 remains an audit-only scope.
+
+Preserve113 distinct discovery parents,167 printings and four actual owned
+copies, including the unique legacy Prize Pack Cosmos Galvantula. No stored
+parent/printing/identity/reference row is merged or moved. The full-size146
+actual calls passed at685ms maximum with the unchanged three-second budget.
+Complete managed/platform/hosted checks, source/proof sealing, exact PrePush,
+official511-file dry-run/apply and independent production/API/data/security/web
+verification before closure. See [the V2 contract](../contracts/SHROUDED_ALIAS_DISCOVERY_READ_REPAIR_V2.md)
+and [the checkpoint](../checkpoints/SHROUDED_ALIAS_DISCOVERY_20261118.md).
+
+# Shrouded Fable starting audit — November18,2026
+
+Use `C:/grookai_shrouded_alias_20261118` from merged main8199a0feab. The separate
+`-ShroudedAliasDiscoveryBaselineV1` accepts only AuditLinkedSchema at509 with a
+new private `baseline-v1-*` directory under
+`C:/grookai_vault_operator_artifacts/shrouded_alias_discovery_20261118`.
+Production has99 approved duplicate pairs,100 legacy/112 canonical parents,
+and four owned copies. The extra legacy Prize Pack Cosmos Galvantula is a
+distinct retained identity. A prospective unified discovery family must retain
+all113 distinct parents. No candidate or release is qualified by this audit.
+See [the contract](../contracts/SHROUDED_ALIAS_DISCOVERY_READ_REPAIR_V1.md).
 # Pokémon playable usage release candidate — November 18, 2026
 
 The isolated release branch adds `playable` / `playables` search and shared expiring badges using the precomputed Pokémon Standard usage signal. Current main search, pagination, catalog visibility and Winter branding are retained. No schema or canonical writer is part of this release.

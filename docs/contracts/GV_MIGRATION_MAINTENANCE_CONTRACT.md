@@ -1,5 +1,29 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Shrouded Fable exact release V2 — November18,2026
+
+`-ShroudedAliasDiscoveryReleaseV2` binds canonical509 to511 for only
+`20261118180000,20261118181500`. It accepts AuditLinkedSchema and exact-ID
+PrePush, rejecting mixed scopes, target overrides, changed sources or missing
+proofs. V1 remains audit-only. Applied local510 is immutable; forward511 guards
+its exact non-updatable projection view and narrows only that view's grants to
+SELECT. Require genuine fresh511 replay, both populated upgrades,449 protected
+local fingerprints, full schema/security and three-role permissions, actual
+full-size performance, normal managed/platform/hosted checks and the frozen
+official CLI packet. Independent production/API/data/security/web readback,
+merge/deployment and scoped lab closure remain required. See
+[the V2 contract](SHROUDED_ALIAS_DISCOVERY_READ_REPAIR_V2.md).
+
+## Shrouded Fable starting audit — November18,2026
+
+`-ShroudedAliasDiscoveryBaselineV1` is a separate read-only AuditLinkedSchema
+scope at canonical509. It compares the exact source/ledger, all four governed
+schemas and security against the completed Latios V5 qualification. No prior
+scope is widened. It rejects PrePush, combined flags, expected IDs and target
+overrides, and cannot apply SQL or qualify a future candidate. Preserve99
+approved pairs, the unmatched Prize Pack Cosmos Galvantula and all ownership.
+See [the contract](SHROUDED_ALIAS_DISCOVERY_READ_REPAIR_V1.md).
+
 ## Square-aware Vault removal — November 14, 2026
 
 `-SquareVaultRemovalReleaseV1` is a separate canonical495-to496 gate for only
