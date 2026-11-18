@@ -60,6 +60,7 @@ If a contract is missing from this index, it is not authoritative.
 | PALDEAN_ALIAS_DISCOVERY_READ_REPAIR_V2 | Applied at501; retained | docs/contracts/PALDEAN_ALIAS_DISCOVERY_READ_REPAIR_V2.md — Exact500-to501 identity RPC membership cache; unchanged discovery authority, protected records and API budget |
 | APP_VISUAL_SYSTEM_CONTRACT_V1 | Active | [App Visual System](contracts/APP_VISUAL_SYSTEM_CONTRACT_V1.md) — Ink/bone foundation, lime baseline with matching seasonal website accents, compact content hierarchy, tighter geometry, consistent card spacing, and responsive verification |
 | BRAND_TYPOGRAPHY_CONTRACT_V1 | Active | [Brand and Typography](contracts/BRAND_TYPOGRAPHY_CONTRACT_V1.md) — Bundled Roboto, lowercase names, weight 900 wordmarks, original emblem preservation, flexible seasonal logo colors, matching website accents, and accessible motion |
+| MOBILE_RELEASE_CONTINUITY_V1 | Active release contract | [Mobile Release Continuity](contracts/MOBILE_RELEASE_CONTINUITY_V1.md) — Android/iOS source and build-number parity, recorded artifact signer provenance, and mandatory signer/version preflight before updating an installed Android app; never uninstall to bypass a mismatch |
 | NO_ASSUMPTION_RULE | Active | Prohibits assumption-driven work across the entire project |
 | IDENTITY_CONTRACT_SUITE_V1 | Frozen | Canonical rules for set, print, image, and alias identity |
 | IDENTITY_PRECEDENCE_RULE_V1 | Frozen | Printed identity supersedes canonical and external identity |
@@ -98,6 +99,7 @@ If a contract is missing from this index, it is not authoritative.
 |--------|--------|-------------|
 | INGESTION_PIPELINE_CONTRACT_V1 | Active | docs/contracts/INGESTION_PIPELINE_CONTRACT_V1.md — Raw-first staged ingestion plus mandatory source-precedence, exact per-set finish manifests, suppression checks, and plan/pre-commit/readback gates before canonical printing mutation |
 | EXTERNAL_SOURCE_INGESTION_MODEL_V1 | Active | Shared raw-first canon-bound ingestion model for external catalog and discovery rows before comparison, canon gate, and staged promotion |
+| CATALOG_SOURCE_NAME_BINDING_V1 | Active | [docs/contracts/CATALOG_SOURCE_NAME_BINDING_V1.md](contracts/CATALOG_SOURCE_NAME_BINDING_V1.md) — Exact source-label correspondence bound to known provider/card IDs and current canonical identity hashes; readonly consumers preserve canonical names |
 | EXTERNAL_DISCOVERY_STAGING_BOUNDARY_V1 | Active | Non-canon staging boundary for external discovery candidates before review and any later canon decision |
 | CATALOG_CONTINUOUS_PROMOTION_V1 | Active | docs/contracts/CATALOG_CONTINUOUS_PROMOTION_V1.md — Founder-activated, event-driven execution of at most five exact source-governed insert-only catalog deltas, with immutable package verification, rollback-before-commit, durable operations receipts, and no updates, deletes, pricing, Storage, Vault, or visibility writes |
 | ENGLISH_POKEMON_MISSING_SET_PROMOTION_V1 | Active | docs/contracts/ENGLISH_POKEMON_MISSING_SET_PROMOTION_V1.md — Atomic hidden English Pokemon set and parent admission after complete Master Index and TCGdex agreement, zero-collision preflight, rollback proof, and durable readback |
@@ -167,6 +169,7 @@ If a contract is missing from this index, it is not authoritative.
 | Contract | Status | Description |
 |--------|--------|-------------|
 | GROOKAI_SMART_SEARCH_V1 | Active | docs/contracts/GROOKAI_SMART_SEARCH_V1.md — Free deterministic Grookai Search must compile natural language into typed filters, surface governed stamp/variant/special-case identities, and never call AI models or mutate canon on the normal Search path |
+| POKEMON_PLAYABLES_ENGINE_CONTRACT_V1 | Active | [docs/contracts/POKEMON_PLAYABLES_ENGINE_CONTRACT_V1.md](contracts/POKEMON_PLAYABLES_ENGINE_CONTRACT_V1.md) — Recent published physical Standard decklist usage, exact catalog/mechanics matching, coverage and expiry; manual per-card review queues are deferred for this initial signal |
 | GROOKAI_AI_PRODUCT_BOUNDARIES_V1 | Active | docs/contracts/GROOKAI_AI_PRODUCT_BOUNDARIES_V1.md — Separates free deterministic Grookai Search from premium Grookai Assistant and vendor/power-user Grookai Intelligence so AI costs and authority stay gated |
 
 ---

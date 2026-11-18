@@ -97,11 +97,44 @@ jobs:
             --dart-define=POKEMON_SEALED_CLIENT_V1_ENABLED="${{ vars.POKEMON_SEALED_CLIENT_V1_ENABLED || 'false' }}" \
             --dart-define=SEALED_OWNERSHIP_V1_ENABLED="${{ vars.SEALED_OWNERSHIP_V1_ENABLED || 'false' }}"
 
+      - name: Record and verify Android release identity
+        shell: bash
+        env:
+          REQUESTED_BUILD_NUMBER: ${{ inputs.build_number }}
+        run: |
+          set -euo pipefail
+          APK=build/app/outputs/flutter-apk/app-release.apk
+          AAPT="$(find "$ANDROID_HOME/build-tools" -type f -name aapt | sort -V | tail -n 1)"
+          APKSIGNER="$(find "$ANDROID_HOME/build-tools" -type f -name apksigner | sort -V | tail -n 1)"
+          test -n "$AAPT" || { echo "Android build-tools did not provide aapt."; exit 1; }
+          test -n "$APKSIGNER" || { echo "Android build-tools did not provide apksigner."; exit 1; }
+          BADGING="$("$AAPT" dump badging "$APK")"
+          PACKAGE_ID="$(sed -nE "s/^package: name='([^']+)'.*/\1/p" <<<"$BADGING")"
+          VERSION_NAME="$(sed -nE "s/^package:.*versionName='([^']+)'.*/\1/p" <<<"$BADGING")"
+          VERSION_CODE="$(sed -nE "s/^package:.*versionCode='([0-9]+)'.*/\1/p" <<<"$BADGING")"
+          BASE_BUILD_NUMBER="$(sed -nE 's/^version: ([^+]+)\+([0-9]+)$/\2/p' pubspec.yaml)"
+          EXPECTED_BUILD_NUMBER="${REQUESTED_BUILD_NUMBER:-$BASE_BUILD_NUMBER}"
+          SIGNATURE_OUTPUT="$("$APKSIGNER" verify --print-certs "$APK")"
+          SIGNER_SHA256="$(awk -F': ' '/^Signer #1 certificate SHA-256 digest:/ { gsub(/:/, "", $2); print tolower($2); exit }' <<<"$SIGNATURE_OUTPUT")"
+          printf 'Android APK identity: package=%s version_name=%s version_code=%s expected_build=%s signer_sha256=%s\n' \
+            "${PACKAGE_ID:-missing}" "${VERSION_NAME:-missing}" "${VERSION_CODE:-missing}" \
+            "${EXPECTED_BUILD_NUMBER:-missing}" "${SIGNER_SHA256:-missing}"
+          test "$PACKAGE_ID" = "com.grookai.vault" || { echo "Unexpected Android package ID: ${PACKAGE_ID:-missing}"; exit 1; }
+          test "$VERSION_CODE" = "$EXPECTED_BUILD_NUMBER" || { echo "APK build number ${VERSION_CODE:-missing} does not match expected $EXPECTED_BUILD_NUMBER."; exit 1; }
+          test "$VERSION_NAME" = "1.0.0" || { echo "Unexpected Android marketing version: ${VERSION_NAME:-missing}"; exit 1; }
+          test "${#SIGNER_SHA256}" -eq 64 || { echo "APK signer fingerprint was missing or malformed."; exit 1; }
+          mkdir -p build/app/outputs/flutter-apk
+          node -e 'const fs=require("node:fs");fs.writeFileSync(process.argv[1],JSON.stringify({schema:"MOBILE_RELEASE_ARTIFACT_V1",platform:"android",package_id:process.argv[2],marketing_version:process.argv[3],build_number:process.argv[4],source_commit:process.argv[5],signer_sha256:process.argv[6]},null,2)+"\n")' \
+            build/app/outputs/flutter-apk/mobile-release-manifest.json \
+            "$PACKAGE_ID" "$VERSION_NAME" "$VERSION_CODE" "$GITHUB_SHA" "$SIGNER_SHA256"
+
       - name: Upload signed APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: signed-release-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
+          path: |
+            build/app/outputs/flutter-apk/app-release.apk
+            build/app/outputs/flutter-apk/mobile-release-manifest.json
 
   golden-windows:
     runs-on: windows-latest

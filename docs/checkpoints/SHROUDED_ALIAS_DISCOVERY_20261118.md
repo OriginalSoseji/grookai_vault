@@ -1,5 +1,16 @@
 # Shrouded Fable discovery starting audit — November18,2026
 
+## Integration with current main
+
+Main advanced during normal verification to
+`0a873488ed81554fcc1e40cb7b229e850f397dd2` (releases953,954 and955).
+The shared operator-playbook conflict preserves both complete sections.
+Playable search, mobile build551/signing checks and all other main source are
+retained. The locally applied510/511 migration bytes and every database
+qualification remain unchanged. Normal commit/push and Windows verification
+are repeated on this integrated source before production release. The earlier
+normal commit passed; its push was deliberately interrupted for this merge.
+
 ## Qualified local V2 candidate
 
 Main's native condition-reference release950 was integrated by fast-forward to

@@ -29,6 +29,15 @@ and four owned copies. The extra legacy Prize Pack Cosmos Galvantula is a
 distinct retained identity. A prospective unified discovery family must retain
 all113 distinct parents. No candidate or release is qualified by this audit.
 See [the contract](../contracts/SHROUDED_ALIAS_DISCOVERY_READ_REPAIR_V1.md).
+# Pokémon playable usage release candidate — November 18, 2026
+
+The isolated release branch adds `playable` / `playables` search and shared expiring badges using the precomputed Pokémon Standard usage signal. Current main search, pagination, catalog visibility and Winter branding are retained. No schema or canonical writer is part of this release.
+
+Worker: `backend/competitive/pokemon_playables/current_standard_cli.mjs daily --project-ref ycdxbpibncqcchqiihfz`. Bootstrap with its `seed --input <current-input.json> --project-ref ...` command only from retained verified input. Private seed and public-field projection keys are `standard-usage/refresh-seed.json` and `standard-usage/current.json` in `pokemon-playables-private`; neither object is anonymously readable. The web server projects only allowed fields through `/api/playables`. Never put original source responses or credentials in the public repository.
+
+The workflow attempts refresh at 06:23 and 18:23 UTC, using canonical Actions secret names `SUPABASE_URL` and `SUPABASE_SECRET_KEY`. Both names now exist in repository Actions configuration; hosted runtime credential validity still requires actual run readback after activation. The worker uses bounded public source collection, rate headers/backoff, exact current catalog bindings and 24-hour output expiry. Initial coverage is a bounded 292-member cohort, not the entire catalog. Metadata renewal is a genuine fetch preserving repository commit/blob/license pins. Continue the existing retention-plan/apply lifecycle; expired seeds require fresh bootstrap input.
+
+A live local invocation renewed 147 qualified printings from 68 lists across five events. The reviewed candidate passed the full shipcheck and actual desktop/mobile browser readback; see [the release checkpoint](../checkpoints/2026-11-18_pokemon_playables_release_candidate_v1.md). The owner authorized publication, merge and activation on November 18. Retain normal managed commit/push hooks and verify the integrated candidate, hosted deployment and refresh run directly. Local validation or a prepared workflow alone does not establish activation.
 
 # Prismatic identity query guard V5 — November17,2026
 

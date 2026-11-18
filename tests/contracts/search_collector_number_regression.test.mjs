@@ -25,6 +25,7 @@ function harness(rows,{error=null}={}){
    limit(n){requests.push({table,filters:filters.length,limit:n});return Promise.resolve({data:rows.filter(row=>filters.every(f=>f(row))).slice(0,n),error});}};
  }};
  const mocks={
+  '@/lib/playables/getPokemonPlayables':{getPokemonPlayables:async()=>null},
   '@/lib/supabase/server':{createServerComponentClient:async()=>client},
   '@/lib/canon/resolveCardImageFieldsV1':{},'@/lib/pricing/getPublicPricingByCardIds':{},
   '@/lib/cards/childDisplayImageFallbacks':{},'@/lib/cards/getPublicCardPrintingOptions':{},

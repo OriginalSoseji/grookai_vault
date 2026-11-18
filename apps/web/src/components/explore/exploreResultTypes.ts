@@ -1,9 +1,11 @@
 import type { CardSummary } from "@/types/cards";
 import type { PromotionTransitionState } from "@/lib/provisional/publicProvisionalTypes";
 import type { VariantFlags } from "@/lib/cards/variantPresentation";
+import type { PlayableCardSignal } from "@/lib/playables/publicPlayables";
 
 export type ExploreResultCard = CardSummary & {
   id: string;
+  playable?: PlayableCardSignal;
   external_image_fallback_url?: string;
   artist?: string;
   set_code?: string;
