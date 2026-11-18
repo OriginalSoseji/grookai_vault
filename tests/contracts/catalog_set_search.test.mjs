@@ -40,6 +40,19 @@ const sets = [
 ].map(([code, name]) => ({ id: code, code, name }));
 const plain = value => JSON.parse(JSON.stringify(value));
 
+test('explicit Sword and Shield promo family outranks the expansion name', () => {
+ const catalog = [...sets, {id:'swsh1',code:'swsh1',name:'Sword & Shield'},
+  {id:'swshp',code:'swshp',name:'SWSH Black Star Promos'}];
+ for (const q of ['Pikachu Sword and Shield promo', 'Pikachu Sword & Shield promos', 'Pikachu sword shield promo']) {
+  const result = resolve(q, 'pokemon', catalog);
+  assert.deepEqual(plain(result.setCodes), ['swshp'], q);
+  assert.equal(result.remainingQuery, 'Pikachu', q);
+ }
+ assert.deepEqual(plain(resolve('Pikachu from Sword and Shield', 'pokemon', catalog).setCodes), ['swsh1']);
+ assert.equal(resolve('Pikachu "Sword and Shield promo"', 'pokemon', catalog).matchedAlias, null);
+ assert.notDeepEqual(plain(resolve('Pikachu Sword and Shield promo', 'mtg', catalog).setCodes), ['swshp']);
+});
+
 test('name interpretation optionally retains a full first page within the caller request',async()=>{
  const rows=[{id:'visible',name:'Pikachu',gv_id:'GV-PK-T-001'}],limits=[];let retained;
  const client={rpc:async(_,args)=>{limits.push(args.limit_in);return {data:rows};}};

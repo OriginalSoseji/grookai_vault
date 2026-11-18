@@ -136,6 +136,11 @@ export const GAME_SCOPED_SET_ALIAS_MAP: Record<
 > = {
   pokemon: {
     ...SET_INTENT_ALIAS_MAP,
+    // These explicit family names must outrank the Sword & Shield expansion.
+    "sword and shield promo": ["swshp"],
+    "sword and shield promos": ["swshp"],
+    "sword shield promo": ["swshp"],
+    "sword shield promos": ["swshp"],
     "m-p": ["jpn-MP"],
     "mega promotion cards": ["jpn-MP"],
     "pokemon world championships 2026": ["jpn-MP"],

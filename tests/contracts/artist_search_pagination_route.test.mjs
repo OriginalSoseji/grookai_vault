@@ -104,6 +104,21 @@ test('missing-image sentence routes to image discovery without spurious text', a
   assert.ok(data.rows.length > 0);
 });
 
+test('explicit Sword and Shield promo family combines with Cosmos without selecting the expansion', async () => {
+  let options;
+  const sets = [{ id: 'expansion', code: 'swsh1', name: 'Sword & Shield' },
+    { id: 'promo', code: 'swshp', name: 'SWSH Black Star Promos' }];
+  const rows = [{ id: '1', gv_id: 'GV-PK-TEST-1', name: 'Cyndaquil', finish_key: 'cosmos' }];
+  const response = await loadRoute({ sets, rows, capture: value => { options = value; } })({
+    nextUrl: new URL('https://fixture?q=cosmos+holo+Sword+and+Shield+promos&limit=5'),
+  });
+  assert.equal(response.status, 200);
+  const data = await response.json();
+  assert.equal(options.exactSetCode, 'swshp');
+  assert.equal(options.finishKeys[0], 'cosmos');
+  assert.equal(data.rows.length, 1);
+});
+
 test('credentialed catalog searches are private and reuse the same request catalog', async () => {
  const sets=[{id:'visible',code:'base1',name:'Base Set',printed_total:102}];
  let options;
