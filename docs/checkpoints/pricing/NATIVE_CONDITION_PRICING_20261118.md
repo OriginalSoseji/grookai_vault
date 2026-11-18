@@ -101,6 +101,33 @@ It never starts a development server against production.
 
 ## Release boundary
 
+### Live Android follow-up and cancel recovery
+
+PR950's original source `f637f09af61b56189cf30611faf96fc2a976eed5` passed
+all 19 hosted checks and both normal full managed hooks. The owner then
+requested the next step and unlocked the Samsung for device verification.
+The existing build548 APK matches the preserved vendor-review release hash,
+its source lineage is retained, and public feature flags are unchanged.
+QA549 was installed in place with the same certificate, package, UID,
+first-install time and Developer Options. The existing signed-in session
+successfully loaded actual production references for Dragons Exalted #117
+Normal: NM2.51 and LP1.16, without saving a copy.
+
+Closing review exposed a pre-existing Search card-drawer bug: its local busy
+props did not refresh on the cancellation return path, leaving "Adding..."
+and disabled actions after the parent operation had finished. The follow-up
+refreshes the still-mounted drawer before that early return. Successful-save
+behavior and ownership writes are unchanged. The original QA549 and separately
+CI-signed production549 artifacts are preserved; they remain superseded
+qualification evidence until the cancel fix passes the normal checks and a
+higher same-signer device build verifies cancellation, reopening and switching.
+
+Current device/build/CI receipts and screenshots remain in the private
+`release-preparation/` directory beneath this checkpoint's artifact root.
+Do not replay the consumed QA549 installation intent or publish its superseded
+production artifact. No store submission, source intake or mapping apply is
+authorized by this preparation.
+
 This is a native source candidate. Local synthetic Android acceptance does not
 establish authenticated production-native acceptance, an iOS build, a store
 upload, TestFlight/Play distribution or a public application release. Those
