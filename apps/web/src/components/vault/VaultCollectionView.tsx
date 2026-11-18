@@ -8,6 +8,7 @@ import { getPokemonCardCollectionGridClassName } from "@/components/cards/pokemo
 import { SearchToolbar, SearchToolbarButton, SearchToolbarInput } from "@/components/common/SearchToolbar";
 import { ViewDensityToggle } from "@/components/collection/ViewDensityToggle";
 import PageIntro from "@/components/layout/PageIntro";
+import { BrandText } from "@/components/brand/BrandText";
 import { useClientReady } from "@/components/layout/useClientReady";
 import PageSection from "@/components/layout/PageSection";
 import ProductState from "@/components/layout/ProductState";
@@ -815,12 +816,14 @@ export function VaultCollectionView({
   }
 
   return (
-    <div className="gv-vault-page space-y-7 py-7 md:space-y-10 md:py-9">
+    <div className="gv-vault-page space-y-5 py-4 md:space-y-10 md:py-9">
       <section className="gv-vault-overview">
         <PageIntro
-          title="grookai vault"
+          className="gv-vault-intro"
+          title={<BrandText includeVault />}
           eyebrow="Vault"
           description="Your collection, organized by exact printing."
+          size="compact"
           actions={
             <div className="flex flex-wrap items-center gap-2.5">
               <Link
@@ -849,17 +852,17 @@ export function VaultCollectionView({
             </div>
           }
         />
-        <div className="gv-vault-summary mt-7">
+        <div className="gv-vault-summary mt-4 md:mt-7">
           {valueSummary.totalGroupedCount > 0 || (sealedTotals?.active_copy_count ?? 0) > 0 ? (
-          <div className="gv-vault-value py-5 md:py-6">
+          <div className="gv-vault-value py-3 md:py-6">
             <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-              <div className="min-w-0 space-y-2.5">
-                <p className="text-[9px] font-semibold uppercase tracking-[0.24em] text-slate-400/90">
-                  {sealedOwnershipEnabled && !sealedTotals ? "Card subtotal" : "Estimated Vault Value"}
-                </p>
-                <div className="space-y-1">
+              <div className="min-w-0 space-y-2">
+                <div className="gv-vault-value__primary">
+                  <p className="text-[9px] font-semibold uppercase tracking-[0.24em] text-slate-400/90">
+                    {sealedOwnershipEnabled && !sealedTotals ? "Card subtotal" : "Estimated Vault Value"}
+                  </p>
                   <p
-                    className="text-[2.15rem] font-semibold text-slate-950 sm:text-[2.7rem]"
+                    className="gv-vault-value__amount text-[2.15rem] font-semibold text-slate-950 sm:text-[2.7rem]"
                     data-pricing-proof="vault-exact-total"
                     data-pricing-scope="vault_total"
                     data-vault-market-value-usd={
@@ -878,6 +881,8 @@ export function VaultCollectionView({
                   >
                     {formattedVaultValue ?? "No estimate yet"}
                   </p>
+                </div>
+                <div className="space-y-1">
                   {sealedOwnershipEnabled && !sealedTotals ? (
                     <p className="text-sm" role="status">Card subtotal shown. Sealed value not available yet.</p>
                   ) : null}
@@ -942,13 +947,18 @@ export function VaultCollectionView({
           secondaryAction={<Link href="/vault/import" className="gv-secondary-button">Import collection</Link>}
         />
       )) : (
-        <PageSection spacing="default" className="space-y-6">
+        <PageSection spacing="default" className="space-y-4 md:space-y-6">
           <div id="vault-cards" className="scroll-mt-32">
             <SectionHeader
+              className="gv-vault-cards-heading"
               title="Vault Cards"
               description="Cards currently in your collection."
+              actions={
+                <Link href="/vault/workspace" className="gv-vault-workspace-link">
+                  Select copies · Trade workspace
+                </Link>
+              }
             />
-            <Link href="/vault/workspace" className="gv-secondary-button mt-3">Select copies · Trade workspace</Link>
           </div>
 
           <div className="gv-command-surface hidden md:flex md:flex-row md:items-center md:justify-between md:gap-4 md:p-3.5">

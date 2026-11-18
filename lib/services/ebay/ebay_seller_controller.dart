@@ -396,6 +396,33 @@ class EbaySellerController extends ChangeNotifier {
     photoUrls.clear();
   });
 
+  Future<void> removeDraftSummary(Map<String, dynamic> summary) =>
+      run('Removing listing draft', () async {
+        final id = summary['id'];
+        final revision = summary['revision'];
+        final state = summary['state'];
+        if (id is! String ||
+            !RegExp(
+              r'^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$',
+            ).hasMatch(id) ||
+            revision is! int ||
+            revision < 1 ||
+            !['editing', 'prepared'].contains(state)) {
+          throw StateError(
+            'Open this listing to check its current status before removing it.',
+          );
+        }
+        final result = await api.call('abandon', {
+          'draftId': id,
+          'requestId': _uuid.v4(),
+          'revision': revision,
+        });
+        if (result['state'] != 'abandoned') {
+          throw StateError(EbaySellerService.uncertainMessage);
+        }
+        await _refresh();
+      });
+
   Future<void> removePhoto(String photoId) =>
       run('Removing listing photo', () async {
         if (local == null || !editable) return;
