@@ -720,6 +720,9 @@ export default function ExplorePageClient({
         if (!response.ok || !payload.ok) {
           throw new Error(payload.error ?? "Search failed.");
         }
+        if (payload.sort_degraded_reason === "resolver_timeout") {
+          throw new Error("Search timed out before results could be checked. Please try again.");
+        }
 
         const nextRows = payload.canonical ?? payload.rows ?? [];
         setRows((current) => append
@@ -1269,7 +1272,7 @@ export default function ExplorePageClient({
           : resolverMeta?.resolverState === "NO_MATCH" && normalizedQuery
             ? `Nothing matched "${normalizedQuery}". Try a card name plus set code, collector number, finish, or cameo subject.`
             : "Try a card name, set code, collector number, finish, trainer, or cameo subject.";
-  const emptyState = (
+  const emptyState = !error ? (
     <ProductState
       compact
       eyebrow="Search"
@@ -1298,7 +1301,7 @@ export default function ExplorePageClient({
         </div>
       )}
     />
-  );
+  ) : null;
   const loadingState = (
     <div className="rounded-[20px] border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950">
       <div className="flex items-center justify-between gap-3">

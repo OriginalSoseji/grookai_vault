@@ -133,3 +133,22 @@ test("search recovers from one incomplete resolver timeout", async ({ page }) =>
   expect(new URL(requests[0]).searchParams.get("finish")).toBe("reverse");
   await expect(page.getByText("Search timed out before the complete matching set could be checked.", { exact: false })).toHaveCount(0);
 });
+
+test("a degraded search is shown as a timeout instead of no matches", async ({ page }) => {
+  await page.route("**/*", async (route) => {
+    const url = new URL(route.request().url());
+    if (!["127.0.0.1", "localhost"].includes(url.hostname)) return route.abort();
+    if (url.pathname === "/api/resolver/search") {
+      return route.fulfill({ json: {
+        ok: true, rows: [], provisional: [], sort_degraded_reason: "resolver_timeout",
+        meta: { resolverState: "NO_MATCH" }, source: "web_ranked_resolver_v2_degraded_timeout",
+      } });
+    }
+    if (url.pathname.startsWith("/api/")) return route.fulfill({ json: { ok: true, rows: [] } });
+    return route.continue();
+  });
+  await page.goto("/explore?q=Pikachu");
+  await expect(page.getByText("Search timed out before results could be checked. Please try again.")).toBeVisible();
+  await expect(page.getByText("No card match yet")).toHaveCount(0);
+  await expect(page.getByText("No results yet")).toHaveCount(0);
+});
