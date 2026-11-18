@@ -13,6 +13,8 @@ If a contract is missing from this index, it is not authoritative.
 
 | Contract | Status | Description |
 |--------|--------|-------------|
+| SHROUDED_ALIAS_DISCOVERY_READ_REPAIR_V2 | Active | docs/contracts/SHROUDED_ALIAS_DISCOVERY_READ_REPAIR_V2.md — Exact509-to511 discovery projection preserving113 distinct parents and four owned copies, with SELECT-only view grants |
+| SHROUDED_ALIAS_DISCOVERY_READ_REPAIR_V1 | Active | docs/contracts/SHROUDED_ALIAS_DISCOVERY_READ_REPAIR_V1.md — Read-only509 baseline; prospective99-pair discovery repair preserving unique stamped Galvantula and all owned copies |
 | LATIOS_ALIAS_DISCOVERY_READ_REPAIR_V5 | Active | docs/contracts/LATIOS_ALIAS_DISCOVERY_READ_REPAIR_V5.md — Exact507-to509 final indexed fallback release; safe literal superset, direct unprobed scan, unchanged data/security and three-second API budget |
 | LATIOS_ALIAS_DISCOVERY_READ_REPAIR_V4 | Active | docs/contracts/LATIOS_ALIAS_DISCOVERY_READ_REPAIR_V4.md — Exact507-to508 indexed-probe preparation with immutable local source; superseded for final release by V5 |
 | LATIOS_ALIAS_DISCOVERY_READ_REPAIR_V3 | Active | docs/contracts/LATIOS_ALIAS_DISCOVERY_READ_REPAIR_V3.md — Exact505-to507 final search release; cached fallback text, original three-second budget, full retained-row and live append-only readback |
