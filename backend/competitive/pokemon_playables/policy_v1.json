@@ -1,0 +1,28 @@
+{
+  "version": "pokemon_playables_policy:v1",
+  "release_state": "shadow_candidate",
+  "reviewers": [],
+  "scope": {
+    "game": "pokemon",
+    "format": "standard",
+    "language": "en",
+    "identity_domain": "pokemon_eng_standard",
+    "platform": "paper"
+  },
+  "window_days": 30,
+  "publication_max_age_hours": 24,
+  "legality_max_age_hours": 24,
+  "minimum_events": 3,
+  "minimum_resolved_decks": 20,
+  "minimum_card_events": 2,
+  "minimum_card_decks": 3,
+  "allowed_populations": ["full_field", "top_cut", "published_subset"],
+  "maximum_events": 5000,
+  "maximum_decks_per_event": 10000,
+  "maximum_groups": 10000,
+  "maximum_receipt_bytes": 16777216,
+  "calibration": {
+    "status": "pending_current_sample_review",
+    "basis": "Conservative shadow defaults. Public release requires a reviewed current sample and approved policy; these numbers are not a claim of calibrated meta coverage."
+  }
+}
