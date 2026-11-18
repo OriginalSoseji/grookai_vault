@@ -8,6 +8,7 @@ import { getPokemonCardCollectionGridClassName } from "@/components/cards/pokemo
 import { SearchToolbar, SearchToolbarButton, SearchToolbarInput } from "@/components/common/SearchToolbar";
 import { ViewDensityToggle } from "@/components/collection/ViewDensityToggle";
 import PageIntro from "@/components/layout/PageIntro";
+import { BrandText } from "@/components/brand/BrandText";
 import { useClientReady } from "@/components/layout/useClientReady";
 import PageSection from "@/components/layout/PageSection";
 import ProductState from "@/components/layout/ProductState";
@@ -819,7 +820,7 @@ export function VaultCollectionView({
       <section className="gv-vault-overview">
         <PageIntro
           className="gv-vault-intro"
-          title="grookai vault"
+          title={<BrandText includeVault />}
           eyebrow="Vault"
           description="Your collection, organized by exact printing."
           size="compact"
