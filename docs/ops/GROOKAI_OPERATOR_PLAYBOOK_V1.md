@@ -91,6 +91,21 @@ and [the checkpoint](../checkpoints/LATIOS_ALIAS_DISCOVERY_20261118.md).
 
 # Grookai Operator Playbook V1
 
+## Printed XY promo search correction — November 18, 2026
+
+The `pika xy124` failure is a search interpretation/query-bound issue. Printed
+three-digit XY numbers belong to the existing `xyp` family, while one/two-digit
+XY expansion tokens keep their meaning. Preserve exact collector suffixes,
+nickname/name constraints, caller visibility and language filters. Known promo
+families use the structured collector route with the set restriction applied
+before case-insensitive number/name reads. Do not increase timeouts, conceal
+degraded results or add a local fallback. See
+[the checkpoint](../checkpoints/SEARCH_XY_PROMO_COLLECTOR_TIMEOUT_20261118.md).
+Use `C:/grookai_search_xy124_20261118` and its private
+`artifacts/search_xy124_v1/20261118/` receipts for normal hooks, hosted checks
+and API/device acceptance. The existing Samsung build552 already calls the
+shared endpoint; this correction needs no APK installation or store release.
+
 ## Native condition reference candidate — November 18, 2026
 
 Web condition references are deployed through PR946/main

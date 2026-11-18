@@ -545,8 +545,10 @@ export async function GET(request: NextRequest) {
     hasCatalogDiscoveryScope &&
     effectiveSmartSearchIntent.ownedState !== "owned";
   const canUseFastStructuredCollectorSearch =
+    !resolverQuery.normalizedGvId &&
     resolverQuery.collectorExpectations.length > 0 &&
-    resolverQuery.expectedSetCodes.length === 0 &&
+    (resolverQuery.expectedSetCodes.length === 0 ||
+      (resolverQuery.expectedSetCodes.length === 1 && resolverQuery.promoTokens.length > 0)) &&
     resolverQuery.rarityIntent.length === 0 &&
     resolverQuery.traitIntent.length === 0 &&
     resolverQuery.variantTokens.length === 0;

@@ -12,7 +12,7 @@ const fixture = Array.from({ length: 195 }, (_, index) => ({
   name: `Card ${index}`, artist: 'Yuka Morii', number: String(index),
 }));
 
-function loadRoute({ fail = false, sets = [], catalogFail = false, capture = () => {}, exactCardName, exactCardNames = [], partialCardNames = {}, rows = fixture } = {}) {
+function loadRoute({ fail = false, sets = [], catalogFail = false, capture = () => {}, captureCollector = () => {}, collectorRows = fixture, captureRanked = () => {}, rankedRows, exactCardName, exactCardNames = [], partialCardNames = {}, rows = fixture } = {}) {
   const cache = new Map();
   const mocks = {
     'server-only': {},
@@ -25,7 +25,7 @@ function loadRoute({ fail = false, sets = [], catalogFail = false, capture = () 
         if (fail) throw new Error('canceling statement due to statement timeout');
         return rows;
       },
-      getExploreRowsForLanguageScopedTextSearch: async () => fixture,
+      getExploreRowsForLanguageScopedTextSearch: async (...args) => { captureCollector(args); return collectorRows; },
     },
     '@/lib/provisional/getPublicProvisionalCards': { getPublicProvisionalCards: async () => [] },
     '@/lib/provisional/getPromotionTransitionState': {
@@ -33,7 +33,12 @@ function loadRoute({ fail = false, sets = [], catalogFail = false, capture = () 
       applyPromotionTransitionsToCanonicalRows: (rows) => rows,
       suppressPromotedProvisionalRows: (rows) => rows,
     },
-    '@/lib/resolver/resolveQuery': {},
+    '@/lib/resolver/resolveQuery': rankedRows ? { resolveQueryWithMeta: async (...args) => {
+      captureRanked(args);
+      return { rows: rankedRows, meta: { resolverState: 'DIRECT_MATCH', topScore: null,
+        candidateCount: rankedRows.length, autoResolved: false,
+        intentSummary: { expectedSetCodes: [], nameTokens: [] }, structuredEvidenceFlags: null } };
+    } } : {},
     '@/lib/pricing/getPublicPricingByCardIds': { PublicPricingSortUnavailableError: class extends Error {} },
     '@/lib/supabase/server': {
       createServerComponentClient: async () => ({
@@ -74,6 +79,46 @@ function loadRoute({ fail = false, sets = [], catalogFail = false, capture = () 
   const get = load(path.join(web, 'app/api/resolver/search/route.ts')).GET;
   return request => get({headers:new Headers(),...request});
 }
+
+test('printed XY promo requests use the bounded collector reader through the actual route',async()=>{
+ const row={id:'pikachu-xy124',gv_id:'GV-PK-PR-XY-XY124',name:'Pikachu-EX',number:'XY124',set_code:'xyp'};
+ for(const query of ['pika xy124','Pikachu XY124','XY124']){
+  const calls=[];
+  const get=loadRoute({collectorRows:[row],captureCollector:args=>calls.push(args)});
+  const response=await get({nextUrl:new URL(`https://fixture?q=${encodeURIComponent(query)}&game=pokemon`)});
+  const body=await response.json();
+  assert.equal(response.status,200);
+  assert.equal(body.sort_degraded_reason,null);
+  assert.deepEqual(body.rows.map(card=>card.id),[row.id]);
+  assert.equal(calls.length,1);
+  assert.equal(calls[0][0],query);
+  assert.deepEqual(body.meta.intentSummary.expectedSetCodes,['xyp']);
+ }
+});
+
+test('a missing printed XY promo stays an empty bounded result without a fallback',async()=>{
+ const calls=[];
+ const get=loadRoute({collectorRows:[],captureCollector:args=>calls.push(args)});
+ const response=await get({nextUrl:new URL('https://fixture?q=pika+XY999&game=pokemon')});
+ const body=await response.json();
+ assert.equal(response.status,200);assert.equal(body.sort_degraded_reason,null);
+ assert.deepEqual(body.rows,[]);assert.equal(calls.length,1);
+ assert.deepEqual(body.meta.intentSummary.expectedSetCodes,['xyp']);
+});
+
+test('retained GV identifiers keep identifier resolution ahead of printed promo lookup',async()=>{
+ const row={id:'pikachu-xy124',gv_id:'GV-PK-PR-XY-XY124',name:'Pikachu-EX',number:'XY124',set_code:'xyp'};
+ for(const query of ['GV-PK-PR-XY-XY124','gv-pk-pr-xy-xy124']){
+  const collector=[],ranked=[];
+  const get=loadRoute({rankedRows:[row],captureRanked:args=>ranked.push(args),captureCollector:args=>collector.push(args)});
+  const response=await get({nextUrl:new URL(`https://fixture?q=${encodeURIComponent(query)}&game=pokemon`)});
+  const body=await response.json();
+  assert.equal(response.status,200);assert.equal(body.sort_degraded_reason,null);
+  assert.deepEqual(body.rows.map(card=>card.id),[row.id]);
+  assert.equal(collector.length,0);assert.equal(ranked.length,1);
+  assert.equal(ranked[0][0],row.gv_id);
+ }
+});
 
 test('credentialed catalog searches are private and reuse the same request catalog', async () => {
  const sets=[{id:'visible',code:'base1',name:'Base Set',printed_total:102}];
