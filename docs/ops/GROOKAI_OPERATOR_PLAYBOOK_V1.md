@@ -64,6 +64,21 @@ verify APIs, all prior repaired families, records and canonical/legacy web
 routes. See [the contract](../contracts/MCDONALDS_2021_ALIAS_DISCOVERY_READ_REPAIR_V1.md)
 and [the preparation checkpoint](../checkpoints/MCDONALDS_2021_ALIAS_DISCOVERY_20261118.md).
 
+## EX Trainer Kit Latios discovery — November18,2026
+
+Use `-LatiosAliasDiscoveryBaselineV1` only for the504 starting audit, followed
+by the separate `-LatiosAliasDiscoveryReleaseV1` exact505 scope for
+`20261118120000`. The10 approved `tk-ex-latio` to `tk1b` pairs affect discovery
+only. Preserve10 parents/10 printings per raw set, nine normal and holo Latios2,
+all owned copies and all four previous family repairs. Require fresh505 CLI
+reset/replay, populated504 upgrade without reset, both roles, exact IDs,
+protected fingerprints, full schema/security parity, actual production-scale
+function proof and unchanged normal managed/platform/hosted checks. Apply only
+the frozen505-file official package after exact PrePush. Verify all five family
+APIs, protected records and canonical/legacy web routing before recording
+merge/deployment closure. See [the contract](../contracts/LATIOS_ALIAS_DISCOVERY_READ_REPAIR_V1.md)
+and [the checkpoint](../checkpoints/LATIOS_ALIAS_DISCOVERY_20261118.md).
+
 # Grookai Operator Playbook V1
 
 ## Condition pricing release candidate — November 17, 2026
@@ -5208,3 +5223,39 @@ and retains the rollback-manifest reference. Stop the release, preserve the
 entire batch directory, and independently inspect those exact IDs before a
 separately reviewed recovery or retry. Never delete mappings or replay a batch
 to resolve uncertainty.
+
+
+## Latios identity search forward correction (November18)
+
+The505 catalog repair passed counts/routing but failed identity API acceptance.
+Preserve505 and its failed receipts. Use only the V3 exact505-to507 baseline and
+release scopes for20261118140000/20261118143000. V2/506 remains immutable local
+replay evidence;507 supplies mixed-word performance margin. Do not reset populated
+labs or weaken timeouts. The final88-call actual-function synthetic proof uses
+173837 parents,244259 printings, production settings and representative widths.
+All449 local tables/security/indexes restore after rollback. Production still
+requires live API proof, all120 retained-row fingerprints, exact schema/security,
+finishes/ownership, canonical routes, merged source and deployment.
+
+Two established append-only market tables can grow while readback runs. Freeze
+every baseline ID privately, compare complete retained rows, verify their immutable
+guards and report new append-only rows separately. Square rows compare in full.
+Never replace a failed earlier fingerprint receipt or claim its four live deltas
+were unchanged; the505 concurrency audit independently explains them.
+
+
+## Latios search final indexed probe (November18)
+
+Applied507 improved set discovery but canonical identity API acceptance still
+failed. Its independent data-only readback passes all120 retained fingerprints
+and full schema/security parity. Preserve its failed API receipt. Use only V5
+for the exact507-to509 release (20261118160000/20261118163000); V4 remains the
+sole508 preparation. Preserve local508 bytes and never reset populated labs.
+
+508 avoids unused NULL-scope resolution, hashes exclusions with explicit Jungle
+NULL semantics, and adds an indexed literal-token superset.509 preserves a direct
+scan without a safe token. Both keep final predicates/ranking and stored data.
+Actual representative performance includes173837 parents,244259 printings and
+128 Jungle exclusion IDs through the unchanged real helper. NULL helper stubs
+serve only rollback equivalence tests. External-only/set-name-only and wildcard
+inputs must compare exactly against507 before committed qualification.
