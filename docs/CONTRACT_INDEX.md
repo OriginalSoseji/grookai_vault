@@ -96,6 +96,7 @@ If a contract is missing from this index, it is not authoritative.
 |--------|--------|-------------|
 | INGESTION_PIPELINE_CONTRACT_V1 | Active | docs/contracts/INGESTION_PIPELINE_CONTRACT_V1.md — Raw-first staged ingestion plus mandatory source-precedence, exact per-set finish manifests, suppression checks, and plan/pre-commit/readback gates before canonical printing mutation |
 | EXTERNAL_SOURCE_INGESTION_MODEL_V1 | Active | Shared raw-first canon-bound ingestion model for external catalog and discovery rows before comparison, canon gate, and staged promotion |
+| CATALOG_SOURCE_NAME_BINDING_V1 | Active | [docs/contracts/CATALOG_SOURCE_NAME_BINDING_V1.md](contracts/CATALOG_SOURCE_NAME_BINDING_V1.md) — Exact source-label correspondence bound to known provider/card IDs and current canonical identity hashes; readonly consumers preserve canonical names |
 | EXTERNAL_DISCOVERY_STAGING_BOUNDARY_V1 | Active | Non-canon staging boundary for external discovery candidates before review and any later canon decision |
 | CATALOG_CONTINUOUS_PROMOTION_V1 | Active | docs/contracts/CATALOG_CONTINUOUS_PROMOTION_V1.md — Founder-activated, event-driven execution of at most five exact source-governed insert-only catalog deltas, with immutable package verification, rollback-before-commit, durable operations receipts, and no updates, deletes, pricing, Storage, Vault, or visibility writes |
 | ENGLISH_POKEMON_MISSING_SET_PROMOTION_V1 | Active | docs/contracts/ENGLISH_POKEMON_MISSING_SET_PROMOTION_V1.md — Atomic hidden English Pokemon set and parent admission after complete Master Index and TCGdex agreement, zero-collision preflight, rollback proof, and durable readback |
@@ -165,6 +166,7 @@ If a contract is missing from this index, it is not authoritative.
 | Contract | Status | Description |
 |--------|--------|-------------|
 | GROOKAI_SMART_SEARCH_V1 | Active | docs/contracts/GROOKAI_SMART_SEARCH_V1.md — Free deterministic Grookai Search must compile natural language into typed filters, surface governed stamp/variant/special-case identities, and never call AI models or mutate canon on the normal Search path |
+| POKEMON_PLAYABLES_ENGINE_CONTRACT_V1 | Active | [docs/contracts/POKEMON_PLAYABLES_ENGINE_CONTRACT_V1.md](contracts/POKEMON_PLAYABLES_ENGINE_CONTRACT_V1.md) — Recent published physical Standard decklist usage, exact catalog/mechanics matching, coverage and expiry; manual per-card review queues are deferred for this initial signal |
 | GROOKAI_AI_PRODUCT_BOUNDARIES_V1 | Active | docs/contracts/GROOKAI_AI_PRODUCT_BOUNDARIES_V1.md — Separates free deterministic Grookai Search from premium Grookai Assistant and vendor/power-user Grookai Intelligence so AI costs and authority stay gated |
 
 ---

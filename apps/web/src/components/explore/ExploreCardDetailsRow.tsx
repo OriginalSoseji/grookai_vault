@@ -6,6 +6,7 @@ import ExploreResultEvidence from "@/components/explore/ExploreResultEvidence";
 import PublicCardImage from "@/components/PublicCardImage";
 import PromotionTransitionNote from "@/components/provisional/PromotionTransitionNote";
 import VariantBadge from "@/components/cards/VariantBadge";
+import PlayableBadge from "@/components/cards/PlayableBadge";
 import LockedPrice from "@/components/pricing/LockedPrice";
 import VisiblePrice from "@/components/pricing/VisiblePrice";
 import type { ExploreResultCard } from "@/components/explore/exploreResultTypes";
@@ -92,8 +93,9 @@ export default function ExploreCardDetailsRow({ card, href, canViewPricing, sign
       <td className="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">{card.number ? `#${card.number}` : "—"}</td>
       <td className="px-4 py-3 text-sm text-slate-700 dark:text-slate-300">{card.rarity ?? "—"}</td>
       <td className="px-4 py-3">
-        {primaryFinishLabel || variantLabels.length > 0 || searchDiscriminator ? (
+        {card.playable || primaryFinishLabel || variantLabels.length > 0 || searchDiscriminator ? (
           <div className="flex flex-wrap gap-1.5">
+            <PlayableBadge signal={card.playable} />
             {primaryFinishLabel ? (
               <VariantBadge key={`${card.gv_id}-${primaryFinishLabel}`} label={primaryFinishLabel} tone="selected" />
             ) : null}

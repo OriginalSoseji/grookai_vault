@@ -15,6 +15,7 @@ import {
   getExploreRowsForSmartFilterDiscovery,
   getExploreRowsForArtistSearch,
   getExploreRowsForCombinedSearch,
+  getExploreRowsForPlayableCards,
 } from "@/lib/explore/getExploreRows";
 import { isKnownArtistQuery } from "@/lib/search/artistSearch";
 import { paginateArtistResults } from "@/lib/search/artistSearchPagination";
@@ -32,6 +33,7 @@ import {
 import { buildSmartSearchIntent, type SmartSearchIntent } from "@/lib/search/smartSearchIntent";
 import { normalizeSearchText } from "@/lib/search/normalizeSearchText";
 import { buildStructuredCollectorSearchMeta } from "@/lib/search/structuredCollectorSearchMeta";
+import { getPokemonPlayables } from "@/lib/playables/getPokemonPlayables";
 import { normalizePublicGameScope } from "@/lib/publicGameScope";
 import { catalogSearchAccess } from "@/lib/catalogSearchAccess";
 import { classifySmartVariantResolverState } from "@/lib/search/smartVariantSearchPolicy";
@@ -445,6 +447,7 @@ export async function GET(request: NextRequest) {
     parseBooleanParam(request.nextUrl.searchParams.get("include_pricing")) ||
     valueSortRequested;
   const explicitOwnedState = parseOwnedState(request.nextUrl.searchParams.get("owned"));
+  const playableRequested = smartSearchIntent.playable || parseBooleanParam(request.nextUrl.searchParams.get("playable"));
   const exactIllustrator = normalizeIllustrator(request.nextUrl.searchParams.get("illustrator"))
     ?? (gameScope !== "pokemon" ? smartSearchIntent.artist : undefined);
   const artistSearch = gameScope === "pokemon"
@@ -455,13 +458,14 @@ export async function GET(request: NextRequest) {
     effectiveExactSetCode || inlineSetIntent.setCodes.length || exactIllustrator || exactReleaseYear || explicitYearMin || explicitYearMax || explicitOwnedState || explicitImageState,
   );
   const interpretationFinishedAt = performance.now();
-  const completeSearch = Boolean(artistSearch) || completeCombinedSearch;
+  const completeSearch = Boolean(playableRequested) || Boolean(artistSearch) || completeCombinedSearch;
   const artistPaginationRequested = request.nextUrl.searchParams.get("pagination") === "1";
   const offsetText = request.nextUrl.searchParams.get("offset") ?? "0";
   if (completeSearch && artistPaginationRequested && (!/^\d+$/.test(offsetText) || !Number.isSafeInteger(Number(offsetText)))) {
     return NextResponse.json({ ok: false, error: "Invalid search page offset" }, { status: 400 });
   }
   const artistOffset = Number(offsetText);
+
   const effectiveSmartSearchIntent: SmartSearchIntent = {
     ...smartSearchIntent,
     releaseYearMin: explicitYearMin ?? smartSearchIntent.releaseYearMin,
@@ -471,6 +475,8 @@ export async function GET(request: NextRequest) {
     imageState: explicitImageState ?? smartSearchIntent.imageState,
     ownedState: explicitOwnedState ?? smartSearchIntent.ownedState,
     queryFilters: [...(smartSearchIntent.queryFilters ?? []),
+      ...(playableRequested && !smartSearchIntent.playable ? [{kind: "playable" as const,
+        label: "Playable: Pokémon Standard", sourceText: "", queryWithout: rawQuery, removeParameter: "playable"}] : []),
       ...([['illustrator', 'artist', 'Artist'], ['set', 'text', 'Set'], ['year', 'year', 'Year'],
         ['year_min', 'year', 'From year'], ['year_max', 'year', 'Through year'],
         ['finish', 'finish', 'Finish'], ['stamp', 'stamp', 'Stamp'], ['owned', 'owned', 'Ownership'],
@@ -480,8 +486,10 @@ export async function GET(request: NextRequest) {
           !(['game', 'lang'].includes(key) && ['pokemon', 'all'].includes(request.nextUrl.searchParams.get(key) ?? '')))
         .map(([key, kind, label]) => ({ kind, label: `${label}: ${request.nextUrl.searchParams.getAll(key).join(', ')}`,
           sourceText: '', queryWithout: rawQuery, removeParameter: key }))],
+    playable: playableRequested || undefined,
     interpretedLabels: uniqueValues([
       ...smartSearchIntent.interpretedLabels,
+      ...(playableRequested ? ["Playable: Pokémon Standard"] : []),
       ...buildExplicitFilterLabels({
         releaseYearMin: explicitYearMin,
         releaseYearMax: explicitYearMax,
@@ -530,7 +538,8 @@ export async function GET(request: NextRequest) {
     hasSmartFinishIntent ||
     hasSmartImageIntent ||
     hasSmartStampIntent ||
-    hasInlineSetIntent;
+    hasInlineSetIntent || playableRequested;
+
   const shouldUseSmartFilterDiscovery =
     !query &&
     hasCatalogDiscoveryScope &&
@@ -548,7 +557,8 @@ export async function GET(request: NextRequest) {
     (!resolverQuery.hasStrongDisambiguator ||
       canUseFastStructuredCollectorSearch);
 
-  if (!query && !completeSearch && gameScope === "pokemon" && !effectiveExactSetCode && !exactReleaseYear && !hasSmartYearRange && !hasSmartFinishIntent && !hasSmartImageIntent && !hasSmartOwnershipIntent && !hasSmartStampIntent && !exactIllustrator && !isIdentityFilterActive(identityFilter)) {
+  if (!query && !playableRequested && !completeSearch && gameScope === "pokemon" && !effectiveExactSetCode && !exactReleaseYear && !hasSmartYearRange && !hasSmartFinishIntent && !hasSmartImageIntent && !hasSmartOwnershipIntent && !hasSmartStampIntent && !exactIllustrator && !isIdentityFilterActive(identityFilter)) {
+
     return NextResponse.json(
       {
         ok: false,
@@ -559,6 +569,15 @@ export async function GET(request: NextRequest) {
   }
 
   try {
+    if (playableRequested && (gameScope !== "pokemon" || languageScope === "ja")) {
+      return NextResponse.json({ok: false, error: "Playables currently supports English physical Pokémon Standard cards."},
+        {status: 400, headers: {"Cache-Control": "no-store"}});
+    }
+    const playables = playableRequested ? await getPokemonPlayables() : null;
+    if (playableRequested && !playables) {
+      return NextResponse.json({ok: false, error: "Current playables are temporarily unavailable. Please try again later."},
+        {status: 503, headers: {"Cache-Control": "no-store"}});
+    }
     let userId: string | null = null;
     let requestSupabase: Awaited<ReturnType<typeof createServerComponentClient>> | null = null;
 
@@ -581,6 +600,16 @@ export async function GET(request: NextRequest) {
           { status: access.status, headers: { "Cache-Control": "private, no-store" } },
         );
       }
+    }
+    if (playableRequested && hasSmartOwnershipIntent && !userId) {
+      return NextResponse.json({ok: false, error: "Sign in to filter playables by your vault."},
+        {status: 401, headers: {"Cache-Control": "private, no-store"}});
+    }
+    let playableMembers = playables?.rows ?? [];
+    if (playableRequested && hasSmartOwnershipIntent && userId) {
+      const ownedIds = new Set(await getOwnedCardPrintIdsForUser(userId));
+      playableMembers = playableMembers.filter(member => effectiveSmartSearchIntent.ownedState === "owned"
+        ? ownedIds.has(member.card_print_id) : !ownedIds.has(member.card_print_id));
     }
     if (valueSortRequested && !userId) {
       return NextResponse.json(
@@ -615,6 +644,7 @@ export async function GET(request: NextRequest) {
 
     const includeProvisional =
       gameScope === "pokemon" &&
+      !playableRequested &&
       !completeSearch &&
       languageScope !== "ja" &&
       !exactReleaseYear &&
@@ -622,7 +652,21 @@ export async function GET(request: NextRequest) {
       !exactIllustrator &&
       !effectiveSmartSearchIntent.ownedState &&
       !isIdentityFilterActive(identityFilter);
-    const resolvedSearchPromise = artistSearch && !effectiveSmartSearchIntent.cameoSubject
+    const resolvedSearchPromise = playableRequested
+      ? getExploreRowsForPlayableCards(playableMembers, {
+          sortMode, textQuery: routedQuery, searchSets, exactSetCode: effectiveExactSetCode,
+          exactSetCodes: exactSetCode ? undefined : inlineSetIntent.setCodes, exactReleaseYear,
+          exactIllustrator: exactIllustrator ?? artistSearch, identityFilter,
+          cameoSubject: effectiveSmartSearchIntent.cameoSubject,
+          releaseYearMin: effectiveSmartSearchIntent.releaseYearMin,
+          releaseYearMax: effectiveSmartSearchIntent.releaseYearMax,
+          finishKeys: effectiveSmartSearchIntent.finishKeys,
+          stampLabels: effectiveSmartSearchIntent.stampLabels,
+          imageState: effectiveSmartSearchIntent.imageState, languageScope,
+          includePricing: includePricingDuringResolution,
+        }).then(rows => ({rows, meta: buildSmartFilterDiscoveryMeta(rows, effectiveSmartSearchIntent),
+          smartSearchIntent: effectiveSmartSearchIntent, degraded: false}))
+      : artistSearch && !effectiveSmartSearchIntent.cameoSubject
       ? getExploreRowsForArtistSearch(artistSearch, {
           searchSets,
           sortMode,
@@ -816,6 +860,10 @@ export async function GET(request: NextRequest) {
         sort_degraded_reason: "resolver_timeout",
       }, { status: 503, headers: { "Cache-Control": "private, no-store" } });
     }
+    if (playableRequested && playables && Date.now() >= Date.parse(playables.valid_until)) {
+      return NextResponse.json({ok: false, error: "Playables are refreshing. Please try again."},
+        {status: 503, headers: {"Cache-Control": "no-store"}});
+    }
     if (valueSortRequested && resolved.degraded) {
       return NextResponse.json(
         {
@@ -920,7 +968,7 @@ export async function GET(request: NextRequest) {
       {
         headers: {
           "Cache-Control":
-            hasRequestCredentials || pricingRequested || effectiveSmartSearchIntent.ownedState || gameScope !== "pokemon"
+            playableRequested || hasRequestCredentials || pricingRequested || effectiveSmartSearchIntent.ownedState || gameScope !== "pokemon"
               ? "private, no-store"
               : "public, s-maxage=120, stale-while-revalidate=300",
           "Server-Timing": `interpret;dur=${(interpretationFinishedAt - searchStartedAt).toFixed(1)}, resolve;dur=${(resolutionFinishedAt - interpretationFinishedAt).toFixed(1)}, finish;dur=${(performance.now() - resolutionFinishedAt).toFixed(1)}` +
@@ -998,7 +1046,7 @@ export async function GET(request: NextRequest) {
         {
           status: valueSortRequested ? 503 : 200,
           headers: {
-            "Cache-Control": pricingRequested || effectiveSmartSearchIntent.ownedState
+            "Cache-Control": playableRequested || pricingRequested || effectiveSmartSearchIntent.ownedState
               ? "private, no-store"
               : "public, s-maxage=30, stale-while-revalidate=120",
           },

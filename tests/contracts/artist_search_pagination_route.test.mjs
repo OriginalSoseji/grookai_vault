@@ -16,6 +16,7 @@ function loadRoute({ fail = false, sets = [], catalogFail = false, capture = () 
   const cache = new Map();
   const mocks = {
     'server-only': {},
+    '@/lib/playables/getPokemonPlayables': { getPokemonPlayables: async () => null },
     'next/server': { NextResponse: { json: (body, init) => Response.json(body, init) } },
     '@/lib/explore/getExploreRows': {
       getExploreRowsForCombinedSearch: async (options) => { capture(options); return rows; },

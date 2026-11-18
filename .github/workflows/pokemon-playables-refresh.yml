@@ -1,0 +1,35 @@
+name: Pokemon Playables Refresh
+
+on:
+  schedule:
+    # Two attempts daily leave room for a delayed or failed run within the 24h TTL.
+    - cron: '23 6,18 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pokemon-current-standard-usage-v1
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install locked worker dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Verify refresh and publication behavior
+        run: node --test backend/competitive/pokemon_playables/test/current_standard_usage.test.mjs backend/competitive/pokemon_playables/test/current_standard_refresh.test.mjs
+      - name: Collect current decklists and refresh playables
+        # Only the aggregate summary is logged. Source originals stay private.
+        run: node backend/competitive/pokemon_playables/current_standard_cli.mjs daily --project-ref ycdxbpibncqcchqiihfz

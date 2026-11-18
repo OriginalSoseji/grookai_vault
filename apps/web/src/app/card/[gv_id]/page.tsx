@@ -16,6 +16,9 @@ import PricingDisclosure from "@/components/common/PricingDisclosure";
 import type { AddSlabActionResult } from "@/components/slabs/AddSlabCardAction";
 import TrackPageEvent from "@/components/telemetry/TrackPageEvent";
 import VariantBadge from "@/components/cards/VariantBadge";
+import PlayableBadge from "@/components/cards/PlayableBadge";
+import { getPokemonPlayables } from "@/lib/playables/getPokemonPlayables";
+import { applyPlayableSignals } from "@/lib/playables/publicPlayables";
 import ContactOwnerButton from "@/components/network/ContactOwnerButton";
 import type { AddToVaultActionResult } from "@/components/vault/AddToVaultCardAction";
 import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction";
@@ -640,6 +643,12 @@ async function SetCollectionSection({ card, compareCards, setHref }: {
   }
 }
 
+async function CardPlayableBadge({card}: {card: {id: string; gv_id: string}}) {
+  const signal = applyPlayableSignals([card], await getPokemonPlayables())[0].playable;
+  return <PlayableBadge signal={signal} />;
+
+}
+
 async function CardPageContent({
   params,
   searchParams,
@@ -1157,8 +1166,9 @@ async function CardPageContent({
                   <span>{getCardLanguageLabel(resolvedCard)}</span>
                 </div>
               </div>
-              {(resolvedCard.rarity || variantLabels.length > 0) ? (
-                <div className="gv-detail-rarity">
+              <div className="gv-detail-rarity">
+                  <Suspense fallback={null}><CardPlayableBadge card={resolvedCard} /></Suspense>
+
                   {resolvedCard.rarity ? (
                     <span>
                       {resolvedCard.rarity}
@@ -1168,7 +1178,6 @@ async function CardPageContent({
                     <VariantBadge key={`${resolvedCard.gv_id}-${label}`} label={label} />
                   ))}
                 </div>
-              ) : null}
 
               {variantOriginCopy ? (
                 <details className="gv-variant-story order-2 group max-w-4xl px-5 py-4 sm:px-6">
