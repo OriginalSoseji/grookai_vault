@@ -119,7 +119,9 @@ integration occurred. Existing market prices, Vault totals and asks are unchange
 
 Read the [source qualification report](../audits/pricing/tcgtracking_source_qualification_v1/REPORT.md)
 before changing display or currency status. The credential-free audit script is
-`scripts/audits/tcgtracking_source_qualification_v1.mjs`. It fetches five public
+`scripts/audits/tcgtracking_source_qualification_v1.mjs`. Audit keyword text is
+extracted with pinned `parse5`; script, style and template contents are excluded.
+This text is evidence for searching, never HTML for rendering. It fetches five public
 provider pages and one bounded Dragons Exalted SKU feed, records hashes, and
 compares the four-printing saved private fixture. Use a new output directory for
 each run; full captures remain in ignored artifacts. It never contacts production

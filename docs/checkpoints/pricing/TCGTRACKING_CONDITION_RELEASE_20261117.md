@@ -102,3 +102,25 @@ public availability.
 Publication follows the repository's explicit external-action authorization
 rule in `AGENTS.md`. The next approval, when checks are complete, concerns the
 concrete prepared release; it is not a request for TCGTracking's permission.
+
+## Remote review follow-up
+
+PR946's CodeQL review caught incomplete script-end-tag matching in the source
+qualification audit's HTML-to-text regex. The audit now uses pinned `parse5`
+through `sourceDocumentTextV1`, excluding script, style and template contents
+from keyword evidence. Regression cases cover whitespace/attributed closing
+tags, mixed case, malformed comments, entities and unclosed script elements.
+This text is audit evidence, never HTML for rendering. The pricing read path is
+unchanged. Preserve the original failed scan; the corrected commit must pass
+the normal managed commit/push checks and remote review before publication.
+
+The first remote Samsung visual gate also reported four intentional baseline
+changes: the new condition-reference panel in Card Detail and exact-copy
+settings, on mobile and desktop. The original actual/diff captures were inspected
+and only those four baselines were updated after visual review. Deterministic
+browser-only prices and the exact-copy printing ID now qualify the loaded state.
+All seven focused browser checks pass: four screenshot comparisons, a control
+test for NM/LP amounts, missing DMG and unchanged market summary, and both
+affected accessibility/overflow scenarios. The in-progress audit-only commit
+check was cancelled before commit to verify these fixes together; it is not a
+passing receipt.

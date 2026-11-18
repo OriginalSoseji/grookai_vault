@@ -3,6 +3,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
+import {sourceDocumentTextV1} from './lib/source_document_text_v1.mjs';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
 const out=path.resolve(process.argv[2]??path.join(root,'artifacts/tcgtracking_source_qualification_v1',new Date().toISOString().replace(/[:.]/g,'-')));
@@ -17,7 +18,6 @@ const sources=[
   ['dragons_exalted_skus','https://openapi.tcgtracking.com/v1/3/sets/1394/skus'],
 ];
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
-const text=html=>html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,' ').replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi,' ').replace(/<[^>]*>/g,' ').replace(/&(?:nbsp|amp|quot|lt|gt);/g,' ').replace(/\s+/g,' ').trim();
 await fs.mkdir(path.dirname(out),{recursive:true});
 // Acquisition receipts are immutable; a rerun needs a new output directory.
 await fs.mkdir(out);
@@ -29,7 +29,7 @@ const captures=await Promise.allSettled(sources.map(async([name,url])=>{
   if(bytes.length>2_000_000)throw new Error(`${name}: response exceeds audit bound`);
   const json=name.endsWith('skus');
   await fs.writeFile(path.join(out,`${name}.${json?'json':'html'}`),bytes);
-  return{name,url:response.url,http_status:response.status,fetched_at:new Date().toISOString(),bytes:bytes.length,sha256:sha(bytes),headers:Object.fromEntries(['content-type','etag','last-modified','cache-control'].map(key=>[key,response.headers.get(key)])),body:json?JSON.parse(bytes):text(bytes.toString('utf8'))};
+  return{name,url:response.url,http_status:response.status,fetched_at:new Date().toISOString(),bytes:bytes.length,sha256:sha(bytes),headers:Object.fromEntries(['content-type','etag','last-modified','cache-control'].map(key=>[key,response.headers.get(key)])),body:json?JSON.parse(bytes):sourceDocumentTextV1(bytes.toString('utf8'))};
 }));
 const failed=captures.flatMap((result,index)=>result.status==='rejected'?[{name:sources[index][0],error:String(result.reason.message??result.reason)}]:[]);
 const successful=captures.filter(result=>result.status==='fulfilled').map(result=>result.value);
