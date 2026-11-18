@@ -1,6 +1,18 @@
 # Prismatic identity query guard V5 — November17,2026
 
-Production is at498 after the approved alias projection. Use `-PrismaticAliasDiscoveryReleaseV5` for the exact forward candidate `20261117220000`, with fresh canonical498 parity, complete499 replay/upgrade proofs and clean committed source. The existing three-second API limit stays in force. All498 applied SQL files, physical printings, ownership and market history remain immutable. See `docs/contracts/PRISMATIC_ALIAS_DISCOVERY_READ_REPAIR_V5.md` and the Prismatic qualification checkpoint.
+Production is at499 after the completed Prismatic repair (PR942). Its release
+gate is consumed and all499 applied SQL files remain immutable. Paldean Fates
+preparation uses `-PaldeanAliasDiscoveryBaselineV1 -Phase AuditLinkedSchema`
+with a new private `-AuditOutDir` under the Paldean artifact root. It verifies
+the full499 baseline and245 approved aliases; it does not permit PrePush or
+apply. See [the Paldean contract](../contracts/PALDEAN_ALIAS_DISCOVERY_READ_REPAIR_V1.md).
+Preserve physical printings, ownership, market history and the three-second API
+limit. The separate `-PaldeanAliasDiscoveryReleaseV1` scope accepts only this
+499 baseline and pending ID `20261118000000`. Complete fresh500/retained499
+qualification, normal managed commit/push checks and the pinned release manifest
+before `-Phase PrePush -ExpectedLocalOnlyIds 20261118000000`. Apply only the
+frozen500-file canonical package through the official CLI, then independently
+verify protected records, schema/security, public APIs and legacy web routing.
 
 # Grookai Operator Playbook V1
 
