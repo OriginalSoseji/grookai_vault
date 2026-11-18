@@ -58,6 +58,7 @@ If a contract is missing from this index, it is not authoritative.
 | PALDEAN_ALIAS_DISCOVERY_READ_REPAIR_V2 | Applied at501; retained | docs/contracts/PALDEAN_ALIAS_DISCOVERY_READ_REPAIR_V2.md — Exact500-to501 identity RPC membership cache; unchanged discovery authority, protected records and API budget |
 | APP_VISUAL_SYSTEM_CONTRACT_V1 | Active | [App Visual System](contracts/APP_VISUAL_SYSTEM_CONTRACT_V1.md) — Ink/bone foundation, lime baseline with matching seasonal website accents, compact content hierarchy, tighter geometry, consistent card spacing, and responsive verification |
 | BRAND_TYPOGRAPHY_CONTRACT_V1 | Active | [Brand and Typography](contracts/BRAND_TYPOGRAPHY_CONTRACT_V1.md) — Bundled Roboto, lowercase names, weight 900 wordmarks, original emblem preservation, flexible seasonal logo colors, matching website accents, and accessible motion |
+| MOBILE_RELEASE_CONTINUITY_V1 | Active release contract | [Mobile Release Continuity](contracts/MOBILE_RELEASE_CONTINUITY_V1.md) — Android/iOS source and build-number parity, recorded artifact signer provenance, and mandatory signer/version preflight before updating an installed Android app; never uninstall to bypass a mismatch |
 | NO_ASSUMPTION_RULE | Active | Prohibits assumption-driven work across the entire project |
 | IDENTITY_CONTRACT_SUITE_V1 | Frozen | Canonical rules for set, print, image, and alias identity |
 | IDENTITY_PRECEDENCE_RULE_V1 | Frozen | Printed identity supersedes canonical and external identity |
