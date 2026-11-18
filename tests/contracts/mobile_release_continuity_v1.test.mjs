@@ -28,6 +28,9 @@ test("Android CI records verified package, build, source and signing provenance"
   assert.match(workflow, /PACKAGE_ID.*com\.grookai\.vault/);
   assert.match(workflow, /VERSION_CODE.*EXPECTED_BUILD_NUMBER/);
   assert.match(workflow, /SIGNER_SHA256/);
+  assert.match(workflow, /Android APK identity: package=/);
+  assert.match(workflow, /gsub\(\/:\//);
+  assert.match(workflow, /SIGNATURE_OUTPUT/);
   assert.match(workflow, /mobile-release-manifest\.json/);
   assert.match(workflow, /source_commit:process\.argv\[5\]/);
   assert.match(workflow, /signer_sha256:process\.argv\[6\]/);
