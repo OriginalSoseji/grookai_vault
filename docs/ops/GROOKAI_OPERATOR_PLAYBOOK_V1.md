@@ -64,6 +64,21 @@ verify APIs, all prior repaired families, records and canonical/legacy web
 routes. See [the contract](../contracts/MCDONALDS_2021_ALIAS_DISCOVERY_READ_REPAIR_V1.md)
 and [the preparation checkpoint](../checkpoints/MCDONALDS_2021_ALIAS_DISCOVERY_20261118.md).
 
+## EX Trainer Kit Latios discovery — November18,2026
+
+Use `-LatiosAliasDiscoveryBaselineV1` only for the504 starting audit, followed
+by the separate `-LatiosAliasDiscoveryReleaseV1` exact505 scope for
+`20261118120000`. The10 approved `tk-ex-latio` to `tk1b` pairs affect discovery
+only. Preserve10 parents/10 printings per raw set, nine normal and holo Latios2,
+all owned copies and all four previous family repairs. Require fresh505 CLI
+reset/replay, populated504 upgrade without reset, both roles, exact IDs,
+protected fingerprints, full schema/security parity, actual production-scale
+function proof and unchanged normal managed/platform/hosted checks. Apply only
+the frozen505-file official package after exact PrePush. Verify all five family
+APIs, protected records and canonical/legacy web routing before recording
+merge/deployment closure. See [the contract](../contracts/LATIOS_ALIAS_DISCOVERY_READ_REPAIR_V1.md)
+and [the checkpoint](../checkpoints/LATIOS_ALIAS_DISCOVERY_20261118.md).
+
 # Grookai Operator Playbook V1
 
 ## Condition pricing release candidate — November 17, 2026

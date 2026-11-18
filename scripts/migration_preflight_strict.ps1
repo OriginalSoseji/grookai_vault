@@ -19,6 +19,8 @@ param(
 
   [string[]]$ExpectedLocalOnlyIds = @(),
 
+  [switch]$LatiosAliasDiscoveryBaselineV1,
+  [switch]$LatiosAliasDiscoveryReleaseV1,
   [switch]$Mcdonalds2021AliasDiscoveryBaselineV1,
   [switch]$Mcdonalds2021AliasDiscoveryReleaseV1,
   [switch]$PokemonGoAliasDiscoveryBaselineV1,
@@ -129,6 +131,28 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($LatiosAliasDiscoveryBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','LatiosAliasDiscoveryBaselineV1','AuditOutDir') }).Count -gt 0 -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Latios baseline V1 is audit-only with a new bounded directory and canonical504 target.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_latios_alias_baseline_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($LatiosAliasDiscoveryReleaseV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','LatiosAliasDiscoveryReleaseV1','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261118120000') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261118120000') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Latios release V1 requires the exact505 discovery candidate, a new audit directory and canonical504 baseline.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_latios_alias_release_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
 
 if ($Mcdonalds2021AliasDiscoveryBaselineV1) {
   if ($Phase -ne 'AuditLinkedSchema' -or
