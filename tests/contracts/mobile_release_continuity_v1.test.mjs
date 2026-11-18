@@ -19,6 +19,7 @@ test("mobile release contract is indexed and sets one synchronized release basel
   assert.match(metadata.export_path, new RegExp(`build${match[2]}$`));
   assert.match(contract, /same merged\s+source commit/i);
   assert.match(contract, /signer SHA-256/i);
+  assert.match(contract, /candidate must be greater than that version/i);
 });
 
 test("Android CI records verified package, build, source and signing provenance", () => {
@@ -31,6 +32,7 @@ test("Android CI records verified package, build, source and signing provenance"
   assert.match(workflow, /Android APK identity: package=/);
   assert.match(workflow, /gsub\(\/:\//);
   assert.match(workflow, /SIGNATURE_OUTPUT/);
+  assert.match(workflow, /verify --print-certs.*2>&1/);
   assert.match(workflow, /mobile-release-manifest\.json/);
   assert.match(workflow, /source_commit:process\.argv\[5\]/);
   assert.match(workflow, /signer_sha256:process\.argv\[6\]/);
