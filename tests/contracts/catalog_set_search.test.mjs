@@ -30,6 +30,7 @@ function load(file) {
 const { resolveCatalogSetSearchIntent: resolve, readSearchSets, removeSetPhrase, isExactCatalogCardName, isCatalogCardNameQuery } = load(path.join(web, 'lib/search/catalogSetSearch.ts'));
 const { buildSmartSearchIntent } = load(path.join(web, 'lib/search/smartSearchIntent.ts'));
 const { resolveSmartSearchQuery } = load(path.join(web, 'lib/search/resolveSmartSearchQuery.ts'));
+const { getPublicSetEra } = load(path.join(web, 'lib/publicSets.shared.ts'));
 const { fetchCompleteNamedCardRows } = load(path.join(web, 'lib/search/completeNamedCardSearch.ts'));
 const sets = [
  ['base1', 'Base Set'], ['base4', 'Base Set 2'], ['ecard1', 'Expedition Base Set'],
@@ -39,6 +40,12 @@ const sets = [
  ['me02.5', 'Ascended Heroes'], ['asc-special', 'Ascended Legends'], ['silver', 'Silver Tempest'],
 ].map(([code, name]) => ({ id: code, code, name }));
 const plain = value => JSON.parse(JSON.stringify(value));
+
+test('legacy Pokemon era helper respects explicit promo family codes', () => {
+ assert.equal(getPublicSetEra({code:'swshp', release_year:2019}), 'swsh');
+ assert.equal(getPublicSetEra({code:'svp', release_year:2022}), 'sv');
+ assert.equal(getPublicSetEra({release_year:2019}), 'sm');
+});
 
 test('explicit Sword and Shield promo family outranks the expansion name', () => {
  const catalog = [...sets, {id:'swsh1',code:'swsh1',name:'Sword & Shield'},

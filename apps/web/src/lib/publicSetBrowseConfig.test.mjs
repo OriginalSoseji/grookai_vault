@@ -23,6 +23,14 @@ test("cross-TCG set browser contract is versioned", () => {
   assert.equal(PUBLIC_SET_BROWSE_CONTRACT_VERSION, "CROSS_TCG_SET_BROWSER_V1");
 });
 
+test("Pokemon promo families use their named era even when set dates cross a boundary", () => {
+  assert.equal(getPublicSetBrowseGroup({ code: "SWSHP", release_year: 2019 }, "pokemon"), "swsh");
+  assert.equal(getPublicSetBrowseGroup({ code: "svp", release_year: 2022 }, "pokemon"), "sv");
+  assert.equal(getPublicSetBrowseGroup({ code: "swshp" }, "pokemon"), "swsh");
+  assert.equal(getPublicSetBrowseGroup({ code: "swshp", release_year: 2019 }, "mtg"), "modern");
+  assert.equal(getPublicSetBrowseGroup({ code: "other", release_year: 2019 }, "pokemon"), "sm");
+});
+
 test("One Piece releases use One Piece families and product types", () => {
   assert.equal(getPublicSetBrowseGroup({ code: "OP17" }, "one_piece"), "op");
   assert.equal(getPublicSetBrowseGroup({ code: "EB04" }, "one_piece"), "eb");
