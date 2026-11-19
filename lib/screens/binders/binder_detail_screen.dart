@@ -10,6 +10,8 @@ import '../../services/binders/binder_realtime_service.dart';
 import '../../services/binders/binder_repository.dart';
 import '../../widgets/binders/binder_widgets.dart';
 import '../../widgets/binders/binder_metadata_dialog.dart';
+import '../../widgets/binders/binder_page_arrangement.dart';
+import '../../widgets/binders/binder_pocket_sheet.dart';
 import 'binder_collaboration_screens.dart';
 import 'binder_custom_checklist_screen.dart';
 import 'binder_moderation_screen.dart';
@@ -250,7 +252,7 @@ class _BinderDetailScreenState extends State<BinderDetailScreen> {
         detail.permissions.canArchive ||
         detail.permissions.canLeave ||
         detail.membershipState == BinderMembershipState.active;
-    final tabCount = canSettings ? 4 : 3;
+    final tabCount = canSettings ? 5 : 4;
     return DefaultTabController(
       key: ValueKey('binder-tabs-$tabCount'),
       length: tabCount,
@@ -293,10 +295,11 @@ class _BinderDetailScreenState extends State<BinderDetailScreen> {
           TabBar(
             isScrollable: true,
             onTap: (index) {
-              if (index == 1) unawaited(_controller.loadActivity());
-              if (index == 2) unawaited(_controller.loadMembers());
+              if (index == 2) unawaited(_controller.loadActivity());
+              if (index == 3) unawaited(_controller.loadMembers());
             },
             tabs: [
+              const Tab(text: 'Contents'),
               const Tab(text: 'Checklist'),
               const Tab(text: 'Activity'),
               const Tab(text: 'Members'),
@@ -306,6 +309,11 @@ class _BinderDetailScreenState extends State<BinderDetailScreen> {
           Expanded(
             child: TabBarView(
               children: [
+                _BinderContentsTab(
+                  key: ObjectKey(_controller.checklist),
+                  publicId: widget.publicId,
+                  repository: _repository,
+                ),
                 _BinderChecklistTab(
                   controller: _controller,
                   onAddCopy: detail.permissions.canAddCopy
@@ -362,6 +370,152 @@ class _BinderDetailScreenState extends State<BinderDetailScreen> {
               ],
             ),
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class _BinderContentsTab extends StatefulWidget {
+  const _BinderContentsTab({
+    required this.publicId,
+    required this.repository,
+    super.key,
+  });
+
+  final String publicId;
+  final BinderRepository repository;
+
+  @override
+  State<_BinderContentsTab> createState() => _BinderContentsTabState();
+}
+
+class _BinderContentsTabState extends State<_BinderContentsTab> {
+  List<BinderChecklistItem> _items = const [];
+  bool _loading = true;
+  BinderException? _failure;
+
+  @override
+  void initState() {
+    super.initState();
+    unawaited(_load());
+  }
+
+  Future<void> _load() async {
+    setState(() {
+      _loading = true;
+      _failure = null;
+    });
+    try {
+      final items = <BinderChecklistItem>[];
+      BinderCursor? cursor;
+      do {
+        final page = await widget.repository.loadChecklist(
+          publicId: widget.publicId,
+          filter: BinderChecklistFilter.all,
+          cursor: cursor,
+          limit: 50,
+        );
+        items.addAll(page.items);
+        cursor = page.hasMore && items.length < 1000 ? page.nextCursor : null;
+      } while (cursor != null);
+      if (!mounted) return;
+      setState(
+        () => _items = List<BinderChecklistItem>.unmodifiable(
+          items.where((item) => item.activeQuantity > 0),
+        ),
+      );
+    } on BinderException catch (failure) {
+      if (mounted) setState(() => _failure = failure);
+    } finally {
+      if (mounted) setState(() => _loading = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final slots = _items
+        .map(
+          (item) => BinderCustomSlotDraft.fromChecklist(
+            item,
+          ).copyWith(requiredQuantity: item.activeQuantity.clamp(1, 100)),
+        )
+        .toList(growable: false);
+    final copies = _items.fold<int>(
+      0,
+      (total, item) => total + item.activeQuantity,
+    );
+    return RefreshIndicator(
+      onRefresh: _load,
+      child: ListView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        padding: const EdgeInsets.fromLTRB(16, 12, 16, 28),
+        children: [
+          const BinderVaultBoundaryNotice(),
+          if (_loading && _items.isEmpty)
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 48),
+              child: Center(child: CircularProgressIndicator.adaptive()),
+            )
+          else if (_failure != null && _items.isEmpty)
+            BinderStateMessage(
+              icon: Icons.cloud_off_outlined,
+              title: 'Unable to load Binder contents',
+              body: _failure!.message,
+              action: FilledButton.icon(
+                onPressed: _load,
+                icon: const Icon(Icons.refresh_rounded),
+                label: const Text('Try again'),
+              ),
+            )
+          else if (_items.isEmpty)
+            Padding(
+              padding: const EdgeInsets.only(top: 36),
+              child: Column(
+                children: [
+                  const BinderStateMessage(
+                    icon: Icons.photo_library_outlined,
+                    title: 'No cards in this Binder yet',
+                    body: 'Cards appear here when members contribute copies.',
+                  ),
+                  const SizedBox(height: 12),
+                  OutlinedButton.icon(
+                    onPressed: () =>
+                        DefaultTabController.of(context).animateTo(1),
+                    icon: const Icon(Icons.checklist_rounded),
+                    label: const Text('Open checklist'),
+                  ),
+                ],
+              ),
+            )
+          else ...[
+            Padding(
+              padding: const EdgeInsets.fromLTRB(4, 10, 4, 14),
+              child: Text(
+                '${_items.length} ${_items.length == 1 ? 'card' : 'cards'} · '
+                '$copies ${copies == 1 ? 'copy' : 'copies'} in this Binder',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+            ),
+            BinderPageArrangement(
+              key: const ValueKey('binder-live-contents-pages'),
+              slots: slots,
+              allowReorder: false,
+              onInspect: (slot) {
+                final index = slots.indexOf(slot);
+                if (index >= 0) {
+                  unawaited(
+                    showBinderPocketSheet(
+                      context,
+                      slot: slot,
+                      pocketNumber: index + 1,
+                    ),
+                  );
+                }
+              },
+              onMove: (_, _) {},
+            ),
+          ],
         ],
       ),
     );

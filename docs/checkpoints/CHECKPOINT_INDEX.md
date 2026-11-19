@@ -1,5 +1,10 @@
 # CHECKPOINT_INDEX
 
+- [CROSS_TCG_BINDERS_20261119](2026-11-19_cross_tcg_binders.md) - `2026-11-19` - Custom Binder checklists now discover Pokémon, One Piece, and Magic cards through game-scoped search; 72 focused tests passed and live Samsung build 558 returned Magic and One Piece search results
+- [BINDER_CONTENTS_BUILD_557_20261119](2026-11-19_binder_contents_build_557.md) - `2026-11-19` - Carry design build 323's artwork pages into the signed-in Binder detail as a Contents-first view of active contributions; checklist stays secondary; 73 focused tests and Samsung build 557 readback passed
+- [MOBILE_BINDER_BUILD_555_20261118](2026-11-18_mobile_binder_build_555.md) - `2026-11-18` - Repair the Samsung's startup-config failure with a same-signer 555 build; Binder source is already on main, and the paired iOS build remains pending
+- [MOBILE_BINDER_BUILD_554_20261118](2026-11-18_mobile_binder_build_554.md) - `2026-11-18` - Binder refinement was installed from merged source, but startup configuration was omitted; repair with configured build 555
+
 - [SEARCH_PROMO_NAME_SET_PRECEDENCE_20261118](SEARCH_PROMO_NAME_SET_PRECEDENCE_20261118.md) - `2026-11-18` - Printed promo family outranks conflicting implicit opening-word set shortcuts; preserve explicit set constraints, quoted text and retained identities; 77 focused tests and public SDK proof, terminal release gates pending
 
 - [SEARCH_XY_PROMO_COLLECTOR_TIMEOUT_20261118](SEARCH_XY_PROMO_COLLECTOR_TIMEOUT_20261118.md) - `2026-11-18` - Correct printed XY promo interpretation and bound caller-visible collector reads; preserve exact identities, filters and timeout budgets; live deployment and Samsung readback remain gated by terminal receipts

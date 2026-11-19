@@ -376,7 +376,8 @@ class _BinderCreateScreenState extends State<BinderCreateScreen> {
                       const SizedBox(height: 5),
                       const Text(
                         'Choose cards visually, including governed finish '
-                        'options such as Reverse Holo, and set quantities.',
+                        'options such as Reverse Holo, and set quantities. '
+                        'Mix Pokémon, One Piece, and Magic cards in one Binder.',
                       ),
                       const SizedBox(height: 10),
                       FilledButton.tonalIcon(
