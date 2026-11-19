@@ -5,9 +5,9 @@
   "locale": "en-US",
   "version_string": "1.0",
   "build_marketing_version": "1.0.0",
-  "build_number": "553",
-  "archive_path": "build/ios/archive/GrookaiVault-1.0.0-build553.xcarchive",
-  "export_path": "build/ios/export/GrookaiVault-1.0.0-build553",
+  "build_number": "558",
+  "archive_path": "build/ios/archive/GrookaiVault-1.0.0-build558.xcarchive",
+  "export_path": "build/ios/export/GrookaiVault-1.0.0-build558",
   "export_options_plist": "ios/ExportOptionsAppStore.plist",
   "app_info_localization": {
     "subtitle": "Your Pokemon card vault",
@@ -69,7 +69,7 @@
     "privacyPolicyUrl": "https://grookaivault.com/privacy"
   },
   "beta_build_localization": {
-    "whatsNew": "Sets now load reliably with TCG-specific browsing for Pokemon, One Piece, and Magic. Founder alerts appear in Pulse and open a permanent notification inbox."
+    "whatsNew": "Build a Binder across Pokémon, One Piece, and Magic. See contributed cards first, arrange pages, choose grid sizes, and keep every exact copy in its owner's Vault."
   },
   "screenshot_sets": [
     {

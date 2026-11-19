@@ -10,6 +10,7 @@ import 'package:grookai_vault/screens/binders/binder_collaboration_screens.dart'
 import 'package:grookai_vault/screens/binders/binder_discovery_screens.dart';
 import 'package:grookai_vault/screens/binders/binder_custom_checklist_screen.dart';
 import 'package:grookai_vault/screens/binders/binder_create_screen.dart';
+import 'package:grookai_vault/widgets/binders/binder_page_arrangement.dart';
 import '../support/collector_refinement/main.dart' as preview;
 import '../support/collector_refinement/catalog.dart';
 import '../support/collector_refinement/binder_library_repository.dart';
@@ -290,29 +291,52 @@ void main() {
       },
     );
   }
-  testWidgets('main private checklist entry contains all refined page tools', (
-    tester,
-  ) async {
-    await mount(tester, repository());
-    await openBinder(tester, 'Private Binder · Sample');
-    await tester.ensureVisible(find.text('Settings'));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('Settings'));
-    await tester.pumpAndSettle();
-    final edit = find.text('Edit custom checklist');
-    await reveal(tester, edit);
-    await tester.tap(edit);
-    await tester.pumpAndSettle();
-    expect(find.byType(BinderCustomChecklistEditorScreen), findsOneWidget);
-    await nav.switchView(tester, 'arrange');
-    expect(find.byKey(const ValueKey('binder-grid-size')), findsOneWidget);
-    expect(find.byKey(const ValueKey('binder-share-page')), findsOneWidget);
-    expect(find.byKey(const ValueKey('binder-pocket-0')), findsOneWidget);
-    await tester.pageBack();
-    await tester.pumpAndSettle();
-    expect(find.byType(BinderDetailScreen), findsOneWidget);
-    expect(find.text('Review checklist'), findsNothing);
-  });
+  testWidgets(
+    'live Binder opens to contributed card contents and keeps checklist separate',
+    (tester) async {
+      final repo = repository();
+      final contributedCardId = previewCatalog.first['id']!;
+      repo.activeContributions[contributedCardId] = 2;
+      await mount(tester, repo);
+      await openBinder(tester, 'Private Binder · Sample');
+      await tester.pumpAndSettle();
+      expect(find.text('Contents'), findsOneWidget);
+      expect(find.text('1 card · 2 copies in this Binder'), findsOneWidget);
+      expect(find.byType(BinderPageArrangement), findsOneWidget);
+      expect(
+        find.byKey(const ValueKey('binder-live-contents-pages')),
+        findsOneWidget,
+      );
+      expect(find.text('Publish order'), findsNothing);
+      await tester.tap(find.text('Checklist'));
+      await tester.pumpAndSettle();
+      expect(find.byKey(const ValueKey('binder-view-pages')), findsNothing);
+      expect(find.text('All'), findsOneWidget);
+
+      await tester.ensureVisible(find.text('Settings'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Settings'));
+      await tester.pumpAndSettle();
+      final edit = find.text('Edit custom checklist');
+      await reveal(tester, edit);
+      await tester.tap(edit);
+      await tester.pumpAndSettle();
+      expect(find.byType(BinderCustomChecklistEditorScreen), findsOneWidget);
+      await nav.switchView(tester, 'arrange');
+      expect(find.byKey(const ValueKey('binder-grid-size')), findsOneWidget);
+      expect(find.byKey(const ValueKey('binder-share-page')), findsOneWidget);
+      expect(find.byKey(const ValueKey('binder-pocket-0')), findsOneWidget);
+      await tester.pageBack();
+      await tester.pumpAndSettle();
+      expect(find.byType(BinderDetailScreen), findsOneWidget);
+      expect(find.text('Review checklist'), findsNothing);
+      await tester.tap(find.text('Contents'));
+      await tester.pumpAndSettle();
+      expect(find.byType(BinderPageArrangement), findsOneWidget);
+      expect(find.text('1 card · 2 copies in this Binder'), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    },
+  );
   testWidgets(
     'create presets remain main-build Personal Shared/family and Community',
     (tester) async {

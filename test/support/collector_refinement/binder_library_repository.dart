@@ -54,6 +54,7 @@ class PreviewBinderLibraryRepository implements BinderRepository {
   final BinderRepository catalog;
   final _rows = <String, Map<String, dynamic>>{};
   final _definitions = <String, List<BinderCustomSlotDraft>>{};
+  final activeContributions = <String, int>{};
   final _revisions = <String, int>{};
   bool _joinRequested = false;
   int _created = 200;
@@ -123,7 +124,7 @@ class PreviewBinderLibraryRepository implements BinderRepository {
         cardPrintId: entry.$2.card.cardPrintId,
         name: entry.$2.card.name,
         requiredQuantity: entry.$2.requiredQuantity,
-        activeQuantity: 0,
+        activeQuantity: activeContributions[entry.$2.card.cardPrintId] ?? 0,
         cardPrintingId: entry.$2.finish.cardPrintingId,
         setLabel: entry.$2.card.setLabel,
         number: entry.$2.card.number,
@@ -144,15 +145,15 @@ class PreviewBinderLibraryRepository implements BinderRepository {
   }) async {
     await loadDetail(publicId);
     return BinderChecklistPage(
-      items:
-          {
-            BinderChecklistFilter.inBinder,
-            BinderChecklistFilter.inYourVault,
-            BinderChecklistFilter.contributedByYou,
-            BinderChecklistFilter.needsReview,
-          }.contains(filter)
-          ? []
-          : _items(publicId).take(limit).toList(),
+      items: switch (filter) {
+        BinderChecklistFilter.inBinder => _items(
+          publicId,
+        ).where((item) => item.activeQuantity > 0).take(limit).toList(),
+        BinderChecklistFilter.inYourVault ||
+        BinderChecklistFilter.contributedByYou ||
+        BinderChecklistFilter.needsReview => [],
+        _ => _items(publicId).take(limit).toList(),
+      },
     );
   }
 
@@ -213,8 +214,13 @@ class PreviewBinderLibraryRepository implements BinderRepository {
   @override
   Future<List<BinderCatalogCard>> searchCustomCards({
     required String query,
+    String gameScope = 'pokemon',
     int limit = 30,
-  }) => catalog.searchCustomCards(query: query, limit: limit);
+  }) => catalog.searchCustomCards(
+    query: query,
+    gameScope: gameScope,
+    limit: limit,
+  );
   @override
   Future<List<BinderFinishOption>> loadCardFinishOptions(String id) =>
       catalog.loadCardFinishOptions(id);

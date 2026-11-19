@@ -492,6 +492,8 @@ void main() {
       ),
     );
     await tester.pumpAndSettle();
+    await tester.tap(find.text('Checklist'));
+    await tester.pumpAndSettle();
 
     expect(find.text('Viewer checklist card'), findsOneWidget);
     expect(find.byTooltip('Checklist slot actions'), findsNothing);
@@ -542,6 +544,8 @@ void main() {
       ),
     );
     await tester.pumpAndSettle();
+    await tester.tap(find.text('Checklist'));
+    await tester.pumpAndSettle();
 
     expect(find.text('Standard variant'), findsOneWidget);
     expect(find.text('First Edition Red Cheeks'), findsOneWidget);
@@ -584,6 +588,8 @@ void main() {
         ),
       ),
     );
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Checklist'));
     await tester.pumpAndSettle();
 
     await tester.tap(find.byTooltip('Checklist slot actions'));

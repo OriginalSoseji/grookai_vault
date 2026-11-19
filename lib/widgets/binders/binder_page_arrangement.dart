@@ -21,6 +21,7 @@ class BinderPageArrangement extends StatefulWidget {
     required this.slots,
     required this.onMove,
     this.gridPreferences,
+    this.allowReorder = true,
     this.revealSlotKey,
     this.revealVersion = 0,
     this.onInspect,
@@ -28,6 +29,7 @@ class BinderPageArrangement extends StatefulWidget {
   final List<BinderCustomSlotDraft> slots;
   final void Function(int from, int to) onMove;
   final BinderGridPreferences? gridPreferences;
+  final bool allowReorder;
 
   /// View-only request. Locating never selects a card for moving.
   final String? revealSlotKey;
@@ -805,14 +807,16 @@ class _BinderPageArrangementState extends State<BinderPageArrangement> {
             KeyedSubtree(key: _pageHeaderKey, child: _pageHeader(theme, page)),
             _viewControls(theme),
             Text(
-              _drag != null
+              !widget.allowReorder
+                  ? 'Browse the Binder page by page. Tap a card to inspect it.'
+                  : _drag != null
                   ? 'Release over a pocket to move. Hold at a side edge to turn the page.'
                   : selected < 0
                   ? 'Hold and drag a card, or tap to choose its new pocket. Save the checklist to keep the order.'
                   : 'Choose another card’s pocket, on this page or the next. Cards in between shift.',
               style: theme.textTheme.bodySmall,
             ),
-            if (selectedSlot != null) ...[
+            if (widget.allowReorder && selectedSlot != null) ...[
               const SizedBox(height: 12),
               Text(
                 '${resolveBinderCatalogCardIdentity(selectedSlot.card).displayName} · ${selectedSlot.finish.label}',
@@ -874,7 +878,8 @@ class _BinderPageArrangementState extends State<BinderPageArrangement> {
                 child: Text(_moveMessage!, style: theme.textTheme.bodySmall),
               ),
             ],
-            if (_undoMoves.isNotEmpty || _redoMoves.isNotEmpty)
+            if (widget.allowReorder &&
+                (_undoMoves.isNotEmpty || _redoMoves.isNotEmpty))
               Wrap(
                 spacing: 9,
                 children: [
@@ -1018,7 +1023,9 @@ class _BinderPageArrangementState extends State<BinderPageArrangement> {
     final data = _PocketDrag(_dragOwner, slot.displayKey);
     void selectPocket() {
       if (_drag != null) return;
-      if (selected >= 0 && selected != index) {
+      if (!widget.allowReorder) {
+        widget.onInspect?.call(slot);
+      } else if (selected >= 0 && selected != index) {
         _move(selected, index);
       } else {
         setState(() {
@@ -1047,7 +1054,9 @@ class _BinderPageArrangementState extends State<BinderPageArrangement> {
         label:
             'Pocket ${index + 1}: ${identity.displayName}, ${slot.card.setLabel}, ${slot.card.number ?? ''}, ${slot.finish.label}, ${slot.requiredQuantity} required copies',
         excludeSemantics: true,
-        onTap: selectPocket,
+        onTap: widget.allowReorder
+            ? selectPocket
+            : () => widget.onInspect?.call(slot),
         child: Listener(
           key: _locatedKey == slot.displayKey ? _locatedPocketKey : null,
           onPointerDown: (event) =>
@@ -1056,7 +1065,7 @@ class _BinderPageArrangementState extends State<BinderPageArrangement> {
           onPointerCancel: (_) => _pressedPointers.remove(slot.displayKey),
           child: LongPressDraggable<_PocketDrag>(
             data: data,
-            maxSimultaneousDrags: _drag == null ? 1 : 0,
+            maxSimultaneousDrags: widget.allowReorder && _drag == null ? 1 : 0,
             delay: const Duration(milliseconds: 350),
             onDragStarted: () => _startDrag(data),
             onDragCompleted: () {
