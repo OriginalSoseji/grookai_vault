@@ -20,8 +20,9 @@ served 269 current positive printings. No schema, canonical, mapping, pricing,
 ownership or competitive-source writer is added.
 
 The initial Samsung read showed `com.grookai.vault` 1.0.0 build552; a later
-pre-update read at 2026-11-19 05:32 UTC showed build555. The shared
-Android/iOS candidate was raised to build556, above installed555 and main553, with matching
+pre-update read at 2026-11-19 05:32 UTC showed build555, followed by build556
+with device update time 2026-11-18 22:54:54 local. The shared Android/iOS
+candidate is build600, leaving room above concurrent device updates, with matching
 App Store Connect build metadata paths. Source is isolated at
 `.tmp/pokemon_playables_native_checkout_20261118`, branch
 `feat/pokemon-playables-native-20261118`, based on
@@ -52,4 +53,12 @@ and push checks passed with 2,087 native tests and two existing skips; the
 revised source still requires normal hook and hosted-check verification.
 The in-progress revised commit hook was stopped when the higher installed
 build was observed; its log is retained. Normal checks must run again against
-the aligned build556 candidate, followed by a fresh pre-install device check.
+the aligned candidate, followed by a fresh pre-install device check.
+
+The revised build556 source passed the complete normal commit gate: 8,781
+contract checks (11 existing skips), backend/web checks, clean native analysis
+and 2,090 native tests (two existing skips). A Windows test-process startup
+stall was retained as a failed run; the unrelated sales file passed both tests
+in isolation and then in the full retry. The subsequent push was stopped after
+observing installed556. The metadata-only build600 update requires the same
+normal gates before source publication; no downgrade or uninstall is allowed.
