@@ -60,6 +60,8 @@ Future<bool> showBinderCustomChecklistPreview(
                     subtitle: Text(
                       [
                         if (slot.card.setLabel.isNotEmpty) slot.card.setLabel,
+                        if ((slot.card.gameLabel ?? '').isNotEmpty)
+                          slot.card.gameLabel!,
                         if ((slot.card.number ?? '').isNotEmpty)
                           '#${slot.card.number}',
                         slot.finish.label,
@@ -125,6 +127,7 @@ class _BinderCustomChecklistEditorScreenState
   late int _visibleView;
   bool _allowExit = false;
   bool _confirmingExit = false;
+  String _gameScope = 'pokemon';
   late final List<String> _initialSignature;
 
   List<String> _draftSignature(List<BinderCustomSlotDraft> slots) => [
@@ -220,7 +223,10 @@ class _BinderCustomChecklistEditorScreenState
       _results = const [];
     });
     try {
-      final results = await widget.repository.searchCustomCards(query: query);
+      final results = await widget.repository.searchCustomCards(
+        query: query,
+        gameScope: _gameScope,
+      );
       if (mounted && generation == _searchGeneration) {
         setState(() => _results = results);
       }
@@ -417,7 +423,62 @@ class _BinderCustomChecklistEditorScreenState
     primary: false,
     slivers: [
       SliverPadding(
-        padding: const EdgeInsets.fromLTRB(16, 16, 16, 12),
+        padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+        sliver: SliverToBoxAdapter(
+          child: DropdownButtonFormField<String>(
+            key: const ValueKey('binder-custom-game-scope'),
+            initialValue: _gameScope,
+            isExpanded: true,
+            decoration: const InputDecoration(
+              labelText: 'Trading card game',
+              prefixIcon: Icon(Icons.style_rounded),
+              isDense: true,
+            ),
+            items: const <DropdownMenuItem<String>>[
+              DropdownMenuItem(
+                value: 'pokemon',
+                child: Text(
+                  'Pokémon',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              DropdownMenuItem(
+                value: 'one_piece',
+                child: Text(
+                  'One Piece',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              DropdownMenuItem(
+                value: 'mtg',
+                child: Text(
+                  'Magic: The Gathering',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+            onChanged: _choosingCardId != null
+                ? null
+                : (value) {
+                    if (value == null || value == _gameScope) return;
+                    _debounce?.cancel();
+                    ++_searchGeneration;
+                    setState(() {
+                      _gameScope = value;
+                      _results = const <BinderCatalogCard>[];
+                      _searching = true;
+                      _error = null;
+                    });
+                    _search(_searchController.text);
+                  },
+          ),
+        ),
+      ),
+      SliverPadding(
+        padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
         sliver: SliverToBoxAdapter(
           child: TextField(
             key: const ValueKey('binder-custom-card-search'),
@@ -547,6 +608,7 @@ class _BinderCustomChecklistEditorScreenState
               subtitle: Text(
                 [
                   if (card.setLabel.isNotEmpty) card.setLabel,
+                  if ((card.gameLabel ?? '').isNotEmpty) card.gameLabel!,
                   if ((card.number ?? '').isNotEmpty) '#${card.number}',
                   if ((card.rarity ?? '').isNotEmpty) card.rarity!,
                 ].join(' · '),
@@ -726,6 +788,8 @@ class _BinderCustomChecklistEditorScreenState
               [
                 [
                   if (slot.card.setLabel.isNotEmpty) slot.card.setLabel,
+                  if ((slot.card.gameLabel ?? '').isNotEmpty)
+                    slot.card.gameLabel!,
                   if ((slot.card.number ?? '').isNotEmpty)
                     '#${slot.card.number}',
                 ].join(' · '),

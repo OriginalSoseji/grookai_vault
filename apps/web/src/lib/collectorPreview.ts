@@ -28,8 +28,11 @@ export function createPreviewReadFetch(url: string, key: string, transport: type
     headers.set("apikey", key);
     headers.set("authorization", `Bearer ${key}`);
     headers.delete("cookie");
+    // An unavailable local data service must not stall static preview builds.
+    // Retain caller cancellation as well as a bounded preview-only deadline.
+    const signal = AbortSignal.any([request.signal, AbortSignal.timeout(5000)]);
     // Never follow a redirect or forward a supplied user session to the source.
-    return transport(input, { ...init, headers, credentials: "omit", redirect: "error" });
+    return transport(input, { ...init, headers, signal, credentials: "omit", redirect: "error" });
   };
 }
 

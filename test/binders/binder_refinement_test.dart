@@ -30,16 +30,34 @@ const finishes = [anyFinish, holoFinish, reverseFinish];
 class TestRepository implements BinderRepository {
   Future<List<BinderCatalogCard>> Function(String)? search;
   final queries = <String>[];
+  final gameScopes = <String>[];
   int finishLoads = 0;
   @override
   String? get currentUserId => null;
   @override
   Future<List<BinderCatalogCard>> searchCustomCards({
     required String query,
+    String gameScope = 'pokemon',
     int limit = 30,
   }) async {
     queries.add(query);
-    return search == null ? [card] : search!(query);
+    gameScopes.add(gameScope);
+    final gameLabel = switch (gameScope) {
+      'one_piece' => 'One Piece',
+      'mtg' => 'Magic: The Gathering',
+      _ => 'Pokémon',
+    };
+    return search == null
+        ? [
+            BinderCatalogCard(
+              cardPrintId: card.cardPrintId,
+              name: card.name,
+              setLabel: card.setLabel,
+              number: card.number,
+              gameLabel: gameLabel,
+            ),
+          ]
+        : search!(query);
   }
 
   @override
@@ -466,6 +484,47 @@ void main() {
       find.text('No canonical cards matched that search.'),
       findsOneWidget,
     );
+  });
+
+  testWidgets('custom checklist card search switches TCG scope', (
+    tester,
+  ) async {
+    final repository = TestRepository();
+    await tester.pumpWidget(
+      app(
+        BinderCustomChecklistEditorScreen(
+          repository: repository,
+          initialSlots: [
+            BinderCustomSlotDraft(
+              card: BinderCatalogCard(
+                cardPrintId: card.cardPrintId,
+                name: card.name,
+                setLabel: card.setLabel,
+                number: card.number,
+                gameLabel: 'Pokémon',
+              ),
+              finish: anyFinish,
+            ),
+          ],
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(repository.gameScopes.last, 'pokemon');
+
+    await tester.tap(find.text('Find cards'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('binder-custom-game-scope')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Magic: The Gathering').last);
+    await tester.pumpAndSettle();
+
+    expect(repository.gameScopes.last, 'mtg');
+    expect(find.text('Eevee'), findsOneWidget);
+    await tester.tap(find.text('Checklist'));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('Pokémon'), findsWidgets);
+    expect(tester.takeException(), isNull);
   });
 
   testWidgets('search failure offers retry without claiming empty results', (

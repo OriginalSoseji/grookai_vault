@@ -133,6 +133,15 @@ The checklist authority for a Binder:
 - `set` — canonical master-set finish-option completion;
 - `custom` — an explicitly selected and versioned checklist.
 
+A custom checklist is game-agnostic. Its slots may combine canonical card
+prints from any catalog game currently enabled for the signed-in client. The
+game selector scopes card discovery only; it never restricts cards already in
+the checklist. Each slot remains anchored to its exact canonical card-print
+and governed finish identities, and the server remains authoritative for
+visibility and contribution eligibility. The native custom editor currently
+exposes Pokémon, One Piece, and Magic: The Gathering, matching the existing
+cross-game card-search controls.
+
 ### Contribution
 
 An explicit link from one active exact `vault_item_instances` copy, owned by a
@@ -851,12 +860,25 @@ Header:
 - member summary;
 - Share/Invite.
 
-Tabs:
+Tabs, in order:
 
+- Contents
 - Checklist
 - Activity
 - Members
 - Settings, role-gated
+
+The Binder opens on **Contents**. Contents is the artwork-first page view of
+cards with active, authorized contributions in the Binder. It shows contributed
+quantities and card identity, and never fills pages with missing checklist
+requirements. An empty Binder shows an empty state with a route to Checklist.
+Grid size, page navigation, card inspection, and page sharing remain available
+in this view. Reordering canonical target checklists is not offered here.
+
+Checklist remains the separate planning and contribution surface. It contains
+the full set of requirements, missing slots, filters, exact-copy actions,
+approvals, and moderation controls. Opening a Binder must not land on this
+checklist surface.
 
 Checklist filters:
 

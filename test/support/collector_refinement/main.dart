@@ -72,6 +72,7 @@ class PreviewBinderRepository implements BinderRepository {
   @override
   Future<List<BinderCatalogCard>> searchCustomCards({
     required String query,
+    String gameScope = 'pokemon',
     int limit = 30,
   }) async {
     final terms = query.toLowerCase().trim().split(RegExp(r'\s+'));
@@ -87,6 +88,11 @@ class PreviewBinderRepository implements BinderRepository {
             name: card['name']!,
             setLabel: previewSet(card),
             number: card['number'],
+            gameLabel: switch (gameScope) {
+              'one_piece' => 'One Piece',
+              'mtg' => 'Magic: The Gathering',
+              _ => 'Pokémon',
+            },
             hostedImageUrl: previewImage(card),
           ),
     ].take(limit.clamp(1, 30)).toList(growable: false);

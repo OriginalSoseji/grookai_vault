@@ -21,6 +21,7 @@ class SearchInterpretation {
     this.languageScope,
     this.unappliedLabels = const [],
     this.hasOwnershipFilter = false,
+    this.hasPlayableFilter = false,
   });
   final List<SearchQueryAction> filters;
   final List<SearchQueryAction> artistChoices;
@@ -30,6 +31,7 @@ class SearchInterpretation {
   final String? languageScope;
   final List<String> unappliedLabels;
   final bool hasOwnershipFilter;
+  final bool hasPlayableFilter;
 
   factory SearchInterpretation.fromJson(Map<String, dynamic> json) {
     List<SearchQueryAction> actions(
@@ -62,6 +64,7 @@ class SearchInterpretation {
       gameScope: json['gameScope'] as String?,
       languageScope: json['languageScope'] as String?,
       hasOwnershipFilter: ['owned', 'missing'].contains(json['ownedState']),
+      hasPlayableFilter: json['playable'] == true,
       unappliedLabels: (json['unappliedLabels'] as List? ?? const [])
           .whereType<String>()
           .toList(),

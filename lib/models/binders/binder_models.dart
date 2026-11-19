@@ -1754,6 +1754,7 @@ class BinderCatalogCard {
     this.variantKey,
     this.printedIdentityModifier,
     this.rarity,
+    this.gameLabel,
     this.hostedImageUrl,
     this.fallbackImageUrl,
     this.preferredCardPrintingId,
@@ -1766,6 +1767,7 @@ class BinderCatalogCard {
   final String? variantKey;
   final String? printedIdentityModifier;
   final String? rarity;
+  final String? gameLabel;
   final String? hostedImageUrl;
   final String? fallbackImageUrl;
   final String? preferredCardPrintingId;
