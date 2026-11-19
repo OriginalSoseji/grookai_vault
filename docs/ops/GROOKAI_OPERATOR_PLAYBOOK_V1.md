@@ -1,3 +1,7 @@
+## XY150 promo rarity correction
+
+The exact XY150 Yveltal EX correction was applied and independently verified on 2026-11-19; see [its audit](../audits/xy150_promo_review_20261119/README.md), apply run `50be7881-ed47-4911-9eca-9fb57d87764b`, and durable receipt `176937`. It preserves the conflicting TCGdex trait, printed identity, variants, ownership and prices. `backend/catalog/xy150_promo_rarity_apply_v1.mjs` provides read-only `inspect` and `verify` modes; `rollback-proof` and `apply` require `--approval PROCEED` and create operational ledger entries. Apply requires the exact plan and same-writer rollback proof. A changed source, preimage, image or proof requires fresh review rather than a blind retry.
+
 # Prismatic identity query guard V5 — November17,2026
 
 Pokemon GO starts at502 after PR945. The owner selected only the approved88

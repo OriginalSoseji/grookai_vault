@@ -1,0 +1,669 @@
+{
+  "version": "XY150_FROZEN_READBACK_V1",
+  "captured_at": "2026-11-19T21:00:38.704Z",
+  "project_ref": "ycdxbpibncqcchqiihfz",
+  "sanity": {
+    "read_only": "on",
+    "parents": 173837,
+    "sets": 3420,
+    "traits": 47409
+  },
+  "parents": [
+    {
+      "id": "28b773fa-ed21-47b8-a349-1d03f778c045",
+      "name": "Yveltal EX",
+      "gv_id": "GV-PK-PR-XY-XY150",
+      "artist": null,
+      "number": "XY150",
+      "rarity": "None",
+      "set_id": "076bc367-57a2-44db-853c-dfa32115761f",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "xyp",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/xy/xyp/XY150/high.webp",
+      "created_at": "2026-03-27T00:43:38.501491+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/xyp/gv-pk-pr-xy-xy150/8bd7ffcafd7a9efb992ca95b.webp",
+      "updated_at": "2026-06-16T02:45:45.447853+00:00",
+      "ai_metadata": {
+        "tcgdex": {
+          "legalities": {},
+          "flavor_text": null
+        }
+      },
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "xyp-XY150"
+      },
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "150",
+      "tcgplayer_id": null,
+      "image_alt_url": "https://assets.tcgdex.net/en/xy/xyp/XY150",
+      "printed_total": null,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": null,
+      "data_quality_flags": null,
+      "print_identity_key": null,
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": null,
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    }
+  ],
+  "sets": [
+    {
+      "id": "076bc367-57a2-44db-853c-dfa32115761f",
+      "code": "xyp",
+      "game": "pokemon",
+      "name": "XY Black Star Promos",
+      "source": {
+        "tcgdex": {
+          "id": "xyp",
+          "raw": {
+            "id": "xyp",
+            "logo": "https://assets.tcgdex.net/en/xy/xyp/logo",
+            "name": "XY Black Star Promos",
+            "symbol": "https://assets.tcgdex.net/univ/xy/xyp/symbol",
+            "cardCount": {
+              "total": 216,
+              "official": 211
+            }
+          },
+          "name": "XY Black Star Promos",
+          "slug": null,
+          "total": null,
+          "series": null,
+          "symbols": null,
+          "releaseDate": null,
+          "printedTotal": null
+        },
+        "pokemonapi": {
+          "id": "xyp",
+          "name": "XY Black Star Promos",
+          "total": 216,
+          "images": {
+            "logo": "https://images.pokemontcg.io/xyp/logo.png",
+            "symbol": "https://images.pokemontcg.io/xyp/symbol.png"
+          },
+          "series": "XY",
+          "ptcgoCode": "PR-XY",
+          "releaseDate": "2013/10/12",
+          "printedTotal": 211
+        }
+      },
+      "logo_url": "https://images.pokemontcg.io/xyp/logo.png",
+      "set_role": null,
+      "created_at": "2025-11-16T06:32:35.437741+00:00",
+      "symbol_url": "https://images.pokemontcg.io/xyp/symbol.png",
+      "updated_at": "2026-04-13T17:58:16.449538+00:00",
+      "release_date": "2013-10-12",
+      "printed_total": 211,
+      "hero_image_url": "https://assets.tcgdex.net/en/xy/xyp/logo.png",
+      "identity_model": "standard",
+      "last_synced_at": null,
+      "hero_image_source": "tcgdex",
+      "search_code_lower": "xyp",
+      "printed_set_abbrev": "PR-XY",
+      "identity_domain_default": "pokemon_eng_standard"
+    }
+  ],
+  "identities": [
+    {
+      "id": "ac20a57f-a67a-4055-a899-284971d0102d",
+      "is_active": true,
+      "created_at": "2026-04-03T18:02:50.808535+00:00",
+      "updated_at": "2026-04-03T18:02:50.808535+00:00",
+      "card_print_id": "28b773fa-ed21-47b8-a349-1d03f778c045",
+      "printed_number": "XY150",
+      "identity_domain": "pokemon_eng_standard",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 211,
+        "printed_set_abbrev": "PR-XY"
+      },
+      "identity_key_hash": "a7bf23ef81b3544088acc29b233bef45079df7a1a55912823a45652f9097cfb3",
+      "set_code_identity": "xyp",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "normalized_printed_name": "yveltal ex"
+    }
+  ],
+  "traits": [
+    {
+      "hp": 170,
+      "id": 39385,
+      "types": [
+        "Darkness"
+      ],
+      "rarity": "None",
+      "source": "tcgdex",
+      "supertype": "Pokemon",
+      "confidence": null,
+      "created_at": "2026-03-27T00:43:39.066207+00:00",
+      "trait_type": "pokemon:stats",
+      "trait_value": "tcgdex",
+      "national_dex": 717,
+      "card_category": null,
+      "card_print_id": "28b773fa-ed21-47b8-a349-1d03f778c045",
+      "legacy_rarity": null
+    }
+  ],
+  "mappings": [
+    {
+      "id": 1566,
+      "meta": {
+        "new_gv_id": "GV-PK-PR-XY-XY150",
+        "new_number": "XY150",
+        "previous_gv_id": "GV-PK-PR-XY-XY150A",
+        "previous_number": "XY150a",
+        "new_card_print_id": "28b773fa-ed21-47b8-a349-1d03f778c045",
+        "owner_transfer_package": "EXTMAP-ALIAS-04A-POKEMONAPI-SUFFIX-OWNER-TRANSFER",
+        "previous_card_print_id": "a99aa4ae-0d1b-4d9c-81be-9db0a65ca8e1",
+        "governance_fingerprint_sha256": "3cc52ffb8ccfe9698f3f3a116b7ac8132f1afca0ffea2826216c91bbe6607c53"
+      },
+      "active": true,
+      "owners": 1,
+      "source": "pokemonapi",
+      "synced_at": "2025-11-18T06:46:09.16467+00:00",
+      "external_id": "xyp-XY150",
+      "card_print_id": "28b773fa-ed21-47b8-a349-1d03f778c045",
+      "parent_mappings": 1
+    },
+    {
+      "id": 61228,
+      "meta": null,
+      "active": true,
+      "owners": 1,
+      "source": "tcgdex",
+      "synced_at": "2026-02-24T05:28:03.099482+00:00",
+      "external_id": "xyp-XY150",
+      "card_print_id": "28b773fa-ed21-47b8-a349-1d03f778c045",
+      "parent_mappings": 1
+    },
+    {
+      "id": 133278,
+      "meta": {
+        "source_url": "https://www.tcgplayer.com/product/121953/pokemon-xy-promos-yveltal-ex-xy150-shiny",
+        "promoted_by": "tcg_mapping_tcgmap06b_fresh_tcgcsv_mapping_insert_guarded_dry_run_v1",
+        "derived_from": "fresh_tcgcsv_tcgplayer_product_snapshot",
+        "product_name": "Yveltal EX - XY150 (Shiny)",
+        "product_number": "XY150",
+        "product_rarity": "Promo",
+        "tcgcsv_group_id": "1451",
+        "raw_snapshot_ref": "tcgcsv:1451:121953",
+        "product_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/121953_200w.jpg",
+        "tcgcsv_group_name": "XY Promos",
+        "source_readiness_fingerprint": "8a0e4ab3ec98c1b984ed3e409a1f50ed888ddf8b5b805c427a865e238a6a25ac"
+      },
+      "active": true,
+      "owners": 1,
+      "source": "tcgplayer",
+      "synced_at": "2026-06-19T14:21:30.28788+00:00",
+      "external_id": "121953",
+      "card_print_id": "28b773fa-ed21-47b8-a349-1d03f778c045",
+      "parent_mappings": 1
+    }
+  ],
+  "raw": [
+    {
+      "id": "1736",
+      "source": "pokemonapi",
+      "status": "normalized",
+      "ingested_at": "2025-11-17T17:22:24.375Z",
+      "payload_md5": "f7e90adecb5c348588746273a0f51b34",
+      "payload": {
+        "hp": "170",
+        "id": "xyp-XY150",
+        "set": {
+          "id": "xyp",
+          "name": "XY Black Star Promos",
+          "total": 216,
+          "images": {
+            "logo": "https://images.pokemontcg.io/xyp/logo.png",
+            "symbol": "https://images.pokemontcg.io/xyp/symbol.png"
+          },
+          "series": "XY",
+          "ptcgoCode": "PR-XY",
+          "updatedAt": "2020/08/14 09:35:00",
+          "legalities": {
+            "expanded": "Legal",
+            "unlimited": "Legal"
+          },
+          "releaseDate": "2013/10/12",
+          "printedTotal": 211
+        },
+        "name": "Yveltal-EX",
+        "_kind": "card",
+        "rules": [
+          "Pokémon-EX rule: When a Pokémon-EX has been Knocked Out, your opponent takes 2 Prize cards."
+        ],
+        "types": [
+          "Darkness"
+        ],
+        "artist": "Eske Yoshinob",
+        "images": {
+          "large": "https://images.pokemontcg.io/xyp/XY150_hires.png",
+          "small": "https://images.pokemontcg.io/xyp/XY150.png"
+        },
+        "number": "XY150",
+        "rarity": "Promo",
+        "attacks": [
+          {
+            "cost": [
+              "Darkness",
+              "Colorless"
+            ],
+            "name": "Evil Ball",
+            "text": "This attack does 20 more damage times the amount of Energy attached to both Active Pokémon.",
+            "damage": "20+",
+            "convertedEnergyCost": 2
+          },
+          {
+            "cost": [
+              "Darkness",
+              "Colorless",
+              "Colorless"
+            ],
+            "name": "Y Cyclone",
+            "text": "Move an Energy from this Pokémon to 1 of your Benched Pokémon.",
+            "damage": "90",
+            "convertedEnergyCost": 3
+          }
+        ],
+        "subtypes": [
+          "Basic",
+          "EX"
+        ],
+        "supertype": "Pokémon",
+        "tcgplayer": {
+          "url": "https://prices.pokemontcg.io/tcgplayer/xyp-XY150",
+          "prices": {
+            "holofoil": {
+              "low": 7.5,
+              "mid": 10.55,
+              "high": 148.98,
+              "market": 15.11,
+              "directLow": null
+            }
+          },
+          "updatedAt": "2025/11/17"
+        },
+        "cardmarket": {
+          "url": "https://prices.pokemontcg.io/cardmarket/xyp-XY150",
+          "prices": {
+            "avg1": 5.35,
+            "avg7": 3.92,
+            "avg30": 4.5,
+            "lowPrice": 1,
+            "trendPrice": 4.52,
+            "germanProLow": 0,
+            "lowPriceExPlus": 3.5,
+            "reverseHoloLow": 0,
+            "suggestedPrice": 0,
+            "reverseHoloAvg1": 3,
+            "reverseHoloAvg7": 3.35,
+            "reverseHoloSell": 0,
+            "averageSellPrice": 4.75,
+            "reverseHoloAvg30": 2.7,
+            "reverseHoloTrend": 3.39
+          },
+          "updatedAt": "2025/11/13"
+        },
+        "legalities": {
+          "expanded": "Legal",
+          "unlimited": "Legal"
+        },
+        "weaknesses": [
+          {
+            "type": "Lightning",
+            "value": "×2"
+          }
+        ],
+        "resistances": [
+          {
+            "type": "Fighting",
+            "value": "-20"
+          }
+        ],
+        "retreatCost": [
+          "Colorless",
+          "Colorless"
+        ],
+        "_external_id": "xyp-XY150",
+        "_set_external_id": "xyp",
+        "convertedRetreatCost": 2,
+        "nationalPokedexNumbers": [
+          717
+        ]
+      }
+    },
+    {
+      "id": "14871",
+      "source": "tcgdex",
+      "status": "normalized",
+      "ingested_at": "2025-11-19T20:37:34.141Z",
+      "payload_md5": "0dbf06fb8bb82aa688e1cea8461e6fd8",
+      "payload": {
+        "card": {
+          "hp": 170,
+          "id": "xyp-XY150",
+          "set": {
+            "id": "xyp",
+            "logo": "https://assets.tcgdex.net/en/xy/xyp/logo",
+            "name": "XY Black Star Promos",
+            "symbol": "https://assets.tcgdex.net/univ/xy/xyp/symbol",
+            "cardCount": {
+              "total": 216,
+              "official": 211
+            }
+          },
+          "name": "Yveltal EX",
+          "dexId": [
+            717
+          ],
+          "image": "https://assets.tcgdex.net/en/xy/xyp/XY150",
+          "legal": {
+            "expanded": true,
+            "standard": false
+          },
+          "types": [
+            "Darkness"
+          ],
+          "rarity": "None",
+          "suffix": "EX",
+          "attacks": [
+            {
+              "cost": [
+                "Darkness",
+                "Colorless"
+              ],
+              "name": "Evil Ball",
+              "damage": "20+",
+              "effect": "This attack does 20 more damage times the amount of Energy attached to both Active Pokémon."
+            },
+            {
+              "cost": [
+                "Darkness",
+                "Colorless",
+                "Colorless"
+              ],
+              "name": "Y Cyclone",
+              "damage": 90,
+              "effect": "Move an Energy from this Pokémon to 1 of your Benched Pokémon."
+            }
+          ],
+          "localId": "XY150",
+          "pricing": {
+            "tcgplayer": null,
+            "cardmarket": {
+              "avg": 5.33,
+              "low": 1,
+              "avg1": 1.48,
+              "avg7": 3.05,
+              "unit": "EUR",
+              "avg30": 5,
+              "trend": 4.1,
+              "updated": "2026-02-20T01:45:06.000Z",
+              "avg-holo": null,
+              "low-holo": null,
+              "avg1-holo": 3,
+              "avg7-holo": 3.63,
+              "idProduct": 281329,
+              "avg30-holo": 2.58,
+              "trend-holo": 3.62
+            }
+          },
+          "retreat": 2,
+          "updated": "2025-08-16T20:39:55Z",
+          "category": "Pokemon",
+          "variants": {
+            "holo": true,
+            "normal": true,
+            "wPromo": false,
+            "reverse": true,
+            "firstEdition": false
+          },
+          "weaknesses": [
+            {
+              "type": "Lightning",
+              "value": "×2"
+            }
+          ],
+          "illustrator": "Eske Yoshinob",
+          "resistances": [
+            {
+              "type": "Fighting",
+              "value": "-20"
+            }
+          ],
+          "variants_detailed": [
+            {
+              "size": "standard",
+              "type": "normal"
+            },
+            {
+              "size": "standard",
+              "type": "reverse"
+            },
+            {
+              "size": "standard",
+              "type": "holo"
+            }
+          ]
+        },
+        "_kind": "card",
+        "_source": "tcgdex",
+        "fetched_at": "2026-02-20T05:01:40.574Z",
+        "_external_id": "xyp-XY150",
+        "set_external_id": "xyp",
+        "_set_external_id": "xyp"
+      }
+    }
+  ],
+  "products": [
+    {
+      "row": {
+        "name": "Yveltal EX - XY150 (Shiny)",
+        "group_id": 1451,
+        "image_url": "https://tcgplayer-cdn.tcgplayer.com/product/121953_200w.jpg",
+        "clean_name": "Yveltal EX XY150 Shiny",
+        "created_at": "2026-07-15T03:58:42.619853+00:00",
+        "product_id": 121953,
+        "source_url": "https://www.tcgplayer.com/product/121953/pokemon-xy-promos-yveltal-ex-xy150-shiny",
+        "updated_at": "2026-11-19T03:21:09.172592+00:00",
+        "category_id": 3,
+        "image_count": 1,
+        "raw_payload": {
+          "url": "https://www.tcgplayer.com/product/121953/pokemon-xy-promos-yveltal-ex-xy150-shiny",
+          "name": "Yveltal EX - XY150 (Shiny)",
+          "groupId": 1451,
+          "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/121953_200w.jpg",
+          "cleanName": "Yveltal EX XY150 Shiny",
+          "productId": 121953,
+          "categoryId": 3,
+          "imageCount": 1,
+          "modifiedOn": "2022-07-23T17:13:23.72",
+          "presaleInfo": {
+            "note": null,
+            "isPresale": false,
+            "releasedOn": null
+          },
+          "extendedData": [
+            {
+              "name": "Number",
+              "value": "XY150",
+              "displayName": "Card Number"
+            },
+            {
+              "name": "Rarity",
+              "value": "Promo",
+              "displayName": "Rarity"
+            },
+            {
+              "name": "Card Type",
+              "value": "Darkness",
+              "displayName": "Card Type"
+            },
+            {
+              "name": "HP",
+              "value": "170",
+              "displayName": "HP"
+            },
+            {
+              "name": "Stage",
+              "value": "Basic",
+              "displayName": "Stage"
+            },
+            {
+              "name": "Attack 1",
+              "value": "[1D] Evil Ball (20+)\r\n<br>This attack does 20 more damage times the amount of Energy attached to both Active Pokemon.",
+              "displayName": "Attack 1"
+            },
+            {
+              "name": "Attack 2",
+              "value": "[2D] Y Cyclone (90)\r\n<br>Move an Energy from this Pokemon to 1 of your Benched Pokemon.",
+              "displayName": "Attack 2"
+            },
+            {
+              "name": "Weakness",
+              "value": "Lx2",
+              "displayName": "Weakness"
+            },
+            {
+              "name": "Resistance",
+              "value": "F-20",
+              "displayName": "Resistance"
+            },
+            {
+              "name": "RetreatCost",
+              "value": "2",
+              "displayName": "Retreat Cost"
+            }
+          ]
+        },
+        "last_seen_at": "2026-11-19T03:21:09.172592+00:00",
+        "payload_hash": "7c8c08431921d4e5a978d62830a95aad034fd8cc2f738b81fba51a7cbe4d9e79",
+        "presale_info": {
+          "note": null,
+          "isPresale": false,
+          "releasedOn": null
+        },
+        "extended_data": [
+          {
+            "name": "Number",
+            "value": "XY150",
+            "displayName": "Card Number"
+          },
+          {
+            "name": "Rarity",
+            "value": "Promo",
+            "displayName": "Rarity"
+          },
+          {
+            "name": "Card Type",
+            "value": "Darkness",
+            "displayName": "Card Type"
+          },
+          {
+            "name": "HP",
+            "value": "170",
+            "displayName": "HP"
+          },
+          {
+            "name": "Stage",
+            "value": "Basic",
+            "displayName": "Stage"
+          },
+          {
+            "name": "Attack 1",
+            "value": "[1D] Evil Ball (20+)\r\n<br>This attack does 20 more damage times the amount of Energy attached to both Active Pokemon.",
+            "displayName": "Attack 1"
+          },
+          {
+            "name": "Attack 2",
+            "value": "[2D] Y Cyclone (90)\r\n<br>Move an Energy from this Pokemon to 1 of your Benched Pokemon.",
+            "displayName": "Attack 2"
+          },
+          {
+            "name": "Weakness",
+            "value": "Lx2",
+            "displayName": "Weakness"
+          },
+          {
+            "name": "Resistance",
+            "value": "F-20",
+            "displayName": "Resistance"
+          },
+          {
+            "name": "RetreatCost",
+            "value": "2",
+            "displayName": "Retreat Cost"
+          }
+        ],
+        "first_seen_at": "2026-07-15T03:58:42.619853+00:00",
+        "source_active": true,
+        "last_seen_run_id": "ab6f6a8d-fb7c-49cd-92da-2df335c4c10f",
+        "source_modified_on": "2022-07-23T17:13:23.72",
+        "source_missing_since": null,
+        "catalog_metadata_status": "current"
+      },
+      "raw_md5": "c452279ac6a066aa3213df76c342b7ea"
+    }
+  ],
+  "groups": [
+    {
+      "row": {
+        "name": "XY Promos",
+        "group_id": 1451,
+        "created_at": "2026-07-15T05:47:43.859562+00:00",
+        "updated_at": "2026-11-19T03:18:40.630957+00:00",
+        "category_id": 3,
+        "raw_payload": {
+          "name": "XY Promos",
+          "groupId": 1451,
+          "categoryId": 3,
+          "modifiedOn": "2026-11-13T05:58:49.157",
+          "publishedOn": "2013-12-16T00:00:00",
+          "abbreviation": "PR",
+          "isSupplemental": false
+        },
+        "abbreviation": "PR",
+        "last_seen_at": "2026-11-19T03:18:40.630957+00:00",
+        "payload_hash": "5f8837f9c36dc2d4a9771cefcdaf1e4883ef0c7bd2363a8ea5ed330f1642f221",
+        "published_on": "2013-12-16T00:00:00",
+        "first_seen_at": "2026-07-15T05:47:43.859562+00:00",
+        "source_active": true,
+        "is_supplemental": false,
+        "last_seen_run_id": "ab6f6a8d-fb7c-49cd-92da-2df335c4c10f",
+        "source_modified_on": "2026-11-13T05:58:49.157",
+        "source_missing_since": null,
+        "catalog_metadata_status": "current"
+      },
+      "raw_md5": "de98921d1455408037042f2dc2010d7f"
+    }
+  ],
+  "runs": [
+    {
+      "id": "ab6f6a8d-fb7c-49cd-92da-2df335c4c10f",
+      "status": "completed",
+      "sync_mode": "current_full_sync",
+      "failed_count": 0,
+      "started_at": "2026-11-19T02:59:24.206Z",
+      "finished_at": "2026-11-19T04:10:44.685Z"
+    }
+  ],
+  "groupSets": [
+    {
+      "group_id": 1451,
+      "set_count": 1,
+      "set_codes": [
+        "xyp"
+      ]
+    }
+  ],
+  "provenance": "Database JSONB readback; not original HTTP response bytes."
+}

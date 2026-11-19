@@ -1,0 +1,27 @@
+{
+  "version": "XY150_PROMO_RARITY_PLAN_V1",
+  "status": "FROZEN_GUARDED_PACKAGE",
+  "target": "ycdxbpibncqcchqiihfz",
+  "scope": {
+    "table": "card_prints",
+    "field": "rarity",
+    "count": 1
+  },
+  "snapshot_sha256": "b98610c7341fbeac3434fb71ad609b7c5fcbe10cf110e8c69055673941d66ce8",
+  "article_sha256": "2fcff07f10c6f5bdca1b879d107de924847bf8fec307724fff90d6b23e397416",
+  "catalog_image_sha256": "8bd7ffcafd7a9efb992ca95bf0037275dec68c247bd54efdc5809cfde3bee94f",
+  "product_image_sha256": "8796c6c8b64a721e06cf773665b0e46670258f450e60e64b63d0fa75c27bab93",
+  "visual_observation": "Catalog image shows printed XY150 and PROMO star; mapped product image shows the same card design. Images are not physical-copy inspection and do not prove finish.",
+  "decision_basis": "Exact printed design and mapped TCGplayer and Pokémon API classifications support Promo for this record; retain the conflicting TCGdex trait. No general source-precedence rule.",
+  "changes": [
+    {
+      "id": "28b773fa-ed21-47b8-a349-1d03f778c045",
+      "gv_id": "GV-PK-PR-XY-XY150",
+      "before": "None",
+      "after": "Promo",
+      "identity_key_hash": "a7bf23ef81b3544088acc29b233bef45079df7a1a55912823a45652f9097cfb3",
+      "protected_trait_id": 39385
+    }
+  ],
+  "fingerprint_sha256": "328b9ad74f4822494f90a962421c6f47c1321e1c7ffa67f8c86c78355405f3f8"
+}
