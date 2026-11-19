@@ -5368,3 +5368,22 @@ seed through existing active canonical mappings. The daily worker recomputes
 their usage support with ordinary printings. Missing or ambiguous mappings stay
 outside the positive pool. See [the artwork-version checkpoint](../checkpoints/2026-11-18_pokemon_playables_art_versions_v1.md)
 for the metadata cohort and release readback; never publish source originals.
+
+# Pokémon playables native consumer — November 18, 2026
+
+Native search and card detail consume the existing sanitized `/api/playables`
+publication and shared resolver. Preserve `playable=1` and typed interpretation;
+never quote away the filter or fall back to unrestricted cards. Visible badges
+share one bounded read, refresh within one minute/on resume, and disappear on
+expiry, revocation or failed refresh. Filtered results require current published
+membership and retain the query for retry when unavailable. This adds no native
+classification, private evidence, schema or truth writer.
+
+The isolated branch is `feat/pokemon-playables-native-20261118` in
+`.tmp/pokemon_playables_native_checkout_20261118`. Candidate554 keeps Android
+and iOS source metadata aligned. The Samsung baseline read back as552. Require
+managed/hosted checks, signed artifact provenance, Android update preflight and
+data-preserving device readback. See [the native checkpoint](../checkpoints/2026-11-18_pokemon_playables_native_v1.md)
+and [the consumer contract](../contracts/POKEMON_PLAYABLES_NATIVE_CONSUMER_V1.md).
+An Android candidate is not a paired store release; do not infer store submission
+from this implementation or a successful build.

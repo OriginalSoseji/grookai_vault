@@ -52,7 +52,8 @@ or remote data change is needed.
 ## Release boundary
 
 Build 558 remains a local Android verification build, not a paired iOS/Android
-release. Tailscale SSH access to the Mac has since been restored and Xcode is
-available. The full shipcheck is being rerun with the overflow fix; iOS 558 has
-not yet been archived, uploaded, or read back from App Store Connect. No commit,
-merge, or publication is claimed by this checkpoint.
+release. Main has since advanced the mobile baseline to build 600; the merged
+Binder release is therefore being prepared as build 601. Tailscale SSH access to
+the Mac is restored and Xcode is available. The PR is being reconciled with the
+new baseline before build 601 is archived, uploaded, and read back from App
+Store Connect. No TestFlight publication is claimed by this checkpoint.
