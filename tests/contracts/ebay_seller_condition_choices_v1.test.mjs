@@ -2,11 +2,20 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { qualifyTradingCardConditionChoices as qualify } from '../../backend/ebay/seller_condition_choices_v1.mjs';
 
-const fixture = () => ({ categoryId: '100', categoryTreeId: '0', isGraded: false,
-  response: { itemConditionPolicies: [{ categoryId: '100', categoryTreeId: '0',
+const fixture = () => ({ categoryId: '183454', categoryTreeId: '0', isGraded: false,
+  response: { itemConditionPolicies: [{ categoryId: '183454', categoryTreeId: '0',
     itemConditionRequired: true, itemConditions: [
-      { conditionId: '2750', conditionDescription: 'Graded', conditionDescriptors: [] },
-      { conditionId: '4000', conditionDescription: 'Ungraded', conditionDescriptors: [] },
+      { conditionId: '2750', conditionDescription: 'Graded', conditionDescriptors: [
+        { conditionDescriptorId: '27501' }, { conditionDescriptorId: '27502' },
+      ] },
+      { conditionId: '4000', conditionDescription: 'Ungraded', conditionDescriptors: [
+        { conditionDescriptorId: '40001', conditionDescriptorValues: [
+          { conditionDescriptorValueId: '400010' },
+          { conditionDescriptorValueId: '400015' },
+          { conditionDescriptorValueId: '400016' },
+          { conditionDescriptorValueId: '400017' },
+        ] },
+      ] },
     ] }] } });
 
 test('eBay trading-card condition mapping retains its Ungraded label without inventing a physical grade', () => {
@@ -38,4 +47,9 @@ test('missing Ungraded support and an unknown owned-copy grade state never fall 
   assert.throws(() => qualify(value));
   const unknown = fixture(); unknown.isGraded = undefined;
   assert.throws(() => qualify(unknown));
+});
+test('non-card categories without the exact-copy condition descriptors are not offered', () => {
+  const value = fixture();
+  value.response.itemConditionPolicies[0].itemConditions[1].conditionDescriptors = [];
+  assert.throws(() => qualify(value), e => e.code === 'category_condition_policy_unavailable');
 });

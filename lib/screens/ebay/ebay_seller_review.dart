@@ -166,6 +166,14 @@ class _EbaySellerReviewState extends State<EbaySellerReview> {
         const SizedBox(height: 16),
         _line(context, 'Quantity', '1 exact copy'),
         _line(context, 'Marketplace', 'eBay US'),
+        if (sellerMap(sellerMap(draft['prepared'])['reviewDetails'])['category']
+            is String)
+          _line(
+            context,
+            'Category',
+            sellerMap(sellerMap(draft['prepared'])['reviewDetails'])['category']
+                as String,
+          ),
         _line(context, 'Format', 'Fixed price'),
         for (final fee in sellerRows(quote['fees']))
           _line(

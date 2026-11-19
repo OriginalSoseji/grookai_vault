@@ -28,8 +28,11 @@ export function validateSellerDraftInput(v) {
     if (typeof v.condition.damagedDisclosureConfirmed !== 'boolean') fail();
     condition.damagedDisclosureConfirmed = v.condition.damagedDisclosureConfirmed;
   }
+  const categoryId = text(v.categoryId, 12);
+  if (categoryId && !/^\d{1,12}$/.test(categoryId)) fail();
   return { title: text(v.title, 80), description: text(v.description, 5000),
-    categoryId: text(v.categoryId, 80), priceCents: v.priceCents,
+    categoryId, categoryName: text(v.categoryName ?? '', 160),
+    categoryPath: text(v.categoryPath ?? '', 500), priceCents: v.priceCents,
     locationKey: text(v.locationKey, 100), aspects, condition,
     policies: Object.fromEntries(['fulfillment', 'payment', 'return'].map(k => [k, text(v.policies[k], 80)])) };
 }

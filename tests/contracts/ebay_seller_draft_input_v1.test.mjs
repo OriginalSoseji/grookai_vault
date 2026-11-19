@@ -1,12 +1,21 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { validateSellerDraftInput as validate } from '../../backend/ebay/seller_draft_input_v1.mjs';
-const draft = () => ({ title: '', description: '', categoryId: '', priceCents: 0, locationKey: '',
+const draft = () => ({ title: '', description: '', categoryId: '', categoryName: '', categoryPath: '', priceCents: 0, locationKey: '',
   aspects: {}, policies: { fulfillment: '', payment: '', return: '' },
   condition: { conditionId: '', description: '', descriptors: [] } });
 test('an incomplete recoverable draft saves without invented condition or policy values', () => {
   const value = draft();
   assert.deepEqual(validate(value), value);
+});
+test('the selected category identity and display path are retained in a draft', () => {
+  const value = draft();
+  value.categoryId = '183454';
+  value.categoryName = 'Individual Collectible Card Game Cards';
+  value.categoryPath = 'Collectible Card Games › Individual Cards';
+  assert.deepEqual(validate(value), value);
+  value.categoryId = 'not-a-category';
+  assert.throws(() => validate(value), e => e.code === 'seller_draft_input_invalid');
 });
 test('malformed nested input cannot become a saved draft that crashes either client', () => {
   for (const change of [v => { v.priceCents = '12.34'; }, v => { v.condition.descriptors = [null]; },
