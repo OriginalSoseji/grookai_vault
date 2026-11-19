@@ -49,6 +49,14 @@ or remote data change is needed.
 - APK SHA-256:
   `F493D70FBD876C412F703912F7E60930FB4087B8223CA5D41A8EC49E745014B3`.
 
+## Integrated branch verification
+
+- Reconciled the Binder feature branch with current main build 600; target release build is 601.
+- Full `npm run shipcheck` on the merged release tree passed: contract, service, web typecheck/lint, strict web build, Flutter analysis, and Flutter suite (2,091 passed, 2 skipped).
+- macOS generated Swift package sources under `build/` were incorrectly included by analyzer discovery. `analysis_options.yaml` now excludes only generated `build/**`; source analysis passes without issues.
+- Verification ran on the repository Flutter 3.44.9 SDK. The Homebrew-linked Flutter launcher on this Mac stalled before Dart VM startup and was not used.
+- The release source is in the isolated Mac worktree `grookai_binder_release_601_20261119`; TestFlight and Android release artifacts are not yet produced or claimed.
+
 ## Release boundary
 
 Build 558 remains a local Android verification build, not a paired iOS/Android
