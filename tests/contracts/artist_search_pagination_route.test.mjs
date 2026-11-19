@@ -12,7 +12,7 @@ const fixture = Array.from({ length: 195 }, (_, index) => ({
   name: `Card ${index}`, artist: 'Yuka Morii', number: String(index),
 }));
 
-function loadRoute({ fail = false, sets = [], catalogFail = false, capture = () => {}, captureCollector = () => {}, collectorRows = fixture, captureRanked = () => {}, rankedRows, exactCardName, exactCardNames = [], partialCardNames = {}, rows = fixture } = {}) {
+function loadRoute({ fail = false, fastSearchTimeout = false, softTimeout = false, sets = [], catalogFail = false, capture = () => {}, captureCollector = () => {}, collectorRows = fixture, captureRanked = () => {}, rankedRows, exactCardName, exactCardNames = [], partialCardNames = {}, rows = fixture } = {}) {
   const cache = new Map();
   const mocks = {
     'server-only': {},
@@ -20,12 +20,18 @@ function loadRoute({ fail = false, sets = [], catalogFail = false, capture = () 
     'next/server': { NextResponse: { json: (body, init) => Response.json(body, init) } },
     '@/lib/explore/getExploreRows': {
       getExploreRowsForCombinedSearch: async (options) => { capture(options); return rows; },
+      getExploreRowsForSmartFilterDiscovery: async (options) => { capture(options); return rows; },
       getExploreRowsForArtistSearch: async (artist, options) => {
         capture({ ...options, artist });
         if (fail) throw new Error('canceling statement due to statement timeout');
         return rows;
       },
-      getExploreRowsForLanguageScopedTextSearch: async (...args) => { captureCollector(args); return collectorRows; },
+      getExploreRowsForLanguageScopedTextSearch: async (...args) => {
+        if (fastSearchTimeout) throw new Error('canceling statement due to statement timeout');
+        if (softTimeout) return new Promise(() => {});
+        captureCollector(args);
+        return collectorRows;
+      },
     },
     '@/lib/provisional/getPublicProvisionalCards': { getPublicProvisionalCards: async () => [] },
     '@/lib/provisional/getPromotionTransitionState': {
@@ -64,7 +70,7 @@ function loadRoute({ fail = false, sets = [], catalogFail = false, capture = () 
       compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, esModuleInterop: true },
     }).outputText;
     vm.runInNewContext(code, { module, exports: module.exports, process, console, Error, performance,
-      setTimeout, clearTimeout, require: (id) => {
+      setTimeout: (callback, delay) => setTimeout(callback, softTimeout && delay === 4200 ? 1 : delay), clearTimeout, require: (id) => {
         if (Object.hasOwn(mocks, id)) return mocks[id];
         if (id.startsWith('@/') || id.startsWith('.')) {
           let target = id.startsWith('@/') ? path.join(web, id.slice(2)) : path.resolve(path.dirname(file), id);
@@ -79,6 +85,46 @@ function loadRoute({ fail = false, sets = [], catalogFail = false, capture = () 
   const get = load(path.join(web, 'app/api/resolver/search/route.ts')).GET;
   return request => get({headers:new Headers(),...request});
 }
+
+test('timed-out searches are never cached as empty successful results', async () => {
+  for (const options of [{ fastSearchTimeout: true }, { softTimeout: true }]) {
+    const response = await loadRoute(options)({ nextUrl: new URL('https://fixture?q=Pikachu&limit=32') });
+    assert.equal(response.status, 200);
+    assert.equal(response.headers.get('cache-control'), 'private, no-store');
+    const payload = await response.json();
+    assert.equal(payload.sort_degraded_reason, 'resolver_timeout');
+    assert.equal(payload.source, options.softTimeout ? 'web_ranked_resolver_v2_degraded_soft_timeout' : 'web_ranked_resolver_v2_degraded_timeout');
+    assert.equal(payload.rows.length, 0);
+  }
+});
+
+test('missing-image sentence routes to image discovery without spurious text', async () => {
+  let options;
+  const response = await loadRoute({ capture: value => { options = value; } })({
+    nextUrl: new URL('https://fixture?q=all+cards+with+no+exact+image&limit=5'),
+  });
+  assert.equal(response.status, 200);
+  const data = await response.json();
+  assert.equal(data.smart_search.residualQuery, '');
+  assert.equal(data.smart_search.imageState, 'missing');
+  assert.equal(options.imageState, 'missing');
+  assert.ok(data.rows.length > 0);
+});
+
+test('explicit Sword and Shield promo family combines with Cosmos without selecting the expansion', async () => {
+  let options;
+  const sets = [{ id: 'expansion', code: 'swsh1', name: 'Sword & Shield' },
+    { id: 'promo', code: 'swshp', name: 'SWSH Black Star Promos' }];
+  const rows = [{ id: '1', gv_id: 'GV-PK-TEST-1', name: 'Cyndaquil', finish_key: 'cosmos' }];
+  const response = await loadRoute({ sets, rows, capture: value => { options = value; } })({
+    nextUrl: new URL('https://fixture?q=cosmos+holo+Sword+and+Shield+promos&limit=5'),
+  });
+  assert.equal(response.status, 200);
+  const data = await response.json();
+  assert.equal(options.exactSetCode, 'swshp');
+  assert.equal(options.finishKeys[0], 'cosmos');
+  assert.equal(data.rows.length, 1);
+});
 
 test('printed XY promo requests use the bounded collector reader through the actual route',async()=>{
  const row={id:'pikachu-xy124',gv_id:'GV-PK-PR-XY-XY124',name:'Pikachu-EX',number:'XY124',set_code:'xyp'};

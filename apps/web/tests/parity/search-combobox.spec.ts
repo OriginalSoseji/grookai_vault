@@ -109,3 +109,46 @@ test("pointer selection preserves the printing and comparison context", async ({
   expect(target.searchParams.get("printing")).toBe("GV-PK-BASE-1-RH");
   expect(target.searchParams.get("cards")).toBe("GV-PK-BASE-3");
 });
+
+test("search recovers from one incomplete resolver timeout", async ({ page }) => {
+  const requests: string[] = [];
+  await page.route("**/*", async (route) => {
+    const url = new URL(route.request().url());
+    if (!["127.0.0.1", "localhost"].includes(url.hostname)) return route.abort();
+    if (url.pathname === "/api/resolver/search") {
+      requests.push(url.toString());
+      if (requests.length === 1) return route.fulfill({ status: 503, json: {
+        ok: false, sort_degraded_reason: "resolver_timeout",
+        error: "Search timed out before the complete matching set could be checked. Please narrow your search or try again.",
+      } });
+      return route.fulfill({ json: { ok: true, rows, canonical: rows, provisional: [], pagination: { total_count: 2, has_more: false, next_offset: null } } });
+    }
+    if (url.pathname.startsWith("/api/")) return route.fulfill({ json: { ok: true, rows: [] } });
+    return route.continue();
+  });
+  await page.goto("/explore?q=Pikachu&finish=reverse");
+  await expect(page.getByText("Pikachu 1", { exact: true }).first()).toBeVisible();
+  expect(requests).toHaveLength(2);
+  expect(requests[1]).toBe(requests[0]);
+  expect(new URL(requests[0]).searchParams.get("finish")).toBe("reverse");
+  await expect(page.getByText("Search timed out before the complete matching set could be checked.", { exact: false })).toHaveCount(0);
+});
+
+test("a degraded search is shown as a timeout instead of no matches", async ({ page }) => {
+  await page.route("**/*", async (route) => {
+    const url = new URL(route.request().url());
+    if (!["127.0.0.1", "localhost"].includes(url.hostname)) return route.abort();
+    if (url.pathname === "/api/resolver/search") {
+      return route.fulfill({ json: {
+        ok: true, rows: [], provisional: [], sort_degraded_reason: "resolver_timeout",
+        meta: { resolverState: "NO_MATCH" }, source: "web_ranked_resolver_v2_degraded_timeout",
+      } });
+    }
+    if (url.pathname.startsWith("/api/")) return route.fulfill({ json: { ok: true, rows: [] } });
+    return route.continue();
+  });
+  await page.goto("/explore?q=Pikachu");
+  await expect(page.getByText("Search timed out before results could be checked. Please try again.")).toBeVisible();
+  await expect(page.getByText("No card match yet")).toHaveCount(0);
+  await expect(page.getByText("No results yet")).toHaveCount(0);
+});
