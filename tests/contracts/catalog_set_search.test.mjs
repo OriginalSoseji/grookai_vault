@@ -40,6 +40,25 @@ const sets = [
 ].map(([code, name]) => ({ id: code, code, name }));
 const plain = value => JSON.parse(JSON.stringify(value));
 
+test('known collector families outrank conflicting opening-word set shortcuts',()=>{
+ const promoSets=[{id:'pwc',code:'pwc',name:'Pikachu World Collection'},
+  {id:'xyp',code:'xyp',name:'XY Black Star Promos'}];
+ assert.equal(resolve('Pikachu XY124','pokemon',promoSets).matchedAlias,'Pikachu');
+ const scoped=resolve('Pikachu XY124','pokemon',promoSets,[],['xyp']);
+ assert.equal(scoped.matchedAlias,null);
+ assert.deepEqual(plain(scoped.setCodes),[]);
+ assert.equal(scoped.remainingQuery,'Pikachu XY124');
+});
+
+test('collector hints preserve explicit set connectors, full set names and compatible shortcuts',()=>{
+ const promoSets=[{id:'pwc',code:'pwc',name:'Pikachu World Collection'},
+  {id:'xyp',code:'xyp',name:'XY Black Star Promos'}];
+ for(const query of ['pika from Pikachu XY124','Pikachu World Collection XY124']){
+  assert.deepEqual(plain(resolve(query,'pokemon',promoSets,[],['xyp']).setCodes),['pwc']);
+ }
+ assert.deepEqual(plain(resolve('XY XY124','pokemon',promoSets,[],['xyp']).setCodes),['xyp']);
+});
+
 test('name interpretation optionally retains a full first page within the caller request',async()=>{
  const rows=[{id:'visible',name:'Pikachu',gv_id:'GV-PK-T-001'}],limits=[];let retained;
  const client={rpc:async(_,args)=>{limits.push(args.limit_in);return {data:rows};}};

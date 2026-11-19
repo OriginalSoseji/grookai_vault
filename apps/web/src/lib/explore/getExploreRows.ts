@@ -49,6 +49,9 @@ import { mergeSmartVariantScopeRows } from "@/lib/search/smartVariantSearchPolic
 import { fetchPokemonArtistRows, isKnownArtistQuery } from "@/lib/search/artistSearch";
 import { fetchCompleteNamedCardRows } from "@/lib/search/completeNamedCardSearch";
 import type { SearchSet } from "@/lib/search/catalogSetSearch";
+import { getPokemonPlayables } from "@/lib/playables/getPokemonPlayables";
+import { applyPlayableSignals } from "@/lib/playables/publicPlayables";
+
 
 const SEARCH_LIMIT = 64;
 const SET_FETCH_PAGE_SIZE = 500;
@@ -920,7 +923,7 @@ async function buildExploreRows(
         rows,
       );
 
-  return Promise.all(
+  const builtRows = await Promise.all(
     rows.map(async (row) => {
       const tcgdexCardId = extractTcgdexCardId(row.external_ids);
       const tcgdexSetId = extractTcgdexSetId(tcgdexCardId);
@@ -1014,6 +1017,7 @@ async function buildExploreRows(
       };
     }),
   );
+  return applyPlayableSignals(builtRows, await getPokemonPlayables());
 }
 
 function lookupRowToPreRankExploreRow(row: CardPrintLookupRow): ExploreRow {
@@ -4187,10 +4191,15 @@ async function fetchCollectorScopedTextRows(
 
   const requests = ["number", "number_plain"].flatMap((field) =>
     collectorTokens.map(async (collectorToken) => {
-      const scopedRequest = applyLanguageScopeQuery(
+      let scopedRequest = applyLanguageScopeQuery(
         supabase.from("card_prints").select(selectClause),
         languageScope,
       );
+      // Push known collector-family constraints down before case-insensitive
+      // number/name matching; a global scan can exhaust the database budget.
+      if (query.expectedSetCodes.length > 0) {
+        scopedRequest = scopedRequest.in("set_code", query.expectedSetCodes);
+      }
       let request = /^\d+$/.test(collectorToken)
         ? scopedRequest.eq(field, collectorToken)
         : scopedRequest.ilike(field, collectorToken.replace(/[\\%_]/g, "\\$&"));
@@ -5195,6 +5204,29 @@ export async function getExploreRowsForOwnedSmartFilterDiscovery(
   );
 
   return sortRows(rows, query, options.sortMode).slice(0, SMART_FILTER_DISCOVERY_LIMIT);
+}
+
+export async function getExploreRowsForPlayableCards(
+  members: Array<{card_print_id: string; gv_id: string}>,
+  options: SmartFilterDiscoveryOptions,
+): Promise<ExploreRow[]> {
+  assertValueSortPricingEnabled(options.sortMode, Boolean(options.includePricing));
+  if (!members.length) return [];
+  // This module exposes server actions: serialized caller arguments cannot
+  // grant positive membership, even when the canonical IDs themselves are public.
+  const snapshot = await getPokemonPlayables();
+  const positives = new Map(snapshot?.rows.map(member => [member.card_print_id, member.gv_id]) ?? []);
+  const expected = new Map(members.filter(member => positives.get(member.card_print_id) === member.gv_id)
+    .map(member => [member.card_print_id, member.gv_id]));
+  if (!expected.size) return [];
+  let parents = (await fetchCardRowsByIds([...expected.keys()]))
+    .filter(row => expected.get(row.id) === row.gv_id);
+  const supabase = await createServerComponentClient();
+  if (options.cameoSubject) {
+    const cameos = new Set(await fetchConfirmedCameoGvIds(supabase, options.cameoSubject));
+    parents = parents.filter(row => cameos.has(row.gv_id ?? ""));
+  }
+  return enrichCompleteSearchParents(parents, {...options, gameScope: "pokemon"}, supabase);
 }
 
 async function fetchPublicSetMetadata(setCodes: string[], searchSets?: SearchSet[]) {

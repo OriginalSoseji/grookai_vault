@@ -14,6 +14,7 @@ const PROMO_SET_CODE_MAP: Record<string, string> = {
   svp: "svp",
   smp: "smp",
   xyp: "xyp",
+  xy: "xyp",
   bwp: "bwp",
   basep: "basep",
   dpp: "dpp",
@@ -23,6 +24,7 @@ const PROMO_MIN_DIGITS_BY_PREFIX: Record<string, number> = {
   svp: 2,
   smp: 2,
   xyp: 2,
+  xy: 3,
   bwp: 2,
   basep: 1,
   dpp: 1,
@@ -422,7 +424,7 @@ function detectSetExpectations(normalizedQuery: string) {
         /^sv\d{1,2}(?:\.\d)?$/i.test(token) ||
         /^swsh\d{1,2}(?:tg)?$/i.test(token) ||
         /^sm\d{1,2}$/i.test(token) ||
-        /^xy\d{1,3}$/i.test(token) ||
+        /^xy\d{1,2}$/i.test(token) ||
         /^bw\d{1,2}$/i.test(token) ||
         /^dp\d{1,2}$/i.test(token) ||
         /^pl\d{1,2}$/i.test(token) ||
@@ -444,7 +446,7 @@ function detectSetExpectations(normalizedQuery: string) {
       /^sv\d{2}(?:\.\d)?$/i.test(token) ||
       /^swsh\d{1,2}(?:tg)?$/i.test(token) ||
       /^sm\d{1,2}$/i.test(token) ||
-      /^xy\d{1,3}$/i.test(token) ||
+      /^xy\d{1,2}$/i.test(token) ||
       /^bw\d{1,2}$/i.test(token) ||
       /^dp\d{1,2}$/i.test(token) ||
       /^pl\d{1,2}$/i.test(token) ||
@@ -554,7 +556,10 @@ function buildCollectorArtifacts(compactTokens: string[]) {
       numberTokens.push(token);
 
       const lower = token.toLowerCase();
-      const matchedPrefix = [...PROMO_PREFIXES].find((prefix) => lower.startsWith(prefix));
+      // Printed XY124 belongs to XY promos (xyp), not an expansion named
+      // xy124. Keep one/two-digit XY expansion tokens and exact suffixes.
+      const matchedPrefix = [...PROMO_PREFIXES].find((prefix) => lower.startsWith(prefix)) ??
+        (/^xy\d{3}[a-z]?$/.test(lower) ? "xy" : undefined);
       if (matchedPrefix) {
         const suffixDigits = lower.slice(matchedPrefix.length).replace(/\D/g, "");
         const minDigits = PROMO_MIN_DIGITS_BY_PREFIX[matchedPrefix] ?? Number.POSITIVE_INFINITY;

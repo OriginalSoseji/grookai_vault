@@ -1,3 +1,44 @@
+# Shrouded Fable final release V2 — November18,2026
+
+The qualified candidate starts from main6b7a4818f after native release950.
+Use `-ShroudedAliasDiscoveryReleaseV2` only for canonical509 and exact pending
+IDs `20261118180000,20261118181500`. The first locally applied source remains
+immutable; the forward grant correction makes the new non-updatable projection
+SELECT-only for all three reader roles. Fresh511 and the populated509-to511
+chain are qualified; use `shrouded_alias_runtime_v2_r2.mjs` and
+`verify_shrouded_alias_local_v2_r2.mjs`. Final qualification is in the private
+`local-qualification-v2-r2` directory. V1 remains an audit-only scope.
+
+Preserve113 distinct discovery parents,167 printings and four actual owned
+copies, including the unique legacy Prize Pack Cosmos Galvantula. No stored
+parent/printing/identity/reference row is merged or moved. The full-size146
+actual calls passed at685ms maximum with the unchanged three-second budget.
+Complete managed/platform/hosted checks, source/proof sealing, exact PrePush,
+official511-file dry-run/apply and independent production/API/data/security/web
+verification before closure. See [the V2 contract](../contracts/SHROUDED_ALIAS_DISCOVERY_READ_REPAIR_V2.md)
+and [the checkpoint](../checkpoints/SHROUDED_ALIAS_DISCOVERY_20261118.md).
+
+# Shrouded Fable starting audit — November18,2026
+
+Use `C:/grookai_shrouded_alias_20261118` from merged main8199a0feab. The separate
+`-ShroudedAliasDiscoveryBaselineV1` accepts only AuditLinkedSchema at509 with a
+new private `baseline-v1-*` directory under
+`C:/grookai_vault_operator_artifacts/shrouded_alias_discovery_20261118`.
+Production has99 approved duplicate pairs,100 legacy/112 canonical parents,
+and four owned copies. The extra legacy Prize Pack Cosmos Galvantula is a
+distinct retained identity. A prospective unified discovery family must retain
+all113 distinct parents. No candidate or release is qualified by this audit.
+See [the contract](../contracts/SHROUDED_ALIAS_DISCOVERY_READ_REPAIR_V1.md).
+# Pokémon playable usage release candidate — November 18, 2026
+
+The isolated release branch adds `playable` / `playables` search and shared expiring badges using the precomputed Pokémon Standard usage signal. Current main search, pagination, catalog visibility and Winter branding are retained. No schema or canonical writer is part of this release.
+
+Worker: `backend/competitive/pokemon_playables/current_standard_cli.mjs daily --project-ref ycdxbpibncqcchqiihfz`. Bootstrap with its `seed --input <current-input.json> --project-ref ...` command only from retained verified input. Private seed and public-field projection keys are `standard-usage/refresh-seed.json` and `standard-usage/current.json` in `pokemon-playables-private`; neither object is anonymously readable. The web server projects only allowed fields through `/api/playables`. Never put original source responses or credentials in the public repository.
+
+The workflow attempts refresh at 06:23 and 18:23 UTC, using canonical Actions secret names `SUPABASE_URL` and `SUPABASE_SECRET_KEY`. Both names now exist in repository Actions configuration; hosted runtime credential validity still requires actual run readback after activation. The worker uses bounded public source collection, rate headers/backoff, exact current catalog bindings and 24-hour output expiry. Initial coverage is a bounded 292-member cohort, not the entire catalog. Metadata renewal is a genuine fetch preserving repository commit/blob/license pins. Continue the existing retention-plan/apply lifecycle; expired seeds require fresh bootstrap input.
+
+A live local invocation renewed 147 qualified printings from 68 lists across five events. The reviewed candidate passed the full shipcheck and actual desktop/mobile browser readback; see [the release checkpoint](../checkpoints/2026-11-18_pokemon_playables_release_candidate_v1.md). The owner authorized publication, merge and activation on November 18. Retain normal managed commit/push hooks and verify the integrated candidate, hosted deployment and refresh run directly. Local validation or a prepared workflow alone does not establish activation.
+
 # Prismatic identity query guard V5 — November17,2026
 
 Pokemon GO starts at502 after PR945. The owner selected only the approved88
@@ -80,6 +121,29 @@ merge/deployment closure. See [the contract](../contracts/LATIOS_ALIAS_DISCOVERY
 and [the checkpoint](../checkpoints/LATIOS_ALIAS_DISCOVERY_20261118.md).
 
 # Grookai Operator Playbook V1
+
+## Printed XY promo search correction — November 18, 2026
+
+PR956 is deployed: `pika xy124` returns the retained Pikachu-EX XY124 parent.
+Follow-up acceptance exposed a separate full-name collision with Pikachu World
+Collection. The attached promo family must outrank conflicting implicit opening
+words while explicit set constraints remain binding. See
+[the follow-up checkpoint](../checkpoints/SEARCH_PROMO_NAME_SET_PRECEDENCE_20261118.md)
+and private `artifacts/search_xy124_names_v1/20261118/` receipts. Preserve the
+current mobile baseline553; neither server correction requires installing an APK.
+
+The `pika xy124` failure is a search interpretation/query-bound issue. Printed
+three-digit XY numbers belong to the existing `xyp` family, while one/two-digit
+XY expansion tokens keep their meaning. Preserve exact collector suffixes,
+nickname/name constraints, caller visibility and language filters. Known promo
+families use the structured collector route with the set restriction applied
+before case-insensitive number/name reads. Do not increase timeouts, conceal
+degraded results or add a local fallback. See
+[the checkpoint](../checkpoints/SEARCH_XY_PROMO_COLLECTOR_TIMEOUT_20261118.md).
+Use `C:/grookai_search_xy124_20261118` and its private
+`artifacts/search_xy124_v1/20261118/` receipts for normal hooks, hosted checks
+and API/device acceptance. The existing Samsung build552 already calls the
+shared endpoint; this correction needs no APK installation or store release.
 
 ## Native condition reference candidate — November 18, 2026
 
@@ -5313,3 +5377,33 @@ bound to the exact execution plan and writer fingerprint. A proof for different
 writer bytes is not reusable. If verification, source checks, or commit readback
 is uncertain, stop and inspect the retained reports and exact records before
 any separately authorized recovery; do not blindly replay the repair.
+
+# Pokémon playable artwork versions — November 18, 2026
+
+Current usage mechanics V2 excludes only the additional known artwork field
+`cameoDexIds`; unknown fields and gameplay differences remain distinct. Legacy
+profile integrity checks and source originals retain their existing meaning.
+Verified full-art, IR, SIR and other premium versions join the private refresh
+seed through existing active canonical mappings. The daily worker recomputes
+their usage support with ordinary printings. Missing or ambiguous mappings stay
+outside the positive pool. See [the artwork-version checkpoint](../checkpoints/2026-11-18_pokemon_playables_art_versions_v1.md)
+for the metadata cohort and release readback; never publish source originals.
+
+# Pokémon playables native consumer — November 18, 2026
+
+Native search and card detail consume the existing sanitized `/api/playables`
+publication and shared resolver. Preserve `playable=1` and typed interpretation;
+never quote away the filter or fall back to unrestricted cards. Visible badges
+share one bounded read, refresh within one minute/on resume, and disappear on
+expiry, revocation or failed refresh. Filtered results require current published
+membership and retain the query for retry when unavailable. This adds no native
+classification, private evidence, schema or truth writer.
+
+The isolated branch is `feat/pokemon-playables-native-20261118` in
+`.tmp/pokemon_playables_native_checkout_20261118`. Candidate554 keeps Android
+and iOS source metadata aligned. The Samsung baseline read back as552. Require
+managed/hosted checks, signed artifact provenance, Android update preflight and
+data-preserving device readback. See [the native checkpoint](../checkpoints/2026-11-18_pokemon_playables_native_v1.md)
+and [the consumer contract](../contracts/POKEMON_PLAYABLES_NATIVE_CONSUMER_V1.md).
+An Android candidate is not a paired store release; do not infer store submission
+from this implementation or a successful build.

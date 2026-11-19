@@ -32,3 +32,11 @@ produce a matching TestFlight candidate in this checkpoint.
 
 These artifacts do not qualify as a paired mobile release because they use
 different source revisions and the Mac/TestFlight candidate is unavailable.
+
+## CI manifest follow-up
+
+After PR #954 merged, the merged-source APK compiled but its identity-recording
+step failed before artifact upload. The existing run did not print the parsed
+package/version/fingerprint values, so this follow-up normalizes colon-formatted
+fingerprints and prints the non-secret parsed identity with a specific failure
+message for each validation gate.

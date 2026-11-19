@@ -8,8 +8,23 @@ const ts = require('typescript');
 const source = fs.readFileSync(new URL('../../apps/web/src/lib/collectorPreview.ts', import.meta.url), 'utf8');
 const module = { exports: {} };
 vm.runInNewContext(ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText,
-  { exports: module.exports, process: { env: {} }, URL, Request, Response, Headers, Set, fetch });
+  { exports: module.exports, process: { env: {} }, URL, Request, Response, Headers, Set, fetch, AbortSignal });
 const { createPreviewReadFetch, previewRequestKind } = module.exports;
+
+test('unresponsive preview reads have a deadline and retain caller cancellation', {timeout:10000}, async () => {
+  const read=createPreviewReadFetch('https://catalog.supabase.co','public-key',async(input,init)=>new Promise((resolve,reject)=>{
+    if(init.signal.aborted)reject(init.signal.reason);
+    else init.signal.addEventListener('abort',()=>reject(init.signal.reason),{once:true});
+  }));
+  const caller=new AbortController();
+  const cancelled=read('https://catalog.supabase.co/rest/v1/card_prints',{signal:caller.signal});
+  caller.abort();
+  await assert.rejects(cancelled,error=>error.name==='AbortError');
+  // AbortSignal.timeout is unref'ed; a real network transport owns a socket.
+  const keepAlive=setTimeout(()=>{},7000);
+  try {await assert.rejects(read('https://catalog.supabase.co/rest/v1/card_prints'),error=>error.name==='TimeoutError');}
+  finally {clearTimeout(keepAlive);}
+});
 
 test('preview transport permits catalog reads but drops supplied user credentials', async () => {
   let sent;

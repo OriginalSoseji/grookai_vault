@@ -1,0 +1,15 @@
+{
+  "version": "pokemon_current_standard_usage_policy:v1",
+  "game": "pokemon",
+  "format": "standard",
+  "language": "en",
+  "platform": "paper",
+  "window_days": 30,
+  "publication_max_age_hours": 24,
+  "minimum_events": 3,
+  "minimum_lists": 20,
+  "minimum_card_events": 2,
+  "minimum_card_lists": 3,
+  "date_basis": "publisher_event_date_with_completed_decklists",
+  "definition": "Repeated appearance in completed published Standard decklists dated within the last 30 days."
+}
