@@ -1,0 +1,27 @@
+{
+  "version": "XY_PROMO_RARITY_APPLY_V1",
+  "run_id": "f2940090-9c6a-42b6-99ee-2f0aae7c0aa6",
+  "mode": "verify",
+  "package_fingerprint": "40c18750ed652e83fb5bf04363ee75dfd7edef04269d36a9c44055c24f6592f4",
+  "writer_fingerprint": "ea25673723f5fcf80a3e5d4f752db08f7250efd0e514328fd55ab54d6979fab7",
+  "started_at": "2026-11-19T05:33:16.313Z",
+  "status": "verified_already_applied",
+  "stages": [
+    {
+      "name": "frozen_sources_and_images_verified",
+      "at": "2026-11-19T05:33:21.957Z"
+    },
+    {
+      "name": "verified_already_applied",
+      "at": "2026-11-19T05:33:22.529Z"
+    }
+  ],
+  "sanity": {
+    "parents": 173837,
+    "sets": 3420,
+    "traits": 47409
+  },
+  "state": "already_applied",
+  "receipt_id": "176863",
+  "finished_at": "2026-11-19T05:33:22.529Z"
+}

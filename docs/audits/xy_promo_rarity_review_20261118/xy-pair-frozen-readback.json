@@ -1,0 +1,1028 @@
+{
+  "version": "XY_PROMO_PAIR_FROZEN_READBACK_V1",
+  "captured_at": "2026-11-19T03:26:27.833Z",
+  "project_ref": "ycdxbpibncqcchqiihfz",
+  "sanity": {
+    "read_only": "on",
+    "parents": 173837,
+    "sets": 3420,
+    "traits": 47409
+  },
+  "parents": [
+    {
+      "id": "48854339-79de-41bd-a10a-acc158c1b195",
+      "name": "Karen",
+      "gv_id": "GV-PK-PR-XY-XY177",
+      "artist": "You Iribi",
+      "number": "XY177",
+      "rarity": "Common",
+      "set_id": "076bc367-57a2-44db-853c-dfa32115761f",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "xyp",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/xy/xyp/XY177/high.webp",
+      "created_at": "2025-11-20T05:56:33.216526+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/xyp/gv-pk-pr-xy-xy177/bd65a7a0112aa9a1c5bbcd51.webp",
+      "updated_at": "2025-12-27T19:26:16.337401+00:00",
+      "ai_metadata": {
+        "tcgdex": {
+          "legalities": {},
+          "flavor_text": null
+        }
+      },
+      "variant_key": "XY",
+      "external_ids": {
+        "tcgdex": "xyp-XY177"
+      },
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "177",
+      "tcgplayer_id": null,
+      "image_alt_url": "https://assets.tcgdex.net/en/xy/xyp/XY177",
+      "printed_total": null,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": null,
+      "data_quality_flags": {
+        "canonical_404": false,
+        "canonical_last_checked_at": "2025-12-02T06:44:07.712Z",
+        "canonical_last_http_status": "200"
+      },
+      "print_identity_key": null,
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "fa353da7-a194-4d02-8667-ad9b033a49e5",
+      "name": "M Camerupt-EX",
+      "gv_id": "GV-PK-PR-XY-XY198",
+      "artist": "5ban Graphics",
+      "number": "XY198",
+      "rarity": "Common",
+      "set_id": "076bc367-57a2-44db-853c-dfa32115761f",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "xyp",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/xy/xyp/XY198/high.webp",
+      "created_at": "2026-03-27T00:44:35.111499+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/xyp/gv-pk-pr-xy-xy198/ec280350908612ede733be5f.webp",
+      "updated_at": "2026-06-16T02:45:45.447853+00:00",
+      "ai_metadata": {
+        "tcgdex": {
+          "legalities": {},
+          "flavor_text": null
+        }
+      },
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "xyp-XY198"
+      },
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "198",
+      "tcgplayer_id": null,
+      "image_alt_url": "https://assets.tcgdex.net/en/xy/xyp/XY198",
+      "printed_total": null,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": null,
+      "data_quality_flags": null,
+      "print_identity_key": null,
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": null,
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    }
+  ],
+  "sets": [
+    {
+      "id": "076bc367-57a2-44db-853c-dfa32115761f",
+      "code": "xyp",
+      "game": "pokemon",
+      "name": "XY Black Star Promos",
+      "source": {
+        "tcgdex": {
+          "id": "xyp",
+          "raw": {
+            "id": "xyp",
+            "logo": "https://assets.tcgdex.net/en/xy/xyp/logo",
+            "name": "XY Black Star Promos",
+            "symbol": "https://assets.tcgdex.net/univ/xy/xyp/symbol",
+            "cardCount": {
+              "total": 216,
+              "official": 211
+            }
+          },
+          "name": "XY Black Star Promos",
+          "slug": null,
+          "total": null,
+          "series": null,
+          "symbols": null,
+          "releaseDate": null,
+          "printedTotal": null
+        },
+        "pokemonapi": {
+          "id": "xyp",
+          "name": "XY Black Star Promos",
+          "total": 216,
+          "images": {
+            "logo": "https://images.pokemontcg.io/xyp/logo.png",
+            "symbol": "https://images.pokemontcg.io/xyp/symbol.png"
+          },
+          "series": "XY",
+          "ptcgoCode": "PR-XY",
+          "releaseDate": "2013/10/12",
+          "printedTotal": 211
+        }
+      },
+      "logo_url": "https://images.pokemontcg.io/xyp/logo.png",
+      "set_role": null,
+      "created_at": "2025-11-16T06:32:35.437741+00:00",
+      "symbol_url": "https://images.pokemontcg.io/xyp/symbol.png",
+      "updated_at": "2026-04-13T17:58:16.449538+00:00",
+      "release_date": "2013-10-12",
+      "printed_total": 211,
+      "hero_image_url": "https://assets.tcgdex.net/en/xy/xyp/logo.png",
+      "identity_model": "standard",
+      "last_synced_at": null,
+      "hero_image_source": "tcgdex",
+      "search_code_lower": "xyp",
+      "printed_set_abbrev": "PR-XY",
+      "identity_domain_default": "pokemon_eng_standard"
+    }
+  ],
+  "identities": [
+    {
+      "id": "289c9689-b2ec-4b1c-a984-1333c19e6642",
+      "is_active": true,
+      "created_at": "2026-04-03T18:02:50.808535+00:00",
+      "updated_at": "2026-04-03T18:02:50.808535+00:00",
+      "card_print_id": "fa353da7-a194-4d02-8667-ad9b033a49e5",
+      "printed_number": "XY198",
+      "identity_domain": "pokemon_eng_standard",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 211,
+        "printed_set_abbrev": "PR-XY"
+      },
+      "identity_key_hash": "2891dfd15e4383c094fd75562da02f49f1e6de3842133a8dff3b68a9ceffdb72",
+      "set_code_identity": "xyp",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "normalized_printed_name": "m camerupt-ex"
+    },
+    {
+      "id": "bf6cd717-3009-48ac-89cb-28f57f62d798",
+      "is_active": true,
+      "created_at": "2026-06-15T05:13:03.711116+00:00",
+      "updated_at": "2026-06-15T05:13:03.711116+00:00",
+      "card_print_id": "48854339-79de-41bd-a10a-acc158c1b195",
+      "printed_number": "XY177",
+      "identity_domain": "pokemon_eng_standard",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 211,
+        "printed_set_abbrev": "PR-XY",
+        "variant_key_current": "XY"
+      },
+      "identity_key_hash": "3aa39e4eaf0b464f7f683d0821cd593198291ab576714ab811b41f360c5a56ed",
+      "set_code_identity": "xyp",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "normalized_printed_name": "karen"
+    }
+  ],
+  "traits": [
+    {
+      "hp": null,
+      "id": 39415,
+      "types": null,
+      "rarity": "Common",
+      "source": "tcgdex",
+      "supertype": "Trainer",
+      "confidence": null,
+      "created_at": "2026-03-27T00:44:10.483802+00:00",
+      "trait_type": "pokemon:stats",
+      "trait_value": "tcgdex",
+      "national_dex": null,
+      "card_category": null,
+      "card_print_id": "48854339-79de-41bd-a10a-acc158c1b195",
+      "legacy_rarity": null
+    },
+    {
+      "hp": 230,
+      "id": 39439,
+      "types": [
+        "Fire"
+      ],
+      "rarity": "Common",
+      "source": "tcgdex",
+      "supertype": "Pokemon",
+      "confidence": null,
+      "created_at": "2026-03-27T00:44:35.684879+00:00",
+      "trait_type": "pokemon:stats",
+      "trait_value": "tcgdex",
+      "national_dex": 323,
+      "card_category": "MEGA",
+      "card_print_id": "fa353da7-a194-4d02-8667-ad9b033a49e5",
+      "legacy_rarity": null
+    }
+  ],
+  "mappings": [
+    {
+      "id": 1594,
+      "meta": null,
+      "active": true,
+      "owners": 1,
+      "source": "pokemonapi",
+      "synced_at": "2025-11-18T06:46:23.382019+00:00",
+      "external_id": "xyp-XY177",
+      "card_print_id": "48854339-79de-41bd-a10a-acc158c1b195",
+      "parent_mappings": 1
+    },
+    {
+      "id": 1616,
+      "meta": {
+        "new_gv_id": "GV-PK-PR-XY-XY198",
+        "new_number": "XY198",
+        "previous_gv_id": "GV-PK-PR-XY-XY198A",
+        "previous_number": "XY198a",
+        "new_card_print_id": "fa353da7-a194-4d02-8667-ad9b033a49e5",
+        "owner_transfer_package": "EXTMAP-ALIAS-04A-POKEMONAPI-SUFFIX-OWNER-TRANSFER",
+        "previous_card_print_id": "2170847e-7ce9-482c-ac4f-02122ba3538b",
+        "governance_fingerprint_sha256": "3cc52ffb8ccfe9698f3f3a116b7ac8132f1afca0ffea2826216c91bbe6607c53"
+      },
+      "active": true,
+      "owners": 1,
+      "source": "pokemonapi",
+      "synced_at": "2025-11-18T06:46:35.18672+00:00",
+      "external_id": "xyp-XY198",
+      "card_print_id": "fa353da7-a194-4d02-8667-ad9b033a49e5",
+      "parent_mappings": 1
+    },
+    {
+      "id": 14533,
+      "meta": null,
+      "active": true,
+      "owners": 1,
+      "source": "tcgdex",
+      "synced_at": "2025-11-20T05:56:33.338878+00:00",
+      "external_id": "xyp-XY177",
+      "card_print_id": "48854339-79de-41bd-a10a-acc158c1b195",
+      "parent_mappings": 1
+    },
+    {
+      "id": 61229,
+      "meta": null,
+      "active": true,
+      "owners": 1,
+      "source": "tcgdex",
+      "synced_at": "2026-02-24T05:28:03.099482+00:00",
+      "external_id": "xyp-XY198",
+      "card_print_id": "fa353da7-a194-4d02-8667-ad9b033a49e5",
+      "parent_mappings": 1
+    },
+    {
+      "id": 93724,
+      "meta": {
+        "promoted_by": "promote_justtcg_direct_structure_mapping_v1",
+        "justtcg_name": "Karen",
+        "resolved_via": "justtcg_direct_structure_exact",
+        "justtcg_number": "XY177",
+        "justtcg_rarity": "Promo",
+        "justtcg_set_id": "xy-promos-pokemon",
+        "override_reason": null,
+        "justtcg_set_name": "XY Promos",
+        "set_alignment_method": "manual_family_override",
+        "set_alignment_status": "manual_helper_override",
+        "justtcg_query_number_used": "XY177",
+        "justtcg_query_variant_used": "raw",
+        "justtcg_query_variants_tried": [
+          "XY177"
+        ]
+      },
+      "active": true,
+      "owners": 1,
+      "source": "justtcg",
+      "synced_at": "2026-03-23T04:39:57.365+00:00",
+      "external_id": "pokemon-xy-promos-karen-promo",
+      "card_print_id": "48854339-79de-41bd-a10a-acc158c1b195",
+      "parent_mappings": 1
+    },
+    {
+      "id": 133242,
+      "meta": {
+        "source_url": "https://www.tcgplayer.com/product/123438/pokemon-xy-promos-karen",
+        "promoted_by": "tcg_mapping_tcgmap06b_fresh_tcgcsv_mapping_insert_guarded_dry_run_v1",
+        "derived_from": "fresh_tcgcsv_tcgplayer_product_snapshot",
+        "product_name": "Karen",
+        "product_number": "XY177",
+        "product_rarity": "Promo",
+        "tcgcsv_group_id": "1451",
+        "raw_snapshot_ref": "tcgcsv:1451:123438",
+        "product_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/123438_200w.jpg",
+        "tcgcsv_group_name": "XY Promos",
+        "source_readiness_fingerprint": "8a0e4ab3ec98c1b984ed3e409a1f50ed888ddf8b5b805c427a865e238a6a25ac"
+      },
+      "active": true,
+      "owners": 1,
+      "source": "tcgplayer",
+      "synced_at": "2026-06-19T14:21:30.28788+00:00",
+      "external_id": "123438",
+      "card_print_id": "48854339-79de-41bd-a10a-acc158c1b195",
+      "parent_mappings": 1
+    },
+    {
+      "id": 133324,
+      "meta": {
+        "source_url": "https://www.tcgplayer.com/product/129898/pokemon-xy-promos-m-camerupt-ex-xy198",
+        "promoted_by": "tcg_mapping_tcgmap06b_fresh_tcgcsv_mapping_insert_guarded_dry_run_v1",
+        "derived_from": "fresh_tcgcsv_tcgplayer_product_snapshot",
+        "product_name": "M Camerupt EX - XY198",
+        "product_number": "XY198",
+        "product_rarity": "Promo",
+        "tcgcsv_group_id": "1451",
+        "raw_snapshot_ref": "tcgcsv:1451:129898",
+        "product_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/129898_200w.jpg",
+        "tcgcsv_group_name": "XY Promos",
+        "source_readiness_fingerprint": "8a0e4ab3ec98c1b984ed3e409a1f50ed888ddf8b5b805c427a865e238a6a25ac"
+      },
+      "active": true,
+      "owners": 1,
+      "source": "tcgplayer",
+      "synced_at": "2026-06-19T14:21:30.28788+00:00",
+      "external_id": "129898",
+      "card_print_id": "fa353da7-a194-4d02-8667-ad9b033a49e5",
+      "parent_mappings": 1
+    }
+  ],
+  "raw": [
+    {
+      "id": "1786",
+      "source": "pokemonapi",
+      "status": "normalized",
+      "ingested_at": "2025-11-17T17:23:22.265Z",
+      "payload_md5": "16815196601e5a0246f12f16385a40f1",
+      "payload": {
+        "hp": "230",
+        "id": "xyp-XY198",
+        "set": {
+          "id": "xyp",
+          "name": "XY Black Star Promos",
+          "total": 216,
+          "images": {
+            "logo": "https://images.pokemontcg.io/xyp/logo.png",
+            "symbol": "https://images.pokemontcg.io/xyp/symbol.png"
+          },
+          "series": "XY",
+          "ptcgoCode": "PR-XY",
+          "updatedAt": "2020/08/14 09:35:00",
+          "legalities": {
+            "expanded": "Legal",
+            "unlimited": "Legal"
+          },
+          "releaseDate": "2013/10/12",
+          "printedTotal": 211
+        },
+        "name": "M Camerupt-EX",
+        "_kind": "card",
+        "rules": [
+          "Mega Evolution rule: When 1 of your Pokémon becomes a Mega Evolution Pokémon, your turn ends.",
+          "Pokémon-EX rule: When a Pokémon-EX has been Knocked Out, your opponent takes 2 Prize cards."
+        ],
+        "types": [
+          "Fire"
+        ],
+        "artist": "5ban Graphics",
+        "images": {
+          "large": "https://images.pokemontcg.io/xyp/XY198_hires.png",
+          "small": "https://images.pokemontcg.io/xyp/XY198.png"
+        },
+        "number": "XY198",
+        "rarity": "Promo",
+        "attacks": [
+          {
+            "cost": [
+              "Fire",
+              "Fire",
+              "Colorless",
+              "Colorless"
+            ],
+            "name": "Magma Eruption",
+            "text": "You may discard the top 3 cards of each player's deck. If you do, this attack does 40 more damage for each Energy card you discarded in this way.",
+            "damage": "120+",
+            "convertedEnergyCost": 4
+          }
+        ],
+        "subtypes": [
+          "MEGA",
+          "EX"
+        ],
+        "supertype": "Pokémon",
+        "tcgplayer": {
+          "url": "https://prices.pokemontcg.io/tcgplayer/xyp-XY198",
+          "prices": {
+            "holofoil": {
+              "low": 8.46,
+              "mid": 12.78,
+              "high": 85,
+              "market": 12.37,
+              "directLow": 11.69
+            }
+          },
+          "updatedAt": "2025/11/17"
+        },
+        "cardmarket": {
+          "url": "https://prices.pokemontcg.io/cardmarket/xyp-XY198",
+          "prices": {
+            "avg1": 9.99,
+            "avg7": 11.13,
+            "avg30": 11.48,
+            "lowPrice": 6,
+            "trendPrice": 11.77,
+            "germanProLow": 0,
+            "lowPriceExPlus": 7,
+            "reverseHoloLow": 0,
+            "suggestedPrice": 0,
+            "reverseHoloAvg1": 5,
+            "reverseHoloAvg7": 5.25,
+            "reverseHoloSell": 0,
+            "averageSellPrice": 10.15,
+            "reverseHoloAvg30": 4.18,
+            "reverseHoloTrend": 5.34
+          },
+          "updatedAt": "2025/11/13"
+        },
+        "legalities": {
+          "expanded": "Legal",
+          "unlimited": "Legal"
+        },
+        "weaknesses": [
+          {
+            "type": "Water",
+            "value": "×2"
+          }
+        ],
+        "evolvesFrom": "Camerupt-EX",
+        "retreatCost": [
+          "Colorless",
+          "Colorless",
+          "Colorless",
+          "Colorless"
+        ],
+        "_external_id": "xyp-XY198",
+        "_set_external_id": "xyp",
+        "convertedRetreatCost": 4,
+        "nationalPokedexNumbers": [
+          323
+        ]
+      }
+    },
+    {
+      "id": "1764",
+      "source": "pokemonapi",
+      "status": "normalized",
+      "ingested_at": "2025-11-17T17:22:29.950Z",
+      "payload_md5": "cc293692784301d32b960729e98be04d",
+      "payload": {
+        "id": "xyp-XY177",
+        "set": {
+          "id": "xyp",
+          "name": "XY Black Star Promos",
+          "total": 216,
+          "images": {
+            "logo": "https://images.pokemontcg.io/xyp/logo.png",
+            "symbol": "https://images.pokemontcg.io/xyp/symbol.png"
+          },
+          "series": "XY",
+          "ptcgoCode": "PR-XY",
+          "updatedAt": "2020/08/14 09:35:00",
+          "legalities": {
+            "expanded": "Legal",
+            "unlimited": "Legal"
+          },
+          "releaseDate": "2013/10/12",
+          "printedTotal": 211
+        },
+        "name": "Karen",
+        "_kind": "card",
+        "rules": [
+          "Each player shuffles all Pokémon in his or her discard pile into his or her deck.",
+          "You may play only 1 Supporter card during your turn (before your attack)."
+        ],
+        "artist": "You Iribi",
+        "images": {
+          "large": "https://images.pokemontcg.io/xyp/XY177_hires.png",
+          "small": "https://images.pokemontcg.io/xyp/XY177.png"
+        },
+        "number": "XY177",
+        "rarity": "Promo",
+        "subtypes": [
+          "Supporter"
+        ],
+        "supertype": "Trainer",
+        "tcgplayer": {
+          "url": "https://prices.pokemontcg.io/tcgplayer/xyp-XY177",
+          "prices": {
+            "normal": {
+              "low": 1.8,
+              "mid": 3.35,
+              "high": 20.69,
+              "market": 3.11,
+              "directLow": 2.99
+            }
+          },
+          "updatedAt": "2025/11/17"
+        },
+        "cardmarket": {
+          "url": "https://prices.pokemontcg.io/cardmarket/xyp-XY177",
+          "prices": {
+            "avg1": 8.64,
+            "avg7": 3.76,
+            "avg30": 3.41,
+            "lowPrice": 0.45,
+            "trendPrice": 3.53,
+            "germanProLow": 0,
+            "lowPriceExPlus": 0.45,
+            "reverseHoloLow": 0,
+            "suggestedPrice": 0,
+            "reverseHoloAvg1": 0.5,
+            "reverseHoloAvg7": 0.51,
+            "reverseHoloSell": 0,
+            "averageSellPrice": 2.83,
+            "reverseHoloAvg30": 0.54,
+            "reverseHoloTrend": 0.46
+          },
+          "updatedAt": "2025/11/13"
+        },
+        "legalities": {
+          "expanded": "Legal",
+          "unlimited": "Legal"
+        },
+        "_external_id": "xyp-XY177",
+        "_set_external_id": "xyp"
+      }
+    },
+    {
+      "id": "14925",
+      "source": "tcgdex",
+      "status": "normalized",
+      "ingested_at": "2025-11-19T20:37:46.084Z",
+      "payload_md5": "77ffc317d938666de71b59d8806d7f13",
+      "payload": {
+        "card": {
+          "hp": 230,
+          "id": "xyp-XY198",
+          "set": {
+            "id": "xyp",
+            "logo": "https://assets.tcgdex.net/en/xy/xyp/logo",
+            "name": "XY Black Star Promos",
+            "symbol": "https://assets.tcgdex.net/univ/xy/xyp/symbol",
+            "cardCount": {
+              "total": 216,
+              "official": 211
+            }
+          },
+          "name": "M Camerupt-EX",
+          "dexId": [
+            323
+          ],
+          "image": "https://assets.tcgdex.net/en/xy/xyp/XY198",
+          "legal": {
+            "expanded": true,
+            "standard": false
+          },
+          "stage": "MEGA",
+          "types": [
+            "Fire"
+          ],
+          "rarity": "Common",
+          "attacks": [
+            {
+              "cost": [
+                "Fire",
+                "Fire",
+                "Colorless",
+                "Colorless"
+              ],
+              "name": "Magma Eruption",
+              "damage": 120,
+              "effect": "You may discard the top 3 cards of each player's deck. If you do, this attack does 40 more damage for each Energy card you discarded in this way."
+            }
+          ],
+          "localId": "XY198",
+          "pricing": {
+            "tcgplayer": null,
+            "cardmarket": null
+          },
+          "updated": "2026-01-24T23:11:24+01:00",
+          "category": "Pokemon",
+          "variants": {
+            "holo": true,
+            "normal": true,
+            "wPromo": false,
+            "reverse": true,
+            "firstEdition": false
+          },
+          "evolveFrom": "Camerupt-EX",
+          "weaknesses": [
+            {
+              "type": "Water",
+              "value": "×2"
+            }
+          ],
+          "illustrator": "5ban Graphics",
+          "variants_detailed": [
+            {
+              "size": "standard",
+              "type": "normal"
+            },
+            {
+              "size": "standard",
+              "type": "reverse"
+            },
+            {
+              "size": "standard",
+              "type": "holo"
+            }
+          ]
+        },
+        "_kind": "card",
+        "_source": "tcgdex",
+        "fetched_at": "2026-02-20T05:01:50.844Z",
+        "_external_id": "xyp-XY198",
+        "set_external_id": "xyp",
+        "_set_external_id": "xyp"
+      }
+    },
+    {
+      "id": "14901",
+      "source": "tcgdex",
+      "status": "normalized",
+      "ingested_at": "2025-11-19T20:37:40.794Z",
+      "payload_md5": "b02e12a45c235cd8f858f3622d733531",
+      "payload": {
+        "card": {
+          "id": "xyp-XY177",
+          "set": {
+            "id": "xyp",
+            "logo": "https://assets.tcgdex.net/en/xy/xyp/logo",
+            "name": "XY Black Star Promos",
+            "symbol": "https://assets.tcgdex.net/univ/xy/xyp/symbol",
+            "cardCount": {
+              "total": 216,
+              "official": 211
+            }
+          },
+          "name": "Karen",
+          "image": "https://assets.tcgdex.net/en/xy/xyp/XY177",
+          "legal": {
+            "expanded": true,
+            "standard": false
+          },
+          "rarity": "Common",
+          "localId": "XY177",
+          "pricing": {
+            "tcgplayer": null,
+            "cardmarket": {
+              "avg": 6.45,
+              "low": 4.95,
+              "avg1": 7.99,
+              "avg7": 5.99,
+              "unit": "EUR",
+              "avg30": 5.29,
+              "trend": 7.06,
+              "updated": "2026-02-20T01:45:06.000Z",
+              "avg-holo": null,
+              "low-holo": null,
+              "avg1-holo": 0.5,
+              "avg7-holo": 0.51,
+              "idProduct": 293006,
+              "avg30-holo": 0.54,
+              "trend-holo": 0.46
+            }
+          },
+          "updated": "2026-01-24T23:11:24+01:00",
+          "category": "Trainer",
+          "variants": {
+            "holo": true,
+            "normal": true,
+            "wPromo": false,
+            "reverse": true,
+            "firstEdition": false
+          },
+          "illustrator": "You Iribi",
+          "trainerType": "Supporter",
+          "variants_detailed": [
+            {
+              "size": "standard",
+              "type": "normal"
+            },
+            {
+              "size": "standard",
+              "type": "reverse"
+            },
+            {
+              "size": "standard",
+              "type": "holo"
+            }
+          ]
+        },
+        "_kind": "card",
+        "_source": "tcgdex",
+        "fetched_at": "2026-02-20T05:01:46.293Z",
+        "_external_id": "xyp-XY177",
+        "set_external_id": "xyp",
+        "_set_external_id": "xyp"
+      }
+    }
+  ],
+  "products": [
+    {
+      "row": {
+        "name": "Karen",
+        "group_id": 1451,
+        "image_url": "https://tcgplayer-cdn.tcgplayer.com/product/123438_200w.jpg",
+        "clean_name": "Karen",
+        "created_at": "2026-07-15T03:58:42.619853+00:00",
+        "product_id": 123438,
+        "source_url": "https://www.tcgplayer.com/product/123438/pokemon-xy-promos-karen",
+        "updated_at": "2026-11-19T03:21:09.172592+00:00",
+        "category_id": 3,
+        "image_count": 1,
+        "raw_payload": {
+          "url": "https://www.tcgplayer.com/product/123438/pokemon-xy-promos-karen",
+          "name": "Karen",
+          "groupId": 1451,
+          "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/123438_200w.jpg",
+          "cleanName": "Karen",
+          "productId": 123438,
+          "categoryId": 3,
+          "imageCount": 1,
+          "modifiedOn": "2025-02-05T21:18:47.99",
+          "presaleInfo": {
+            "note": null,
+            "isPresale": false,
+            "releasedOn": null
+          },
+          "extendedData": [
+            {
+              "name": "Number",
+              "value": "XY177",
+              "displayName": "Card Number"
+            },
+            {
+              "name": "Rarity",
+              "value": "Promo",
+              "displayName": "Rarity"
+            },
+            {
+              "name": "Card Type",
+              "value": "Supporter",
+              "displayName": "Card Type"
+            },
+            {
+              "name": "CardText",
+              "value": "Each player shuffles all Pokemon in his or her discard pile into his or her deck.",
+              "displayName": "Card Text"
+            }
+          ]
+        },
+        "last_seen_at": "2026-11-19T03:21:09.172592+00:00",
+        "payload_hash": "422595695af1856cd167b52dfa08b88f3daf95a84fa64de4e9a5f7bcf4fa64d7",
+        "presale_info": {
+          "note": null,
+          "isPresale": false,
+          "releasedOn": null
+        },
+        "extended_data": [
+          {
+            "name": "Number",
+            "value": "XY177",
+            "displayName": "Card Number"
+          },
+          {
+            "name": "Rarity",
+            "value": "Promo",
+            "displayName": "Rarity"
+          },
+          {
+            "name": "Card Type",
+            "value": "Supporter",
+            "displayName": "Card Type"
+          },
+          {
+            "name": "CardText",
+            "value": "Each player shuffles all Pokemon in his or her discard pile into his or her deck.",
+            "displayName": "Card Text"
+          }
+        ],
+        "first_seen_at": "2026-07-15T03:58:42.619853+00:00",
+        "source_active": true,
+        "last_seen_run_id": "ab6f6a8d-fb7c-49cd-92da-2df335c4c10f",
+        "source_modified_on": "2025-02-05T21:18:47.99",
+        "source_missing_since": null,
+        "catalog_metadata_status": "current"
+      },
+      "raw_md5": "0fc14fd52262c11f73b8c5faf74eb4b6"
+    },
+    {
+      "row": {
+        "name": "M Camerupt EX - XY198",
+        "group_id": 1451,
+        "image_url": "https://tcgplayer-cdn.tcgplayer.com/product/129898_200w.jpg",
+        "clean_name": "M Camerupt EX XY198",
+        "created_at": "2026-07-15T03:58:42.619853+00:00",
+        "product_id": 129898,
+        "source_url": "https://www.tcgplayer.com/product/129898/pokemon-xy-promos-m-camerupt-ex-xy198",
+        "updated_at": "2026-11-19T03:21:09.172592+00:00",
+        "category_id": 3,
+        "image_count": 1,
+        "raw_payload": {
+          "url": "https://www.tcgplayer.com/product/129898/pokemon-xy-promos-m-camerupt-ex-xy198",
+          "name": "M Camerupt EX - XY198",
+          "groupId": 1451,
+          "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/129898_200w.jpg",
+          "cleanName": "M Camerupt EX XY198",
+          "productId": 129898,
+          "categoryId": 3,
+          "imageCount": 1,
+          "modifiedOn": "2021-10-20T12:59:50.313",
+          "presaleInfo": {
+            "note": null,
+            "isPresale": false,
+            "releasedOn": null
+          },
+          "extendedData": [
+            {
+              "name": "Number",
+              "value": "XY198",
+              "displayName": "Card Number"
+            },
+            {
+              "name": "Rarity",
+              "value": "Promo",
+              "displayName": "Rarity"
+            },
+            {
+              "name": "Card Type",
+              "value": "Fire",
+              "displayName": "Card Type"
+            },
+            {
+              "name": "HP",
+              "value": "230",
+              "displayName": "HP"
+            },
+            {
+              "name": "Stage",
+              "value": "Mega Evolution",
+              "displayName": "Stage"
+            },
+            {
+              "name": "Attack 1",
+              "value": "[2RR] Magma Eruption (120+)\r\n<br>You may discard the top 3 cards of each player's deck. If you do, this attack does 40 more damage for each Energy card you discarded this way.",
+              "displayName": "Attack 1"
+            },
+            {
+              "name": "Weakness",
+              "value": "Wx2",
+              "displayName": "Weakness"
+            },
+            {
+              "name": "Resistance",
+              "value": "None",
+              "displayName": "Resistance"
+            },
+            {
+              "name": "RetreatCost",
+              "value": "4",
+              "displayName": "Retreat Cost"
+            }
+          ]
+        },
+        "last_seen_at": "2026-11-19T03:21:09.172592+00:00",
+        "payload_hash": "ed8fda376d7bbbf8c3241afae8af3538e34674b37b6d20f3001c0c94160d8c00",
+        "presale_info": {
+          "note": null,
+          "isPresale": false,
+          "releasedOn": null
+        },
+        "extended_data": [
+          {
+            "name": "Number",
+            "value": "XY198",
+            "displayName": "Card Number"
+          },
+          {
+            "name": "Rarity",
+            "value": "Promo",
+            "displayName": "Rarity"
+          },
+          {
+            "name": "Card Type",
+            "value": "Fire",
+            "displayName": "Card Type"
+          },
+          {
+            "name": "HP",
+            "value": "230",
+            "displayName": "HP"
+          },
+          {
+            "name": "Stage",
+            "value": "Mega Evolution",
+            "displayName": "Stage"
+          },
+          {
+            "name": "Attack 1",
+            "value": "[2RR] Magma Eruption (120+)\r\n<br>You may discard the top 3 cards of each player's deck. If you do, this attack does 40 more damage for each Energy card you discarded this way.",
+            "displayName": "Attack 1"
+          },
+          {
+            "name": "Weakness",
+            "value": "Wx2",
+            "displayName": "Weakness"
+          },
+          {
+            "name": "Resistance",
+            "value": "None",
+            "displayName": "Resistance"
+          },
+          {
+            "name": "RetreatCost",
+            "value": "4",
+            "displayName": "Retreat Cost"
+          }
+        ],
+        "first_seen_at": "2026-07-15T03:58:42.619853+00:00",
+        "source_active": true,
+        "last_seen_run_id": "ab6f6a8d-fb7c-49cd-92da-2df335c4c10f",
+        "source_modified_on": "2021-10-20T12:59:50.313",
+        "source_missing_since": null,
+        "catalog_metadata_status": "current"
+      },
+      "raw_md5": "0df53dfb9a837edb9057f3e57a5b6166"
+    }
+  ],
+  "groups": [
+    {
+      "row": {
+        "name": "XY Promos",
+        "group_id": 1451,
+        "created_at": "2026-07-15T05:47:43.859562+00:00",
+        "updated_at": "2026-11-19T03:18:40.630957+00:00",
+        "category_id": 3,
+        "raw_payload": {
+          "name": "XY Promos",
+          "groupId": 1451,
+          "categoryId": 3,
+          "modifiedOn": "2026-11-13T05:58:49.157",
+          "publishedOn": "2013-12-16T00:00:00",
+          "abbreviation": "PR",
+          "isSupplemental": false
+        },
+        "abbreviation": "PR",
+        "last_seen_at": "2026-11-19T03:18:40.630957+00:00",
+        "payload_hash": "5f8837f9c36dc2d4a9771cefcdaf1e4883ef0c7bd2363a8ea5ed330f1642f221",
+        "published_on": "2013-12-16T00:00:00",
+        "first_seen_at": "2026-07-15T05:47:43.859562+00:00",
+        "source_active": true,
+        "is_supplemental": false,
+        "last_seen_run_id": "ab6f6a8d-fb7c-49cd-92da-2df335c4c10f",
+        "source_modified_on": "2026-11-13T05:58:49.157",
+        "source_missing_since": null,
+        "catalog_metadata_status": "current"
+      },
+      "raw_md5": "de98921d1455408037042f2dc2010d7f"
+    }
+  ],
+  "runs": [
+    {
+      "id": "ab6f6a8d-fb7c-49cd-92da-2df335c4c10f",
+      "status": "running",
+      "sync_mode": "current_full_sync",
+      "failed_count": 0,
+      "started_at": "2026-11-19T02:59:24.206Z",
+      "finished_at": null
+    }
+  ],
+  "groupSets": [
+    {
+      "group_id": 1451,
+      "set_count": 1,
+      "set_codes": [
+        "xyp"
+      ]
+    }
+  ],
+  "provenance": "Database JSONB readback; not original HTTP response bytes."
+}

@@ -1,0 +1,135 @@
+{
+  "version": "XY_PROMO_RARITY_READ_ONLY_PREFLIGHT_V1",
+  "status": "review_only_preflight_passed",
+  "target": "ycdxbpibncqcchqiihfz",
+  "sanity": {
+    "read_only": "on",
+    "parents": 173837,
+    "sets": 3420,
+    "traits": 47409
+  },
+  "at": "2026-11-19T05:23:29.824Z",
+  "snapshot_sha256": "7406c56d11f9cf92517a67c71358015852e13a6198689fecad01442d28cb6d00",
+  "candidates": [
+    "GV-PK-PR-XY-XY177",
+    "GV-PK-PR-XY-XY198"
+  ],
+  "reviews": [
+    {
+      "status": "family_corroborated_review_only",
+      "number": "XY177",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Karen_%28The_Best_of_XY_183%29",
+      "source_sha256": "20ce442161dd36d238fb8e39aaa44a0c8755af492887c354f346047a5ae91f31",
+      "source_scope": "XY Black Star Promo family and number; no artwork or rarity-precedence decision",
+      "preserved_conflict": {
+        "parent": "Common",
+        "tcgdex_trait": "Common",
+        "pokemonapi": "Promo",
+        "tcgplayer": "Promo"
+      }
+    },
+    {
+      "status": "family_corroborated_review_only",
+      "number": "XY198",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/M_Camerupt-EX_%28XY_Promo_198%29",
+      "source_sha256": "649c5d6044f8afc2c7db3b59761c27e997cb44b0d53ab7c721a1e215bfb5c07e",
+      "source_scope": "XY Black Star Promo family and number; no artwork or rarity-precedence decision",
+      "preserved_conflict": {
+        "parent": "Common",
+        "tcgdex_trait": "Common",
+        "pokemonapi": "Promo",
+        "tcgplayer": "Promo"
+      }
+    }
+  ],
+  "protectedState": {
+    "parent_other_fields": {
+      "rows": 2,
+      "digest": "83873a73cb1b8840d58ce57fa5562b4b"
+    },
+    "card_print_identity": {
+      "rows": 2,
+      "row_versions_1": "1762130387806092537",
+      "row_versions_2": "6807152431330488300"
+    },
+    "card_printings": {
+      "rows": 2,
+      "row_versions_1": "1361544879820827935",
+      "row_versions_2": "-20785479946160089"
+    },
+    "external_mappings": {
+      "rows": 7,
+      "row_versions_1": "8273295267358366656",
+      "row_versions_2": "-9167539482642143354"
+    },
+    "external_mapping_aliases": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "card_print_species": {
+      "rows": 1,
+      "row_versions_1": "-6389243717176208788",
+      "row_versions_2": "-6742938681469615693"
+    },
+    "card_print_cameos": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "card_print_traits": {
+      "rows": 2,
+      "row_versions_1": "-5594115855426934838",
+      "row_versions_2": "2766857296415054278"
+    },
+    "card_print_image_faces": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "vault_item_instances": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "vault_items": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "card_print_price_curves": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "price_observations": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "market_prices": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "market_price_current_publication": {
+      "rows": 1,
+      "digest": "ec3077730171af5beed1ee6d8e76b5a4"
+    },
+    "market_price_publication_snapshots": {
+      "rows": 2,
+      "row_versions_1": "-8142318749082861895",
+      "row_versions_2": "-4982334566239078056"
+    },
+    "market_price_qualification_decisions": {
+      "rows": 2,
+      "row_versions_1": "8243719639303000928",
+      "row_versions_2": "-3262877366306148531"
+    },
+    "sets": {
+      "rows": 1,
+      "digest": "75966b96c4b70cde547efbad67bfdca4"
+    }
+  },
+  "database_writes": 0
+}

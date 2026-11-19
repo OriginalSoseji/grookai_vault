@@ -4,11 +4,15 @@ import { createClient } from "@supabase/supabase-js";
 import { getSupabaseServerConfig } from "@/lib/supabase/config";
 import { collectorPreview, createPreviewReadFetch } from "@/lib/collectorPreview";
 
-export function createPublicServerClient(revalidateSeconds = 60) {
+export function createPublicServerClient(revalidateSeconds = 60, requestTimeoutMs?: number) {
   const { url, publishableKey } = getSupabaseServerConfig();
   const publicFetch: typeof fetch = (input, init) => {
+    const existingSignal = init?.signal ?? (input instanceof Request ? input.signal : undefined);
+    const deadline = requestTimeoutMs === undefined ? undefined : AbortSignal.timeout(requestTimeoutMs);
+    const signal = deadline && existingSignal ? AbortSignal.any([deadline, existingSignal]) : deadline ?? existingSignal;
     const nextInit = {
       ...init,
+      ...(signal ? { signal } : {}),
       next: {
         ...((init as { next?: Record<string, unknown> } | undefined)?.next ?? {}),
         revalidate: revalidateSeconds,
