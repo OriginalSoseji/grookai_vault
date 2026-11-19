@@ -5293,3 +5293,23 @@ Actual representative performance includes173837 parents,244259 printings and
 128 Jungle exclusion IDs through the unchanged real helper. NULL helper stubs
 serve only rollback equivalence tests. External-only/set-name-only and wildcard
 inputs must compare exactly against507 before committed qualification.
+
+## McDonald's 2022 promo rarity repair
+
+The exact 15-row repair is complete in production: the reviewed parent rarity
+values changed from empty to `Promo`, with durable source snapshots and receipt.
+See [the repair package](../audits/promo_era_search_review_20261118/MCD22_RARITY_REPAIR.md)
+and its frozen execution plan, source evidence, and run reports for scope and
+verification. This decision does not apply to other sets, source conflicts,
+physical finishes, or printed identities.
+
+The entry point is `backend/catalog/mcd22_rarity_apply_v1.mjs` in the checked-out
+reviewed source. `--mode inspect` is read-only; `--mode verify` checks the
+already-applied state, durable receipt, and all 16 source snapshots. The
+`rollback-proof` and `apply` modes require the exact argument `--approval
+PROCEED`, run against the guarded canonical environment, and write operational
+run-ledger entries. Apply additionally requires a successful rollback proof
+bound to the exact execution plan and writer fingerprint. A proof for different
+writer bytes is not reusable. If verification, source checks, or commit readback
+is uncertain, stop and inspect the retained reports and exact records before
+any separately authorized recovery; do not blindly replay the repair.
