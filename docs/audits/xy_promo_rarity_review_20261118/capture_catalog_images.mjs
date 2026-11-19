@@ -4,7 +4,7 @@ const root=process.cwd(),dir=new URL('./',import.meta.url),data=JSON.parse(fs.re
 const require=createRequire(`${root}/backend/package.json`),dotenv=require('dotenv'),{createClient}=require('@supabase/supabase-js');
 const config=dotenv.parse(fs.readFileSync(`${root}/.env.local`)),ref='ycdxbpibncqcchqiihfz';
 assert.equal(new URL(config.SUPABASE_URL).hostname,`${ref}.supabase.co`);assert.match(fs.readFileSync(`${root}/supabase/config.toml`,'utf8'),new RegExp(`project_id\\s*=\\s*"${ref}"`));
-const key=config.SUPABASE_SECRET_KEY??config.SUPABASE_SERVICE_ROLE_KEY;assert.ok(key,'NO_SERVER_CREDENTIAL');
+const key=config.SUPABASE_SECRET_KEY;assert.ok(key,'NO_SERVER_CREDENTIAL');
 const client=createClient(config.SUPABASE_URL,key,{auth:{persistSession:false,autoRefreshToken:false}});
 const output=new URL('catalog_images/',dir);fs.mkdirSync(output,{recursive:true});
 for(const parent of data.parents){

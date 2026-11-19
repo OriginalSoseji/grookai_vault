@@ -48,7 +48,7 @@ export async function verifyXyStagedSnapshots(db,receipt,expected){
    row.payload.run_id!==receipt.payload.run_id||!expectedByKey.has(key)||!isDeepStrictEqual(row.payload.snapshot,expectedByKey.get(key)))throw Error('XY_PROMO_SNAPSHOT_DRIFT');}
 }
 async function verifyLiveImages(config,snapshot,evidence){
- const key=config.SUPABASE_SECRET_KEY??config.SUPABASE_SERVICE_ROLE_KEY;if(!key)throw Error('XY_PROMO_STORAGE_CREDENTIAL_REQUIRED');
+ const key=config.SUPABASE_SECRET_KEY;if(!key)throw Error('XY_PROMO_STORAGE_CREDENTIAL_REQUIRED');
  const storage=createClient(config.SUPABASE_URL,key,{auth:{persistSession:false,autoRefreshToken:false}}).storage;
  for(const p of snapshot.parents){
   const expected=evidence.images[p.number],{data,error}=await storage.from('user-card-images').download(p.image_path);
