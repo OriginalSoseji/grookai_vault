@@ -108,7 +108,7 @@ const COLLECTOR_PATHWAYS = [
 ] as const;
 
 function createServerSupabase() {
-  return createPublicServerClient(300);
+  return createPublicServerClient(300, 5_000);
 }
 
 async function getFeaturedCardByName(
@@ -163,7 +163,14 @@ async function getFeaturedCardByName(
 
 async function getFeaturedCards() {
   const supabase = createServerSupabase();
-  return Promise.all(FEATURED_CARD_NAMES.map((name) => getFeaturedCardByName(supabase, name)));
+  return Promise.all(FEATURED_CARD_NAMES.map(async (name) => {
+    try {
+      return await getFeaturedCardByName(supabase, name);
+    } catch (error) {
+      console.warn("[homepage] featured card unavailable", { name, error: String(error) });
+      return { gv_id: `featured-${name.toLowerCase()}`, display_name: name };
+    }
+  }));
 }
 
 function HomeSearchFallback() {
