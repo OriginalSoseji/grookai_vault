@@ -20,5 +20,6 @@ export function createEbaySellerBackendService(): {
   removePhoto(actorId: string, input: { draftId: string; photoId: string; revision: number }): Promise<Record<string, unknown>>;
   draftAction(actorId: string, input: { draftId: string; requestId: string; revision: number;
     action: 'edit' | 'abandon' }): Promise<Record<string, unknown>>;
-  metadata(actorId: string, input: { instanceId: string; accountId: string }): Promise<Record<string, unknown>>;
+  categorySuggestions(actorId: string, input: { instanceId: string; accountId: string; query: string }): Promise<Record<string, unknown>>;
+  metadata(actorId: string, input: { instanceId: string; accountId: string; categoryId?: string; categoryName?: string }): Promise<Record<string, unknown>>;
 };
