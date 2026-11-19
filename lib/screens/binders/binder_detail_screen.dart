@@ -412,7 +412,7 @@ class _BinderContentsTabState extends State<_BinderContentsTab> {
       do {
         final page = await widget.repository.loadChecklist(
           publicId: widget.publicId,
-          filter: BinderChecklistFilter.inBinder,
+          filter: BinderChecklistFilter.all,
           cursor: cursor,
           limit: 50,
         );
@@ -420,7 +420,11 @@ class _BinderContentsTabState extends State<_BinderContentsTab> {
         cursor = page.hasMore && items.length < 1000 ? page.nextCursor : null;
       } while (cursor != null);
       if (!mounted) return;
-      setState(() => _items = List<BinderChecklistItem>.unmodifiable(items));
+      setState(
+        () => _items = List<BinderChecklistItem>.unmodifiable(
+          items.where((item) => item.activeQuantity > 0),
+        ),
+      );
     } on BinderException catch (failure) {
       if (mounted) setState(() => _failure = failure);
     } finally {

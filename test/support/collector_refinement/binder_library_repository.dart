@@ -148,7 +148,7 @@ class PreviewBinderLibraryRepository implements BinderRepository {
       items: switch (filter) {
         BinderChecklistFilter.inBinder => _items(
           publicId,
-        ).where((item) => item.activeQuantity > 0).take(limit).toList(),
+        ).where((item) => item.isSatisfied).take(limit).toList(),
         BinderChecklistFilter.inYourVault ||
         BinderChecklistFilter.contributedByYou ||
         BinderChecklistFilter.needsReview => [],

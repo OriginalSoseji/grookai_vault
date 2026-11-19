@@ -18,22 +18,26 @@ import 'binder_refinement_test.dart' as f;
 import 'binder_editor_navigation_test.dart' as nav;
 import 'binder_page_picker_test.dart' as picker;
 
-PreviewBinderLibraryRepository repository() => PreviewBinderLibraryRepository(
-  catalog: preview.PreviewBinderRepository(),
-  initialSlots: [
-    for (final card in previewCatalog)
-      BinderCustomSlotDraft(
-        card: BinderCatalogCard(
-          cardPrintId: card['id']!,
-          name: card['name']!,
-          setLabel: preview.previewSet(card),
-          number: card['number'],
-          hostedImageUrl: null,
-        ),
-        finish: f.anyFinish,
-      ),
-  ],
-);
+PreviewBinderLibraryRepository repository({int firstRequiredQuantity = 1}) =>
+    PreviewBinderLibraryRepository(
+      catalog: preview.PreviewBinderRepository(),
+      initialSlots: [
+        for (final card in previewCatalog)
+          BinderCustomSlotDraft(
+            card: BinderCatalogCard(
+              cardPrintId: card['id']!,
+              name: card['name']!,
+              setLabel: preview.previewSet(card),
+              number: card['number'],
+              hostedImageUrl: null,
+            ),
+            finish: f.anyFinish,
+            requiredQuantity: card['id'] == previewCatalog.first['id']
+                ? firstRequiredQuantity
+                : 1,
+          ),
+      ],
+    );
 Future<void> mount(
   WidgetTester tester,
   PreviewBinderLibraryRepository repo, {
@@ -291,6 +295,28 @@ void main() {
       },
     );
   }
+  testWidgets(
+    'Contents includes partial contributions even when the production in-Binder filter omits them',
+    (tester) async {
+      final repo = repository(firstRequiredQuantity: 2);
+      final partialCard = previewCatalog.first;
+      repo.activeContributions[partialCard['id']!] = 1;
+      final completedOnly = await repo.loadChecklist(
+        publicId: PreviewBinderLibraryRepository.privateId,
+        filter: BinderChecklistFilter.inBinder,
+      );
+      expect(completedOnly.items, isEmpty);
+
+      await mount(tester, repo);
+      await openBinder(tester, 'Private Binder · Sample');
+      await tester.pumpAndSettle();
+
+      expect(find.text('1 card · 1 copy in this Binder'), findsOneWidget);
+      expect(find.text(partialCard['name']!), findsOneWidget);
+      expect(find.text('No cards in this Binder yet.'), findsNothing);
+      expect(tester.takeException(), isNull);
+    },
+  );
   testWidgets(
     'live Binder opens to contributed card contents and keeps checklist separate',
     (tester) async {
