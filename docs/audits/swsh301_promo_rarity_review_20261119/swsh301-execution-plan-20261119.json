@@ -1,0 +1,36 @@
+{
+  "version": "SWSH301_PROMO_RARITY_PLAN_V1",
+  "status": "FROZEN_GUARDED_PACKAGE",
+  "target": "ycdxbpibncqcchqiihfz",
+  "scope": {
+    "table": "card_prints",
+    "field": "rarity",
+    "count": 1
+  },
+  "snapshot_sha256": "33c5b458dfa74897a9afb3f054357227e42203e641a2d863e4c87b920cca1126",
+  "representative_image_sha256": "755e1a00a0516c9f9c95ff9f06626c180a1eddb874466cdab31e12e150ab5abb",
+  "product_image_sha256": "77f432097c42af65a0a7d8e46b7dfae3bbb8c3bf6ab586ba09d7375c27c4cced",
+  "article_sha256": "4ad2712b6d8aed1870164877d2e8d0c369f36b07ba693a3f1a707202aa9ed45a",
+  "visual_observation": "The existing representative card-design image shows SWSH301 and PROMO star and matches the mapped product image. Representative image status stays unchanged; no physical copy or finish is asserted.",
+  "decision_basis": "Exact mapped source product says Promo and the captured published checklist corroborates SWSH301 and matching illustrator; preserve all TCGdex traits and do not generalize source precedence.",
+  "changes": [
+    {
+      "id": "af831a08-6e93-4e7a-8e8b-1b02d38c9ff1",
+      "gv_id": "GV-PK-PR-SW-SWSH301",
+      "before": "None",
+      "after": "Promo",
+      "identity_key_hash": "555f3983d65462ef118cd38560972afec9cf86c59a5243202c4526f4c07d4485",
+      "protected_trait_ids": [
+        61173,
+        61174,
+        61175,
+        61176,
+        61177,
+        61178
+      ],
+      "product_id": 505996,
+      "retained_image_status": "representative_shared"
+    }
+  ],
+  "fingerprint_sha256": "c9c72df261c1a075afc27368df068282a8f491d0ca7e0a3d929946980b85bd31"
+}

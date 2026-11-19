@@ -1,0 +1,106 @@
+{
+  "version": "MCD22_PROMO_RARITY_PREFLIGHT_V1",
+  "captured_at": "2026-11-18T18:51:01.666Z",
+  "target": "ycdxbpibncqcchqiihfz",
+  "sanity": {
+    "read_only": "on",
+    "parents": 173837,
+    "sets": 3420,
+    "traits": 47409
+  },
+  "candidate_file_sha256": "de766699a6673b30ecad1aa9eeefb5a844f4b67827cef3dbc1ce7d7a934392b0",
+  "candidate_policy_sha256": "eeaca0b3fd09034ce9b7d9846c86122b8737e2d7a5cba16a172969dc65e737ad",
+  "rows": 15,
+  "input_digest": "c61184505ffee246f426d22c35f5c9b38fe00e38ef154314f00bbfde60f8ee1f",
+  "protectedState": {
+    "parent_other_fields": {
+      "rows": 15,
+      "digest": "b4b49635505779bf70b479a063f2318f"
+    },
+    "card_print_identity": {
+      "rows": 15,
+      "row_versions_1": "1934287898156068729",
+      "row_versions_2": "-4581493610006385276"
+    },
+    "card_printings": {
+      "rows": 15,
+      "row_versions_1": "5891859237245347161",
+      "row_versions_2": "7471044558201462995"
+    },
+    "external_mappings": {
+      "rows": 30,
+      "row_versions_1": "5904418029141632295",
+      "row_versions_2": "5369642797452006737"
+    },
+    "external_mapping_aliases": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "card_print_species": {
+      "rows": 15,
+      "row_versions_1": "5811102864464242045",
+      "row_versions_2": "-2625318492383486907"
+    },
+    "card_print_cameos": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "card_print_traits": {
+      "rows": 73,
+      "row_versions_1": "6356243288653698243",
+      "row_versions_2": "-1042441349899037825"
+    },
+    "card_print_image_faces": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "vault_item_instances": {
+      "rows": 3,
+      "row_versions_1": "3623836283609332688",
+      "row_versions_2": "-1475792523881579295"
+    },
+    "vault_items": {
+      "rows": 2,
+      "row_versions_1": "1746528976355706643",
+      "row_versions_2": "2685353939126365884"
+    },
+    "card_print_price_curves": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "price_observations": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "market_prices": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "market_price_current_publication": {
+      "rows": 1,
+      "digest": "ec3077730171af5beed1ee6d8e76b5a4"
+    },
+    "current_publication_snapshots": {
+      "rows": 15,
+      "row_versions_1": "-4686384327509764778",
+      "row_versions_2": "583983952953093287"
+    },
+    "current_qualification_decisions": {
+      "rows": 15,
+      "row_versions_1": "-1264529024289804548",
+      "row_versions_2": "-433312629172545558"
+    },
+    "sets": {
+      "rows": 1,
+      "digest": "7a5395ec19ec047b3b77ec3cce33f918"
+    }
+  },
+  "status": "read_only_preflight_passed",
+  "database_writes": 0
+}

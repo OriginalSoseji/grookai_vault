@@ -38,6 +38,17 @@ Worker: `backend/competitive/pokemon_playables/current_standard_cli.mjs daily --
 The workflow attempts refresh at 06:23 and 18:23 UTC, using canonical Actions secret names `SUPABASE_URL` and `SUPABASE_SECRET_KEY`. Both names now exist in repository Actions configuration; hosted runtime credential validity still requires actual run readback after activation. The worker uses bounded public source collection, rate headers/backoff, exact current catalog bindings and 24-hour output expiry. Initial coverage is a bounded 292-member cohort, not the entire catalog. Metadata renewal is a genuine fetch preserving repository commit/blob/license pins. Continue the existing retention-plan/apply lifecycle; expired seeds require fresh bootstrap input.
 
 A live local invocation renewed 147 qualified printings from 68 lists across five events. The reviewed candidate passed the full shipcheck and actual desktop/mobile browser readback; see [the release checkpoint](../checkpoints/2026-11-18_pokemon_playables_release_candidate_v1.md). The owner authorized publication, merge and activation on November 18. Retain normal managed commit/push hooks and verify the integrated candidate, hosted deployment and refresh run directly. Local validation or a prepared workflow alone does not establish activation.
+## SWSH301 promo rarity correction
+
+The exact Lugia V SWSH301 correction was applied and independently verified on 2026-11-19; see [its audit](../audits/swsh301_promo_rarity_review_20261119/README.md), apply run `89a4e7b4-e951-4fbc-8746-8afc014a50c1`, and durable receipt `176969`. Its catalog image remains `representative_shared`; this package does not upgrade that claim or alter source traits, printings, mappings, ownership or prices. `backend/catalog/swsh301_promo_rarity_apply_v1.mjs` provides read-only `inspect` and `verify`; `rollback-proof` and `apply` require `--approval PROCEED`, record ledger entries, and apply requires an exact-plan same-writer rollback proof. Changed evidence, identity or preimage requires fresh review.
+
+## Yellow A XY promo rarity correction
+
+The exact XY200a and XY67a corrections were applied and independently verified on 2026-11-19; see [their audit](../audits/xy_yellow_a_promo_review_20261119/README.md), apply run `0938a860-73a8-4488-85a1-e696f62c316f`, and durable receipt `176957`. The unowned Alternate Art Promos products are evidence only; this package changes no mapping. `backend/catalog/xy_yellow_a_promo_rarity_apply_v1.mjs` has read-only `inspect` and `verify` modes; `rollback-proof` and `apply` require `--approval PROCEED` and create ledger entries. Apply requires the exact plan and same-writer rollback proof. A changed source, preimage, image, mapping or proof requires fresh review.
+
+## XY150 promo rarity correction
+
+The exact XY150 Yveltal EX correction was applied and independently verified on 2026-11-19; see [its audit](../audits/xy150_promo_review_20261119/README.md), apply run `50be7881-ed47-4911-9eca-9fb57d87764b`, and durable receipt `176937`. It preserves the conflicting TCGdex trait, printed identity, variants, ownership and prices. `backend/catalog/xy150_promo_rarity_apply_v1.mjs` provides read-only `inspect` and `verify` modes; `rollback-proof` and `apply` require `--approval PROCEED` and create operational ledger entries. Apply requires the exact plan and same-writer rollback proof. A changed source, preimage, image or proof requires fresh review rather than a blind retry.
 
 # Prismatic identity query guard V5 — November17,2026
 
