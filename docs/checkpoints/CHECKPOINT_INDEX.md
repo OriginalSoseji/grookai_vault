@@ -1,5 +1,13 @@
 # CHECKPOINT_INDEX
 
+- [SEARCH_PROMO_NAME_SET_PRECEDENCE_20261118](SEARCH_PROMO_NAME_SET_PRECEDENCE_20261118.md) - `2026-11-18` - Printed promo family outranks conflicting implicit opening-word set shortcuts; preserve explicit set constraints, quoted text and retained identities; 77 focused tests and public SDK proof, terminal release gates pending
+
+- [SEARCH_XY_PROMO_COLLECTOR_TIMEOUT_20261118](SEARCH_XY_PROMO_COLLECTOR_TIMEOUT_20261118.md) - `2026-11-18` - Correct printed XY promo interpretation and bound caller-visible collector reads; preserve exact identities, filters and timeout budgets; live deployment and Samsung readback remain gated by terminal receipts
+
+- [NATIVE_CONDITION_PRICING_20261118](pricing/NATIVE_CONDITION_PRICING_20261118.md) - `2026-11-18` - Native exact-condition reference candidate follows Add to Vault and active raw-copy controls through the deployed reader; local synthetic Android/transport/widget proof, existing valuations preserved, native distribution remains separate
+- [MOBILE_BUILD_553_20261118](2026-11-18_mobile_build_553.md) - `2026-11-18` - Samsung is build 552 with debug signer; paired baseline raised to 553, older release candidate blocked, no install or data reset
+- `MOBILE_RELEASE_CONTINUITY_20261118` — `2026-11-18` — Established paired Android/iOS build and signer continuity contract; raised baseline to 551, added Android APK provenance and an ADB preflight that blocks signer mismatch/downgrade without uninstalling; Samsung was build 550 at this checkpoint and Mac was offline, so no paired install or TestFlight release was claimed
+
 - `SEALED_OWNERSHIP_SCHEMA_APPLIED_20260907` - `2026-09-07` - Four approved migrations committed atomically; 391/391 ledger parity, empty reconciled schema diff and 888 security objects match; 3,401 copies unchanged; ownership disabled; client deployment/canary remain
 
 - `SEALED_OWNERSHIP_RELEASE_PREFLIGHT_20260907` - `2026-09-07` - Live read-only ledger/data preconditions pass; inherited service-role grants caught and removed before production; 97 targeted contracts, 36 SQL scenarios and fresh replay pass; replacement frozen plan and production rollout remain gated
@@ -79,3 +87,9 @@
 - `BATTLE_ACADEMY_PHASE9_BA_CANON_PROMOTION_V3` — `2026-04-02` — Authoritative final BA execution checkpoint: 328 parent rows, 328 active identity rows, verified uniqueness, domain isolation, and explicit idempotency
 - `BATTLE_ACADEMY_FINAL_STATE_V1` — `2026-04-02` — Final consolidation / handoff checkpoint for future BA resume and historical-proof preservation
 - `REMOTE_PGCRYPTO_REPAIR_V1` — `2026-04-02` — Operational repair checkpoint proving the remote `digest()` failure was a pgcrypto search-path issue, not missing history; `20260402100002` and `0003` were repaired/applied, then the rollout stopped lawfully at a new `20260402100004` backfill blocker
+
+# Shrouded Fable discovery qualification — November18,2026
+
+See [SHROUDED_ALIAS_DISCOVERY_20261118](SHROUDED_ALIAS_DISCOVERY_20261118.md)
+for the exact509-to511 local qualification, unique stamped-parent preservation,
+source/performance evidence and remaining production release gates.

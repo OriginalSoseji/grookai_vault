@@ -19,6 +19,34 @@ param(
 
   [string[]]$ExpectedLocalOnlyIds = @(),
 
+  [switch]$ShroudedAliasDiscoveryReleaseV2,
+  [switch]$ShroudedAliasDiscoveryBaselineV1,
+  [switch]$LatiosAliasDiscoveryBaselineV5,
+  [switch]$LatiosAliasDiscoveryReleaseV5,
+  [switch]$LatiosAliasDiscoveryBaselineV4,
+  [switch]$LatiosAliasDiscoveryReleaseV4,
+  [switch]$LatiosAliasDiscoveryBaselineV3,
+  [switch]$LatiosAliasDiscoveryReleaseV3,
+  [switch]$LatiosAliasDiscoveryBaselineV2,
+  [switch]$LatiosAliasDiscoveryReleaseV2,
+  [switch]$LatiosAliasDiscoveryBaselineV1,
+  [switch]$LatiosAliasDiscoveryReleaseV1,
+  [switch]$Mcdonalds2021AliasDiscoveryBaselineV1,
+  [switch]$Mcdonalds2021AliasDiscoveryReleaseV1,
+  [switch]$PokemonGoAliasDiscoveryBaselineV1,
+  [switch]$PokemonGoAliasDiscoveryReleaseV1,
+  [switch]$PaldeanAliasDiscoveryBaselineV1,
+  [switch]$PaldeanAliasDiscoveryReleaseV1,
+  [switch]$PaldeanAliasDiscoveryBaselineV3,
+  [switch]$PaldeanAliasDiscoveryReleaseV3,
+  [switch]$PaldeanAliasDiscoveryBaselineV2,
+  [switch]$PaldeanAliasDiscoveryReleaseV2,
+  [switch]$PrismaticAliasDiscoveryBaselineV1,
+  [switch]$PrismaticAliasDiscoveryBaselineV2,
+  [switch]$PrismaticAliasDiscoveryReleaseV3,
+  [switch]$PrismaticAliasDiscoveryReleaseV5,
+  [switch]$PrismaticAliasDiscoveryReleaseV4,
+
   [switch]$SquareBaselineV1,
   [switch]$SquareCommerceBaselineV2,
   [switch]$SquareCommerceReleaseV3,
@@ -113,6 +141,309 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($ShroudedAliasDiscoveryReleaseV2) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ShroudedAliasDiscoveryReleaseV2','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261118180000,20261118181500') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261118180000,20261118181500') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Shrouded release V2 requires the exact510+511 candidates and canonical509 baseline.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_shrouded_alias_release_v2.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($ShroudedAliasDiscoveryBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','ShroudedAliasDiscoveryBaselineV1','AuditOutDir') }).Count -gt 0 -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Shrouded Fable baseline V1 is audit-only at canonical509 with a new bounded directory.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_shrouded_alias_baseline_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($LatiosAliasDiscoveryBaselineV5) {
+  if ($Phase -ne 'AuditLinkedSchema' -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','LatiosAliasDiscoveryBaselineV5','AuditOutDir') }).Count -gt 0 -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Latios baseline V5 is audit-only at canonical507 with a new bounded directory.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_latios_alias_baseline_v5.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($LatiosAliasDiscoveryReleaseV5) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','LatiosAliasDiscoveryReleaseV5','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261118160000,20261118163000') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261118160000,20261118163000') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Latios release V5 requires the exact508+509 candidates and canonical507 baseline.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_latios_alias_release_v5.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($LatiosAliasDiscoveryBaselineV4) {
+  if ($Phase -ne 'AuditLinkedSchema' -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','LatiosAliasDiscoveryBaselineV4','AuditOutDir') }).Count -gt 0 -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Latios baseline V4 is audit-only at canonical507 with a new bounded directory.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_latios_alias_baseline_v4.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($LatiosAliasDiscoveryReleaseV4) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','LatiosAliasDiscoveryReleaseV4','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261118160000') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261118160000') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Latios release V4 requires the sole508 candidate and canonical507 baseline.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_latios_alias_release_v4.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($LatiosAliasDiscoveryBaselineV3) {
+  if ($Phase -ne 'AuditLinkedSchema' -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','LatiosAliasDiscoveryBaselineV3','AuditOutDir') }).Count -gt 0 -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Latios baseline V3 is audit-only at canonical505 with a new bounded directory.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_latios_alias_baseline_v3_r2.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($LatiosAliasDiscoveryReleaseV3) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','LatiosAliasDiscoveryReleaseV3','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261118140000,20261118143000') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261118140000,20261118143000') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Latios release V3 requires the exact506+507 forward candidates and canonical505 baseline.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_latios_alias_release_v3.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($LatiosAliasDiscoveryBaselineV2) {
+  if ($Phase -ne 'AuditLinkedSchema' -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','LatiosAliasDiscoveryBaselineV2','AuditOutDir') }).Count -gt 0 -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Latios baseline V2 is audit-only at canonical505 with a new bounded directory.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_latios_alias_baseline_v2.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($LatiosAliasDiscoveryReleaseV2) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','LatiosAliasDiscoveryReleaseV2','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261118140000') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261118140000') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Latios release V2 requires the sole506 forward candidate and canonical505 baseline.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_latios_alias_release_v2.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($LatiosAliasDiscoveryBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','LatiosAliasDiscoveryBaselineV1','AuditOutDir') }).Count -gt 0 -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Latios baseline V1 is audit-only with a new bounded directory and canonical504 target.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_latios_alias_baseline_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($LatiosAliasDiscoveryReleaseV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','LatiosAliasDiscoveryReleaseV1','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261118120000') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261118120000') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Latios release V1 requires the exact505 discovery candidate, a new audit directory and canonical504 baseline.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_latios_alias_release_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($Mcdonalds2021AliasDiscoveryBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','Mcdonalds2021AliasDiscoveryBaselineV1','AuditOutDir') }).Count -gt 0 -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'McDonalds 2021 baseline V1 is audit-only with a new bounded directory and canonical503 target.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_mcdonalds_2021_alias_baseline_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($Mcdonalds2021AliasDiscoveryReleaseV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','Mcdonalds2021AliasDiscoveryReleaseV1','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261118080000') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261118080000') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'McDonalds 2021 release V1 requires the exact504 discovery candidate, a new audit directory and canonical503 baseline.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_mcdonalds_2021_alias_release_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($PokemonGoAliasDiscoveryBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','PokemonGoAliasDiscoveryBaselineV1','AuditOutDir') }).Count -gt 0 -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Pokemon GO baseline V1 is audit-only with a new bounded directory and canonical502 target.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_pokemon_go_alias_baseline_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($PokemonGoAliasDiscoveryReleaseV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','PokemonGoAliasDiscoveryReleaseV1','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261118050000') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261118050000') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Pokemon GO release V1 requires the exact503 discovery candidate, a new audit directory and canonical502 baseline.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_pokemon_go_alias_release_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($PaldeanAliasDiscoveryBaselineV3) {
+  if ($Phase -ne 'AuditLinkedSchema' -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','PaldeanAliasDiscoveryBaselineV3','AuditOutDir') }).Count -gt 0 -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Paldean baseline V3 is audit-only with a new bounded directory and canonical501 target.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_paldean_alias_baseline_v3.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($PaldeanAliasDiscoveryReleaseV3) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','PaldeanAliasDiscoveryReleaseV3','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261118033000') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261118033000') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Paldean release V3 requires the exact502 document-guard candidate, a new audit directory and canonical501 baseline.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_paldean_alias_release_v3.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($PaldeanAliasDiscoveryBaselineV2) {
+  if ($Phase -ne 'AuditLinkedSchema' -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','PaldeanAliasDiscoveryBaselineV2','AuditOutDir') }).Count -gt 0 -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Paldean baseline V2 is audit-only with a new bounded directory and canonical500 target.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_paldean_alias_baseline_v2.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($PaldeanAliasDiscoveryReleaseV2) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','PaldeanAliasDiscoveryReleaseV2','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261118021500') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261118021500') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Paldean release V2 requires the exact501 cache candidate, a new audit directory and canonical500 baseline.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_paldean_alias_release_v2.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($PaldeanAliasDiscoveryBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','PaldeanAliasDiscoveryBaselineV1','AuditOutDir') }).Count -gt 0 -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Paldean baseline V1 is audit-only with a new bounded directory and canonical499 target.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_paldean_alias_baseline_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($PaldeanAliasDiscoveryReleaseV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','PaldeanAliasDiscoveryReleaseV1','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261118000000') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261118000000') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Paldean release V1 requires the exact500 candidate, a new audit directory and the canonical499 baseline.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_paldean_alias_release_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($PrismaticAliasDiscoveryReleaseV5) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  $exactIds = '20261117220000'
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','PrismaticAliasDiscoveryReleaseV5','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne $exactIds) -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne $exactIds) -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Prismatic release V5 requires the exact forward guard, a new audit directory and the canonical target.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_prismatic_alias_release_v5.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($PrismaticAliasDiscoveryReleaseV4) {
+  if (Test-Path (Join-Path $PSScriptRoot 'schema/prismatic_alias_candidate_v5.json')) {
+    throw 'The production identity-query guard requires the V5 forward release scope.'
+  }
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  $exactIds = '20261117190000,20261117200000'
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','PrismaticAliasDiscoveryReleaseV4','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne $exactIds) -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne $exactIds) -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Prismatic release V4 requires both exact candidates and a new audit directory, with one release scope and the canonical target.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_prismatic_alias_release_v4.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($PrismaticAliasDiscoveryReleaseV3) {
+  if (Test-Path (Join-Path $PSScriptRoot 'schema/prismatic_alias_candidate_v4.json')) {
+    throw 'The free-text legacy set repair requires the complete V4 candidate pair.'
+  }
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','PrismaticAliasDiscoveryReleaseV3','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261117190000') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261117190000') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Prismatic release V3 requires the exact atomic candidate and a new audit directory, with one release scope and the canonical target.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_prismatic_alias_release_v3.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($PrismaticAliasDiscoveryBaselineV1 -or $PrismaticAliasDiscoveryBaselineV2) {
+  if (Test-Path (Join-Path $PSScriptRoot 'schema/prismatic_alias_candidate_v3.json')) {
+    throw 'The atomic Prismatic package requires its separately bounded V3 release scope.'
+  }
+  if ($Phase -ne 'AuditLinkedSchema' -or
+      ($PrismaticAliasDiscoveryBaselineV1 -and $PrismaticAliasDiscoveryBaselineV2) -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','PrismaticAliasDiscoveryBaselineV1','PrismaticAliasDiscoveryBaselineV2','AuditOutDir') }).Count -gt 0 -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Prismatic baseline admits read-only AuditLinkedSchema only; no PrePush, apply, target override, pending IDs, or combined modes.'
+  }
+  if ($PrismaticAliasDiscoveryBaselineV1 -and (Test-Path (Join-Path $PSScriptRoot 'schema/prismatic_alias_candidate_v2.json'))) {
+    throw 'The two-candidate forward repair requires the separately bounded Prismatic V2 baseline mode.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_prismatic_alias_baseline_v1.mjs') "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
 
 if ($SquareVaultRemovalReleaseV1) {
   $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)

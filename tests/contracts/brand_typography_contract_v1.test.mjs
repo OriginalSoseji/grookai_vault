@@ -33,8 +33,11 @@ test('web bundles the authored Roboto weights including real Black 900', () => {
 
 test('canonical lowercase wordmarks share Roboto Black on both responsive headers', () => {
   const brand = read('apps/web/src/components/brand/BrandText.tsx');
+  const vault = read('apps/web/src/components/vault/VaultCollectionView.tsx');
   assert.match(brand, /includeVault \? "grookai vault" : "grookai"/);
   assert.match(brand, /fontFamily: "var\(--font-roboto\), Roboto, sans-serif", fontWeight: 900/);
+  assert.match(vault, /import \{ BrandText \} from "@\/components\/brand\/BrandText"/);
+  assert.match(vault, /title=\{<BrandText includeVault \/>\}/);
   assert.match(read('apps/web/src/app/layout.tsx'), /applicationName: "grookai vault"/);
   for (const name of ['SiteHeader', 'DesktopApplicationShell']) {
     assert.match(read(`apps/web/src/components/layout/${name}.tsx`), /<BrandLockup\s*\/>/);

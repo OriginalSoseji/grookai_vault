@@ -1,0 +1,40 @@
+// Read-only canonical502 baseline for the bounded Pokemon GO discovery repair.
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {createRequire} from 'node:module';
+import {gzipSync,gunzipSync} from 'node:zlib';
+import {fileURLToPath} from 'node:url';
+import {reconcileKnownTableColumnOrderV1} from './column_order_reconciliation_v1.mjs';
+const root=fileURLToPath(new URL('../../',import.meta.url));
+const artifacts='C:/grookai_vault_operator_artifacts/pokemon_go_alias_discovery_20261118';
+const previous='C:/grookai_vault_operator_artifacts/paldean_alias_discovery_20261117';
+const [phase,arg,...extra]=process.argv.slice(2);assert.equal(phase,'AuditLinkedSchema');assert.equal(extra.length,0);assert.match(arg??'',/^--out-dir=/);
+const out=arg.slice(10).replaceAll('\\','/');assert.ok(out.startsWith(artifacts+'/baseline-'));assert.match(out.slice(artifacts.length+1),/^baseline-[a-z0-9-]{1,40}$/);assert.equal(fs.existsSync(out),false);fs.mkdirSync(out);
+const sha=b=>createHash('sha256').update(b).digest('hex'),read=p=>JSON.parse((p.endsWith('.gz')?gunzipSync(fs.readFileSync(p)):fs.readFileSync(p)).toString('utf8').replace(/^\uFEFF/,''));
+const binding=read(root+'/scripts/schema/pokemon_go_alias_baseline_binding_v1.json');assert.equal(binding.version,'POKEMON_GO_ALIAS_BASELINE_V1');assert.equal(binding.baselineMigrations,502);assert.equal(binding.project,'ycdxbpibncqcchqiihfz');assert.equal(sha(fs.readFileSync(previous+'/release-manifest-v3.json')),binding.parentReleaseManifestSha256);const ancestor=read(previous+'/release-manifest-v3.json');assert.deepEqual(binding.history,{...ancestor.history,...ancestor.candidates});assert.equal(Object.keys(binding.history).length,502);
+for(const[file,pin]of Object.entries(binding.history))assert.equal(sha(fs.readFileSync(root+'/supabase/migrations/'+file)),pin);
+const r=createRequire(root+'/package.json'),environment=r('dotenv').parse(fs.readFileSync(root+'/.env.local')),url=new URL(environment.SUPABASE_DB_URL),project=binding.project;
+assert.equal(environment.SUPABASE_URL,'https://'+project+'.supabase.co');assert.equal(fs.readFileSync(root+'/supabase/.temp/project-ref','utf8').trim(),project);assert.match(fs.readFileSync(root+'/supabase/config.toml','utf8'),/project_id = "ycdxbpibncqcchqiihfz"/);assert.ok(url.hostname==='db.'+project+'.supabase.co'||url.hostname.endsWith('.pooler.supabase.com')&&decodeURIComponent(url.username).includes(project));for(const key of['sslmode','sslrootcert','sslcert','sslkey'])url.searchParams.delete(key);
+const c=new(r('pg').Client)({connectionString:url.toString(),connectionTimeoutMillis:15000,application_name:'paldean-baseline-readonly',ssl:{rejectUnauthorized:true,ca:fs.readFileSync('C:/grookai_vault_operator_artifacts/square_sync_20261110/supabase-verified-ca-bundle.pem','utf8')}});
+const report={version:'POKEMON_GO_ALIAS_BASELINE_V1',phase,pass:false,productionWrites:0,startedAt:new Date().toISOString(),project};
+try{
+ await c.connect();await c.query('begin read only');await c.query("set local statement_timeout='30s'");
+ report.sanity=(await c.query("select jsonb_build_object('cards',(select count(*) from public.card_prints),'sets',(select count(*) from public.sets),'traits',(select count(*) from public.card_print_traits),'vaultProjection',(select count(*) from public.v_vault_items)) value")).rows[0].value;assert.ok(report.sanity.cards>=40000&&report.sanity.sets>=150&&report.sanity.traits>=5000);await c.query('rollback');
+ const snapshots={};for(const[name,file]of[['catalog','reviewed_intake_public_catalog_v1.sql'],['security','vendor_pricing_security_snapshot_v1.sql']]){const sql=fs.readFileSync(root+'/scripts/schema/'+file,'utf8');assert.match(sql,/^begin\b[^;]*\bread only;/i);const results=await c.query(sql);snapshots[name]=results.find(x=>x.rows?.[0]?.receipt)?.rows[0].receipt;assert.ok(snapshots[name]);fs.writeFileSync(out+'/'+name+'.private.json.gz',gzipSync(Buffer.from(JSON.stringify(snapshots[name]))),{flag:'wx'});}
+ assert.deepEqual(snapshots.catalog.LEDGER.map(x=>x.version),Object.keys(binding.history).sort().map(x=>x.match(/^\d+/)[0]));
+ const priorCatalog=read(previous+'/local-qualification-v3/fresh-catalog.private.json.gz'),priorSecurity=read(previous+'/local-qualification-v3/fresh-security.private.json.gz');assert.deepEqual(snapshots.security,priorSecurity);
+ const pgkit=createRequire('C:/gv_intake_recovery_20261027/package.json');for(const name of['schemainspect','migra','client'])assert.equal(pgkit('@pgkit/'+name+'/package.json').version,'0.6.1');const{PostgreSQL}=pgkit('@pgkit/schemainspect'),{Migration}=pgkit('@pgkit/migra');const queries=Object.entries(new PostgreSQL({},'17.6')).filter(([key])=>key.endsWith('_QUERY'));
+ async function inspect(s,schema){const map=new Map(queries.map(([k,q])=>[q,s[k]])),model=await PostgreSQL.create({oneFirst:async()=>s.server_version,any:async q=>map.get(q.sql)});model.one_schema(schema);for(const key of['types','domains','materialized_views','composite_types'])model[key]=Object.fromEntries(Object.entries(model[key]).filter(([,v])=>v.schema===schema));return model;}
+ for(const schema of['public','grookai_square','grookai_inventory','grookai_vendor_pricing']){const a=await inspect(priorCatalog,schema),b=await inspect(snapshots.catalog,schema);if(schema==='public')reconcileKnownTableColumnOrderV1(a,b);const d=await Migration.create(a,b,{schema});d.set_safety(false);d.add_all_changes(true);assert.equal(d.sql.trim(),'','Baseline drift in '+schema);}
+ await c.query('begin isolation level repeatable read read only');await c.query("set local statement_timeout='30s';select set_config('request.jwt.claims','{\"role\":\"anon\"}',true)");
+ const evidence=(await c.query(`select count(*)::int aliases,count(distinct a.canonical_card_print_id)::int distinct_targets,
+ array_agg(distinct a.created_from_audit) audits,array_agg(distinct a.authority_status) statuses,
+ array_agg(distinct a.authority_decision->>'classification_sha256') classification_hashes,
+ array_agg(distinct a.authority_decision->>'collision_matrix_sha256') collision_hashes
+ from public.card_print_identity_aliases a where a.legacy_set_code='swsh10.5' and a.canonical_set_code='pgo' and a.active and a.authority_status='approved'`)).rows[0];assert.equal(evidence.aliases,88);assert.equal(evidence.distinct_targets,88);
+ const counts=(await c.query("select set_code,count(*)::int parents from public.card_prints where set_code in('swsh10.5','pgo') group by set_code order by set_code")).rows;assert.deepEqual(counts,[{set_code:'pgo',parents:90},{set_code:'swsh10.5',parents:88}]);
+ const extras=(await c.query("select p.id,p.gv_id,p.name,p.number,p.variant_key,p.printed_identity_modifier,p.identity_domain from public.card_prints p where p.set_code='pgo' and not exists(select 1 from public.card_print_identity_aliases a where a.canonical_card_print_id=p.id and a.legacy_set_code='swsh10.5' and a.active and a.authority_status='approved') order by p.gv_id")).rows;assert.equal(extras.length,2);report.evidence={...evidence,counts,canonicalExtras:extras};await c.query('rollback');
+ const sdk=r('@supabase/supabase-js').createClient(environment.SUPABASE_URL,environment.SUPABASE_PUBLISHABLE_KEY,{auth:{persistSession:false,autoRefreshToken:false}});const catalog=await sdk.rpc('get_public_catalog_sets_v2',{p_game_code:'pokemon'});assert.ifError(catalog.error);report.publicCatalog=catalog.data.filter(x=>['swsh10.5','pgo','sv08.5','sv8pt5'].includes(x.code)).map(x=>({code:x.code,parents:Number(x.card_count)}));
+ report.pass=true;report.migrations=502;report.remainingSqlBytes=0;report.securityExact=true;report.allAppliedSourceBytesExact=true;
+}catch(error){report.error=error.message;process.exitCode=1;}finally{await c.end().catch(()=>{});report.finishedAt=new Date().toISOString();fs.writeFileSync(out+'/qualification.json',JSON.stringify(report,null,2)+'\n',{flag:'wx'});console.log(JSON.stringify(report));}

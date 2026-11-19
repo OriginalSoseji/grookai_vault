@@ -200,6 +200,8 @@ export default function SellerWorkspace({ actorId, instanceId, draftId: selected
   }
   const account = workspace?.account;
   const copy = workspace?.copy;
+  const recentDrafts = workspace?.drafts.filter(item => item.state !== 'abandoned') ?? [];
+  const discardedDrafts = workspace?.drafts.filter(item => item.state === 'abandoned') ?? [];
   const input = local?.input;
   const editable = !copy?.isArchived && (!draft || draft.state === 'editing');
   const prepared = draft?.state === 'prepared';
@@ -220,7 +222,13 @@ export default function SellerWorkspace({ actorId, instanceId, draftId: selected
         location.assign(url.href);
       })}>Connect eBay<ArrowUpRight size={15} /></button>}</div>}
     {account && !account.linkingEnabled && <p className={s.status}>eBay seller listings aren’t available yet. Active and sold searches remain available from your card details.</p>}
-    {!copy && workspace && <section><h2>Recent listings</h2><p className={s.muted}>Choose an exact copy from your Vault to start a listing.</p><div className={s.drafts}>{workspace.drafts.map(item => <Link className={s.draftLink} href={`/vault/ebay?draftId=${item.id}`} key={item.id}><div>{item.title ?? 'Listing draft'}<small>{stateLabel(item.state)}</small></div><ArrowUpRight size={16} /></Link>)}</div></section>}
+    {!copy && workspace && <section><h2>Recent listings</h2><p className={s.muted}>Choose an exact copy from your Vault to start a listing.</p>
+      <div className={s.drafts}>{recentDrafts.map(item => <Link className={s.draftLink} href={`/vault/ebay?draftId=${item.id}`} key={item.id}><div>{item.title ?? 'Listing draft'}<small>{stateLabel(item.state)}</small></div><ArrowUpRight size={16} /></Link>)}</div>
+      {discardedDrafts.length > 0 && <details className={s.discarded}>
+        <summary className={s.discardedSummary}>Discarded drafts <span className={s.discardedCount}>{discardedDrafts.length}</span></summary>
+        <div className={s.drafts}>{discardedDrafts.map(item => <Link className={s.draftLink} href={`/vault/ebay?draftId=${item.id}`} key={item.id}><div>{item.title ?? 'Listing draft'}<small>{stateLabel(item.state)}</small></div><ArrowUpRight size={16} /></Link>)}</div>
+      </details>}
+    </section>}
     {copy && input && <><div className={s.copy}><span className={s.copyIcon}>{!referenceImageFailed && copy.gvId
       ? <Image src={`/api/canon/cards/${encodeURIComponent(copy.gvId)}/image`} alt={`${copy.name} catalog reference`} width={64} height={90} unoptimized onError={() => setReferenceImageFailed(true)} />
       : <Package size={23} />}</span><div><strong>{copy.name}</strong><small>{copy.setCode} · {copy.number} · {copy.isGraded ? `${copy.grader ?? 'Graded'} ${copy.grade ?? ''}` : copy.condition ?? 'Condition unknown'}</small><small>{copy.gvviId} · {draft ? stateLabel(draft.state) : 'New draft'}</small></div></div>

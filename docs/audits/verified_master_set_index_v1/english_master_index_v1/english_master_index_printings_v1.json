@@ -1,6 +1,6 @@
 {
   "version": "ENGLISH_MASTER_INDEX_PRINTINGS_V1",
-  "generated_at": "2026-11-14T10:50:24.819Z",
+  "generated_at": "2026-11-18T12:08:34.255Z",
   "audit_only": true,
   "db_writes": false,
   "evidence_storage": "compact_evidence_urls_only",
@@ -442139,23 +442139,35 @@
       "rarity_values": [
         "Common"
       ],
-      "source_count": 3,
+      "source_count": 5,
       "sources": [
+        "pokemontcg_api",
         "reverseholo_set_checklist",
         "tcgdex",
+        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
+        "api.pokemontcg.io",
         "reverseholo.app",
         "api.tcgdex.net",
+        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
+        "structured_api",
         "collector_reference",
         "structured_api",
+        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
+        {
+          "source_key": "pokemontcg_api",
+          "source_authority": "api.pokemontcg.io",
+          "source_kind": "structured_api",
+          "source_url": "https://api.pokemontcg.io/v2/cards/ecard1-128"
+        },
         {
           "source_key": "reverseholo_set_checklist",
           "source_authority": "reverseholo.app",
@@ -442169,16 +442181,24 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/ecard1-128"
         },
         {
+          "source_key": "tcgplayer_price_guide",
+          "source_authority": "tcgplayer.com",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://prices.pokemontcg.io/tcgplayer/ecard1-128"
+        },
+        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/ecard1/expedition-base-set/price-list"
         }
       ],
-      "evidence_count": 3,
+      "evidence_count": 5,
       "evidence_urls": [
+        "https://api.pokemontcg.io/v2/cards/ecard1-128",
         "https://reverseholo.app/sets/ecard1",
         "https://api.tcgdex.net/v2/en/cards/ecard1-128",
+        "https://prices.pokemontcg.io/tcgplayer/ecard1-128",
         "https://www.thepricedex.com/set/ecard1/expedition-base-set/price-list"
       ]
     },
@@ -587180,26 +587200,23 @@
         "Rare",
         "Rare Holo Star"
       ],
-      "source_count": 5,
+      "source_count": 4,
       "sources": [
         "pokemontcg_api",
         "reverseholo_set_checklist",
         "tcgdex",
-        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "reverseholo.app",
         "api.tcgdex.net",
-        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "collector_reference",
         "structured_api",
-        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -587222,24 +587239,17 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/ex15-100"
         },
         {
-          "source_key": "tcgplayer_price_guide",
-          "source_authority": "tcgplayer.com",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://prices.pokemontcg.io/tcgplayer/ex15-100"
-        },
-        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/ex15/dragon-frontiers/price-list"
         }
       ],
-      "evidence_count": 5,
+      "evidence_count": 4,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/ex15-100",
         "https://reverseholo.app/sets/ex15",
         "https://api.tcgdex.net/v2/en/cards/ex15-100",
-        "https://prices.pokemontcg.io/tcgplayer/ex15-100",
         "https://www.thepricedex.com/set/ex15/dragon-frontiers/price-list"
       ]
     },
@@ -587256,26 +587266,23 @@
         "Rare",
         "Rare Holo Star"
       ],
-      "source_count": 5,
+      "source_count": 4,
       "sources": [
         "pokemontcg_api",
         "reverseholo_set_checklist",
         "tcgdex",
-        "tcgplayer_price_guide",
         "thepricedex_price_list"
       ],
       "source_authorities": [
         "api.pokemontcg.io",
         "reverseholo.app",
         "api.tcgdex.net",
-        "tcgplayer.com",
         "thepricedex.com"
       ],
       "source_kinds": [
         "structured_api",
         "collector_reference",
         "structured_api",
-        "marketplace_checklist",
         "marketplace_checklist"
       ],
       "source_evidence": [
@@ -587298,24 +587305,17 @@
           "source_url": "https://api.tcgdex.net/v2/en/cards/ex15-101"
         },
         {
-          "source_key": "tcgplayer_price_guide",
-          "source_authority": "tcgplayer.com",
-          "source_kind": "marketplace_checklist",
-          "source_url": "https://prices.pokemontcg.io/tcgplayer/ex15-101"
-        },
-        {
           "source_key": "thepricedex_price_list",
           "source_authority": "thepricedex.com",
           "source_kind": "marketplace_checklist",
           "source_url": "https://www.thepricedex.com/set/ex15/dragon-frontiers/price-list"
         }
       ],
-      "evidence_count": 5,
+      "evidence_count": 4,
       "evidence_urls": [
         "https://api.pokemontcg.io/v2/cards/ex15-101",
         "https://reverseholo.app/sets/ex15",
         "https://api.tcgdex.net/v2/en/cards/ex15-101",
-        "https://prices.pokemontcg.io/tcgplayer/ex15-101",
         "https://www.thepricedex.com/set/ex15/dragon-frontiers/price-list"
       ]
     },
@@ -2512323,6 +2512323,41 @@
       "evidence_count": 1,
       "evidence_urls": [
         "https://www.thepricedex.com/set/mep/mep-black-star-promos/price-list"
+      ]
+    },
+    {
+      "fact_type": "printing_finish",
+      "key": "delta reign|75|kommo o|holo",
+      "status": "human_source_verified",
+      "set_key": "me06",
+      "set_name": "Delta Reign",
+      "card_number": "75",
+      "card_name": "Kommo-o",
+      "finish_key": "holo",
+      "rarity_values": [
+        "Rare"
+      ],
+      "source_count": 1,
+      "sources": [
+        "thepricedex_price_list"
+      ],
+      "source_authorities": [
+        "thepricedex.com"
+      ],
+      "source_kinds": [
+        "marketplace_checklist"
+      ],
+      "source_evidence": [
+        {
+          "source_key": "thepricedex_price_list",
+          "source_authority": "thepricedex.com",
+          "source_kind": "marketplace_checklist",
+          "source_url": "https://www.thepricedex.com/set/me6/delta-reign/price-list"
+        }
+      ],
+      "evidence_count": 1,
+      "evidence_urls": [
+        "https://www.thepricedex.com/set/me6/delta-reign/price-list"
       ]
     },
     {

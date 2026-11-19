@@ -4779,6 +4779,11 @@ class HomePageState extends State<HomePage> {
               cardPrintingId: selectedPrintingId,
             );
             if (!mounted || gvviId == null || gvviId.isEmpty) {
+              // The review can close without saving. Refresh the drawer's
+              // busy props after the parent add operation clears its lock.
+              if (sheetContext.mounted) {
+                setSheetState(() {});
+              }
               return;
             }
 

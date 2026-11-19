@@ -13,8 +13,16 @@ import '../../screens/gvvi/vendor_pricing_rules_screen.dart';
 import '../../services/gvvi/vendor_pricing_rules_service.dart';
 import '../../services/printing/p21_label.dart';
 import '../../screens/printing/identity_label_print_screen.dart';
+import '../../services/identity/display_identity.dart';
+import '../../services/public/public_card_printing_options_service.dart';
+import '../card_surface_artwork.dart';
+import 'sale_workflow_progress.dart';
 
-Future<bool> showVaultCopySaleSheet(BuildContext context, String gvviId) async {
+Future<bool> showVaultCopySaleSheet(
+  BuildContext context,
+  String gvviId, {
+  VoidCallback? onAddAnother,
+}) async {
   final data = await VaultGvviService.loadPrivate(
     client: Supabase.instance.client,
     gvviId: gvviId,
@@ -25,6 +33,33 @@ Future<bool> showVaultCopySaleSheet(BuildContext context, String gvviId) async {
       'Reload this copy from your Vault before setting its sale price.',
     );
   }
+  Future<String?> finishLabel() async {
+    if (data.cardPrintingId == null) return 'Finish not recorded';
+    try {
+      final rows = await PublicCardPrintingOptionsService.fetch(
+        client: Supabase.instance.client,
+        cardPrintIds: [data.cardPrintId],
+      ).timeout(const Duration(seconds: 12));
+      final row = rows
+          .where(
+            (row) =>
+                row['id'] == data.cardPrintingId &&
+                row['card_print_id'] == data.cardPrintId,
+          )
+          .firstOrNull;
+      return row == null
+          ? 'Finish unavailable'
+          : formatFinishLabel(
+                  finishKey: row['finish_key'] as String?,
+                  finishLabel: row['finish_label'] as String?,
+                ) ??
+                'Finish unavailable';
+    } catch (_) {
+      return 'Finish unavailable';
+    }
+  }
+
+  final copyFinishLabel = finishLabel();
   var committed = false;
   return await showModalBottomSheet<bool>(
         context: context,
@@ -34,7 +69,20 @@ Future<bool> showVaultCopySaleSheet(BuildContext context, String gvviId) async {
         enableDrag: false,
         builder: (_) => VaultCopySaleSheet(
           onSaved: () => committed = true,
+          onAddAnother: onAddAnother,
           cardName: data.cardName,
+          setName: data.canonicalSetName,
+          cardNumber: data.number,
+          imageUrl: data.primaryImageUrl,
+          fallbackImageUrl: data.fallbackImageUrl,
+          printingLabelFuture: copyFinishLabel,
+          gradeLabel: data.isGraded
+              ? [
+                  data.grader ?? 'Graded',
+                  data.grade,
+                ].whereType<String>().join(' ')
+              : null,
+          initiallyPrivate: data.intent == 'hold',
           labelContent: P21LabelContent(
             title: data.cardName,
             setName: data.canonicalSetName ?? '',
@@ -66,15 +114,30 @@ class VaultCopySaleSheet extends StatefulWidget {
     required this.copy,
     this.service,
     this.onSaved,
+    this.onAddAnother,
     this.pricingService,
     this.labelContent,
+    this.setName,
+    this.cardNumber,
+    this.imageUrl,
+    this.fallbackImageUrl,
+    this.printingLabelFuture,
+    this.gradeLabel,
+    this.initiallyPrivate = true,
   });
   final String cardName;
   final SaleListingCopyContext copy;
   final SaleListingService? service;
   final VoidCallback? onSaved;
+
+  /// An enclosing intake flow owns navigation until its own sheet has closed.
+  final VoidCallback? onAddAnother;
   final VendorPricingRulesService? pricingService;
   final P21LabelContent? labelContent;
+  final String? setName, cardNumber, imageUrl, fallbackImageUrl;
+  final Future<String?>? printingLabelFuture;
+  final String? gradeLabel;
+  final bool initiallyPrivate;
   @override
   State<VaultCopySaleSheet> createState() => _VaultCopySaleSheetState();
 }
@@ -86,7 +149,9 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet>
   );
   final _focus = FocusNode();
   bool _busy = false, _saved = false, _committed = false;
+  bool _saveUncertain = false;
   String? _error, _squareStatus;
+  double? _confirmedPrice;
   Map<String, dynamic>? _pricing, _quote;
   String _selection = 'manual';
   bool _quoting = false;
@@ -244,7 +309,7 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet>
   }
 
   Future<void> _save() async {
-    if (_busy || _pricingConflict) return;
+    if (_busy || _pricingConflict || _saveUncertain) return;
     final raw = _price.text.trim();
     final price = double.tryParse(raw);
     if (_selection == 'manual' &&
@@ -269,6 +334,7 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet>
     try {
       final copy = widget.copy;
       String squareStatus;
+      double? confirmedPrice;
       if (_selection != 'manual') {
         squareStatus = await _pricingService.apply(
           instanceId: copy.instanceId,
@@ -288,15 +354,23 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet>
               waitForSquareConfirmation: true,
             );
         squareStatus = result.squareStatus;
+        confirmedPrice = result.price;
       }
       _edited = false;
       _pricingCurrent = false;
       final pricingRefreshed = !_usesPricing || await _loadPricing();
+      if (_selection != 'manual' && pricingRefreshed) {
+        confirmedPrice =
+            ((_pricing?['copy'] as Map?)?['resolved_minor'] as num?)
+                ?.toDouble();
+        if (confirmedPrice != null) confirmedPrice /= 100;
+      }
       if (mounted) {
         setState(() {
           _saved = true;
           _committed = true;
           _squareStatus = squareStatus;
+          _confirmedPrice = confirmedPrice;
           if (!pricingRefreshed) {
             _error =
                 'Sale saved. Close this sheet and reload the copy before changing its pricing again.';
@@ -306,10 +380,11 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet>
       }
     } catch (_) {
       if (mounted) {
-        setState(
-          () => _error =
-              'The save could not be confirmed. Close this sheet and reload the copy before retrying.',
-        );
+        setState(() {
+          _saveUncertain = true;
+          _error =
+              'The save could not be confirmed. Close this sheet and reload the copy before retrying.';
+        });
       }
     } finally {
       if (mounted) setState(() => _busy = false);
@@ -338,7 +413,7 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet>
                 children: [
                   Expanded(
                     child: Text(
-                      'Sell this copy',
+                      _saved ? 'Saved for sale' : 'Review this copy',
                       style: theme.textTheme.titleLarge,
                     ),
                   ),
@@ -351,131 +426,219 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet>
                   ),
                 ],
               ),
-              Text(widget.cardName, style: theme.textTheme.titleMedium),
-              Text(widget.copy.gvviId, style: theme.textTheme.bodySmall),
-              const SizedBox(height: 12),
-              const Text(
-                'Saving makes this exact copy public and For sale. Square syncs it automatically when automatic stock is enabled for your account.',
+              SaleWorkflowProgress(
+                step: _busy
+                    ? 1
+                    : _saved
+                    ? 2
+                    : 0,
               ),
-              const SizedBox(height: 16),
-              if (_pricing != null) ...[
-                DropdownButtonFormField<String>(
-                  key: ValueKey('copy-pricing-$_selection'),
-                  initialValue: _selection,
-                  isExpanded: true,
-                  decoration: const InputDecoration(labelText: 'Pricing'),
-                  items: [
-                    const DropdownMenuItem(
-                      value: 'manual',
-                      child: Text('My price · fixed'),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (widget.imageUrl != null) ...[
+                    CardSurfaceArtwork(
+                      label: widget.cardName,
+                      imageUrl: widget.imageUrl,
+                      fallbackImageUrl: widget.fallbackImageUrl,
+                      width: 64,
+                      height: 92,
+                      borderRadius: 10,
+                      showShadow: false,
+                      enableTapToZoom: false,
                     ),
-                    DropdownMenuItem(
-                      value: 'default',
-                      enabled:
-                          _pricingCurrent &&
-                          _pricing!['enabled'] == true &&
-                          (_pricing!['settings'] as Map)['default_rule_id'] !=
-                              null,
-                      child: const Text('Vendor default · automatic'),
+                    const SizedBox(width: 14),
+                  ],
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          widget.cardName,
+                          style: theme.textTheme.titleMedium,
+                        ),
+                        if (widget.printingLabelFuture != null)
+                          FutureBuilder<String?>(
+                            future: widget.printingLabelFuture,
+                            builder: (_, snapshot) => Text(
+                              snapshot.connectionState == ConnectionState.done
+                                  ? snapshot.data ?? 'Finish unavailable'
+                                  : 'Checking finish…',
+                              style: theme.textTheme.bodySmall,
+                            ),
+                          ),
+                        if (widget.setName?.trim().isNotEmpty == true)
+                          Text(
+                            [
+                              widget.setName!,
+                              if (widget.cardNumber?.isNotEmpty == true)
+                                '#${widget.cardNumber}',
+                            ].join(' · '),
+                          ),
+                        Text(
+                          widget.gradeLabel ??
+                              widget.copy.conditionLabel ??
+                              'Condition not set',
+                          style: theme.textTheme.bodySmall,
+                        ),
+                      ],
                     ),
-                    ...((_pricing!['rules'] as List?) ?? []).map(
-                      (r) => DropdownMenuItem(
-                        value: r['id'] as String,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Text(widget.copy.gvviId, style: theme.textTheme.bodySmall),
+              if (!_saved) ...[
+                const SizedBox(height: 12),
+                const Text(
+                  'Review your price, then publish this exact copy. Publishing makes it public and For sale.',
+                ),
+                const SizedBox(height: 16),
+                if (_pricing != null) ...[
+                  DropdownButtonFormField<String>(
+                    key: ValueKey('copy-pricing-$_selection'),
+                    initialValue: _selection,
+                    isExpanded: true,
+                    decoration: const InputDecoration(labelText: 'Pricing'),
+                    items: [
+                      const DropdownMenuItem(
+                        value: 'manual',
+                        child: Text('My price · fixed'),
+                      ),
+                      DropdownMenuItem(
+                        value: 'default',
                         enabled:
-                            _pricingCurrent && _pricing!['enabled'] == true,
-                        child: Text('${r['name']} · automatic'),
+                            _pricingCurrent &&
+                            _pricing!['enabled'] == true &&
+                            (_pricing!['settings'] as Map)['default_rule_id'] !=
+                                null,
+                        child: const Text('Vendor default · automatic'),
+                      ),
+                      ...((_pricing!['rules'] as List?) ?? []).map(
+                        (r) => DropdownMenuItem(
+                          value: r['id'] as String,
+                          enabled:
+                              _pricingCurrent && _pricing!['enabled'] == true,
+                          child: Text('${r['name']} · automatic'),
+                        ),
+                      ),
+                    ],
+                    onChanged: _busy || _saveUncertain
+                        ? null
+                        : (v) {
+                            setState(() {
+                              _edited = true;
+                              _selection = v!;
+                              _saved = false;
+                              _squareStatus = null;
+                              if (!_pricingConflict) _error = null;
+                            });
+                            _preview();
+                          },
+                  ),
+                  TextButton(
+                    onPressed: _busy
+                        ? null
+                        : () async {
+                            await Navigator.of(context).push(
+                              MaterialPageRoute<void>(
+                                builder: (_) => VendorPricingRulesScreen(
+                                  service: _pricingService,
+                                ),
+                              ),
+                            );
+                            if (mounted) await _loadPricing();
+                          },
+                    child: const Text('Manage pricing rules'),
+                  ),
+                ],
+                if (_selection == 'manual')
+                  TextField(
+                    controller: _price,
+                    focusNode: _focus,
+                    enabled: !_busy && !_saveUncertain,
+                    keyboardType: const TextInputType.numberWithOptions(
+                      decimal: true,
+                    ),
+                    textInputAction: TextInputAction.done,
+                    decoration: InputDecoration(
+                      labelText: 'Asking price · USD',
+                      prefixText: r'$',
+                      errorText: _error,
+                      errorMaxLines: 4,
+                    ),
+                    onChanged: (_) => setState(() {
+                      _edited = true;
+                      _saved = false;
+                      _squareStatus = null;
+                      if (!_pricingConflict) _error = null;
+                    }),
+                    onSubmitted: (_) => _focus.unfocus(),
+                  ),
+                if (_selection != 'manual')
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    child: Semantics(
+                      liveRegion: true,
+                      child: Text(
+                        _pricing?['enabled'] != true
+                            ? 'Automatic repricing is paused. Your last confirmed asking price is retained.'
+                            : _quoting && _quote == null
+                            ? 'Checking fresh market…'
+                            : _quote?['status'] == 'ready'
+                            ? '\$${((_quote!['amountMinor'] as num) / 100).toStringAsFixed(2)} · ${_quote!['ruleName']}. Updates automatically.'
+                            : _quote?['reason'] as String? ??
+                                  'Choose a pricing rule.',
                       ),
                     ),
-                  ],
-                  onChanged: _busy
+                  ),
+                if (_selection != 'manual' && _error != null)
+                  Text(
+                    _error!,
+                    style: TextStyle(color: theme.colorScheme.error),
+                  ),
+                const SizedBox(height: 16),
+                FilledButton(
+                  onPressed:
+                      _busy ||
+                          _saveUncertain ||
+                          _pricingConflict ||
+                          (_selection != 'manual' &&
+                              (!_pricingCurrent ||
+                                  _quoting ||
+                                  _quote?['status'] != 'ready' ||
+                                  _pricing?['enabled'] != true))
                       ? null
-                      : (v) {
-                          setState(() {
-                            _edited = true;
-                            _selection = v!;
-                            _saved = false;
-                            _squareStatus = null;
-                            if (!_pricingConflict) _error = null;
-                          });
-                          _preview();
-                        },
+                      : _save,
+                  child: Text(
+                    _busy ? 'Saving and syncing…' : 'Make public and For sale',
+                  ),
                 ),
                 TextButton(
                   onPressed: _busy
                       ? null
-                      : () async {
-                          await Navigator.of(context).push(
-                            MaterialPageRoute<void>(
-                              builder: (_) => VendorPricingRulesScreen(
-                                service: _pricingService,
-                              ),
-                            ),
-                          );
-                          if (mounted) await _loadPricing();
-                        },
-                  child: const Text('Manage pricing rules'),
+                      : () => Navigator.pop(context, _committed),
+                  child: Text(
+                    _saveUncertain
+                        ? 'Close editor'
+                        : !widget.initiallyPrivate || _committed
+                        ? 'Cancel changes'
+                        : 'Keep private',
+                  ),
                 ),
               ],
-              if (_selection == 'manual')
-                TextField(
-                  controller: _price,
-                  focusNode: _focus,
-                  enabled: !_busy,
-                  keyboardType: const TextInputType.numberWithOptions(
-                    decimal: true,
-                  ),
-                  textInputAction: TextInputAction.done,
-                  decoration: InputDecoration(
-                    labelText: 'Asking price · USD',
-                    prefixText: r'$',
-                    errorText: _error,
-                    errorMaxLines: 4,
-                  ),
-                  onChanged: (_) => setState(() {
-                    _edited = true;
-                    _saved = false;
-                    _squareStatus = null;
-                    if (!_pricingConflict) _error = null;
-                  }),
-                  onSubmitted: (_) => _save(),
-                ),
-              if (_selection != 'manual')
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 12),
-                  child: Semantics(
-                    liveRegion: true,
-                    child: Text(
-                      _pricing?['enabled'] != true
-                          ? 'Automatic repricing is paused. Your last confirmed asking price is retained.'
-                          : _quoting && _quote == null
-                          ? 'Checking fresh market…'
-                          : _quote?['status'] == 'ready'
-                          ? '\$${((_quote!['amountMinor'] as num) / 100).toStringAsFixed(2)} · ${_quote!['ruleName']}. Updates automatically.'
-                          : _quote?['reason'] as String? ??
-                                'Choose a pricing rule.',
-                    ),
-                  ),
-                ),
-              if (_selection != 'manual' && _error != null)
-                Text(_error!, style: TextStyle(color: theme.colorScheme.error)),
-              const SizedBox(height: 16),
-              FilledButton(
-                onPressed:
-                    _busy ||
-                        _pricingConflict ||
-                        (_selection != 'manual' &&
-                            (!_pricingCurrent ||
-                                _quoting ||
-                                _quote?['status'] != 'ready' ||
-                                _pricing?['enabled'] != true))
-                    ? null
-                    : _save,
-                child: Text(
-                  _busy ? 'Saving and syncing…' : 'Make public and For sale',
-                ),
-              ),
               if (_saved) ...[
                 const SizedBox(height: 16),
+                if (_confirmedPrice != null)
+                  Text(
+                    '\$${_confirmedPrice!.toStringAsFixed(2)}',
+                    style: theme.textTheme.headlineMedium,
+                  ),
+                if (_error != null)
+                  Text(
+                    _error!,
+                    style: TextStyle(color: theme.colorScheme.error),
+                  ),
                 Semantics(
                   liveRegion: true,
                   child: Text(switch (_squareStatus) {
@@ -484,11 +647,27 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet>
                       'For sale saved. Square is still syncing. Wait for confirmation before checkout.',
                     'review' =>
                       'For sale saved. Square needs attention before checkout.',
+                    'not_enabled' =>
+                      'For sale saved. Automatic Square sales is not enabled.',
                     _ =>
                       'For sale saved. Your profile and sharing settings still apply.',
                   }),
                 ),
-                if (_squareStatus == 'pending' || _squareStatus == 'review')
+                const SizedBox(height: 8),
+                if (_selection != 'manual' && _quote?['status'] == 'ready')
+                  Text(
+                    'Current rule preview: \$${((_quote!['amountMinor'] as num) / 100).toStringAsFixed(2)}',
+                    style: theme.textTheme.bodySmall,
+                  ),
+                Text(
+                  _selection == 'manual'
+                      ? 'My price · fixed'
+                      : 'Automatic pricing · ${_quote?['ruleName'] ?? 'Saved rule'}',
+                  style: theme.textTheme.bodySmall,
+                ),
+                if (_squareStatus == 'pending' ||
+                    _squareStatus == 'review' ||
+                    _squareStatus == 'not_enabled')
                   TextButton(
                     onPressed: () async {
                       _focus.unfocus();
@@ -515,7 +694,7 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet>
                 ),
                 const SizedBox(height: 12),
                 if (widget.labelContent != null)
-                  OutlinedButton.icon(
+                  FilledButton.icon(
                     onPressed: () => Navigator.of(context).push(
                       MaterialPageRoute<void>(
                         builder: (_) => IdentityLabelPrintScreen(
@@ -526,6 +705,24 @@ class _VaultCopySaleSheetState extends State<VaultCopySaleSheet>
                     icon: const Icon(Icons.print_outlined),
                     label: const Text('Print label'),
                   ),
+                TextButton(
+                  onPressed:
+                      _pricingConflict || !_pricingCurrent && _usesPricing
+                      ? null
+                      : () => setState(() => _saved = false),
+                  child: const Text('Edit price'),
+                ),
+                OutlinedButton(
+                  onPressed: () {
+                    final navigator = Navigator.of(context);
+                    widget.onAddAnother?.call();
+                    navigator.pop(true);
+                    if (widget.onAddAnother == null) {
+                      unawaited(navigator.pushNamed('/search', arguments: ''));
+                    }
+                  },
+                  child: const Text('Add another card'),
+                ),
                 OutlinedButton(
                   onPressed: () => Navigator.pop(context, true),
                   child: const Text('Done'),

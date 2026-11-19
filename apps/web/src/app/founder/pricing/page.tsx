@@ -50,6 +50,7 @@ export default async function FounderPricingPage(props: FounderPricingPageProps)
           }
         />
       </section>
+      <Link href="/founder/pricing/conditions" className="gv-secondary-button">Preview condition pricing</Link>
       <FounderGovernedPricingPlatformDetail
         summary={summary}
         trace={trace}

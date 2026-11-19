@@ -6,6 +6,7 @@ import ExploreResultEvidence from "@/components/explore/ExploreResultEvidence";
 import PokemonCardGridTile from "@/components/cards/PokemonCardGridTile";
 import PromotionTransitionNote from "@/components/provisional/PromotionTransitionNote";
 import VariantBadge from "@/components/cards/VariantBadge";
+import PlayableBadge from "@/components/cards/PlayableBadge";
 import VisiblePrice from "@/components/pricing/VisiblePrice";
 import { getCardImageAltText, resolveCardImagePresentation } from "@/lib/cards/resolveCardImagePresentation";
 import {
@@ -95,6 +96,7 @@ export default function ExploreCardGridItem({ card, href, mode, canViewPricing, 
       }
       badges={
         <>
+          <PlayableBadge signal={card.playable} />
           {primaryFinishLabel ? (
             <VariantBadge key={`${card.gv_id}-${primaryFinishLabel}`} label={primaryFinishLabel} tone="selected" />
           ) : null}

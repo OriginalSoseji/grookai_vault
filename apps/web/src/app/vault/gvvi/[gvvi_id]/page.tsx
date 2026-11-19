@@ -212,6 +212,7 @@ export default async function VaultInstancePage(
 
       {isActive && <VaultCopySaleCard instanceId={detail.instanceId} intent={detail.intent}
         amount={detail.askingPriceAmount} currency={detail.askingPriceCurrency}
+        cardName={detail.cardName} setName={detail.setName} number={detail.number} returnHref={returnContext.href}
         qrHref={canManageVendorQr ? `/vault/gvvi/${encodeURIComponent(detail.gvviId)}/qr` : null} />}
 
       <section className="border-y border-slate-200/80 py-5" aria-labelledby="manage-copy-title">
@@ -233,6 +234,7 @@ export default async function VaultInstancePage(
               instanceId={detail.instanceId}
               initialIntent={detail.intent}
               initialConditionLabel={detail.conditionLabel}
+              cardPrintingId={detail.cardPrintingId}
               initialImageDisplayMode={detail.imageDisplayMode}
               isActive={isActive}
               isGraded={detail.isGraded}

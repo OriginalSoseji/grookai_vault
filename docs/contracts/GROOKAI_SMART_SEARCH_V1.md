@@ -49,6 +49,7 @@ In scope:
 - Ownership-aware filters where supported
 - Finish, variant, stamp, set, year, species, artist, image-status filters where supported by DB fields
 - Special-case identity families already present in Grookai canon, including retailer stamps, event stamps, recognized errors, first-edition/shadowless/red-cheeks/yellow-cheeks lanes, product lanes, and governed miscellaneous promos
+- `playable` / `playables`, compiled to a typed `playable: true` constraint backed by the current Pokémon Standard usage engine. Apply the positive canonical ID scope before ranking and result limits. Missing or expired output must never fall back to unrestricted results. This November 18 addition follows the owner's simplified V1 direction in POKEMON_PLAYABLES_ENGINE_CONTRACT_V1.
 
 Out of scope for V1:
 
@@ -107,6 +108,7 @@ Allowed V1 filters:
   "release_year_min": 1999,
   "release_year_max": 2026,
   "owned_state": "owned | missing | any",
+  "playable": true,
   "image_state": "exact | representative | missing | any",
   "artist": ["string"],
   "domain": "pokemon_eng_physical",

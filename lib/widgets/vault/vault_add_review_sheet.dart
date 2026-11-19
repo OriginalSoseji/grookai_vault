@@ -11,6 +11,24 @@ import '../../services/public/jungle_edition_resolution_service.dart';
 import 'vault_printing_picker.dart';
 import 'vault_copy_sale_sheet.dart';
 import '../../screens/vault/slab_upgrade_screen.dart';
+import '../../services/pricing/condition_price_service.dart';
+import '../pricing/condition_price_panel.dart';
+
+/// Keeps the caller's post-add navigation behind an explicitly requested search.
+/// The intake modal must finish first; neither nested sheet pushes over it.
+class VaultAddReviewNavigation {
+  bool _addAnother = false;
+  void addAnother() => _addAnother = true;
+
+  Future<String?> complete(BuildContext context, Future<String?> review) async {
+    final navigator = Navigator.of(context);
+    final result = await review;
+    if (_addAnother && context.mounted) {
+      await navigator.pushNamed('/search', arguments: '');
+    }
+    return result;
+  }
+}
 
 Future<String?> showVaultAddReview({
   required BuildContext context,
@@ -35,21 +53,26 @@ Future<String?> showVaultAddReview({
     cardPrintId,
   )).assertSelection(cardPrintId, printing.id);
   if (!context.mounted) return null;
-  return showModalBottomSheet<String>(
-    context: context,
-    showDragHandle: true,
-    isScrollControlled: true,
-    isDismissible: false,
-    enableDrag: false,
-    builder: (_) => VaultAddReviewSheet(
-      service: service,
-      cardPrintId: cardPrintId,
-      gvId: gvId,
-      name: name,
-      setName: setName,
-      printingId: printing.id,
-      finish: printing.label,
-      imageUrl: imageUrl,
+  final navigation = VaultAddReviewNavigation();
+  return navigation.complete(
+    context,
+    showModalBottomSheet<String>(
+      context: context,
+      showDragHandle: true,
+      isScrollControlled: true,
+      isDismissible: false,
+      enableDrag: false,
+      builder: (_) => VaultAddReviewSheet(
+        service: service,
+        cardPrintId: cardPrintId,
+        gvId: gvId,
+        name: name,
+        setName: setName,
+        printingId: printing.id,
+        finish: printing.label,
+        imageUrl: imageUrl,
+        onAddAnother: navigation.addAnother,
+      ),
     ),
   );
 }
@@ -67,11 +90,15 @@ class VaultAddReviewSheet extends StatefulWidget {
     this.imageUrl,
     this.service,
     this.initialAcquiredOn,
+    this.onAddAnother,
+    this.conditionPriceReader,
   });
   final String cardPrintId, gvId, name, setName, printingId, finish;
   final String? imageUrl;
   final IntakeService? service;
   final DateTime? initialAcquiredOn;
+  final VoidCallback? onAddAnother;
+  final ConditionPriceReaderFactory? conditionPriceReader;
   @override
   State<VaultAddReviewSheet> createState() => _VaultAddReviewSheetState();
 }
@@ -177,7 +204,11 @@ class _VaultAddReviewSheetState extends State<VaultAddReviewSheet> {
       }
       if (!mounted) return;
       if (prepareSale && !_graded && ids.length == 1) {
-        await showVaultCopySaleSheet(context, gvvi);
+        await showVaultCopySaleSheet(
+          context,
+          gvvi,
+          onAddAnother: widget.onAddAnother,
+        );
       }
       if (!mounted) return;
       if (_graded) {
@@ -337,6 +368,14 @@ class _VaultAddReviewSheetState extends State<VaultAddReviewSheet> {
                 ],
               ),
               const SizedBox(height: 10),
+              if (!_graded) ...[
+                ConditionPricePanel(
+                  printingId: widget.printingId,
+                  condition: _condition,
+                  createReader: widget.conditionPriceReader,
+                ),
+                const SizedBox(height: 10),
+              ],
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 child: Row(

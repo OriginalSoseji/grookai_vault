@@ -1,5 +1,29 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Shrouded Fable exact release V2 — November18,2026
+
+`-ShroudedAliasDiscoveryReleaseV2` binds canonical509 to511 for only
+`20261118180000,20261118181500`. It accepts AuditLinkedSchema and exact-ID
+PrePush, rejecting mixed scopes, target overrides, changed sources or missing
+proofs. V1 remains audit-only. Applied local510 is immutable; forward511 guards
+its exact non-updatable projection view and narrows only that view's grants to
+SELECT. Require genuine fresh511 replay, both populated upgrades,449 protected
+local fingerprints, full schema/security and three-role permissions, actual
+full-size performance, normal managed/platform/hosted checks and the frozen
+official CLI packet. Independent production/API/data/security/web readback,
+merge/deployment and scoped lab closure remain required. See
+[the V2 contract](SHROUDED_ALIAS_DISCOVERY_READ_REPAIR_V2.md).
+
+## Shrouded Fable starting audit — November18,2026
+
+`-ShroudedAliasDiscoveryBaselineV1` is a separate read-only AuditLinkedSchema
+scope at canonical509. It compares the exact source/ledger, all four governed
+schemas and security against the completed Latios V5 qualification. No prior
+scope is widened. It rejects PrePush, combined flags, expected IDs and target
+overrides, and cannot apply SQL or qualify a future candidate. Preserve99
+approved pairs, the unmatched Prize Pack Cosmos Galvantula and all ownership.
+See [the contract](SHROUDED_ALIAS_DISCOVERY_READ_REPAIR_V1.md).
+
 ## Square-aware Vault removal — November 14, 2026
 
 `-SquareVaultRemovalReleaseV1` is a separate canonical495-to496 gate for only
@@ -1432,3 +1456,33 @@ PrePush also binds actual local-Auth HTTP review/stock regressions, the renewed
 sale/refund/return proof, rollback authority tests and actual Sandbox evidence.
 No populated lab is reset, generated diff executed, private grant widened or
 production feature enabled by this qualification.
+
+
+## Latios search forward release V3 — November18
+
+The separately named Latios baseline V3 is schema/security audit-only at505;
+known API failures remain failed evidence. Release V3 admits only AuditLinkedSchema
+and exact-ID PrePush for20261118140000/20261118143000, canonical505-to507.
+V1/V2 scopes retain their earlier exact targets. Preserve all applied505 and
+locally replayed506 bytes. New507 caches fallback text without changing tokens,
+ranking or the three-second API budget. Full reset/replay with the647 historical
+prerequisites, populated506 upgrade, four-schema/security equivalence, both roles,
+449 local fingerprints, actual full-sized performance, normal hooks and independent
+production readback remain mandatory. Follow LATIOS_ALIAS_DISCOVERY_READ_REPAIR_V3
+for the pinned baseline-ID comparison in the two append-only market tables;
+all retained rows and other120-table fingerprints remain completely protected.
+
+
+## Latios indexed search release V5 — November18
+
+Canonical507's retained data and full schema/security passed independent readback,
+but identity API acceptance remained failed. V5 is the separately named507-to509
+scope for exactly20261118160000/20261118163000. Preserve all507 production and
+locally applied508 SQL. V4's sole508 scope is not widened. Baseline V5 remains
+read-only; require complete four-schema/security equivalence, new509 full CLI
+prefix-reset/prerequisite replay and a populated508 upgrade without reset.
+The indexed literal probe is a superset; original final matching/ranking stays.
+Jungle NULL semantics and the unprobed direct scan remain equivalent. Qualified
+performance includes actual128-ID Jungle exclusions and both reader roles.
+Normal hooks, exact source/proof pins, official CLI and full independent live
+readback remain required; the public API budget stays three seconds.

@@ -5,7 +5,7 @@ import type { PublicLanguageScope } from "@/lib/publicLanguageScope";
 import { resolveGameScopedSetSearchIntent } from "@/lib/publicSets.shared";
 
 export type SearchQueryFilter = {
-  kind: "artist" | "finish" | "year" | "stamp" | "image" | "owned" | "text" | "game" | "language" | "rarity" | "number" | "set" | "cameo";
+  kind: "artist" | "finish" | "year" | "stamp" | "image" | "owned" | "text" | "game" | "language" | "rarity" | "number" | "set" | "cameo" | "playable";
   label: string;
   sourceText: string;
   queryWithout?: string;
@@ -29,6 +29,7 @@ export type SmartSearchIntent = {
   languageScope?: PublicLanguageScope;
   imageState?: "exact" | "representative" | "missing" | "any";
   ownedState?: "owned" | "missing" | "any";
+  playable?: boolean;
   stampLabels: string[];
   interpretedLabels: string[];
   unrecognizedTerms: string[];
@@ -273,6 +274,15 @@ export function buildSmartSearchIntent(rawQuery: string, options: { gameScope?: 
   const stampLabels: string[] = [];
   const unappliedLabels: string[] = [];
 
+  const playable = /\bplayables?\b/i.test(residual) || undefined;
+  if (playable) {
+    interpretedLabels.push("Playable: Pokémon Standard");
+    for (const sourceText of residual.match(/\bplayables?\b/gi) ?? []) {
+      queryFilters.push({kind: "playable", label: "Playable: Pokémon Standard", sourceText});
+    }
+    residual = residual.replace(/\bplayables?\b/gi, " ").replace(/\bstandard\b/gi, " ");
+  }
+
   const imageState = parseImageStateIntent(residual);
   if (imageState && imageState !== "any") {
     interpretedLabels.push(`Image: ${imageState === "missing" ? "Missing exact image" : imageState === "representative" ? "Representative image" : "Exact image"}`);
@@ -414,6 +424,7 @@ export function buildSmartSearchIntent(rawQuery: string, options: { gameScope?: 
     languageScope,
     imageState,
     ownedState,
+    playable,
     stampLabels: unique(stampLabels),
     interpretedLabels: unique(interpretedLabels),
     unrecognizedTerms: [],

@@ -30,6 +30,7 @@ test('display and date sorting retain per-print dates and never substitute a set
   const { buildExploreRows: build, sortRows: sort } = functions(['buildExploreRows', 'sortRows'], {
     extractTcgdexCardId: () => null, extractTcgdexSetId: () => null,
     resolveCardImageFieldsV1: async () => ({}), compareRowsByRelevance: (a, b) => a.id.localeCompare(b.id),
+    getPokemonPlayables: async () => null, applyPlayableSignals: rows => rows,
   });
   const rows = await build([known, unknown, pokemon], new Map(), metadata, new Map(), { skipChildDisplayImageFallbacks: true });
   assert.equal(rows[0].release_date, '2025-12-01'); assert.equal(rows[0].release_date_scope, 'individual_print');

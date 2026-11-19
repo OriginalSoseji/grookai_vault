@@ -8,6 +8,7 @@ export function hasDeterministicSmartSearchIntent(intent: SmartSearchIntent) {
     Boolean(intent.artist) ||
     Boolean(intent.imageState && intent.imageState !== "any") ||
     Boolean(intent.ownedState && intent.ownedState !== "any") ||
+    Boolean(intent.playable) ||
     typeof intent.releaseYearMin === "number" ||
     typeof intent.releaseYearMax === "number"
   );
