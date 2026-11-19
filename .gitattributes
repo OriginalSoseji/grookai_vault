@@ -9,6 +9,7 @@
 *.md text eol=lf
 docs/audits/japanese_master_index_v4/sets/raw/*.html -text -diff
 docs/audits/catalog_discovery/collectible_wave1_set_foundations_v1/production_apply_v1/* -text -diff
+docs/audits/xy150_promo_review_20261119/xy-remaining-checklists-20261119/XY150.html -text -diff
 
 # Retain qualified source/archive bytes across Windows and Linux checkouts.
 apps/web/src/lib/stores/scanMatchV11.mjs -text
