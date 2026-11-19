@@ -28,6 +28,7 @@ import 'widgets/pricing/ebay_listing_links.dart';
 import 'widgets/pricing/card_marketplace_sheet.dart';
 import 'widgets/cards/card_comments_sheet.dart';
 import 'widgets/cards/card_printing_picker.dart';
+import 'widgets/cards/pokemon_playable_badge.dart';
 import 'widgets/vault/vault_add_review_sheet.dart';
 import 'services/pricing/card_personal_sales_service.dart';
 import 'services/sales/sales_card_reference.dart';
@@ -2683,6 +2684,10 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
             ],
           ),
         ],
+        PokemonPlayableBadge(
+          cardPrintId: widget.cardPrintId,
+          padding: const EdgeInsets.only(top: 6),
+        ),
       ],
     );
   }

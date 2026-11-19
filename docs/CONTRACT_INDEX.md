@@ -170,6 +170,7 @@ If a contract is missing from this index, it is not authoritative.
 |--------|--------|-------------|
 | GROOKAI_SMART_SEARCH_V1 | Active | docs/contracts/GROOKAI_SMART_SEARCH_V1.md — Free deterministic Grookai Search must compile natural language into typed filters, surface governed stamp/variant/special-case identities, and never call AI models or mutate canon on the normal Search path |
 | POKEMON_PLAYABLES_ENGINE_CONTRACT_V1 | Active | [docs/contracts/POKEMON_PLAYABLES_ENGINE_CONTRACT_V1.md](contracts/POKEMON_PLAYABLES_ENGINE_CONTRACT_V1.md) — Recent published physical Standard decklist usage, exact catalog/mechanics matching, coverage and expiry; manual per-card review queues are deferred for this initial signal |
+| POKEMON_PLAYABLES_NATIVE_CONSUMER_V1 | Active implementation and release contract | [Native consumer](contracts/POKEMON_PLAYABLES_NATIVE_CONSUMER_V1.md) — Shared published membership, native search/detail badges, preserved query constraints, expiry/revocation and data-preserving mobile delivery |
 | GROOKAI_AI_PRODUCT_BOUNDARIES_V1 | Active | docs/contracts/GROOKAI_AI_PRODUCT_BOUNDARIES_V1.md — Separates free deterministic Grookai Search from premium Grookai Assistant and vendor/power-user Grookai Intelligence so AI costs and authority stay gated |
 
 ---
