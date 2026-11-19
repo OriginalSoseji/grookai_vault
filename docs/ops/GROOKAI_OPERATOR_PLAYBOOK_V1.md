@@ -1,3 +1,7 @@
+## SWSH301 promo rarity correction
+
+The exact Lugia V SWSH301 correction was applied and independently verified on 2026-11-19; see [its audit](../audits/swsh301_promo_rarity_review_20261119/README.md), apply run `89a4e7b4-e951-4fbc-8746-8afc014a50c1`, and durable receipt `176969`. Its catalog image remains `representative_shared`; this package does not upgrade that claim or alter source traits, printings, mappings, ownership or prices. `backend/catalog/swsh301_promo_rarity_apply_v1.mjs` provides read-only `inspect` and `verify`; `rollback-proof` and `apply` require `--approval PROCEED`, record ledger entries, and apply requires an exact-plan same-writer rollback proof. Changed evidence, identity or preimage requires fresh review.
+
 ## Yellow A XY promo rarity correction
 
 The exact XY200a and XY67a corrections were applied and independently verified on 2026-11-19; see [their audit](../audits/xy_yellow_a_promo_review_20261119/README.md), apply run `0938a860-73a8-4488-85a1-e696f62c316f`, and durable receipt `176957`. The unowned Alternate Art Promos products are evidence only; this package changes no mapping. `backend/catalog/xy_yellow_a_promo_rarity_apply_v1.mjs` has read-only `inspect` and `verify` modes; `rollback-proof` and `apply` require `--approval PROCEED` and create ledger entries. Apply requires the exact plan and same-writer rollback proof. A changed source, preimage, image, mapping or proof requires fresh review.

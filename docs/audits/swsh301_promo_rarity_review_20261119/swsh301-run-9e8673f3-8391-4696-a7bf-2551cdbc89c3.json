@@ -1,0 +1,26 @@
+{
+  "version": "SWSH301_PROMO_RARITY_APPLY_V1",
+  "run_id": "9e8673f3-8391-4696-a7bf-2551cdbc89c3",
+  "mode": "inspect",
+  "package_fingerprint": "c9c72df261c1a075afc27368df068282a8f491d0ca7e0a3d929946980b85bd31",
+  "writer_fingerprint": "82982dde24e47578557658895b1ca278aec75161e1a6c85c30f7f60f1e73049a",
+  "started_at": "2026-11-19T22:26:55.253Z",
+  "status": "preflight_passed",
+  "stages": [
+    {
+      "name": "frozen_sources_and_images_verified",
+      "at": "2026-11-19T22:27:00.465Z"
+    },
+    {
+      "name": "preflight_passed",
+      "at": "2026-11-19T22:27:00.543Z"
+    }
+  ],
+  "sanity": {
+    "parents": 173837,
+    "sets": 3420,
+    "traits": 47409
+  },
+  "state": "pending",
+  "finished_at": "2026-11-19T22:27:00.543Z"
+}
