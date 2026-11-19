@@ -51,7 +51,7 @@ class PokemonPlayablesSnapshot {
         !until.isAfter(asOf) ||
         until.difference(asOf) > const Duration(hours: 24) ||
         entries is! List ||
-        entries.length > 500 ||
+        entries.length > 20000 ||
         (state != 'ready' && entries.isNotEmpty)) {
       throw const FormatException('Invalid current playables publication.');
     }
@@ -149,7 +149,7 @@ class PokemonPlayablesService extends ChangeNotifier {
         _endpoint ?? Uri.parse(grookaiWebBaseUrl).resolve('/api/playables'),
       ).timeout(const Duration(seconds: 10));
       if (response.statusCode != 200 ||
-          response.bodyBytes.length > 512 * 1024) {
+          response.bodyBytes.length > 4 * 1024 * 1024) {
         throw const FormatException('Current playables unavailable.');
       }
       final json = jsonDecode(response.body);
@@ -182,7 +182,12 @@ class PokemonPlayablesService extends ChangeNotifier {
     _timer?.cancel();
     if (_disposed || !hasListeners) return;
     var delay = refreshInterval;
-    final remaining = currentSnapshot?.validUntil.difference(_clock());
+    final now = _clock();
+    final refreshRemaining = _checkedAt?.add(refreshInterval).difference(now);
+    if (refreshRemaining != null && refreshRemaining < delay) {
+      delay = refreshRemaining;
+    }
+    final remaining = currentSnapshot?.validUntil.difference(now);
     if (remaining != null && remaining < delay) delay = remaining;
     _timer = Timer(delay.isNegative ? Duration.zero : delay, () {
       _expire();

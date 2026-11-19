@@ -38,6 +38,79 @@ Map<String, dynamic> publication(
 
 void main() {
   test(
+    'the public 20000-row projection is accepted; 20001 rows are rejected',
+    () async {
+      final now = DateTime.utc(2026, 11, 18);
+      final ids = List.generate(
+        20001,
+        (i) =>
+            '11111111-1111-4111-8111-${i.toRadixString(16).padLeft(12, '0')}',
+      );
+      var body = publication(now, ids: ids.take(20000).toList());
+      final service = PokemonPlayablesService(
+        clock: () => now,
+        fetch: (_) async => http.Response(jsonEncode(body), 200),
+      );
+      expect((await service.refresh())?.rows.length, 20000);
+      body = publication(now, ids: ids);
+      expect(await service.refresh(force: true), isNull);
+      service.dispose();
+    },
+  );
+
+  test('a publication above the shared 4 MiB bound is unavailable', () async {
+    final now = DateTime.utc(2026, 11, 18);
+    final body = publication(now)..['padding'] = ' ' * (4 * 1024 * 1024);
+    final service = PokemonPlayablesService(
+      clock: () => now,
+      fetch: (_) async => http.Response(jsonEncode(body), 200),
+    );
+    expect(await service.refresh(), isNull);
+    service.dispose();
+  });
+
+  testWidgets('mounting a late badge preserves the original refresh deadline', (
+    tester,
+  ) async {
+    var calls = 0;
+    final service = PokemonPlayablesService(
+      clock: tester.binding.clock.now,
+      fetch: (_) async {
+        calls++;
+        return http.Response(
+          jsonEncode(publication(tester.binding.clock.now())),
+          200,
+        );
+      },
+    );
+    Widget badges({bool showPremium = false}) => MaterialApp(
+      home: Scaffold(
+        body: Column(
+          children: [
+            PokemonPlayableBadge(cardPrintId: ordinary, service: service),
+            if (showPremium)
+              PokemonPlayableBadge(cardPrintId: premium, service: service),
+          ],
+        ),
+      ),
+    );
+    await tester.pumpWidget(badges());
+    await tester.pump();
+    await tester.pump();
+    expect(calls, 1);
+    await tester.pump(const Duration(seconds: 59));
+    await tester.pumpWidget(badges(showPremium: true));
+    await tester.pump();
+    expect(calls, 1);
+    expect(find.text('Playable'), findsNWidgets(2));
+    await tester.pump(const Duration(seconds: 1));
+    await tester.pump();
+    expect(calls, 2);
+    await tester.pumpWidget(const SizedBox.shrink());
+    service.dispose();
+  });
+
+  test(
     'one public read coalesces all visible versions and caches for a minute',
     () async {
       final now = DateTime.utc(2026, 11, 18);

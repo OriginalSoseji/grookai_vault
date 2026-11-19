@@ -19,9 +19,11 @@ published shared resolver and read model.
   native flags. Canonical, printing, ownership and pricing truth are unchanged.
 - Read only `/api/playables`, the sanitized public projection. Verify its
   version, physical Pokémon Standard scope, identity uniqueness, bounded rows,
-  counts and validity. Native receives no private source evidence or secrets.
+  counts and validity. Match the public reader's 20,000-row / 4 MiB limits.
+  Native receives no private source evidence or secrets.
 - Visible consumers share one request and at most one minute of cache. Refresh
-  while observed and on app resume. Expiry, invalid data and transport failure
+  while observed and on app resume. Cached reads cannot postpone the deadline
+  measured from the last completed request. Expiry, invalid data and transport failure
   remove highlights. A superseding snapshot removes revoked membership.
 - A playable search requires a current ready publication containing its
   returned canonical IDs. Publication changes trigger the same query again;
