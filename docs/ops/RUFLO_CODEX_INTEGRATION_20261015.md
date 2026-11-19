@@ -17,6 +17,12 @@ The Phase 1 implementation candidate is checkpointed at
 `docs/checkpoints/RUFLO_AGENT_REGISTRY_V1_20261016.md`. Its registry and
 inventory remain R0-only and non-executable.
 
+The stacked read-only Operations adapter and frozen task-envelope candidate is
+checkpointed at
+`docs/checkpoints/RUFLO_READONLY_OPERATIONS_ADAPTER_V1_20261017.md`. It consumes
+explicit local JSON only and has no connection, dispatch, execution, or cleanup
+path. Its generated sample is contract evidence rather than live runtime state.
+
 ## Boundary
 
 - Ruflo is pinned to `3.56.9`; do not replace the pin with `latest`.

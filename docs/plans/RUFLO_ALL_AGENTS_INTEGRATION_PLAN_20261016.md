@@ -2,7 +2,7 @@
 
 ## Status
 
-`PROPOSED — IMPLEMENTATION NOT AUTHORIZED`
+`IMPLEMENTATION IN PROGRESS — R0 READ-ONLY ONLY`
 
 This document defines how Grookai can use Ruflo as a bounded coordination
 layer across the repository's agents, workers, supervisors, workflows, and
@@ -20,6 +20,15 @@ The existing repository-scoped integration remains the baseline:
   federation, managed-agent, or unrestricted fetch surface;
 - Grookai contracts, the Operations Agent Protocol, and explicit founder
   authorization remain authoritative.
+
+Implementation progress as of October 17, 2026:
+
+- PR step 1 has a stacked registry, semantic validator, and protected-worktree
+  inventory candidate at `docs/checkpoints/RUFLO_AGENT_REGISTRY_V1_20261016.md`;
+- PR step 2 has a stacked local-only Operations health/evidence adapter and
+  frozen R0 task-envelope candidate at
+  `docs/checkpoints/RUFLO_READONLY_OPERATIONS_ADAPTER_V1_20261017.md`;
+- neither candidate is merged or activated, and no shadow pilot has started.
 
 ## Outcome
 
