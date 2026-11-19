@@ -1,0 +1,44 @@
+{
+  "version": "XY_SUFFIX_RARITY_REVIEW_PACKET_V1",
+  "status": "REVIEW_ONLY_NO_WRITER",
+  "target": "ycdxbpibncqcchqiihfz",
+  "snapshot_sha256": "5b1507524f68dbe8c420fde514b6df492952621fe3d051f838f6ecc392ec51f4",
+  "records": [
+    {
+      "status": "review_candidate_only",
+      "id": "2928d70e-b3ff-4c8e-914f-a361cff27396",
+      "gv_id": "GV-PK-PR-XY-XY200A",
+      "number": "XY200a",
+      "before": "Common",
+      "proposed": "Promo",
+      "identity_key_hash": "9134b71216655aa603286da032296e9a26234758fcb48fe7d52df5363a28f7a8",
+      "protected_trait_id": 39444,
+      "pokemonapi_raw_id": "1790",
+      "tcgdex_raw_id": "14930",
+      "unmapped_product_id": 148346,
+      "catalog_image_sha256": "bd22f824398effd1a5228992b580c6779377c24670e217eecd0d9639c871cc8d",
+      "product_image_sha256": "aa84e2206808c488bf3e274acc87bfc41bd18eb9e5b38a954c090d6e6bab53b1",
+      "article_sha256": "e7a8b250bfe72c16277ff2e322e01aef887dc1cc04fd930c6ba7a4519b749c65",
+      "visual_observation": "Exact catalog design shows printed suffix, PROMO star and circled A; unmapped provider product image visually matches. Images are not physical-copy inspection."
+    },
+    {
+      "status": "review_candidate_only",
+      "id": "46b9dcd9-3f90-4770-890e-6817eed4d388",
+      "gv_id": "GV-PK-PR-XY-XY67A",
+      "number": "XY67a",
+      "before": "Common",
+      "proposed": "Promo",
+      "identity_key_hash": "7608ef3121158a7d7181a5c6b3da72f77f7b6901b967c619814d10ff52446cec",
+      "protected_trait_id": 39503,
+      "pokemonapi_raw_id": "1653",
+      "tcgdex_raw_id": "14989",
+      "unmapped_product_id": 148343,
+      "catalog_image_sha256": "aa3b4cbece46bc50935b0a95dbaa686cbe0ff18f0dd5b4117c5825dd98b9c1d7",
+      "product_image_sha256": "ea986abca7394bcd2b23e4da0b0ac1ce9fa67994a737d7ae8afff325d52eb2ac",
+      "article_sha256": "473787aba9ddf6907ac028715654f0aa9d9be49ba416b2c981ee658a0e1e9d44",
+      "visual_observation": "Exact catalog design shows printed suffix, PROMO star and circled A; unmapped provider product image visually matches. Images are not physical-copy inspection."
+    }
+  ],
+  "scope": "Two exact parent rarity leads; no mapping, identity, finish, ownership, or price change authorized by this packet.",
+  "fingerprint_sha256": "e0c89bd237901bf8833473bbf2254547041db1c2a05d5d15dada5a4ed7de271e"
+}

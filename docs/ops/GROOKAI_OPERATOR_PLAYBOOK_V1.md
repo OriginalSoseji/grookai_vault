@@ -1,3 +1,7 @@
+## Yellow A XY promo rarity correction
+
+The exact XY200a and XY67a corrections were applied and independently verified on 2026-11-19; see [their audit](../audits/xy_yellow_a_promo_review_20261119/README.md), apply run `0938a860-73a8-4488-85a1-e696f62c316f`, and durable receipt `176957`. The unowned Alternate Art Promos products are evidence only; this package changes no mapping. `backend/catalog/xy_yellow_a_promo_rarity_apply_v1.mjs` has read-only `inspect` and `verify` modes; `rollback-proof` and `apply` require `--approval PROCEED` and create ledger entries. Apply requires the exact plan and same-writer rollback proof. A changed source, preimage, image, mapping or proof requires fresh review.
+
 ## XY150 promo rarity correction
 
 The exact XY150 Yveltal EX correction was applied and independently verified on 2026-11-19; see [its audit](../audits/xy150_promo_review_20261119/README.md), apply run `50be7881-ed47-4911-9eca-9fb57d87764b`, and durable receipt `176937`. It preserves the conflicting TCGdex trait, printed identity, variants, ownership and prices. `backend/catalog/xy150_promo_rarity_apply_v1.mjs` provides read-only `inspect` and `verify` modes; `rollback-proof` and `apply` require `--approval PROCEED` and create operational ledger entries. Apply requires the exact plan and same-writer rollback proof. A changed source, preimage, image or proof requires fresh review rather than a blind retry.

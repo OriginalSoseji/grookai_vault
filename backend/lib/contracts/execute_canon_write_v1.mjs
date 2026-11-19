@@ -12,6 +12,7 @@ import {
 // LOCK: No shared executor coverage means no implicit canon write coverage.
 
 export const CANON_WRITE_EXECUTION_POLICIES_V1 = {
+  catalog_xy_yellow_a_promo_rarity_apply_v1: { transaction_mode: 'transactional_authoritative' },
   catalog_xy150_promo_rarity_apply_v1: { transaction_mode: 'transactional_authoritative' },
   catalog_xy_promo_rarity_apply_v1: { transaction_mode: 'transactional_authoritative' },
   catalog_mcd22_rarity_apply_v1: { transaction_mode: 'transactional_authoritative' },

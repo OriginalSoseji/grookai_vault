@@ -25,6 +25,7 @@ Purpose: coverage-accountable inventory of canon-affecting and ownership-affecti
 
 | path_name | source_files | canon_affecting | ownership_affecting | public_trust_affecting | runtime_status | transaction_mode | post_write_proof | risk_level | next_action |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `catalog_xy_yellow_a_promo_rarity_apply_v1` | `backend/catalog/xy_yellow_a_promo_rarity_apply_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | medium | Keep exactly two reviewed Yellow A Common-to-Promo parent corrections behind source, unmapped-product, image, protected-state and same-writer rollback proofs. |
 | `catalog_xy150_promo_rarity_apply_v1` | `backend/catalog/xy150_promo_rarity_apply_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | medium | Keep the exact XY150 None-to-Promo record behind source, image, identity, protected-trait, raw-stage and same-writer rollback proofs. |
 | `catalog_xy_promo_rarity_apply_v1` | `backend/catalog/xy_promo_rarity_apply_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | medium | Keep the exact two reviewed Common-to-Promo records behind source, image, identity, protected-trait, raw-stage and rollback proofs. |
 | `catalog_mcd22_rarity_apply_v1` | `backend/catalog/mcd22_rarity_apply_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | medium | Keep the exact 15-row, null-only package behind raw-first staging, current source and identity checks, protected-state proofs and a same-writer rollback proof. |
