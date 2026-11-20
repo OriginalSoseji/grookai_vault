@@ -3,7 +3,20 @@ import test from 'node:test';
 
 import {
   buildFinalAdmission,
+  assertionDispositionRows,
 } from '../../scripts/audits/japanese_master_index_v4/final_admission_v1.mjs';
+
+test('inactive historical evidence stays excluded even when its parent is admissible', () => {
+  const rows = assertionDispositionRows({
+    sourceAssertionUnion: [{ union_row_key: 'retired', assertion_lane: 'preserved_inactive_evidence', evidence_id: 'old', projected_candidate_key: 'parent', resolution_status: 'preserved_inactive_evidence' }],
+    cardRowsByKey: new Map([['parent', { final_disposition: 'master_admissible' }]]),
+    conflictIndexes: { unresolvedAssertions: new Map() },
+    futureRegistryKeys: new Set(),
+  });
+  assert.equal(rows[0].final_disposition, 'adjudicated_excluded');
+  assert.equal(rows[0].disposition_reason, 'inactive_historical_evidence');
+  assert.equal(rows[0].evidence_id, 'old');
+});
 
 function assertion({
   key,
@@ -131,6 +144,27 @@ function buildFixture({
     jpnSpeciesLinks,
   });
 }
+
+test('gap report counts active evidence separately from retained historical IDs', () => {
+  const source = assertion({ key: 'single', sourceId: 'community', sourceFamily: 'community' });
+  const item = candidate({ key: 'one', assertionKeys: ['single'], sourceIds: ['community'] });
+  item.baseline_evidence_ids = ['active', 'retired'];
+  item.active_baseline_evidence_ids = ['active'];
+  const result = buildFixture({ sourceAssertions: [source], identityCandidates: [item] });
+  const gap = result.datasets.master_source_gap_rows_v1.find((row) => row.subject_key === 'one');
+  assert.ok(gap);
+  assert.equal(gap.preserved_live_evidence_rows, 1);
+});
+
+test('older candidate artifacts without active-ID metadata retain their prior gap count', () => {
+  const source = assertion({ key: 'legacy', sourceId: 'community', sourceFamily: 'community' });
+  const item = candidate({ key: 'old', assertionKeys: ['legacy'], sourceIds: ['community'] });
+  item.baseline_evidence_ids = ['one', 'two'];
+  const result = buildFixture({ sourceAssertions: [source], identityCandidates: [item] });
+  const gap = result.datasets.master_source_gap_rows_v1.find((row) => row.subject_key === 'old');
+  assert.ok(gap);
+  assert.equal(gap.preserved_live_evidence_rows, 2);
+});
 
 test('official identity and two-source finish are master-admissible', () => {
   const official = assertion({

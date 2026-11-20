@@ -775,6 +775,9 @@ function cardResolutionRows({
       card_domain: family.domain,
       source_assertion_keys: unique(candidate.assertion_keys ?? []),
       baseline_evidence_ids: unique(candidate.baseline_evidence_ids ?? []),
+      active_baseline_evidence_ids: unique(
+        candidate.active_baseline_evidence_ids ?? candidate.baseline_evidence_ids ?? [],
+      ),
       source_ids: unique(candidate.source_ids ?? []),
       independent_source_families: families,
       independent_source_count: families.length,
@@ -935,7 +938,7 @@ function printingFactRows({
   ));
 }
 
-function assertionDispositionRows({
+export function assertionDispositionRows({
   sourceAssertionUnion,
   cardRowsByKey,
   conflictIndexes,
@@ -948,7 +951,10 @@ function assertionDispositionRows({
       : [];
     let disposition = 'blocked_working_candidate';
     let reason = 'candidate_not_master_admissible';
-    if (card?.final_disposition === 'master_admissible') {
+    if (row.assertion_lane === 'preserved_inactive_evidence') {
+      disposition = 'adjudicated_excluded';
+      reason = 'inactive_historical_evidence';
+    } else if (card?.final_disposition === 'master_admissible') {
       disposition = 'mapped_master_admissible';
       reason = 'candidate_satisfies_identity_and_family_admission';
     } else if (card?.final_disposition === 'adjudicated_excluded') {
@@ -1104,7 +1110,7 @@ function sourceGapRows({
       status: card.admission_status,
       source_family: null,
       assertion_count: card.source_assertion_keys.length,
-      preserved_live_evidence_rows: card.baseline_evidence_ids.length,
+      preserved_live_evidence_rows: card.active_baseline_evidence_ids.length,
       findings: card.disposition_reasons,
     });
   }
