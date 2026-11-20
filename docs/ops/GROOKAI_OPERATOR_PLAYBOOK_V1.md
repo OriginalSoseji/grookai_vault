@@ -5488,3 +5488,15 @@ data-preserving device readback. See [the native checkpoint](../checkpoints/2026
 and [the consumer contract](../contracts/POKEMON_PLAYABLES_NATIVE_CONSUMER_V1.md).
 An Android candidate is not a paired store release; do not infer store submission
 from this implementation or a successful build.
+
+# Condition coverage recovery V3 — November19,2026
+
+Use the [V3 contract](../contracts/TCGTRACKING_CONDITION_COVERAGE_V3.md) and
+[checkpoint](../checkpoints/pricing/CONDITION_COVERAGE_RECOVERY_20261119.md).
+The reader reuses current exact market-publication provenance and the existing
+governed One Piece product/finish assertion; it performs no canonical, mapping,
+price or inventory writes. A live provider SKU remains necessary for every
+condition. The normal full hooks, hosted checks and deployed acceptance remain
+required. Preserve private `artifacts/pricing_completion_v3/20261119/` receipts.
+The separate market-publication/schema extension remains gated by a passing
+strict linked-schema audit; its failed shadow replay is not an apply approval.

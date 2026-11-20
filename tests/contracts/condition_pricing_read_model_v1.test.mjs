@@ -10,7 +10,7 @@ const parentMap={id:'18',card_print_id:PARENT,active:true,source:'tcgplayer',ext
 const product={product_id:99,category_id:3,group_id:1394,source_active:true};
 function db(overrides={}){
   const tables={card_printings:[printing],card_printing_truth_reviews:[review],external_printing_mappings:[],external_mappings:[parentMap],tcgcsv_source_products:[product],...overrides};
-  return{from(table){assert.ok(tables[table],`Unexpected relation ${table}`);let rows=tables[table];const query={select(){return query;},eq(key,value){rows=rows.filter(row=>row[key]===value);return query;},in(key,values){rows=rows.filter(row=>values.includes(row[key]));return query;},limit(n){rows=rows.slice(0,n);return query;},async abortSignal(){return{data:rows,error:null};}};return query;}};
+  return{rpc(){return{async abortSignal(){return{data:[],error:null};}};},from(table){assert.ok(tables[table],`Unexpected relation ${table}`);let rows=tables[table];const query={select(){return query;},eq(key,value){rows=rows.filter(row=>row[key]===value);return query;},in(key,values){rows=rows.filter(row=>values.includes(row[key]));return query;},limit(n){rows=rows.slice(0,n);return query;},async abortSignal(){return{data:rows,error:null};}};return query;}};
 }
 const sku=(condition,amount=10)=>({cnd:condition,var:'Normal',lng:'EN',mkt:amount});
 const source=(rows={1:sku('NM',10),2:sku('LP',7.34)})=>({set_id:1394,updated:'2026-11-17T18:00:00Z',products:{99:rows},sku_count:Object.keys(rows).length});
