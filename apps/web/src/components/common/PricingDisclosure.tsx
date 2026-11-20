@@ -4,7 +4,7 @@ export default function PricingDisclosure() {
       <h3 className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Pricing &amp; Data Sources</h3>
 
       <p className="mb-2">
-        The headline price is TCGPlayer&apos;s latest qualified market price for an exact English printing and finish.
+        The headline price is TCGPlayer&apos;s latest qualified market price for the selected exact printing and finish.
       </p>
 
       <p className="mb-2">
