@@ -1,5 +1,7 @@
 # CHECKPOINT_INDEX
 
+- [CONDITION_COVERAGE_RECOVERY_20261119](pricing/CONDITION_COVERAGE_RECOVERY_20261119.md) - `2026-11-19` - Recover exact condition references from current published finish authority and governed One Piece product/finish assertions; 19 focused tests and nine live recovered printings, terminal release gates pending
+
 - [CROSS_TCG_BINDERS_20261119](2026-11-19_cross_tcg_binders.md) - `2026-11-19` - Custom Binder checklists now discover Pokémon, One Piece, and Magic cards through game-scoped search; 72 focused tests passed and live Samsung build 558 returned Magic and One Piece search results
 - [BINDER_CONTENTS_BUILD_557_20261119](2026-11-19_binder_contents_build_557.md) - `2026-11-19` - Carry design build 323's artwork pages into the signed-in Binder detail as a Contents-first view of active contributions; checklist stays secondary; 73 focused tests and Samsung build 557 readback passed
 - [MOBILE_BINDER_BUILD_555_20261118](2026-11-18_mobile_binder_build_555.md) - `2026-11-18` - Repair the Samsung's startup-config failure with a same-signer 555 build; Binder source is already on main, and the paired iOS build remains pending
