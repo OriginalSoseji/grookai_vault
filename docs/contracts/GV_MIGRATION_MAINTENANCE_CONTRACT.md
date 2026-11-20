@@ -1,5 +1,20 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Cross-TCG Market exact release V2 — November20,2026
+
+`-CrossTcgMarketReleaseV2` is a separate canonical511-to512 scope for only
+`20261120063000_cross_tcg_market_publication_v2.sql`. It accepts read-only
+AuditLinkedSchema and exact-ID PrePush, rejects mixed flags/targets, and pins all
+511 historical sources, the forward candidate, actual baseline schema/security,
+fresh512 replay, populated511 upgrade, source/lineage/permission/performance
+proofs, normal commit/push and hosted checks, and the frozen official CLI packet.
+It does not widen any earlier release flag or relabel the ordinary failed
+historical empty-shadow replay as passing. Compare all four governed schemas,
+retain all protected data, and do not execute generated difference SQL. See
+[the V2 contract](TCGPLAYER_CROSS_TCG_MARKET_PUBLICATION_V2.md). Independent
+production readback, guarded full shadow/production publication, scheduled
+refresh verification and deployed client acceptance remain required.
+
 ## Shrouded Fable exact release V2 — November18,2026
 
 `-ShroudedAliasDiscoveryReleaseV2` binds canonical509 to511 for only

@@ -135,7 +135,7 @@ test("migration preserves one global Pokemon and MTG candidate generation", () =
     MIGRATION,
     /revoke all on public\.v_mtg_tcgplayer_parent_mapping_candidates_v1[\s\S]*from public, anon, authenticated/i,
   );
-  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3/);
+  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_POLICY_V2/);
   assert.match(WORKER, /category_counts/);
 });
 
@@ -452,7 +452,7 @@ test("remote operations freeze migration, mapping, shadow, and activation bounda
   assert.match(WORKFLOW, /run_mode = 'shadow'/);
   assert.match(WORKFLOW, /state = 'shadow_verified'/);
   assert.match(WORKFLOW, /reconciliation_state = 'reconciled'/);
-  assert.match(WORKFLOW, /policy_version = 'TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3'/);
+  assert.match(WORKFLOW, /policy_version = 'TCGPLAYER_MARKET_PUBLICATION_POLICY_V2'/);
   assert.doesNotMatch(WORKFLOW, /from public\.v_market_price_current_v1/);
   assert.match(WORKFLOW, /from public\.market_price_current_publication current_state/);
   assert.match(WORKFLOW, /join public\.market_price_publication_snapshots snapshot/);
@@ -520,7 +520,7 @@ test("remote operations freeze migration, mapping, shadow, and activation bounda
   assert.match(WORKFLOW, /mtg-pricing-production-guard\.json/);
   assert.match(WORKER, /evaluateMtgPricingProductionActivationGuardV1/);
   assert.match(WORKER, /async function evaluateProductionActivationGuard/);
-  assert.match(WORKER, /await readMarketActivationCoverageV1\(client, \{/);
+  assert.match(WORKER, /await readMarketActivationCoverageV2\(client, \{/);
   assert.match(COVERAGE_SQL, /scoped_snapshots as materialized/);
   assert.match(COVERAGE_SQL, /scoped_decisions as materialized/);
   assert.match(COVERAGE_SQL, /count\(distinct card_printing_id\)/);
