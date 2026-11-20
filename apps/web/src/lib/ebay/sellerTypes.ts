@@ -8,6 +8,7 @@ export type SellerWorkspaceData = { account: SellerAccount; copy: SellerCopy | n
 export type SelectedDescriptor = { id: string; values?: string[]; additionalInfo?: string };
 export type SellerCondition = { conditionId: string; description: string; descriptors: SelectedDescriptor[]; damagedDisclosureConfirmed?: boolean };
 export type SellerListingInput = { title: string; description: string; categoryId: string;
+  categoryName?: string; categoryPath?: string;
   priceCents: number; locationKey: string; policies: { fulfillment: string; payment: string; return: string };
   aspects: Record<string, string[]>; condition: SellerCondition };
 export type SellerPhoto = { id: string; state: string; path: string };
@@ -15,7 +16,7 @@ export type SellerOperation = { id: string; requestId: string; kind: string; sta
   stage: string; errorCode: string | null; continuationReady: boolean; expectedRevision: number };
 export type SellerFeeQuote = { requestedAt: number; fees: { type: string;
   amount: { currency: string; cents: number }; promotionalDiscount?: { cents: number } }[] };
-export type SellerReviewDetails = { condition: string; conditionDescription: string;
+export type SellerReviewDetails = { category: string; condition: string; conditionDescription: string;
   descriptors: { name: string; values: string[] }[];
   policies: Record<string, { name: string; terms: string[] }>; aspects: Record<string, string[]> };
 export type SellerDraft = { id: string; instanceId: string; accountId: string; state: string;
@@ -26,7 +27,7 @@ export type SellerDraft = { id: string; instanceId: string; accountId: string; s
 export type SellerDescriptor = { conditionDescriptorId: string; conditionDescriptorName: string;
   conditionDescriptorConstraint: { usage?: string; mode: string; cardinality: string; maxLength?: number };
   conditionDescriptorValues?: { conditionDescriptorValueId: string; conditionDescriptorValueName: string }[] };
-export type SellerMetadata = { categoryId: string; fetchedAt: number;
+export type SellerMetadata = { categoryId: string; categoryName: string; categoryPath: string; fetchedAt: number;
   policies: Record<'fulfillment' | 'payment' | 'return', Record<string, unknown>[]>;
   locations: { merchantLocationKey: string; name?: string; merchantLocationStatus: string }[];
   aspects: { localizedAspectName: string; aspectConstraint: { aspectRequired: boolean;

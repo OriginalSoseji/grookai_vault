@@ -9,6 +9,11 @@ on:
         description: Android versionCode; must be greater than the pubspec baseline.
         required: false
         type: string
+      include_debug_rotation:
+        description: One-time signer rotation from the recorded Samsung debug certificate to the release key.
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: read
@@ -97,10 +102,40 @@ jobs:
             --dart-define=POKEMON_SEALED_CLIENT_V1_ENABLED="${{ vars.POKEMON_SEALED_CLIENT_V1_ENABLED || 'false' }}" \
             --dart-define=SEALED_OWNERSHIP_V1_ENABLED="${{ vars.SEALED_OWNERSHIP_V1_ENABLED || 'false' }}"
 
+      - name: Add approved Android signing lineage when requested
+        if: ${{ inputs.include_debug_rotation }}
+        shell: bash
+        env:
+          ANDROID_LEGACY_DEBUG_KEYSTORE_BASE64: ${{ secrets.ANDROID_LEGACY_DEBUG_KEYSTORE_BASE64 }}
+        run: |
+          set -euo pipefail
+          if [[ -z "$ANDROID_LEGACY_DEBUG_KEYSTORE_BASE64" ]]; then
+            echo "ANDROID_LEGACY_DEBUG_KEYSTORE_BASE64 is required for the requested one-time rotation."
+            exit 1
+          fi
+          LEGACY_KEYSTORE="$RUNNER_TEMP/grookai-legacy-debug.keystore"
+          LINEAGE="$RUNNER_TEMP/grookai-signing-lineage.bin"
+          APK=build/app/outputs/flutter-apk/app-release.apk
+          printf '%s' "$ANDROID_LEGACY_DEBUG_KEYSTORE_BASE64" | base64 --decode > "$LEGACY_KEYSTORE"
+          APKSIGNER="$(find "$ANDROID_HOME/build-tools" -type f -name apksigner | sort -V | tail -n 1)"
+          "$APKSIGNER" rotate --out "$LINEAGE" \
+            --old-signer --ks "$LEGACY_KEYSTORE" --ks-key-alias androiddebugkey \
+              --ks-pass pass:android --key-pass pass:android --set-installed-data true \
+            --new-signer --ks "$ANDROID_KEYSTORE_PATH" --ks-key-alias "$ANDROID_KEY_ALIAS" \
+              --ks-pass "env:ANDROID_KEYSTORE_PASSWORD" --key-pass "env:ANDROID_KEY_PASSWORD"
+          "$APKSIGNER" sign --ks "$LEGACY_KEYSTORE" --ks-key-alias androiddebugkey \
+            --ks-pass pass:android --key-pass pass:android --next-signer \
+            --ks "$ANDROID_KEYSTORE_PATH" --ks-key-alias "$ANDROID_KEY_ALIAS" \
+            --ks-pass "env:ANDROID_KEYSTORE_PASSWORD" --key-pass "env:ANDROID_KEY_PASSWORD" \
+            --lineage "$LINEAGE" --rotation-min-sdk-version 28 "$APK"
+          "$APKSIGNER" verify --verbose --print-certs "$APK"
+          rm -f "$LEGACY_KEYSTORE" "$LINEAGE"
+
       - name: Record and verify Android release identity
         shell: bash
         env:
           REQUESTED_BUILD_NUMBER: ${{ inputs.build_number }}
+          REQUESTED_DEBUG_ROTATION: ${{ inputs.include_debug_rotation }}
         run: |
           set -euo pipefail
           APK=build/app/outputs/flutter-apk/app-release.apk
@@ -127,8 +162,16 @@ jobs:
             echo "APK signer fingerprint was missing or malformed."
             exit 1
           fi
+          EXPECTED_RELEASE_SIGNER_SHA256="a1290a32711ab390f798c0898a4d0d78c97f20b2e12adb55bb2260bff9036119"
+          if [[ "$SIGNER_SHA256" != "$EXPECTED_RELEASE_SIGNER_SHA256" ]]; then
+            echo "APK signer does not match the approved release certificate."
+            exit 1
+          fi
+          LINEAGE_JSON="$(java -cp "$(dirname "$APKSIGNER")/lib/apksigner.jar" scripts/android/AndroidSigningLineageProbe.java "$APK")"
+          export LINEAGE_JSON SIGNER_SHA256 REQUESTED_DEBUG_ROTATION
+          export EXPECTED_LEGACY_SIGNER_SHA256="e9575fdd80e4bc1b4e5a80e3638c76f963ae2618db4f71f95d5a0022bc7089c2"
           mkdir -p build/app/outputs/flutter-apk
-          node -e 'const fs=require("node:fs");fs.writeFileSync(process.argv[1],JSON.stringify({schema:"MOBILE_RELEASE_ARTIFACT_V1",platform:"android",package_id:process.argv[2],marketing_version:process.argv[3],build_number:process.argv[4],source_commit:process.argv[5],signer_sha256:process.argv[6]},null,2)+"\n")' \
+          node -e 'const fs=require("node:fs");const p=JSON.parse(process.env.LINEAGE_JSON);if(!p.verified)throw Error("APK lineage did not verify");if(p.signerSha256!==process.env.SIGNER_SHA256)throw Error("APK signer probe disagrees with apksigner");const expected=process.env.EXPECTED_LEGACY_SIGNER_SHA256;if(process.env.REQUESTED_DEBUG_ROTATION==="true"&&!p.lineage.some(x=>x.sha256===expected&&x.installedData))throw Error("Requested debug signer lineage is missing installed-data capability");fs.writeFileSync(process.argv[1],JSON.stringify({schema:"MOBILE_RELEASE_ARTIFACT_V2",platform:"android",package_id:process.argv[2],marketing_version:process.argv[3],build_number:process.argv[4],source_commit:process.argv[5],signer_sha256:process.argv[6],signer_lineage:p.lineage},null,2)+"\n")' \
             build/app/outputs/flutter-apk/mobile-release-manifest.json \
             "$PACKAGE_ID" "$VERSION_NAME" "$VERSION_CODE" "$GITHUB_SHA" "$SIGNER_SHA256"
 

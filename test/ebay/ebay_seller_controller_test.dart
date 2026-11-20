@@ -53,6 +53,27 @@ class _Api implements EbaySellerApi {
     Map<String, dynamic> payload,
   ) async {
     backend.calls.add(cloned({...payload, 'action': action}));
+    if (action == 'categories') {
+      return {
+        'suggestions': [
+          {
+            'id': '999001',
+            'name': 'Magic: The Gathering',
+            'path': 'Collectible Card Games › Magic: The Gathering',
+          },
+        ],
+      };
+    }
+    if (action == 'metadata') {
+      return {
+        'categoryId': payload['categoryId'],
+        'suggestedCondition': {
+          'conditionId': '4000',
+          'description': '',
+          'descriptors': [],
+        },
+      };
+    }
     if (action == 'save') {
       if (backend.saved.isEmpty) backend.created++;
       backend.saved = {
@@ -164,6 +185,34 @@ EbaySellerController _controllerFor(_Backend backend, {_Photos? photos}) =>
     );
 
 void main() {
+  test(
+    'eBay category search selects and retains a supported category',
+    () async {
+      SharedPreferences.setMockInitialValues({});
+      final backend = _Backend();
+      final model = _controllerFor(backend);
+      addTearDown(model.dispose);
+      await model.refresh();
+      model.categoryQuery = 'Magic';
+      await model.searchCategories(model.categoryQuery);
+      expect(model.error, isNull);
+      expect(model.categorySuggestions.single['id'], '999001');
+      expect(backend.calls.last['action'], 'categories');
+      expect(backend.calls.last['query'], 'Magic');
+      await model.selectCategory(model.categorySuggestions.single);
+      expect(model.local!.input['categoryId'], '999001');
+      expect(model.local!.input['categoryName'], 'Magic: The Gathering');
+      expect(
+        model.local!.input['categoryPath'],
+        'Collectible Card Games › Magic: The Gathering',
+      );
+      expect(model.local!.input['condition']['conditionId'], '');
+      await model.loadMetadata();
+      expect(backend.calls.last['action'], 'metadata');
+      expect(backend.calls.last['categoryId'], '999001');
+    },
+  );
+
   test(
     'removing an interrupted upload clears its recovery entry only after acknowledgement',
     () async {
