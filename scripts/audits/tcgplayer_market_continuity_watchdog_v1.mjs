@@ -1,3 +1,4 @@
+import {marketPipelineDatabaseConfigV1} from '../../backend/pricing/market_pipeline_database_config_v1.mjs';
 import fs from "node:fs/promises";
 import path from "node:path";
 
@@ -30,11 +31,6 @@ function databaseUrl() {
   return process.env.SUPABASE_DB_URL || process.env.DATABASE_URL || process.env.POSTGRES_URL || "";
 }
 
-function sslConfig(url) {
-  return /localhost|127\.0\.0\.1|\[::1\]/i.test(url)
-    ? false
-    : { rejectUnauthorized: false };
-}
 
 async function main() {
   const rawUrl = databaseUrl();
@@ -51,8 +47,7 @@ async function main() {
   };
 
   const client = new Client({
-    connectionString: url,
-    ssl: sslConfig(url),
+    ...marketPipelineDatabaseConfigV1(url, process.env, {readOnly:true}),
     connectionTimeoutMillis: 15_000,
     query_timeout: 120_000,
     statement_timeout: 120_000,

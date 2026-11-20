@@ -1,3 +1,4 @@
+import {marketPipelineDatabaseConfigV1} from '../../backend/pricing/market_pipeline_database_config_v1.mjs';
 import { execFile } from "node:child_process";
 import { createHash } from "node:crypto";
 import fs from "node:fs/promises";
@@ -204,11 +205,6 @@ function databaseUrl() {
   );
 }
 
-function sslConfig(url) {
-  return /localhost|127\.0\.0\.1|\[::1\]/i.test(url)
-    ? false
-    : { rejectUnauthorized: false };
-}
 
 function safeSegment(value) {
   return String(value).replace(/[^a-zA-Z0-9_.-]+/g, "_");
@@ -272,8 +268,7 @@ function delay(ms) {
 async function acquireSchedulerLockV1(url, onConnectionError) {
   assertMarketSchedulerSessionUrlV1(url);
   const client = new Client({
-    connectionString: url,
-    ssl: sslConfig(url),
+    ...marketPipelineDatabaseConfigV1(url, process.env, {readOnly:false}),
     connectionTimeoutMillis: 15_000,
     query_timeout: 30_000,
     statement_timeout: 30_000,

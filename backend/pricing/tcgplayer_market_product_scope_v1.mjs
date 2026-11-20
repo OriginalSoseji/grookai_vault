@@ -329,3 +329,14 @@ export function classifyTcgplayerMarketProductScopeV1_5(row = {}) {
     unsupportedProductRules: UNSUPPORTED_PRODUCT_RULES_V1_5,
   });
 }
+
+// Exact cross-game product identities carry their own variant authority. Keep
+// packaged-product exclusions without applying English Pokemon variant rules.
+export function classifyTcgplayerMarketProductScopeV2(row={}) {
+  if (![68,85].includes(Number(row.category_id))) return classifyTcgplayerMarketProductScopeV1_5(row);
+  return classifyTcgplayerMarketProductScope(row, {
+    policyVersion: 'TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V2',
+    specialVariantRules: [], groupScopeRules: [],
+    unsupportedProductRules: UNSUPPORTED_PRODUCT_RULES_V1_5,
+  });
+}
