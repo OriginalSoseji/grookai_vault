@@ -1,5 +1,16 @@
 import crypto from 'node:crypto';
+import {parse} from 'parse5';
 import {evaluateXyPromoCandidate} from './xy_promo_rarity_candidate_v1.mjs';
+export function articleText(html){
+ const pieces=[];
+ function visit(node){
+  if(node.tagName==='script'||node.tagName==='style')return;
+  if(node.nodeName==='#text')pieces.push(node.value);
+  for(const child of node.childNodes??[])visit(child);
+ }
+ visit(parse(html));
+ return pieces.join(' ').replace(/\s+/g,' ');
+}
 const ARTICLES=Object.freeze({
  XY177:{url:'https://bulbapedia.bulbagarden.net/wiki/Karen_%28The_Best_of_XY_183%29',
   sha256:'20ce442161dd36d238fb8e39aaa44a0c8755af492887c354f346047a5ae91f31',name:'Karen'},
@@ -12,8 +23,7 @@ export function reviewXyPromoFamily(input,receipt,bytes){
  if(!expected||!Buffer.isBuffer(bytes)||receipt?.status!==200||receipt.url!==expected.url||receipt.bytes!==bytes.length||
     receipt.sha256!==expected.sha256||crypto.createHash('sha256').update(bytes).digest('hex')!==expected.sha256)
   return {status:'checklist_receipt_mismatch'};
- const text=bytes.toString('utf8').replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,' ')
-  .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi,' ').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ');
+ const text=articleText(bytes.toString('utf8'));
  if(input.parent.name!==expected.name||!new RegExp(`English card no\\.\\s+${number}\\b`).test(text)||
     !new RegExp(`English card no\\.\\s+${number}a\\b`).test(text)||!/XY Black Star Promos/.test(text))
   return {status:'checklist_fact_mismatch'};
