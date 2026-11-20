@@ -19,6 +19,8 @@ param(
 
   [string[]]$ExpectedLocalOnlyIds = @(),
 
+  [switch]$BestOfGameDiscoveryReleaseV1,
+  [switch]$BestOfGameDiscoveryBaselineV1,
   [switch]$BestOfGamePrintingBaselineV1,
   [switch]$ShroudedAliasDiscoveryReleaseV2,
   [switch]$ShroudedAliasDiscoveryBaselineV1,
@@ -142,6 +144,28 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($BestOfGameDiscoveryReleaseV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','BestOfGameDiscoveryReleaseV1','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261120081500') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261120081500') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Best of Game discovery release V1 requires exact candidate20261120081500 at canonical511.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_best_of_game_discovery_release_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($BestOfGameDiscoveryBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','BestOfGameDiscoveryBaselineV1','AuditOutDir') }).Count -gt 0 -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Best of Game discovery baseline V1 is read-only at canonical511; no candidate, PrePush or apply authority.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_best_of_game_discovery_baseline_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
 
 if ($BestOfGamePrintingBaselineV1) {
   if ($Phase -ne 'AuditLinkedSchema' -or

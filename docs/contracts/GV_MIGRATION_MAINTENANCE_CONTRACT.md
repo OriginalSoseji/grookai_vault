@@ -1,5 +1,34 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Best of Game exact discovery release — November20,2026
+
+`-BestOfGameDiscoveryReleaseV1` binds only20261120081500 from canonical511 to512.
+AuditLinkedSchema is read-only; exact-ID PrePush additionally requires clean
+committed source, normal managed commit/push proofs, sealed source/evidence,
+the frozen512-file official CLI packet and live schema/data/ledger readback of
+both new qualified databases. Combined switches and target overrides fail
+before access. Existing gates stay unchanged. New qualification passed actual
+prefix reset/full replay, populated upgrade/no-op,449 protected local tables,
+both-role positive/negative cases,202 production-size actual function calls,
+full schema/security comparison and anonymous SDK acceptance. Preserve the
+immutable locally applied512 SQL, all previous labs and unsuccessful proof.
+The only data delta is nine exact BOG-to-BP aliases; all physical objects,
+all759 existing aliases (647 English-family and112 Japanese), four distinct
+Winner parents, copies, mappings and prices stay
+intact. See [the bounded contract](BEST_OF_GAME_DISCOVERY_READ_REPAIR_V1.md).
+
+## Best of Game post-printing discovery baseline — November20,2026
+
+`-BestOfGameDiscoveryBaselineV1` accepts only AuditLinkedSchema at canonical511
+after the sealed BP8/9 printing closure. It rejects combined scopes, expected
+IDs, target overrides and PrePush, verifies all active historical source bytes,
+the exact ledger, four governed schemas/security and retained family counts,
+and writes only new private evidence. No earlier gate is widened. The bounded
+contract is [BEST_OF_GAME_DISCOVERY_READ_REPAIR_V1](BEST_OF_GAME_DISCOVERY_READ_REPAIR_V1.md).
+Future candidate qualification requires a separate exact release gate, actual
+fresh replay/populated upgrade, protected-data/runtime/performance proof and
+normal managed/hosted checks. This baseline grants no apply authority.
+
 ## Shrouded Fable exact release V2 — November18,2026
 
 `-ShroudedAliasDiscoveryReleaseV2` binds canonical509 to511 for only

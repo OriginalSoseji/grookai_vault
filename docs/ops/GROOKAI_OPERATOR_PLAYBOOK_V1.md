@@ -1,3 +1,31 @@
+# Best of Game printing closure and discovery — November20,2026
+
+The exact BP8/9 production printing execution is complete; read
+[the closure](../checkpoints/BEST_OF_GAME_PRINTING_PRODUCTION_CLOSURE_20261120.md).
+Actual rollback, commit, independent readback, zero-write replay and anonymous
+acceptance passed before authority expiry. Keep the frozen producer and all
+receipts; its consumed authority cannot be reused for aliases or other sets.
+
+The nine discovery aliases continue in the separate
+`C:/grookai_best_of_game_discovery_20261120` worktree. Its
+`-BestOfGameDiscoveryBaselineV1` audit passed canonical511 after the printing
+commit. See [the current checkpoint](../checkpoints/BEST_OF_GAME_DISCOVERY_20261120.md)
+and [bounded contract](../contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V1.md).
+Both new511-to512 synthetic database upgrades/no-ops,449-table preservation,
+both-role identity/negative checks, full schema/security comparison and public
+SDK acceptance passed. The updated202-call production-size proof passed at
+1,621ms maximum, including the112 unrelated-alias cardinality. Use the separate
+`-BestOfGameDiscoveryReleaseV1` for exact20261120081500 only; normal managed/
+hosted checks, exact PrePush and production acceptance remain open. Protect
+all759 existing production alias rows, including112 Japanese rows. The new
+verification runtime reuses existing SDK/dependency images and volumes; only
+its mutable Git metadata is separate, with earlier objects mounted read-only.
+The511-to512 lab is isolated; preserve all retained labs, both sets,
+22 parents,18 children, four distinct Winner parents, saved copies and global
+Magic Bog/Boggart matching. No production discovery change is yet qualified.
+After this family, the owner requested all stamped Reverse Holos, including
+Holon Phantoms and Delta Species. Each finish needs exact physical evidence.
+
 # Best of Game bounded execution preparation — November19,2026
 
 Read [the execution preparation checkpoint](../checkpoints/BEST_OF_GAME_EXECUTION_PREPARATION_20261119.md)

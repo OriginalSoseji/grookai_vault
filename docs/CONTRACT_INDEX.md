@@ -13,6 +13,7 @@ If a contract is missing from this index, it is not authoritative.
 
 | Contract | Status | Description |
 |--------|--------|-------------|
+| BEST_OF_GAME_DISCOVERY_READ_REPAIR_V1 | Active bounded511-to512 implementation | docs/contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V1.md — Exact nine BOG-to-BP aliases,13 distinct discovery parents, retained18 printings and four Winner parents; separate strict release gate |
 | BEST_OF_GAME_PRINTING_EXECUTION_V1 | Active bounded implementation; exact production approval required | docs/contracts/BEST_OF_GAME_PRINTING_EXECUTION_V1.md — Separate BP8/9 insert-only execution,95-FK preservation, verified TLS and exact authority/rollback gates; no authority granted |
 | BEST_OF_GAME_PRINTING_REHEARSAL_V1 | Active implementation; local-only, production execution unavailable | docs/contracts/BEST_OF_GAME_PRINTING_REHEARSAL_V1.md — Exact BP8/9 additive rehearsal, canonical511 read-only audit and retained family/reference proofs |
 | SHROUDED_ALIAS_DISCOVERY_READ_REPAIR_V2 | Active | docs/contracts/SHROUDED_ALIAS_DISCOVERY_READ_REPAIR_V2.md — Exact509-to511 discovery projection preserving113 distinct parents and four owned copies, with SELECT-only view grants |
