@@ -1,0 +1,630 @@
+{
+  "captured_at": "2026-11-20T15:01:52.311Z",
+  "scope": "Read-only selected identity, evidence, mapping, alias, printing and dependency preimages; not proof of duplication or a merge plan.",
+  "parents": [
+    {
+      "id": "ce067f3a-df53-5a19-adf9-311f76861ebf",
+      "name": "Target Whistle",
+      "gv_id": "GV-PK-JPN-XY4-78",
+      "artist": "Toyste Beach",
+      "number": "78",
+      "rarity": null,
+      "set_id": "be4eb919-4d7c-480b-a031-f31a3ca60d31",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "jpn-xy4",
+      "variants": {},
+      "image_res": null,
+      "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/XY4/XY4_78_R_JP_XS.png",
+      "created_at": "2026-08-05T16:47:11.564763+00:00",
+      "image_hash": null,
+      "image_note": "External identity evidence pointer; self-hosting remains a separate storage gate.",
+      "image_path": null,
+      "updated_at": "2026-08-05T16:47:11.564763+00:00",
+      "ai_metadata": null,
+      "variant_key": "",
+      "external_ids": {
+        "japanese_master_index_v4": {
+          "source_ids": [
+            "bulbapedia_jp_card_lists",
+            "limitless_jp_cards",
+            "serebii_jp_cards"
+          ],
+          "candidate_key": "jpn-candidate:novel_numbered:3ec9cbe7ec43712850959fc757bfc441d34346096246383ab95fcea825d42179",
+          "acquisition_key": "JPN-MASTER-INDEX-PAYLOAD-PREFLIGHT-V1|jpn-candidate:novel_numbered:3ec9cbe7ec43712850959fc757bfc441d34346096246383ab95fcea825d42179",
+          "image_evidence_urls": [
+            "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/XY4/XY4_78_R_JP_XS.png",
+            "https://www.serebii.net/card/th/phantomgate/78.jpg"
+          ],
+          "source_assertion_keys": [
+            "434f7a4fa9d3997301104000d6e9b8c1e9bda9f18e766418dcfdb04d96340f20",
+            "578a2f691a2c0940345139175d9678b4708228e0d8ae4560a0dfa66ddac09fe9",
+            "62a8d37e88393d6b9d14143ea8c1f230621ff064f16fd2f5103414a11aa048de"
+          ]
+        }
+      },
+      "image_source": "identity",
+      "image_status": "ok",
+      "number_plain": "78",
+      "tcgplayer_id": null,
+      "image_alt_url": "https://www.serebii.net/card/th/phantomgate/78.jpg",
+      "printed_total": null,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_jpn",
+      "regulation_mark": null,
+      "data_quality_flags": {
+        "japanese_master_index_v4": {
+          "package_id": "JPN-MASTER-INDEX-PAYLOAD-PREFLIGHT-V1",
+          "family_status": "resolved_domain",
+          "public_child_status": "deferred_visibility_and_storage_gate"
+        }
+      },
+      "print_identity_key": null,
+      "printed_set_abbrev": "XY4",
+      "set_identity_model": "standard",
+      "image_last_checked_at": null,
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "a2efda3e-cefe-5b8a-8585-ad09bc89299a",
+      "name": "Robo Substitute",
+      "gv_id": "GV-PK-JPN-XY4-80",
+      "artist": "Toyste Beach",
+      "number": "80",
+      "rarity": null,
+      "set_id": "be4eb919-4d7c-480b-a031-f31a3ca60d31",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "jpn-xy4",
+      "variants": {},
+      "image_res": null,
+      "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/XY4/XY4_80_R_JP_XS.png",
+      "created_at": "2026-08-05T16:47:11.564763+00:00",
+      "image_hash": null,
+      "image_note": "External identity evidence pointer; self-hosting remains a separate storage gate.",
+      "image_path": null,
+      "updated_at": "2026-08-05T16:47:11.564763+00:00",
+      "ai_metadata": null,
+      "variant_key": "",
+      "external_ids": {
+        "japanese_master_index_v4": {
+          "source_ids": [
+            "bulbapedia_jp_card_lists",
+            "limitless_jp_cards",
+            "serebii_jp_cards"
+          ],
+          "candidate_key": "jpn-candidate:novel_numbered:3b6b42c47cce45cca25102c7db69410acad2b582e41df3431fba3e6a551f36bc",
+          "acquisition_key": "JPN-MASTER-INDEX-PAYLOAD-PREFLIGHT-V1|jpn-candidate:novel_numbered:3b6b42c47cce45cca25102c7db69410acad2b582e41df3431fba3e6a551f36bc",
+          "image_evidence_urls": [
+            "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/XY4/XY4_80_R_JP_XS.png",
+            "https://www.serebii.net/card/th/phantomgate/80.jpg"
+          ],
+          "source_assertion_keys": [
+            "3b791f5e87590ee260357c93d5424b040c0732ad9f2007a61c1fd7f30b0dd6a8",
+            "753a154867e5cd0075a16cb07704b3604bf293e68d59a25367cd20dfb66e214a",
+            "774d61938c42b5edb35be5a08e4e0924d8a7c1db7cfdc8689a69e01d46e932b9"
+          ]
+        }
+      },
+      "image_source": "identity",
+      "image_status": "ok",
+      "number_plain": "80",
+      "tcgplayer_id": null,
+      "image_alt_url": "https://www.serebii.net/card/th/phantomgate/80.jpg",
+      "printed_total": null,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_jpn",
+      "regulation_mark": null,
+      "data_quality_flags": {
+        "japanese_master_index_v4": {
+          "package_id": "JPN-MASTER-INDEX-PAYLOAD-PREFLIGHT-V1",
+          "family_status": "resolved_domain",
+          "public_child_status": "deferred_visibility_and_storage_gate"
+        }
+      },
+      "print_identity_key": null,
+      "printed_set_abbrev": "XY4",
+      "set_identity_model": "standard",
+      "image_last_checked_at": null,
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "7c6105e6-b8cd-52b9-98fa-45ef2729c829",
+      "name": "Jamming Net",
+      "gv_id": "GV-PK-JPN-XY4-82",
+      "artist": "5ban Graphics",
+      "number": "82",
+      "rarity": null,
+      "set_id": "be4eb919-4d7c-480b-a031-f31a3ca60d31",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "jpn-xy4",
+      "variants": {},
+      "image_res": null,
+      "image_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/XY4/XY4_82_R_JP_XS.png",
+      "created_at": "2026-08-05T16:47:11.564763+00:00",
+      "image_hash": null,
+      "image_note": "External identity evidence pointer; self-hosting remains a separate storage gate.",
+      "image_path": null,
+      "updated_at": "2026-08-05T16:47:11.564763+00:00",
+      "ai_metadata": null,
+      "variant_key": "",
+      "external_ids": {
+        "japanese_master_index_v4": {
+          "source_ids": [
+            "bulbapedia_jp_card_lists",
+            "limitless_jp_cards",
+            "serebii_jp_cards"
+          ],
+          "candidate_key": "jpn-candidate:novel_numbered:95eafb8456bc6ba63786b55487ac74a75b130800dad497fd37f1c07613b6b986",
+          "acquisition_key": "JPN-MASTER-INDEX-PAYLOAD-PREFLIGHT-V1|jpn-candidate:novel_numbered:95eafb8456bc6ba63786b55487ac74a75b130800dad497fd37f1c07613b6b986",
+          "image_evidence_urls": [
+            "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/XY4/XY4_82_R_JP_XS.png",
+            "https://www.serebii.net/card/th/phantomgate/82.jpg"
+          ],
+          "source_assertion_keys": [
+            "6688c1192dd0110b1fc0ee2a98c201a19b4483ab59b92f7c5b80cf69bb9343a8",
+            "b47bdbf75ae89f2e7e0dd20a897ef07864424e0f615d5de9a97cdddd411ed451",
+            "d5c4282fc1b3c03b35ade78f22206fd707ee6803283b399213b02fe4393a3240"
+          ]
+        }
+      },
+      "image_source": "identity",
+      "image_status": "ok",
+      "number_plain": "82",
+      "tcgplayer_id": null,
+      "image_alt_url": "https://www.serebii.net/card/th/phantomgate/82.jpg",
+      "printed_total": null,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_jpn",
+      "regulation_mark": null,
+      "data_quality_flags": {
+        "japanese_master_index_v4": {
+          "package_id": "JPN-MASTER-INDEX-PAYLOAD-PREFLIGHT-V1",
+          "family_status": "resolved_domain",
+          "public_child_status": "deferred_visibility_and_storage_gate"
+        }
+      },
+      "print_identity_key": null,
+      "printed_set_abbrev": "XY4",
+      "set_identity_model": "standard",
+      "image_last_checked_at": null,
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    }
+  ],
+  "identities": [
+    {
+      "id": "9f5770cb-822e-53b2-9bb0-d9b14649dba1",
+      "is_active": true,
+      "created_at": "2026-08-05T16:47:11.564763+00:00",
+      "updated_at": "2026-08-05T16:47:11.564763+00:00",
+      "card_print_id": "a2efda3e-cefe-5b8a-8585-ad09bc89299a",
+      "printed_number": "80",
+      "identity_domain": "pokemon_jpn",
+      "source_name_raw": "みがわりロボ(フレア団ギア)",
+      "identity_payload": {
+        "card_type": "trainer",
+        "family_key": "domain:trainer",
+        "card_domain": "trainer",
+        "language_code": "ja",
+        "rarity_policy": "source_evidence_preserved",
+        "edition_marking": [],
+        "release_context": {
+          "registry_key": "jpn-xy4",
+          "set_code_identity": "jpn-xy4"
+        },
+        "variant_key_current": "base",
+        "printed_identity_modifier": null,
+        "collector_facing_name_source": "master_index_explicit"
+      },
+      "identity_key_hash": "dd9568a878e05cd49d8a56c75f354cdfe64cfe57209e3994011309ba3ce8f156",
+      "set_code_identity": "jpn-xy4",
+      "identity_key_version": "pokemon_jpn:v1",
+      "normalized_printed_name": "Robo Substitute"
+    },
+    {
+      "id": "d22ae849-6f3d-578c-bb98-a5984e79d93b",
+      "is_active": true,
+      "created_at": "2026-08-05T16:47:11.564763+00:00",
+      "updated_at": "2026-08-05T16:47:11.564763+00:00",
+      "card_print_id": "7c6105e6-b8cd-52b9-98fa-45ef2729c829",
+      "printed_number": "82",
+      "identity_domain": "pokemon_jpn",
+      "source_name_raw": "ジャミングネット(フレア団ハイパーギア)",
+      "identity_payload": {
+        "card_type": "trainer",
+        "family_key": "domain:trainer",
+        "card_domain": "trainer",
+        "language_code": "ja",
+        "rarity_policy": "source_evidence_preserved",
+        "edition_marking": [],
+        "release_context": {
+          "registry_key": "jpn-xy4",
+          "set_code_identity": "jpn-xy4"
+        },
+        "variant_key_current": "base",
+        "printed_identity_modifier": null,
+        "collector_facing_name_source": "master_index_explicit"
+      },
+      "identity_key_hash": "87b567b3fa780d649b5e123b9064db1b2cf385b7634a77476a995cf052953ba8",
+      "set_code_identity": "jpn-xy4",
+      "identity_key_version": "pokemon_jpn:v1",
+      "normalized_printed_name": "Jamming Net"
+    },
+    {
+      "id": "eb1f877d-3596-5a3f-9a78-83a7b94b7a63",
+      "is_active": true,
+      "created_at": "2026-08-05T16:47:11.564763+00:00",
+      "updated_at": "2026-08-05T16:47:11.564763+00:00",
+      "card_print_id": "ce067f3a-df53-5a19-adf9-311f76861ebf",
+      "printed_number": "78",
+      "identity_domain": "pokemon_jpn",
+      "source_name_raw": "ターゲットホイッスル(フレア団ギア)",
+      "identity_payload": {
+        "card_type": "trainer",
+        "family_key": "domain:trainer",
+        "card_domain": "trainer",
+        "language_code": "ja",
+        "rarity_policy": "source_evidence_preserved",
+        "edition_marking": [],
+        "release_context": {
+          "registry_key": "jpn-xy4",
+          "set_code_identity": "jpn-xy4"
+        },
+        "variant_key_current": "base",
+        "printed_identity_modifier": null,
+        "collector_facing_name_source": "master_index_explicit"
+      },
+      "identity_key_hash": "8382ed1b2e17e9664c54c9e0b5ae955395296cbc3a1197edfa0c7447d61fefa0",
+      "set_code_identity": "jpn-xy4",
+      "identity_key_version": "pokemon_jpn:v1",
+      "normalized_printed_name": "Target Whistle"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "0de6b170-ede8-5e2a-8509-9f5bbab804b4",
+      "active": true,
+      "created_at": "2026-08-05T16:47:11.564763+00:00",
+      "source_key": "limitless_jp_cards",
+      "updated_at": "2026-08-05T16:47:11.564763+00:00",
+      "card_print_id": "ce067f3a-df53-5a19-adf9-311f76861ebf",
+      "acquisition_key": "JPN-MASTER-INDEX-PAYLOAD-PREFLIGHT-V1|jpn-candidate:novel_numbered:3ec9cbe7ec43712850959fc757bfc441d34346096246383ab95fcea825d42179",
+      "evidence_payload": {
+        "image_urls": [
+          "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/XY4/XY4_78_R_JP_XS.png"
+        ],
+        "package_id": "JPN-MASTER-INDEX-PAYLOAD-PREFLIGHT-V1",
+        "registry_key": "jpn-xy4",
+        "assertion_key": "434f7a4fa9d3997301104000d6e9b8c1e9bda9f18e766418dcfdb04d96340f20",
+        "assertion_lane": "fresh_source_assertion",
+        "raw_snapshot_ref": "tar+gzip://docs/audits/japanese_master_index_v4/cards/raw_archives/limitless_jp_cards_raw_evidence_v1.tar.gz#XY4/set_checklist_v1.html",
+        "resolution_status": "novel_numbered_candidate",
+        "source_external_id": "XY4:78",
+        "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+      },
+      "evidence_subject": {
+        "family_key": "domain:trainer",
+        "species_id": null,
+        "language_scope": "ja",
+        "printed_number": "78",
+        "identity_domain": "pokemon_jpn",
+        "printed_name_ja": "ターゲットホイッスル(フレア団ギア)",
+        "set_code_identity": "jpn-xy4",
+        "source_registry_key": "jpn-xy4",
+        "collector_facing_name_en": "Target Whistle",
+        "printed_identity_modifier": null
+      },
+      "evidence_key_hash": "d50dcb761b55a1e79db6b0344171e399178ba0e07ca161091889541353df1010",
+      "card_print_identity_id": "eb1f877d-3596-5a3f-9a78-83a7b94b7a63"
+    },
+    {
+      "id": "1d878a48-f68f-59c0-90e5-33ec662d6293",
+      "active": true,
+      "created_at": "2026-08-05T16:47:11.564763+00:00",
+      "source_key": "limitless_jp_cards",
+      "updated_at": "2026-08-05T16:47:11.564763+00:00",
+      "card_print_id": "7c6105e6-b8cd-52b9-98fa-45ef2729c829",
+      "acquisition_key": "JPN-MASTER-INDEX-PAYLOAD-PREFLIGHT-V1|jpn-candidate:novel_numbered:95eafb8456bc6ba63786b55487ac74a75b130800dad497fd37f1c07613b6b986",
+      "evidence_payload": {
+        "image_urls": [
+          "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/XY4/XY4_82_R_JP_XS.png"
+        ],
+        "package_id": "JPN-MASTER-INDEX-PAYLOAD-PREFLIGHT-V1",
+        "registry_key": "jpn-xy4",
+        "assertion_key": "b47bdbf75ae89f2e7e0dd20a897ef07864424e0f615d5de9a97cdddd411ed451",
+        "assertion_lane": "fresh_source_assertion",
+        "raw_snapshot_ref": "tar+gzip://docs/audits/japanese_master_index_v4/cards/raw_archives/limitless_jp_cards_raw_evidence_v1.tar.gz#XY4/set_checklist_v1.html",
+        "resolution_status": "novel_numbered_candidate",
+        "source_external_id": "XY4:82",
+        "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+      },
+      "evidence_subject": {
+        "family_key": "domain:trainer",
+        "species_id": null,
+        "language_scope": "ja",
+        "printed_number": "82",
+        "identity_domain": "pokemon_jpn",
+        "printed_name_ja": "ジャミングネット(フレア団ハイパーギア)",
+        "set_code_identity": "jpn-xy4",
+        "source_registry_key": "jpn-xy4",
+        "collector_facing_name_en": "Jamming Net",
+        "printed_identity_modifier": null
+      },
+      "evidence_key_hash": "0f4452c1ed268e0350ce42eb7009ad2233ee3d42bc9e0a6f74ff28c722562d41",
+      "card_print_identity_id": "d22ae849-6f3d-578c-bb98-a5984e79d93b"
+    },
+    {
+      "id": "35d8cda8-0f75-5ba9-b726-f827275c112f",
+      "active": true,
+      "created_at": "2026-08-05T16:47:11.564763+00:00",
+      "source_key": "serebii_jp_cards",
+      "updated_at": "2026-08-05T16:47:11.564763+00:00",
+      "card_print_id": "7c6105e6-b8cd-52b9-98fa-45ef2729c829",
+      "acquisition_key": "JPN-MASTER-INDEX-PAYLOAD-PREFLIGHT-V1|jpn-candidate:novel_numbered:95eafb8456bc6ba63786b55487ac74a75b130800dad497fd37f1c07613b6b986",
+      "evidence_payload": {
+        "image_urls": [
+          "https://www.serebii.net/card/th/phantomgate/82.jpg"
+        ],
+        "package_id": "JPN-MASTER-INDEX-PAYLOAD-PREFLIGHT-V1",
+        "registry_key": "jpn-xy4",
+        "assertion_key": "6688c1192dd0110b1fc0ee2a98c201a19b4483ab59b92f7c5b80cf69bb9343a8",
+        "assertion_lane": "fresh_source_assertion",
+        "raw_snapshot_ref": "tar+gzip://docs/audits/japanese_master_index_v4/cards/raw_archives/serebii_jp_cards_raw_evidence_v1.tar.gz#phantomgate/set_checklist_v1.html",
+        "resolution_status": "novel_numbered_candidate",
+        "source_external_id": "phantomgate:082",
+        "raw_snapshot_sha256": "01aad4ca8ac07f7aa16f76e29395b23bb886e8c792f402fa051e335ae8a9d9db"
+      },
+      "evidence_subject": {
+        "family_key": "domain:trainer",
+        "species_id": null,
+        "language_scope": "ja",
+        "printed_number": "82",
+        "identity_domain": "pokemon_jpn",
+        "printed_name_ja": "ジャミングネット(フレア団ハイパーギア)",
+        "set_code_identity": "jpn-xy4",
+        "source_registry_key": "jpn-xy4",
+        "collector_facing_name_en": "Jamming Net",
+        "printed_identity_modifier": null
+      },
+      "evidence_key_hash": "bb0e45ea99f1eae544194f505472358cffed7ee7f1a3c78eb22e40f419258095",
+      "card_print_identity_id": "d22ae849-6f3d-578c-bb98-a5984e79d93b"
+    },
+    {
+      "id": "5dee49ad-1db1-5bb5-b82e-24f7a8458219",
+      "active": true,
+      "created_at": "2026-08-05T16:47:11.564763+00:00",
+      "source_key": "bulbapedia_jp_card_lists",
+      "updated_at": "2026-08-05T16:47:11.564763+00:00",
+      "card_print_id": "ce067f3a-df53-5a19-adf9-311f76861ebf",
+      "acquisition_key": "JPN-MASTER-INDEX-PAYLOAD-PREFLIGHT-V1|jpn-candidate:novel_numbered:3ec9cbe7ec43712850959fc757bfc441d34346096246383ab95fcea825d42179",
+      "evidence_payload": {
+        "image_urls": [],
+        "package_id": "JPN-MASTER-INDEX-PAYLOAD-PREFLIGHT-V1",
+        "registry_key": "jpn-xy4",
+        "assertion_key": "62a8d37e88393d6b9d14143ea8c1f230621ff064f16fd2f5103414a11aa048de",
+        "assertion_lane": "fresh_source_assertion",
+        "raw_snapshot_ref": "tar+gzip://docs/audits/japanese_master_index_v4/cards/raw_archives/bulbapedia_jp_card_lists_raw_evidence_v1.tar.gz#Phantom_Gate__TCG/article_v1.html",
+        "resolution_status": "novel_numbered_candidate",
+        "source_external_id": "Phantom_Gate_(TCG):078/088:target-whistle:1",
+        "raw_snapshot_sha256": "c95b766b710fc810ad7167eeb7ed1aefdb3c2fdeafe8610ef0d7b0088dd55f39"
+      },
+      "evidence_subject": {
+        "family_key": "domain:trainer",
+        "species_id": null,
+        "language_scope": "ja",
+        "printed_number": "78",
+        "identity_domain": "pokemon_jpn",
+        "printed_name_ja": "ターゲットホイッスル(フレア団ギア)",
+        "set_code_identity": "jpn-xy4",
+        "source_registry_key": "jpn-xy4",
+        "collector_facing_name_en": "Target Whistle",
+        "printed_identity_modifier": null
+      },
+      "evidence_key_hash": "9478125eb7452ced92a3589a09e9309447325fb93f32b9ee144dafa2144eaf92",
+      "card_print_identity_id": "eb1f877d-3596-5a3f-9a78-83a7b94b7a63"
+    },
+    {
+      "id": "94f125c8-1ae7-5992-96fc-a5d8f443cbd7",
+      "active": true,
+      "created_at": "2026-08-05T16:47:11.564763+00:00",
+      "source_key": "bulbapedia_jp_card_lists",
+      "updated_at": "2026-08-05T16:47:11.564763+00:00",
+      "card_print_id": "7c6105e6-b8cd-52b9-98fa-45ef2729c829",
+      "acquisition_key": "JPN-MASTER-INDEX-PAYLOAD-PREFLIGHT-V1|jpn-candidate:novel_numbered:95eafb8456bc6ba63786b55487ac74a75b130800dad497fd37f1c07613b6b986",
+      "evidence_payload": {
+        "image_urls": [],
+        "package_id": "JPN-MASTER-INDEX-PAYLOAD-PREFLIGHT-V1",
+        "registry_key": "jpn-xy4",
+        "assertion_key": "d5c4282fc1b3c03b35ade78f22206fd707ee6803283b399213b02fe4393a3240",
+        "assertion_lane": "fresh_source_assertion",
+        "raw_snapshot_ref": "tar+gzip://docs/audits/japanese_master_index_v4/cards/raw_archives/bulbapedia_jp_card_lists_raw_evidence_v1.tar.gz#Phantom_Gate__TCG/article_v1.html",
+        "resolution_status": "novel_numbered_candidate",
+        "source_external_id": "Phantom_Gate_(TCG):082/088:jamming-net:1",
+        "raw_snapshot_sha256": "c95b766b710fc810ad7167eeb7ed1aefdb3c2fdeafe8610ef0d7b0088dd55f39"
+      },
+      "evidence_subject": {
+        "family_key": "domain:trainer",
+        "species_id": null,
+        "language_scope": "ja",
+        "printed_number": "82",
+        "identity_domain": "pokemon_jpn",
+        "printed_name_ja": "ジャミングネット(フレア団ハイパーギア)",
+        "set_code_identity": "jpn-xy4",
+        "source_registry_key": "jpn-xy4",
+        "collector_facing_name_en": "Jamming Net",
+        "printed_identity_modifier": null
+      },
+      "evidence_key_hash": "526ed572cf05c4dd642c0014c85540baba67936737eec4458a21f275daaf1321",
+      "card_print_identity_id": "d22ae849-6f3d-578c-bb98-a5984e79d93b"
+    },
+    {
+      "id": "a06bd707-39fd-5761-bc88-8d3989da17dd",
+      "active": true,
+      "created_at": "2026-08-05T16:47:11.564763+00:00",
+      "source_key": "bulbapedia_jp_card_lists",
+      "updated_at": "2026-08-05T16:47:11.564763+00:00",
+      "card_print_id": "a2efda3e-cefe-5b8a-8585-ad09bc89299a",
+      "acquisition_key": "JPN-MASTER-INDEX-PAYLOAD-PREFLIGHT-V1|jpn-candidate:novel_numbered:3b6b42c47cce45cca25102c7db69410acad2b582e41df3431fba3e6a551f36bc",
+      "evidence_payload": {
+        "image_urls": [],
+        "package_id": "JPN-MASTER-INDEX-PAYLOAD-PREFLIGHT-V1",
+        "registry_key": "jpn-xy4",
+        "assertion_key": "3b791f5e87590ee260357c93d5424b040c0732ad9f2007a61c1fd7f30b0dd6a8",
+        "assertion_lane": "fresh_source_assertion",
+        "raw_snapshot_ref": "tar+gzip://docs/audits/japanese_master_index_v4/cards/raw_archives/bulbapedia_jp_card_lists_raw_evidence_v1.tar.gz#Phantom_Gate__TCG/article_v1.html",
+        "resolution_status": "novel_numbered_candidate",
+        "source_external_id": "Phantom_Gate_(TCG):080/088:robo-substitute:1",
+        "raw_snapshot_sha256": "c95b766b710fc810ad7167eeb7ed1aefdb3c2fdeafe8610ef0d7b0088dd55f39"
+      },
+      "evidence_subject": {
+        "family_key": "domain:trainer",
+        "species_id": null,
+        "language_scope": "ja",
+        "printed_number": "80",
+        "identity_domain": "pokemon_jpn",
+        "printed_name_ja": "みがわりロボ(フレア団ギア)",
+        "set_code_identity": "jpn-xy4",
+        "source_registry_key": "jpn-xy4",
+        "collector_facing_name_en": "Robo Substitute",
+        "printed_identity_modifier": null
+      },
+      "evidence_key_hash": "15ec7fbe630278dd29c93e6dc389473e814ca5d8cbd105302dbe20d03b2fb8df",
+      "card_print_identity_id": "9f5770cb-822e-53b2-9bb0-d9b14649dba1"
+    },
+    {
+      "id": "ae674d91-eb4b-5a6b-abb5-1900a13d4e49",
+      "active": true,
+      "created_at": "2026-08-05T16:47:11.564763+00:00",
+      "source_key": "limitless_jp_cards",
+      "updated_at": "2026-08-05T16:47:11.564763+00:00",
+      "card_print_id": "a2efda3e-cefe-5b8a-8585-ad09bc89299a",
+      "acquisition_key": "JPN-MASTER-INDEX-PAYLOAD-PREFLIGHT-V1|jpn-candidate:novel_numbered:3b6b42c47cce45cca25102c7db69410acad2b582e41df3431fba3e6a551f36bc",
+      "evidence_payload": {
+        "image_urls": [
+          "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/XY4/XY4_80_R_JP_XS.png"
+        ],
+        "package_id": "JPN-MASTER-INDEX-PAYLOAD-PREFLIGHT-V1",
+        "registry_key": "jpn-xy4",
+        "assertion_key": "753a154867e5cd0075a16cb07704b3604bf293e68d59a25367cd20dfb66e214a",
+        "assertion_lane": "fresh_source_assertion",
+        "raw_snapshot_ref": "tar+gzip://docs/audits/japanese_master_index_v4/cards/raw_archives/limitless_jp_cards_raw_evidence_v1.tar.gz#XY4/set_checklist_v1.html",
+        "resolution_status": "novel_numbered_candidate",
+        "source_external_id": "XY4:80",
+        "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+      },
+      "evidence_subject": {
+        "family_key": "domain:trainer",
+        "species_id": null,
+        "language_scope": "ja",
+        "printed_number": "80",
+        "identity_domain": "pokemon_jpn",
+        "printed_name_ja": "みがわりロボ(フレア団ギア)",
+        "set_code_identity": "jpn-xy4",
+        "source_registry_key": "jpn-xy4",
+        "collector_facing_name_en": "Robo Substitute",
+        "printed_identity_modifier": null
+      },
+      "evidence_key_hash": "67c578664d8960bc715a21903db57e207a0785afb8958305c01aeb6ea80b357c",
+      "card_print_identity_id": "9f5770cb-822e-53b2-9bb0-d9b14649dba1"
+    },
+    {
+      "id": "e76acf4e-5ec9-5d58-b44b-edf4209a6500",
+      "active": true,
+      "created_at": "2026-08-05T16:47:11.564763+00:00",
+      "source_key": "serebii_jp_cards",
+      "updated_at": "2026-08-05T16:47:11.564763+00:00",
+      "card_print_id": "a2efda3e-cefe-5b8a-8585-ad09bc89299a",
+      "acquisition_key": "JPN-MASTER-INDEX-PAYLOAD-PREFLIGHT-V1|jpn-candidate:novel_numbered:3b6b42c47cce45cca25102c7db69410acad2b582e41df3431fba3e6a551f36bc",
+      "evidence_payload": {
+        "image_urls": [
+          "https://www.serebii.net/card/th/phantomgate/80.jpg"
+        ],
+        "package_id": "JPN-MASTER-INDEX-PAYLOAD-PREFLIGHT-V1",
+        "registry_key": "jpn-xy4",
+        "assertion_key": "774d61938c42b5edb35be5a08e4e0924d8a7c1db7cfdc8689a69e01d46e932b9",
+        "assertion_lane": "fresh_source_assertion",
+        "raw_snapshot_ref": "tar+gzip://docs/audits/japanese_master_index_v4/cards/raw_archives/serebii_jp_cards_raw_evidence_v1.tar.gz#phantomgate/set_checklist_v1.html",
+        "resolution_status": "novel_numbered_candidate",
+        "source_external_id": "phantomgate:080",
+        "raw_snapshot_sha256": "01aad4ca8ac07f7aa16f76e29395b23bb886e8c792f402fa051e335ae8a9d9db"
+      },
+      "evidence_subject": {
+        "family_key": "domain:trainer",
+        "species_id": null,
+        "language_scope": "ja",
+        "printed_number": "80",
+        "identity_domain": "pokemon_jpn",
+        "printed_name_ja": "みがわりロボ(フレア団ギア)",
+        "set_code_identity": "jpn-xy4",
+        "source_registry_key": "jpn-xy4",
+        "collector_facing_name_en": "Robo Substitute",
+        "printed_identity_modifier": null
+      },
+      "evidence_key_hash": "6652bed35d29083837dbb5770ce5f1835802fb81e84047c072fd4824eff0219a",
+      "card_print_identity_id": "9f5770cb-822e-53b2-9bb0-d9b14649dba1"
+    },
+    {
+      "id": "f2983d81-6380-5c99-b709-bd8c8cf70d19",
+      "active": true,
+      "created_at": "2026-08-05T16:47:11.564763+00:00",
+      "source_key": "serebii_jp_cards",
+      "updated_at": "2026-08-05T16:47:11.564763+00:00",
+      "card_print_id": "ce067f3a-df53-5a19-adf9-311f76861ebf",
+      "acquisition_key": "JPN-MASTER-INDEX-PAYLOAD-PREFLIGHT-V1|jpn-candidate:novel_numbered:3ec9cbe7ec43712850959fc757bfc441d34346096246383ab95fcea825d42179",
+      "evidence_payload": {
+        "image_urls": [
+          "https://www.serebii.net/card/th/phantomgate/78.jpg"
+        ],
+        "package_id": "JPN-MASTER-INDEX-PAYLOAD-PREFLIGHT-V1",
+        "registry_key": "jpn-xy4",
+        "assertion_key": "578a2f691a2c0940345139175d9678b4708228e0d8ae4560a0dfa66ddac09fe9",
+        "assertion_lane": "fresh_source_assertion",
+        "raw_snapshot_ref": "tar+gzip://docs/audits/japanese_master_index_v4/cards/raw_archives/serebii_jp_cards_raw_evidence_v1.tar.gz#phantomgate/set_checklist_v1.html",
+        "resolution_status": "novel_numbered_candidate",
+        "source_external_id": "phantomgate:078",
+        "raw_snapshot_sha256": "01aad4ca8ac07f7aa16f76e29395b23bb886e8c792f402fa051e335ae8a9d9db"
+      },
+      "evidence_subject": {
+        "family_key": "domain:trainer",
+        "species_id": null,
+        "language_scope": "ja",
+        "printed_number": "78",
+        "identity_domain": "pokemon_jpn",
+        "printed_name_ja": "ターゲットホイッスル(フレア団ギア)",
+        "set_code_identity": "jpn-xy4",
+        "source_registry_key": "jpn-xy4",
+        "collector_facing_name_en": "Target Whistle",
+        "printed_identity_modifier": null
+      },
+      "evidence_key_hash": "46a370bb1d1d33653e7f5a6cdb1209619ba4ef82925a2a030609b9f5384dc7c0",
+      "card_print_identity_id": "eb1f877d-3596-5a3f-9a78-83a7b94b7a63"
+    }
+  ],
+  "printings": [],
+  "mappings": [],
+  "aliases": [],
+  "counts": [
+    {
+      "id": "ce067f3a-df53-5a19-adf9-311f76861ebf",
+      "gv_id": "GV-PK-JPN-XY4-78",
+      "instances": 0,
+      "legacy_items": 0,
+      "price_curves": 0
+    },
+    {
+      "id": "a2efda3e-cefe-5b8a-8585-ad09bc89299a",
+      "gv_id": "GV-PK-JPN-XY4-80",
+      "instances": 0,
+      "legacy_items": 0,
+      "price_curves": 0
+    },
+    {
+      "id": "7c6105e6-b8cd-52b9-98fa-45ef2729c829",
+      "gv_id": "GV-PK-JPN-XY4-82",
+      "instances": 0,
+      "legacy_items": 0,
+      "price_curves": 0
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:05:58.484Z",
+  "gv_id": "GV-PK-JPN-XY4-006",
+  "official_id": "30485",
+  "checklist_number": "14",
+  "parent": {
+    "id": "e813fabf-a631-4d8f-9be0-46e56aa97415",
+    "gv_id": "GV-PK-JPN-XY4-006",
+    "name": "キングラー",
+    "number": "006",
+    "number_plain": "006",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-006/fecd11b52b8404a5684bdf44.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30485/regu/all",
+    "sha256": "7463e887fcb1aa1f7f4ba4553d1fe518f9c2e8b04cf3fa1b902c0b228a92dae7",
+    "bytes": 10361
+  },
+  "heading": "キングラー",
+  "printed_number": "014",
+  "printed_total": "088",
+  "dex": "099",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030485_P_KINGURA.jpg",
+    "sha256": "fecd11b52b8404a5684bdf447fc3e6c55dc4ec81f7674afb15caa3d2023fe4cc",
+    "bytes": 201564,
+    "storage_path_prefix": "fecd11b52b8404a5684bdf44",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

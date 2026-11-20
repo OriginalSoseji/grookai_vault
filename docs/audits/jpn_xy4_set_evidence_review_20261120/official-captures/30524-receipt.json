@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:08:08.934Z",
+  "gv_id": "GV-PK-JPN-XY4-045",
+  "official_id": "30524",
+  "checklist_number": "53",
+  "parent": {
+    "id": "d207d975-f29b-4b32-90c3-689fbd9db766",
+    "gv_id": "GV-PK-JPN-XY4-045",
+    "name": "グラエナ",
+    "number": "045",
+    "number_plain": "045",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-045/cb93efbcf7dd92769b812722.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30524/regu/all",
+    "sha256": "8efa6a9cfdf1fbc3e06215779d7a3f005c5a316385d5cd50f85616a680fec8c0",
+    "bytes": 10382
+  },
+  "heading": "グラエナ",
+  "printed_number": "053",
+  "printed_total": "088",
+  "dex": "262",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030524_P_GURAENA.jpg",
+    "sha256": "cb93efbcf7dd92769b812722513f363eea1ed0c699f7c82380859554bf9ef560",
+    "bytes": 188421,
+    "storage_path_prefix": "cb93efbcf7dd92769b812722",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

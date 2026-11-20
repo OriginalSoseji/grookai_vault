@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:10:18.279Z",
+  "gv_id": "GV-PK-JPN-XY4-088",
+  "official_id": "30615",
+  "checklist_number": "8",
+  "parent": {
+    "id": "e784e6dc-10d0-4104-8953-cbea221c9740",
+    "gv_id": "GV-PK-JPN-XY4-088",
+    "name": "カブルモ",
+    "number": "088",
+    "number_plain": "088",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-088/5c804953cc7506124dc281de.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30615/regu/all",
+    "sha256": "09eb135bf056a0c7a5fbc564f39566a557b260ece8c172cf089eaf1cebf910a0",
+    "bytes": 10130
+  },
+  "heading": "カブルモ",
+  "printed_number": "008",
+  "printed_total": "088",
+  "dex": "588",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030615_P_KABURUMO.jpg",
+    "sha256": "5c804953cc7506124dc281de364df5a93c898c05e86d69a1463a08ff897165b3",
+    "bytes": 210155,
+    "storage_path_prefix": "5c804953cc7506124dc281de",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

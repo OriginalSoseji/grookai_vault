@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:09:08.307Z",
+  "gv_id": "GV-PK-JPN-XY4-063",
+  "official_id": "30542",
+  "checklist_number": "71",
+  "parent": {
+    "id": "6552f082-2e74-4350-9fe8-eb85e967da84",
+    "gv_id": "GV-PK-JPN-XY4-063",
+    "name": "ゴニョニョ",
+    "number": "063",
+    "number_plain": "063",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-063/bb5be5bb3c31fa8cab876c45.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30542/regu/all",
+    "sha256": "0d8034b5dddd62b1a77d1a9c894c43325e86f358d0be9a5b9455b9ba1b477b0c",
+    "bytes": 10240
+  },
+  "heading": "ゴニョニョ",
+  "printed_number": "071",
+  "printed_total": "088",
+  "dex": "293",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030542_P_GONYONYO.jpg",
+    "sha256": "bb5be5bb3c31fa8cab876c45b4b36b4de51727045ea7ac8fa4b0f81cd7c11533",
+    "bytes": 189132,
+    "storage_path_prefix": "bb5be5bb3c31fa8cab876c45",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

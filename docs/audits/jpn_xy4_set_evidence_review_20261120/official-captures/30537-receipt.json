@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:08:49.367Z",
+  "gv_id": "GV-PK-JPN-XY4-058",
+  "official_id": "30537",
+  "checklist_number": "66",
+  "parent": {
+    "id": "f71ce65c-d59a-4b49-adf6-5340d96cc207",
+    "gv_id": "GV-PK-JPN-XY4-058",
+    "name": "オニスズメ",
+    "number": "058",
+    "number_plain": "058",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-058/59bd1d586923fc8832edd453.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30537/regu/all",
+    "sha256": "b7680c36b4241b61f984b2d9764f7193bee159463d226d850f43c9c5e479d77f",
+    "bytes": 10160
+  },
+  "heading": "オニスズメ",
+  "printed_number": "066",
+  "printed_total": "088",
+  "dex": "021",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030537_P_ONISUZUME.jpg",
+    "sha256": "59bd1d586923fc8832edd453c41bc516c9ae180d8632fa0800d71ab061af4bea",
+    "bytes": 193375,
+    "storage_path_prefix": "59bd1d586923fc8832edd453",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

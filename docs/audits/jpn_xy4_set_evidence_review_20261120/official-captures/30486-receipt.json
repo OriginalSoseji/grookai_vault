@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:06:02.214Z",
+  "gv_id": "GV-PK-JPN-XY4-007",
+  "official_id": "30486",
+  "checklist_number": "15",
+  "parent": {
+    "id": "65b3b07c-aaa9-4fc5-bcd9-b593257e6850",
+    "gv_id": "GV-PK-JPN-XY4-007",
+    "name": "ワニノコ",
+    "number": "007",
+    "number_plain": "007",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-007/094c28897cf151067249fac9.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30486/regu/all",
+    "sha256": "9ec56f8be4b54248cafcee4c79240230fab008d8019660c65bebf7f61bf850a1",
+    "bytes": 10470
+  },
+  "heading": "ワニノコ",
+  "printed_number": "015",
+  "printed_total": "088",
+  "dex": "158",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030486_P_WANINOKO.jpg",
+    "sha256": "094c28897cf151067249fac9c03765e463c527fab262b7a7dce0b871a1c82203",
+    "bytes": 188745,
+    "storage_path_prefix": "094c28897cf151067249fac9",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

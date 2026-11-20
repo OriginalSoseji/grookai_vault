@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:06:35.489Z",
+  "gv_id": "GV-PK-JPN-XY4-018",
+  "official_id": "30497",
+  "checklist_number": "26",
+  "parent": {
+    "id": "6313a723-cda1-4c5a-bf17-5993a6580528",
+    "gv_id": "GV-PK-JPN-XY4-018",
+    "name": "バチュル",
+    "number": "018",
+    "number_plain": "018",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-018/bc0382bf9eec04bca29ff93b.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30497/regu/all",
+    "sha256": "f50b7b71ee4d7424716a2dff85629909fefecb2cf14a2d478ad57d1f09d5ef30",
+    "bytes": 10492
+  },
+  "heading": "バチュル",
+  "printed_number": "026",
+  "printed_total": "088",
+  "dex": "595",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030497_P_BACHURU.jpg",
+    "sha256": "bc0382bf9eec04bca29ff93bd93190f98d22fb6c4d1145bf8a7a0f63e04060f1",
+    "bytes": 246324,
+    "storage_path_prefix": "bc0382bf9eec04bca29ff93b",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

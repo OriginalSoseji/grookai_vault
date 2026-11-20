@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:06:39.782Z",
+  "gv_id": "GV-PK-JPN-XY4-019",
+  "official_id": "30498",
+  "checklist_number": "27",
+  "parent": {
+    "id": "1ee94dd9-f564-4954-acb3-b0a1158449f0",
+    "gv_id": "GV-PK-JPN-XY4-019",
+    "name": "デンチュラ",
+    "number": "019",
+    "number_plain": "019",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-019/2327c7bd278c1a138891b68c.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30498/regu/all",
+    "sha256": "6af729d09e60339f211ba6e65713d9188213dce671a08bdeab44eb63f8354cb1",
+    "bytes": 10689
+  },
+  "heading": "デンチュラ",
+  "printed_number": "027",
+  "printed_total": "088",
+  "dex": "596",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030498_P_DENCHURA.jpg",
+    "sha256": "2327c7bd278c1a138891b68c19c59bb2a36827dd154e8b0e21f023475792c981",
+    "bytes": 237385,
+    "storage_path_prefix": "2327c7bd278c1a138891b68c",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

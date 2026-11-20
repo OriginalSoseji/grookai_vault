@@ -1,0 +1,34 @@
+{
+  "version": "XY4_SECRET_LEAD_V1",
+  "captured_at": "2026-11-20T15:00:22.441Z",
+  "gv_id": "GV-PK-JPN-XY4-092",
+  "official_id": "35781",
+  "parent": {
+    "id": "40161741-d2c3-4950-ad45-5472bc9fc9ec",
+    "gv_id": "GV-PK-JPN-XY4-092",
+    "name": "フラージェスEX",
+    "number": "092",
+    "number_plain": "092",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-092/736dbcec0f73f12fb2e99566.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/35781/regu/all",
+    "sha256": "0512dfc9f4392dbffdd5c16a290f04e07afc38b7f50d7cc133286c5271d60e5f",
+    "bytes": 9843
+  },
+  "heading": "フラージェスEX",
+  "printed_number": "092",
+  "printed_total": "088",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/035781_P_FURAJIESUEX.jpg",
+    "sha256": "736dbcec0f73f12fb2e99566a8fe7fe714cd20c1750c6aeee924e4bf0e0a81bd",
+    "bytes": 325329,
+    "storage_path_prefix": "736dbcec0f73f12fb2e99566",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Predicted-coordinate research lead only; no full stored-image byte, global ownership, dependency or identity proof and no database mutation."
+}

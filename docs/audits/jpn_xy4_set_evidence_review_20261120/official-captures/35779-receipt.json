@@ -1,0 +1,34 @@
+{
+  "version": "XY4_SECRET_LEAD_V1",
+  "captured_at": "2026-11-20T15:00:14.530Z",
+  "gv_id": "GV-PK-JPN-XY4-090",
+  "official_id": "35779",
+  "parent": {
+    "id": "9fafc03f-ab08-4286-be72-b25a4cd63176",
+    "gv_id": "GV-PK-JPN-XY4-090",
+    "name": "ゲンガーEX",
+    "number": "090",
+    "number_plain": "090",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-090/01117948f3de03d11492980e.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/35779/regu/all",
+    "sha256": "89e736c11e9a2931ba30b555ec5b7963777f985122af374148e2530d10008626",
+    "bytes": 10220
+  },
+  "heading": "ゲンガーEX",
+  "printed_number": "090",
+  "printed_total": "088",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/035779_P_GENGAEX.jpg",
+    "sha256": "01117948f3de03d11492980e23e70d4a0984aaa273c5558aae634b8f810a2fc0",
+    "bytes": 297125,
+    "storage_path_prefix": "01117948f3de03d11492980e",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Predicted-coordinate research lead only; no full stored-image byte, global ownership, dependency or identity proof and no database mutation."
+}

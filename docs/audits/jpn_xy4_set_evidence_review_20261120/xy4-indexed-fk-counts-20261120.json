@@ -1,0 +1,682 @@
+{
+  "captured_at": "2026-11-20T15:19:30.965Z",
+  "scope": "Per-reference read-only counts for indexed single-column foreign keys only; each count is a separate snapshot. Nonindexed constraints, non-FK logical references and any concurrent changes remain unassessed.",
+  "parents": 95,
+  "matching_fk_constraints": 78,
+  "results": [
+    {
+      "schema_name": "public",
+      "table_name": "ai_decision_logs",
+      "column_name": "card_print_id",
+      "conname": "ai_decision_logs_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "binder_contributions",
+      "column_name": "snapshot_card_print_id",
+      "conname": "binder_contributions_snapshot_card_print_id_fkey",
+      "indexed": false,
+      "status": "not_assessed"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "binder_custom_slots",
+      "column_name": "card_print_id",
+      "conname": "binder_custom_slots_card_print_id_fkey",
+      "indexed": false,
+      "status": "not_assessed"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "binders",
+      "column_name": "cover_card_print_id",
+      "conname": "binders_cover_card_print_id_fkey",
+      "indexed": false,
+      "status": "not_assessed"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "canon_warehouse_candidates",
+      "column_name": "promoted_card_print_id",
+      "conname": "fk_warehouse_candidates_promoted_card_print",
+      "indexed": false,
+      "status": "not_assessed"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "card_comments",
+      "column_name": "card_print_id",
+      "conname": "card_comments_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "card_embeddings",
+      "column_name": "card_print_id",
+      "conname": "card_embeddings_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "card_events",
+      "column_name": "card_print_id",
+      "conname": "card_events_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "card_events_emit_failures",
+      "column_name": "card_print_id",
+      "conname": "card_events_emit_failures_card_print_id_fkey",
+      "indexed": false,
+      "status": "not_assessed"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "card_feed_events",
+      "column_name": "card_print_id",
+      "conname": "card_feed_events_card_print_id_fkey",
+      "indexed": false,
+      "status": "not_assessed"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "card_fingerprint_index",
+      "column_name": "card_print_id",
+      "conname": "card_fingerprint_index_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "card_interaction_outcomes",
+      "column_name": "card_print_id",
+      "conname": "card_interaction_outcomes_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "card_interactions",
+      "column_name": "card_print_id",
+      "conname": "card_interactions_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "card_price_observations",
+      "column_name": "card_print_id",
+      "conname": "card_price_observations_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "card_price_rollups",
+      "column_name": "card_print_id",
+      "conname": "card_price_rollups_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "card_price_ticks",
+      "column_name": "card_print_id",
+      "conname": "card_price_ticks_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "card_prices",
+      "column_name": "card_print_id",
+      "conname": "card_prices_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "card_print_cameos",
+      "column_name": "card_print_id",
+      "conname": "card_print_cameos_card_print_id_fkey",
+      "indexed": false,
+      "status": "not_assessed"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "card_print_family_review_queue",
+      "column_name": "card_print_id",
+      "conname": "card_print_family_review_queue_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "95"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "card_print_file_paths",
+      "column_name": "card_print_id",
+      "conname": "card_print_file_paths_card_print_id_fkey",
+      "indexed": false,
+      "status": "not_assessed"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "card_print_identity",
+      "column_name": "card_print_id",
+      "conname": "card_print_identity_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "95"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "card_print_identity_aliases",
+      "column_name": "canonical_card_print_id",
+      "conname": "card_print_identity_aliases_canonical_card_print_id_fkey",
+      "indexed": false,
+      "status": "not_assessed"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "card_print_identity_aliases",
+      "column_name": "legacy_card_print_id",
+      "conname": "card_print_identity_aliases_legacy_card_print_id_fkey",
+      "indexed": false,
+      "status": "not_assessed"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "card_print_identity_source_evidence",
+      "column_name": "card_print_id",
+      "conname": "card_print_identity_source_evidence_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "551"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "card_print_image_faces",
+      "column_name": "card_print_id",
+      "conname": "card_print_image_faces_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "card_print_price_curves",
+      "column_name": "card_print_id",
+      "conname": "card_print_price_curves_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "card_print_species",
+      "column_name": "card_print_id",
+      "conname": "card_print_species_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "82"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "card_print_traits",
+      "column_name": "card_print_id",
+      "conname": "card_print_traits_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "9"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "card_print_visual_descriptions",
+      "column_name": "card_print_id",
+      "conname": "card_print_visual_descriptions_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "card_printings",
+      "column_name": "card_print_id",
+      "conname": "card_printings_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "92"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "card_signals",
+      "column_name": "card_print_id",
+      "conname": "card_signals_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "ebay_active_price_snapshots",
+      "column_name": "card_print_id",
+      "conname": "ebay_active_price_snapshots_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "ebay_active_prices_latest",
+      "column_name": "card_print_id",
+      "conname": "ebay_active_prices_latest_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "external_discovery_candidates",
+      "column_name": "card_print_id",
+      "conname": "external_discovery_candidates_card_print_id_fkey",
+      "indexed": false,
+      "status": "not_assessed"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "external_mapping_aliases",
+      "column_name": "canonical_card_print_id",
+      "conname": "external_mapping_aliases_canonical_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "external_mappings",
+      "column_name": "card_print_id",
+      "conname": "external_mappings_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "identity_scan_selections",
+      "column_name": "selected_card_print_id",
+      "conname": "identity_scan_selections_selected_card_print_id_fkey",
+      "indexed": false,
+      "status": "not_assessed"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "jungle_edition_identity_links_v1",
+      "column_name": "card_print_id",
+      "conname": "jungle_edition_identity_links_v1_card_print_id_fkey",
+      "indexed": false,
+      "status": "not_assessed"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "jungle_edition_identity_links_v1",
+      "column_name": "legacy_card_print_id",
+      "conname": "jungle_edition_identity_links_v1_legacy_card_print_id_fkey",
+      "indexed": false,
+      "status": "not_assessed"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "jungle_slab_intake_receipts_v1",
+      "column_name": "card_print_id",
+      "conname": "jungle_slab_intake_receipts_v1_card_print_id_fkey",
+      "indexed": false,
+      "status": "not_assessed"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "justtcg_identity_overrides",
+      "column_name": "card_print_id",
+      "conname": "justtcg_identity_overrides_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "justtcg_variant_price_snapshots",
+      "column_name": "card_print_id",
+      "conname": "justtcg_variant_price_snapshots_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "justtcg_variant_prices_latest",
+      "column_name": "card_print_id",
+      "conname": "justtcg_variant_prices_latest_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "justtcg_variants",
+      "column_name": "card_print_id",
+      "conname": "justtcg_variants_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "listings",
+      "column_name": "card_print_id",
+      "conname": "listings_card_print_id_fkey",
+      "indexed": false,
+      "status": "not_assessed"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "market_evidence_variant_assignments",
+      "column_name": "card_print_id",
+      "conname": "market_evidence_variant_assignments_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "market_listing_card_candidates",
+      "column_name": "card_print_id",
+      "conname": "market_listing_card_candidates_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "4"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "market_listing_rollups",
+      "column_name": "card_print_id",
+      "conname": "market_listing_rollups_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "3"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "market_price_pipeline_candidates",
+      "column_name": "card_print_id",
+      "conname": "market_price_pipeline_candidates_card_print_id_fkey",
+      "indexed": false,
+      "status": "not_assessed"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "market_price_publication_snapshots",
+      "column_name": "card_print_id",
+      "conname": "market_price_publication_snapshots_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "market_price_qualification_decisions",
+      "column_name": "card_print_id",
+      "conname": "market_price_qualification_decisions_card_print_id_fkey",
+      "indexed": false,
+      "status": "not_assessed"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "market_prices",
+      "column_name": "card_id",
+      "conname": "market_prices_card_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "market_reference_candidates",
+      "column_name": "card_print_id",
+      "conname": "market_reference_candidates_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "market_reference_normalized_evidence",
+      "column_name": "card_print_id",
+      "conname": "market_reference_normalized_evidence_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "market_reference_signal_rollups",
+      "column_name": "card_print_id",
+      "conname": "market_reference_signal_rollups_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "notification_outbox",
+      "column_name": "card_print_id",
+      "conname": "notification_outbox_card_print_id_fkey",
+      "indexed": false,
+      "status": "not_assessed"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "notifications_log",
+      "column_name": "card_print_id",
+      "conname": "notifications_log_card_print_id_fkey",
+      "indexed": false,
+      "status": "not_assessed"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "onboarding_ladder_events",
+      "column_name": "card_print_id",
+      "conname": "onboarding_ladder_events_card_print_id_fkey",
+      "indexed": false,
+      "status": "not_assessed"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "onboarding_ladder_state",
+      "column_name": "owned_card_print_id",
+      "conname": "onboarding_ladder_state_owned_card_print_id_fkey",
+      "indexed": false,
+      "status": "not_assessed"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "onboarding_ladder_state",
+      "column_name": "wanted_card_print_id",
+      "conname": "onboarding_ladder_state_wanted_card_print_id_fkey",
+      "indexed": false,
+      "status": "not_assessed"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "pokemon_card_gameplay_details_v1",
+      "column_name": "card_print_id",
+      "conname": "pokemon_card_gameplay_details_v1_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "price_observations",
+      "column_name": "print_id",
+      "conname": "price_observations_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "prices",
+      "column_name": "card_id",
+      "conname": "prices_card_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "pricing_jobs",
+      "column_name": "card_print_id",
+      "conname": "pricing_jobs_card_print_id_fkey",
+      "indexed": false,
+      "status": "not_assessed"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "pricing_observations",
+      "column_name": "card_print_id",
+      "conname": "pricing_observations_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "pricing_watch",
+      "column_name": "card_print_id",
+      "conname": "pricing_watch_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "scanner_fingerprint_index",
+      "column_name": "card_print_id",
+      "conname": "scanner_fingerprint_index_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "shared_cards",
+      "column_name": "card_id",
+      "conname": "shared_cards_card_id_fkey",
+      "indexed": false,
+      "status": "not_assessed"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "slab_certs",
+      "column_name": "card_print_id",
+      "conname": "slab_certs_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "slab_provenance_events",
+      "column_name": "card_print_id",
+      "conname": "slab_provenance_events_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "tcgplayer_gym_challenge_edition_bindings_v1",
+      "column_name": "card_print_id",
+      "conname": "tcgplayer_gym_challenge_edition_bindings_v1_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "user_card_intents",
+      "column_name": "card_print_id",
+      "conname": "user_card_intents_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "user_card_photos",
+      "column_name": "card_print_id",
+      "conname": "user_card_photos_card_print_id_fkey",
+      "indexed": false,
+      "status": "not_assessed"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "vault_item_instance_dispositions",
+      "column_name": "card_print_id",
+      "conname": "vault_item_instance_dispositions_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "vault_item_instances",
+      "column_name": "card_print_id",
+      "conname": "vault_item_instances_card_print_id_fkey",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "vault_items",
+      "column_name": "card_id",
+      "conname": "fk_vault_items_card",
+      "indexed": true,
+      "status": "counted",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "want_matches",
+      "column_name": "card_print_id",
+      "conname": "want_matches_card_print_id_fkey",
+      "indexed": false,
+      "status": "not_assessed"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "wishlist_items",
+      "column_name": "card_id",
+      "conname": "wishlist_items_card_id_fkey",
+      "indexed": false,
+      "status": "not_assessed"
+    }
+  ]
+}

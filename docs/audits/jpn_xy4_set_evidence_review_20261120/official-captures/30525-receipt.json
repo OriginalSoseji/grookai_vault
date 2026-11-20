@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:08:12.527Z",
+  "gv_id": "GV-PK-JPN-XY4-046",
+  "official_id": "30525",
+  "checklist_number": "54",
+  "parent": {
+    "id": "a1517f3d-7cff-4bed-9988-b19edf6dc1ae",
+    "gv_id": "GV-PK-JPN-XY4-046",
+    "name": "ミカルゲ",
+    "number": "046",
+    "number_plain": "046",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-046/b764691a7a2f5a5f1f2fcb6e.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30525/regu/all",
+    "sha256": "305ae703be02456b2f2313bf970b1697b88b31f2070c2d798bb29ff2915223aa",
+    "bytes": 9904
+  },
+  "heading": "ミカルゲ",
+  "printed_number": "054",
+  "printed_total": "088",
+  "dex": "442",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030525_P_MIKARUGE.jpg",
+    "sha256": "b764691a7a2f5a5f1f2fcb6e35c3a7ed6e0483e4c18cdd1f8c79c2a08550939b",
+    "bytes": 239428,
+    "storage_path_prefix": "b764691a7a2f5a5f1f2fcb6e",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

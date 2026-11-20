@@ -1,0 +1,34 @@
+{
+  "version": "XY4_SECRET_LEAD_V1",
+  "captured_at": "2026-11-20T15:00:18.156Z",
+  "gv_id": "GV-PK-JPN-XY4-091",
+  "official_id": "35780",
+  "parent": {
+    "id": "30967f75-d1e1-44cc-812b-0b1c94d79352",
+    "gv_id": "GV-PK-JPN-XY4-091",
+    "name": "カラマネロEX",
+    "number": "091",
+    "number_plain": "091",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-091/e73ffad35c59ee01d82cc7f7.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/35780/regu/all",
+    "sha256": "d6fcbb4f7d42ea19fa0ec9632f0d781e83d896f714cc273b554f791b362e7195",
+    "bytes": 9841
+  },
+  "heading": "カラマネロEX",
+  "printed_number": "091",
+  "printed_total": "088",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/035780_P_KARAMANEROEX.jpg",
+    "sha256": "e73ffad35c59ee01d82cc7f7a667b8bd495f483e771514722770b9506c470270",
+    "bytes": 329149,
+    "storage_path_prefix": "e73ffad35c59ee01d82cc7f7",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Predicted-coordinate research lead only; no full stored-image byte, global ownership, dependency or identity proof and no database mutation."
+}

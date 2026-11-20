@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:08:53.247Z",
+  "gv_id": "GV-PK-JPN-XY4-059",
+  "official_id": "30538",
+  "checklist_number": "67",
+  "parent": {
+    "id": "1ca38d7a-a0a5-4e90-8cbe-ae19857d8397",
+    "gv_id": "GV-PK-JPN-XY4-059",
+    "name": "オニドリル",
+    "number": "059",
+    "number_plain": "059",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-059/540c87a0e00450611b4eb0ef.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30538/regu/all",
+    "sha256": "337f6c9c4f5eb8ff2d7bc44db8e9e25985bca40a2b1f40970e7f5e61851f41e2",
+    "bytes": 10445
+  },
+  "heading": "オニドリル",
+  "printed_number": "067",
+  "printed_total": "088",
+  "dex": "022",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030538_P_ONIDORIRU.jpg",
+    "sha256": "540c87a0e00450611b4eb0ef1cea4b3f20994aa1bcd61ac760fbd310373ae126",
+    "bytes": 210312,
+    "storage_path_prefix": "540c87a0e00450611b4eb0ef",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

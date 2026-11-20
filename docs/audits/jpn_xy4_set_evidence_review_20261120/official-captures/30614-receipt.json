@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:10:14.329Z",
+  "gv_id": "GV-PK-JPN-XY4-087",
+  "official_id": "30614",
+  "checklist_number": "7",
+  "parent": {
+    "id": "6fa60ccd-29d7-4ef2-b3e2-23d34d793f00",
+    "gv_id": "GV-PK-JPN-XY4-087",
+    "name": "ハハコモリ",
+    "number": "087",
+    "number_plain": "087",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-087/029ffff77171cc5e49f8d203.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30614/regu/all",
+    "sha256": "8da69e97d1099898a4b0c8d98ed37b93474446d8e8e093015cf71dc6a35c8e5d",
+    "bytes": 10733
+  },
+  "heading": "ハハコモリ",
+  "printed_number": "007",
+  "printed_total": "088",
+  "dex": "542",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030614_P_HAHAKOMORI.jpg",
+    "sha256": "029ffff77171cc5e49f8d2038ffd03338edc40351e170bcd3649c76d104525c1",
+    "bytes": 220833,
+    "storage_path_prefix": "029ffff77171cc5e49f8d203",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

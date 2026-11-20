@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:09:32.885Z",
+  "gv_id": "GV-PK-JPN-XY4-070",
+  "official_id": "30549",
+  "checklist_number": "78",
+  "parent": {
+    "id": "600b05e6-d212-4455-b4c1-bd77f7e05e5a",
+    "gv_id": "GV-PK-JPN-XY4-070",
+    "name": "ターゲットホイッスル（フレア団ギア）",
+    "number": "070",
+    "number_plain": "070",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-070/d595dd9076e9d0fe1c2cc3a4.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30549/regu/all",
+    "sha256": "f64d0a84183bdb1b27765b31b906f68763770adbb23b5fd2cb9fa73ca0aae53f",
+    "bytes": 8545
+  },
+  "heading": "ターゲットホイッスル（フレア団ギア）",
+  "printed_number": "078",
+  "printed_total": "088",
+  "dex": null,
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030549_T_TAGETTOHOISSURUFUREADANGIA.jpg",
+    "sha256": "d595dd9076e9d0fe1c2cc3a497b345c25befbee74bc31868e299a117b48a017f",
+    "bytes": 165985,
+    "storage_path_prefix": "d595dd9076e9d0fe1c2cc3a4",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

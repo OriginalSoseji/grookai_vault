@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:07:21.186Z",
+  "gv_id": "GV-PK-JPN-XY4-032",
+  "official_id": "30511",
+  "checklist_number": "40",
+  "parent": {
+    "id": "f8ec3339-adbf-49b2-a355-3a7d4364f017",
+    "gv_id": "GV-PK-JPN-XY4-032",
+    "name": "ヒトモシ",
+    "number": "032",
+    "number_plain": "032",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-032/1f1000328879fe2d8583b943.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30511/regu/all",
+    "sha256": "cf5ef1dbc315bf80ac406df0a1f53e3248109d01ef931698ccef5e551724fd27",
+    "bytes": 10515
+  },
+  "heading": "ヒトモシ",
+  "printed_number": "040",
+  "printed_total": "088",
+  "dex": "607",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030511_P_HITOMOSHI.jpg",
+    "sha256": "1f1000328879fe2d8583b943095357b6e445592030a197e592e393c223cacf4c",
+    "bytes": 176362,
+    "storage_path_prefix": "1f1000328879fe2d8583b943",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

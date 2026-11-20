@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:06:17.133Z",
+  "gv_id": "GV-PK-JPN-XY4-011",
+  "official_id": "30490",
+  "checklist_number": "19",
+  "parent": {
+    "id": "1563b15d-9872-4581-b35a-1d1d391eb785",
+    "gv_id": "GV-PK-JPN-XY4-011",
+    "name": "ネオラント",
+    "number": "011",
+    "number_plain": "011",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-011/7b5cee4562e8d8e2212b136f.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30490/regu/all",
+    "sha256": "a999a395a595ca19fc84f7d3bb92aabab5e585e99f5ccb055413d0f10fa6cc2e",
+    "bytes": 10285
+  },
+  "heading": "ネオラント",
+  "printed_number": "019",
+  "printed_total": "088",
+  "dex": "457",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030490_P_NEORANTO.jpg",
+    "sha256": "7b5cee4562e8d8e2212b136f8152bfdbdfedf98122ba9dcbcf38853b99ecf6b4",
+    "bytes": 213120,
+    "storage_path_prefix": "7b5cee4562e8d8e2212b136f",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

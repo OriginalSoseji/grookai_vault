@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:09:54.781Z",
+  "gv_id": "GV-PK-JPN-XY4-081",
+  "official_id": "30608",
+  "checklist_number": "1",
+  "parent": {
+    "id": "7dce5267-7cb0-4002-823b-87bfaf330f12",
+    "gv_id": "GV-PK-JPN-XY4-081",
+    "name": "コンパン",
+    "number": "081",
+    "number_plain": "081",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-081/d927a4868d3533ca77c849a6.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30608/regu/all",
+    "sha256": "f46d740fa2ec30a1a34e39bab3ffb1ec4bd741ef9b4c4214cb332c147a75f445",
+    "bytes": 10316
+  },
+  "heading": "コンパン",
+  "printed_number": "001",
+  "printed_total": "088",
+  "dex": "048",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030608_P_KONPAN.jpg",
+    "sha256": "d927a4868d3533ca77c849a6921ce4a8749ee6bd4311470875f5adf14553283b",
+    "bytes": 196471,
+    "storage_path_prefix": "d927a4868d3533ca77c849a6",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

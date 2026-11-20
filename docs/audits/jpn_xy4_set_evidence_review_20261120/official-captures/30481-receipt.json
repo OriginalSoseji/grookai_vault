@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:05:42.603Z",
+  "gv_id": "GV-PK-JPN-XY4-002",
+  "official_id": "30481",
+  "checklist_number": "10",
+  "parent": {
+    "id": "8bde0285-2b02-431d-a97f-3650865326c1",
+    "gv_id": "GV-PK-JPN-XY4-002",
+    "name": "ファイアロー",
+    "number": "002",
+    "number_plain": "002",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-002/7ff519d09f553804f56d4544.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30481/regu/all",
+    "sha256": "c36a70337b29c903da29549342fdd7a4ba6e071acf65d3f83c83658ffc775ee5",
+    "bytes": 11068
+  },
+  "heading": "ファイアロー",
+  "printed_number": "010",
+  "printed_total": "088",
+  "dex": "663",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030481_P_FAIARO.jpg",
+    "sha256": "7ff519d09f553804f56d454475d2497cc605c6f855d71c104666f0a4649923b5",
+    "bytes": 218140,
+    "storage_path_prefix": "7ff519d09f553804f56d4544",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

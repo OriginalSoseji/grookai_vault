@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:07:35.639Z",
+  "gv_id": "GV-PK-JPN-XY4-036",
+  "official_id": "30515",
+  "checklist_number": "44",
+  "parent": {
+    "id": "bcacc6eb-e100-43c3-9129-719cce361c45",
+    "gv_id": "GV-PK-JPN-XY4-036",
+    "name": "パンプジン",
+    "number": "036",
+    "number_plain": "036",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-036/399d8d186ccc4285113b095c.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30515/regu/all",
+    "sha256": "50a30dd4b92cecf56bce9fe119b8cbfe33582561e1322c56aee5de9c89b5cd8e",
+    "bytes": 10682
+  },
+  "heading": "パンプジン",
+  "printed_number": "044",
+  "printed_total": "088",
+  "dex": "711",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030515_P_PANPUJIN.jpg",
+    "sha256": "399d8d186ccc4285113b095c16707e3744193f8c787fed62ff2c60ab85332318",
+    "bytes": 199485,
+    "storage_path_prefix": "399d8d186ccc4285113b095c",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:06:58.531Z",
+  "gv_id": "GV-PK-JPN-XY4-024",
+  "official_id": "30503",
+  "checklist_number": "32",
+  "parent": {
+    "id": "76b83353-a869-484b-88d6-aaad5c10f85b",
+    "gv_id": "GV-PK-JPN-XY4-024",
+    "name": "クロバット",
+    "number": "024",
+    "number_plain": "024",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-024/a144610cda432bec0c035831.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30503/regu/all",
+    "sha256": "1ee80cf87abf2e187c019c9887fc0a9ab10bf8e5516e599bddb39933c4acbda5",
+    "bytes": 10732
+  },
+  "heading": "クロバット",
+  "printed_number": "032",
+  "printed_total": "088",
+  "dex": "169",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030503_P_KUROBATTO.jpg",
+    "sha256": "a144610cda432bec0c035831cc4edf6790665fd673d16536fe0dd8fdf03aaf8f",
+    "bytes": 208037,
+    "storage_path_prefix": "a144610cda432bec0c035831",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

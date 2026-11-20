@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:05:46.419Z",
+  "gv_id": "GV-PK-JPN-XY4-003",
+  "official_id": "30482",
+  "checklist_number": "11",
+  "parent": {
+    "id": "68721c3b-89f8-45e8-9efa-e88ffc6480fb",
+    "gv_id": "GV-PK-JPN-XY4-003",
+    "name": "シシコ",
+    "number": "003",
+    "number_plain": "003",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-003/f6a0515a205ffe717325eaba.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30482/regu/all",
+    "sha256": "4e080b711d1b82276e0c990999fb3c8ed017eff946022e52899812041c7eb220",
+    "bytes": 10660
+  },
+  "heading": "シシコ",
+  "printed_number": "011",
+  "printed_total": "088",
+  "dex": "667",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030482_P_SHISHIKO.jpg",
+    "sha256": "f6a0515a205ffe717325eabaa030dacf98e3040a66abe25fb2cfce25b031ffdb",
+    "bytes": 168684,
+    "storage_path_prefix": "f6a0515a205ffe717325eaba",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

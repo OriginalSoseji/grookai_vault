@@ -1,0 +1,150 @@
+{
+  "captured_at": "2026-11-20T14:12:15.133Z",
+  "scope": "Read-only full source and stored-image byte comparison, current compact parent snapshot, parent hash-prefix ownership and exact storage object. Global storage-prefix ownership, identities, review queues, complete dependencies, and repair authority remain unqualified.",
+  "results": [
+    {
+      "gv_id": "GV-PK-JPN-XY4-015",
+      "official_id": "30494",
+      "printed_number": "023",
+      "printed_total": "088",
+      "dex": null,
+      "official_sha256": "3a5a23e23f3751c0b35b13a01d422b40dddd64aedb9750eafe7dbf7032a4d64d",
+      "stored_sha256": "3a5a23e23f3751c0b35b13a01d422b40dddd64aedb9750eafe7dbf7032a4d64d",
+      "byte_identical": true,
+      "parent_owner_count": 1,
+      "parent_owner_ids": [
+        "1626539e-5881-461c-9cfe-e898cd6fb19b"
+      ],
+      "exact_storage_object_count": 1,
+      "status": "exact_image_candidate_only"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-016",
+      "official_id": "30495",
+      "printed_number": "024",
+      "printed_total": "088",
+      "dex": null,
+      "official_sha256": "02c8417569913313dbd01052524c0f2b44cbcb5bd6e61127fe3279d074e7d5ee",
+      "stored_sha256": "02c8417569913313dbd01052524c0f2b44cbcb5bd6e61127fe3279d074e7d5ee",
+      "byte_identical": true,
+      "parent_owner_count": 1,
+      "parent_owner_ids": [
+        "deb3dabc-43a5-4401-9ffd-c4a726fc0e65"
+      ],
+      "exact_storage_object_count": 1,
+      "status": "exact_image_candidate_only"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-025",
+      "official_id": "30504",
+      "printed_number": "033",
+      "printed_total": "088",
+      "dex": null,
+      "official_sha256": "0d2dc376321e80cd89117411317b8e324a65328d229aa48cea1eca781fb4367d",
+      "stored_sha256": "0d2dc376321e80cd89117411317b8e324a65328d229aa48cea1eca781fb4367d",
+      "byte_identical": true,
+      "parent_owner_count": 1,
+      "parent_owner_ids": [
+        "ab285327-10ba-4ecf-8378-049d150f2534"
+      ],
+      "exact_storage_object_count": 1,
+      "status": "exact_image_candidate_only"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-026",
+      "official_id": "30505",
+      "printed_number": "034",
+      "printed_total": "088",
+      "dex": null,
+      "official_sha256": "00fb80de7dbacfc0577c8bc057163e7a6b033587c89d5ad95878c9439c517c2f",
+      "stored_sha256": "00fb80de7dbacfc0577c8bc057163e7a6b033587c89d5ad95878c9439c517c2f",
+      "byte_identical": true,
+      "parent_owner_count": 1,
+      "parent_owner_ids": [
+        "e6544b1c-8a07-491f-b7be-f555cc151337"
+      ],
+      "exact_storage_object_count": 1,
+      "status": "exact_image_candidate_only"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-049",
+      "official_id": "30528",
+      "printed_number": "057",
+      "printed_total": "088",
+      "dex": null,
+      "official_sha256": "758831138beaadda83bf725de7ac21666aba9f9da1d084e635e3c619be5918d7",
+      "stored_sha256": "758831138beaadda83bf725de7ac21666aba9f9da1d084e635e3c619be5918d7",
+      "byte_identical": true,
+      "parent_owner_count": 1,
+      "parent_owner_ids": [
+        "744f1b92-7f3f-4824-aa5e-620c490431e8"
+      ],
+      "exact_storage_object_count": 1,
+      "status": "exact_image_candidate_only"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-052",
+      "official_id": "30531",
+      "printed_number": "060",
+      "printed_total": "088",
+      "dex": null,
+      "official_sha256": "8f906c4de26fc71e7d9a4ec1520811b9aa5acdc08e4a9bc5338dcb5e8c13cdb3",
+      "stored_sha256": "8f906c4de26fc71e7d9a4ec1520811b9aa5acdc08e4a9bc5338dcb5e8c13cdb3",
+      "byte_identical": true,
+      "parent_owner_count": 1,
+      "parent_owner_ids": [
+        "8c5233ab-6645-4d08-b452-21326cc694c3"
+      ],
+      "exact_storage_object_count": 1,
+      "status": "exact_image_candidate_only"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-071",
+      "official_id": "30550",
+      "printed_number": "079",
+      "printed_total": "088",
+      "dex": null,
+      "official_sha256": "817177efa59e06c19b2794f29047d1c1fd562e8e13cea0b7f93c322a45b7224b",
+      "stored_sha256": "817177efa59e06c19b2794f29047d1c1fd562e8e13cea0b7f93c322a45b7224b",
+      "byte_identical": true,
+      "parent_owner_count": 1,
+      "parent_owner_ids": [
+        "b33dbc90-bbcd-4cc9-a00f-f102822bfeb5"
+      ],
+      "exact_storage_object_count": 1,
+      "status": "exact_image_candidate_only"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-076",
+      "official_id": "30555",
+      "printed_number": "084",
+      "printed_total": "088",
+      "dex": null,
+      "official_sha256": "ce70c3ea3a570a45fb7878bdbf98f295f5b55166b5f166dc20eb90663794680e",
+      "stored_sha256": "ce70c3ea3a570a45fb7878bdbf98f295f5b55166b5f166dc20eb90663794680e",
+      "byte_identical": true,
+      "parent_owner_count": 1,
+      "parent_owner_ids": [
+        "a977edc0-860a-4d28-9c2e-5315729dc46b"
+      ],
+      "exact_storage_object_count": 1,
+      "status": "exact_image_candidate_only"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-077",
+      "official_id": "30556",
+      "printed_number": "085",
+      "printed_total": "088",
+      "dex": null,
+      "official_sha256": "5d34ff0b8b96c94327b2e9742aca646294ff4cc502d2ebecabcc29905ad4a89f",
+      "stored_sha256": "5d34ff0b8b96c94327b2e9742aca646294ff4cc502d2ebecabcc29905ad4a89f",
+      "byte_identical": true,
+      "parent_owner_count": 1,
+      "parent_owner_ids": [
+        "89a1dbd1-4c1d-4552-a96f-175a3d2c5160"
+      ],
+      "exact_storage_object_count": 1,
+      "status": "exact_image_candidate_only"
+    }
+  ]
+}

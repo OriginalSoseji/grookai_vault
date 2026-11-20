@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:09:36.390Z",
+  "gv_id": "GV-PK-JPN-XY4-072",
+  "official_id": "30551",
+  "checklist_number": "80",
+  "parent": {
+    "id": "7a2290b4-2802-4a78-b377-0f6f725ed43d",
+    "gv_id": "GV-PK-JPN-XY4-072",
+    "name": "みがわりロボ（フレア団ギア）",
+    "number": "072",
+    "number_plain": "072",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-072/395559accd64c3f676a4f3ef.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30551/regu/all",
+    "sha256": "a99fc83cd596c7dd8fc27e939721bd8ed030c87f85a588f63bbbbd3d0347bf27",
+    "bytes": 8761
+  },
+  "heading": "みがわりロボ（フレア団ギア）",
+  "printed_number": "080",
+  "printed_total": "088",
+  "dex": null,
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030551_T_MIGAWARIROBOFUREADANGIA.jpg",
+    "sha256": "395559accd64c3f676a4f3efb93bf616cfbc164ea918d757ba605b8b4be574bb",
+    "bytes": 206296,
+    "storage_path_prefix": "395559accd64c3f676a4f3ef",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

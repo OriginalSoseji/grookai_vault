@@ -1,0 +1,178 @@
+{
+  "created_at": "2026-11-20T15:25:20.804Z",
+  "scope": "Offline graph of numeric occupancy only; no uniqueness, ownership, alias, migration or identity authority is inferred. Paths are traversal segments, not necessarily distinct components.",
+  "source_verified_nodes": 92,
+  "ambiguous_occupancy": [],
+  "cycles": [
+    [
+      "GV-PK-JPN-XY4-001",
+      "GV-PK-JPN-XY4-009",
+      "GV-PK-JPN-XY4-017",
+      "GV-PK-JPN-XY4-025",
+      "GV-PK-JPN-XY4-033",
+      "GV-PK-JPN-XY4-041",
+      "GV-PK-JPN-XY4-049",
+      "GV-PK-JPN-XY4-057",
+      "GV-PK-JPN-XY4-065",
+      "GV-PK-JPN-XY4-073",
+      "GV-PK-JPN-XY4-081"
+    ],
+    [
+      "GV-PK-JPN-XY4-003",
+      "GV-PK-JPN-XY4-011",
+      "GV-PK-JPN-XY4-019",
+      "GV-PK-JPN-XY4-027",
+      "GV-PK-JPN-XY4-035",
+      "GV-PK-JPN-XY4-043",
+      "GV-PK-JPN-XY4-051",
+      "GV-PK-JPN-XY4-059",
+      "GV-PK-JPN-XY4-067",
+      "GV-PK-JPN-XY4-075",
+      "GV-PK-JPN-XY4-083"
+    ],
+    [
+      "GV-PK-JPN-XY4-004",
+      "GV-PK-JPN-XY4-012",
+      "GV-PK-JPN-XY4-020",
+      "GV-PK-JPN-XY4-028",
+      "GV-PK-JPN-XY4-036",
+      "GV-PK-JPN-XY4-044",
+      "GV-PK-JPN-XY4-052",
+      "GV-PK-JPN-XY4-060",
+      "GV-PK-JPN-XY4-068",
+      "GV-PK-JPN-XY4-076",
+      "GV-PK-JPN-XY4-084"
+    ],
+    [
+      "GV-PK-JPN-XY4-005",
+      "GV-PK-JPN-XY4-013",
+      "GV-PK-JPN-XY4-021",
+      "GV-PK-JPN-XY4-029",
+      "GV-PK-JPN-XY4-037",
+      "GV-PK-JPN-XY4-045",
+      "GV-PK-JPN-XY4-053",
+      "GV-PK-JPN-XY4-061",
+      "GV-PK-JPN-XY4-069",
+      "GV-PK-JPN-XY4-077",
+      "GV-PK-JPN-XY4-085"
+    ],
+    [
+      "GV-PK-JPN-XY4-007",
+      "GV-PK-JPN-XY4-015",
+      "GV-PK-JPN-XY4-023",
+      "GV-PK-JPN-XY4-031",
+      "GV-PK-JPN-XY4-039",
+      "GV-PK-JPN-XY4-047",
+      "GV-PK-JPN-XY4-055",
+      "GV-PK-JPN-XY4-063",
+      "GV-PK-JPN-XY4-071",
+      "GV-PK-JPN-XY4-079",
+      "GV-PK-JPN-XY4-087"
+    ],
+    [
+      "GV-PK-JPN-XY4-089"
+    ],
+    [
+      "GV-PK-JPN-XY4-090"
+    ],
+    [
+      "GV-PK-JPN-XY4-091"
+    ],
+    [
+      "GV-PK-JPN-XY4-092"
+    ],
+    [
+      "GV-PK-JPN-XY4-093"
+    ],
+    [
+      "GV-PK-JPN-XY4-094"
+    ],
+    [
+      "GV-PK-JPN-XY4-095"
+    ]
+  ],
+  "paths": [
+    {
+      "length": 10,
+      "ends_at": "unverified_parent"
+    },
+    {
+      "length": 9,
+      "ends_at": "unverified_parent"
+    },
+    {
+      "length": 9,
+      "ends_at": "unverified_parent"
+    },
+    {
+      "length": 1,
+      "ends_at": "GV-PK-JPN-XY4-006"
+    },
+    {
+      "length": 1,
+      "ends_at": "GV-PK-JPN-XY4-008"
+    }
+  ],
+  "components": [
+    {
+      "size": 11,
+      "unverified_nodes": 0
+    },
+    {
+      "size": 11,
+      "unverified_nodes": 1
+    },
+    {
+      "size": 11,
+      "unverified_nodes": 0
+    },
+    {
+      "size": 11,
+      "unverified_nodes": 0
+    },
+    {
+      "size": 11,
+      "unverified_nodes": 0
+    },
+    {
+      "size": 11,
+      "unverified_nodes": 1
+    },
+    {
+      "size": 11,
+      "unverified_nodes": 0
+    },
+    {
+      "size": 11,
+      "unverified_nodes": 1
+    },
+    {
+      "size": 1,
+      "unverified_nodes": 0
+    },
+    {
+      "size": 1,
+      "unverified_nodes": 0
+    },
+    {
+      "size": 1,
+      "unverified_nodes": 0
+    },
+    {
+      "size": 1,
+      "unverified_nodes": 0
+    },
+    {
+      "size": 1,
+      "unverified_nodes": 0
+    },
+    {
+      "size": 1,
+      "unverified_nodes": 0
+    },
+    {
+      "size": 1,
+      "unverified_nodes": 0
+    }
+  ]
+}

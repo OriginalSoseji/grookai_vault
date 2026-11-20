@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:09:18.801Z",
+  "gv_id": "GV-PK-JPN-XY4-066",
+  "official_id": "30545",
+  "checklist_number": "74",
+  "parent": {
+    "id": "7c15ad2a-c98a-4dd2-897e-f70053223805",
+    "gv_id": "GV-PK-JPN-XY4-066",
+    "name": "レジギガス",
+    "number": "066",
+    "number_plain": "066",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-066/e7b2855809dd658b4d3ce037.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30545/regu/all",
+    "sha256": "716c5fc570aa79435f151f13e1b4f618df92ee68ae28cf7b788b80f53e3b7eea",
+    "bytes": 10112
+  },
+  "heading": "レジギガス",
+  "printed_number": "074",
+  "printed_total": "088",
+  "dex": "486",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030545_P_REJIGIGASU.jpg",
+    "sha256": "e7b2855809dd658b4d3ce037237bb375a33177f9a887fef86bc316df31203d58",
+    "bytes": 199963,
+    "storage_path_prefix": "e7b2855809dd658b4d3ce037",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

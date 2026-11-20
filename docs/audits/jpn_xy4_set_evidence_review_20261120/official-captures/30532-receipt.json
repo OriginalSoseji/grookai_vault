@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:08:31.025Z",
+  "gv_id": "GV-PK-JPN-XY4-053",
+  "official_id": "30532",
+  "checklist_number": "61",
+  "parent": {
+    "id": "a5e77146-8eb5-4a50-bf07-cf78ec180439",
+    "gv_id": "GV-PK-JPN-XY4-053",
+    "name": "ペロッパフ",
+    "number": "053",
+    "number_plain": "053",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-053/83e7a156b0aa6015a242c7fd.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30532/regu/all",
+    "sha256": "6792b76be7be72dca3ab6c8273cb8e682ce502b28a71090dd9345c9c955d0e63",
+    "bytes": 10217
+  },
+  "heading": "ペロッパフ",
+  "printed_number": "061",
+  "printed_total": "088",
+  "dex": "684",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030532_P_PEROPPAFU.jpg",
+    "sha256": "83e7a156b0aa6015a242c7fdbc837aa462d3716588d7d234544952d7cee0d7b3",
+    "bytes": 207764,
+    "storage_path_prefix": "83e7a156b0aa6015a242c7fd",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

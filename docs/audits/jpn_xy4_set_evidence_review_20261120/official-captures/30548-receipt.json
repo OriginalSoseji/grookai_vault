@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:09:29.374Z",
+  "gv_id": "GV-PK-JPN-XY4-069",
+  "official_id": "30548",
+  "checklist_number": "77",
+  "parent": {
+    "id": "62d84164-aa30-4684-95a5-189f389feda4",
+    "gv_id": "GV-PK-JPN-XY4-069",
+    "name": "ヤヤコマ",
+    "number": "069",
+    "number_plain": "069",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-069/6115d21fcdb1a90146705ff4.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30548/regu/all",
+    "sha256": "812f47f1459bb2360cd600624792d74797cb24536c95fff07018967b3c2e725e",
+    "bytes": 10875
+  },
+  "heading": "ヤヤコマ",
+  "printed_number": "077",
+  "printed_total": "088",
+  "dex": "661",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030548_P_YAYAKOMA.jpg",
+    "sha256": "6115d21fcdb1a90146705ff41b9f079c901a6bb01df96dfc2b2dba1308d6b765",
+    "bytes": 196408,
+    "storage_path_prefix": "6115d21fcdb1a90146705ff4",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

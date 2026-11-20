@@ -1,0 +1,892 @@
+{
+  "captured_at": "2026-11-20T14:02:27.319Z",
+  "scope": "Read-only name-only comparison with a retained third-party checklist; offsets and matches are diagnostic leads, not printing identity, official-source confirmation, collision resolution or a mutation plan.",
+  "source_file_sha256": "ef4140997457e1cce97fa3c815f30c9f5767e35f45316fda0cce88b30b0fb43a",
+  "source_content_fingerprint": "cb792902c0f55d67bfa2e8fb8eb7d67215fab452e36f0905f54eb1ba7fd79fd8",
+  "source_rows": 95,
+  "parents": 95,
+  "compared": 76,
+  "held": 19,
+  "offsets": {
+    "8": 69,
+    "-80": 7
+  },
+  "compared_rows": [
+    {
+      "gv_id": "GV-PK-JPN-XY4-001",
+      "name": "ヒノヤコマ",
+      "stored_number": "001",
+      "checklist_number": "9",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/9",
+      "source_assertion_key": "056d0779a51cefe1b07cbb9e046d424755f06f512f5be4ba901f876ed85c4bb5",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-002",
+      "name": "ファイアロー",
+      "stored_number": "002",
+      "checklist_number": "10",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/10",
+      "source_assertion_key": "a31efb7f1b1afaa6fd418802cdfce7a226cd1279fe02b0c7b0f22b4f13c6ce2c",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-003",
+      "name": "シシコ",
+      "stored_number": "003",
+      "checklist_number": "11",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/11",
+      "source_assertion_key": "5f97314367dec09aa497b14799b45f849982a77a5293b0a341f7b7e95db6ec5c",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-004",
+      "name": "カエンジシ",
+      "stored_number": "004",
+      "checklist_number": "12",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/12",
+      "source_assertion_key": "dc7d2b5ba4298355234db0837ada0e128d462d69d434e33abebd5d64e630a80a",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-005",
+      "name": "クラブ",
+      "stored_number": "005",
+      "checklist_number": "13",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/13",
+      "source_assertion_key": "bcfdb4c297234f73ad2d7bacc6a240d909aa54a1ea1696b4ccc00dc496f72586",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-006",
+      "name": "キングラー",
+      "stored_number": "006",
+      "checklist_number": "14",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/14",
+      "source_assertion_key": "0adf2605a51c57ad592858fe1a6da46d3c52d3fb4c07728ec021b00374b638ac",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-007",
+      "name": "ワニノコ",
+      "stored_number": "007",
+      "checklist_number": "15",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/15",
+      "source_assertion_key": "aa704804de59a1b504f8fcdcce31c0529784e03a0afa7ec5ab5a73a36155d865",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-008",
+      "name": "アリゲイツ",
+      "stored_number": "008",
+      "checklist_number": "16",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/16",
+      "source_assertion_key": "1aba4e024e4327a447a507104ed19b5ec866ebdb18be3021f9bc682ab420efc4",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-009",
+      "name": "オーダイル",
+      "stored_number": "009",
+      "checklist_number": "17",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/17",
+      "source_assertion_key": "b4925eb66e96cb3a49373facdb04871146cabeb0c33f53d895f9aaad7057e261",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-010",
+      "name": "ケイコウオ",
+      "stored_number": "010",
+      "checklist_number": "18",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/18",
+      "source_assertion_key": "7873aabf2a79bcba983c3abeaa531ead39459fbc55c86d51e93f999b3087a361",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-011",
+      "name": "ネオラント",
+      "stored_number": "011",
+      "checklist_number": "19",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/19",
+      "source_assertion_key": "9a84a425b960731de6a9aed254e5d43fc0f27adebd69b74ae249b7c135663a48",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-012",
+      "name": "プルリル",
+      "stored_number": "012",
+      "checklist_number": "20",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/20",
+      "source_assertion_key": "e92dd0f5c7655d2af1eba90991b986da0e7679742d5944e383a345fa61ebef73",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-013",
+      "name": "ブルンゲル",
+      "stored_number": "013",
+      "checklist_number": "21",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/21",
+      "source_assertion_key": "129201eb4d491497c7018dfbada6be4ca36a731760312aeadd04fcc95a4072d2",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-014",
+      "name": "ママンボウ",
+      "stored_number": "014",
+      "checklist_number": "22",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/22",
+      "source_assertion_key": "9b139e13da564477e24dedcde2580f6cefbcec205a723f5c9b44737045c1442b",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-017",
+      "name": "パチリス",
+      "stored_number": "017",
+      "checklist_number": "25",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/25",
+      "source_assertion_key": "f730ad71375433e83139f08de24518205d5401490eb703a13852dd1678138f12",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-018",
+      "name": "バチュル",
+      "stored_number": "018",
+      "checklist_number": "26",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/26",
+      "source_assertion_key": "aa0c81e893b7a189d6a39eab31e4d7e0bc91e814d07a91bb684cbb27a999d3dc",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-019",
+      "name": "デンチュラ",
+      "stored_number": "019",
+      "checklist_number": "27",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/27",
+      "source_assertion_key": "a10117a17948c92c73efdcf9f439fe245fc87711a668d098818043c6e800a423",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-020",
+      "name": "エリキテル",
+      "stored_number": "020",
+      "checklist_number": "28",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/28",
+      "source_assertion_key": "2ea3411478b20fb3f5d2addcb76bb1f9ebf4b86f5d12e892a98a9155089639d4",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-021",
+      "name": "エレザード",
+      "stored_number": "021",
+      "checklist_number": "29",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/29",
+      "source_assertion_key": "4b5f80bde1092f9f4b1a5c26416390ee58ad0d66b2a3bdcb803cb1d96195345e",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-022",
+      "name": "ズバット",
+      "stored_number": "022",
+      "checklist_number": "30",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/30",
+      "source_assertion_key": "a9bd0ac56ccc6fa9baf2ed586659c4a73411892640715be1581540a9873494c5",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-023",
+      "name": "ゴルバット",
+      "stored_number": "023",
+      "checklist_number": "31",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/31",
+      "source_assertion_key": "0b84f93219e1764842603e4136c6c8d616a0483e796e95a2d213437054c1fb03",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-024",
+      "name": "クロバット",
+      "stored_number": "024",
+      "checklist_number": "32",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/32",
+      "source_assertion_key": "5e932bdd6072fec38d43df8ea5b6b50fe1cf4d6b3d0e049135227b62fb0485e0",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-027",
+      "name": "ソーナンス",
+      "stored_number": "027",
+      "checklist_number": "35",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/35",
+      "source_assertion_key": "0d81f7a05bef2985e27492bd2f1b7df863251d1727bc3b32a2a8ff4059fb8711",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-028",
+      "name": "ゴクリン",
+      "stored_number": "028",
+      "checklist_number": "36",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/36",
+      "source_assertion_key": "79b7365f026f3c76ac0a8a459c320739f019f99ece7cb61fa90cb229d7d1db95",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-029",
+      "name": "マルノーム",
+      "stored_number": "029",
+      "checklist_number": "37",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/37",
+      "source_assertion_key": "91015502104df408b190ff71238d123d827f37598766a77304b93e92cc6f9507",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-030",
+      "name": "ムンナ",
+      "stored_number": "030",
+      "checklist_number": "38",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/38",
+      "source_assertion_key": "dbb93572046845940af2d8e1f74a082bc695bdfb025ebab0fbbc947a7937dcb1",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-031",
+      "name": "ムシャーナ",
+      "stored_number": "031",
+      "checklist_number": "39",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/39",
+      "source_assertion_key": "c9cc77da6685429ff7e0ec7916de55c415fc6d6ec453846592ae6abc473b623a",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-032",
+      "name": "ヒトモシ",
+      "stored_number": "032",
+      "checklist_number": "40",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/40",
+      "source_assertion_key": "7f6cd0b36b24374390b007a1204a795d86ec2b1d8a8e8e18bfbb5eed3303ad0e",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-033",
+      "name": "ランプラー",
+      "stored_number": "033",
+      "checklist_number": "41",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/41",
+      "source_assertion_key": "7e0df8c44c3156b3124ebd6489815e9ec592e8cb1e87c87a90a320423648002e",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-034",
+      "name": "シャンデラ",
+      "stored_number": "034",
+      "checklist_number": "42",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/42",
+      "source_assertion_key": "a63ecc2e0c97b712046e4d4ec1d6de533d3ecd8b5a517e83c151056c4eb98a06",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-035",
+      "name": "バケッチャ",
+      "stored_number": "035",
+      "checklist_number": "43",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/43",
+      "source_assertion_key": "7e57e3a6fb17278e93113ff21c49e0adba288cbaa3bab2213318a086239895b9",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-036",
+      "name": "パンプジン",
+      "stored_number": "036",
+      "checklist_number": "44",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/44",
+      "source_assertion_key": "f2f451e4b253f8bde16c5c8f2680e5875cfcb9d11f0b0379244c59e11c71059b",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-037",
+      "name": "グライガー",
+      "stored_number": "037",
+      "checklist_number": "45",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/45",
+      "source_assertion_key": "050b225c45c788eedc029414f071bae03befdddd00c767ba0626a9a5cadb44b6",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-038",
+      "name": "グライオン",
+      "stored_number": "038",
+      "checklist_number": "46",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/46",
+      "source_assertion_key": "f9670fd5285f4d160cc217f52f5ed1686e32bbf0268358c095503743670998b8",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-039",
+      "name": "ダンゴロ",
+      "stored_number": "039",
+      "checklist_number": "47",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/47",
+      "source_assertion_key": "200423cb0fb8987757b6863be5861cb65c033860caec20107d0a6fdbf5c46996",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-040",
+      "name": "ガントル",
+      "stored_number": "040",
+      "checklist_number": "48",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/48",
+      "source_assertion_key": "b380b371485b543dd40508847dca4f95bdb98f0fe48de1f18083bbe588f572cb",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-041",
+      "name": "ギガイアス",
+      "stored_number": "041",
+      "checklist_number": "49",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/49",
+      "source_assertion_key": "36a9c73cc4ee9f963bfa36aa3cd2203c7f7d6b3719932c1781848aeb258b71ac",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-042",
+      "name": "ヤミカラス",
+      "stored_number": "042",
+      "checklist_number": "50",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/50",
+      "source_assertion_key": "d8d626735951a2feaeab0773f5462cbaf864d318544801c30d9f72c182a43496",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-043",
+      "name": "ドンカラス",
+      "stored_number": "043",
+      "checklist_number": "51",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/51",
+      "source_assertion_key": "a6ffcc85e15676cf29170bb723a7b1a27a06bdd7753f09107d07f5f208b4b861",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-044",
+      "name": "ポチエナ",
+      "stored_number": "044",
+      "checklist_number": "52",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/52",
+      "source_assertion_key": "baa5bc5ab8b92ce1a89672839a66089d249bfaff581cd8e4dfcc2148536af2b0",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-045",
+      "name": "グラエナ",
+      "stored_number": "045",
+      "checklist_number": "53",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/53",
+      "source_assertion_key": "941a2a46e398c8c98bda8f6d0de571c712ebee08bdf62b54c248ea4656b12558",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-046",
+      "name": "ミカルゲ",
+      "stored_number": "046",
+      "checklist_number": "54",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/54",
+      "source_assertion_key": "893ea4416e9bd7319aafb8166291b491e25befe04f704899090865e3d901eaf5",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-047",
+      "name": "チョロネコ",
+      "stored_number": "047",
+      "checklist_number": "55",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/55",
+      "source_assertion_key": "183addef5ecebc9fa1d1dd8dd356f7c16871cf80093be5e8be948b82da6bd48a",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-048",
+      "name": "レパルダス",
+      "stored_number": "048",
+      "checklist_number": "56",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/56",
+      "source_assertion_key": "2d4abb7a7797235bfbe08e333d39ad0d122f94dcb20281b01a9b26c45abbffe9",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-050",
+      "name": "ヒードラン",
+      "stored_number": "050",
+      "checklist_number": "58",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/58",
+      "source_assertion_key": "1945066cdb7b7dddb056de998573e452ea7992ffe3de0bbe29bc7b2ee0d48e2f",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-051",
+      "name": "シュバルゴ",
+      "stored_number": "051",
+      "checklist_number": "59",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/59",
+      "source_assertion_key": "1bca0ffbb43e2dc541164284891460f4b3603adab6c1cc6a986efdf18d8ab4d1",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-053",
+      "name": "ペロッパフ",
+      "stored_number": "053",
+      "checklist_number": "61",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/61",
+      "source_assertion_key": "4ec5e167ce20b6bb1c9803935e85db2dc563a197f776738f425dd79e7e6e7933",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-054",
+      "name": "ペロリーム",
+      "stored_number": "054",
+      "checklist_number": "62",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/62",
+      "source_assertion_key": "84fe266f857955c24ceeb903c834ea7e6f9e51c68f603bf3234c1668dbd99111",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-055",
+      "name": "モノズ",
+      "stored_number": "055",
+      "checklist_number": "63",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/63",
+      "source_assertion_key": "256cbdcfefaa57f5e68ed3aeb274bb3453c4f9d6ffef31aa1e5ec424e879125b",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-056",
+      "name": "ジヘッド",
+      "stored_number": "056",
+      "checklist_number": "64",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/64",
+      "source_assertion_key": "381ccee989ffff3ad17f30c9ea9ce1c8649d09b8cf59e444e46509809a9175c8",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-057",
+      "name": "サザンドラ",
+      "stored_number": "057",
+      "checklist_number": "65",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/65",
+      "source_assertion_key": "58f14d0576470f31049afd704ab4e3446494c08270894d0ea09a9ea38bbc5d30",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-058",
+      "name": "オニスズメ",
+      "stored_number": "058",
+      "checklist_number": "66",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/66",
+      "source_assertion_key": "d65b6e5f75694e09a5fa222ff194ae9360f0365cec8353b1a3224eecc0085ddf",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-059",
+      "name": "オニドリル",
+      "stored_number": "059",
+      "checklist_number": "67",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/67",
+      "source_assertion_key": "a2551b6796efdb31da9dc93dd231faee7ae67f55358770c63e996a6d293c9531",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-060",
+      "name": "ラッキー",
+      "stored_number": "060",
+      "checklist_number": "68",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/68",
+      "source_assertion_key": "a3fe830cd2ef9b2c56b46e9a479835b18908d75fff73326bccb8a3ed244b136c",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-061",
+      "name": "ハピナス",
+      "stored_number": "061",
+      "checklist_number": "69",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/69",
+      "source_assertion_key": "652a4f47b84d779fd6ee245a3240e59df4a7c6aef3dc57204f6bc3fc6dedf168",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-062",
+      "name": "キリンリキ",
+      "stored_number": "062",
+      "checklist_number": "70",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/70",
+      "source_assertion_key": "9c2fdedbfa2a216d317c22fcb533651532967b3115f679b1694df396e377aad2",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-063",
+      "name": "ゴニョニョ",
+      "stored_number": "063",
+      "checklist_number": "71",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/71",
+      "source_assertion_key": "93bec96ad31f9d567b5b3ec892b3613f2940377c606699f22d3d22f8e9aa91b5",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-064",
+      "name": "ドゴーム",
+      "stored_number": "064",
+      "checklist_number": "72",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/72",
+      "source_assertion_key": "af33d75d9a078f328fdb38b9666e8ed1c89f95040328aee7ec4dbe8e4ef175b3",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-065",
+      "name": "バクオング",
+      "stored_number": "065",
+      "checklist_number": "73",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/73",
+      "source_assertion_key": "3ddcd9b2447f97c655f7a140a3b7f1a6deee0450a13d4deb474b9c2bc5bb855f",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-066",
+      "name": "レジギガス",
+      "stored_number": "066",
+      "checklist_number": "74",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/74",
+      "source_assertion_key": "6b52b3a4bd24f59dd3b6a14ba3346006edeb57031f97b4e286bb9089a9c9ab4f",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-067",
+      "name": "ホルビー",
+      "stored_number": "067",
+      "checklist_number": "75",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/75",
+      "source_assertion_key": "36e13666078b37ac0f0ad0dd67c2367fca786a5fd51d232460970819d392856f",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-068",
+      "name": "ホルード",
+      "stored_number": "068",
+      "checklist_number": "76",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/76",
+      "source_assertion_key": "fac1f1b2d4683191992f425f40a7a0391091ca1f77eecb5e30cf353edaa3d27b",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-069",
+      "name": "ヤヤコマ",
+      "stored_number": "069",
+      "checklist_number": "77",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/77",
+      "source_assertion_key": "98efbf0652f0d6fc5302375e33153cd303fd85d3acfba39a17dd46f841355fb6",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-070",
+      "name": "ターゲットホイッスル（フレア団ギア）",
+      "stored_number": "070",
+      "checklist_number": "78",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/78",
+      "source_assertion_key": "434f7a4fa9d3997301104000d6e9b8c1e9bda9f18e766418dcfdb04d96340f20",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-072",
+      "name": "みがわりロボ（フレア団ギア）",
+      "stored_number": "072",
+      "checklist_number": "80",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/80",
+      "source_assertion_key": "753a154867e5cd0075a16cb07704b3604bf293e68d59a25367cd20dfb66e214a",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-073",
+      "name": "ライボルトソウルリンク",
+      "stored_number": "073",
+      "checklist_number": "81",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/81",
+      "source_assertion_key": "2e5ba5d53660adf0a834a224120ef36e6192207fe5cdcc546e21034629e104d9",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-074",
+      "name": "ジャミングネット（フレア団ハイパーギア）",
+      "stored_number": "074",
+      "checklist_number": "82",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/82",
+      "source_assertion_key": "b47bdbf75ae89f2e7e0dd20a897ef07864424e0f615d5de9a97cdddd411ed451",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-075",
+      "name": "ヘッドノイザー（フレア団ハイパーギア）",
+      "stored_number": "075",
+      "checklist_number": "83",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/83",
+      "source_assertion_key": "d62ba1fe2bf8ba278096e1ca11dd759d260411a68d556b11dd6b33b3652090bf",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-079",
+      "name": "次元の谷",
+      "stored_number": "079",
+      "checklist_number": "87",
+      "offset": 8,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/87",
+      "source_assertion_key": "48a5157f06baf60a06f9d2c9a9ce6329ca12460de35bcc17c4bc3043af95d022",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-081",
+      "name": "コンパン",
+      "stored_number": "081",
+      "checklist_number": "1",
+      "offset": -80,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/1",
+      "source_assertion_key": "339aa3b107563a89fbab09b4504f01957f92ee395fddc79e96334f9f6424e290",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-083",
+      "name": "ヤンヤンマ",
+      "stored_number": "083",
+      "checklist_number": "3",
+      "offset": -80,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/3",
+      "source_assertion_key": "03d0a5dbc21bc0e49244f62477ce4237192d9ad88baed7ee4c7527be3c144e46",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-084",
+      "name": "メガヤンマ",
+      "stored_number": "084",
+      "checklist_number": "4",
+      "offset": -80,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/4",
+      "source_assertion_key": "8b0d9405d9e978db8a6a087d2fb1f3e7c38b4e8e4bf64b7fe25d068ac26db30e",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-085",
+      "name": "クルミル",
+      "stored_number": "085",
+      "checklist_number": "5",
+      "offset": -80,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/5",
+      "source_assertion_key": "648f3f1168bdf80adddf00a1a5abb34dc7e71ad44328da808eea87cc3f467666",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-086",
+      "name": "クルマユ",
+      "stored_number": "086",
+      "checklist_number": "6",
+      "offset": -80,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/6",
+      "source_assertion_key": "9874992f6be187308daa696d8e6a7f0be871df7aa4e26db366c41d7cd44ebbbe",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-087",
+      "name": "ハハコモリ",
+      "stored_number": "087",
+      "checklist_number": "7",
+      "offset": -80,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/7",
+      "source_assertion_key": "5807708eee451289553f7aa849679d1aeaae58be43a94f16a4845e202a06b620",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-088",
+      "name": "カブルモ",
+      "stored_number": "088",
+      "checklist_number": "8",
+      "offset": -80,
+      "source_url": "https://limitlesstcg.com/cards/jp/XY4/8",
+      "source_assertion_key": "90b8df2a9667bd075495fc927d26c24850254e8b3f547974b7e085f3d9e0524e",
+      "raw_snapshot_sha256": "91241b0c93716053262a498058ccf0c0283538e3229fe9a15eef8b1d51a47a82"
+    }
+  ],
+  "held_rows": [
+    {
+      "gv_id": "GV-PK-JPN-XY4-015",
+      "name": "ライボルトEX",
+      "source_name_matches": 3,
+      "parent_name_matches": 3
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-016",
+      "name": "ライボルトEX",
+      "source_name_matches": 3,
+      "parent_name_matches": 3
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-025",
+      "name": "ゲンガーEX",
+      "source_name_matches": 3,
+      "parent_name_matches": 3
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-026",
+      "name": "ゲンガーEX",
+      "source_name_matches": 3,
+      "parent_name_matches": 3
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-049",
+      "name": "カラマネロEX",
+      "source_name_matches": 2,
+      "parent_name_matches": 2
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-052",
+      "name": "フラージェスEX",
+      "source_name_matches": 2,
+      "parent_name_matches": 2
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-071",
+      "name": "バトルコンプレッサー（フレア団ギア）",
+      "source_name_matches": 0,
+      "parent_name_matches": 1
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-076",
+      "name": "AZ",
+      "source_name_matches": 2,
+      "parent_name_matches": 2
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-077",
+      "name": "クセロシキ",
+      "source_name_matches": 2,
+      "parent_name_matches": 2
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-089",
+      "name": "ライボルトEX",
+      "source_name_matches": 3,
+      "parent_name_matches": 3
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-090",
+      "name": "ゲンガーEX",
+      "source_name_matches": 3,
+      "parent_name_matches": 3
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-091",
+      "name": "カラマネロEX",
+      "source_name_matches": 2,
+      "parent_name_matches": 2
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-092",
+      "name": "フラージェスEX",
+      "source_name_matches": 2,
+      "parent_name_matches": 2
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-093",
+      "name": "AZ",
+      "source_name_matches": 2,
+      "parent_name_matches": 2
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-094",
+      "name": "クセロシキ",
+      "source_name_matches": 2,
+      "parent_name_matches": 2
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-095",
+      "name": "フラダリの奥の手",
+      "source_name_matches": 2,
+      "parent_name_matches": 1
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-78",
+      "name": "Target Whistle",
+      "source_name_matches": 0,
+      "parent_name_matches": 1
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-80",
+      "name": "Robo Substitute",
+      "source_name_matches": 0,
+      "parent_name_matches": 1
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-82",
+      "name": "Jamming Net",
+      "source_name_matches": 0,
+      "parent_name_matches": 1
+    }
+  ]
+}

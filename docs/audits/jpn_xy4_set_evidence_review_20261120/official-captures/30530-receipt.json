@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:08:27.555Z",
+  "gv_id": "GV-PK-JPN-XY4-051",
+  "official_id": "30530",
+  "checklist_number": "59",
+  "parent": {
+    "id": "7a838b97-6d0b-41a2-b3b2-2fd4cad450a2",
+    "gv_id": "GV-PK-JPN-XY4-051",
+    "name": "シュバルゴ",
+    "number": "051",
+    "number_plain": "051",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-051/6a0bc90f02d7adbdff76432a.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30530/regu/all",
+    "sha256": "542a74e8b79ce78c8e0eb3e8d3fb7ad1c690fd617f71fcb6ac921250c9c6afbb",
+    "bytes": 10483
+  },
+  "heading": "シュバルゴ",
+  "printed_number": "059",
+  "printed_total": "088",
+  "dex": "589",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030530_P_SHUBARUGO.jpg",
+    "sha256": "6a0bc90f02d7adbdff76432a7cef4a6685b1a4830847a63c111ce212e82bf285",
+    "bytes": 278593,
+    "storage_path_prefix": "6a0bc90f02d7adbdff76432a",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

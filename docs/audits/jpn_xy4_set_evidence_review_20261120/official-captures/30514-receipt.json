@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:07:32.187Z",
+  "gv_id": "GV-PK-JPN-XY4-035",
+  "official_id": "30514",
+  "checklist_number": "43",
+  "parent": {
+    "id": "3094a71d-594b-4e79-b2b5-90baee07b4a6",
+    "gv_id": "GV-PK-JPN-XY4-035",
+    "name": "バケッチャ",
+    "number": "035",
+    "number_plain": "035",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-035/73cb7602c3f64ce4a85d2acd.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30514/regu/all",
+    "sha256": "6ae08cb399d2a81535c5f0f272ca0ce20a2d7c305444913a95197719b57fbf48",
+    "bytes": 10583
+  },
+  "heading": "バケッチャ",
+  "printed_number": "043",
+  "printed_total": "088",
+  "dex": "710",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030514_P_BAKECCHA.jpg",
+    "sha256": "73cb7602c3f64ce4a85d2acddb815c1f1797ff1433d1dba206d428ac92379227",
+    "bytes": 179588,
+    "storage_path_prefix": "73cb7602c3f64ce4a85d2acd",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

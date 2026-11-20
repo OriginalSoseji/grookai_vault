@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:07:50.655Z",
+  "gv_id": "GV-PK-JPN-XY4-040",
+  "official_id": "30519",
+  "checklist_number": "48",
+  "parent": {
+    "id": "bb049003-aebc-4a30-9ecb-ed5280465cc5",
+    "gv_id": "GV-PK-JPN-XY4-040",
+    "name": "ガントル",
+    "number": "040",
+    "number_plain": "040",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-040/78428f417f08721eb1929321.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30519/regu/all",
+    "sha256": "6f526e7d75d9d1084a319df14faa46f3706ca24d02ead82e5e7f51852c4779cc",
+    "bytes": 10598
+  },
+  "heading": "ガントル",
+  "printed_number": "048",
+  "printed_total": "088",
+  "dex": "525",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030519_P_GANTORU.jpg",
+    "sha256": "78428f417f08721eb1929321323b6eba7ce14032952727f0e8c20bc1a82c327a",
+    "bytes": 225639,
+    "storage_path_prefix": "78428f417f08721eb1929321",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

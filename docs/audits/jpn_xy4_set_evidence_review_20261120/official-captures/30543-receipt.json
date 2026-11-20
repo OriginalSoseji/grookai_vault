@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:09:11.795Z",
+  "gv_id": "GV-PK-JPN-XY4-064",
+  "official_id": "30543",
+  "checklist_number": "72",
+  "parent": {
+    "id": "9da52e37-7c3b-4364-a8c5-34697536200c",
+    "gv_id": "GV-PK-JPN-XY4-064",
+    "name": "ドゴーム",
+    "number": "064",
+    "number_plain": "064",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-064/1762c5d4cc071d83414ea2af.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30543/regu/all",
+    "sha256": "6f2c33ab9ba547d533d7d6edb899e12d7f6c05ca9c15154ab471ab46c3ba86ef",
+    "bytes": 10516
+  },
+  "heading": "ドゴーム",
+  "printed_number": "072",
+  "printed_total": "088",
+  "dex": "294",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030543_P_DOGOMU.jpg",
+    "sha256": "1762c5d4cc071d83414ea2af0009d9cb8f5ea2ce9455924c05a56693011060bb",
+    "bytes": 181198,
+    "storage_path_prefix": "1762c5d4cc071d83414ea2af",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

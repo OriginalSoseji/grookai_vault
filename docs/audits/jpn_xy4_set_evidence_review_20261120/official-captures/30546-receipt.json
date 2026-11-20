@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:09:22.543Z",
+  "gv_id": "GV-PK-JPN-XY4-067",
+  "official_id": "30546",
+  "checklist_number": "75",
+  "parent": {
+    "id": "4b37e7c8-bcae-4b5e-a246-37fd62d3356b",
+    "gv_id": "GV-PK-JPN-XY4-067",
+    "name": "ホルビー",
+    "number": "067",
+    "number_plain": "067",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-067/46b925972ba690c3e657af48.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30546/regu/all",
+    "sha256": "2b2c5f3b5e1294ddf6e8398670cded8b1a12bddd3d456bef6f91a22a234bb238",
+    "bytes": 10148
+  },
+  "heading": "ホルビー",
+  "printed_number": "075",
+  "printed_total": "088",
+  "dex": "659",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030546_P_HORUBI.jpg",
+    "sha256": "46b925972ba690c3e657af48747c017d23355eafe0f7b155af7690f2858db12a",
+    "bytes": 211616,
+    "storage_path_prefix": "46b925972ba690c3e657af48",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

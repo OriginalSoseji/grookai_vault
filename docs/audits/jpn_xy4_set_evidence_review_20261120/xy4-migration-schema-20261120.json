@@ -1,0 +1,758 @@
+{
+  "captured_at": "2026-11-20T15:17:56.466Z",
+  "scope": "Read-only constraint, foreign-key and unique-index inventory; does not include logical references or authorize schema/data changes.",
+  "constraints": [
+    {
+      "relation": "card_print_identity",
+      "conname": "card_print_identity_card_print_id_fkey",
+      "contype": "f",
+      "condeferrable": false,
+      "condeferred": false,
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+    },
+    {
+      "relation": "card_print_identity",
+      "conname": "card_print_identity_identity_domain_check",
+      "contype": "c",
+      "condeferrable": false,
+      "condeferred": false,
+      "definition": "CHECK ((identity_domain = ANY (ARRAY['pokemon_eng_standard'::text, 'pokemon_ba'::text, 'pokemon_eng_special_print'::text, 'pokemon_jpn'::text, 'mtg_eng_paper_print'::text, 'one_piece_eng_print'::text])))"
+    },
+    {
+      "relation": "card_print_identity",
+      "conname": "card_print_identity_identity_payload_object_check",
+      "contype": "c",
+      "condeferrable": false,
+      "condeferred": false,
+      "definition": "CHECK ((jsonb_typeof(identity_payload) = 'object'::text))"
+    },
+    {
+      "relation": "card_print_identity",
+      "conname": "card_print_identity_number_or_japanese_unnumbered_v2_check",
+      "contype": "c",
+      "condeferrable": false,
+      "condeferred": false,
+      "definition": "CHECK (\nCASE\n    WHEN (identity_key_version = 'pokemon_jpn:unnumbered_event:v1'::text) THEN card_print_identity_is_japanese_unnumbered_event_v1(identity_domain, identity_key_version, printed_number, identity_payload)\n    WHEN (identity_key_version = 'pokemon_jpn:unnumbered_basic_energy:v1'::text) THEN card_print_identity_is_japanese_unnumbered_basic_energy_v1(identity_domain, identity_key_version, printed_number, identity_payload)\n    ELSE (printed_number IS NOT NULL)\nEND)"
+    },
+    {
+      "relation": "card_print_identity",
+      "conname": "card_print_identity_pkey",
+      "contype": "p",
+      "condeferrable": false,
+      "condeferred": false,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "relation": "card_print_identity_aliases",
+      "conname": "card_print_identity_aliases_active_authority",
+      "contype": "c",
+      "condeferrable": false,
+      "condeferred": false,
+      "definition": "CHECK (((NOT active) OR ((authority_status = 'approved'::text) AND (cardinality(authority_sources) >= 2) AND (adjudicated_at IS NOT NULL) AND (authority_decision ? 'canonical_basis'::text) AND (authority_decision ? 'finish_policy'::text) AND (authority_decision ? 'classification_sha256'::text) AND (authority_decision ? 'collision_matrix_sha256'::text))))"
+    },
+    {
+      "relation": "card_print_identity_aliases",
+      "conname": "card_print_identity_aliases_authority_status",
+      "contype": "c",
+      "condeferrable": false,
+      "condeferred": false,
+      "definition": "CHECK ((authority_status = ANY (ARRAY['pending'::text, 'approved'::text, 'rejected'::text, 'retired'::text])))"
+    },
+    {
+      "relation": "card_print_identity_aliases",
+      "conname": "card_print_identity_aliases_canonical_card_print_id_fkey",
+      "contype": "f",
+      "condeferrable": false,
+      "condeferred": false,
+      "definition": "FOREIGN KEY (canonical_card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+    },
+    {
+      "relation": "card_print_identity_aliases",
+      "conname": "card_print_identity_aliases_distinct_cards",
+      "contype": "c",
+      "condeferrable": false,
+      "condeferred": false,
+      "definition": "CHECK ((legacy_card_print_id <> canonical_card_print_id))"
+    },
+    {
+      "relation": "card_print_identity_aliases",
+      "conname": "card_print_identity_aliases_legacy_card_print_id_fkey",
+      "contype": "f",
+      "condeferrable": false,
+      "condeferred": false,
+      "definition": "FOREIGN KEY (legacy_card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+    },
+    {
+      "relation": "card_print_identity_aliases",
+      "conname": "card_print_identity_aliases_pkey",
+      "contype": "p",
+      "condeferrable": false,
+      "condeferred": false,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "relation": "card_print_identity_aliases",
+      "conname": "card_print_identity_aliases_retirement_state",
+      "contype": "c",
+      "condeferrable": false,
+      "condeferred": false,
+      "definition": "CHECK (((active AND (retired_at IS NULL)) OR (NOT active)))"
+    },
+    {
+      "relation": "card_prints",
+      "conname": "card_prints_game_id_fkey",
+      "contype": "f",
+      "condeferrable": false,
+      "condeferred": false,
+      "definition": "FOREIGN KEY (game_id) REFERENCES games(id) ON DELETE CASCADE"
+    },
+    {
+      "relation": "card_prints",
+      "conname": "card_prints_image_source_check",
+      "contype": "c",
+      "condeferrable": false,
+      "condeferred": false,
+      "definition": "CHECK (((image_source IS NULL) OR (image_source = ANY (ARRAY['tcgdex'::text, 'ptcg'::text, 'pokemonapi'::text, 'identity'::text, 'user_photo'::text, 'scryfall'::text, 'self_hosted_tcgplayer_exact_product_v1'::text, 'self_hosted_bandai_official_exact_base_art_v1'::text, 'self_hosted_verified_external_exact_product_v1'::text]))))"
+    },
+    {
+      "relation": "card_prints",
+      "conname": "card_prints_image_status_check",
+      "contype": "c",
+      "condeferrable": false,
+      "condeferred": false,
+      "definition": "CHECK (((image_status IS NULL) OR (image_status = ANY (ARRAY['exact'::text, 'representative_shared'::text, 'representative_shared_collision'::text, 'representative_shared_stamp'::text, 'missing'::text, 'unresolved'::text, 'ok'::text, 'placeholder'::text, 'user_uploaded'::text]))))"
+    },
+    {
+      "relation": "card_prints",
+      "conname": "card_prints_pkey",
+      "contype": "p",
+      "condeferrable": false,
+      "condeferred": false,
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "relation": "card_prints",
+      "conname": "card_prints_set_id_fkey",
+      "contype": "f",
+      "condeferrable": false,
+      "condeferred": false,
+      "definition": "FOREIGN KEY (set_id) REFERENCES sets(id) ON DELETE SET NULL"
+    },
+    {
+      "relation": "card_prints",
+      "conname": "ck_card_prints_reprint_anthology_requires_pik_v1",
+      "contype": "c",
+      "condeferrable": false,
+      "condeferred": false,
+      "definition": "CHECK (((set_identity_model <> 'reprint_anthology'::text) OR (NULLIF(btrim(print_identity_key), ''::text) IS NOT NULL)))"
+    },
+    {
+      "relation": "card_prints",
+      "conname": "ck_card_prints_set_identity_model_v1",
+      "contype": "c",
+      "condeferrable": false,
+      "condeferred": false,
+      "definition": "CHECK ((set_identity_model = ANY (ARRAY['standard'::text, 'reprint_anthology'::text])))"
+    }
+  ],
+  "inbound": [
+    {
+      "relation": "ai_decision_logs",
+      "conname": "ai_decision_logs_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE SET NULL",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "binder_contributions",
+      "conname": "binder_contributions_snapshot_card_print_id_fkey",
+      "definition": "FOREIGN KEY (snapshot_card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "binder_custom_slots",
+      "conname": "binder_custom_slots_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "binders",
+      "conname": "binders_cover_card_print_id_fkey",
+      "definition": "FOREIGN KEY (cover_card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "canon_warehouse_candidates",
+      "conname": "fk_warehouse_candidates_promoted_card_print",
+      "definition": "FOREIGN KEY (promoted_card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "card_comments",
+      "conname": "card_comments_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "card_embeddings",
+      "conname": "card_embeddings_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "card_events",
+      "conname": "card_events_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE SET NULL",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "card_events_emit_failures",
+      "conname": "card_events_emit_failures_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE SET NULL",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "card_feed_events",
+      "conname": "card_feed_events_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "card_fingerprint_index",
+      "conname": "card_fingerprint_index_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "card_interaction_outcomes",
+      "conname": "card_interaction_outcomes_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "card_interactions",
+      "conname": "card_interactions_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "card_price_observations",
+      "conname": "card_price_observations_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "card_price_rollups",
+      "conname": "card_price_rollups_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "card_price_ticks",
+      "conname": "card_price_ticks_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "card_prices",
+      "conname": "card_prices_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "card_print_cameos",
+      "conname": "card_print_cameos_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "card_print_family_review_queue",
+      "conname": "card_print_family_review_queue_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "card_print_file_paths",
+      "conname": "card_print_file_paths_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "card_print_identity",
+      "conname": "card_print_identity_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "card_print_identity_aliases",
+      "conname": "card_print_identity_aliases_canonical_card_print_id_fkey",
+      "definition": "FOREIGN KEY (canonical_card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "card_print_identity_aliases",
+      "conname": "card_print_identity_aliases_legacy_card_print_id_fkey",
+      "definition": "FOREIGN KEY (legacy_card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "card_print_identity_source_evidence",
+      "conname": "card_print_identity_source_evidence_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "card_print_image_faces",
+      "conname": "card_print_image_faces_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "card_print_price_curves",
+      "conname": "card_print_price_curves_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "card_print_species",
+      "conname": "card_print_species_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "card_print_traits",
+      "conname": "card_print_traits_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "card_print_visual_descriptions",
+      "conname": "card_print_visual_descriptions_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "card_printings",
+      "conname": "card_printings_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "card_signals",
+      "conname": "card_signals_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "ebay_active_price_snapshots",
+      "conname": "ebay_active_price_snapshots_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "ebay_active_prices_latest",
+      "conname": "ebay_active_prices_latest_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "external_discovery_candidates",
+      "conname": "external_discovery_candidates_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE SET NULL",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "external_mapping_aliases",
+      "conname": "external_mapping_aliases_canonical_card_print_id_fkey",
+      "definition": "FOREIGN KEY (canonical_card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "external_mappings",
+      "conname": "external_mappings_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "identity_scan_selections",
+      "conname": "identity_scan_selections_selected_card_print_id_fkey",
+      "definition": "FOREIGN KEY (selected_card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "jungle_edition_identity_links_v1",
+      "conname": "jungle_edition_identity_links_v1_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "jungle_edition_identity_links_v1",
+      "conname": "jungle_edition_identity_links_v1_legacy_card_print_id_fkey",
+      "definition": "FOREIGN KEY (legacy_card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "jungle_slab_intake_receipts_v1",
+      "conname": "jungle_slab_intake_receipts_v1_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "justtcg_identity_overrides",
+      "conname": "justtcg_identity_overrides_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "justtcg_variant_price_snapshots",
+      "conname": "justtcg_variant_price_snapshots_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "justtcg_variant_prices_latest",
+      "conname": "justtcg_variant_prices_latest_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "justtcg_variants",
+      "conname": "justtcg_variants_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "listings",
+      "conname": "listings_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) NOT VALID",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "market_evidence_variant_assignments",
+      "conname": "market_evidence_variant_assignments_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "market_listing_card_candidates",
+      "conname": "market_listing_card_candidates_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "market_listing_rollups",
+      "conname": "market_listing_rollups_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "market_price_pipeline_candidates",
+      "conname": "market_price_pipeline_candidates_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "market_price_publication_snapshots",
+      "conname": "market_price_publication_snapshots_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "market_price_qualification_decisions",
+      "conname": "market_price_qualification_decisions_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "market_prices",
+      "conname": "market_prices_card_id_fkey",
+      "definition": "FOREIGN KEY (card_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "market_reference_candidates",
+      "conname": "market_reference_candidates_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "market_reference_normalized_evidence",
+      "conname": "market_reference_normalized_evidence_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "market_reference_signal_rollups",
+      "conname": "market_reference_signal_rollups_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "notification_outbox",
+      "conname": "notification_outbox_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "notifications_log",
+      "conname": "notifications_log_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE SET NULL",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "onboarding_ladder_events",
+      "conname": "onboarding_ladder_events_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE SET NULL",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "onboarding_ladder_state",
+      "conname": "onboarding_ladder_state_owned_card_print_id_fkey",
+      "definition": "FOREIGN KEY (owned_card_print_id) REFERENCES card_prints(id) ON DELETE SET NULL",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "onboarding_ladder_state",
+      "conname": "onboarding_ladder_state_wanted_card_print_id_fkey",
+      "definition": "FOREIGN KEY (wanted_card_print_id) REFERENCES card_prints(id) ON DELETE SET NULL",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "pokemon_card_gameplay_details_v1",
+      "conname": "pokemon_card_gameplay_details_v1_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "price_observations",
+      "conname": "price_observations_print_id_fkey",
+      "definition": "FOREIGN KEY (print_id) REFERENCES card_prints(id) DEFERRABLE INITIALLY DEFERRED",
+      "condeferrable": true,
+      "condeferred": true
+    },
+    {
+      "relation": "prices",
+      "conname": "prices_card_id_fkey",
+      "definition": "FOREIGN KEY (card_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "pricing_jobs",
+      "conname": "pricing_jobs_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "pricing_observations",
+      "conname": "pricing_observations_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE SET NULL",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "pricing_watch",
+      "conname": "pricing_watch_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "scanner_fingerprint_index",
+      "conname": "scanner_fingerprint_index_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "shared_cards",
+      "conname": "shared_cards_card_id_fkey",
+      "definition": "FOREIGN KEY (card_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "slab_certs",
+      "conname": "slab_certs_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "slab_provenance_events",
+      "conname": "slab_provenance_events_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "tcgplayer_gym_challenge_edition_bindings_v1",
+      "conname": "tcgplayer_gym_challenge_edition_bindings_v1_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "user_card_intents",
+      "conname": "user_card_intents_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "user_card_photos",
+      "conname": "user_card_photos_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "vault_item_instance_dispositions",
+      "conname": "vault_item_instance_dispositions_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "vault_item_instances",
+      "conname": "vault_item_instances_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "vault_items",
+      "conname": "fk_vault_items_card",
+      "definition": "FOREIGN KEY (card_id) REFERENCES card_prints(id) DEFERRABLE INITIALLY DEFERRED",
+      "condeferrable": true,
+      "condeferred": true
+    },
+    {
+      "relation": "want_matches",
+      "conname": "want_matches_card_print_id_fkey",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    },
+    {
+      "relation": "wishlist_items",
+      "conname": "wishlist_items_card_id_fkey",
+      "definition": "FOREIGN KEY (card_id) REFERENCES card_prints(id) ON DELETE CASCADE",
+      "condeferrable": false,
+      "condeferred": false
+    }
+  ],
+  "indexes": [
+    {
+      "tablename": "card_print_identity",
+      "indexname": "card_print_identity_pkey",
+      "indexdef": "CREATE UNIQUE INDEX card_print_identity_pkey ON public.card_print_identity USING btree (id)"
+    },
+    {
+      "tablename": "card_print_identity",
+      "indexname": "uq_card_print_identity_active_card_print_id",
+      "indexdef": "CREATE UNIQUE INDEX uq_card_print_identity_active_card_print_id ON public.card_print_identity USING btree (card_print_id) WHERE (is_active = true)"
+    },
+    {
+      "tablename": "card_print_identity",
+      "indexname": "uq_card_print_identity_active_domain_hash",
+      "indexdef": "CREATE UNIQUE INDEX uq_card_print_identity_active_domain_hash ON public.card_print_identity USING btree (identity_domain, identity_key_version, identity_key_hash) WHERE (is_active = true)"
+    },
+    {
+      "tablename": "card_print_identity_aliases",
+      "indexname": "card_print_identity_aliases_active_legacy_uidx",
+      "indexdef": "CREATE UNIQUE INDEX card_print_identity_aliases_active_legacy_uidx ON public.card_print_identity_aliases USING btree (legacy_card_print_id) WHERE (active = true)"
+    },
+    {
+      "tablename": "card_print_identity_aliases",
+      "indexname": "card_print_identity_aliases_pkey",
+      "indexdef": "CREATE UNIQUE INDEX card_print_identity_aliases_pkey ON public.card_print_identity_aliases USING btree (id)"
+    },
+    {
+      "tablename": "card_prints",
+      "indexname": "card_prints_gv_id_unique_idx",
+      "indexdef": "CREATE UNIQUE INDEX card_prints_gv_id_unique_idx ON public.card_prints USING btree (gv_id) WHERE (gv_id IS NOT NULL)"
+    },
+    {
+      "tablename": "card_prints",
+      "indexname": "card_prints_gv_id_uq",
+      "indexdef": "CREATE UNIQUE INDEX card_prints_gv_id_uq ON public.card_prints USING btree (gv_id) WHERE (gv_id IS NOT NULL)"
+    },
+    {
+      "tablename": "card_prints",
+      "indexname": "card_prints_pkey",
+      "indexdef": "CREATE UNIQUE INDEX card_prints_pkey ON public.card_prints USING btree (id)"
+    },
+    {
+      "tablename": "card_prints",
+      "indexname": "uq_card_prints_identity_v2_standard_sets",
+      "indexdef": "CREATE UNIQUE INDEX uq_card_prints_identity_v2_standard_sets ON public.card_prints USING btree (set_id, number_plain, COALESCE(printed_identity_modifier, ''::text), COALESCE(variant_key, ''::text)) WHERE ((set_id IS NOT NULL) AND (number_plain IS NOT NULL) AND (set_identity_model = 'standard'::text))"
+    },
+    {
+      "tablename": "card_prints",
+      "indexname": "uq_card_prints_identity_v3_print_identity",
+      "indexdef": "CREATE UNIQUE INDEX uq_card_prints_identity_v3_print_identity ON public.card_prints USING btree (set_id, number_plain, print_identity_key, COALESCE(variant_key, ''::text)) WHERE ((set_id IS NOT NULL) AND (number_plain IS NOT NULL) AND (print_identity_key IS NOT NULL) AND (set_identity_model = 'reprint_anthology'::text))"
+    }
+  ]
+}

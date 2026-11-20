@@ -1,0 +1,35 @@
+{
+  "version": "XY4_AMBIGUOUS_BASE_LEAD_V1",
+  "captured_at": "2026-11-20T14:10:59.753Z",
+  "gv_id": "GV-PK-JPN-XY4-071",
+  "official_id": "30550",
+  "parent": {
+    "id": "b33dbc90-bbcd-4cc9-a00f-f102822bfeb5",
+    "gv_id": "GV-PK-JPN-XY4-071",
+    "name": "バトルコンプレッサー（フレア団ギア）",
+    "number": "071",
+    "number_plain": "071",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-071/817177efa59e06c19b2794f2.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30550/regu/all",
+    "sha256": "83ed6932e592193251e3709e203472753f1f871bcabae30eaefd30f55b656e4e",
+    "bytes": 8564
+  },
+  "heading": "バトルコンプレッサー（フレア団ギア）",
+  "printed_number": "079",
+  "printed_total": "088",
+  "dex": null,
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030550_T_BATORUKONPURESSAFUREADANGIA.jpg",
+    "sha256": "817177efa59e06c19b2794f29047d1c1fd562e8e13cea0b7f93c322a45b7224b",
+    "bytes": 163556,
+    "storage_path_prefix": "817177efa59e06c19b2794f2",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Predicted-coordinate research lead only; no full stored-image byte, global ownership, dependency or identity proof and no database mutation."
+}

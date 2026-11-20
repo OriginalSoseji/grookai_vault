@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:07:47.321Z",
+  "gv_id": "GV-PK-JPN-XY4-039",
+  "official_id": "30518",
+  "checklist_number": "47",
+  "parent": {
+    "id": "3d4bf39b-d9b1-4229-89b8-5f09a1dbc722",
+    "gv_id": "GV-PK-JPN-XY4-039",
+    "name": "ダンゴロ",
+    "number": "039",
+    "number_plain": "039",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-039/543ac157de509d960de8b3cb.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30518/regu/all",
+    "sha256": "7e03c2054648d637573e2efd7cdb93f0017b1abdd8af0f5d0e0514f3bf4c5d77",
+    "bytes": 10263
+  },
+  "heading": "ダンゴロ",
+  "printed_number": "047",
+  "printed_total": "088",
+  "dex": "524",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030518_P_DANGORO.jpg",
+    "sha256": "543ac157de509d960de8b3cb71bb6e0fe49a142e62ec1cf41e26fa13e437ad2c",
+    "bytes": 236949,
+    "storage_path_prefix": "543ac157de509d960de8b3cb",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

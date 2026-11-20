@@ -1,0 +1,284 @@
+{
+  "captured_at": "2026-11-20T15:20:31.080Z",
+  "scope": "Read-only per-reference counts for small regular nonindexed relations only, with separate snapshots and a two-second statement limit. Larger/partitioned relations, logical references and concurrent changes remain unassessed.",
+  "parents": 95,
+  "results": [
+    {
+      "schema_name": "public",
+      "table_name": "binder_contributions",
+      "column_name": "snapshot_card_print_id",
+      "conname": "binder_contributions_snapshot_card_print_id_fkey",
+      "indexed": false,
+      "status": "counted_small_relation",
+      "relation_size": "24576",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "binder_custom_slots",
+      "column_name": "card_print_id",
+      "conname": "binder_custom_slots_card_print_id_fkey",
+      "indexed": false,
+      "status": "counted_small_relation",
+      "relation_size": "8192",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "binders",
+      "column_name": "cover_card_print_id",
+      "conname": "binders_cover_card_print_id_fkey",
+      "indexed": false,
+      "status": "counted_small_relation",
+      "relation_size": "16384",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "canon_warehouse_candidates",
+      "column_name": "promoted_card_print_id",
+      "conname": "fk_warehouse_candidates_promoted_card_print",
+      "indexed": false,
+      "status": "counted_small_relation",
+      "relation_size": "1032192",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "card_events_emit_failures",
+      "column_name": "card_print_id",
+      "conname": "card_events_emit_failures_card_print_id_fkey",
+      "indexed": false,
+      "status": "counted_small_relation",
+      "relation_size": "0",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "card_feed_events",
+      "column_name": "card_print_id",
+      "conname": "card_feed_events_card_print_id_fkey",
+      "indexed": false,
+      "status": "counted_small_relation",
+      "relation_size": "630784",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "card_print_cameos",
+      "column_name": "card_print_id",
+      "conname": "card_print_cameos_card_print_id_fkey",
+      "indexed": false,
+      "status": "counted_small_relation",
+      "relation_size": "598016",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "card_print_file_paths",
+      "column_name": "card_print_id",
+      "conname": "card_print_file_paths_card_print_id_fkey",
+      "indexed": false,
+      "status": "counted_small_relation",
+      "relation_size": "0",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "card_print_identity_aliases",
+      "column_name": "canonical_card_print_id",
+      "conname": "card_print_identity_aliases_canonical_card_print_id_fkey",
+      "indexed": false,
+      "status": "counted_small_relation",
+      "relation_size": "1204224",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "card_print_identity_aliases",
+      "column_name": "legacy_card_print_id",
+      "conname": "card_print_identity_aliases_legacy_card_print_id_fkey",
+      "indexed": false,
+      "status": "counted_small_relation",
+      "relation_size": "1204224",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "external_discovery_candidates",
+      "column_name": "card_print_id",
+      "conname": "external_discovery_candidates_card_print_id_fkey",
+      "indexed": false,
+      "status": "not_assessed",
+      "relation_size": "12083200"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "identity_scan_selections",
+      "column_name": "selected_card_print_id",
+      "conname": "identity_scan_selections_selected_card_print_id_fkey",
+      "indexed": false,
+      "status": "counted_small_relation",
+      "relation_size": "0",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "jungle_edition_identity_links_v1",
+      "column_name": "card_print_id",
+      "conname": "jungle_edition_identity_links_v1_card_print_id_fkey",
+      "indexed": false,
+      "status": "counted_small_relation",
+      "relation_size": "40960",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "jungle_edition_identity_links_v1",
+      "column_name": "legacy_card_print_id",
+      "conname": "jungle_edition_identity_links_v1_legacy_card_print_id_fkey",
+      "indexed": false,
+      "status": "counted_small_relation",
+      "relation_size": "40960",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "jungle_slab_intake_receipts_v1",
+      "column_name": "card_print_id",
+      "conname": "jungle_slab_intake_receipts_v1_card_print_id_fkey",
+      "indexed": false,
+      "status": "counted_small_relation",
+      "relation_size": "0",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "listings",
+      "column_name": "card_print_id",
+      "conname": "listings_card_print_id_fkey",
+      "indexed": false,
+      "status": "counted_small_relation",
+      "relation_size": "8192",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "market_price_pipeline_candidates",
+      "column_name": "card_print_id",
+      "conname": "market_price_pipeline_candidates_card_print_id_fkey",
+      "indexed": false,
+      "status": "not_assessed",
+      "relation_size": "17138663424"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "market_price_qualification_decisions",
+      "column_name": "card_print_id",
+      "conname": "market_price_qualification_decisions_card_print_id_fkey",
+      "indexed": false,
+      "status": "not_assessed",
+      "relation_size": "38804176896"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "notification_outbox",
+      "column_name": "card_print_id",
+      "conname": "notification_outbox_card_print_id_fkey",
+      "indexed": false,
+      "status": "counted_small_relation",
+      "relation_size": "2015232",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "notifications_log",
+      "column_name": "card_print_id",
+      "conname": "notifications_log_card_print_id_fkey",
+      "indexed": false,
+      "status": "counted_small_relation",
+      "relation_size": "778240",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "onboarding_ladder_events",
+      "column_name": "card_print_id",
+      "conname": "onboarding_ladder_events_card_print_id_fkey",
+      "indexed": false,
+      "status": "counted_small_relation",
+      "relation_size": "131072",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "onboarding_ladder_state",
+      "column_name": "owned_card_print_id",
+      "conname": "onboarding_ladder_state_owned_card_print_id_fkey",
+      "indexed": false,
+      "status": "counted_small_relation",
+      "relation_size": "16384",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "onboarding_ladder_state",
+      "column_name": "wanted_card_print_id",
+      "conname": "onboarding_ladder_state_wanted_card_print_id_fkey",
+      "indexed": false,
+      "status": "counted_small_relation",
+      "relation_size": "16384",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "pricing_jobs",
+      "column_name": "card_print_id",
+      "conname": "pricing_jobs_card_print_id_fkey",
+      "indexed": false,
+      "status": "counted_small_relation",
+      "relation_size": "679936",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "shared_cards",
+      "column_name": "card_id",
+      "conname": "shared_cards_card_id_fkey",
+      "indexed": false,
+      "status": "counted_small_relation",
+      "relation_size": "8192",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "user_card_photos",
+      "column_name": "card_print_id",
+      "conname": "user_card_photos_card_print_id_fkey",
+      "indexed": false,
+      "status": "counted_small_relation",
+      "relation_size": "8192",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "want_matches",
+      "column_name": "card_print_id",
+      "conname": "want_matches_card_print_id_fkey",
+      "indexed": false,
+      "status": "counted_small_relation",
+      "relation_size": "16384",
+      "count": "0"
+    },
+    {
+      "schema_name": "public",
+      "table_name": "wishlist_items",
+      "column_name": "card_id",
+      "conname": "wishlist_items_card_id_fkey",
+      "indexed": false,
+      "status": "counted_small_relation",
+      "relation_size": "8192",
+      "count": "0"
+    }
+  ]
+}

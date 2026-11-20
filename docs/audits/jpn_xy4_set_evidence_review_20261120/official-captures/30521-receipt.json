@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:07:57.825Z",
+  "gv_id": "GV-PK-JPN-XY4-042",
+  "official_id": "30521",
+  "checklist_number": "50",
+  "parent": {
+    "id": "560c4424-5f9a-4841-b77d-d04c866da0b3",
+    "gv_id": "GV-PK-JPN-XY4-042",
+    "name": "ヤミカラス",
+    "number": "042",
+    "number_plain": "042",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-042/53c520a6ce6fc8c8598a4b39.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30521/regu/all",
+    "sha256": "b6cd132dc5dfb97f8ff7ef1770fa6171c7f925d75533ea4bb03e680e0957f6fa",
+    "bytes": 10517
+  },
+  "heading": "ヤミカラス",
+  "printed_number": "050",
+  "printed_total": "088",
+  "dex": "198",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030521_P_YAMIKARASU.jpg",
+    "sha256": "53c520a6ce6fc8c8598a4b3970cd250b3cc21054c2baa6f26501503c01ec623b",
+    "bytes": 176802,
+    "storage_path_prefix": "53c520a6ce6fc8c8598a4b39",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

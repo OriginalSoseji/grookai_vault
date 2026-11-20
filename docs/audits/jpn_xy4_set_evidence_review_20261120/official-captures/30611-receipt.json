@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:10:02.524Z",
+  "gv_id": "GV-PK-JPN-XY4-084",
+  "official_id": "30611",
+  "checklist_number": "4",
+  "parent": {
+    "id": "7e4f1df8-1820-4aa8-b0cc-87a047747ec3",
+    "gv_id": "GV-PK-JPN-XY4-084",
+    "name": "メガヤンマ",
+    "number": "084",
+    "number_plain": "084",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-084/02d29dff4c09660c85393d22.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30611/regu/all",
+    "sha256": "bf6b7df488196ba6588e44ea2f1d3d5c7ae9588c372b874ab7c500d5fe223add",
+    "bytes": 10801
+  },
+  "heading": "メガヤンマ",
+  "printed_number": "004",
+  "printed_total": "088",
+  "dex": "469",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030611_P_MEGAYANMA.jpg",
+    "sha256": "02d29dff4c09660c85393d22a78a5918c6922495eafaa7bf305603967c8ae0de",
+    "bytes": 226242,
+    "storage_path_prefix": "02d29dff4c09660c85393d22",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

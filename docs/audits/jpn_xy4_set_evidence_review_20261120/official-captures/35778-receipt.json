@@ -1,0 +1,34 @@
+{
+  "version": "XY4_SECRET_LEAD_V1",
+  "captured_at": "2026-11-20T15:00:10.499Z",
+  "gv_id": "GV-PK-JPN-XY4-089",
+  "official_id": "35778",
+  "parent": {
+    "id": "03e0609c-4932-4305-9a18-e3e63cd44292",
+    "gv_id": "GV-PK-JPN-XY4-089",
+    "name": "ライボルトEX",
+    "number": "089",
+    "number_plain": "089",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-089/0053156fb6c3f113447ee997.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/35778/regu/all",
+    "sha256": "a56a9a63440b885b3b3e0cbd6de121aeee4b45929cd9cf49e26e4b4298eaef1c",
+    "bytes": 10309
+  },
+  "heading": "ライボルトEX",
+  "printed_number": "089",
+  "printed_total": "088",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/035778_P_RAIBORUTOEX.jpg",
+    "sha256": "0053156fb6c3f113447ee99745e3a85a78b2f8bf5790084b011f8357ee5a0729",
+    "bytes": 291599,
+    "storage_path_prefix": "0053156fb6c3f113447ee997",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Predicted-coordinate research lead only; no full stored-image byte, global ownership, dependency or identity proof and no database mutation."
+}

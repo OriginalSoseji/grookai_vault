@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:06:09.817Z",
+  "gv_id": "GV-PK-JPN-XY4-009",
+  "official_id": "30488",
+  "checklist_number": "17",
+  "parent": {
+    "id": "689ee8b8-a0c4-4563-8fc8-52cc7b80cfdf",
+    "gv_id": "GV-PK-JPN-XY4-009",
+    "name": "オーダイル",
+    "number": "009",
+    "number_plain": "009",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-009/cdec531fc5c9d3258f829600.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30488/regu/all",
+    "sha256": "cc8ca8acbc01b2703ee9ff93a63358d10ceb7b2a953e7ef1e108d5b15ca4d14e",
+    "bytes": 11121
+  },
+  "heading": "オーダイル",
+  "printed_number": "017",
+  "printed_total": "088",
+  "dex": "160",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030488_P_ODAIRU.jpg",
+    "sha256": "cdec531fc5c9d3258f829600a2719391c92319f68d9b4cd229d8f8b04c69168c",
+    "bytes": 253720,
+    "storage_path_prefix": "cdec531fc5c9d3258f829600",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

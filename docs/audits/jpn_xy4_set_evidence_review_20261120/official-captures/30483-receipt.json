@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:05:50.782Z",
+  "gv_id": "GV-PK-JPN-XY4-004",
+  "official_id": "30483",
+  "checklist_number": "12",
+  "parent": {
+    "id": "c99c10a9-1918-427b-8351-c2d074ad847f",
+    "gv_id": "GV-PK-JPN-XY4-004",
+    "name": "カエンジシ",
+    "number": "004",
+    "number_plain": "004",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-004/bd8241becff00b07ca856fec.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30483/regu/all",
+    "sha256": "d2a7a3eeaba73aca37079c9c7f0aa93b00c71a731d1f858a2c04a2aa497e35f5",
+    "bytes": 10965
+  },
+  "heading": "カエンジシ",
+  "printed_number": "012",
+  "printed_total": "088",
+  "dex": "668",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030483_P_KAENJISHI.jpg",
+    "sha256": "bd8241becff00b07ca856feccf363d67a067a1733299c4955675a95bfcc4ce08",
+    "bytes": 240733,
+    "storage_path_prefix": "bd8241becff00b07ca856fec",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

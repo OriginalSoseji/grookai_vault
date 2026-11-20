@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:07:39.992Z",
+  "gv_id": "GV-PK-JPN-XY4-037",
+  "official_id": "30516",
+  "checklist_number": "45",
+  "parent": {
+    "id": "ff58c63d-c885-4337-a080-e780e73cde92",
+    "gv_id": "GV-PK-JPN-XY4-037",
+    "name": "グライガー",
+    "number": "037",
+    "number_plain": "037",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-037/3531421dd080746ac6478613.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30516/regu/all",
+    "sha256": "93d61f2fe5ee00697a5cca91aff33ece8ea0fa32e077af2847bd475bbeef9762",
+    "bytes": 10148
+  },
+  "heading": "グライガー",
+  "printed_number": "045",
+  "printed_total": "088",
+  "dex": "207",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030516_P_GURAIGA.jpg",
+    "sha256": "3531421dd080746ac6478613d9a2e95c0637aaf28c546d4c23c17a06b6f2936d",
+    "bytes": 233531,
+    "storage_path_prefix": "3531421dd080746ac6478613",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

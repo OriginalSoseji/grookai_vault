@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:06:28.377Z",
+  "gv_id": "GV-PK-JPN-XY4-014",
+  "official_id": "30493",
+  "checklist_number": "22",
+  "parent": {
+    "id": "6a0ac26d-5805-4739-af0e-360576d39db2",
+    "gv_id": "GV-PK-JPN-XY4-014",
+    "name": "ママンボウ",
+    "number": "014",
+    "number_plain": "014",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-014/ac50683a95b55dddf86ff1f7.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30493/regu/all",
+    "sha256": "6e5568d8499674b425f0d92b88714e93011db77c0279e72470d5646737d115c3",
+    "bytes": 9970
+  },
+  "heading": "ママンボウ",
+  "printed_number": "022",
+  "printed_total": "088",
+  "dex": "594",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030493_P_MAMANBOU.jpg",
+    "sha256": "ac50683a95b55dddf86ff1f763ae9ad49e10846749e74451debbcd0d6a13532e",
+    "bytes": 185642,
+    "storage_path_prefix": "ac50683a95b55dddf86ff1f7",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}
