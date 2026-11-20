@@ -154,7 +154,7 @@ export async function isExactCatalogCardName(client: Pick<SupabaseClient, "rpc">
 // this ambiguity check at the caller, so "Chari from Dark" still selects a set.
 export async function isCatalogCardNameQuery(client: Pick<SupabaseClient, "rpc">, query: string, game: Game,
   retain?: (page: import("./completeNamedCardSearch").NamedCardFirstPage) => void) {
-  const nameQuery = getCompleteNameSearchQuery(query);
+  const nameQuery = getCompleteNameSearchQuery(query, game);
   if (!nameQuery) return false;
   const name = await readCatalogCardName(client, nameQuery, game, retain);
   const fragments = words(nameQuery);

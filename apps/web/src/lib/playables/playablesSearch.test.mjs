@@ -24,9 +24,10 @@ function load(source, imports = {}) {
   return testModule.exports;
 }
 
-function setup({available = true, state = 'ready', userId = null, owned = [], catalogSets} = {}) {
+function setup({available = true, state = 'ready', userId = null, owned = [], catalogSets, catalogCardName} = {}) {
   const members = Array.from({length: 90}, (_, index) => ({card_print_id: `card-${index}`, gv_id: `GV-PK-TEST-${index}`}));
   const calls = [];
+  const nameProbes = [];
   const snapshot = {state, rows: state === 'ready' ? members : [], valid_until: new Date(Date.now() + 3600000).toISOString()};
   const unrestricted = () => {throw Error('UNRESTRICTED_SEARCH_FORBIDDEN');};
   const imports = {
@@ -34,8 +35,9 @@ function setup({available = true, state = 'ready', userId = null, owned = [], ca
       resolveCatalogSetSearchIntent: catalogSets ? loadTestTypeScript('lib/search/catalogSetSearch.ts').resolveCatalogSetSearchIntent
         : query => ({matchedAlias: null, setCodes: [], remainingQuery: query}),
       removeSetPhrase: loadTestTypeScript('lib/search/catalogSetSearch.ts').removeSetPhrase,
-      isCatalogCardNameQuery: async () => false, isExactCatalogCardName: async () => false},
-    '@/lib/search/completeNamedCardSearch': {supportsCompleteNameSearch: () => false},
+      isCatalogCardNameQuery: catalogCardName ? loadTestTypeScript('lib/search/catalogSetSearch.ts').isCatalogCardNameQuery : async () => false,
+      isExactCatalogCardName: async () => false},
+    '@/lib/search/completeNamedCardSearch': {supportsCompleteNameSearch: value => Boolean(catalogCardName) && loadTestTypeScript('lib/search/completeNamedCardSearch.ts').supportsCompleteNameSearch(value)},
     '@/lib/search/artistSearch': {isKnownArtistQuery: () => false},
     '@/lib/search/artistSearchPagination': loadTestTypeScript('lib/search/artistSearchPagination.ts'),
     '@/lib/search/structuredCollectorSearchMeta': loadTestTypeScript('lib/search/structuredCollectorSearchMeta.ts'),
@@ -61,14 +63,17 @@ function setup({available = true, state = 'ready', userId = null, owned = [], ca
     '@/lib/publicGameScope': {normalizePublicGameScope: value => value ?? 'pokemon'},
     '@/lib/search/smartVariantSearchPolicy': {classifySmartVariantResolverState: count => count ? 'WEAK_MATCH' : 'NO_MATCH'},
     '@/lib/search/resolveSmartSearchQuery': queryModule,
-    '@/lib/supabase/server': {createServerComponentClient: async () => ({auth: {getUser: async () => ({data: {user: userId ? {id: userId} : null}})}})},
+    '@/lib/supabase/server': {createServerComponentClient: async () => ({
+      rpc: async (_, args) => {nameProbes.push(args.q);return {data: args.q === catalogCardName ? [{id: 'card-0', name: catalogCardName, gv_id: 'GV-PK-TWM-216'}] : []};},
+      auth: {getUser: async () => ({data: {user: userId ? {id: userId} : null}})},
+    })},
     '@/lib/vault/getOwnedCountsByCardPrintIds': {getOwnedCardPrintIdsForUser: async () => owned,
       getOwnedCountsByCardPrintIds: async () => new Map(owned.map(id => [id, 1]))},
     '@/lib/pricing/getPublicPricingByCardIds': {PublicPricingSortUnavailableError: class extends Error {}},
     '@/lib/playables/getPokemonPlayables': {getPokemonPlayables: async () => available ? snapshot : null},
   };
   const {GET} = load(routeJs, imports);
-  return {calls, members, get: query => GET({nextUrl: new URL(`https://example.test/api/resolver/search?${query}`), headers: new Headers()})};
+  return {calls, members, nameProbes, get: query => GET({nextUrl: new URL(`https://example.test/api/resolver/search?${query}`), headers: new Headers()})};
 }
 
 test('playable words compile into visible typed filters while preserving card names', () => {
@@ -152,6 +157,20 @@ test('full rarity names survive real catalog set inference and repeated set word
     const row = {gv_id: 'GV-PK-TWM-216', name: 'Bloodmoon Ursaluna ex', rarity: 'Special Illustration Rare'};
     assert(matches(row, f.calls[0].options.textQuery));
     assert.equal(matches({...row, rarity: 'Illustration Rare'}, f.calls[0].options.textQuery), false);
+  }
+});
+
+test('collector-filtered card names preserve ex while explicit set connectors remain constraints', async () => {
+  const catalogSets = [{id: 'ex-deck', code: 'ex-test', name: 'EX Deck'}];
+  for (const filter of ['SIR', 'IR', 'full-art', 'special illustration rare']) {
+    for (const suffix of ['', ' from EX Deck']) {
+      const f = setup({catalogSets, catalogCardName: 'Bloodmoon Ursaluna ex'});
+      const response = await f.get(`q=${encodeURIComponent(`${filter} playables Bloodmoon Ursaluna ex${suffix}`)}`);
+      assert.equal(response.status, 200, `${filter}${suffix}: ${JSON.stringify(f.nameProbes)}`);
+      assert.equal(f.calls[0].options.textQuery, `${filter} Bloodmoon Ursaluna ex`, `${filter}${suffix}: ${JSON.stringify(f.nameProbes)}`);
+      assert.equal(response.body.smart_search.queryFilters.some(item => item.kind === 'set'), Boolean(suffix));
+      if (suffix) assert.equal(f.calls[0].options.exactSetCode, 'ex-test');
+    }
   }
 });
 
