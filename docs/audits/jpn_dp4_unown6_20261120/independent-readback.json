@@ -1,0 +1,13 @@
+{
+  "version": "DP4_UNOWN6_INDEPENDENT_READBACK_V1",
+  "verified_at": "2026-11-20T10:01:21.174Z",
+  "status": "passed",
+  "sanity": {
+    "read_only": "on",
+    "parents": 173837,
+    "sets": 3420
+  },
+  "records": 6,
+  "replaced_primary_links": 2,
+  "receipt_id": "177099"
+}

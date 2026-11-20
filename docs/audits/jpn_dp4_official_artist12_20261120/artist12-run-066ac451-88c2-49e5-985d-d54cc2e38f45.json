@@ -1,0 +1,21 @@
+{
+  "version": "JPN_DP4_ARTIST12_V1",
+  "run_id": "066ac451-88c2-49e5-985d-d54cc2e38f45",
+  "mode": "inspect",
+  "chunk": 0,
+  "package_fingerprint": "70d052a6765495a872dbc0af48617f3b0c456168bddb398b5307b5eabe586f75",
+  "writer_fingerprint": "41b06fb50613dbbba7e0fe3b7c2175157f8d86ac96fc8c08154ba0330cceaefb",
+  "started_at": "2026-11-20T09:41:09.592Z",
+  "status": "failed_rolled_back",
+  "stages": [],
+  "sanity": {
+    "parents": 173837,
+    "sets": 3420,
+    "traits": 47409
+  },
+  "error": {
+    "code": "ARTIST12_FAILED",
+    "message": "ARTIST12_OFFICIAL_PAGE_DRIFT"
+  },
+  "finished_at": "2026-11-20T09:41:18.546Z"
+}

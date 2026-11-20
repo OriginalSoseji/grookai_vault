@@ -1,0 +1,1768 @@
+{
+  "version": "JPN_DP4_UNOWN6_PLAN_V1",
+  "project_ref": "ycdxbpibncqcchqiihfz",
+  "species_source_sha256": "f472e3555e907abc28d5ec60390d9274f9587358f95ab1c3feb49efd32f52819",
+  "scope": "Six exact Unown form identity corrections, including two primary-species link corrections; no parent, image, artist, pricing or ownership changes.",
+  "rows": [
+    {
+      "gv_id": "GV-PK-JPN-DP4-067",
+      "letter": "F",
+      "source": {
+        "card_print_id": "86bdd80b-327c-44d6-bf69-65ae5da694cf",
+        "gv_id": "GV-PK-JPN-DP4-067",
+        "catalog_coordinate": "067",
+        "official_id": "10067",
+        "official_page": "https://www.pokemon-card.com/card-search/details.php/card/10067/regu/all",
+        "official_image": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010067_P_ANNONF.jpg",
+        "artist": "Daisuke Ito",
+        "official_page_sha256": "9a81c50472dff55d2042170b8ca105def65c664dc4b0f00f9a56a91cdfa0c404",
+        "image_sha256": "55cd5748a21b5f9ebf5e58d06eade639fc1c10ed6278a31422674df52f1d326a",
+        "source_receipt": "official-captures/10067-receipt.json",
+        "storage_receipt": "official-captures/10067-storage-proof.json",
+        "official_artist": "Daisuke Ito",
+        "subject_repair_verified": false,
+        "current": {
+          "id": "86bdd80b-327c-44d6-bf69-65ae5da694cf",
+          "gv_id": "GV-PK-JPN-DP4-067",
+          "name": "アンノーン[F]",
+          "number": "067",
+          "set_code": "jpn-dp4",
+          "artist": null,
+          "image_status": "exact",
+          "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dp4/gv-pk-jpn-dp4-067/55cd5748a21b5f9ebf5e58d0.jpg"
+        }
+      },
+      "parent_before": {
+        "id": "86bdd80b-327c-44d6-bf69-65ae5da694cf",
+        "name": "アンノーン[F]",
+        "gv_id": "GV-PK-JPN-DP4-067",
+        "artist": null,
+        "number": "067",
+        "rarity": null,
+        "set_id": "73a521e3-553e-4a44-9079-441ce178e99e",
+        "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+        "set_code": "jpn-dp4",
+        "variants": null,
+        "image_res": null,
+        "image_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dp4/gv-pk-jpn-dp4-067/55cd5748a21b5f9ebf5e58d0.jpg",
+        "created_at": "2026-07-01T18:36:34.720368+00:00",
+        "image_hash": null,
+        "image_note": "Self-hosted Japanese copy uploaded by MASTER_IDENTITY_GRAPH_JPN_SELF_HOSTED_IMAGE_STORAGE_UPLOAD_v1; original external source preserved in docs\\audits\\master_identity_graph_v1\\jpn-self-hosted-image-validation-v1\\jpn_self_hosted_image_upload_manifest_v1.jsonl.",
+        "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dp4/gv-pk-jpn-dp4-067/55cd5748a21b5f9ebf5e58d0.jpg",
+        "updated_at": "2026-07-01T21:23:28.861351+00:00",
+        "ai_metadata": null,
+        "variant_key": "",
+        "external_ids": {
+          "master_identity_graph_jpn": {
+            "source_keys": [
+              "pokemon_card_official_jp",
+              "tcgcollector_jp"
+            ],
+            "acquisition_key": "set:DP4|num:067",
+            "source_set_refs": [
+              "DP4"
+            ]
+          }
+        },
+        "image_source": "identity",
+        "image_status": "exact",
+        "number_plain": "067",
+        "tcgplayer_id": null,
+        "image_alt_url": null,
+        "printed_total": null,
+        "last_synced_at": null,
+        "identity_domain": "pokemon_jpn",
+        "regulation_mark": null,
+        "data_quality_flags": {
+          "master_identity_graph_jpn": {
+            "acquisition_key": "set:DP4|num:067",
+            "dry_run_transform": "schema_transform_contract_v1"
+          }
+        },
+        "print_identity_key": "jpn:jpn-dp4:067:base",
+        "printed_set_abbrev": "DP4",
+        "set_identity_model": "standard",
+        "image_last_checked_at": null,
+        "representative_image_url": null,
+        "printed_identity_modifier": null
+      },
+      "identity_before": {
+        "id": "7e8fb7ab-4ec0-4396-ab10-fff2f7179b03",
+        "is_active": true,
+        "created_at": "2026-07-01T18:36:34.720368+00:00",
+        "updated_at": "2026-11-10T02:03:20.497099+00:00",
+        "card_print_id": "86bdd80b-327c-44d6-bf69-65ae5da694cf",
+        "printed_number": "067",
+        "identity_domain": "pokemon_jpn",
+        "source_name_raw": "アンノーン[F]",
+        "identity_payload": {
+          "source_count": 2,
+          "language_code": "ja",
+          "rarity_policy": {
+            "source": "master_identity_graph_jpn_first_batch",
+            "status": "not_normalized_in_first_batch"
+          },
+          "language_scope": "ja",
+          "edition_marking": {
+            "source": "master_identity_graph_jpn_first_batch",
+            "status": "not_normalized_in_first_batch"
+          },
+          "release_context": {
+            "source_keys": [
+              "pokemon_card_official_jp",
+              "tcgcollector_jp"
+            ],
+            "has_official_jp": true,
+            "source_set_refs": [
+              "DP4"
+            ],
+            "set_code_identity": "jpn-dp4",
+            "source_canonical_set_key": "DP4"
+          },
+          "card_name_en_candidates": [
+            "Seviper (Moonlit Pursuit & Dawn Dash No. 067)"
+          ],
+          "card_name_ja_candidates": [
+            "アンノーン[F]"
+          ],
+          "normalized_printed_number": "067",
+          "normalized_family_name_candidates": [
+            "seviper"
+          ]
+        },
+        "identity_key_hash": "dd0950575b74b91e287f71c8fc674487fd2673f1040e83c55a2eed04dba28471",
+        "set_code_identity": "jpn-dp4",
+        "identity_key_version": "pokemon_jpn:v1",
+        "normalized_printed_name": "アンノーン[f]"
+      },
+      "identities_before": [
+        {
+          "id": "7e8fb7ab-4ec0-4396-ab10-fff2f7179b03",
+          "is_active": true,
+          "created_at": "2026-07-01T18:36:34.720368+00:00",
+          "updated_at": "2026-11-10T02:03:20.497099+00:00",
+          "card_print_id": "86bdd80b-327c-44d6-bf69-65ae5da694cf",
+          "printed_number": "067",
+          "identity_domain": "pokemon_jpn",
+          "source_name_raw": "アンノーン[F]",
+          "identity_payload": {
+            "source_count": 2,
+            "language_code": "ja",
+            "rarity_policy": {
+              "source": "master_identity_graph_jpn_first_batch",
+              "status": "not_normalized_in_first_batch"
+            },
+            "language_scope": "ja",
+            "edition_marking": {
+              "source": "master_identity_graph_jpn_first_batch",
+              "status": "not_normalized_in_first_batch"
+            },
+            "release_context": {
+              "source_keys": [
+                "pokemon_card_official_jp",
+                "tcgcollector_jp"
+              ],
+              "has_official_jp": true,
+              "source_set_refs": [
+                "DP4"
+              ],
+              "set_code_identity": "jpn-dp4",
+              "source_canonical_set_key": "DP4"
+            },
+            "card_name_en_candidates": [
+              "Seviper (Moonlit Pursuit & Dawn Dash No. 067)"
+            ],
+            "card_name_ja_candidates": [
+              "アンノーン[F]"
+            ],
+            "normalized_printed_number": "067",
+            "normalized_family_name_candidates": [
+              "seviper"
+            ]
+          },
+          "identity_key_hash": "dd0950575b74b91e287f71c8fc674487fd2673f1040e83c55a2eed04dba28471",
+          "set_code_identity": "jpn-dp4",
+          "identity_key_version": "pokemon_jpn:v1",
+          "normalized_printed_name": "アンノーン[f]"
+        }
+      ],
+      "links_before": [
+        {
+          "id": "960049c4-30c3-415b-af05-3e3feac40a87",
+          "role": "primary",
+          "active": true,
+          "source": "master_identity_graph_jpn_pending_family_printed_name_resolution_v1",
+          "evidence": {
+            "package_id": "MASTER_IDENTITY_GRAPH_JPN_PENDING_FAMILY_RESOLUTION_PLAN_v1",
+            "resolution_method": "unique_printed_name_species_map_overrides_pending_candidate_noise",
+            "pending_candidates": [
+              {
+                "review_key_hash": "773f9da70ed736eb04dc867e8b3772f0f764bb596d85aeeaa93892734a791968",
+                "family_review_id": "39b9a13a-7b72-4aa4-b7e1-34645293e4a7",
+                "family_candidate_source": "identity_resolution_candidate",
+                "normalized_family_candidate": "seviper"
+              }
+            ],
+            "anchor_family_review_id": "39b9a13a-7b72-4aa4-b7e1-34645293e4a7",
+            "source_family_review_ids": [
+              "39b9a13a-7b72-4aa4-b7e1-34645293e4a7"
+            ],
+            "printed_name_species_matches": [
+              {
+                "species_id": "edde5c33-5f75-4eeb-ac3e-a891ad4a73eb",
+                "species_slug": "unown",
+                "evidence_keys": [
+                  "アンノーン"
+                ],
+                "evidence_names": [
+                  "アンノーン[F]"
+                ],
+                "species_display_name": "Unown"
+              }
+            ]
+          },
+          "confidence": 0.93,
+          "created_at": "2026-07-02T01:28:45.515285+00:00",
+          "species_id": "edde5c33-5f75-4eeb-ac3e-a891ad4a73eb",
+          "updated_at": "2026-07-02T01:28:45.515285+00:00",
+          "card_print_id": "86bdd80b-327c-44d6-bf69-65ae5da694cf",
+          "counts_for_completion": true
+        }
+      ],
+      "primary_link_before": {
+        "id": "960049c4-30c3-415b-af05-3e3feac40a87",
+        "role": "primary",
+        "active": true,
+        "source": "master_identity_graph_jpn_pending_family_printed_name_resolution_v1",
+        "evidence": {
+          "package_id": "MASTER_IDENTITY_GRAPH_JPN_PENDING_FAMILY_RESOLUTION_PLAN_v1",
+          "resolution_method": "unique_printed_name_species_map_overrides_pending_candidate_noise",
+          "pending_candidates": [
+            {
+              "review_key_hash": "773f9da70ed736eb04dc867e8b3772f0f764bb596d85aeeaa93892734a791968",
+              "family_review_id": "39b9a13a-7b72-4aa4-b7e1-34645293e4a7",
+              "family_candidate_source": "identity_resolution_candidate",
+              "normalized_family_candidate": "seviper"
+            }
+          ],
+          "anchor_family_review_id": "39b9a13a-7b72-4aa4-b7e1-34645293e4a7",
+          "source_family_review_ids": [
+            "39b9a13a-7b72-4aa4-b7e1-34645293e4a7"
+          ],
+          "printed_name_species_matches": [
+            {
+              "species_id": "edde5c33-5f75-4eeb-ac3e-a891ad4a73eb",
+              "species_slug": "unown",
+              "evidence_keys": [
+                "アンノーン"
+              ],
+              "evidence_names": [
+                "アンノーン[F]"
+              ],
+              "species_display_name": "Unown"
+            }
+          ]
+        },
+        "confidence": 0.93,
+        "created_at": "2026-07-02T01:28:45.515285+00:00",
+        "species_id": "edde5c33-5f75-4eeb-ac3e-a891ad4a73eb",
+        "updated_at": "2026-07-02T01:28:45.515285+00:00",
+        "card_print_id": "86bdd80b-327c-44d6-bf69-65ae5da694cf",
+        "counts_for_completion": true
+      },
+      "target_species_before": {
+        "id": "edde5c33-5f75-4eeb-ac3e-a891ad4a73eb",
+        "slug": "unown",
+        "types": [
+          "psychic"
+        ],
+        "active": true,
+        "source": "grookai_dex_seed_v1",
+        "is_form": false,
+        "created_at": "2026-05-18T09:53:07.974154+00:00",
+        "generation": 2,
+        "source_ref": {
+          "source": "pokeapi",
+          "sourceUrl": "https://pokeapi.co/api/v2/generation/",
+          "typeSourceUrl": "https://pokeapi.co/api/v2/type/",
+          "metadataSourceReadCount": 27
+        },
+        "updated_at": "2026-07-23T16:56:38.630458+00:00",
+        "display_name": "Unown",
+        "canonical_name": "unown",
+        "base_species_id": null,
+        "national_dex_number": 201
+      },
+      "proposed_english": [
+        "Unown [F]",
+        "Unown F"
+      ],
+      "proposed_family": [
+        "unown f"
+      ],
+      "identity_hash": {
+        "stored": "dd0950575b74b91e287f71c8fc674487fd2673f1040e83c55a2eed04dba28471",
+        "before": "dd0950575b74b91e287f71c8fc674487fd2673f1040e83c55a2eed04dba28471",
+        "proposed": "dd0950575b74b91e287f71c8fc674487fd2673f1040e83c55a2eed04dba28471"
+      },
+      "requires_link_repair": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-068",
+      "letter": "G",
+      "source": {
+        "card_print_id": "af629332-5bcc-4ab8-9541-36cf4eba331f",
+        "gv_id": "GV-PK-JPN-DP4-068",
+        "catalog_coordinate": "068",
+        "official_id": "10068",
+        "official_page": "https://www.pokemon-card.com/card-search/details.php/card/10068/regu/all",
+        "official_image": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010068_P_ANNONG.jpg",
+        "artist": "Daisuke Ito",
+        "official_page_sha256": "f4a68219c86505452c606ce2801521f144c0c3a02ea8fce7e21fe3fdb8d72d67",
+        "image_sha256": "cec48cefae8cfdec4205191c3670cc4868c868df094bc6ab35b50889983b7598",
+        "source_receipt": "official-captures/10068-receipt.json",
+        "storage_receipt": "official-captures/10068-storage-proof.json",
+        "official_artist": "Daisuke Ito",
+        "subject_repair_verified": false,
+        "current": {
+          "id": "af629332-5bcc-4ab8-9541-36cf4eba331f",
+          "gv_id": "GV-PK-JPN-DP4-068",
+          "name": "アンノーン[G]",
+          "number": "068",
+          "set_code": "jpn-dp4",
+          "artist": null,
+          "image_status": "exact",
+          "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dp4/gv-pk-jpn-dp4-068/cec48cefae8cfdec4205191c.jpg"
+        }
+      },
+      "parent_before": {
+        "id": "af629332-5bcc-4ab8-9541-36cf4eba331f",
+        "name": "アンノーン[G]",
+        "gv_id": "GV-PK-JPN-DP4-068",
+        "artist": null,
+        "number": "068",
+        "rarity": null,
+        "set_id": "73a521e3-553e-4a44-9079-441ce178e99e",
+        "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+        "set_code": "jpn-dp4",
+        "variants": null,
+        "image_res": null,
+        "image_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dp4/gv-pk-jpn-dp4-068/cec48cefae8cfdec4205191c.jpg",
+        "created_at": "2026-07-01T18:36:34.720368+00:00",
+        "image_hash": null,
+        "image_note": "Self-hosted Japanese copy uploaded by MASTER_IDENTITY_GRAPH_JPN_SELF_HOSTED_IMAGE_STORAGE_UPLOAD_v1; original external source preserved in docs\\audits\\master_identity_graph_v1\\jpn-self-hosted-image-validation-v1\\jpn_self_hosted_image_upload_manifest_v1.jsonl.",
+        "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dp4/gv-pk-jpn-dp4-068/cec48cefae8cfdec4205191c.jpg",
+        "updated_at": "2026-07-01T21:23:28.861351+00:00",
+        "ai_metadata": null,
+        "variant_key": "",
+        "external_ids": {
+          "master_identity_graph_jpn": {
+            "source_keys": [
+              "pokemon_card_official_jp",
+              "tcgcollector_jp"
+            ],
+            "acquisition_key": "set:DP4|num:068",
+            "source_set_refs": [
+              "DP4"
+            ]
+          }
+        },
+        "image_source": "identity",
+        "image_status": "exact",
+        "number_plain": "068",
+        "tcgplayer_id": null,
+        "image_alt_url": null,
+        "printed_total": null,
+        "last_synced_at": null,
+        "identity_domain": "pokemon_jpn",
+        "regulation_mark": null,
+        "data_quality_flags": {
+          "master_identity_graph_jpn": {
+            "acquisition_key": "set:DP4|num:068",
+            "dry_run_transform": "schema_transform_contract_v1"
+          }
+        },
+        "print_identity_key": "jpn:jpn-dp4:068:base",
+        "printed_set_abbrev": "DP4",
+        "set_identity_model": "standard",
+        "image_last_checked_at": null,
+        "representative_image_url": null,
+        "printed_identity_modifier": null
+      },
+      "identity_before": {
+        "id": "00aa92c0-59fa-464f-aa0f-c8f45b2552c5",
+        "is_active": true,
+        "created_at": "2026-07-01T18:36:34.720368+00:00",
+        "updated_at": "2026-11-10T02:03:20.497099+00:00",
+        "card_print_id": "af629332-5bcc-4ab8-9541-36cf4eba331f",
+        "printed_number": "068",
+        "identity_domain": "pokemon_jpn",
+        "source_name_raw": "アンノーン[G]",
+        "identity_payload": {
+          "source_count": 2,
+          "language_code": "ja",
+          "rarity_policy": {
+            "source": "master_identity_graph_jpn_first_batch",
+            "status": "not_normalized_in_first_batch"
+          },
+          "language_scope": "ja",
+          "edition_marking": {
+            "source": "master_identity_graph_jpn_first_batch",
+            "status": "not_normalized_in_first_batch"
+          },
+          "release_context": {
+            "source_keys": [
+              "pokemon_card_official_jp",
+              "tcgcollector_jp"
+            ],
+            "has_official_jp": true,
+            "source_set_refs": [
+              "DP4"
+            ],
+            "set_code_identity": "jpn-dp4",
+            "source_canonical_set_key": "DP4"
+          },
+          "card_name_en_candidates": [
+            "Cresselia (Moonlit Pursuit & Dawn Dash No. 068)"
+          ],
+          "card_name_ja_candidates": [
+            "アンノーン[G]"
+          ],
+          "normalized_printed_number": "068",
+          "normalized_family_name_candidates": [
+            "cresselia"
+          ]
+        },
+        "identity_key_hash": "926d9f867b4729c61a9a79eb8f987496956f9c934f2806f46597e10d8a6cc639",
+        "set_code_identity": "jpn-dp4",
+        "identity_key_version": "pokemon_jpn:v1",
+        "normalized_printed_name": "アンノーン[g]"
+      },
+      "identities_before": [
+        {
+          "id": "00aa92c0-59fa-464f-aa0f-c8f45b2552c5",
+          "is_active": true,
+          "created_at": "2026-07-01T18:36:34.720368+00:00",
+          "updated_at": "2026-11-10T02:03:20.497099+00:00",
+          "card_print_id": "af629332-5bcc-4ab8-9541-36cf4eba331f",
+          "printed_number": "068",
+          "identity_domain": "pokemon_jpn",
+          "source_name_raw": "アンノーン[G]",
+          "identity_payload": {
+            "source_count": 2,
+            "language_code": "ja",
+            "rarity_policy": {
+              "source": "master_identity_graph_jpn_first_batch",
+              "status": "not_normalized_in_first_batch"
+            },
+            "language_scope": "ja",
+            "edition_marking": {
+              "source": "master_identity_graph_jpn_first_batch",
+              "status": "not_normalized_in_first_batch"
+            },
+            "release_context": {
+              "source_keys": [
+                "pokemon_card_official_jp",
+                "tcgcollector_jp"
+              ],
+              "has_official_jp": true,
+              "source_set_refs": [
+                "DP4"
+              ],
+              "set_code_identity": "jpn-dp4",
+              "source_canonical_set_key": "DP4"
+            },
+            "card_name_en_candidates": [
+              "Cresselia (Moonlit Pursuit & Dawn Dash No. 068)"
+            ],
+            "card_name_ja_candidates": [
+              "アンノーン[G]"
+            ],
+            "normalized_printed_number": "068",
+            "normalized_family_name_candidates": [
+              "cresselia"
+            ]
+          },
+          "identity_key_hash": "926d9f867b4729c61a9a79eb8f987496956f9c934f2806f46597e10d8a6cc639",
+          "set_code_identity": "jpn-dp4",
+          "identity_key_version": "pokemon_jpn:v1",
+          "normalized_printed_name": "アンノーン[g]"
+        }
+      ],
+      "links_before": [
+        {
+          "id": "d604d1f4-89fd-4da3-8438-73dfa57653d4",
+          "role": "primary",
+          "active": true,
+          "source": "master_identity_graph_jpn_pending_family_printed_name_resolution_v1",
+          "evidence": {
+            "package_id": "MASTER_IDENTITY_GRAPH_JPN_PENDING_FAMILY_RESOLUTION_PLAN_v1",
+            "resolution_method": "unique_printed_name_species_map_overrides_pending_candidate_noise",
+            "pending_candidates": [
+              {
+                "review_key_hash": "92a0267da2d6c8a52ea90d90d7bf4046379fe8eae6ba69201beb85fcc49b1705",
+                "family_review_id": "feaf8688-26e4-4342-a79f-14626fa5c13a",
+                "family_candidate_source": "identity_resolution_candidate",
+                "normalized_family_candidate": "cresselia"
+              }
+            ],
+            "anchor_family_review_id": "feaf8688-26e4-4342-a79f-14626fa5c13a",
+            "source_family_review_ids": [
+              "feaf8688-26e4-4342-a79f-14626fa5c13a"
+            ],
+            "printed_name_species_matches": [
+              {
+                "species_id": "edde5c33-5f75-4eeb-ac3e-a891ad4a73eb",
+                "species_slug": "unown",
+                "evidence_keys": [
+                  "アンノーン"
+                ],
+                "evidence_names": [
+                  "アンノーン[G]"
+                ],
+                "species_display_name": "Unown"
+              }
+            ]
+          },
+          "confidence": 0.93,
+          "created_at": "2026-07-02T01:28:45.515285+00:00",
+          "species_id": "edde5c33-5f75-4eeb-ac3e-a891ad4a73eb",
+          "updated_at": "2026-07-02T01:28:45.515285+00:00",
+          "card_print_id": "af629332-5bcc-4ab8-9541-36cf4eba331f",
+          "counts_for_completion": true
+        }
+      ],
+      "primary_link_before": {
+        "id": "d604d1f4-89fd-4da3-8438-73dfa57653d4",
+        "role": "primary",
+        "active": true,
+        "source": "master_identity_graph_jpn_pending_family_printed_name_resolution_v1",
+        "evidence": {
+          "package_id": "MASTER_IDENTITY_GRAPH_JPN_PENDING_FAMILY_RESOLUTION_PLAN_v1",
+          "resolution_method": "unique_printed_name_species_map_overrides_pending_candidate_noise",
+          "pending_candidates": [
+            {
+              "review_key_hash": "92a0267da2d6c8a52ea90d90d7bf4046379fe8eae6ba69201beb85fcc49b1705",
+              "family_review_id": "feaf8688-26e4-4342-a79f-14626fa5c13a",
+              "family_candidate_source": "identity_resolution_candidate",
+              "normalized_family_candidate": "cresselia"
+            }
+          ],
+          "anchor_family_review_id": "feaf8688-26e4-4342-a79f-14626fa5c13a",
+          "source_family_review_ids": [
+            "feaf8688-26e4-4342-a79f-14626fa5c13a"
+          ],
+          "printed_name_species_matches": [
+            {
+              "species_id": "edde5c33-5f75-4eeb-ac3e-a891ad4a73eb",
+              "species_slug": "unown",
+              "evidence_keys": [
+                "アンノーン"
+              ],
+              "evidence_names": [
+                "アンノーン[G]"
+              ],
+              "species_display_name": "Unown"
+            }
+          ]
+        },
+        "confidence": 0.93,
+        "created_at": "2026-07-02T01:28:45.515285+00:00",
+        "species_id": "edde5c33-5f75-4eeb-ac3e-a891ad4a73eb",
+        "updated_at": "2026-07-02T01:28:45.515285+00:00",
+        "card_print_id": "af629332-5bcc-4ab8-9541-36cf4eba331f",
+        "counts_for_completion": true
+      },
+      "target_species_before": {
+        "id": "edde5c33-5f75-4eeb-ac3e-a891ad4a73eb",
+        "slug": "unown",
+        "types": [
+          "psychic"
+        ],
+        "active": true,
+        "source": "grookai_dex_seed_v1",
+        "is_form": false,
+        "created_at": "2026-05-18T09:53:07.974154+00:00",
+        "generation": 2,
+        "source_ref": {
+          "source": "pokeapi",
+          "sourceUrl": "https://pokeapi.co/api/v2/generation/",
+          "typeSourceUrl": "https://pokeapi.co/api/v2/type/",
+          "metadataSourceReadCount": 27
+        },
+        "updated_at": "2026-07-23T16:56:38.630458+00:00",
+        "display_name": "Unown",
+        "canonical_name": "unown",
+        "base_species_id": null,
+        "national_dex_number": 201
+      },
+      "proposed_english": [
+        "Unown [G]",
+        "Unown G"
+      ],
+      "proposed_family": [
+        "unown g"
+      ],
+      "identity_hash": {
+        "stored": "926d9f867b4729c61a9a79eb8f987496956f9c934f2806f46597e10d8a6cc639",
+        "before": "926d9f867b4729c61a9a79eb8f987496956f9c934f2806f46597e10d8a6cc639",
+        "proposed": "926d9f867b4729c61a9a79eb8f987496956f9c934f2806f46597e10d8a6cc639"
+      },
+      "requires_link_repair": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-069",
+      "letter": "H",
+      "source": {
+        "card_print_id": "c148dddb-57c2-49fc-9c9d-447e5399e6b5",
+        "gv_id": "GV-PK-JPN-DP4-069",
+        "catalog_coordinate": "069",
+        "official_id": "10069",
+        "official_page": "https://www.pokemon-card.com/card-search/details.php/card/10069/regu/all",
+        "official_image": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010069_P_ANNONH.jpg",
+        "artist": "Daisuke Ito",
+        "official_page_sha256": "d143dfdca09407190c54c92111c50a0d68f3a6707eb331a8504439008cf57601",
+        "image_sha256": "5d59b4ee8ae4c41953e6cdd6b0efa6c913903a638d0ba93728fdedf260ca8523",
+        "source_receipt": "official-captures/10069-receipt.json",
+        "storage_receipt": "official-captures/10069-storage-proof.json",
+        "official_artist": "Daisuke Ito",
+        "subject_repair_verified": false,
+        "current": {
+          "id": "c148dddb-57c2-49fc-9c9d-447e5399e6b5",
+          "gv_id": "GV-PK-JPN-DP4-069",
+          "name": "アンノーン[H]",
+          "number": "069",
+          "set_code": "jpn-dp4",
+          "artist": null,
+          "image_status": "exact",
+          "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dp4/gv-pk-jpn-dp4-069/5d59b4ee8ae4c41953e6cdd6.jpg"
+        }
+      },
+      "parent_before": {
+        "id": "c148dddb-57c2-49fc-9c9d-447e5399e6b5",
+        "name": "アンノーン[H]",
+        "gv_id": "GV-PK-JPN-DP4-069",
+        "artist": null,
+        "number": "069",
+        "rarity": null,
+        "set_id": "73a521e3-553e-4a44-9079-441ce178e99e",
+        "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+        "set_code": "jpn-dp4",
+        "variants": null,
+        "image_res": null,
+        "image_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dp4/gv-pk-jpn-dp4-069/5d59b4ee8ae4c41953e6cdd6.jpg",
+        "created_at": "2026-07-01T18:36:34.720368+00:00",
+        "image_hash": null,
+        "image_note": "Self-hosted Japanese copy uploaded by MASTER_IDENTITY_GRAPH_JPN_SELF_HOSTED_IMAGE_STORAGE_UPLOAD_v1; original external source preserved in docs\\audits\\master_identity_graph_v1\\jpn-self-hosted-image-validation-v1\\jpn_self_hosted_image_upload_manifest_v1.jsonl.",
+        "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dp4/gv-pk-jpn-dp4-069/5d59b4ee8ae4c41953e6cdd6.jpg",
+        "updated_at": "2026-07-01T21:23:28.861351+00:00",
+        "ai_metadata": null,
+        "variant_key": "",
+        "external_ids": {
+          "master_identity_graph_jpn": {
+            "source_keys": [
+              "pokemon_card_official_jp",
+              "tcgcollector_jp"
+            ],
+            "acquisition_key": "set:DP4|num:069",
+            "source_set_refs": [
+              "DP4"
+            ]
+          }
+        },
+        "image_source": "identity",
+        "image_status": "exact",
+        "number_plain": "069",
+        "tcgplayer_id": null,
+        "image_alt_url": null,
+        "printed_total": null,
+        "last_synced_at": null,
+        "identity_domain": "pokemon_jpn",
+        "regulation_mark": null,
+        "data_quality_flags": {
+          "master_identity_graph_jpn": {
+            "acquisition_key": "set:DP4|num:069",
+            "dry_run_transform": "schema_transform_contract_v1"
+          }
+        },
+        "print_identity_key": "jpn:jpn-dp4:069:base",
+        "printed_set_abbrev": "DP4",
+        "set_identity_model": "standard",
+        "image_last_checked_at": null,
+        "representative_image_url": null,
+        "printed_identity_modifier": null
+      },
+      "identity_before": {
+        "id": "8e098a5f-4c9c-4a9c-9765-a8d3dabfefe0",
+        "is_active": true,
+        "created_at": "2026-07-01T18:36:34.720368+00:00",
+        "updated_at": "2026-11-10T02:03:20.497099+00:00",
+        "card_print_id": "c148dddb-57c2-49fc-9c9d-447e5399e6b5",
+        "printed_number": "069",
+        "identity_domain": "pokemon_jpn",
+        "source_name_raw": "アンノーン[H]",
+        "identity_payload": {
+          "source_count": 2,
+          "language_code": "ja",
+          "rarity_policy": {
+            "source": "master_identity_graph_jpn_first_batch",
+            "status": "not_normalized_in_first_batch"
+          },
+          "language_scope": "ja",
+          "edition_marking": {
+            "source": "master_identity_graph_jpn_first_batch",
+            "status": "not_normalized_in_first_batch"
+          },
+          "release_context": {
+            "source_keys": [
+              "pokemon_card_official_jp",
+              "tcgcollector_jp"
+            ],
+            "has_official_jp": true,
+            "source_set_refs": [
+              "DP4"
+            ],
+            "set_code_identity": "jpn-dp4",
+            "source_canonical_set_key": "DP4"
+          },
+          "card_name_en_candidates": [
+            "Cresselia LV.X (Moonlit Pursuit & Dawn Dash No. 069)"
+          ],
+          "card_name_ja_candidates": [
+            "アンノーン[H]"
+          ],
+          "normalized_printed_number": "069",
+          "normalized_family_name_candidates": [
+            "cresselia"
+          ]
+        },
+        "identity_key_hash": "3dd08bb298956645a7666f64c6e42e16d0091f8a88a35234d167e96ef105cdc2",
+        "set_code_identity": "jpn-dp4",
+        "identity_key_version": "pokemon_jpn:v1",
+        "normalized_printed_name": "アンノーン[h]"
+      },
+      "identities_before": [
+        {
+          "id": "8e098a5f-4c9c-4a9c-9765-a8d3dabfefe0",
+          "is_active": true,
+          "created_at": "2026-07-01T18:36:34.720368+00:00",
+          "updated_at": "2026-11-10T02:03:20.497099+00:00",
+          "card_print_id": "c148dddb-57c2-49fc-9c9d-447e5399e6b5",
+          "printed_number": "069",
+          "identity_domain": "pokemon_jpn",
+          "source_name_raw": "アンノーン[H]",
+          "identity_payload": {
+            "source_count": 2,
+            "language_code": "ja",
+            "rarity_policy": {
+              "source": "master_identity_graph_jpn_first_batch",
+              "status": "not_normalized_in_first_batch"
+            },
+            "language_scope": "ja",
+            "edition_marking": {
+              "source": "master_identity_graph_jpn_first_batch",
+              "status": "not_normalized_in_first_batch"
+            },
+            "release_context": {
+              "source_keys": [
+                "pokemon_card_official_jp",
+                "tcgcollector_jp"
+              ],
+              "has_official_jp": true,
+              "source_set_refs": [
+                "DP4"
+              ],
+              "set_code_identity": "jpn-dp4",
+              "source_canonical_set_key": "DP4"
+            },
+            "card_name_en_candidates": [
+              "Cresselia LV.X (Moonlit Pursuit & Dawn Dash No. 069)"
+            ],
+            "card_name_ja_candidates": [
+              "アンノーン[H]"
+            ],
+            "normalized_printed_number": "069",
+            "normalized_family_name_candidates": [
+              "cresselia"
+            ]
+          },
+          "identity_key_hash": "3dd08bb298956645a7666f64c6e42e16d0091f8a88a35234d167e96ef105cdc2",
+          "set_code_identity": "jpn-dp4",
+          "identity_key_version": "pokemon_jpn:v1",
+          "normalized_printed_name": "アンノーン[h]"
+        }
+      ],
+      "links_before": [
+        {
+          "id": "31539d3d-daf3-4142-9806-3d4639eb31cb",
+          "role": "primary",
+          "active": true,
+          "source": "master_identity_graph_jpn_pending_family_printed_name_resolution_v1",
+          "evidence": {
+            "package_id": "MASTER_IDENTITY_GRAPH_JPN_PENDING_FAMILY_RESOLUTION_PLAN_v1",
+            "resolution_method": "unique_printed_name_species_map_overrides_pending_candidate_noise",
+            "pending_candidates": [
+              {
+                "review_key_hash": "6f03e362bbf736ac1eed35d126f95dd123224c81ececccd0889e7ab18198d9ff",
+                "family_review_id": "6f81e3fe-516b-4028-95ea-dc42d49b00c5",
+                "family_candidate_source": "identity_resolution_candidate",
+                "normalized_family_candidate": "cresselia"
+              }
+            ],
+            "anchor_family_review_id": "6f81e3fe-516b-4028-95ea-dc42d49b00c5",
+            "source_family_review_ids": [
+              "6f81e3fe-516b-4028-95ea-dc42d49b00c5"
+            ],
+            "printed_name_species_matches": [
+              {
+                "species_id": "edde5c33-5f75-4eeb-ac3e-a891ad4a73eb",
+                "species_slug": "unown",
+                "evidence_keys": [
+                  "アンノーン"
+                ],
+                "evidence_names": [
+                  "アンノーン[H]"
+                ],
+                "species_display_name": "Unown"
+              }
+            ]
+          },
+          "confidence": 0.93,
+          "created_at": "2026-07-02T01:28:45.515285+00:00",
+          "species_id": "edde5c33-5f75-4eeb-ac3e-a891ad4a73eb",
+          "updated_at": "2026-07-02T01:28:45.515285+00:00",
+          "card_print_id": "c148dddb-57c2-49fc-9c9d-447e5399e6b5",
+          "counts_for_completion": true
+        }
+      ],
+      "primary_link_before": {
+        "id": "31539d3d-daf3-4142-9806-3d4639eb31cb",
+        "role": "primary",
+        "active": true,
+        "source": "master_identity_graph_jpn_pending_family_printed_name_resolution_v1",
+        "evidence": {
+          "package_id": "MASTER_IDENTITY_GRAPH_JPN_PENDING_FAMILY_RESOLUTION_PLAN_v1",
+          "resolution_method": "unique_printed_name_species_map_overrides_pending_candidate_noise",
+          "pending_candidates": [
+            {
+              "review_key_hash": "6f03e362bbf736ac1eed35d126f95dd123224c81ececccd0889e7ab18198d9ff",
+              "family_review_id": "6f81e3fe-516b-4028-95ea-dc42d49b00c5",
+              "family_candidate_source": "identity_resolution_candidate",
+              "normalized_family_candidate": "cresselia"
+            }
+          ],
+          "anchor_family_review_id": "6f81e3fe-516b-4028-95ea-dc42d49b00c5",
+          "source_family_review_ids": [
+            "6f81e3fe-516b-4028-95ea-dc42d49b00c5"
+          ],
+          "printed_name_species_matches": [
+            {
+              "species_id": "edde5c33-5f75-4eeb-ac3e-a891ad4a73eb",
+              "species_slug": "unown",
+              "evidence_keys": [
+                "アンノーン"
+              ],
+              "evidence_names": [
+                "アンノーン[H]"
+              ],
+              "species_display_name": "Unown"
+            }
+          ]
+        },
+        "confidence": 0.93,
+        "created_at": "2026-07-02T01:28:45.515285+00:00",
+        "species_id": "edde5c33-5f75-4eeb-ac3e-a891ad4a73eb",
+        "updated_at": "2026-07-02T01:28:45.515285+00:00",
+        "card_print_id": "c148dddb-57c2-49fc-9c9d-447e5399e6b5",
+        "counts_for_completion": true
+      },
+      "target_species_before": {
+        "id": "edde5c33-5f75-4eeb-ac3e-a891ad4a73eb",
+        "slug": "unown",
+        "types": [
+          "psychic"
+        ],
+        "active": true,
+        "source": "grookai_dex_seed_v1",
+        "is_form": false,
+        "created_at": "2026-05-18T09:53:07.974154+00:00",
+        "generation": 2,
+        "source_ref": {
+          "source": "pokeapi",
+          "sourceUrl": "https://pokeapi.co/api/v2/generation/",
+          "typeSourceUrl": "https://pokeapi.co/api/v2/type/",
+          "metadataSourceReadCount": 27
+        },
+        "updated_at": "2026-07-23T16:56:38.630458+00:00",
+        "display_name": "Unown",
+        "canonical_name": "unown",
+        "base_species_id": null,
+        "national_dex_number": 201
+      },
+      "proposed_english": [
+        "Unown [H]",
+        "Unown H"
+      ],
+      "proposed_family": [
+        "unown h"
+      ],
+      "identity_hash": {
+        "stored": "3dd08bb298956645a7666f64c6e42e16d0091f8a88a35234d167e96ef105cdc2",
+        "before": "3dd08bb298956645a7666f64c6e42e16d0091f8a88a35234d167e96ef105cdc2",
+        "proposed": "3dd08bb298956645a7666f64c6e42e16d0091f8a88a35234d167e96ef105cdc2"
+      },
+      "requires_link_repair": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-070",
+      "letter": "L",
+      "source": {
+        "card_print_id": "fc4e9a2b-5367-47c2-bd91-2eb0a3f787de",
+        "gv_id": "GV-PK-JPN-DP4-070",
+        "catalog_coordinate": "070",
+        "official_id": "10070",
+        "official_page": "https://www.pokemon-card.com/card-search/details.php/card/10070/regu/all",
+        "official_image": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010070_P_ANNONL.jpg",
+        "artist": "Daisuke Ito",
+        "official_page_sha256": "6fa2ede158d165d385e9405de5a66ef63770c73a727b367e16447ee075da521e",
+        "image_sha256": "d5c1bc42b344855879b29b46db27a09ea7064dc803f7277211d3ed94414250c9",
+        "source_receipt": "official-captures/10070-receipt.json",
+        "storage_receipt": "official-captures/10070-storage-proof.json",
+        "official_artist": "Daisuke Ito",
+        "subject_repair_verified": false,
+        "current": {
+          "id": "fc4e9a2b-5367-47c2-bd91-2eb0a3f787de",
+          "gv_id": "GV-PK-JPN-DP4-070",
+          "name": "アンノーン[L]",
+          "number": "070",
+          "set_code": "jpn-dp4",
+          "artist": null,
+          "image_status": "exact",
+          "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dp4/gv-pk-jpn-dp4-070/d5c1bc42b344855879b29b46.jpg"
+        }
+      },
+      "parent_before": {
+        "id": "fc4e9a2b-5367-47c2-bd91-2eb0a3f787de",
+        "name": "アンノーン[L]",
+        "gv_id": "GV-PK-JPN-DP4-070",
+        "artist": null,
+        "number": "070",
+        "rarity": null,
+        "set_id": "73a521e3-553e-4a44-9079-441ce178e99e",
+        "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+        "set_code": "jpn-dp4",
+        "variants": null,
+        "image_res": null,
+        "image_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dp4/gv-pk-jpn-dp4-070/d5c1bc42b344855879b29b46.jpg",
+        "created_at": "2026-07-01T18:36:34.720368+00:00",
+        "image_hash": null,
+        "image_note": "Self-hosted Japanese copy uploaded by MASTER_IDENTITY_GRAPH_JPN_SELF_HOSTED_IMAGE_STORAGE_UPLOAD_v1; original external source preserved in docs\\audits\\master_identity_graph_v1\\jpn-self-hosted-image-validation-v1\\jpn_self_hosted_image_upload_manifest_v1.jsonl.",
+        "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dp4/gv-pk-jpn-dp4-070/d5c1bc42b344855879b29b46.jpg",
+        "updated_at": "2026-07-01T21:23:28.861351+00:00",
+        "ai_metadata": null,
+        "variant_key": "",
+        "external_ids": {
+          "master_identity_graph_jpn": {
+            "source_keys": [
+              "pokemon_card_official_jp",
+              "tcgcollector_jp"
+            ],
+            "acquisition_key": "set:DP4|num:070",
+            "source_set_refs": [
+              "DP4"
+            ]
+          }
+        },
+        "image_source": "identity",
+        "image_status": "exact",
+        "number_plain": "070",
+        "tcgplayer_id": null,
+        "image_alt_url": null,
+        "printed_total": null,
+        "last_synced_at": null,
+        "identity_domain": "pokemon_jpn",
+        "regulation_mark": null,
+        "data_quality_flags": {
+          "master_identity_graph_jpn": {
+            "acquisition_key": "set:DP4|num:070",
+            "dry_run_transform": "schema_transform_contract_v1"
+          }
+        },
+        "print_identity_key": "jpn:jpn-dp4:070:base",
+        "printed_set_abbrev": "DP4",
+        "set_identity_model": "standard",
+        "image_last_checked_at": null,
+        "representative_image_url": null,
+        "printed_identity_modifier": null
+      },
+      "identity_before": {
+        "id": "505d8007-cc6d-4875-8a9a-af22bf4f652a",
+        "is_active": true,
+        "created_at": "2026-07-01T18:36:34.720368+00:00",
+        "updated_at": "2026-11-10T02:03:20.497099+00:00",
+        "card_print_id": "fc4e9a2b-5367-47c2-bd91-2eb0a3f787de",
+        "printed_number": "070",
+        "identity_domain": "pokemon_jpn",
+        "source_name_raw": "アンノーン[L]",
+        "identity_payload": {
+          "source_count": 2,
+          "language_code": "ja",
+          "rarity_policy": {
+            "source": "master_identity_graph_jpn_first_batch",
+            "status": "not_normalized_in_first_batch"
+          },
+          "language_scope": "ja",
+          "edition_marking": {
+            "source": "master_identity_graph_jpn_first_batch",
+            "status": "not_normalized_in_first_batch"
+          },
+          "release_context": {
+            "source_keys": [
+              "pokemon_card_official_jp",
+              "tcgcollector_jp"
+            ],
+            "has_official_jp": true,
+            "source_set_refs": [
+              "DP4"
+            ],
+            "set_code_identity": "jpn-dp4",
+            "source_canonical_set_key": "DP4"
+          },
+          "card_name_en_candidates": [
+            "Ekans (Moonlit Pursuit & Dawn Dash No. 070)"
+          ],
+          "card_name_ja_candidates": [
+            "アンノーン[L]"
+          ],
+          "normalized_printed_number": "070",
+          "normalized_family_name_candidates": [
+            "ekans"
+          ]
+        },
+        "identity_key_hash": "8b5f22a447b259447d2b5bfc522c9d0648eabc3d76e64480a63f895356884129",
+        "set_code_identity": "jpn-dp4",
+        "identity_key_version": "pokemon_jpn:v1",
+        "normalized_printed_name": "アンノーン[l]"
+      },
+      "identities_before": [
+        {
+          "id": "505d8007-cc6d-4875-8a9a-af22bf4f652a",
+          "is_active": true,
+          "created_at": "2026-07-01T18:36:34.720368+00:00",
+          "updated_at": "2026-11-10T02:03:20.497099+00:00",
+          "card_print_id": "fc4e9a2b-5367-47c2-bd91-2eb0a3f787de",
+          "printed_number": "070",
+          "identity_domain": "pokemon_jpn",
+          "source_name_raw": "アンノーン[L]",
+          "identity_payload": {
+            "source_count": 2,
+            "language_code": "ja",
+            "rarity_policy": {
+              "source": "master_identity_graph_jpn_first_batch",
+              "status": "not_normalized_in_first_batch"
+            },
+            "language_scope": "ja",
+            "edition_marking": {
+              "source": "master_identity_graph_jpn_first_batch",
+              "status": "not_normalized_in_first_batch"
+            },
+            "release_context": {
+              "source_keys": [
+                "pokemon_card_official_jp",
+                "tcgcollector_jp"
+              ],
+              "has_official_jp": true,
+              "source_set_refs": [
+                "DP4"
+              ],
+              "set_code_identity": "jpn-dp4",
+              "source_canonical_set_key": "DP4"
+            },
+            "card_name_en_candidates": [
+              "Ekans (Moonlit Pursuit & Dawn Dash No. 070)"
+            ],
+            "card_name_ja_candidates": [
+              "アンノーン[L]"
+            ],
+            "normalized_printed_number": "070",
+            "normalized_family_name_candidates": [
+              "ekans"
+            ]
+          },
+          "identity_key_hash": "8b5f22a447b259447d2b5bfc522c9d0648eabc3d76e64480a63f895356884129",
+          "set_code_identity": "jpn-dp4",
+          "identity_key_version": "pokemon_jpn:v1",
+          "normalized_printed_name": "アンノーン[l]"
+        }
+      ],
+      "links_before": [
+        {
+          "id": "94ecde24-0884-4fc9-beea-a63d67f1d5f8",
+          "role": "primary",
+          "active": true,
+          "source": "master_identity_graph_jpn_pending_family_printed_name_resolution_v1",
+          "evidence": {
+            "package_id": "MASTER_IDENTITY_GRAPH_JPN_PENDING_FAMILY_RESOLUTION_PLAN_v1",
+            "resolution_method": "unique_printed_name_species_map_overrides_pending_candidate_noise",
+            "pending_candidates": [
+              {
+                "review_key_hash": "c6b8cccd43e6b0fde9407bfe22d3ee0ca7a04129cd92fbc6f3e8fdaf77e41a15",
+                "family_review_id": "45939370-529e-46d7-a4c1-3ed76302dc86",
+                "family_candidate_source": "identity_resolution_candidate",
+                "normalized_family_candidate": "ekans"
+              }
+            ],
+            "anchor_family_review_id": "45939370-529e-46d7-a4c1-3ed76302dc86",
+            "source_family_review_ids": [
+              "45939370-529e-46d7-a4c1-3ed76302dc86"
+            ],
+            "printed_name_species_matches": [
+              {
+                "species_id": "edde5c33-5f75-4eeb-ac3e-a891ad4a73eb",
+                "species_slug": "unown",
+                "evidence_keys": [
+                  "アンノーン"
+                ],
+                "evidence_names": [
+                  "アンノーン[L]"
+                ],
+                "species_display_name": "Unown"
+              }
+            ]
+          },
+          "confidence": 0.93,
+          "created_at": "2026-07-02T01:28:45.515285+00:00",
+          "species_id": "edde5c33-5f75-4eeb-ac3e-a891ad4a73eb",
+          "updated_at": "2026-07-02T01:28:45.515285+00:00",
+          "card_print_id": "fc4e9a2b-5367-47c2-bd91-2eb0a3f787de",
+          "counts_for_completion": true
+        }
+      ],
+      "primary_link_before": {
+        "id": "94ecde24-0884-4fc9-beea-a63d67f1d5f8",
+        "role": "primary",
+        "active": true,
+        "source": "master_identity_graph_jpn_pending_family_printed_name_resolution_v1",
+        "evidence": {
+          "package_id": "MASTER_IDENTITY_GRAPH_JPN_PENDING_FAMILY_RESOLUTION_PLAN_v1",
+          "resolution_method": "unique_printed_name_species_map_overrides_pending_candidate_noise",
+          "pending_candidates": [
+            {
+              "review_key_hash": "c6b8cccd43e6b0fde9407bfe22d3ee0ca7a04129cd92fbc6f3e8fdaf77e41a15",
+              "family_review_id": "45939370-529e-46d7-a4c1-3ed76302dc86",
+              "family_candidate_source": "identity_resolution_candidate",
+              "normalized_family_candidate": "ekans"
+            }
+          ],
+          "anchor_family_review_id": "45939370-529e-46d7-a4c1-3ed76302dc86",
+          "source_family_review_ids": [
+            "45939370-529e-46d7-a4c1-3ed76302dc86"
+          ],
+          "printed_name_species_matches": [
+            {
+              "species_id": "edde5c33-5f75-4eeb-ac3e-a891ad4a73eb",
+              "species_slug": "unown",
+              "evidence_keys": [
+                "アンノーン"
+              ],
+              "evidence_names": [
+                "アンノーン[L]"
+              ],
+              "species_display_name": "Unown"
+            }
+          ]
+        },
+        "confidence": 0.93,
+        "created_at": "2026-07-02T01:28:45.515285+00:00",
+        "species_id": "edde5c33-5f75-4eeb-ac3e-a891ad4a73eb",
+        "updated_at": "2026-07-02T01:28:45.515285+00:00",
+        "card_print_id": "fc4e9a2b-5367-47c2-bd91-2eb0a3f787de",
+        "counts_for_completion": true
+      },
+      "target_species_before": {
+        "id": "edde5c33-5f75-4eeb-ac3e-a891ad4a73eb",
+        "slug": "unown",
+        "types": [
+          "psychic"
+        ],
+        "active": true,
+        "source": "grookai_dex_seed_v1",
+        "is_form": false,
+        "created_at": "2026-05-18T09:53:07.974154+00:00",
+        "generation": 2,
+        "source_ref": {
+          "source": "pokeapi",
+          "sourceUrl": "https://pokeapi.co/api/v2/generation/",
+          "typeSourceUrl": "https://pokeapi.co/api/v2/type/",
+          "metadataSourceReadCount": 27
+        },
+        "updated_at": "2026-07-23T16:56:38.630458+00:00",
+        "display_name": "Unown",
+        "canonical_name": "unown",
+        "base_species_id": null,
+        "national_dex_number": 201
+      },
+      "proposed_english": [
+        "Unown [L]",
+        "Unown L"
+      ],
+      "proposed_family": [
+        "unown l"
+      ],
+      "identity_hash": {
+        "stored": "8b5f22a447b259447d2b5bfc522c9d0648eabc3d76e64480a63f895356884129",
+        "before": "8b5f22a447b259447d2b5bfc522c9d0648eabc3d76e64480a63f895356884129",
+        "proposed": "8b5f22a447b259447d2b5bfc522c9d0648eabc3d76e64480a63f895356884129"
+      },
+      "requires_link_repair": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-071",
+      "letter": "P",
+      "source": {
+        "card_print_id": "4a10fa27-ce0d-47ab-8912-11b119367363",
+        "gv_id": "GV-PK-JPN-DP4-071",
+        "catalog_coordinate": "071",
+        "official_id": "10071",
+        "official_page": "https://www.pokemon-card.com/card-search/details.php/card/10071/regu/all",
+        "official_image": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010071_P_ANNONP.jpg",
+        "artist": "Kent Kanetsuna",
+        "official_page_sha256": "827d41e3c01abddfac841cdae1b9ab87b1b9ded2768cfe6500b916c6c41d0d04",
+        "image_sha256": "0b0356109d9f1629f8f97d26be3225f947460a40070e69ead0a354e6682fcd1b",
+        "source_receipt": "official-captures/10071-receipt.json",
+        "storage_receipt": "official-captures/10071-storage-proof.json",
+        "official_artist": "Kent Kanetsuna",
+        "subject_repair_verified": false,
+        "current": {
+          "id": "4a10fa27-ce0d-47ab-8912-11b119367363",
+          "gv_id": "GV-PK-JPN-DP4-071",
+          "name": "アンノーン[P]",
+          "number": "071",
+          "set_code": "jpn-dp4",
+          "artist": null,
+          "image_status": "exact",
+          "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dp4/gv-pk-jpn-dp4-071/0b0356109d9f1629f8f97d26.jpg"
+        }
+      },
+      "parent_before": {
+        "id": "4a10fa27-ce0d-47ab-8912-11b119367363",
+        "name": "アンノーン[P]",
+        "gv_id": "GV-PK-JPN-DP4-071",
+        "artist": null,
+        "number": "071",
+        "rarity": null,
+        "set_id": "73a521e3-553e-4a44-9079-441ce178e99e",
+        "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+        "set_code": "jpn-dp4",
+        "variants": null,
+        "image_res": null,
+        "image_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dp4/gv-pk-jpn-dp4-071/0b0356109d9f1629f8f97d26.jpg",
+        "created_at": "2026-07-01T18:36:34.720368+00:00",
+        "image_hash": null,
+        "image_note": "Self-hosted Japanese copy uploaded by MASTER_IDENTITY_GRAPH_JPN_SELF_HOSTED_IMAGE_STORAGE_UPLOAD_v1; original external source preserved in docs\\audits\\master_identity_graph_v1\\jpn-self-hosted-image-validation-v1\\jpn_self_hosted_image_upload_manifest_v1.jsonl.",
+        "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dp4/gv-pk-jpn-dp4-071/0b0356109d9f1629f8f97d26.jpg",
+        "updated_at": "2026-07-01T21:23:28.861351+00:00",
+        "ai_metadata": null,
+        "variant_key": "",
+        "external_ids": {
+          "master_identity_graph_jpn": {
+            "source_keys": [
+              "pokemon_card_official_jp",
+              "tcgcollector_jp"
+            ],
+            "acquisition_key": "set:DP4|num:071",
+            "source_set_refs": [
+              "DP4"
+            ]
+          }
+        },
+        "image_source": "identity",
+        "image_status": "exact",
+        "number_plain": "071",
+        "tcgplayer_id": null,
+        "image_alt_url": null,
+        "printed_total": null,
+        "last_synced_at": null,
+        "identity_domain": "pokemon_jpn",
+        "regulation_mark": null,
+        "data_quality_flags": {
+          "master_identity_graph_jpn": {
+            "acquisition_key": "set:DP4|num:071",
+            "dry_run_transform": "schema_transform_contract_v1"
+          }
+        },
+        "print_identity_key": "jpn:jpn-dp4:071:base",
+        "printed_set_abbrev": "DP4",
+        "set_identity_model": "standard",
+        "image_last_checked_at": null,
+        "representative_image_url": null,
+        "printed_identity_modifier": null
+      },
+      "identity_before": {
+        "id": "f072dabb-177a-4099-b508-2993173155f5",
+        "is_active": true,
+        "created_at": "2026-07-01T18:36:34.720368+00:00",
+        "updated_at": "2026-11-10T02:03:20.497099+00:00",
+        "card_print_id": "4a10fa27-ce0d-47ab-8912-11b119367363",
+        "printed_number": "071",
+        "identity_domain": "pokemon_jpn",
+        "source_name_raw": "アンノーン[P]",
+        "identity_payload": {
+          "source_count": 2,
+          "language_code": "ja",
+          "rarity_policy": {
+            "source": "master_identity_graph_jpn_first_batch",
+            "status": "not_normalized_in_first_batch"
+          },
+          "language_scope": "ja",
+          "edition_marking": {
+            "source": "master_identity_graph_jpn_first_batch",
+            "status": "not_normalized_in_first_batch"
+          },
+          "release_context": {
+            "source_keys": [
+              "pokemon_card_official_jp",
+              "tcgcollector_jp"
+            ],
+            "has_official_jp": true,
+            "source_set_refs": [
+              "DP4"
+            ],
+            "set_code_identity": "jpn-dp4",
+            "source_canonical_set_key": "DP4"
+          },
+          "card_name_en_candidates": [
+            "Arbok (Moonlit Pursuit & Dawn Dash No. 071)"
+          ],
+          "card_name_ja_candidates": [
+            "アンノーン[P]"
+          ],
+          "normalized_printed_number": "071",
+          "normalized_family_name_candidates": [
+            "arbok"
+          ]
+        },
+        "identity_key_hash": "a6e5efa4a982aaf2d44b0753375db02be562fd3c0f19267bf45f0eedbc886fe9",
+        "set_code_identity": "jpn-dp4",
+        "identity_key_version": "pokemon_jpn:v1",
+        "normalized_printed_name": "アンノーン[p]"
+      },
+      "identities_before": [
+        {
+          "id": "f072dabb-177a-4099-b508-2993173155f5",
+          "is_active": true,
+          "created_at": "2026-07-01T18:36:34.720368+00:00",
+          "updated_at": "2026-11-10T02:03:20.497099+00:00",
+          "card_print_id": "4a10fa27-ce0d-47ab-8912-11b119367363",
+          "printed_number": "071",
+          "identity_domain": "pokemon_jpn",
+          "source_name_raw": "アンノーン[P]",
+          "identity_payload": {
+            "source_count": 2,
+            "language_code": "ja",
+            "rarity_policy": {
+              "source": "master_identity_graph_jpn_first_batch",
+              "status": "not_normalized_in_first_batch"
+            },
+            "language_scope": "ja",
+            "edition_marking": {
+              "source": "master_identity_graph_jpn_first_batch",
+              "status": "not_normalized_in_first_batch"
+            },
+            "release_context": {
+              "source_keys": [
+                "pokemon_card_official_jp",
+                "tcgcollector_jp"
+              ],
+              "has_official_jp": true,
+              "source_set_refs": [
+                "DP4"
+              ],
+              "set_code_identity": "jpn-dp4",
+              "source_canonical_set_key": "DP4"
+            },
+            "card_name_en_candidates": [
+              "Arbok (Moonlit Pursuit & Dawn Dash No. 071)"
+            ],
+            "card_name_ja_candidates": [
+              "アンノーン[P]"
+            ],
+            "normalized_printed_number": "071",
+            "normalized_family_name_candidates": [
+              "arbok"
+            ]
+          },
+          "identity_key_hash": "a6e5efa4a982aaf2d44b0753375db02be562fd3c0f19267bf45f0eedbc886fe9",
+          "set_code_identity": "jpn-dp4",
+          "identity_key_version": "pokemon_jpn:v1",
+          "normalized_printed_name": "アンノーン[p]"
+        }
+      ],
+      "links_before": [
+        {
+          "id": "dce368d6-db66-482b-92a7-5fc63d933664",
+          "role": "primary",
+          "active": true,
+          "source": "master_identity_graph_jpn_family_promotion_v1",
+          "evidence": {
+            "package_id": "MASTER_IDENTITY_GRAPH_JPN_SPECIES_FAMILY_LINK_PROMOTION_DRY_RUN_v1",
+            "source_keys": [
+              "pokemon_card_official_jp",
+              "tcgcollector_jp"
+            ],
+            "family_status": "english_name_family_candidate",
+            "review_status": "approved_for_family_link_promotion",
+            "review_key_hash": "80d704ffa1106d310f8488c61be4bba9c5338085891c69cd0a5ff0831e410569",
+            "family_review_id": "5f9b2180-0647-43ff-af57-dd729beefc81",
+            "card_print_identity_id": "f072dabb-177a-4099-b508-2993173155f5",
+            "family_candidate_source": "identity_resolution_candidate",
+            "normalized_family_candidate": "arbok"
+          },
+          "confidence": 0.96,
+          "created_at": "2026-07-01T23:35:49.266086+00:00",
+          "species_id": "9f6443b0-df91-4b94-b1c0-712bd447c941",
+          "updated_at": "2026-07-01T23:35:49.266086+00:00",
+          "card_print_id": "4a10fa27-ce0d-47ab-8912-11b119367363",
+          "counts_for_completion": true
+        }
+      ],
+      "primary_link_before": {
+        "id": "dce368d6-db66-482b-92a7-5fc63d933664",
+        "role": "primary",
+        "active": true,
+        "source": "master_identity_graph_jpn_family_promotion_v1",
+        "evidence": {
+          "package_id": "MASTER_IDENTITY_GRAPH_JPN_SPECIES_FAMILY_LINK_PROMOTION_DRY_RUN_v1",
+          "source_keys": [
+            "pokemon_card_official_jp",
+            "tcgcollector_jp"
+          ],
+          "family_status": "english_name_family_candidate",
+          "review_status": "approved_for_family_link_promotion",
+          "review_key_hash": "80d704ffa1106d310f8488c61be4bba9c5338085891c69cd0a5ff0831e410569",
+          "family_review_id": "5f9b2180-0647-43ff-af57-dd729beefc81",
+          "card_print_identity_id": "f072dabb-177a-4099-b508-2993173155f5",
+          "family_candidate_source": "identity_resolution_candidate",
+          "normalized_family_candidate": "arbok"
+        },
+        "confidence": 0.96,
+        "created_at": "2026-07-01T23:35:49.266086+00:00",
+        "species_id": "9f6443b0-df91-4b94-b1c0-712bd447c941",
+        "updated_at": "2026-07-01T23:35:49.266086+00:00",
+        "card_print_id": "4a10fa27-ce0d-47ab-8912-11b119367363",
+        "counts_for_completion": true
+      },
+      "target_species_before": {
+        "id": "edde5c33-5f75-4eeb-ac3e-a891ad4a73eb",
+        "slug": "unown",
+        "types": [
+          "psychic"
+        ],
+        "active": true,
+        "source": "grookai_dex_seed_v1",
+        "is_form": false,
+        "created_at": "2026-05-18T09:53:07.974154+00:00",
+        "generation": 2,
+        "source_ref": {
+          "source": "pokeapi",
+          "sourceUrl": "https://pokeapi.co/api/v2/generation/",
+          "typeSourceUrl": "https://pokeapi.co/api/v2/type/",
+          "metadataSourceReadCount": 27
+        },
+        "updated_at": "2026-07-23T16:56:38.630458+00:00",
+        "display_name": "Unown",
+        "canonical_name": "unown",
+        "base_species_id": null,
+        "national_dex_number": 201
+      },
+      "proposed_english": [
+        "Unown [P]",
+        "Unown P"
+      ],
+      "proposed_family": [
+        "unown p"
+      ],
+      "identity_hash": {
+        "stored": "a6e5efa4a982aaf2d44b0753375db02be562fd3c0f19267bf45f0eedbc886fe9",
+        "before": "a6e5efa4a982aaf2d44b0753375db02be562fd3c0f19267bf45f0eedbc886fe9",
+        "proposed": "a6e5efa4a982aaf2d44b0753375db02be562fd3c0f19267bf45f0eedbc886fe9"
+      },
+      "requires_link_repair": true,
+      "new_link_id": "7f9a4b6c-92fc-43fb-bc9b-1a89ca29deb7"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-072",
+      "letter": "Q",
+      "source": {
+        "card_print_id": "4300c60f-d74b-4056-875a-4a02efb2d1e0",
+        "gv_id": "GV-PK-JPN-DP4-072",
+        "catalog_coordinate": "072",
+        "official_id": "10072",
+        "official_page": "https://www.pokemon-card.com/card-search/details.php/card/10072/regu/all",
+        "official_image": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010072_P_ANNONQ.jpg",
+        "artist": "Kent Kanetsuna",
+        "official_page_sha256": "d76ab7b15f666287785eb6b47cae0270e1c997d8778e5a7c7c1a345eed93f0f1",
+        "image_sha256": "f62aafe5b1a12ab02fe91cced2a951cc4893270ca27e3afa58ebdf2f7a08a429",
+        "source_receipt": "official-captures/10072-receipt.json",
+        "storage_receipt": "official-captures/10072-storage-proof.json",
+        "official_artist": "Kent Kanetsuna",
+        "subject_repair_verified": false,
+        "current": {
+          "id": "4300c60f-d74b-4056-875a-4a02efb2d1e0",
+          "gv_id": "GV-PK-JPN-DP4-072",
+          "name": "アンノーン[Q]",
+          "number": "072",
+          "set_code": "jpn-dp4",
+          "artist": null,
+          "image_status": "exact",
+          "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dp4/gv-pk-jpn-dp4-072/f62aafe5b1a12ab02fe91cce.jpg"
+        }
+      },
+      "parent_before": {
+        "id": "4300c60f-d74b-4056-875a-4a02efb2d1e0",
+        "name": "アンノーン[Q]",
+        "gv_id": "GV-PK-JPN-DP4-072",
+        "artist": null,
+        "number": "072",
+        "rarity": null,
+        "set_id": "73a521e3-553e-4a44-9079-441ce178e99e",
+        "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+        "set_code": "jpn-dp4",
+        "variants": null,
+        "image_res": null,
+        "image_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dp4/gv-pk-jpn-dp4-072/f62aafe5b1a12ab02fe91cce.jpg",
+        "created_at": "2026-07-01T18:36:34.720368+00:00",
+        "image_hash": null,
+        "image_note": "Self-hosted Japanese copy uploaded by MASTER_IDENTITY_GRAPH_JPN_SELF_HOSTED_IMAGE_STORAGE_UPLOAD_v1; original external source preserved in docs\\audits\\master_identity_graph_v1\\jpn-self-hosted-image-validation-v1\\jpn_self_hosted_image_upload_manifest_v1.jsonl.",
+        "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dp4/gv-pk-jpn-dp4-072/f62aafe5b1a12ab02fe91cce.jpg",
+        "updated_at": "2026-07-01T21:23:28.861351+00:00",
+        "ai_metadata": null,
+        "variant_key": "",
+        "external_ids": {
+          "master_identity_graph_jpn": {
+            "source_keys": [
+              "pokemon_card_official_jp",
+              "tcgcollector_jp"
+            ],
+            "acquisition_key": "set:DP4|num:072",
+            "source_set_refs": [
+              "DP4"
+            ]
+          }
+        },
+        "image_source": "identity",
+        "image_status": "exact",
+        "number_plain": "072",
+        "tcgplayer_id": null,
+        "image_alt_url": null,
+        "printed_total": null,
+        "last_synced_at": null,
+        "identity_domain": "pokemon_jpn",
+        "regulation_mark": null,
+        "data_quality_flags": {
+          "master_identity_graph_jpn": {
+            "acquisition_key": "set:DP4|num:072",
+            "dry_run_transform": "schema_transform_contract_v1"
+          }
+        },
+        "print_identity_key": "jpn:jpn-dp4:072:base",
+        "printed_set_abbrev": "DP4",
+        "set_identity_model": "standard",
+        "image_last_checked_at": null,
+        "representative_image_url": null,
+        "printed_identity_modifier": null
+      },
+      "identity_before": {
+        "id": "447fd94c-8e93-467a-a7d4-e14570a7c79b",
+        "is_active": true,
+        "created_at": "2026-07-01T18:36:34.720368+00:00",
+        "updated_at": "2026-11-10T02:03:20.497099+00:00",
+        "card_print_id": "4300c60f-d74b-4056-875a-4a02efb2d1e0",
+        "printed_number": "072",
+        "identity_domain": "pokemon_jpn",
+        "source_name_raw": "アンノーン[Q]",
+        "identity_payload": {
+          "source_count": 2,
+          "language_code": "ja",
+          "rarity_policy": {
+            "source": "master_identity_graph_jpn_first_batch",
+            "status": "not_normalized_in_first_batch"
+          },
+          "language_scope": "ja",
+          "edition_marking": {
+            "source": "master_identity_graph_jpn_first_batch",
+            "status": "not_normalized_in_first_batch"
+          },
+          "release_context": {
+            "source_keys": [
+              "pokemon_card_official_jp",
+              "tcgcollector_jp"
+            ],
+            "has_official_jp": true,
+            "source_set_refs": [
+              "DP4"
+            ],
+            "set_code_identity": "jpn-dp4",
+            "source_canonical_set_key": "DP4"
+          },
+          "card_name_en_candidates": [
+            "Espeon (Moonlit Pursuit & Dawn Dash No. 072)"
+          ],
+          "card_name_ja_candidates": [
+            "アンノーン[Q]"
+          ],
+          "normalized_printed_number": "072",
+          "normalized_family_name_candidates": [
+            "espeon"
+          ]
+        },
+        "identity_key_hash": "beca58351fe3edad121e854891f05e625bd090fe4d82bfe9cc702025f1eb0d4b",
+        "set_code_identity": "jpn-dp4",
+        "identity_key_version": "pokemon_jpn:v1",
+        "normalized_printed_name": "アンノーン[q]"
+      },
+      "identities_before": [
+        {
+          "id": "447fd94c-8e93-467a-a7d4-e14570a7c79b",
+          "is_active": true,
+          "created_at": "2026-07-01T18:36:34.720368+00:00",
+          "updated_at": "2026-11-10T02:03:20.497099+00:00",
+          "card_print_id": "4300c60f-d74b-4056-875a-4a02efb2d1e0",
+          "printed_number": "072",
+          "identity_domain": "pokemon_jpn",
+          "source_name_raw": "アンノーン[Q]",
+          "identity_payload": {
+            "source_count": 2,
+            "language_code": "ja",
+            "rarity_policy": {
+              "source": "master_identity_graph_jpn_first_batch",
+              "status": "not_normalized_in_first_batch"
+            },
+            "language_scope": "ja",
+            "edition_marking": {
+              "source": "master_identity_graph_jpn_first_batch",
+              "status": "not_normalized_in_first_batch"
+            },
+            "release_context": {
+              "source_keys": [
+                "pokemon_card_official_jp",
+                "tcgcollector_jp"
+              ],
+              "has_official_jp": true,
+              "source_set_refs": [
+                "DP4"
+              ],
+              "set_code_identity": "jpn-dp4",
+              "source_canonical_set_key": "DP4"
+            },
+            "card_name_en_candidates": [
+              "Espeon (Moonlit Pursuit & Dawn Dash No. 072)"
+            ],
+            "card_name_ja_candidates": [
+              "アンノーン[Q]"
+            ],
+            "normalized_printed_number": "072",
+            "normalized_family_name_candidates": [
+              "espeon"
+            ]
+          },
+          "identity_key_hash": "beca58351fe3edad121e854891f05e625bd090fe4d82bfe9cc702025f1eb0d4b",
+          "set_code_identity": "jpn-dp4",
+          "identity_key_version": "pokemon_jpn:v1",
+          "normalized_printed_name": "アンノーン[q]"
+        }
+      ],
+      "links_before": [
+        {
+          "id": "235cf83c-07af-478e-9f4d-744ba68d5969",
+          "role": "primary",
+          "active": true,
+          "source": "master_identity_graph_jpn_family_promotion_v1",
+          "evidence": {
+            "package_id": "MASTER_IDENTITY_GRAPH_JPN_SPECIES_FAMILY_LINK_PROMOTION_DRY_RUN_v1",
+            "source_keys": [
+              "pokemon_card_official_jp",
+              "tcgcollector_jp"
+            ],
+            "family_status": "english_name_family_candidate",
+            "review_status": "approved_for_family_link_promotion",
+            "review_key_hash": "6cace96566a0216c2c3d7dc0f589aaf0d622cb18f9436aa1c1a40f71592454ca",
+            "family_review_id": "43209cb7-8ec7-42cd-ac59-5f9c98f02022",
+            "card_print_identity_id": "447fd94c-8e93-467a-a7d4-e14570a7c79b",
+            "family_candidate_source": "identity_resolution_candidate",
+            "normalized_family_candidate": "espeon"
+          },
+          "confidence": 0.96,
+          "created_at": "2026-07-01T23:35:49.266086+00:00",
+          "species_id": "e1472516-eeee-4dd5-b8b1-4a732b883a5c",
+          "updated_at": "2026-07-01T23:35:49.266086+00:00",
+          "card_print_id": "4300c60f-d74b-4056-875a-4a02efb2d1e0",
+          "counts_for_completion": true
+        }
+      ],
+      "primary_link_before": {
+        "id": "235cf83c-07af-478e-9f4d-744ba68d5969",
+        "role": "primary",
+        "active": true,
+        "source": "master_identity_graph_jpn_family_promotion_v1",
+        "evidence": {
+          "package_id": "MASTER_IDENTITY_GRAPH_JPN_SPECIES_FAMILY_LINK_PROMOTION_DRY_RUN_v1",
+          "source_keys": [
+            "pokemon_card_official_jp",
+            "tcgcollector_jp"
+          ],
+          "family_status": "english_name_family_candidate",
+          "review_status": "approved_for_family_link_promotion",
+          "review_key_hash": "6cace96566a0216c2c3d7dc0f589aaf0d622cb18f9436aa1c1a40f71592454ca",
+          "family_review_id": "43209cb7-8ec7-42cd-ac59-5f9c98f02022",
+          "card_print_identity_id": "447fd94c-8e93-467a-a7d4-e14570a7c79b",
+          "family_candidate_source": "identity_resolution_candidate",
+          "normalized_family_candidate": "espeon"
+        },
+        "confidence": 0.96,
+        "created_at": "2026-07-01T23:35:49.266086+00:00",
+        "species_id": "e1472516-eeee-4dd5-b8b1-4a732b883a5c",
+        "updated_at": "2026-07-01T23:35:49.266086+00:00",
+        "card_print_id": "4300c60f-d74b-4056-875a-4a02efb2d1e0",
+        "counts_for_completion": true
+      },
+      "target_species_before": {
+        "id": "edde5c33-5f75-4eeb-ac3e-a891ad4a73eb",
+        "slug": "unown",
+        "types": [
+          "psychic"
+        ],
+        "active": true,
+        "source": "grookai_dex_seed_v1",
+        "is_form": false,
+        "created_at": "2026-05-18T09:53:07.974154+00:00",
+        "generation": 2,
+        "source_ref": {
+          "source": "pokeapi",
+          "sourceUrl": "https://pokeapi.co/api/v2/generation/",
+          "typeSourceUrl": "https://pokeapi.co/api/v2/type/",
+          "metadataSourceReadCount": 27
+        },
+        "updated_at": "2026-07-23T16:56:38.630458+00:00",
+        "display_name": "Unown",
+        "canonical_name": "unown",
+        "base_species_id": null,
+        "national_dex_number": 201
+      },
+      "proposed_english": [
+        "Unown [Q]",
+        "Unown Q"
+      ],
+      "proposed_family": [
+        "unown q"
+      ],
+      "identity_hash": {
+        "stored": "beca58351fe3edad121e854891f05e625bd090fe4d82bfe9cc702025f1eb0d4b",
+        "before": "beca58351fe3edad121e854891f05e625bd090fe4d82bfe9cc702025f1eb0d4b",
+        "proposed": "beca58351fe3edad121e854891f05e625bd090fe4d82bfe9cc702025f1eb0d4b"
+      },
+      "requires_link_repair": true,
+      "new_link_id": "07bc8909-659f-4fb6-a87e-cf4c97a64934"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "version": "JPN_DP4_ARTIST8_V1",
+  "run_id": "01b4f1ee-6bb2-4c7a-80bf-96ae51b69e3b",
+  "mode": "verify",
+  "chunk": 0,
+  "package_fingerprint": "e2a8bdce696f16cfdd8fe0f95be95441e30f534955e83a0fae4294f00c53ac71",
+  "writer_fingerprint": "49f3852eeb0e98cfccacdbce04d3f15b74fe087a3eb43d34cad9e81b4a8e03be",
+  "started_at": "2026-11-20T10:40:35.345Z",
+  "status": "verified_already_applied",
+  "stages": [
+    {
+      "name": "source_and_ownership_verified",
+      "at": "2026-11-20T10:40:51.743Z"
+    },
+    {
+      "name": "verified_already_applied",
+      "at": "2026-11-20T10:40:52.309Z"
+    }
+  ],
+  "sanity": {
+    "parents": 173837,
+    "sets": 3420,
+    "traits": 47409
+  },
+  "receipt_id": "177107",
+  "finished_at": "2026-11-20T10:40:52.309Z"
+}
