@@ -1,3 +1,4 @@
+import {marketPipelineDatabaseConfigV1} from '../../backend/pricing/market_pipeline_database_config_v1.mjs';
 import {CROSS_TCG_MARKET_SCOPE_V2,readCrossTcgMarketBootstrapV2,assertCrossTcgMarketActivationV2} from '../../backend/pricing/cross_tcg_market_activation_guard_v2.mjs';
 import {TCGPLAYER_MARKET_PUBLICATION_POLICY_V2, evaluateTcgplayerMarketQualificationV2} from '../../backend/pricing/tcgplayer_market_publication_policy_v2.mjs';
 import { execFile } from "node:child_process";
@@ -248,11 +249,6 @@ function connectionString() {
   );
 }
 
-function sslConfig(url) {
-  return /localhost|127\.0\.0\.1|\[::1\]/i.test(url)
-    ? false
-    : { rejectUnauthorized: false };
-}
 
 function chunks(rows, size) {
   const result = [];
@@ -1952,8 +1948,7 @@ async function main() {
   }
 
   const client = new Client({
-    connectionString: url,
-    ssl: sslConfig(url),
+    ...marketPipelineDatabaseConfigV1(url, process.env, {readOnly:false}),
     connectionTimeoutMillis: 15_000,
     keepAlive: true,
     keepAliveInitialDelayMillis: 10_000,

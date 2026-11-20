@@ -1,3 +1,4 @@
+import {marketPipelineDatabaseConfigV1} from '../../backend/pricing/market_pipeline_database_config_v1.mjs';
 import { createHash } from "node:crypto";
 import { execFile } from "node:child_process";
 import { existsSync } from "node:fs";
@@ -185,10 +186,6 @@ function directDbUrl() {
   return process.env.SUPABASE_DB_URL || process.env.DATABASE_URL || process.env.POSTGRES_URL;
 }
 
-function pgSslConfig(connectionString) {
-  if (/localhost|127\.0\.0\.1|\[::1\]/i.test(connectionString)) return false;
-  return { rejectUnauthorized: false };
-}
 
 async function gitCommitSha() {
   try {
@@ -421,8 +418,7 @@ async function connectDb() {
   const connectionString = directDbUrl();
   if (!connectionString) throw new Error("SUPABASE_DB_URL/DATABASE_URL/POSTGRES_URL is required for --apply");
   const client = new Client({
-    connectionString,
-    ssl: pgSslConfig(connectionString),
+    ...marketPipelineDatabaseConfigV1(connectionString, process.env, {readOnly:false}),
     connectionTimeoutMillis: 20_000,
     query_timeout: 120_000,
     statement_timeout: 120_000,

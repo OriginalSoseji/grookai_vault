@@ -16,6 +16,7 @@ jobs:
     timeout-minutes: 360
     env:
       SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+      SUPABASE_DB_CA_CERT: ${{ secrets.SUPABASE_DB_CA_CERT }}
       TCGPLAYER_MARKET_SCHEDULE_ALLOW_RUN: '1'
       TCGPLAYER_MARKET_SCHEDULE_MODE: shadow
       TCGPLAYER_MARKET_SCHEDULE_MAX_ATTEMPTS: '2'

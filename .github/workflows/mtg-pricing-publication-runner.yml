@@ -376,9 +376,9 @@ jobs:
             'utf8',
           );
           await persistGuardArtifact();
+          import {marketPipelineDatabaseConfigV1} from './backend/pricing/market_pipeline_database_config_v1.mjs';
           const client = new pg.Client({
-            connectionString: process.env.SUPABASE_DB_URL,
-            ssl: { rejectUnauthorized: false },
+            ...marketPipelineDatabaseConfigV1(process.env.SUPABASE_DB_URL, process.env, {readOnly:true,applicationName:'cross_tcg_market_production_guard_v2'}),
             connectionTimeoutMillis: 15_000,
             statement_timeout: 120_000,
             query_timeout: 125_000,

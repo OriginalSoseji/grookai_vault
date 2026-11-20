@@ -39,15 +39,38 @@ are included in the revised runtime producer, and its release gate requires13
 negative cases and an explicit conflicting-finish result. All revised SQL proofs
 must pass; revision4 evidence does not qualify the revised bytes.
 
-At this checkpoint,92 focused tests pass. The earlier full commit check passed,
-but its push check stopped with ENOSPC and is not passing release evidence.
-Storage recovered, but Docker's data disk then reported filesystem-header errors
-and the revised fresh replay stopped before creating its lab. Docker recovery,
-revised replay/upgrade/runtime/permissions/scale/schema qualification, fresh normal
-hooks, hosted review, frozen official CLI dry-run/apply, independent production
-readback, full-source shadow, guarded publication, scheduled refresh verification
-and deployed signed-in acceptance remain required. No production512 migration
-or new cross-TCG publication is claimed here.
+Revision5 qualification now passed: genuine fresh512 official CLI replay,
+populated511→512 upgrade/no-op, all426 protected-table fingerprints, identical
+four-schema/security comparison, four exact source prices, two genuine absences,
+13 negative lineage cases including contradictory same-product finish assertions,
+three-role permissions and unchanged old-cohort output. A rolled-back200,000-mapping
+fixture used the child index with a0.736ms bounded default plan. Existing app RPCs
+returned four exact prices and four parent summaries in a rolled-back local fixture.
+These are local proofs; production performance/readback remain separate.
+
+Current main's newer search and condition-reader repairs are integrated. The
+active pipeline's legacy certificate-verification bypass is replaced by a shared
+canonical-target transport helper, preserving startup read-only options. The
+shadow workflow now receives the existing CA secret. Five transport tests and95
+refresh/publication/legacy regressions passed; a real read-only production probe
+verified TLS1.3, certificate enforcement and all canonical sanity counts. The
+unchanged revision5 SQL retains its exact local replay and upgrade qualification.
+
+The original revision5 commit checks passed. Its first push attempt failed when
+an existing Square native artwork test process crashed on Windows; its21 isolated
+tests then passed, and the complete ordinary push retry passed. No failing receipt
+was relabeled. This documentation follow-up runs the complete normal commit/push
+hooks again before the final source can be frozen. Hosted review, exact-source
+PrePush/CLI dry-run/apply, independent production readback, full-source shadow,
+guarded publication, scheduled refresh and live Market app acceptance remain gates.
+No production512 migration or new cross-TCG publication is claimed here.
+
+The separate condition-reader repair merged in PR976 and passed deployed signed-in
+browser acceptance: seven exact selections, five positive source amounts and two
+genuine missing conditions held. No collection writes or credential exports were
+used. Physical Samsung603 acceptance remains pending; browser proof does not claim
+phone UI verification. The recovered Docker labs passed all retained fingerprints;
+no further disk repair or destructive recovery belongs to this pricing rollout.
 
 The earlier prepared package/proofs are preserved under operator artifact names
 ending `-candidate-r4-b5ca`. Original dirty checkout, Binder work, Samsung603 app
