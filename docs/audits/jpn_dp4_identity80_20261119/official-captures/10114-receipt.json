@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:21:25.588Z",
+  "gv_id": "GV-PK-JPN-DP4-114",
+  "card_print_id": "3dfa366c-31a1-471d-9372-a9f77673c63f",
+  "catalog_coordinate": "114",
+  "catalog_name": "ゴニョニョ",
+  "official_id": "10114",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10114/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10114/regu/all",
+    "status": 200,
+    "sha256": "04a072badb35ee27c4d1c80009a0371381888ed86b12a703046bc165191b6e48",
+    "bytes": 10433
+  },
+  "heading": "ゴニョニョ",
+  "artist": "Takao Unno",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010114_P_GONYONYO.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010114_P_GONYONYO.jpg",
+    "status": 200,
+    "sha256": "45286cddbb3d39b1c393772424c7f1019bc968981bd1442079f7cebc2b958b1d",
+    "bytes": 50078,
+    "catalog_path_hash_prefix": "45286cddbb3d39b1c3937724",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

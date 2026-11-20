@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:21:28.539Z",
+  "gv_id": "GV-PK-JPN-DP4-002",
+  "card_print_id": "3e86af07-9a62-4778-bb77-7ac9ac1300b2",
+  "catalog_coordinate": "002",
+  "catalog_name": "トランセル",
+  "official_id": "10002",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10002/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10002/regu/all",
+    "status": 200,
+    "sha256": "f9ed01c7e114e9d8807ac51669e01c6d571547f2e1b799a34f9178137763b0bb",
+    "bytes": 10799
+  },
+  "heading": "トランセル",
+  "artist": "Ken Sugimori",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010002_P_TORANSERU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010002_P_TORANSERU.jpg",
+    "status": 200,
+    "sha256": "a8b49303eff6d1764969b608edc4b162c43ffe86beb87c147c9c0f96a1b907c4",
+    "bytes": 60557,
+    "catalog_path_hash_prefix": "a8b49303eff6d1764969b608",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

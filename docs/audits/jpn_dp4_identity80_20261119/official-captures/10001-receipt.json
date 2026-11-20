@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:23:14.911Z",
+  "gv_id": "GV-PK-JPN-DP4-001",
+  "card_print_id": "8c2c466c-4380-4d68-b358-4e2e0a9aa5e3",
+  "catalog_coordinate": "001",
+  "catalog_name": "キャタピー",
+  "official_id": "10001",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10001/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10001/regu/all",
+    "status": 200,
+    "sha256": "32fed9f71960672d93d3547f9deaf8b8520d963bb66104e79020507672391a1b",
+    "bytes": 10717
+  },
+  "heading": "キャタピー",
+  "artist": "Midori Harada",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010001_P_KYATAPI.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010001_P_KYATAPI.jpg",
+    "status": 200,
+    "sha256": "f5bcd911754f5ba88a567fb2e6c87c3e4771a04c01f7c7f3fb16ec96f5784bc7",
+    "bytes": 56981,
+    "catalog_path_hash_prefix": "f5bcd911754f5ba88a567fb2",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

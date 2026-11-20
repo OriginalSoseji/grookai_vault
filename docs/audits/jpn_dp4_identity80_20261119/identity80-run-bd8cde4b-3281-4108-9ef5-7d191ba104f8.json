@@ -1,0 +1,21 @@
+{
+  "version": "JPN_DP4_IDENTITY80_V1",
+  "run_id": "bd8cde4b-3281-4108-9ef5-7d191ba104f8",
+  "mode": "apply",
+  "chunk": 0,
+  "package_fingerprint": "027945b5f54f987ce1972ed476a523ed99c67ff7a7723d510ac8258c7cabe37e",
+  "writer_fingerprint": "6820cb906124443b4bf0079f5468dcbba2949850255fa1fa0eb99c7ac2f51714",
+  "started_at": "2026-11-20T06:07:58.221Z",
+  "status": "failed_rolled_back",
+  "stages": [],
+  "sanity": {
+    "parents": 173837,
+    "sets": 3420,
+    "traits": 47409
+  },
+  "error": {
+    "code": 23,
+    "message": "The operation was aborted due to timeout"
+  },
+  "finished_at": "2026-11-20T06:08:24.622Z"
+}

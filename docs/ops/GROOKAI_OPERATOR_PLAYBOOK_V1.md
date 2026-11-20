@@ -1,3 +1,6 @@
+# DP4 English identity-only batches — November 19, 2026
+
+`backend/catalog/jpn_dp4_identity80_v1.mjs` is the guarded writer used for eight exact ten-record identity-only batches, all applied and independently verified. Use `--mode inspect --chunk N` and `--mode verify --chunk N` for read-only checks. Mutating modes require the existing owner execution marker, fresh source and ownership verification, the pinned plan and a same-writer rollback proof for that exact chunk. Raw source bytes and prior identity payloads are staged before changes, and parent, species-link, identity-hash, ownership, image and pricing state is protected. See `docs/audits/jpn_dp4_identity80_20261119/README.md`. An unknown commit outcome requires independent readback before retry; never infer release readiness from a prepared writer.
 # Shrouded Fable final release V2 — November18,2026
 
 The qualified candidate starts from main6b7a4818f after native release950.

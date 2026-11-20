@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:23:17.640Z",
+  "gv_id": "GV-PK-JPN-DP4-120",
+  "card_print_id": "8e7707b0-af69-4948-8523-585d94211861",
+  "catalog_coordinate": "120",
+  "catalog_name": "ラティアス",
+  "official_id": "10120",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10120/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10120/regu/all",
+    "status": 200,
+    "sha256": "baf31d098b04ed99b2b2d555ec16ae6f9a85237289f177e76351af453d6d7df0",
+    "bytes": 10166
+  },
+  "heading": "ラティアス",
+  "artist": "Daisuke Ito",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010120_P_RATEIASU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010120_P_RATEIASU.jpg",
+    "status": 200,
+    "sha256": "55b38df41cc401e5f16ca957a3c999f58e7f6ffb8e68b2776279823c915a6741",
+    "bytes": 45343,
+    "catalog_path_hash_prefix": "55b38df41cc401e5f16ca957",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:26:26.511Z",
+  "gv_id": "GV-PK-JPN-DP4-009",
+  "card_print_id": "a0af053b-a5ce-43a3-8135-f565d55a278f",
+  "catalog_coordinate": "009",
+  "catalog_name": "ストライク",
+  "official_id": "10009",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10009/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10009/regu/all",
+    "status": 200,
+    "sha256": "dbbb1473f8cd488e74a32be7c9c646f4a018aa2f722da7a155b3eb7aa8460d17",
+    "bytes": 10996
+  },
+  "heading": "ストライク",
+  "artist": "Ken Sugimori",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010009_P_SUTORAIKU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010009_P_SUTORAIKU.jpg",
+    "status": 200,
+    "sha256": "ddc1a6bf5c719c7d5b7ec13c034c67f0c163a5c304a6e00a2054024ae3781c72",
+    "bytes": 62422,
+    "catalog_path_hash_prefix": "ddc1a6bf5c719c7d5b7ec13c",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

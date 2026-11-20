@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:28:07.400Z",
+  "gv_id": "GV-PK-JPN-DP4-101",
+  "card_print_id": "e5075573-27d3-4d43-a8bc-8540673510cc",
+  "catalog_coordinate": "101",
+  "catalog_name": "ガルーラ",
+  "official_id": "10101",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10101/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10101/regu/all",
+    "status": 200,
+    "sha256": "5c5c34048966f4191bb46f3724640c71fd437b6b7dcb734bdcf1d759b3472938",
+    "bytes": 10011
+  },
+  "heading": "ガルーラ",
+  "artist": "Atsuko Nishida",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010101_P_GARURA.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010101_P_GARURA.jpg",
+    "status": 200,
+    "sha256": "2752ac188ac514491527cfe90a696efb721e933210d3efb8e5ece07a5c4f2bd3",
+    "bytes": 49912,
+    "catalog_path_hash_prefix": "2752ac188ac514491527cfe9",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}
