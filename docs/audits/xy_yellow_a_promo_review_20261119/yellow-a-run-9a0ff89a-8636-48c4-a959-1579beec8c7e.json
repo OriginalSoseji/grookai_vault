@@ -1,0 +1,26 @@
+{
+  "version": "XY_YELLOW_A_PROMO_RARITY_APPLY_V1",
+  "run_id": "9a0ff89a-8636-48c4-a959-1579beec8c7e",
+  "mode": "inspect",
+  "package_fingerprint": "6d6277151ca1384f6bcd3bb9d607f8a348e85b892aaa752dfeb74a56f5aa19e5",
+  "writer_fingerprint": "5ed26e183d9ac04781732709c24cfb5e6ecc9b4d7df2d00673564bb2cedce1e4",
+  "started_at": "2026-11-19T21:48:40.607Z",
+  "status": "preflight_passed",
+  "stages": [
+    {
+      "name": "frozen_sources_and_images_verified",
+      "at": "2026-11-19T21:48:53.844Z"
+    },
+    {
+      "name": "preflight_passed",
+      "at": "2026-11-19T21:48:53.939Z"
+    }
+  ],
+  "sanity": {
+    "parents": 173837,
+    "sets": 3420,
+    "traits": 47409
+  },
+  "state": "pending",
+  "finished_at": "2026-11-19T21:48:53.939Z"
+}

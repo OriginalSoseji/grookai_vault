@@ -286,14 +286,14 @@ export function buildSmartSearchIntent(rawQuery: string, options: { gameScope?: 
   const imageState = parseImageStateIntent(residual);
   if (imageState && imageState !== "any") {
     interpretedLabels.push(`Image: ${imageState === "missing" ? "Missing exact image" : imageState === "representative" ? "Representative image" : "Exact image"}`);
-    for (const sourceText of residual.match(/\b(?:no|missing|without)\s+(?:exact\s+)?images?\b|\bvariant\s+image\s+pending\b|\brepresentative\s+images?\b|\bexact\s+images?\b/gi) ?? []) {
+    for (const sourceText of residual.match(/\b(?:with\s+)?(?:no|missing|without)\s+(?:exact\s+)?images?\b|\b(?:with\s+)?variant\s+image\s+pending\b|\b(?:with\s+)?representative\s+images?\b|\b(?:with\s+)?exact\s+images?\b/gi) ?? []) {
       queryFilters.push({ kind: "image", label: `Image: ${imageState}`, sourceText });
     }
     residual = residual
-      .replace(/\b(no|missing|without)\s+(?:exact\s+)?images?\b/gi, " ")
-      .replace(/\bvariant\s+image\s+pending\b/gi, " ")
-      .replace(/\brepresentative\s+images?\b/gi, " ")
-      .replace(/\bexact\s+images?\b/gi, " ");
+      .replace(/\b(?:with\s+)?(?:no|missing|without)\s+(?:exact\s+)?images?\b/gi, " ")
+      .replace(/\b(?:with\s+)?variant\s+image\s+pending\b/gi, " ")
+      .replace(/\b(?:with\s+)?representative\s+images?\b/gi, " ")
+      .replace(/\b(?:with\s+)?exact\s+images?\b/gi, " ");
   }
 
   const ownedState = parseOwnedStateIntent(residual);

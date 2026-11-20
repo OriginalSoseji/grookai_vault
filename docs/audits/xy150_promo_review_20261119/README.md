@@ -1,0 +1,9 @@
+# XY150 Yveltal EX rarity repair
+
+The exact catalog parent `GV-PK-PR-XY-XY150` has rarity `None`. Its Pokémon API and uniquely mapped TCGplayer product identify `Promo`, while the retained TCGdex card payload and `pokemon:stats` trait say `None`. The exact catalog card image visibly shows XY150 and a PROMO star; the mapped TCGplayer image shows the same design. The captured checklist distinguishes XY150 from XY150a. These are card-design images, not physical-copy inspection, and do not establish finish. Sources may share upstream data and are not assumed independent.
+
+The one-record frozen package sets only this parent's rarity to `Promo`; it preserves the conflicting TCGdex trait and does not establish a general precedence rule. The complete database JSONB readback, image bytes, source receipts, checklist bytes, candidate decision and plan are retained here. The JSONB readback is not original provider HTTP bytes. The `a` variants are outside this scope.
+
+The executor `backend/catalog/xy150_promo_rarity_apply_v1.mjs` supports read-only `inspect` and `verify` modes. `rollback-proof` and `apply` require `--approval PROCEED`; apply requires a passed rollback proof bound to the exact writer and plan fingerprint. Mutating modes record operational ledger entries. The guarded serializable transaction stages source snapshots, checks exact current identities, source records, sync state and image hashes, changes only the frozen parent rarity, and proves protected state.
+
+The correction was applied on 2026-11-19 after rollback proof run `83e1bf62-1c5a-4b3c-b002-794d3d833634`. Apply run `50be7881-ed47-4911-9eca-9fb57d87764b` returned `applied_and_verified` with durable receipt `176937`. Independent read-only verify run `cfe275d6-6562-4a66-baa7-9fb696aff698` confirmed the parent and all five source snapshots. Preserve these reports; a changed writer fingerprint cannot reuse the historical rollback proof for a new apply.
