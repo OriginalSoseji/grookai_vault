@@ -1,0 +1,405 @@
+{
+  "version": "XY4_INTERRUPTED_LEDGER_RECONCILIATION_V1",
+  "project_ref": "ycdxbpibncqcchqiihfz",
+  "captured_at": "2026-11-20T14:47:39.091Z",
+  "run_id": "199c0d77-42ff-459d-95d2-819ddd5ff27c",
+  "writer_fingerprint": "b0fffb8219cd09675984b55560cc8b57691697f771278896e1f0f39df0eddb23",
+  "family_plan_sha256": "6cf22a949a8ef140227801d3317356507766f6d858a9d162b8d9a1d7c6654538",
+  "before": {
+    "id": "199c0d77-42ff-459d-95d2-819ddd5ff27c",
+    "kind": "catalog_jpn_xy4_family_containment_v1",
+    "error": null,
+    "scope": {
+      "mode": "rollback-proof",
+      "writer_fingerprint": "b0fffb8219cd09675984b55560cc8b57691697f771278896e1f0f39df0eddb23",
+      "package_fingerprint": "6cf22a949a8ef140227801d3317356507766f6d858a9d162b8d9a1d7c6654538"
+    },
+    "status": "running",
+    "created_at": "2026-11-20T14:32:47.374783+00:00",
+    "started_at": "2026-11-20T14:32:58.962+00:00",
+    "finished_at": null
+  },
+  "queue_preimages": [
+    {
+      "id": "04cf4200-c7a7-410f-b8b5-670ceeaa29b2",
+      "active": true,
+      "created_at": "2026-07-01T18:36:34.720368+00:00",
+      "updated_at": "2026-07-01T23:25:41.001434+00:00",
+      "reviewed_at": "2026-07-01T23:25:41.001434+00:00",
+      "reviewed_by": "codex:MASTER_IDENTITY_GRAPH_JPN_FAMILY_PROMOTION_ALLOW_WRITER_v1",
+      "card_print_id": "7dce5267-7cb0-4002-823b-87bfaf330f12",
+      "family_status": "english_name_family_candidate",
+      "review_status": "approved_for_family_link_promotion",
+      "acquisition_key": "set:XY4|num:081",
+      "review_key_hash": "03d51c0edd8f9b74d6507fa368b829c99c628dc91099b21e5914837e82a36d0b",
+      "evidence_subject": {
+        "source_keys": [
+          "artofpkm_jp",
+          "bulbapedia_jp_card_list",
+          "limitless_tcg_jp",
+          "pokellector_jp",
+          "pokemon_card_official_jp",
+          "tcgcollector_jp"
+        ],
+        "language_scope": "ja",
+        "printed_number": "081",
+        "identity_domain": "pokemon_jpn",
+        "set_code_identity": "jpn-xy4",
+        "card_name_en_candidates": [
+          "Manectric Spirit Link"
+        ],
+        "card_name_ja_candidates": [
+          "コンパン"
+        ],
+        "source_canonical_set_key": "XY4"
+      },
+      "card_print_identity_id": "e14fdd4c-2dfa-433a-80c1-6c49ab4ac02b",
+      "family_candidate_source": "identity_resolution_candidate",
+      "normalized_family_candidate": "manectric spirit link",
+      "family_link_promotion_allowed": true
+    },
+    {
+      "id": "09c0a390-f2a1-4e36-b5b7-e6f58c6d06e4",
+      "active": true,
+      "created_at": "2026-07-01T18:36:34.720368+00:00",
+      "updated_at": "2026-07-01T23:25:41.001434+00:00",
+      "reviewed_at": "2026-07-01T23:25:41.001434+00:00",
+      "reviewed_by": "codex:MASTER_IDENTITY_GRAPH_JPN_FAMILY_PROMOTION_ALLOW_WRITER_v1",
+      "card_print_id": "7b5f5bc8-525f-43e9-b418-b2192d57962a",
+      "family_status": "english_name_family_candidate",
+      "review_status": "approved_for_family_link_promotion",
+      "acquisition_key": "set:XY4|num:048",
+      "review_key_hash": "e4853bb40c96cab677239668500366b2e066642ad77c3ff04384b70a96c65c74",
+      "evidence_subject": {
+        "source_keys": [
+          "artofpkm_jp",
+          "bulbapedia_jp_card_list",
+          "limitless_tcg_jp",
+          "pokellector_jp",
+          "pokemon_card_official_jp",
+          "tcgcollector_jp"
+        ],
+        "language_scope": "ja",
+        "printed_number": "048",
+        "identity_domain": "pokemon_jpn",
+        "set_code_identity": "jpn-xy4",
+        "card_name_en_candidates": [
+          "Boldore"
+        ],
+        "card_name_ja_candidates": [
+          "レパルダス"
+        ],
+        "source_canonical_set_key": "XY4"
+      },
+      "card_print_identity_id": "bfd5a2e5-cbda-4c93-8d34-f3b68d50b319",
+      "family_candidate_source": "identity_resolution_candidate",
+      "normalized_family_candidate": "boldore",
+      "family_link_promotion_allowed": true
+    },
+    {
+      "id": "1223db33-2681-4701-b71f-88e01eafcc2b",
+      "active": true,
+      "created_at": "2026-07-01T18:36:34.720368+00:00",
+      "updated_at": "2026-07-01T23:25:41.001434+00:00",
+      "reviewed_at": "2026-07-01T23:25:41.001434+00:00",
+      "reviewed_by": "codex:MASTER_IDENTITY_GRAPH_JPN_FAMILY_PROMOTION_ALLOW_WRITER_v1",
+      "card_print_id": "8753cda3-ce58-4599-85f4-30fa12516940",
+      "family_status": "english_name_family_candidate",
+      "review_status": "approved_for_family_link_promotion",
+      "acquisition_key": "set:XY4|num:020",
+      "review_key_hash": "74eb9a9e8f389c8016a9af90ac15ab84bf7c03a642e0da7d083f190f317f9cac",
+      "evidence_subject": {
+        "source_keys": [
+          "artofpkm_jp",
+          "bulbapedia_jp_card_list",
+          "limitless_tcg_jp",
+          "pokellector_jp",
+          "pokemon_card_official_jp",
+          "tcgcollector_jp"
+        ],
+        "language_scope": "ja",
+        "printed_number": "020",
+        "identity_domain": "pokemon_jpn",
+        "set_code_identity": "jpn-xy4",
+        "card_name_en_candidates": [
+          "Frillish"
+        ],
+        "card_name_ja_candidates": [
+          "エリキテル"
+        ],
+        "source_canonical_set_key": "XY4"
+      },
+      "card_print_identity_id": "c0bc9e96-b017-4cd3-92d7-7e37b80c9d7e",
+      "family_candidate_source": "identity_resolution_candidate",
+      "normalized_family_candidate": "frillish",
+      "family_link_promotion_allowed": true
+    },
+    {
+      "id": "15d0038c-a98f-43e5-b073-bfc8a1d413a4",
+      "active": true,
+      "created_at": "2026-07-01T18:36:34.720368+00:00",
+      "updated_at": "2026-07-01T23:25:41.001434+00:00",
+      "reviewed_at": "2026-07-01T23:25:41.001434+00:00",
+      "reviewed_by": "codex:MASTER_IDENTITY_GRAPH_JPN_FAMILY_PROMOTION_ALLOW_WRITER_v1",
+      "card_print_id": "95d15a0f-01d8-4ea6-9399-ac9d2ab0050a",
+      "family_status": "english_name_family_candidate",
+      "review_status": "approved_for_family_link_promotion",
+      "acquisition_key": "set:XY4|num:057",
+      "review_key_hash": "40bc2523ad9cf97585cf3b2a98c060abbad4dd197e1bb05d1a8348278a109a6a",
+      "evidence_subject": {
+        "source_keys": [
+          "artofpkm_jp",
+          "limitless_tcg_jp",
+          "pokellector_jp",
+          "pokemon_card_official_jp",
+          "tcgcollector_jp"
+        ],
+        "language_scope": "ja",
+        "printed_number": "057",
+        "identity_domain": "pokemon_jpn",
+        "set_code_identity": "jpn-xy4",
+        "card_name_en_candidates": [
+          "Malamar EX",
+          "Malamar-EX"
+        ],
+        "card_name_ja_candidates": [
+          "サザンドラ"
+        ],
+        "source_canonical_set_key": "XY4"
+      },
+      "card_print_identity_id": "aadd2c4c-ddda-48c5-b60c-e4fc29736388",
+      "family_candidate_source": "identity_resolution_candidate",
+      "normalized_family_candidate": "malamar",
+      "family_link_promotion_allowed": true
+    },
+    {
+      "id": "332a9e75-3bc0-4ac1-8f0d-80e2fa5c87b2",
+      "active": true,
+      "created_at": "2026-07-01T18:36:34.720368+00:00",
+      "updated_at": "2026-07-01T23:25:41.001434+00:00",
+      "reviewed_at": "2026-07-01T23:25:41.001434+00:00",
+      "reviewed_by": "codex:MASTER_IDENTITY_GRAPH_JPN_FAMILY_PROMOTION_ALLOW_WRITER_v1",
+      "card_print_id": "7c15ad2a-c98a-4dd2-897e-f70053223805",
+      "family_status": "english_name_family_candidate",
+      "review_status": "approved_for_family_link_promotion",
+      "acquisition_key": "set:XY4|num:066",
+      "review_key_hash": "9dd6e3f0bff8d809a2312a8621b6fcc658fa17cd794c57d53bc215e45c064d7b",
+      "evidence_subject": {
+        "source_keys": [
+          "artofpkm_jp",
+          "bulbapedia_jp_card_list",
+          "limitless_tcg_jp",
+          "pokellector_jp",
+          "pokemon_card_official_jp",
+          "tcgcollector_jp"
+        ],
+        "language_scope": "ja",
+        "printed_number": "066",
+        "identity_domain": "pokemon_jpn",
+        "set_code_identity": "jpn-xy4",
+        "card_name_en_candidates": [
+          "Spearow"
+        ],
+        "card_name_ja_candidates": [
+          "レジギガス"
+        ],
+        "source_canonical_set_key": "XY4"
+      },
+      "card_print_identity_id": "ab157b50-9ce6-48a0-a331-e1e381281f58",
+      "family_candidate_source": "identity_resolution_candidate",
+      "normalized_family_candidate": "spearow",
+      "family_link_promotion_allowed": true
+    },
+    {
+      "id": "3367813f-be47-41af-81e6-00b3163860c0",
+      "active": true,
+      "created_at": "2026-07-01T18:36:34.720368+00:00",
+      "updated_at": "2026-07-01T23:25:41.001434+00:00",
+      "reviewed_at": "2026-07-01T23:25:41.001434+00:00",
+      "reviewed_by": "codex:MASTER_IDENTITY_GRAPH_JPN_FAMILY_PROMOTION_ALLOW_WRITER_v1",
+      "card_print_id": "8fc0a879-de7d-489a-b803-e0661f0d5e1e",
+      "family_status": "english_name_family_candidate",
+      "review_status": "approved_for_family_link_promotion",
+      "acquisition_key": "set:XY4|num:013",
+      "review_key_hash": "2a7d60ed200a9d4369c6b723a1960cddfc7fab443ea98f041b252f8338627132",
+      "evidence_subject": {
+        "source_keys": [
+          "artofpkm_jp",
+          "bulbapedia_jp_card_list",
+          "limitless_tcg_jp",
+          "pokellector_jp",
+          "pokemon_card_official_jp",
+          "tcgcollector_jp"
+        ],
+        "language_scope": "ja",
+        "printed_number": "013",
+        "identity_domain": "pokemon_jpn",
+        "set_code_identity": "jpn-xy4",
+        "card_name_en_candidates": [
+          "Krabby"
+        ],
+        "card_name_ja_candidates": [
+          "ブルンゲル"
+        ],
+        "source_canonical_set_key": "XY4"
+      },
+      "card_print_identity_id": "2ce01b61-f9e5-4cf3-8e7b-15ce03f8aafb",
+      "family_candidate_source": "identity_resolution_candidate",
+      "normalized_family_candidate": "krabby",
+      "family_link_promotion_allowed": true
+    },
+    {
+      "id": "55323974-d888-492d-827a-a7d9b474d053",
+      "active": true,
+      "created_at": "2026-07-01T18:36:34.720368+00:00",
+      "updated_at": "2026-07-01T23:25:41.001434+00:00",
+      "reviewed_at": "2026-07-01T23:25:41.001434+00:00",
+      "reviewed_by": "codex:MASTER_IDENTITY_GRAPH_JPN_FAMILY_PROMOTION_ALLOW_WRITER_v1",
+      "card_print_id": "8a0c9c7a-0535-4470-9535-b5ca852db94a",
+      "family_status": "english_name_family_candidate",
+      "review_status": "approved_for_family_link_promotion",
+      "acquisition_key": "set:XY4|num:060",
+      "review_key_hash": "48da36bca8303f8a946377747f2d68d2fcb759c7d04aa1d60e8068b8a6c0f39f",
+      "evidence_subject": {
+        "source_keys": [
+          "artofpkm_jp",
+          "limitless_tcg_jp",
+          "pokellector_jp",
+          "pokemon_card_official_jp",
+          "tcgcollector_jp"
+        ],
+        "language_scope": "ja",
+        "printed_number": "060",
+        "identity_domain": "pokemon_jpn",
+        "set_code_identity": "jpn-xy4",
+        "card_name_en_candidates": [
+          "Florges EX",
+          "Florges-EX"
+        ],
+        "card_name_ja_candidates": [
+          "ラッキー"
+        ],
+        "source_canonical_set_key": "XY4"
+      },
+      "card_print_identity_id": "6316c69e-4006-40af-b163-d391a99dce73",
+      "family_candidate_source": "identity_resolution_candidate",
+      "normalized_family_candidate": "florges",
+      "family_link_promotion_allowed": true
+    },
+    {
+      "id": "99b43e28-70ec-4dbd-81de-5bdc4a2f9ab4",
+      "active": true,
+      "created_at": "2026-07-01T18:36:34.720368+00:00",
+      "updated_at": "2026-07-01T23:25:41.001434+00:00",
+      "reviewed_at": "2026-07-01T23:25:41.001434+00:00",
+      "reviewed_by": "codex:MASTER_IDENTITY_GRAPH_JPN_FAMILY_PROMOTION_ALLOW_WRITER_v1",
+      "card_print_id": "8bde0285-2b02-431d-a97f-3650865326c1",
+      "family_status": "english_name_family_candidate",
+      "review_status": "approved_for_family_link_promotion",
+      "acquisition_key": "set:XY4|num:002",
+      "review_key_hash": "edb945e6547b5e25a0036a66e671ea5ae3a4e5e14c5d8379627ecb93a862eee3",
+      "evidence_subject": {
+        "source_keys": [
+          "artofpkm_jp",
+          "bulbapedia_jp_card_list",
+          "limitless_tcg_jp",
+          "pokellector_jp",
+          "pokemon_card_official_jp",
+          "tcgcollector_jp"
+        ],
+        "language_scope": "ja",
+        "printed_number": "002",
+        "identity_domain": "pokemon_jpn",
+        "set_code_identity": "jpn-xy4",
+        "card_name_en_candidates": [
+          "Venomoth"
+        ],
+        "card_name_ja_candidates": [
+          "ファイアロー"
+        ],
+        "source_canonical_set_key": "XY4"
+      },
+      "card_print_identity_id": "d9a5832c-c3f2-4a27-9546-ce9b2f0fde47",
+      "family_candidate_source": "identity_resolution_candidate",
+      "normalized_family_candidate": "venomoth",
+      "family_link_promotion_allowed": true
+    },
+    {
+      "id": "a8e4f796-c8d9-4288-b7dd-3e5044b1b719",
+      "active": true,
+      "created_at": "2026-07-01T18:36:34.720368+00:00",
+      "updated_at": "2026-07-01T23:25:41.001434+00:00",
+      "reviewed_at": "2026-07-01T23:25:41.001434+00:00",
+      "reviewed_by": "codex:MASTER_IDENTITY_GRAPH_JPN_FAMILY_PROMOTION_ALLOW_WRITER_v1",
+      "card_print_id": "7a838b97-6d0b-41a2-b3b2-2fd4cad450a2",
+      "family_status": "english_name_family_candidate",
+      "review_status": "approved_for_family_link_promotion",
+      "acquisition_key": "set:XY4|num:051",
+      "review_key_hash": "5e14d1bddd1f8758c2d53cc3a0b2def3b5e3507727146fde3788b63e30c7f0c4",
+      "evidence_subject": {
+        "source_keys": [
+          "artofpkm_jp",
+          "bulbapedia_jp_card_list",
+          "limitless_tcg_jp",
+          "pokellector_jp",
+          "pokemon_card_official_jp",
+          "tcgcollector_jp"
+        ],
+        "language_scope": "ja",
+        "printed_number": "051",
+        "identity_domain": "pokemon_jpn",
+        "set_code_identity": "jpn-xy4",
+        "card_name_en_candidates": [
+          "Honchkrow"
+        ],
+        "card_name_ja_candidates": [
+          "シュバルゴ"
+        ],
+        "source_canonical_set_key": "XY4"
+      },
+      "card_print_identity_id": "61b45d9a-e805-4f6f-85ab-cb16ba13ae82",
+      "family_candidate_source": "identity_resolution_candidate",
+      "normalized_family_candidate": "honchkrow",
+      "family_link_promotion_allowed": true
+    },
+    {
+      "id": "b2e9f9d8-1d66-49f3-bb4e-c5108e314d1d",
+      "active": true,
+      "created_at": "2026-07-01T18:36:34.720368+00:00",
+      "updated_at": "2026-07-01T23:25:41.001434+00:00",
+      "reviewed_at": "2026-07-01T23:25:41.001434+00:00",
+      "reviewed_by": "codex:MASTER_IDENTITY_GRAPH_JPN_FAMILY_PROMOTION_ALLOW_WRITER_v1",
+      "card_print_id": "8528e047-c768-49ce-bef1-537dc49e8eff",
+      "family_status": "english_name_family_candidate",
+      "review_status": "approved_for_family_link_promotion",
+      "acquisition_key": "set:XY4|num:001",
+      "review_key_hash": "26344560e30f5d3572f0b353714992f961ea8c01fcbf8183416008927bd040e2",
+      "evidence_subject": {
+        "source_keys": [
+          "artofpkm_jp",
+          "bulbapedia_jp_card_list",
+          "limitless_tcg_jp",
+          "pokellector_jp",
+          "pokemon_card_official_jp",
+          "tcgcollector_jp"
+        ],
+        "language_scope": "ja",
+        "printed_number": "001",
+        "identity_domain": "pokemon_jpn",
+        "set_code_identity": "jpn-xy4",
+        "card_name_en_candidates": [
+          "Venonat"
+        ],
+        "card_name_ja_candidates": [
+          "ヒノヤコマ"
+        ],
+        "source_canonical_set_key": "XY4"
+      },
+      "card_print_identity_id": "ea922a7b-7ede-45c0-b704-860b8fa33c74",
+      "family_candidate_source": "identity_resolution_candidate",
+      "normalized_family_candidate": "venonat",
+      "family_link_promotion_allowed": true
+    }
+  ],
+  "triggers": []
+}

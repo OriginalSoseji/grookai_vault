@@ -1,0 +1,9 @@
+# Japanese XY4 family-approval containment
+
+Sixty-two XY4 cards have active primary species links that conflict with the Pokédex numbers on byte-identical official and stored card images. Each also had a promotion-enabled review tied to the same active identity. Seven exact batches superseded and disabled those 62 review approvals, preserving the old claim and all parent, identity, species-link and source-evidence records. This containment does not correct the underlying species links, identity metadata, source evidence, printed coordinates or occupied public identifiers.
+
+Every batch passed fresh official-page and storage checks, an exact-preimage same-writer rollback rehearsal, a raw-first guarded transaction, protected-state checks and a separate independent readback. Durable receipts: `177115`, `177119`, `177145`, `177156`, `177160`, `177164`, `177168`. A later independent readback verified all 62 together, including source snapshots, identity hashes, exact stored-image bytes and parent-prefix ownership. The seven rollback proofs all use fingerprint `b0fffb8219cd09675984b55560cc8b57691697f771278896e1f0f39df0eddb23`; `executed-writer.json.gz` preserves the exact five files that fingerprinted the executed writer.
+
+An interrupted chunk-3 rollback rehearsal made no durable queue or raw changes. Its operational ledger row was reconciled using a frozen preimage, rollback proof and independent readback; see `INTERRUPTED_STATUS.md` and the `ledger-*` artifacts. The first chunk-3 independent readback timed out connecting; a read-only retry passed without reapplying.
+
+The plan is fixed to these 62 rows in seven bounded chunks. Any new mutation requires fresh source, ownership, preimage, same-writer rollback and independent readback checks; historical proofs apply only to the archived writer bytes. The broader XY4 set has confirmed number collisions and unresolved source-evidence issues and needs a separate set-level migration and identity plan.

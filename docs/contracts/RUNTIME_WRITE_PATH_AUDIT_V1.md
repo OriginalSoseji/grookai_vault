@@ -25,6 +25,7 @@ Purpose: coverage-accountable inventory of canon-affecting and ownership-affecti
 
 | path_name | source_files | canon_affecting | ownership_affecting | public_trust_affecting | runtime_status | transaction_mode | post_write_proof | risk_level | next_action |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `catalog_jpn_xy4_family_containment_v1` | `backend/catalog/jpn_xy4_family_containment_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | high | Each frozen chunk requires exact current source, identity and evidence preimages, a same-writer rollback proof, protected-state checks and independent readback; it does not repair the underlying identities or coordinates. |
 | `catalog_jpn_dp4_family_containment_v1` | `backend/catalog/jpn_dp4_family_containment_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | high | Six wrong DP4 family approvals superseded with source, rollback and protected-state proofs; see `docs/audits/jpn_dp4_family_containment_20261120/`. |
 | `external_discovery_to_warehouse_bridge_v1` | `backend/warehouse/external_discovery_to_warehouse_bridge_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | medium | Keep on the shared executor boundary; do not allow ad hoc RAW candidate writes back in. |
 | `classification_apply_write_plan_v1` | `backend/warehouse/classification_worker_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | medium | Keep candidate locking and evidence freshness checks inside the executor-backed boundary. |

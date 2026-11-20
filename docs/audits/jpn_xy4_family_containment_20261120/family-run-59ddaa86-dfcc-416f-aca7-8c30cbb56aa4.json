@@ -1,0 +1,109 @@
+{
+  "version": "JPN_XY4_FAMILY_CONTAINMENT_V1",
+  "run_id": "59ddaa86-dfcc-416f-aca7-8c30cbb56aa4",
+  "mode": "inspect",
+  "chunk": 2,
+  "package_fingerprint": "6cf22a949a8ef140227801d3317356507766f6d858a9d162b8d9a1d7c6654538",
+  "writer_fingerprint": "1da7a3af7612c093884b73902d0b570b2af20bb2ffbcb1e3770de473d3a42e52",
+  "started_at": "2026-11-20T14:21:29.973Z",
+  "status": "preflight_passed",
+  "stages": [
+    {
+      "name": "source_and_ownership_verified",
+      "at": "2026-11-20T14:21:45.561Z"
+    },
+    {
+      "name": "preflight_passed",
+      "at": "2026-11-20T14:21:47.385Z"
+    }
+  ],
+  "sanity": {
+    "parents": 173837,
+    "sets": 3420,
+    "traits": 47409
+  },
+  "protected_before": {
+    "parents": {
+      "rows": 10,
+      "digest": "5adb92b08055edec67fff8c77739e44e"
+    },
+    "card_printings": {
+      "rows": 10,
+      "versions1": "3650402712700572745",
+      "versions2": "1746943348754771793"
+    },
+    "external_mappings": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "external_mapping_aliases": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "card_print_cameos": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "card_print_traits": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "card_print_image_faces": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "card_print_identity_source_evidence": {
+      "rows": 60,
+      "versions1": "8045623061856162703",
+      "versions2": "-5748895423166045520"
+    },
+    "vault_item_instances": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "vault_items": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "card_print_price_curves": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "price_observations": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "market_prices": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "sets": {
+      "rows": 1,
+      "digest": "2d2dd0b9487ba5f8ceb8cae101de91f8"
+    },
+    "current_publication": {
+      "rows": 1,
+      "digest": "c3eea52d2e0382457718b8b843888e58"
+    },
+    "publication": {
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "qualification": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    }
+  },
+  "finished_at": "2026-11-20T14:21:47.385Z"
+}

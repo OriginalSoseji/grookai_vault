@@ -1,0 +1,11 @@
+{
+  "version": "XY4_FAMILY_CONTAINMENT_INDEPENDENT_READBACK_V1",
+  "verified_at": "2026-11-20T14:28:43.882Z",
+  "status": "passed",
+  "chunk": 0,
+  "records": 10,
+  "receipt_ids": [
+    "177115"
+  ],
+  "scope": "Read-only queue, parent, identity, link, evidence, source bytes, exact stored images and parent-prefix ownership; not a complete catalog repair."
+}

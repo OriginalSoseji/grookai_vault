@@ -22,3 +22,5 @@ docs/audits/intake_recovery_20261027/replay-v5-source-as-executed.mjs -text whit
 # Preserve the hash-pinned inspector query's original indentation.
 scripts/schema/reviewed_intake_public_catalog_v1.sql whitespace=-space-before-tab
 docs/audits/jpn_dp4_family_containment_20261120/official-captures/*.html -text -diff
+docs/audits/jpn_xy4_family_containment_20261120/official-captures/*.html -text -diff
+docs/audits/jpn_xy4_family_containment_20261120/official-captures/*.jpg -text -diff

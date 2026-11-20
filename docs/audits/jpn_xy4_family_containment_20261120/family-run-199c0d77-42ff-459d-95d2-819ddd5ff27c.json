@@ -1,0 +1,21 @@
+{
+  "version": "JPN_XY4_FAMILY_CONTAINMENT_V1",
+  "run_id": "199c0d77-42ff-459d-95d2-819ddd5ff27c",
+  "mode": "rollback-proof",
+  "chunk": 3,
+  "package_fingerprint": "6cf22a949a8ef140227801d3317356507766f6d858a9d162b8d9a1d7c6654538",
+  "writer_fingerprint": "b0fffb8219cd09675984b55560cc8b57691697f771278896e1f0f39df0eddb23",
+  "started_at": "2026-11-20T14:32:58.962Z",
+  "status": "started",
+  "stages": [
+    {
+      "name": "source_and_ownership_verified",
+      "at": "2026-11-20T14:33:18.395Z"
+    }
+  ],
+  "sanity": {
+    "parents": 173837,
+    "sets": 3420,
+    "traits": 47409
+  }
+}
