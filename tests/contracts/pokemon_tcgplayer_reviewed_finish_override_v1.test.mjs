@@ -10,6 +10,8 @@ const migration = await fs.readFile(path.join(ROOT, 'supabase', 'migrations',
   '20261012193000_pokemon_tcgplayer_reviewed_finish_override_v1.sql'), 'utf8');
 const worker = await fs.readFile(path.join(ROOT, 'scripts', 'workers',
   'tcgplayer_market_publication_worker_v1.mjs'), 'utf8');
+const crossTcgMigration = await fs.readFile(path.join(ROOT, 'supabase', 'migrations',
+  '20261120063000_cross_tcg_market_publication_v2.sql'), 'utf8');
 const receipt = JSON.parse(await fs.readFile(path.join(ROOT, 'docs', 'audits', 'pricing',
   'pokemon_tcgplayer_variant_repair_20261012', 'batch_02',
   'mep_schema_rollback_rehearsal.json'), 'utf8'));
@@ -39,7 +41,8 @@ test('reviewed MEP override is exact, private, and takes candidate precedence', 
   assert.match(migration, /candidate\.source_product_id,/);
   assert.doesNotMatch(migration, /jsonb_populate_record/);
   assert.match(migration, /then reviewed_override\.assigned_finish_key/);
-  assert.match(worker, /from public\.v_tcgplayer_market_qualification_candidates_v7 candidate/g);
+  assert.match(worker, /from public\.v_tcgplayer_market_qualification_candidates_v8 candidate/g);
+  assert.match(crossTcgMigration, /from public\.v_tcgplayer_market_qualification_candidates_v7 old/);
   assert.doesNotMatch(worker, /from public\.v_tcgplayer_market_qualification_candidates_v2 candidate/);
 });
 
