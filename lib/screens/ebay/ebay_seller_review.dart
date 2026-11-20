@@ -200,6 +200,34 @@ class _EbaySellerReviewState extends State<EbaySellerReview> {
               style: hint,
             ),
           ),
+          if (model.account['publicationEnabled'] != true)
+            Container(
+              margin: const EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.surfaceContainerLow,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Icon(
+                    Icons.info_outline_rounded,
+                    size: 18,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      model.account.containsKey('publicationEnabled')
+                          ? 'Publishing is not enabled for this seller account yet. This offer will stay unpublished; it cannot go live until publishing is enabled.'
+                          : 'Publishing access could not be verified. Refresh eBay status before continuing.',
+                      style: hint,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           CheckboxListTile(
             contentPadding: EdgeInsets.zero,
             controlAffinity: ListTileControlAffinity.leading,

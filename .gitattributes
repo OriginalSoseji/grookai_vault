@@ -21,3 +21,6 @@ docs/audits/intake_recovery_20261027/replay-v5-source-as-executed.mjs -text whit
 
 # Preserve the hash-pinned inspector query's original indentation.
 scripts/schema/reviewed_intake_public_catalog_v1.sql whitespace=-space-before-tab
+
+# Preserve the already-qualified513 baseline binding's original CRLF bytes.
+scripts/schema/best_of_game_discovery_baseline_binding_v3.json -text whitespace=trailing-space,space-before-tab,cr-at-eol

@@ -1,5 +1,36 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Best of Game exact performance release V5 — November20,2026
+
+Only -BestOfGameDiscoveryReleaseV5 can qualify canonical513-to516 with exact
+pending IDs20261120150500,20261120153000,20261120160000. The final forward
+correction qualifies CTE columns against PL/pgSQL output-variable scope.
+Both locally exercised preparations stay immutable. Carry all V4 preservation,
+explicit genuine replay lineage, real SDK/full-output performance and normal
+release requirements forward; require stage-specific idempotence and rejection
+of obsolete plan overwrite. See [V5](BEST_OF_GAME_DISCOVERY_READ_REPAIR_V5.md).
+
+## Best of Game exact performance release V4 — November20,2026
+
+Use only -BestOfGameDiscoveryReleaseV4 for canonical513-to515, pending IDs
+20261120150500 and20261120153000. Scalar-only514 failed realistic catalog
+qualification and stays immutable; the second forward migration fences the
+same discovery rows once without changing reader semantics. Preserve every
+old gate, failed proof, source byte and lab. Pin the explicit genuine reset /
+513 clone / two515 CLI upgrade lineage, unchanged3s/2700ms budgets, all202
+identity cases plus exact3420-set catalog output and the independently proved
+two row-bound Square worker timestamps. See [V4](BEST_OF_GAME_DISCOVERY_READ_REPAIR_V4.md).
+
+## Best of Game forward performance qualification — November20,2026
+
+The nine-alias81500 migration is already applied at513; retain its failed API
+acceptance and two unresolved Square data fingerprints. Use the separate
+`-BestOfGameDiscoveryBaselineV3` read-only513 schema gate before developing a
+forward514 optimization. Preserve all513 source hashes and original labs.
+No earlier gate is widened. See [V3](BEST_OF_GAME_DISCOVERY_READ_REPAIR_V3.md)
+for the two-definition scope, realistic catalog performance requirement,
+retained failures and independent production closure requirements.
+
 ## Best of Game discovery V2 after pricing512 — November20,2026
 
 The independent pricing migration20261120063000 is already canonical512.

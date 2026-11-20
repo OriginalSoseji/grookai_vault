@@ -19,6 +19,9 @@ param(
 
   [string[]]$ExpectedLocalOnlyIds = @(),
 
+  [switch]$BestOfGameDiscoveryReleaseV5,
+  [switch]$BestOfGameDiscoveryReleaseV4,
+  [switch]$BestOfGameDiscoveryBaselineV3,
   [switch]$BestOfGameDiscoveryReleaseV2,
   [switch]$BestOfGameDiscoveryBaselineV2,
   [switch]$BestOfGameDiscoveryReleaseV1,
@@ -147,6 +150,40 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($BestOfGameDiscoveryReleaseV5) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','BestOfGameDiscoveryReleaseV5','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261120150500,20261120153000,20261120160000') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261120150500,20261120153000,20261120160000') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Best of Game discovery release V5 requires exact forward IDs20261120150500,20261120153000,20261120160000 at canonical513; no mixed scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_best_of_game_discovery_release_v5.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($BestOfGameDiscoveryReleaseV4) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','BestOfGameDiscoveryReleaseV4','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261120150500,20261120153000') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261120150500,20261120153000') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Best of Game discovery release V4 requires exact forward IDs20261120150500,20261120153000 at canonical513; no mixed scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_best_of_game_discovery_release_v4.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($BestOfGameDiscoveryBaselineV3) {
+  if ($Phase -ne 'AuditLinkedSchema' -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','BestOfGameDiscoveryBaselineV3','AuditOutDir') }).Count -gt 0 -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Best of Game discovery baseline V3 is read-only at canonical513; no candidate, PrePush, mixed scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_best_of_game_discovery_baseline_v3.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
 
 if ($BestOfGameDiscoveryReleaseV2) {
   $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
