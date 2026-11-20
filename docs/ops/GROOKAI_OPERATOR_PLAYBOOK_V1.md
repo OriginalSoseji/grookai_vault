@@ -1,4 +1,20 @@
-# Best of Game printing closure and discovery — November20,2026
+# Best of Game discovery V2 after pricing512 — November20,2026
+
+Continue the same nine-alias repair in `C:/grookai_best_of_game_discovery_20261120`.
+The independent pricing migration is now canonical512; the old V1 scope below
+is retained qualification. Read [the V2 checkpoint](../checkpoints/BEST_OF_GAME_DISCOVERY_V2_20261120.md)
+and [V2 contract](../contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V2.md).
+The separate `-BestOfGameDiscoveryBaselineV2` audit passed actual canonical512,
+all applied bytes, four schemas/security,22 retained parents,18 children,
+one family copy and all759 existing aliases. New evidence is under
+`C:/grookai_vault_operator_artifacts/best_of_game_discovery_v2_20261120`.
+Use `-BestOfGameDiscoveryReleaseV2` for exact candidate20261120081500 only;
+normal/hosted checks, PrePush and independent production closure remain required.
+Never edit the first locally applied SQL or reset any older populated lab.
+The new isolated project is `bog-discovery-513-20261120`; SDK/dependency images
+are reused. Subsequent stamped printing execution remains a separate authority.
+
+# Best of Game printing closure and discovery V1 — November20,2026
 
 The exact BP8/9 production printing execution is complete; read
 [the closure](../checkpoints/BEST_OF_GAME_PRINTING_PRODUCTION_CLOSURE_20261120.md).
@@ -25,6 +41,37 @@ The511-to512 lab is isolated; preserve all retained labs, both sets,
 Magic Bog/Boggart matching. No production discovery change is yet qualified.
 After this family, the owner requested all stamped Reverse Holos, including
 Holon Phantoms and Delta Species. Each finish needs exact physical evidence.
+# Cross-TCG Market publication V2 — November20,2026
+
+Use `C:/grookai_cross_tcg_market_v2_20261119` and the
+[pricing checkpoint](../checkpoints/pricing/CROSS_TCG_MARKET_PUBLICATION_20261120.md).
+The [V2 contract](../contracts/TCGPLAYER_CROSS_TCG_MARKET_PUBLICATION_V2.md)
+adds existing governed One Piece and exact Japanese Pokémon Market authority;
+English Pokémon/MTG retain their V1 evaluator and V7 projection. Do not infer
+finishes, fabricate quotes, convert conditions by percentage or replay old intake.
+Existing Vault calculations, asking prices, identities and Binder work are retained.
+The active warehouse, scheduler, watchdog, publisher and production guard use
+verified database TLS with the existing CA secret. Only literal loopback has a
+local transport exception; URL SSL parameters cannot disable verification.
+
+The separate `-CrossTcgMarketReleaseV2` strict gate permits only canonical511→512
+and migration20261120063000, revision5, SHA256
+`fb585822adb63ef5f31bf9078ffa869fc8b1f6d1b707075a5c710975b7d6608f`.
+Fresh CLI replay, populated upgrade/no-op, four-schema/security comparison,
+all426 protected-table fingerprints,13 negative lineage checks, private-role
+permissions, old-cohort equivalence and actual-size local performance passed.
+Retain the isolated `fresh-512-r5` / `upgrade-511-r4` databases, sources and
+proofs under `C:/grookai_vault_operator_artifacts/cross_tcg_market_pricing_20261119`.
+Older failed and superseded proofs remain preserved; no Docker reset/prune is allowed.
+
+Freeze the exact committed source only after normal commit/push and hosted checks.
+Require strict PrePush, official CLI dry-run/apply and independent schema/data
+readback. Let older publication writers finish or safely drain them before the
+first V2 activation. Dispatch the full unlimited-source shadow, verify exact
+worker V1_24 / policy V2 and both new cohorts, then guarded production publication. Read
+back the atomic current pointer, real app prices and scheduled refresh health.
+Local qualification or imported warehouse rows do not establish live Market prices.
+Condition references remain separate, read-only, medium confidence and USD-assumed.
 
 # Best of Game bounded execution preparation — November19,2026
 
@@ -4451,8 +4498,14 @@ Operate MTG market pricing only through
 `.github/workflows/mtg-pricing-publication-runner.yml` from an exact merged
 `main` SHA. Production requires a shadow run at that SHA with state
 `shadow_verified`, reconciliation state `reconciled`, policy
-`TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3`, and a source sync reused by the
+`TCGPLAYER_MARKET_PUBLICATION_POLICY_V2`, and a source sync reused by the
 production worker.
+
+Current operations follow the [cross-TCG V2 contract](../contracts/TCGPLAYER_CROSS_TCG_MARKET_PUBLICATION_V2.md)
+and [release checkpoint](../checkpoints/pricing/CROSS_TCG_MARKET_PUBLICATION_20261120.md).
+The V2 full-source shadow, new-cohort bootstrap/coverage checks and exact511→512
+release gate supersede the earlier V1_3 operating requirement. English Pokémon
+and MTG retain their unchanged V1 evaluation rules within the V2 run.
 
 The production guard computes last-known MTG and Pokemon baselines plus the
 currently fresh Pokemon subset through the indexed active publication pointer,
@@ -4469,7 +4522,7 @@ The workflow writes a `preflight_started` artifact before database access and a
 prior counts/findings without a stack trace.
 
 The shadow comparison is an early provenance gate. Production worker
-`TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_6` performs the authoritative second
+`TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_24` performs the authoritative second
 comparison inside the activation transaction using the actual staged
 publication snapshots and the then-current indexed MTG and Pokemon baselines. It must
 complete before `activate_market_price_publication_set_v1` can move the

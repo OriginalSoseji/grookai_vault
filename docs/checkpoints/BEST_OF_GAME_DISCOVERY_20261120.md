@@ -1,5 +1,10 @@
 # Best of Game discovery — November20,2026
 
+This is the retained V1 qualification. The independent pricing release is
+now canonical512; continue through the separately qualified
+[512-to513 V2 checkpoint](BEST_OF_GAME_DISCOVERY_V2_20261120.md).
+The original SQL, source archive, gates, labs and receipts remain unchanged.
+
 Worktree `C:/grookai_best_of_game_discovery_20261120`, branch
 `fix/best-of-game-discovery-20261120`, starts at main
 `5ff69109f14a10908e2e087ce7b13cc63dfdd543`. Follow

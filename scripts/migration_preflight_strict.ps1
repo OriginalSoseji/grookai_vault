@@ -19,9 +19,12 @@ param(
 
   [string[]]$ExpectedLocalOnlyIds = @(),
 
+  [switch]$BestOfGameDiscoveryReleaseV2,
+  [switch]$BestOfGameDiscoveryBaselineV2,
   [switch]$BestOfGameDiscoveryReleaseV1,
   [switch]$BestOfGameDiscoveryBaselineV1,
   [switch]$BestOfGamePrintingBaselineV1,
+  [switch]$CrossTcgMarketReleaseV2,
   [switch]$ShroudedAliasDiscoveryReleaseV2,
   [switch]$ShroudedAliasDiscoveryBaselineV1,
   [switch]$LatiosAliasDiscoveryBaselineV5,
@@ -145,6 +148,28 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
+if ($BestOfGameDiscoveryReleaseV2) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','BestOfGameDiscoveryReleaseV2','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261120081500') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261120081500') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Best of Game discovery release V2 requires exact candidate20261120081500 at canonical512; no mixed scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_best_of_game_discovery_release_v2.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($BestOfGameDiscoveryBaselineV2) {
+  if ($Phase -ne 'AuditLinkedSchema' -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','BestOfGameDiscoveryBaselineV2','AuditOutDir') }).Count -gt 0 -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Best of Game discovery baseline V2 is read-only at canonical512; no candidate, PrePush, mixed scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_best_of_game_discovery_baseline_v2.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
 if ($BestOfGameDiscoveryReleaseV1) {
   $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
   if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','BestOfGameDiscoveryReleaseV1','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
@@ -174,6 +199,18 @@ if ($BestOfGamePrintingBaselineV1) {
     throw 'Best of Game printing baseline V1 is read-only at canonical511; no PrePush or apply authority.'
   }
   & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_best_of_game_printing_baseline_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($CrossTcgMarketReleaseV2) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','CrossTcgMarketReleaseV2','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261120063000') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261120063000') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Cross-TCG Market V2 requires exact512 and canonical511; no mixed scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_cross_tcg_market_release_v2.mjs') $Phase "--out-dir=$AuditOutDir"
   exit $LASTEXITCODE
 }
 

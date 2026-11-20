@@ -1,5 +1,20 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Best of Game discovery V2 after pricing512 — November20,2026
+
+The independent pricing migration20261120063000 is already canonical512.
+Use the separate `-BestOfGameDiscoveryBaselineV2` read-only audit and
+`-BestOfGameDiscoveryReleaseV2` exact512-to513 release for the unchanged
+candidate20261120081500. V1 below remains historical qualification and is
+not widened. Pin all512 applied sources, the immutable candidate, actual
+512 schema/security, new genuine replay/populated upgrade and all retained
+data/runtime/performance/API proofs. PrePush requires clean committed source,
+live remote-main ancestry, exact normal commit/push, hosted checks/review,
+sealed evidence/producers and the513-file official CLI packet. Preserve all
+old laboratories. Only the nine reviewed aliases may change data; pricing
+objects and all759 existing aliases stay protected. See
+[the V2 contract](BEST_OF_GAME_DISCOVERY_READ_REPAIR_V2.md).
+
 ## Best of Game exact discovery release — November20,2026
 
 `-BestOfGameDiscoveryReleaseV1` binds only20261120081500 from canonical511 to512.
@@ -28,6 +43,20 @@ contract is [BEST_OF_GAME_DISCOVERY_READ_REPAIR_V1](BEST_OF_GAME_DISCOVERY_READ_
 Future candidate qualification requires a separate exact release gate, actual
 fresh replay/populated upgrade, protected-data/runtime/performance proof and
 normal managed/hosted checks. This baseline grants no apply authority.
+## Cross-TCG Market exact release V2 — November20,2026
+
+`-CrossTcgMarketReleaseV2` is a separate canonical511-to512 scope for only
+`20261120063000_cross_tcg_market_publication_v2.sql`. It accepts read-only
+AuditLinkedSchema and exact-ID PrePush, rejects mixed flags/targets, and pins all
+511 historical sources, the forward candidate, actual baseline schema/security,
+fresh512 replay, populated511 upgrade, source/lineage/permission/performance
+proofs, normal commit/push and hosted checks, and the frozen official CLI packet.
+It does not widen any earlier release flag or relabel the ordinary failed
+historical empty-shadow replay as passing. Compare all four governed schemas,
+retain all protected data, and do not execute generated difference SQL. See
+[the V2 contract](TCGPLAYER_CROSS_TCG_MARKET_PUBLICATION_V2.md). Independent
+production readback, guarded full shadow/production publication, scheduled
+refresh verification and deployed client acceptance remain required.
 
 ## Shrouded Fable exact release V2 — November18,2026
 
