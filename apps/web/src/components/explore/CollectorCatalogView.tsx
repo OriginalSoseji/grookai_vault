@@ -79,7 +79,8 @@ export default function CollectorCatalogView({ cards, canViewPricing, printedTot
     {filtersOpen && <div className="gv-approved-filters" id="collector-rarity-filters"><label>Rarity<select aria-label="Rarity" value={rarity} onChange={event => setRarity(event.target.value)}>
       <option value="">All rarities</option>{[...new Set(cards.map(card => card.rarity).filter(Boolean))].map(value => <option key={value} value={value}>{value}</option>)}</select></label>
       <button className="gv-approved-link" onClick={() => { setRarity(""); setSort("featured"); }}>Reset filters</button>
-      <Link className="gv-approved-link" href={href("/explore", "identity=stamped")}>Stamps and variants <ArrowRight size={15} /></Link></div>}
+      <Link className="gv-approved-link" href={href("/explore", "identity=stamped")}>Stamps and variants <ArrowRight size={15} /></Link>
+      <Link className="gv-approved-link min-h-11" href={href("/explore", "playable=1")}>Pokémon playables <ArrowRight size={15} aria-hidden="true" /></Link></div>}
     <div className="gv-approved-results" role="status"><span>{visible.length} featured cards</span><span>Pokémon · {params.get("lang") === "ja" ? "Japanese" : "English"}</span></div>
     {visible.length ? <div className="gv-approved-product-grid">{visible.map(card => {
       const image = resolveCardImagePresentation(card);

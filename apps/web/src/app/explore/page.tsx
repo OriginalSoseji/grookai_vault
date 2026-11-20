@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 // The approved feature is a specific real collection, not a rotating promotion.
 const FEATURED_151_IDS = [199, 200, 198, 173, 166, 168, 170, 183, 6, 205]
   .map(number => `GV-PK-MEW-${String(number).padStart(3, "0")}`);
-const CONSTRAINT_FIELDS = ["q", "set", "year", "illustrator", "year_min", "year_max", "finish", "stamp", "owned", "image_state"];
+const CONSTRAINT_FIELDS = ["q", "set", "year", "illustrator", "year_min", "year_max", "finish", "stamp", "owned", "playable", "image_state"];
 
 export default async function ExplorePage({ searchParams }: { searchParams?: Promise<Record<string, string | undefined>> }) {
   const params = await searchParams ?? {};
