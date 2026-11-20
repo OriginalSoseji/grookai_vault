@@ -1,0 +1,26 @@
+{
+  "version": "JPN_DP4_FAMILY_CONTAINMENT_V1",
+  "run_id": "f743b83b-7896-495c-9924-00dcbdaaa325",
+  "mode": "verify",
+  "package_fingerprint": "ae0aa8db780f4801aecb1a016ea362ab47ed02ca8bdd01c38e8dae47f9643917",
+  "writer_fingerprint": "a4b66004d60358fe0121a7d9b27e2816d9275c0ccbafcde0499ade0bb5467364",
+  "started_at": "2026-11-20T11:47:48.015Z",
+  "status": "verified_already_applied",
+  "stages": [
+    {
+      "name": "source_and_ownership_verified",
+      "at": "2026-11-20T11:47:58.396Z"
+    },
+    {
+      "name": "verified_already_applied",
+      "at": "2026-11-20T11:47:58.976Z"
+    }
+  ],
+  "sanity": {
+    "parents": 173837,
+    "sets": 3420,
+    "traits": 47409
+  },
+  "receipt_id": "177111",
+  "finished_at": "2026-11-20T11:47:58.976Z"
+}
