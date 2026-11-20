@@ -14,8 +14,10 @@ freshness, condition and client privacy checks. No mapping or canonical row is
 created or changed. Vault totals, existing market publication and asking prices
 retain their authority.
 
-The candidate integrates merged main `c1efe237d`, preserving the mobile signer
-continuity repair and the already merged cross-TCG Binder work. The dirty original checkout and other working
+The candidate integrates merged main `5ff69109f`, preserving the Best of Game
+preparation, Samsung603 signing-continuity evidence and the already merged
+cross-TCG Binder work. The pricing operator note is appended so unrelated
+opening-note updates can merge cleanly. The dirty original checkout and other working
 trees remain intact. Private receipts are at
 `C:/grookai_search_xy124_20261118/artifacts/pricing_completion_v3/20261119/`.
 
