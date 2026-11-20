@@ -50,6 +50,7 @@ In scope:
 - Finish, variant, stamp, set, year, species, artist, image-status filters where supported by DB fields
 - Special-case identity families already present in Grookai canon, including retailer stamps, event stamps, recognized errors, first-edition/shadowless/red-cheeks/yellow-cheeks lanes, product lanes, and governed miscellaneous promos
 - `playable` / `playables`, compiled to a typed `playable: true` constraint backed by the current Pokémon Standard usage engine. Apply the positive canonical ID scope before ranking and result limits. Missing or expired output must never fall back to unrestricted results. This November 18 addition follows the owner's simplified V1 direction in POKEMON_PLAYABLES_ENGINE_CONTRACT_V1.
+- Pokémon collector searches, including playables, recognize `SIR` as exact Special Illustration Rare and `IR` as exact Illustration Rare. These categories remain separate. `full art`, `full-art` and `fullart` require an explicit Full Art catalog marker; premium rarity, price, name and shared gameplay membership cannot supply that classification. Expose these as removable rarity/artwork filters while retaining the original query. Missing artwork classification limits this filter's coverage without removing those versions from ordinary playable results.
 
 Out of scope for V1:
 
