@@ -109,6 +109,27 @@ function discoveryMatcher() {
   return compiledModule.exports.matches;
 }
 
+test('quoted collector text stays literal through the resolver route and actual discovery matcher', async () => {
+  const matches = discoveryMatcher();
+  const sir = {gv_id: 'GV-PK-TWM-216', name: 'Bloodmoon Ursaluna ex', rarity: 'Special Illustration Rare'};
+  for (const literal of ['SIR', 'Full Art']) {
+    const f = setup();
+    const q = `"${literal}" playables`;
+    const response = await f.get(`q=${encodeURIComponent(q)}`);
+    assert.equal(response.status, 200);
+    const forwarded = f.calls[0].options.textQuery;
+    assert.equal(forwarded, `"${literal}"`);
+    assert(!response.body.smart_search.queryFilters.some(filter => ['rarity', 'artwork'].includes(filter.kind)));
+    assert(matches({...sir, name: literal, rarity: 'Common'}, forwarded));
+    assert.equal(matches(sir, forwarded), false);
+  }
+  const mixed = intentModule.buildSmartSearchIntent('SIR "Full Art" playables');
+  const forwarded = queryModule.resolveSmartSearchQuery(mixed.originalQuery, mixed);
+  assert.equal(forwarded, 'SIR "Full Art"');
+  assert(matches({...sir, name: 'Full Art'}, forwarded));
+  assert.equal(matches({...sir, name: 'Full Art', rarity: 'Common'}, forwarded), false);
+});
+
 test('complete playable discovery applies SIR and IR aliases as separate exact rarity constraints', () => {
   const matches = discoveryMatcher();
   const row = {gv_id: 'GV-PK-TWM-216', name: 'Bloodmoon Ursaluna ex', rarity: 'Special Illustration Rare'};

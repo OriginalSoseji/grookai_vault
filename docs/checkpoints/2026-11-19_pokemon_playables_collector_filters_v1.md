@@ -25,7 +25,7 @@ ordinary playable query still includes matching full-art versions, including
 `GV-PK-TWM-202`. Adding artwork metadata is a separate catalog evidence task;
 this correction does not infer Full Art from Ultra Rare or SIR.
 
-Focused validation: all 11 playable search tests passed, web typecheck passed,
+Focused validation: all 12 playable search tests passed, web typecheck passed,
 focused lint passed and `git diff --check` was clean. The tests exercise the
 actual discovery text matcher, visible filter removal, exact rarity separation,
 explicit artwork metadata and preservation of other search terms. Existing
@@ -59,6 +59,13 @@ setting. Assertions, timeouts and exclusions are unchanged. Verification uses
 the standard pinned Flutter test command and separate per-run logs. A prior
 overlapping verification process and its mixed log are retained separately;
 only the active run's output is used for acceptance.
+
+Review correction: the resolver now carries a separate discovery query that
+retains user-supplied quotes, while display text stays unchanged. Quoted `SIR`
+and `Full Art` text cannot become collector constraints after dispatch. The
+regression test exercises the actual resolver route's forwarded text and the
+actual discovery matcher, including mixed quoted text and an unquoted SIR
+constraint. Automatically protected set phrases retain their existing syntax.
 
 Private readback evidence: `.tmp/pokemon_playables_search_comparison_20261119.json`
 and `.tmp/pokemon_playables_search_metadata_20261119.json` in the primary workspace.

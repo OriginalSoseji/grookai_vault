@@ -16,6 +16,7 @@ export type SearchQueryFilter = {
 export type SmartSearchIntent = {
   originalQuery: string;
   residualQuery: string;
+  discoveryQuery?: string;
   releaseYearMin?: number;
   releaseYearMax?: number;
   finishKeys: string[];
@@ -234,8 +235,10 @@ export function buildSmartSearchIntent(rawQuery: string, options: { gameScope?: 
   if (literalArtist) residual = residual.replace(literalArtist.matchedText, " ");
   const queryFilters: SearchQueryFilter[] = [];
   const literalText: string[] = [];
+  const quotedLiteralIndexes = new Set<number>();
   residual = residual.replace(/"([^"\n]*)"/g, (_, text: string) => {
     literalText.push(text);
+    quotedLiteralIndexes.add(literalText.length - 1);
     return `__literal${literalText.length - 1}__`;
   });
   // Catalog set names may contain years, numbers or finish words. Interpret
@@ -393,7 +396,13 @@ export function buildSmartSearchIntent(rawQuery: string, options: { gameScope?: 
     displayText = displayText.replace(match[1], " ");
   }
   displayText = normalizeWhitespace(displayText);
-  const restoreLiterals = (value: string) => value.replace(/__literal(\d+)__/g, (_, index: string) => literalText[Number(index)] ?? "");
+  const restoreLiterals = (value: string, preserveQuotes = false) => value.replace(/__literal(\d+)__/g, (_, index: string) => {
+    const text = literalText[Number(index)] ?? "";
+    return preserveQuotes && quotedLiteralIndexes.has(Number(index)) ? `"${text}"` : text;
+  });
+  // Display text remains readable; discovery retains the user's literal syntax
+  // so later collector parsing cannot reinterpret quoted SIR or Full Art text.
+  const discoveryQuery = restoreLiterals(residual, true);
   residual = restoreLiterals(residual);
   displayText = restoreLiterals(displayText);
 
@@ -405,6 +414,7 @@ export function buildSmartSearchIntent(rawQuery: string, options: { gameScope?: 
   return {
     originalQuery,
     residualQuery: residual,
+    ...(discoveryQuery !== residual ? { discoveryQuery } : {}),
     cameoSubject,
     releaseYearMin: yearRange?.min,
     releaseYearMax: yearRange?.max,

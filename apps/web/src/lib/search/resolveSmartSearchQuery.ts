@@ -15,5 +15,5 @@ export function hasDeterministicSmartSearchIntent(intent: SmartSearchIntent) {
 }
 
 export function resolveSmartSearchQuery(rawQuery: string, intent: SmartSearchIntent) {
-  return intent.residualQuery || (hasDeterministicSmartSearchIntent(intent) ? "" : rawQuery.trim());
+  return (intent.discoveryQuery ?? intent.residualQuery) || (hasDeterministicSmartSearchIntent(intent) ? "" : rawQuery.trim());
 }
