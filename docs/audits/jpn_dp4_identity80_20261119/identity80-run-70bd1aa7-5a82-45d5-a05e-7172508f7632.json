@@ -1,0 +1,26 @@
+{
+  "version": "JPN_DP4_IDENTITY80_V1",
+  "run_id": "70bd1aa7-5a82-45d5-a05e-7172508f7632",
+  "mode": "inspect",
+  "chunk": 0,
+  "package_fingerprint": "027945b5f54f987ce1972ed476a523ed99c67ff7a7723d510ac8258c7cabe37e",
+  "writer_fingerprint": "6820cb906124443b4bf0079f5468dcbba2949850255fa1fa0eb99c7ac2f51714",
+  "started_at": "2026-11-20T06:08:51.714Z",
+  "status": "preflight_passed",
+  "stages": [
+    {
+      "name": "source_identity_and_ownership_verified",
+      "at": "2026-11-20T06:09:06.273Z"
+    },
+    {
+      "name": "preflight_passed",
+      "at": "2026-11-20T06:09:06.472Z"
+    }
+  ],
+  "sanity": {
+    "parents": 173837,
+    "sets": 3420,
+    "traits": 47409
+  },
+  "finished_at": "2026-11-20T06:09:06.472Z"
+}

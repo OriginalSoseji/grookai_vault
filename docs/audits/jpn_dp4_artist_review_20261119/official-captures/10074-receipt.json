@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:21:05.891Z",
+  "gv_id": "GV-PK-JPN-DP4-074",
+  "card_print_id": "31775981-9188-43c1-996f-718b9c88c9f9",
+  "catalog_coordinate": "074",
+  "catalog_name": "サーナイト",
+  "official_id": "10074",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10074/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10074/regu/all",
+    "status": 200,
+    "sha256": "d6d1a9af6cd0b18d19257165d1ba0eceda685ec0197b42871841409d1401871c",
+    "bytes": 11604
+  },
+  "heading": "サーナイト",
+  "artist": "Ryo Ueda",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010074_P_SANAITO.gif",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010074_P_SANAITO.gif",
+    "status": 200,
+    "sha256": "9006cd276ee20b0228123c79323b99e036bc654a8069b221008f3db6848ae30e",
+    "bytes": 52956,
+    "catalog_path_hash_prefix": "e847093f9b0ddab0edecc48c",
+    "hash_prefix_matches": false
+  },
+  "disposition": "needs_manual_review",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

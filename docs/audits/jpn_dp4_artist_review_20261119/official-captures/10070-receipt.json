@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:28:43.555Z",
+  "gv_id": "GV-PK-JPN-DP4-070",
+  "card_print_id": "fc4e9a2b-5367-47c2-bd91-2eb0a3f787de",
+  "catalog_coordinate": "070",
+  "catalog_name": "アンノーン[L]",
+  "official_id": "10070",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10070/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10070/regu/all",
+    "status": 200,
+    "sha256": "6fa2ede158d165d385e9405de5a66ef63770c73a727b367e16447ee075da521e",
+    "bytes": 10209
+  },
+  "heading": "アンノーン[L]",
+  "artist": "Daisuke Ito",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010070_P_ANNONL.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010070_P_ANNONL.jpg",
+    "status": 200,
+    "sha256": "d5c1bc42b344855879b29b46db27a09ea7064dc803f7277211d3ed94414250c9",
+    "bytes": 50737,
+    "catalog_path_hash_prefix": "d5c1bc42b344855879b29b46",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

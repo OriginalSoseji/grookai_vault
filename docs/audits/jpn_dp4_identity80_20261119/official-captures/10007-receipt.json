@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:20:29.684Z",
+  "gv_id": "GV-PK-JPN-DP4-007",
+  "card_print_id": "169f7c7c-8dc3-4560-a5e1-f9b7101900b0",
+  "catalog_coordinate": "007",
+  "catalog_name": "モンジャラ",
+  "official_id": "10007",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10007/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10007/regu/all",
+    "status": 200,
+    "sha256": "c757aa6a2c69b2e0c60128c33dd80c92d285917f8f9a925de7d1c7417d67a2cf",
+    "bytes": 10388
+  },
+  "heading": "モンジャラ",
+  "artist": "Sumiyoshi Kizuki",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010007_P_MONJARA.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010007_P_MONJARA.jpg",
+    "status": 200,
+    "sha256": "12ca9b0fb4989cd3c4a5c8b264ebdfe7d7a31e51848aff198af4193676f16eb4",
+    "bytes": 63186,
+    "catalog_path_hash_prefix": "12ca9b0fb4989cd3c4a5c8b2",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

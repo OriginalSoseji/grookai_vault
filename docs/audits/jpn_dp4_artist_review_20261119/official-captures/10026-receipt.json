@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:26:40.488Z",
+  "gv_id": "GV-PK-JPN-DP4-026",
+  "card_print_id": "ab6f70b7-83ce-491a-8488-acd1ed63059b",
+  "catalog_coordinate": "026",
+  "catalog_name": "ヤドン",
+  "official_id": "10026",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10026/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10026/regu/all",
+    "status": 200,
+    "sha256": "a4c1f06089c7eb35a0ff4338c1bd37f7f75e2de0b06075d6cb1ae528479dfdba",
+    "bytes": 10910
+  },
+  "heading": "ヤドン",
+  "artist": "Saya Tsuruta",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010026_P_YADON.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010026_P_YADON.jpg",
+    "status": 200,
+    "sha256": "55aef15036315f0caa324f44c9acf44ff5c49ef48ccedbce4c8fb4ecd5f26d08",
+    "bytes": 62913,
+    "catalog_path_hash_prefix": "55aef15036315f0caa324f44",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

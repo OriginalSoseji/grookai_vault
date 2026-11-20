@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:27:25.247Z",
+  "gv_id": "GV-PK-JPN-DP4-018",
+  "card_print_id": "cdf8bcb5-965e-450b-be84-5f4c5cc1308c",
+  "catalog_coordinate": "018",
+  "catalog_name": "ブースター",
+  "official_id": "10018",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10018/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10018/regu/all",
+    "status": 200,
+    "sha256": "0f4a01ac01588d0d3d9b8d1f565644843c3737bc263888a47dda68ff0467d40c",
+    "bytes": 15578
+  },
+  "heading": "ブースター",
+  "artist": "Mitsuhiro Arita",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010018_P_BUSUTA.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010018_P_BUSUTA.jpg",
+    "status": 200,
+    "sha256": "93c7f39beba666a6845f6b4afbc8d072520ae4d1af411fa192a747e3df1e67ac",
+    "bytes": 59888,
+    "catalog_path_hash_prefix": "93c7f39beba666a6845f6b4a",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

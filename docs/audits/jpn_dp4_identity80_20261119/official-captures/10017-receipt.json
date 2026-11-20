@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:26:15.108Z",
+  "gv_id": "GV-PK-JPN-DP4-017",
+  "card_print_id": "9c9abd14-264d-4655-96cf-2ae9527299ea",
+  "catalog_coordinate": "017",
+  "catalog_name": "サボネア",
+  "official_id": "10017",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10017/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10017/regu/all",
+    "status": 200,
+    "sha256": "2b03f33c3bcaa40c5ab86150283689143ffc370ac860cb4f1d18fb981686f29c",
+    "bytes": 10358
+  },
+  "heading": "サボネア",
+  "artist": "Saya Tsuruta",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010017_P_SABONEA.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010017_P_SABONEA.jpg",
+    "status": 200,
+    "sha256": "f3386a9fd1560376d61ef82659fb29e7a16f2284b4a3c18e81d8e23860515be1",
+    "bytes": 58068,
+    "catalog_path_hash_prefix": "f3386a9fd1560376d61ef826",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

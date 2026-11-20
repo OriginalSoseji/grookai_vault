@@ -1,0 +1,14 @@
+[
+  {
+    "ref": "github://PokeAPI/pokeapi@5cbeb3f3eb55a9b86da52c4869336f9d61fdd6d7/data/v2/csv/languages.csv",
+    "original_ref": "github://PokeAPI/pokeapi@5cbeb3f3eb55a9b86da52c4869336f9d61fdd6d7/data/v2/csv/languages.csv",
+    "file": "species_name_sources/languages.csv.json.gz",
+    "body_sha256": "fbb60019a6a461783d5671a995d5f590db61792a273e90faa0ed630d102a19b8"
+  },
+  {
+    "ref": "github://PokeAPI/pokeapi@5cbeb3f3eb55a9b86da52c4869336f9d61fdd6d7/data/v2/csv/pokemon_species_names.csv",
+    "original_ref": "github://PokeAPI/pokeapi@5cbeb3f3eb55a9b86da52c4869336f9d61fdd6d7/data/v2/csv/pokemon_species_names.csv",
+    "file": "species_name_sources/pokemon_species_names.csv.json.gz",
+    "body_sha256": "820cde17074cdb1c2b0595c997fb8f998e773bd5da3bb525dec85703c86c5fd9"
+  }
+]

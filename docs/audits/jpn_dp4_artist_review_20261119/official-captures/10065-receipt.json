@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:23:20.335Z",
+  "gv_id": "GV-PK-JPN-DP4-065",
+  "card_print_id": "8eb0a52d-7ca9-4be2-ba3c-3e67313ceda1",
+  "catalog_coordinate": "065",
+  "catalog_name": "エーフィ",
+  "official_id": "10065",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10065/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10065/regu/all",
+    "status": 200,
+    "sha256": "308f2b3b92c839845910637e508c92677e28b0ccb10b7baae635bd531c4550fb",
+    "bytes": 15697
+  },
+  "heading": "エーフィ",
+  "artist": "Naoyo Kimura",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010065_P_EFI.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010065_P_EFI.jpg",
+    "status": 200,
+    "sha256": "3f3e85445e7f16f00a48c5a0198eb0f2c121a2c3e25f3926388f61fa636a650c",
+    "bytes": 56587,
+    "catalog_path_hash_prefix": "3f3e85445e7f16f00a48c5a0",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

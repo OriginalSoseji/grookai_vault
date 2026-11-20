@@ -26,3 +26,13 @@ docs/audits/jpn_dp4_official_artist12_20261120/prior-captures/*.html -text -diff
 docs/audits/jpn_dp4_unown6_20261120/official-captures/*.html -text -diff
 docs/audits/jpn_dp4_porygon2_20261120/official-captures/*.html -text -diff
 docs/audits/jpn_dp4_artist8_20261120/official-captures/*.html -text -diff
+
+# Preserve exact official source bytes for the DP4 identity review.
+docs/audits/jpn_dp4_identity80_20261119/official-captures/*.html -text -diff
+docs/audits/jpn_dp4_identity80_20261119/species_name_source_index.json -text -diff
+docs/audits/jpn_dp4_official_artist84_20261120/official-captures/*.html -text -diff
+docs/audits/jpn_dp4_family_containment_20261120/official-captures/*.html -text -diff
+# Retain original external evidence bytes used by the DP4 subject review.
+docs/audits/jpn_dp4_artist_review_20261119/*.html -text -diff
+docs/audits/jpn_dp4_artist_review_20261119/official-captures/*.html -text -diff
+docs/audits/jpn_dp4_artist_review_20261119/species_name_source_index.json -text -diff

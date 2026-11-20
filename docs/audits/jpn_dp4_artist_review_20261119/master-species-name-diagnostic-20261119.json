@@ -1,0 +1,893 @@
+{
+  "generated_at": "2026-11-19T23:39:15.419Z",
+  "scope": "Heuristic comparison with retained species-name pairs; flags require individual identity review and do not prove a live catalog error.",
+  "source": "docs/audits/catalog_jpn_artist_completion_v1_20261109/species_name_pairs.json",
+  "review_candidates": 118,
+  "exact_japanese_species_name_matches": 98,
+  "matching_english": 12,
+  "english_disagreements": 86,
+  "findings": [
+    {
+      "gv_id": "GV-PK-JPN-DP4-001",
+      "japanese_name": "キャタピー",
+      "species_english": "Caterpie",
+      "species_id": "10",
+      "master_english": "Weedle (Moonlit Pursuit & Dawn Dash No. 001)",
+      "master_family": "species:f524d0bd-cb86-46f7-8a94-37b1655a09ce",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-002",
+      "japanese_name": "トランセル",
+      "species_english": "Metapod",
+      "species_id": "11",
+      "master_english": "Kakuna (Moonlit Pursuit & Dawn Dash No. 002)",
+      "master_family": "species:96ca479a-8f4b-4def-adfb-9e438c84490c",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-003",
+      "japanese_name": "バタフリー",
+      "species_english": "Butterfree",
+      "species_id": "12",
+      "master_english": "Beedrill (Moonlit Pursuit & Dawn Dash No. 003)",
+      "master_family": "species:169be696-6362-479d-93e9-c7441cc0f016",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-004",
+      "japanese_name": "ビードル",
+      "species_english": "Weedle",
+      "species_id": "13",
+      "master_english": "Tangela (Moonlit Pursuit & Dawn Dash No. 004)",
+      "master_family": "species:d11e2aaa-58dd-4f60-8433-712aadb3461e",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-005",
+      "japanese_name": "コクーン",
+      "species_english": "Kakuna",
+      "species_id": "14",
+      "master_english": "Tangrowth (Moonlit Pursuit & Dawn Dash No. 005)",
+      "master_family": "species:bb3d0221-3515-42a3-9054-3a6971c4f446",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-006",
+      "japanese_name": "スピアー",
+      "species_english": "Beedrill",
+      "species_id": "15",
+      "master_english": "Scyther (Moonlit Pursuit & Dawn Dash No. 006)",
+      "master_family": "species:290f16c5-f252-48d9-b9d7-43ca03039200",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-007",
+      "japanese_name": "モンジャラ",
+      "species_english": "Tangela",
+      "species_id": "114",
+      "master_english": "Volbeat (Moonlit Pursuit & Dawn Dash No. 007)",
+      "master_family": "species:832dc940-6742-4ada-a6ca-0115400b61a3",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-009",
+      "japanese_name": "ストライク",
+      "species_english": "Scyther",
+      "species_id": "123",
+      "master_english": "Metapod (Moonlit Pursuit & Dawn Dash No. 009)",
+      "master_family": "species:203172b5-ddfa-40a1-9c9c-85e7d2b65042",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-012",
+      "japanese_name": "キモリ",
+      "species_english": "Treecko",
+      "species_id": "252",
+      "master_english": "Treecko (Moonlit Pursuit & Dawn Dash No. 012)",
+      "master_family": "species:c59fb13a-b3ec-4634-afd0-b701279cb97f",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-013",
+      "japanese_name": "ジュプトル",
+      "species_english": "Grovyle",
+      "species_id": "253",
+      "master_english": "Grovyle (Moonlit Pursuit & Dawn Dash No. 013)",
+      "master_family": "species:20fe43e9-fc5f-4ff6-ae4a-f22d9f97069c",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-015",
+      "japanese_name": "バルビート",
+      "species_english": "Volbeat",
+      "species_id": "313",
+      "master_english": "Illumise (Moonlit Pursuit & Dawn Dash No. 015)",
+      "master_family": "species:4be78a4c-d0ac-4be1-a518-688e72da8524",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-016",
+      "japanese_name": "イルミーゼ",
+      "species_english": "Illumise",
+      "species_id": "314",
+      "master_english": "Cacnea (Moonlit Pursuit & Dawn Dash No. 016)",
+      "master_family": "species:f66026c9-518b-44e2-8a18-5d8c4efa8f8c",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-017",
+      "japanese_name": "サボネア",
+      "species_english": "Cacnea",
+      "species_id": "331",
+      "master_english": "Leafeon LV.X (Moonlit Pursuit & Dawn Dash No. 017)",
+      "master_family": "species:77e28288-ccc0-407b-82f4-88e02c46afc9",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-018",
+      "japanese_name": "ブースター",
+      "species_english": "Flareon",
+      "species_id": "136",
+      "master_english": "Houndour (Moonlit Pursuit & Dawn Dash No. 018)",
+      "master_family": "species:31339113-d8fc-4389-9f23-75df8a30d1a7",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-019",
+      "japanese_name": "ファイヤー",
+      "species_english": "Moltres",
+      "species_id": "146",
+      "master_english": "Torchic (Moonlit Pursuit & Dawn Dash No. 019)",
+      "master_family": "species:129efdf1-b018-47b9-a319-882c1f21a1e2",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-020",
+      "japanese_name": "マグマッグ",
+      "species_english": "Slugma",
+      "species_id": "218",
+      "master_english": "Combusken (Moonlit Pursuit & Dawn Dash No. 020)",
+      "master_family": "species:d53b801b-2be5-4d5f-951d-54086af068f1",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-021",
+      "japanese_name": "マグカルゴ",
+      "species_english": "Magcargo",
+      "species_id": "219",
+      "master_english": "Blaziken (Moonlit Pursuit & Dawn Dash No. 021)",
+      "master_family": "species:84fd8f8b-ad28-4083-971d-66a16723773d",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-022",
+      "japanese_name": "デルビル",
+      "species_english": "Houndour",
+      "species_id": "228",
+      "master_english": "Flareon (Moonlit Pursuit & Dawn Dash No. 022)",
+      "master_family": "species:eb7d5158-6d72-428d-86a2-5509d0cba559",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-023",
+      "japanese_name": "アチャモ",
+      "species_english": "Torchic",
+      "species_id": "255",
+      "master_english": "Moltres (Moonlit Pursuit & Dawn Dash No. 023)",
+      "master_family": "species:e915ae47-e6be-4ae0-899a-278f98d95817",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-024",
+      "japanese_name": "ワカシャモ",
+      "species_english": "Combusken",
+      "species_id": "256",
+      "master_english": "Slugma (Moonlit Pursuit & Dawn Dash No. 024)",
+      "master_family": "species:5b8d4b7b-0c58-410b-9ee1-7e6ebd6e9231",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-026",
+      "japanese_name": "ヤドン",
+      "species_english": "Slowpoke",
+      "species_id": "79",
+      "master_english": "Slowpoke (Moonlit Pursuit & Dawn Dash No. 026)",
+      "master_family": "species:14aaf83b-9c9f-41a9-8660-b7ef81257860",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-027",
+      "japanese_name": "ヤドラン",
+      "species_english": "Slowbro",
+      "species_id": "80",
+      "master_english": "Slowbro (Moonlit Pursuit & Dawn Dash No. 027)",
+      "master_family": "species:a894393e-5b7f-4064-88f7-23ccfb6726dc",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-028",
+      "japanese_name": "クラブ",
+      "species_english": "Krabby",
+      "species_id": "98",
+      "master_english": "Vaporeon (Moonlit Pursuit & Dawn Dash No. 028)",
+      "master_family": "species:df9f80f7-7954-4804-9187-05d9fccbbd05",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-029",
+      "japanese_name": "キングラー",
+      "species_english": "Kingler",
+      "species_id": "99",
+      "master_english": "Omanyte (Moonlit Pursuit & Dawn Dash No. 029)",
+      "master_family": "species:0b6d5c0f-6780-4b73-9c73-10630c955ec3",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-030",
+      "japanese_name": "ラプラス",
+      "species_english": "Lapras",
+      "species_id": "131",
+      "master_english": "Omastar (Moonlit Pursuit & Dawn Dash No. 030)",
+      "master_family": "species:c252bf21-8c0a-44ef-a1b9-2b4f66c9cd4b",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-031",
+      "japanese_name": "シャワーズ",
+      "species_english": "Vaporeon",
+      "species_id": "134",
+      "master_english": "Mudkip (Moonlit Pursuit & Dawn Dash No. 031)",
+      "master_family": "species:6a20d12e-c83d-4158-9746-368b535eed06",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-034",
+      "japanese_name": "オムナイト",
+      "species_english": "Omanyte",
+      "species_id": "138",
+      "master_english": "Wailmer (Moonlit Pursuit & Dawn Dash No. 034)",
+      "master_family": "species:55ce9de8-f3e5-461d-9817-b9b1bcde7b77",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-035",
+      "japanese_name": "オムスター",
+      "species_english": "Omastar",
+      "species_id": "139",
+      "master_english": "Wailord (Moonlit Pursuit & Dawn Dash No. 035)",
+      "master_family": "species:f0953f84-c1f0-4b1b-bae6-949478e6f6fd",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-036",
+      "japanese_name": "フリーザー",
+      "species_english": "Articuno",
+      "species_id": "144",
+      "master_english": "Feebas (Moonlit Pursuit & Dawn Dash No. 036)",
+      "master_family": "species:10bccbe3-a36a-4aaa-9195-0b3321b79b95",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-037",
+      "japanese_name": "デリバード",
+      "species_english": "Delibird",
+      "species_id": "225",
+      "master_english": "Milotic (Moonlit Pursuit & Dawn Dash No. 037)",
+      "master_family": "species:0012bf0a-3d64-44f5-b134-bc3df4daffe5",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-038",
+      "japanese_name": "ミズゴロウ",
+      "species_english": "Mudkip",
+      "species_id": "258",
+      "master_english": "Relicanth (Moonlit Pursuit & Dawn Dash No. 038)",
+      "master_family": "species:6402f3d4-541f-41ff-9539-daf6945fd314",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-039",
+      "japanese_name": "ヌマクロー",
+      "species_english": "Marshtomp",
+      "species_id": "259",
+      "master_english": "Weavile (Moonlit Pursuit & Dawn Dash No. 039)",
+      "master_family": "species:56be80d8-9b37-4073-8737-a29790e6fcbb",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-041",
+      "japanese_name": "キャモメ",
+      "species_english": "Wingull",
+      "species_id": "278",
+      "master_english": "Kingler (Moonlit Pursuit & Dawn Dash No. 041)",
+      "master_family": "species:dc56daa7-5b43-4208-ba30-e4a3c74af51d",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-042",
+      "japanese_name": "ペリッパー",
+      "species_english": "Pelipper",
+      "species_id": "279",
+      "master_english": "Lapras (Moonlit Pursuit & Dawn Dash No. 042)",
+      "master_family": "species:ba57e162-d506-4f3e-9b95-636f04052402",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-043",
+      "japanese_name": "ホエルコ",
+      "species_english": "Wailmer",
+      "species_id": "320",
+      "master_english": "Glaceon (Moonlit Pursuit & Dawn Dash No. 043)",
+      "master_family": "species:dc49ffcd-83ac-4321-b666-3941d2c393b4",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-044",
+      "japanese_name": "ホエルオー",
+      "species_english": "Wailord",
+      "species_id": "321",
+      "master_english": "Articuno (Moonlit Pursuit & Dawn Dash No. 044)",
+      "master_family": "species:a6a39819-0ef4-48cc-bcc5-b3dba6f5b3d2",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-045",
+      "japanese_name": "ヒンバス",
+      "species_english": "Feebas",
+      "species_id": "349",
+      "master_english": "Delibird (Moonlit Pursuit & Dawn Dash No. 045)",
+      "master_family": "species:adf9bb98-922a-4dd2-9214-f84ef21bbfd1",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-046",
+      "japanese_name": "ミロカロス",
+      "species_english": "Milotic",
+      "species_id": "350",
+      "master_english": "Wingull (Moonlit Pursuit & Dawn Dash No. 046)",
+      "master_family": "species:36450d37-fa75-480f-accf-c3d9af984fcf",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-047",
+      "japanese_name": "パールル",
+      "species_english": "Clamperl",
+      "species_id": "366",
+      "master_english": "Pelipper (Moonlit Pursuit & Dawn Dash No. 047)",
+      "master_family": "species:8d79f101-f28e-4d9e-b372-306f83577f66",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-048",
+      "japanese_name": "ハンテール",
+      "species_english": "Huntail",
+      "species_id": "367",
+      "master_english": "Clamperl (Moonlit Pursuit & Dawn Dash No. 048)",
+      "master_family": "species:5e24befd-1e8b-4998-8837-6b727cd25ae0",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-049",
+      "japanese_name": "サクラビス",
+      "species_english": "Gorebyss",
+      "species_id": "368",
+      "master_english": "Huntail (Moonlit Pursuit & Dawn Dash No. 049)",
+      "master_family": "species:a1804f7a-4dfb-421b-84b4-c75d247f4cb9",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-050",
+      "japanese_name": "ジーランス",
+      "species_english": "Relicanth",
+      "species_id": "369",
+      "master_english": "Gorebyss (Moonlit Pursuit & Dawn Dash No. 050)",
+      "master_family": "species:7f663964-09b4-4b84-b04c-2735b1ccbb86",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-051",
+      "japanese_name": "ラブカス",
+      "species_english": "Luvdisc",
+      "species_id": "370",
+      "master_english": "Luvdisc (Moonlit Pursuit & Dawn Dash No. 051)",
+      "master_family": "species:9d537aa4-e4ca-4488-81e4-c2bbda540826",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-053",
+      "japanese_name": "マニューラ",
+      "species_english": "Weavile",
+      "species_id": "461",
+      "master_english": "Glaceon LV.X (Moonlit Pursuit & Dawn Dash No. 053)",
+      "master_family": "species:cb58c1b8-ca38-49fd-b8b8-33ee18bac986",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-054",
+      "japanese_name": "サンダース",
+      "species_english": "Jolteon",
+      "species_id": "135",
+      "master_english": "Zapdos (Moonlit Pursuit & Dawn Dash No. 054)",
+      "master_family": "species:c489f42a-4b94-4cf9-a494-ece32d4085df",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-055",
+      "japanese_name": "サンダー",
+      "species_english": "Zapdos",
+      "species_id": "145",
+      "master_english": "Rotom (Moonlit Pursuit & Dawn Dash No. 055)",
+      "master_family": "species:c489f42a-4b94-4cf9-a494-ece32d4085df",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-058",
+      "japanese_name": "アーボ",
+      "species_english": "Ekans",
+      "species_id": "23",
+      "master_english": "Slowking (Moonlit Pursuit & Dawn Dash No. 058)",
+      "master_family": "species:e037d95f-9e8d-489f-a869-d124f5441646",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-059",
+      "japanese_name": "アーボック",
+      "species_english": "Arbok",
+      "species_id": "24",
+      "master_english": "Drowzee (Moonlit Pursuit & Dawn Dash No. 059)",
+      "master_family": "species:9f6443b0-df91-4b94-b1c0-712bd447c941",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-060",
+      "japanese_name": "ヤドキング",
+      "species_english": "Slowking",
+      "species_id": "199",
+      "master_english": "Hypno (Moonlit Pursuit & Dawn Dash No. 060)",
+      "master_family": "species:210ada4d-7333-4337-8a87-94b490e85002",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-061",
+      "japanese_name": "スリープ",
+      "species_english": "Drowzee",
+      "species_id": "96",
+      "master_english": "Koffing (Moonlit Pursuit & Dawn Dash No. 061)",
+      "master_family": "species:06e6e9a8-f07d-42ab-94ea-bceddcb4a7d4",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-062",
+      "japanese_name": "スリーパー",
+      "species_english": "Hypno",
+      "species_id": "97",
+      "master_english": "Weezing (Moonlit Pursuit & Dawn Dash No. 062)",
+      "master_family": "species:c8ffcfeb-b5cf-4362-90a6-7dbdf35ea0a7",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-063",
+      "japanese_name": "ドガース",
+      "species_english": "Koffing",
+      "species_id": "109",
+      "master_english": "Mewtwo (Moonlit Pursuit & Dawn Dash No. 063)",
+      "master_family": "species:7bdd988c-3af4-4f93-8968-c028aa9d0a10",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-064",
+      "japanese_name": "マタドガス",
+      "species_english": "Weezing",
+      "species_id": "110",
+      "master_english": "Unown F (Moonlit Pursuit & Dawn Dash No. 064)",
+      "master_family": "species:edde5c33-5f75-4eeb-ac3e-a891ad4a73eb",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-065",
+      "japanese_name": "エーフィ",
+      "species_english": "Espeon",
+      "species_id": "196",
+      "master_english": "Unown G (Moonlit Pursuit & Dawn Dash No. 065)",
+      "master_family": "species:e1472516-eeee-4dd5-b8b1-4a732b883a5c",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-075",
+      "japanese_name": "ハブネーク",
+      "species_english": "Seviper",
+      "species_id": "336",
+      "master_english": "Unown Q (Moonlit Pursuit & Dawn Dash No. 075)",
+      "master_family": "species:edde5c33-5f75-4eeb-ac3e-a891ad4a73eb",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-078",
+      "japanese_name": "マンキー",
+      "species_english": "Mankey",
+      "species_id": "56",
+      "master_english": "Makuhita (Moonlit Pursuit & Dawn Dash No. 078)",
+      "master_family": "species:3f754f00-8da2-4bd0-a7f3-84959ee8fb53",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-079",
+      "japanese_name": "オコリザル",
+      "species_english": "Primeape",
+      "species_id": "57",
+      "master_english": "Hariyama (Moonlit Pursuit & Dawn Dash No. 079)",
+      "master_family": "species:225be779-0606-482a-9d58-2054568644e9",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-080",
+      "japanese_name": "カブト",
+      "species_english": "Kabuto",
+      "species_id": "140",
+      "master_english": "Lunatone (Moonlit Pursuit & Dawn Dash No. 080)",
+      "master_family": "species:14811dc0-7b09-4d7e-a437-bcd0380750c4",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-081",
+      "japanese_name": "カブトプス",
+      "species_english": "Kabutops",
+      "species_id": "141",
+      "master_english": "Mankey (Moonlit Pursuit & Dawn Dash No. 081)",
+      "master_family": "species:7944cbcc-3b35-4664-b947-96627813916b",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-082",
+      "japanese_name": "マクノシタ",
+      "species_english": "Makuhita",
+      "species_id": "296",
+      "master_english": "Primeape (Moonlit Pursuit & Dawn Dash No. 082)",
+      "master_family": "species:3f754f00-8da2-4bd0-a7f3-84959ee8fb53",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-083",
+      "japanese_name": "ハリテヤマ",
+      "species_english": "Hariyama",
+      "species_id": "297",
+      "master_english": "Kabuto (Moonlit Pursuit & Dawn Dash No. 083)",
+      "master_family": "species:4f6f3001-c443-4bac-9a4a-d696521228f2",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-084",
+      "japanese_name": "ルナトーン",
+      "species_english": "Lunatone",
+      "species_id": "337",
+      "master_english": "Kabutops (Moonlit Pursuit & Dawn Dash No. 084)",
+      "master_family": "species:9baef975-dbf5-4f83-9d90-82d23f4e373e",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-085",
+      "japanese_name": "ソルロック",
+      "species_english": "Solrock",
+      "species_id": "338",
+      "master_english": "Solrock (Moonlit Pursuit & Dawn Dash No. 085)",
+      "master_family": "species:e9dbfd3a-d11f-40b8-8f4b-223213d55658",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-086",
+      "japanese_name": "ヤジロン",
+      "species_english": "Baltoy",
+      "species_id": "343",
+      "master_english": "Baltoy (Moonlit Pursuit & Dawn Dash No. 086)",
+      "master_family": "species:dbf77944-7184-436d-94d6-bbf2b6b724b9",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-087",
+      "japanese_name": "ネンドール",
+      "species_english": "Claydol",
+      "species_id": "344",
+      "master_english": "Claydol (Moonlit Pursuit & Dawn Dash No. 087)",
+      "master_family": "species:b28c1b9f-0a87-4cdd-9eed-ed4126c15f14",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-088",
+      "japanese_name": "ブラッキー",
+      "species_english": "Umbreon",
+      "species_id": "197",
+      "master_english": "Spearow (Moonlit Pursuit & Dawn Dash No. 088)",
+      "master_family": "species:ab56c4e2-a526-4ca6-905d-8262b1db4c47",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-089",
+      "japanese_name": "ヘルガー",
+      "species_english": "Houndoom",
+      "species_id": "229",
+      "master_english": "Fearow (Moonlit Pursuit & Dawn Dash No. 089)",
+      "master_family": "species:685f8eba-fe37-487d-a5e5-883871190baf",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-090",
+      "japanese_name": "ノクタス",
+      "species_english": "Cacturne",
+      "species_id": "332",
+      "master_english": "Kangaskhan (Moonlit Pursuit & Dawn Dash No. 090)",
+      "master_family": "species:d82b6c36-b960-4881-8491-9f5588ba7498",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-091",
+      "japanese_name": "ダークライ",
+      "species_english": "Darkrai",
+      "species_id": "491",
+      "master_english": "Eevee (Moonlit Pursuit & Dawn Dash No. 091)",
+      "master_family": "species:f752ae24-f51e-4903-b186-e91774ebecbe",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-092",
+      "japanese_name": "ドンカラス",
+      "species_english": "Honchkrow",
+      "species_id": "430",
+      "master_english": "Porygon (Moonlit Pursuit & Dawn Dash No. 092)",
+      "master_family": "species:ae52791e-6b47-422c-9185-31d8608b6a8e",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-093",
+      "japanese_name": "ハッサム",
+      "species_english": "Scizor",
+      "species_id": "212",
+      "master_english": "Porygon2 (Moonlit Pursuit & Dawn Dash No. 093)",
+      "master_family": "species:8da1bcce-ed41-4ad4-b5c4-ec88c764b614",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-094",
+      "japanese_name": "エアームド",
+      "species_english": "Skarmory",
+      "species_id": "227",
+      "master_english": "Porygon-Z (Moonlit Pursuit & Dawn Dash No. 094)",
+      "master_family": "species:c297e535-5017-4733-a741-e373dd6027e1",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-095",
+      "japanese_name": "クチート",
+      "species_english": "Mawile",
+      "species_id": "303",
+      "master_english": "Snubbull (Moonlit Pursuit & Dawn Dash No. 095)",
+      "master_family": "species:a7250a1e-652a-4783-a47a-6a1ab56e89bc",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-096",
+      "japanese_name": "オニスズメ",
+      "species_english": "Spearow",
+      "species_id": "21",
+      "master_english": "Granbull (Moonlit Pursuit & Dawn Dash No. 096)",
+      "master_family": "species:133b4831-183b-4bd8-ac32-8a7972703378",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-097",
+      "japanese_name": "オニドリル",
+      "species_english": "Fearow",
+      "species_id": "22",
+      "master_english": "Whismur (Moonlit Pursuit & Dawn Dash No. 097)",
+      "master_family": "species:9dffdeb4-d4b5-49ba-a807-c3eb6d07dce2",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-098",
+      "japanese_name": "ププリン",
+      "species_english": "Igglybuff",
+      "species_id": "174",
+      "master_english": "Loudred (Moonlit Pursuit & Dawn Dash No. 098)",
+      "master_family": "species:e18b0d5e-96ea-4908-b354-83f2e10c2017",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-099",
+      "japanese_name": "プリン",
+      "species_english": "Jigglypuff",
+      "species_id": "39",
+      "master_english": "Exploud (Moonlit Pursuit & Dawn Dash No. 099)",
+      "master_family": "species:aacee84a-9a6a-4c2e-9aea-7f86c3ed0a2b",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-100",
+      "japanese_name": "プクリン",
+      "species_english": "Wigglytuff",
+      "species_id": "40",
+      "master_english": "Latios (Moonlit Pursuit & Dawn Dash No. 100)",
+      "master_family": "species:3902693d-3516-40a7-94a4-b8dc546ade9f",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-101",
+      "japanese_name": "ガルーラ",
+      "species_english": "Kangaskhan",
+      "species_id": "115",
+      "master_english": "Garchomp LV.X (Moonlit Pursuit & Dawn Dash No. 101)",
+      "master_family": "species:a0c6e610-a5ad-40a5-9515-37e99759029c",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-102",
+      "japanese_name": "イーブイ",
+      "species_english": "Eevee",
+      "species_id": "133",
+      "master_english": "Igglybuff (Moonlit Pursuit & Dawn Dash No. 102)",
+      "master_family": "species:e671cde4-fcf2-4a1a-acd6-6044c5957b6c",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-103",
+      "japanese_name": "ポリゴン",
+      "species_english": "Porygon",
+      "species_id": "137",
+      "master_english": "Jigglypuff (Moonlit Pursuit & Dawn Dash No. 103)",
+      "master_family": "species:1c687da4-df55-44f3-bead-ec28ef339c09",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-106",
+      "japanese_name": "プテラ",
+      "species_english": "Aerodactyl",
+      "species_id": "142",
+      "master_english": "Aerodactyl (Moonlit Pursuit & Dawn Dash No. 106)",
+      "master_family": "species:c42c316c-ced5-464d-a935-d330647ec317",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-107",
+      "japanese_name": "トゲピー",
+      "species_english": "Togepi",
+      "species_id": "175",
+      "master_english": "Togepi (Moonlit Pursuit & Dawn Dash No. 107)",
+      "master_family": "species:18d06b52-8831-4019-92cc-675d60d91941",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-108",
+      "japanese_name": "トゲチック",
+      "species_english": "Togetic",
+      "species_id": "176",
+      "master_english": "Togetic (Moonlit Pursuit & Dawn Dash No. 108)",
+      "master_family": "species:067fe436-6129-4abf-ae0c-8367141c9359",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-109",
+      "japanese_name": "トゲキッス",
+      "species_english": "Togekiss",
+      "species_id": "468",
+      "master_english": "Togekiss (Moonlit Pursuit & Dawn Dash No. 109)",
+      "master_family": "species:57ae1ff9-62cb-4aba-9d17-9c8e2cb984a3",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-110",
+      "japanese_name": "ブルー",
+      "species_english": "Snubbull",
+      "species_id": "209",
+      "master_english": "Zigzagoon (Moonlit Pursuit & Dawn Dash No. 110)",
+      "master_family": "species:42d4404a-e0bc-414f-85dc-0fb68954d48d",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-111",
+      "japanese_name": "グランブル",
+      "species_english": "Granbull",
+      "species_id": "210",
+      "master_english": "Linoone (Moonlit Pursuit & Dawn Dash No. 111)",
+      "master_family": "species:f6bfeccb-c9fa-4dcc-af5d-9cde62bb3c08",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-112",
+      "japanese_name": "ジグザグマ",
+      "species_english": "Zigzagoon",
+      "species_id": "263",
+      "master_english": "Swablu (Moonlit Pursuit & Dawn Dash No. 112)",
+      "master_family": "species:24aef852-7ef8-4bb1-8e28-7de97728e1bc",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-113",
+      "japanese_name": "マッスグマ",
+      "species_english": "Linoone",
+      "species_id": "264",
+      "master_english": "Altaria (Moonlit Pursuit & Dawn Dash No. 113)",
+      "master_family": "species:87b80588-dc03-407c-aeb7-962589697621",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-114",
+      "japanese_name": "ゴニョニョ",
+      "species_english": "Whismur",
+      "species_id": "293",
+      "master_english": "Zangoose (Moonlit Pursuit & Dawn Dash No. 114)",
+      "master_family": "species:74d035cf-9fef-4841-844a-bffd64d6da03",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-115",
+      "japanese_name": "ドゴーム",
+      "species_english": "Loudred",
+      "species_id": "294",
+      "master_english": "Latias (Moonlit Pursuit & Dawn Dash No. 115)",
+      "master_family": "species:5f511748-4b69-4338-b770-db6695fd5ffd",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-116",
+      "japanese_name": "バクオング",
+      "species_english": "Exploud",
+      "species_id": "295",
+      "master_english": "Umbreon (Moonlit Pursuit & Dawn Dash No. 116)",
+      "master_family": "species:f70ad138-05c8-43cd-926f-03bf89ea0aa3",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-117",
+      "japanese_name": "チルット",
+      "species_english": "Swablu",
+      "species_id": "333",
+      "master_english": "Houndoom (Moonlit Pursuit & Dawn Dash No. 117)",
+      "master_family": "species:43243ef1-c3c5-485a-9102-c90ca09286f6",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-118",
+      "japanese_name": "チルタリス",
+      "species_english": "Altaria",
+      "species_id": "334",
+      "master_english": "Darkrai (Moonlit Pursuit & Dawn Dash No. 118)",
+      "master_family": "species:2c5b9131-c40f-4e73-bf73-b34522468294",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-119",
+      "japanese_name": "ザングース",
+      "species_english": "Zangoose",
+      "species_id": "335",
+      "master_english": "Honchkrow LV.X (Moonlit Pursuit & Dawn Dash No. 119)",
+      "master_family": "species:d3fbdc0a-45c5-4dcd-b378-5518672fd657",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-120",
+      "japanese_name": "ラティアス",
+      "species_english": "Latias",
+      "species_id": "380",
+      "master_english": "Cacturne (Moonlit Pursuit & Dawn Dash No. 120)",
+      "master_family": "species:27a0c43d-5563-4e4e-8455-6b24c0194f6e",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-121",
+      "japanese_name": "ラティオス",
+      "species_english": "Latios",
+      "species_id": "381",
+      "master_english": "Scizor (Moonlit Pursuit & Dawn Dash No. 121)",
+      "master_family": "species:82957c28-4c9b-4f8a-b81f-bfad4d0c66c9",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-122",
+      "japanese_name": "ガブリアス",
+      "species_english": "Garchomp",
+      "species_id": "445",
+      "master_english": "Skarmory (Moonlit Pursuit & Dawn Dash No. 122)",
+      "master_family": "species:8bcede03-6cc6-4baf-bd09-cc03230dbd32",
+      "match": false
+    }
+  ]
+}

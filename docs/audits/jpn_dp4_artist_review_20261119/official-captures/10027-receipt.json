@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:22:55.505Z",
+  "gv_id": "GV-PK-JPN-DP4-027",
+  "card_print_id": "7eb3617a-c8b1-4b1c-9ec7-231a9b278255",
+  "catalog_coordinate": "027",
+  "catalog_name": "ヤドラン",
+  "official_id": "10027",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10027/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10027/regu/all",
+    "status": 200,
+    "sha256": "41cb16de7f2c9e6965f663d7b1687428632fbcf1514871ad26b21fac24e060cb",
+    "bytes": 11022
+  },
+  "heading": "ヤドラン",
+  "artist": "Atsuko Nishida",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010027_P_YADORAN.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010027_P_YADORAN.jpg",
+    "status": 200,
+    "sha256": "810471e186915e11bdf1b983af770d368b81e4fcb483386d9107b6ecd5839799",
+    "bytes": 60944,
+    "catalog_path_hash_prefix": "810471e186915e11bdf1b983",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

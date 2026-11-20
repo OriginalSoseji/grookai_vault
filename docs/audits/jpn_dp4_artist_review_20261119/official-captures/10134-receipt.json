@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:20:04.790Z",
+  "gv_id": "GV-PK-JPN-DP4-134",
+  "card_print_id": "03cc7179-dba4-4466-81a5-d1aea4bc4b16",
+  "catalog_coordinate": "134",
+  "catalog_name": "ヒーラー・エネルギー",
+  "official_id": "10134",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10134/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10134/regu/all",
+    "status": 200,
+    "sha256": "be3da68d0cede47a1080fea82c8b7daa5cafddf6a19da0e4b596095d0c00c670",
+    "bytes": 8457
+  },
+  "heading": "ヒーラー・エネルギー",
+  "artist": "Takumi Akabane",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010134_E_HIRAENERUGI.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010134_E_HIRAENERUGI.jpg",
+    "status": 200,
+    "sha256": "ab0e2603daaccbcf3da41997dcff5b1b2b5e8315a6d2736e70a6f513faee6f1a",
+    "bytes": 42379,
+    "catalog_path_hash_prefix": "ab0e2603daaccbcf3da41997",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

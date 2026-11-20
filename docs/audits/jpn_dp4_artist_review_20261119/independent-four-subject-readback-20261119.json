@@ -1,0 +1,46 @@
+{
+  "version": "JPN_DP4_SUBJECT_INDEPENDENT_READBACK_V1",
+  "verified_at": "2026-11-20T05:55:01.498Z",
+  "before_capture": "2026-11-19T23:39:56.159Z",
+  "after_capture": "2026-11-20T05:54:43.009Z",
+  "status": "passed",
+  "scope": "Separate read-only snapshots of four parent, identity and species records; source/protected-state verification is retained in the writer receipt.",
+  "results": [
+    {
+      "gv_id": "GV-PK-JPN-DP4-054",
+      "expected": "Jolteon",
+      "dex": 135,
+      "old_link_inactive": true,
+      "new_link_active": true,
+      "identity_hash_unchanged": true,
+      "parent_readback_unchanged": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-064",
+      "expected": "Weezing",
+      "dex": 110,
+      "old_link_inactive": true,
+      "new_link_active": true,
+      "identity_hash_unchanged": true,
+      "parent_readback_unchanged": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-075",
+      "expected": "Seviper",
+      "dex": 336,
+      "old_link_inactive": true,
+      "new_link_active": true,
+      "identity_hash_unchanged": true,
+      "parent_readback_unchanged": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-078",
+      "expected": "Mankey",
+      "dex": 56,
+      "old_link_inactive": true,
+      "new_link_active": true,
+      "identity_hash_unchanged": true,
+      "parent_readback_unchanged": true
+    }
+  ]
+}

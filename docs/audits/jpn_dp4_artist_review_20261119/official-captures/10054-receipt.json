@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:27:28.368Z",
+  "gv_id": "GV-PK-JPN-DP4-054",
+  "card_print_id": "ce20a624-e85c-4525-ab32-967e5acc8c79",
+  "catalog_coordinate": "054",
+  "catalog_name": "サンダース",
+  "official_id": "10054",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10054/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10054/regu/all",
+    "status": 200,
+    "sha256": "72cde6b71b0b17820722240a691732df08bccfba91d56fac0010ac69eb8abcc9",
+    "bytes": 15596
+  },
+  "heading": "サンダース",
+  "artist": "Midori Harada",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010054_P_SANDASU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010054_P_SANDASU.jpg",
+    "status": 200,
+    "sha256": "3f53aa1207f9e31f7d6d4233f52d0db2273638822d4d9111f56079ce15728268",
+    "bytes": 62905,
+    "catalog_path_hash_prefix": "3f53aa1207f9e31f7d6d4233",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

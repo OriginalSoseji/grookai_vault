@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:28:15.736Z",
+  "gv_id": "GV-PK-JPN-DP4-095",
+  "card_print_id": "ee343bd1-2c63-4861-9819-2a62f66adb52",
+  "catalog_coordinate": "095",
+  "catalog_name": "クチート",
+  "official_id": "10095",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10095/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10095/regu/all",
+    "status": 200,
+    "sha256": "5b6d32b3dd192908a28bb65aee6a2de5789539a810603eac159dc6ea5ad11622",
+    "bytes": 10225
+  },
+  "heading": "クチート",
+  "artist": "Midori Harada",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010095_P_KUCHITO.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010095_P_KUCHITO.jpg",
+    "status": 200,
+    "sha256": "2025035bf9d970eba2ce7c1b6343e8397acce84e9994a3ec4654de1831e4619a",
+    "bytes": 53775,
+    "catalog_path_hash_prefix": "2025035bf9d970eba2ce7c1b",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

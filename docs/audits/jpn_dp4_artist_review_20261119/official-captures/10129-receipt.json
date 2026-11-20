@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:27:44.748Z",
+  "gv_id": "GV-PK-JPN-DP4-129",
+  "card_print_id": "da7c5177-a4f2-467a-a36b-0930f2ae1f8d",
+  "catalog_coordinate": "129",
+  "catalog_name": "たべのこし",
+  "official_id": "10129",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10129/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10129/regu/all",
+    "status": 200,
+    "sha256": "8f76bd3f874d54a16c09c46fc44f3c8eb0097520c3becea007a6fd28fa0f0b8b",
+    "bytes": 8437
+  },
+  "heading": "たべのこし",
+  "artist": "Daisuke Ito",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010129_T_TABENOKOSHI.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010129_T_TABENOKOSHI.jpg",
+    "status": 200,
+    "sha256": "2040b73e1b453ceee828260378ad4663cbe36a9e5ff25c90b19943b6c5d4d381",
+    "bytes": 38834,
+    "catalog_path_hash_prefix": "2040b73e1b453ceee8282603",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

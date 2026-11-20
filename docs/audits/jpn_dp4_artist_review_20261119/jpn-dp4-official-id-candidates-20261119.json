@@ -1,0 +1,2170 @@
+{
+  "captured_at": "2026-11-19T23:18:49.875Z",
+  "scope": "Untrusted discovery candidates derived from third-party image labels and catalog coordinate; no official-page validation, ownership check, or approval to write.",
+  "checklist_sha256": "b1ba1a3573f512c6cdc854bba9dfd10edaae5b63bc96b6651f2e58c015f243a7",
+  "checklist_cards": 159,
+  "historical_parents": 136,
+  "unique_candidates": 134,
+  "candidates": [
+    {
+      "gv_id": "GV-PK-JPN-DP4-023",
+      "card_print_id": "03b2fb9c-6fd8-4141-8dc0-992fa4197c1e",
+      "catalog_name": "アチャモ",
+      "catalog_coordinate": "023",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/torchic-ge-89/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10023-s.webp",
+          "official_id": "10023",
+          "name": "アチャモ",
+          "printed_label": "#DPBP#305"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-134",
+      "card_print_id": "03cc7179-dba4-4466-81a5-d1aea4bc4b16",
+      "catalog_name": "ヒーラー・エネルギー",
+      "catalog_coordinate": "134",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/health-energy-md-94/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10134-s.webp",
+          "official_id": "10134",
+          "name": "ヒーラー・エネルギー",
+          "printed_label": null
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-032",
+      "card_print_id": "04a5efba-6783-4b6b-968c-7df8d1f596dd",
+      "catalog_name": "グレイシア",
+      "catalog_coordinate": "032",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/glaceon-md-5/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10032-s.webp",
+          "official_id": "10032",
+          "name": "グレイシア",
+          "printed_label": "#DPBP#161"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-075",
+      "card_print_id": "06c2130b-f94c-4c0d-989c-0c0c220d2cb3",
+      "catalog_name": "ハブネーク",
+      "catalog_coordinate": "075",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/seviper-ge-52/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10075-s.webp",
+          "official_id": "10075",
+          "name": "ハブネーク",
+          "printed_label": "#DPBP#389"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-060",
+      "card_print_id": "0838b5d7-59c9-494d-b51b-0c5a43581508",
+      "catalog_name": "ヤドキング",
+      "catalog_coordinate": "060",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/slowking-ge-28/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10060-s.webp",
+          "official_id": "10060",
+          "name": "ヤドキング",
+          "printed_label": "#DPBP#087"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-049",
+      "card_print_id": "0e282ae3-8775-4030-ae07-58e981b68e1a",
+      "catalog_name": "サクラビス",
+      "catalog_coordinate": "049",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/gorebyss-ge-38/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10049-s.webp",
+          "official_id": "10049",
+          "name": "サクラビス",
+          "printed_label": "#DPBP#426"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-090",
+      "card_print_id": "111b252c-75e7-4ef7-99bc-36300aad6d16",
+      "catalog_name": "ノクタス",
+      "catalog_coordinate": "090",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/cacturne-ge-34/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10090-s.webp",
+          "official_id": "10090",
+          "name": "ノクタス",
+          "printed_label": "#DPBP#385"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-058",
+      "card_print_id": "1399e503-fa92-40e1-a9f7-51e0678dabef",
+      "catalog_name": "アーボ",
+      "catalog_coordinate": "058",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/ekans-ge-66/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10058-s.webp",
+          "official_id": "10058",
+          "name": "アーボ",
+          "printed_label": "#DPBP#023"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-015",
+      "card_print_id": "15b46348-6cc3-4d04-9afa-72212e9bc04c",
+      "catalog_name": "バルビート",
+      "catalog_coordinate": "015",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/volbeat-ge-92/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10015-s.webp",
+          "official_id": "10015",
+          "name": "バルビート",
+          "printed_label": "#DPBP#364"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-127",
+      "card_print_id": "161aacf4-7fe1-4502-b679-f664047d75cd",
+      "catalog_name": "プレミアボール",
+      "catalog_coordinate": "127",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/premier-ball-sf-91/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10127-s.webp",
+          "official_id": "10127",
+          "name": "プレミアボール",
+          "printed_label": null
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-007",
+      "card_print_id": "169f7c7c-8dc3-4560-a5e1-f9b7101900b0",
+      "catalog_name": "モンジャラ",
+      "catalog_coordinate": "007",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/tangela-ge-87/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10007-s.webp",
+          "official_id": "10007",
+          "name": "モンジャラ",
+          "printed_label": "#DPBP#129"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-055",
+      "card_print_id": "17ca7cc4-7876-4574-bdcc-b3c20f2676cc",
+      "catalog_name": "サンダー",
+      "catalog_coordinate": "055",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/zapdos-md-14/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10055-s.webp",
+          "official_id": "10055",
+          "name": "サンダー",
+          "printed_label": "#DPBP#176"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-040",
+      "card_print_id": "1f05f89d-7e6b-4b58-8b24-848fa8120a0e",
+      "catalog_name": "ラグラージ",
+      "catalog_coordinate": "040",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/swampert-ge-9/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10040-s.webp",
+          "official_id": "10040",
+          "name": "ラグラージ",
+          "printed_label": "#DPBP#310"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-039",
+      "card_print_id": "1f2f3ace-f4af-48c9-8e75-1b2ef95d96dc",
+      "catalog_name": "ヌマクロー",
+      "catalog_coordinate": "039",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/marshtomp-ge-46/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10039-s.webp",
+          "official_id": "10039",
+          "name": "ヌマクロー",
+          "printed_label": "#DPBP#309"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-077",
+      "card_print_id": "21078eee-1e6e-4266-a3c5-ff133a4fe0d2",
+      "catalog_name": "クレセリア",
+      "catalog_coordinate": "077",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/cresselia-ge-103/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10077-s.webp",
+          "official_id": "10077",
+          "name": "クレセリア",
+          "printed_label": null
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-086",
+      "card_print_id": "211379d1-87cc-44ec-87ec-9b51d3a89072",
+      "catalog_name": "ヤジロン",
+      "catalog_coordinate": "086",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/baltoy-ge-60/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10086-s.webp",
+          "official_id": "10086",
+          "name": "ヤジロン",
+          "printed_label": "#DPBP#396"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-031",
+      "card_print_id": "25ab646f-dcf2-4b1b-9384-0912aca9910f",
+      "catalog_name": "シャワーズ",
+      "catalog_coordinate": "031",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/vaporeon-md-34/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10031-s.webp",
+          "official_id": "10031",
+          "name": "シャワーズ",
+          "printed_label": "#DPBP#160"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-057",
+      "card_print_id": "2876d5db-ca01-4d62-9020-abdc43c1e067",
+      "catalog_name": "パチリス",
+      "catalog_coordinate": "057",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/pachirisu-ge-5/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10057-s.webp",
+          "official_id": "10057",
+          "name": "パチリス",
+          "printed_label": null
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-098",
+      "card_print_id": "2a39f342-e23f-4ae7-9524-1ae83481e631",
+      "catalog_name": "ププリン",
+      "catalog_coordinate": "098",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/igglybuff-ge-70/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10098-s.webp",
+          "official_id": "10098",
+          "name": "ププリン",
+          "printed_label": "#DPBP#041"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-046",
+      "card_print_id": "2b0d3d6f-d010-47a2-afde-d5cc84f899d3",
+      "catalog_name": "ミロカロス",
+      "catalog_coordinate": "046",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/milotic-ge-25/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10046-s.webp",
+          "official_id": "10046",
+          "name": "ミロカロス",
+          "printed_label": "#DPBP#403"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-094",
+      "card_print_id": "2be93f5d-0859-4d3f-882d-0ff95cc370b1",
+      "catalog_name": "エアームド",
+      "catalog_coordinate": "094",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/skarmory-ge-53/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10094-s.webp",
+          "official_id": "10094",
+          "name": "エアームド",
+          "printed_label": "#DPBP#285"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-010",
+      "card_print_id": "2c7bdd6b-b614-4210-ac3a-f5efa9615b68",
+      "catalog_name": "リーフィア",
+      "catalog_coordinate": "010",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/jp-dp4-10010-dp4/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10010-s.webp",
+          "official_id": "10010",
+          "name": "リーフィア",
+          "printed_label": "#DPBP#158"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-115",
+      "card_print_id": "2eb62789-69f4-4c5f-9642-755732f1994d",
+      "catalog_name": "ドゴーム",
+      "catalog_coordinate": "115",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/loudred-ge-44/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10115-s.webp",
+          "official_id": "10115",
+          "name": "ドゴーム",
+          "printed_label": "#DPBP#345"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-074",
+      "card_print_id": "31775981-9188-43c1-996f-718b9c88c9f9",
+      "catalog_name": "サーナイト",
+      "catalog_coordinate": "074",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/gardevoir-sw-131/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10074-s.webp",
+          "official_id": "10074",
+          "name": "サーナイト",
+          "printed_label": null
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-085",
+      "card_print_id": "31e2556d-35a0-499e-bed7-ee7e8f72576e",
+      "catalog_name": "ソルロック",
+      "catalog_coordinate": "085",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/solrock-ge-85/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10085-s.webp",
+          "official_id": "10085",
+          "name": "ソルロック",
+          "printed_label": "#DPBP#391"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-107",
+      "card_print_id": "323e79a5-a9ed-43ef-9f56-53f5fbbf10b6",
+      "catalog_name": "トゲピー",
+      "catalog_coordinate": "107",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/togepi-ge-88/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10107-s.webp",
+          "official_id": "10107",
+          "name": "トゲピー",
+          "printed_label": "#DPBP#202"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-125",
+      "card_print_id": "33a03a73-b541-42fb-9259-905c09264063",
+      "catalog_name": "ひみつのコハク",
+      "catalog_coordinate": "125",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/old-amber-md-84/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10125-s.webp",
+          "official_id": "10125",
+          "name": "ひみつのコハク",
+          "printed_label": null
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-119",
+      "card_print_id": "33ed3d7d-abe2-4bbe-8130-339c0ad5c438",
+      "catalog_name": "ザングース",
+      "catalog_coordinate": "119",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/zangoose-ge-59/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10119-s.webp",
+          "official_id": "10119",
+          "name": "ザングース",
+          "printed_label": "#DPBP#388"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-051",
+      "card_print_id": "340d81f3-cdd0-44c9-9bed-a48bb7dfb43c",
+      "catalog_name": "ラブカス",
+      "catalog_coordinate": "051",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/luvdisc-ge-77/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10051-s.webp",
+          "official_id": "10051",
+          "name": "ラブカス",
+          "printed_label": "#DPBP#428"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-111",
+      "card_print_id": "37e9667f-0cc9-418e-8aed-38686911d9de",
+      "catalog_name": "グランブル",
+      "catalog_coordinate": "111",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/granbull-ge-39/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10111-s.webp",
+          "official_id": "10111",
+          "name": "グランブル",
+          "printed_label": "#DPBP#266"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-135",
+      "card_print_id": "3921881d-e25e-49fe-8248-915984c0264d",
+      "catalog_name": "リカバー・エネルギー",
+      "catalog_coordinate": "135",
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-114",
+      "card_print_id": "3dfa366c-31a1-471d-9372-a9f77673c63f",
+      "catalog_name": "ゴニョニョ",
+      "catalog_coordinate": "114",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/whismur-ge-94/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10114-s.webp",
+          "official_id": "10114",
+          "name": "ゴニョニョ",
+          "printed_label": "#DPBP#344"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-002",
+      "card_print_id": "3e86af07-9a62-4778-bb77-7ac9ac1300b2",
+      "catalog_name": "トランセル",
+      "catalog_coordinate": "002",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/metapod-ge-47/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10002-s.webp",
+          "official_id": "10002",
+          "name": "トランセル",
+          "printed_label": "#DPBP#011"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-072",
+      "card_print_id": "4300c60f-d74b-4056-875a-4a02efb2d1e0",
+      "catalog_name": "アンノーン[Q]",
+      "catalog_coordinate": "072",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/unown-q-md-49/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10072-s.webp",
+          "official_id": "10072",
+          "name": "アンノーン[Q]",
+          "printed_label": "#DPBP#245"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-035",
+      "card_print_id": "45a6b93f-3db6-4e99-8881-ccac7d3ab621",
+      "catalog_name": "オムスター",
+      "catalog_coordinate": "035",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/omastar-md-26/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10035-s.webp",
+          "official_id": "10035",
+          "name": "オムスター",
+          "printed_label": "#DPBP#169"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-113",
+      "card_print_id": "47e817c5-883b-4577-a6ec-e12d0696efe3",
+      "catalog_name": "マッスグマ",
+      "catalog_coordinate": "113",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/linoone-ge-43/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10113-s.webp",
+          "official_id": "10113",
+          "name": "マッスグマ",
+          "printed_label": "#DPBP#314"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-071",
+      "card_print_id": "4a10fa27-ce0d-47ab-8912-11b119367363",
+      "catalog_name": "アンノーン[P]",
+      "catalog_coordinate": "071",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/unown-p-md-33/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10071-s.webp",
+          "official_id": "10071",
+          "name": "アンノーン[P]",
+          "printed_label": "#DPBP#244"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-008",
+      "card_print_id": "4af29a76-b327-4000-871e-40caef98454f",
+      "catalog_name": "モジャンボ",
+      "catalog_coordinate": "008",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/tangrowth-ge-10/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10008-s.webp",
+          "official_id": "10008",
+          "name": "モジャンボ",
+          "printed_label": "#DPBP#130"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-059",
+      "card_print_id": "4db9306f-043c-48c2-a59f-ebc49dab4297",
+      "catalog_name": "アーボック",
+      "catalog_coordinate": "059",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/arbok-ge-33/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10059-s.webp",
+          "official_id": "10059",
+          "name": "アーボック",
+          "printed_label": "#DPBP#024"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-019",
+      "card_print_id": "4efeb6bc-6616-4cd9-b373-27c2c974a6f7",
+      "catalog_name": "ファイヤー",
+      "catalog_coordinate": "019",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/moltres-md-10/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10019-s.webp",
+          "official_id": "10019",
+          "name": "ファイヤー",
+          "printed_label": "#DPBP#177"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-024",
+      "card_print_id": "4f6df757-25c6-4c62-99bc-1da2e4cd1f23",
+      "catalog_name": "ワカシャモ",
+      "catalog_coordinate": "024",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/combusken-ge-35/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10024-s.webp",
+          "official_id": "10024",
+          "name": "ワカシャモ",
+          "printed_label": "#DPBP#306"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-092",
+      "card_print_id": "4fe36686-021f-45e3-9fd6-ca53e37fa5e0",
+      "catalog_name": "ドンカラス",
+      "catalog_coordinate": "092",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/honchkrow-sw-132/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10092-s.webp",
+          "official_id": "10092",
+          "name": "ドンカラス",
+          "printed_label": null
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-133",
+      "card_print_id": "5005d819-7eaf-4927-85cb-3ff57e64516b",
+      "catalog_name": "コール・エネルギー",
+      "catalog_coordinate": "133",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/call-energy-md-92/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10133-s.webp",
+          "official_id": "10133",
+          "name": "コール・エネルギー",
+          "printed_label": null
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-087",
+      "card_print_id": "50351416-1b6e-4507-894a-12075d4a0870",
+      "catalog_name": "ネンドール",
+      "catalog_coordinate": "087",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/claydol-ge-15/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10087-s.webp",
+          "official_id": "10087",
+          "name": "ネンドール",
+          "printed_label": "#DPBP#397"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-012",
+      "card_print_id": "520fae99-5415-4304-83b5-5c4a0650ea4c",
+      "catalog_name": "キモリ",
+      "catalog_coordinate": "012",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/treecko-ge-90/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10012-s.webp",
+          "official_id": "10012",
+          "name": "キモリ",
+          "printed_label": "#DPBP#302"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-102",
+      "card_print_id": "527740f4-daaa-4162-b4aa-662e6085c492",
+      "catalog_name": "イーブイ",
+      "catalog_coordinate": "102",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/eevee-md-62/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10102-s.webp",
+          "official_id": "10102",
+          "name": "イーブイ",
+          "printed_label": "#DPBP#157"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-064",
+      "card_print_id": "539a729a-5d43-4d2a-a11c-6f4f6d2f7133",
+      "catalog_name": "マタドガス",
+      "catalog_coordinate": "064",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/weezing-ge-31/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10064-s.webp",
+          "official_id": "10064",
+          "name": "マタドガス",
+          "printed_label": "#DPBP#122"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-081",
+      "card_print_id": "59b5340d-d441-4928-aa4b-6a851d32124e",
+      "catalog_name": "カブトプス",
+      "catalog_coordinate": "081",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/kabutops-md-6/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10081-s.webp",
+          "official_id": "10081",
+          "name": "カブトプス",
+          "printed_label": "#DPBP#171"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-041",
+      "card_print_id": "59cdadd8-b7bd-4683-a192-5de6140b6b0c",
+      "catalog_name": "キャモメ",
+      "catalog_coordinate": "041",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/wingull-ge-95/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10041-s.webp",
+          "official_id": "10041",
+          "name": "キャモメ",
+          "printed_label": "#DPBP#328"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-091",
+      "card_print_id": "5a940990-afc3-4cc2-8f28-daafc8f4a27d",
+      "catalog_name": "ダークライ",
+      "catalog_coordinate": "091",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/jp-dp4-10091-dp4/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10091-s.webp",
+          "official_id": "10091",
+          "name": "ダークライ",
+          "printed_label": null
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-096",
+      "card_print_id": "5cbfc75f-dcc0-4d40-aa7c-6975d3cebc17",
+      "catalog_name": "オニスズメ",
+      "catalog_coordinate": "096",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/spearow-md-74/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10096-s.webp",
+          "official_id": "10096",
+          "name": "オニスズメ",
+          "printed_label": "#DPBP#021"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-080",
+      "card_print_id": "5d3097a7-f273-4bcc-9273-d0229d71bffc",
+      "catalog_name": "カブト",
+      "catalog_coordinate": "080",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/kabuto-md-67/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10080-s.webp",
+          "official_id": "10080",
+          "name": "カブト",
+          "printed_label": "#DPBP#170"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-073",
+      "card_print_id": "5ee56680-3d7e-48ad-86ed-05fde0622df3",
+      "catalog_name": "サーナイト",
+      "catalog_coordinate": "073",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/gardevoir-sw-7/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10073-s.webp",
+          "official_id": "10073",
+          "name": "サーナイト",
+          "printed_label": "#DPBP#332"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-110",
+      "card_print_id": "60ec3358-6735-4420-b1c1-4a8c420c34ab",
+      "catalog_name": "ブルー",
+      "catalog_coordinate": "110",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/snubbull-ge-84/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10110-s.webp",
+          "official_id": "10110",
+          "name": "ブルー",
+          "printed_label": "#DPBP#265"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-028",
+      "card_print_id": "638f1ccd-64fb-4528-b160-9c2f52a191ca",
+      "catalog_name": "クラブ",
+      "catalog_coordinate": "028",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/krabby-ge-75/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10028-s.webp",
+          "official_id": "10028",
+          "name": "クラブ",
+          "printed_label": "#DPBP#107"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-088",
+      "card_print_id": "654e3bdf-7652-4b69-b129-36e5304ff9ff",
+      "catalog_name": "ブラッキー",
+      "catalog_coordinate": "088",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/umbreon-md-32/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10088-s.webp",
+          "official_id": "10088",
+          "name": "ブラッキー",
+          "printed_label": "#DPBP#164"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-053",
+      "card_print_id": "6752210b-ce80-4a8e-a8a5-5d35ec896162",
+      "catalog_name": "マニューラ",
+      "catalog_coordinate": "053",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/weavile-sw-40/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10053-s.webp",
+          "official_id": "10053",
+          "name": "マニューラ",
+          "printed_label": null
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-124",
+      "card_print_id": "713a6610-e2f4-4156-9dfb-e7da718b8b0d",
+      "catalog_name": "こうらの化石",
+      "catalog_coordinate": "124",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/dome-fossil-md-89/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10124-s.webp",
+          "official_id": "10124",
+          "name": "こうらの化石",
+          "printed_label": null
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-093",
+      "card_print_id": "72f4cfa8-84a6-469e-a307-d665f68e8636",
+      "catalog_name": "ハッサム",
+      "catalog_coordinate": "093",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/scizor-md-29/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10093-s.webp",
+          "official_id": "10093",
+          "name": "ハッサム",
+          "printed_label": "#DPBP#142"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-011",
+      "card_print_id": "75348062-9c31-4f63-8876-b182887d857c",
+      "catalog_name": "リーフィア",
+      "catalog_coordinate": "011",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/leafeon-md-99/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10011-s.webp",
+          "official_id": "10011",
+          "name": "リーフィア",
+          "printed_label": null
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-089",
+      "card_print_id": "77a5a8e1-2c81-44cb-8262-d56c1aca3f9d",
+      "catalog_name": "ヘルガー",
+      "catalog_coordinate": "089",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/houndoom-ge-18/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10089-s.webp",
+          "official_id": "10089",
+          "name": "ヘルガー",
+          "printed_label": "#DPBP#287"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-131",
+      "card_print_id": "7a5d9c4b-85d5-4c35-b80a-3227ee4ee721",
+      "catalog_name": "月光のスタジアム",
+      "catalog_coordinate": "131",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/moonlight-stadium-ge-100/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10131-s.webp",
+          "official_id": "10131",
+          "name": "月光のスタジアム",
+          "printed_label": null
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-042",
+      "card_print_id": "7bd19cb1-8ec5-487e-a6e0-3c925ae0bf21",
+      "catalog_name": "ペリッパー",
+      "catalog_coordinate": "042",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/pelipper-ge-48/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10042-s.webp",
+          "official_id": "10042",
+          "name": "ペリッパー",
+          "printed_label": "#DPBP#329"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-027",
+      "card_print_id": "7eb3617a-c8b1-4b1c-9ec7-231a9b278255",
+      "catalog_name": "ヤドラン",
+      "catalog_coordinate": "027",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/slowbro-ge-54/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10027-s.webp",
+          "official_id": "10027",
+          "name": "ヤドラン",
+          "printed_label": "#DPBP#086"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-050",
+      "card_print_id": "86651c8d-fdd8-40cc-95c7-310929946b06",
+      "catalog_name": "ジーランス",
+      "catalog_coordinate": "050",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/relicanth-ge-51/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10050-s.webp",
+          "official_id": "10050",
+          "name": "ジーランス",
+          "printed_label": "#DPBP#427"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-016",
+      "card_print_id": "869b9dc9-b7db-42dc-a271-001fe4d9d4ee",
+      "catalog_name": "イルミーゼ",
+      "catalog_coordinate": "016",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/illumise-ge-71/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10016-s.webp",
+          "official_id": "10016",
+          "name": "イルミーゼ",
+          "printed_label": "#DPBP#365"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-067",
+      "card_print_id": "86bdd80b-327c-44d6-bf69-65ae5da694cf",
+      "catalog_name": "アンノーン[F]",
+      "catalog_coordinate": "067",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/unown-f-ge-56/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10067-s.webp",
+          "official_id": "10067",
+          "name": "アンノーン[F]",
+          "printed_label": "#DPBP#234"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-066",
+      "card_print_id": "892a3cc3-5272-4c66-bc3b-fdd276ff67f2",
+      "catalog_name": "ミュウツー",
+      "catalog_coordinate": "066",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/jp-dp4-10066-dp4/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10066-s.webp",
+          "official_id": "10066",
+          "name": "ミュウツー",
+          "printed_label": "#DPBP#181"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-014",
+      "card_print_id": "89e93855-0d80-4c1d-b650-ae0364fb5c1d",
+      "catalog_name": "ジュカイン",
+      "catalog_coordinate": "014",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/sceptile-ge-8/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10014-s.webp",
+          "official_id": "10014",
+          "name": "ジュカイン",
+          "printed_label": "#DPBP#304"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-121",
+      "card_print_id": "8a1a28f1-7069-470a-a757-727515a60aec",
+      "catalog_name": "ラティオス",
+      "catalog_coordinate": "121",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/latios-ge-23/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10121-s.webp",
+          "official_id": "10121",
+          "name": "ラティオス",
+          "printed_label": "#DPBP#439"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-001",
+      "card_print_id": "8c2c466c-4380-4d68-b358-4e2e0a9aa5e3",
+      "catalog_name": "キャタピー",
+      "catalog_coordinate": "001",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/caterpie-ge-63/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10001-s.webp",
+          "official_id": "10001",
+          "name": "キャタピー",
+          "printed_label": "#DPBP#010"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-120",
+      "card_print_id": "8e7707b0-af69-4948-8523-585d94211861",
+      "catalog_name": "ラティアス",
+      "catalog_coordinate": "120",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/latias-ge-22/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10120-s.webp",
+          "official_id": "10120",
+          "name": "ラティアス",
+          "printed_label": "#DPBP#438"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-065",
+      "card_print_id": "8eb0a52d-7ca9-4be2-ba3c-3e67313ceda1",
+      "catalog_name": "エーフィ",
+      "catalog_coordinate": "065",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/espeon-md-18/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10065-s.webp",
+          "official_id": "10065",
+          "name": "エーフィ",
+          "printed_label": "#DPBP#163"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-083",
+      "card_print_id": "8eb57bcb-1dc5-4688-a351-416cf25f0642",
+      "catalog_name": "ハリテヤマ",
+      "catalog_coordinate": "083",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/hariyama-ge-41/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10083-s.webp",
+          "official_id": "10083",
+          "name": "ハリテヤマ",
+          "printed_label": "#DPBP#348"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-020",
+      "card_print_id": "8f75e23e-806d-4533-88cd-70dc16f96e75",
+      "catalog_name": "マグマッグ",
+      "catalog_coordinate": "020",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/slugma-ge-83/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10020-s.webp",
+          "official_id": "10020",
+          "name": "マグマッグ",
+          "printed_label": "#DPBP#274"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-082",
+      "card_print_id": "91a451b3-9462-4781-bc15-d422778970f7",
+      "catalog_name": "マクノシタ",
+      "catalog_coordinate": "082",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/makuhita-ge-78/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10082-s.webp",
+          "official_id": "10082",
+          "name": "マクノシタ",
+          "printed_label": "#DPBP#347"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-063",
+      "card_print_id": "93a5ac46-54ac-42e8-a64e-461695d37c78",
+      "catalog_name": "ドガース",
+      "catalog_coordinate": "063",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/koffing-ge-74/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10063-s.webp",
+          "official_id": "10063",
+          "name": "ドガース",
+          "printed_label": "#DPBP#121"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-043",
+      "card_print_id": "94f89814-5859-4795-a256-4e6bc49febe7",
+      "catalog_name": "ホエルコ",
+      "catalog_coordinate": "043",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/wailmer-ge-58/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10043-s.webp",
+          "official_id": "10043",
+          "name": "ホエルコ",
+          "printed_label": "#DPBP#373"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-108",
+      "card_print_id": "99499ad9-9b6f-45ad-8d35-74138653069e",
+      "catalog_name": "トゲチック",
+      "catalog_coordinate": "108",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/togetic-ge-55/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10108-s.webp",
+          "official_id": "10108",
+          "name": "トゲチック",
+          "printed_label": "#DPBP#203"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-103",
+      "card_print_id": "9c9600ed-54e7-496d-ae42-3b7f616dcbcc",
+      "catalog_name": "ポリゴン",
+      "catalog_coordinate": "103",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/porygon-ge-81/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10103-s.webp",
+          "official_id": "10103",
+          "name": "ポリゴン",
+          "printed_label": "#DPBP#165"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-017",
+      "card_print_id": "9c9abd14-264d-4655-96cf-2ae9527299ea",
+      "catalog_name": "サボネア",
+      "catalog_coordinate": "017",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/cacnea-ge-62/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10017-s.webp",
+          "official_id": "10017",
+          "name": "サボネア",
+          "printed_label": "#DPBP#384"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-003",
+      "card_print_id": "9ce3e818-bf23-4b8e-9234-df1a97d9434e",
+      "catalog_name": "バタフリー",
+      "catalog_coordinate": "003",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/butterfree-ge-14/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10003-s.webp",
+          "official_id": "10003",
+          "name": "バタフリー",
+          "printed_label": "#DPBP#012"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-132",
+      "card_print_id": "9d140777-acda-442b-9b0d-b3391439785d",
+      "catalog_name": "夜明けのスタジアム",
+      "catalog_coordinate": "132",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/dawn-stadium-md-79/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10132-s.webp",
+          "official_id": "10132",
+          "name": "夜明けのスタジアム",
+          "printed_label": null
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-079",
+      "card_print_id": "9ee7df4a-ceaf-4ae2-a461-8f7d72a19879",
+      "catalog_name": "オコリザル",
+      "catalog_coordinate": "079",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/primeape-ge-27/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10079-s.webp",
+          "official_id": "10079",
+          "name": "オコリザル",
+          "printed_label": "#DPBP#062"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-136",
+      "card_print_id": "9ff27203-6247-4690-9aa8-b6cfb0c2f4ea",
+      "catalog_name": "エレブー",
+      "catalog_coordinate": "136",
+      "candidate_count": 0,
+      "candidates": []
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-009",
+      "card_print_id": "a0af053b-a5ce-43a3-8135-f565d55a278f",
+      "catalog_name": "ストライク",
+      "catalog_coordinate": "009",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/scyther-md-46/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10009-s.webp",
+          "official_id": "10009",
+          "name": "ストライク",
+          "printed_label": "#DPBP#141"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-076",
+      "card_print_id": "a8230f4e-eb4b-428c-88ba-3027d3481994",
+      "catalog_name": "クレセリア",
+      "catalog_coordinate": "076",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/jp-dp4-10076-dp4/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10076-s.webp",
+          "official_id": "10076",
+          "name": "クレセリア",
+          "printed_label": "#DPBP#527"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-034",
+      "card_print_id": "a8439fd1-846e-4ba4-9ec0-ec131a14f766",
+      "catalog_name": "オムナイト",
+      "catalog_coordinate": "034",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/omanyte-md-69/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10034-s.webp",
+          "official_id": "10034",
+          "name": "オムナイト",
+          "printed_label": "#DPBP#168"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-021",
+      "card_print_id": "a9477142-ad33-41e7-bfc4-139dc7749003",
+      "catalog_name": "マグカルゴ",
+      "catalog_coordinate": "021",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/magcargo-ge-45/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10021-s.webp",
+          "official_id": "10021",
+          "name": "マグカルゴ",
+          "printed_label": "#DPBP#275"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-117",
+      "card_print_id": "ab4baf51-bb9e-4813-b9eb-572e6a19bec8",
+      "catalog_name": "チルット",
+      "catalog_coordinate": "117",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/swablu-ge-86/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10117-s.webp",
+          "official_id": "10117",
+          "name": "チルット",
+          "printed_label": "#DPBP#386"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-026",
+      "card_print_id": "ab6f70b7-83ce-491a-8488-acd1ed63059b",
+      "catalog_name": "ヤドン",
+      "catalog_coordinate": "026",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/slowpoke-ge-82/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10026-s.webp",
+          "official_id": "10026",
+          "name": "ヤドン",
+          "printed_label": "#DPBP#085"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-005",
+      "card_print_id": "ae26ea99-ade1-4d10-a364-cf0e3b5ac014",
+      "catalog_name": "コクーン",
+      "catalog_coordinate": "005",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/kakuna-ge-73/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10005-s.webp",
+          "official_id": "10005",
+          "name": "コクーン",
+          "printed_label": "#DPBP#014"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-068",
+      "card_print_id": "af629332-5bcc-4ab8-9541-36cf4eba331f",
+      "catalog_name": "アンノーン[G]",
+      "catalog_coordinate": "068",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/unown-g-ge-57/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10068-s.webp",
+          "official_id": "10068",
+          "name": "アンノーン[G]",
+          "printed_label": "#DPBP#235"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-106",
+      "card_print_id": "afeee703-45d4-4eda-a5e4-8733c6db824d",
+      "catalog_name": "プテラ",
+      "catalog_coordinate": "106",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/aerodactyl-md-15/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10106-s.webp",
+          "official_id": "10106",
+          "name": "プテラ",
+          "printed_label": "#DPBP#172"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-100",
+      "card_print_id": "b008e744-711f-406a-bdb6-eb9597ca461b",
+      "catalog_name": "プクリン",
+      "catalog_coordinate": "100",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/wigglytuff-ge-32/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10100-s.webp",
+          "official_id": "10100",
+          "name": "プクリン",
+          "printed_label": "#DPBP#043"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-084",
+      "card_print_id": "b42006c0-04a5-448e-bcd7-339ef87c21a4",
+      "catalog_name": "ルナトーン",
+      "catalog_coordinate": "084",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/lunatone-ge-76/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10084-s.webp",
+          "official_id": "10084",
+          "name": "ルナトーン",
+          "printed_label": "#DPBP#390"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-078",
+      "card_print_id": "b4e4a0e0-af24-44f9-b4a8-d0a81ba8aa76",
+      "catalog_name": "マンキー",
+      "catalog_coordinate": "078",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/mankey-ge-79/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10078-s.webp",
+          "official_id": "10078",
+          "name": "マンキー",
+          "printed_label": "#DPBP#061"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-030",
+      "card_print_id": "b68c97b2-66ff-4440-aa79-04d9bbbec77c",
+      "catalog_name": "ラプラス",
+      "catalog_coordinate": "030",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/lapras-ge-21/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10030-s.webp",
+          "official_id": "10030",
+          "name": "ラプラス",
+          "printed_label": "#DPBP#155"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-033",
+      "card_print_id": "b7545fa4-8922-4ddc-bc7c-41e5da9a2520",
+      "catalog_name": "グレイシア",
+      "catalog_coordinate": "033",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/glaceon-md-98/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10033-s.webp",
+          "official_id": "10033",
+          "name": "グレイシア",
+          "printed_label": null
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-044",
+      "card_print_id": "b7d90e0e-3072-4af7-a87a-64c03190063a",
+      "catalog_name": "ホエルオー",
+      "catalog_coordinate": "044",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/wailord-ge-30/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10044-s.webp",
+          "official_id": "10044",
+          "name": "ホエルオー",
+          "printed_label": "#DPBP#374"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-047",
+      "card_print_id": "ba9c1d04-b70d-4e65-a136-abeb5ad86d43",
+      "catalog_name": "パールル",
+      "catalog_coordinate": "047",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/clamperl-ge-64/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10047-s.webp",
+          "official_id": "10047",
+          "name": "パールル",
+          "printed_label": "#DPBP#424"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-116",
+      "card_print_id": "bfd5b8f5-b6aa-477b-bb1c-bb0029743b25",
+      "catalog_name": "バクオング",
+      "catalog_coordinate": "116",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/exploud-ge-17/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10116-s.webp",
+          "official_id": "10116",
+          "name": "バクオング",
+          "printed_label": "#DPBP#346"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-069",
+      "card_print_id": "c148dddb-57c2-49fc-9c9d-447e5399e6b5",
+      "catalog_name": "アンノーン[H]",
+      "catalog_coordinate": "069",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/unown-h-ge-29/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10069-s.webp",
+          "official_id": "10069",
+          "name": "アンノーン[H]",
+          "printed_label": "#DPBP#236"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-029",
+      "card_print_id": "ca018804-3f9e-4b76-b3d5-15e41b95e706",
+      "catalog_name": "キングラー",
+      "catalog_coordinate": "029",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/kingler-ge-20/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10029-s.webp",
+          "official_id": "10029",
+          "name": "キングラー",
+          "printed_label": "#DPBP#108"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-062",
+      "card_print_id": "cbd9f026-879a-4e95-bfd4-fc477ab96593",
+      "catalog_name": "スリーパー",
+      "catalog_coordinate": "062",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/hypno-ge-19/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10062-s.webp",
+          "official_id": "10062",
+          "name": "スリーパー",
+          "printed_label": "#DPBP#106"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-099",
+      "card_print_id": "cc1c9dbf-7d3d-4a4f-bcab-5699cdf56c3b",
+      "catalog_name": "プリン",
+      "catalog_coordinate": "099",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/jigglypuff-ge-72/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10099-s.webp",
+          "official_id": "10099",
+          "name": "プリン",
+          "printed_label": "#DPBP#042"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-018",
+      "card_print_id": "cdf8bcb5-965e-450b-be84-5f4c5cc1308c",
+      "catalog_name": "ブースター",
+      "catalog_coordinate": "018",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/flareon-md-19/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10018-s.webp",
+          "official_id": "10018",
+          "name": "ブースター",
+          "printed_label": "#DPBP#159"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-054",
+      "card_print_id": "ce20a624-e85c-4525-ab32-967e5acc8c79",
+      "catalog_name": "サンダース",
+      "catalog_coordinate": "054",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/jolteon-md-23/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10054-s.webp",
+          "official_id": "10054",
+          "name": "サンダース",
+          "printed_label": "#DPBP#162"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-048",
+      "card_print_id": "d04d1ed4-4f2c-46ba-9863-780af748ddc4",
+      "catalog_name": "ハンテール",
+      "catalog_coordinate": "048",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/huntail-ge-42/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10048-s.webp",
+          "official_id": "10048",
+          "name": "ハンテール",
+          "printed_label": "#DPBP#425"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-123",
+      "card_print_id": "d4b338e7-4a6a-4ee3-aec0-b29124eae548",
+      "catalog_name": "かいの化石",
+      "catalog_coordinate": "123",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/helix-fossil-md-91/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10123-s.webp",
+          "official_id": "10123",
+          "name": "かいの化石",
+          "printed_label": null
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-006",
+      "card_print_id": "d510e101-1a1c-4cca-b6f0-088706f06be0",
+      "catalog_name": "スピアー",
+      "catalog_coordinate": "006",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/beedrill-ge-13/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10006-s.webp",
+          "official_id": "10006",
+          "name": "スピアー",
+          "printed_label": "#DPBP#015"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-056",
+      "card_print_id": "d6ecf0df-6bf5-412e-875c-1f50ef178756",
+      "catalog_name": "ロトム",
+      "catalog_coordinate": "056",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/rotom-ge-7/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10056-s.webp",
+          "official_id": "10056",
+          "name": "ロトム",
+          "printed_label": "#DPBP#518"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-126",
+      "card_print_id": "d992afe3-a697-494b-aab0-2e43bc618b2c",
+      "catalog_name": "ふしぎなアメ",
+      "catalog_coordinate": "126",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/rare-candy-ge-102/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10126-s.webp",
+          "official_id": "10126",
+          "name": "ふしぎなアメ",
+          "printed_label": null
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-129",
+      "card_print_id": "da7c5177-a4f2-467a-a36b-0930f2ae1f8d",
+      "catalog_name": "たべのこし",
+      "catalog_coordinate": "129",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/leftovers-ge-99/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10129-s.webp",
+          "official_id": "10129",
+          "name": "たべのこし",
+          "printed_label": null
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-022",
+      "card_print_id": "ddaf6798-b4ac-480e-98ac-ee2514525f26",
+      "catalog_name": "デルビル",
+      "catalog_coordinate": "022",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/houndour-ge-69/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10022-s.webp",
+          "official_id": "10022",
+          "name": "デルビル",
+          "printed_label": "#DPBP#286"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-004",
+      "card_print_id": "dec0eefd-2042-4edf-b8cc-37267d99abfa",
+      "catalog_name": "ビードル",
+      "catalog_coordinate": "004",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/weedle-ge-93/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10004-s.webp",
+          "official_id": "10004",
+          "name": "ビードル",
+          "printed_label": "#DPBP#013"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-128",
+      "card_print_id": "df6604d2-6843-4ee6-924c-5928c7d7eca6",
+      "catalog_name": "おまもりこばん",
+      "catalog_coordinate": "128",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/amulet-coin-ge-97/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10128-s.webp",
+          "official_id": "10128",
+          "name": "おまもりこばん",
+          "printed_label": null
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-037",
+      "card_print_id": "e0bdf68d-c0fa-4ca0-bb28-a8a3f5829c15",
+      "catalog_name": "デリバード",
+      "catalog_coordinate": "037",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/delibird-ge-36/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10037-s.webp",
+          "official_id": "10037",
+          "name": "デリバード",
+          "printed_label": "#DPBP#282"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-105",
+      "card_print_id": "e25c0baa-b6dd-4a3a-879e-215dadae91c3",
+      "catalog_name": "ポリゴンZ",
+      "catalog_coordinate": "105",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/jp-dp4-10105-dp4/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10105-s.webp",
+          "official_id": "10105",
+          "name": "ポリゴンZ",
+          "printed_label": "#DPBP#167"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-122",
+      "card_print_id": "e29e89d3-59ca-40dd-8b75-740be5894897",
+      "catalog_name": "ガブリアス",
+      "catalog_coordinate": "122",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/garchomp-md-97/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10122-s.webp",
+          "official_id": "10122",
+          "name": "ガブリアス",
+          "printed_label": null
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-045",
+      "card_print_id": "e44753ef-a6bd-443b-81a0-8d8dc6e939f6",
+      "catalog_name": "ヒンバス",
+      "catalog_coordinate": "045",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/feebas-ge-67/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10045-s.webp",
+          "official_id": "10045",
+          "name": "ヒンバス",
+          "printed_label": "#DPBP#402"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-101",
+      "card_print_id": "e5075573-27d3-4d43-a8bc-8540673510cc",
+      "catalog_name": "ガルーラ",
+      "catalog_coordinate": "101",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/kangaskhan-md-38/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10101-s.webp",
+          "official_id": "10101",
+          "name": "ガルーラ",
+          "printed_label": "#DPBP#131"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-118",
+      "card_print_id": "e51aa0ce-fd42-42ad-83f6-6ddb9df0f653",
+      "catalog_name": "チルタリス",
+      "catalog_coordinate": "118",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/altaria-ge-12/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10118-s.webp",
+          "official_id": "10118",
+          "name": "チルタリス",
+          "printed_label": "#DPBP#387"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-061",
+      "card_print_id": "ec66bd32-4eba-4ca9-8d9d-ff6fb478b3a2",
+      "catalog_name": "スリープ",
+      "catalog_coordinate": "061",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/drowzee-ge-65/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10061-s.webp",
+          "official_id": "10061",
+          "name": "スリープ",
+          "printed_label": "#DPBP#105"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-095",
+      "card_print_id": "ee343bd1-2c63-4861-9819-2a62f66adb52",
+      "catalog_name": "クチート",
+      "catalog_coordinate": "095",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/mawile-ge-24/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10095-s.webp",
+          "official_id": "10095",
+          "name": "クチート",
+          "printed_label": "#DPBP#354"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-112",
+      "card_print_id": "ef6f4866-73b2-4824-9b06-257dbac99f3c",
+      "catalog_name": "ジグザグマ",
+      "catalog_coordinate": "112",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/zigzagoon-ge-96/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10112-s.webp",
+          "official_id": "10112",
+          "name": "ジグザグマ",
+          "printed_label": "#DPBP#313"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-130",
+      "card_print_id": "f3b95c12-74e1-45c9-bfef-9a1988e4d0d8",
+      "catalog_name": "スージーの抽選",
+      "catalog_coordinate": "130",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/felicitys-drawing-ge-98/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10130-s.webp",
+          "official_id": "10130",
+          "name": "スージーの抽選",
+          "printed_label": null
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-052",
+      "card_print_id": "f3d30fea-eec5-4c48-917f-1653b4f07c72",
+      "catalog_name": "フィオネ",
+      "catalog_coordinate": "052",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/jp-dp4-10052-dp4/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10052-s.webp",
+          "official_id": "10052",
+          "name": "フィオネ",
+          "printed_label": "#DPBP#528"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-097",
+      "card_print_id": "f7f2f540-7ee6-4a72-8b42-4d9fa7914a10",
+      "catalog_name": "オニドリル",
+      "catalog_coordinate": "097",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/fearow-md-36/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10097-s.webp",
+          "official_id": "10097",
+          "name": "オニドリル",
+          "printed_label": "#DPBP#022"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-013",
+      "card_print_id": "f9485646-46da-4912-8640-d97ee0ec97d6",
+      "catalog_name": "ジュプトル",
+      "catalog_coordinate": "013",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/grovyle-ge-40/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10013-s.webp",
+          "official_id": "10013",
+          "name": "ジュプトル",
+          "printed_label": "#DPBP#303"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-104",
+      "card_print_id": "f958e07c-5225-4b2e-9601-eb8fa75c185d",
+      "catalog_name": "ポリゴン2",
+      "catalog_coordinate": "104",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/porygon2-ge-49/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10104-s.webp",
+          "official_id": "10104",
+          "name": "ポリゴン2",
+          "printed_label": "#DPBP#166"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-109",
+      "card_print_id": "f999ba68-ed8d-41d7-ae65-ccc0f52d4fc8",
+      "catalog_name": "トゲキッス",
+      "catalog_coordinate": "109",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/togekiss-ge-11/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10109-s.webp",
+          "official_id": "10109",
+          "name": "トゲキッス",
+          "printed_label": "#DPBP#204"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-025",
+      "card_print_id": "fbd9b8a1-7971-4f9b-b8c0-89d2026c0efe",
+      "catalog_name": "バシャーモ",
+      "catalog_coordinate": "025",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/blaziken-ge-1/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10025-s.webp",
+          "official_id": "10025",
+          "name": "バシャーモ",
+          "printed_label": "#DPBP#307"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-036",
+      "card_print_id": "fc1d2bc1-23e6-45dd-9acd-ed73504cdb9a",
+      "catalog_name": "フリーザー",
+      "catalog_coordinate": "036",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/articuno-md-1/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10036-s.webp",
+          "official_id": "10036",
+          "name": "フリーザー",
+          "printed_label": "#DPBP#175"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-070",
+      "card_print_id": "fc4e9a2b-5367-47c2-bd91-2eb0a3f787de",
+      "catalog_name": "アンノーン[L]",
+      "catalog_coordinate": "070",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/unown-l-ge-91/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10070-s.webp",
+          "official_id": "10070",
+          "name": "アンノーン[L]",
+          "printed_label": "#DPBP#240"
+        }
+      ]
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-038",
+      "card_print_id": "ff408a7c-d110-472c-8e19-a2fc5c02886f",
+      "catalog_name": "ミズゴロウ",
+      "catalog_coordinate": "038",
+      "candidate_count": 1,
+      "candidates": [
+        {
+          "href": "https://www.pokemon-france.com/ja/cards/mudkip-ge-80/",
+          "source_image": "https://cdn.pokemon-france.com/wp-content/uploads/tcg/ja/pcj/DP4/10038-s.webp",
+          "official_id": "10038",
+          "name": "ミズゴロウ",
+          "printed_label": "#DPBP#308"
+        }
+      ]
+    }
+  ]
+}

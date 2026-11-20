@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:20:15.971Z",
+  "gv_id": "GV-PK-JPN-DP4-049",
+  "card_print_id": "0e282ae3-8775-4030-ae07-58e981b68e1a",
+  "catalog_coordinate": "049",
+  "catalog_name": "サクラビス",
+  "official_id": "10049",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10049/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10049/regu/all",
+    "status": 200,
+    "sha256": "585580596718f1d5dba08b6bb69570dbbbc7fd9d5d10a907da910ec94912afed",
+    "bytes": 10686
+  },
+  "heading": "サクラビス",
+  "artist": "Ken Sugimori",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010049_P_SAKURABISU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010049_P_SAKURABISU.jpg",
+    "status": 200,
+    "sha256": "baff58993a87fb4d997de32fd4cc09d8a9d580a08d52efba2772f7dbec1ddb37",
+    "bytes": 59828,
+    "catalog_path_hash_prefix": "baff58993a87fb4d997de32f",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

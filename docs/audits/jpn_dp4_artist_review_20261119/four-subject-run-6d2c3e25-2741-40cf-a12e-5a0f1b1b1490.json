@@ -1,0 +1,25 @@
+{
+  "version": "JPN_DP4_SUBJECT_REPAIR_V1",
+  "run_id": "6d2c3e25-2741-40cf-a12e-5a0f1b1b1490",
+  "mode": "inspect",
+  "package_fingerprint": "fdc3bf85c409901e98b84ca304f8101c4564940a13a0aa3e0bcbdfa4182f9a8c",
+  "writer_fingerprint": "4317f67c10129c1a1f8cbe96a882e463acaee27774065d531685791f26a8922d",
+  "started_at": "2026-11-20T05:50:43.830Z",
+  "status": "preflight_passed",
+  "stages": [
+    {
+      "name": "source_identity_and_ownership_verified",
+      "at": "2026-11-20T05:50:52.209Z"
+    },
+    {
+      "name": "preflight_passed",
+      "at": "2026-11-20T05:50:52.480Z"
+    }
+  ],
+  "sanity": {
+    "parents": 173837,
+    "sets": 3420,
+    "traits": 47409
+  },
+  "finished_at": "2026-11-20T05:50:52.480Z"
+}

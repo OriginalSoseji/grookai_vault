@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:20:46.451Z",
+  "gv_id": "GV-PK-JPN-DP4-031",
+  "card_print_id": "25ab646f-dcf2-4b1b-9384-0912aca9910f",
+  "catalog_coordinate": "031",
+  "catalog_name": "シャワーズ",
+  "official_id": "10031",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10031/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10031/regu/all",
+    "status": 200,
+    "sha256": "a82e874eeabecff4c38d8602463f5ac1ab6717e3df8951dc33055676a6b5ba79",
+    "bytes": 15591
+  },
+  "heading": "シャワーズ",
+  "artist": "Kagemaru Himeno",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010031_P_SHAWAZU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010031_P_SHAWAZU.jpg",
+    "status": 200,
+    "sha256": "f3fff4684f84d9100b1adb93d65cc8c5868c0942e88df853e1b4d4338b63d116",
+    "bytes": 60746,
+    "catalog_path_hash_prefix": "f3fff4684f84d9100b1adb93",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

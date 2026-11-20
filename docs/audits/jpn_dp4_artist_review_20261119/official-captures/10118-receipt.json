@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:28:10.091Z",
+  "gv_id": "GV-PK-JPN-DP4-118",
+  "card_print_id": "e51aa0ce-fd42-42ad-83f6-6ddb9df0f653",
+  "catalog_coordinate": "118",
+  "catalog_name": "チルタリス",
+  "official_id": "10118",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10118/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10118/regu/all",
+    "status": 200,
+    "sha256": "1255eb4e6a187f6bc2dfca4fb55d3c98eb451080b21c618f7ffb4c5addb32aa0",
+    "bytes": 10951
+  },
+  "heading": "チルタリス",
+  "artist": "Kagemaru Himeno",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010118_P_CHIRUTARISU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010118_P_CHIRUTARISU.jpg",
+    "status": 200,
+    "sha256": "91485af2a89783db7e0edb77bda4f1348e7ef474d07887d6826b142edf142587",
+    "bytes": 49514,
+    "catalog_path_hash_prefix": "91485af2a89783db7e0edb77",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

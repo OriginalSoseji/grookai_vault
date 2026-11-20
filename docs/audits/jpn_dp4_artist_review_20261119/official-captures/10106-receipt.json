@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:26:49.190Z",
+  "gv_id": "GV-PK-JPN-DP4-106",
+  "card_print_id": "afeee703-45d4-4eda-a5e4-8733c6db824d",
+  "catalog_coordinate": "106",
+  "catalog_name": "プテラ",
+  "official_id": "10106",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10106/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10106/regu/all",
+    "status": 200,
+    "sha256": "a4a2f7765c91e1d06c95a4f431afc8057a0c8c8e9ff266b7cc4c45266bc80b5c",
+    "bytes": 10335
+  },
+  "heading": "プテラ",
+  "artist": "Kouki Saitou",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010106_P_PUTERA.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010106_P_PUTERA.jpg",
+    "status": 200,
+    "sha256": "a3195a07ee35472e4d03b0786f2e21f96892d5f503d57fe43dcbf515e918b6e0",
+    "bytes": 46762,
+    "catalog_path_hash_prefix": "a3195a07ee35472e4d03b078",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

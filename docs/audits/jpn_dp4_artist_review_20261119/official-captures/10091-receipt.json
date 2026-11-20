@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:22:16.337Z",
+  "gv_id": "GV-PK-JPN-DP4-091",
+  "card_print_id": "5a940990-afc3-4cc2-8f28-daafc8f4a27d",
+  "catalog_coordinate": "091",
+  "catalog_name": "ダークライ",
+  "official_id": "10091",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10091/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10091/regu/all",
+    "status": 200,
+    "sha256": "df171a488a975422af4d48b19a2967d1454e45bac40edc81c28759509ad553ae",
+    "bytes": 9882
+  },
+  "heading": "ダークライ",
+  "artist": "Masakazu Fukuda",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010091_P_DAKURAI.gif",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010091_P_DAKURAI.gif",
+    "status": 200,
+    "sha256": "259317b2b0afb3475117667fa4645bbed649c36d1bca17c1fe9471a637fb7adf",
+    "bytes": 57404,
+    "catalog_path_hash_prefix": "259317b2b0afb3475117667f",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

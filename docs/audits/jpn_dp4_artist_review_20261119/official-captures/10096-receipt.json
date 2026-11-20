@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:22:19.064Z",
+  "gv_id": "GV-PK-JPN-DP4-096",
+  "card_print_id": "5cbfc75f-dcc0-4d40-aa7c-6975d3cebc17",
+  "catalog_coordinate": "096",
+  "catalog_name": "オニスズメ",
+  "official_id": "10096",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10096/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10096/regu/all",
+    "status": 200,
+    "sha256": "1059ce594ac9e515da6e53e79a0e1c3fc9659361447765060908d5efbf1e9f6a",
+    "bytes": 10335
+  },
+  "heading": "オニスズメ",
+  "artist": "Ken Sugimori",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010096_P_ONISUZUME.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010096_P_ONISUZUME.jpg",
+    "status": 200,
+    "sha256": "a3f9c2a10056f156f9d5f543c377bdb0fdc01bb360465e5e9a54ac6adec8050d",
+    "bytes": 43311,
+    "catalog_path_hash_prefix": "a3f9c2a10056f156f9d5f543",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

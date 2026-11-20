@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:20:43.316Z",
+  "gv_id": "GV-PK-JPN-DP4-086",
+  "card_print_id": "211379d1-87cc-44ec-87ec-9b51d3a89072",
+  "catalog_coordinate": "086",
+  "catalog_name": "ヤジロン",
+  "official_id": "10086",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10086/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10086/regu/all",
+    "status": 200,
+    "sha256": "e8293fb27ba21f26edb6d5fe16193589cb93a71aca44702638fed6e540069561",
+    "bytes": 10481
+  },
+  "heading": "ヤジロン",
+  "artist": "Sumiyoshi Kizuki",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010086_P_YAJIRON.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010086_P_YAJIRON.jpg",
+    "status": 200,
+    "sha256": "59569f4bf769eab66748d0102fba688416319fb05ac64b54ef5b8032bcc869fd",
+    "bytes": 57956,
+    "catalog_path_hash_prefix": "59569f4bf769eab66748d010",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

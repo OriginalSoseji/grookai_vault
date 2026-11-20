@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:21:36.844Z",
+  "gv_id": "GV-PK-JPN-DP4-113",
+  "card_print_id": "47e817c5-883b-4577-a6ec-e12d0696efe3",
+  "catalog_coordinate": "113",
+  "catalog_name": "マッスグマ",
+  "official_id": "10113",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10113/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10113/regu/all",
+    "status": 200,
+    "sha256": "9d44579ad676d0649df69aae024ab27177b2e95fe88ecda2610315d5657561dd",
+    "bytes": 10611
+  },
+  "heading": "マッスグマ",
+  "artist": "Kouki Saitou",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010113_P_MASSUGUMA.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010113_P_MASSUGUMA.jpg",
+    "status": 200,
+    "sha256": "46fbf67ad5f42b25e67845844f643d3a4db1e8bff38bb8f7bb0ae155fc005765",
+    "bytes": 47572,
+    "catalog_path_hash_prefix": "46fbf67ad5f42b25e6784584",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

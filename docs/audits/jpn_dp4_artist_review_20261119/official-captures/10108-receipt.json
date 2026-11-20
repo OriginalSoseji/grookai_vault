@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:23:36.846Z",
+  "gv_id": "GV-PK-JPN-DP4-108",
+  "card_print_id": "99499ad9-9b6f-45ad-8d35-74138653069e",
+  "catalog_coordinate": "108",
+  "catalog_name": "トゲチック",
+  "official_id": "10108",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10108/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10108/regu/all",
+    "status": 200,
+    "sha256": "79f5ffa602121b91d661b2f2654e1815dd3c446e16d0d891fe72838cd408472f",
+    "bytes": 10647
+  },
+  "heading": "トゲチック",
+  "artist": "Kagemaru Himeno",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010108_P_TOGECHIKKU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010108_P_TOGECHIKKU.jpg",
+    "status": 200,
+    "sha256": "0405db28833f6e7064991f701e8c262c57d4320719eb22f807e838948481abcc",
+    "bytes": 45968,
+    "catalog_path_hash_prefix": "0405db28833f6e7064991f70",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

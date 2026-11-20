@@ -1,0 +1,11 @@
+{
+  "version": "DP4_FAMILY_CONTAINMENT_INDEPENDENT_READBACK_V1",
+  "verified_at": "2026-11-20T11:47:49.941Z",
+  "status": "passed",
+  "sanity": {
+    "read_only": "on",
+    "parents": 173837
+  },
+  "records": 6,
+  "receipt_id": "177111"
+}

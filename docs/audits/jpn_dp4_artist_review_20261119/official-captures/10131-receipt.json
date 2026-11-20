@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:22:50.139Z",
+  "gv_id": "GV-PK-JPN-DP4-131",
+  "card_print_id": "7a5d9c4b-85d5-4c35-b80a-3227ee4ee721",
+  "catalog_coordinate": "131",
+  "catalog_name": "月光のスタジアム",
+  "official_id": "10131",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10131/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10131/regu/all",
+    "status": 200,
+    "sha256": "b29be921957a6f620af13ea27b6d8b729a973d2f848c7903939fbe28c703c1db",
+    "bytes": 8485
+  },
+  "heading": "月光のスタジアム",
+  "artist": "Ryo Ueda",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010131_T_GEKKOUNOSUTAJIAMU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010131_T_GEKKOUNOSUTAJIAMU.jpg",
+    "status": 200,
+    "sha256": "f9eeaf7463234ed482a9479f1d23bf422c85c100b516a6faaf3831f240e77b11",
+    "bytes": 38979,
+    "catalog_path_hash_prefix": "f9eeaf7463234ed482a9479f",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

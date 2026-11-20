@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:22:21.726Z",
+  "gv_id": "GV-PK-JPN-DP4-080",
+  "card_print_id": "5d3097a7-f273-4bcc-9273-d0229d71bffc",
+  "catalog_coordinate": "080",
+  "catalog_name": "カブト",
+  "official_id": "10080",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10080/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10080/regu/all",
+    "status": 200,
+    "sha256": "0f5ac36410ba7a9023051911c06f023542294ea2ced151991a3ac26903681a4d",
+    "bytes": 10553
+  },
+  "heading": "カブト",
+  "artist": "Midori Harada",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010080_P_KABUTO.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010080_P_KABUTO.jpg",
+    "status": 200,
+    "sha256": "c0aec6e10b66c659322a552326508ff7ce8a67c27e52e56d5e03ae78176a3914",
+    "bytes": 55940,
+    "catalog_path_hash_prefix": "c0aec6e10b66c659322a5523",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:21:59.116Z",
+  "gv_id": "GV-PK-JPN-DP4-087",
+  "card_print_id": "50351416-1b6e-4507-894a-12075d4a0870",
+  "catalog_coordinate": "087",
+  "catalog_name": "ネンドール",
+  "official_id": "10087",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10087/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10087/regu/all",
+    "status": 200,
+    "sha256": "87cb5e4e3030ac9ee66092a0ae96b06fa096f51ff2ccc3e4bb21b2f79765a018",
+    "bytes": 10542
+  },
+  "heading": "ネンドール",
+  "artist": "Midori Harada",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010087_P_NENDORU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010087_P_NENDORU.jpg",
+    "status": 200,
+    "sha256": "f9a65f0832abf7fbb7f563a7b02945fb18334da9cc1a939cf953a32309a763b0",
+    "bytes": 55698,
+    "catalog_path_hash_prefix": "f9a65f0832abf7fbb7f563a7",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

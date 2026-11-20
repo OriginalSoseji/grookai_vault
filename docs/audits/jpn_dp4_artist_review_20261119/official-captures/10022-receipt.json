@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:27:47.676Z",
+  "gv_id": "GV-PK-JPN-DP4-022",
+  "card_print_id": "ddaf6798-b4ac-480e-98ac-ee2514525f26",
+  "catalog_coordinate": "022",
+  "catalog_name": "デルビル",
+  "official_id": "10022",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10022/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10022/regu/all",
+    "status": 200,
+    "sha256": "dae642f8ff18af1b29ae170c18cd2a4e89ddc3508e4dd51388720ed0889f545e",
+    "bytes": 10658
+  },
+  "heading": "デルビル",
+  "artist": "Ken Sugimori",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010022_P_DERUBIRU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010022_P_DERUBIRU.jpg",
+    "status": 200,
+    "sha256": "6b09758b51bca309d2eb9fbf44803d1bf8bbb4a387a7f5dea11cc0e93713f7b0",
+    "bytes": 55652,
+    "catalog_path_hash_prefix": "6b09758b51bca309d2eb9fbf",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

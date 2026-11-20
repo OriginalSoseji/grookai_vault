@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:28:21.052Z",
+  "gv_id": "GV-PK-JPN-DP4-130",
+  "card_print_id": "f3b95c12-74e1-45c9-bfef-9a1988e4d0d8",
+  "catalog_coordinate": "130",
+  "catalog_name": "スージーの抽選",
+  "official_id": "10130",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10130/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10130/regu/all",
+    "status": 200,
+    "sha256": "36067e344306f02d401a49fd51f054c79c1257b61afa1a9e847a730b42614586",
+    "bytes": 8683
+  },
+  "heading": "スージーの抽選",
+  "artist": "Ken Sugimori",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010130_T_SUJINOCHUUSEN.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010130_T_SUJINOCHUUSEN.jpg",
+    "status": 200,
+    "sha256": "28814caeb7f22c83dd1f1f6eee492e3afac2395db6d8f6938161c2566e43cf00",
+    "bytes": 45210,
+    "catalog_path_hash_prefix": "28814caeb7f22c83dd1f1f6e",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:27:56.092Z",
+  "gv_id": "GV-PK-JPN-DP4-037",
+  "card_print_id": "e0bdf68d-c0fa-4ca0-bb28-a8a3f5829c15",
+  "catalog_coordinate": "037",
+  "catalog_name": "デリバード",
+  "official_id": "10037",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10037/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10037/regu/all",
+    "status": 200,
+    "sha256": "f3f16eda7bc52cfe899e2e0e1fb8bf8609c1c77bba6b816579529ce49cb65a43",
+    "bytes": 9898
+  },
+  "heading": "デリバード",
+  "artist": "Masakazu Fukuda",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010037_P_DERIBADO.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010037_P_DERIBADO.jpg",
+    "status": 200,
+    "sha256": "40f0de5e9b39c2f249516d590172445fc545593adba64ce598c0edf7f8a799ca",
+    "bytes": 63428,
+    "catalog_path_hash_prefix": "40f0de5e9b39c2f249516d59",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

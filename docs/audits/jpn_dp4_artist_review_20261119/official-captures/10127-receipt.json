@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:20:26.999Z",
+  "gv_id": "GV-PK-JPN-DP4-127",
+  "card_print_id": "161aacf4-7fe1-4502-b679-f664047d75cd",
+  "catalog_coordinate": "127",
+  "catalog_name": "プレミアボール",
+  "official_id": "10127",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10127/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10127/regu/all",
+    "status": 200,
+    "sha256": "21e5ff4d46cdbd44156966462e3c864368278475be4deb0c738d4651d345b50f",
+    "bytes": 8451
+  },
+  "heading": "プレミアボール",
+  "artist": "Ryo Ueda",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010127_T_PUREMIABORU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010127_T_PUREMIABORU.jpg",
+    "status": 200,
+    "sha256": "310f6474dda9c52437154484b1ac06d64ec31e79b6692d9e191c60d17964ed5a",
+    "bytes": 41127,
+    "catalog_path_hash_prefix": "310f6474dda9c52437154484",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}
