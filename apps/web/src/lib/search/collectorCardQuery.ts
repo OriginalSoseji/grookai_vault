@@ -32,3 +32,8 @@ export function removeCollectorCardQueryFilters(query: string, filters: Collecto
     (text, filter) => text.slice(0, filter.index) + " " + text.slice(filter.index + filter.sourceText.length), query,
   );
 }
+
+export function isCollectorCardQuerySubphrase(filters: readonly CollectorCardQueryFilter[], index: number, length: number) {
+  return filters.some((filter) => length < filter.sourceText.length && index >= filter.index &&
+    index + length <= filter.index + filter.sourceText.length);
+}

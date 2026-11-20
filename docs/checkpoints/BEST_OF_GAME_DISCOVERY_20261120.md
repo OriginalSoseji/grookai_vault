@@ -25,6 +25,17 @@ snapshots; the ten anonymous SDK cases passed again. Verification temporary
 files now use a separately qualified4GiB tmpfs, with commands, assertions,
 selection and timeouts unchanged. No production aliases have been applied.
 
+The complete managed commit gate then passed at
+`d957c361207a1bb41eade937fa4198aaabf2e725`:8,845 contract passes,151 service
+passes, web checks/build, clean native analysis and2,093 native passes with
+the existing declared skips. During the following push gate, PR981 advanced
+main to `d7812fd32c77b7d9f77285d6e8914dc39c53c1f2`. Its eight search/parser
+files do not overlap this task. They are merged locally to satisfy current-main
+ancestry. All29 task-owned and all eight upstream Git blobs matched their respective commits
+before this checkpoint update; the pending push is retained as incomplete and
+normal commit/push validation runs against the combined source. No gate, test
+selection, assertion or timeout is relaxed.
+
 The separate `-BestOfGameDiscoveryBaselineV1` audit passed canonical511,
 all applied source bytes, full governed schemas/security and sanity counts:
 173,837 parents,3,420 sets,47,409 traits and326 Vault projection rows. Direct
