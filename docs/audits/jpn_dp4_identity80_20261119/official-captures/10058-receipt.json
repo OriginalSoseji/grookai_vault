@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:20:21.349Z",
+  "gv_id": "GV-PK-JPN-DP4-058",
+  "card_print_id": "1399e503-fa92-40e1-a9f7-51e0678dabef",
+  "catalog_coordinate": "058",
+  "catalog_name": "アーボ",
+  "official_id": "10058",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10058/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10058/regu/all",
+    "status": 200,
+    "sha256": "0af05e11e392160641f5eabd30bd1fba3a84405244d919b8d6e2287c8eb7747b",
+    "bytes": 10467
+  },
+  "heading": "アーボ",
+  "artist": "Ken Sugimori",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010058_P_ABO.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010058_P_ABO.jpg",
+    "status": 200,
+    "sha256": "726ded48042afd917c539b71d5d88816f9d320ff3bbf24c684795cc728ba111f",
+    "bytes": 50529,
+    "catalog_path_hash_prefix": "726ded48042afd917c539b71",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

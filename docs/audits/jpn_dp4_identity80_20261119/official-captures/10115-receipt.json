@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:21:02.961Z",
+  "gv_id": "GV-PK-JPN-DP4-115",
+  "card_print_id": "2eb62789-69f4-4c5f-9642-755732f1994d",
+  "catalog_coordinate": "115",
+  "catalog_name": "ドゴーム",
+  "official_id": "10115",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10115/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10115/regu/all",
+    "status": 200,
+    "sha256": "b4a81c2dd96107219d423e8f2182a8a462f23522f91cb62f9266e04f9d50df6c",
+    "bytes": 10598
+  },
+  "heading": "ドゴーム",
+  "artist": "Ken Sugimori",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010115_P_DOGOMU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010115_P_DOGOMU.jpg",
+    "status": 200,
+    "sha256": "b6deb383fe31c3cb0d617bb4955cf7293ea972230ef138d07d0efd8a50ce1575",
+    "bytes": 48957,
+    "catalog_path_hash_prefix": "b6deb383fe31c3cb0d617bb4",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

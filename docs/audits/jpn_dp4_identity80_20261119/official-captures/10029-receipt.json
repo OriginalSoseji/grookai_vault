@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:27:17.195Z",
+  "gv_id": "GV-PK-JPN-DP4-029",
+  "card_print_id": "ca018804-3f9e-4b76-b3d5-15e41b95e706",
+  "catalog_coordinate": "029",
+  "catalog_name": "キングラー",
+  "official_id": "10029",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10029/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10029/regu/all",
+    "status": 200,
+    "sha256": "574b3351bd3ced263ba657c5409e7a5d89cbbecb40010bc50e0e888324216137",
+    "bytes": 10500
+  },
+  "heading": "キングラー",
+  "artist": "Mitsuhiro Arita",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010029_P_KINGURA.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010029_P_KINGURA.jpg",
+    "status": 200,
+    "sha256": "37a8fa674405f53950454b067384f11667a4b082588552329758a662f135a28e",
+    "bytes": 59746,
+    "catalog_path_hash_prefix": "37a8fa674405f53950454b06",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:20:24.317Z",
+  "gv_id": "GV-PK-JPN-DP4-015",
+  "card_print_id": "15b46348-6cc3-4d04-9afa-72212e9bc04c",
+  "catalog_coordinate": "015",
+  "catalog_name": "バルビート",
+  "official_id": "10015",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10015/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10015/regu/all",
+    "status": 200,
+    "sha256": "ba915c96313d635b4b3f58aa8fd8c99aa839d3d481bc333266a40e4abf15e88c",
+    "bytes": 10167
+  },
+  "heading": "バルビート",
+  "artist": "Ken Sugimori",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010015_P_BARUBITO.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010015_P_BARUBITO.jpg",
+    "status": 200,
+    "sha256": "9eb8f93bde44e7d787d797160434e3f32fc3f223d02dd568d54ee232ec647e16",
+    "bytes": 61636,
+    "catalog_path_hash_prefix": "9eb8f93bde44e7d787d79716",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

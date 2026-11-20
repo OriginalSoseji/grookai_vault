@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:23:28.447Z",
+  "gv_id": "GV-PK-JPN-DP4-082",
+  "card_print_id": "91a451b3-9462-4781-bc15-d422778970f7",
+  "catalog_coordinate": "082",
+  "catalog_name": "マクノシタ",
+  "official_id": "10082",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10082/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10082/regu/all",
+    "status": 200,
+    "sha256": "8906c702267db8927a77f2c05de7a084713bbd8a92191da7b208affbd5fc97d3",
+    "bytes": 10407
+  },
+  "heading": "マクノシタ",
+  "artist": "Atsuko Nishida",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010082_P_MAKUNOSHITA.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010082_P_MAKUNOSHITA.jpg",
+    "status": 200,
+    "sha256": "8a7d8be475f69b7e9c4f24761b1beffc8ae5c3c6206e362ca809974caa29d9f5",
+    "bytes": 54863,
+    "catalog_path_hash_prefix": "8a7d8be475f69b7e9c4f2476",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

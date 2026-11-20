@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:28:26.459Z",
+  "gv_id": "GV-PK-JPN-DP4-097",
+  "card_print_id": "f7f2f540-7ee6-4a72-8b42-4d9fa7914a10",
+  "catalog_coordinate": "097",
+  "catalog_name": "オニドリル",
+  "official_id": "10097",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10097/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10097/regu/all",
+    "status": 200,
+    "sha256": "a38857c99d3ad03a828758238d3b5fa87c68a4221e6512f278488428d607fa25",
+    "bytes": 10348
+  },
+  "heading": "オニドリル",
+  "artist": "Ken Sugimori",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010097_P_ONIDORIRU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010097_P_ONIDORIRU.jpg",
+    "status": 200,
+    "sha256": "62a95159edb1c1639cf365e2bf89453531827fcbaf5c163962592b2234e111e3",
+    "bytes": 43446,
+    "catalog_path_hash_prefix": "62a95159edb1c1639cf365e2",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

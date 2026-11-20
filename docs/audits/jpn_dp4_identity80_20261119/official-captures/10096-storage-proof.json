@@ -1,0 +1,13 @@
+{
+  "version": "JPN_DP4_STORAGE_IMAGE_COMPARISON_V1",
+  "captured_at": "2026-11-19T23:27:06.874Z",
+  "gv_id": "GV-PK-JPN-DP4-096",
+  "card_print_id": "5cbfc75f-dcc0-4d40-aa7c-6975d3cebc17",
+  "official_id": "10096",
+  "storage_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dp4/gv-pk-jpn-dp4-096/a3f9c2a10056f156f9d5f543.jpg",
+  "storage_sha256": "a3f9c2a10056f156f9d5f543c377bdb0fdc01bb360465e5e9a54ac6adec8050d",
+  "official_sha256": "a3f9c2a10056f156f9d5f543c377bdb0fdc01bb360465e5e9a54ac6adec8050d",
+  "storage_bytes": 43311,
+  "exact_bytes_match": true,
+  "scope": "Read-only full-byte comparison against prior live parent snapshot; fresh identity, ownership, source and protected-state review required before any write."
+}

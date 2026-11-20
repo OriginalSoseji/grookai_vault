@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:26:18.105Z",
+  "gv_id": "GV-PK-JPN-DP4-003",
+  "card_print_id": "9ce3e818-bf23-4b8e-9234-df1a97d9434e",
+  "catalog_coordinate": "003",
+  "catalog_name": "バタフリー",
+  "official_id": "10003",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10003/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10003/regu/all",
+    "status": 200,
+    "sha256": "7a093803c9fe24cecff35c5100e2d9ff350e24e4458609863ef4aa160db1bd68",
+    "bytes": 10690
+  },
+  "heading": "バタフリー",
+  "artist": "Sumiyoshi Kizuki",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010003_P_BATAFURI.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010003_P_BATAFURI.jpg",
+    "status": 200,
+    "sha256": "f342975d2d110a7a20462d5a10666f5dd7d5856802a16337cd8043de5173b675",
+    "bytes": 59431,
+    "catalog_path_hash_prefix": "f342975d2d110a7a20462d5a",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

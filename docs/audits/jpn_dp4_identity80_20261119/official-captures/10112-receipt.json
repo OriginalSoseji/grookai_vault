@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:28:18.394Z",
+  "gv_id": "GV-PK-JPN-DP4-112",
+  "card_print_id": "ef6f4866-73b2-4824-9b06-257dbac99f3c",
+  "catalog_coordinate": "112",
+  "catalog_name": "ジグザグマ",
+  "official_id": "10112",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10112/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10112/regu/all",
+    "status": 200,
+    "sha256": "af0f96c38e6831268e7b81d61ca51d3e60d5041395ff51e1857dd6030bd78ebc",
+    "bytes": 10342
+  },
+  "heading": "ジグザグマ",
+  "artist": "Ken Sugimori",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010112_P_JIGUZAGUMA.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010112_P_JIGUZAGUMA.jpg",
+    "status": 200,
+    "sha256": "1bbeab3cfa89bdba3682fb151e6abaac73d2a037eeaab3a10f8d98b9a592fda4",
+    "bytes": 46853,
+    "catalog_path_hash_prefix": "1bbeab3cfa89bdba3682fb15",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

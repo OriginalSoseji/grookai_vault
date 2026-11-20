@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:26:32.154Z",
+  "gv_id": "GV-PK-JPN-DP4-034",
+  "card_print_id": "a8439fd1-846e-4ba4-9ec0-ec131a14f766",
+  "catalog_coordinate": "034",
+  "catalog_name": "オムナイト",
+  "official_id": "10034",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10034/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10034/regu/all",
+    "status": 200,
+    "sha256": "7748e101889ee5a4a74688446a55bbb9da0ef50f2abc1cdc716c5c0572f435ac",
+    "bytes": 11048
+  },
+  "heading": "オムナイト",
+  "artist": "Suwama Chiaki",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010034_P_OMUNAITO.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010034_P_OMUNAITO.jpg",
+    "status": 200,
+    "sha256": "d8fa68a3855540d87ecd3d5edc47b119b77e991be672bc8bc1463931a095277f",
+    "bytes": 65504,
+    "catalog_path_hash_prefix": "d8fa68a3855540d87ecd3d5e",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

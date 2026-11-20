@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:22:30.110Z",
+  "gv_id": "GV-PK-JPN-DP4-028",
+  "card_print_id": "638f1ccd-64fb-4528-b160-9c2f52a191ca",
+  "catalog_coordinate": "028",
+  "catalog_name": "クラブ",
+  "official_id": "10028",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10028/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10028/regu/all",
+    "status": 200,
+    "sha256": "d32c7259f9ce3888f610147acf0694b117f1832e45d5f1eb50809af4b64d2623",
+    "bytes": 10210
+  },
+  "heading": "クラブ",
+  "artist": "Ken Sugimori",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010028_P_KURABU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010028_P_KURABU.jpg",
+    "status": 200,
+    "sha256": "31bd9903604b38b206d4670dcfbc8a6989492d3e585b90abeb6e575c5346225b",
+    "bytes": 60152,
+    "catalog_path_hash_prefix": "31bd9903604b38b206d4670d",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

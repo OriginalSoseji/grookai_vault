@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:20:57.581Z",
+  "gv_id": "GV-PK-JPN-DP4-094",
+  "card_print_id": "2be93f5d-0859-4d3f-882d-0ff95cc370b1",
+  "catalog_coordinate": "094",
+  "catalog_name": "エアームド",
+  "official_id": "10094",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10094/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10094/regu/all",
+    "status": 200,
+    "sha256": "eccda68a998e0dfa2c89be522040976fc15c3ba091c274d9af3c1241167f8fa1",
+    "bytes": 10104
+  },
+  "heading": "エアームド",
+  "artist": "Mitsuhiro Arita",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010094_P_EAMUDO.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010094_P_EAMUDO.jpg",
+    "status": 200,
+    "sha256": "48f67d9c022bab561c532055610e3e979271f1cbf34063208fea90ff87c5755d",
+    "bytes": 50087,
+    "catalog_path_hash_prefix": "48f67d9c022bab561c532055",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

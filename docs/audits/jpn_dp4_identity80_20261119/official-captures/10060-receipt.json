@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:20:13.239Z",
+  "gv_id": "GV-PK-JPN-DP4-060",
+  "card_print_id": "0838b5d7-59c9-494d-b51b-0c5a43581508",
+  "catalog_coordinate": "060",
+  "catalog_name": "ヤドキング",
+  "official_id": "10060",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10060/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10060/regu/all",
+    "status": 200,
+    "sha256": "abc490b93f1db33f20087f0d1603fc4b81536f16f9f05f307ee7f17bf2d6e032",
+    "bytes": 11183
+  },
+  "heading": "ヤドキング",
+  "artist": "Ken Sugimori",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010060_P_YADOKINGU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010060_P_YADOKINGU.jpg",
+    "status": 200,
+    "sha256": "6fe4f8fd527b61479a247be2541cace39b7057ec562eeb7413355720be4f8586",
+    "bytes": 50523,
+    "catalog_path_hash_prefix": "6fe4f8fd527b61479a247be2",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

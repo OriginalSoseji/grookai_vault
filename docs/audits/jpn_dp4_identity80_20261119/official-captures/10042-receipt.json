@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:22:52.822Z",
+  "gv_id": "GV-PK-JPN-DP4-042",
+  "card_print_id": "7bd19cb1-8ec5-487e-a6e0-3c925ae0bf21",
+  "catalog_coordinate": "042",
+  "catalog_name": "ペリッパー",
+  "official_id": "10042",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10042/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10042/regu/all",
+    "status": 200,
+    "sha256": "31a67bc767c5c5909f7f9089c1d3a14a61ed990792be2e82138968316e721979",
+    "bytes": 10669
+  },
+  "heading": "ペリッパー",
+  "artist": "Ken Sugimori",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010042_P_PERIPPA.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010042_P_PERIPPA.jpg",
+    "status": 200,
+    "sha256": "b618621d23e13d5b41bf148d443d8bb2a89ef1b69ff00d44f4ac4515b9028328",
+    "bytes": 60637,
+    "catalog_path_hash_prefix": "b618621d23e13d5b41bf148d",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:26:37.800Z",
+  "gv_id": "GV-PK-JPN-DP4-117",
+  "card_print_id": "ab4baf51-bb9e-4813-b9eb-572e6a19bec8",
+  "catalog_coordinate": "117",
+  "catalog_name": "チルット",
+  "official_id": "10117",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10117/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10117/regu/all",
+    "status": 200,
+    "sha256": "25d70f7061752e608ea62310ff44cc2fd49ad04646c1a5d6cb867c07ebe9b903",
+    "bytes": 10801
+  },
+  "heading": "チルット",
+  "artist": "Kanako Eo",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010117_P_CHIRUTTO.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010117_P_CHIRUTTO.jpg",
+    "status": 200,
+    "sha256": "a097068fc016d588ed088b84cc5ee0cd4be5e8ac87553abda15d50896e566308",
+    "bytes": 52939,
+    "catalog_path_hash_prefix": "a097068fc016d588ed088b84",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}
