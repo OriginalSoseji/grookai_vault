@@ -24,6 +24,7 @@ import 'services/identity/image_presentation.dart';
 import 'services/identity/variant_origin_public_copy.dart';
 import 'services/navigation/grookai_web_route_service.dart';
 import 'services/pricing/ebay_sold_search_uri.dart';
+import 'services/pricing/card_sold_comps_service.dart';
 import 'widgets/pricing/ebay_listing_links.dart';
 import 'widgets/pricing/card_marketplace_sheet.dart';
 import 'widgets/cards/card_comments_sheet.dart';
@@ -3720,7 +3721,8 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   Future<void> _openMarketHistory() async {
     final printing = _selectedPrintingOption;
     final printingId = _cleanText(printing?.id);
-    if (printingId.isEmpty ||
+    if (printing == null ||
+        printingId.isEmpty ||
         !_hasExplicitPrintingContext ||
         supabase.auth.currentUser == null) {
       return;
@@ -3732,10 +3734,16 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       backgroundColor: Colors.transparent,
       builder: (_) => CardMarketHistorySheet(
         cardName: _marketSearchName,
-        printingLabel: printing?.finishName ?? 'Selected variant',
+        printingLabel: printing.finishName,
         cardPrintingId: printingId,
         loadPersonalSales: (cardPrintingId) =>
             CardPersonalSalesService(supabase).loadForPrinting(cardPrintingId),
+        loadSoldComps: () => CardSoldCompsService(supabase).load(
+          cardName: _marketSearchName,
+          setName: _resolvedSetName,
+          collectorNumber: _resolvedCollectorNumber,
+          finish: printing.finishName,
+        ),
         openSoldSearch: () => _openEbaySoldSearch(printing),
       ),
     );
