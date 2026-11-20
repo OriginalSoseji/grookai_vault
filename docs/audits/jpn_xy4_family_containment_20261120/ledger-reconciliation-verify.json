@@ -1,0 +1,20 @@
+{
+  "status": "independent_readback_passed",
+  "run_id": "199c0d77-42ff-459d-95d2-819ddd5ff27c",
+  "plan_sha256": "f180201cee39be2352f3caa8171ec5690fbde94aff57cc6d513ffe14ee0828e3",
+  "writer_sha256": "67c9ae0e8332566b4ee9dc6cc2cdc8ad8f69b87cd5939d953914bd3e45abf2fb",
+  "after": {
+    "id": "199c0d77-42ff-459d-95d2-819ddd5ff27c",
+    "kind": "catalog_jpn_xy4_family_containment_v1",
+    "error": "Rollback rehearsal interrupted by critically low local disk; read-only verification found no committed queue or raw changes.",
+    "scope": {
+      "mode": "rollback-proof",
+      "writer_fingerprint": "b0fffb8219cd09675984b55560cc8b57691697f771278896e1f0f39df0eddb23",
+      "package_fingerprint": "6cf22a949a8ef140227801d3317356507766f6d858a9d162b8d9a1d7c6654538"
+    },
+    "status": "error",
+    "created_at": "2026-11-20T14:32:47.374783+00:00",
+    "started_at": "2026-11-20T14:32:58.962+00:00",
+    "finished_at": "2026-11-20T14:48:32.400156+00:00"
+  }
+}
