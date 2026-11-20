@@ -16,6 +16,9 @@ mapping assertions, hidden children and provisional children are withheld.
 No names, rarity, percentages, cross-condition substitutions or inferred finish
 conversions create authority. Named Japanese finishes require their own explicit
 authority; Normal is not a substitute for Master Ball or Poké Ball.
+An active One Piece child assertion with the same product but an explicitly
+contradictory source subtype also withholds that child; product equality does
+not resolve a finish conflict. Qualify both decision and snapshot rejection.
 
 V2 retains real positive source `market_price`, USD, the completed and reconciled
 current full source run, source artifact/hash and row lineage. Market freshness

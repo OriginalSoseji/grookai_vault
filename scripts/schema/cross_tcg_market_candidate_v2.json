@@ -1,6 +1,6 @@
 {
   "version": "CROSS_TCG_MARKET_511_TO_512_V2",
-  "revision": 4,
+  "revision": 5,
   "project": "ycdxbpibncqcchqiihfz",
   "baselineMigrations": 511,
   "targetMigrations": 512,
@@ -518,7 +518,7 @@
     "20261118181500_shrouded_discovery_view_read_grants_v1.sql": "726fab272ea851e049cb47699ac76b9164ba7d7f5c3903852109cc21e5c57590"
   },
   "candidates": {
-    "20261120063000_cross_tcg_market_publication_v2.sql": "b5ca42c535c0a0a6eaa387e457f951dff384a004895814db763263870d3c93ea"
+    "20261120063000_cross_tcg_market_publication_v2.sql": "fb585822adb63ef5f31bf9078ffa869fc8b1f6d1b707075a5c710975b7d6608f"
   },
   "baselineProofPins": {
     "baseline-v2/qualification.json": "9e35af5bbe4e23e07d767715a160f76c528a8bf5b6536998e6ffda6e8d05f975",

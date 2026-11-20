@@ -72,7 +72,7 @@ try{
   const qualification=read(artifacts+'/local-qualification-v2/qualification.json');
   assert.equal(qualification.pass,true);assert.equal(qualification.productionWrites,0);assert.equal(qualification.candidateSha256,binding.candidates[Object.keys(binding.candidates)[0]]);
   for(const property of ['freshAndUpgradeSchemaEqual','existingSchemaAndSecurityPreserved','threeRolePermissionsQualified','protectedDataUnchanged','productionSizedPerformanceQualified','oldCohortOutputEquivalent','fresh512CliReplayQualified','populated511To512CliUpgradeQualified'])assert.equal(qualification[property],true,property);
-  assert.ok(qualification.positiveExactPrices>=4&&qualification.negativeSourceLineageChecks>=11&&qualification.genuineMissingMarketHeld>=2);
+  assert.ok(qualification.positiveExactPrices>=4&&qualification.negativeSourceLineageChecks>=13&&qualification.genuineMissingMarketHeld>=2);assert.equal(qualification.onePieceConflictingFinishWithheld,true);
   const hooks=read(artifacts+'/normal-hooks-v2.json');assert.equal(hooks.exitCode,0);assert.equal(hooks.sourceHead,manifest.sourceHead);assert.equal(hooks.sourceTree,manifest.sourceTree);assert.equal(hooks.hooksUnchanged,true);
   assert.equal(hooks.normalCommitPassed,true);assert.equal(hooks.normalPushPassed,true);
   const hosted=read(artifacts+'/hosted-checks-v2.json');assert.equal(hosted.sourceHead,manifest.sourceHead);assert.equal(hosted.allRequiredPassed,true);assert.ok(hosted.checks.length>=10);assert.ok(hosted.checks.every(x=>x.conclusion==='success'||x.conclusion==='neutral'||x.conclusion==='skipped'));

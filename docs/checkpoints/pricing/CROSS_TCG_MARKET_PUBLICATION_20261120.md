@@ -1,52 +1,55 @@
 # Cross-TCG TCGplayer Market publication — November20,2026
 
-The owner authorized finishing real TCGplayer pricing across the database. A
-read-only production audit found current Market publication for MTG and English
-Pokémon, with no published One Piece or Japanese Pokémon prices. Existing exact
-source mapping and governed One Piece product/finish authority can close part
-of that gap without inventing identities, finishes or prices.
+The owner authorized finishing real TCGplayer pricing across the database.
+Production has current Market publication for MTG and English Pokémon, with
+no published One Piece or Japanese Pokémon prices. V2 adds existing governed
+One Piece product/finish authority and existing exact Japanese printing maps.
+No identity, finish or quote is invented. Missing quotes, conflicting mappings,
+provisional children and hidden reviews remain withheld. Condition references
+are separate; existing Vault valuation logic is preserved.
 
 The [V2 contract](../../contracts/TCGPLAYER_CROSS_TCG_MARKET_PUBLICATION_V2.md)
-adds two explicit source-lineage lanes and a separate candidate view. The old
-V1 evaluator and V7 rows remain unchanged for English Pokémon and MTG. New
-values remain the original positive USD source Market field. Missing quotes,
-conflicting mappings, provisional children and hidden reviews remain withheld.
-Condition references continue separately through the signed-in reader; this
-does not cut Vault valuation over to condition reference prices.
+retains the old V1 evaluator and V7 rows for English Pokémon and MTG. New lanes
+retain real positive USD source Market fields. The additive migration has three
+private service views, nullable source-lineage fields, a statement guard and an
+active-child/source index. Initial production requires a verified complete V2
+shadow for the same worker runtime. Both new cohorts must have positive coverage;
+subsequent refresh cannot materially erase either cohort. Older in-flight writers
+must finish or be safely drained before V2 activation.
 
-Candidate migration `20261120063000` is byte-bound to
-`b5ca42c535c0a0a6eaa387e457f951dff384a004895814db763263870d3c93ea`.
-The separate `-CrossTcgMarketReleaseV2` gate binds canonical511 to512, preserves
-the ordinary failed historical empty-shadow audit, and does not widen any prior
-release scope. The real full baseline comparison matched all four governed
-schemas and security. Genuine fresh512 replay and populated511 upgrade/no-op
-passed, retaining all426 protected table fingerprints.
+Candidate migration `20261120063000`, revision5, is bound to
+`fb585822adb63ef5f31bf9078ffa869fc8b1f6d1b707075a5c710975b7d6608f`.
+The exact `-CrossTcgMarketReleaseV2` scope binds canonical511 to512 and retains
+the failed ordinary historical empty-shadow audit. Production baseline audit
+for this revised candidate passed with all four governed schemas/security equal.
 
-Final local qualification compares every existing schema object and security
-definition, permits only the declared price-table fields/constraints, three
-private views, one guard, two triggers and one active-child/source index, and
-proves fresh/upgraded schemas identical. Real public source examples produced
-four exact Market prices (two One Piece and two Japanese), held two genuinely
-empty Market fields, and rejected11 bad source/lineage cases. Runtime writes
-rolled back. Anonymous/authenticated direct-view reads failed; service reads
-worked. Old V7/V8 Pokémon/MTG rows were identical.
+Prior revision4 (`b5ca42c535c0a0a6eaa387e457f951dff384a004895814db763263870d3c93ea`)
+passed genuine fresh512 replay, populated511 upgrade/no-op, all426 protected
+table fingerprints, full schema/security comparison, four real-price positives,
+two genuinely absent Market holds,11 lineage negatives, three-role permissions
+and unchanged old-cohort output. A rolled-back200,000-mapping fixture used the
+new index with a0.752ms bounded default plan. The existing authenticated-role
+pricing RPC returned four exact amounts and four parent summaries in a rolled-back
+local publication fixture. Those are revision4/local proofs, not deployed proof.
 
-A rolled-back scale fixture used100,000 synthetic parents,200,000 children and
-200,000 mappings in the isolated lab. The normal plan used the new child index
-and completed the bounded lookup below1ms. This is local production-size proof,
-not a claim about deployed latency. Independent production timing remains gated.
+Final review reproduced a same-product One Piece child assertion whose explicit
+source subtype contradicted its canonical finish but still qualified for Market.
+Revision5 now withholds it. Actual local decision and snapshot rejection checks
+are included in the revised runtime producer, and its release gate requires13
+negative cases and an explicit conflicting-finish result. All revised SQL proofs
+must pass; revision4 evidence does not qualify the revised bytes.
 
-V2 production requires complete unlimited-source reconciliation and a verified
-full shadow for the same policy/worker runtime, or an already verified current
-V2 runtime. Ordinary date/source refreshes can reuse that qualified runtime.
-The first publication must include positive prices for both new games, and
-refresh cannot materially erase either cohort. This gates the existing automatic
-watchdog as well as manual publication. Change the worker version when changing
-its execution authority. Drain older in-flight publication jobs before activation.
+At this checkpoint,92 focused tests pass. The earlier full commit check passed,
+but its push check stopped with ENOSPC and is not passing release evidence.
+Storage recovered, but Docker's data disk then reported filesystem-header errors
+and the revised fresh replay stopped before creating its lab. Docker recovery,
+revised replay/upgrade/runtime/permissions/scale/schema qualification, fresh normal
+hooks, hosted review, frozen official CLI dry-run/apply, independent production
+readback, full-source shadow, guarded publication, scheduled refresh verification
+and deployed signed-in acceptance remain required. No production512 migration
+or new cross-TCG publication is claimed here.
 
-Normal full hooks, hosted review, exact-source official CLI dry-run/apply,
-independent production schema/security/data readback, fresh full-source shadow,
-guarded production publication, refresh verification and deployed app acceptance
-remain required. Nothing in this checkpoint claims production512 or a new
-publication is live. The dirty original checkout, Binder work and Samsung603
-signing/data continuity remain preserved.
+The earlier prepared package/proofs are preserved under operator artifact names
+ending `-candidate-r4-b5ca`. Original dirty checkout, Binder work, Samsung603 app
+data/signing continuity and existing production prices remain preserved. Recovery
+does not authorize resetting Docker or deleting retained databases.
