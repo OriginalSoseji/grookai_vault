@@ -1,3 +1,7 @@
+# DP4 official artist credits applied — November 20, 2026
+
+`catalog_jpn_dp4_artist84_v1` filled 84 previously blank artist fields from exact official pages after per-batch rollback proofs. Separate read-only verification passed; see `docs/audits/jpn_dp4_official_artist84_20261120/README.md`. The frozen plan is not a general-purpose writer; any changed source, state, or writer requires fresh review and proofs.
+
 # DP4 English identity-only batches — November 19, 2026
 
 `backend/catalog/jpn_dp4_identity80_v1.mjs` is the guarded writer used for eight exact ten-record identity-only batches, all applied and independently verified. Use `--mode inspect --chunk N` and `--mode verify --chunk N` for read-only checks. Mutating modes require the existing owner execution marker, fresh source and ownership verification, the pinned plan and a same-writer rollback proof for that exact chunk. Raw source bytes and prior identity payloads are staged before changes, and parent, species-link, identity-hash, ownership, image and pricing state is protected. See `docs/audits/jpn_dp4_identity80_20261119/README.md`. An unknown commit outcome requires independent readback before retry; never infer release readiness from a prepared writer.

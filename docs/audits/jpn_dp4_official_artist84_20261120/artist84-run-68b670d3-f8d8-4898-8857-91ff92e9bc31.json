@@ -1,0 +1,225 @@
+{
+  "version": "JPN_DP4_ARTIST84_V1",
+  "run_id": "68b670d3-f8d8-4898-8857-91ff92e9bc31",
+  "mode": "apply",
+  "chunk": 6,
+  "package_fingerprint": "c0a2628c37701c1a9cbba942fca639f62cf8c99640889c7067e8f96bf8a785ab",
+  "writer_fingerprint": "78bce17bece89bafc617f22b192808881508a93a811dded3f1d42a2595c8995a",
+  "started_at": "2026-11-20T09:30:05.067Z",
+  "status": "applied_and_verified",
+  "stages": [
+    {
+      "name": "source_and_ownership_verified",
+      "at": "2026-11-20T09:30:20.016Z"
+    },
+    {
+      "name": "write_and_proofs_passed",
+      "at": "2026-11-20T09:30:38.257Z"
+    },
+    {
+      "name": "applied_and_verified",
+      "at": "2026-11-20T09:30:41.269Z"
+    }
+  ],
+  "sanity": {
+    "parents": 173837,
+    "sets": 3420,
+    "traits": 47409
+  },
+  "protected_before": {
+    "parents_except_artist": {
+      "rows": 12,
+      "digest": "c8967c6dc7b1cec0c02d0231ec87aef5"
+    },
+    "card_printings": {
+      "rows": 12,
+      "versions1": "6955277531446423504",
+      "versions2": "-4246607200317593388"
+    },
+    "external_mappings": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "external_mapping_aliases": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "card_print_species": {
+      "rows": 12,
+      "versions1": "6057425179992281073",
+      "versions2": "-1674706580477858133"
+    },
+    "card_print_cameos": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "card_print_traits": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "card_print_image_faces": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "card_print_identity_source_evidence": {
+      "rows": 24,
+      "versions1": "1456698957330739286",
+      "versions2": "4120513665323363165"
+    },
+    "card_print_family_review_queue": {
+      "rows": 12,
+      "versions1": "2417894250236877275",
+      "versions2": "9220849106291927536"
+    },
+    "vault_item_instances": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "vault_items": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "card_print_price_curves": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "price_observations": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "market_prices": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "sets": {
+      "rows": 1,
+      "digest": "8e98c9ab53189d050ebf3f2c12dc6bab"
+    },
+    "species": {
+      "rows": 12,
+      "digest": "a11de135affee9c2c31f6ce70291cd20"
+    },
+    "current_publication": {
+      "rows": 1,
+      "digest": "784d29d02aa0dff49fb6125dec6b8e4a"
+    },
+    "publication": {
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "qualification": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    }
+  },
+  "receipt_id": "177091",
+  "protected_after": {
+    "parents_except_artist": {
+      "rows": 12,
+      "digest": "c8967c6dc7b1cec0c02d0231ec87aef5"
+    },
+    "card_printings": {
+      "rows": 12,
+      "versions1": "6955277531446423504",
+      "versions2": "-4246607200317593388"
+    },
+    "external_mappings": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "external_mapping_aliases": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "card_print_species": {
+      "rows": 12,
+      "versions1": "6057425179992281073",
+      "versions2": "-1674706580477858133"
+    },
+    "card_print_cameos": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "card_print_traits": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "card_print_image_faces": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "card_print_identity_source_evidence": {
+      "rows": 24,
+      "versions1": "1456698957330739286",
+      "versions2": "4120513665323363165"
+    },
+    "card_print_family_review_queue": {
+      "rows": 12,
+      "versions1": "2417894250236877275",
+      "versions2": "9220849106291927536"
+    },
+    "vault_item_instances": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "vault_items": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "card_print_price_curves": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "price_observations": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "market_prices": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "sets": {
+      "rows": 1,
+      "digest": "8e98c9ab53189d050ebf3f2c12dc6bab"
+    },
+    "species": {
+      "rows": 12,
+      "digest": "a11de135affee9c2c31f6ce70291cd20"
+    },
+    "current_publication": {
+      "rows": 1,
+      "digest": "784d29d02aa0dff49fb6125dec6b8e4a"
+    },
+    "publication": {
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "qualification": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    }
+  },
+  "finished_at": "2026-11-20T09:30:41.183Z"
+}

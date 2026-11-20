@@ -25,3 +25,4 @@ scripts/schema/reviewed_intake_public_catalog_v1.sql whitespace=-space-before-ta
 # Preserve exact official source bytes for the DP4 identity review.
 docs/audits/jpn_dp4_identity80_20261119/official-captures/*.html -text -diff
 docs/audits/jpn_dp4_identity80_20261119/species_name_source_index.json -text -diff
+docs/audits/jpn_dp4_official_artist84_20261120/official-captures/*.html -text -diff
