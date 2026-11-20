@@ -655,7 +655,7 @@ rollback/readback evidence. This release carries source parity for already-appli
 migrations 482/483; do not reapply them or reset populated local proof labs.
 
 
-## eBay Account access and Android build continuity — November 9, 2026
+## eBay Account access and Android build continuity — November 20, 2026
 
 PR #877 adds the native **Account → Connected accounts → eBay seller account**
 entry and the active
@@ -672,15 +672,25 @@ device is ahead of that baseline; do not edit shared package metadata just to
 advance one device. Download the `signed-release-apk` artifact from the
 successful run.
 
-Before installing any APK, record the installed application ID, version code,
-and signing certificate. An in-place update must keep
-`com.grookai.vault`, use the same signing certificate as the installed app, and
-have a higher version code. Never uninstall the user's app, change its package,
-or bypass a signer mismatch to make an update install. A device already running
-a debug-signed QA build can receive a same-key debug update for local
-verification; label it QA and do not treat it as a production release.
-Production releases use the production signing key. Do not try to update a
-debug-signed install with a production-signed artifact or the reverse.
+Before installing any APK, run
+[`scripts/android_update_preflight.ps1`](../../scripts/android_update_preflight.ps1)
+and record the installed application ID, version code, signer, and candidate
+release identity. Follow the active
+[Mobile Release Continuity V2 contract](../contracts/MOBILE_RELEASE_CONTINUITY_V2.md).
+The package must remain `com.grookai.vault`, the candidate build must be newer,
+and its signer must be the approved production release key. Continuity requires
+either an exact signer match or an APK-embedded, cryptographically verified
+signing lineage from the installed certificate with the `installedData`
+capability granted. Never uninstall, clear app data, downgrade, or bypass
+Android's package-manager signature checks.
+
+For a one-time development-to-production migration, dispatch the workflow with
+`include_debug_rotation=true`. The workflow requires the temporary
+`ANDROID_LEGACY_DEBUG_KEYSTORE_BASE64` Actions secret, rotates only from the
+recorded installed certificate, and embeds the verified lineage in the APK.
+Remove the temporary secret after in-place install and Samsung account/collection
+readback. Do not add debug signing to ordinary release builds. See the
+[signer-lineage migration checkpoint](../checkpoints/2026-11-19_mobile_signing_lineage_migration.md).
 
 After installation, open Account → Connected accounts → eBay seller account,
 verify the native `GET /api/ebay/seller` state and a saved-draft read, and make

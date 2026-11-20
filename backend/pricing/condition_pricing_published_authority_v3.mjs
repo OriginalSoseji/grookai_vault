@@ -66,14 +66,16 @@ export async function resolveSourceBoundOnePieceTargetV3(client,printingId){
  if(identities.length!==1||identities[0].identity_domain!==parent.identity_domain||reviews.length>100||reviews.some(row=>['hidden_pending_review','hidden_unsupported'].includes(row.public_visibility))||mappings.length!==1)return null;
  const mapping=mappings[0],meta=mapping.meta;
  if(String(mapping.external_id)!==String(productId)||meta?.mapping_authority!=='exact_durable_source_product_with_official_number_name'||meta?.promotion_plan_version!=='ONE_PIECE_COMPLETE_ENGLISH_NUMBERED_PARENT_PROMOTION_PLAN_V1'||!UUID.test(meta?.durable_staging_row_id??'')||!Number.isSafeInteger(meta.source_group_id)||meta.source_group_id<=0)return null;
- const [products,siblings,owners,exact,groups]=await Promise.all([
+ const [products,siblings,owners,exact,groups,childMappings]=await Promise.all([
   checked(client.from('tcgcsv_source_products').select('product_id,category_id,group_id,extended_data').eq('product_id',productId).eq('category_id',68).eq('source_active',true).eq('catalog_metadata_status','current').limit(2)),
   checked(client.from('card_printings').select('id').eq('card_print_id',parent.id).eq('finish_key',printing.finish_key).eq('is_provisional',false).limit(2)),
   checked(client.from('external_mappings').select('id,card_print_id').eq('source','tcgplayer').eq('external_id',String(productId)).eq('active',true).limit(2)),
   checked(client.from('external_printing_mappings').select('card_printing_id,source,external_id,meta').eq('active',true).in('source',['tcgplayer','tcgplayer_market']).in('external_id',[String(productId),`${productId}:${printing.finish_key}`]).limit(101)),
   checked(client.from('tcgcsv_source_groups').select('group_id').eq('group_id',meta.source_group_id).eq('category_id',68).eq('source_active',true).eq('catalog_metadata_status','current').limit(2)),
+  checked(client.from('external_printing_mappings').select('source,external_id,meta').eq('card_printing_id',printingId).eq('active',true).in('source',['tcgplayer','tcgplayer_market']).limit(101)),
  ]);
- if(products.length!==1||products[0].group_id!==meta.source_group_id||groups.length!==1||siblings.length!==1||siblings[0].id!==printingId||owners.length!==1||owners[0].card_print_id!==parent.id||exact.length>100)return null;
+ if(products.length!==1||products[0].group_id!==meta.source_group_id||groups.length!==1||siblings.length!==1||siblings[0].id!==printingId||owners.length!==1||owners[0].card_print_id!==parent.id||exact.length>100||childMappings.length>100)return null;
+ if(childMappings.some(row=>{const match=String(row.external_id).match(row.source==='tcgplayer_market'?/^([1-9]\d*):(normal|foil|holo|reverse)$/:/^([1-9]\d*)$/);const finish=row.source==='tcgplayer_market'?match?.[2]:finishOf(row.meta?.source_subtype);return !match||!Number.isSafeInteger(Number(match[1]))||Number(match[1])!==productId||(finish&&finish!==printing.finish_key);}))return null;
  const fields=products[0].extended_data;
  const numbers=Array.isArray(fields)?fields.filter(field=>String(field.name).toLowerCase()==='number').map(field=>String(field.value).normalize('NFKC').trim().toUpperCase()):[];
  if(numbers.length!==1||numbers[0]!==String(parent.number??'').normalize('NFKC').trim().toUpperCase()||!numbers[0])return null;

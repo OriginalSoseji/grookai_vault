@@ -14,12 +14,14 @@ freshness, condition and client privacy checks. No mapping or canonical row is
 created or changed. Vault totals, existing market publication and asking prices
 retain their authority.
 
-The candidate is based on merged main `e702742bc` and includes the already
-merged cross-TCG Binder work. The dirty original checkout and other working
+The candidate integrates merged main `c1efe237d`, preserving the mobile signer
+continuity repair and the already merged cross-TCG Binder work. The dirty original checkout and other working
 trees remain intact. Private receipts are at
 `C:/grookai_search_xy124_20261118/artifacts/pricing_completion_v3/20261119/`.
 
-Nineteen focused tests pass. Actual changed backend modules against current
+Twenty focused tests pass, including the review regression for two competing
+products mapped to the requested One Piece child. All active child mappings are
+revalidated before the governed fallback can accept a product. Actual changed backend modules against current
 read-only production evidence recovered NM/LP source references for nine
 previously blocked printings: six Pokemon Normal/Holo/Reverse children and three
 distinct One Piece Luffy OP01-003 product/finish identities. Seventeen of eighteen

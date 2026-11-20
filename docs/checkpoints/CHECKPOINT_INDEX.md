@@ -1,7 +1,6 @@
 # CHECKPOINT_INDEX
 
-- [CONDITION_COVERAGE_RECOVERY_20261119](pricing/CONDITION_COVERAGE_RECOVERY_20261119.md) - `2026-11-19` - Recover exact condition references from current published finish authority and governed One Piece product/finish assertions; 19 focused tests and nine live recovered printings, terminal release gates pending
-
+- [MOBILE_SIGNING_LINEAGE_MIGRATION_20261119](2026-11-19_mobile_signing_lineage_migration.md) - `2026-11-19` - Prepare verified Android signer lineage so the release-signed build 603 can update Samsung build 602 in place with account data retained; synthetic rotation verified, current unrotated candidate still fails closed
 - [CROSS_TCG_BINDERS_20261119](2026-11-19_cross_tcg_binders.md) - `2026-11-19` - Custom Binder checklists now discover Pokémon, One Piece, and Magic cards through game-scoped search; 72 focused tests passed and live Samsung build 558 returned Magic and One Piece search results
 - [BINDER_CONTENTS_BUILD_557_20261119](2026-11-19_binder_contents_build_557.md) - `2026-11-19` - Carry design build 323's artwork pages into the signed-in Binder detail as a Contents-first view of active contributions; checklist stays secondary; 73 focused tests and Samsung build 557 readback passed
 - [MOBILE_BINDER_BUILD_555_20261118](2026-11-18_mobile_binder_build_555.md) - `2026-11-18` - Repair the Samsung's startup-config failure with a same-signer 555 build; Binder source is already on main, and the paired iOS build remains pending
@@ -12,6 +11,7 @@
 - [SEARCH_XY_PROMO_COLLECTOR_TIMEOUT_20261118](SEARCH_XY_PROMO_COLLECTOR_TIMEOUT_20261118.md) - `2026-11-18` - Correct printed XY promo interpretation and bound caller-visible collector reads; preserve exact identities, filters and timeout budgets; live deployment and Samsung readback remain gated by terminal receipts
 
 - [NATIVE_CONDITION_PRICING_20261118](pricing/NATIVE_CONDITION_PRICING_20261118.md) - `2026-11-18` - Native exact-condition reference candidate follows Add to Vault and active raw-copy controls through the deployed reader; local synthetic Android/transport/widget proof, existing valuations preserved, native distribution remains separate
+- [CONDITION_COVERAGE_RECOVERY_20261119](pricing/CONDITION_COVERAGE_RECOVERY_20261119.md) - `2026-11-19` - Recover exact condition references from current published finish authority and governed One Piece product/finish assertions; 20 focused tests and nine live recovered printings, terminal release gates pending
 - [MOBILE_BUILD_553_20261118](2026-11-18_mobile_build_553.md) - `2026-11-18` - Samsung is build 552 with debug signer; paired baseline raised to 553, older release candidate blocked, no install or data reset
 - `MOBILE_RELEASE_CONTINUITY_20261118` — `2026-11-18` — Established paired Android/iOS build and signer continuity contract; raised baseline to 551, added Android APK provenance and an ADB preflight that blocks signer mismatch/downgrade without uninstalling; Samsung was build 550 at this checkpoint and Mac was offline, so no paired install or TestFlight release was claimed
 

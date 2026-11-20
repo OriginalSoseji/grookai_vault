@@ -52,3 +52,15 @@ test('a product marker or a parent mapping alone cannot qualify One Piece',async
 test('changed source numbers/groups, duplicate finish children and competing owners are withheld',async()=>{
  for(const changes of [{tcgcsv_source_products:[{...opProduct,extended_data:[{name:'Number',value:'OP01-004'}]}]},{tcgcsv_source_products:[{...opProduct,group_id:3189}]},{tcgcsv_source_groups:[]},{card_printings:[opPrinting,{...opPrinting,id:OTHER}]},{external_mappings:[opMapping,{...opMapping,id:'other',card_print_id:OTHER}]},{external_printing_mappings:[{id:'other',card_printing_id:OTHER,source:'tcgplayer',external_id:'99',active:true,meta:{}}]}])assert.equal(await resolveSourceBoundOnePieceTargetV3(db({...opTables,...changes},[]),CHILD),null);
 });
+
+test('One Piece fallback cannot revive competing products mapped to the requested child',async()=>{
+ const mappings=[99,100].map(id=>({id:String(id),card_printing_id:CHILD,source:'tcgplayer_market',external_id:`${id}:normal`,active:true}));
+ const tables={...opTables,external_printing_mappings:mappings,tcgcsv_source_products:[opProduct,{...opProduct,product_id:100}]};
+ assert.equal(await resolveSourceBoundOnePieceTargetV3(db(tables,[]),CHILD),null);
+ const result=await getConditionPriceV1(db(tables,[]),{cardPrintingId:CHILD,condition:'NM'},{readSource:async()=>{throw Error('Ambiguous products must not fetch a condition price');}});
+ assert.equal(result.status,'unavailable');assert.equal(result.unavailable_reason,'exact_mapping_unavailable');
+ for(const external_id of ['100','100:foil','99:foil']){
+  const source=external_id.includes(':')?'tcgplayer_market':'tcgplayer';
+  assert.equal(await resolveSourceBoundOnePieceTargetV3(db({...opTables,external_printing_mappings:[{id:'other',card_printing_id:CHILD,source,external_id,active:true}]},[]),CHILD),null);
+ }
+});
