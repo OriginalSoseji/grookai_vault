@@ -46,6 +46,7 @@ import type { VariantFlags } from "@/lib/cards/variantPresentation";
 import type { PublicGameScope } from "@/lib/publicGameScope";
 import { normalizeSearchText } from "@/lib/search/normalizeSearchText";
 import { readCollectorCardQueryFilters, removeCollectorCardQueryFilters } from "@/lib/search/collectorCardQuery";
+import { hasVerifiedCatalogFullArt } from "@/lib/search/catalogArtworkClassification";
 import { mergeSmartVariantScopeRows } from "@/lib/search/smartVariantSearchPolicy";
 import { fetchPokemonArtistRows, isKnownArtistQuery } from "@/lib/search/artistSearch";
 import { fetchCompleteNamedCardRows } from "@/lib/search/completeNamedCardSearch";
@@ -3505,7 +3506,7 @@ function rowMatchesSmartDiscoveryText(
       // Artwork must be explicit catalog metadata, never inferred from rarity,
       // the card's name, price, or shared gameplay membership.
       const artwork = normalizeTextForMatch([row.rarity, row.variant_key, row.printed_identity_modifier, row.display_discriminator].filter(Boolean).join(" "));
-      if (!/(?:^| )full art(?: |$)/.test(artwork)) return false;
+      if (!/(?:^| )full art(?: |$)/.test(artwork) && !hasVerifiedCatalogFullArt(row)) return false;
     }
   }
   remainingText = removeCollectorCardQueryFilters(remainingText, collectorFilters);

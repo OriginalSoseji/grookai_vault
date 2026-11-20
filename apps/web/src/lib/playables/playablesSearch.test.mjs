@@ -113,7 +113,8 @@ function discoveryMatcher() {
   vm.runInNewContext(compile('../explore/getExploreRows.ts') + '\nmodule.exports.matches = rowMatchesSmartDiscoveryText;', {
     module: compiledModule, exports: compiledModule.exports, Map, Set,
     require: id => id === '@/lib/search/normalizeSearchText' ? loadTestTypeScript('lib/search/normalizeSearchText.ts')
-      : id === '@/lib/search/collectorCardQuery' ? loadTestTypeScript('lib/search/collectorCardQuery.ts') : unknown,
+      : id === '@/lib/search/collectorCardQuery' ? loadTestTypeScript('lib/search/collectorCardQuery.ts')
+        : id === '@/lib/search/catalogArtworkClassification' ? loadTestTypeScript('lib/search/catalogArtworkClassification.ts') : unknown,
   });
   return compiledModule.exports.matches;
 }
@@ -200,6 +201,22 @@ test('full art discovery uses explicit artwork markers and does not infer them f
     assert.equal(matches({...base, name: 'Full Art'}, spelling), false);
   }
   assert.equal(matches({...base, variant_key: 'full_art'}, 'full art Pikachu'), false);
+});
+
+test('verified artwork metadata filters only its exact card and preserves text and rarity constraints', () => {
+  const model=JSON.parse(fs.readFileSync(new URL('../../../../../shared/catalog/pokemon_artwork_classification_v1.json',import.meta.url),'utf8'));
+  const fact=model.rows.find(row=>row.gv_id==='GV-PK-TWM-202');
+  assert(fact,'the released evidence includes the verified Ursaluna Full Art');
+  const card={...fact,id:fact.card_print_id},matches=discoveryMatcher();
+  assert(matches(card,'full art Bloodmoon Ursaluna ex'));
+  assert(matches(card,'fullart'));
+  assert.equal(matches(card,'full art Pikachu'),false);
+  assert.equal(matches(card,'full art SIR'),false);
+  for(const change of [{id:'other'},{gv_id:'GV-PK-TWM-216'},{name:'Other'},{set_code:'other'},
+    {number:'216'},{rarity:'Special Illustration Rare'},{variant_key:'other'},{printed_identity_modifier:'other'}]) {
+    assert.equal(matches({...card,...change},'full art'),false);
+  }
+  assert.equal(matches({...card,id:'ordinary',gv_id:'GV-PK-TWM-141',number:'141',rarity:'Double Rare'},'full art'),false);
 });
 
 test('playables uses its canonical ID scope before the response limit and keeps residual text', async () => {
