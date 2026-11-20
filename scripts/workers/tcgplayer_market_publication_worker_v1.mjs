@@ -63,7 +63,7 @@ const DEFAULT_OUT_ROOT = path.join(
   "artifacts",
   "market_pricing_product_v1",
 );
-const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_24";
+const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_25";
 const PIPELINE_VERSION = "TCGPLAYER_MARKET_PIPELINE_V1";
 const SCHEMA_VERSION = "TCGPLAYER_MARKET_PUBLICATION_SCHEMA_V1";
 const SNAPSHOT_SCHEMA_VERSION = "MARKET_PRICE_PUBLICATION_SNAPSHOT_V1";
@@ -1860,7 +1860,7 @@ async function runDurable(client, args, sourceRun, runPlan) {
       operation: async () => {
         const reconciliation = await reconcileRun(client, run.id);
         reconciliation.source_scope_version=CROSS_TCG_MARKET_SCOPE_V2;
-        reconciliation.complete_source_selection=args.limit===null&&!canaryDefinition;
+        reconciliation.complete_source_selection=args.limit===null&&!args.canaryDefinition;
         await persistReconciliation(client, run.id, reconciliation);
         if (reconciliation.mismatches.length) {
           throw new Error(
