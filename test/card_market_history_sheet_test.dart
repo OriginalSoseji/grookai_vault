@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:grookai_vault/services/pricing/card_personal_sales_service.dart';
-import 'package:grookai_vault/services/pricing/card_sold_comps_service.dart';
 import 'package:grookai_vault/services/pricing/ebay_sold_search_uri.dart';
 import 'package:grookai_vault/widgets/pricing/card_market_history_sheet.dart';
 
@@ -195,6 +194,58 @@ void main() {
     );
   });
 
+  testWidgets('without a sold-comps provider only offers eBay review', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(360, 800);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    var openedSoldSearch = false;
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Builder(
+          builder: (context) => Scaffold(
+            body: TextButton(
+              onPressed: () => showModalBottomSheet<void>(
+                context: context,
+                isScrollControlled: true,
+                builder: (_) => CardMarketHistorySheet(
+                  cardName: 'Charizard ex',
+                  printingLabel: 'Holo',
+                  cardPrintingId: 'printing-1',
+                  loader: (_, _) async => const [],
+                  openSoldSearch: () async {
+                    openedSoldSearch = true;
+                  },
+                ),
+              ),
+              child: const Text('Open history'),
+            ),
+          ),
+        ),
+      ),
+    );
+
+    await tester.tap(find.text('Open history'));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('load_sold_comps')), findsNothing);
+    final soldSearch = find.byKey(const Key('open_ebay_sold_search'));
+    await tester.scrollUntilVisible(
+      soldSearch,
+      240,
+      scrollable: find.byType(Scrollable).last,
+    );
+    expect(
+      find.textContaining('does not import or average those results'),
+      findsOneWidget,
+    );
+    await tester.tap(soldSearch);
+    await tester.pumpAndSettle();
+    expect(openedSoldSearch, isTrue);
+  });
+
   testWidgets('sheet keeps personal sales separate from marketwide comps', (
     tester,
   ) async {
@@ -236,85 +287,5 @@ void main() {
     expect(find.byKey(const Key('personal_sale_sale-1')), findsOneWidget);
     expect(find.text(r'$12.34'), findsOneWidget);
     expect(find.textContaining(r'asking price was $15.00'), findsOneWidget);
-  });
-
-  testWidgets('sold comp action shows a clearly scoped sample average', (
-    tester,
-  ) async {
-    tester.view.physicalSize = const Size(360, 800);
-    tester.view.devicePixelRatio = 1;
-    addTearDown(tester.view.resetPhysicalSize);
-    addTearDown(tester.view.resetDevicePixelRatio);
-    var loadCount = 0;
-    await tester.pumpWidget(
-      MaterialApp(
-        home: Builder(
-          builder: (context) => Scaffold(
-            body: TextButton(
-              onPressed: () => showModalBottomSheet<void>(
-                context: context,
-                isScrollControlled: true,
-                builder: (_) => CardMarketHistorySheet(
-                  cardName: 'Charizard ex',
-                  printingLabel: 'Holo',
-                  cardPrintingId: 'printing-1',
-                  loader: (_, _) async => const [],
-                  loadSoldComps: () async {
-                    loadCount++;
-                    return const CardSoldCompsResult(
-                      productName: 'Charizard ex · 151 · Holo',
-                      productUrl: null,
-                      sales: [
-                        CardSoldComp(
-                          title: 'Charizard ex NM',
-                          price: 10,
-                          totalPrice: 12,
-                          currency: 'USD',
-                          soldAt: null,
-                        ),
-                        CardSoldComp(
-                          title: 'Charizard ex LP',
-                          price: 18,
-                          currency: 'USD',
-                          soldAt: null,
-                        ),
-                        CardSoldComp(
-                          title: 'Charizard ex CAD',
-                          price: 25,
-                          currency: 'CAD',
-                          soldAt: null,
-                        ),
-                      ],
-                      totalSales: 3,
-                      salesHistoryStatus: 'limited',
-                      sampledAt: null,
-                      matchCandidates: [],
-                    );
-                  },
-                ),
-              ),
-              child: const Text('Open history'),
-            ),
-          ),
-        ),
-      ),
-    );
-
-    await tester.tap(find.text('Open history'));
-    await tester.pumpAndSettle();
-    final loadButton = find.byKey(const Key('load_sold_comps'));
-    await tester.scrollUntilVisible(
-      loadButton,
-      240,
-      scrollable: find.byType(Scrollable).last,
-    );
-    await tester.tap(loadButton);
-    await tester.pumpAndSettle();
-
-    expect(loadCount, 1);
-    expect(find.text('Average sold · returned sample'), findsOneWidget);
-    expect(find.text('USD 15.00 · 2 comps'), findsOneWidget);
-    expect(find.text('CAD 25.00 · 1 comps'), findsOneWidget);
-    expect(find.textContaining('not an eBay-wide average'), findsOneWidget);
   });
 }
