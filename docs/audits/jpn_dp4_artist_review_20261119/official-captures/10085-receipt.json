@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:21:08.572Z",
+  "gv_id": "GV-PK-JPN-DP4-085",
+  "card_print_id": "31e2556d-35a0-499e-bed7-ee7e8f72576e",
+  "catalog_coordinate": "085",
+  "catalog_name": "ソルロック",
+  "official_id": "10085",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10085/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10085/regu/all",
+    "status": 200,
+    "sha256": "ab826a8a95c131f36ea0406edde34d2a43bdedeb59ec35b3f3f57c07d8b2590a",
+    "bytes": 10149
+  },
+  "heading": "ソルロック",
+  "artist": "Ken Sugimori",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010085_P_SORUROKKU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010085_P_SORUROKKU.jpg",
+    "status": 200,
+    "sha256": "2e8de06e2f4b6df701885f896cfb1577e5d52ea4f0d4c414cbbceeb6b15e947e",
+    "bytes": 54362,
+    "catalog_path_hash_prefix": "2e8de06e2f4b6df701885f89",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

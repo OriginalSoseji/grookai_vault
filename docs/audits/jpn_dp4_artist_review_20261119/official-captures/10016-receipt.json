@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:23:01.443Z",
+  "gv_id": "GV-PK-JPN-DP4-016",
+  "card_print_id": "869b9dc9-b7db-42dc-a271-001fe4d9d4ee",
+  "catalog_coordinate": "016",
+  "catalog_name": "イルミーゼ",
+  "official_id": "10016",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10016/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10016/regu/all",
+    "status": 200,
+    "sha256": "375ef71d1353f528e2bdf02a7a16f168bcb0e24bf63b23c7a759ff0f0b5b4fb4",
+    "bytes": 10153
+  },
+  "heading": "イルミーゼ",
+  "artist": "Ken Sugimori",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010016_P_IRUMIZE.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010016_P_IRUMIZE.jpg",
+    "status": 200,
+    "sha256": "bb42cbec841c140bb95cea0ac79681ac8f0b98483b7153608063dd10fd2ab411",
+    "bytes": 57249,
+    "catalog_path_hash_prefix": "bb42cbec841c140bb95cea0a",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

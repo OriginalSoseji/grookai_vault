@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:23:06.840Z",
+  "gv_id": "GV-PK-JPN-DP4-066",
+  "card_print_id": "892a3cc3-5272-4c66-bc3b-fdd276ff67f2",
+  "catalog_coordinate": "066",
+  "catalog_name": "ミュウツー",
+  "official_id": "10066",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10066/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10066/regu/all",
+    "status": 200,
+    "sha256": "214ae708d8b2fdffe5075f2c65055322c57f2a483793c38880859c45710f1c48",
+    "bytes": 10208
+  },
+  "heading": "ミュウツー",
+  "artist": "Kent Kanetsuna",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010066_P_MYUUTSU.gif",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010066_P_MYUUTSU.gif",
+    "status": 200,
+    "sha256": "72a8bc1393c6fe1bce94c0fdbc6c3a0bd3e269283ccd57600d0496a42db9853e",
+    "bytes": 52557,
+    "catalog_path_hash_prefix": "07fa8394447e4bfd5660843c",
+    "hash_prefix_matches": false
+  },
+  "disposition": "needs_manual_review",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

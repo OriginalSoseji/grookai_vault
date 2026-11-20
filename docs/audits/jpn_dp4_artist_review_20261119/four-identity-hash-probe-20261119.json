@@ -1,0 +1,44 @@
+{
+  "captured_at": "2026-11-19T23:46:35.559Z",
+  "scope": "Read-only computed-hash comparison for an illustrative payload shape, not an approved payload or collision-free write plan.",
+  "sanity": {
+    "read_only": "on",
+    "parents": 173837
+  },
+  "rows": [
+    {
+      "gv_id": "GV-PK-JPN-DP4-054",
+      "identity_id": "d65feb42-3c96-434f-a41b-0a01162ebf03",
+      "identity_key_hash": "899d46db54ce747ddbc618d69df93e2b6d592c24bab394446d34d9eff81085b7",
+      "computed_before": "899d46db54ce747ddbc618d69df93e2b6d592c24bab394446d34d9eff81085b7",
+      "computed_after": "899d46db54ce747ddbc618d69df93e2b6d592c24bab394446d34d9eff81085b7"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-064",
+      "identity_id": "d6174d50-752a-4ac0-a0ba-9852caec8232",
+      "identity_key_hash": "fa730550307f69c5654530d5a8f3a69ff6159ff5c29fe819749265654d96dca9",
+      "computed_before": "fa730550307f69c5654530d5a8f3a69ff6159ff5c29fe819749265654d96dca9",
+      "computed_after": "fa730550307f69c5654530d5a8f3a69ff6159ff5c29fe819749265654d96dca9"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-075",
+      "identity_id": "5328caa4-c669-43a9-878c-c9f3f286b508",
+      "identity_key_hash": "dcab4cfec2a1b6784dc73b9c08d4a16912268c8e6b836457e1ba5a42a36e0ec5",
+      "computed_before": "dcab4cfec2a1b6784dc73b9c08d4a16912268c8e6b836457e1ba5a42a36e0ec5",
+      "computed_after": "dcab4cfec2a1b6784dc73b9c08d4a16912268c8e6b836457e1ba5a42a36e0ec5"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-078",
+      "identity_id": "d90b5ef1-4a35-44ed-9424-7b32d7049dd7",
+      "identity_key_hash": "d9f61a312f503f621cfccbd4283b0cca290630d594a5dd253d2e431df6affff5",
+      "computed_before": "d9f61a312f503f621cfccbd4283b0cca290630d594a5dd253d2e431df6affff5",
+      "computed_after": "d9f61a312f503f621cfccbd4283b0cca290630d594a5dd253d2e431df6affff5"
+    }
+  ],
+  "triggers": [
+    {
+      "tgname": "trg_card_print_identity_updated_at",
+      "definition": "CREATE TRIGGER trg_card_print_identity_updated_at BEFORE UPDATE ON public.card_print_identity FOR EACH ROW EXECUTE FUNCTION set_timestamp_updated_at()"
+    }
+  ]
+}

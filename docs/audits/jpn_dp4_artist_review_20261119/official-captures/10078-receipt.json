@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:26:57.520Z",
+  "gv_id": "GV-PK-JPN-DP4-078",
+  "card_print_id": "b4e4a0e0-af24-44f9-b4a8-d0a81ba8aa76",
+  "catalog_coordinate": "078",
+  "catalog_name": "マンキー",
+  "official_id": "10078",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10078/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10078/regu/all",
+    "status": 200,
+    "sha256": "5dd1c3e7278a5c75e973952d3cb62d20cc2c1725d956d5012fd7b5ed84d36ea4",
+    "bytes": 10676
+  },
+  "heading": "マンキー",
+  "artist": "Ken Sugimori",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010078_P_MANKI.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010078_P_MANKI.jpg",
+    "status": 200,
+    "sha256": "705750ddeb76d34622954466859905b34685e4941b808d05c4216143970361ca",
+    "bytes": 51010,
+    "catalog_path_hash_prefix": "705750ddeb76d34622954466",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

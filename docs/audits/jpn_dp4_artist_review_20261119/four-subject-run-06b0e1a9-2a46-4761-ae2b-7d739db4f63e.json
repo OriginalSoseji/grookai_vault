@@ -1,0 +1,186 @@
+{
+  "version": "JPN_DP4_SUBJECT_REPAIR_V1",
+  "run_id": "06b0e1a9-2a46-4761-ae2b-7d739db4f63e",
+  "mode": "apply",
+  "package_fingerprint": "fdc3bf85c409901e98b84ca304f8101c4564940a13a0aa3e0bcbdfa4182f9a8c",
+  "writer_fingerprint": "a0a6bc1a07db6760f0ec847533fb9efa335af22ea0ff506f3937d83042c08b54",
+  "started_at": "2026-11-20T05:53:26.419Z",
+  "status": "applied_and_verified",
+  "stages": [
+    {
+      "name": "source_identity_and_ownership_verified",
+      "at": "2026-11-20T05:53:34.452Z"
+    },
+    {
+      "name": "write_and_proofs_passed",
+      "at": "2026-11-20T05:53:46.037Z"
+    },
+    {
+      "name": "applied_and_verified",
+      "at": "2026-11-20T05:53:49.762Z"
+    }
+  ],
+  "sanity": {
+    "parents": 173837,
+    "sets": 3420,
+    "traits": 47409
+  },
+  "protected_before": {
+    "parents": {
+      "rows": 4,
+      "digest": "41406fa9368b0b8f30e90746f9a42e96"
+    },
+    "card_printings": {
+      "rows": 4,
+      "versions1": "-9180025501238707789",
+      "versions2": "-4521858703306123758"
+    },
+    "external_mappings": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "external_mapping_aliases": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "card_print_cameos": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "card_print_traits": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "card_print_image_faces": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "vault_item_instances": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "vault_items": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "card_print_price_curves": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "price_observations": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "market_prices": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "sets": {
+      "rows": 1,
+      "digest": "8e98c9ab53189d050ebf3f2c12dc6bab"
+    },
+    "publication": {
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "current_publication": {
+      "rows": 1,
+      "digest": "784d29d02aa0dff49fb6125dec6b8e4a"
+    },
+    "qualification": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    }
+  },
+  "receipt_id": "177031",
+  "protected_after": {
+    "parents": {
+      "rows": 4,
+      "digest": "41406fa9368b0b8f30e90746f9a42e96"
+    },
+    "card_printings": {
+      "rows": 4,
+      "versions1": "-9180025501238707789",
+      "versions2": "-4521858703306123758"
+    },
+    "external_mappings": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "external_mapping_aliases": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "card_print_cameos": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "card_print_traits": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "card_print_image_faces": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "vault_item_instances": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "vault_items": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "card_print_price_curves": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "price_observations": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "market_prices": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "sets": {
+      "rows": 1,
+      "digest": "8e98c9ab53189d050ebf3f2c12dc6bab"
+    },
+    "publication": {
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "current_publication": {
+      "rows": 1,
+      "digest": "784d29d02aa0dff49fb6125dec6b8e4a"
+    },
+    "qualification": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    }
+  },
+  "finished_at": "2026-11-20T05:53:49.682Z"
+}

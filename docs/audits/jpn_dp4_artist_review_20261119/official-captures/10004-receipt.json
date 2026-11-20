@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:27:50.388Z",
+  "gv_id": "GV-PK-JPN-DP4-004",
+  "card_print_id": "dec0eefd-2042-4edf-b8cc-37267d99abfa",
+  "catalog_coordinate": "004",
+  "catalog_name": "ビードル",
+  "official_id": "10004",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10004/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10004/regu/all",
+    "status": 200,
+    "sha256": "dd5c8eeabe850b4f6afae9f67bae332f342ba0d75058da98d494a38d2d8b4690",
+    "bytes": 10646
+  },
+  "heading": "ビードル",
+  "artist": "Mitsuhiro Arita",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010004_P_BIDORU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010004_P_BIDORU.jpg",
+    "status": 200,
+    "sha256": "1eede4586c53673960bc2c2bb72526e334d442161ec7abfe5880290398b278f7",
+    "bytes": 56409,
+    "catalog_path_hash_prefix": "1eede4586c53673960bc2c2b",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

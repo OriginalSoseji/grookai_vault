@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:22:07.742Z",
+  "gv_id": "GV-PK-JPN-DP4-064",
+  "card_print_id": "539a729a-5d43-4d2a-a11c-6f4f6d2f7133",
+  "catalog_coordinate": "064",
+  "catalog_name": "マタドガス",
+  "official_id": "10064",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10064/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10064/regu/all",
+    "status": 200,
+    "sha256": "9265beb2b4891cb5bcf6c64511cde99cce619803932e3fd640e6440d2bc1c657",
+    "bytes": 10744
+  },
+  "heading": "マタドガス",
+  "artist": "Kouki Saitou",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010064_P_MATADOGASU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010064_P_MATADOGASU.jpg",
+    "status": 200,
+    "sha256": "b96c95edca15d53f64517930ceb9e0022a638e7e8248afec3203746307f3ab1b",
+    "bytes": 50944,
+    "catalog_path_hash_prefix": "b96c95edca15d53f64517930",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

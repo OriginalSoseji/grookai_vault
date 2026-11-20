@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:22:13.640Z",
+  "gv_id": "GV-PK-JPN-DP4-041",
+  "card_print_id": "59cdadd8-b7bd-4683-a192-5de6140b6b0c",
+  "catalog_coordinate": "041",
+  "catalog_name": "キャモメ",
+  "official_id": "10041",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10041/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10041/regu/all",
+    "status": 200,
+    "sha256": "8edef9b714c15fa3eb53c1d74e7c313fcd585cf1ce71abdf8b103d78d339ddd6",
+    "bytes": 10257
+  },
+  "heading": "キャモメ",
+  "artist": "Ken Sugimori",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010041_P_KYAMOME.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010041_P_KYAMOME.jpg",
+    "status": 200,
+    "sha256": "34a8d0d95648b67e0c0bdade1ece04af245180b18366a4e1b189dec5ace44c32",
+    "bytes": 54905,
+    "catalog_path_hash_prefix": "34a8d0d95648b67e0c0bdade",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

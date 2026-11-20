@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:27:53.379Z",
+  "gv_id": "GV-PK-JPN-DP4-128",
+  "card_print_id": "df6604d2-6843-4ee6-924c-5928c7d7eca6",
+  "catalog_coordinate": "128",
+  "catalog_name": "おまもりこばん",
+  "official_id": "10128",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10128/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10128/regu/all",
+    "status": 200,
+    "sha256": "95827447dcc1508bce07b47e9cf067135ad5a615f222a4db339d5b0958f3cb74",
+    "bytes": 8447
+  },
+  "heading": "おまもりこばん",
+  "artist": "Daisuke Ito",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010128_T_OMAMORIKOBAN.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010128_T_OMAMORIKOBAN.jpg",
+    "status": 200,
+    "sha256": "e97926201cb1636bb09099992b6374cc7b479f96f5bf049875628aa9f2f6bf32",
+    "bytes": 40418,
+    "catalog_path_hash_prefix": "e97926201cb1636bb0909999",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

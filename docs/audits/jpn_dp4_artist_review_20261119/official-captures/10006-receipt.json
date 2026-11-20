@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:27:36.717Z",
+  "gv_id": "GV-PK-JPN-DP4-006",
+  "card_print_id": "d510e101-1a1c-4cca-b6f0-088706f06be0",
+  "catalog_coordinate": "006",
+  "catalog_name": "スピアー",
+  "official_id": "10006",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10006/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10006/regu/all",
+    "status": 200,
+    "sha256": "c2dc8875245984ec52020154d4ea71fc913c8b6b05335b0aecb17405ff5ec707",
+    "bytes": 10700
+  },
+  "heading": "スピアー",
+  "artist": "Kouki Saitou",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010006_P_SUPIA.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010006_P_SUPIA.jpg",
+    "status": 200,
+    "sha256": "22d014b85512c51a84e2d3047b4b55640696bd92886b41b418f0a5b57ffae604",
+    "bytes": 58475,
+    "catalog_path_hash_prefix": "22d014b85512c51a84e2d304",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

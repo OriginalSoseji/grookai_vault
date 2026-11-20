@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:22:41.694Z",
+  "gv_id": "GV-PK-JPN-DP4-093",
+  "card_print_id": "72f4cfa8-84a6-469e-a307-d665f68e8636",
+  "catalog_coordinate": "093",
+  "catalog_name": "ハッサム",
+  "official_id": "10093",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10093/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10093/regu/all",
+    "status": 200,
+    "sha256": "3df7ddfb2a03a948894ecc5567fa7c900dc9788c9de4646c23ccb4a50c72350b",
+    "bytes": 10981
+  },
+  "heading": "ハッサム",
+  "artist": "Daisuke Ito",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010093_P_HASSAMU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010093_P_HASSAMU.jpg",
+    "status": 200,
+    "sha256": "6bdd08751cbebf368fa1c78a23fb11e749706a8ab11987c330ff199c1be3e207",
+    "bytes": 49908,
+    "catalog_path_hash_prefix": "6bdd08751cbebf368fa1c78a",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

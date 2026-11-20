@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:20:37.687Z",
+  "gv_id": "GV-PK-JPN-DP4-039",
+  "card_print_id": "1f2f3ace-f4af-48c9-8e75-1b2ef95d96dc",
+  "catalog_coordinate": "039",
+  "catalog_name": "ヌマクロー",
+  "official_id": "10039",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10039/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10039/regu/all",
+    "status": 200,
+    "sha256": "1c249258e6fce26f289dc51b0da2ef6601318ac2d14cc4179c276c93561add66",
+    "bytes": 10663
+  },
+  "heading": "ヌマクロー",
+  "artist": "Sumiyoshi Kizuki",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010039_P_NUMAKURO.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010039_P_NUMAKURO.jpg",
+    "status": 200,
+    "sha256": "e05c2c059a1f85bc826154423a9f427ead4c18e5f1b036e01224355cf081df93",
+    "bytes": 65767,
+    "catalog_path_hash_prefix": "e05c2c059a1f85bc82615442",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

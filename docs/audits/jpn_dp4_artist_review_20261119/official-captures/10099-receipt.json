@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:27:22.565Z",
+  "gv_id": "GV-PK-JPN-DP4-099",
+  "card_print_id": "cc1c9dbf-7d3d-4a4f-bcab-5699cdf56c3b",
+  "catalog_coordinate": "099",
+  "catalog_name": "プリン",
+  "official_id": "10099",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10099/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10099/regu/all",
+    "status": 200,
+    "sha256": "728337825817b13376b046234bf75c8f661c0d75fe86671633f287496294e178",
+    "bytes": 10725
+  },
+  "heading": "プリン",
+  "artist": "Kenkichi Toyama",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010099_P_PURIN.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010099_P_PURIN.jpg",
+    "status": 200,
+    "sha256": "c24c525f6f116f1a7cd931f6747da3e6633d690457fcb134d46b26aeb99302e9",
+    "bytes": 47576,
+    "catalog_path_hash_prefix": "c24c525f6f116f1a7cd931f6",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:22:38.731Z",
+  "gv_id": "GV-PK-JPN-DP4-124",
+  "card_print_id": "713a6610-e2f4-4156-9dfb-e7da718b8b0d",
+  "catalog_coordinate": "124",
+  "catalog_name": "こうらの化石",
+  "official_id": "10124",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10124/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10124/regu/all",
+    "status": 200,
+    "sha256": "0ea59125ede7cf84e4822605c465547ff6c082f60476c9002e9f0a64d8149945",
+    "bytes": 9176
+  },
+  "heading": "こうらの化石",
+  "artist": "Ryo Ueda",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010124_T_KOURANOKASEKI.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010124_T_KOURANOKASEKI.jpg",
+    "status": 200,
+    "sha256": "d63468d7d7aceb17cf0df6368cea045eee9f180e90eeab5625f22f1c982ccbd9",
+    "bytes": 43810,
+    "catalog_path_hash_prefix": "d63468d7d7aceb17cf0df636",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

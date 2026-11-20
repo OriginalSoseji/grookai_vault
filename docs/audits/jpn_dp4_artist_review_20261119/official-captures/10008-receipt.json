@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:21:42.482Z",
+  "gv_id": "GV-PK-JPN-DP4-008",
+  "card_print_id": "4af29a76-b327-4000-871e-40caef98454f",
+  "catalog_coordinate": "008",
+  "catalog_name": "モジャンボ",
+  "official_id": "10008",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10008/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10008/regu/all",
+    "status": 200,
+    "sha256": "1e5471bdff0b1f081568ed8e1e51e616a8b9cff87208f43f05d7a6710f070147",
+    "bytes": 10594
+  },
+  "heading": "モジャンボ",
+  "artist": "Kent Kanetsuna",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010008_P_MOJANBO.gif",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010008_P_MOJANBO.gif",
+    "status": 200,
+    "sha256": "dfba20906f017c646626aad310eef72e222e24ba647ec08dca89ea6fa9dffb7f",
+    "bytes": 54195,
+    "catalog_path_hash_prefix": "48dfaeecbe1c8c2cf72048f4",
+    "hash_prefix_matches": false
+  },
+  "disposition": "needs_manual_review",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:28:01.472Z",
+  "gv_id": "GV-PK-JPN-DP4-122",
+  "card_print_id": "e29e89d3-59ca-40dd-8b75-740be5894897",
+  "catalog_coordinate": "122",
+  "catalog_name": "ガブリアス",
+  "official_id": "10122",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10122/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10122/regu/all",
+    "status": 200,
+    "sha256": "e0c95c8fa0518ce01f4b82fba9d6118bd38c6d0e809f075453059a6998bf8ee5",
+    "bytes": 10975
+  },
+  "heading": "ガブリアス",
+  "artist": "Ryo Ueda",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010122_P_GABURIASU.gif",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010122_P_GABURIASU.gif",
+    "status": 200,
+    "sha256": "f083787c5b5b54bb95699ed8f4cd4f061f6f0e74bacaa20f093cfdc554ea94c8",
+    "bytes": 54156,
+    "catalog_path_hash_prefix": "f083787c5b5b54bb95699ed8",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:27:42.056Z",
+  "gv_id": "GV-PK-JPN-DP4-126",
+  "card_print_id": "d992afe3-a697-494b-aab0-2e43bc618b2c",
+  "catalog_coordinate": "126",
+  "catalog_name": "ふしぎなアメ",
+  "official_id": "10126",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10126/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10126/regu/all",
+    "status": 200,
+    "sha256": "80aad45351ca9c7621be84f68dedbe68e5ad190f94c4d7be0c9f7bb738e12165",
+    "bytes": 8512
+  },
+  "heading": "ふしぎなアメ",
+  "artist": "Ryo Ueda",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010126_T_FUSHIGINAAME.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010126_T_FUSHIGINAAME.jpg",
+    "status": 200,
+    "sha256": "042d626346c46634d438ef149b2562d752f9dbad498648978093397bc958270d",
+    "bytes": 42792,
+    "catalog_path_hash_prefix": "042d626346c46634d438ef14",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

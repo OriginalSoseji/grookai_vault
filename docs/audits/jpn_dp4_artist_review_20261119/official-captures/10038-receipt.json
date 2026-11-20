@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:28:46.478Z",
+  "gv_id": "GV-PK-JPN-DP4-038",
+  "card_print_id": "ff408a7c-d110-472c-8e19-a2fc5c02886f",
+  "catalog_coordinate": "038",
+  "catalog_name": "ミズゴロウ",
+  "official_id": "10038",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10038/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10038/regu/all",
+    "status": 200,
+    "sha256": "61b2e1ea99e995a2c104d87386203535b9b0efef9053f850e307b9a04cdc1ec6",
+    "bytes": 10520
+  },
+  "heading": "ミズゴロウ",
+  "artist": "Emi Yoshida",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010038_P_MIZUGOROU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010038_P_MIZUGOROU.jpg",
+    "status": 200,
+    "sha256": "bd91eb2e15d274be6283920b51006d365f7889a628c8ce4be2e81f1385bab8b0",
+    "bytes": 58884,
+    "catalog_path_hash_prefix": "bd91eb2e15d274be6283920b",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

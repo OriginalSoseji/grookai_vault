@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:22:27.147Z",
+  "gv_id": "GV-PK-JPN-DP4-110",
+  "card_print_id": "60ec3358-6735-4420-b1c1-4a8c420c34ab",
+  "catalog_coordinate": "110",
+  "catalog_name": "ブルー",
+  "official_id": "10110",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10110/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10110/regu/all",
+    "status": 200,
+    "sha256": "d879d68f1ad6a1f4ca319902912cd0fd19c37b24564fa69e43d6b946852ce5a7",
+    "bytes": 10305
+  },
+  "heading": "ブルー",
+  "artist": "Atsuko Nishida",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010110_P_BURU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010110_P_BURU.jpg",
+    "status": 200,
+    "sha256": "b0d06525329410a65477bce0789c5de76f7e32a19b998f2ceeb6019e3c809384",
+    "bytes": 47471,
+    "catalog_path_hash_prefix": "b0d06525329410a65477bce0",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

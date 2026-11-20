@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:27:14.249Z",
+  "gv_id": "GV-PK-JPN-DP4-069",
+  "card_print_id": "c148dddb-57c2-49fc-9c9d-447e5399e6b5",
+  "catalog_coordinate": "069",
+  "catalog_name": "アンノーン[H]",
+  "official_id": "10069",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10069/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10069/regu/all",
+    "status": 200,
+    "sha256": "d143dfdca09407190c54c92111c50a0d68f3a6707eb331a8504439008cf57601",
+    "bytes": 10089
+  },
+  "heading": "アンノーン[H]",
+  "artist": "Daisuke Ito",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010069_P_ANNONH.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010069_P_ANNONH.jpg",
+    "status": 200,
+    "sha256": "5d59b4ee8ae4c41953e6cdd6b0efa6c913903a638d0ba93728fdedf260ca8523",
+    "bytes": 50223,
+    "catalog_path_hash_prefix": "5d59b4ee8ae4c41953e6cdd6",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

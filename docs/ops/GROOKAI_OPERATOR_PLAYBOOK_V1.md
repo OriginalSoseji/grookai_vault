@@ -1,3 +1,9 @@
+# DP4 subject repair applied — November 19, 2026
+
+The four-record `catalog_jpn_dp4_subject_repair_v1` transaction passed the same-writer rollback proof and was applied with durable receipt `177031`; a separate read-only verify and independent pre/post snapshot comparison passed. See `docs/audits/jpn_dp4_artist_review_20261119/README.md`. The existing actor's `verify` mode is read-only. Apply is not a general DP4 repair tool: the package is exact, already applied and idempotent only while its full source/identity state still matches. A changed writer invalidates the rollback proof for any new mutation, and a changed source or state requires fresh review. The earlier candidate notes below are historical.
+# DP4 subject repair candidate — November 19, 2026
+
+`backend/catalog/jpn_dp4_subject_repair_v1.mjs` is a candidate for four exact-source identity/species corrections described in `docs/audits/jpn_dp4_artist_review_20261119/README.md`. Read-only `inspect` and `verify` do not mutate the catalog. `rollback-proof` and `apply` require the existing owner authorization marker and exact package/same-writer proof. The writer preserves original identity payloads and source bytes in restricted raw evidence, retires rather than deletes old links, inserts four exact replacement links, and fails on parent, ownership, source, image, identity, species or protected-state drift. Do not apply without completing its source/producer audit, focused tests, rollback proof and independent readback; an unknown commit outcome requires readback before retry. This package does not admit the 118 held artist credits or resolve the broader diagnostic queue.
 # Shrouded Fable final release V2 — November18,2026
 
 The qualified candidate starts from main6b7a4818f after native release950.

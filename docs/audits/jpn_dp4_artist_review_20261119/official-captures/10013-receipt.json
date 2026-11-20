@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:28:29.158Z",
+  "gv_id": "GV-PK-JPN-DP4-013",
+  "card_print_id": "f9485646-46da-4912-8640-d97ee0ec97d6",
+  "catalog_coordinate": "013",
+  "catalog_name": "ジュプトル",
+  "official_id": "10013",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10013/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10013/regu/all",
+    "status": 200,
+    "sha256": "32fd4d52b121ea79805498286278690e81a677409983b80d9ac6fca726592b56",
+    "bytes": 10835
+  },
+  "heading": "ジュプトル",
+  "artist": "Kagemaru Himeno",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010013_P_JUPUTORU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010013_P_JUPUTORU.jpg",
+    "status": 200,
+    "sha256": "382f28a5b9fb14c60e05880bd60a03200c42a1800d6d907109a170590d73a151",
+    "bytes": 57232,
+    "catalog_path_hash_prefix": "382f28a5b9fb14c60e05880b",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

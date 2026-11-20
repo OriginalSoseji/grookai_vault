@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:21:53.215Z",
+  "gv_id": "GV-PK-JPN-DP4-092",
+  "card_print_id": "4fe36686-021f-45e3-9fd6-ca53e37fa5e0",
+  "catalog_coordinate": "092",
+  "catalog_name": "ドンカラス",
+  "official_id": "10092",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10092/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10092/regu/all",
+    "status": 200,
+    "sha256": "762cef9ef916956e48ccfee6e33acf0f0bbb56a9ddd11b1fdecf1b550d534638",
+    "bytes": 10678
+  },
+  "heading": "ドンカラス",
+  "artist": "Ryo Ueda",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010092_P_DONKARASU.gif",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010092_P_DONKARASU.gif",
+    "status": 200,
+    "sha256": "42487d5723831fd17d3af1f10ae4f2263a4c4efe7b9f7ec475e67d013b29201a",
+    "bytes": 54421,
+    "catalog_path_hash_prefix": "42487d5723831fd17d3af1f1",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

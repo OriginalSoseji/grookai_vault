@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:23:12.208Z",
+  "gv_id": "GV-PK-JPN-DP4-121",
+  "card_print_id": "8a1a28f1-7069-470a-a757-727515a60aec",
+  "catalog_coordinate": "121",
+  "catalog_name": "ラティオス",
+  "official_id": "10121",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10121/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10121/regu/all",
+    "status": 200,
+    "sha256": "9bd6ac022d77271f16fcf931d4c6f8d968a3107ceb320870c309443a8fd1f43b",
+    "bytes": 10166
+  },
+  "heading": "ラティオス",
+  "artist": "Daisuke Ito",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010121_P_RATEIOSU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010121_P_RATEIOSU.jpg",
+    "status": 200,
+    "sha256": "40c1450ee02009e6286a9d97985d75b28e1a824051b36ba72e81cc7c2093842b",
+    "bytes": 41829,
+    "catalog_path_hash_prefix": "40c1450ee02009e6286a9d97",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

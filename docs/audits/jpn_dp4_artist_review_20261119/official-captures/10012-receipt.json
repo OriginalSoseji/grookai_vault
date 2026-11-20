@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:22:02.098Z",
+  "gv_id": "GV-PK-JPN-DP4-012",
+  "card_print_id": "520fae99-5415-4304-83b5-5c4a0650ea4c",
+  "catalog_coordinate": "012",
+  "catalog_name": "キモリ",
+  "official_id": "10012",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10012/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10012/regu/all",
+    "status": 200,
+    "sha256": "c39247d37579c9342f7aa9e99ddcf47ff2e12a91068c5e2adf351f2d9781a5e0",
+    "bytes": 10854
+  },
+  "heading": "キモリ",
+  "artist": "Kouki Saitou",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010012_P_KIMORI.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010012_P_KIMORI.jpg",
+    "status": 200,
+    "sha256": "853b950d0f90944a2dd7f65c1e6d5d081b10114a5c5ffabaab301a3045b41ca3",
+    "bytes": 58872,
+    "catalog_path_hash_prefix": "853b950d0f90944a2dd7f65c",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

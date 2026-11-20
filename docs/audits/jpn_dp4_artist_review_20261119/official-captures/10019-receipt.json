@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:21:47.875Z",
+  "gv_id": "GV-PK-JPN-DP4-019",
+  "card_print_id": "4efeb6bc-6616-4cd9-b373-27c2c974a6f7",
+  "catalog_coordinate": "019",
+  "catalog_name": "ファイヤー",
+  "official_id": "10019",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10019/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10019/regu/all",
+    "status": 200,
+    "sha256": "60ae6271e6a6b9ffe35ff9c56c260c7fafa5e19ae6079be8f50fcbe53f5e5810",
+    "bytes": 10286
+  },
+  "heading": "ファイヤー",
+  "artist": "Kagemaru Himeno",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010019_P_FAIYA.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010019_P_FAIYA.jpg",
+    "status": 200,
+    "sha256": "39288910ea983627b5d28a63d321194922b68df5f06cf6549697462f14475af3",
+    "bytes": 61264,
+    "catalog_path_hash_prefix": "39288910ea983627b5d28a63",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}
