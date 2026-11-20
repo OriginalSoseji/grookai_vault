@@ -80,6 +80,63 @@ test('playable words compile into visible typed filters while preserving card na
   assert.equal(intentModule.buildSmartSearchIntent('unplayable cards').playable, undefined);
 });
 
+test('Pokemon rarity aliases and explicit artwork have removable filters without changing query meaning', () => {
+  const sir = intentModule.buildSmartSearchIntent('SIR playables Bloodmoon Ursaluna ex');
+  assert.equal(sir.playable, true);
+  assert.equal(sir.residualQuery, 'SIR Bloodmoon Ursaluna ex');
+  const rarity = sir.queryFilters.find(filter => filter.kind === 'rarity');
+  assert.equal(rarity.label, 'Rarity: special illustration rare');
+  assert.equal(rarity.queryWithout, 'playables Bloodmoon Ursaluna ex');
+  assert.equal(sir.queryFilters.find(filter => filter.kind === 'text').sourceText, 'Bloodmoon Ursaluna ex');
+  for (const spelling of ['full art', 'full-art', 'fullart']) {
+    const intent = intentModule.buildSmartSearchIntent(`${spelling} playables`);
+    assert.equal(intent.queryFilters.find(filter => filter.kind === 'artwork').label, 'Artwork: Full Art');
+    assert.equal(intent.queryFilters.find(filter => filter.kind === 'artwork').queryWithout, 'playables');
+    assert.equal(intent.residualQuery, spelling);
+  }
+  assert(!intentModule.buildSmartSearchIntent('Sir Shandlar', {gameScope: 'mtg'}).queryFilters.some(filter => filter.kind === 'rarity'));
+  assert(!intentModule.buildSmartSearchIntent('"SIR" playables').queryFilters.some(filter => filter.kind === 'rarity'));
+});
+
+function discoveryMatcher() {
+  const unknown = new Proxy({}, {get: () => () => {throw Error('UNEXPECTED_DEPENDENCY');}});
+  const compiledModule = {exports: {}};
+  vm.runInNewContext(compile('../explore/getExploreRows.ts') + '\nmodule.exports.matches = rowMatchesSmartDiscoveryText;', {
+    module: compiledModule, exports: compiledModule.exports, Map, Set,
+    require: id => id === '@/lib/search/normalizeSearchText' ? loadTestTypeScript('lib/search/normalizeSearchText.ts')
+      : id === '@/lib/search/collectorCardQuery' ? loadTestTypeScript('lib/search/collectorCardQuery.ts') : unknown,
+  });
+  return compiledModule.exports.matches;
+}
+
+test('complete playable discovery applies SIR and IR aliases as separate exact rarity constraints', () => {
+  const matches = discoveryMatcher();
+  const row = {gv_id: 'GV-PK-TWM-216', name: 'Bloodmoon Ursaluna ex', rarity: 'Special Illustration Rare'};
+  for (const q of ['sir', 'SIR Bloodmoon Ursaluna ex', 'special illustration rare Bloodmoon Ursaluna ex']) assert(matches(row, q));
+  for (const q of ['ir', 'illustration rare', 'sir Pikachu']) assert.equal(matches(row, q), false);
+  assert(matches({...row, rarity: 'Illustration Rare'}, 'IR'));
+  assert.equal(matches({...row, rarity: 'Illustration Rare'}, 'SIR'), false);
+  assert(matches({...row, name: 'Rare Candy', rarity: 'Common'}, 'common Rare Candy'));
+  assert.equal(matches({...row, rarity: 'Uncommon'}, 'common'), false);
+  assert(matches({...row, rarity: 'Rare Ultra'}, 'ultra rare'));
+  assert(matches({...row, rarity: 'Rare Holo'}, 'rare'));
+  assert(matches({...row, gv_id: 'GV-MTG-TEST-1', name: 'Sir Shandlar', rarity: 'Rare'}, 'Sir Shandlar'));
+  assert(matches({...row, name: "Sirfetch'd", rarity: 'Rare'}, "Sirfetch'd"));
+});
+
+test('full art discovery uses explicit artwork markers and does not infer them from premium rarity or names', () => {
+  const matches = discoveryMatcher();
+  const base = {gv_id: 'GV-PK-TWM-202', name: 'Bloodmoon Ursaluna ex', rarity: 'Ultra Rare'};
+  for (const spelling of ['full art', 'full-art', 'fullart']) {
+    assert(matches({...base, variant_key: 'full_art'}, spelling));
+    assert(matches({...base, printed_identity_modifier: 'Full Art'}, `${spelling} Bloodmoon Ursaluna ex`));
+    assert.equal(matches(base, spelling), false);
+    assert.equal(matches({...base, rarity: 'Special Illustration Rare'}, spelling), false);
+    assert.equal(matches({...base, name: 'Full Art'}, spelling), false);
+  }
+  assert.equal(matches({...base, variant_key: 'full_art'}, 'full art Pikachu'), false);
+});
+
 test('playables uses its canonical ID scope before the response limit and keeps residual text', async () => {
   const f = setup();
   const response = await f.get('q=playables+Boss%27s+Orders&limit=1&pagination=1');

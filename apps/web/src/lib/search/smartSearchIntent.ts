@@ -3,9 +3,10 @@ import { recognizeCombinedArtist, recognizeLiteralArtist } from "./combinedArtis
 import type { PublicGameScope } from "@/lib/publicGameScope";
 import type { PublicLanguageScope } from "@/lib/publicLanguageScope";
 import { resolveGameScopedSetSearchIntent } from "@/lib/publicSets.shared";
+import { readCollectorCardQueryFilters, removeCollectorCardQueryFilters } from "./collectorCardQuery";
 
 export type SearchQueryFilter = {
-  kind: "artist" | "finish" | "year" | "stamp" | "image" | "owned" | "text" | "game" | "language" | "rarity" | "number" | "set" | "cameo" | "playable";
+  kind: "artist" | "finish" | "year" | "stamp" | "image" | "owned" | "text" | "game" | "language" | "rarity" | "artwork" | "number" | "set" | "cameo" | "playable";
   label: string;
   sourceText: string;
   queryWithout?: string;
@@ -382,10 +383,10 @@ export function buildSmartSearchIntent(rawQuery: string, options: { gameScope?: 
   // These constraints remain in the resolver text, where catalog fields are
   // matched. Expose their individual removal without maintaining a second
   // client-side interpretation. Rare Candy is a card name, not a rarity filter.
-  let displayText = residual;
-  for (const match of residual.matchAll(/\b(?:(?:hyper|ultra|secret|double|special illustration|illustration)\s+rare|uncommon|common|rare(?!\s+candy))\b/gi)) {
-    queryFilters.push({ kind: "rarity", label: `Rarity: ${match[0]}`, sourceText: match[0] });
-    displayText = displayText.replace(match[0], " ");
+  const collectorFilters = readCollectorCardQueryFilters(residual, (gameScope ?? options.gameScope ?? "pokemon") === "pokemon");
+  let displayText = removeCollectorCardQueryFilters(residual, collectorFilters);
+  for (const filter of collectorFilters) {
+    queryFilters.push({ kind: filter.kind, label: filter.label, sourceText: filter.sourceText });
   }
   for (const match of residual.matchAll(/(?:^|\s)(#?\d+(?:\/\d+)?)(?=\s|$)/g)) {
     queryFilters.push({ kind: "number", label: `Number: ${match[1]}`, sourceText: match[1] });
