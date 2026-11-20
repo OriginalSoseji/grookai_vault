@@ -36,6 +36,8 @@ before this checkpoint update; the pending push is retained as incomplete and
 normal commit/push validation runs against the combined source. No gate, test
 selection, assertion or timeout is relaxed.
 
+Both normal managed gates passed on804d808b038a3f28fde9faf5e6a22ddb24d660ab:8,847 contract passes,151 service passes, web checks/build, clean native analysis and2,093 native passes, preserving all existing declared skips. PR985 opened after publication. PR982 advanced main to85cddfa6f17bedb2402b51858b2d27e7ecad965f during that push. Its seven search/name-parser files merge without conflicts or overlap with the29 task files. All respective Git blobs and immutable migration bytes matched before this checkpoint update. Current-main ancestry and both normal gates are required again on the combined source; production remains511 with no BOG aliases.
+
 The separate `-BestOfGameDiscoveryBaselineV1` audit passed canonical511,
 all applied source bytes, full governed schemas/security and sanity counts:
 173,837 parents,3,420 sets,47,409 traits and326 Vault projection rows. Direct

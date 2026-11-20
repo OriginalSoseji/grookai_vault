@@ -324,3 +324,15 @@ test('numbered name interpretation uses the same name probe and retained page as
  assert.equal(await isCatalogCardNameQuery({rpc:async()=>{reads++;return {data:[]};}},'081','pokemon'),false);
  assert.equal(reads,0,'a collector number alone is not a name');
 });
+
+test('rarity and artwork name probes retain the same trusted page without swallowing ex', async () => {
+ for(const filter of ['SIR','IR','full-art','special illustration rare']) {
+  let reads=0,retained;
+  const client={rpc:async(_,args)=>{reads++;assert.equal(args.q,'Bloodmoon Ursaluna ex');return {data:[{id:'a',name:'Bloodmoon Ursaluna ex',gv_id:'GV-PK-TWM-216'}]};}};
+  const query=`${filter} Bloodmoon Ursaluna ex`;
+  assert.equal(await isCatalogCardNameQuery(client,query,'pokemon',page=>{retained=page;}),true);
+  assert.equal(retained.query,'Bloodmoon Ursaluna ex');
+  assert.equal((await fetchCompleteNamedCardRows(client,{textQuery:query,gameScope:'pokemon',namedFirstPage:retained})).length,1);
+  assert.equal(reads,1);
+ }
+});

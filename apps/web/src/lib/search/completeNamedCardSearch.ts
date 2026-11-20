@@ -1,4 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { readCollectorCardQueryFilters, removeCollectorCardQueryFilters } from "./collectorCardQuery";
 
 // Shared with the interpretation probe; a smaller retained page could truncate results.
 export const NAMED_CARD_PAGE_SIZE = 512;
@@ -19,9 +20,8 @@ export const supportsCompleteNameSearch = (value: string) =>
 
 // Interpretation and candidate discovery must probe the same name. Collector
 // numbers remain constraints on the result, not literal words in a card name.
-export function getCompleteNameSearchQuery(query: string) {
-  return query
-    .replace(/\b(?:(?:hyper|ultra|secret|double|special illustration|illustration)\s+rare|uncommon|common|rare(?!\s+candy))\b/gi, " ")
+export function getCompleteNameSearchQuery(query: string, gameScope = "pokemon") {
+  return removeCollectorCardQueryFilters(query, readCollectorCardQueryFilters(query, gameScope === "pokemon"))
     .replace(/(?<![\p{L}\p{N}])#?\d+(?:\/\d+)?(?![\p{L}\p{N}])/gu, " ")
     .replace(/\s+/g, " ").trim();
 }
@@ -32,7 +32,7 @@ export async function fetchCompleteNamedCardRows(
   client: Pick<SupabaseClient, "rpc">,
   options: { textQuery?: string; gameScope: string; languageScope?: string; exactSetCode?: string; namedFirstPage?: NamedCardFirstPage },
 ): Promise<NamedRow[] | null> {
-  const name = getCompleteNameSearchQuery(options.textQuery ?? "");
+  const name = getCompleteNameSearchQuery(options.textQuery ?? "", options.gameScope);
   if (!name || !supportsCompleteNameSearch(name)) return null;
   const prefix = options.gameScope === "pokemon" ? "GV-PK-" : options.gameScope === "mtg" ? "GV-MTG-" : "GV-OP-";
   const fragments = normalize(name).split(" ").filter(Boolean);
