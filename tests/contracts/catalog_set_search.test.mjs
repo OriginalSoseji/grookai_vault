@@ -40,6 +40,33 @@ const sets = [
 ].map(([code, name]) => ({ id: code, code, name }));
 const plain = value => JSON.parse(JSON.stringify(value));
 
+test('collector phrases keep partial set aliases from consuming their words', () => {
+ const catalog=[{id:'special',code:'sp-test',name:'Special Deck Set'},
+  {id:'full',code:'fa-test',name:'Full Collection'}, {id:'twm',code:'twm',name:'Twilight Masquerade'}];
+ for(const query of ['special illustration rare','full art']) assert.equal(resolve(query,'pokemon',catalog).matchedAlias,null,query);
+ const combined=resolve('special illustration rare Twilight Masquerade','pokemon',catalog);
+ assert.deepEqual(plain(combined.setCodes),['twm']);
+ assert.equal(combined.remainingQuery,'special illustration rare');
+ const complete=resolve('Pikachu Special Illustration Rare Collection','pokemon',[
+  {id:'complete',code:'complete',name:'Special Illustration Rare Collection'}]);
+ assert.deepEqual(plain(complete.setCodes),['complete']);
+ assert.equal(complete.remainingQuery,'Pikachu');
+ assert.equal(resolve('Full art','mtg',[{id:'full',code:'full-set',name:'Full'}]).matchedAlias,'Full');
+});
+
+test('set words outside a collector phrase retain their actual match and removal position', () => {
+ const query='special illustration rare from Special';
+ const selected=resolve(query,'pokemon',[{id:'special',code:'sp-test',name:'Special Deck Set'}]);
+ assert.equal(selected.matchedAlias,'Special');
+ assert.equal(selected.remainingQuery,'special illustration rare');
+ assert.equal(removeSetPhrase(query,'Special'),'special illustration rare');
+ const intent=buildSmartSearchIntent('special illustration rare playables from Special',{protectedPhrases:['Special']});
+ assert.equal(intent.queryFilters.find(filter=>filter.kind==='rarity').label,'Rarity: special illustration rare');
+ assert.equal(resolveSmartSearchQuery(intent.originalQuery,intent),'special illustration rare from Special');
+ const complete=buildSmartSearchIntent('Pikachu Special Illustration Rare Collection', {protectedPhrases:['Special Illustration Rare Collection']});
+ assert(!complete.queryFilters.some(filter=>filter.kind==='rarity'));
+});
+
 test('known collector families outrank conflicting opening-word set shortcuts',()=>{
  const promoSets=[{id:'pwc',code:'pwc',name:'Pikachu World Collection'},
   {id:'xyp',code:'xyp',name:'XY Black Star Promos'}];
