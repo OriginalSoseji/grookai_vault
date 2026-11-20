@@ -1,0 +1,71 @@
+{
+  "adapter": "best_of_game_checked_card_fields_v1",
+  "retrieved_at": "2026-11-19T04:57:38.678Z",
+  "retrieval_method": "web tool; reviewed field extraction, not raw HTML",
+  "sources": [
+    {
+      "ref": "bulbapedia-mewtwo",
+      "source_name": "bulbapedia_card_page_release_info",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Rocket%27s_Mewtwo_(Best_of_Game_8)",
+      "retrieval_sha256": "01c7a34cd03eb6c62e10c3bd4011ba32f5849bdcb0d2812b3b58083889dc8838",
+      "source_locator": "release information, line 227",
+      "raw_fields": {
+        "set": "Best of Game",
+        "number": "8",
+        "name": "Rocket's Mewtwo",
+        "finish": "Reverse Holofoil",
+        "stamp": "Winner",
+        "separate_product": "Non Holofoil Jumbo"
+      },
+      "interpretation": {
+        "finish_key": "reverse",
+        "intrinsic_winner_stamp": true
+      }
+    },
+    {
+      "ref": "bulbapedia-hitmonchan",
+      "source_name": "bulbapedia_card_page_release_info",
+      "url": "https://bulbapedia.bulbagarden.net/wiki/Rocket%27s_Hitmonchan_(Best_of_Game_9)",
+      "retrieval_sha256": "01c7a34cd03eb6c62e10c3bd4011ba32f5849bdcb0d2812b3b58083889dc8838",
+      "source_locator": "release information, line 219",
+      "raw_fields": {
+        "set": "Best of Game",
+        "number": "9",
+        "name": "Rocket's Hitmonchan",
+        "finish": "Reverse Holofoil",
+        "stamp": "Winner",
+        "separate_product": "Jumbo with no Holofoil effect"
+      },
+      "interpretation": {
+        "finish_key": "reverse",
+        "intrinsic_winner_stamp": true
+      }
+    },
+    {
+      "ref": "pricedex-checklist",
+      "source_name": "thepricedex_price_list",
+      "url": "https://www.thepricedex.com/set/bp/best-of-game/price-list",
+      "retrieval_sha256": "bbab9f356c274f89f1f193a42afa726fd3a85c33b1c581c95d3b42005fa710f7",
+      "source_locator": "card-level checklist lines 161–162; prices excluded",
+      "raw_fields": {
+        "set": "Best of Game",
+        "set_code": "BP",
+        "rows": [
+          {
+            "number": "8",
+            "name": "Rocket's Mewtwo",
+            "variant": "Reverse Holo"
+          },
+          {
+            "number": "9",
+            "name": "Rocket's Hitmonchan",
+            "variant": "Reverse Holo"
+          }
+        ]
+      },
+      "interpretation": {
+        "finish_key": "reverse"
+      }
+    }
+  ]
+}

@@ -1,0 +1,165 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "bp",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "docs/audits/english_master_index_publishable_v1/sets/bog/printings.json",
+  "master_index_sha256": "c8c9332ca07c2f0cce33e42ab1f1045c2a9a5343e528446d01577dfc22745576",
+  "parents": [
+    {
+      "id": "371e2c1c-4a18-4961-b2a3-8d01edc07e90",
+      "set_id": "c8debb57-da6f-46ce-8777-13ecedfe2856",
+      "gv_id": "GV-PK-BP-8",
+      "name": "Rocket's Mewtwo",
+      "printed_coordinate": "8",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "acf3e7a7-5f8d-43d2-ad5c-972db7568be7",
+      "set_id": "c8debb57-da6f-46ce-8777-13ecedfe2856",
+      "gv_id": "GV-PK-BP-9",
+      "name": "Rocket's Hitmonchan",
+      "printed_coordinate": "9",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "371e2c1c-4a18-4961-b2a3-8d01edc07e90",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-BP-8-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia-mewtwo",
+          "sha256": "a8dc384dd1a32907734a2cce5c35ed1d8a19df4a5123f45d19aba4b6f7c4579b",
+          "card_print_id": "371e2c1c-4a18-4961-b2a3-8d01edc07e90",
+          "finish_key": "reverse"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pricedex-checklist",
+          "sha256": "a8dc384dd1a32907734a2cce5c35ed1d8a19df4a5123f45d19aba4b6f7c4579b",
+          "card_print_id": "371e2c1c-4a18-4961-b2a3-8d01edc07e90",
+          "finish_key": "reverse"
+        }
+      ]
+    },
+    {
+      "card_print_id": "acf3e7a7-5f8d-43d2-ad5c-972db7568be7",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-BP-9-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "bulbapedia-hitmonchan",
+          "sha256": "a8dc384dd1a32907734a2cce5c35ed1d8a19df4a5123f45d19aba4b6f7c4579b",
+          "card_print_id": "acf3e7a7-5f8d-43d2-ad5c-972db7568be7",
+          "finish_key": "reverse"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "pricedex-checklist",
+          "sha256": "a8dc384dd1a32907734a2cce5c35ed1d8a19df4a5123f45d19aba4b6f7c4579b",
+          "card_print_id": "acf3e7a7-5f8d-43d2-ad5c-972db7568be7",
+          "finish_key": "reverse"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 2,
+    "printings": 2,
+    "finishes": {
+      "reverse": 2
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "c8debb57-da6f-46ce-8777-13ecedfe2856",
+    "source_artifacts": [
+      {
+        "ref": "bulbapedia-mewtwo",
+        "sha256": "a8dc384dd1a32907734a2cce5c35ed1d8a19df4a5123f45d19aba4b6f7c4579b",
+        "kind": "checked_checklist",
+        "url_or_identifier": "https://bulbapedia.bulbagarden.net/wiki/Rocket%27s_Mewtwo_(Best_of_Game_8)",
+        "retrieved_at": "2026-11-19T04:57:38.678Z"
+      },
+      {
+        "ref": "bulbapedia-hitmonchan",
+        "sha256": "a8dc384dd1a32907734a2cce5c35ed1d8a19df4a5123f45d19aba4b6f7c4579b",
+        "kind": "checked_checklist",
+        "url_or_identifier": "https://bulbapedia.bulbagarden.net/wiki/Rocket%27s_Hitmonchan_(Best_of_Game_9)",
+        "retrieved_at": "2026-11-19T04:57:38.678Z"
+      },
+      {
+        "ref": "pricedex-checklist",
+        "sha256": "a8dc384dd1a32907734a2cce5c35ed1d8a19df4a5123f45d19aba4b6f7c4579b",
+        "kind": "checked_checklist",
+        "url_or_identifier": "https://www.thepricedex.com/set/bp/best-of-game/price-list",
+        "retrieved_at": "2026-11-19T04:57:38.678Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "371e2c1c-4a18-4961-b2a3-8d01edc07e90",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "acf3e7a7-5f8d-43d2-ad5c-972db7568be7",
+        "finish_key": "reverse"
+      }
+    ],
+    "forbidden_facts": [
+      {
+        "card_print_id": "371e2c1c-4a18-4961-b2a3-8d01edc07e90",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "371e2c1c-4a18-4961-b2a3-8d01edc07e90",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "371e2c1c-4a18-4961-b2a3-8d01edc07e90",
+        "finish_key": "stamped"
+      },
+      {
+        "card_print_id": "371e2c1c-4a18-4961-b2a3-8d01edc07e90",
+        "finish_key": "cosmos"
+      },
+      {
+        "card_print_id": "acf3e7a7-5f8d-43d2-ad5c-972db7568be7",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "acf3e7a7-5f8d-43d2-ad5c-972db7568be7",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "acf3e7a7-5f8d-43d2-ad5c-972db7568be7",
+        "finish_key": "stamped"
+      },
+      {
+        "card_print_id": "acf3e7a7-5f8d-43d2-ad5c-972db7568be7",
+        "finish_key": "cosmos"
+      }
+    ],
+    "conflicts": [],
+    "review": {
+      "ref": "review",
+      "sha256": "63d2cc5168206bc90d35e625f85b6cdd72398a4465882a2a78094805482cb74d"
+    }
+  },
+  "fingerprint": "48ba01523ae9f62d47165f3f0e7effc06b4637fff25ee538cad4915931617089"
+}

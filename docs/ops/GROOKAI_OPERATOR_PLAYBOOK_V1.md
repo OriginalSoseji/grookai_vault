@@ -1,3 +1,94 @@
+# Best of Game bounded execution preparation — November19,2026
+
+Read [the execution preparation checkpoint](../checkpoints/BEST_OF_GAME_EXECUTION_PREPARATION_20261119.md)
+and [the separate execution contract](../contracts/BEST_OF_GAME_PRINTING_EXECUTION_V1.md).
+The new BP8/9 insert-only lane has exact production TLS/target/authority and
+fresh rollback gates. The original local rehearsal and McDonald's executor are
+unchanged. Canonical511 read-only audit and95-FK/79-reference preparation passed.
+Real local Supabase17 rollback/duplicate-key/JSON/price/commit/readback/replay
+tests preserve all426 application-table fingerprints,19 prior fixture copies,
+the original Auth user, older rehearsal and source database. All65 focused tests
+pass. New named qualification database and worker are retained; its DB container
+is stopped. Do not reset/reseed any populated laboratory.
+
+Freeze the final production plan only from the verified release producer after
+normal managed checks. Earlier read-only prepare artifacts are not authority.
+No production writes or nine-alias discovery changes occurred. Obtain exact
+founder approval and actual production rollback/readback proof before apply.
+
+# Best of Game Supabase17 qualification — November19,2026
+
+Read the [Supabase17 checkpoint](../checkpoints/BEST_OF_GAME_SUPABASE17_REHEARSAL_20261119.md).
+The owner explicitly approved Docker Desktop restart. Recovery resolved a stale
+data-disk attachment without reset, prune, relocation or WSL unregister. The normal
+Docker API and shared63341 Auth health now work. All21 retained repair containers,
+six named volumes and the recovered434-container/393-volume inventory are intact.
+
+The separate `bog-platform-511-20261119` clone passed Supabase PostgreSQL17.6
+rollback/forced-failure/commit/readback/idempotency, all426-table preservation,
+real Auth and PostgREST ownership isolation, Windows SDK exact printing lookups,
+511 ledger, zero four-schema drift and exact security. Backend source/target
+guards remain unchanged; a fresh dedicated local plan was used. The original
+source lab remained stopped; its1327 parents/19 copies/one Auth user are unchanged.
+Both the new populated clone and native16 fixture are stopped and retained; never
+reset/reseed them. The shared verification runtime remains running and healthy.
+Existing220 focused tests retain their qualified source bindings. Managed full
+release checks and a separate production package/authority are still required.
+No production printing, alias, ownership, image or schema write occurred.
+
+# Best of Game Docker recovery — November18,2026
+
+Read the [Docker recovery checkpoint](../checkpoints/BEST_OF_GAME_DOCKER_RECOVERY_20261118.md).
+Both normal engine pipes and actual shared API health time out. WSL responds,
+but the previous live-daemon/raw-socket recovery route is absent and cannot be
+attested. Desktop inspection could not initialize; no UI input occurred.
+The125119234048-byte data VHD and all retained labs remain untouched. Private
+diagnostics and restart intent are under the Best of Game artifact root.
+Docker Desktop restart authorization was requested; no restart has occurred.
+Do not infer approval from elapsed time or substitute a stale transport receipt.
+After authorization, verify retained engine/container/volume state before the
+separately scoped Supabase17 work. Preserve the native16 qualification and its
+stopped populated fixture.
+
+# Best of Game transaction rehearsal — November18,2026
+
+Continue from the [rehearsal checkpoint](../checkpoints/BEST_OF_GAME_PRINTING_REHEARSAL_20261118.md)
+and [local-only contract](../contracts/BEST_OF_GAME_PRINTING_REHEARSAL_V1.md).
+The separate BP8/9 engine/CLI rejects production routing. Native PostgreSQL16.2
+proved raw-first inserts, complete rollback, actual duplicate-key rollback,
+JSON/price tamper rejection, local commit, independent18-option readback and
+zero-write replay. All22 parents,16 prior children and the owned copy remain
+unchanged. The dedicated port64240 cluster is stopped with its data retained;
+never reset or bootstrap it again. The existing McDonald's executor is unchanged.
+
+The audit-only `-BestOfGamePrintingBaselineV1` strict gate passed canonical511,
+all applied source hashes, four schemas and security. PrePush/mixed-switch probes
+fail before database access. All95 incoming FKs across79 relations were captured;
+363 JSON columns remain a semantic review boundary. Keep the timed-out broader
+inventory and all other unsuccessful sources/receipts. Focused tests pass220/220.
+The native fixture copies the three mutation table schemas/RPC exactly but does
+not establish full Supabase17/RLS/Auth/client or managed release qualification.
+Both Docker endpoints are unresponsive; do not restart/delete the daemon, labs
+or volumes merely to clear this check. Complete the remaining platform/release
+gates and exact production authority before any live write or discovery aliases.
+
+# Best of Game missing-printing preparation — November18,2026
+
+Use `C:/grookai_best_of_game_repair_20261118` and the
+[checkpoint](../checkpoints/BEST_OF_GAME_REPAIR_20261118.md). The exact reviewed
+scope is BP8/9 Reverse Holo, whose regular-sized promotions intrinsically bear
+the Winner stamp. The offline candidate proposes one raw evidence record, two
+children and two reviews, with no existing-row updates. Its CLI is
+`scripts/audits/best_of_game_printing_repair_prepare_v1.mjs`; it has no execution
+mode. Canonical511 read-only sanity, collision checks and199 focused tests passed.
+Retain the private before rows, failed source captures and frozen fingerprints.
+This is not whole-set certification or a production repair. The McDonald's
+executor remains bound to its original scope. Implement and qualify a separate
+BP transaction path, complete dependency/rollback/readback gates, and bind exact
+founder execution authority before production writes. Only then qualify the
+nine discovery aliases; retain all22 parents,16 existing children, four Winner
+parents, the owned copy and global Magic Bog/Boggart text behavior.
+
 # Shrouded Fable final release V2 — November18,2026
 
 The qualified candidate starts from main6b7a4818f after native release950.
