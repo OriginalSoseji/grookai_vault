@@ -5538,3 +5538,24 @@ condition. The normal full hooks, hosted checks and deployed acceptance remain
 required. Preserve private `artifacts/pricing_completion_v3/20261119/` receipts.
 The separate market-publication/schema extension remains gated by a passing
 strict linked-schema audit; its failed shadow replay is not an apply approval.
+
+# Pokémon Full Art search metadata — November 20, 2026
+
+See [the artwork metadata checkpoint](../checkpoints/2026-11-20_pokemon_playables_full_art_metadata_v1.md).
+The source of truth for this search enrichment is the exact-card read model
+`shared/catalog/pokemon_artwork_classification_v1.json`, produced by
+`scripts/catalog/build_pokemon_artwork_classification_v1.mjs --input <audit-report> --output <model>`.
+The report supplies bounded canonical candidates, complete reciprocal mappings,
+set references and retained source receipt files beside the report. Offline
+mode uses a private file store; `--stage-raw --expected-project ycdxbpibncqcchqiihfz`
+rechecks current canonical bindings and retains accepted originals through the
+existing private raw-import/artifact store. It cannot mutate catalog truth or
+competitive membership. Preserve original receipts outside the public repository;
+only sanitized facts belong in the model. Missing labels remain unknown. Future
+updates require normal managed/hosted checks and deployed exact-ID readback.
+Each build persists started and terminal run receipts through the existing
+store, including stage, version and safe error details. Target/configuration or
+persistence failures also retain a local receipt beside the input report.
+An uncertain terminal write requires independent DB readback; do not emit a
+second contradictory terminal status. The checkpoint includes the read-only SQL
+and qualified success, integrity-failure and deterministic replay evidence.
