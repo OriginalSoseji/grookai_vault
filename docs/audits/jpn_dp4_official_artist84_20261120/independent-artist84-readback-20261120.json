@@ -1,0 +1,22 @@
+{
+  "version": "DP4_ARTIST84_INDEPENDENT_READBACK_V1",
+  "verified_at": "2026-11-20T09:31:15.631Z",
+  "status": "passed",
+  "scope": "Separate read-only snapshot checks 84 exact parent postimages, all identity and link preimages, and seven retained source/receipt packages.",
+  "sanity": {
+    "read_only": "on",
+    "parents": 173837,
+    "sets": 3420
+  },
+  "records": 84,
+  "chunks": 7,
+  "receipt_ids": [
+    "177067",
+    "177071",
+    "177075",
+    "177079",
+    "177083",
+    "177087",
+    "177091"
+  ]
+}
