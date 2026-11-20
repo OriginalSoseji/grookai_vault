@@ -1,6 +1,6 @@
 # Mobile Release Continuity V1
 
-Status: Active release contract.
+Status: Superseded by MOBILE_RELEASE_CONTINUITY_V2.
 
 ## Goal
 
