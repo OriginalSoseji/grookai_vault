@@ -19,6 +19,7 @@ param(
 
   [string[]]$ExpectedLocalOnlyIds = @(),
 
+  [switch]$BestOfGamePrintingBaselineV1,
   [switch]$ShroudedAliasDiscoveryReleaseV2,
   [switch]$ShroudedAliasDiscoveryBaselineV1,
   [switch]$LatiosAliasDiscoveryBaselineV5,
@@ -141,6 +142,16 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($BestOfGamePrintingBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','BestOfGamePrintingBaselineV1','AuditOutDir') }).Count -gt 0 -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Best of Game printing baseline V1 is read-only at canonical511; no PrePush or apply authority.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_best_of_game_printing_baseline_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
 
 if ($ShroudedAliasDiscoveryReleaseV2) {
   $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)

@@ -1,0 +1,21 @@
+{
+  "status": "verified_scope",
+  "reviewer": "Codex, source adjudication in authorized Best of Game repair preparation",
+  "reviewed_at": "2026-11-19T04:58:00Z",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "bp",
+  "scope": "verified_parent_families",
+  "master_index_sha256": "c8c9332ca07c2f0cce33e42ab1f1045c2a9a5343e528446d01577dfc22745576",
+  "projection_sha256": "3d5b3da7895b7c15042e02df391da8d6104afa4d3e7aa73d292f2d6393caf433",
+  "decision_record": "source_adjudication.md",
+  "decisions": [
+    "Only existing BP parents 8 and 9 and their exact reverse finish are verified here.",
+    "Each fact has independent Bulbapedia release-history and explicit ThePriceDex card-level variant evidence; no prices or inferred API flags contribute.",
+    "The regular-sized printings intrinsically bear the Winner stamp; no additional unstamped or Winner parents are proposed.",
+    "ReverseHolo taxonomy absence is not negative printing proof; preserve the discrepancy and exclude that source from affirmative votes.",
+    "New candidates use the explicit -RH public IDs. Every pre-existing -REV and -STD ID is preserved.",
+    "This scope does not certify the remaining base cards, Cosmos, Jumbo, separate Winner variants or whole-set completion."
+  ],
+  "production_execution_authority": false
+}
