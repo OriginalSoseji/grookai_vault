@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:08:20.381Z",
+  "gv_id": "GV-PK-JPN-XY4-048",
+  "official_id": "30527",
+  "checklist_number": "56",
+  "parent": {
+    "id": "7b5f5bc8-525f-43e9-b418-b2192d57962a",
+    "gv_id": "GV-PK-JPN-XY4-048",
+    "name": "レパルダス",
+    "number": "048",
+    "number_plain": "048",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-048/7cf2cf182c59174852f318ea.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30527/regu/all",
+    "sha256": "e98b3f0fb46c15e8e5dc4a42148482f14cfcdcedf85361f9bb34d5b3dd42021c",
+    "bytes": 10368
+  },
+  "heading": "レパルダス",
+  "printed_number": "056",
+  "printed_total": "088",
+  "dex": "510",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030527_P_REPARUDASU.jpg",
+    "sha256": "7cf2cf182c59174852f318eadb42e142f0edaeea21a4cbc87847c652f61b0929",
+    "bytes": 199571,
+    "storage_path_prefix": "7cf2cf182c59174852f318ea",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

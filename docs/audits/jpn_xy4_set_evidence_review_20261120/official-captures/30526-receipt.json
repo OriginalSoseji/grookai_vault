@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:08:16.383Z",
+  "gv_id": "GV-PK-JPN-XY4-047",
+  "official_id": "30526",
+  "checklist_number": "55",
+  "parent": {
+    "id": "3556b772-25d2-4271-a72e-32067b148cb6",
+    "gv_id": "GV-PK-JPN-XY4-047",
+    "name": "チョロネコ",
+    "number": "047",
+    "number_plain": "047",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-047/55c90ce49b8e828ae323182c.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30526/regu/all",
+    "sha256": "7236ae445cfde4e73d8a14903f5f2fd6294f33a1885d31d6e78775da3724c27e",
+    "bytes": 10151
+  },
+  "heading": "チョロネコ",
+  "printed_number": "055",
+  "printed_total": "088",
+  "dex": "509",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030526_P_CHORONEKO.jpg",
+    "sha256": "55c90ce49b8e828ae323182c410e3c68fe222c8d2439ac782cbec2630bfffedf",
+    "bytes": 149369,
+    "storage_path_prefix": "55c90ce49b8e828ae323182c",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

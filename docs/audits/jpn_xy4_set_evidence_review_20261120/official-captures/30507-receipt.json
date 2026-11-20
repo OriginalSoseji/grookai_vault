@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:07:06.257Z",
+  "gv_id": "GV-PK-JPN-XY4-028",
+  "official_id": "30507",
+  "checklist_number": "36",
+  "parent": {
+    "id": "773f72df-d518-47e1-9d41-2c6786d2c798",
+    "gv_id": "GV-PK-JPN-XY4-028",
+    "name": "ゴクリン",
+    "number": "028",
+    "number_plain": "028",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-028/1cbc69ee3404fedab11c3c70.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30507/regu/all",
+    "sha256": "38413787e7ea487ad71616c0452ea04f35811946f66d60383fb349da25074e28",
+    "bytes": 10258
+  },
+  "heading": "ゴクリン",
+  "printed_number": "036",
+  "printed_total": "088",
+  "dex": "316",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030507_P_GOKURIN.jpg",
+    "sha256": "1cbc69ee3404fedab11c3c70b787cbdc9500e08b5104a852a550a22226ac5e6d",
+    "bytes": 177899,
+    "storage_path_prefix": "1cbc69ee3404fedab11c3c70",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

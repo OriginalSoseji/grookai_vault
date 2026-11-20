@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:09:43.321Z",
+  "gv_id": "GV-PK-JPN-XY4-074",
+  "official_id": "30553",
+  "checklist_number": "82",
+  "parent": {
+    "id": "c32b16e3-52f2-46cd-922e-5f561af9f5d0",
+    "gv_id": "GV-PK-JPN-XY4-074",
+    "name": "ジャミングネット（フレア団ハイパーギア）",
+    "number": "074",
+    "number_plain": "074",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-074/bf92088c8f826fb5a2a7a5cd.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30553/regu/all",
+    "sha256": "86b9995e2d674363211d2d9567bded4bb6b6dbb6f1218f62ff0005df4a2193ac",
+    "bytes": 8937
+  },
+  "heading": "ジャミングネット（フレア団ハイパーギア）",
+  "printed_number": "082",
+  "printed_total": "088",
+  "dex": null,
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030553_T_JAMINGUNETTOFUREADANHAIPAGIA.jpg",
+    "sha256": "bf92088c8f826fb5a2a7a5cd2b212b0c7f08db187fdf5fcac2fc381bfb7d11ce",
+    "bytes": 250470,
+    "storage_path_prefix": "bf92088c8f826fb5a2a7a5cd",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

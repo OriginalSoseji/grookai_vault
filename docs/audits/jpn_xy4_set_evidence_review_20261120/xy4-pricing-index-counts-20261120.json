@@ -1,0 +1,83 @@
+{
+  "captured_at": "2026-11-20T15:23:12.581Z",
+  "scope": "Read-only counts only when the planner selects the known card-print partial index without sequential scans; separate snapshots and a three-second statement limit. No claim about logical references or later changes.",
+  "parents": 95,
+  "results": [
+    {
+      "table": "market_price_pipeline_candidates",
+      "status": "counted_index_plan",
+      "index": "market_price_pipeline_candidates_card_print_id_idx",
+      "count": "0",
+      "plan": [
+        {
+          "Plan": {
+            "Node Type": "Aggregate",
+            "Strategy": "Plain",
+            "Partial Mode": "Simple",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 6532.41,
+            "Total Cost": 6532.42,
+            "Plan Rows": 1,
+            "Plan Width": 8,
+            "Plans": [
+              {
+                "Node Type": "Index Only Scan",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Scan Direction": "Forward",
+                "Index Name": "market_price_pipeline_candidates_card_print_id_idx",
+                "Relation Name": "market_price_pipeline_candidates",
+                "Alias": "market_price_pipeline_candidates",
+                "Startup Cost": 0.44,
+                "Total Cost": 6468.2,
+                "Plan Rows": 25686,
+                "Plan Width": 0,
+                "Index Cond": "(card_print_id = ANY ('{8528e047-c768-49ce-bef1-537dc49e8eff,8bde0285-2b02-431d-a97f-3650865326c1,68721c3b-89f8-45e8-9efa-e88ffc6480fb,c99c10a9-1918-427b-8351-c2d074ad847f,193dee7d-a0e1-47af-b46f-1e29b577d085,e813fabf-a631-4d8f-9be0-46e56aa97415,65b3b07c-aaa9-4fc5-bcd9-b593257e6850,67120c36-822a-4603-8037-b553156477ba,689ee8b8-a0c4-4563-8fc8-52cc7b80cfdf,9a4223b6-8cfe-4754-86c1-c6b4991983d7,1563b15d-9872-4581-b35a-1d1d391eb785,3f143454-6733-4ffe-9b01-5c679c072586,8fc0a879-de7d-489a-b803-e0661f0d5e1e,6a0ac26d-5805-4739-af0e-360576d39db2,1626539e-5881-461c-9cfe-e898cd6fb19b,deb3dabc-43a5-4401-9ffd-c4a726fc0e65,1e1320a3-25c4-4993-8eed-9fa90b803153,6313a723-cda1-4c5a-bf17-5993a6580528,1ee94dd9-f564-4954-acb3-b0a1158449f0,8753cda3-ce58-4599-85f4-30fa12516940,df4c7fa4-b43a-47ee-9210-bbc80d2fd6d9,be777f5f-1e50-4fe0-9ccf-f41c8674fa14,9ddfd539-f63f-454b-8fe9-c4d3c4ad36f3,76b83353-a869-484b-88d6-aaad5c10f85b,ab285327-10ba-4ecf-8378-049d150f2534,e6544b1c-8a07-491f-b7be-f555cc151337,42e49fb6-c264-4ff3-bb7c-3242e7abf1a4,773f72df-d518-47e1-9d41-2c6786d2c798,07d154c6-ee26-4886-b646-203285a491b9,b2ea5eaf-d664-4e15-bf98-d10b7ff81e64,af585198-4b59-44d5-b18b-157b3de8b7c1,f8ec3339-adbf-49b2-a355-3a7d4364f017,358504b0-26c2-41ad-bac9-67df8359ea2e,81762078-a35c-4ba2-9aed-07f1670140dd,3094a71d-594b-4e79-b2b5-90baee07b4a6,bcacc6eb-e100-43c3-9129-719cce361c45,ff58c63d-c885-4337-a080-e780e73cde92,21a0fa68-b54b-49f3-baf2-f51d18901b47,3d4bf39b-d9b1-4229-89b8-5f09a1dbc722,bb049003-aebc-4a30-9ecb-ed5280465cc5,43c271a5-087e-4ec2-88f5-ca90a1ed3a5c,560c4424-5f9a-4841-b77d-d04c866da0b3,254c38e8-546c-4dca-a637-e41f63421ab9,f676e800-8167-421a-b755-f60ec0818fd0,d207d975-f29b-4b32-90c3-689fbd9db766,a1517f3d-7cff-4bed-9988-b19edf6dc1ae,3556b772-25d2-4271-a72e-32067b148cb6,7b5f5bc8-525f-43e9-b418-b2192d57962a,744f1b92-7f3f-4824-aa5e-620c490431e8,206c7628-c52a-436d-a16f-549938ebf09a,7a838b97-6d0b-41a2-b3b2-2fd4cad450a2,8c5233ab-6645-4d08-b452-21326cc694c3,a5e77146-8eb5-4a50-bf07-cf78ec180439,f55e5e5d-a84e-4327-b278-2f23869ad720,c924219b-012e-4c71-8992-5d8632b09e77,c8edf063-cf7f-4bcd-b882-ec6153d118e4,95d15a0f-01d8-4ea6-9399-ac9d2ab0050a,f71ce65c-d59a-4b49-adf6-5340d96cc207,1ca38d7a-a0a5-4e90-8cbe-ae19857d8397,8a0c9c7a-0535-4470-9535-b5ca852db94a,769aadff-b323-42f3-be9b-0a3b9497a6f7,0b99ce31-e3d5-409d-a904-b811ddc7d4c2,6552f082-2e74-4350-9fe8-eb85e967da84,9da52e37-7c3b-4364-a8c5-34697536200c,f0d90404-3261-4619-8b47-340342c9350b,7c15ad2a-c98a-4dd2-897e-f70053223805,4b37e7c8-bcae-4b5e-a246-37fd62d3356b,6d86ed61-2fd0-4937-a968-1aee3f7a515c,62d84164-aa30-4684-95a5-189f389feda4,600b05e6-d212-4455-b4c1-bd77f7e05e5a,b33dbc90-bbcd-4cc9-a00f-f102822bfeb5,7a2290b4-2802-4a78-b377-0f6f725ed43d,841f52e7-2750-4a22-ad5b-45f7b434e0a3,c32b16e3-52f2-46cd-922e-5f561af9f5d0,be8e8bc4-1975-4844-925b-25f1d7431b78,a977edc0-860a-4d28-9c2e-5315729dc46b,89a1dbd1-4c1d-4552-a96f-175a3d2c5160,4ca52e3b-677d-4717-86bc-55d62b153250,7dce5267-7cb0-4002-823b-87bfaf330f12,45794e26-9a0c-4522-b3a6-11f29e58d26d,7e4f1df8-1820-4aa8-b0cc-87a047747ec3,23c3afb1-85d5-4b8b-9a05-73b2658d1b41,7cfe226d-09d0-4e8a-b830-9b1061efb590,6fa60ccd-29d7-4ef2-b3e2-23d34d793f00,e784e6dc-10d0-4104-8953-cbea221c9740,03e0609c-4932-4305-9a18-e3e63cd44292,9fafc03f-ab08-4286-be72-b25a4cd63176,30967f75-d1e1-44cc-812b-0b1c94d79352,40161741-d2c3-4950-ad45-5472bc9fc9ec,7b2e6cbf-82e9-40fa-ba55-61aa95880889,90199d6e-abfe-4a1f-9eac-b94862dcf1ea,e2039153-dcaf-4f2d-85b4-a66d35c12a3b,ce067f3a-df53-5a19-adf9-311f76861ebf,a2efda3e-cefe-5b8a-8585-ad09bc89299a,7c6105e6-b8cd-52b9-98fa-45ef2729c829}'::uuid[]))"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "table": "market_price_qualification_decisions",
+      "status": "counted_index_plan",
+      "index": "market_price_qualification_parent_idx",
+      "count": "0",
+      "plan": [
+        {
+          "Plan": {
+            "Node Type": "Aggregate",
+            "Strategy": "Plain",
+            "Partial Mode": "Simple",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 1425.91,
+            "Total Cost": 1425.92,
+            "Plan Rows": 1,
+            "Plan Width": 8,
+            "Plans": [
+              {
+                "Node Type": "Index Only Scan",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Scan Direction": "Forward",
+                "Index Name": "market_price_qualification_parent_idx",
+                "Relation Name": "market_price_qualification_decisions",
+                "Alias": "market_price_qualification_decisions",
+                "Startup Cost": 0.56,
+                "Total Cost": 1357.02,
+                "Plan Rows": 27554,
+                "Plan Width": 0,
+                "Index Cond": "(card_print_id = ANY ('{8528e047-c768-49ce-bef1-537dc49e8eff,8bde0285-2b02-431d-a97f-3650865326c1,68721c3b-89f8-45e8-9efa-e88ffc6480fb,c99c10a9-1918-427b-8351-c2d074ad847f,193dee7d-a0e1-47af-b46f-1e29b577d085,e813fabf-a631-4d8f-9be0-46e56aa97415,65b3b07c-aaa9-4fc5-bcd9-b593257e6850,67120c36-822a-4603-8037-b553156477ba,689ee8b8-a0c4-4563-8fc8-52cc7b80cfdf,9a4223b6-8cfe-4754-86c1-c6b4991983d7,1563b15d-9872-4581-b35a-1d1d391eb785,3f143454-6733-4ffe-9b01-5c679c072586,8fc0a879-de7d-489a-b803-e0661f0d5e1e,6a0ac26d-5805-4739-af0e-360576d39db2,1626539e-5881-461c-9cfe-e898cd6fb19b,deb3dabc-43a5-4401-9ffd-c4a726fc0e65,1e1320a3-25c4-4993-8eed-9fa90b803153,6313a723-cda1-4c5a-bf17-5993a6580528,1ee94dd9-f564-4954-acb3-b0a1158449f0,8753cda3-ce58-4599-85f4-30fa12516940,df4c7fa4-b43a-47ee-9210-bbc80d2fd6d9,be777f5f-1e50-4fe0-9ccf-f41c8674fa14,9ddfd539-f63f-454b-8fe9-c4d3c4ad36f3,76b83353-a869-484b-88d6-aaad5c10f85b,ab285327-10ba-4ecf-8378-049d150f2534,e6544b1c-8a07-491f-b7be-f555cc151337,42e49fb6-c264-4ff3-bb7c-3242e7abf1a4,773f72df-d518-47e1-9d41-2c6786d2c798,07d154c6-ee26-4886-b646-203285a491b9,b2ea5eaf-d664-4e15-bf98-d10b7ff81e64,af585198-4b59-44d5-b18b-157b3de8b7c1,f8ec3339-adbf-49b2-a355-3a7d4364f017,358504b0-26c2-41ad-bac9-67df8359ea2e,81762078-a35c-4ba2-9aed-07f1670140dd,3094a71d-594b-4e79-b2b5-90baee07b4a6,bcacc6eb-e100-43c3-9129-719cce361c45,ff58c63d-c885-4337-a080-e780e73cde92,21a0fa68-b54b-49f3-baf2-f51d18901b47,3d4bf39b-d9b1-4229-89b8-5f09a1dbc722,bb049003-aebc-4a30-9ecb-ed5280465cc5,43c271a5-087e-4ec2-88f5-ca90a1ed3a5c,560c4424-5f9a-4841-b77d-d04c866da0b3,254c38e8-546c-4dca-a637-e41f63421ab9,f676e800-8167-421a-b755-f60ec0818fd0,d207d975-f29b-4b32-90c3-689fbd9db766,a1517f3d-7cff-4bed-9988-b19edf6dc1ae,3556b772-25d2-4271-a72e-32067b148cb6,7b5f5bc8-525f-43e9-b418-b2192d57962a,744f1b92-7f3f-4824-aa5e-620c490431e8,206c7628-c52a-436d-a16f-549938ebf09a,7a838b97-6d0b-41a2-b3b2-2fd4cad450a2,8c5233ab-6645-4d08-b452-21326cc694c3,a5e77146-8eb5-4a50-bf07-cf78ec180439,f55e5e5d-a84e-4327-b278-2f23869ad720,c924219b-012e-4c71-8992-5d8632b09e77,c8edf063-cf7f-4bcd-b882-ec6153d118e4,95d15a0f-01d8-4ea6-9399-ac9d2ab0050a,f71ce65c-d59a-4b49-adf6-5340d96cc207,1ca38d7a-a0a5-4e90-8cbe-ae19857d8397,8a0c9c7a-0535-4470-9535-b5ca852db94a,769aadff-b323-42f3-be9b-0a3b9497a6f7,0b99ce31-e3d5-409d-a904-b811ddc7d4c2,6552f082-2e74-4350-9fe8-eb85e967da84,9da52e37-7c3b-4364-a8c5-34697536200c,f0d90404-3261-4619-8b47-340342c9350b,7c15ad2a-c98a-4dd2-897e-f70053223805,4b37e7c8-bcae-4b5e-a246-37fd62d3356b,6d86ed61-2fd0-4937-a968-1aee3f7a515c,62d84164-aa30-4684-95a5-189f389feda4,600b05e6-d212-4455-b4c1-bd77f7e05e5a,b33dbc90-bbcd-4cc9-a00f-f102822bfeb5,7a2290b4-2802-4a78-b377-0f6f725ed43d,841f52e7-2750-4a22-ad5b-45f7b434e0a3,c32b16e3-52f2-46cd-922e-5f561af9f5d0,be8e8bc4-1975-4844-925b-25f1d7431b78,a977edc0-860a-4d28-9c2e-5315729dc46b,89a1dbd1-4c1d-4552-a96f-175a3d2c5160,4ca52e3b-677d-4717-86bc-55d62b153250,7dce5267-7cb0-4002-823b-87bfaf330f12,45794e26-9a0c-4522-b3a6-11f29e58d26d,7e4f1df8-1820-4aa8-b0cc-87a047747ec3,23c3afb1-85d5-4b8b-9a05-73b2658d1b41,7cfe226d-09d0-4e8a-b830-9b1061efb590,6fa60ccd-29d7-4ef2-b3e2-23d34d793f00,e784e6dc-10d0-4104-8953-cbea221c9740,03e0609c-4932-4305-9a18-e3e63cd44292,9fafc03f-ab08-4286-be72-b25a4cd63176,30967f75-d1e1-44cc-812b-0b1c94d79352,40161741-d2c3-4950-ad45-5472bc9fc9ec,7b2e6cbf-82e9-40fa-ba55-61aa95880889,90199d6e-abfe-4a1f-9eac-b94862dcf1ea,e2039153-dcaf-4f2d-85b4-a66d35c12a3b,ce067f3a-df53-5a19-adf9-311f76861ebf,a2efda3e-cefe-5b8a-8585-ad09bc89299a,7c6105e6-b8cd-52b9-98fa-45ef2729c829}'::uuid[]))"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

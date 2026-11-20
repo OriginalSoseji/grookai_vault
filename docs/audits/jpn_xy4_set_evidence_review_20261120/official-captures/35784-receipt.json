@@ -1,0 +1,34 @@
+{
+  "version": "XY4_SECRET_LEAD_V1",
+  "captured_at": "2026-11-20T15:00:33.471Z",
+  "gv_id": "GV-PK-JPN-XY4-095",
+  "official_id": "35784",
+  "parent": {
+    "id": "e2039153-dcaf-4f2d-85b4-a66d35c12a3b",
+    "gv_id": "GV-PK-JPN-XY4-095",
+    "name": "フラダリの奥の手",
+    "number": "095",
+    "number_plain": "095",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-095/97067ddbd216e3164be0a0e5.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/35784/regu/all",
+    "sha256": "3a35a888915f3f65b5e57d1d2d66ee923b1ea09204da1988029b9be0f836d0fc",
+    "bytes": 8506
+  },
+  "heading": "フラダリの奥の手",
+  "printed_number": "095",
+  "printed_total": "088",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/035784_T_FURADARINOOKUNOTE.jpg",
+    "sha256": "97067ddbd216e3164be0a0e50e60bff7b70816bb98e9a465170ea1d6ae55e654",
+    "bytes": 325343,
+    "storage_path_prefix": "97067ddbd216e3164be0a0e5",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Predicted-coordinate research lead only; no full stored-image byte, global ownership, dependency or identity proof and no database mutation."
+}

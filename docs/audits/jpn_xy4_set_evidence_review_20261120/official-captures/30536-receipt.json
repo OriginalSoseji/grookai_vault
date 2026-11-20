@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:08:45.891Z",
+  "gv_id": "GV-PK-JPN-XY4-057",
+  "official_id": "30536",
+  "checklist_number": "65",
+  "parent": {
+    "id": "95d15a0f-01d8-4ea6-9399-ac9d2ab0050a",
+    "gv_id": "GV-PK-JPN-XY4-057",
+    "name": "サザンドラ",
+    "number": "057",
+    "number_plain": "057",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-057/f7d2630a4b4a4559c7196e1b.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30536/regu/all",
+    "sha256": "30f603f166486814fe2d9de164e57aef742f9c7b8be922ce0ba87288af670dea",
+    "bytes": 11137
+  },
+  "heading": "サザンドラ",
+  "printed_number": "065",
+  "printed_total": "088",
+  "dex": "635",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030536_P_SAZANDORA.jpg",
+    "sha256": "f7d2630a4b4a4559c7196e1bdfbd0de1047f2867e7f127e66d17120ba91ef9ee",
+    "bytes": 252710,
+    "storage_path_prefix": "f7d2630a4b4a4559c7196e1b",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

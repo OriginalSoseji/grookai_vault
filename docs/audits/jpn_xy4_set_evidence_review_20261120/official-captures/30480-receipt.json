@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:05:38.356Z",
+  "gv_id": "GV-PK-JPN-XY4-001",
+  "official_id": "30480",
+  "checklist_number": "9",
+  "parent": {
+    "id": "8528e047-c768-49ce-bef1-537dc49e8eff",
+    "gv_id": "GV-PK-JPN-XY4-001",
+    "name": "ヒノヤコマ",
+    "number": "001",
+    "number_plain": "001",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-001/75ac1ba8e86f3129ee501e1f.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30480/regu/all",
+    "sha256": "8f435184c3cd9bd023b1b055c0727274665b5b01530104fec55793197dcee467",
+    "bytes": 10863
+  },
+  "heading": "ヒノヤコマ",
+  "printed_number": "009",
+  "printed_total": "088",
+  "dex": "662",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030480_P_HINOYAKOMA.jpg",
+    "sha256": "75ac1ba8e86f3129ee501e1f45b8567094cb8525bdd68cf6172304485bde34f3",
+    "bytes": 179627,
+    "storage_path_prefix": "75ac1ba8e86f3129ee501e1f",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

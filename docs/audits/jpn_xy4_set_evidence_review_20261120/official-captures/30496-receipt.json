@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:06:31.888Z",
+  "gv_id": "GV-PK-JPN-XY4-017",
+  "official_id": "30496",
+  "checklist_number": "25",
+  "parent": {
+    "id": "1e1320a3-25c4-4993-8eed-9fa90b803153",
+    "gv_id": "GV-PK-JPN-XY4-017",
+    "name": "パチリス",
+    "number": "017",
+    "number_plain": "017",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-017/a076f9efa99cdd7dc07d4bbf.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30496/regu/all",
+    "sha256": "e9c600380954aa9c08dd170edabf23fee9c4315ae5283675bb9f299be50dc5ed",
+    "bytes": 10041
+  },
+  "heading": "パチリス",
+  "printed_number": "025",
+  "printed_total": "088",
+  "dex": "417",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030496_P_PACHIRISU.jpg",
+    "sha256": "a076f9efa99cdd7dc07d4bbf59c0fc4ff71c19d712ca26427ab325691d2d75be",
+    "bytes": 240255,
+    "storage_path_prefix": "a076f9efa99cdd7dc07d4bbf",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

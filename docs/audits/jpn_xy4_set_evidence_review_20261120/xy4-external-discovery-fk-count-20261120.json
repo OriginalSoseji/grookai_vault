@@ -1,0 +1,17 @@
+{
+  "captured_at": "2026-11-20T15:21:02.139Z",
+  "scope": "Read-only per-reference counts for small regular nonindexed relations only, with separate snapshots and a two-second statement limit. Larger/partitioned relations, logical references and concurrent changes remain unassessed.",
+  "parents": 95,
+  "results": [
+    {
+      "schema_name": "public",
+      "table_name": "external_discovery_candidates",
+      "column_name": "card_print_id",
+      "conname": "external_discovery_candidates_card_print_id_fkey",
+      "indexed": false,
+      "status": "counted_small_relation",
+      "relation_size": "12083200",
+      "count": "0"
+    }
+  ]
+}

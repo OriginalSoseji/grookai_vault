@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:06:43.267Z",
+  "gv_id": "GV-PK-JPN-XY4-020",
+  "official_id": "30499",
+  "checklist_number": "28",
+  "parent": {
+    "id": "8753cda3-ce58-4599-85f4-30fa12516940",
+    "gv_id": "GV-PK-JPN-XY4-020",
+    "name": "エリキテル",
+    "number": "020",
+    "number_plain": "020",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-020/d34c9375770873d59f4ecf56.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30499/regu/all",
+    "sha256": "37c1f23c9162e8719ea23caa0f7c8a19e0740c88e9557483f6f3f60d6c8f478f",
+    "bytes": 10150
+  },
+  "heading": "エリキテル",
+  "printed_number": "028",
+  "printed_total": "088",
+  "dex": "694",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030499_P_ERIKITERU.jpg",
+    "sha256": "d34c9375770873d59f4ecf568932b31be63b584b41b26e0a944c21b77f364a19",
+    "bytes": 225148,
+    "storage_path_prefix": "d34c9375770873d59f4ecf56",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

@@ -1,0 +1,35 @@
+{
+  "version": "XY4_AMBIGUOUS_BASE_LEAD_V1",
+  "captured_at": "2026-11-20T14:10:40.791Z",
+  "gv_id": "GV-PK-JPN-XY4-016",
+  "official_id": "30495",
+  "parent": {
+    "id": "deb3dabc-43a5-4401-9ffd-c4a726fc0e65",
+    "gv_id": "GV-PK-JPN-XY4-016",
+    "name": "ライボルトEX",
+    "number": "016",
+    "number_plain": "016",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-016/02c8417569913313dbd01052.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30495/regu/all",
+    "sha256": "27792eb62dfe97d059fef5485190d89bf54a895bf2c553491ab85d5a565c9907",
+    "bytes": 10150
+  },
+  "heading": "ライボルトEX",
+  "printed_number": "024",
+  "printed_total": "088",
+  "dex": null,
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030495_P_MRAIBORUTOEX.jpg",
+    "sha256": "02c8417569913313dbd01052524c0f2b44cbcb5bd6e61127fe3279d074e7d5ee",
+    "bytes": 312809,
+    "storage_path_prefix": "02c8417569913313dbd01052",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Predicted-coordinate research lead only; no full stored-image byte, global ownership, dependency or identity proof and no database mutation."
+}

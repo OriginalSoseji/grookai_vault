@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:09:04.606Z",
+  "gv_id": "GV-PK-JPN-XY4-062",
+  "official_id": "30541",
+  "checklist_number": "70",
+  "parent": {
+    "id": "0b99ce31-e3d5-409d-a904-b811ddc7d4c2",
+    "gv_id": "GV-PK-JPN-XY4-062",
+    "name": "キリンリキ",
+    "number": "062",
+    "number_plain": "062",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-062/3bae7d93799e3cf0a62b2e0d.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30541/regu/all",
+    "sha256": "921313074aab3f2f65b07de964d82930eac9f475ba1afa390a12871527ebe72b",
+    "bytes": 10578
+  },
+  "heading": "キリンリキ",
+  "printed_number": "070",
+  "printed_total": "088",
+  "dex": "203",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030541_P_KIRINRIKI.jpg",
+    "sha256": "3bae7d93799e3cf0a62b2e0d919fbdd00a7a43648b0a9993d0e0b7dadaed1545",
+    "bytes": 209879,
+    "storage_path_prefix": "3bae7d93799e3cf0a62b2e0d",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

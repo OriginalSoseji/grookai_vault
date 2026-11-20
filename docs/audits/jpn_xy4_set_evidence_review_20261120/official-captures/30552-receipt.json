@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:09:39.917Z",
+  "gv_id": "GV-PK-JPN-XY4-073",
+  "official_id": "30552",
+  "checklist_number": "81",
+  "parent": {
+    "id": "841f52e7-2750-4a22-ad5b-45f7b434e0a3",
+    "gv_id": "GV-PK-JPN-XY4-073",
+    "name": "ライボルトソウルリンク",
+    "number": "073",
+    "number_plain": "073",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-073/e220f627ce53859b4d915eba.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30552/regu/all",
+    "sha256": "86c0602ca5a002f85f0497a806e14dad529030dc6fd597db31360a41f6a98d9a",
+    "bytes": 8671
+  },
+  "heading": "ライボルトソウルリンク",
+  "printed_number": "081",
+  "printed_total": "088",
+  "dex": null,
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030552_T_RAIBORUTOSOURURINKU.jpg",
+    "sha256": "e220f627ce53859b4d915eba0bb0545bfc40ece14d38d92aff844e61fce1bf5e",
+    "bytes": 188437,
+    "storage_path_prefix": "e220f627ce53859b4d915eba",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

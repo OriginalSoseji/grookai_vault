@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:08:01.944Z",
+  "gv_id": "GV-PK-JPN-XY4-043",
+  "official_id": "30522",
+  "checklist_number": "51",
+  "parent": {
+    "id": "254c38e8-546c-4dca-a637-e41f63421ab9",
+    "gv_id": "GV-PK-JPN-XY4-043",
+    "name": "ドンカラス",
+    "number": "043",
+    "number_plain": "043",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-043/b02e8bbced75b92d14e0a503.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30522/regu/all",
+    "sha256": "d25cc9cae7b4beb385c9ee96cea88cc8d3ff538c98abd9d29573edec6f3eba42",
+    "bytes": 10612
+  },
+  "heading": "ドンカラス",
+  "printed_number": "051",
+  "printed_total": "088",
+  "dex": "430",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030522_P_DONKARASU.jpg",
+    "sha256": "b02e8bbced75b92d14e0a5036958a7068094489458d47208d2d78e00df945314",
+    "bytes": 194063,
+    "storage_path_prefix": "b02e8bbced75b92d14e0a503",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

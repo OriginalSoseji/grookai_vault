@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:06:47.275Z",
+  "gv_id": "GV-PK-JPN-XY4-021",
+  "official_id": "30500",
+  "checklist_number": "29",
+  "parent": {
+    "id": "df4c7fa4-b43a-47ee-9210-bbc80d2fd6d9",
+    "gv_id": "GV-PK-JPN-XY4-021",
+    "name": "エレザード",
+    "number": "021",
+    "number_plain": "021",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-021/9b0698fdf604ab4a26458e04.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30500/regu/all",
+    "sha256": "a20db5108f94cacd6d85c939b8c2ace3d692a473a5276747bee44dffe0b49085",
+    "bytes": 10427
+  },
+  "heading": "エレザード",
+  "printed_number": "029",
+  "printed_total": "088",
+  "dex": "695",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030500_P_EREZADO.jpg",
+    "sha256": "9b0698fdf604ab4a26458e04a117db865352c3fa0e1a866913c4eea324c694ad",
+    "bytes": 226883,
+    "storage_path_prefix": "9b0698fdf604ab4a26458e04",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

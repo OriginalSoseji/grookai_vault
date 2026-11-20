@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:08:24.060Z",
+  "gv_id": "GV-PK-JPN-XY4-050",
+  "official_id": "30529",
+  "checklist_number": "58",
+  "parent": {
+    "id": "206c7628-c52a-436d-a16f-549938ebf09a",
+    "gv_id": "GV-PK-JPN-XY4-050",
+    "name": "ヒードラン",
+    "number": "050",
+    "number_plain": "050",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-050/31c7583a3cdb09493c18d11b.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30529/regu/all",
+    "sha256": "c0bbc1ffcc50577ad1e401cd82c88e424833aceaa50407bdbf38058fd5c9dab2",
+    "bytes": 10168
+  },
+  "heading": "ヒードラン",
+  "printed_number": "058",
+  "printed_total": "088",
+  "dex": "485",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030529_P_HIDORAN.jpg",
+    "sha256": "31c7583a3cdb09493c18d11bc822918ac3b38a85580c1e589dda6444e274a559",
+    "bytes": 275975,
+    "storage_path_prefix": "31c7583a3cdb09493c18d11b",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

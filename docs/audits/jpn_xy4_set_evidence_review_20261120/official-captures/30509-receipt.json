@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:07:13.851Z",
+  "gv_id": "GV-PK-JPN-XY4-030",
+  "official_id": "30509",
+  "checklist_number": "38",
+  "parent": {
+    "id": "b2ea5eaf-d664-4e15-bf98-d10b7ff81e64",
+    "gv_id": "GV-PK-JPN-XY4-030",
+    "name": "ムンナ",
+    "number": "030",
+    "number_plain": "030",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-030/24243c7e4fffcbe762d951d3.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30509/regu/all",
+    "sha256": "ad9e71c1085ed3447171bea9db753090eeddcba0d696e0bc9f30d1246dc28ec9",
+    "bytes": 10182
+  },
+  "heading": "ムンナ",
+  "printed_number": "038",
+  "printed_total": "088",
+  "dex": "517",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030509_P_MUNNA.jpg",
+    "sha256": "24243c7e4fffcbe762d951d3bccb1df16039319681bdb29465ecf51310830331",
+    "bytes": 149986,
+    "storage_path_prefix": "24243c7e4fffcbe762d951d3",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

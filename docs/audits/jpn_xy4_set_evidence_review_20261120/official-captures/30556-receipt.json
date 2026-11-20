@@ -1,0 +1,35 @@
+{
+  "version": "XY4_AMBIGUOUS_BASE_LEAD_V1",
+  "captured_at": "2026-11-20T14:11:06.982Z",
+  "gv_id": "GV-PK-JPN-XY4-077",
+  "official_id": "30556",
+  "parent": {
+    "id": "89a1dbd1-4c1d-4552-a96f-175a3d2c5160",
+    "gv_id": "GV-PK-JPN-XY4-077",
+    "name": "クセロシキ",
+    "number": "077",
+    "number_plain": "077",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-077/5d34ff0b8b96c94327b2e974.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30556/regu/all",
+    "sha256": "ac5ed25682936b4a5e051352bfd1f71d3d83d68576013ed260ab309ce7347527",
+    "bytes": 8407
+  },
+  "heading": "クセロシキ",
+  "printed_number": "085",
+  "printed_total": "088",
+  "dex": null,
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030556_T_KUSEROSHIKI.jpg",
+    "sha256": "5d34ff0b8b96c94327b2e9742aca646294ff4cc502d2ebecabcc29905ad4a89f",
+    "bytes": 169065,
+    "storage_path_prefix": "5d34ff0b8b96c94327b2e974",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Predicted-coordinate research lead only; no full stored-image byte, global ownership, dependency or identity proof and no database mutation."
+}

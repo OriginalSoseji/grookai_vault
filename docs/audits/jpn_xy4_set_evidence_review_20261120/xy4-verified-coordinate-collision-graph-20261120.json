@@ -1,0 +1,1753 @@
+{
+  "version": "XY4_COORDINATE_COLLISION_GRAPH_V1",
+  "created_at": "2026-11-20T15:13:01.053Z",
+  "scope": "Offline join of previously captured source/image proofs and parent snapshot. The observed padded token is a diagnostic, not authority to create, move, alias or reassign public identifiers.",
+  "parents": 95,
+  "source_image_verified": 92,
+  "coordinate_disagreements": 85,
+  "coordinate_agreements": 7,
+  "number_occupied_by_other": 85,
+  "padded_token_owned_by_other": 82,
+  "padded_token_not_present": 3,
+  "rows": [
+    {
+      "gv_id": "GV-PK-JPN-XY4-001",
+      "parent_id": "8528e047-c768-49ce-bef1-537dc49e8eff",
+      "stored_number": "001",
+      "official_number": "009",
+      "official_id": "30480",
+      "official_sha256": "75ac1ba8e86f3129ee501e1f45b8567094cb8525bdd68cf6172304485bde34f3",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-009",
+          "parent_id": "689ee8b8-a0c4-4563-8fc8-52cc7b80cfdf"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-009",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-009",
+        "parent_id": "689ee8b8-a0c4-4563-8fc8-52cc7b80cfdf"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-002",
+      "parent_id": "8bde0285-2b02-431d-a97f-3650865326c1",
+      "stored_number": "002",
+      "official_number": "010",
+      "official_id": "30481",
+      "official_sha256": "7ff519d09f553804f56d454475d2497cc605c6f855d71c104666f0a4649923b5",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-010",
+          "parent_id": "9a4223b6-8cfe-4754-86c1-c6b4991983d7"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-010",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-010",
+        "parent_id": "9a4223b6-8cfe-4754-86c1-c6b4991983d7"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-003",
+      "parent_id": "68721c3b-89f8-45e8-9efa-e88ffc6480fb",
+      "stored_number": "003",
+      "official_number": "011",
+      "official_id": "30482",
+      "official_sha256": "f6a0515a205ffe717325eabaa030dacf98e3040a66abe25fb2cfce25b031ffdb",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-011",
+          "parent_id": "1563b15d-9872-4581-b35a-1d1d391eb785"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-011",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-011",
+        "parent_id": "1563b15d-9872-4581-b35a-1d1d391eb785"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-004",
+      "parent_id": "c99c10a9-1918-427b-8351-c2d074ad847f",
+      "stored_number": "004",
+      "official_number": "012",
+      "official_id": "30483",
+      "official_sha256": "bd8241becff00b07ca856feccf363d67a067a1733299c4955675a95bfcc4ce08",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-012",
+          "parent_id": "3f143454-6733-4ffe-9b01-5c679c072586"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-012",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-012",
+        "parent_id": "3f143454-6733-4ffe-9b01-5c679c072586"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-005",
+      "parent_id": "193dee7d-a0e1-47af-b46f-1e29b577d085",
+      "stored_number": "005",
+      "official_number": "013",
+      "official_id": "30484",
+      "official_sha256": "97a5e2f120702ff083a3840a478e2b49116ca629cbd346c9aa0fe36b31e01788",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-013",
+          "parent_id": "8fc0a879-de7d-489a-b803-e0661f0d5e1e"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-013",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-013",
+        "parent_id": "8fc0a879-de7d-489a-b803-e0661f0d5e1e"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-006",
+      "parent_id": "e813fabf-a631-4d8f-9be0-46e56aa97415",
+      "stored_number": "006",
+      "official_number": "014",
+      "official_id": "30485",
+      "official_sha256": "fecd11b52b8404a5684bdf447fc3e6c55dc4ec81f7674afb15caa3d2023fe4cc",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-014",
+          "parent_id": "6a0ac26d-5805-4739-af0e-360576d39db2"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-014",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-014",
+        "parent_id": "6a0ac26d-5805-4739-af0e-360576d39db2"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-007",
+      "parent_id": "65b3b07c-aaa9-4fc5-bcd9-b593257e6850",
+      "stored_number": "007",
+      "official_number": "015",
+      "official_id": "30486",
+      "official_sha256": "094c28897cf151067249fac9c03765e463c527fab262b7a7dce0b871a1c82203",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-015",
+          "parent_id": "1626539e-5881-461c-9cfe-e898cd6fb19b"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-015",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-015",
+        "parent_id": "1626539e-5881-461c-9cfe-e898cd6fb19b"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-008",
+      "parent_id": "67120c36-822a-4603-8037-b553156477ba",
+      "stored_number": "008",
+      "official_number": "016",
+      "official_id": "30487",
+      "official_sha256": "f3115db5392d2b0c9b65b103ea60024d832a4b624bdf3ddb45ecfbb9a315e216",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-016",
+          "parent_id": "deb3dabc-43a5-4401-9ffd-c4a726fc0e65"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-016",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-016",
+        "parent_id": "deb3dabc-43a5-4401-9ffd-c4a726fc0e65"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-009",
+      "parent_id": "689ee8b8-a0c4-4563-8fc8-52cc7b80cfdf",
+      "stored_number": "009",
+      "official_number": "017",
+      "official_id": "30488",
+      "official_sha256": "cdec531fc5c9d3258f829600a2719391c92319f68d9b4cd229d8f8b04c69168c",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-017",
+          "parent_id": "1e1320a3-25c4-4993-8eed-9fa90b803153"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-017",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-017",
+        "parent_id": "1e1320a3-25c4-4993-8eed-9fa90b803153"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-010",
+      "parent_id": "9a4223b6-8cfe-4754-86c1-c6b4991983d7",
+      "stored_number": "010",
+      "official_number": "018",
+      "official_id": "30489",
+      "official_sha256": "70ef237192369a68fd01247610abed5e9cb6456bc3f917cfd00c67cf8438288b",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-018",
+          "parent_id": "6313a723-cda1-4c5a-bf17-5993a6580528"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-018",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-018",
+        "parent_id": "6313a723-cda1-4c5a-bf17-5993a6580528"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-011",
+      "parent_id": "1563b15d-9872-4581-b35a-1d1d391eb785",
+      "stored_number": "011",
+      "official_number": "019",
+      "official_id": "30490",
+      "official_sha256": "7b5cee4562e8d8e2212b136f8152bfdbdfedf98122ba9dcbcf38853b99ecf6b4",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-019",
+          "parent_id": "1ee94dd9-f564-4954-acb3-b0a1158449f0"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-019",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-019",
+        "parent_id": "1ee94dd9-f564-4954-acb3-b0a1158449f0"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-012",
+      "parent_id": "3f143454-6733-4ffe-9b01-5c679c072586",
+      "stored_number": "012",
+      "official_number": "020",
+      "official_id": "30491",
+      "official_sha256": "c9cd4385d49bcdb569e09ddd7795cb8e12b6c29ee4cf824784ef07f27ac81eb8",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-020",
+          "parent_id": "8753cda3-ce58-4599-85f4-30fa12516940"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-020",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-020",
+        "parent_id": "8753cda3-ce58-4599-85f4-30fa12516940"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-013",
+      "parent_id": "8fc0a879-de7d-489a-b803-e0661f0d5e1e",
+      "stored_number": "013",
+      "official_number": "021",
+      "official_id": "30492",
+      "official_sha256": "df45d5707f1081cd061296f8a40fdaf23ede12adbd68320187625fece4d190ac",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-021",
+          "parent_id": "df4c7fa4-b43a-47ee-9210-bbc80d2fd6d9"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-021",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-021",
+        "parent_id": "df4c7fa4-b43a-47ee-9210-bbc80d2fd6d9"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-014",
+      "parent_id": "6a0ac26d-5805-4739-af0e-360576d39db2",
+      "stored_number": "014",
+      "official_number": "022",
+      "official_id": "30493",
+      "official_sha256": "ac50683a95b55dddf86ff1f763ae9ad49e10846749e74451debbcd0d6a13532e",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-022",
+          "parent_id": "be777f5f-1e50-4fe0-9ccf-f41c8674fa14"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-022",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-022",
+        "parent_id": "be777f5f-1e50-4fe0-9ccf-f41c8674fa14"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-017",
+      "parent_id": "1e1320a3-25c4-4993-8eed-9fa90b803153",
+      "stored_number": "017",
+      "official_number": "025",
+      "official_id": "30496",
+      "official_sha256": "a076f9efa99cdd7dc07d4bbf59c0fc4ff71c19d712ca26427ab325691d2d75be",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-025",
+          "parent_id": "ab285327-10ba-4ecf-8378-049d150f2534"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-025",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-025",
+        "parent_id": "ab285327-10ba-4ecf-8378-049d150f2534"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-018",
+      "parent_id": "6313a723-cda1-4c5a-bf17-5993a6580528",
+      "stored_number": "018",
+      "official_number": "026",
+      "official_id": "30497",
+      "official_sha256": "bc0382bf9eec04bca29ff93bd93190f98d22fb6c4d1145bf8a7a0f63e04060f1",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-026",
+          "parent_id": "e6544b1c-8a07-491f-b7be-f555cc151337"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-026",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-026",
+        "parent_id": "e6544b1c-8a07-491f-b7be-f555cc151337"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-019",
+      "parent_id": "1ee94dd9-f564-4954-acb3-b0a1158449f0",
+      "stored_number": "019",
+      "official_number": "027",
+      "official_id": "30498",
+      "official_sha256": "2327c7bd278c1a138891b68c19c59bb2a36827dd154e8b0e21f023475792c981",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-027",
+          "parent_id": "42e49fb6-c264-4ff3-bb7c-3242e7abf1a4"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-027",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-027",
+        "parent_id": "42e49fb6-c264-4ff3-bb7c-3242e7abf1a4"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-020",
+      "parent_id": "8753cda3-ce58-4599-85f4-30fa12516940",
+      "stored_number": "020",
+      "official_number": "028",
+      "official_id": "30499",
+      "official_sha256": "d34c9375770873d59f4ecf568932b31be63b584b41b26e0a944c21b77f364a19",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-028",
+          "parent_id": "773f72df-d518-47e1-9d41-2c6786d2c798"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-028",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-028",
+        "parent_id": "773f72df-d518-47e1-9d41-2c6786d2c798"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-021",
+      "parent_id": "df4c7fa4-b43a-47ee-9210-bbc80d2fd6d9",
+      "stored_number": "021",
+      "official_number": "029",
+      "official_id": "30500",
+      "official_sha256": "9b0698fdf604ab4a26458e04a117db865352c3fa0e1a866913c4eea324c694ad",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-029",
+          "parent_id": "07d154c6-ee26-4886-b646-203285a491b9"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-029",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-029",
+        "parent_id": "07d154c6-ee26-4886-b646-203285a491b9"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-022",
+      "parent_id": "be777f5f-1e50-4fe0-9ccf-f41c8674fa14",
+      "stored_number": "022",
+      "official_number": "030",
+      "official_id": "30501",
+      "official_sha256": "3f937f2d04a5bc63647de529119b9caebd60cc5ab8c746939884d57f51d016f1",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-030",
+          "parent_id": "b2ea5eaf-d664-4e15-bf98-d10b7ff81e64"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-030",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-030",
+        "parent_id": "b2ea5eaf-d664-4e15-bf98-d10b7ff81e64"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-023",
+      "parent_id": "9ddfd539-f63f-454b-8fe9-c4d3c4ad36f3",
+      "stored_number": "023",
+      "official_number": "031",
+      "official_id": "30502",
+      "official_sha256": "40d3c895ef9d6d238b72b902cf81f5d16d0420bb75936bba9959eb08770142e4",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-031",
+          "parent_id": "af585198-4b59-44d5-b18b-157b3de8b7c1"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-031",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-031",
+        "parent_id": "af585198-4b59-44d5-b18b-157b3de8b7c1"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-024",
+      "parent_id": "76b83353-a869-484b-88d6-aaad5c10f85b",
+      "stored_number": "024",
+      "official_number": "032",
+      "official_id": "30503",
+      "official_sha256": "a144610cda432bec0c035831cc4edf6790665fd673d16536fe0dd8fdf03aaf8f",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-032",
+          "parent_id": "f8ec3339-adbf-49b2-a355-3a7d4364f017"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-032",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-032",
+        "parent_id": "f8ec3339-adbf-49b2-a355-3a7d4364f017"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-027",
+      "parent_id": "42e49fb6-c264-4ff3-bb7c-3242e7abf1a4",
+      "stored_number": "027",
+      "official_number": "035",
+      "official_id": "30506",
+      "official_sha256": "d72e8fbc50fd2845df70ddd4f257a8378348219c06ba60e0922b96cb09fbe249",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-035",
+          "parent_id": "3094a71d-594b-4e79-b2b5-90baee07b4a6"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-035",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-035",
+        "parent_id": "3094a71d-594b-4e79-b2b5-90baee07b4a6"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-028",
+      "parent_id": "773f72df-d518-47e1-9d41-2c6786d2c798",
+      "stored_number": "028",
+      "official_number": "036",
+      "official_id": "30507",
+      "official_sha256": "1cbc69ee3404fedab11c3c70b787cbdc9500e08b5104a852a550a22226ac5e6d",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-036",
+          "parent_id": "bcacc6eb-e100-43c3-9129-719cce361c45"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-036",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-036",
+        "parent_id": "bcacc6eb-e100-43c3-9129-719cce361c45"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-029",
+      "parent_id": "07d154c6-ee26-4886-b646-203285a491b9",
+      "stored_number": "029",
+      "official_number": "037",
+      "official_id": "30508",
+      "official_sha256": "2be6972aa95745dfd50088574d80a4ebd40830fd55a3f87e11dc51681ea383b6",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-037",
+          "parent_id": "ff58c63d-c885-4337-a080-e780e73cde92"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-037",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-037",
+        "parent_id": "ff58c63d-c885-4337-a080-e780e73cde92"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-030",
+      "parent_id": "b2ea5eaf-d664-4e15-bf98-d10b7ff81e64",
+      "stored_number": "030",
+      "official_number": "038",
+      "official_id": "30509",
+      "official_sha256": "24243c7e4fffcbe762d951d3bccb1df16039319681bdb29465ecf51310830331",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-038",
+          "parent_id": "21a0fa68-b54b-49f3-baf2-f51d18901b47"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-038",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-038",
+        "parent_id": "21a0fa68-b54b-49f3-baf2-f51d18901b47"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-031",
+      "parent_id": "af585198-4b59-44d5-b18b-157b3de8b7c1",
+      "stored_number": "031",
+      "official_number": "039",
+      "official_id": "30510",
+      "official_sha256": "dd52b98f218a66c5bbd73695bf2dfeaba402b4e49b1f97bba4e4b670c15b1492",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-039",
+          "parent_id": "3d4bf39b-d9b1-4229-89b8-5f09a1dbc722"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-039",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-039",
+        "parent_id": "3d4bf39b-d9b1-4229-89b8-5f09a1dbc722"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-032",
+      "parent_id": "f8ec3339-adbf-49b2-a355-3a7d4364f017",
+      "stored_number": "032",
+      "official_number": "040",
+      "official_id": "30511",
+      "official_sha256": "1f1000328879fe2d8583b943095357b6e445592030a197e592e393c223cacf4c",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-040",
+          "parent_id": "bb049003-aebc-4a30-9ecb-ed5280465cc5"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-040",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-040",
+        "parent_id": "bb049003-aebc-4a30-9ecb-ed5280465cc5"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-033",
+      "parent_id": "358504b0-26c2-41ad-bac9-67df8359ea2e",
+      "stored_number": "033",
+      "official_number": "041",
+      "official_id": "30512",
+      "official_sha256": "7228595f8c1440a53ff376d0661d3476cab6b80345510b5fbb676a1f0d03aa7b",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-041",
+          "parent_id": "43c271a5-087e-4ec2-88f5-ca90a1ed3a5c"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-041",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-041",
+        "parent_id": "43c271a5-087e-4ec2-88f5-ca90a1ed3a5c"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-034",
+      "parent_id": "81762078-a35c-4ba2-9aed-07f1670140dd",
+      "stored_number": "034",
+      "official_number": "042",
+      "official_id": "30513",
+      "official_sha256": "47079e5cc530263b10ceed739cc844284021b68ec4cbac2f636124dea389e7d7",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-042",
+          "parent_id": "560c4424-5f9a-4841-b77d-d04c866da0b3"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-042",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-042",
+        "parent_id": "560c4424-5f9a-4841-b77d-d04c866da0b3"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-035",
+      "parent_id": "3094a71d-594b-4e79-b2b5-90baee07b4a6",
+      "stored_number": "035",
+      "official_number": "043",
+      "official_id": "30514",
+      "official_sha256": "73cb7602c3f64ce4a85d2acddb815c1f1797ff1433d1dba206d428ac92379227",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-043",
+          "parent_id": "254c38e8-546c-4dca-a637-e41f63421ab9"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-043",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-043",
+        "parent_id": "254c38e8-546c-4dca-a637-e41f63421ab9"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-036",
+      "parent_id": "bcacc6eb-e100-43c3-9129-719cce361c45",
+      "stored_number": "036",
+      "official_number": "044",
+      "official_id": "30515",
+      "official_sha256": "399d8d186ccc4285113b095c16707e3744193f8c787fed62ff2c60ab85332318",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-044",
+          "parent_id": "f676e800-8167-421a-b755-f60ec0818fd0"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-044",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-044",
+        "parent_id": "f676e800-8167-421a-b755-f60ec0818fd0"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-037",
+      "parent_id": "ff58c63d-c885-4337-a080-e780e73cde92",
+      "stored_number": "037",
+      "official_number": "045",
+      "official_id": "30516",
+      "official_sha256": "3531421dd080746ac6478613d9a2e95c0637aaf28c546d4c23c17a06b6f2936d",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-045",
+          "parent_id": "d207d975-f29b-4b32-90c3-689fbd9db766"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-045",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-045",
+        "parent_id": "d207d975-f29b-4b32-90c3-689fbd9db766"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-038",
+      "parent_id": "21a0fa68-b54b-49f3-baf2-f51d18901b47",
+      "stored_number": "038",
+      "official_number": "046",
+      "official_id": "30517",
+      "official_sha256": "09c7d4a818eedc0a731004f7f6d140d387f743603c2a3a9e7dd3d3db7032d382",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-046",
+          "parent_id": "a1517f3d-7cff-4bed-9988-b19edf6dc1ae"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-046",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-046",
+        "parent_id": "a1517f3d-7cff-4bed-9988-b19edf6dc1ae"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-039",
+      "parent_id": "3d4bf39b-d9b1-4229-89b8-5f09a1dbc722",
+      "stored_number": "039",
+      "official_number": "047",
+      "official_id": "30518",
+      "official_sha256": "543ac157de509d960de8b3cb71bb6e0fe49a142e62ec1cf41e26fa13e437ad2c",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-047",
+          "parent_id": "3556b772-25d2-4271-a72e-32067b148cb6"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-047",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-047",
+        "parent_id": "3556b772-25d2-4271-a72e-32067b148cb6"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-040",
+      "parent_id": "bb049003-aebc-4a30-9ecb-ed5280465cc5",
+      "stored_number": "040",
+      "official_number": "048",
+      "official_id": "30519",
+      "official_sha256": "78428f417f08721eb1929321323b6eba7ce14032952727f0e8c20bc1a82c327a",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-048",
+          "parent_id": "7b5f5bc8-525f-43e9-b418-b2192d57962a"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-048",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-048",
+        "parent_id": "7b5f5bc8-525f-43e9-b418-b2192d57962a"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-041",
+      "parent_id": "43c271a5-087e-4ec2-88f5-ca90a1ed3a5c",
+      "stored_number": "041",
+      "official_number": "049",
+      "official_id": "30520",
+      "official_sha256": "2d5615a07f331525ac701e91a676b1c009c5973bd9c491831686fc78f81938b7",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-049",
+          "parent_id": "744f1b92-7f3f-4824-aa5e-620c490431e8"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-049",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-049",
+        "parent_id": "744f1b92-7f3f-4824-aa5e-620c490431e8"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-042",
+      "parent_id": "560c4424-5f9a-4841-b77d-d04c866da0b3",
+      "stored_number": "042",
+      "official_number": "050",
+      "official_id": "30521",
+      "official_sha256": "53c520a6ce6fc8c8598a4b3970cd250b3cc21054c2baa6f26501503c01ec623b",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-050",
+          "parent_id": "206c7628-c52a-436d-a16f-549938ebf09a"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-050",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-050",
+        "parent_id": "206c7628-c52a-436d-a16f-549938ebf09a"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-043",
+      "parent_id": "254c38e8-546c-4dca-a637-e41f63421ab9",
+      "stored_number": "043",
+      "official_number": "051",
+      "official_id": "30522",
+      "official_sha256": "b02e8bbced75b92d14e0a5036958a7068094489458d47208d2d78e00df945314",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-051",
+          "parent_id": "7a838b97-6d0b-41a2-b3b2-2fd4cad450a2"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-051",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-051",
+        "parent_id": "7a838b97-6d0b-41a2-b3b2-2fd4cad450a2"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-044",
+      "parent_id": "f676e800-8167-421a-b755-f60ec0818fd0",
+      "stored_number": "044",
+      "official_number": "052",
+      "official_id": "30523",
+      "official_sha256": "655c5d67ba4f63443362e17f0c442ab829039a03813cbf7205f9cc05540305ea",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-052",
+          "parent_id": "8c5233ab-6645-4d08-b452-21326cc694c3"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-052",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-052",
+        "parent_id": "8c5233ab-6645-4d08-b452-21326cc694c3"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-045",
+      "parent_id": "d207d975-f29b-4b32-90c3-689fbd9db766",
+      "stored_number": "045",
+      "official_number": "053",
+      "official_id": "30524",
+      "official_sha256": "cb93efbcf7dd92769b812722513f363eea1ed0c699f7c82380859554bf9ef560",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-053",
+          "parent_id": "a5e77146-8eb5-4a50-bf07-cf78ec180439"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-053",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-053",
+        "parent_id": "a5e77146-8eb5-4a50-bf07-cf78ec180439"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-046",
+      "parent_id": "a1517f3d-7cff-4bed-9988-b19edf6dc1ae",
+      "stored_number": "046",
+      "official_number": "054",
+      "official_id": "30525",
+      "official_sha256": "b764691a7a2f5a5f1f2fcb6e35c3a7ed6e0483e4c18cdd1f8c79c2a08550939b",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-054",
+          "parent_id": "f55e5e5d-a84e-4327-b278-2f23869ad720"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-054",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-054",
+        "parent_id": "f55e5e5d-a84e-4327-b278-2f23869ad720"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-047",
+      "parent_id": "3556b772-25d2-4271-a72e-32067b148cb6",
+      "stored_number": "047",
+      "official_number": "055",
+      "official_id": "30526",
+      "official_sha256": "55c90ce49b8e828ae323182c410e3c68fe222c8d2439ac782cbec2630bfffedf",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-055",
+          "parent_id": "c924219b-012e-4c71-8992-5d8632b09e77"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-055",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-055",
+        "parent_id": "c924219b-012e-4c71-8992-5d8632b09e77"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-048",
+      "parent_id": "7b5f5bc8-525f-43e9-b418-b2192d57962a",
+      "stored_number": "048",
+      "official_number": "056",
+      "official_id": "30527",
+      "official_sha256": "7cf2cf182c59174852f318eadb42e142f0edaeea21a4cbc87847c652f61b0929",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-056",
+          "parent_id": "c8edf063-cf7f-4bcd-b882-ec6153d118e4"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-056",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-056",
+        "parent_id": "c8edf063-cf7f-4bcd-b882-ec6153d118e4"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-050",
+      "parent_id": "206c7628-c52a-436d-a16f-549938ebf09a",
+      "stored_number": "050",
+      "official_number": "058",
+      "official_id": "30529",
+      "official_sha256": "31c7583a3cdb09493c18d11bc822918ac3b38a85580c1e589dda6444e274a559",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-058",
+          "parent_id": "f71ce65c-d59a-4b49-adf6-5340d96cc207"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-058",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-058",
+        "parent_id": "f71ce65c-d59a-4b49-adf6-5340d96cc207"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-051",
+      "parent_id": "7a838b97-6d0b-41a2-b3b2-2fd4cad450a2",
+      "stored_number": "051",
+      "official_number": "059",
+      "official_id": "30530",
+      "official_sha256": "6a0bc90f02d7adbdff76432a7cef4a6685b1a4830847a63c111ce212e82bf285",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-059",
+          "parent_id": "1ca38d7a-a0a5-4e90-8cbe-ae19857d8397"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-059",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-059",
+        "parent_id": "1ca38d7a-a0a5-4e90-8cbe-ae19857d8397"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-053",
+      "parent_id": "a5e77146-8eb5-4a50-bf07-cf78ec180439",
+      "stored_number": "053",
+      "official_number": "061",
+      "official_id": "30532",
+      "official_sha256": "83e7a156b0aa6015a242c7fdbc837aa462d3716588d7d234544952d7cee0d7b3",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-061",
+          "parent_id": "769aadff-b323-42f3-be9b-0a3b9497a6f7"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-061",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-061",
+        "parent_id": "769aadff-b323-42f3-be9b-0a3b9497a6f7"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-054",
+      "parent_id": "f55e5e5d-a84e-4327-b278-2f23869ad720",
+      "stored_number": "054",
+      "official_number": "062",
+      "official_id": "30533",
+      "official_sha256": "d667f9ac465a28ee881deab7fa3181db71c9bbd19d66a91985ac40b558b8ad5e",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-062",
+          "parent_id": "0b99ce31-e3d5-409d-a904-b811ddc7d4c2"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-062",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-062",
+        "parent_id": "0b99ce31-e3d5-409d-a904-b811ddc7d4c2"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-055",
+      "parent_id": "c924219b-012e-4c71-8992-5d8632b09e77",
+      "stored_number": "055",
+      "official_number": "063",
+      "official_id": "30534",
+      "official_sha256": "2667237f02aa40f570068a5d63302029e405e51964e2c75487663013669a91e2",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-063",
+          "parent_id": "6552f082-2e74-4350-9fe8-eb85e967da84"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-063",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-063",
+        "parent_id": "6552f082-2e74-4350-9fe8-eb85e967da84"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-056",
+      "parent_id": "c8edf063-cf7f-4bcd-b882-ec6153d118e4",
+      "stored_number": "056",
+      "official_number": "064",
+      "official_id": "30535",
+      "official_sha256": "80951e9ec036a049fee42635e030a081d3da51d61d05d11f4fcae547014a68c0",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-064",
+          "parent_id": "9da52e37-7c3b-4364-a8c5-34697536200c"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-064",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-064",
+        "parent_id": "9da52e37-7c3b-4364-a8c5-34697536200c"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-057",
+      "parent_id": "95d15a0f-01d8-4ea6-9399-ac9d2ab0050a",
+      "stored_number": "057",
+      "official_number": "065",
+      "official_id": "30536",
+      "official_sha256": "f7d2630a4b4a4559c7196e1bdfbd0de1047f2867e7f127e66d17120ba91ef9ee",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-065",
+          "parent_id": "f0d90404-3261-4619-8b47-340342c9350b"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-065",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-065",
+        "parent_id": "f0d90404-3261-4619-8b47-340342c9350b"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-058",
+      "parent_id": "f71ce65c-d59a-4b49-adf6-5340d96cc207",
+      "stored_number": "058",
+      "official_number": "066",
+      "official_id": "30537",
+      "official_sha256": "59bd1d586923fc8832edd453c41bc516c9ae180d8632fa0800d71ab061af4bea",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-066",
+          "parent_id": "7c15ad2a-c98a-4dd2-897e-f70053223805"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-066",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-066",
+        "parent_id": "7c15ad2a-c98a-4dd2-897e-f70053223805"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-059",
+      "parent_id": "1ca38d7a-a0a5-4e90-8cbe-ae19857d8397",
+      "stored_number": "059",
+      "official_number": "067",
+      "official_id": "30538",
+      "official_sha256": "540c87a0e00450611b4eb0ef1cea4b3f20994aa1bcd61ac760fbd310373ae126",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-067",
+          "parent_id": "4b37e7c8-bcae-4b5e-a246-37fd62d3356b"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-067",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-067",
+        "parent_id": "4b37e7c8-bcae-4b5e-a246-37fd62d3356b"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-060",
+      "parent_id": "8a0c9c7a-0535-4470-9535-b5ca852db94a",
+      "stored_number": "060",
+      "official_number": "068",
+      "official_id": "30539",
+      "official_sha256": "9c96cadd917b91cb88ee39159d99aa84b2102b2cd711048d9d9979fe3fa91af9",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-068",
+          "parent_id": "6d86ed61-2fd0-4937-a968-1aee3f7a515c"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-068",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-068",
+        "parent_id": "6d86ed61-2fd0-4937-a968-1aee3f7a515c"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-061",
+      "parent_id": "769aadff-b323-42f3-be9b-0a3b9497a6f7",
+      "stored_number": "061",
+      "official_number": "069",
+      "official_id": "30540",
+      "official_sha256": "3eb37bf791a6351e2a90b9cf069901d64b27e27e776940f2083281a3075809e5",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-069",
+          "parent_id": "62d84164-aa30-4684-95a5-189f389feda4"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-069",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-069",
+        "parent_id": "62d84164-aa30-4684-95a5-189f389feda4"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-062",
+      "parent_id": "0b99ce31-e3d5-409d-a904-b811ddc7d4c2",
+      "stored_number": "062",
+      "official_number": "070",
+      "official_id": "30541",
+      "official_sha256": "3bae7d93799e3cf0a62b2e0d919fbdd00a7a43648b0a9993d0e0b7dadaed1545",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-070",
+          "parent_id": "600b05e6-d212-4455-b4c1-bd77f7e05e5a"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-070",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-070",
+        "parent_id": "600b05e6-d212-4455-b4c1-bd77f7e05e5a"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-063",
+      "parent_id": "6552f082-2e74-4350-9fe8-eb85e967da84",
+      "stored_number": "063",
+      "official_number": "071",
+      "official_id": "30542",
+      "official_sha256": "bb5be5bb3c31fa8cab876c45b4b36b4de51727045ea7ac8fa4b0f81cd7c11533",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-071",
+          "parent_id": "b33dbc90-bbcd-4cc9-a00f-f102822bfeb5"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-071",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-071",
+        "parent_id": "b33dbc90-bbcd-4cc9-a00f-f102822bfeb5"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-064",
+      "parent_id": "9da52e37-7c3b-4364-a8c5-34697536200c",
+      "stored_number": "064",
+      "official_number": "072",
+      "official_id": "30543",
+      "official_sha256": "1762c5d4cc071d83414ea2af0009d9cb8f5ea2ce9455924c05a56693011060bb",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-072",
+          "parent_id": "7a2290b4-2802-4a78-b377-0f6f725ed43d"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-072",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-072",
+        "parent_id": "7a2290b4-2802-4a78-b377-0f6f725ed43d"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-065",
+      "parent_id": "f0d90404-3261-4619-8b47-340342c9350b",
+      "stored_number": "065",
+      "official_number": "073",
+      "official_id": "30544",
+      "official_sha256": "2b39f1cf7991210d1eaaf3473c5c24cede2c339c8b834f465c79b7afb02bc890",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-073",
+          "parent_id": "841f52e7-2750-4a22-ad5b-45f7b434e0a3"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-073",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-073",
+        "parent_id": "841f52e7-2750-4a22-ad5b-45f7b434e0a3"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-066",
+      "parent_id": "7c15ad2a-c98a-4dd2-897e-f70053223805",
+      "stored_number": "066",
+      "official_number": "074",
+      "official_id": "30545",
+      "official_sha256": "e7b2855809dd658b4d3ce037237bb375a33177f9a887fef86bc316df31203d58",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-074",
+          "parent_id": "c32b16e3-52f2-46cd-922e-5f561af9f5d0"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-074",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-074",
+        "parent_id": "c32b16e3-52f2-46cd-922e-5f561af9f5d0"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-067",
+      "parent_id": "4b37e7c8-bcae-4b5e-a246-37fd62d3356b",
+      "stored_number": "067",
+      "official_number": "075",
+      "official_id": "30546",
+      "official_sha256": "46b925972ba690c3e657af48747c017d23355eafe0f7b155af7690f2858db12a",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-075",
+          "parent_id": "be8e8bc4-1975-4844-925b-25f1d7431b78"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-075",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-075",
+        "parent_id": "be8e8bc4-1975-4844-925b-25f1d7431b78"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-068",
+      "parent_id": "6d86ed61-2fd0-4937-a968-1aee3f7a515c",
+      "stored_number": "068",
+      "official_number": "076",
+      "official_id": "30547",
+      "official_sha256": "2cc8b3a8de7ade9d8849a6dc74eb51d45093fff3dd064939e4d36483aaa314da",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-076",
+          "parent_id": "a977edc0-860a-4d28-9c2e-5315729dc46b"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-076",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-076",
+        "parent_id": "a977edc0-860a-4d28-9c2e-5315729dc46b"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-069",
+      "parent_id": "62d84164-aa30-4684-95a5-189f389feda4",
+      "stored_number": "069",
+      "official_number": "077",
+      "official_id": "30548",
+      "official_sha256": "6115d21fcdb1a90146705ff41b9f079c901a6bb01df96dfc2b2dba1308d6b765",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-077",
+          "parent_id": "89a1dbd1-4c1d-4552-a96f-175a3d2c5160"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-077",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-077",
+        "parent_id": "89a1dbd1-4c1d-4552-a96f-175a3d2c5160"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-070",
+      "parent_id": "600b05e6-d212-4455-b4c1-bd77f7e05e5a",
+      "stored_number": "070",
+      "official_number": "078",
+      "official_id": "30549",
+      "official_sha256": "d595dd9076e9d0fe1c2cc3a497b345c25befbee74bc31868e299a117b48a017f",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-78",
+          "parent_id": "ce067f3a-df53-5a19-adf9-311f76861ebf"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-078",
+      "padded_id_owner": null
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-072",
+      "parent_id": "7a2290b4-2802-4a78-b377-0f6f725ed43d",
+      "stored_number": "072",
+      "official_number": "080",
+      "official_id": "30551",
+      "official_sha256": "395559accd64c3f676a4f3efb93bf616cfbc164ea918d757ba605b8b4be574bb",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-80",
+          "parent_id": "a2efda3e-cefe-5b8a-8585-ad09bc89299a"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-080",
+      "padded_id_owner": null
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-073",
+      "parent_id": "841f52e7-2750-4a22-ad5b-45f7b434e0a3",
+      "stored_number": "073",
+      "official_number": "081",
+      "official_id": "30552",
+      "official_sha256": "e220f627ce53859b4d915eba0bb0545bfc40ece14d38d92aff844e61fce1bf5e",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-081",
+          "parent_id": "7dce5267-7cb0-4002-823b-87bfaf330f12"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-081",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-081",
+        "parent_id": "7dce5267-7cb0-4002-823b-87bfaf330f12"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-074",
+      "parent_id": "c32b16e3-52f2-46cd-922e-5f561af9f5d0",
+      "stored_number": "074",
+      "official_number": "082",
+      "official_id": "30553",
+      "official_sha256": "bf92088c8f826fb5a2a7a5cd2b212b0c7f08db187fdf5fcac2fc381bfb7d11ce",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-82",
+          "parent_id": "7c6105e6-b8cd-52b9-98fa-45ef2729c829"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-082",
+      "padded_id_owner": null
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-075",
+      "parent_id": "be8e8bc4-1975-4844-925b-25f1d7431b78",
+      "stored_number": "075",
+      "official_number": "083",
+      "official_id": "30554",
+      "official_sha256": "7a1b2379430411dab58288ac19dbfc75266ed1b212732044c17a70e5cb265121",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-083",
+          "parent_id": "45794e26-9a0c-4522-b3a6-11f29e58d26d"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-083",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-083",
+        "parent_id": "45794e26-9a0c-4522-b3a6-11f29e58d26d"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-079",
+      "parent_id": "4ca52e3b-677d-4717-86bc-55d62b153250",
+      "stored_number": "079",
+      "official_number": "087",
+      "official_id": "30558",
+      "official_sha256": "7d9722a47b455cd5ec179c1b810b07c89b263921aa97f52c5900fead87d48e47",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-087",
+          "parent_id": "6fa60ccd-29d7-4ef2-b3e2-23d34d793f00"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-087",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-087",
+        "parent_id": "6fa60ccd-29d7-4ef2-b3e2-23d34d793f00"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-081",
+      "parent_id": "7dce5267-7cb0-4002-823b-87bfaf330f12",
+      "stored_number": "081",
+      "official_number": "001",
+      "official_id": "30608",
+      "official_sha256": "d927a4868d3533ca77c849a6921ce4a8749ee6bd4311470875f5adf14553283b",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-001",
+          "parent_id": "8528e047-c768-49ce-bef1-537dc49e8eff"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-001",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-001",
+        "parent_id": "8528e047-c768-49ce-bef1-537dc49e8eff"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-083",
+      "parent_id": "45794e26-9a0c-4522-b3a6-11f29e58d26d",
+      "stored_number": "083",
+      "official_number": "003",
+      "official_id": "30610",
+      "official_sha256": "07734f58d313278d5b5062b956ff16d4e5f0d9137eec8a714d08e5d5bc6ce574",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-003",
+          "parent_id": "68721c3b-89f8-45e8-9efa-e88ffc6480fb"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-003",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-003",
+        "parent_id": "68721c3b-89f8-45e8-9efa-e88ffc6480fb"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-084",
+      "parent_id": "7e4f1df8-1820-4aa8-b0cc-87a047747ec3",
+      "stored_number": "084",
+      "official_number": "004",
+      "official_id": "30611",
+      "official_sha256": "02d29dff4c09660c85393d22a78a5918c6922495eafaa7bf305603967c8ae0de",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-004",
+          "parent_id": "c99c10a9-1918-427b-8351-c2d074ad847f"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-004",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-004",
+        "parent_id": "c99c10a9-1918-427b-8351-c2d074ad847f"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-085",
+      "parent_id": "23c3afb1-85d5-4b8b-9a05-73b2658d1b41",
+      "stored_number": "085",
+      "official_number": "005",
+      "official_id": "30612",
+      "official_sha256": "d3789eb119973839e614acc0a7ad7bc4834abbbb34311266a513b1ecdff8eb48",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-005",
+          "parent_id": "193dee7d-a0e1-47af-b46f-1e29b577d085"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-005",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-005",
+        "parent_id": "193dee7d-a0e1-47af-b46f-1e29b577d085"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-086",
+      "parent_id": "7cfe226d-09d0-4e8a-b830-9b1061efb590",
+      "stored_number": "086",
+      "official_number": "006",
+      "official_id": "30613",
+      "official_sha256": "2d4556931f6e0ae818a933dcce2b8b145b0e92e8f6ff335a8fa2b413f4fc62d9",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-006",
+          "parent_id": "e813fabf-a631-4d8f-9be0-46e56aa97415"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-006",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-006",
+        "parent_id": "e813fabf-a631-4d8f-9be0-46e56aa97415"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-087",
+      "parent_id": "6fa60ccd-29d7-4ef2-b3e2-23d34d793f00",
+      "stored_number": "087",
+      "official_number": "007",
+      "official_id": "30614",
+      "official_sha256": "029ffff77171cc5e49f8d2038ffd03338edc40351e170bcd3649c76d104525c1",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-007",
+          "parent_id": "65b3b07c-aaa9-4fc5-bcd9-b593257e6850"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-007",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-007",
+        "parent_id": "65b3b07c-aaa9-4fc5-bcd9-b593257e6850"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-088",
+      "parent_id": "e784e6dc-10d0-4104-8953-cbea221c9740",
+      "stored_number": "088",
+      "official_number": "008",
+      "official_id": "30615",
+      "official_sha256": "5c804953cc7506124dc281de364df5a93c898c05e86d69a1463a08ff897165b3",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-008",
+          "parent_id": "67120c36-822a-4603-8037-b553156477ba"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-008",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-008",
+        "parent_id": "67120c36-822a-4603-8037-b553156477ba"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-015",
+      "parent_id": "1626539e-5881-461c-9cfe-e898cd6fb19b",
+      "stored_number": "015",
+      "official_number": "023",
+      "official_id": "30494",
+      "official_sha256": "3a5a23e23f3751c0b35b13a01d422b40dddd64aedb9750eafe7dbf7032a4d64d",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-023",
+          "parent_id": "9ddfd539-f63f-454b-8fe9-c4d3c4ad36f3"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-023",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-023",
+        "parent_id": "9ddfd539-f63f-454b-8fe9-c4d3c4ad36f3"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-016",
+      "parent_id": "deb3dabc-43a5-4401-9ffd-c4a726fc0e65",
+      "stored_number": "016",
+      "official_number": "024",
+      "official_id": "30495",
+      "official_sha256": "02c8417569913313dbd01052524c0f2b44cbcb5bd6e61127fe3279d074e7d5ee",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-024",
+          "parent_id": "76b83353-a869-484b-88d6-aaad5c10f85b"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-024",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-024",
+        "parent_id": "76b83353-a869-484b-88d6-aaad5c10f85b"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-025",
+      "parent_id": "ab285327-10ba-4ecf-8378-049d150f2534",
+      "stored_number": "025",
+      "official_number": "033",
+      "official_id": "30504",
+      "official_sha256": "0d2dc376321e80cd89117411317b8e324a65328d229aa48cea1eca781fb4367d",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-033",
+          "parent_id": "358504b0-26c2-41ad-bac9-67df8359ea2e"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-033",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-033",
+        "parent_id": "358504b0-26c2-41ad-bac9-67df8359ea2e"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-026",
+      "parent_id": "e6544b1c-8a07-491f-b7be-f555cc151337",
+      "stored_number": "026",
+      "official_number": "034",
+      "official_id": "30505",
+      "official_sha256": "00fb80de7dbacfc0577c8bc057163e7a6b033587c89d5ad95878c9439c517c2f",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-034",
+          "parent_id": "81762078-a35c-4ba2-9aed-07f1670140dd"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-034",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-034",
+        "parent_id": "81762078-a35c-4ba2-9aed-07f1670140dd"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-049",
+      "parent_id": "744f1b92-7f3f-4824-aa5e-620c490431e8",
+      "stored_number": "049",
+      "official_number": "057",
+      "official_id": "30528",
+      "official_sha256": "758831138beaadda83bf725de7ac21666aba9f9da1d084e635e3c619be5918d7",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-057",
+          "parent_id": "95d15a0f-01d8-4ea6-9399-ac9d2ab0050a"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-057",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-057",
+        "parent_id": "95d15a0f-01d8-4ea6-9399-ac9d2ab0050a"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-052",
+      "parent_id": "8c5233ab-6645-4d08-b452-21326cc694c3",
+      "stored_number": "052",
+      "official_number": "060",
+      "official_id": "30531",
+      "official_sha256": "8f906c4de26fc71e7d9a4ec1520811b9aa5acdc08e4a9bc5338dcb5e8c13cdb3",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-060",
+          "parent_id": "8a0c9c7a-0535-4470-9535-b5ca852db94a"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-060",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-060",
+        "parent_id": "8a0c9c7a-0535-4470-9535-b5ca852db94a"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-071",
+      "parent_id": "b33dbc90-bbcd-4cc9-a00f-f102822bfeb5",
+      "stored_number": "071",
+      "official_number": "079",
+      "official_id": "30550",
+      "official_sha256": "817177efa59e06c19b2794f29047d1c1fd562e8e13cea0b7f93c322a45b7224b",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-079",
+          "parent_id": "4ca52e3b-677d-4717-86bc-55d62b153250"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-079",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-079",
+        "parent_id": "4ca52e3b-677d-4717-86bc-55d62b153250"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-076",
+      "parent_id": "a977edc0-860a-4d28-9c2e-5315729dc46b",
+      "stored_number": "076",
+      "official_number": "084",
+      "official_id": "30555",
+      "official_sha256": "ce70c3ea3a570a45fb7878bdbf98f295f5b55166b5f166dc20eb90663794680e",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-084",
+          "parent_id": "7e4f1df8-1820-4aa8-b0cc-87a047747ec3"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-084",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-084",
+        "parent_id": "7e4f1df8-1820-4aa8-b0cc-87a047747ec3"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-077",
+      "parent_id": "89a1dbd1-4c1d-4552-a96f-175a3d2c5160",
+      "stored_number": "077",
+      "official_number": "085",
+      "official_id": "30556",
+      "official_sha256": "5d34ff0b8b96c94327b2e9742aca646294ff4cc502d2ebecabcc29905ad4a89f",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-085",
+          "parent_id": "23c3afb1-85d5-4b8b-9a05-73b2658d1b41"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-085",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-085",
+        "parent_id": "23c3afb1-85d5-4b8b-9a05-73b2658d1b41"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-089",
+      "parent_id": "03e0609c-4932-4305-9a18-e3e63cd44292",
+      "stored_number": "089",
+      "official_number": "089",
+      "official_id": "35778",
+      "official_sha256": "0053156fb6c3f113447ee99745e3a85a78b2f8bf5790084b011f8357ee5a0729",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-089",
+          "parent_id": "03e0609c-4932-4305-9a18-e3e63cd44292"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-089",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-089",
+        "parent_id": "03e0609c-4932-4305-9a18-e3e63cd44292"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-090",
+      "parent_id": "9fafc03f-ab08-4286-be72-b25a4cd63176",
+      "stored_number": "090",
+      "official_number": "090",
+      "official_id": "35779",
+      "official_sha256": "01117948f3de03d11492980e23e70d4a0984aaa273c5558aae634b8f810a2fc0",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-090",
+          "parent_id": "9fafc03f-ab08-4286-be72-b25a4cd63176"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-090",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-090",
+        "parent_id": "9fafc03f-ab08-4286-be72-b25a4cd63176"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-091",
+      "parent_id": "30967f75-d1e1-44cc-812b-0b1c94d79352",
+      "stored_number": "091",
+      "official_number": "091",
+      "official_id": "35780",
+      "official_sha256": "e73ffad35c59ee01d82cc7f7a667b8bd495f483e771514722770b9506c470270",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-091",
+          "parent_id": "30967f75-d1e1-44cc-812b-0b1c94d79352"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-091",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-091",
+        "parent_id": "30967f75-d1e1-44cc-812b-0b1c94d79352"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-092",
+      "parent_id": "40161741-d2c3-4950-ad45-5472bc9fc9ec",
+      "stored_number": "092",
+      "official_number": "092",
+      "official_id": "35781",
+      "official_sha256": "736dbcec0f73f12fb2e99566a8fe7fe714cd20c1750c6aeee924e4bf0e0a81bd",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-092",
+          "parent_id": "40161741-d2c3-4950-ad45-5472bc9fc9ec"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-092",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-092",
+        "parent_id": "40161741-d2c3-4950-ad45-5472bc9fc9ec"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-093",
+      "parent_id": "7b2e6cbf-82e9-40fa-ba55-61aa95880889",
+      "stored_number": "093",
+      "official_number": "093",
+      "official_id": "35782",
+      "official_sha256": "f721a315bf01b01f72da7d06942ea1fcb1e8e6e296cc078e394b46d18c9a15fd",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-093",
+          "parent_id": "7b2e6cbf-82e9-40fa-ba55-61aa95880889"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-093",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-093",
+        "parent_id": "7b2e6cbf-82e9-40fa-ba55-61aa95880889"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-094",
+      "parent_id": "90199d6e-abfe-4a1f-9eac-b94862dcf1ea",
+      "stored_number": "094",
+      "official_number": "094",
+      "official_id": "35783",
+      "official_sha256": "40f51243cabe326caca50d9a3de6c05ad951f1270a7ef306ebd174a0ba565850",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-094",
+          "parent_id": "90199d6e-abfe-4a1f-9eac-b94862dcf1ea"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-094",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-094",
+        "parent_id": "90199d6e-abfe-4a1f-9eac-b94862dcf1ea"
+      }
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-095",
+      "parent_id": "e2039153-dcaf-4f2d-85b4-a66d35c12a3b",
+      "stored_number": "095",
+      "official_number": "095",
+      "official_id": "35784",
+      "official_sha256": "97067ddbd216e3164be0a0e50e60bff7b70816bb98e9a465170ea1d6ae55e654",
+      "numeric_occupants": [
+        {
+          "gv_id": "GV-PK-JPN-XY4-095",
+          "parent_id": "e2039153-dcaf-4f2d-85b4-a66d35c12a3b"
+        }
+      ],
+      "observed_padded_id": "GV-PK-JPN-XY4-095",
+      "padded_id_owner": {
+        "gv_id": "GV-PK-JPN-XY4-095",
+        "parent_id": "e2039153-dcaf-4f2d-85b4-a66d35c12a3b"
+      }
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "captured_at": "2026-11-20T15:23:46.041Z",
+  "scope": "Read-only aggregate counts by parent; listing content, logical references and later changes not assessed.",
+  "rows": [
+    {
+      "gv_id": "GV-PK-JPN-XY4-089",
+      "candidate_rows": 1,
+      "rollup_rows": 1
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-091",
+      "candidate_rows": 1,
+      "rollup_rows": 1
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-092",
+      "candidate_rows": 2,
+      "rollup_rows": 1
+    }
+  ]
+}

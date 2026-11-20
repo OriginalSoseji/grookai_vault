@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:09:25.911Z",
+  "gv_id": "GV-PK-JPN-XY4-068",
+  "official_id": "30547",
+  "checklist_number": "76",
+  "parent": {
+    "id": "6d86ed61-2fd0-4937-a968-1aee3f7a515c",
+    "gv_id": "GV-PK-JPN-XY4-068",
+    "name": "ホルード",
+    "number": "068",
+    "number_plain": "068",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-068/2cc8b3a8de7ade9d8849a6dc.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30547/regu/all",
+    "sha256": "2b78e3605f436b1f1bdb061174313fffe11d34d0a63d5b8fb10679228dd475c7",
+    "bytes": 10482
+  },
+  "heading": "ホルード",
+  "printed_number": "076",
+  "printed_total": "088",
+  "dex": "660",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030547_P_HORUDO.jpg",
+    "sha256": "2cc8b3a8de7ade9d8849a6dc74eb51d45093fff3dd064939e4d36483aaa314da",
+    "bytes": 193206,
+    "storage_path_prefix": "2cc8b3a8de7ade9d8849a6dc",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

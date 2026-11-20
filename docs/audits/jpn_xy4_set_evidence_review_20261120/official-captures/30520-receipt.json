@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:07:54.203Z",
+  "gv_id": "GV-PK-JPN-XY4-041",
+  "official_id": "30520",
+  "checklist_number": "49",
+  "parent": {
+    "id": "43c271a5-087e-4ec2-88f5-ca90a1ed3a5c",
+    "gv_id": "GV-PK-JPN-XY4-041",
+    "name": "ギガイアス",
+    "number": "041",
+    "number_plain": "041",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-041/2d5615a07f331525ac701e91.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30520/regu/all",
+    "sha256": "424a9d2d02804856ff7d06856924b71c121ab6037e845ead5b219051a3f09242",
+    "bytes": 10750
+  },
+  "heading": "ギガイアス",
+  "printed_number": "049",
+  "printed_total": "088",
+  "dex": "526",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030520_P_GIGAIASU.jpg",
+    "sha256": "2d5615a07f331525ac701e91a676b1c009c5973bd9c491831686fc78f81938b7",
+    "bytes": 255604,
+    "storage_path_prefix": "2d5615a07f331525ac701e91",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:08:35.184Z",
+  "gv_id": "GV-PK-JPN-XY4-054",
+  "official_id": "30533",
+  "checklist_number": "62",
+  "parent": {
+    "id": "f55e5e5d-a84e-4327-b278-2f23869ad720",
+    "gv_id": "GV-PK-JPN-XY4-054",
+    "name": "ペロリーム",
+    "number": "054",
+    "number_plain": "054",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-054/d667f9ac465a28ee881deab7.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30533/regu/all",
+    "sha256": "b04d732a547bd5bef2302061e15e302fcb28965e8db2d1ac82cf6952d60e6675",
+    "bytes": 10455
+  },
+  "heading": "ペロリーム",
+  "printed_number": "062",
+  "printed_total": "088",
+  "dex": "685",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030533_P_PERORIMU.jpg",
+    "sha256": "d667f9ac465a28ee881deab7fa3181db71c9bbd19d66a91985ac40b558b8ad5e",
+    "bytes": 238255,
+    "storage_path_prefix": "d667f9ac465a28ee881deab7",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

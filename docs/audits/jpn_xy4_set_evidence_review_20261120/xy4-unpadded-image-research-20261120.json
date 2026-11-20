@@ -1,0 +1,39 @@
+{
+  "captured_at": "2026-11-20T15:03:00.680Z",
+  "scope": "Read-only public images; no database changes.",
+  "rows": [
+    {
+      "gv_id": "GV-PK-JPN-XY4-78",
+      "parent_id": "ce067f3a-df53-5a19-adf9-311f76861ebf",
+      "third_party_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/XY4/XY4_78_R_JP_XS.png",
+      "third_party_sha256": "08cadc6d1d6162836d275e94362baac3ed8004fa9e187027d1526dffcb20d9d9",
+      "official_id": "30549",
+      "official_sha256": "d595dd9076e9d0fe1c2cc3a497b345c25befbee74bc31868e299a117b48a017f",
+      "byte_identical": false,
+      "normalized_grayscale_mean_absolute_difference": 8.894,
+      "scope": "Resized grayscale similarity is a research lead, not identity, exact-print or merge proof."
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-80",
+      "parent_id": "a2efda3e-cefe-5b8a-8585-ad09bc89299a",
+      "third_party_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/XY4/XY4_80_R_JP_XS.png",
+      "third_party_sha256": "96f118f49b25a1ee048db70678d0f6f93f8c2420be08a71f38ec01f899a03caf",
+      "official_id": "30551",
+      "official_sha256": "395559accd64c3f676a4f3efb93bf616cfbc164ea918d757ba605b8b4be574bb",
+      "byte_identical": false,
+      "normalized_grayscale_mean_absolute_difference": 9.422,
+      "scope": "Resized grayscale similarity is a research lead, not identity, exact-print or merge proof."
+    },
+    {
+      "gv_id": "GV-PK-JPN-XY4-82",
+      "parent_id": "7c6105e6-b8cd-52b9-98fa-45ef2729c829",
+      "third_party_url": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpc/XY4/XY4_82_R_JP_XS.png",
+      "third_party_sha256": "cfc4aab8376d048caeb137e4e38cda20a38acac9ff001b3cee689065c3542e77",
+      "official_id": "30553",
+      "official_sha256": "bf92088c8f826fb5a2a7a5cd2b212b0c7f08db187fdf5fcac2fc381bfb7d11ce",
+      "byte_identical": false,
+      "normalized_grayscale_mean_absolute_difference": 10.241,
+      "scope": "Resized grayscale similarity is a research lead, not identity, exact-print or merge proof."
+    }
+  ]
+}

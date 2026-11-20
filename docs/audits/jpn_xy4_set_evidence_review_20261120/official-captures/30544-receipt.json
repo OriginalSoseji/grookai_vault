@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:09:15.308Z",
+  "gv_id": "GV-PK-JPN-XY4-065",
+  "official_id": "30544",
+  "checklist_number": "73",
+  "parent": {
+    "id": "f0d90404-3261-4619-8b47-340342c9350b",
+    "gv_id": "GV-PK-JPN-XY4-065",
+    "name": "バクオング",
+    "number": "065",
+    "number_plain": "065",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-065/2b39f1cf7991210d1eaaf347.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30544/regu/all",
+    "sha256": "becd14718046bceb3549d2bb8e55846eb8b34a3cafa48a02b4a49c07756ade91",
+    "bytes": 10616
+  },
+  "heading": "バクオング",
+  "printed_number": "073",
+  "printed_total": "088",
+  "dex": "295",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030544_P_BAKUONGU.jpg",
+    "sha256": "2b39f1cf7991210d1eaaf3473c5c24cede2c339c8b834f465c79b7afb02bc890",
+    "bytes": 183179,
+    "storage_path_prefix": "2b39f1cf7991210d1eaaf347",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

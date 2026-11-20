@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:07:43.816Z",
+  "gv_id": "GV-PK-JPN-XY4-038",
+  "official_id": "30517",
+  "checklist_number": "46",
+  "parent": {
+    "id": "21a0fa68-b54b-49f3-baf2-f51d18901b47",
+    "gv_id": "GV-PK-JPN-XY4-038",
+    "name": "グライオン",
+    "number": "038",
+    "number_plain": "038",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-038/09c7d4a818eedc0a731004f7.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30517/regu/all",
+    "sha256": "96a0379d2987ff6fb1a9e039fb36e9eff675bb64ad5bd62da0f11dc902aff75c",
+    "bytes": 10426
+  },
+  "heading": "グライオン",
+  "printed_number": "046",
+  "printed_total": "088",
+  "dex": "472",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030517_P_GURAION.jpg",
+    "sha256": "09c7d4a818eedc0a731004f7f6d140d387f743603c2a3a9e7dd3d3db7032d382",
+    "bytes": 215449,
+    "storage_path_prefix": "09c7d4a818eedc0a731004f7",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

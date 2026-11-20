@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:08:42.333Z",
+  "gv_id": "GV-PK-JPN-XY4-056",
+  "official_id": "30535",
+  "checklist_number": "64",
+  "parent": {
+    "id": "c8edf063-cf7f-4bcd-b882-ec6153d118e4",
+    "gv_id": "GV-PK-JPN-XY4-056",
+    "name": "ジヘッド",
+    "number": "056",
+    "number_plain": "056",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-056/80951e9ec036a049fee42635.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30535/regu/all",
+    "sha256": "487712d38f156df8e785b59f0c909ddd3a43170cd754fd8bf30089cad8444b7f",
+    "bytes": 10701
+  },
+  "heading": "ジヘッド",
+  "printed_number": "064",
+  "printed_total": "088",
+  "dex": "634",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030535_P_JIHEDDO.jpg",
+    "sha256": "80951e9ec036a049fee42635e030a081d3da51d61d05d11f4fcae547014a68c0",
+    "bytes": 209957,
+    "storage_path_prefix": "80951e9ec036a049fee42635",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

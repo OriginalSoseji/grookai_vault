@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:10:06.132Z",
+  "gv_id": "GV-PK-JPN-XY4-085",
+  "official_id": "30612",
+  "checklist_number": "5",
+  "parent": {
+    "id": "23c3afb1-85d5-4b8b-9a05-73b2658d1b41",
+    "gv_id": "GV-PK-JPN-XY4-085",
+    "name": "クルミル",
+    "number": "085",
+    "number_plain": "085",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-085/d3789eb119973839e614acc0.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30612/regu/all",
+    "sha256": "f1c6b00279b4cb62e1d9fce32b2d2f9730efdc22e743ce89109fc82a54256387",
+    "bytes": 10306
+  },
+  "heading": "クルミル",
+  "printed_number": "005",
+  "printed_total": "088",
+  "dex": "540",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030612_P_KURUMIRU.jpg",
+    "sha256": "d3789eb119973839e614acc0a7ad7bc4834abbbb34311266a513b1ecdff8eb48",
+    "bytes": 186788,
+    "storage_path_prefix": "d3789eb119973839e614acc0",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

@@ -24,3 +24,8 @@ scripts/schema/reviewed_intake_public_catalog_v1.sql whitespace=-space-before-ta
 docs/audits/jpn_dp4_family_containment_20261120/official-captures/*.html -text -diff
 docs/audits/jpn_xy4_family_containment_20261120/official-captures/*.html -text -diff
 docs/audits/jpn_xy4_family_containment_20261120/official-captures/*.jpg -text -diff
+docs/audits/jpn_xy4_set_evidence_review_20261120/*.json -text -diff
+docs/audits/jpn_xy4_set_evidence_review_20261120/*.md -text
+docs/audits/jpn_xy4_set_evidence_review_20261120/*.pdf -text -diff
+docs/audits/jpn_xy4_set_evidence_review_20261120/official-captures/* -text -diff
+docs/audits/jpn_xy4_set_evidence_review_20261120/third-party-captures/* -text -diff

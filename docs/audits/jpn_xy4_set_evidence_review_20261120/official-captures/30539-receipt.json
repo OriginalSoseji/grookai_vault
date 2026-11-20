@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:08:57.405Z",
+  "gv_id": "GV-PK-JPN-XY4-060",
+  "official_id": "30539",
+  "checklist_number": "68",
+  "parent": {
+    "id": "8a0c9c7a-0535-4470-9535-b5ca852db94a",
+    "gv_id": "GV-PK-JPN-XY4-060",
+    "name": "ラッキー",
+    "number": "060",
+    "number_plain": "060",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-060/9c96cadd917b91cb88ee3915.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30539/regu/all",
+    "sha256": "6d4b9e0a7687a85698eff978ae6de03986de4350cda1eaa19f41d64af183f505",
+    "bytes": 10574
+  },
+  "heading": "ラッキー",
+  "printed_number": "068",
+  "printed_total": "088",
+  "dex": "113",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030539_P_RAKKI.jpg",
+    "sha256": "9c96cadd917b91cb88ee39159d99aa84b2102b2cd711048d9d9979fe3fa91af9",
+    "bytes": 182710,
+    "storage_path_prefix": "9c96cadd917b91cb88ee3915",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

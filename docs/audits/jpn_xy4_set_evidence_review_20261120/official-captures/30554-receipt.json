@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:09:47.321Z",
+  "gv_id": "GV-PK-JPN-XY4-075",
+  "official_id": "30554",
+  "checklist_number": "83",
+  "parent": {
+    "id": "be8e8bc4-1975-4844-925b-25f1d7431b78",
+    "gv_id": "GV-PK-JPN-XY4-075",
+    "name": "ヘッドノイザー（フレア団ハイパーギア）",
+    "number": "075",
+    "number_plain": "075",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-075/7a1b2379430411dab58288ac.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30554/regu/all",
+    "sha256": "be3d0d35554d1a04256a00d5d0b2cc5f64992caa8060d653b67932ae13564796",
+    "bytes": 8948
+  },
+  "heading": "ヘッドノイザー（フレア団ハイパーギア）",
+  "printed_number": "083",
+  "printed_total": "088",
+  "dex": null,
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030554_T_HEDDONOIZAFUREADANHAIPAGIA.jpg",
+    "sha256": "7a1b2379430411dab58288ac19dbfc75266ed1b212732044c17a70e5cb265121",
+    "bytes": 256498,
+    "storage_path_prefix": "7a1b2379430411dab58288ac",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

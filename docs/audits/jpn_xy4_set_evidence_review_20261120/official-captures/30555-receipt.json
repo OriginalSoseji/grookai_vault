@@ -1,0 +1,35 @@
+{
+  "version": "XY4_AMBIGUOUS_BASE_LEAD_V1",
+  "captured_at": "2026-11-20T14:11:03.515Z",
+  "gv_id": "GV-PK-JPN-XY4-076",
+  "official_id": "30555",
+  "parent": {
+    "id": "a977edc0-860a-4d28-9c2e-5315729dc46b",
+    "gv_id": "GV-PK-JPN-XY4-076",
+    "name": "AZ",
+    "number": "076",
+    "number_plain": "076",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-076/ce70c3ea3a570a45fb7878bd.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30555/regu/all",
+    "sha256": "ab02ff1659520ae69da686f75442eef652dd45796436d7825e39341e2ac5fb55",
+    "bytes": 8307
+  },
+  "heading": "AZ",
+  "printed_number": "084",
+  "printed_total": "088",
+  "dex": null,
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030555_T_AZ.jpg",
+    "sha256": "ce70c3ea3a570a45fb7878bdbf98f295f5b55166b5f166dc20eb90663794680e",
+    "bytes": 191457,
+    "storage_path_prefix": "ce70c3ea3a570a45fb7878bd",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Predicted-coordinate research lead only; no full stored-image byte, global ownership, dependency or identity proof and no database mutation."
+}

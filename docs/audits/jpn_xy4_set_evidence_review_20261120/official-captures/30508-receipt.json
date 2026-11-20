@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:07:09.990Z",
+  "gv_id": "GV-PK-JPN-XY4-029",
+  "official_id": "30508",
+  "checklist_number": "37",
+  "parent": {
+    "id": "07d154c6-ee26-4886-b646-203285a491b9",
+    "gv_id": "GV-PK-JPN-XY4-029",
+    "name": "マルノーム",
+    "number": "029",
+    "number_plain": "029",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-029/2be6972aa95745dfd5008857.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30508/regu/all",
+    "sha256": "91b543a5f1ad7c6c464e677f0eb00a0e04ec07923367800d9d4552e0dced7fe5",
+    "bytes": 10488
+  },
+  "heading": "マルノーム",
+  "printed_number": "037",
+  "printed_total": "088",
+  "dex": "317",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030508_P_MARUNOMU.jpg",
+    "sha256": "2be6972aa95745dfd50088574d80a4ebd40830fd55a3f87e11dc51681ea383b6",
+    "bytes": 213419,
+    "storage_path_prefix": "2be6972aa95745dfd5008857",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

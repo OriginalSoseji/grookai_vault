@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:06:54.964Z",
+  "gv_id": "GV-PK-JPN-XY4-023",
+  "official_id": "30502",
+  "checklist_number": "31",
+  "parent": {
+    "id": "9ddfd539-f63f-454b-8fe9-c4d3c4ad36f3",
+    "gv_id": "GV-PK-JPN-XY4-023",
+    "name": "ゴルバット",
+    "number": "023",
+    "number_plain": "023",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-023/40d3c895ef9d6d238b72b902.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30502/regu/all",
+    "sha256": "a00fc44520af9307c6c7cf66962e603ba88009bb9da97a77e40c11794445e98a",
+    "bytes": 10748
+  },
+  "heading": "ゴルバット",
+  "printed_number": "031",
+  "printed_total": "088",
+  "dex": "042",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030502_P_GORUBATTO.jpg",
+    "sha256": "40d3c895ef9d6d238b72b902cf81f5d16d0420bb75936bba9959eb08770142e4",
+    "bytes": 195433,
+    "storage_path_prefix": "40d3c895ef9d6d238b72b902",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

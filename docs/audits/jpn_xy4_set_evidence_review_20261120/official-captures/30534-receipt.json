@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:08:38.753Z",
+  "gv_id": "GV-PK-JPN-XY4-055",
+  "official_id": "30534",
+  "checklist_number": "63",
+  "parent": {
+    "id": "c924219b-012e-4c71-8992-5d8632b09e77",
+    "gv_id": "GV-PK-JPN-XY4-055",
+    "name": "モノズ",
+    "number": "055",
+    "number_plain": "055",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-055/2667237f02aa40f570068a5d.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30534/regu/all",
+    "sha256": "2f6c2bf3f2fb0935157ce8316550f62a20e1c2708f8b0606073577bb9e11a3ac",
+    "bytes": 10665
+  },
+  "heading": "モノズ",
+  "printed_number": "063",
+  "printed_total": "088",
+  "dex": "633",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030534_P_MONOZU.jpg",
+    "sha256": "2667237f02aa40f570068a5d63302029e405e51964e2c75487663013669a91e2",
+    "bytes": 206940,
+    "storage_path_prefix": "2667237f02aa40f570068a5d",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}

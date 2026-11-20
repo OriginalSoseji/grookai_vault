@@ -1,0 +1,36 @@
+{
+  "version": "XY4_OFFICIAL_COORDINATE_LEAD_V1",
+  "captured_at": "2026-11-20T14:06:05.835Z",
+  "gv_id": "GV-PK-JPN-XY4-008",
+  "official_id": "30487",
+  "checklist_number": "16",
+  "parent": {
+    "id": "67120c36-822a-4603-8037-b553156477ba",
+    "gv_id": "GV-PK-JPN-XY4-008",
+    "name": "アリゲイツ",
+    "number": "008",
+    "number_plain": "008",
+    "printed_total": null,
+    "printed_set_abbrev": "XY4",
+    "image_status": "exact",
+    "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-xy4/gv-pk-jpn-xy4-008/f3115db5392d2b0c9b65b103.jpg"
+  },
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/30487/regu/all",
+    "sha256": "d3f9201b2240eead98028d915a4cc8fc2d979c22ff484fedb8fc6c33d11c5098",
+    "bytes": 10852
+  },
+  "heading": "アリゲイツ",
+  "printed_number": "016",
+  "printed_total": "088",
+  "dex": "159",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/XY4/030487_P_ARIGEITSU.jpg",
+    "sha256": "f3115db5392d2b0c9b65b103ea60024d832a4b624bdf3ddb45ecfbb9a315e216",
+    "bytes": 211138,
+    "storage_path_prefix": "f3115db5392d2b0c9b65b103",
+    "prefix_matches": true
+  },
+  "status": "matching_prefix_candidate_only",
+  "scope": "Research lead only; no full stored-image byte, global ownership, dependency or identity proof, and no database mutation."
+}
