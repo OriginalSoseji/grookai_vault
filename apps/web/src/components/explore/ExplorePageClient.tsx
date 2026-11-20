@@ -1524,6 +1524,7 @@ export default function ExplorePageClient({
             params.delete("finish");
             params.delete("stamp");
             params.delete("owned");
+            params.delete("playable");
             params.delete("image_state");
             params.delete("image");
             params.delete("illustrator");
@@ -1838,6 +1839,7 @@ export default function ExplorePageClient({
             {identityFilterStrip}
             <form action={pathname} method="get" className="mt-4 space-y-4 border-t border-slate-200/70 pt-4 dark:border-slate-700/70">
               {q ? <input type="hidden" name="q" value={q} /> : null}
+              {smartPlayable ? <input type="hidden" name="playable" value="1" /> : null}
               {languageScope !== "all" ? <input type="hidden" name="lang" value={languageScope} /> : null}
               {gameScope !== "pokemon" ? <input type="hidden" name="game" value={gameScope} /> : null}
               {sortMode !== "relevance" ? <input type="hidden" name="sort" value={sortMode} /> : null}
