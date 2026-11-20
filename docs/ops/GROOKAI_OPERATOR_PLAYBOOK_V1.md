@@ -5559,3 +5559,10 @@ persistence failures also retain a local receipt beside the input report.
 An uncertain terminal write requires independent DB readback; do not emit a
 second contradictory terminal status. The checkpoint includes the read-only SQL
 and qualified success, integrity-failure and deterministic replay evidence.
+
+Playable names can disambiguate implicit set aliases from visible names in the
+trusted current ID/GV-ID publication. This avoids a global fuzzy-name RPC when
+the published scope already proves the name, and omits that probe when no set
+alias needs checking. Unknown or stale hints retain authoritative disambiguation;
+no database deadline or search constraint is relaxed. See the
+[bounded name checkpoint](../checkpoints/2026-11-20_pokemon_playables_bounded_name_probe_v1.md).

@@ -27,10 +27,25 @@ function load(file) {
   return module.exports;
 }
 
-const { resolveCatalogSetSearchIntent: resolve, readSearchSets, removeSetPhrase, isExactCatalogCardName, isCatalogCardNameQuery } = load(path.join(web, 'lib/search/catalogSetSearch.ts'));
+const { resolveCatalogSetSearchIntent: resolve, readSearchSets, removeSetPhrase, isExactCatalogCardName, isCatalogCardNameQuery, isPublishedPlayableCardNameQuery } = load(path.join(web, 'lib/search/catalogSetSearch.ts'));
 const { buildSmartSearchIntent } = load(path.join(web, 'lib/search/smartSearchIntent.ts'));
 const { resolveSmartSearchQuery } = load(path.join(web, 'lib/search/resolveSmartSearchQuery.ts'));
 const { fetchCompleteNamedCardRows } = load(path.join(web, 'lib/search/completeNamedCardSearch.ts'));
+
+test('published name probes use bounded ID/GV pairs and require every original name fragment',async()=>{
+ const members=Array.from({length:269},(_,i)=>({card_print_id:`id-${i}`,gv_id:`GV-PK-T-${i}`})),calls=[];
+ const client={from:table=>{assert.equal(table,'card_prints');return {select:()=>({in:(_,ids)=>{
+  calls.push(ids);assert(ids.length<=200);
+  return {data:ids.includes('id-268')?[{id:'id-268',gv_id:'GV-PK-T-268',name:'Bloodmoon Ursaluna ex'}]:[{id:'outside',name:'Bloodmoon Ursaluna ex'}],error:null};
+ }})};}};
+ assert.equal(await isPublishedPlayableCardNameQuery(client,'full-art Bloodmoon Ursaluna ex',members),true);
+ assert.equal(calls.length,2);
+ assert.equal(await isPublishedPlayableCardNameQuery(client,'SIR Bloodmoon Ursaluna unknown',members),false);
+ const stale={from:()=>({select:()=>({in:()=>({data:[{id:'id-268',gv_id:'GV-PK-WRONG',name:'Bloodmoon Ursaluna ex'}]})})})};
+ assert.equal(await isPublishedPlayableCardNameQuery(stale,'Bloodmoon Ursaluna ex',members),false);
+ const denied={from:()=>({select:()=>({in:()=>({error:{message:'denied'}})})})};
+ await assert.rejects(()=>isPublishedPlayableCardNameQuery(denied,'Bloodmoon Ursaluna ex',members),/denied/);
+});
 const sets = [
  ['base1', 'Base Set'], ['base4', 'Base Set 2'], ['ecard1', 'Expedition Base Set'],
  ['30c', '30th Celebration'], ['30c-classic', '30th Celebration Classic Collection'],

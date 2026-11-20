@@ -24,7 +24,7 @@ function load(source, imports = {}) {
   return testModule.exports;
 }
 
-function setup({available = true, state = 'ready', userId = null, owned = [], catalogSets, catalogCardName} = {}) {
+function setup({available = true, state = 'ready', userId = null, owned = [], catalogSets, catalogCardName, publishedNames} = {}) {
   const members = Array.from({length: 90}, (_, index) => ({card_print_id: `card-${index}`, gv_id: `GV-PK-TEST-${index}`}));
   const calls = [];
   const nameProbes = [];
@@ -36,6 +36,7 @@ function setup({available = true, state = 'ready', userId = null, owned = [], ca
         : query => ({matchedAlias: null, setCodes: [], remainingQuery: query}),
       removeSetPhrase: loadTestTypeScript('lib/search/catalogSetSearch.ts').removeSetPhrase,
       isCatalogCardNameQuery: catalogCardName ? loadTestTypeScript('lib/search/catalogSetSearch.ts').isCatalogCardNameQuery : async () => false,
+      isPublishedPlayableCardNameQuery: loadTestTypeScript('lib/search/catalogSetSearch.ts').isPublishedPlayableCardNameQuery,
       isExactCatalogCardName: async () => false},
     '@/lib/search/completeNamedCardSearch': {supportsCompleteNameSearch: value => Boolean(catalogCardName) && loadTestTypeScript('lib/search/completeNamedCardSearch.ts').supportsCompleteNameSearch(value)},
     '@/lib/search/artistSearch': {isKnownArtistQuery: () => false},
@@ -64,6 +65,7 @@ function setup({available = true, state = 'ready', userId = null, owned = [], ca
     '@/lib/search/smartVariantSearchPolicy': {classifySmartVariantResolverState: count => count ? 'WEAK_MATCH' : 'NO_MATCH'},
     '@/lib/search/resolveSmartSearchQuery': queryModule,
     '@/lib/supabase/server': {createServerComponentClient: async () => ({
+      from: table => {assert.equal(table, 'card_prints');return {select: () => ({in: (_, ids) => ({data: (publishedNames ?? (catalogCardName ? [{id:'card-0',gv_id:'GV-PK-TEST-0',name:catalogCardName}] : [])).filter(row=>ids.includes(row.id)),error:null})})};},
       rpc: async (_, args) => {nameProbes.push(args.q);return {data: args.q === catalogCardName ? [{id: 'card-0', name: catalogCardName, gv_id: 'GV-PK-TWM-216'}] : []};},
       auth: {getUser: async () => ({data: {user: userId ? {id: userId} : null}})},
     })},
@@ -168,11 +170,26 @@ test('collector-filtered card names preserve ex while explicit set connectors re
       const f = setup({catalogSets, catalogCardName: 'Bloodmoon Ursaluna ex'});
       const response = await f.get(`q=${encodeURIComponent(`${filter} playables Bloodmoon Ursaluna ex${suffix}`)}`);
       assert.equal(response.status, 200, `${filter}${suffix}: ${JSON.stringify(f.nameProbes)}`);
+      assert.equal(f.nameProbes.length, 0, 'published names do not need the broad name RPC');
       assert.equal(f.calls[0].options.textQuery, `${filter} Bloodmoon Ursaluna ex`, `${filter}${suffix}: ${JSON.stringify(f.nameProbes)}`);
       assert.equal(response.body.smart_search.queryFilters.some(item => item.kind === 'set'), Boolean(suffix));
       if (suffix) assert.equal(f.calls[0].options.exactSetCode, 'ex-test');
     }
   }
+});
+
+test('untrusted name hints retain global disambiguation while plain playable text needs no global probe', async () => {
+  const config={catalogSets:[{id:'ex-deck',code:'ex-test',name:'EX Deck'}],catalogCardName:'Bloodmoon Ursaluna ex'};
+  const stale=setup({...config,publishedNames:[{id:'card-0',gv_id:'GV-PK-WRONG',name:config.catalogCardName}]});
+  assert.equal((await stale.get('q=playables+Bloodmoon+Ursaluna+ex')).status,200);
+  assert.equal(stale.nameProbes.length,1,'a stale GV-ID cannot bypass the authoritative probe');
+  for(const query of ['"Full Art" playables','sir playables','playables Boss\'s Orders']){
+    const f=setup(config);assert.equal((await f.get(`q=${encodeURIComponent(query)}`)).status,200);
+    assert.equal(f.nameProbes.length,0,'without an ambiguous set, published discovery is already complete');
+  }
+  const explicit=setup(config);
+  assert.equal((await explicit.get('q=full-art+Bloodmoon+Ursaluna+ex&playable=1')).status,200);
+  assert.equal(explicit.nameProbes.length,0);
 });
 
 test('complete playable discovery applies SIR and IR aliases as separate exact rarity constraints', () => {
