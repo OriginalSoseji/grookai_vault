@@ -548,7 +548,7 @@ class _CardMarketHistorySheetState extends State<CardMarketHistorySheet> {
                 label: const Text('Search eBay sold listings'),
               ),
               Text(
-                'Opens eBay for your review. Results are not imported into grookai pricing.',
+                'Opens eBay completed listings for your review. grookai does not import or average those results.',
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
                   color: colors.onSurfaceVariant,
