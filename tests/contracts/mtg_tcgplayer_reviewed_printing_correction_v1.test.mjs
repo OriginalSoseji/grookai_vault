@@ -76,7 +76,7 @@ test("V7 override requires the reviewed correction contract and keeps exact line
   assert.match(migration, /case when exact\.id is not null then null else candidate\.variant_assignment_id/);
   assert.match(publicationWorker, /v_tcgplayer_market_qualification_candidates_v8/);
   assert.match(crossTcgMigration, /select old\.\*,null::bigint cross_tcg_source_mapping_id,null::uuid cross_tcg_printing_mapping_id from public\.v_tcgplayer_market_qualification_candidates_v7 old/);
-  assert.match(publicationWorker, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_24/);
+  assert.match(publicationWorker, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_25/);
 });
 
 test("bounded writer updates only the two reviewed mapping rows", () => {

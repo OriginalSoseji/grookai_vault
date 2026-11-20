@@ -71,10 +71,11 @@ async function fetchSetCardPrintIds(
 
   while (true) {
     const { data, error } = await supabase
-      .from("card_prints")
+      .from("v_card_prints_set_family_discovery_v1")
       .select("id")
       .in("set_id", exactSetIds)
       .not("gv_id", "is", null)
+      .order("id", { ascending: true })
       .range(offset, offset + pageSize - 1);
 
     if (error) {

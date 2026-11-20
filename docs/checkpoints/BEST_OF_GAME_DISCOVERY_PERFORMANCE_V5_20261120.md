@@ -52,3 +52,41 @@ The normal source build/checks, exact PrePush, single-use official production
 apply, independent API/data/schema/security/web acceptance, normal squash merge
 and deployed readback remain required. Then continue the owner's all-stamped
 Reverse Holo program under its separate physical evidence and execution gates.
+
+
+## Hosted credential-name guard follow-up
+
+The hosted scanner rejected a legacy environment-variable spelling in two local
+SDK absence assertions. The scanner and all SQL remain unchanged. Both harnesses
+now reject every SUPABASE_ variable before SDK construction. Exact earlier
+source bytes are preserved under docs/audits/best_of_game_discovery_v5_20261120/
+harness-before-credential-guard as non-executable source records, with the
+original failed/qualified receipts retained in the operator artifacts.
+
+local-sdk-v7 passes six actual early-rejection cases and ten SDK RPC cases.
+local-qualification-v6-r1 repeats both516 database schema/security/data checks;
+all six catalog/security/fingerprint snapshots equal the preceding qualification.
+The hosted failure and interrupted normal-check log remain retained. Normal
+managed checks and exact-head hosted acceptance must run again after this change.
+
+
+## Website family reader follow-up
+
+A live read-only diagnostic returned HTTP200 for both Best of Game routes but
+only nine known parents in each rendered page. The existing raw set_id index
+omitted the four distinct Winner parents stored under bog. Detail counts,
+ordering IDs and master-set IDs now use the existing request-visible, security-
+invoker family view. Page metadata still hydrates exact selected physical IDs;
+it no longer reapplies the raw set_id constraint that discarded those Winners.
+Raw parent IDs, stored set codes, child printings and ownership are unchanged.
+
+Four new web-reader regressions cover both thirteen-parent routes, the four
+childless Winners, missing-authority raw fallback and wrong-game rejection.
+Existing Jungle discovery and numeric pagination tests also pass (23 cases).
+web-catalog-fullsize-v1-r1 qualifies84 count/order/physical-metadata reads across
+both roles and all fourteen prior/canonical family routes at the exact3420-set,
+173837-parent,244261-child,768-alias fixture; maximum73ms. Six complete catalog
+comparisons also pass, maximum394ms. All449 protected tables, all four schemas,
+security and indexes restore exactly after rollback. No new production apply
+or printing authority is implied. Normal and exact-head hosted checks and
+deployed thirteen-parent page readback remain required.

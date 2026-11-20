@@ -10,7 +10,7 @@ const facts=JSON.parse(fs.readFileSync(root+'/docs/catalog/best_of_game_discover
 const url=new URL(process.env.LOCAL_BOG_REST_URL??'');
 assert.equal(url.pathname,'/');assert.equal(url.protocol,'http:');assert.equal(url.hostname,'bog-discovery-perf-516-rest-v5');assert.equal(url.port,'3000');
 assert.equal(process.env.LOCAL_BOG_PROOF_DIR,'/proof');assert.ok(process.env.LOCAL_BOG_ANON_KEY);
-for(const k of ['SUPABASE_URL','SUPABASE_SECRET_KEY','SUPABASE_SERVICE_ROLE_KEY','SUPABASE_DB_URL'])assert.equal(process.env[k],undefined);
+for(const k of Object.keys(process.env).filter(k=>/^SUPABASE_/.test(k)))assert.equal(process.env[k],undefined,'Local SDK verification must receive no Supabase environment variables');
 const out='/proof/result.json';assert.equal(fs.existsSync(out),false);
 const sdk=new PostgrestClient(url.origin,{headers:{apikey:process.env.LOCAL_BOG_ANON_KEY,Authorization:'Bearer '+process.env.LOCAL_BOG_ANON_KEY}});
 const report={pass:false,productionWrites:0,localWrites:0,actualSdk:'@supabase/postgrest-js',anonymousOnly:true,startedAt:new Date().toISOString(),candidateSha256:binding.candidateBundleSha256,sourceSha256:createHash('sha256').update(fs.readFileSync(new URL(import.meta.url))).digest('hex'),apiCases:[]};

@@ -1,4 +1,4 @@
-import { readSearchSets, resolveCatalogSetSearchIntent, removeSetPhrase, isExactCatalogCardName, isCatalogCardNameQuery, type SearchSet } from "@/lib/search/catalogSetSearch";
+import { readSearchSets, resolveCatalogSetSearchIntent, removeSetPhrase, isExactCatalogCardName, isCatalogCardNameQuery, isPublishedPlayableCardNameQuery, type SearchSet } from "@/lib/search/catalogSetSearch";
 import { supportsCompleteNameSearch } from "@/lib/search/completeNamedCardSearch";
 import { NextRequest, NextResponse } from "next/server";
 import { isIdentityFilterActive, normalizeIdentityFilterKey } from "@/lib/cards/identitySearch";
@@ -416,9 +416,18 @@ export async function GET(request: NextRequest) {
         query = resolveSmartSearchQuery(rawQuery, smartSearchIntent);
       }
       const nameCheckStarted = performance.now();
+      const playableNameScope = gameScope === "pokemon" &&
+        (smartSearchIntent.playable || parseBooleanParam(request.nextUrl.searchParams.get("playable")));
+      let publishedNameMatch = false;
+      if (playableNameScope && candidate.requiresCardNameCheck) {
+        const publication = await getPokemonPlayables();
+        if (publication?.state === "ready") publishedNameMatch = await isPublishedPlayableCardNameQuery(catalog, query, publication.rows);
+      }
+      // Without a possible set alias, playable text already filters the entire
+      // published scope; a global name probe cannot improve its completeness.
       const cardNameQuery = Boolean(candidate.requiresCardNameCheck ||
-        (!candidate.matchedAlias && !smartSearchIntent.artist && supportsCompleteNameSearch(query) && gameScope === "pokemon")) &&
-        await isCatalogCardNameQuery(catalog, query, gameScope, (page) => { namedFirstPage = page; });
+        (!playableNameScope && !candidate.matchedAlias && !smartSearchIntent.artist && supportsCompleteNameSearch(query) && gameScope === "pokemon")) &&
+        (publishedNameMatch || await isCatalogCardNameQuery(catalog, query, gameScope, (page) => { namedFirstPage = page; }));
       searchTimings.name_check = performance.now() - nameCheckStarted;
       literalNameSearch = cardNameQuery && !smartSearchIntent.artist && supportsCompleteNameSearch(query);
       inlineSetIntent = candidate.requiresCardNameCheck && cardNameQuery

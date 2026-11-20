@@ -16,8 +16,8 @@ function harness({error=null, exclusions=[fixture.legacy_card_print_id], ownedEd
   const calls=[];
   const parents=[fixture.legacy_card_print_id,...fixture.options.map(x=>x.card_print_id)];
   const client={rpc:async name=>{assert.equal(name,'get_jungle_edition_discovery_exclusions_v1');return {data:exclusions,error};},
-    from(table){const query={select(){return query;},in(column,ids){calls.push({table,ids:Array.from(ids)});return query;},not(){return query;},eq(){return query;},is(){return query;},range(){return query;},then(resolve,reject){
-      return Promise.resolve({error:null,data:table==='card_prints'?parents.map(id=>({id})):[
+    from(table){const query={select(){return query;},in(column,ids){calls.push({table,ids:Array.from(ids)});return query;},not(){return query;},order(){return query;},eq(){return query;},is(){return query;},range(){return query;},then(resolve,reject){
+      return Promise.resolve({error:null,data:['card_prints','v_card_prints_set_family_discovery_v1'].includes(table)?parents.map(id=>({id})):[
         ...Array.from({length:5},()=>({card_print_id:parents[0],card_printing_id:'66666666-6666-4666-8666-666666666666'})),
         ...(ownedEdition?[{card_print_id:parents[1],card_printing_id:fixture.options[0].card_printing_id}]:[]),
       ]}).then(resolve,reject);
