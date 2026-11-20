@@ -34,7 +34,28 @@ signer equality. No uninstall, clear-data, or installation was performed.
 
 ## Next
 
-Merge the guarded workflow/preflight change, configure and use the temporary
-legacy-key Actions secret for build 603, run the updated device preflight, install
-in place only on a pass, verify account/collection readback, then delete the
-temporary secret and record final release evidence.
+## Completion Addendum — 2026-11-19
+
+- PR #974 merged to `main` as `c1efe237d7c7c441fda03cbf812aaea771ca98db`.
+- GitHub Actions run [44689267501](https://github.com/OriginalSoseji/grookai_vault/actions/runs/44689267501)
+  produced Android build 603 from that source commit. Its manifest records the
+  production signer and the Samsung debug signer in a verified lineage with
+  `installedData=true`.
+- APK SHA-256:
+  `D25B2C506077411A6D8C6CF6BA416E05BD6FC631942F9613799CF9D5B60E29A8`.
+- `scripts/android_update_preflight.ps1` passed on the connected Samsung. The
+  candidate package is `com.grookai.vault`, version `1.0.0` (603), signed by
+  `a1290a32711ab390f798c0898a4d0d78c97f20b2e12adb55bb2260bff9036119`.
+- Installed with `adb install -r`; no uninstall or data clear. Device readback
+  reports version code 603, original first-install date `2026-10-13`, and the
+  app launched to `MainActivity`.
+- After collection data loaded, Vault displayed 231 cards / 219 unique. The
+  existing Pikachu Binder opened to its contents view: a 4×4 page with three
+  contributed card copies and the remaining pockets empty. The Custom Binder
+  creation path states that Pokémon, One Piece, and Magic can be mixed; no new
+  Binder was created during verification.
+- The one-time `ANDROID_LEGACY_DEBUG_KEYSTORE_BASE64` Actions secret was deleted
+  after installation and confirmed absent from the repository secret list.
+
+The Samsung is now on the merged build 603 with collection and Binder data
+retained. The signing-lineage migration and device readback are complete.
