@@ -7,6 +7,7 @@ const read = (path) => fs.readFileSync(path, "utf8");
 test("mobile release continuity V2 is active and sets one synchronized release baseline", () => {
   const index = read("docs/CONTRACT_INDEX.md");
   const contract = read("docs/contracts/MOBILE_RELEASE_CONTINUITY_V2.md");
+  const playbook = read("docs/ops/GROOKAI_OPERATOR_PLAYBOOK_V1.md");
   const pubspec = read("pubspec.yaml");
   const metadata = JSON.parse(read("docs/release/app_store_connect_ios_1_0.json"));
   const match = pubspec.match(/^version:\s*(\d+\.\d+\.\d+)\+(\d+)$/m);
@@ -23,6 +24,9 @@ test("mobile release continuity V2 is active and sets one synchronized release b
   assert.match(contract, /signer SHA-256/i);
   assert.match(contract, /installed-data\s+capability/i);
   assert.match(contract, /candidate build must be greater than the installed version/i);
+  assert.match(playbook, /Mobile Release Continuity V2 contract/);
+  assert.match(playbook, /include_debug_rotation=true/);
+  assert.match(playbook, /ANDROID_LEGACY_DEBUG_KEYSTORE_BASE64/);
 });
 
 test("Android CI records verified package, build, source and signer lineage provenance", () => {
