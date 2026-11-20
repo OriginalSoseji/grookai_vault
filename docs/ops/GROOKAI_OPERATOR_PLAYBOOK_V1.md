@@ -5566,3 +5566,12 @@ the published scope already proves the name, and omits that probe when no set
 alias needs checking. Unknown or stale hints retain authoritative disambiguation;
 no database deadline or search constraint is relaxed. See the
 [bounded name checkpoint](../checkpoints/2026-11-20_pokemon_playables_bounded_name_probe_v1.md).
+
+The catalog Filters panel links to `/explore?playable=1`, retaining comparison
+cards. An explicit playable parameter must select the search consumer rather
+than featured catalog discovery; smart-filter submissions preserve it and Clear
+all removes it. Keep these URL and form semantics alongside typed searches.
+See the [filter-navigation checkpoint](../checkpoints/2026-11-20_pokemon_playables_filter_navigation_v1.md)
+and the real-page Chromium/WebKit regression cases in the search audit suite.
+Verify production page routing together with resolver membership; a successful
+resolver-only query cannot prove that a direct browser link displays playables.
