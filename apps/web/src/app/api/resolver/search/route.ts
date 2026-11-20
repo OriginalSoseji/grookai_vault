@@ -425,7 +425,7 @@ export async function GET(request: NextRequest) {
         ? { matchedAlias: null, setCodes: [], remainingQuery: query }
         : candidate;
       if (inlineSetIntent.matchedAlias) {
-        inlineSetIntent.remainingQuery = removeSetPhrase(query, inlineSetIntent.matchedAlias);
+        inlineSetIntent.remainingQuery = removeSetPhrase(query, inlineSetIntent.matchedAlias, gameScope);
       }
     } catch {
       return NextResponse.json({ ok: false, error: "Search could not verify the set filter. Please try again." }, { status: 503 });
@@ -513,12 +513,12 @@ export async function GET(request: NextRequest) {
     const alias = inlineSetIntent.matchedAlias;
     effectiveSmartSearchIntent.queryFilters = (effectiveSmartSearchIntent.queryFilters ?? []).map((filter) => {
       if (filter.kind !== "text") return filter;
-      const text = removeSetPhrase(filter.sourceText, alias);
+      const text = removeSetPhrase(filter.sourceText, alias, gameScope);
       return { ...filter, label: `Text: ${text}`, sourceText: text,
         queryWithout: `${filter.queryWithout ?? ""} ${alias}`.trim() };
     }).filter((filter) => filter.kind !== "text" || filter.sourceText);
     effectiveSmartSearchIntent.queryFilters.push({ kind: "set", label: `Set: ${alias}`,
-      sourceText: alias, queryWithout: removeSetPhrase(rawQuery, alias) });
+      sourceText: alias, queryWithout: removeSetPhrase(rawQuery, alias, gameScope) });
   }
   const hasSmartYearRange =
     typeof effectiveSmartSearchIntent.releaseYearMin === "number" ||

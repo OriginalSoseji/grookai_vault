@@ -3,7 +3,7 @@ import { recognizeCombinedArtist, recognizeLiteralArtist } from "./combinedArtis
 import type { PublicGameScope } from "@/lib/publicGameScope";
 import type { PublicLanguageScope } from "@/lib/publicLanguageScope";
 import { resolveGameScopedSetSearchIntent } from "@/lib/publicSets.shared";
-import { readCollectorCardQueryFilters, removeCollectorCardQueryFilters } from "./collectorCardQuery";
+import { readCollectorCardQueryFilters, removeCollectorCardQueryFilters, isCollectorCardQuerySubphrase } from "./collectorCardQuery";
 
 export type SearchQueryFilter = {
   kind: "artist" | "finish" | "year" | "stamp" | "image" | "owned" | "text" | "game" | "language" | "rarity" | "artwork" | "number" | "set" | "cameo" | "playable";
@@ -245,7 +245,11 @@ export function buildSmartSearchIntent(rawQuery: string, options: { gameScope?: 
   // them as one name rather than manufacturing extra constraints from them.
   for (const phrase of options.protectedPhrases ?? []) {
     const escaped = normalizeWhitespace(phrase).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    residual = residual.replace(new RegExp(escaped, "i"), (text) => {
+    const filters = (options.gameScope ?? "pokemon") === "pokemon" ? readCollectorCardQueryFilters(residual, true) : [];
+    let protectedOnce = false;
+    residual = residual.replace(new RegExp(escaped, "gi"), (text, index: number) => {
+      if (protectedOnce || isCollectorCardQuerySubphrase(filters, index, text.length)) return text;
+      protectedOnce = true;
       literalText.push(text);
       return `__literal${literalText.length - 1}__`;
     });

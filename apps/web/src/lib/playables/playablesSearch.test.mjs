@@ -24,13 +24,17 @@ function load(source, imports = {}) {
   return testModule.exports;
 }
 
-function setup({available = true, state = 'ready', userId = null, owned = []} = {}) {
+function setup({available = true, state = 'ready', userId = null, owned = [], catalogSets} = {}) {
   const members = Array.from({length: 90}, (_, index) => ({card_print_id: `card-${index}`, gv_id: `GV-PK-TEST-${index}`}));
   const calls = [];
   const snapshot = {state, rows: state === 'ready' ? members : [], valid_until: new Date(Date.now() + 3600000).toISOString()};
   const unrestricted = () => {throw Error('UNRESTRICTED_SEARCH_FORBIDDEN');};
   const imports = {
-    '@/lib/search/catalogSetSearch': {readSearchSets: async () => [], resolveCatalogSetSearchIntent: query => ({matchedAlias: null, setCodes: [], remainingQuery: query}), isCatalogCardNameQuery: async () => false},
+    '@/lib/search/catalogSetSearch': {readSearchSets: async () => catalogSets ?? [],
+      resolveCatalogSetSearchIntent: catalogSets ? loadTestTypeScript('lib/search/catalogSetSearch.ts').resolveCatalogSetSearchIntent
+        : query => ({matchedAlias: null, setCodes: [], remainingQuery: query}),
+      removeSetPhrase: loadTestTypeScript('lib/search/catalogSetSearch.ts').removeSetPhrase,
+      isCatalogCardNameQuery: async () => false, isExactCatalogCardName: async () => false},
     '@/lib/search/completeNamedCardSearch': {supportsCompleteNameSearch: () => false},
     '@/lib/search/artistSearch': {isKnownArtistQuery: () => false},
     '@/lib/search/artistSearchPagination': loadTestTypeScript('lib/search/artistSearchPagination.ts'),
@@ -128,6 +132,27 @@ test('quoted collector text stays literal through the resolver route and actual 
   assert.equal(forwarded, 'SIR "Full Art"');
   assert(matches({...sir, name: 'Full Art'}, forwarded));
   assert.equal(matches({...sir, name: 'Full Art', rarity: 'Common'}, forwarded), false);
+});
+
+test('full rarity names survive real catalog set inference and repeated set words', async () => {
+  const catalogSets = [{id: 'special-deck', code: 'sp-test', name: 'Special Deck Set'}];
+  for (const suffix of ['', ' from Special']) {
+    const f = setup({catalogSets});
+    const response = await f.get(`q=${encodeURIComponent(`special illustration rare playables${suffix}`)}`);
+    assert.equal(response.status, 200);
+    assert.equal(f.calls[0].options.textQuery, 'special illustration rare');
+    const filters = response.body.smart_search.queryFilters;
+    assert.equal(filters.find(filter => filter.kind === 'rarity').label, 'Rarity: special illustration rare');
+    assert.equal(filters.some(filter => filter.kind === 'set'), Boolean(suffix));
+    if (suffix) {
+      assert.equal(f.calls[0].options.exactSetCode, 'sp-test');
+      assert.equal(filters.find(filter => filter.kind === 'set').queryWithout, 'special illustration rare playables');
+    }
+    const matches = discoveryMatcher();
+    const row = {gv_id: 'GV-PK-TWM-216', name: 'Bloodmoon Ursaluna ex', rarity: 'Special Illustration Rare'};
+    assert(matches(row, f.calls[0].options.textQuery));
+    assert.equal(matches({...row, rarity: 'Illustration Rare'}, f.calls[0].options.textQuery), false);
+  }
 });
 
 test('complete playable discovery applies SIR and IR aliases as separate exact rarity constraints', () => {
