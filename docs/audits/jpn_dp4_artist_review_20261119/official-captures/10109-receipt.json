@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:28:34.835Z",
+  "gv_id": "GV-PK-JPN-DP4-109",
+  "card_print_id": "f999ba68-ed8d-41d7-ae65-ccc0f52d4fc8",
+  "catalog_coordinate": "109",
+  "catalog_name": "トゲキッス",
+  "official_id": "10109",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10109/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10109/regu/all",
+    "status": 200,
+    "sha256": "971d98d2605456b9d315b2c1d50b7dc81cb8f0b8c7f669b283d0f382a725183f",
+    "bytes": 10962
+  },
+  "heading": "トゲキッス",
+  "artist": "Kent Kanetsuna",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010109_P_TOGEKISSU.gif",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010109_P_TOGEKISSU.gif",
+    "status": 200,
+    "sha256": "2d276a7a79a7fa8c6faba77d39202474d2b1804f3387754bbe26ce5244d0ef08",
+    "bytes": 54283,
+    "catalog_path_hash_prefix": "2d276a7a79a7fa8c6faba77d",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

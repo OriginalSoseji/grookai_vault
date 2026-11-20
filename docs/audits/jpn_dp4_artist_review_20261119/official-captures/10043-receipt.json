@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:23:34.142Z",
+  "gv_id": "GV-PK-JPN-DP4-043",
+  "card_print_id": "94f89814-5859-4795-a256-4e6bc49febe7",
+  "catalog_coordinate": "043",
+  "catalog_name": "ホエルコ",
+  "official_id": "10043",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10043/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10043/regu/all",
+    "status": 200,
+    "sha256": "770ef791a382fe2ab360999ec50f259408eaa75b623de8e5aa6a36e5270d0fa4",
+    "bytes": 10665
+  },
+  "heading": "ホエルコ",
+  "artist": "Satoshi Ohta",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010043_P_HOERUKO.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010043_P_HOERUKO.jpg",
+    "status": 200,
+    "sha256": "522cac4baa8614a31255d412feeb97bd0b988b31d019678726d6808ec4d56e6f",
+    "bytes": 60579,
+    "catalog_path_hash_prefix": "522cac4baa8614a31255d412",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

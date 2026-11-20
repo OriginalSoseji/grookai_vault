@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:21:50.529Z",
+  "gv_id": "GV-PK-JPN-DP4-024",
+  "card_print_id": "4f6df757-25c6-4c62-99bc-1da2e4cd1f23",
+  "catalog_coordinate": "024",
+  "catalog_name": "ワカシャモ",
+  "official_id": "10024",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10024/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10024/regu/all",
+    "status": 200,
+    "sha256": "e9df062ff99529cf399b63ef24475878f9d861f0f6c287160d2ecec3e348b7cc",
+    "bytes": 11169
+  },
+  "heading": "ワカシャモ",
+  "artist": "Naoyo Kimura",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010024_P_WAKASHAMO.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010024_P_WAKASHAMO.jpg",
+    "status": 200,
+    "sha256": "b41994de70e7d36a711b755faa47a847ae401ba4971a8e208104321948141c71",
+    "bytes": 61291,
+    "catalog_path_hash_prefix": "b41994de70e7d36a711b755f",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

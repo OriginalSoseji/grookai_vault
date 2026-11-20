@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:20:07.583Z",
+  "gv_id": "GV-PK-JPN-DP4-032",
+  "card_print_id": "04a5efba-6783-4b6b-968c-7df8d1f596dd",
+  "catalog_coordinate": "032",
+  "catalog_name": "グレイシア",
+  "official_id": "10032",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10032/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10032/regu/all",
+    "status": 200,
+    "sha256": "42c913093a8f9552395506866eeff6007ec47b2bde4e6048ad59f8476d3d88d4",
+    "bytes": 15596
+  },
+  "heading": "グレイシア",
+  "artist": "Atsuko Nishida",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010032_P_GUREISHIA.gif",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010032_P_GUREISHIA.gif",
+    "status": 200,
+    "sha256": "0d954e3966b21668591a3632026b7325b48ea842bb9ac883e44a0e3f99e3466c",
+    "bytes": 55600,
+    "catalog_path_hash_prefix": "94fe6a1f741f4fdebb3da3c9",
+    "hash_prefix_matches": false
+  },
+  "disposition": "needs_manual_review",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

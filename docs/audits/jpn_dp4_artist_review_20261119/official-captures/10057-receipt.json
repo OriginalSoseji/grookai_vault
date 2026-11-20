@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:20:49.565Z",
+  "gv_id": "GV-PK-JPN-DP4-057",
+  "card_print_id": "2876d5db-ca01-4d62-9020-abdc43c1e067",
+  "catalog_coordinate": "057",
+  "catalog_name": "パチリス",
+  "official_id": "10057",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10057/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10057/regu/all",
+    "status": 200,
+    "sha256": "1a5233b98966fa02c2679e3522e4e420b6f4df03282fa8b129094af87ddd7216",
+    "bytes": 10024
+  },
+  "heading": "パチリス",
+  "artist": "Hironobu Yoshida",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010057_P_PACHIRISU.gif",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010057_P_PACHIRISU.gif",
+    "status": 200,
+    "sha256": "e4897e71a89cb35f5c71b673d07f79bef5d7cdeb243ad0ffe689d09c38ec9f05",
+    "bytes": 55610,
+    "catalog_path_hash_prefix": "3fcf0f185c77cd2b59ca684c",
+    "hash_prefix_matches": false
+  },
+  "disposition": "needs_manual_review",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

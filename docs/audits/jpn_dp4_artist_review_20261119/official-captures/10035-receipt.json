@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:21:33.921Z",
+  "gv_id": "GV-PK-JPN-DP4-035",
+  "card_print_id": "45a6b93f-3db6-4e99-8881-ccac7d3ab621",
+  "catalog_coordinate": "035",
+  "catalog_name": "オムスター",
+  "official_id": "10035",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10035/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10035/regu/all",
+    "status": 200,
+    "sha256": "9a0a22a18edcb14f909889b0280dcbf7c5b69a9b5e20c5f59211d901e26c3364",
+    "bytes": 11224
+  },
+  "heading": "オムスター",
+  "artist": "Masakazu Fukuda",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010035_P_OMUSUTA.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010035_P_OMUSUTA.jpg",
+    "status": 200,
+    "sha256": "5cf4579d4aa1ca52428d32214485b5762d22c3ce798415dece545159e1afe98f",
+    "bytes": 63605,
+    "catalog_path_hash_prefix": "5cf4579d4aa1ca52428d3221",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

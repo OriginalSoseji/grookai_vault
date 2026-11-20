@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:21:14.493Z",
+  "gv_id": "GV-PK-JPN-DP4-125",
+  "card_print_id": "33a03a73-b541-42fb-9259-905c09264063",
+  "catalog_coordinate": "125",
+  "catalog_name": "ひみつのコハク",
+  "official_id": "10125",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10125/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10125/regu/all",
+    "status": 200,
+    "sha256": "ec0a4babbcc1d6965ca1678b1ac94d0b8264e1b4c5a9a084616ba6bdc3122fbf",
+    "bytes": 8846
+  },
+  "heading": "ひみつのコハク",
+  "artist": "Ryo Ueda",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010125_T_HIMITSUNOKOHAKU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010125_T_HIMITSUNOKOHAKU.jpg",
+    "status": 200,
+    "sha256": "7d657f13905fb45b601c667883b0bca3d62e9022e7670de4dfb6c9e24b8342bc",
+    "bytes": 38235,
+    "catalog_path_hash_prefix": "7d657f13905fb45b601c6678",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

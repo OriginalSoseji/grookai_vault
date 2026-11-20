@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:21:31.238Z",
+  "gv_id": "GV-PK-JPN-DP4-072",
+  "card_print_id": "4300c60f-d74b-4056-875a-4a02efb2d1e0",
+  "catalog_coordinate": "072",
+  "catalog_name": "アンノーン[Q]",
+  "official_id": "10072",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10072/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10072/regu/all",
+    "status": 200,
+    "sha256": "d76ab7b15f666287785eb6b47cae0270e1c997d8778e5a7c7c1a345eed93f0f1",
+    "bytes": 10194
+  },
+  "heading": "アンノーン[Q]",
+  "artist": "Kent Kanetsuna",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010072_P_ANNONQ.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010072_P_ANNONQ.jpg",
+    "status": 200,
+    "sha256": "f62aafe5b1a12ab02fe91cced2a951cc4893270ca27e3afa58ebdf2f7a08a429",
+    "bytes": 47211,
+    "catalog_path_hash_prefix": "f62aafe5b1a12ab02fe91cce",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

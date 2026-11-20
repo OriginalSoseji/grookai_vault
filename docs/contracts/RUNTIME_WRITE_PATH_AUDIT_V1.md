@@ -4,6 +4,9 @@ Status: Active audit support document
 
 Purpose: coverage-accountable inventory of canon-affecting and ownership-affecting write paths before additional enforcement changes.
 
+## Japanese DP4 subject repair candidate
+
+`catalog_jpn_dp4_subject_repair_v1` is registered as a transactional authoritative path for four exact-source identity/species corrections. It requires a pinned evidence plan, same-writer rollback proof, raw-first source snapshots and post-write protected-state proofs. The exact four-record package passed focused tests, rollback proof and independent readback and was applied with receipt `177031`. The broader source/producer audit and release gates remain open; registration alone does not authorize another package or deployment.
 ## Classification Key
 
 - `runtime_status`
@@ -25,6 +28,7 @@ Purpose: coverage-accountable inventory of canon-affecting and ownership-affecti
 
 | path_name | source_files | canon_affecting | ownership_affecting | public_trust_affecting | runtime_status | transaction_mode | post_write_proof | risk_level | next_action |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `catalog_jpn_dp4_subject_repair_v1` | `backend/catalog/jpn_dp4_subject_repair_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | high | Keep the exact four-parent identity/species repair behind current source ownership, raw-first, same-writer rollback and protected-state proofs. |
 | `external_discovery_to_warehouse_bridge_v1` | `backend/warehouse/external_discovery_to_warehouse_bridge_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | medium | Keep on the shared executor boundary; do not allow ad hoc RAW candidate writes back in. |
 | `classification_apply_write_plan_v1` | `backend/warehouse/classification_worker_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | medium | Keep candidate locking and evidence freshness checks inside the executor-backed boundary. |
 | `classification_apply_reclassification_result_v1` | `backend/warehouse/classification_worker_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | medium | Keep reclassification update + event append inside the executor-backed boundary. |

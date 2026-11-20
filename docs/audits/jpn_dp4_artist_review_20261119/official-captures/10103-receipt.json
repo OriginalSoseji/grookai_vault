@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:23:39.540Z",
+  "gv_id": "GV-PK-JPN-DP4-103",
+  "card_print_id": "9c9600ed-54e7-496d-ae42-3b7f616dcbcc",
+  "catalog_coordinate": "103",
+  "catalog_name": "ポリゴン",
+  "official_id": "10103",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10103/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10103/regu/all",
+    "status": 200,
+    "sha256": "0b8912d8659ade15b6b1a1aa222964a50db7b5b49ecab5934912c05bb5c9dd53",
+    "bytes": 10736
+  },
+  "heading": "ポリゴン",
+  "artist": "Kent Kanetsuna",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010103_P_PORIGON.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010103_P_PORIGON.jpg",
+    "status": 200,
+    "sha256": "8d3b39526743e0019e5606f07d2ec4cdf3c382ae8e31746d2b94605b66abbf88",
+    "bytes": 41484,
+    "catalog_path_hash_prefix": "8d3b39526743e0019e5606f0",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

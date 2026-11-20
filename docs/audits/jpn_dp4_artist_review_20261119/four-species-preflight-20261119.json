@@ -1,0 +1,735 @@
+{
+  "captured_at": "2026-11-19T23:43:39.296Z",
+  "scope": "Read-only review of four exact official-image species flags. No approved write plan or change.",
+  "sanity": {
+    "read_only": "on",
+    "parents": 173837,
+    "sets": 3420
+  },
+  "targets": [
+    {
+      "gv_id": "GV-PK-JPN-DP4-075",
+      "japanese_name": "ハブネーク",
+      "expected_english": "Seviper",
+      "expected_dex": 336,
+      "actual_species": "unown",
+      "actual_dex": 201,
+      "role": "primary",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-064",
+      "japanese_name": "マタドガス",
+      "expected_english": "Weezing",
+      "expected_dex": 110,
+      "actual_species": "unown",
+      "actual_dex": 201,
+      "role": "primary",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-078",
+      "japanese_name": "マンキー",
+      "expected_english": "Mankey",
+      "expected_dex": 56,
+      "actual_species": "makuhita",
+      "actual_dex": 296,
+      "role": "primary",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-054",
+      "japanese_name": "サンダース",
+      "expected_english": "Jolteon",
+      "expected_dex": 135,
+      "actual_species": "zapdos",
+      "actual_dex": 145,
+      "role": "primary",
+      "match": false
+    }
+  ],
+  "parents": [
+    {
+      "record": {
+        "id": "ce20a624-e85c-4525-ab32-967e5acc8c79",
+        "name": "サンダース",
+        "gv_id": "GV-PK-JPN-DP4-054",
+        "artist": null,
+        "number": "054",
+        "rarity": null,
+        "set_id": "73a521e3-553e-4a44-9079-441ce178e99e",
+        "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+        "set_code": "jpn-dp4",
+        "variants": null,
+        "image_res": null,
+        "image_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dp4/gv-pk-jpn-dp4-054/3f53aa1207f9e31f7d6d4233.jpg",
+        "created_at": "2026-07-01T18:36:34.720368+00:00",
+        "image_hash": null,
+        "image_note": "Self-hosted Japanese copy uploaded by MASTER_IDENTITY_GRAPH_JPN_SELF_HOSTED_IMAGE_STORAGE_UPLOAD_v1; original external source preserved in docs\\audits\\master_identity_graph_v1\\jpn-self-hosted-image-validation-v1\\jpn_self_hosted_image_upload_manifest_v1.jsonl.",
+        "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dp4/gv-pk-jpn-dp4-054/3f53aa1207f9e31f7d6d4233.jpg",
+        "updated_at": "2026-07-01T21:23:28.861351+00:00",
+        "ai_metadata": null,
+        "variant_key": "",
+        "external_ids": {
+          "master_identity_graph_jpn": {
+            "source_keys": [
+              "pokemon_card_official_jp",
+              "tcgcollector_jp"
+            ],
+            "acquisition_key": "set:DP4|num:054",
+            "source_set_refs": [
+              "DP4"
+            ]
+          }
+        },
+        "image_source": "identity",
+        "image_status": "exact",
+        "number_plain": "054",
+        "tcgplayer_id": null,
+        "image_alt_url": null,
+        "printed_total": null,
+        "last_synced_at": null,
+        "identity_domain": "pokemon_jpn",
+        "regulation_mark": null,
+        "data_quality_flags": {
+          "master_identity_graph_jpn": {
+            "acquisition_key": "set:DP4|num:054",
+            "dry_run_transform": "schema_transform_contract_v1"
+          }
+        },
+        "print_identity_key": "jpn:jpn-dp4:054:base",
+        "printed_set_abbrev": "DP4",
+        "set_identity_model": "standard",
+        "image_last_checked_at": null,
+        "representative_image_url": null,
+        "printed_identity_modifier": null
+      }
+    },
+    {
+      "record": {
+        "id": "539a729a-5d43-4d2a-a11c-6f4f6d2f7133",
+        "name": "マタドガス",
+        "gv_id": "GV-PK-JPN-DP4-064",
+        "artist": null,
+        "number": "064",
+        "rarity": null,
+        "set_id": "73a521e3-553e-4a44-9079-441ce178e99e",
+        "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+        "set_code": "jpn-dp4",
+        "variants": null,
+        "image_res": null,
+        "image_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dp4/gv-pk-jpn-dp4-064/b96c95edca15d53f64517930.jpg",
+        "created_at": "2026-07-01T18:36:34.720368+00:00",
+        "image_hash": null,
+        "image_note": "Self-hosted Japanese copy uploaded by MASTER_IDENTITY_GRAPH_JPN_SELF_HOSTED_IMAGE_STORAGE_UPLOAD_v1; original external source preserved in docs\\audits\\master_identity_graph_v1\\jpn-self-hosted-image-validation-v1\\jpn_self_hosted_image_upload_manifest_v1.jsonl.",
+        "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dp4/gv-pk-jpn-dp4-064/b96c95edca15d53f64517930.jpg",
+        "updated_at": "2026-07-01T21:23:28.861351+00:00",
+        "ai_metadata": null,
+        "variant_key": "",
+        "external_ids": {
+          "master_identity_graph_jpn": {
+            "source_keys": [
+              "pokemon_card_official_jp",
+              "tcgcollector_jp"
+            ],
+            "acquisition_key": "set:DP4|num:064",
+            "source_set_refs": [
+              "DP4"
+            ]
+          }
+        },
+        "image_source": "identity",
+        "image_status": "exact",
+        "number_plain": "064",
+        "tcgplayer_id": null,
+        "image_alt_url": null,
+        "printed_total": null,
+        "last_synced_at": null,
+        "identity_domain": "pokemon_jpn",
+        "regulation_mark": null,
+        "data_quality_flags": {
+          "master_identity_graph_jpn": {
+            "acquisition_key": "set:DP4|num:064",
+            "dry_run_transform": "schema_transform_contract_v1"
+          }
+        },
+        "print_identity_key": "jpn:jpn-dp4:064:base",
+        "printed_set_abbrev": "DP4",
+        "set_identity_model": "standard",
+        "image_last_checked_at": null,
+        "representative_image_url": null,
+        "printed_identity_modifier": null
+      }
+    },
+    {
+      "record": {
+        "id": "06c2130b-f94c-4c0d-989c-0c0c220d2cb3",
+        "name": "ハブネーク",
+        "gv_id": "GV-PK-JPN-DP4-075",
+        "artist": null,
+        "number": "075",
+        "rarity": null,
+        "set_id": "73a521e3-553e-4a44-9079-441ce178e99e",
+        "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+        "set_code": "jpn-dp4",
+        "variants": null,
+        "image_res": null,
+        "image_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dp4/gv-pk-jpn-dp4-075/2662b2a9018cd382e03b23da.jpg",
+        "created_at": "2026-07-01T18:36:34.720368+00:00",
+        "image_hash": null,
+        "image_note": "Self-hosted Japanese copy uploaded by MASTER_IDENTITY_GRAPH_JPN_SELF_HOSTED_IMAGE_STORAGE_UPLOAD_v1; original external source preserved in docs\\audits\\master_identity_graph_v1\\jpn-self-hosted-image-validation-v1\\jpn_self_hosted_image_upload_manifest_v1.jsonl.",
+        "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dp4/gv-pk-jpn-dp4-075/2662b2a9018cd382e03b23da.jpg",
+        "updated_at": "2026-07-01T21:23:28.861351+00:00",
+        "ai_metadata": null,
+        "variant_key": "",
+        "external_ids": {
+          "master_identity_graph_jpn": {
+            "source_keys": [
+              "pokemon_card_official_jp",
+              "tcgcollector_jp"
+            ],
+            "acquisition_key": "set:DP4|num:075",
+            "source_set_refs": [
+              "DP4"
+            ]
+          }
+        },
+        "image_source": "identity",
+        "image_status": "exact",
+        "number_plain": "075",
+        "tcgplayer_id": null,
+        "image_alt_url": null,
+        "printed_total": null,
+        "last_synced_at": null,
+        "identity_domain": "pokemon_jpn",
+        "regulation_mark": null,
+        "data_quality_flags": {
+          "master_identity_graph_jpn": {
+            "acquisition_key": "set:DP4|num:075",
+            "dry_run_transform": "schema_transform_contract_v1"
+          }
+        },
+        "print_identity_key": "jpn:jpn-dp4:075:base",
+        "printed_set_abbrev": "DP4",
+        "set_identity_model": "standard",
+        "image_last_checked_at": null,
+        "representative_image_url": null,
+        "printed_identity_modifier": null
+      }
+    },
+    {
+      "record": {
+        "id": "b4e4a0e0-af24-44f9-b4a8-d0a81ba8aa76",
+        "name": "マンキー",
+        "gv_id": "GV-PK-JPN-DP4-078",
+        "artist": null,
+        "number": "078",
+        "rarity": null,
+        "set_id": "73a521e3-553e-4a44-9079-441ce178e99e",
+        "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+        "set_code": "jpn-dp4",
+        "variants": null,
+        "image_res": null,
+        "image_url": "https://ycdxbpibncqcchqiihfz.supabase.co/storage/v1/object/public/user-card-images/warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dp4/gv-pk-jpn-dp4-078/705750ddeb76d34622954466.jpg",
+        "created_at": "2026-07-01T18:36:34.720368+00:00",
+        "image_hash": null,
+        "image_note": "Self-hosted Japanese copy uploaded by MASTER_IDENTITY_GRAPH_JPN_SELF_HOSTED_IMAGE_STORAGE_UPLOAD_v1; original external source preserved in docs\\audits\\master_identity_graph_v1\\jpn-self-hosted-image-validation-v1\\jpn_self_hosted_image_upload_manifest_v1.jsonl.",
+        "image_path": "warehouse-derived/self-hosted-images-v1/pokemon-jpn/jpn-dp4/gv-pk-jpn-dp4-078/705750ddeb76d34622954466.jpg",
+        "updated_at": "2026-07-01T21:23:28.861351+00:00",
+        "ai_metadata": null,
+        "variant_key": "",
+        "external_ids": {
+          "master_identity_graph_jpn": {
+            "source_keys": [
+              "pokemon_card_official_jp",
+              "tcgcollector_jp"
+            ],
+            "acquisition_key": "set:DP4|num:078",
+            "source_set_refs": [
+              "DP4"
+            ]
+          }
+        },
+        "image_source": "identity",
+        "image_status": "exact",
+        "number_plain": "078",
+        "tcgplayer_id": null,
+        "image_alt_url": null,
+        "printed_total": null,
+        "last_synced_at": null,
+        "identity_domain": "pokemon_jpn",
+        "regulation_mark": null,
+        "data_quality_flags": {
+          "master_identity_graph_jpn": {
+            "acquisition_key": "set:DP4|num:078",
+            "dry_run_transform": "schema_transform_contract_v1"
+          }
+        },
+        "print_identity_key": "jpn:jpn-dp4:078:base",
+        "printed_set_abbrev": "DP4",
+        "set_identity_model": "standard",
+        "image_last_checked_at": null,
+        "representative_image_url": null,
+        "printed_identity_modifier": null
+      }
+    }
+  ],
+  "identity": [
+    {
+      "record": {
+        "id": "5328caa4-c669-43a9-878c-c9f3f286b508",
+        "is_active": true,
+        "created_at": "2026-07-01T18:36:34.720368+00:00",
+        "updated_at": "2026-11-10T02:03:20.497099+00:00",
+        "card_print_id": "06c2130b-f94c-4c0d-989c-0c0c220d2cb3",
+        "printed_number": "075",
+        "identity_domain": "pokemon_jpn",
+        "source_name_raw": "ハブネーク",
+        "identity_payload": {
+          "source_count": 2,
+          "language_code": "ja",
+          "rarity_policy": {
+            "source": "master_identity_graph_jpn_first_batch",
+            "status": "not_normalized_in_first_batch"
+          },
+          "language_scope": "ja",
+          "edition_marking": {
+            "source": "master_identity_graph_jpn_first_batch",
+            "status": "not_normalized_in_first_batch"
+          },
+          "release_context": {
+            "source_keys": [
+              "pokemon_card_official_jp",
+              "tcgcollector_jp"
+            ],
+            "has_official_jp": true,
+            "source_set_refs": [
+              "DP4"
+            ],
+            "set_code_identity": "jpn-dp4",
+            "source_canonical_set_key": "DP4"
+          },
+          "card_name_en_candidates": [
+            "Unown Q (Moonlit Pursuit & Dawn Dash No. 075)"
+          ],
+          "card_name_ja_candidates": [
+            "ハブネーク"
+          ],
+          "normalized_printed_number": "075",
+          "normalized_family_name_candidates": [
+            "unown q"
+          ]
+        },
+        "identity_key_hash": "dcab4cfec2a1b6784dc73b9c08d4a16912268c8e6b836457e1ba5a42a36e0ec5",
+        "set_code_identity": "jpn-dp4",
+        "identity_key_version": "pokemon_jpn:v1",
+        "normalized_printed_name": "ハブネーク"
+      }
+    },
+    {
+      "record": {
+        "id": "d6174d50-752a-4ac0-a0ba-9852caec8232",
+        "is_active": true,
+        "created_at": "2026-07-01T18:36:34.720368+00:00",
+        "updated_at": "2026-11-10T02:03:20.497099+00:00",
+        "card_print_id": "539a729a-5d43-4d2a-a11c-6f4f6d2f7133",
+        "printed_number": "064",
+        "identity_domain": "pokemon_jpn",
+        "source_name_raw": "マタドガス",
+        "identity_payload": {
+          "source_count": 2,
+          "language_code": "ja",
+          "rarity_policy": {
+            "source": "master_identity_graph_jpn_first_batch",
+            "status": "not_normalized_in_first_batch"
+          },
+          "language_scope": "ja",
+          "edition_marking": {
+            "source": "master_identity_graph_jpn_first_batch",
+            "status": "not_normalized_in_first_batch"
+          },
+          "release_context": {
+            "source_keys": [
+              "pokemon_card_official_jp",
+              "tcgcollector_jp"
+            ],
+            "has_official_jp": true,
+            "source_set_refs": [
+              "DP4"
+            ],
+            "set_code_identity": "jpn-dp4",
+            "source_canonical_set_key": "DP4"
+          },
+          "card_name_en_candidates": [
+            "Unown F (Moonlit Pursuit & Dawn Dash No. 064)"
+          ],
+          "card_name_ja_candidates": [
+            "マタドガス"
+          ],
+          "normalized_printed_number": "064",
+          "normalized_family_name_candidates": [
+            "unown f"
+          ]
+        },
+        "identity_key_hash": "fa730550307f69c5654530d5a8f3a69ff6159ff5c29fe819749265654d96dca9",
+        "set_code_identity": "jpn-dp4",
+        "identity_key_version": "pokemon_jpn:v1",
+        "normalized_printed_name": "マタドガス"
+      }
+    },
+    {
+      "record": {
+        "id": "d90b5ef1-4a35-44ed-9424-7b32d7049dd7",
+        "is_active": true,
+        "created_at": "2026-07-01T18:36:34.720368+00:00",
+        "updated_at": "2026-11-10T02:03:20.497099+00:00",
+        "card_print_id": "b4e4a0e0-af24-44f9-b4a8-d0a81ba8aa76",
+        "printed_number": "078",
+        "identity_domain": "pokemon_jpn",
+        "source_name_raw": "マンキー",
+        "identity_payload": {
+          "source_count": 2,
+          "language_code": "ja",
+          "rarity_policy": {
+            "source": "master_identity_graph_jpn_first_batch",
+            "status": "not_normalized_in_first_batch"
+          },
+          "language_scope": "ja",
+          "edition_marking": {
+            "source": "master_identity_graph_jpn_first_batch",
+            "status": "not_normalized_in_first_batch"
+          },
+          "release_context": {
+            "source_keys": [
+              "pokemon_card_official_jp",
+              "tcgcollector_jp"
+            ],
+            "has_official_jp": true,
+            "source_set_refs": [
+              "DP4"
+            ],
+            "set_code_identity": "jpn-dp4",
+            "source_canonical_set_key": "DP4"
+          },
+          "card_name_en_candidates": [
+            "Makuhita (Moonlit Pursuit & Dawn Dash No. 078)"
+          ],
+          "card_name_ja_candidates": [
+            "マンキー"
+          ],
+          "normalized_printed_number": "078",
+          "normalized_family_name_candidates": [
+            "makuhita"
+          ]
+        },
+        "identity_key_hash": "d9f61a312f503f621cfccbd4283b0cca290630d594a5dd253d2e431df6affff5",
+        "set_code_identity": "jpn-dp4",
+        "identity_key_version": "pokemon_jpn:v1",
+        "normalized_printed_name": "マンキー"
+      }
+    },
+    {
+      "record": {
+        "id": "d65feb42-3c96-434f-a41b-0a01162ebf03",
+        "is_active": true,
+        "created_at": "2026-07-01T18:36:34.720368+00:00",
+        "updated_at": "2026-11-10T02:03:20.497099+00:00",
+        "card_print_id": "ce20a624-e85c-4525-ab32-967e5acc8c79",
+        "printed_number": "054",
+        "identity_domain": "pokemon_jpn",
+        "source_name_raw": "サンダース",
+        "identity_payload": {
+          "source_count": 2,
+          "language_code": "ja",
+          "rarity_policy": {
+            "source": "master_identity_graph_jpn_first_batch",
+            "status": "not_normalized_in_first_batch"
+          },
+          "language_scope": "ja",
+          "edition_marking": {
+            "source": "master_identity_graph_jpn_first_batch",
+            "status": "not_normalized_in_first_batch"
+          },
+          "release_context": {
+            "source_keys": [
+              "pokemon_card_official_jp",
+              "tcgcollector_jp"
+            ],
+            "has_official_jp": true,
+            "source_set_refs": [
+              "DP4"
+            ],
+            "set_code_identity": "jpn-dp4",
+            "source_canonical_set_key": "DP4"
+          },
+          "card_name_en_candidates": [
+            "Zapdos (Moonlit Pursuit & Dawn Dash No. 054)"
+          ],
+          "card_name_ja_candidates": [
+            "サンダース"
+          ],
+          "normalized_printed_number": "054",
+          "normalized_family_name_candidates": [
+            "zapdos"
+          ]
+        },
+        "identity_key_hash": "899d46db54ce747ddbc618d69df93e2b6d592c24bab394446d34d9eff81085b7",
+        "set_code_identity": "jpn-dp4",
+        "identity_key_version": "pokemon_jpn:v1",
+        "normalized_printed_name": "サンダース"
+      }
+    }
+  ],
+  "links": [
+    {
+      "record": {
+        "id": "c97bd8e0-ef40-4753-bc95-64267db1e413",
+        "role": "primary",
+        "active": true,
+        "source": "master_identity_graph_jpn_family_promotion_holdout_resolution_v1",
+        "evidence": {
+          "package_id": "MASTER_IDENTITY_GRAPH_JPN_SPECIES_FAMILY_LINK_HOLDOUT_RESOLUTION_PLAN_v1",
+          "source_keys": [
+            "pokemon_card_official_jp",
+            "tcgcollector_jp"
+          ],
+          "review_key_hash": "b6d1825f41c6afac10aa46899dbccaa6399361e91f7b63aae51c40fbcf4e8653",
+          "family_review_id": "fda1850d-12a0-4657-a1d0-1dd3485e6db6",
+          "resolution_method": "single_existing_english_species_mapping",
+          "clearance_fingerprint": "89852e8df11ca2c9bb63b0d4e6384f445f2670ebcc7d6ef9b3fd675da9cb41ec",
+          "card_print_identity_id": "5328caa4-c669-43a9-878c-c9f3f286b508",
+          "normalized_family_candidate": "unown q"
+        },
+        "confidence": 0.94,
+        "created_at": "2026-07-01T23:43:39.666312+00:00",
+        "species_id": "edde5c33-5f75-4eeb-ac3e-a891ad4a73eb",
+        "updated_at": "2026-07-01T23:43:39.666312+00:00",
+        "card_print_id": "06c2130b-f94c-4c0d-989c-0c0c220d2cb3",
+        "counts_for_completion": true
+      }
+    },
+    {
+      "record": {
+        "id": "5178f3a7-8554-4615-a25e-fe48e91f6498",
+        "role": "primary",
+        "active": true,
+        "source": "master_identity_graph_jpn_family_promotion_holdout_resolution_v1",
+        "evidence": {
+          "package_id": "MASTER_IDENTITY_GRAPH_JPN_SPECIES_FAMILY_LINK_HOLDOUT_RESOLUTION_PLAN_v1",
+          "source_keys": [
+            "pokemon_card_official_jp",
+            "tcgcollector_jp"
+          ],
+          "review_key_hash": "90239a1de20bf7e60c01d7eafcaccd8cba986fb9b7815dae76b12840696fc060",
+          "family_review_id": "97131f2e-d057-4adc-bf46-8c8486202df2",
+          "resolution_method": "single_existing_english_species_mapping",
+          "clearance_fingerprint": "89852e8df11ca2c9bb63b0d4e6384f445f2670ebcc7d6ef9b3fd675da9cb41ec",
+          "card_print_identity_id": "d6174d50-752a-4ac0-a0ba-9852caec8232",
+          "normalized_family_candidate": "unown f"
+        },
+        "confidence": 0.94,
+        "created_at": "2026-07-01T23:43:39.666312+00:00",
+        "species_id": "edde5c33-5f75-4eeb-ac3e-a891ad4a73eb",
+        "updated_at": "2026-07-01T23:43:39.666312+00:00",
+        "card_print_id": "539a729a-5d43-4d2a-a11c-6f4f6d2f7133",
+        "counts_for_completion": true
+      }
+    },
+    {
+      "record": {
+        "id": "81e885b0-6d63-4060-8bc5-de209c3fe36a",
+        "role": "primary",
+        "active": true,
+        "source": "master_identity_graph_jpn_family_promotion_v1",
+        "evidence": {
+          "package_id": "MASTER_IDENTITY_GRAPH_JPN_SPECIES_FAMILY_LINK_PROMOTION_DRY_RUN_v1",
+          "source_keys": [
+            "pokemon_card_official_jp",
+            "tcgcollector_jp"
+          ],
+          "family_status": "english_name_family_candidate",
+          "review_status": "approved_for_family_link_promotion",
+          "review_key_hash": "113f2d52bdf2f982b67b94abf14b677dbd467b4b8baf11fbd7dbc1bc4345a000",
+          "family_review_id": "4858d7ed-5692-4131-93ac-db4487088907",
+          "card_print_identity_id": "d90b5ef1-4a35-44ed-9424-7b32d7049dd7",
+          "family_candidate_source": "identity_resolution_candidate",
+          "normalized_family_candidate": "makuhita"
+        },
+        "confidence": 0.96,
+        "created_at": "2026-07-01T23:35:49.266086+00:00",
+        "species_id": "3f754f00-8da2-4bd0-a7f3-84959ee8fb53",
+        "updated_at": "2026-07-01T23:35:49.266086+00:00",
+        "card_print_id": "b4e4a0e0-af24-44f9-b4a8-d0a81ba8aa76",
+        "counts_for_completion": true
+      }
+    },
+    {
+      "record": {
+        "id": "87f65fe0-68df-48d1-b873-85c20b5abf7c",
+        "role": "primary",
+        "active": true,
+        "source": "master_identity_graph_jpn_family_promotion_v1",
+        "evidence": {
+          "package_id": "MASTER_IDENTITY_GRAPH_JPN_SPECIES_FAMILY_LINK_PROMOTION_DRY_RUN_v1",
+          "source_keys": [
+            "pokemon_card_official_jp",
+            "tcgcollector_jp"
+          ],
+          "family_status": "english_name_family_candidate",
+          "review_status": "approved_for_family_link_promotion",
+          "review_key_hash": "d33eb2f0d57668f854071d83d3e99af1819fd26fd5452657b3ec7996f63d620c",
+          "family_review_id": "b0f84487-a341-4f77-9394-7fd5d15b2503",
+          "card_print_identity_id": "d65feb42-3c96-434f-a41b-0a01162ebf03",
+          "family_candidate_source": "identity_resolution_candidate",
+          "normalized_family_candidate": "zapdos"
+        },
+        "confidence": 0.96,
+        "created_at": "2026-07-01T23:35:49.266086+00:00",
+        "species_id": "c489f42a-4b94-4cf9-a494-ece32d4085df",
+        "updated_at": "2026-07-01T23:35:49.266086+00:00",
+        "card_print_id": "ce20a624-e85c-4525-ab32-967e5acc8c79",
+        "counts_for_completion": true
+      }
+    }
+  ],
+  "species": [
+    {
+      "record": {
+        "id": "5cd0f5f8-3148-4649-a9c7-5911de9e52ae",
+        "slug": "mankey",
+        "types": [
+          "fighting"
+        ],
+        "active": true,
+        "source": "grookai_dex_seed_v1",
+        "is_form": false,
+        "created_at": "2026-05-18T09:53:07.974154+00:00",
+        "generation": 1,
+        "source_ref": {
+          "source": "pokeapi",
+          "sourceUrl": "https://pokeapi.co/api/v2/generation/",
+          "typeSourceUrl": "https://pokeapi.co/api/v2/type/",
+          "metadataSourceReadCount": 27
+        },
+        "updated_at": "2026-07-23T16:56:38.630458+00:00",
+        "display_name": "Mankey",
+        "canonical_name": "mankey",
+        "base_species_id": null,
+        "national_dex_number": 56
+      }
+    },
+    {
+      "record": {
+        "id": "014ed6a5-1352-44c5-a819-80a842c62638",
+        "slug": "weezing",
+        "types": [
+          "poison"
+        ],
+        "active": true,
+        "source": "grookai_dex_seed_v1",
+        "is_form": false,
+        "created_at": "2026-05-18T09:53:07.974154+00:00",
+        "generation": 1,
+        "source_ref": {
+          "source": "pokeapi",
+          "sourceUrl": "https://pokeapi.co/api/v2/generation/",
+          "typeSourceUrl": "https://pokeapi.co/api/v2/type/",
+          "metadataSourceReadCount": 27
+        },
+        "updated_at": "2026-07-23T16:56:38.630458+00:00",
+        "display_name": "Weezing",
+        "canonical_name": "weezing",
+        "base_species_id": null,
+        "national_dex_number": 110
+      }
+    },
+    {
+      "record": {
+        "id": "25b6ee89-ad24-4b4e-ba99-383e9b85f9d9",
+        "slug": "jolteon",
+        "types": [
+          "electric"
+        ],
+        "active": true,
+        "source": "grookai_dex_seed_v1",
+        "is_form": false,
+        "created_at": "2026-05-18T09:53:07.974154+00:00",
+        "generation": 1,
+        "source_ref": {
+          "source": "pokeapi",
+          "sourceUrl": "https://pokeapi.co/api/v2/generation/",
+          "typeSourceUrl": "https://pokeapi.co/api/v2/type/",
+          "metadataSourceReadCount": 27
+        },
+        "updated_at": "2026-07-23T16:56:38.630458+00:00",
+        "display_name": "Jolteon",
+        "canonical_name": "jolteon",
+        "base_species_id": null,
+        "national_dex_number": 135
+      }
+    },
+    {
+      "record": {
+        "id": "507ee052-bc69-40ec-b440-e689842c32f8",
+        "slug": "seviper",
+        "types": [
+          "poison"
+        ],
+        "active": true,
+        "source": "grookai_dex_seed_v1",
+        "is_form": false,
+        "created_at": "2026-05-18T09:53:07.974154+00:00",
+        "generation": 3,
+        "source_ref": {
+          "source": "pokeapi",
+          "sourceUrl": "https://pokeapi.co/api/v2/generation/",
+          "typeSourceUrl": "https://pokeapi.co/api/v2/type/",
+          "metadataSourceReadCount": 27
+        },
+        "updated_at": "2026-07-23T16:56:38.630458+00:00",
+        "display_name": "Seviper",
+        "canonical_name": "seviper",
+        "base_species_id": null,
+        "national_dex_number": 336
+      }
+    }
+  ],
+  "constraints": [
+    {
+      "conname": "card_print_species_card_print_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+    },
+    {
+      "conname": "card_print_species_confidence_range",
+      "contype": "c",
+      "definition": "CHECK (((confidence IS NULL) OR ((confidence >= (0)::numeric) AND (confidence <= (1)::numeric))))"
+    },
+    {
+      "conname": "card_print_species_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "conname": "card_print_species_role_check",
+      "contype": "c",
+      "definition": "CHECK ((role = ANY (ARRAY['primary'::text, 'tag_team'::text, 'multi_subject'::text, 'trainer_owned'::text, 'form_subject'::text, 'cameo'::text, 'manual_override'::text])))"
+    },
+    {
+      "conname": "card_print_species_source_nonempty",
+      "contype": "c",
+      "definition": "CHECK ((btrim(source) <> ''::text))"
+    },
+    {
+      "conname": "card_print_species_species_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (species_id) REFERENCES pokemon_species(id) ON DELETE CASCADE"
+    }
+  ],
+  "triggers": [
+    {
+      "tgname": "trg_card_print_species_updated_at",
+      "definition": "CREATE TRIGGER trg_card_print_species_updated_at BEFORE UPDATE ON public.card_print_species FOR EACH ROW EXECUTE FUNCTION set_timestamp_updated_at()"
+    }
+  ]
+}

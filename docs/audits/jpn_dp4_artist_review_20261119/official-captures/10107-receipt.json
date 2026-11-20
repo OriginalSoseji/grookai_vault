@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:21:11.537Z",
+  "gv_id": "GV-PK-JPN-DP4-107",
+  "card_print_id": "323e79a5-a9ed-43ef-9f56-53f5fbbf10b6",
+  "catalog_coordinate": "107",
+  "catalog_name": "トゲピー",
+  "official_id": "10107",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10107/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10107/regu/all",
+    "status": 200,
+    "sha256": "2fd22b3d47caf46be2e941166c773bc5084b9e95232962dbccda25f247964077",
+    "bytes": 10499
+  },
+  "heading": "トゲピー",
+  "artist": "Ken Sugimori",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010107_P_TOGEPI.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010107_P_TOGEPI.jpg",
+    "status": 200,
+    "sha256": "3afc1fb8c688a63e20444a4a62c97cfa4eb844674ee29f2db9751f312f0f964d",
+    "bytes": 46713,
+    "catalog_path_hash_prefix": "3afc1fb8c688a63e20444a4a",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

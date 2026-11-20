@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:26:51.873Z",
+  "gv_id": "GV-PK-JPN-DP4-100",
+  "card_print_id": "b008e744-711f-406a-bdb6-eb9597ca461b",
+  "catalog_coordinate": "100",
+  "catalog_name": "プクリン",
+  "official_id": "10100",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10100/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10100/regu/all",
+    "status": 200,
+    "sha256": "6c3b7667da8317b60ed6e3e402855bca95088cbfb3a9b60875cafc8cc48dd2ce",
+    "bytes": 10933
+  },
+  "heading": "プクリン",
+  "artist": "Kagemaru Himeno",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010100_P_PUKURIN.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010100_P_PUKURIN.jpg",
+    "status": 200,
+    "sha256": "af879d69fa4f8128d6762160ca058ab6dd64aaf8875f1da1e5d8b1b2c88bbe34",
+    "bytes": 47080,
+    "catalog_path_hash_prefix": "af879d69fa4f8128d6762160",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

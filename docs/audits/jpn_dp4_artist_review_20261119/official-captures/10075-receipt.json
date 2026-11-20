@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:20:10.260Z",
+  "gv_id": "GV-PK-JPN-DP4-075",
+  "card_print_id": "06c2130b-f94c-4c0d-989c-0c0c220d2cb3",
+  "catalog_coordinate": "075",
+  "catalog_name": "ハブネーク",
+  "official_id": "10075",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10075/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10075/regu/all",
+    "status": 200,
+    "sha256": "27ceeb2e320cbf1afddcc7573cfddbe22b0d83d52ce253c7231dc2d04dc891a5",
+    "bytes": 10172
+  },
+  "heading": "ハブネーク",
+  "artist": "Masakazu Fukuda",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010075_P_HABUNEKU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010075_P_HABUNEKU.jpg",
+    "status": 200,
+    "sha256": "2662b2a9018cd382e03b23dae6a3653d940d87fd6d1ed0eb13c68110a1fe07f3",
+    "bytes": 54728,
+    "catalog_path_hash_prefix": "2662b2a9018cd382e03b23da",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

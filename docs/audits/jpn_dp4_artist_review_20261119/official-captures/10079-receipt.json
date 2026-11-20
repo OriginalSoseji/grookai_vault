@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:26:23.794Z",
+  "gv_id": "GV-PK-JPN-DP4-079",
+  "card_print_id": "9ee7df4a-ceaf-4ae2-a461-8f7d72a19879",
+  "catalog_coordinate": "079",
+  "catalog_name": "オコリザル",
+  "official_id": "10079",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10079/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10079/regu/all",
+    "status": 200,
+    "sha256": "9af9a11f1768a43faedcd9c3f0e03de16e1d5c72c2a5ad4148fd1c235c52084c",
+    "bytes": 10986
+  },
+  "heading": "オコリザル",
+  "artist": "Kagemaru Himeno",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010079_P_OKORIZARU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010079_P_OKORIZARU.jpg",
+    "status": 200,
+    "sha256": "8afed04e60430b95aa5165ac13c08a8bba62989fa747d871653779e0bd408eaf",
+    "bytes": 59500,
+    "catalog_path_hash_prefix": "8afed04e60430b95aa5165ac",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:27:03.205Z",
+  "gv_id": "GV-PK-JPN-DP4-033",
+  "card_print_id": "b7545fa4-8922-4ddc-bc7c-41e5da9a2520",
+  "catalog_coordinate": "033",
+  "catalog_name": "グレイシア",
+  "official_id": "10033",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10033/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10033/regu/all",
+    "status": 200,
+    "sha256": "3f07aaf2c17f0fb2e62f276ee5630a1eedb212bc3d32c29806e6f9fac73d16bc",
+    "bytes": 15406
+  },
+  "heading": "グレイシア",
+  "artist": "Ryo Ueda",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010033_P_GUREISHIA.gif",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010033_P_GUREISHIA.gif",
+    "status": 200,
+    "sha256": "785804fd9376a13e394e5fdd2b1874ed35b56330936febc484eccbbea9a2154e",
+    "bytes": 53185,
+    "catalog_path_hash_prefix": "59221eaf88d0b4c13c79411f",
+    "hash_prefix_matches": false
+  },
+  "disposition": "needs_manual_review",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:22:32.784Z",
+  "gv_id": "GV-PK-JPN-DP4-088",
+  "card_print_id": "654e3bdf-7652-4b69-b129-36e5304ff9ff",
+  "catalog_coordinate": "088",
+  "catalog_name": "ブラッキー",
+  "official_id": "10088",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10088/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10088/regu/all",
+    "status": 200,
+    "sha256": "0c6058d31d18eafce181ab4fc7f102ddf95ba685883ae80dad2f5d693f940268",
+    "bytes": 15532
+  },
+  "heading": "ブラッキー",
+  "artist": "Masakazu Fukuda",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010088_P_BURAKKI.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010088_P_BURAKKI.jpg",
+    "status": 200,
+    "sha256": "b78da0eb8758e4e7f83b99ac4b1de86bf0aafb12c0b099c7db4e98462f089b1f",
+    "bytes": 52610,
+    "catalog_path_hash_prefix": "b78da0eb8758e4e7f83b99ac",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

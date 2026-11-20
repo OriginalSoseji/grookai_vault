@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:27:39.394Z",
+  "gv_id": "GV-PK-JPN-DP4-056",
+  "card_print_id": "d6ecf0df-6bf5-412e-875c-1f50ef178756",
+  "catalog_coordinate": "056",
+  "catalog_name": "ロトム",
+  "official_id": "10056",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10056/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10056/regu/all",
+    "status": 200,
+    "sha256": "707508ab902ac8b74d116da3d31ce0ff8d4da348b95ed885810434253343c787",
+    "bytes": 10138
+  },
+  "heading": "ロトム",
+  "artist": "Daisuke Ito",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010056_P_ROTOMU.gif",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010056_P_ROTOMU.gif",
+    "status": 200,
+    "sha256": "f4a13e2ae8c777f64ec9428b292e0c230323968a0f067e50f93e60801d600615",
+    "bytes": 53086,
+    "catalog_path_hash_prefix": "b0a7614326abf769baec7d2f",
+    "hash_prefix_matches": false
+  },
+  "disposition": "needs_manual_review",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

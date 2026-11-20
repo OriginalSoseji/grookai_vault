@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:22:58.481Z",
+  "gv_id": "GV-PK-JPN-DP4-050",
+  "card_print_id": "86651c8d-fdd8-40cc-95c7-310929946b06",
+  "catalog_coordinate": "050",
+  "catalog_name": "ジーランス",
+  "official_id": "10050",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10050/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10050/regu/all",
+    "status": 200,
+    "sha256": "cf0660d7afc45d4a9e73b2fa0cf544d13d11ed59be817636d6792e5ee13f225e",
+    "bytes": 10042
+  },
+  "heading": "ジーランス",
+  "artist": "Ken Sugimori",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010050_P_JIRANSU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010050_P_JIRANSU.jpg",
+    "status": 200,
+    "sha256": "84c0d15e3e960cf6f1e030904f1e84d77307097aea05cf92aa98147988a786cb",
+    "bytes": 57447,
+    "catalog_path_hash_prefix": "84c0d15e3e960cf6f1e03090",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

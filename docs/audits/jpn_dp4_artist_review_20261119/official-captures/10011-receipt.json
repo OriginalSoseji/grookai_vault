@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:22:44.773Z",
+  "gv_id": "GV-PK-JPN-DP4-011",
+  "card_print_id": "75348062-9c31-4f63-8876-b182887d857c",
+  "catalog_coordinate": "011",
+  "catalog_name": "リーフィア",
+  "official_id": "10011",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10011/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10011/regu/all",
+    "status": 200,
+    "sha256": "99628e51fb861ee36cc813e46e443bf737420bf71badf5b3950f0ad40d7e68b2",
+    "bytes": 15515
+  },
+  "heading": "リーフィア",
+  "artist": "Ryo Ueda",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010011_P_RIFIA.gif",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010011_P_RIFIA.gif",
+    "status": 200,
+    "sha256": "b5864b241a886c0abbba5f83b2182afec11093af94c5c2b7baa943a3744c3f33",
+    "bytes": 57597,
+    "catalog_path_hash_prefix": "9acffe754f3c0f3f8b54e807",
+    "hash_prefix_matches": false
+  },
+  "disposition": "needs_manual_review",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

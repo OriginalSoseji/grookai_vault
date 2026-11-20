@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:22:10.687Z",
+  "gv_id": "GV-PK-JPN-DP4-081",
+  "card_print_id": "59b5340d-d441-4928-aa4b-6a851d32124e",
+  "catalog_coordinate": "081",
+  "catalog_name": "カブトプス",
+  "official_id": "10081",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10081/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10081/regu/all",
+    "status": 200,
+    "sha256": "7811fcb6de4976f954fa74ce04e8546837d77eedfd2647e52e476570a365a2a1",
+    "bytes": 10631
+  },
+  "heading": "カブトプス",
+  "artist": "Kouki Saitou",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010081_P_KABUTOPUSU.gif",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010081_P_KABUTOPUSU.gif",
+    "status": 200,
+    "sha256": "881b7b3b2fd6c773a9789b4ba1da65f6bd8c4338486dddbf8cce743f2a350b42",
+    "bytes": 56055,
+    "catalog_path_hash_prefix": "881b7b3b2fd6c773a9789b4b",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

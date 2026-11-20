@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:27:58.816Z",
+  "gv_id": "GV-PK-JPN-DP4-105",
+  "card_print_id": "e25c0baa-b6dd-4a3a-879e-215dadae91c3",
+  "catalog_coordinate": "105",
+  "catalog_name": "ポリゴンZ",
+  "official_id": "10105",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10105/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10105/regu/all",
+    "status": 200,
+    "sha256": "cbd2582352900cb5070c29c8ca76625eeb08a4143a14daa622fc272990c28835",
+    "bytes": 11047
+  },
+  "heading": "ポリゴンZ",
+  "artist": "Kent Kanetsuna",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010105_P_PORIGONZ.gif",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010105_P_PORIGONZ.gif",
+    "status": 200,
+    "sha256": "227f29fd172d5372f0ed07b10332efcf7c3fa78518e79c729c57f3953a61e26e",
+    "bytes": 51935,
+    "catalog_path_hash_prefix": "227f29fd172d5372f0ed07b1",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:23:09.518Z",
+  "gv_id": "GV-PK-JPN-DP4-014",
+  "card_print_id": "89e93855-0d80-4c1d-b650-ae0364fb5c1d",
+  "catalog_coordinate": "014",
+  "catalog_name": "ジュカイン",
+  "official_id": "10014",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10014/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10014/regu/all",
+    "status": 200,
+    "sha256": "a138396fb7aadfa5150bd348bd3727273bc9136ffe041427832b9cf83621f9bf",
+    "bytes": 11222
+  },
+  "heading": "ジュカイン",
+  "artist": "Masakazu Fukuda",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010014_P_JUKAIN.gif",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010014_P_JUKAIN.gif",
+    "status": 200,
+    "sha256": "e8173440b448519fce00f612f6f533caa089ffd78a9509ef128fa4ed635ab8c2",
+    "bytes": 58333,
+    "catalog_path_hash_prefix": "ad295664f1a8a103e20d3628",
+    "hash_prefix_matches": false
+  },
+  "disposition": "needs_manual_review",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

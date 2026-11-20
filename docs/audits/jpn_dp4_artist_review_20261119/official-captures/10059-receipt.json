@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:21:45.168Z",
+  "gv_id": "GV-PK-JPN-DP4-059",
+  "card_print_id": "4db9306f-043c-48c2-a59f-ebc49dab4297",
+  "catalog_coordinate": "059",
+  "catalog_name": "アーボック",
+  "official_id": "10059",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10059/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10059/regu/all",
+    "status": 200,
+    "sha256": "2e3e5342050adc8cbc0c5466602809e6c641aa4d911134016441678e197798b5",
+    "bytes": 10671
+  },
+  "heading": "アーボック",
+  "artist": "Ken Sugimori",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010059_P_ABOKKU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010059_P_ABOKKU.jpg",
+    "status": 200,
+    "sha256": "5f852b1c4f7c25f47972b025f1f796220b1e2aaeb1a9b311e212b28f7dd8da1f",
+    "bytes": 50799,
+    "catalog_path_hash_prefix": "5f852b1c4f7c25f47972b025",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

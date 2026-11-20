@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:26:29.177Z",
+  "gv_id": "GV-PK-JPN-DP4-076",
+  "card_print_id": "a8230f4e-eb4b-428c-88ba-3027d3481994",
+  "catalog_coordinate": "076",
+  "catalog_name": "クレセリア",
+  "official_id": "10076",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10076/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10076/regu/all",
+    "status": 200,
+    "sha256": "d78b79f0e4a0a2d8df083baa5bf7443b477d3c6deb049f834924d2499bb26888",
+    "bytes": 9956
+  },
+  "heading": "クレセリア",
+  "artist": "Ryo Ueda",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010076_P_KURESERIA.gif",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010076_P_KURESERIA.gif",
+    "status": 200,
+    "sha256": "e8db804eb26aecec4153f8d5215902fe4fa8812df2190113f14c97613e068664",
+    "bytes": 53213,
+    "catalog_path_hash_prefix": "d155d6355999bc6cc5f8758a",
+    "hash_prefix_matches": false
+  },
+  "disposition": "needs_manual_review",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

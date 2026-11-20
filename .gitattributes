@@ -21,3 +21,8 @@ docs/audits/intake_recovery_20261027/replay-v5-source-as-executed.mjs -text whit
 
 # Preserve the hash-pinned inspector query's original indentation.
 scripts/schema/reviewed_intake_public_catalog_v1.sql whitespace=-space-before-tab
+
+# Retain original external evidence bytes used by the DP4 review.
+docs/audits/jpn_dp4_artist_review_20261119/*.html -text -diff
+docs/audits/jpn_dp4_artist_review_20261119/official-captures/*.html -text -diff
+docs/audits/jpn_dp4_artist_review_20261119/species_name_source_index.json -text -diff

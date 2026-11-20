@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:27:19.884Z",
+  "gv_id": "GV-PK-JPN-DP4-062",
+  "card_print_id": "cbd9f026-879a-4e95-bfd4-fc477ab96593",
+  "catalog_coordinate": "062",
+  "catalog_name": "スリーパー",
+  "official_id": "10062",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10062/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10062/regu/all",
+    "status": 200,
+    "sha256": "f38b999dbc0026442b11d9beb3bfd9db68b3d05928a8d602c0132c9d394078ae",
+    "bytes": 10535
+  },
+  "heading": "スリーパー",
+  "artist": "Mitsuhiro Arita",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010062_P_SURIPA.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010062_P_SURIPA.jpg",
+    "status": 200,
+    "sha256": "1920bc0050c6cef2d32736f231f1aced3033cd057d0ccfb27982a16b96a2980e",
+    "bytes": 51164,
+    "catalog_path_hash_prefix": "1920bc0050c6cef2d32736f2",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}
