@@ -1,3 +1,16 @@
+# Best of Game current-main release V6 — November20,2026
+
+The V5 source and sealed production packet remain frozen. Continue in
+C:/grookai_best_of_game_release_20261120 under the V6 checkpoint
+(docs/checkpoints/BEST_OF_GAME_DISCOVERY_RELEASE_V6_20261120.md) and V6 contract.
+Only generated dashboard snapshots changed on main; application and immutable
+516-file SQL bytes remain unchanged. The owner approved the exact V8 operational
+exception, but later Square/pricing activity is outside that approval. Preserve
+the original baselines and qualify any additional exception before applying
+the same three pending read migrations. No new production apply or deployment
+closure is claimed. Keep all retained labs and frozen producers. Stamped Reverse
+Holo work follows full duplicate closure and needs separate printing authority.
+
 # Best of Game discovery V2 after pricing512 — November20,2026
 
 Continue the same nine-alias repair in `C:/grookai_best_of_game_discovery_20261120`.
