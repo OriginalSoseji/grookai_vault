@@ -1,5 +1,6 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { spawn } from 'node:child_process';
 
 import { markdownTable, normalizeText } from './verified_master_set_index_v1/shared.mjs';
@@ -151,7 +152,7 @@ const SOURCES = [
     script: 'scripts/audits/english_master_index_pkmncards_identity_gap_acquisition_v1.mjs',
     fixture_dir: 'docs/audits/verified_master_set_index_v1/source_fixtures/generated_pkmncards_identity_gap_v1',
     supports_sets: false,
-    fixture_mode: 'reset',
+    fixture_mode: 'append_only_opt_in',
   },
   {
     id: 'pokellector_identity',
@@ -256,7 +257,7 @@ function sourceById() {
   return new Map(SOURCES.map((source) => [normalizeText(source.id), source]));
 }
 
-function selectedSources(options) {
+export function selectedSources(options) {
   const byId = sourceById();
   const requested = options.sources ?? DEFAULT_SOURCE_IDS;
   const selected = [];
@@ -273,6 +274,9 @@ function selectedSources(options) {
   if (!options.sources) {
     for (const source of SOURCES.filter((row) => row.fixture_mode === 'reset')) {
       excluded.push({ ...source, exclusion_reason: 'fixture_reset_source_excluded_from_default_batch' });
+    }
+    for (const source of SOURCES.filter((row) => row.fixture_mode === 'append_only_opt_in')) {
+      excluded.push({ ...source, exclusion_reason: 'append_only_source_excluded_from_default_batch' });
     }
   }
   return { selected, excluded };
@@ -516,7 +520,9 @@ async function main() {
   console.log(JSON.stringify(report.summary, null, 2));
 }
 
-main().catch((error) => {
-  console.error('[source-batch] failed:', error);
-  process.exitCode = 1;
-});
+if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(fileURLToPath(import.meta.url))) {
+  main().catch((error) => {
+    console.error('[source-batch] failed:', error);
+    process.exitCode = 1;
+  });
+}
