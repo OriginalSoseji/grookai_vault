@@ -1,0 +1,28 @@
+{
+  "version": "MCD22_RARITY_APPLY_V1",
+  "run_id": "744e4439-f542-473b-b19c-b7abf3df99c0",
+  "mode": "verify",
+  "package_fingerprint": "03d2da1f4666c7610d26b469d98d82d79bd997d345d70b04180053fe9fd19fae",
+  "writer_fingerprint": "52923856fb798949ca9da31e9170cd209ef40ee2732c7c61f47bb072dc57dcd2",
+  "started_at": "2026-11-18T20:12:27.498Z",
+  "status": "verified_already_applied",
+  "stages": [
+    {
+      "name": "source_and_scope_verified",
+      "at": "2026-11-18T20:12:31.963Z"
+    },
+    {
+      "name": "verified_already_applied",
+      "at": "2026-11-18T20:12:32.124Z"
+    }
+  ],
+  "sanity": {
+    "parents": 173837,
+    "sets": 3420,
+    "traits": 47409
+  },
+  "state": "already_applied",
+  "source_digest": "7a7d4a553a7b26c73f8f2f73e54a86b25e686fa3a0b00ddf608060f7c814369a",
+  "receipt_id": "176551",
+  "finished_at": "2026-11-18T20:12:32.124Z"
+}
