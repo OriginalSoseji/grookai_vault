@@ -397,6 +397,18 @@ async function compareReplay({
   }
 }
 
+export function provesConsistentReadOnlyBaseline(retrieval, noWriteBoundary) {
+  return Boolean(
+    retrieval.guard_version
+    && retrieval.transaction_read_only === 'on'
+    && retrieval.default_transaction_read_only === 'on'
+    && retrieval.transaction_isolation === 'repeatable read'
+    && ['database_writes', 'storage_writes', 'pricing_writes', 'identity_writes', 'family_promotion_writes']
+      .every((key) => noWriteBoundary[key] === false)
+    && Object.values(noWriteBoundary).every((value) => value === false),
+  );
+}
+
 async function compareLiveBaseline({
   baselineRoot,
   liveRecheckRoot,
@@ -456,11 +468,8 @@ async function compareLiveBaseline({
   const retrieval = liveManifestRecord.artifact.retrieval ?? {};
   const noWriteBoundary =
     liveManifestRecord.artifact.content.no_write_boundary ?? {};
-  const noWriteGuardEstablished = Boolean(
-    retrieval.guard_version
-    && retrieval.transaction_read_only === 'on'
-    && retrieval.default_transaction_read_only === 'on'
-    && Object.values(noWriteBoundary).every((value) => value === false),
+  const noWriteGuardEstablished = provesConsistentReadOnlyBaseline(
+    retrieval, noWriteBoundary,
   );
   return {
     performed: true,

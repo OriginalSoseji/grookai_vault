@@ -207,6 +207,7 @@ export async function withReadOnlyClient({
   environmentLabel = 'live-read-only',
   statementTimeoutMs = 120_000,
   clientFactory,
+  consistentSnapshot = false,
 }, callback) {
   if (!connectionString) {
     throw new Error(
@@ -229,7 +230,9 @@ export async function withReadOnlyClient({
 
   try {
     await client.query('set default_transaction_read_only = on');
-    await client.query('begin read only');
+    await client.query(consistentSnapshot
+      ? 'begin isolation level repeatable read read only'
+      : 'begin read only');
     transactionStarted = true;
 
     const transactionState = await client.query('show transaction_read_only');
@@ -243,6 +246,15 @@ export async function withReadOnlyClient({
       );
     }
 
+    let transactionIsolation;
+    if (consistentSnapshot) {
+      const isolationState = await client.query('show transaction_isolation');
+      transactionIsolation = isolationState.rows[0]?.transaction_isolation;
+      if (transactionIsolation !== 'repeatable read') {
+        throw new Error(`${READ_ONLY_GUARD_VERSION} could not prove repeatable-read isolation`);
+      }
+    }
+
     const guardedClient = {
       query(sql, values = []) {
         assertReadOnlySql(sql);
@@ -254,6 +266,7 @@ export async function withReadOnlyClient({
       guard_version: READ_ONLY_GUARD_VERSION,
       transaction_read_only: transactionReadOnly,
       default_transaction_read_only: sessionReadOnly,
+      ...(consistentSnapshot ? { transaction_isolation: transactionIsolation } : {}),
       ...environmentFingerprint(connectionString, environmentLabel),
     });
   } finally {

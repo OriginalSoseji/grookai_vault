@@ -15,8 +15,10 @@ import {
   classifyCatalogSourceTransportFailureV1,
   classifyPokemonDatabaseSetScopesV1,
   isOptionalCatalogSourceFallbackV1,
+  assertJapaneseFullChecklistAgreementV1,
   JAPANESE_CARD_COVERAGE_STATUSES,
   mapPoolSettledV1,
+  projectOfficialJapaneseProductCardV1,
   normalizeCatalogSetCode,
   normalizeCatalogText,
   reconcileJapaneseOfficialCardCoverage,
@@ -34,6 +36,22 @@ import {
 } from "../../backend/catalog/english_pokemon_master_index_ownership_v1.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
+
+test("official Japanese product projection preserves normalized printed names", () => {
+  assert.deepEqual(projectOfficialJapaneseProductCardV1({ card_id: '50745', printed_name: '基本草エネルギー', image_url: 'https://example.com/card.jpg' }),
+    { source_external_id: '50745', printed_name_ja: '基本草エネルギー', image_url: 'https://example.com/card.jpg' });
+  assert.equal(projectOfficialJapaneseProductCardV1({ card_id: '1', card_name: 'wrong upstream field' }).printed_name_ja, null);
+});
+
+test("partial and conflicting Japanese checklists fail the discovery integrity gate", () => {
+  const numbered = { set: { card_count: 111 } };
+  assert.throws(() => assertJapaneseFullChecklistAgreementV1({}, numbered, null, 'M6a'), /incomplete checklist/);
+  assert.throws(() => assertJapaneseFullChecklistAgreementV1({ cards: [] }, numbered, null, 'M6a'), /incomplete checklist/);
+  assert.throws(() => assertJapaneseFullChecklistAgreementV1({ cards: [{}, {}] }, numbered, 176, 'M6a'), /incomplete checklist.*Bulbapedia=2/);
+  assert.throws(() => assertJapaneseFullChecklistAgreementV1({ cards: Array(165).fill({}) }, numbered, 176, 'M6a'), /full-checklist disagreement.*TCGdex=176.*Bulbapedia=165/);
+  assert.doesNotThrow(() => assertJapaneseFullChecklistAgreementV1({ cards: Array(111).fill({}) }, numbered, 111, 'M6a'));
+  assert.doesNotThrow(() => assertJapaneseFullChecklistAgreementV1(null, numbered, 176, 'M6a'));
+});
 
 function source(relativePath) {
   return fs.readFileSync(path.join(ROOT, relativePath), "utf8");

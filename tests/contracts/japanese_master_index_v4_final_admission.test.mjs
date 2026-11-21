@@ -2,8 +2,19 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 import {
+  assertPublishedIdentityPreservationV1,
+  assertPublishedPrintingPreservationV1,
   buildFinalAdmission,
 } from '../../scripts/audits/japanese_master_index_v4/final_admission_v1.mjs';
+
+test('published identities are never silently removed during a stricter rebuild', () => {
+  const previous = [{ jpn_card_identity_key: 'existing:one' }, { jpn_card_identity_key: 'existing:two' }];
+  assert.doesNotThrow(() => assertPublishedIdentityPreservationV1(previous, [...previous, { jpn_card_identity_key: 'new:three' }]));
+  assert.throws(() => assertPublishedIdentityPreservationV1(previous, [previous[0]]), /1 prior identities would be removed/);
+  assert.throws(() => assertPublishedIdentityPreservationV1(previous, [previous[0], previous[0]]), /duplicate next identity key/);
+  assert.throws(() => assertPublishedIdentityPreservationV1([{ jpn_card_identity_key: '' }], []), /invalid or duplicate prior/);
+  assert.throws(() => assertPublishedPrintingPreservationV1([{ printing_fact_key: 'print-one' }], []), /1 prior printings would be removed/);
+});
 
 function assertion({
   key,
@@ -18,6 +29,11 @@ function assertion({
     assertion_key: key,
     source_id: sourceId,
     source_family: sourceFamily,
+    source_url: sourceId === 'official_jp_cards'
+      ? 'https://www.pokemon-card.com/card-search/details.php/card/123/regu/all'
+      : 'https://example.com/source',
+    raw_snapshot_ref: 'captured/source.html',
+    raw_snapshot_sha256: 'a'.repeat(64),
     printed_name: name,
     category,
     type_line: null,
@@ -220,6 +236,93 @@ test('single non-official source remains blocked', () => {
       .final_disposition,
     'single_source_only',
   );
+});
+
+test('a non-official coordinate-only source cannot corroborate the Japanese printed name', () => {
+  const first = assertion({ key: 'named', sourceId: 'limitless_jp_cards', sourceFamily: 'limitless_tcg_jp' });
+  const second = assertion({ key: 'coordinate', sourceId: 'serebii_jp_cards', sourceFamily: 'serebii_jp', name: null });
+  const card = candidate({ key: 'two-sources', assertionKeys: [first.assertion_key, second.assertion_key], sourceIds: [first.source_id, second.source_id] });
+  const family = [{ candidate_key: card.candidate_key, projection_status: 'projected_exact', species_id: 'pikachu', projection_methods: ['exact_japanese_name'] }];
+  const held = buildFixture({ sourceAssertions: [first, second], identityCandidates: [card], familyProjectionRows: family });
+  assert.equal(held.datasets.master_admissible_card_rows_v1.length, 0);
+  assert.ok(held.datasets.master_card_resolution_rows_v1[0].disposition_reasons.includes('independent_japanese_printed_name_support_missing'));
+  assert.notEqual(held.datasets.master_card_resolution_rows_v1[0].evidence_status, 'multi_source_identity_supported');
+  const corroborated = buildFixture({ sourceAssertions: [first, { ...second, printed_name: 'ピカチュウ' }], identityCandidates: [card], familyProjectionRows: family });
+  assert.equal(corroborated.datasets.master_admissible_card_rows_v1.length, 1);
+  assert.equal(corroborated.datasets.master_card_resolution_rows_v1[0].evidence_status, 'multi_source_identity_supported');
+});
+
+test('historical source labels alone cannot claim official or independent identity support', () => {
+  const card = candidate({ key: 'historical', assertionKeys: [], sourceIds: [
+    'pokemon_card_official_jp', 'artofpkm_jp', 'limitless_tcg_jp', 'pokellector_jp', 'tcgcollector_jp',
+  ] });
+  card.baseline_evidence_ids = ['preserved-1', 'preserved-2'];
+  const result = buildFixture({ sourceAssertions: [], identityCandidates: [card], familyProjectionRows: [{
+    candidate_key: card.candidate_key, projection_status: 'projected_exact', species_id: 'species-pikachu',
+  }] });
+  const row = result.datasets.master_card_resolution_rows_v1[0];
+  assert.equal(row.official_source_present, false);
+  assert.equal(row.independent_source_count, 0);
+  assert.deepEqual(row.baseline_evidence_ids, ['preserved-1', 'preserved-2']);
+  assert.ok(row.disposition_reasons.includes('preserved_source_evidence_missing'));
+});
+
+test('source receipt and matching printed name are required for official identity support', () => {
+  const official = assertion({ key: 'official-missing-receipt', sourceId: 'official_jp_cards', sourceFamily: 'pokemon_card_official_jp' });
+  official.raw_snapshot_sha256 = null;
+  const card = candidate({ key: 'unverified', assertionKeys: [official.assertion_key], sourceIds: [official.source_id] });
+  const options = { sourceAssertions: [official], identityCandidates: [card], familyProjectionRows: [{
+    candidate_key: card.candidate_key, projection_status: 'projected_exact', species_id: 'species-pikachu',
+  }] };
+  let result = buildFixture(options);
+  assert.equal(result.datasets.master_card_resolution_rows_v1[0].official_source_present, false);
+  assert.equal(result.datasets.master_admissible_card_rows_v1.length, 0);
+  official.raw_snapshot_sha256 = 'b'.repeat(64);
+  official.source_url = 'https://example.com/not-official';
+  result = buildFixture(options);
+  assert.equal(result.datasets.master_card_resolution_rows_v1[0].official_source_present, false);
+  official.source_url = 'https://www.pokemon-card.com/card-search/details.php/card/123/regu/all';
+  official.printed_name = 'カジリガメ';
+  result = buildFixture(options);
+  assert.equal(result.datasets.master_admissible_card_rows_v1.length, 0);
+  assert.ok(result.datasets.master_card_resolution_rows_v1[0].disposition_reasons.includes('japanese_printed_name_conflicting'));
+});
+
+test('one source assertion cannot claim two inconsistent source families', () => {
+  const source = assertion({ key: 'mismatched-family', sourceId: 'tcgdex_ja_cards', sourceFamily: 'pokemon_card_official_jp' });
+  const card = candidate({ key: 'mismatch', assertionKeys: [source.assertion_key], sourceIds: [source.source_id] });
+  const result = buildFixture({ sourceAssertions: [source], identityCandidates: [card], familyProjectionRows: [{
+    candidate_key: card.candidate_key, projection_status: 'projected_exact', species_id: 'species-pikachu',
+  }] });
+  const row = result.datasets.master_card_resolution_rows_v1[0];
+  assert.equal(row.official_source_present, false);
+  assert.equal(row.independent_source_count, 0);
+  assert.equal(result.datasets.master_admissible_card_rows_v1.length, 0);
+});
+
+test('independent coordinates cannot corroborate a Japanese name missing from source receipts', () => {
+  const first = assertion({ key: 'first-english', sourceId: 'limitless_jp_cards', sourceFamily: 'limitless_tcg_jp', name: 'Pikachu' });
+  const second = assertion({ key: 'second-english', sourceId: 'tcgdex_ja_cards', sourceFamily: 'tcgdex_ja', name: 'Pikachu' });
+  const card = candidate({ key: 'historical-japanese-name', assertionKeys: [first.assertion_key, second.assertion_key], sourceIds: [first.source_id, second.source_id] });
+  const result = buildFixture({ sourceAssertions: [first, second], identityCandidates: [card], familyProjectionRows: [{
+    candidate_key: card.candidate_key, projection_status: 'projected_exact', species_id: 'species-pikachu',
+  }] });
+  assert.equal(result.datasets.master_admissible_card_rows_v1.length, 0);
+  assert.ok(result.datasets.master_card_resolution_rows_v1[0].disposition_reasons.includes('japanese_printed_name_source_missing'));
+});
+
+test('printing sources must explicitly assert the requested finish with a receipt', () => {
+  const official = assertion({ key: 'official-finish', sourceId: 'official_jp_cards', sourceFamily: 'pokemon_card_official_jp', finishLabels: ['normal'] });
+  const secondary = assertion({ key: 'secondary-no-finish', sourceId: 'limitless_jp_cards', sourceFamily: 'limitless_tcg_jp' });
+  const card = candidate({ key: 'finish-parent', assertionKeys: [official.assertion_key, secondary.assertion_key], sourceIds: [official.source_id, secondary.source_id] });
+  const result = buildFixture({ sourceAssertions: [official, secondary], identityCandidates: [card],
+    printingCandidates: [{ printing_candidate_key: 'normal-printing', identity_candidate_key: card.candidate_key,
+      finish_key: 'normal', assertion_keys: [official.assertion_key, secondary.assertion_key], candidate_kind: 'novel_printing_exact_finish' }],
+    familyProjectionRows: [{ candidate_key: card.candidate_key, projection_status: 'projected_exact', species_id: 'species-pikachu' }] });
+  assert.equal(result.datasets.master_admissible_printing_rows_v1.length, 0);
+  const row = result.datasets.master_printing_fact_rows_v1[0];
+  assert.deepEqual(row.exact_source_assertion_keys, ['official-finish']);
+  assert.ok(row.disposition_reasons.includes('finish_source_count_below_two'));
 });
 
 test('explicit trainer evidence overrides heuristic species projection', () => {

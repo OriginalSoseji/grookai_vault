@@ -220,7 +220,9 @@ async function loadOfficialEnrichmentTarget(client, officialCard) {
       identity.card_print_id::text,
       identity.identity_domain,
       identity.set_code_identity,
-      identity.printed_number
+      identity.printed_number,
+      identity.source_name_raw,
+      identity.identity_payload
     from public.card_prints cp
     join public.card_print_identity identity
       on identity.card_print_id = cp.id and identity.is_active
@@ -245,6 +247,8 @@ async function loadOfficialEnrichmentTarget(client, officialCard) {
       identity_domain: row.identity_domain,
       set_code_identity: row.set_code_identity,
       printed_number: row.printed_number,
+      source_name_raw: row.source_name_raw,
+      identity_payload: row.identity_payload,
     },
   };
 }

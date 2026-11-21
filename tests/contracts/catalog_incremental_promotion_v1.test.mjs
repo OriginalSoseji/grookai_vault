@@ -63,16 +63,39 @@ test("official Japanese evidence enrichment targets an existing identity only", 
       identity_domain: "pokemon_jpn",
       set_code_identity: "jpn-MP",
       printed_number: "133",
+      source_name_raw: "ピカチュウ",
     },
     officialCard: {
       card_id: "50301",
       printed_name: "ピカチュウ",
+      card_number_raw: "133",
+      source_set_code: "MP",
       source_url: "https://www.pokemon-card.com/card-search/details.php/card/50301/regu/all",
     },
   });
   assert.equal(row.card_print_id, "10000000-0000-0000-0000-000000000001");
   assert.equal(row.source_key, "official_jp_cards");
   assert.equal(row.evidence_payload.source_external_id, "50301");
+});
+
+test("official evidence cannot attach by coordinate to a conflicting Japanese identity", () => {
+  const input = {
+    cardPrint: { id: 'parent', name: 'Eldegoss' },
+    identity: { id: 'identity', card_print_id: 'parent', identity_domain: 'pokemon_jpn', set_code_identity: 'jpn-si', printed_number: '040', source_name_raw: 'ワタシラガ', identity_payload: { card_name_ja_candidates: ['ワタシラガ'] } },
+    officialCard: { card_id: '40530', printed_name: 'ワタシラガ', source_set_code: 'SI', card_number_raw: '040', source_url: 'https://www.pokemon-card.com/card-search/details.php/card/40530/regu/all' },
+  };
+  assert.equal(buildJapaneseOfficialEvidenceEnrichmentV1(input).card_print_id, 'parent');
+  for (const mutate of [
+    (x) => { x.identity.source_name_raw = 'カジリガメ'; },
+    (x) => { x.identity.identity_payload.card_name_ja_candidates = ['カジリガメ']; },
+    (x) => { x.officialCard.card_number_raw = '039'; },
+    (x) => { x.officialCard.source_set_code = 'S1'; },
+    (x) => { x.identity.identity_domain = 'pokemon_en'; },
+    (x) => { x.identity.source_name_raw = null; },
+  ]) {
+    const bad = structuredClone(input); mutate(bad);
+    assert.throws(() => buildJapaneseOfficialEvidenceEnrichmentV1(bad), /conflicts with canonical Japanese identity/);
+  }
 });
 
 test("promotion worker decodes production image_res as jsonb", () => {

@@ -16,8 +16,10 @@ import {
   classifyCatalogSourceTransportFailureV1,
   classifyPokemonDatabaseSetScopesV1,
   isOptionalCatalogSourceFallbackV1,
+  assertJapaneseFullChecklistAgreementV1,
   JAPANESE_CARD_COVERAGE_STATUSES,
   mapPoolSettledV1,
+  projectOfficialJapaneseProductCardV1,
   normalizeCatalogText,
   reconcileJapaneseOfficialCardCoverage,
   reconcileCatalogSets,
@@ -56,6 +58,8 @@ import { mergeEnglishPokemonFoldedSubsetOwnersV1 } from
   "../../backend/catalog/english_pokemon_master_index_ownership_v1.mjs";
 import { mergeJapaneseMasterIndexIncrementalOverlayV1 } from
   "../../backend/catalog/japanese_pokemon_master_index_incremental_v1.mjs";
+import { collectOfficialJapaneseIdentitySnapshotsV1 } from
+  "../../backend/catalog/japanese_official_identity_evidence_v1.mjs";
 import {
   buildPokemonLanguageCandidateIndexReconciliationV1,
   POKEMON_LANGUAGE_MASTER_INDEX_VERSION,
@@ -830,6 +834,7 @@ async function fetchOfficialJapaneseProductCards(productId, sourceSnapshots) {
 async function discoverJapaneseProducts(sourceSnapshots, options, japaneseCandidateSnapshot) {
   const threshold = recentDate(options.asOf, options.recentDays);
   const sourceSets = [];
+  const officialDetailCache = new Map();
   for (const productType of ["expansion", "construction", "others"]) {
     const snapshot = await fetchSource(officialJapaneseProductUrl(productType, 1), {
       responseType: "json",
@@ -842,14 +847,17 @@ async function discoverJapaneseProducts(sourceSnapshots, options, japaneseCandid
       if (!productId || (released && released < threshold)) continue;
       const cardList = await fetchOfficialJapaneseProductCards(productId, sourceSnapshots);
       let sourceSetCode = null;
+      let sourcePrintedTotal = null;
       if (cardList.cards[0]?.card_id) {
         const detailUrl = `https://www.pokemon-card.com/card-search/details.php/card/${cardList.cards[0].card_id}/regu/all`;
         const detailSnapshot = await fetchSource(detailUrl, { delayMs: 100 });
         sourceSnapshots.push(sourceMetadata(detailSnapshot));
-        sourceSetCode = parseOfficialJapaneseCardDetail(
+        const firstOfficialCard = parseOfficialJapaneseCardDetail(
           detailSnapshot.body,
           cardList.cards[0].card_id,
-        ).source_set_code;
+        );
+        sourceSetCode = firstOfficialCard.source_set_code;
+        sourcePrintedTotal = firstOfficialCard.card_number_denominator;
       }
       let checklist = null;
       let fullChecklist = null;
@@ -927,7 +935,7 @@ async function discoverJapaneseProducts(sourceSnapshots, options, japaneseCandid
               fullChecklist = parseBulbapediaJapaneseCardList(articleSnapshot.body, {
                 source_container_id: `${articleName}_(TCG)`,
                 source_container_url: articleUrl,
-                source_expected_card_count: checklist.set.card_count,
+                source_expected_card_count: sourcePrintedTotal,
                 source_native_name: checklist.set.name,
                 source_native_japanese_name: clean(product.productTitle),
                 source_native_code: sourceSetCode,
@@ -980,16 +988,26 @@ async function discoverJapaneseProducts(sourceSnapshots, options, japaneseCandid
       }
       const baseChecklistCount = checklist?.cards?.length ?? null;
       const tcgdexFullCount = tcgdexSet?.cards?.length ?? null;
+      assertJapaneseFullChecklistAgreementV1(fullChecklist, checklist, tcgdexFullCount, sourceSetCode);
       const bulbapediaFullCount = fullChecklist?.cards?.length ?? null;
-      if (tcgdexFullCount !== null && bulbapediaFullCount !== null &&
-          tcgdexFullCount !== bulbapediaFullCount) {
-        throw new Error(
-          `Japanese set ${sourceSetCode} full-checklist disagreement: ` +
-          `TCGdex=${tcgdexFullCount}, Bulbapedia=${bulbapediaFullCount}`,
-        );
-      }
       const fullChecklistCount = tcgdexFullCount ?? bulbapediaFullCount ??
         officialExpansionFullChecklistCount;
+      // Official detail pages bind printed Japanese names to coordinates. Keep
+      // original bodies in the discovery artifact for replay; failed or capped
+      // lookups leave admission blocked without stopping unrelated discovery.
+      let officialIdentitySnapshots = [];
+      if (fullChecklist && tcgdexSet) {
+        officialIdentitySnapshots = await collectOfficialJapaneseIdentitySnapshotsV1({
+          cards: cardList.cards, cache: officialDetailCache, limit: options.maxDetailFetches,
+          isExpectedFailure: isOptionalCatalogSourceFallbackV1,
+          pool: mapPoolSettledV1, fetchDetail: async (id) => {
+            const url = `https://www.pokemon-card.com/card-search/details.php/card/${id}/regu/all`;
+            const detail = await fetchSource(url, { delayMs: 150 });
+            sourceSnapshots.push(sourceMetadata(detail));
+            return detail;
+          },
+        });
+      }
       sourceSets.push({
         game_code: "pokemon",
         catalog_scope: "pokemon_ja",
@@ -1045,6 +1063,7 @@ async function discoverJapaneseProducts(sourceSnapshots, options, japaneseCandid
             ? `https://api.tcgdex.net/v2/ja/cards/${encodeURIComponent(card.id)}`
             : null,
         })),
+        official_identity_snapshots: officialIdentitySnapshots,
         independent_full_checklist_cards: (fullChecklist?.cards ?? []).map((card) => ({
           source_external_id: clean(card.source_external_id),
           card_number_raw: clean(card.card_number_raw) || null,
@@ -1053,11 +1072,7 @@ async function discoverJapaneseProducts(sourceSnapshots, options, japaneseCandid
           rarity: clean(card.rarity) || null,
           source_url: clean(card.source_url) || null,
         })),
-        official_product_cards: cardList.cards.map((card) => ({
-          source_external_id: clean(card.card_id),
-          printed_name_ja: clean(card.card_name) || null,
-          image_url: clean(card.image_url) || null,
-        })),
+        official_product_cards: cardList.cards.map(projectOfficialJapaneseProductCardV1),
         numbered_base_cards: (checklist?.cards ?? []).map((card) => ({
           card_number_raw: card.card_number_raw,
           image_url: card.image_url ?? null,

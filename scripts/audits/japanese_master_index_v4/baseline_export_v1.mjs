@@ -267,6 +267,7 @@ export async function exportBaseline({
   return withReadOnlyClient({
     connectionString,
     environmentLabel,
+    consistentSnapshot: true,
   }, async (db, guard) => {
     const schemaRows = (await db.query(`
       select

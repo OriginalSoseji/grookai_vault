@@ -22,6 +22,11 @@ import {
 import {
   validateJapaneseCardAssertion,
 } from './card_assertion_contract_v1.mjs';
+import {
+  assertPublishedIdentityPreservationV1,
+  assertPublishedPrintingPreservationV1,
+  loadPublishedRowsV1,
+} from './final_admission_v1.mjs';
 
 export const CANDIDATE_UNION_VERSION =
   'JPN-MASTER-INDEX-CANDIDATE-UNION-V1';
@@ -97,6 +102,75 @@ const BASELINE_DATASET_KEYS = Object.freeze([
   'english_family_species_link_rows_v1',
 ]);
 
+export class PublishedCandidateKeyLossError extends Error {}
+
+// Candidate regeneration must preserve every already-published card and
+// printing key before overwriting the canonical candidate artifacts. A
+// separate output root remains available for read-only reconciliation work.
+export function assertPublishedCandidateKeysPreservedV1(publishedCards, publishedPrintings, candidateCards, candidatePrintings) {
+  assertPublishedIdentityPreservationV1(publishedCards, candidateCards.map((row) => ({ jpn_card_identity_key: row.candidate_key })));
+  assertPublishedPrintingPreservationV1(publishedPrintings, candidatePrintings.map((row) => ({ printing_fact_key: row.printing_candidate_key })));
+  const byKey = new Map(candidatePrintings.map((row) => [row.printing_candidate_key, row]));
+  for (const printing of publishedPrintings) {
+    const previousParent = String(printing.parent_jpn_card_identity_key ?? '').trim();
+    const nextParent = String(byKey.get(printing.printing_fact_key)?.identity_candidate_key ?? '').trim();
+    if (!previousParent || !nextParent) throw new Error('Published printing preservation: missing parent identity');
+    if (previousParent !== nextParent) throw new Error('Published printing preservation: prior printing ownership would be changed; reconcile in a separate reviewed repair');
+  }
+}
+
+export async function assertCanonicalCandidateOutputPreserved(outputRoot, result) {
+  const resolveExisting = async (value) => fs.realpath(value).catch((error) => {
+    if (error.code === 'ENOENT') return path.resolve(value);
+    throw error;
+  });
+  const [canonical, target] = await Promise.all([resolveExisting(DEFAULT_OUTPUT_ROOT), resolveExisting(outputRoot)]);
+  const same = process.platform === 'win32' ? canonical.toLowerCase() === target.toLowerCase() : canonical === target;
+  if (!same) return;
+  const [publishedCards, publishedPrintings] = await Promise.all([
+    loadPublishedRowsV1('jpn_master_admissible_cards_v1.json', 'master_admissible_card_rows_v1', 'JPN-MASTER-ADMISSIBLE-CARD-ROWS-SHARD-V1-DESCRIPTOR'),
+    loadPublishedRowsV1('jpn_master_admissible_printings_v1.json', 'master_admissible_printing_rows_v1', 'JPN-MASTER-ADMISSIBLE-PRINTING-ROWS-SHARD-V1-DESCRIPTOR'),
+  ]);
+  try {
+    assertPublishedCandidateKeysPreservedV1(publishedCards, publishedPrintings, result.identityCandidates, result.printingCandidates);
+  } catch (error) {
+    if (/^Published (jpn_card_identity_key|printing_fact_key) preservation: \d+ prior (identities|printings) would be removed;/.test(String(error.message))
+      || error.message === 'Published printing preservation: prior printing ownership would be changed; reconcile in a separate reviewed repair') {
+      throw new PublishedCandidateKeyLossError(error.message);
+    }
+    throw error;
+  }
+}
+
+export async function selectCandidateUnionOutputV1(outputRoot, shadowRoot, result) {
+  try {
+    await assertCanonicalCandidateOutputPreserved(outputRoot, result);
+    return { outputRoot, preservationDeferred: false, preservationReason: null };
+  } catch (error) {
+    if (!(error instanceof PublishedCandidateKeyLossError) || !shadowRoot) throw error;
+    const repoRoot = await fs.realpath(process.cwd());
+    const target = path.resolve(shadowRoot);
+    let existing = target;
+    const suffix = [];
+    while (true) {
+      try { existing = await fs.realpath(existing); break; }
+      catch (cause) { if (cause.code !== 'ENOENT') throw cause; const parent = path.dirname(existing); if (parent === existing) throw cause; suffix.unshift(path.basename(existing)); existing = parent; }
+    }
+    const relative = path.relative(repoRoot, target);
+    const realRelative = path.relative(repoRoot, existing);
+    if (!relative || relative.startsWith('..') || path.isAbsolute(relative)
+      || realRelative.startsWith('..') || path.isAbsolute(realRelative)) throw new Error('Candidate shadow output must remain inside the repository');
+    const canonical = await fs.realpath(DEFAULT_OUTPUT_ROOT);
+    const targetReal = path.resolve(existing, ...suffix);
+    const contains = (parent, child) => { const relativePath = path.relative(parent, child); return !relativePath || (!relativePath.startsWith('..') && !path.isAbsolute(relativePath)); };
+    if (contains(canonical, targetReal) || contains(targetReal, canonical)) throw new Error('Candidate shadow output must not overlap the canonical index');
+    const designated = path.join(repoRoot, 'docs', 'audits', 'japanese_master_index_v4', 'continuous_verification', 'candidate_shadow');
+    const normalize = (value) => process.platform === 'win32' ? value.toLowerCase() : value;
+    if (normalize(targetReal) !== normalize(designated)) throw new Error('Candidate shadow output must use the designated review directory');
+    return { outputRoot: shadowRoot, preservationDeferred: true, preservationReason: error.message };
+  }
+}
+
 function parseArgs(argv) {
   const options = {
     baselineManifest: DEFAULT_BASELINE_MANIFEST,
@@ -108,12 +182,15 @@ function parseArgs(argv) {
     targetedQueue: DEFAULT_TARGETED_QUEUE,
     includeTargetedSources: false,
     allowIncompleteSources: false,
+    preservationShadowRoot: null,
     generatedAt: null,
   };
 
   for (const arg of argv) {
     if (arg === '--allow-incomplete-sources') {
       options.allowIncompleteSources = true;
+    } else if (arg.startsWith('--preservation-shadow-root=')) {
+      options.preservationShadowRoot = arg.slice('--preservation-shadow-root='.length);
     } else if (arg.startsWith('--baseline-manifest=')) {
       options.baselineManifest = arg.slice('--baseline-manifest='.length);
     } else if (arg.startsWith('--set-registry=')) {
@@ -370,6 +447,8 @@ export async function runCandidateUnion(options) {
     aliases: aliasArtifact.artifact.content.aliases,
     sourceAssertions: sources,
   });
+  const selectedOutput = await selectCandidateUnionOutputV1(options.outputRoot, options.preservationShadowRoot, result);
+  const outputRoot = selectedOutput.outputRoot;
 
   const retrieval = {
     access_mode: 'local_verified_artifacts_only',
@@ -422,7 +501,7 @@ export async function runCandidateUnion(options) {
   const datasets = [];
   for (const [datasetKey, packageId, rows] of datasetSpecs) {
     datasets.push(await writeShardedRows({
-      outputRoot: options.outputRoot,
+      outputRoot,
       datasetKey,
       packageId,
       rows,
@@ -470,6 +549,8 @@ export async function runCandidateUnion(options) {
     resolution_version: CANDIDATE_RESOLUTION_VERSION,
     artifact_rows_version: ARTIFACT_ROWS_VERSION,
     status,
+    preservation_deferred: selectedOutput.preservationDeferred,
+    preservation_reason: selectedOutput.preservationReason,
     targeted_sources_included: options.includeTargetedSources,
     source_statuses: sourceStatuses,
     incomplete_sources: incomplete,
@@ -503,7 +584,7 @@ export async function runCandidateUnion(options) {
     content: manifestContent,
   });
   const manifestPath = path.join(
-    options.outputRoot,
+    outputRoot,
     'candidate_union_manifest_v1.json',
   );
   const manifestRecord = await writeJsonArtifact(
@@ -519,7 +600,7 @@ export async function runCandidateUnion(options) {
     datasets,
   });
   const markdownPath = path.join(
-    options.outputRoot,
+    outputRoot,
     'candidate_union_summary_v1.md',
   );
   await fs.mkdir(path.dirname(markdownPath), { recursive: true });
@@ -529,6 +610,8 @@ export async function runCandidateUnion(options) {
     manifest_path: manifestRecord.path,
     summary_path: markdownPath.replaceAll('\\', '/'),
     status: manifestContent.status,
+    preservation_deferred: selectedOutput.preservationDeferred,
+    preservation_reason: selectedOutput.preservationReason,
     summary: result.summary,
     package_fingerprint_sha256:
       manifestArtifact.content_fingerprint_sha256,
