@@ -25,6 +25,10 @@ Purpose: coverage-accountable inventory of canon-affecting and ownership-affecti
 
 | path_name | source_files | canon_affecting | ownership_affecting | public_trust_affecting | runtime_status | transaction_mode | post_write_proof | risk_level | next_action |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `catalog_jpn_dp4_artist12_v1` | `backend/catalog/jpn_dp4_artist12_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | high | Twelve exact official artist-only fills applied with retained sources, rollback and protected-state proofs. |
+| `catalog_jpn_dp4_unown6_v1` | `backend/catalog/jpn_dp4_unown6_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | high | Six exact Unown form identities repaired with retained sources, rollback and protected-state proofs. |
+| `catalog_jpn_dp4_porygon2_v1` | `backend/catalog/jpn_dp4_porygon2_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | high | Two exact Porygon identities repaired with retained sources, rollback and protected-state proofs. |
+| `catalog_jpn_dp4_artist8_v1` | `backend/catalog/jpn_dp4_artist8_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | high | Eight official artist-only fills applied after subject repairs with retained sources, rollback and protected-state proofs. |
 | `external_discovery_to_warehouse_bridge_v1` | `backend/warehouse/external_discovery_to_warehouse_bridge_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | medium | Keep on the shared executor boundary; do not allow ad hoc RAW candidate writes back in. |
 | `classification_apply_write_plan_v1` | `backend/warehouse/classification_worker_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | medium | Keep candidate locking and evidence freshness checks inside the executor-backed boundary. |
 | `classification_apply_reclassification_result_v1` | `backend/warehouse/classification_worker_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | medium | Keep reclassification update + event append inside the executor-backed boundary. |

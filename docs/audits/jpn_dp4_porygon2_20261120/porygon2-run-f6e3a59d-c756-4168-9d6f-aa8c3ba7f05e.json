@@ -1,0 +1,26 @@
+{
+  "version": "JPN_DP4_PORYGON2_V1",
+  "run_id": "f6e3a59d-c756-4168-9d6f-aa8c3ba7f05e",
+  "mode": "verify",
+  "package_fingerprint": "885045aff12e38dd4fb24a6a2511513dfc13a23a5bd61a58bbfa09977aa65093",
+  "writer_fingerprint": "afc5697faa3a00f16a113c8469f0a4257a7500430a5cfd162718616137693e7f",
+  "started_at": "2026-11-20T10:20:33.793Z",
+  "status": "verified_already_applied",
+  "stages": [
+    {
+      "name": "source_and_ownership_verified",
+      "at": "2026-11-20T10:20:47.571Z"
+    },
+    {
+      "name": "verified_already_applied",
+      "at": "2026-11-20T10:20:48.051Z"
+    }
+  ],
+  "sanity": {
+    "parents": 173837,
+    "sets": 3420,
+    "traits": 47409
+  },
+  "receipt_id": "177103",
+  "finished_at": "2026-11-20T10:20:48.051Z"
+}

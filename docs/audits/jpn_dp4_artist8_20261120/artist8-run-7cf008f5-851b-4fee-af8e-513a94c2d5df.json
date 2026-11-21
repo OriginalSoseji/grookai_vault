@@ -1,0 +1,123 @@
+{
+  "version": "JPN_DP4_ARTIST8_V1",
+  "run_id": "7cf008f5-851b-4fee-af8e-513a94c2d5df",
+  "mode": "inspect",
+  "chunk": 0,
+  "package_fingerprint": "e2a8bdce696f16cfdd8fe0f95be95441e30f534955e83a0fae4294f00c53ac71",
+  "writer_fingerprint": "49f3852eeb0e98cfccacdbce04d3f15b74fe087a3eb43d34cad9e81b4a8e03be",
+  "started_at": "2026-11-20T10:36:38.878Z",
+  "status": "preflight_passed",
+  "stages": [
+    {
+      "name": "source_and_ownership_verified",
+      "at": "2026-11-20T10:37:06.795Z"
+    },
+    {
+      "name": "preflight_passed",
+      "at": "2026-11-20T10:37:09.577Z"
+    }
+  ],
+  "sanity": {
+    "parents": 173837,
+    "sets": 3420,
+    "traits": 47409
+  },
+  "protected_before": {
+    "parents_except_artist": {
+      "rows": 8,
+      "digest": "3e71e09b67a7ce055cc641edea3ec5c8"
+    },
+    "card_printings": {
+      "rows": 8,
+      "versions1": "1513430600769324647",
+      "versions2": "-2995820952573195736"
+    },
+    "external_mappings": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "external_mapping_aliases": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "card_print_species": {
+      "rows": 10,
+      "versions1": "-7108930063348114840",
+      "versions2": "8573037569848877885"
+    },
+    "card_print_cameos": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "card_print_traits": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "card_print_image_faces": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "card_print_identity_source_evidence": {
+      "rows": 16,
+      "versions1": "6934936445920823281",
+      "versions2": "3602409339746803028"
+    },
+    "card_print_family_review_queue": {
+      "rows": 8,
+      "versions1": "2196559172349228339",
+      "versions2": "-692598954198734881"
+    },
+    "vault_item_instances": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "vault_items": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "card_print_price_curves": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "price_observations": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "market_prices": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    },
+    "sets": {
+      "rows": 1,
+      "digest": "8e98c9ab53189d050ebf3f2c12dc6bab"
+    },
+    "species": {
+      "rows": 5,
+      "digest": "87ead46362ea214335fa0be4f3b2a730"
+    },
+    "current_publication": {
+      "rows": 1,
+      "digest": "784d29d02aa0dff49fb6125dec6b8e4a"
+    },
+    "publication": {
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "qualification": {
+      "rows": 0,
+      "versions1": "0",
+      "versions2": "0"
+    }
+  },
+  "finished_at": "2026-11-20T10:37:09.577Z"
+}

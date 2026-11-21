@@ -1,0 +1,20 @@
+{
+  "version": "JPN_DP4_UNOWN6_V1",
+  "run_id": "d91a11f5-b467-4c5f-9372-abd4b15f73b7",
+  "mode": "inspect",
+  "package_fingerprint": "c0c1edd6508ffd14c415cb79232b4357b31290f988e3e5c7a6aaf028e7824d6a",
+  "writer_fingerprint": "87fcbec1e93f83ac40b53ef05985c94aa6d581fdede184ff148bf67275de0b29",
+  "started_at": "2026-11-20T09:58:42.500Z",
+  "status": "failed_rolled_back",
+  "stages": [],
+  "sanity": {
+    "parents": 173837,
+    "sets": 3420,
+    "traits": 47409
+  },
+  "error": {
+    "code": "UNOWN6_FAILED",
+    "message": "fetch failed"
+  },
+  "finished_at": "2026-11-20T09:58:50.127Z"
+}
