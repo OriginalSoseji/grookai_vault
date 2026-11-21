@@ -13,6 +13,12 @@ If a contract is missing from this index, it is not authoritative.
 
 | Contract | Status | Description |
 |--------|--------|-------------|
+| BEST_OF_GAME_DISCOVERY_READ_REPAIR_V5 | Active bounded513-to516 performance release | docs/contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V5.md — Qualified actual PL/pgSQL catalog plan fence; three immutable forward migrations, full-output/API and exact data preservation gates |
+| BEST_OF_GAME_DISCOVERY_READ_REPAIR_V6 | Active | Current-main integration successor to V5; same immutable513-to516 SQL and original conservation baselines, separately sealed source and normal checks, exact owner-bound operational exceptions only |
+| BEST_OF_GAME_DISCOVERY_READ_REPAIR_V4 | Superseded actual-function qualification; retained unchanged | docs/contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V4.md — Scalar preparation and catalog plan fence; actual result-column ambiguity remains failed with all source/proof retained |
+| BEST_OF_GAME_DISCOVERY_READ_REPAIR_V3 | Superseded scalar-only qualification; retained unchanged | docs/contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V3.md — Forward scalar preparation; realistic catalog timeout remains failed and source/labs stay retained |
+| BEST_OF_GAME_DISCOVERY_READ_REPAIR_V2 | Active bounded512-to513 implementation | docs/contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V2.md — Same immutable nine-alias SQL after independently applied pricing512; separate strict baseline/release gates and new retained qualification labs |
+| BEST_OF_GAME_DISCOVERY_READ_REPAIR_V1 | Superseded deployment qualification; retained unchanged | docs/contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V1.md — Original511-to512 nine-alias qualification and immutable SQL; preserve all source, failed proof and laboratories |
 | BEST_OF_GAME_PRINTING_EXECUTION_V1 | Active bounded implementation; exact production approval required | docs/contracts/BEST_OF_GAME_PRINTING_EXECUTION_V1.md — Separate BP8/9 insert-only execution,95-FK preservation, verified TLS and exact authority/rollback gates; no authority granted |
 | BEST_OF_GAME_PRINTING_REHEARSAL_V1 | Active implementation; local-only, production execution unavailable | docs/contracts/BEST_OF_GAME_PRINTING_REHEARSAL_V1.md — Exact BP8/9 additive rehearsal, canonical511 read-only audit and retained family/reference proofs |
 | SHROUDED_ALIAS_DISCOVERY_READ_REPAIR_V2 | Active | docs/contracts/SHROUDED_ALIAS_DISCOVERY_READ_REPAIR_V2.md — Exact509-to511 discovery projection preserving113 distinct parents and four owned copies, with SELECT-only view grants |

@@ -1,3 +1,59 @@
+# Best of Game current-main release V6 — November20,2026
+
+The V5 source and sealed production packet remain frozen. Continue in
+C:/grookai_best_of_game_release_20261120 under the V6 checkpoint
+(docs/checkpoints/BEST_OF_GAME_DISCOVERY_RELEASE_V6_20261120.md) and V6 contract.
+Only generated dashboard snapshots changed on main; application and immutable
+516-file SQL bytes remain unchanged. The owner approved the exact V8 operational
+exception, but later Square/pricing activity is outside that approval. Preserve
+the original baselines and qualify any additional exception before applying
+the same three pending read migrations. No new production apply or deployment
+closure is claimed. Keep all retained labs and frozen producers. Stamped Reverse
+Holo work follows full duplicate closure and needs separate printing authority.
+
+# Best of Game discovery V2 after pricing512 — November20,2026
+
+Continue the same nine-alias repair in `C:/grookai_best_of_game_discovery_20261120`.
+The independent pricing migration is now canonical512; the old V1 scope below
+is retained qualification. Read [the V2 checkpoint](../checkpoints/BEST_OF_GAME_DISCOVERY_V2_20261120.md)
+and [V2 contract](../contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V2.md).
+The separate `-BestOfGameDiscoveryBaselineV2` audit passed actual canonical512,
+all applied bytes, four schemas/security,22 retained parents,18 children,
+one family copy and all759 existing aliases. New evidence is under
+`C:/grookai_vault_operator_artifacts/best_of_game_discovery_v2_20261120`.
+Use `-BestOfGameDiscoveryReleaseV2` for exact candidate20261120081500 only;
+normal/hosted checks, PrePush and independent production closure remain required.
+Never edit the first locally applied SQL or reset any older populated lab.
+The new isolated project is `bog-discovery-513-20261120`; SDK/dependency images
+are reused. Subsequent stamped printing execution remains a separate authority.
+
+# Best of Game printing closure and discovery V1 — November20,2026
+
+The exact BP8/9 production printing execution is complete; read
+[the closure](../checkpoints/BEST_OF_GAME_PRINTING_PRODUCTION_CLOSURE_20261120.md).
+Actual rollback, commit, independent readback, zero-write replay and anonymous
+acceptance passed before authority expiry. Keep the frozen producer and all
+receipts; its consumed authority cannot be reused for aliases or other sets.
+
+The nine discovery aliases continue in the separate
+`C:/grookai_best_of_game_discovery_20261120` worktree. Its
+`-BestOfGameDiscoveryBaselineV1` audit passed canonical511 after the printing
+commit. See [the current checkpoint](../checkpoints/BEST_OF_GAME_DISCOVERY_20261120.md)
+and [bounded contract](../contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V1.md).
+Both new511-to512 synthetic database upgrades/no-ops,449-table preservation,
+both-role identity/negative checks, full schema/security comparison and public
+SDK acceptance passed. The updated202-call production-size proof passed at
+1,621ms maximum, including the112 unrelated-alias cardinality. Use the separate
+`-BestOfGameDiscoveryReleaseV1` for exact20261120081500 only; normal managed/
+hosted checks, exact PrePush and production acceptance remain open. Protect
+all759 existing production alias rows, including112 Japanese rows. The new
+verification runtime reuses existing SDK/dependency images and volumes; only
+its mutable Git metadata is separate, with earlier objects mounted read-only.
+The511-to512 lab is isolated; preserve all retained labs, both sets,
+22 parents,18 children, four distinct Winner parents, saved copies and global
+Magic Bog/Boggart matching. No production discovery change is yet qualified.
+After this family, the owner requested all stamped Reverse Holos, including
+Holon Phantoms and Delta Species. Each finish needs exact physical evidence.
 # Cross-TCG Market publication V2 — November20,2026
 
 Use `C:/grookai_cross_tcg_market_v2_20261119` and the
