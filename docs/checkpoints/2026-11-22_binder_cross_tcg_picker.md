@@ -154,6 +154,22 @@ community Binder flows remain unverified on a second real account.
 ## Related Artifacts
 
 - `lib/screens/binders/binder_custom_checklist_screen.dart`
+
+## Samsung Build 611 Follow-up
+
+- Signed Android workflow `45081273445` passed analysis, the complete Flutter
+  suite, Windows renderer goldens, release signing verification, and artifact
+  upload for source commit `4ff875932f890efc51360cae9117d0506e80a3dd`.
+- The release manifest and local APK signature both identify package
+  `com.grookai.vault`, version `1.0.0`, build `611`, and the approved
+  production signer `a1290a32711ab390f798c0898a4d0d78c97f20b2e12adb55bb2260bff9036119`.
+- `adb install -r` succeeded. Package readback reports version code 611 and
+  the original first-install timestamp, `2026-10-13 14:57:14`; app data was
+  retained.
+- The PR checks all pass on this source commit. PR #1016 remains open; main is
+  still locked. A final on-device Contents-tab readback is pending because the
+  Samsung went to sleep before relaunch. The owner was asked to unlock it; no
+  PIN was used from chat.
 - `test/binders/binder_refinement_test.dart`
 - `test/binders/binder_checklist_find_test.dart`
 - `test/binders/binder_editor_navigation_test.dart`
