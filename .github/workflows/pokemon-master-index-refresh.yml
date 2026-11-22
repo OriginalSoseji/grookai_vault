@@ -118,15 +118,21 @@ jobs:
               --as-of="$(date -u +%F)" \
               --discovery-dir="$DISCOVERY_DIR" \
               --out-dir="$JAPANESE_REPORT_DIR" 2>&1 | tee "$JAPANESE_REPORT_DIR/refresh_plan.log"
+            echo "JAPANESE_DISCOVERY_HEALTH=healthy" >> "$GITHUB_ENV"
           else
             if grep -q 'Error: \[SOURCE_UNAVAILABLE\]' "$DISCOVERY_DIR/discovery.log"; then
               printf '{"changed":false,"status":"source_discovery_unavailable","canonical_writes":false,"database_writes":false,"storage_writes":false}\n' \
                 > "$JAPANESE_REPORT_DIR/plan.json"
               printf '{"status":"source_discovery_unavailable","preserved_prior_master_index":true}\n' \
                 > "$JAPANESE_REPORT_DIR/source_health.json"
+              echo "JAPANESE_DISCOVERY_HEALTH=source_discovery_unavailable" >> "$GITHUB_ENV"
             else
-              printf 'Japanese discovery failed an integrity gate; publication is blocked.\n' >&2
-              exit 1
+              printf '{"changed":false,"status":"source_integrity_blocked","preserved_prior_master_index":true,"canonical_authority":false,"canonical_writes":false,"database_writes":false,"storage_writes":false}\n' \
+                > "$JAPANESE_REPORT_DIR/plan.json"
+              printf '{"status":"source_integrity_blocked","preserved_prior_master_index":true,"canonical_authority":false,"downstream_dispatch_allowed":false}\n' \
+                > "$JAPANESE_REPORT_DIR/source_health.json"
+              echo "JAPANESE_DISCOVERY_HEALTH=source_integrity_blocked" >> "$GITHUB_ENV"
+              printf 'Japanese discovery failed an integrity gate; Japanese admission and downstream catalog dispatch remain blocked while unrelated verified Master Index refresh lanes continue.\n' >&2
             fi
           fi
 
@@ -372,7 +378,7 @@ jobs:
             "$PR_NUMBER" "$MERGED_SHA" "$GITHUB_RUN_ID" > "$REPORT_DIR/automatic_merge_readback.json"
 
       - name: Dispatch fresh read-only discovery and shadow reconciliation
-        if: steps.merge.outputs.merged_sha != ''
+        if: steps.merge.outputs.merged_sha != '' && env.JAPANESE_DISCOVERY_HEALTH != 'source_integrity_blocked'
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash

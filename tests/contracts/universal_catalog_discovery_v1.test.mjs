@@ -7,6 +7,7 @@ import { fileURLToPath } from "node:url";
 import {
   buildCanonicalPromotionCandidatesV1,
   buildCatalogSearchAliases,
+  buildJapaneseChecklistDisagreementEvidenceV1,
   buildPokemonLanguageMasterIndexReconciliationV1,
   buildPokemonMasterIndexUpdateCandidatesV1,
   canUseCompleteOfficialJapaneseExpansionChecklistV1,
@@ -215,6 +216,53 @@ test("Japanese discovery uses complete official expansion evidence only with an 
         : card),
     },
   }), false);
+});
+
+test("Japanese checklist disagreements expose bounded diagnostics without granting authority", () => {
+  const evidence = buildJapaneseChecklistDisagreementEvidenceV1({
+    sourceSetCode: "M6a",
+    tcgdexChecklist: {
+      cardCount: { total: 176 },
+      cards: Array.from({ length: 176 }, (_, index) => ({ id: index + 1 })),
+    },
+    bulbapediaChecklist: {
+      set: { expected_card_count: 176 },
+      cards: [{ id: 1 }, { id: 2 }],
+      diagnostics: {
+        numbering_mode: "expected_denominator",
+        candidate_numbered_row_count: 178,
+        rejected_other_denominator_count: 176,
+        matching_row_count: 2,
+        card_list_table_count: 4,
+        modern_numbered_row_fallback_used: false,
+        unnumbered_candidate_table_counts: Array.from(
+          { length: 30 },
+          (_, index) => index + 1,
+        ),
+        selected_unnumbered_table_count: 0,
+        selected_unnumbered_table_counts: [],
+      },
+    },
+  });
+
+  assert.equal(evidence.code, "JAPANESE_FULL_CHECKLIST_DISAGREEMENT");
+  assert.equal(evidence.fatal, true);
+  assert.equal(evidence.canonical_authority, false);
+  assert.equal(evidence.source_set_code, "M6a");
+  assert.deepEqual(evidence.tcgdex, {
+    declared_total: 176,
+    parsed_card_count: 176,
+  });
+  assert.equal(evidence.bulbapedia.expected_card_count, 176);
+  assert.equal(evidence.bulbapedia.parsed_card_count, 2);
+  assert.equal(
+    evidence.bulbapedia.diagnostics.rejected_other_denominator_count,
+    176,
+  );
+  assert.equal(
+    evidence.bulbapedia.diagnostics.unnumbered_candidate_table_counts.length,
+    25,
+  );
 });
 
 test("HTTP access denials are outages, not malformed checklists or missing sets", async () => {
@@ -992,6 +1040,8 @@ test("discovery worker is structurally read-only and uses official adapters", ()
   assert.match(worker, /canUseCompleteOfficialJapaneseExpansionChecklistV1/);
   assert.match(worker, /complete_official_expansion_with_limitless_numbered_checklist/);
   assert.match(worker, /secondary_source_observations: \[independentChecklistFailure\]/);
+  assert.match(worker, /buildJapaneseChecklistDisagreementEvidenceV1/);
+  assert.match(worker, /evidence=\$\{stableJson\(disagreementEvidence\)\}/);
   assert.doesNotMatch(worker, /HTTP 404\|fetch failed\|timeout/);
   assert.match(worker, /english_master_index_set_alias_normalization_v1\.json/);
   assert.match(worker, /setOwnerRemaps/);

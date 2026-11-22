@@ -30,7 +30,20 @@ The initial unbounded assignment lookup timed out read-only; its failure remains
 retained. The successful audit uses the existing composite source-family/table/
 row index. No production write was performed by these audits.
 
-Release is pending complete ordinary commit/push hooks, hosted checks, a frozen
-merged runtime, fresh full shadow, guarded activation, current source/RPC and
-condition readback, and refresh verification. The Samsung screen check remains
-unverified because Computer Use reports another active request.
+The first ordinary commit and push passed all normal hooks:8,904 contract tests
+passed with11 existing skips, and2,095 Flutter tests passed with2 existing skips;
+backend, web typecheck/lint/build and Flutter analysis also passed. PR1011 now
+preserves concurrent main9f4c9968, including the eBay entry repair, Japanese
+integrity isolation/diagnostics and updated web dependency lock. Its combined
+source requires complete normal qualification before runtime freeze.
+
+Samsung build607 directly displayed Market4.67 and condition references NM4.67
+and LP10.99 for exact product602806/Normal. The unsaved Add-to-Vault form cleared
+its selection after cancel/reopen; both forms were closed without saving. Private
+screen receipts remain outside Git. One Piece name search timed out and
+OP01-003 returned no match, so the supported exact native card link was used.
+This proves current pricing display and condition switching, not search repair.
+
+Release is pending combined-source normal hooks, hosted checks, a frozen merged
+runtime, fresh full shadow, guarded activation, current source/RPC and condition
+readback, and refresh verification. The observed search failure remains separate.
