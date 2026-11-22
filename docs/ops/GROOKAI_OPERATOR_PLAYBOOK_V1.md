@@ -9,6 +9,38 @@ The four-record `catalog_jpn_dp4_subject_repair_v1` transaction passed the same-
 # DP4 English identity-only batches — November 19, 2026
 
 `backend/catalog/jpn_dp4_identity80_v1.mjs` is the guarded writer used for eight exact ten-record identity-only batches, all applied and independently verified. Use `--mode inspect --chunk N` and `--mode verify --chunk N` for read-only checks. Mutating modes require the existing owner execution marker, fresh source and ownership verification, the pinned plan and a same-writer rollback proof for that exact chunk. Raw source bytes and prior identity payloads are staged before changes, and parent, species-link, identity-hash, ownership, image and pricing state is protected. See `docs/audits/jpn_dp4_identity80_20261119/README.md`. An unknown commit outcome requires independent readback before retry; never infer release readiness from a prepared writer.
+# Cross-TCG Market publication V2 — November20,2026
+
+Use `C:/grookai_cross_tcg_market_v2_20261119` and the
+[pricing checkpoint](../checkpoints/pricing/CROSS_TCG_MARKET_PUBLICATION_20261120.md).
+The [V2 contract](../contracts/TCGPLAYER_CROSS_TCG_MARKET_PUBLICATION_V2.md)
+adds existing governed One Piece and exact Japanese Pokémon Market authority;
+English Pokémon/MTG retain their V1 evaluator and V7 projection. Do not infer
+finishes, fabricate quotes, convert conditions by percentage or replay old intake.
+Existing Vault calculations, asking prices, identities and Binder work are retained.
+The active warehouse, scheduler, watchdog, publisher and production guard use
+verified database TLS with the existing CA secret. Only literal loopback has a
+local transport exception; URL SSL parameters cannot disable verification.
+
+The separate `-CrossTcgMarketReleaseV2` strict gate permits only canonical511→512
+and migration20261120063000, revision5, SHA256
+`fb585822adb63ef5f31bf9078ffa869fc8b1f6d1b707075a5c710975b7d6608f`.
+Fresh CLI replay, populated upgrade/no-op, four-schema/security comparison,
+all426 protected-table fingerprints,13 negative lineage checks, private-role
+permissions, old-cohort equivalence and actual-size local performance passed.
+Retain the isolated `fresh-512-r5` / `upgrade-511-r4` databases, sources and
+proofs under `C:/grookai_vault_operator_artifacts/cross_tcg_market_pricing_20261119`.
+Older failed and superseded proofs remain preserved; no Docker reset/prune is allowed.
+
+Freeze the exact committed source only after normal commit/push and hosted checks.
+Require strict PrePush, official CLI dry-run/apply and independent schema/data
+readback. Let older publication writers finish or safely drain them before the
+first V2 activation. Dispatch the full unlimited-source shadow, verify exact
+worker V1_24 / policy V2 and both new cohorts, then guarded production publication. Read
+back the atomic current pointer, real app prices and scheduled refresh health.
+Local qualification or imported warehouse rows do not establish live Market prices.
+Condition references remain separate, read-only, medium confidence and USD-assumed.
+
 # Best of Game bounded execution preparation — November19,2026
 
 Read [the execution preparation checkpoint](../checkpoints/BEST_OF_GAME_EXECUTION_PREPARATION_20261119.md)
@@ -4434,8 +4466,14 @@ Operate MTG market pricing only through
 `.github/workflows/mtg-pricing-publication-runner.yml` from an exact merged
 `main` SHA. Production requires a shadow run at that SHA with state
 `shadow_verified`, reconciliation state `reconciled`, policy
-`TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3`, and a source sync reused by the
+`TCGPLAYER_MARKET_PUBLICATION_POLICY_V2`, and a source sync reused by the
 production worker.
+
+Current operations follow the [cross-TCG V2 contract](../contracts/TCGPLAYER_CROSS_TCG_MARKET_PUBLICATION_V2.md)
+and [release checkpoint](../checkpoints/pricing/CROSS_TCG_MARKET_PUBLICATION_20261120.md).
+The V2 full-source shadow, new-cohort bootstrap/coverage checks and exact511→512
+release gate supersede the earlier V1_3 operating requirement. English Pokémon
+and MTG retain their unchanged V1 evaluation rules within the V2 run.
 
 The production guard computes last-known MTG and Pokemon baselines plus the
 currently fresh Pokemon subset through the indexed active publication pointer,
@@ -4452,7 +4490,7 @@ The workflow writes a `preflight_started` artifact before database access and a
 prior counts/findings without a stack trace.
 
 The shadow comparison is an early provenance gate. Production worker
-`TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_6` performs the authoritative second
+`TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_24` performs the authoritative second
 comparison inside the activation transaction using the actual staged
 publication snapshots and the then-current indexed MTG and Pokemon baselines. It must
 complete before `activate_market_price_publication_set_v1` can move the
@@ -5511,3 +5549,40 @@ condition. The normal full hooks, hosted checks and deployed acceptance remain
 required. Preserve private `artifacts/pricing_completion_v3/20261119/` receipts.
 The separate market-publication/schema extension remains gated by a passing
 strict linked-schema audit; its failed shadow replay is not an apply approval.
+
+# Pokémon Full Art search metadata — November 20, 2026
+
+See [the artwork metadata checkpoint](../checkpoints/2026-11-20_pokemon_playables_full_art_metadata_v1.md).
+The source of truth for this search enrichment is the exact-card read model
+`shared/catalog/pokemon_artwork_classification_v1.json`, produced by
+`scripts/catalog/build_pokemon_artwork_classification_v1.mjs --input <audit-report> --output <model>`.
+The report supplies bounded canonical candidates, complete reciprocal mappings,
+set references and retained source receipt files beside the report. Offline
+mode uses a private file store; `--stage-raw --expected-project ycdxbpibncqcchqiihfz`
+rechecks current canonical bindings and retains accepted originals through the
+existing private raw-import/artifact store. It cannot mutate catalog truth or
+competitive membership. Preserve original receipts outside the public repository;
+only sanitized facts belong in the model. Missing labels remain unknown. Future
+updates require normal managed/hosted checks and deployed exact-ID readback.
+Each build persists started and terminal run receipts through the existing
+store, including stage, version and safe error details. Target/configuration or
+persistence failures also retain a local receipt beside the input report.
+An uncertain terminal write requires independent DB readback; do not emit a
+second contradictory terminal status. The checkpoint includes the read-only SQL
+and qualified success, integrity-failure and deterministic replay evidence.
+
+Playable names can disambiguate implicit set aliases from visible names in the
+trusted current ID/GV-ID publication. This avoids a global fuzzy-name RPC when
+the published scope already proves the name, and omits that probe when no set
+alias needs checking. Unknown or stale hints retain authoritative disambiguation;
+no database deadline or search constraint is relaxed. See the
+[bounded name checkpoint](../checkpoints/2026-11-20_pokemon_playables_bounded_name_probe_v1.md).
+
+The catalog Filters panel links to `/explore?playable=1`, retaining comparison
+cards. An explicit playable parameter must select the search consumer rather
+than featured catalog discovery; smart-filter submissions preserve it and Clear
+all removes it. Keep these URL and form semantics alongside typed searches.
+See the [filter-navigation checkpoint](../checkpoints/2026-11-20_pokemon_playables_filter_navigation_v1.md)
+and the real-page Chromium/WebKit regression cases in the search audit suite.
+Verify production page routing together with resolver membership; a successful
+resolver-only query cannot prove that a direct browser link displays playables.

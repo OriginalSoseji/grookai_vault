@@ -359,4 +359,55 @@ void main() {
     expect(publish().onPressed, isNull);
     expect(api.actions, isEmpty);
   });
+
+  testWidgets('explains when a prepared offer cannot be published', (
+    tester,
+  ) async {
+    final api = _Api();
+    final model = EbaySellerController(api: api);
+    addTearDown(model.dispose);
+    model.workspace = {
+      'account': {'publicationEnabled': false},
+    };
+    model.local = const EbaySellerLocalDraft(
+      ownerId: _owner,
+      instanceId: _instance,
+      draftId: _draft,
+      revision: 1,
+      dirty: false,
+      input: {'priceCents': 1234},
+    );
+    model.draft = {
+      'id': _draft,
+      'revision': 1,
+      'reviewHash': 'reviewed-payload',
+      'state': 'prepared',
+      'feeQuote': {'requestedAt': 100000, 'fees': []},
+    };
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: SingleChildScrollView(
+            child: EbaySellerReview(controller: model, nowMillis: 101000),
+          ),
+        ),
+      ),
+    );
+
+    expect(
+      find.textContaining(
+        'Publishing is not enabled for this seller account yet.',
+      ),
+      findsOneWidget,
+    );
+    expect(
+      tester
+          .widget<FilledButton>(
+            find.widgetWithText(FilledButton, 'Publish on eBay'),
+          )
+          .onPressed,
+      isNull,
+    );
+    expect(api.actions, isEmpty);
+  });
 }

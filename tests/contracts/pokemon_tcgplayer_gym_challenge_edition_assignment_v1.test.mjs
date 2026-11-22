@@ -33,7 +33,9 @@ test('Gym Challenge uses an exact separate binding, assignment, and FK lane', ()
   assert.match(migration, /source_subtype in \('1st Edition','Unlimited'\)/);
   assert.match(migration, /'hidden_pending_review','hidden_unsupported'/);
   assert.match(worker, /prepare_tcgplayer_gym_challenge_edition_assignments_v1/);
-  assert.match(worker, /v_tcgplayer_market_qualification_candidates_v7/);
+  assert.match(worker, /v_tcgplayer_market_qualification_candidates_v8/);
+  const crossTcgMigration = fs.readFileSync(new URL('../../supabase/migrations/20261120063000_cross_tcg_market_publication_v2.sql', import.meta.url), 'utf8');
+  assert.match(crossTcgMigration, /from public\.v_tcgplayer_market_qualification_candidates_v7 old/);
 });
 
 test('all installed current-price readers validate the Gym assignment lane', () => {

@@ -154,12 +154,31 @@ export async function isExactCatalogCardName(client: Pick<SupabaseClient, "rpc">
 // this ambiguity check at the caller, so "Chari from Dark" still selects a set.
 export async function isCatalogCardNameQuery(client: Pick<SupabaseClient, "rpc">, query: string, game: Game,
   retain?: (page: import("./completeNamedCardSearch").NamedCardFirstPage) => void) {
-  const nameQuery = getCompleteNameSearchQuery(query);
+  const nameQuery = getCompleteNameSearchQuery(query, game);
   if (!nameQuery) return false;
   const name = await readCatalogCardName(client, nameQuery, game, retain);
   const fragments = words(nameQuery);
   const nameWords = words(name ?? "");
   return fragments.length > 0 && fragments.every((fragment) => nameWords.some((word) => word.includes(fragment)));
+}
+
+// Playable discovery already reads its complete published ID scope. A matching
+// visible name inside that scope is sufficient evidence to preserve a name
+// such as Bloodmoon Ursaluna ex without the broader fuzzy name RPC.
+export async function isPublishedPlayableCardNameQuery(client: Pick<SupabaseClient, "from">, query: string,
+  members: ReadonlyArray<{card_print_id: string; gv_id: string}>) {
+  const fragments = words(getCompleteNameSearchQuery(query, "pokemon"));
+  if (!fragments.some(word => Array.from(word).length >= 3) || !members.length) return false;
+  if (members.length > 20000) throw new Error("Playable name scope exceeds the publication bound");
+  const expected = new Map(members.map(row => [row.card_print_id, row.gv_id]));
+  const ids = [...expected.keys()];
+  for (let offset = 0; offset < ids.length; offset += 200) {
+    const {data, error} = await client.from("card_prints").select("id,gv_id,name").in("id", ids.slice(offset, offset + 200));
+    if (error) throw new Error(error.message);
+    if ((data ?? []).some(row => expected.has(row.id) && expected.get(row.id) === row.gv_id &&
+      fragments.every(fragment => words(row.name ?? "").some(word => word.includes(fragment))))) return true;
+  }
+  return false;
 }
 
 // Request-scoped, caller-visible metadata; never cache one caller's visibility

@@ -1,0 +1,7 @@
+# Bounded playable name verification
+
+Full Art metadata release #995 deployed successfully and all three spellings returned the expected 23 cards. Production name checks then exposed an existing shared anonymous name-RPC timeout: ordinary, SIR and Full Art Bloodmoon Ursaluna queries returned HTTP503 during set verification. Direct anonymous shared-client reads confirmed PostgreSQL57014 for both V5/512 and V4/1 probes. A primary-ID read of all269 published playable names succeeded in524ms and included all five Ursaluna versions.
+
+Playable name disambiguation now first checks visible names inside the trusted current publication, in ID chunks of at most200. IDs and GV-IDs must agree, and every original name fragment must match. A positive result can preserve a name such as Bloodmoon Ursaluna ex without the expensive global RPC. Unknown/stale hints retain the original authoritative check. When no set alias is present, the already complete playable scope needs no global name probe. Explicit sets and ordinary non-playable searches retain their existing behavior.
+
+This changes no schema, database deadlines, retries, canonical data, identities, mappings, pricing, inventory, artwork facts or playable qualification. Current publication remains269 cards, including23 verified Full Arts. All65 focused tests pass; full managed/hosted checks and deployed exact-ID readback remain required for release acceptance.

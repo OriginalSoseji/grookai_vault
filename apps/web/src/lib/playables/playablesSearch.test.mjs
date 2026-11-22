@@ -24,9 +24,10 @@ function load(source, imports = {}) {
   return testModule.exports;
 }
 
-function setup({available = true, state = 'ready', userId = null, owned = [], catalogSets} = {}) {
+function setup({available = true, state = 'ready', userId = null, owned = [], catalogSets, catalogCardName, publishedNames} = {}) {
   const members = Array.from({length: 90}, (_, index) => ({card_print_id: `card-${index}`, gv_id: `GV-PK-TEST-${index}`}));
   const calls = [];
+  const nameProbes = [];
   const snapshot = {state, rows: state === 'ready' ? members : [], valid_until: new Date(Date.now() + 3600000).toISOString()};
   const unrestricted = () => {throw Error('UNRESTRICTED_SEARCH_FORBIDDEN');};
   const imports = {
@@ -34,8 +35,10 @@ function setup({available = true, state = 'ready', userId = null, owned = [], ca
       resolveCatalogSetSearchIntent: catalogSets ? loadTestTypeScript('lib/search/catalogSetSearch.ts').resolveCatalogSetSearchIntent
         : query => ({matchedAlias: null, setCodes: [], remainingQuery: query}),
       removeSetPhrase: loadTestTypeScript('lib/search/catalogSetSearch.ts').removeSetPhrase,
-      isCatalogCardNameQuery: async () => false, isExactCatalogCardName: async () => false},
-    '@/lib/search/completeNamedCardSearch': {supportsCompleteNameSearch: () => false},
+      isCatalogCardNameQuery: catalogCardName ? loadTestTypeScript('lib/search/catalogSetSearch.ts').isCatalogCardNameQuery : async () => false,
+      isPublishedPlayableCardNameQuery: loadTestTypeScript('lib/search/catalogSetSearch.ts').isPublishedPlayableCardNameQuery,
+      isExactCatalogCardName: async () => false},
+    '@/lib/search/completeNamedCardSearch': {supportsCompleteNameSearch: value => Boolean(catalogCardName) && loadTestTypeScript('lib/search/completeNamedCardSearch.ts').supportsCompleteNameSearch(value)},
     '@/lib/search/artistSearch': {isKnownArtistQuery: () => false},
     '@/lib/search/artistSearchPagination': loadTestTypeScript('lib/search/artistSearchPagination.ts'),
     '@/lib/search/structuredCollectorSearchMeta': loadTestTypeScript('lib/search/structuredCollectorSearchMeta.ts'),
@@ -61,14 +64,18 @@ function setup({available = true, state = 'ready', userId = null, owned = [], ca
     '@/lib/publicGameScope': {normalizePublicGameScope: value => value ?? 'pokemon'},
     '@/lib/search/smartVariantSearchPolicy': {classifySmartVariantResolverState: count => count ? 'WEAK_MATCH' : 'NO_MATCH'},
     '@/lib/search/resolveSmartSearchQuery': queryModule,
-    '@/lib/supabase/server': {createServerComponentClient: async () => ({auth: {getUser: async () => ({data: {user: userId ? {id: userId} : null}})}})},
+    '@/lib/supabase/server': {createServerComponentClient: async () => ({
+      from: table => {assert.equal(table, 'card_prints');return {select: () => ({in: (_, ids) => ({data: (publishedNames ?? (catalogCardName ? [{id:'card-0',gv_id:'GV-PK-TEST-0',name:catalogCardName}] : [])).filter(row=>ids.includes(row.id)),error:null})})};},
+      rpc: async (_, args) => {nameProbes.push(args.q);return {data: args.q === catalogCardName ? [{id: 'card-0', name: catalogCardName, gv_id: 'GV-PK-TWM-216'}] : []};},
+      auth: {getUser: async () => ({data: {user: userId ? {id: userId} : null}})},
+    })},
     '@/lib/vault/getOwnedCountsByCardPrintIds': {getOwnedCardPrintIdsForUser: async () => owned,
       getOwnedCountsByCardPrintIds: async () => new Map(owned.map(id => [id, 1]))},
     '@/lib/pricing/getPublicPricingByCardIds': {PublicPricingSortUnavailableError: class extends Error {}},
     '@/lib/playables/getPokemonPlayables': {getPokemonPlayables: async () => available ? snapshot : null},
   };
   const {GET} = load(routeJs, imports);
-  return {calls, members, get: query => GET({nextUrl: new URL(`https://example.test/api/resolver/search?${query}`), headers: new Headers()})};
+  return {calls, members, nameProbes, get: query => GET({nextUrl: new URL(`https://example.test/api/resolver/search?${query}`), headers: new Headers()})};
 }
 
 test('playable words compile into visible typed filters while preserving card names', () => {
@@ -108,7 +115,8 @@ function discoveryMatcher() {
   vm.runInNewContext(compile('../explore/getExploreRows.ts') + '\nmodule.exports.matches = rowMatchesSmartDiscoveryText;', {
     module: compiledModule, exports: compiledModule.exports, Map, Set,
     require: id => id === '@/lib/search/normalizeSearchText' ? loadTestTypeScript('lib/search/normalizeSearchText.ts')
-      : id === '@/lib/search/collectorCardQuery' ? loadTestTypeScript('lib/search/collectorCardQuery.ts') : unknown,
+      : id === '@/lib/search/collectorCardQuery' ? loadTestTypeScript('lib/search/collectorCardQuery.ts')
+        : id === '@/lib/search/catalogArtworkClassification' ? loadTestTypeScript('lib/search/catalogArtworkClassification.ts') : unknown,
   });
   return compiledModule.exports.matches;
 }
@@ -155,6 +163,35 @@ test('full rarity names survive real catalog set inference and repeated set word
   }
 });
 
+test('collector-filtered card names preserve ex while explicit set connectors remain constraints', async () => {
+  const catalogSets = [{id: 'ex-deck', code: 'ex-test', name: 'EX Deck'}];
+  for (const filter of ['SIR', 'IR', 'full-art', 'special illustration rare']) {
+    for (const suffix of ['', ' from EX Deck']) {
+      const f = setup({catalogSets, catalogCardName: 'Bloodmoon Ursaluna ex'});
+      const response = await f.get(`q=${encodeURIComponent(`${filter} playables Bloodmoon Ursaluna ex${suffix}`)}`);
+      assert.equal(response.status, 200, `${filter}${suffix}: ${JSON.stringify(f.nameProbes)}`);
+      assert.equal(f.nameProbes.length, 0, 'published names do not need the broad name RPC');
+      assert.equal(f.calls[0].options.textQuery, `${filter} Bloodmoon Ursaluna ex`, `${filter}${suffix}: ${JSON.stringify(f.nameProbes)}`);
+      assert.equal(response.body.smart_search.queryFilters.some(item => item.kind === 'set'), Boolean(suffix));
+      if (suffix) assert.equal(f.calls[0].options.exactSetCode, 'ex-test');
+    }
+  }
+});
+
+test('untrusted name hints retain global disambiguation while plain playable text needs no global probe', async () => {
+  const config={catalogSets:[{id:'ex-deck',code:'ex-test',name:'EX Deck'}],catalogCardName:'Bloodmoon Ursaluna ex'};
+  const stale=setup({...config,publishedNames:[{id:'card-0',gv_id:'GV-PK-WRONG',name:config.catalogCardName}]});
+  assert.equal((await stale.get('q=playables+Bloodmoon+Ursaluna+ex')).status,200);
+  assert.equal(stale.nameProbes.length,1,'a stale GV-ID cannot bypass the authoritative probe');
+  for(const query of ['"Full Art" playables','sir playables','playables Boss\'s Orders']){
+    const f=setup(config);assert.equal((await f.get(`q=${encodeURIComponent(query)}`)).status,200);
+    assert.equal(f.nameProbes.length,0,'without an ambiguous set, published discovery is already complete');
+  }
+  const explicit=setup(config);
+  assert.equal((await explicit.get('q=full-art+Bloodmoon+Ursaluna+ex&playable=1')).status,200);
+  assert.equal(explicit.nameProbes.length,0);
+});
+
 test('complete playable discovery applies SIR and IR aliases as separate exact rarity constraints', () => {
   const matches = discoveryMatcher();
   const row = {gv_id: 'GV-PK-TWM-216', name: 'Bloodmoon Ursaluna ex', rarity: 'Special Illustration Rare'};
@@ -181,6 +218,22 @@ test('full art discovery uses explicit artwork markers and does not infer them f
     assert.equal(matches({...base, name: 'Full Art'}, spelling), false);
   }
   assert.equal(matches({...base, variant_key: 'full_art'}, 'full art Pikachu'), false);
+});
+
+test('verified artwork metadata filters only its exact card and preserves text and rarity constraints', () => {
+  const model=JSON.parse(fs.readFileSync(new URL('../../../../../shared/catalog/pokemon_artwork_classification_v1.json',import.meta.url),'utf8'));
+  const fact=model.rows.find(row=>row.gv_id==='GV-PK-TWM-202');
+  assert(fact,'the released evidence includes the verified Ursaluna Full Art');
+  const card={...fact,id:fact.card_print_id},matches=discoveryMatcher();
+  assert(matches(card,'full art Bloodmoon Ursaluna ex'));
+  assert(matches(card,'fullart'));
+  assert.equal(matches(card,'full art Pikachu'),false);
+  assert.equal(matches(card,'full art SIR'),false);
+  for(const change of [{id:'other'},{gv_id:'GV-PK-TWM-216'},{name:'Other'},{set_code:'other'},
+    {number:'216'},{rarity:'Special Illustration Rare'},{variant_key:'other'},{printed_identity_modifier:'other'}]) {
+    assert.equal(matches({...card,...change},'full art'),false);
+  }
+  assert.equal(matches({...card,id:'ordinary',gv_id:'GV-PK-TWM-141',number:'141',rarity:'Double Rare'},'full art'),false);
 });
 
 test('playables uses its canonical ID scope before the response limit and keeps residual text', async () => {
