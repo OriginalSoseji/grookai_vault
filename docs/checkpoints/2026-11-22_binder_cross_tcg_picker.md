@@ -166,10 +166,13 @@ community Binder flows remain unverified on a second real account.
 - `adb install -r` succeeded. Package readback reports version code 611 and
   the original first-install timestamp, `2026-10-13 14:57:14`; app data was
   retained.
-- The PR checks all pass on this source commit. PR #1016 remains open; main is
-  still locked. A final on-device Contents-tab readback is pending because the
-  Samsung went to sleep before relaunch. The owner was asked to unlock it; no
-  PIN was used from chat.
+- At the time of this install, all required PR checks passed on source commit
+  `4ff875932f890efc51360cae9117d0506e80a3dd`. PR #1016 remains open; main is
+  still locked. On-device Build 611 verification opened the existing public
+  `Pikachu Binder`: **Contents** is selected first, the empty state explains
+  that only audience-consented cards appear, and **Checklist** separately
+  shows the canonical card list. Returning to Contents worked. No Binder or
+  account data was changed during this visual check.
 - `test/binders/binder_refinement_test.dart`
 - `test/binders/binder_checklist_find_test.dart`
 - `test/binders/binder_editor_navigation_test.dart`
