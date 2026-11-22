@@ -38,7 +38,8 @@ export function sellerReviewDetails({ input, evidence, condition }) {
     }
     return [kind, { name: text(policy.name, text(policy.description, kind + ' policy')), terms }];
   }));
-  return { condition: text(definition.conditionDescription, input.condition.conditionId === '2750' ? 'Graded' : 'Ungraded'),
+  return { category: text(evidence.categoryPath, input.categoryId),
+    condition: text(definition.conditionDescription, input.condition.conditionId === '2750' ? 'Graded' : 'Ungraded'),
     conditionDescription: condition.conditionDescription, descriptors, policies,
     aspects: input.aspects };
 }

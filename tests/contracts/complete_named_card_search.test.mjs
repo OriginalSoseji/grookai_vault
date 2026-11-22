@@ -1,9 +1,20 @@
-import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import vm from 'node:vm';import {createRequire} from 'node:module';
-const require=createRequire(import.meta.url),ts=require('typescript'),module={exports:{}};
-const source=fs.readFileSync('apps/web/src/lib/search/completeNamedCardSearch.ts','utf8');
-vm.runInNewContext(ts.transpileModule(source,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022}}).outputText,{module,exports:module.exports,Set,Error});
+import test from 'node:test';import assert from 'node:assert/strict';
+import {loadTestTypeScript} from '../../apps/web/src/lib/playables/testTypeScriptLoader.mjs';
+const module={exports:loadTestTypeScript('lib/search/completeNamedCardSearch.ts')};
 const {fetchCompleteNamedCardRows:fetchRows}=module.exports;
 const retain = module.exports.retainNamedCardFirstPage;
+
+test('name discovery removes typed collector constraints but retains literal and other-game names',async()=>{
+ for(const filter of ['SIR','IR','special illustration rare','full art','full-art','fullart']) {
+  const calls=[];
+  const rows=await fetchRows({rpc:async(_,args)=>{calls.push(args.q);return {data:[{id:'a',name:'Bloodmoon Ursaluna ex',gv_id:'GV-PK-TWM-216'}]};}},
+   {textQuery:`${filter} Bloodmoon Ursaluna ex`,gameScope:'pokemon'});
+  assert.deepEqual(calls,['Bloodmoon Ursaluna ex']);assert.equal(rows.length,1);
+ }
+ for(const [query,game] of [['Sir Shandlar','mtg'],['Full Art','mtg'],['"SIR"','pokemon'],['"Full Art"','pokemon'],["Sirfetch'd",'pokemon'],['Rare Candy','pokemon']]) {
+  assert.equal(module.exports.getCompleteNameSearchQuery(query,game),query);
+ }
+});
 
 test('request-local first page avoids a duplicate read without shortening raw paging',async()=>{
  const rows=Array.from({length:513},(_,i)=>({id:String(i),name:'Pikachu',gv_id:i<512?'GV-TCGP-B1-003':'GV-PK-T-064'}));

@@ -1,4 +1,4 @@
-import { readSearchSets, resolveCatalogSetSearchIntent, removeSetPhrase, isExactCatalogCardName, isCatalogCardNameQuery, type SearchSet } from "@/lib/search/catalogSetSearch";
+import { readSearchSets, resolveCatalogSetSearchIntent, removeSetPhrase, isExactCatalogCardName, isCatalogCardNameQuery, isPublishedPlayableCardNameQuery, type SearchSet } from "@/lib/search/catalogSetSearch";
 import { supportsCompleteNameSearch } from "@/lib/search/completeNamedCardSearch";
 import { NextRequest, NextResponse } from "next/server";
 import { isIdentityFilterActive, normalizeIdentityFilterKey } from "@/lib/cards/identitySearch";
@@ -416,16 +416,25 @@ export async function GET(request: NextRequest) {
         query = resolveSmartSearchQuery(rawQuery, smartSearchIntent);
       }
       const nameCheckStarted = performance.now();
+      const playableNameScope = gameScope === "pokemon" &&
+        (smartSearchIntent.playable || parseBooleanParam(request.nextUrl.searchParams.get("playable")));
+      let publishedNameMatch = false;
+      if (playableNameScope && candidate.requiresCardNameCheck) {
+        const publication = await getPokemonPlayables();
+        if (publication?.state === "ready") publishedNameMatch = await isPublishedPlayableCardNameQuery(catalog, query, publication.rows);
+      }
+      // Without a possible set alias, playable text already filters the entire
+      // published scope; a global name probe cannot improve its completeness.
       const cardNameQuery = Boolean(candidate.requiresCardNameCheck ||
-        (!candidate.matchedAlias && !smartSearchIntent.artist && supportsCompleteNameSearch(query) && gameScope === "pokemon")) &&
-        await isCatalogCardNameQuery(catalog, query, gameScope, (page) => { namedFirstPage = page; });
+        (!playableNameScope && !candidate.matchedAlias && !smartSearchIntent.artist && supportsCompleteNameSearch(query) && gameScope === "pokemon")) &&
+        (publishedNameMatch || await isCatalogCardNameQuery(catalog, query, gameScope, (page) => { namedFirstPage = page; }));
       searchTimings.name_check = performance.now() - nameCheckStarted;
       literalNameSearch = cardNameQuery && !smartSearchIntent.artist && supportsCompleteNameSearch(query);
       inlineSetIntent = candidate.requiresCardNameCheck && cardNameQuery
         ? { matchedAlias: null, setCodes: [], remainingQuery: query }
         : candidate;
       if (inlineSetIntent.matchedAlias) {
-        inlineSetIntent.remainingQuery = removeSetPhrase(query, inlineSetIntent.matchedAlias);
+        inlineSetIntent.remainingQuery = removeSetPhrase(query, inlineSetIntent.matchedAlias, gameScope);
       }
     } catch {
       return NextResponse.json({ ok: false, error: "Search could not verify the set filter. Please try again." }, { status: 503 });
@@ -513,12 +522,12 @@ export async function GET(request: NextRequest) {
     const alias = inlineSetIntent.matchedAlias;
     effectiveSmartSearchIntent.queryFilters = (effectiveSmartSearchIntent.queryFilters ?? []).map((filter) => {
       if (filter.kind !== "text") return filter;
-      const text = removeSetPhrase(filter.sourceText, alias);
+      const text = removeSetPhrase(filter.sourceText, alias, gameScope);
       return { ...filter, label: `Text: ${text}`, sourceText: text,
         queryWithout: `${filter.queryWithout ?? ""} ${alias}`.trim() };
     }).filter((filter) => filter.kind !== "text" || filter.sourceText);
     effectiveSmartSearchIntent.queryFilters.push({ kind: "set", label: `Set: ${alias}`,
-      sourceText: alias, queryWithout: removeSetPhrase(rawQuery, alias) });
+      sourceText: alias, queryWithout: removeSetPhrase(rawQuery, alias, gameScope) });
   }
   const hasSmartYearRange =
     typeof effectiveSmartSearchIntent.releaseYearMin === "number" ||

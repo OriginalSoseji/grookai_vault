@@ -19,6 +19,8 @@ param(
 
   [string[]]$ExpectedLocalOnlyIds = @(),
 
+  [switch]$BestOfGamePrintingBaselineV1,
+  [switch]$CrossTcgMarketReleaseV2,
   [switch]$ShroudedAliasDiscoveryReleaseV2,
   [switch]$ShroudedAliasDiscoveryBaselineV1,
   [switch]$LatiosAliasDiscoveryBaselineV5,
@@ -141,6 +143,28 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($BestOfGamePrintingBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','BestOfGamePrintingBaselineV1','AuditOutDir') }).Count -gt 0 -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Best of Game printing baseline V1 is read-only at canonical511; no PrePush or apply authority.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_best_of_game_printing_baseline_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($CrossTcgMarketReleaseV2) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','CrossTcgMarketReleaseV2','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261120063000') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261120063000') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Cross-TCG Market V2 requires exact512 and canonical511; no mixed scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_cross_tcg_market_release_v2.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
 
 if ($ShroudedAliasDiscoveryReleaseV2) {
   $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)

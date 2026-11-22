@@ -31,6 +31,7 @@ async function rpc(db, name, payload) {
   return result.data;
 }
 const owner = actorId => { if (!uuid(actorId)) fail('seller_actor_required'); };
+const cardCategoryIds = new Set(['183050', '183454', '261328']);
 
 // Production composition only. Test workflows inject their own transports and
 // SDK fixtures directly; no public request can select a database or API origin.
@@ -68,10 +69,24 @@ export function createEbaySellerBackendService() {
   };
   const evidenceForCopy = async ({ actorId, accountId, copy, input, client }) => {
     owner(actorId);
-    if (copy.user_id !== actorId || input.categoryId !== '183454') fail('listing_copy_condition_unsupported');
+    if (copy.user_id !== actorId || typeof input.categoryId !== 'string'
+        || !cardCategoryIds.has(input.categoryId)) fail('listing_copy_condition_unsupported');
     const fetchedAt = Date.now();
     const tree = await client.getDefaultCategoryTree();
     if (typeof tree?.categoryTreeId !== 'string' || !/^\d{1,20}$/.test(tree.categoryTreeId)) fail('seller_category_tree_changed');
+    const categorySearch = await client.getCategorySuggestions(tree.categoryTreeId,
+      typeof input.categoryName === 'string' && input.categoryName.trim()
+        ? input.categoryName.trim() : 'Collectible Card Game Singles');
+    const categoryMatches = (Array.isArray(categorySearch?.categorySuggestions)
+      ? categorySearch.categorySuggestions : []).filter(row => row?.category?.categoryId === input.categoryId
+        && typeof row.category.categoryName === 'string');
+    if (categoryMatches.length !== 1) fail('seller_category_changed');
+    const categoryName = categoryMatches[0].category.categoryName;
+    const categoryAncestors = Array.isArray(categoryMatches[0].categoryTreeNodeAncestors)
+      ? categoryMatches[0].categoryTreeNodeAncestors.map(value => typeof value?.categoryName === 'string' ? value.categoryName : '').filter(Boolean)
+      : [];
+    const categoryPath = [...categoryAncestors.reverse(), categoryName].join(' › ');
+    if (!/card/i.test(categoryPath)) fail('seller_category_unsupported');
     const [fulfillment, payment, returns, locationPage, aspects, conditionPolicies, slabCert] = await Promise.all([
       client.getPolicies('fulfillment'), client.getPolicies('payment'), client.getPolicies('return'),
       client.getLocations(), client.getCategoryAspects(tree.categoryTreeId, input.categoryId),
@@ -85,7 +100,8 @@ export function createEbaySellerBackendService() {
     if (![fulfillment?.fulfillmentPolicies, payment?.paymentPolicies, returns?.returnPolicies]
       .every(values => Array.isArray(values) && values.length > 0)
         || !locations.some(location => location.merchantLocationStatus === 'ENABLED')) fail('seller_setup_required');
-    return { sellerAccountId: accountId, categoryId: input.categoryId, marketplaceId: 'EBAY_US', fetchedAt,
+    return { sellerAccountId: accountId, categoryId: input.categoryId,
+      categoryName, categoryPath: categoryPath.slice(0, 500), marketplaceId: 'EBAY_US', fetchedAt,
       policies: { fulfillment: fulfillment?.fulfillmentPolicies,
         payment: payment?.paymentPolicies, return: returns?.returnPolicies },
       locations, aspects: aspects?.aspects, slabCert,
@@ -138,14 +154,59 @@ export function createEbaySellerBackendService() {
         p_draft_id: input.draftId, p_request_id: input.requestId,
         p_expected_revision: input.revision, p_action: input.action });
     },
-    metadata: async (actorId, { instanceId, accountId }) => {
+    categorySuggestions: async (actorId, { instanceId, accountId, query }) => {
+      owner(actorId);
+      if (typeof query !== 'string' || query.trim().length < 2 || query.length > 160) fail('invalid_category_query');
+      await rpc(db, 'ebay_seller_assert_enabled_v1', { p_actor: actorId, p_lane: 'preparation' });
+      const copy = await loadCopy(actorId, instanceId);
+      const client = (await clientsForAccount({ actorId, accountId })).listing;
+      const tree = await client.getDefaultCategoryTree();
+      if (typeof tree?.categoryTreeId !== 'string' || !/^\d{1,20}$/.test(tree.categoryTreeId)) fail('seller_category_tree_changed');
+      const result = await client.getCategorySuggestions(tree.categoryTreeId, query.trim());
+      const rows = Array.isArray(result?.categorySuggestions) ? result.categorySuggestions : [];
+      const candidates = [];
+      for (const row of rows.slice(0, 20)) {
+        const category = row?.category;
+        const id = category?.categoryId;
+        const name = category?.categoryName;
+        if (typeof id !== 'string' || !cardCategoryIds.has(id) || typeof name !== 'string') continue;
+        const ancestors = Array.isArray(row.categoryTreeNodeAncestors)
+          ? row.categoryTreeNodeAncestors.map(value => typeof value?.categoryName === 'string' ? value.categoryName : '').filter(Boolean)
+          : [];
+        const path = [...ancestors.reverse(), name].join(' › ');
+        if (!/card/i.test(path)) continue;
+        candidates.push({ id, name: name.slice(0, 160), path: path.slice(0, 500) });
+        if (candidates.length === 8) break;
+      }
+      // Only offer categories whose live eBay condition policy supports the
+      // official CCG graded/ungraded descriptors used to bind the listing
+      // to this exact Vault copy. Bound the lookup burst and keep responses lean.
+      const suggestions = (await Promise.all(candidates.map(async candidate => {
+        try {
+          const conditionPolicies = await client.getConditionPolicies(candidate.id);
+          qualifyTradingCardConditionChoices({
+            categoryId: candidate.id, categoryTreeId: tree.categoryTreeId,
+            isGraded: copy.is_graded, response: conditionPolicies,
+          });
+          return candidate;
+        } catch { return null; }
+      }))).filter(Boolean);
+      return { marketplaceId: 'EBAY_US', suggestions };
+    },
+    metadata: async (actorId, { instanceId, accountId, categoryId, categoryName }) => {
       owner(actorId);
       await rpc(db, 'ebay_seller_assert_enabled_v1', { p_actor: actorId, p_lane: 'preparation' });
       const copy = await loadCopy(actorId, instanceId);
       const client = (await clientsForAccount({ actorId, accountId })).listing;
-      const evidence = await evidenceForCopy({ actorId, accountId, copy, input: { categoryId: '183454' }, client });
+      const selectedCategory = typeof categoryId === 'string' && /^\d{1,12}$/.test(categoryId)
+        ? categoryId : '183454';
+      const selectedCategoryName = typeof categoryName === 'string' && categoryName.trim()
+        ? categoryName.trim() : 'Collectible Card Game Singles';
+      const evidence = await evidenceForCopy({ actorId, accountId, copy,
+        input: { categoryId: selectedCategory, categoryName: selectedCategoryName }, client });
       return { ...evidence, suggestedCondition: suggestedCopyCondition({ copy,
-        choices: evidence.conditionChoices, slabCert: evidence.slabCert }) };
+        choices: evidence.conditionChoices, slabCert: evidence.slabCert,
+        categoryId: selectedCategory }) };
     },
   };
 }

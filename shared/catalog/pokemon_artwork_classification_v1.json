@@ -1,0 +1,500 @@
+{
+  "version": "pokemon_artwork_classification:v1",
+  "source_policy": {
+    "scope": "Existing English physical catalog cards; explicit Details.Notes or retained catalog product Full Art labels only. No prices, auction titles, images or provider analysis are published.",
+    "collection_basis": "Bounded public factual-reference research; public game paths allowed by the observed robots.txt. No authentication, access-control bypass, price feed or bulk database copy.",
+    "robots_url": "https://www.pricecharting.com/robots.txt",
+    "reviewed_at": "2026-11-20",
+    "raw_retention_days": 30
+  },
+  "coverage": {
+    "candidates_checked": 56,
+    "classified": 23,
+    "held": 33
+  },
+  "rows": [
+    {
+      "card_print_id": "076888f3-c87f-402c-a284-ae12ac2a5868",
+      "gv_id": "GV-PK-BLK-161",
+      "name": "Genesect ex",
+      "set_code": "sv10.5b",
+      "number": "161",
+      "rarity": "Ultra Rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "category": "Full Art",
+      "evidence": {
+        "source_url": "https://www.pricecharting.com/game/pokemon-black-bolt/genesect-ex-161",
+        "body_sha256": "96ee76aaa34ef59084c608c6e6168e9944c33ea6b5162894073f9521b515047a",
+        "source_field": "Details.Notes",
+        "source_value": "Full Art",
+        "product_id": "642613",
+        "mapping_id": "132543",
+        "identity_id": "e85745c2-b8b9-4318-83fd-95c704ffdc1c",
+        "identity_key_hash": "8c1d17ee14a11df1432d50f3a3b2f56353272a304672c491b0eeef536e94bf1a"
+      }
+    },
+    {
+      "card_print_id": "6916601c-fe57-481d-bd0c-aa6a81825a6a",
+      "gv_id": "GV-PK-DRI-222",
+      "name": "Judge",
+      "set_code": "sv10",
+      "number": "222",
+      "rarity": "Ultra Rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "category": "Full Art",
+      "evidence": {
+        "source_url": "https://www.pricecharting.com/game/pokemon-destined-rivals/judge-222",
+        "body_sha256": "6af5676050f64ecd0d60983bc89d87d17385b1fcbc55f35a86ea23a05ae357f0",
+        "source_field": "Details.Notes",
+        "source_value": "Full Art",
+        "product_id": "633022",
+        "mapping_id": "126914",
+        "identity_id": "2620f9c1-d9c2-414d-8155-f8497f461e7e",
+        "identity_key_hash": "8b5511ebb4005f30bbce1952cb010e2b54f48fe78ef17b6632a3ced87a73c006"
+      }
+    },
+    {
+      "card_print_id": "5e2cf951-d9e3-4826-97dc-c915d041820d",
+      "gv_id": "GV-PK-DRI-226",
+      "name": "Team Rocket's Petrel",
+      "set_code": "sv10",
+      "number": "226",
+      "rarity": "Ultra Rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "category": "Full Art",
+      "evidence": {
+        "source_url": "https://www.pricecharting.com/game/pokemon-destined-rivals/team-rocket's-petrel-226",
+        "body_sha256": "8d03e939405a36965fa1a846e0ee1c5c0738c3eeaf4deb9c5755a1a111e8d735",
+        "source_field": "Details.Notes",
+        "source_value": "Full Art",
+        "product_id": "633026",
+        "mapping_id": "126922",
+        "identity_id": "9e04f245-8dc6-447e-a4db-8e0b463d8bc3",
+        "identity_key_hash": "516b44fde34fd0bae424a430fdc1decb212910eccf89b01a9e966555b51260d1"
+      }
+    },
+    {
+      "card_print_id": "dffa32fc-db13-41ee-8bfd-167c16538cf4",
+      "gv_id": "GV-PK-JTG-178",
+      "name": "Dudunsparce ex",
+      "set_code": "sv09",
+      "number": "178",
+      "rarity": "Ultra Rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "category": "Full Art",
+      "evidence": {
+        "source_url": "https://www.pricecharting.com/game/pokemon-journey-together/dudunsparce-ex-178",
+        "body_sha256": "b1d7dd6fa1e1cc9b3eaec766fe5aa45aa4017fa30c34ac08845527ac79c27adb",
+        "source_field": "Details.Notes",
+        "source_value": "Full Art",
+        "product_id": "623605",
+        "mapping_id": "133943",
+        "identity_id": "d7a454b4-a675-4dd4-b356-996efef0ed82",
+        "identity_key_hash": "25452e04c5be1398e306070c5988f8b0d3c4fed287e768885a4ccb72857c6567"
+      }
+    },
+    {
+      "card_print_id": "0b10a118-7409-4dd6-bad9-3317853d0cbf",
+      "gv_id": "GV-PK-LOT-209",
+      "name": "Judge",
+      "set_code": "sm8",
+      "number": "209",
+      "rarity": "Rare Ultra",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "category": "Full Art",
+      "evidence": {
+        "source_url": "https://www.tcgplayer.com/product/179010/pokemon-sm-lost-thunder-judge-full-art",
+        "body_sha256": "8fdbd4df991576cd94344e54f0d648f45cc18b720dd19e96b0fb2a9e2b037601",
+        "source_field": "name",
+        "source_value": "Judge (Full Art)",
+        "product_id": "179010",
+        "mapping_id": "68610",
+        "identity_id": "1baa4b56-3cff-4c17-8894-e2d144b6192f",
+        "identity_key_hash": "1d1234075e7395ee94cec396350282a40117180a1e9513c9bdee269f325a50d8"
+      }
+    },
+    {
+      "card_print_id": "c4dc24d2-aa48-4d57-9e50-0fac9bde929d",
+      "gv_id": "GV-PK-PAF-228",
+      "name": "Judge",
+      "set_code": "sv04.5",
+      "number": "228",
+      "rarity": "Ultra Rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "category": "Full Art",
+      "evidence": {
+        "source_url": "https://www.pricecharting.com/game/pokemon-paldean-fates/judge-228",
+        "body_sha256": "035656bdc0974503e4b7dc56fb56950955ae6f08569ce53d7d27deceef470ae4",
+        "source_field": "Details.Notes",
+        "source_value": "Full Art",
+        "product_id": "534748",
+        "mapping_id": "126145",
+        "identity_id": "38e1b82c-06e1-4402-aa12-3762437f66ab",
+        "identity_key_hash": "fe1cb5fb6866a8fa8e20a4881db74b045188317730c7267d586b184f4ffee7ce"
+      }
+    },
+    {
+      "card_print_id": "ceba7660-f6c9-4f37-be28-0167ed8fd545",
+      "gv_id": "GV-PK-SCR-156",
+      "name": "Hydrapple ex",
+      "set_code": "sv07",
+      "number": "156",
+      "rarity": "Ultra Rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "category": "Full Art",
+      "evidence": {
+        "source_url": "https://www.pricecharting.com/game/pokemon-stellar-crown/hydrapple-ex-156",
+        "body_sha256": "a4c6b8ddef0973f250e6c836d8d2c30f740c7c4b488f64075195c96045851d07",
+        "source_field": "Details.Notes",
+        "source_value": "Full Art",
+        "product_id": "567443",
+        "mapping_id": "126609",
+        "identity_id": "3d5171d3-669d-4876-9ad6-4d087f403f2c",
+        "identity_key_hash": "897215d2fbb45d065c860bda5ef40aded65bb5b509f073d43cf912419d7e3a27"
+      }
+    },
+    {
+      "card_print_id": "f92dbc62-60d1-46a3-9930-a38e04122181",
+      "gv_id": "GV-PK-SCR-163",
+      "name": "Briar",
+      "set_code": "sv07",
+      "number": "163",
+      "rarity": "Ultra Rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "category": "Full Art",
+      "evidence": {
+        "source_url": "https://www.pricecharting.com/game/pokemon-stellar-crown/briar-163",
+        "body_sha256": "c6b9c0f489346f33a74e048f9b2a3f6a5a4bc0bc583a357644e363a33bc3b3d2",
+        "source_field": "Details.Notes",
+        "source_value": "Full Art",
+        "product_id": "567460",
+        "mapping_id": "126613",
+        "identity_id": "88f903d2-c989-4d85-be9a-f7649e5a6dbe",
+        "identity_key_hash": "7271273d40234d9a0acbd05af938b55bbcc65a8f8bddc92516279a4ee3f7484d"
+      }
+    },
+    {
+      "card_print_id": "c4644b09-ace7-426e-bf12-9350b8d74ded",
+      "gv_id": "GV-PK-SSP-220",
+      "name": "Latias ex",
+      "set_code": "sv08",
+      "number": "220",
+      "rarity": "Ultra Rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "category": "Full Art",
+      "evidence": {
+        "source_url": "https://www.pricecharting.com/game/pokemon-surging-sparks/latias-ex-220",
+        "body_sha256": "749d0a7ac6156fcff1baf7d7b4452c7b3186836b1b6f21a56382864c74272f42",
+        "source_field": "Details.Notes",
+        "source_value": "Full Art",
+        "product_id": "589984",
+        "mapping_id": "127435",
+        "identity_id": "5d505b4a-7b63-4584-b747-8ac7e76fab8d",
+        "identity_key_hash": "c3b56a632288944346685c62d222c4040546d05627135708424c826cb1ef2aee"
+      }
+    },
+    {
+      "card_print_id": "c2590fb5-0b0f-4568-bf5d-e86268c50863",
+      "gv_id": "GV-PK-SV08-5-136",
+      "name": "Eri",
+      "set_code": "sv08.5",
+      "number": "136",
+      "rarity": "Ultra Rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "category": "Full Art",
+      "evidence": {
+        "source_url": "https://www.pricecharting.com/game/pokemon-prismatic-evolutions/eri-136",
+        "body_sha256": "8807f30f3986b8d1c2a2ea2d76ddf243e49469c8c81af90b7a9e0d3455e33f6f",
+        "source_field": "Details.Notes",
+        "source_value": "Full Art",
+        "product_id": "610491",
+        "mapping_id": "126474",
+        "identity_id": "ea3136c1-6812-446f-adad-5c2b61029cdc",
+        "identity_key_hash": "e6782d35d564b0bf7a9815ce68f46506874df13e02b1f5813b9cd78c05046e75"
+      }
+    },
+    {
+      "card_print_id": "0123e0d9-6683-42e6-82bc-dc516db66363",
+      "gv_id": "GV-PK-TEF-186",
+      "name": "Iron Leaves ex",
+      "set_code": "sv05",
+      "number": "186",
+      "rarity": "Ultra Rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "category": "Full Art",
+      "evidence": {
+        "source_url": "https://www.pricecharting.com/game/pokemon-temporal-forces/iron-leaves-ex-186",
+        "body_sha256": "718e122f9c4bbf2ea06404e9ab77d535e5a8672cfe11f153cdd1c3a561f72db8",
+        "source_field": "Details.Notes",
+        "source_value": "Full Art",
+        "product_id": "542907",
+        "mapping_id": "128250",
+        "identity_id": "8b442ad4-09d3-42d4-8bed-6b91cd31533e",
+        "identity_key_hash": "876c64142b10aec6495ec6beaf637b3886fa9e913edeea1e7d1a8ab7b1bc8b21"
+      }
+    },
+    {
+      "card_print_id": "333f0954-9613-49fc-bc9b-1f604948401b",
+      "gv_id": "GV-PK-TEF-196",
+      "name": "Raging Bolt ex",
+      "set_code": "sv05",
+      "number": "196",
+      "rarity": "Ultra Rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "category": "Full Art",
+      "evidence": {
+        "source_url": "https://www.pricecharting.com/game/pokemon-temporal-forces/raging-bolt-ex-196",
+        "body_sha256": "23d1e2723f8710b6c118d18a10d7333524cd0af596bd84f2d9ef3a777b13ed7e",
+        "source_field": "Details.Notes",
+        "source_value": "Full Art",
+        "product_id": "542917",
+        "mapping_id": "128259",
+        "identity_id": "082c519c-3576-4d6d-9418-77bfcb418b65",
+        "identity_key_hash": "cb3eb5c8532941b1e178a1516d98c6ff4ca6259d26956793cb369502afa1a694"
+      }
+    },
+    {
+      "card_print_id": "d8d76976-73f5-4c8b-b163-44ec40ecc6d9",
+      "gv_id": "GV-PK-TEF-198",
+      "name": "Ciphermaniac's Codebreaking",
+      "set_code": "sv05",
+      "number": "198",
+      "rarity": "Ultra Rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "category": "Full Art",
+      "evidence": {
+        "source_url": "https://www.pricecharting.com/game/pokemon-temporal-forces/ciphermaniac's-codebreaking-198",
+        "body_sha256": "2176db396ac198679036dd7777896f7ee140fa2fe1ce7b9669352796c6223b2f",
+        "source_field": "Details.Notes",
+        "source_value": "Full Art",
+        "product_id": "542919",
+        "mapping_id": "128260",
+        "identity_id": "7b1d67c5-a5bc-48df-b5af-77b75d1ef370",
+        "identity_key_hash": "996fc8f2e0244f359dec71c3bd25cadcbb3791e12b0dfdd32f79d82b7a34b944"
+      }
+    },
+    {
+      "card_print_id": "a3a7dd60-24fd-491e-b578-64d65b1a7053",
+      "gv_id": "GV-PK-TEF-199",
+      "name": "Eri",
+      "set_code": "sv05",
+      "number": "199",
+      "rarity": "Ultra Rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "category": "Full Art",
+      "evidence": {
+        "source_url": "https://www.pricecharting.com/game/pokemon-temporal-forces/eri-199",
+        "body_sha256": "4668f96cf1a2c38ba55e404b0688511b9728a7b6581c463ff79817fff08f964a",
+        "source_field": "Details.Notes",
+        "source_value": "Full Art",
+        "product_id": "542920",
+        "mapping_id": "127175",
+        "identity_id": "21091f4c-231f-480c-9a11-6e45d0caa75b",
+        "identity_key_hash": "b363138f1b232946794e9e949416dffd451fde258f11c225bfdc02d613614181"
+      }
+    },
+    {
+      "card_print_id": "235969b7-6f68-427e-ba6e-43a204f25833",
+      "gv_id": "GV-PK-TEF-200",
+      "name": "Explorer's Guidance",
+      "set_code": "sv05",
+      "number": "200",
+      "rarity": "Ultra Rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "category": "Full Art",
+      "evidence": {
+        "source_url": "https://www.pricecharting.com/game/pokemon-temporal-forces/explorer's-guidance-200",
+        "body_sha256": "886760d24173848e861b06706b74b18a390d5e5b81baad4c8892620d499dc16b",
+        "source_field": "Details.Notes",
+        "source_value": "Full Art",
+        "product_id": "542921",
+        "mapping_id": "126711",
+        "identity_id": "dcb3cbfc-7230-47f6-833d-4db1a1e31345",
+        "identity_key_hash": "811781be936b8bc74970f698f53c7fed4e188cc276804145d2107fde032790fc"
+      }
+    },
+    {
+      "card_print_id": "39a3d44c-9e93-4360-90bb-b7674fd57a7f",
+      "gv_id": "GV-PK-TWM-190",
+      "name": "Teal Mask Ogerpon ex",
+      "set_code": "sv06",
+      "number": "190",
+      "rarity": "Ultra Rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "category": "Full Art",
+      "evidence": {
+        "source_url": "https://www.pricecharting.com/game/pokemon-twilight-masquerade/teal-mask-ogerpon-ex-190",
+        "body_sha256": "59bd460e971da24e651b6ac2326b4237b336d5a71fdf2219bd3e20caaebef470",
+        "source_field": "Details.Notes",
+        "source_value": "Full Art",
+        "product_id": "550234",
+        "mapping_id": "126656",
+        "identity_id": "e4c7f36c-86ba-44f5-8eb4-f9bf6bcabc3a",
+        "identity_key_hash": "3c767a6d4fabc8b64bb78246910b8489bb6f92871fb7b446f7923b2c20d429c9"
+      }
+    },
+    {
+      "card_print_id": "072ba376-5018-4481-91ef-b08aa7db6e42",
+      "gv_id": "GV-PK-TWM-198",
+      "name": "Greninja ex",
+      "set_code": "sv06",
+      "number": "198",
+      "rarity": "Ultra Rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "category": "Full Art",
+      "evidence": {
+        "source_url": "https://www.pricecharting.com/game/pokemon-twilight-masquerade/greninja-ex-198",
+        "body_sha256": "906bfeedf2e0848b190cd7520f51e5d0ca8c7b5676d05c72019ede3a32a240f7",
+        "source_field": "Details.Notes",
+        "source_value": "Full Art",
+        "product_id": "550242",
+        "mapping_id": "125685",
+        "identity_id": "8899875e-d7dc-4314-8614-6104ed45a2d3",
+        "identity_key_hash": "9546fb770abea1252f23a923cae7b428dda4c509a1a3611e92ae36304ba16c09"
+      }
+    },
+    {
+      "card_print_id": "9bf30e4b-547c-41bf-8380-b4d0854f1a06",
+      "gv_id": "GV-PK-TWM-200",
+      "name": "Dragapult ex",
+      "set_code": "sv06",
+      "number": "200",
+      "rarity": "Ultra Rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "category": "Full Art",
+      "evidence": {
+        "source_url": "https://www.pricecharting.com/game/pokemon-twilight-masquerade/dragapult-ex-200",
+        "body_sha256": "314f505c417ec5a2e37f4a776e3e3ad35fe879ffaa0f78d8819d2a2448a375da",
+        "source_field": "Details.Notes",
+        "source_value": "Full Art",
+        "product_id": "550244",
+        "mapping_id": "125670",
+        "identity_id": "f979cb1d-65f2-4760-bc44-5da9b429122a",
+        "identity_key_hash": "615b65a556ae19af3ce6c9a86df22d123dfa5d864f53d9cb58d976c2a1d1c418"
+      }
+    },
+    {
+      "card_print_id": "c1c138f6-1d08-493e-b495-30f44eb3de2c",
+      "gv_id": "GV-PK-TWM-202",
+      "name": "Bloodmoon Ursaluna ex",
+      "set_code": "sv06",
+      "number": "202",
+      "rarity": "Ultra Rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "category": "Full Art",
+      "evidence": {
+        "source_url": "https://www.pricecharting.com/game/pokemon-twilight-masquerade/bloodmoon-ursaluna-ex-202",
+        "body_sha256": "2c6e7f15447cf899e311bb82ac38c9a835e8da360375d38f1fbb963ffbb26de6",
+        "source_field": "Details.Notes",
+        "source_value": "Full Art",
+        "product_id": "550246",
+        "mapping_id": "125676",
+        "identity_id": "36af093b-7592-4929-b5a2-e4296bef3e65",
+        "identity_key_hash": "f652750396b19ec42ebf03fe4a40ce903c4b19e54f231ea08bbb7cff216727e5"
+      }
+    },
+    {
+      "card_print_id": "08773409-5bfa-4d95-875c-abb927c616aa",
+      "gv_id": "GV-PK-TWM-205",
+      "name": "Hassel",
+      "set_code": "sv06",
+      "number": "205",
+      "rarity": "Ultra Rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "category": "Full Art",
+      "evidence": {
+        "source_url": "https://www.pricecharting.com/game/pokemon-twilight-masquerade/hassel-205",
+        "body_sha256": "06dd0f0a8e9978456149e30cb54c290a706300e3d0280377d7d3cbc69b347b53",
+        "source_field": "Details.Notes",
+        "source_value": "Full Art",
+        "product_id": "550249",
+        "mapping_id": "125665",
+        "identity_id": "76c59298-3755-4c1f-b44a-8ebf97062f3e",
+        "identity_key_hash": "1abb042cc0bb0953491d26fdd6ee6a6533950a15c46a3cbcfe807c865da7d309"
+      }
+    },
+    {
+      "card_print_id": "baa951ce-14ae-43aa-86e9-2cd19a7ad706",
+      "gv_id": "GV-PK-TWM-206",
+      "name": "Kieran",
+      "set_code": "sv06",
+      "number": "206",
+      "rarity": "Ultra Rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "category": "Full Art",
+      "evidence": {
+        "source_url": "https://www.pricecharting.com/game/pokemon-twilight-masquerade/kieran-206",
+        "body_sha256": "1e9ce463d81859e5840e4a81a23d244dc3a97bb205eda704340572c2eae42fad",
+        "source_field": "Details.Notes",
+        "source_value": "Full Art",
+        "product_id": "550250",
+        "mapping_id": "125673",
+        "identity_id": "b51386d5-04a8-41da-b62b-4b17e7bc03f8",
+        "identity_key_hash": "ab1a88d4241f9452f0c0bb0e0cfad6d43f636f0d380de990f9e7740536b6fbc6"
+      }
+    },
+    {
+      "card_print_id": "557d0194-6eba-4125-b852-c9c94cef5d39",
+      "gv_id": "GV-PK-TWM-207",
+      "name": "Lana's Aid",
+      "set_code": "sv06",
+      "number": "207",
+      "rarity": "Ultra Rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "category": "Full Art",
+      "evidence": {
+        "source_url": "https://www.pricecharting.com/game/pokemon-twilight-masquerade/lana's-aid-207",
+        "body_sha256": "63655779559e91b146f09f1a9a7fb45009de4f8f1d77423c8ee47a533a62a0b8",
+        "source_field": "Details.Notes",
+        "source_value": "Full Art",
+        "product_id": "550251",
+        "mapping_id": "125662",
+        "identity_id": "324b03cd-7967-4239-96c3-b0cbf38093ac",
+        "identity_key_hash": "93204cb46c4ac629a2e178c345fbc29882d394e77f82150e632bce8e542ec498"
+      }
+    },
+    {
+      "card_print_id": "f2d2232c-bf97-436e-8a70-e2ddb31df231",
+      "gv_id": "GV-PK-WHT-164",
+      "name": "Hilda",
+      "set_code": "sv10.5w",
+      "number": "164",
+      "rarity": "Ultra Rare",
+      "variant_key": "",
+      "printed_identity_modifier": null,
+      "category": "Full Art",
+      "evidence": {
+        "source_url": "https://www.pricecharting.com/game/pokemon-white-flare/hilda-164",
+        "body_sha256": "56e9dca3a663801ddbb586e0e8447b4e922fbe8d20b3a85b57739af78253aeb6",
+        "source_field": "Details.Notes",
+        "source_value": "Full Art",
+        "product_id": "642281",
+        "mapping_id": "127957",
+        "identity_id": "492f8583-3ee3-421f-9736-3112c834a28c",
+        "identity_key_hash": "783ded6cff10e9dd592ac83cd2f2186c17ef4a2dcc28facecd2a43d014c12b0a"
+      }
+    }
+  ]
+}

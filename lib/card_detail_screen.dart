@@ -3720,7 +3720,8 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   Future<void> _openMarketHistory() async {
     final printing = _selectedPrintingOption;
     final printingId = _cleanText(printing?.id);
-    if (printingId.isEmpty ||
+    if (printing == null ||
+        printingId.isEmpty ||
         !_hasExplicitPrintingContext ||
         supabase.auth.currentUser == null) {
       return;
@@ -3732,7 +3733,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       backgroundColor: Colors.transparent,
       builder: (_) => CardMarketHistorySheet(
         cardName: _marketSearchName,
-        printingLabel: printing?.finishName ?? 'Selected variant',
+        printingLabel: printing.finishName,
         cardPrintingId: printingId,
         loadPersonalSales: (cardPrintingId) =>
             CardPersonalSalesService(supabase).loadForPrinting(cardPrintingId),

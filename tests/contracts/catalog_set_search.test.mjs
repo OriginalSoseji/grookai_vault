@@ -27,11 +27,26 @@ function load(file) {
   return module.exports;
 }
 
-const { resolveCatalogSetSearchIntent: resolve, readSearchSets, removeSetPhrase, isExactCatalogCardName, isCatalogCardNameQuery } = load(path.join(web, 'lib/search/catalogSetSearch.ts'));
+const { resolveCatalogSetSearchIntent: resolve, readSearchSets, removeSetPhrase, isExactCatalogCardName, isCatalogCardNameQuery, isPublishedPlayableCardNameQuery } = load(path.join(web, 'lib/search/catalogSetSearch.ts'));
 const { buildSmartSearchIntent } = load(path.join(web, 'lib/search/smartSearchIntent.ts'));
 const { resolveSmartSearchQuery } = load(path.join(web, 'lib/search/resolveSmartSearchQuery.ts'));
 const { getPublicSetEra } = load(path.join(web, 'lib/publicSets.shared.ts'));
 const { fetchCompleteNamedCardRows } = load(path.join(web, 'lib/search/completeNamedCardSearch.ts'));
+
+test('published name probes use bounded ID/GV pairs and require every original name fragment',async()=>{
+ const members=Array.from({length:269},(_,i)=>({card_print_id:`id-${i}`,gv_id:`GV-PK-T-${i}`})),calls=[];
+ const client={from:table=>{assert.equal(table,'card_prints');return {select:()=>({in:(_,ids)=>{
+  calls.push(ids);assert(ids.length<=200);
+  return {data:ids.includes('id-268')?[{id:'id-268',gv_id:'GV-PK-T-268',name:'Bloodmoon Ursaluna ex'}]:[{id:'outside',name:'Bloodmoon Ursaluna ex'}],error:null};
+ }})};}};
+ assert.equal(await isPublishedPlayableCardNameQuery(client,'full-art Bloodmoon Ursaluna ex',members),true);
+ assert.equal(calls.length,2);
+ assert.equal(await isPublishedPlayableCardNameQuery(client,'SIR Bloodmoon Ursaluna unknown',members),false);
+ const stale={from:()=>({select:()=>({in:()=>({data:[{id:'id-268',gv_id:'GV-PK-WRONG',name:'Bloodmoon Ursaluna ex'}]})})})};
+ assert.equal(await isPublishedPlayableCardNameQuery(stale,'Bloodmoon Ursaluna ex',members),false);
+ const denied={from:()=>({select:()=>({in:()=>({error:{message:'denied'}})})})};
+ await assert.rejects(()=>isPublishedPlayableCardNameQuery(denied,'Bloodmoon Ursaluna ex',members),/denied/);
+});
 const sets = [
  ['base1', 'Base Set'], ['base4', 'Base Set 2'], ['ecard1', 'Expedition Base Set'],
  ['30c', '30th Celebration'], ['30c-classic', '30th Celebration Classic Collection'],
@@ -58,6 +73,33 @@ test('explicit Sword and Shield promo family outranks the expansion name', () =>
  assert.deepEqual(plain(resolve('Pikachu from Sword and Shield', 'pokemon', catalog).setCodes), ['swsh1']);
  assert.equal(resolve('Pikachu "Sword and Shield promo"', 'pokemon', catalog).matchedAlias, null);
  assert.notDeepEqual(plain(resolve('Pikachu Sword and Shield promo', 'mtg', catalog).setCodes), ['swshp']);
+});
+
+test('collector phrases keep partial set aliases from consuming their words', () => {
+ const catalog=[{id:'special',code:'sp-test',name:'Special Deck Set'},
+  {id:'full',code:'fa-test',name:'Full Collection'}, {id:'twm',code:'twm',name:'Twilight Masquerade'}];
+ for(const query of ['special illustration rare','full art']) assert.equal(resolve(query,'pokemon',catalog).matchedAlias,null,query);
+ const combined=resolve('special illustration rare Twilight Masquerade','pokemon',catalog);
+ assert.deepEqual(plain(combined.setCodes),['twm']);
+ assert.equal(combined.remainingQuery,'special illustration rare');
+ const complete=resolve('Pikachu Special Illustration Rare Collection','pokemon',[
+  {id:'complete',code:'complete',name:'Special Illustration Rare Collection'}]);
+ assert.deepEqual(plain(complete.setCodes),['complete']);
+ assert.equal(complete.remainingQuery,'Pikachu');
+ assert.equal(resolve('Full art','mtg',[{id:'full',code:'full-set',name:'Full'}]).matchedAlias,'Full');
+});
+
+test('set words outside a collector phrase retain their actual match and removal position', () => {
+ const query='special illustration rare from Special';
+ const selected=resolve(query,'pokemon',[{id:'special',code:'sp-test',name:'Special Deck Set'}]);
+ assert.equal(selected.matchedAlias,'Special');
+ assert.equal(selected.remainingQuery,'special illustration rare');
+ assert.equal(removeSetPhrase(query,'Special'),'special illustration rare');
+ const intent=buildSmartSearchIntent('special illustration rare playables from Special',{protectedPhrases:['Special']});
+ assert.equal(intent.queryFilters.find(filter=>filter.kind==='rarity').label,'Rarity: special illustration rare');
+ assert.equal(resolveSmartSearchQuery(intent.originalQuery,intent),'special illustration rare from Special');
+ const complete=buildSmartSearchIntent('Pikachu Special Illustration Rare Collection', {protectedPhrases:['Special Illustration Rare Collection']});
+ assert(!complete.queryFilters.some(filter=>filter.kind==='rarity'));
 });
 
 test('known collector families outrank conflicting opening-word set shortcuts',()=>{
@@ -316,4 +358,16 @@ test('numbered name interpretation uses the same name probe and retained page as
  let reads=0;
  assert.equal(await isCatalogCardNameQuery({rpc:async()=>{reads++;return {data:[]};}},'081','pokemon'),false);
  assert.equal(reads,0,'a collector number alone is not a name');
+});
+
+test('rarity and artwork name probes retain the same trusted page without swallowing ex', async () => {
+ for(const filter of ['SIR','IR','full-art','special illustration rare']) {
+  let reads=0,retained;
+  const client={rpc:async(_,args)=>{reads++;assert.equal(args.q,'Bloodmoon Ursaluna ex');return {data:[{id:'a',name:'Bloodmoon Ursaluna ex',gv_id:'GV-PK-TWM-216'}]};}};
+  const query=`${filter} Bloodmoon Ursaluna ex`;
+  assert.equal(await isCatalogCardNameQuery(client,query,'pokemon',page=>{retained=page;}),true);
+  assert.equal(retained.query,'Bloodmoon Ursaluna ex');
+  assert.equal((await fetchCompleteNamedCardRows(client,{textQuery:query,gameScope:'pokemon',namedFirstPage:retained})).length,1);
+  assert.equal(reads,1);
+ }
 });

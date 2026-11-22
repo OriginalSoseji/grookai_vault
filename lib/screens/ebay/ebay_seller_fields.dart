@@ -179,6 +179,75 @@ class EbaySellerFields extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         EbaySellerSection(
+          title: 'eBay category',
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                input['categoryPath']?.toString().isNotEmpty == true
+                    ? input['categoryPath'].toString()
+                    : 'Choose a supported card category',
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              const SizedBox(height: 10),
+              if (controller.editable) ...[
+                TextFormField(
+                  key: ValueKey('${controller.local?.draftId}:category-search'),
+                  initialValue: controller.categoryQuery,
+                  enabled: controller.busy == null,
+                  textInputAction: TextInputAction.search,
+                  decoration: const InputDecoration(
+                    labelText: 'Search eBay card categories',
+                    hintText: 'Pokémon, Magic, sports cards…',
+                  ),
+                  onChanged: (value) => controller.categoryQuery = value,
+                  onFieldSubmitted: controller.searchCategories,
+                ),
+                const SizedBox(height: 8),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: OutlinedButton.icon(
+                    onPressed:
+                        controller.busy == null &&
+                            controller.account['linked'] == true
+                        ? () => controller.searchCategories(
+                            controller.categoryQuery,
+                          )
+                        : null,
+                    icon: const Icon(Icons.search_rounded, size: 18),
+                    label: const Text('Search categories'),
+                  ),
+                ),
+                for (final category in controller.categorySuggestions)
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: Text(
+                      category['name']?.toString() ?? 'eBay category',
+                    ),
+                    subtitle: Text(category['path']?.toString() ?? ''),
+                    trailing: category['id']?.toString() == input['categoryId']
+                        ? const Icon(Icons.check_circle_outline_rounded)
+                        : const Icon(Icons.chevron_right_rounded),
+                    onTap: controller.busy == null
+                        ? () => controller.selectCategory(category)
+                        : null,
+                  ),
+                if (metadata.isEmpty)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8),
+                    child: Text(
+                      'Load eBay options after choosing a category to validate its condition and required details.',
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
+                    ),
+                  ),
+              ],
+            ],
+          ),
+        ),
+        EbaySellerSection(
           title: 'Listing details',
           child: controller.editable
               ? Column(

@@ -45,6 +45,8 @@ import type { ExploreResultCard } from "@/components/explore/exploreResultTypes"
 import type { VariantFlags } from "@/lib/cards/variantPresentation";
 import type { PublicGameScope } from "@/lib/publicGameScope";
 import { normalizeSearchText } from "@/lib/search/normalizeSearchText";
+import { readCollectorCardQueryFilters, removeCollectorCardQueryFilters } from "@/lib/search/collectorCardQuery";
+import { hasVerifiedCatalogFullArt } from "@/lib/search/catalogArtworkClassification";
 import { mergeSmartVariantScopeRows } from "@/lib/search/smartVariantSearchPolicy";
 import { fetchPokemonArtistRows, isKnownArtistQuery } from "@/lib/search/artistSearch";
 import { fetchCompleteNamedCardRows } from "@/lib/search/completeNamedCardSearch";
@@ -3492,12 +3494,22 @@ function rowMatchesSmartDiscoveryText(
     if (Number((row.number ?? "").split("/")[0]) !== Number(fraction[1]) ||
         row.printed_total !== Number(fraction[2])) return false;
   }
-  let remainingText = fraction ? textQuery?.replace(fraction[0], " ") : textQuery;
-  const rarityWords = normalizeCombinedText(row.rarity).split(" ");
-  for (const match of remainingText?.matchAll(/\b(?:(?:hyper|ultra|secret|double|special illustration|illustration)\s+rare|uncommon|common|rare(?!\s+candy))\b/gi) ?? []) {
-    if (!normalizeCombinedText(match[0]).split(" ").every((word) => rarityWords.includes(word))) return false;
-    remainingText = remainingText?.replace(match[0], " ");
+  let remainingText = (fraction ? textQuery?.replace(fraction[0], " ") : textQuery) ?? "";
+  const collectorFilters = readCollectorCardQueryFilters(remainingText, row.gv_id?.startsWith("GV-PK-") === true);
+  const rarity = normalizeCombinedText(row.rarity);
+  for (const filter of collectorFilters) {
+    if (filter.kind === "rarity") {
+      // IR and SIR are distinct categories; Common cannot match Uncommon.
+      const exactCategory = ["common", "uncommon", "illustration rare", "special illustration rare"].includes(filter.value);
+      if (exactCategory ? rarity !== filter.value : !filter.value.split(" ").every((word) => rarity.split(" ").includes(word))) return false;
+    } else {
+      // Artwork must be explicit catalog metadata, never inferred from rarity,
+      // the card's name, price, or shared gameplay membership.
+      const artwork = normalizeTextForMatch([row.rarity, row.variant_key, row.printed_identity_modifier, row.display_discriminator].filter(Boolean).join(" "));
+      if (!/(?:^| )full art(?: |$)/.test(artwork) && !hasVerifiedCatalogFullArt(row)) return false;
+    }
   }
+  remainingText = removeCollectorCardQueryFilters(remainingText, collectorFilters);
   const tokens = getSmartDiscoveryTextTokens(remainingText);
   if (tokens.length === 0) {
     return true;

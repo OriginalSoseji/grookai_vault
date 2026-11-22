@@ -2,7 +2,11 @@ import { EbaySellerApiError } from './seller_client_v1.mjs';
 
 // Official descriptor IDs; live Metadata must still admit every selected value.
 export const descriptorSource = 'https://developer.ebay.com/api-docs/user-guides/static/mip-user-guide/mip-enum-condition-descriptor-ids.html';
-const raw = Object.freeze({ NM: '400010', LP: '400015', MP: '400016', HP: '400017' });
+const raw = Object.freeze({
+  '183050': { NM: '400010', LP: '400011', MP: '400012', HP: '400013' },
+  '183454': { NM: '400010', LP: '400015', MP: '400016', HP: '400017' },
+  '261328': { NM: '400010', LP: '400011', MP: '400012', HP: '400013' },
+});
 const graders = Object.freeze({ PSA: '275010', BCCG: '275011', BVG: '275012',
   BGS: '275013', CSG: '275014', CGC: '275015', SGC: '275016', KSA: '275017',
   GMA: '275018', HGA: '275019', ISA: '2750110', PCA: '2750111', GSG: '2750112',
@@ -16,7 +20,7 @@ const singleValue = (descriptors, name) => {
   return value?.values?.length === 1 ? value.values[0] : null;
 };
 
-export function suggestedCopyCondition({ copy, choices, slabCert }) {
+export function suggestedCopyCondition({ copy, choices, slabCert, categoryId = '183454' }) {
   const conditionId = copy.is_graded ? '2750' : '4000';
   const definition = choices.find(v => v.conditionId === conditionId);
   if (!definition) fail('listing_copy_condition_unsupported');
@@ -34,8 +38,8 @@ export function suggestedCopyCondition({ copy, choices, slabCert }) {
         && definition.conditionDescriptors?.some(d => d.conditionDescriptorId === '27503')) {
       descriptors.push({ id: '27503', additionalInfo: slabCert.cert_number });
     }
-  } else if (Object.hasOwn(raw, copy.condition_label)) {
-    add('40001', raw[copy.condition_label]);
+  } else if (Object.hasOwn(raw[categoryId] ?? {}, copy.condition_label)) {
+    add('40001', raw[categoryId][copy.condition_label]);
   }
   return { conditionId, descriptors, description: '', damagedDisclosureConfirmed: false };
 }
@@ -43,7 +47,8 @@ export function suggestedCopyCondition({ copy, choices, slabCert }) {
 // Invoked after live provider constraints have validated the descriptors. This
 // second check binds their meaning to the canonical saved copy and certificate.
 export function bindListingConditionToCopy({ copy, input, condition, slabCert }) {
-  if (input.categoryId !== '183454' || typeof copy.is_graded !== 'boolean') {
+  if (typeof input.categoryId !== 'string' || !Object.hasOwn(raw, input.categoryId)
+      || typeof copy.is_graded !== 'boolean') {
     fail('listing_copy_condition_unsupported');
   }
   const descriptors = condition.conditionDescriptors ?? [];
@@ -51,14 +56,15 @@ export function bindListingConditionToCopy({ copy, input, condition, slabCert })
     if (copy.slab_cert_id) fail('listing_copy_grade_mismatch');
     if (input.condition.conditionId !== '4000' || condition.condition !== 'USED_VERY_GOOD') fail('listing_copy_condition_mismatch');
     const selected = singleValue(descriptors, '40001');
-    if (!Object.values(raw).includes(selected)) fail('listing_copy_condition_mismatch');
+    const categoryRaw = raw[input.categoryId];
+    if (!Object.values(categoryRaw).includes(selected)) fail('listing_copy_condition_mismatch');
     const known = copy.condition_label;
     if (known !== null && known !== undefined && known !== 'DMG'
-        && (!Object.hasOwn(raw, known) || raw[known] !== selected)) fail('listing_copy_condition_mismatch');
+        && (!Object.hasOwn(categoryRaw, known) || categoryRaw[known] !== selected)) fail('listing_copy_condition_mismatch');
     if (known === 'DMG') {
       // eBay CCG has no separate Damaged descriptor. A collector must explicitly
       // acknowledge disclosure under its lowest condition; never silently map.
-      if (selected !== raw.HP || input.condition.damagedDisclosureConfirmed !== true) fail('listing_damage_disclosure_required');
+      if (selected !== categoryRaw.HP || input.condition.damagedDisclosureConfirmed !== true) fail('listing_damage_disclosure_required');
       const description = 'Damaged card. ' + condition.conditionDescription;
       if (description.length > 1000) fail('listing_damage_description_too_long');
       return { ...condition, conditionDescription: description };

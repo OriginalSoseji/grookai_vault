@@ -1,6 +1,6 @@
 # English Master Index Conflicts V1
 
-Generated: 2026-11-19T12:02:34.843Z
+Generated: 2026-11-21T11:39:03.925Z
 
 Conflicts are not promoted into the index.
 

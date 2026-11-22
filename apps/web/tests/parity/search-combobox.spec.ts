@@ -30,6 +30,90 @@ async function assertAria(page: Page) {
   expect(results.violations).toEqual([]);
 }
 
+async function mockPlayableSearch(page: Page) {
+  const requests: URL[] = [];
+  await page.route("**/*", async route => {
+    const url = new URL(route.request().url());
+    if (!["127.0.0.1", "localhost"].includes(url.hostname)) return route.abort();
+    if (url.pathname === "/api/resolver/search") requests.push(url);
+    if (url.pathname.startsWith("/api/")) return route.fulfill({ json: {
+      ok: true, rows: [], canonical: [], provisional: [],
+      pagination: { total_count: 0, has_more: false, next_offset: null },
+    } });
+    return route.continue();
+  });
+  return requests;
+}
+
+test("the bare playable filter opens search instead of the featured catalog", async ({ page }) => {
+  const requests = await mockPlayableSearch(page);
+  await page.goto("/explore?playable=1");
+  await expect(page.getByRole("link", { name: "Remove Playable filter", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "A good find starts here." })).toHaveCount(0);
+  await expect.poll(() => requests.some(url => url.searchParams.get("playable") === "1")).toBe(true);
+  await page.getByRole("link", { name: "Remove Playable filter", exact: true }).click();
+  await expect(page).toHaveURL(/\/explore$/);
+  await expect(page.getByRole("heading", { name: "A good find starts here." })).toBeVisible();
+});
+
+test("applying and clearing filters preserves or removes playable scope deliberately", async ({ page }) => {
+  const requests = await mockPlayableSearch(page);
+  await page.goto("/explore?q=full-art&playable=1&cards=GV-PK-BASE-3&view=list&lang=en");
+  const filters = page.locator("details").filter({ has: page.getByRole("button", { name: "Apply smart filters", exact: true, includeHidden: true }) });
+  await filters.locator("summary").click();
+  await filters.getByRole("textbox", { name: "From year" }).fill("2020");
+  await filters.getByRole("button", { name: "Apply smart filters", exact: true }).click();
+  await expect.poll(() => new URL(page.url()).searchParams.get("year_min")).toBe("2020");
+  let target = new URL(page.url());
+  expect(target.searchParams.get("playable")).toBe("1");
+  expect(target.searchParams.get("q")).toBe("full-art");
+  expect(target.searchParams.get("cards")).toBe("GV-PK-BASE-3");
+  expect(target.searchParams.get("view")).toBe("list");
+  expect(target.searchParams.get("lang")).toBe("en");
+  await expect.poll(() => requests.some(url => url.searchParams.get("playable") === "1" && url.searchParams.get("year_min") === "2020")).toBe(true);
+  await page.getByRole("link", { name: "Clear all", exact: true }).click();
+  await expect.poll(() => new URL(page.url()).searchParams.has("q")).toBe(false);
+  target = new URL(page.url());
+  for (const key of ["playable", "q", "year_min"]) expect(target.searchParams.has(key)).toBe(false);
+  expect(target.searchParams.get("cards")).toBe("GV-PK-BASE-3");
+  expect(target.searchParams.get("view")).toBe("list");
+  expect(target.searchParams.get("lang")).toBe("en");
+  await expect(page.getByRole("link", { name: "Remove Playable filter", exact: true })).toHaveCount(0);
+});
+
+test("catalog filters provide a playable entry that retains comparison cards", async ({ page }, testInfo) => {
+  const requests = await mockPlayableSearch(page);
+  await page.goto("/explore?cards=GV-PK-BASE-3");
+  await page.getByRole("button", { name: "Filters", exact: true }).click();
+  const link = page.getByRole("link", { name: "Pokémon playables", exact: true });
+  await expect(link).toBeVisible();
+  const target = new URL(await link.getAttribute("href") ?? "", page.url());
+  expect(target.searchParams.get("playable")).toBe("1");
+  expect(target.searchParams.get("cards")).toBe("GV-PK-BASE-3");
+  for (const width of [384, 1280]) {
+    await page.setViewportSize({ width, height: 824 });
+    await page.goto("/explore?cards=GV-PK-BASE-3");
+    await page.getByRole("button", { name: "Filters", exact: true }).click();
+    for (const colorScheme of ["dark", "light"] as const) {
+      const themeToggle = page.getByRole("button", { name: colorScheme === "light" ? "Use light mode" : "Use dark mode", exact: true });
+      if (await themeToggle.count()) await themeToggle.click();
+      await expect(page.locator("html")).toHaveAttribute("data-theme", colorScheme);
+      await expect(link).toBeVisible();
+      await link.click({ trial: true });
+      expect((await link.boundingBox())?.height ?? 0).toBeGreaterThanOrEqual(44);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
+      await page.screenshot({ path: testInfo.outputPath(`catalog-playables-${width}-${colorScheme}.png`) });
+    }
+  }
+  const accessibility = await new AxeBuilder({ page }).include("#collector-rarity-filters")
+    .withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"]).analyze();
+  expect(accessibility.violations.filter(item => item.impact === "serious" || item.impact === "critical")).toEqual([]);
+  await link.click();
+  await expect(page.getByRole("link", { name: "Remove Playable filter", exact: true })).toBeVisible();
+  await expect.poll(() => requests.some(url => url.searchParams.get("playable") === "1")).toBe(true);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
+});
+
 test("actual search exposes valid expanded semantics and keyboard printing selection", async ({ page }, testInfo) => {
   const input = await openSearch(page);
   await assertAria(page);

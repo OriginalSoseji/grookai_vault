@@ -13,6 +13,8 @@ If a contract is missing from this index, it is not authoritative.
 
 | Contract | Status | Description |
 |--------|--------|-------------|
+| BEST_OF_GAME_PRINTING_EXECUTION_V1 | Active bounded implementation; exact production approval required | docs/contracts/BEST_OF_GAME_PRINTING_EXECUTION_V1.md — Separate BP8/9 insert-only execution,95-FK preservation, verified TLS and exact authority/rollback gates; no authority granted |
+| BEST_OF_GAME_PRINTING_REHEARSAL_V1 | Active implementation; local-only, production execution unavailable | docs/contracts/BEST_OF_GAME_PRINTING_REHEARSAL_V1.md — Exact BP8/9 additive rehearsal, canonical511 read-only audit and retained family/reference proofs |
 | SHROUDED_ALIAS_DISCOVERY_READ_REPAIR_V2 | Active | docs/contracts/SHROUDED_ALIAS_DISCOVERY_READ_REPAIR_V2.md — Exact509-to511 discovery projection preserving113 distinct parents and four owned copies, with SELECT-only view grants |
 | SHROUDED_ALIAS_DISCOVERY_READ_REPAIR_V1 | Active | docs/contracts/SHROUDED_ALIAS_DISCOVERY_READ_REPAIR_V1.md — Read-only509 baseline; prospective99-pair discovery repair preserving unique stamped Galvantula and all owned copies |
 | LATIOS_ALIAS_DISCOVERY_READ_REPAIR_V5 | Active | docs/contracts/LATIOS_ALIAS_DISCOVERY_READ_REPAIR_V5.md — Exact507-to509 final indexed fallback release; safe literal superset, direct unprobed scan, unchanged data/security and three-second API budget |
@@ -60,7 +62,8 @@ If a contract is missing from this index, it is not authoritative.
 | PALDEAN_ALIAS_DISCOVERY_READ_REPAIR_V2 | Applied at501; retained | docs/contracts/PALDEAN_ALIAS_DISCOVERY_READ_REPAIR_V2.md — Exact500-to501 identity RPC membership cache; unchanged discovery authority, protected records and API budget |
 | APP_VISUAL_SYSTEM_CONTRACT_V1 | Active | [App Visual System](contracts/APP_VISUAL_SYSTEM_CONTRACT_V1.md) — Ink/bone foundation, lime baseline with matching seasonal website accents, compact content hierarchy, tighter geometry, consistent card spacing, and responsive verification |
 | BRAND_TYPOGRAPHY_CONTRACT_V1 | Active | [Brand and Typography](contracts/BRAND_TYPOGRAPHY_CONTRACT_V1.md) — Bundled Roboto, lowercase names, weight 900 wordmarks, original emblem preservation, flexible seasonal logo colors, matching website accents, and accessible motion |
-| MOBILE_RELEASE_CONTINUITY_V1 | Active release contract | [Mobile Release Continuity](contracts/MOBILE_RELEASE_CONTINUITY_V1.md) — Android/iOS source and build-number parity, recorded artifact signer provenance, and mandatory signer/version preflight before updating an installed Android app; never uninstall to bypass a mismatch |
+| MOBILE_RELEASE_CONTINUITY_V2 | Active release contract | [Mobile Release Continuity V2](contracts/MOBILE_RELEASE_CONTINUITY_V2.md) — Paired Android/iOS provenance and verified APK signer lineage for safe in-place Android channel migration with app data retained |
+| MOBILE_RELEASE_CONTINUITY_V1 | Superseded by V2 | [Archived Mobile Release Continuity V1](contracts/MOBILE_RELEASE_CONTINUITY_V1.md) — Original exact-signer preflight; retained for historical context |
 | NO_ASSUMPTION_RULE | Active | Prohibits assumption-driven work across the entire project |
 | IDENTITY_CONTRACT_SUITE_V1 | Frozen | Canonical rules for set, print, image, and alias identity |
 | IDENTITY_PRECEDENCE_RULE_V1 | Frozen | Printed identity supersedes canonical and external identity |
@@ -195,7 +198,9 @@ If a contract is missing from this index, it is not authoritative.
 | TCGTRACKING_CONDITION_REFERENCE_INTAKE_V1 | Active | docs/contracts/TCGTRACKING_CONDITION_REFERENCE_INTAKE_V1.md — Private condition-price intake against existing exact printings; source-isolated raw receipts, unchanged supplied amounts, replayable lineage and no app-price promotion |
 | CONDITION_PRICING_PRIVATE_CANARY_V1 | Active | docs/contracts/CONDITION_PRICING_PRIVATE_CANARY_V1.md — Founder-only Dragons Exalted exact-condition inspection; guarded read DTOs, no fallback or valuation changes; no public release |
 | TCGTRACKING_CONDITION_PRICING_V2 | Active; web deployed, native source candidate | docs/contracts/TCGTRACKING_CONDITION_PRICING_V2.md — Owner-authorized published API use without separate permission absent explicit restriction; signed-in exact-condition references, bounded daily-feed caching and automatic web/native control switching; existing valuations preserved |
+| TCGTRACKING_CONDITION_COVERAGE_V3 | Active implementation contract | docs/contracts/TCGTRACKING_CONDITION_COVERAGE_V3.md — Adds current exact published-printing and governed source-bound One Piece finish authority to condition references; no identity/mapping writes, condition substitution or valuation cutover |
 | PRICING_COMPLETION_WORKER_V1 | Active | docs/contracts/PRICING_COMPLETION_WORKER_V1.md — Durable credential-free pricing-gap preparation queue; every item stays unresolved until independent production proof closes it, and the worker has no mapping or publication authority |
+| TCGPLAYER_CROSS_TCG_MARKET_PUBLICATION_V2 | Active; source candidate, activation pending | docs/contracts/TCGPLAYER_CROSS_TCG_MARKET_PUBLICATION_V2.md — Exact governed One Piece and Japanese Pokémon Market publication, unchanged old-cohort decisions and guarded source lineage |
 | PRICING_COMPLETION_RUNTIME_QUALIFICATION_V1 | Active | docs/contracts/PRICING_COMPLETION_RUNTIME_QUALIFICATION_V1.md — Qualified bounded source-feed and preparation runtime, retention, recovery, timer, memory, and fail-closed operating limits |
 | TCGPLAYER_PRICING_COMPLETION_AGENT_V4 | Frozen | docs/contracts/TCGPLAYER_PRICING_COMPLETION_AGENT_V4.md — Historical V4 boundary retained for audit; its exact-planner connection section is superseded by V5 |
 | TCGPLAYER_PRICING_COMPLETION_AGENT_V5 | Frozen | docs/contracts/TCGPLAYER_PRICING_COMPLETION_AGENT_V5.md — Historical credential-free exact-planning and future-release triage boundary; superseded by V6 only for bounded base-finish projection |
@@ -251,6 +256,7 @@ Rules:
   - **Active**: Binding and enforced
   - **Frozen**: Binding and immutable
   - **Closed**: Completed and not reopenable
+  - **Superseded**: Replaced by a newer indexed contract version; retained for historical context and not binding over the newer version
 - Changing a contract requires an explicit audit and version bump
 - Silent edits are prohibited
 

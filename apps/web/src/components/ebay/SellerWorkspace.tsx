@@ -122,12 +122,15 @@ export default function SellerWorkspace({ actorId, instanceId, draftId: selected
     await refresh();
   }
   async function loadMetadata() {
-    if (!workspace?.copy || !workspace.account.accountId) return;
-    const data = await post<SellerMetadata>({ action: 'metadata', instanceId: workspace.copy.id, accountId: workspace.account.accountId });
-    setMetadata(data);
     const value = localRef.current;
+    if (!workspace?.copy || !workspace.account.accountId || !value) return;
+    const data = await post<SellerMetadata>({ action: 'metadata', instanceId: workspace.copy.id,
+      accountId: workspace.account.accountId, categoryId: value.input.categoryId || undefined,
+      categoryName: value.input.categoryName || undefined });
+    setMetadata(data);
     if (value) {
       persist({ ...value, dirty: true, input: { ...value.input, categoryId: data.categoryId,
+        categoryName: data.categoryName, categoryPath: data.categoryPath,
         condition: !value.input.condition.descriptors.length && !value.input.condition.description ? data.suggestedCondition : value.input.condition } });
     }
   }
@@ -238,7 +241,7 @@ export default function SellerWorkspace({ actorId, instanceId, draftId: selected
           <div className={s.row}><label className={s.field}>Description<textarea maxLength={5000} value={input.description} onChange={e => change({ description: e.target.value })} /></label><label className={s.field}>Asking price · USD<input key={`${local.draftId}:${local.revision}`} inputMode="decimal" aria-label="Asking price in USD" defaultValue={input.priceCents ? (input.priceCents / 100).toFixed(2) : ''} onChange={e => { const raw = e.target.value; if (/^\d*(?:\.\d{0,2})?$/.test(raw)) change({ priceCents: raw ? Math.round(Number(raw) * 100) : 0 }); else change({ priceCents: 0 }); }} /></label></div>
         </div>}</section>
         <section className={s.section}><h2>Condition &amp; item specifics</h2>{reviewDetails ? <div className={s.fields}><p>{reviewDetails.condition} · {reviewDetails.conditionDescription}</p><dl className={s.summary}>{reviewDetails.descriptors.map(item => <div key={item.name}><dt>{item.name}</dt><dd>{item.values.join(', ')}</dd></div>)}{Object.entries(reviewDetails.aspects).map(([name, values]) => <div key={name}><dt>{name}</dt><dd>{values.join(', ')}</dd></div>)}</dl></div> : !metadata ? <button className={s.button} onClick={() => void run('Loading selling options', loadMetadata)} disabled={!account?.linked}>Load eBay options</button> : <div className={s.fields}>
-          <p className={s.muted}>Category: CCG individual cards · {copy.isGraded ? 'Graded' : 'Ungraded'}</p>
+          <p className={s.muted}>Category: {input.categoryPath || metadata.categoryPath} · {copy.isGraded ? 'Graded' : 'Ungraded'}</p>
           {metadata.conditionChoices.find(v => v.conditionId === input.condition.conditionId)?.conditionDescriptors?.map(descriptor => {
             const selected = input.condition.descriptors.find(d => d.id === descriptor.conditionDescriptorId);
             const update = (next: { values?: string[]; additionalInfo?: string }) => change({ condition: { ...input.condition, descriptors: [...input.condition.descriptors.filter(d => d.id !== descriptor.conditionDescriptorId), ...((next.values?.length || next.additionalInfo) ? [{ id: descriptor.conditionDescriptorId, ...next }] : [])] } });
@@ -263,7 +266,7 @@ export default function SellerWorkspace({ actorId, instanceId, draftId: selected
           {local.pendingPhoto && <p className={s.hint}>Reselect {local.pendingPhoto.filename} to finish the interrupted upload.</p>}
           {editable && <label className={s.button}><ImagePlus size={16} />Add copy photo<input className={s.file} type="file" accept="image/jpeg,image/png" onChange={e => { const file = e.target.files?.[0]; e.target.value = ''; if (file) void run('Uploading private photo', () => upload(file)); }} /></label>}</section>
       </fieldset></div><aside className={s.review}><h2>{draft?.state === 'sold' ? 'Sale recorded' : prepared ? 'Review your listing' : draft?.state === 'live' ? 'Live listing' : 'Listing summary'}</h2><div className={s.price}>{draft?.recordedSale ? money(draft.recordedSale.priceCents) : input.priceCents ? money(input.priceCents) : 'Set your price'}</div>
-        <dl className={s.summary}><div><dt>Quantity</dt><dd>1 exact copy</dd></div><div><dt>Marketplace</dt><dd>eBay US</dd></div><div><dt>Format</dt><dd>Fixed price</dd></div>{draft?.feeQuote?.fees.map((fee, index) => <div key={index}><dt>{fee.type}</dt><dd className={s.fee}>{money(fee.amount.cents)}{fee.promotionalDiscount ? ` · ${money(fee.promotionalDiscount.cents)} discount` : ''}</dd></div>)}</dl>
+        <dl className={s.summary}><div><dt>Quantity</dt><dd>1 exact copy</dd></div><div><dt>Marketplace</dt><dd>eBay US</dd></div><div><dt>Category</dt><dd>{reviewDetails?.category ?? input.categoryPath ?? metadata?.categoryPath ?? 'Choose a category'}</dd></div><div><dt>Format</dt><dd>Fixed price</dd></div>{draft?.feeQuote?.fees.map((fee, index) => <div key={index}><dt>{fee.type}</dt><dd className={s.fee}>{money(fee.amount.cents)}{fee.promotionalDiscount ? ` · ${money(fee.promotionalDiscount.cents)} discount` : ''}</dd></div>)}</dl>
         {draft?.feeQuote && <p className={s.hint}>eBay’s estimated listing fees. Final selling fees and net proceeds are not included.</p>}
         {prepared && <><p className={s.hint}>{quoteFresh ? 'Fee quote is current.' : 'The fee quote has expired. Edit and prepare again to refresh it.'}</p><label className={s.check}><input type="checkbox" checked={confirmed} onChange={e => setConfirmed(e.target.checked)} disabled={Boolean(busy) || !quoteFresh} />I reviewed this exact copy, its photos, condition, price and selling policies.</label><button className={`${s.button} ${s.primary}`} disabled={Boolean(busy) || !confirmed || !quoteFresh || !account?.publicationEnabled} onClick={() => void run('Publishing on eBay', () => operate('publish'))}><ArrowUpRight size={16} />Publish on eBay</button><button className={s.button} disabled={Boolean(busy)} onClick={() => void run('Opening draft', () => operate('edit'))}>Edit draft</button></>}
         {editable && <><button className={s.button} disabled={Boolean(busy) || !account?.preparationEnabled} onClick={() => void run('Saving draft', save)}>Save draft</button><button className={`${s.button} ${s.primary}`} disabled={Boolean(busy) || !account?.preparationEnabled || Boolean(local.pendingPhoto) || !metadata || !draft?.photos.length} onClick={() => void run('Preparing your listing', () => operate('prepare'))}><CreditCard size={16} />Prepare listing</button><p className={s.hint}>Preparation creates an unpublished offer for review.</p></>}
