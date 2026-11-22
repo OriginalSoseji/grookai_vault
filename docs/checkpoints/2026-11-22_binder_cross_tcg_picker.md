@@ -34,25 +34,53 @@ the app calls the catalog.
   `SUPABASE_DB_URL`. No full repository shipcheck or release qualification is
   claimed. Targeted Binder/community tests and `git diff --check` passed.
 
+## Samsung Live Picker Verification
+
+- Build 610 opened the custom checklist picker with `0 slots · 0 copies` and
+  the intended search prompt. Opening the picker did not show the earlier
+  timeout state.
+- Pokémon search `Pikachu` returned canonical results, including Pikachu from
+  151.
+- One Piece search `Luffy` returned canonical results, including cards from
+  ST-30 and OP-12.
+- Magic: The Gathering was selectable, but searches `Lotus` and `Lightning`
+  both ended in the generic “Binder could not be updated. Please try again.”
+  state. This is an unresolved live failure; MTG search is not verified.
+- All checks remained in the unsaved custom checklist editor. Readback stayed
+  at `0 slots · 0 copies`; no Binder, checklist slot, or account data was
+  created or changed.
+- A separate unauthenticated publishable-key probe of
+  `search_game_card_prints_v4` timed out for all three games. That probe does
+  not reproduce the signed-in app role, so it is only a backend performance
+  signal and does not establish the cause of the MTG-specific UI failure.
+
 ## Remaining Risks
 
-- This change has not yet been installed on the Samsung. Production-device
-  verification must confirm exact-name/set/number searches for Pokémon,
-  One Piece, and Magic from the custom checklist editor.
-- The Samsung is connected over ADB, but a production-signed candidate must
-  come from the established CI release path before installing over the current
-  app while preserving its data.
-- Runtime-protection is a required main-branch check and was previously
-  excluded for UI-only Binder changes. The PR includes the workflow path fix;
-  its passing run is still required before merge.
-- A successful query on device would verify the UI recovery from the slow blank
-  request, but would not establish broader catalog-search performance.
+- Diagnose and fix the signed-in MTG catalog search failure, then repeat the
+  three-scope device verification.
+- The main branch is configured as locked. PR #1016 has all required checks
+  passing on source SHA `4aed14f08444268ed78eb622448715b75973d22a` but remains
+  open because GitHub will not accept a merge while main is locked.
+
+## Samsung Build 610 Addendum
+
+- Signed Android artifact was produced by Flutter Build Signed APK run
+  `45070004960` from source commit `4aed14f08444268ed78eb622448715b75973d22a`.
+- CI passed analysis and the complete Flutter suite, built the APK, verified
+  package `com.grookai.vault`, version `1.0.0`, build `610`, and the approved
+  production signer `a1290a32711ab390f798c0898a4d0d78c97f20b2e12adb55bb2260bff9036119`.
+- Local update preflight passed the exact installed-signer check. `adb install
+  -r` succeeded. Package readback reports version code 610 and the original
+  first-install timestamp, `2026-10-13 14:57:14`; app data was retained.
+- Build 610 was opened on the Samsung and the live picker results are recorded
+  above. The install preserved the original app data.
 
 ## Next Likely Step
 
-Build and install the current Android app in place, preserving app data, then
-verify the three game scopes with known exact card searches. Only after this
-check should family/community flows be marked live-device verified.
+Diagnose the signed-in MTG search failure from the backend request and app
+error path, fix it under the existing catalog/search contracts, then repeat
+all three game-scope searches on the Samsung. Family/community flows remain
+unverified on a second real account.
 
 ## Related Artifacts
 
