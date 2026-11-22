@@ -22,10 +22,13 @@
 - Added the active
   [eBay Seller Connection Entry Contract V1](../contracts/EBAY_SELLER_CONNECTION_ENTRY_CONTRACT_V1.md)
   and regression coverage for missing and known-disabled status.
+- An additional review found that a partial response carrying an explicit
+  `linkingEnabled: false` must retain the backend restriction; the UI now keeps
+  it disabled even when other status fields are missing.
 
 ## Verification
 
-- `flutter test --no-pub test/ebay/ebay_seller_screen_test.dart` — 20 tests
+- `flutter test --no-pub test/ebay/ebay_seller_screen_test.dart` — 22 tests
   passed.
 - `flutter analyze --no-pub lib/screens/ebay/ebay_seller_screen.dart test/ebay/ebay_seller_screen_test.dart`
   — no issues.

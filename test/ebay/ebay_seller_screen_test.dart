@@ -19,6 +19,7 @@ class _Api implements EbaySellerApi {
   bool showDraftList = false;
   bool omitAccount = false;
   bool partialAccount = false;
+  bool partialLinkingDisabled = false;
   bool linkingDisabled = false;
   bool accountLinked = true;
   final draftSummaries = <Map<String, dynamic>>[
@@ -41,7 +42,10 @@ class _Api implements EbaySellerApi {
   Future<Map<String, dynamic>> workspace({String? instanceId}) async => {
     if (!omitAccount)
       'account': partialAccount
-          ? {'linked': false}
+          ? {
+              'linked': false,
+              if (partialLinkingDisabled) 'linkingEnabled': false,
+            }
           : {
               'linked': accountLinked,
               'username': 'Collector seller',
@@ -177,6 +181,31 @@ void main() {
       find.widgetWithText(FilledButton, 'Connect eBay'),
     );
     expect(connect.onPressed, isNotNull);
+  });
+
+  testWidgets('partial status cannot override explicit linking disablement', (
+    tester,
+  ) async {
+    final api = _Api()
+      ..partialAccount = true
+      ..partialLinkingDisabled = true;
+    final model = EbaySellerController(api: api);
+    addTearDown(model.dispose);
+    await model.refresh();
+    await tester.pumpWidget(
+      MaterialApp(home: EbaySellerScreen(controller: model)),
+    );
+    await tester.pumpAndSettle();
+
+    expect(
+      find.textContaining('Seller listings aren’t available yet.'),
+      findsOneWidget,
+    );
+    final connect = tester.widget<FilledButton>(
+      find.widgetWithText(FilledButton, 'Connect eBay'),
+    );
+    expect(connect.onPressed, isNull);
+    expect(api.actions, isNot(contains('link')));
   });
 
   testWidgets('saved listing drafts can be removed from their list', (

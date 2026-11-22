@@ -16,8 +16,10 @@ seller connection path and its recovery states.
   explicit connection action. The action may attempt the server-owned OAuth
   start flow; backend controls remain authoritative and any rejection must be
   shown in the workspace.
-- When status is present and `linkingEnabled` is false, disable connection and
-  explain that seller listings are unavailable. Do not bypass the control.
+- Whenever the response explicitly sets `linkingEnabled` to false, even if
+  other status fields are missing, disable connection and explain that seller
+  listings are unavailable. Missing unrelated fields must not bypass this
+  control.
 - Start OAuth only through the authenticated seller endpoint. Accept only the
   server-issued Grookai launch URL with the expected host, path, and capability
   shape. eBay credentials and tokens remain server-side.

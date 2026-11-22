@@ -230,6 +230,7 @@ class _EbaySellerScreenState extends State<EbaySellerScreen>
         account['linked'] is bool &&
         account['reconnectRequired'] is bool &&
         account['linkingEnabled'] is bool;
+    final linkingExplicitlyDisabled = account['linkingEnabled'] == false;
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 48,
@@ -337,6 +338,7 @@ class _EbaySellerScreenState extends State<EbaySellerScreen>
                                     FilledButton(
                                       onPressed:
                                           model.busy == null &&
+                                              !linkingExplicitlyDisabled &&
                                               (!accountStatusKnown ||
                                                   account['linkingEnabled'] ==
                                                       true)
@@ -351,8 +353,7 @@ class _EbaySellerScreenState extends State<EbaySellerScreen>
                             ],
                           ),
                         ),
-                        if (accountStatusKnown &&
-                            account['linkingEnabled'] != true)
+                        if (linkingExplicitlyDisabled)
                           _message(
                             context,
                             'Seller listings aren’t available yet. Active and sold searches remain available from your card details.',
