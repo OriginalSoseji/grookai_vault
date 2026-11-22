@@ -1,3 +1,28 @@
+# Cosmo title price guard — November22,2026
+
+Use `C:/grookai_cosmo_price_guard_20261122` and the
+[guard checkpoint](../checkpoints/pricing/COSMO_TITLE_PRICE_GUARD_20261122.md).
+Explicit `Cosmo Holo` / `Cosmo Holofoil` titles must not publish a generic holo
+quote. The additive scope V1.6 guard preserves V1.1 through V1.5 for replay;
+current publication and coverage share the hold. No printing, mapping or source
+price is changed. Worker V1_26 requires normal hooks, hosted checks, a new full
+same-runtime shadow and atomic guarded activation. Never reuse the V1_25 shadow
+for this changed runtime or replay the already-applied512 pricing migration.
+Tinkatink025's missing Cosmos child is a separate catalog-review case, not
+permission to price its generic holo child. Keep the existing publication live
+until this release passes every gate; read back real app quotes and refresh
+health afterward. Preserve the original dirty workspace and all retained labs.
+
+Samsung build607 has now displayed the exact Luffy product602806 Market4.67,
+NM4.67 and LP10.99. Use the supported native `grookai://card/<GV-ID>` route when
+independently checking pricing; condition references are inside Add to Vault.
+Keep verification forms unsaved and close them afterward. Condition labels in
+the card's external TCGplayer row open provider links. One Piece name/number
+search failed during this check and remains a separate resolver issue. Private
+device receipts are under the Cosmo guard operator artifact root, outside Git.
+Combined-source normal qualification follows integration of main9f4c9968; its
+updated web lock has a separate dependency installation, preserving shared trees.
+
 # Cross-TCG Market publication V2 — November20,2026
 
 Use `C:/grookai_cross_tcg_market_v2_20261119` and the

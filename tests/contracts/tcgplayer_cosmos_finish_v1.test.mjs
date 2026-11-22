@@ -2,6 +2,8 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { evaluateTcgplayerMarketQualificationV1 as evaluate } from '../../backend/pricing/tcgplayer_market_publication_policy_v1.mjs';
 import { classifyTcgplayerMarketCoverageRowV1 as coverage } from '../../backend/pricing/tcgplayer_market_coverage_policy_v1.mjs';
+import { evaluateTcgplayerMarketQualificationV2 } from '../../backend/pricing/tcgplayer_market_publication_policy_v2.mjs';
+import { classifyTcgplayerMarketProductScopeV1_5 } from '../../backend/pricing/tcgplayer_market_product_scope_v1.mjs';
 
 const now = new Date('2026-09-30T23:00:00Z');
 const valid = {
@@ -79,3 +81,39 @@ test('coverage agrees with publication for reviewed Cosmos and excludes generic 
   const bad = { ...valid, normalized_finish_key: 'holo', finish_key: 'holo' };
   assert.equal(coverage({ ...bad, candidate_payload: bad }).product_scope.in_scope, false);
 });
+
+function genericHolo(productName) {
+  return { ...valid, source_product_name: productName,
+    normalized_finish_key: 'holo', finish_key: 'holo',
+    card_printing_id: 'generic-holo-child', printing_gv_id: 'GV-EXACT-HOLO',
+    cosmos_finish_authority: false, source_mapping_meta: {},
+    variant_assignment_id: 'generic-holo-assignment',
+    variant_assignment_version: 'MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1_1' };
+}
+
+for (const title of ['Latias - 139 (Cosmo Holo)', 'Tinkaton - 140 (Cosmo Holo)', 'Horsea - 137 (Cosmo Holo)']) {
+  test(`Cosmo spelling cannot publish a generic holo quote: ${title}`, () => {
+    const row = genericHolo(title);
+    // Keep the old classifier replayable; only the current evaluator is repaired.
+    assert.equal(classifyTcgplayerMarketProductScopeV1_5(row).in_scope, true);
+    for (const evaluateCurrent of [evaluate, evaluateTcgplayerMarketQualificationV2]) {
+      const result = evaluateCurrent(row, { now });
+      assert.equal(result.eligible, false);
+      assert.equal(result.decision, 'exclude');
+      assert.ok(result.reason_codes.includes('special_variant_v1_1'));
+    }
+    assert.equal(coverage({ ...row, candidate_payload: row }).product_scope.in_scope, false);
+  });
+}
+
+for (const title of ['Latias (COSMO HOLOFOIL)', 'Latias [Cosmo Holo]', 'Latias - Cosmo Holo']) {
+  test(`explicit Cosmo treatment stays held across delimiters: ${title}`, () => {
+    assert.equal(evaluateTcgplayerMarketQualificationV2(genericHolo(title), { now }).eligible, false);
+  });
+}
+
+for (const title of ['Cosmog', 'Cosmoem', 'Cosmog - SM42']) {
+  test(`Pokemon names containing Cosmo keep ordinary exact-finish pricing: ${title}`, () => {
+    assert.equal(evaluateTcgplayerMarketQualificationV2(genericHolo(title), { now }).eligible, true);
+  });
+}
