@@ -36,3 +36,11 @@ Release order: apply the schema migration, release the policy code, run the
 governed pricing pipeline, and verify authenticated parent and child reads.
 Deploying either schema or code alone cannot admit an unreviewed Cosmos price.
 No support claim implies complete Cosmos catalog coverage.
+
+The current product-scope V1.6 guard also withholds explicit `(Cosmo Holo)`,
+`(Cosmo Holofoil)`, bracketed and dash-delimited spellings from ordinary holo
+pricing. This is an exclusion, not new Cosmos admission or finish conversion.
+Earlier scope classifiers remain unchanged for replay. Ordinary names such as
+Cosmog and Cosmoem retain their existing exact-finish pricing. Worker V1_26
+requires a new full shadow before activation; existing SQL authority, truth
+reviews, source hashes and exact Cosmos assignments remain mandatory.

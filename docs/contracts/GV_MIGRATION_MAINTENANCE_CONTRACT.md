@@ -1,5 +1,18 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Best of Game approved current-main integration V10 — November22,2026
+
+Only -BestOfGameDiscoveryReleaseV10 admits canonical517 and the same pending
+20261122194000 candidate. Read [V10](BEST_OF_GAME_DISCOVERY_READ_REPAIR_V10.md).
+This integrates reviewed main PR1011 without new SQL. Preserve all518 bytes,
+V9 source/qualification and actual identity instruction; bind that same SQL
+decision to newly checked source instead of requesting it again. Original data
+anchors, exact5832/972 additions, clocks and expiry remain unchanged. New normal
+managed/hosted checks, sealed package, fresh PrePush/full before/dry, one intent,
+actual after/API/reliability and exact deployed closure remain mandatory. Reuse
+the retained same-SQL518 labs/proofs without reset or blind reapply. Shared main
+pause coordination grants no execution authority and clears only at closure.
+
 ## Best of Game typed identity forward release V9 — November22,2026
 
 Only -BestOfGameDiscoveryReleaseV9 admits517-to518 and20261122194000. Read
