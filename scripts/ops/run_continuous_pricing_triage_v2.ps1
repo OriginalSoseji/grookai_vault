@@ -28,6 +28,48 @@ function Invoke-Checked([string]$FilePath, [string[]]$Arguments, [string]$Label)
   return @($commandOutput)
 }
 
+function Ensure-MtgGlobalExactReviewQueue(
+  [string]$ReviewQueueScript,
+  [string]$InputStateDir,
+  [string]$SourceCommit
+) {
+  $reconciledInput = Join-Path $InputStateDir 'reconciled-v2\review_queue.jsonl'
+  $reviewRoot = Join-Path $InputStateDir 'mtg-global-exact-review-v1'
+  $reviewSummary = Join-Path $reviewRoot 'summary.json'
+  if (-not (Test-Path -LiteralPath $reconciledInput -PathType Leaf)) {
+    throw "Reconciled review queue is missing: $reconciledInput"
+  }
+  if (Test-Path -LiteralPath $reviewRoot -PathType Container) {
+    & 'node.exe' @(
+      $ReviewQueueScript,
+      '--verify-existing',
+      "--input=$reconciledInput",
+      "--out-dir=$reviewRoot",
+      "--source-commit=$SourceCommit"
+    ) 2>&1 | ForEach-Object { Write-TaskLog "mtg-global-exact-review-verify | $_" }
+    if ($LASTEXITCODE -eq 0) {
+      Write-TaskLog "Reusing verified complete MTG global exact review queue at $reviewRoot."
+      return $reviewSummary
+    }
+    Write-TaskLog "Removing incomplete or invalid generated review package at $reviewRoot before regeneration."
+    Remove-Item -LiteralPath $reviewRoot -Recurse -Force
+  }
+  Invoke-Checked 'node.exe' @(
+    $ReviewQueueScript,
+    "--input=$reconciledInput",
+    "--out-dir=$reviewRoot",
+    "--source-commit=$SourceCommit"
+  ) 'mtg-global-exact-review-queue' | Out-Null
+  Invoke-Checked 'node.exe' @(
+    $ReviewQueueScript,
+    '--verify-existing',
+    "--input=$reconciledInput",
+    "--out-dir=$reviewRoot",
+    "--source-commit=$SourceCommit"
+  ) 'mtg-global-exact-review-verification' | Out-Null
+  return $reviewSummary
+}
+
 try {
   New-Item -ItemType Directory -Path $ArtifactRoot -Force | Out-Null
   $hasMutex = $taskMutex.WaitOne(0)
@@ -38,7 +80,8 @@ try {
 
   $workerScript = Join-Path $WorkerRepo 'scripts\workers\tcgplayer_ollama_triage_v1.mjs'
   $reconciliationScript = Join-Path $WorkerRepo 'scripts\audits\tcgplayer_ollama_lead_reconciliation_v1.mjs'
-  foreach ($required in @($workerScript, $reconciliationScript)) {
+  $reviewQueueScript = Join-Path $WorkerRepo 'scripts\audits\mtg_tcgplayer_global_exact_review_queue_v1.mjs'
+  foreach ($required in @($workerScript, $reconciliationScript, $reviewQueueScript)) {
     if (-not (Test-Path -LiteralPath $required -PathType Leaf)) {
       throw "Required script is missing: $required"
     }
@@ -87,7 +130,12 @@ try {
   }
 
   if (Test-Path -LiteralPath $completePath -PathType Leaf) {
+    $reviewSummary = Ensure-MtgGlobalExactReviewQueue `
+      -ReviewQueueScript $reviewQueueScript `
+      -InputStateDir $inputStateDir `
+      -SourceCommit ([string]$latestRun.headSha)
     $latestReceipt.status = 'unchanged_input_already_complete'
+    $latestReceipt.mtg_global_exact_review_summary = $reviewSummary
     $latestReceipt | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $latestReceiptPath -Encoding utf8
     Remove-Item -LiteralPath $downloadDir -Recurse -Force
     Write-TaskLog "Run $runId has unchanged candidate input $inputSha; prior result reused."
@@ -154,6 +202,10 @@ try {
     "--triage=$triageOutputPath",
     "--out-dir=$reconciledOutDir"
   ) 'lead-reconciliation' | Out-Null
+  $reviewSummary = Ensure-MtgGlobalExactReviewQueue `
+    -ReviewQueueScript $reviewQueueScript `
+    -InputStateDir $inputStateDir `
+    -SourceCommit ([string]$latestRun.headSha)
 
   $aggregate = [ordered]@{
     schema_version = 'GROOKAI_OLLAMA_CONTINUOUS_TRIAGE_V2'
@@ -183,6 +235,7 @@ try {
   $aggregate | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $completePath -Encoding utf8
   $latestReceipt.status = 'complete'
   $latestReceipt.aggregate_summary = (Join-Path $inputStateDir 'aggregate_summary_v2.json')
+  $latestReceipt.mtg_global_exact_review_summary = $reviewSummary
   $latestReceipt | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $latestReceiptPath -Encoding utf8
   Write-TaskLog "Completed $totalRows hosted candidate rows with $($aggregate.model_calls) model calls and zero model errors."
 } catch {

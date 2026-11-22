@@ -1715,6 +1715,39 @@ variant; require the exact printed coordinate and keep every result advisory.
 Any other MTG variant-key form remains held. A successful local task with zero
 Magic inputs is not evidence that the Magic backlog is complete.
 
+Checkpoint 170 connects the V2 reconciliation output to a deterministic,
+read-only MTG global-exact review queue. After reconciliation, the runner must
+invoke `scripts/audits/mtg_tcgplayer_global_exact_review_queue_v1.mjs` against
+the collision-free `review_queue.jsonl`; it must also create the queue when an
+unchanged completed input predates this producer. Admission requires an exact
+normalized name, exact printed number, one active MTG paper identity, zero
+existing TCGPlayer mappings, one globally discovered eligible target, a bound
+0.99 Ollama lead, and a Scryfall parent key. The producer independently
+recomputes name and coordinate agreement and holds ambiguity.
+
+The producer shards admitted rows into deterministic founder-review packages
+of at most 50, preserving the V6 limit. These packages are review evidence only.
+They grant no mapping or publication authority. Every batch still requires the
+separate mapping-outcome preflight, founder approval, insert-only executor,
+transactional current-state revalidation, durable reconciliation, and later
+pricing publication. Do not point the scheduled task at a checkout lacking the
+producer, and do not treat queue creation as a mapping or price release.
+
+Before review, confirm that every row exposes and content-binds the readable
+target set name, set ID/code, source group, printed number, canonical
+name/number, target identity state, candidate-search result, group-consensus
+diagnostics, and model reason. A source treatment or promo qualifier that does
+not reconcile with the readable target set must be held; global name-and-number
+uniqueness is not by itself founder approval.
+
+The runner may reuse a generated queue only after the producer's
+`--verify-existing` mode rebuilds the source-bound expectation and verifies all
+artifact bytes, the exact file inventory, `artifact_hashes.json`, and
+`COMPLETE_V1.json`. The producer writes `COMPLETE_V1.json` last. Never use
+`summary.json` as a completion signal. If verification fails, remove only that
+input's generated `mtg-global-exact-review-v1` directory and regenerate it from
+the reconciled review input; do not reuse or manually repair a partial package.
+
 ## Pokémon 30th Celebration Classic aliases — October 14
 
 Read
