@@ -3925,6 +3925,20 @@ apply paths, and issue 260 reports its outcome without automatically clearing
 quarantine. Resume command, evidence and upstream defects:
 `docs/checkpoints/catalog_discovery/2026-09-07_POKEMON_LANGUAGE_ANOMALY_EVIDENCE_V1.md`.
 
+Japanese discovery integrity failures are isolated from unrelated Master Index
+candidate publication at the workflow boundary. The discovery worker itself
+still fails closed on parser errors, mixed set codes, and count disagreements.
+When that happens, `pokemon-master-index-refresh.yml` writes a no-change
+`source_integrity_blocked` Japanese plan, preserves the prior Japanese admitted
+index, grants no canonical authority, and suppresses the post-merge discovery
+and promotion dispatches. English and other language candidate updates may
+continue only through their existing independent, data-only guards. Inspect the
+uploaded `pokemon-language-master-index-discovery/discovery.log` and
+`japanese-master-index-incremental-report/source_health.json`; do not treat a
+successful combined job as resolution of the held Japanese set. Current repair
+receipt:
+`docs/checkpoints/catalog_discovery/2026-11-22_POKEMON_MASTER_INDEX_JAPANESE_INTEGRITY_ISOLATION_V1.md`.
+
 ### Pokemon sealed production work
 
 September 9 source-containment repair:
