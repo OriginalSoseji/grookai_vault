@@ -80,6 +80,14 @@ globally strict; missing/partial evidence, parser failures, mixed set codes, and
 count disagreements remain fatal. Do not dispatch discovery, write catalog
 data, or count a pre-merge/manual run as Ruflo pilot qualification.
 
+The daily combined Master Index workflow may contain such a Japanese integrity
+failure only at the lane boundary: it must preserve the prior Japanese admitted
+index, emit `source_integrity_blocked` with no canonical authority, and suppress
+downstream discovery and promotion dispatch. Independently verified English and
+language candidate updates may continue through their unchanged data-only
+gates. Containment never converts the disputed Japanese set into evidence or a
+candidate and never weakens the fatal count-disagreement gate inside discovery.
+
 ## MTG fresh Scryfall finish backfill — October 20
 
 Read `docs/checkpoints/pricing/PRICING_CHECKPOINT_160_MTG_FRESH_SCRYFALL_FINISH_BACKFILL.md`.
