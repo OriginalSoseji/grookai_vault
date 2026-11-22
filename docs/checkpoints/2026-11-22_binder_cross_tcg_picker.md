@@ -44,20 +44,24 @@ the app calls the catalog.
 - One Piece search `Luffy` returned canonical results, including cards from
   ST-30 and OP-12.
 - Magic: The Gathering was selectable, but searches `Lotus` and `Lightning`
-  both ended in the generic “Binder could not be updated. Please try again.”
-  state. This is an unresolved live failure; MTG search is not verified.
+  initially ended in the generic “Binder could not be updated. Please try
+  again.” state. On a fresh repeat in the same session, both searches returned
+  canonical MTG cards, including Black Lotus, Lotus Bloom, and Lightning.
+  Pokémon `Pikachu` and One Piece `Luffy` also returned results in the repeat
+  pass. All three scopes are now live-verified on the Samsung.
 - All checks remained in the unsaved custom checklist editor. Readback stayed
   at `0 slots · 0 copies`; no Binder, checklist slot, or account data was
   created or changed.
-- A separate unauthenticated publishable-key probe of
-  `search_game_card_prints_v4` timed out for all three games. That probe does
-  not reproduce the signed-in app role, so it is only a backend performance
-  signal and does not establish the cause of the MTG-specific UI failure.
+- A separate read-only production API probe returned 30 MTG rows for `Lotus`
+  and `Lightning` in about 3–4 seconds. One Pokémon request returned HTTP 503;
+  subsequent device search succeeded. These probes show the initial UI error
+  was not reproducible, but do not establish its root cause.
 
 ## Remaining Risks
 
-- Diagnose and fix the signed-in MTG catalog search failure, then repeat the
-  three-scope device verification.
+- The initial search error remains unexplained and was not reproducible during
+  the repeat pass. Monitor retry behavior if it recurs; no MTG-specific
+  catalog or query defect was demonstrated.
 - The main branch is configured as locked. PR #1016 has all required checks
   passing on source SHA `4aed14f08444268ed78eb622448715b75973d22a` but remains
   open because GitHub will not accept a merge while main is locked.
@@ -77,10 +81,10 @@ the app calls the catalog.
 
 ## Next Likely Step
 
-Diagnose the signed-in MTG search failure from the backend request and app
-error path, fix it under the existing catalog/search contracts, then repeat
-all three game-scope searches on the Samsung. Family/community flows remain
-unverified on a second real account.
+Cross-TCG picker verification is complete for the three enabled game scopes.
+The next release step is to resolve PR #1016's locked-main merge blocker. The
+initial transient search error can be investigated if it recurs. Family and
+community Binder flows remain unverified on a second real account.
 
 ## Related Artifacts
 
