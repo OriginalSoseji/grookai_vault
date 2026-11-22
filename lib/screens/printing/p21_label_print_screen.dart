@@ -5,15 +5,18 @@ import 'package:flutter/services.dart';
 
 import '../../services/printing/p21_label.dart';
 import '../../services/printing/p21_printer_service.dart';
+import '../../services/printing/p21_batch_print_service.dart';
 
 class P21LabelPrintScreen extends StatefulWidget {
   const P21LabelPrintScreen({
     super.key,
     required this.content,
     this.printer = const P21PrinterService(),
+    this.additionalContents = const [],
   });
   final P21LabelContent content;
   final P21PrinterService printer;
+  final List<P21LabelContent> additionalContents;
 
   @override
   State<P21LabelPrintScreen> createState() => _P21LabelPrintScreenState();
@@ -21,6 +24,9 @@ class P21LabelPrintScreen extends StatefulWidget {
 
 class _P21LabelPrintScreenState extends State<P21LabelPrintScreen> {
   P21Label? _label;
+  List<P21Label> _labels = [];
+  bool _batchAttempted = false;
+  int _sent = 0;
   List<P21Device> _devices = [];
   P21Device? _selected;
   P21Status? _status;
@@ -39,8 +45,24 @@ class _P21LabelPrintScreenState extends State<P21LabelPrintScreen> {
 
   Future<void> _render() async {
     try {
-      final label = await P21Label.render(widget.content);
-      if (mounted) setState(() => _label = label);
+      final contents = [widget.content, ...widget.additionalContents];
+      if (contents.length > 50 ||
+          contents.map((c) => c.qrUri.toString()).toSet().length !=
+              contents.length) {
+        throw const FormatException(
+          'Choose at most 50 distinct physical copies.',
+        );
+      }
+      final labels = <P21Label>[];
+      for (final content in contents) {
+        labels.add(await P21Label.render(content));
+      }
+      if (mounted) {
+        setState(() {
+          _labels = labels;
+          _label = labels.first;
+        });
+      }
     } catch (error) {
       if (mounted) setState(() => _renderError = _explain(error));
     }
@@ -111,6 +133,33 @@ class _P21LabelPrintScreenState extends State<P21LabelPrintScreen> {
 
   Future<void> _print() => _run(() async {
     setState(() => _printing = true);
+    if (_labels.length > 1) {
+      setState(() => _batchAttempted = true);
+      try {
+        await P21BatchPrintService.send(
+          labels: _labels,
+          printer: widget.printer,
+          onSent: (count) {
+            if (mounted) setState(() => _sent = count);
+          },
+        );
+        if (mounted) {
+          setState(
+            () => _message =
+                '$_sent labels sent to P21. Check the physical output before printing again.',
+          );
+        }
+      } catch (_) {
+        if (mounted) {
+          setState(
+            () => _message =
+                'Batch stopped after $_sent confirmed transmissions. The last label may also have printed. Check the physical labels, then select only missing copies in a new batch.',
+          );
+        }
+        rethrow;
+      }
+      return;
+    }
     await widget.printer.printLabel(_label!);
     if (mounted) {
       setState(
@@ -132,7 +181,11 @@ class _P21LabelPrintScreenState extends State<P21LabelPrintScreen> {
     return PopScope(
       canPop: !_printing,
       child: Scaffold(
-        appBar: AppBar(title: const Text('Print label')),
+        appBar: AppBar(
+          title: Text(
+            widget.additionalContents.isEmpty ? 'Print label' : 'Print labels',
+          ),
+        ),
         body: ListView(
           padding: const EdgeInsets.all(20),
           children: [
@@ -157,8 +210,12 @@ class _P21LabelPrintScreenState extends State<P21LabelPrintScreen> {
                 ),
               ),
             const SizedBox(height: 12),
+            if (widget.additionalContents.isNotEmpty)
+              Text(
+                '${widget.additionalContents.length + 1} labels selected. Preview shows the first. Each physical copy is sent once; interrupted batches never resume automatically.',
+              ),
             const Text(
-              'Reusable label with the full card name, set, number, and Grookai logo. Scan the QR code for current card details.',
+              'Reusable label with the full card name, set, number, and grookai logo. Scan the QR code for current card details.',
             ),
             const SizedBox(height: 24),
             OutlinedButton.icon(
@@ -205,7 +262,9 @@ class _P21LabelPrintScreenState extends State<P21LabelPrintScreen> {
               const SizedBox(height: 8),
               Text(
                 _printing
-                    ? 'Sending label… Keep the printer nearby.'
+                    ? _labels.length > 1
+                          ? 'Sending labels… $_sent of ${_labels.length} sent. Keep the printer nearby.'
+                          : 'Sending label… Keep the printer nearby.'
                     : 'Checking printer…',
               ),
             ],
@@ -226,13 +285,18 @@ class _P21LabelPrintScreenState extends State<P21LabelPrintScreen> {
             FilledButton.icon(
               onPressed:
                   !_busy &&
+                      !_batchAttempted &&
                       _label != null &&
                       _selected != null &&
                       _status?.problem == null
                   ? _print
                   : null,
               icon: const Icon(Icons.print_outlined),
-              label: const Text('Print 1 label'),
+              label: Text(
+                _labels.length > 1
+                    ? 'Print ${_labels.length} labels'
+                    : 'Print 1 label',
+              ),
             ),
           ],
         ),

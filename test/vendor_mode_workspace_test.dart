@@ -1,9 +1,663 @@
+import 'dart:async';
+import 'package:grookai_vault/services/pricing/condition_price_service.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:grookai_vault/screens/gvvi/vendor_pricing_workspace_screen.dart';
 import 'package:grookai_vault/services/gvvi/vendor_pricing_workspace_service.dart';
 
 void main() {
+  testWidgets(
+    'exact references follow pending condition and printing and restore failed saves',
+    (tester) async {
+      final service = _FakeVendorService(
+        VendorPricingWorkspaceData(
+          rows: [_row(instanceId: 'reference-copy', askingPrice: 20)],
+          sections: const [],
+        ),
+      );
+      final requests = <(String, String)>[];
+      await tester.pumpWidget(
+        MaterialApp(
+          home: VendorPricingWorkspaceScreen(
+            service: service,
+            conditionPriceReader: () => _ReferencePrices(requests),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('2.51'), findsOneWidget);
+      final pending = Completer<VendorPricingWorkspaceRow>();
+      service.pendingConditionSave = pending;
+      final field = find.byKey(const Key('vendor_condition_reference-copy'));
+      await tester.ensureVisible(field);
+      await tester.tap(field);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('LP').last);
+      await tester.pump();
+      await tester.pump();
+      expect(find.text('1.16'), findsOneWidget);
+      expect(find.text('2.51'), findsNothing);
+      pending.completeError(StateError('fixture save failed'));
+      await tester.pumpAndSettle();
+      expect(find.text('2.51'), findsOneWidget);
+      expect(find.text('1.16'), findsNothing);
+      expect(
+        tester.widget<DropdownButtonFormField<String>>(field).initialValue,
+        'NM',
+      );
+      expect(requests, [
+        ('printing-reference-copy', 'NM'),
+        ('printing-reference-copy', 'LP'),
+        ('printing-reference-copy', 'NM'),
+      ]);
+      expect(service.priceSaves, isEmpty);
+      expect(
+        tester
+            .widget<TextField>(
+              find.byKey(const Key('vendor_price_reference-copy')),
+            )
+            .controller!
+            .text,
+        '20.00',
+      );
+      final printingSave = Completer<VendorPricingWorkspaceRow>();
+      service.pendingPrintingSave = printingSave;
+      final printingField = find.byKey(
+        const Key('vendor_printing_reference-copy'),
+      );
+      await tester.ensureVisible(printingField);
+      await tester.pumpAndSettle();
+      await tester.tap(printingField);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Reverse Holo').last);
+      await tester.pump();
+      await tester.pump();
+      expect(find.text('5.34'), findsOneWidget);
+      expect(find.text('2.51'), findsNothing);
+      printingSave.completeError(StateError('fixture printing save failed'));
+      await tester.pumpAndSettle();
+      expect(find.text('2.51'), findsOneWidget);
+      expect(find.text('5.34'), findsNothing);
+      expect(requests.skip(3), [
+        ('printing-reverse-reference-copy', 'NM'),
+        ('printing-reference-copy', 'NM'),
+      ]);
+      expect(tester.takeException(), isNull);
+    },
+  );
+  testWidgets(
+    'sale review refreshes the selected copy and retains search and scroll',
+    (tester) async {
+      final service = _FakeVendorService(
+        VendorPricingWorkspaceData(
+          rows: List.generate(
+            8,
+            (index) => _row(instanceId: 'copy-$index', name: 'Eevee $index'),
+          ),
+          sections: const [],
+        ),
+      );
+      final opened = <String>[];
+      await tester.pumpWidget(
+        MaterialApp(
+          home: VendorPricingWorkspaceScreen(
+            service: service,
+            saleSheetOpener: (context, gvviId) async {
+              opened.add(gvviId);
+              return await showModalBottomSheet<bool>(
+                    context: context,
+                    builder: (context) => TextButton(
+                      onPressed: () {
+                        service.data = VendorPricingWorkspaceData(
+                          rows: service.data.rows
+                              .map(
+                                (row) => row.gvviId == gvviId
+                                    ? row.copyWith(
+                                        askingPrice: 21,
+                                        intent: 'sell',
+                                      )
+                                    : row,
+                              )
+                              .toList(),
+                          sections: const [],
+                        );
+                        Navigator.pop(context, true);
+                      },
+                      child: const Text('Finish review'),
+                    ),
+                  ) ??
+                  false;
+            },
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      await tester.enterText(find.byKey(const Key('vendor_search')), 'Eevee');
+      await tester.pumpAndSettle();
+      final list = find
+          .descendant(
+            of: find.byType(ListView),
+            matching: find.byType(Scrollable),
+          )
+          .first;
+      final review = find.byKey(const Key('vendor_review_sale_copy-5'));
+      await tester.scrollUntilVisible(review, 300, scrollable: list);
+      await tester.pumpAndSettle();
+      await tester.ensureVisible(review);
+      await tester.pumpAndSettle();
+      final before = tester.state<ScrollableState>(list).position.pixels;
+      final priceController = tester
+          .widget<TextField>(find.byKey(const Key('vendor_price_copy-5')))
+          .controller!;
+      expect(before, greaterThan(0));
+      await tester.tap(review);
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 350));
+      await tester.tap(find.text('Finish review'));
+      await tester.pumpAndSettle();
+      expect(opened, ['GVVI-copy-5']);
+      expect(service.copyLoads, [
+        <String>{'copy-5'},
+      ]);
+      expect(service.loadCount, 1);
+      expect(tester.state<ScrollableState>(list).position.pixels, before);
+      expect(
+        tester
+            .widget<TextField>(find.byKey(const Key('vendor_search')))
+            .controller!
+            .text,
+        'Eevee',
+      );
+      expect(priceController.text, '21.00');
+      expect(service.priceSaves, isEmpty);
+      expect(service.archivedCopies, isEmpty);
+      expect(tester.takeException(), isNull);
+    },
+  );
+
+  testWidgets('sale review waits for pending and failed inline price edits', (
+    tester,
+  ) async {
+    final service = _FakeVendorService(
+      VendorPricingWorkspaceData(
+        rows: [_row(instanceId: 'copy', askingPrice: 20)],
+        sections: const [],
+      ),
+    );
+    final saving = Completer<VendorPricingWorkspaceRow>();
+    service.pendingPriceSave = saving;
+    var opened = 0;
+    await tester.pumpWidget(
+      MaterialApp(
+        home: VendorPricingWorkspaceScreen(
+          service: service,
+          saleSheetOpener: (_, _) async {
+            opened++;
+            return false;
+          },
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    final review = find.byKey(const Key('vendor_review_sale_copy'));
+    final price = find.byKey(const Key('vendor_price_copy'));
+    await tester.enterText(price, '24');
+    await tester.pump();
+    expect(tester.widget<OutlinedButton>(review).onPressed, isNull);
+    await tester.pump(const Duration(milliseconds: 950));
+    expect(service.priceSaves, [('copy', 24.0)]);
+    expect(tester.widget<OutlinedButton>(review).onPressed, isNull);
+    saving.completeError(StateError('Price save failed'));
+    await tester.pumpAndSettle();
+    expect(tester.widget<OutlinedButton>(review).onPressed, isNull);
+    expect(tester.widget<TextField>(price).controller!.text, '24');
+    expect(opened, 0);
+    expect(service.copyLoads, isEmpty);
+    service.pendingPriceSave = null;
+    await tester.tap(find.byTooltip('Save price'));
+    await tester.pumpAndSettle();
+    expect(tester.widget<OutlinedButton>(review).onPressed, isNotNull);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('an older inventory refresh cannot overwrite sale readback', (
+    tester,
+  ) async {
+    final lifecycle = tester.binding.lifecycleState;
+    tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+    addTearDown(
+      () => tester.binding.handleAppLifecycleStateChanged(
+        lifecycle ?? AppLifecycleState.detached,
+      ),
+    );
+    final oldData = VendorPricingWorkspaceData(
+      rows: [_row(instanceId: 'copy', askingPrice: 20)],
+      sections: const [],
+    );
+    final service = _FakeVendorService(oldData);
+    await tester.pumpWidget(
+      MaterialApp(
+        home: VendorPricingWorkspaceScreen(
+          service: service,
+          saleSheetOpener: (_, _) async {
+            service.data = VendorPricingWorkspaceData(
+              rows: [_row(instanceId: 'copy', askingPrice: 21, intent: 'sell')],
+              sections: const [],
+            );
+            return true;
+          },
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    final oldRead = Completer<VendorPricingWorkspaceData>();
+    service.pendingLoad = oldRead;
+    await tester.pump(const Duration(seconds: 30));
+    expect(service.loadCount, 2);
+    final review = find.byKey(const Key('vendor_review_sale_copy'));
+    await tester.ensureVisible(review);
+    await tester.tap(review);
+    await tester.pumpAndSettle();
+    final price = find.byKey(const Key('vendor_price_copy'));
+    expect(tester.widget<TextField>(price).controller!.text, '21.00');
+    oldRead.complete(oldData);
+    await tester.pumpAndSettle();
+    expect(tester.widget<TextField>(price).controller!.text, '21.00');
+    expect(service.copyLoads, [
+      <String>{'copy'},
+    ]);
+    expect(service.priceSaves, isEmpty);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('cancelled review preserves another copy draft and opens once', (
+    tester,
+  ) async {
+    final service = _FakeVendorService(
+      VendorPricingWorkspaceData(
+        rows: [
+          _row(instanceId: 'first'),
+          _row(instanceId: 'draft'),
+        ],
+        sections: const [],
+      ),
+    );
+    final reviewResult = Completer<bool>();
+    var opened = 0;
+    await tester.pumpWidget(
+      MaterialApp(
+        home: VendorPricingWorkspaceScreen(
+          service: service,
+          saleSheetOpener: (_, _) {
+            opened++;
+            return reviewResult.future;
+          },
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    final firstReview = find.byKey(const Key('vendor_review_sale_first'));
+    final list = find
+        .descendant(
+          of: find.byType(ListView),
+          matching: find.byType(Scrollable),
+        )
+        .first;
+    await tester.scrollUntilVisible(firstReview, 200, scrollable: list);
+    await tester.pumpAndSettle();
+    final open = tester.widget<OutlinedButton>(firstReview).onPressed!;
+    final draft = find.byKey(const Key('vendor_price_draft'));
+    await tester.scrollUntilVisible(draft, -200, scrollable: list);
+    await tester.pumpAndSettle();
+    final draftController = tester.widget<TextField>(draft).controller!;
+    open();
+    open();
+    await tester.pump();
+    expect(opened, 1);
+    // A separate row's unsaved draft must survive the selected copy readback.
+    draftController.text = 'invalid draft';
+    reviewResult.complete(false);
+    await tester.pumpAndSettle();
+    expect(draftController.text, 'invalid draft');
+    expect(service.copyLoads, [
+      <String>{'first'},
+    ]);
+    expect(service.priceSaves, isEmpty);
+    await tester.scrollUntilVisible(firstReview, 200, scrollable: list);
+    await tester.pumpAndSettle();
+    expect(tester.widget<OutlinedButton>(firstReview).onPressed, isNotNull);
+    expect(tester.takeException(), isNull);
+  });
+
+  for (final failure in ['open', 'refresh', 'identity']) {
+    testWidgets('sale review $failure failure remains visible and retryable', (
+      tester,
+    ) async {
+      final original = _row(instanceId: 'copy', askingPrice: 20);
+      final service = _FakeVendorService(
+        VendorPricingWorkspaceData(rows: [original], sections: const []),
+      );
+      if (failure == 'refresh') {
+        service.copyLoadError = 'Copy refresh failed';
+      }
+      await tester.pumpWidget(
+        MaterialApp(
+          home: VendorPricingWorkspaceScreen(
+            service: service,
+            saleSheetOpener: (_, _) async {
+              if (failure == 'open') {
+                throw StateError('Sale review unavailable');
+              }
+              if (failure == 'identity') {
+                service.data = VendorPricingWorkspaceData(
+                  rows: [_row(instanceId: 'copy', gvviId: 'GVVI-other')],
+                  sections: const [],
+                );
+              }
+              return false;
+            },
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      final review = find.byKey(const Key('vendor_review_sale_copy'));
+      await tester.ensureVisible(review);
+      await tester.tap(review);
+      await tester.pumpAndSettle();
+      expect(tester.widget<OutlinedButton>(review).onPressed, isNotNull);
+      expect(
+        tester
+            .widget<TextField>(find.byKey(const Key('vendor_price_copy')))
+            .controller!
+            .text,
+        '20.00',
+      );
+      expect(
+        find.textContaining(switch (failure) {
+          'open' => 'Sale review unavailable',
+          'refresh' => 'Copy refresh failed',
+          _ => 'verify this exact copy',
+        }),
+        findsOneWidget,
+      );
+      expect(service.priceSaves, isEmpty);
+      expect(tester.takeException(), isNull);
+    });
+  }
+
+  testWidgets('review readback removes only the copy that became inactive', (
+    tester,
+  ) async {
+    final sibling = _row(instanceId: 'sibling');
+    final service = _FakeVendorService(
+      VendorPricingWorkspaceData(
+        rows: [
+          _row(instanceId: 'copy'),
+          sibling,
+        ],
+        sections: const [],
+      ),
+    );
+    await tester.pumpWidget(
+      MaterialApp(
+        home: VendorPricingWorkspaceScreen(
+          service: service,
+          saleSheetOpener: (_, _) async {
+            service.data = VendorPricingWorkspaceData(
+              rows: [sibling],
+              sections: const [],
+            );
+            return false;
+          },
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('vendor_review_sale_copy')));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('vendor_row_copy')), findsNothing);
+    expect(find.byKey(const Key('vendor_row_sibling')), findsOneWidget);
+    expect(service.archivedCopies, isEmpty);
+    expect(tester.takeException(), isNull);
+  });
+
+  for (final brightness in Brightness.values) {
+    testWidgets('review action fits 320px at 200% text in $brightness', (
+      tester,
+    ) async {
+      tester.view.physicalSize = const Size(320, 812);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.resetPhysicalSize);
+      addTearDown(tester.view.resetDevicePixelRatio);
+      final service = _FakeVendorService(
+        VendorPricingWorkspaceData(
+          rows: [_row(instanceId: 'copy', askingPrice: 20)],
+          sections: const [],
+        ),
+      );
+      await tester.pumpWidget(
+        MaterialApp(
+          theme: ThemeData(brightness: brightness),
+          builder: (context, child) => MediaQuery(
+            data: MediaQuery.of(
+              context,
+            ).copyWith(textScaler: TextScaler.linear(2)),
+            child: child!,
+          ),
+          home: VendorPricingWorkspaceScreen(service: service),
+        ),
+      );
+      await tester.pumpAndSettle();
+      final review = find.byKey(const Key('vendor_review_sale_copy'));
+      await tester.ensureVisible(review);
+      await tester.pumpAndSettle();
+      expect(tester.getSize(review).height, greaterThanOrEqualTo(44));
+      expect(tester.takeException(), isNull);
+    });
+  }
+
+  testWidgets('keyboard leaves the enlarged-text inventory scrollable', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(375, 640);
+    tester.view.devicePixelRatio = 1;
+    tester.view.viewInsets = const FakeViewPadding(bottom: 280);
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    addTearDown(tester.view.resetViewInsets);
+    final service = _FakeVendorService(
+      VendorPricingWorkspaceData(
+        rows: [
+          _row(instanceId: 'keyboard', askingPrice: 20, marketPrice: 19.2),
+        ],
+        sections: const [],
+      ),
+    );
+    await tester.pumpWidget(
+      MaterialApp(
+        builder: (context, child) => MediaQuery(
+          data: MediaQuery.of(
+            context,
+          ).copyWith(textScaler: TextScaler.linear(2)),
+          child: child!,
+        ),
+        home: VendorPricingWorkspaceScreen(service: service),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(tester.takeException(), isNull);
+    expect(find.text('Pricing'), findsNothing);
+    await tester.tap(find.byTooltip('Vendor tools'));
+    await tester.pumpAndSettle();
+    expect(find.text('Pricing rules'), findsOneWidget);
+    expect(find.text('Print card labels'), findsOneWidget);
+    expect(find.text('Square setup'), findsOneWidget);
+    expect(service.priceSaves, isEmpty);
+  });
+  testWidgets('enlarged text keeps the full asking price readable', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(375, 812);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    final service = _FakeVendorService(
+      VendorPricingWorkspaceData(
+        rows: [
+          _row(instanceId: 'large-text', askingPrice: 20, marketPrice: 19.2),
+        ],
+        sections: const [],
+      ),
+    );
+    await tester.pumpWidget(
+      MaterialApp(
+        builder: (context, child) => MediaQuery(
+          data: MediaQuery.of(
+            context,
+          ).copyWith(textScaler: TextScaler.linear(2)),
+          child: child!,
+        ),
+        home: VendorPricingWorkspaceScreen(service: service),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(
+      tester.getTopLeft(find.text('TCGPlayer Market')).dy,
+      greaterThan(tester.getTopLeft(find.text('Condition')).dy),
+    );
+    expect(
+      tester.getTopLeft(find.text('My price')).dy,
+      greaterThan(tester.getTopLeft(find.text('TCGPlayer Market')).dy),
+    );
+    expect(
+      tester.getSize(find.byKey(const Key('vendor_price_large-text'))).height,
+      greaterThan(44),
+    );
+    expect(
+      tester
+          .widget<TextField>(find.byKey(const Key('vendor_price_large-text')))
+          .controller!
+          .text,
+      '20.00',
+    );
+    expect(tester.takeException(), isNull);
+    expect(service.priceSaves, isEmpty);
+  });
+  testWidgets(
+    'Add card returns to the same filtered inventory without pricing writes',
+    (tester) async {
+      final service = _FakeVendorService(
+        VendorPricingWorkspaceData(
+          rows: [
+            _row(instanceId: 'copy-1', name: 'Eevee'),
+            _row(instanceId: 'copy-2', name: 'Pikachu'),
+          ],
+          sections: const [],
+        ),
+      );
+      await tester.pumpWidget(
+        MaterialApp(
+          home: VendorPricingWorkspaceScreen(service: service),
+          onGenerateRoute: (settings) {
+            expect(settings.name, '/search');
+            expect(settings.arguments, Uri.parse('/search'));
+            return MaterialPageRoute<void>(
+              builder: (context) => Scaffold(
+                appBar: AppBar(title: const Text('Search')),
+                body: TextButton(
+                  onPressed: () {
+                    service.data = VendorPricingWorkspaceData(
+                      rows: [
+                        ...service.data.rows,
+                        _row(instanceId: 'new-copy', name: 'Eevee VMAX'),
+                      ],
+                      sections: const [],
+                    );
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Return to vendor'),
+                ),
+              ),
+            );
+          },
+        ),
+      );
+      await tester.pumpAndSettle();
+      await tester.enterText(find.byKey(const Key('vendor_search')), 'Eevee');
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Add card'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Return to vendor'));
+      await tester.pumpAndSettle();
+      expect(
+        tester
+            .widget<TextField>(find.byKey(const Key('vendor_search')))
+            .controller!
+            .text,
+        'Eevee',
+      );
+      expect(find.byKey(const Key('vendor_row_copy-1')), findsOneWidget);
+      expect(find.byKey(const Key('vendor_row_copy-2')), findsNothing);
+      expect(find.text('3 exact copies'), findsOneWidget);
+      await tester.scrollUntilVisible(
+        find.byKey(const Key('vendor_row_new-copy')),
+        300,
+        scrollable: find
+            .descendant(
+              of: find.byType(ListView),
+              matching: find.byType(Scrollable),
+            )
+            .first,
+      );
+      expect(find.byKey(const Key('vendor_row_new-copy')), findsOneWidget);
+      expect(service.priceSaves, isEmpty);
+      expect(service.archivedCopies, isEmpty);
+      expect(tester.takeException(), isNull);
+    },
+  );
+  testWidgets(
+    'vendor tools exposes pricing and an exact-copy batch label picker',
+    (tester) async {
+      final service = _FakeVendorService(
+        VendorPricingWorkspaceData(
+          rows: [
+            _row(
+              instanceId: 'label-copy',
+              gvviId: 'GVVI-AC000001-000001',
+              name: 'Eevee',
+              askingPrice: 20,
+              intent: 'sell',
+            ),
+          ],
+          sections: const [],
+        ),
+      );
+      await tester.pumpWidget(
+        MaterialApp(home: VendorPricingWorkspaceScreen(service: service)),
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(find.byTooltip('Vendor tools'));
+      await tester.pumpAndSettle();
+      expect(find.text('Pricing rules'), findsOneWidget);
+      await tester.tap(find.text('Print card labels'));
+      await tester.pumpAndSettle();
+      expect(find.text('Choose card labels'), findsOneWidget);
+      await tester.tap(find.byType(CheckboxListTile));
+      await tester.pumpAndSettle();
+      expect(
+        tester
+            .widget<FilledButton>(
+              find.widgetWithText(FilledButton, 'Preview 1 label'),
+            )
+            .onPressed,
+        isNotNull,
+      );
+      await tester.tap(find.text('Cancel'));
+      await tester.pumpAndSettle();
+      expect(service.priceSaves, isEmpty);
+    },
+  );
   testWidgets(
     'unknown condition is unselected until the collector chooses a grade',
     (tester) async {
@@ -98,7 +752,15 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Vendor Mode'), findsOneWidget);
-    expect(find.byTooltip('Manage store'), findsOneWidget);
+    expect(find.text('Add card'), findsOneWidget);
+    expect(find.text('Pricing'), findsOneWidget);
+    expect(find.text('Labels'), findsOneWidget);
+    expect(find.text('Square'), findsOneWidget);
+    await tester.tap(find.byTooltip('Vendor tools'));
+    await tester.pumpAndSettle();
+    expect(find.text('Manage store'), findsOneWidget);
+    await tester.tapAt(const Offset(5, 300));
+    await tester.pumpAndSettle();
     expect(find.text('Manage store'), findsNothing);
     expect(find.text('2 exact copies'), findsOneWidget);
     expect(find.byKey(const Key('vendor_row_copy-1')), findsOneWidget);
@@ -281,16 +943,40 @@ void main() {
 class _FakeVendorService extends VendorPricingWorkspaceService {
   _FakeVendorService(this.data);
 
-  final VendorPricingWorkspaceData data;
+  VendorPricingWorkspaceData data;
   final List<(String, double)> priceSaves = [];
   final List<(String, String)> conditionSaves = [];
   final List<(String, String)> printingSaves = [];
   final List<(String, String, bool)> sectionSaves = [];
   final List<String> archivedCopies = [];
   final List<(String, VendorDispositionSubmission)> dispositions = [];
+  final List<Set<String>> copyLoads = [];
+  int loadCount = 0;
+  String? copyLoadError;
+  Completer<VendorPricingWorkspaceRow>? pendingPriceSave;
+  Completer<VendorPricingWorkspaceRow>? pendingConditionSave;
+  Completer<VendorPricingWorkspaceRow>? pendingPrintingSave;
+  Completer<VendorPricingWorkspaceData>? pendingLoad;
 
   @override
-  Future<VendorPricingWorkspaceData> load() async => data;
+  Future<VendorPricingWorkspaceData> load() async {
+    loadCount++;
+    final pending = pendingLoad;
+    if (pending != null) return pending.future;
+    return data;
+  }
+
+  @override
+  Future<VendorPricingWorkspaceData> loadCopies(Set<String> instanceIds) async {
+    copyLoads.add(instanceIds.toSet());
+    if (copyLoadError != null) throw StateError(copyLoadError!);
+    return VendorPricingWorkspaceData(
+      rows: data.rows
+          .where((row) => instanceIds.contains(row.instanceId))
+          .toList(),
+      sections: data.sections,
+    );
+  }
 
   @override
   Future<VendorPricingWorkspaceRow> savePrice({
@@ -298,6 +984,7 @@ class _FakeVendorService extends VendorPricingWorkspaceService {
     required double price,
   }) async {
     priceSaves.add((row.instanceId, price));
+    if (pendingPriceSave != null) return pendingPriceSave!.future;
     return row.copyWith(askingPrice: price, intent: 'sell');
   }
 
@@ -307,6 +994,7 @@ class _FakeVendorService extends VendorPricingWorkspaceService {
     required String condition,
   }) async {
     conditionSaves.add((row.instanceId, condition));
+    if (pendingConditionSave != null) return pendingConditionSave!.future;
     return row.copyWith(conditionLabel: condition);
   }
 
@@ -316,6 +1004,7 @@ class _FakeVendorService extends VendorPricingWorkspaceService {
     required String cardPrintingId,
   }) async {
     printingSaves.add((row.instanceId, cardPrintingId));
+    if (pendingPrintingSave != null) return pendingPrintingSave!.future;
     final option = row.printingOptions.firstWhere(
       (value) => value.id == cardPrintingId,
     );
@@ -353,6 +1042,31 @@ class _FakeVendorService extends VendorPricingWorkspaceService {
   }) async {
     dispositions.add((row.instanceId, submission));
   }
+}
+
+class _ReferencePrices implements ConditionPriceReader {
+  _ReferencePrices(this.requests);
+  final List<(String, String)> requests;
+  @override
+  Future<ConditionPriceReference> read(
+    String printingId,
+    String condition,
+  ) async {
+    requests.add((printingId, condition));
+    return ConditionPriceReference(
+      printingId: printingId,
+      condition: condition,
+      amount: printingId.contains('reverse')
+          ? 5.34
+          : condition == 'NM'
+          ? 2.51
+          : 1.16,
+      updatedAt: DateTime.utc(2026, 11, 17),
+    );
+  }
+
+  @override
+  void dispose() {}
 }
 
 VendorPricingWorkspaceRow _row({

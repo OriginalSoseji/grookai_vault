@@ -3,7 +3,7 @@ import type { SellerCopy, SellerListingInput, SellerLocalDraft } from './sellerT
 export const sellerRecoveryKey = (owner: string, instanceId: string) => `grookai:ebay-listing:v1:${owner}:${instanceId}`;
 export function emptySellerListing(copy: SellerCopy | null): SellerListingInput {
   return { title: copy ? [copy.name, copy.number, copy.setCode].filter(Boolean).join(' ').slice(0, 80) : '',
-    description: '', categoryId: '', priceCents: 0, locationKey: '',
+    description: '', categoryId: '', categoryName: '', categoryPath: '', priceCents: 0, locationKey: '',
     policies: { fulfillment: '', payment: '', return: '' }, aspects: {},
     condition: { conditionId: '', description: '', descriptors: [] } };
 }

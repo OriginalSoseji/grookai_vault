@@ -1,0 +1,89 @@
+{
+  "version": "ENGLISH_POKEMON_BASE_PRINTING_AUTHORITY_V1",
+  "production_project_ref": "ycdxbpibncqcchqiihfz",
+  "environment_sanity": {
+    "card_prints": 173837,
+    "sets": 3420,
+    "traits": 47409
+  },
+  "set": {
+    "set_row": {
+      "id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "code": "me06",
+      "game": "pokemon",
+      "name": "Delta Reign",
+      "source": {
+        "image_policy": "evidence_only_until_self_hosted",
+        "release_gate": "not_before_source_release_date",
+        "tcgdex_set_id": "me06",
+        "visibility_policy": "hidden_until_separate_release",
+        "canonical_authority": "english_master_index_plus_tcgdex_structured_set",
+        "master_index_set_key": "me06"
+      },
+      "logo_url": null,
+      "set_role": null,
+      "created_at": "2026-11-15T14:28:51.86167+00:00",
+      "symbol_url": null,
+      "updated_at": "2026-11-15T14:28:51.86167+00:00",
+      "release_date": "2026-11-06",
+      "printed_total": null,
+      "hero_image_url": null,
+      "identity_model": "standard",
+      "last_synced_at": null,
+      "hero_image_source": null,
+      "search_code_lower": "me06",
+      "printed_set_abbrev": "DLR",
+      "identity_domain_default": "pokemon_eng_standard"
+    },
+    "control_row": {
+      "set_id": "c72b4744-db4d-565f-9914-e28a2b244f5c",
+      "evidence": {
+        "default": "fail_closed",
+        "staged_by": "ENGLISH_POKEMON_MISSING_SET_PROMOTION_V1",
+        "image_promotion_authorizes_visibility": false,
+        "price_publication_authorizes_visibility": false,
+        "canonical_promotion_authorizes_visibility": false
+      },
+      "updated_at": "2026-11-15T14:28:51.86167+00:00",
+      "activated_at": null,
+      "activated_by": null,
+      "release_status": "hidden",
+      "release_version": "ENGLISH_POKEMON_MISSING_SET_PROMOTION_V1"
+    }
+  },
+  "source_sync": {
+    "id": "473ff153-12f6-4b7d-8821-a04d12a5c33a",
+    "status": "completed",
+    "failed_count": 0,
+    "observed_on": "2026-11-15T07:00:00.000Z",
+    "artifact_hash": "0343c72b83963a6cd6c5b67a59e099e279f31763194ebd77bb9dd411ba3469bd",
+    "worker_version": "TCGCSV_FULL_SOURCE_WAREHOUSE_WORKER_V1",
+    "parser_version": "TCGCSV_FULL_SOURCE_PARSER_V1",
+    "schema_contract_version": "TCGCSV_FULL_SOURCE_WAREHOUSE_V1",
+    "finished_at": "2026-11-15T09:37:51.722Z"
+  },
+  "source_group": {
+    "group_id": 24831,
+    "name": "ME06: Delta Reign",
+    "payload_hash": "ed346093c4d778d6949d0c7058a5ca47fabf9498ec3fd0b75b5d837e42e662dd",
+    "last_seen_run_id": "473ff153-12f6-4b7d-8821-a04d12a5c33a",
+    "source_active": true,
+    "catalog_metadata_status": "current"
+  },
+  "counts": {
+    "parents": 141,
+    "base_printings": 141,
+    "normal": 83,
+    "holo": 58,
+    "reverse_holo_review_leads": 87,
+    "numbered_products": 141,
+    "source_observations": 228
+  },
+  "boundaries": {
+    "database_writes": 0,
+    "reverse_holo_printing_writes": 0,
+    "mapping_writes": 0,
+    "pricing_writes": 0,
+    "visibility_writes": 0
+  }
+}

@@ -177,8 +177,8 @@ export class SquareCommerceService {
    await detail();
    if(focusInstanceId)uuid(focusInstanceId);
    const result=await this.#processConnection(ownerId,connectionId,{maxTargets,manual,focusInstanceId,checkpoint});
-   await this.rpc('commerce_run_finish',{...runContext,result:{status:result.failed?'failed':'succeeded',succeeded:result.succeeded,
-    failed:result.failed,skipped:result.reviews+result.skipped+(result.orderReviews??0),errorCode:result.errorCode??''}});
+   await this.rpc('commerce_run_finish',{...runContext,result:{status:result.failed||result.artworkFailures?'failed':'succeeded',succeeded:result.succeeded,
+    failed:result.failed+(result.artworkFailures??0),skipped:result.reviews+result.skipped+(result.orderReviews??0),errorCode:result.errorCode??''}});
    await detail({...result.errorDetail,errorCode:result.errorCode??null});
    return {...result,runId};
   }catch(error){
@@ -225,6 +225,15 @@ export class SquareCommerceService {
      if(['withdrawn_review','stock_requires_review'].includes(value.status))review(target);
     }
     if(targetFailed)result.failed++;else result.succeeded++;
+    if(!targetFailed&&this.config.catalogEnabled&&typeof this.catalog.syncArtwork==='function'){
+     // Optional imagery runs after stock. An image failure never undoes a ready unit or a completed sale.
+     failureStage='catalog';await checkpoint('catalog',target.id);
+     // The leased catalog reader gates new work on the current auto-sync setting,
+     // but still recovers retained image obligations when new artwork is disabled.
+     try{await this.catalog.syncArtwork(ownerId,connectionId,target.id,randomUUID(),{manual});}
+     catch(error){result.artworkFailures=(result.artworkFailures??0)+1;result.errorCode=code(error);
+      result.errorDetail={stage:'catalog',targetId:target.id,errorCode:code(error)};}
+    }
    }catch(error){
     if(code(error)==='square_connection_busy'){result.skipped++;if(target.instance_id===focusInstanceId)result.focusStatus='pending';}
     else{result.failed++;result.errorCode=code(error);result.errorDetail={stage:failureStage??'stock',targetId:target.id,databaseCode:error.databaseCode};if(target.instance_id===focusInstanceId)result.focusStatus='review';}
@@ -241,6 +250,42 @@ export class SquareCommerceService {
    if(await client.inventoryQuantity(state.target.variation_id,connection.location_id)!==0)fail('square_stock_readback_unconfirmed');
    return this.rpc('release_stock',{...context,targetId,...input});
   });
+ }
+ async prepareVaultRemoval(ownerId,instanceId){
+  uuid(ownerId);uuid(instanceId);
+  const scope=await this.rpc('vault_removal_context',{ownerId,instanceId});
+  if(scope?.instanceId!==instanceId||typeof scope.gvvi!=='string'||!Array.isArray(scope.claims)||scope.claims.length>1)fail('square_removal_unconfirmed');
+  if(scope.archived)fail('square_copy_already_archived');
+  if(!scope.claims.length)return {status:'ready_to_archive',instanceId,gvvi:scope.gvvi};
+  const {connectionId,targetId}=scope.claims[0];uuid(connectionId);uuid(targetId);
+  const runId=randomUUID();
+  await this.rpc('commerce_run_start',{ownerId,connectionId,runId});
+  let result;
+  try{
+   // Withdrawal records stock evidence. It never asserts possession or makes
+   // this copy available for resale. Archive remains an authenticated owner RPC.
+   await this.withdraw(ownerId,connectionId,targetId);
+   await this.reconcile(ownerId,connectionId);
+   result=await this.catalog.withConnection(ownerId,connectionId,async({connection,context,client})=>{
+    const state=await this.rpc('allocation',{...context,targetId});
+    if(state?.target?.instance_id!==instanceId||state.target.id!==targetId)fail('square_removal_unconfirmed');
+    if(await client.inventoryQuantity(state.target.variation_id,connection.location_id)!==0)fail('square_removal_stock_not_zero');
+    if(state.allocation?.state==='released'){
+     // A prepared allocation can be canceled without ever publishing stock.
+     // Recheck all exact-copy claims instead of requiring a nonexistent withdraw.
+     const current=await this.rpc('vault_removal_context',{ownerId,instanceId});
+     if(current?.instanceId!==instanceId||current.gvvi!==scope.gvvi||current.archived||!Array.isArray(current.claims)||current.claims.length)fail('square_removal_unconfirmed');
+     return {status:'ready_to_archive',instanceId,gvvi:scope.gvvi};
+    }
+    return this.rpc('vault_removal_attest',{...context,targetId,instanceId,runId,quantity:0});
+   });
+   if(result?.status!=='ready_to_archive'||result.instanceId!==instanceId||result.gvvi!==scope.gvvi)fail('square_removal_unconfirmed');
+  }catch(error){
+   await this.rpc('commerce_run_finish',{ownerId,connectionId,runId,result:{status:'failed',succeeded:0,failed:1,skipped:0,errorCode:code(error)}});
+   throw safeError(error);
+  }
+  await this.rpc('commerce_run_finish',{ownerId,connectionId,runId,result:{status:'succeeded',succeeded:1,failed:0,skipped:0,errorCode:''}});
+  return result;
  }
  async withdraw(ownerId,connectionId,targetId){
   await this.catalog.withConnection(ownerId,connectionId,async({context})=>{

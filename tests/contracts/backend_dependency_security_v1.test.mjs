@@ -23,7 +23,8 @@ test("AI border service retains the audited Python dependency floor", () => {
 
   assert.equal(requirements.get("fastapi"), "0.141.1");
   assert.equal(requirements.get("starlette"), "1.3.1");
-  assert.equal(requirements.get("pillow"), "12.3.0");
+  assert.equal(requirements.get("pillow"), "13.0.0");
+  assert.equal(requirements.get("anyio"), "4.14.2");
   assert.equal(requirements.get("idna"), "3.15");
   assert.equal(requirements.get("click"), "8.3.3");
   assert.equal(requirements.get("requests"), "2.33.0");

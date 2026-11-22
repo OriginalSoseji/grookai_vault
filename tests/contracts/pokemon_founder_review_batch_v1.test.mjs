@@ -16,6 +16,10 @@ import { operationsSha256V1 } from
   "../../backend/operations/operations_control_plane_v1.mjs";
 import { buildPokemonPricingMappingAuthorityReviewWorkItemV1 } from
   "../../backend/operations/tcgplayer_pricing_completion_agent_v1.mjs";
+import { TCGPLAYER_POKEMON_MAPPING_AUTHORITY_REVIEW_KEY } from
+  "../../backend/operations/tcgplayer_pricing_completion_agent_v1.mjs";
+import { supersedeLegacyPokemonMappingAuthorityReviewsV1 } from
+  "../../backend/operations/tcgplayer_pricing_completion_agent_v1.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 const review = JSON.parse(readFileSync(path.join(ROOT,
@@ -123,9 +127,201 @@ test("evidence-rich review item carries exact candidates and Master Index author
     sourceCommitSha: "43ccc34e2da595382fffa76400e5e480568c067c",
     sourceRunUri: "https://github.com/OriginalSoseji/grookai_vault/actions/runs/40271141832",
   });
-  assert.match(workItem.work_item_key, /:master-authority-batch-01$/);
+  assert.equal(workItem.work_item_key, TCGPLAYER_POKEMON_MAPPING_AUTHORITY_REVIEW_KEY);
   assert.deepEqual(workItem.plan_payload.exact_mapping_candidates, exact);
   assert.equal(workItem.plan_payload.master_mapping_authority.version, "MASTER_INDEX_MAPPING_AUTHORITY_V1");
   assert.equal(workItem.plan_fingerprint, operationsSha256V1(workItem.plan_payload));
   assert.equal(workItem.command_policy.execution_enabled, false);
+});
+
+function queueRow(workItem, overrides = {}) {
+  return {
+    id: "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+    state: "ready_for_review",
+    agent_key: "tcgplayer-pricing-completion-v1",
+    ...workItem,
+    ...overrides,
+  };
+}
+
+test("stable Pokemon authority atomically supersedes all older actionable review formats", async () => {
+  const authorities = TCGPLAYER_FOUNDER_REVIEW_BATCH_PRODUCT_IDENTITIES_V1;
+  const exact = authorities.map((authority) => planTcgplayerExactMappingCandidateV1({
+    source: source(authority),
+    setTargets: [target(authority)],
+  }));
+  const candidates = authorities.map((authority) => ({
+    ...source(authority),
+    review_targets: [{
+      card_print_id: authority.target.card_print_id,
+      gv_id: authority.target.gv_id,
+      set_id: authority.target.set_id,
+      set_code: authority.target.set_code,
+      set_name: authority.target.set_code,
+      canonical_name: authority.target.name,
+      canonical_number: authority.target.number,
+      variant_key: "",
+      candidate_score: 100,
+      candidate_evidence: { exact_reviewed_identity: true },
+    }],
+  }));
+  const workItem = buildPokemonPricingMappingAuthorityReviewWorkItemV1({
+    candidates,
+    exactMappingCandidates: exact,
+    masterMappingAuthority: { version: "MASTER_INDEX_MAPPING_AUTHORITY_V1" },
+    sourcePricingRunId: "pricing-run",
+    sourceSyncRunId: "7ca0463c-98e1-430c-9a28-aa94b23de778",
+    sourceCompletedAt: "2026-10-25T11:49:45.943Z",
+  });
+  const replacement = queueRow(workItem);
+  const equivalentLegacy = queueRow(workItem, {
+    id: "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+    work_item_key:
+      "pokemon-pricing-mapping-review:473ff153-12f6-4b7d-8821-a04d12a5c33a:master-authority-batch-01",
+    plan_fingerprint: "1".repeat(64),
+  });
+  const differentLegacy = queueRow(workItem, {
+    id: "cccccccc-cccc-4ccc-8ccc-cccccccccccc",
+    work_item_key:
+      "pokemon-pricing-mapping-review:aae5225b-a6b3-4e09-ac4c-3e65de24a1f4:master-authority-batch-01",
+    plan_fingerprint: "2".repeat(64),
+    plan_payload: {
+      ...workItem.plan_payload,
+      exact_mapping_candidates: exact.map((row, index) => index === 0 ? {
+        ...row,
+        source_product_id: row.source_product_id + 1,
+      } : row),
+    },
+  });
+  const rawReviewLegacy = queueRow(workItem, {
+    id: "dddddddd-dddd-4ddd-8ddd-dddddddddddd",
+    work_item_key:
+      "pokemon-pricing-mapping-review:7ca0463c-98e1-430c-9a28-aa94b23de778",
+    plan_fingerprint: "3".repeat(64),
+    plan_payload: {
+      ...workItem.plan_payload,
+      proposal_version: "TCGPLAYER_POKEMON_MAPPING_REVIEW_V1",
+      exact_mapping_candidates: undefined,
+    },
+  });
+  const calls = [];
+  const client = {
+    async query(sql, params = []) {
+      calls.push({ sql: String(sql), params });
+      if (/where w\.id = \$1::uuid/.test(sql)) return { rows: [replacement] };
+      if (/w\.work_item_key ~/.test(sql)) {
+        return { rows: [equivalentLegacy, differentLegacy, rawReviewLegacy] };
+      }
+      if (/update public\.founder_work_items/.test(sql)) {
+        return { rows: [{ id: params[0] }] };
+      }
+      return { rows: [] };
+    },
+  };
+  const result = await supersedeLegacyPokemonMappingAuthorityReviewsV1(client, {
+    replacementWorkItemId: replacement.id,
+  });
+  assert.deepEqual(result, {
+    replacement_work_item_id: replacement.id,
+    legacy_review_count: 3,
+    superseded_review_count: 3,
+  });
+  const updates = calls.filter((call) => /update public\.founder_work_items/.test(call.sql));
+  const events = calls.filter((call) => /insert into public\.founder_work_item_events/.test(call.sql));
+  assert.equal(updates.length, 3);
+  assert.equal(events.length, 3);
+  assert.equal(updates[0].params[0], equivalentLegacy.id);
+  assert.equal(updates[1].params[0], differentLegacy.id);
+  assert.equal(updates[2].params[0], rawReviewLegacy.id);
+  assert.equal(calls.at(-1).sql, "commit");
+  assert.ok(calls.every((call) => !/update public\.(?:card_prints|external_mappings|tcgplayer_market)/i
+    .test(call.sql)));
+});
+
+test("stable approved Pokemon review can retire a duplicate legacy review", async () => {
+  const replacement = {
+    id: "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+    work_item_key: TCGPLAYER_POKEMON_MAPPING_AUTHORITY_REVIEW_KEY,
+    work_item_type: "tcgplayer_pricing_backlog_repair",
+    action_type: "advance_tcgplayer_pricing_backlog",
+    domain: "pricing",
+    state: "approved",
+    plan_fingerprint: "0".repeat(64),
+    plan_payload: {
+      proposal_version: "TCGPLAYER_POKEMON_MAPPING_AUTHORITY_REVIEW_V1",
+      exact_mapping_candidates: [{
+        source_product_id: 1,
+        target: { card_print_id: "11111111-1111-4111-8111-111111111111" },
+      }],
+    },
+    command_policy: { execution_enabled: false },
+    agent_key: "tcgplayer-pricing-completion-v1",
+  };
+  const legacy = {
+    ...replacement,
+    id: "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+    state: "ready_for_review",
+    work_item_key:
+      "pokemon-pricing-mapping-review:473ff153-12f6-4b7d-8821-a04d12a5c33a:master-authority-batch-01",
+    plan_fingerprint: "1".repeat(64),
+  };
+  const calls = [];
+  const client = {
+    async query(sql, params = []) {
+      calls.push({ sql: String(sql), params });
+      if (/where w\.id = \$1::uuid/.test(sql)) return { rows: [replacement] };
+      if (/w\.work_item_key ~/.test(sql)) return { rows: [legacy] };
+      if (/update public\.founder_work_items/.test(sql)) return { rows: [{ id: legacy.id }] };
+      return { rows: [] };
+    },
+  };
+  const result = await supersedeLegacyPokemonMappingAuthorityReviewsV1(client, {
+    replacementWorkItemId: replacement.id,
+  });
+  assert.equal(result.superseded_review_count, 1);
+  assert.equal(calls.at(-1).sql, "commit");
+});
+
+test("legacy Pokemon review supersession fails closed above its bounded lane", async () => {
+  const replacement = {
+    id: "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+    work_item_key: TCGPLAYER_POKEMON_MAPPING_AUTHORITY_REVIEW_KEY,
+    work_item_type: "tcgplayer_pricing_backlog_repair",
+    action_type: "advance_tcgplayer_pricing_backlog",
+    domain: "pricing",
+    state: "ready_for_review",
+    plan_fingerprint: "0".repeat(64),
+    plan_payload: {
+      proposal_version: "TCGPLAYER_POKEMON_MAPPING_AUTHORITY_REVIEW_V1",
+      exact_mapping_candidates: [{
+        source_product_id: 1,
+        target: { card_print_id: "11111111-1111-4111-8111-111111111111" },
+      }],
+    },
+    command_policy: { execution_enabled: false },
+    agent_key: "tcgplayer-pricing-completion-v1",
+  };
+  const calls = [];
+  const client = {
+    async query(sql) {
+      calls.push(String(sql));
+      if (/where w\.id = \$1::uuid/.test(sql)) return { rows: [replacement] };
+      if (/w\.work_item_key ~/.test(sql)) {
+        return { rows: Array.from({ length: 17 }, () => ({
+          ...replacement,
+          work_item_key:
+            "pokemon-pricing-mapping-review:473ff153-12f6-4b7d-8821-a04d12a5c33a:master-authority-batch-01",
+        })) };
+      }
+      return { rows: [] };
+    },
+  };
+  await assert.rejects(
+    supersedeLegacyPokemonMappingAuthorityReviewsV1(client, {
+      replacementWorkItemId: replacement.id,
+    }),
+    /exceeds its bound/,
+  );
+  assert.equal(calls.at(-1), "rollback");
+  assert.ok(calls.every((sql) => !/update public\.founder_work_items/.test(sql)));
 });

@@ -152,6 +152,7 @@ abstract interface class BinderRepository {
 
   Future<List<BinderCatalogCard>> searchCustomCards({
     required String query,
+    String gameScope = 'pokemon',
     int limit = 30,
   });
 
@@ -749,6 +750,7 @@ class SupabaseBinderRepository implements BinderRepository {
   @override
   Future<List<BinderCatalogCard>> searchCustomCards({
     required String query,
+    String gameScope = 'pokemon',
     int limit = 30,
   }) async {
     final normalized = query.trim();
@@ -757,6 +759,7 @@ class SupabaseBinderRepository implements BinderRepository {
         client: _client,
         options: CardSearchOptions(
           query: normalized,
+          gameScope: gameScope,
           limit: limit.clamp(1, 50),
           sort: 'name',
         ),
@@ -782,6 +785,7 @@ class SupabaseBinderRepository implements BinderRepository {
               variantKey: _nullable(card.variantKey),
               printedIdentityModifier: _nullable(card.printedIdentityModifier),
               rarity: _nullable(card.rarity),
+              gameLabel: _binderGameLabel(gameScope),
               hostedImageUrl: card.hostedImageUrl,
               fallbackImageUrl:
                   card.providerFallbackImageUrl ?? card.displayImage,
@@ -793,6 +797,12 @@ class SupabaseBinderRepository implements BinderRepository {
       throw _safeException(error);
     }
   }
+
+  String _binderGameLabel(String gameScope) => switch (gameScope) {
+    'one_piece' => 'One Piece',
+    'mtg' => 'Magic: The Gathering',
+    _ => 'Pokémon',
+  };
 
   @override
   Future<List<BinderFinishOption>> loadCardFinishOptions(

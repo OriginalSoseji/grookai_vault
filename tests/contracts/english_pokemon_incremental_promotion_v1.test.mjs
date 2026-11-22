@@ -4,8 +4,10 @@ import test from "node:test";
 
 import {
   buildEnglishPokemonIncrementalSetPlanV1,
+  buildEnglishPokemonMissingSetPlanV1,
   deriveEnglishPokemonCanonicalAliasOverlayV1,
   validateEnglishPokemonIncrementalSetPlanV1,
+  validateEnglishPokemonMissingSetPlanV1,
 } from "../../backend/catalog/english_pokemon_incremental_promotion_v1.mjs";
 
 const SET = {
@@ -56,6 +58,35 @@ test("full Master Index admission builds evidence-backed English parent rows", (
   assert.equal(validateEnglishPokemonIncrementalSetPlanV1(plan).valid, true);
 });
 
+test("missing-set admission atomically stages one hidden set and its complete parents", () => {
+  const plan = buildEnglishPokemonMissingSetPlanV1({
+    asOf: "2026-11-14",
+    set: {
+      ...SET,
+      release_date: "2026-11-06",
+      printed_set_abbrev: "DLR",
+      source: { tcgdex_set_id: "wp" },
+    },
+    sourceSet: SOURCE_SET,
+    masterCards: [masterCard("WPR JU 60", "Pikachu"), masterCard("WPR TR 19", "Dark Arbok")],
+    speciesRows: SPECIES,
+  });
+  assert.equal(plan.counts.sets, 1);
+  assert.equal(plan.counts.set_release_controls, 1);
+  assert.equal(plan.counts.card_prints, 2);
+  assert.equal(plan.payload.set_release_control.release_status, "hidden");
+  assert.ok(plan.payload.rows.every((row) =>
+    row.card_print.data_quality_flags.app_visibility_v1.status === "suppressed"));
+  assert.equal(validateEnglishPokemonMissingSetPlanV1(plan).valid, true);
+  assert.throws(() => buildEnglishPokemonMissingSetPlanV1({
+    asOf: "2026-11-01",
+    set: { ...SET, release_date: "2026-11-06", printed_set_abbrev: "DLR" },
+    sourceSet: SOURCE_SET,
+    masterCards: [masterCard("WPR JU 60", "Pikachu"), masterCard("WPR TR 19", "Dark Arbok")],
+    speciesRows: SPECIES,
+  }), /future release/);
+});
+
 test("existing exact coordinates are idempotent and name collisions stop", () => {
   const cards = [masterCard("WPR JU 60", "Pikachu"), masterCard("WPR TR 19", "Dark Arbok")];
   const plan = buildEnglishPokemonIncrementalSetPlanV1({
@@ -101,6 +132,59 @@ test("Trainer details resolve a non-species family", () => {
   });
   assert.equal(plan.payload.rows[0].identity.identity_payload.card_domain, "trainer");
   assert.equal(plan.payload.rows[0].identity.identity_payload.card_type, "supporter");
+});
+
+test("standard Mega and ex card mechanics resolve to the exact base species", () => {
+  const card = masterCard("11", "Mega Golisopod ex");
+  const plan = buildEnglishPokemonIncrementalSetPlanV1({
+    set: SET,
+    sourceSet: { ...SOURCE_SET, cardCount: { total: 1 } },
+    masterCards: [card],
+    speciesRows: [{
+      id: "20000000-0000-0000-0000-000000000003",
+      national_dex_number: 768,
+      display_name: "Golisopod",
+    }],
+    tcgdexDetails: [{
+      localId: "11",
+      name: "Mega Golisopod ex",
+      category: "Pokemon",
+    }],
+  });
+  assert.equal(
+    plan.payload.rows[0].family_review.normalized_family_candidate,
+    "20000000-0000-0000-0000-000000000003",
+  );
+});
+
+test("named Rotom appliances resolve to the Rotom species", () => {
+  const card = masterCard("119", "Heat Rotom ex");
+  const speciesId = "20000000-0000-0000-0000-000000000004";
+  const plan = buildEnglishPokemonIncrementalSetPlanV1({
+    set: SET,
+    sourceSet: { ...SOURCE_SET, cardCount: { total: 1 } },
+    masterCards: [card],
+    speciesRows: [{ id: speciesId, national_dex_number: 479, display_name: "Rotom" }],
+    tcgdexDetails: [{ localId: "119", name: "Heat Rotom ex", category: "Pokemon" }],
+  });
+  assert.equal(plan.payload.rows[0].family_review.normalized_family_candidate, speciesId);
+});
+
+test("Nidoran gender marks preserve exact species identity without a source dex ID", () => {
+  const femaleId = "20000000-0000-0000-0000-000000000029";
+  const maleId = "20000000-0000-0000-0000-000000000032";
+  const card = masterCard("55", "Nidoran♀");
+  const plan = buildEnglishPokemonIncrementalSetPlanV1({
+    set: SET,
+    sourceSet: { ...SOURCE_SET, cardCount: { total: 1 } },
+    masterCards: [card],
+    speciesRows: [
+      { id: femaleId, national_dex_number: 29, display_name: "Nidoran♀" },
+      { id: maleId, national_dex_number: 32, display_name: "Nidoran♂" },
+    ],
+    tcgdexDetails: [{ localId: "55", name: "Nidoran♀", category: "Pokemon" }],
+  });
+  assert.equal(plan.payload.rows[0].family_review.normalized_family_candidate, femaleId);
 });
 
 test("Energy identity remains resolvable from an exact printed name without live detail", () => {
@@ -238,6 +322,10 @@ test("worker source enforces rollback and forbidden-write boundaries", () => {
   assert.match(worker, /Apply with a frozen source set requires --expected-source-snapshot-fingerprint/);
   assert.match(worker, /Apply may skip card detail fetch only with a frozen source set/);
   assert.match(worker, /ENGLISH_POKEMON_INCREMENTAL_APPLY_APPROVAL/);
+  assert.match(worker, /ENGLISH_POKEMON_MISSING_SET_PROMOTION_V1 apply only/);
+  assert.match(worker, /--create-missing-set/);
+  assert.match(worker, /insert into public\.sets/);
+  assert.match(worker, /insert into public\.catalog_set_release_controls/);
   assert.match(worker, /Exact approval missing/);
   assert.match(worker, /fetchMissingTcgdexDetails/);
   assert.match(worker, /--source-set-file=/);
@@ -247,4 +335,16 @@ test("worker source enforces rollback and forbidden-write boundaries", () => {
   assert.doesNotMatch(worker, /insert into public\.card_printings/);
   assert.doesNotMatch(worker, /insert into public\.external_mappings/);
   assert.doesNotMatch(worker, /insert into public\.vault_items/);
+});
+
+test("operator playbook documents missing-set execution and recovery", () => {
+  const playbook = fs.readFileSync(
+    new URL("../../docs/ops/GROOKAI_OPERATOR_PLAYBOOK_V1.md", import.meta.url),
+    "utf8",
+  );
+  assert.match(playbook, /ENGLISH_POKEMON_MISSING_SET_PROMOTION_V1/);
+  assert.match(playbook, /--create-missing-set/);
+  assert.match(playbook, /one hidden set, one hidden release control/);
+  assert.match(playbook, /rollback-absence readback/);
+  assert.match(playbook, /obtain a fresh exact apply approval/);
 });

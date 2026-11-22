@@ -51,7 +51,8 @@ void main() {
               ? {'code': '57014', 'message': 'timeout'}
               : exclusions ?? [legacy];
           if (failed) status = 503;
-        } else if (name == 'sets') {
+        } else if (name == 'sets' ||
+            name == 'resolve_visible_set_references_v1') {
           data = [
             {'code': 'base2'},
           ];

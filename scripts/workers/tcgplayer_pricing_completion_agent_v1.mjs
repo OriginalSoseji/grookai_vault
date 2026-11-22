@@ -4,6 +4,7 @@ import { spawn } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { Client } from 'pg';
 
 import '../../backend/env.mjs';
 import {
@@ -16,10 +17,15 @@ import {
   buildPokemonPricingMappingReviewWorkItemV1,
   applyPokemonPricingMappingReviewedHoldsV1,
   classifyTcgplayerFutureReleaseBlocksV1,
-  partitionPokemonMappingAuthorityFinishCandidatesV1,
+  projectPokemonMappingAuthorityBaseFinishCandidatesV1,
+  partitionPokemonVerifiedExactMappingCandidatesV1,
   selectPokemonPricingMappingReviewBatchV1,
+  supersedeLegacyPokemonMappingAuthorityReviewsV1,
   summarizeTcgplayerPricingCompletionRunV1,
 } from '../../backend/operations/tcgplayer_pricing_completion_agent_v1.mjs';
+import {
+  pokemonTcgplayerMappingDatabaseConfigV1,
+} from '../../backend/operations/pokemon_tcgplayer_mapping_outcome_v1.mjs';
 import {
   buildPokemonSpecialPrintingReferenceProposalV1,
 } from '../../backend/pricing/pokemon_special_printing_reference_proposal_v1.mjs';
@@ -264,6 +270,20 @@ function pricingMappingAuthorityFailureCodeV1(error) {
   const message = String(error?.message ?? error ?? '');
   const known = message.match(/\b(?:mapping|source|target|master|exact|review|active|canonical|verified)_[a-z0-9_:.-]+\b/i)?.[0];
   return known?.toUpperCase() ?? 'POKEMON_MAPPING_AUTHORITY_UNAVAILABLE';
+}
+
+function pricingMappingAuthorityFailureDetailV1(error) {
+  const message = String(error?.message ?? error ?? '');
+  const redacted = message
+    .replace(/\b(?:postgres(?:ql)?):\/\/[^\s]+/gi, '[redacted_database_url]')
+    .replace(/\bhttps?:\/\/[^\s]+/gi, '[redacted_url]')
+    .replace(/\b(?:password|token|secret|key|SUPABASE_[A-Z0-9_]+)=\S+/gi,
+      '[redacted_credential]');
+  const lines = redacted.split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+  const diagnostic = lines.find((line) => /^(?:AssertionError|Error)(?:\s*\[[^\]]+\])?:/.test(line))
+    ?? lines[0]
+    ?? 'Pokemon mapping authority failed without diagnostic output';
+  return diagnostic.slice(0, 500);
 }
 
 async function heartbeat({ credentials, agent, runKey, status, summary }) {
@@ -519,14 +539,21 @@ async function main() {
       path.resolve('docs/audits/pokemon_tcgplayer_reviewed_holds_20261026.json'),
       'utf8',
     ));
+    const pokemonVerifiedExactCandidates =
+      partitionPokemonVerifiedExactMappingCandidatesV1(
+        pokemonOllamaCandidateQueue,
+        exactPlan?.candidates ?? [],
+      );
     const pokemonReviewedHolds = applyPokemonPricingMappingReviewedHoldsV1(
-      pokemonOllamaCandidateQueue,
+      pokemonVerifiedExactCandidates.eligible,
       pokemonReviewedHoldRegistry,
     );
     const pokemonAuthorityFinishCandidates =
-      partitionPokemonMappingAuthorityFinishCandidatesV1(
-        pokemonReviewedHolds.eligible,
-      );
+      projectPokemonMappingAuthorityBaseFinishCandidatesV1({
+        reviewCandidates: pokemonReviewedHolds.eligible,
+        exactCandidates: exactPlan?.candidates ?? [],
+        gapRows: identityGaps.filter((row) => row.source_category_id === 3),
+      });
     const pokemonReviewBatch = selectPokemonPricingMappingReviewBatchV1(
       pokemonAuthorityFinishCandidates.eligible,
     );
@@ -534,10 +561,12 @@ async function main() {
       ...pokemonReviewBatch.held_by_reason,
       ...pokemonReviewedHolds.held_by_reason,
       ...pokemonAuthorityFinishCandidates.held_by_reason,
+      ...pokemonVerifiedExactCandidates.held_by_reason,
     }).sort());
     const pokemonReviewHeldCount = pokemonReviewBatch.held_count
       + pokemonReviewedHolds.held_count
-      + pokemonAuthorityFinishCandidates.held_count;
+      + pokemonAuthorityFinishCandidates.held_count
+      + pokemonVerifiedExactCandidates.held_count;
     const pokemonAuthorityReviewPath = path.join(
       args.outDir,
       'pokemon_mapping_authority_review_candidates.json',
@@ -549,13 +578,15 @@ async function main() {
     const authorityCandidateIds = new Set(
       pokemonReviewBatch.selected.map((row) => Number(row.source_product_id)),
     );
-    const authorityExactCandidates = (exactPlan?.candidates ?? []).filter((row) =>
-      authorityCandidateIds.has(Number(row.source_product_id)));
+    const authorityExactCandidates =
+      pokemonAuthorityFinishCandidates.exact_candidates.filter((row) =>
+        authorityCandidateIds.has(Number(row.source_product_id)));
     let pokemonMappingAuthority = null;
     let pokemonMappingAuthorityProcess = {
       status: 'unavailable',
       stdout: '',
       error_code: 'POKEMON_MAPPING_AUTHORITY_UNAVAILABLE',
+      error_detail: null,
     };
     const pokemonMappingAuthorityExpected = pokemonReviewBatch.selected_count > 0
       && authorityExactCandidates.length === pokemonReviewBatch.selected_count
@@ -575,7 +606,10 @@ async function main() {
           reviewCandidates: pokemonAuthorityReviewPath,
           exactCandidates: authorityExactCandidatePath,
           outDir: pokemonAuthorityPackageDir,
-          reviewedAt: new Date().toISOString(),
+          // Bind evidence time to the frozen pricing run. Wall-clock time made
+          // otherwise identical reviews acquire a new fingerprint every
+          // fifteen-minute agent cycle and supersede pending founder approval.
+          reviewedAt: report.run.completed_at,
           sourceSyncRunId: report.run.source_sync_run_id,
         });
         const [receipt, exactMappingCandidates, masterMappingAuthority] = await Promise.all([
@@ -592,17 +626,21 @@ async function main() {
           status: 'available',
           stdout: authorityResult.stdout,
           error_code: null,
+          error_detail: null,
         };
       } catch (error) {
         pokemonMappingAuthorityProcess = {
           status: 'unavailable',
           stdout: '',
           error_code: pricingMappingAuthorityFailureCodeV1(error),
+          error_detail: pricingMappingAuthorityFailureDetailV1(error),
         };
       }
     } else if (pokemonReviewBatch.selected_count > 0) {
       pokemonMappingAuthorityProcess.error_code =
         'POKEMON_REVIEW_EXACT_CANDIDATE_MISMATCH';
+      pokemonMappingAuthorityProcess.error_detail =
+        'Selected review candidates did not exactly match the hosted exact mapping plan';
     }
     const summary = {
       ...summarizeTcgplayerPricingCompletionRunV1(report, {
@@ -621,13 +659,24 @@ async function main() {
       },
       pokemon_mapping_review: {
         candidate_count: pokemonOllamaCandidateQueue.length,
+        verified_exact_candidate_count:
+          pokemonVerifiedExactCandidates.exact_candidate_count,
+        matched_exact_candidate_count:
+          pokemonVerifiedExactCandidates.matched_exact_candidate_count,
+        missing_review_evidence_count:
+          pokemonVerifiedExactCandidates.missing_review_evidence_count,
         selected_count: pokemonReviewBatch.selected_count,
         held_count: pokemonReviewHeldCount,
         held_by_reason: pokemonReviewHeldByReason,
+        base_finish_projected_product_count:
+          pokemonAuthorityFinishCandidates.projected_product_count,
+        held_non_base_observation_count:
+          pokemonAuthorityFinishCandidates.held_observation_count,
         reviewed_hold_count: pokemonReviewedHolds.held_count,
         reviewed_hold_changed_evidence_count: pokemonReviewedHolds.changed_evidence_count,
         authority_status: pokemonMappingAuthorityProcess.status,
         authority_error_code: pokemonMappingAuthorityProcess.error_code,
+        authority_error_detail: pokemonMappingAuthorityProcess.error_detail,
       },
       pokemon_mapping_diagnostics: {
         queued_products: enrichmentSummary.pokemon_diagnostic_output?.rows ?? null,
@@ -685,6 +734,30 @@ async function main() {
           body: { p_item: pokemonReviewWorkItem },
         })
       : null;
+    let pokemonLegacyReviewSupersession = null;
+    if (pokemonMappingAuthority && pokemonReviewPublication) {
+      const replacementWorkItemId = Array.isArray(pokemonReviewPublication)
+        ? pokemonReviewPublication[0]?.work_item_id
+        : pokemonReviewPublication?.work_item_id;
+      const databaseConfig = pokemonTcgplayerMappingDatabaseConfigV1(
+        process.env.SUPABASE_DB_URL,
+        { mode: 'apply' },
+      );
+      const client = new Client({
+        ...databaseConfig,
+        application_name: 'pokemon-mapping-review-supersession-v1',
+        options: '-c default_transaction_read_only=off',
+      });
+      await client.connect();
+      try {
+        pokemonLegacyReviewSupersession =
+          await supersedeLegacyPokemonMappingAuthorityReviewsV1(client, {
+            replacementWorkItemId,
+          });
+      } finally {
+        await client.end();
+      }
+    }
     const receipt = {
       schema_version: 'TCGPLAYER_PRICING_COMPLETION_AGENT_RUN_V4',
       observed_at: new Date().toISOString(),
@@ -776,14 +849,20 @@ async function main() {
         selected_count: pokemonReviewBatch.selected_count,
         held_count: pokemonReviewHeldCount,
         held_by_reason: pokemonReviewHeldByReason,
+        base_finish_projected_product_count:
+          pokemonAuthorityFinishCandidates.projected_product_count,
+        held_non_base_observation_count:
+          pokemonAuthorityFinishCandidates.held_observation_count,
         reviewed_hold_count: pokemonReviewedHolds.held_count,
         reviewed_hold_changed_evidence_count: pokemonReviewedHolds.changed_evidence_count,
         authority_status: pokemonMappingAuthorityProcess.status,
         authority_error_code: pokemonMappingAuthorityProcess.error_code,
+        authority_error_detail: pokemonMappingAuthorityProcess.error_detail,
         authority_receipt: pokemonMappingAuthority?.receipt ?? null,
         work_item_key: pokemonReviewWorkItem?.work_item_key ?? null,
         plan_fingerprint: pokemonReviewWorkItem?.plan_fingerprint ?? null,
         publication_receipt: pokemonReviewPublication,
+        legacy_review_supersession: pokemonLegacyReviewSupersession,
       },
       boundaries: {
         pricing_database_reads: true,

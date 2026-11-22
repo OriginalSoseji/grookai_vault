@@ -2,6 +2,8 @@ import {createHash, randomBytes, randomUUID} from 'node:crypto';
 import {SquareClient, SquareApiError} from './client_v1.mjs';
 import {sealSquareCredential, openSquareCredential} from './credential_envelope_v1.mjs';
 import {planSquareCatalog, squareQrSku, squareManagedProjection, squareDesiredProjection} from './catalog_plan_v1.mjs';
+import {syncSquareArtwork} from './artwork_sync_v1.mjs';
+import {loadSquareArtwork} from './artwork_source_v1.mjs';
 
 const fail = code => {throw new SquareApiError(code);};
 const uuidPattern = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
@@ -23,10 +25,10 @@ const reviewHash = (connection, target, offer, item, variation) => hash(JSON.str
   variation.id, variation.version, squareManagedProjection(item, variation)]));
 
 export class SquareCatalogService {
-  #rpc; #config; #client; #now;
-  constructor({rpc, config, clientFactory = options => new SquareClient(options), now = Date.now}) {
+  #rpc; #config; #client; #now; #artworkSource;
+  constructor({rpc, config, clientFactory = options => new SquareClient(options), now = Date.now, artworkSource=loadSquareArtwork}) {
     if (typeof rpc !== 'function' || !config || typeof clientFactory !== 'function') fail('square_configuration_unavailable');
-    this.#rpc = rpc; this.#config = config; this.#client = clientFactory; this.#now = now;
+    this.#rpc = rpc; this.#config = config; this.#client = clientFactory; this.#now = now;this.#artworkSource=artworkSource;
   }
   #configuration(lane) {
     const config = this.#config;
@@ -44,7 +46,7 @@ export class SquareCatalogService {
     const context = {id: attemptId, ownerId, environment: config.environment};
     await this.#call('oauth_start', {ownerId, environment: config.environment, attemptId,
       stateHash: hash(state), launchHash: hash(launch),
-      stateCiphertext: sealSquareCredential({state}, config.encryptionKey, launchContext(context)), clientReturn});
+      stateCiphertext: sealSquareCredential({state, clientReturn}, config.encryptionKey, launchContext(context)), clientReturn});
     const launchUrl = new URL('/api/square/oauth/launch', config.callbackUrl);
     launchUrl.searchParams.set('capability', launch);
     return {launchUrl: launchUrl.toString()};
@@ -53,8 +55,8 @@ export class SquareCatalogService {
     const config = this.#configuration('linkingEnabled'), nonce = randomBytes(32).toString('base64url');
     const attempt = await this.#call('oauth_launch', {launchHash: hash(capability(rawCapability)), browserHash: hash(nonce)});
     if (attempt.environment !== config.environment) fail('square_environment_mismatch');
-    const {state} = openSquareCredential(attempt.state_ciphertext, config.encryptionKey, launchContext(attempt));
-    return {browserNonce: nonce, authorizationUrl: this.#client({environment: config.environment}).authorizationUrl({
+    const {state, clientReturn} = openSquareCredential(attempt.state_ciphertext, config.encryptionKey, launchContext(attempt));
+    return {browserNonce: nonce, clientReturn: clientReturn === 'native' ? 'native' : 'web', authorizationUrl: this.#client({environment: config.environment}).authorizationUrl({
       appId: config.appId, redirectUri: config.callbackUrl, state: capability(state), commerce: config.commerceEnabled === true})};
   }
   async callback({state, browserNonce, code, denied = false}) {
@@ -155,9 +157,16 @@ export class SquareCatalogService {
     return this.#leased(ownerId, connectionId, async ({connection, context, client}) => {
       const scoped = {...context, targetId}; let operation = null; let sent = false; let accepted = false;
       try {
-        const state = await this.#call('target', scoped), {target, offer} = state;
+        let state = await this.#call('target', scoped), {target, offer} = state;
         operation = state.pendingOperation;
         if (operation && operation.target_id !== targetId) fail('square_connection_busy');
+        if(operation?.payload?.artwork){
+          // Artwork owns its durable outcome; the catalog catch must not overwrite its uncertainty.
+          operation=null;
+          await syncSquareArtwork({connection,context,client,rpc:(a,d)=>this.#call(a,d),state,requestId,loadSource:this.#artworkSource,enabled:this.#config.artworkEnabled===true});
+          state=await this.#call('target',scoped);({target,offer}=state);operation=state.pendingOperation;
+          if(operation)fail('square_connection_busy');
+        }
         if (operation?.status === 'uncertain') {
           const sku = squareQrSku(operation.source_snapshot.gvviId), {match} = await this.#lookup(client, sku);
           if (match && same(squareManagedProjection(match.item, match.variation), operation.projection)) {
@@ -209,6 +218,13 @@ export class SquareCatalogService {
       }
     });
   }
+  async syncArtwork(ownerId,connectionId,targetId,requestId,{manual=false}={}){
+    this.#configuration('catalogEnabled');uuid(targetId);uuid(requestId);
+    return this.#leased(ownerId,connectionId,async({connection,context,client})=>{
+      const state=await this.#call('target',{...context,targetId});
+      return syncSquareArtwork({connection,context,client,rpc:(a,d)=>this.#call(a,d),state,requestId,loadSource:this.#artworkSource,enabled:this.#config.artworkEnabled===true&&(manual||connection.auto_sync===true)});
+    });
+  }
   async adopt(ownerId, connectionId, targetId, {itemId, variationId, expectedReviewHash, requestId, confirmed}) {
     this.#configuration('catalogEnabled'); uuid(targetId); uuid(requestId);
     if (confirmed !== true || typeof expectedReviewHash !== 'string') fail('square_adoption_requires_review');
@@ -228,5 +244,5 @@ export function squareEnvironmentConfig(env = process.env) {
   return {environment: env.SQUARE_ENVIRONMENT, appId: env.SQUARE_APP_ID, appSecret: env.SQUARE_APP_SECRET,
     encryptionKey: env.SQUARE_TOKEN_ENCRYPTION_KEY, callbackUrl: env.SQUARE_CALLBACK_URL,
     linkingEnabled: env.GROOKAI_SQUARE_LINKING_ENABLED === 'true', catalogEnabled: env.GROOKAI_SQUARE_CATALOG_ENABLED === 'true',
-    commerceEnabled: env.GROOKAI_SQUARE_COMMERCE_ENABLED === 'true'};
+    commerceEnabled: env.GROOKAI_SQUARE_COMMERCE_ENABLED === 'true',artworkEnabled:env.GROOKAI_SQUARE_ARTWORK_ENABLED==='true'};
 }

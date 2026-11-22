@@ -40,6 +40,10 @@ export async function squareBody(request: Request): Promise<Record<string, unkno
   return body as Record<string, unknown>;
 }
 const messages: Record<string, [string, number]> = {
+  square_copy_not_owned: ['This card is unavailable in your Vault.',404],
+  square_copy_already_archived: ['This copy has already left your active Vault. Reload it to see its current state.',409],
+  square_removal_unconfirmed: ['Square withdrawal could not be confirmed. Your removal is not complete; reload the card and check Square.',409],
+  square_removal_stock_not_zero: ['Square still has stock for this card. Removal cannot finish until withdrawal is confirmed.',409],
   square_order_requires_review: ['A Square order needs review. This card stays held; unrelated cards can continue syncing.',409],
   square_withdraw_before_disconnect: ['Remove the allocated cards from Square and resolve pending stock before disconnecting.',409],
   square_stock_unavailable: ['This card is already reserved or is no longer available for Square.',409],

@@ -42,11 +42,33 @@ const scenarios = [
 
 async function openScenario(page: import("@playwright/test").Page, scenario: typeof scenarios[number]) {
   await page.clock.setFixedTime(new Date("2026-10-27T18:00:00.000Z"));
+  if (scenario === "card-detail-hierarchy" || scenario === "vault-exact-copy") {
+    // Synthetic prices stay inside the browser fixture; never contact a source or database.
+    await page.route("**/api/condition-pricing/v1?**", async (route) => {
+      const query = new URL(route.request().url()).searchParams;
+      const printing = query.get("card_printing_id"), condition = query.get("condition");
+      const amounts: Record<string, number> = printing === "fixture-printing"
+        ? { NM: 47.23, LP: 42, MP: 35, HP: 29 }
+        : { NM: 3.42, LP: 2.87, MP: 2.12, HP: 1.55 };
+      const amount = amounts[condition ?? ""] ?? null;
+      await route.fulfill({ status: 200, contentType: "application/json", json: {
+        ok: true, pricing: {
+          version: "CONDITION_PRICE_READ_MODEL_V1", card_printing_id: printing, condition,
+          status: amount === null ? "unavailable" : "available", amount,
+          confidence: amount === null ? "unavailable" : "medium", pricing_lane: "reference",
+          currency: null, currency_hint: "USD", currency_verified: false,
+          source_label: "TCGplayer condition price via TCGTracking",
+          provider_updated_at: "2026-10-27T17:00:00.000Z", unavailable_reason: amount === null ? "missing_condition" : null,
+        },
+      } });
+    });
+  }
   const response = await page.goto(`/visual-fixtures/release-convergence/${scenario}`, {
     waitUntil: "networkidle",
   });
   expect(response?.ok()).toBe(true);
   await expect(page.locator("[data-release-convergence-root]")).toBeVisible();
+  if (scenario === "vault-exact-copy") await expect(page.locator("[data-condition-price-state]")).toHaveAttribute("data-condition-price-state", "loaded");
   await page.evaluate(async () => document.fonts.ready);
 }
 
@@ -248,6 +270,19 @@ test("Card pricing keeps the market summary primary and evidence disclosed", asy
     "href",
     "/card/GV-FIXTURE-PIKACHU/market",
   );
+});
+
+test("Card condition references switch to exact reported amounts without replacing the market summary", async ({ page }) => {
+  await openScenario(page, "card-detail-hierarchy");
+  const price = page.locator("[data-condition-price-state]");
+  for (const [condition, amount] of [["NM", "3.42"], ["LP", "2.87"]]) {
+    await page.getByRole("button", { name: condition, exact: true }).click();
+    await expect(price.locator("[data-condition-price-amount]")).toHaveAttribute("data-condition-price-amount", amount);
+    await expect(page.getByText("$3.42", { exact: true })).toBeVisible();
+  }
+  await page.getByRole("button", { name: "DMG", exact: true }).click();
+  await expect(price.getByText("DMG price unavailable", { exact: true })).toBeVisible();
+  await expect(price.locator("[data-condition-price-amount]")).toHaveCount(0);
 });
 
 test("Card pricing exposes an actionable failure and recovers on retry", async ({ page }) => {

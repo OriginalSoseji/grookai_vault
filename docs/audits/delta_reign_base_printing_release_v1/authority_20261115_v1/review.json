@@ -1,0 +1,14 @@
+{
+  "status": "verified_scope",
+  "master_index_sha256": "2c8c11a91cb57c700f4b586e0f343c32dabbcbb414676cb5aefc853103c8703d",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "me06",
+  "scope": "base_release",
+  "reviewer": "Codex source adjudication under founder-directed catalog completion",
+  "reviewed_at": "2026-11-15T17:00:00.000Z",
+  "projection_sha256": "8afe2130252be56fbbe363910548e6adfc973ab79393b32e2d848c1e0d758000",
+  "adjudication": "The official Pokemon checklist assigns one base finish to all 141 collector numbers: 83 standard boxes resolve to Normal and 58 red-outline holographic boxes resolve to Holo.",
+  "unresolved_variant_policy": "All 87 TCGPlayer Reverse Holo subtype rows remain outside the base release because price buckets are not printing authority.",
+  "execution_authorized": false
+}

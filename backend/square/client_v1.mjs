@@ -1,5 +1,6 @@
 import {isDeepStrictEqual} from 'node:util';
 import {SQUARE_API_VERSION, squareManagedProjection} from './catalog_plan_v1.mjs';
+import {squareArtworkPixels} from './artwork_pixels_v1.mjs';
 const origins = Object.freeze({production: 'https://connect.squareup.com', sandbox: 'https://connect.squareupsandbox.com'});
 const identifier = /^[A-Za-z0-9_-]{1,100}$/;
 export class SquareApiError extends Error {
@@ -29,13 +30,14 @@ export class SquareClient {
   }
   async #request(method, route, payload, {mutation = false, oauth = false} = {}) {
     if (!oauth && this.#token === null) fail('square_authorization_required');
-    const encoded = payload === undefined ? undefined : JSON.stringify(payload);
-    if (encoded && Buffer.byteLength(encoded) > 1048576) fail('square_payload_too_large');
+    const multipart = payload instanceof FormData;
+    const encoded = multipart ? payload : payload === undefined ? undefined : JSON.stringify(payload);
+    if (!multipart && encoded && Buffer.byteLength(encoded) > 1048576) fail('square_payload_too_large');
     let response;
     try {
       response = await this.#fetch(new URL(route, this.#origin), {method, body: encoded, redirect: 'error',
         signal: AbortSignal.timeout(this.#timeout), headers: {'Square-Version': SQUARE_API_VERSION,
-          Accept: 'application/json', ...(encoded ? {'Content-Type': 'application/json'} : {}),
+          Accept: 'application/json', ...(encoded && !multipart ? {'Content-Type': 'application/json'} : {}),
           ...(oauth ? {} : {Authorization: 'Bearer ' + this.#token})}});
     } catch {throw new SquareApiError('square_provider_unavailable', {uncertain: mutation});}
     let data;
@@ -91,6 +93,54 @@ export class SquareClient {
     const data = await this.#request('GET', '/v2/catalog/object/' + id(itemId));
     if (data.object?.id !== itemId || data.object.type !== 'ITEM' || data.object.is_deleted === true) fail('square_resource_missing');
     return data.object;
+  }
+  async image(imageId) {
+    const data = await this.#request('GET', '/v2/catalog/object/' + id(imageId));
+    if (data.object?.id !== imageId || data.object.type !== 'IMAGE' || data.object.is_deleted === true) fail('square_resource_missing');
+    return data.object;
+  }
+  async imagesByName(name) {
+    if (!/^grookai-artwork-v1-[a-f0-9]{64}\.jpg$/.test(name)) fail('square_invalid_artwork');
+    const result = [], seen = new Set(); let cursor;
+    for (let page=0;page<5;page++) {
+      const data = await this.#request('POST','/v2/catalog/search',{object_types:['IMAGE'],include_deleted_objects:false,
+        limit:100,query:{exact_query:{attribute_name:'name',attribute_value:name}},...(cursor?{cursor}:{})});
+      if (data.objects !== undefined && !Array.isArray(data.objects)) fail('square_images_incomplete');
+      for (const image of data.objects??[]) {
+        if(image.type!=='IMAGE'||image.is_deleted===true||image.image_data?.name!==name)fail('square_images_incomplete');
+        id(image.id);result.push(image);
+      }
+      if(result.length>1)fail('square_duplicate_artwork');
+      if(!data.cursor)return result;
+      if(typeof data.cursor!=='string'||seen.has(data.cursor))fail('square_images_incomplete');
+      seen.add(data.cursor);cursor=data.cursor;
+    }
+    fail('square_images_incomplete');
+  }
+  async artworkImageMatches(image,pixelSha256) {
+    if(!/^[a-f0-9]{64}$/.test(pixelSha256??''))return false;
+    let url;try{url=new URL(image.image_data?.url);}catch{return false;}
+    const allowed=['items-images-production.s3.us-west-2.amazonaws.com','items-images-sandbox.s3.us-west-2.amazonaws.com',
+      'square-catalog.s3.amazonaws.com','square-catalog-sandbox.s3.amazonaws.com'];
+    if(url.protocol!=='https:'||!allowed.includes(url.hostname)||url.username||url.password||url.port||url.search||url.hash)fail('square_artwork_source_blocked');
+    const response=await this.#fetch(url,{redirect:'error',signal:AbortSignal.timeout(this.#timeout)});
+    if(!response.ok)fail('square_artwork_unavailable');
+    const reader=response.body?.getReader();if(!reader)fail('square_artwork_unavailable');const chunks=[];let size=0;
+    for(;;){const {done,value}=await reader.read();if(done)break;size+=value.length;if(size>8*1024*1024){await reader.cancel();fail('square_artwork_too_large');}chunks.push(value);}
+    try{return await squareArtworkPixels(Buffer.concat(chunks))===pixelSha256;}catch{fail('square_artwork_invalid_image');}
+  }
+  async uploadArtwork(request, fileBase64, name, pixelSha256) {
+    if(!request?.idempotency_key||request.image?.type!=='IMAGE'||request.image.image_data?.name!==name||
+      !/^grookai-artwork-v1-[a-f0-9]{64}\.jpg$/.test(name)||typeof fileBase64!=='string')fail('square_invalid_artwork');
+    id(request.object_id);
+    const bytes=Buffer.from(fileBase64,'base64');
+    if(bytes.toString('base64')!==fileBase64||bytes.length<4||bytes.length>524288||bytes[0]!==255||bytes[1]!==216)fail('square_invalid_artwork');
+    const form=new FormData();form.set('request',JSON.stringify(request));form.set('file',new Blob([bytes],{type:'image/jpeg'}),name);
+    const data=await this.#request('POST','/v2/catalog/images',form,{mutation:true});
+    if(data.image?.type!=='IMAGE'||!identifier.test(data.image.id))throw new SquareApiError('square_artwork_receipt_unconfirmed',{uncertain:true});
+    if((data.image.image_data?.name!==name||data.image.image_data.caption!==request.image.image_data.caption)&&
+      !await this.artworkImageMatches(data.image,pixelSha256))throw new SquareApiError('square_artwork_receipt_unconfirmed',{uncertain:true});
+    return data.image;
   }
   async itemsForExactSku(sku) {
     if (typeof sku !== 'string' || !/^https:\/\/grookaivault\.com\/q\/GVVI-[A-Z0-9]+-[0-9]{6}$/.test(sku)) fail('square_invalid_sku');

@@ -1,4 +1,709 @@
+# Cross-TCG Market publication V2 — November20,2026
+
+Use `C:/grookai_cross_tcg_market_v2_20261119` and the
+[pricing checkpoint](../checkpoints/pricing/CROSS_TCG_MARKET_PUBLICATION_20261120.md).
+The [V2 contract](../contracts/TCGPLAYER_CROSS_TCG_MARKET_PUBLICATION_V2.md)
+adds existing governed One Piece and exact Japanese Pokémon Market authority;
+English Pokémon/MTG retain their V1 evaluator and V7 projection. Do not infer
+finishes, fabricate quotes, convert conditions by percentage or replay old intake.
+Existing Vault calculations, asking prices, identities and Binder work are retained.
+The active warehouse, scheduler, watchdog, publisher and production guard use
+verified database TLS with the existing CA secret. Only literal loopback has a
+local transport exception; URL SSL parameters cannot disable verification.
+
+The separate `-CrossTcgMarketReleaseV2` strict gate permits only canonical511→512
+and migration20261120063000, revision5, SHA256
+`fb585822adb63ef5f31bf9078ffa869fc8b1f6d1b707075a5c710975b7d6608f`.
+Fresh CLI replay, populated upgrade/no-op, four-schema/security comparison,
+all426 protected-table fingerprints,13 negative lineage checks, private-role
+permissions, old-cohort equivalence and actual-size local performance passed.
+Retain the isolated `fresh-512-r5` / `upgrade-511-r4` databases, sources and
+proofs under `C:/grookai_vault_operator_artifacts/cross_tcg_market_pricing_20261119`.
+Older failed and superseded proofs remain preserved; no Docker reset/prune is allowed.
+
+Freeze the exact committed source only after normal commit/push and hosted checks.
+Require strict PrePush, official CLI dry-run/apply and independent schema/data
+readback. Let older publication writers finish or safely drain them before the
+first V2 activation. Dispatch the full unlimited-source shadow, verify exact
+worker V1_24 / policy V2 and both new cohorts, then guarded production publication. Read
+back the atomic current pointer, real app prices and scheduled refresh health.
+Local qualification or imported warehouse rows do not establish live Market prices.
+Condition references remain separate, read-only, medium confidence and USD-assumed.
+
+# Best of Game bounded execution preparation — November19,2026
+
+Read [the execution preparation checkpoint](../checkpoints/BEST_OF_GAME_EXECUTION_PREPARATION_20261119.md)
+and [the separate execution contract](../contracts/BEST_OF_GAME_PRINTING_EXECUTION_V1.md).
+The new BP8/9 insert-only lane has exact production TLS/target/authority and
+fresh rollback gates. The original local rehearsal and McDonald's executor are
+unchanged. Canonical511 read-only audit and95-FK/79-reference preparation passed.
+Real local Supabase17 rollback/duplicate-key/JSON/price/commit/readback/replay
+tests preserve all426 application-table fingerprints,19 prior fixture copies,
+the original Auth user, older rehearsal and source database. All65 focused tests
+pass. New named qualification database and worker are retained; its DB container
+is stopped. Do not reset/reseed any populated laboratory.
+
+Freeze the final production plan only from the verified release producer after
+normal managed checks. Earlier read-only prepare artifacts are not authority.
+No production writes or nine-alias discovery changes occurred. Obtain exact
+founder approval and actual production rollback/readback proof before apply.
+
+# Best of Game Supabase17 qualification — November19,2026
+
+Read the [Supabase17 checkpoint](../checkpoints/BEST_OF_GAME_SUPABASE17_REHEARSAL_20261119.md).
+The owner explicitly approved Docker Desktop restart. Recovery resolved a stale
+data-disk attachment without reset, prune, relocation or WSL unregister. The normal
+Docker API and shared63341 Auth health now work. All21 retained repair containers,
+six named volumes and the recovered434-container/393-volume inventory are intact.
+
+The separate `bog-platform-511-20261119` clone passed Supabase PostgreSQL17.6
+rollback/forced-failure/commit/readback/idempotency, all426-table preservation,
+real Auth and PostgREST ownership isolation, Windows SDK exact printing lookups,
+511 ledger, zero four-schema drift and exact security. Backend source/target
+guards remain unchanged; a fresh dedicated local plan was used. The original
+source lab remained stopped; its1327 parents/19 copies/one Auth user are unchanged.
+Both the new populated clone and native16 fixture are stopped and retained; never
+reset/reseed them. The shared verification runtime remains running and healthy.
+Existing220 focused tests retain their qualified source bindings. Managed full
+release checks and a separate production package/authority are still required.
+No production printing, alias, ownership, image or schema write occurred.
+
+# Best of Game Docker recovery — November18,2026
+
+Read the [Docker recovery checkpoint](../checkpoints/BEST_OF_GAME_DOCKER_RECOVERY_20261118.md).
+Both normal engine pipes and actual shared API health time out. WSL responds,
+but the previous live-daemon/raw-socket recovery route is absent and cannot be
+attested. Desktop inspection could not initialize; no UI input occurred.
+The125119234048-byte data VHD and all retained labs remain untouched. Private
+diagnostics and restart intent are under the Best of Game artifact root.
+Docker Desktop restart authorization was requested; no restart has occurred.
+Do not infer approval from elapsed time or substitute a stale transport receipt.
+After authorization, verify retained engine/container/volume state before the
+separately scoped Supabase17 work. Preserve the native16 qualification and its
+stopped populated fixture.
+
+# Best of Game transaction rehearsal — November18,2026
+
+Continue from the [rehearsal checkpoint](../checkpoints/BEST_OF_GAME_PRINTING_REHEARSAL_20261118.md)
+and [local-only contract](../contracts/BEST_OF_GAME_PRINTING_REHEARSAL_V1.md).
+The separate BP8/9 engine/CLI rejects production routing. Native PostgreSQL16.2
+proved raw-first inserts, complete rollback, actual duplicate-key rollback,
+JSON/price tamper rejection, local commit, independent18-option readback and
+zero-write replay. All22 parents,16 prior children and the owned copy remain
+unchanged. The dedicated port64240 cluster is stopped with its data retained;
+never reset or bootstrap it again. The existing McDonald's executor is unchanged.
+
+The audit-only `-BestOfGamePrintingBaselineV1` strict gate passed canonical511,
+all applied source hashes, four schemas and security. PrePush/mixed-switch probes
+fail before database access. All95 incoming FKs across79 relations were captured;
+363 JSON columns remain a semantic review boundary. Keep the timed-out broader
+inventory and all other unsuccessful sources/receipts. Focused tests pass220/220.
+The native fixture copies the three mutation table schemas/RPC exactly but does
+not establish full Supabase17/RLS/Auth/client or managed release qualification.
+Both Docker endpoints are unresponsive; do not restart/delete the daemon, labs
+or volumes merely to clear this check. Complete the remaining platform/release
+gates and exact production authority before any live write or discovery aliases.
+
+# Best of Game missing-printing preparation — November18,2026
+
+Use `C:/grookai_best_of_game_repair_20261118` and the
+[checkpoint](../checkpoints/BEST_OF_GAME_REPAIR_20261118.md). The exact reviewed
+scope is BP8/9 Reverse Holo, whose regular-sized promotions intrinsically bear
+the Winner stamp. The offline candidate proposes one raw evidence record, two
+children and two reviews, with no existing-row updates. Its CLI is
+`scripts/audits/best_of_game_printing_repair_prepare_v1.mjs`; it has no execution
+mode. Canonical511 read-only sanity, collision checks and199 focused tests passed.
+Retain the private before rows, failed source captures and frozen fingerprints.
+This is not whole-set certification or a production repair. The McDonald's
+executor remains bound to its original scope. Implement and qualify a separate
+BP transaction path, complete dependency/rollback/readback gates, and bind exact
+founder execution authority before production writes. Only then qualify the
+nine discovery aliases; retain all22 parents,16 existing children, four Winner
+parents, the owned copy and global Magic Bog/Boggart text behavior.
+
+# Shrouded Fable final release V2 — November18,2026
+
+The qualified candidate starts from main6b7a4818f after native release950.
+Use `-ShroudedAliasDiscoveryReleaseV2` only for canonical509 and exact pending
+IDs `20261118180000,20261118181500`. The first locally applied source remains
+immutable; the forward grant correction makes the new non-updatable projection
+SELECT-only for all three reader roles. Fresh511 and the populated509-to511
+chain are qualified; use `shrouded_alias_runtime_v2_r2.mjs` and
+`verify_shrouded_alias_local_v2_r2.mjs`. Final qualification is in the private
+`local-qualification-v2-r2` directory. V1 remains an audit-only scope.
+
+Preserve113 distinct discovery parents,167 printings and four actual owned
+copies, including the unique legacy Prize Pack Cosmos Galvantula. No stored
+parent/printing/identity/reference row is merged or moved. The full-size146
+actual calls passed at685ms maximum with the unchanged three-second budget.
+Complete managed/platform/hosted checks, source/proof sealing, exact PrePush,
+official511-file dry-run/apply and independent production/API/data/security/web
+verification before closure. See [the V2 contract](../contracts/SHROUDED_ALIAS_DISCOVERY_READ_REPAIR_V2.md)
+and [the checkpoint](../checkpoints/SHROUDED_ALIAS_DISCOVERY_20261118.md).
+
+# Shrouded Fable starting audit — November18,2026
+
+Use `C:/grookai_shrouded_alias_20261118` from merged main8199a0feab. The separate
+`-ShroudedAliasDiscoveryBaselineV1` accepts only AuditLinkedSchema at509 with a
+new private `baseline-v1-*` directory under
+`C:/grookai_vault_operator_artifacts/shrouded_alias_discovery_20261118`.
+Production has99 approved duplicate pairs,100 legacy/112 canonical parents,
+and four owned copies. The extra legacy Prize Pack Cosmos Galvantula is a
+distinct retained identity. A prospective unified discovery family must retain
+all113 distinct parents. No candidate or release is qualified by this audit.
+See [the contract](../contracts/SHROUDED_ALIAS_DISCOVERY_READ_REPAIR_V1.md).
+# Pokémon playable usage release candidate — November 18, 2026
+
+The isolated release branch adds `playable` / `playables` search and shared expiring badges using the precomputed Pokémon Standard usage signal. Current main search, pagination, catalog visibility and Winter branding are retained. No schema or canonical writer is part of this release.
+
+Worker: `backend/competitive/pokemon_playables/current_standard_cli.mjs daily --project-ref ycdxbpibncqcchqiihfz`. Bootstrap with its `seed --input <current-input.json> --project-ref ...` command only from retained verified input. Private seed and public-field projection keys are `standard-usage/refresh-seed.json` and `standard-usage/current.json` in `pokemon-playables-private`; neither object is anonymously readable. The web server projects only allowed fields through `/api/playables`. Never put original source responses or credentials in the public repository.
+
+The workflow attempts refresh at 06:23 and 18:23 UTC, using canonical Actions secret names `SUPABASE_URL` and `SUPABASE_SECRET_KEY`. Both names now exist in repository Actions configuration; hosted runtime credential validity still requires actual run readback after activation. The worker uses bounded public source collection, rate headers/backoff, exact current catalog bindings and 24-hour output expiry. Initial coverage is a bounded 292-member cohort, not the entire catalog. Metadata renewal is a genuine fetch preserving repository commit/blob/license pins. Continue the existing retention-plan/apply lifecycle; expired seeds require fresh bootstrap input.
+
+A live local invocation renewed 147 qualified printings from 68 lists across five events. The reviewed candidate passed the full shipcheck and actual desktop/mobile browser readback; see [the release checkpoint](../checkpoints/2026-11-18_pokemon_playables_release_candidate_v1.md). The owner authorized publication, merge and activation on November 18. Retain normal managed commit/push hooks and verify the integrated candidate, hosted deployment and refresh run directly. Local validation or a prepared workflow alone does not establish activation.
+
+# Prismatic identity query guard V5 — November17,2026
+
+Pokemon GO starts at502 after PR945. The owner selected only the approved88
+`swsh10.5` to `pgo` aliases; preserve90 canonical parents, both stamped Mewtwo
+identities and every retained ID/reference. Use audit-only
+`-PokemonGoAliasDiscoveryBaselineV1`, followed by the separate exact
+`-PokemonGoAliasDiscoveryReleaseV1` scope for20261118050000. Revision2 limits
+discovery membership to the requested set only for blank typed queries. Require
+new503 replay, populated502 upgrade, all449 local fingerprints, both roles,
+actual full-size function proof, normal managed checks and hosted review before
+the frozen503-file official CLI apply. Keep three-second API limits and all
+unsuccessful receipts. Production/API/schema/security/data and canonical/legacy
+website readback precede closure. See
+[the Pokemon GO contract](../contracts/POKEMON_GO_ALIAS_DISCOVERY_READ_REPAIR_V1.md).
+
+Paldean V3 starts at501. V2 is applied and its source is immutable; actual
+anonymous blank typed-set browsing still timed out. Use the audit-only
+`-PaldeanAliasDiscoveryBaselineV3`, then the separately bound exact
+`-PaldeanAliasDiscoveryReleaseV3` for only `20261118033000`. The forward
+function materializes parent/child document branches independently and skips
+unrequested types. Require new502 replay, populated501 upgrade, both roles,
+all449 local fingerprints, full-size actual RPC comparisons, normal managed
+checks, hosted review and the frozen502-file official CLI package. Independent
+API-first readback must pass blank typed browsing for both families plus all120
+protected production fingerprints and full schema/security parity. Keep failed
+receipts and the existing three-second API limit. See
+[the V3 contract](../contracts/PALDEAN_ALIAS_DISCOVERY_READ_REPAIR_V3.md).
+
+Paldean V2 starts at500 after the applied catalog projection. Its data/schema
+readback matches all120 protected tables and the qualified package; identity
+RPC timing requires the forward cache in `20261118021500`. Use only
+`-PaldeanAliasDiscoveryBaselineV2` for the500 starting audit, followed by the
+separate exact `-PaldeanAliasDiscoveryReleaseV2` PrePush scope. Require new501
+replay, populated500 upgrade, unchanged449 local fingerprints, real helper/RPC
+query probes, normal commit/push checks and the fixed501-file CLI package.
+Never edit any applied SQL or relax the three-second API limit. See
+[the V2 contract](../contracts/PALDEAN_ALIAS_DISCOVERY_READ_REPAIR_V2.md).
+
+The preceding499-to500 release started after Prismatic (PR942). Its release
+gate is consumed and all499 applied SQL files remain immutable. Paldean Fates
+preparation uses `-PaldeanAliasDiscoveryBaselineV1 -Phase AuditLinkedSchema`
+with a new private `-AuditOutDir` under the Paldean artifact root. It verifies
+the full499 baseline and245 approved aliases; it does not permit PrePush or
+apply. See [the Paldean contract](../contracts/PALDEAN_ALIAS_DISCOVERY_READ_REPAIR_V1.md).
+Preserve physical printings, ownership, market history and the three-second API
+limit. The separate `-PaldeanAliasDiscoveryReleaseV1` scope accepts only this
+499 baseline and pending ID `20261118000000`. Complete fresh500/retained499
+qualification, normal managed commit/push checks and the pinned release manifest
+before `-Phase PrePush -ExpectedLocalOnlyIds 20261118000000`. Apply only the
+frozen500-file canonical package through the official CLI, then independently
+verify protected records, schema/security, public APIs and legacy web routing.
+
+## McDonald's Collection 2021 discovery — November 18, 2026
+
+Use the separate `-Mcdonalds2021AliasDiscoveryBaselineV1` audit scope at503,
+then `-Mcdonalds2021AliasDiscoveryReleaseV1` for only the forward504 migration
+`20261118080000`. The25 approved `2021swsh` to `mcd21` pairs affect discovery
+only; preserve all parents,50 printings per raw set and existing ownership.
+Require genuine fresh replay, retained populated upgrade without reset, both
+roles, protected fingerprints, complete schema/security parity, actual
+production-scale RPC qualification, normal managed checks and hosted review.
+Apply only the frozen official CLI package after exact PrePush. Independently
+verify APIs, all prior repaired families, records and canonical/legacy web
+routes. See [the contract](../contracts/MCDONALDS_2021_ALIAS_DISCOVERY_READ_REPAIR_V1.md)
+and [the preparation checkpoint](../checkpoints/MCDONALDS_2021_ALIAS_DISCOVERY_20261118.md).
+
+## EX Trainer Kit Latios discovery — November18,2026
+
+Use `-LatiosAliasDiscoveryBaselineV1` only for the504 starting audit, followed
+by the separate `-LatiosAliasDiscoveryReleaseV1` exact505 scope for
+`20261118120000`. The10 approved `tk-ex-latio` to `tk1b` pairs affect discovery
+only. Preserve10 parents/10 printings per raw set, nine normal and holo Latios2,
+all owned copies and all four previous family repairs. Require fresh505 CLI
+reset/replay, populated504 upgrade without reset, both roles, exact IDs,
+protected fingerprints, full schema/security parity, actual production-scale
+function proof and unchanged normal managed/platform/hosted checks. Apply only
+the frozen505-file official package after exact PrePush. Verify all five family
+APIs, protected records and canonical/legacy web routing before recording
+merge/deployment closure. See [the contract](../contracts/LATIOS_ALIAS_DISCOVERY_READ_REPAIR_V1.md)
+and [the checkpoint](../checkpoints/LATIOS_ALIAS_DISCOVERY_20261118.md).
+
 # Grookai Operator Playbook V1
+
+## Printed XY promo search correction — November 18, 2026
+
+PR956 is deployed: `pika xy124` returns the retained Pikachu-EX XY124 parent.
+Follow-up acceptance exposed a separate full-name collision with Pikachu World
+Collection. The attached promo family must outrank conflicting implicit opening
+words while explicit set constraints remain binding. See
+[the follow-up checkpoint](../checkpoints/SEARCH_PROMO_NAME_SET_PRECEDENCE_20261118.md)
+and private `artifacts/search_xy124_names_v1/20261118/` receipts. Preserve the
+current mobile baseline553; neither server correction requires installing an APK.
+
+The `pika xy124` failure is a search interpretation/query-bound issue. Printed
+three-digit XY numbers belong to the existing `xyp` family, while one/two-digit
+XY expansion tokens keep their meaning. Preserve exact collector suffixes,
+nickname/name constraints, caller visibility and language filters. Known promo
+families use the structured collector route with the set restriction applied
+before case-insensitive number/name reads. Do not increase timeouts, conceal
+degraded results or add a local fallback. See
+[the checkpoint](../checkpoints/SEARCH_XY_PROMO_COLLECTOR_TIMEOUT_20261118.md).
+Use `C:/grookai_search_xy124_20261118` and its private
+`artifacts/search_xy124_v1/20261118/` receipts for normal hooks, hosted checks
+and API/device acceptance. The existing Samsung build552 already calls the
+shared endpoint; this correction needs no APK installation or store release.
+
+## Native condition reference candidate — November 18, 2026
+
+Web condition references are deployed through PR946/main
+`17f0f81aaa986968a870a9dfa1f316e2e739dacf`; preserve its release receipts and
+do not repeat the completed intake or hosting promotion. The native candidate
+is isolated at `C:/grookai_native_condition_20261118` on
+`codex/native-condition-pricing-20261118`, based on PR948/main `66d09f6299`.
+Read [the native checkpoint](../checkpoints/pricing/NATIVE_CONDITION_PRICING_20261118.md)
+and [V2](../contracts/TCGTRACKING_CONDITION_PRICING_V2.md).
+
+Native Add review and active raw-copy Vendor Mode use the same authenticated
+web reader with the existing SDK session. Debug references are loopback-only;
+profile/release accepts the canonical HTTPS origin. No direct provider request,
+percentage conversion or valuation cutover is added. Failed condition/printing
+saves restore the matching reference; graded entries omit it.
+
+Replay the checkpoint's focused tests and dedicated local Android driver. The
+existing QA AVD uses explicit `emulator-5582` and the isolated locked-acceptance
+debug package, with synthetic HTTP/session data and no inventory writes. Preserve
+the physical Samsung application. Screenshots/logs live under the candidate's
+`artifacts/native_condition_pricing_v1/20261118/`. Normal managed full shipcheck
+hooks remain required; local Windows Sharp worker bounds are one thread, as
+qualified for the web release. A source candidate/local fixture pass does not
+establish production-native acceptance, iOS qualification or store distribution.
+
+The live QA549 follow-up retained the Samsung's account/data and verified real
+NM2.51 / LP1.16 through the production condition reader. Cancelling Add review
+exposed the existing Search drawer's stale busy props; the follow-up refreshes
+that mounted drawer on the cancellation return path. Preserve QA549 and its
+separate CI-signed production artifact as superseded evidence, and qualify a
+higher same-signer build before advancing. The checkpoint's private
+`release-preparation/` receipts track this progress; never replay installation
+intents or infer store distribution from either APK.
+
+## Condition pricing release candidate — November 17, 2026
+
+Use `C:/grookai_condition_release_20261117` on
+`codex/tcgtracking-condition-release-20261117`, based on main `ad05da8049`.
+The implementation and original intake artifacts are preserved in the older
+`C:/grookai_condition_pricing_20261117` worktree. Read
+[the release checkpoint](../checkpoints/pricing/TCGTRACKING_CONDITION_RELEASE_20261117.md)
+for exact build/preflight proofs and managed-check receipts. Root test dependencies
+must use the complete root installation, not backend-only node_modules; backend
+and web also require their complete locked installations.
+
+Strict isolated web builds pass. Verified-TLS runtime preflight has zero critical
+failures and ten known deferred checks. Existing database CA trust is supplied
+through Node's normal extra-CA mechanism; do not disable verification. The
+intake worker/readback now use a canonical-target TLS helper, included in the
+executing worker hash. No old batch, acknowledgement or historical receipt is
+reused. A live read-only transport check still finds 559 private source receipts.
+The corrected checkout passes every required phase separately: contracts,
+commerce, web and Flutter (2,058 mobile tests, two existing skips). One transient
+Windows native Square artwork failure is retained with its successful focused
+and complete reruns. Use the final managed-hook receipt to establish commit success.
+Normal shipcheck and Git hooks remain mandatory. A successful local build is not
+public release evidence; publishing still follows explicit external-action
+authorization. Do not treat the old provider inquiry as a source-use gate.
+
+## Prismatic discovery repair — November 17, 2026
+
+The [V4 release contract](../contracts/PRISMATIC_ALIAS_DISCOVERY_READ_REPAIR_V4.md)
+binds the 496-to-498 package with the atomic alias projection, InitPlan query
+repair and free-text legacy set resolution. The earlier drafts and their
+receipts are retained as historical local evidence. The migration package
+contains the projection and its forward identity-query repair.
+
+The [original qualification record](../checkpoints/PRISMATIC_ALIAS_DISCOVERY_QUALIFICATION_20261116.md)
+records the initial V2 reader tests. Current V4 qualification and publication
+receipts are in
+`C:/grookai_vault_operator_artifacts/prismatic_alias_discovery_20261116`.
+Use the V4 exact-pair preflight and official CLI package for this release.
+
+The source-backed180 approved aliases select
+`sv8pt5` for discovery, including its194 parents and14 stamped variants.
+Direct retained-object reads and existing ownership/history use their original
+identities. Fresh replay, populated upgrade, both SQL roles, anonymous HTTP,
+rollback, idempotence and complete schema/security comparison qualify the
+release. Production readback is recorded separately against the applied package.
+
+The [baseline record](../checkpoints/PRISMATIC_ALIAS_REPLAY_BASELINE_20261116.md)
+explains the explicit synthetic647-pair historical prerequisite. The original
+populated labs and failed receipts remain available for audit.
+## Condition price integration V2 — November 17, 2026
+
+The owner explicitly authorized using TCGTracking's published free API without
+separate permission absent an applicable explicit restriction. Do not require
+the old provider inquiry to continue source use. Read
+[V2](../contracts/TCGTRACKING_CONDITION_PRICING_V2.md) and
+[the checkpoint](../checkpoints/pricing/TCGTRACKING_CONDITION_PRICING_V2_20261117.md).
+The previous source-qualification section below records historical findings;
+its custom-permission prerequisite is superseded by this owner decision.
+
+The source candidate now has `/api/condition-pricing/v1` for ordinary signed-in
+collectors using SDK-validated cookie/bearer auth. Add to Vault and active raw-copy
+settings follow their exact printing/condition controls automatically. The
+backend revalidates mappings each time and fetches the daily set SKU feed through
+bounded caching. Missing and stale prices remain unavailable. No source fallback,
+percentage pricing or valuation cutover is permitted by this integration.
+
+Run the five targeted Node files in the checkpoint plus web type checking and
+targeted lint. `scripts/audits/condition_price_read_model_live_v1.mjs` performs
+read-only backend/source checks with the owner's existing `DOTENV_CONFIG_PATH`;
+use a new artifact directory, Node system CAs and the shared backend client.
+The successful sampled readback covered seven printings/35 conditions across
+four categories: 23 prices and 12 unavailable. Browser evidence uses actual
+control components with mocked sessions/save actions, not deployed auth proof.
+No new imports, production writes, scheduled refresh, deployment or native
+integration occurred. Existing market prices, Vault totals and asks are unchanged.
+
+## TCGTracking source qualification — November 17, 2026
+
+Read the [source qualification report](../audits/pricing/tcgtracking_source_qualification_v1/REPORT.md)
+before changing display or currency status. The credential-free audit script is
+`scripts/audits/tcgtracking_source_qualification_v1.mjs`. Audit keyword text is
+extracted with pinned `parse5`; script, style and template contents are excluded.
+This text is evidence for searching, never HTML for rendering. It fetches five public
+provider pages and one bounded Dragons Exalted SKU feed, records hashes, and
+compares the four-printing saved private fixture. Use a new output directory for
+each run; full captures remain in ignored artifacts. It never contacts production
+or sends a provider message. A keyword match cannot grant rights or verify money.
+
+All 20 selections matched the same published source snapshot, but the reviewed
+pages still did not establish commercial-display rights or explicit SKU currency.
+The report links a concrete provider inquiry draft; it has not been submitted.
+Retain a real provider response or published policy before revising qualification.
+Do not infer a newly updated price from a later GET of identical source bytes.
+
+## Private condition pricing preview — November 17, 2026
+
+The source branch now includes `/founder/pricing/conditions` and
+`/api/founder/condition-pricing/v1` for private founder inspection. They are not
+deployed. Read the [canary contract](../contracts/CONDITION_PRICING_PRIVATE_CANARY_V1.md)
+and [verification checkpoint](../checkpoints/pricing/CONDITION_PRICING_PRIVATE_CANARY_20261117.md).
+The backend rechecks exact printing and mapping eligibility against the private
+receipt; do not broaden it by name matching or bypassing printing reviews.
+The current Dragons Exalted scope is four eligible printings and 18 available
+amounts across 20 condition selections, not the earlier 128-card source trial.
+
+Run the three targeted Node test files named in the checkpoint, web TypeScript
+checking and targeted ESLint. Browser evidence uses a captured-data loopback
+fixture, not a deployed authenticated application. Preserve that distinction.
+This preview makes no writes and cannot change market publications, Vault
+totals or asks. Do not reuse the consumed intake acknowledgement for deployment
+or source refresh. Source-use, currency and public activation remain separate
+qualification work.
+
+## TCGTracking condition reference intake — November 17, 2026
+
+The owner requested the free condition-price trial be extended across existing
+database mappings. Read [the intake contract](../contracts/TCGTRACKING_CONDITION_REFERENCE_INTAKE_V1.md).
+Source is isolated in `C:/grookai_condition_pricing_20261117`, branch
+`codex/tcgtracking-condition-pricing-v1`, based on current `origin/main`.
+The old dirty purchase-lots checkout is preserved. Its remote-only migration
+finding is branch age: the clean checkout has full canonical496 ledger parity.
+Generic replay still fails the historical October 12 alias evidence prerequisite
+(`pairs 0`); this intake introduces no schema changes and does not bypass it.
+
+The worker is `backend/pricing/tcgtracking_condition_reference_worker_v1.mjs`.
+Use `--prepare`, `--fetch`, `--replay`, `--apply`, then `--verify` with the same
+explicit `--out` directory. The current complete-scope artifact root is
+`artifacts/tcgtracking_condition_reference_v1/full_database_v3_20261117`.
+Preparation freezes canonical mappings; fetching is resumable and source-rate
+limited; replay uses saved source files. No database writes occur in these modes.
+The existing `DOTENV_CONFIG_PATH` can point to the owner's existing environment;
+never copy its credentials into artifacts. On this Windows host, use Node's
+`--use-system-ca` to preserve TLS verification through the installed trust store.
+
+Apply requires `GROOKAI_PREFLIGHT_ACK=1`, `--expected-plan-hash`,
+`--expected-receipts-hash` and `--expected-worker-hash` from reviewed artifacts.
+It appends only provider-specific staged `raw_imports` rows. It does not write
+canonical cards, printings, mappings, price publications, inventory or asks.
+The shared raw store remains private; existing source-specific pending
+normalizers do not consume these staged rows. Verify the independent DB receipt
+before claiming a completed backfill. Missing acknowledgement blocks writes.
+
+The owner authorized this exact batch and the import completed on November 17:
+559 receipts, 487,067 condition-price candidates, zero stored source-value/hash
+mismatches, and the same existing price publication pointer. The anonymous DB
+role was denied raw-table access (`42501`); the live private condition reader
+matched stored source evidence and did not fill missing conditions from NM.
+Read the [completed checkpoint](../checkpoints/pricing/TCGTRACKING_CONDITION_REFERENCE_20261117.md)
+and preserve `apply.json`, `verification.json`, `payload_readback.json`,
+`private_reader_readback.json` and `anonymous_boundary_readback.json` under the
+artifact root. The acknowledgement flag was removed after this command.
+Do not repeat the consumed batch as an activation or refresh action.
+
+No schedule, public endpoint, website or native deployment has been enabled.
+Source licensing, currency proof and official SKU corroboration remain open.
+The internal reader is for reference inspection only. Future condition UI and
+totals must use a separately qualified versioned integration; never silently
+replace existing TCGCSV Market pricing with this reference lane.
+
+## Vendor inventory sale review — November 17, 2026
+
+Each native Vendor Mode inventory row opens the shared Review → Publish → Label
+sheet through `Review sale`. The selected GVVI is reloaded by the existing owner
+reader before editing. Pending or unsaved inline prices must finish saving before
+review opens, and the selected row stays locked through review and readback.
+Returning refreshes only that exact instance through `loadCopies`, retaining the
+inventory search, scroll position and other copies' drafts. An inactive copy
+leaves the list only after that readback. Load failures remain visible on the row
+and allow retry. Background list requests begun before review are invalidated
+so they cannot overwrite the newer exact-copy readback. Review and cancellation
+themselves make no inventory writes.
+
+Run `test/vendor_mode_workspace_test.dart` together with the shared sale and
+intake tests. The added checks cover selected-copy routing, retained list context,
+targeted readback, stale background reads, queued and failed price saves,
+duplicate taps, cancellation,
+identity mismatch, inactive copies and 320px enlarged-text layout in both modes.
+Release evidence is under
+`C:/grookai_vault_operator_artifacts/vendor_review_20261117/`.
+
+## Vendor Review → Publish → Label — November 16, 2026
+
+The native exact-copy sale sheet and website copy workspace keep card identity
+visible through review, explicit publication and the saved label action. Keyboard
+Done closes the native price keyboard; publication requires the sale button.
+Keep private and Cancel changes only leave the editor. They never unpublish an
+existing listing. After a confirmed save, Edit price reopens the same copy;
+Add another card enters search. An uncertain save requires reloading that copy
+before another submission. Pending Square acknowledgement never claims checkout
+readiness. Existing owner writers, revision checks and Square recovery remain
+authoritative; no new migration or production fixture is needed.
+Nested add-card review defers Add another until both sheets have closed and holds
+the caller's post-add navigation until search returns. Exact finish presentation
+uses the existing public printing reader, matched to both the copy's printing ID
+and canonical parent, without delaying price editing or inferring a finish.
+
+Pricing opens with the vendor default, new-card opt-in and a server-calculated
+example. Edit or New preset opens the full editor; More options retains fixed
+adjustments and minimum/maximum limits even when collapsed. Cancel never writes.
+Examples do not change inventory. Enter in either example field runs only the
+calculator; settings/preset saves have separate forms. Labels retain the current printer preference,
+full canonical set name and permanent QR, without price, set code or condition;
+previewing never sends a print job. Qualify this phase with the sale/pricing
+widget tests and local owner browser workflow before deployment and a higher,
+same-signer in-place Samsung update. Preserve login and Developer Options.
+
+Release evidence: `C:/grookai_vault_operator_artifacts/vendor_sale_flow_20261116/`.
+Repeatable checks: [Vendor sale flow verification](../playbooks/VENDOR_SALE_FLOW_VERIFICATION_V1.md).
+
+## Samsung vendor navigation composition — November 15, 2026
+
+The website Vendor Mode navigation is live from PR923. Before installing its
+prepared Android544 candidate, device readback found a different debug544
+containing the native eBay category and confirmed draft-removal changes from
+`2d69d5e41`. Its embedded Dart sources establish that provenance; version numbers
+alone do not. Preserve the two working draft-removal screen changes when
+composing the higher Samsung update with PR923 and the Square-aware card-removal
+fix from PR918. The installed category code has no matching production API
+support and exposes no category selector through the real metadata response.
+Leave that unfinished feature with PR917; retain the shipped metadata controller
+and fields so this update continues to use the actual server response contract.
+This device composition does not publish the separate eBay backend or website
+changes, change schema, reconnect Square, or authorize a provider mutation.
+
+Current evidence and the next acceptance checkpoint live under
+`C:/grookai_vault_operator_artifacts/vendor_home_20261114/`. Verify the actual
+installed APK hash, same certificate, UID and first-install time before and
+after an in-place update; retain login and keep Developer Options enabled.
+Finish Add card return, keyboard, Pricing, Labels and Square navigation checks
+on the phone without creating inventory, changing prices or sending a print.
+The prepared PR923-only544 and the uninstalled first-composition545 APK are
+superseded for this Samsung. Use the corrected higher build after its own
+qualification; never infer acceptance from a successful build.
+
+## TCGPlayer Market continuity dispatch clock — November 14, 2026
+
+Read the [TCGPlayer Market pricing product runbook](../runbooks/TCGPLAYER_MARKET_PRICING_PRODUCT_V1.md)
+before changing pricing continuity automation. The owner workstation task is
+`Grookai TCGPlayer Market Continuity Dispatch Watchdog`; install or repair it
+from a current qualified checkout with:
+
+```powershell
+pwsh -NoProfile -File .\scripts\ops\install_market_continuity_dispatch_watchdog_v1.ps1
+```
+
+The task checks every five minutes and may dispatch only
+`tcgplayer-market-continuity-watchdog.yml` on `main` when the latest continuity
+run is more than 135 minutes old. A queued or running job receives a six-hour
+grace window, so this clock must not compete with an active hosted recovery.
+Operator receipts are under
+`C:\grookai_vault_operator_artifacts\tcgplayer_market_continuity_dispatch_watchdog_v1`;
+inspect `latest.json`, Task Scheduler history, and the linked GitHub run before
+manual dispatch or repair. A healthy receipt has decision
+`healthy_recent_success`, `dispatched=false`, and a successful latest run.
+
+This workstation clock holds no database credentials and has no database-read,
+database-write, mapping, pricing-publication, or customer-state authority. It
+supplements GitHub schedule delivery only; it does not replace the daily 08:15
+UTC producer, the hosted two-hour recovery workflow, reconciliation, activation
+guards, or zero-mismatch publication readback. Never treat a local dispatch
+receipt as proof that prices were published or visible in the app.
+
+## Square-reserved copy removal repair — November 14, 2026
+
+Read [the removal checkpoint](../checkpoints/SQUARE_VAULT_REMOVAL_20261114.md)
+before continuing this release. The owner reported an incorrect Charizard ex
+from151 that could not be removed because Square still reserved its exact copy.
+Containment withdrew only that item's Square stock and deselected its target;
+canonical removal remains an authenticated owner action after release proof.
+
+The isolated source is `C:/grookai_vault_remove_fix_20261114`; protected evidence
+is under `C:/grookai_vault_operator_artifacts/card_remove_repair_20261114`.
+Never rerun consumed withdrawal/apply/install intents, reset populated proof labs,
+use direct production data edits, assert physical possession for this copy, or
+restore older inventory/sales counts. Read current device/source/schema state.
+Developer Options must remain enabled on the owner's development Samsung.
+The pricing timer/runtime and the unrelated dirty checkout remain unchanged.
+
+## Daily automatic vendor prices — November 13, 2026 continuation
+
+Read [daily pricing and QR continuity](../checkpoints/pricing/VENDOR_DAILY_PRICE_COMPLETION_20261113.md)
+and the protected `vendor_daily_completion_20261113` continuation before changing
+the market producer. The owner has enabled a zero-markup round-up-to-USD1 default
+for new unpriced copies. The five-minute repricer is live, but investigation
+found daily publication failing on the older V1_17 producer. Source collection,
+publication, automatic asks, QR readback and Square confirmation require distinct
+evidence. Preserve My price, private publication intent, stock and genuine sales.
+The initial V1_22 runtime correction is intermediate. Final continuity source
+`786ec75d9b010bff4db202b0f2ac8a58944117b5` includes V1_23 shared source locking,
+the independent two-hour recovery watchdog and an isolated active-ask timeout.
+Retain the daily 08:15 UTC timer and 36-hour client cutoff. Consult actual private
+runtime and terminal publication receipts; a prepared checkout or dispatch does
+not establish activation or a fresh publication. Do not restart the superseded
+V1_22 production coordinator or compete with an active recovery.
+
+As of this continuation, Square self-service is already deployed on schema495
+and Samsung542. The candidate migration/install instructions below are historical;
+do not repeat them, reconnect the seller, re-enable pricing or send another print
+as daily-price recovery. The accepted Munbyn label and existing genuine cash sale
+remain separate physical/checkout evidence. Live automatic-price verification
+uses an existing real unpriced copy, preserving inventory and all other asks.
+
+## Square vendor self-service onboarding — candidate, November 13, 2026
+
+Read [Square onboarding V1](../contracts/SQUARE_ONBOARDING_V1.md) and its
+[qualification record](../audits/square_onboarding_20261112/QUALIFICATION.md).
+Website entry is **Account → Sell with Square**; native entry is
+**Account → Square**. Eligible vendors enroll themselves through authenticated,
+no-owner-argument authority, then authorize their own Square seller account.
+No developer account, manual operator allowlist edit or per-card Square item
+creation belongs in vendor setup. Locations load automatically; enabling sales
+is an explicit confirmation for current/future eligible public For sale cards.
+
+Production remains schema494 with the existing seller, genuine cash sale,
+stock, artwork and recovery clock retained. The only pending migration is
+`20261113050000_square_self_service_onboarding_v1.sql` (494→495). Its separate
+onboarding control defaults off. Pausing enrollment or losing vendor eligibility
+does not revoke an existing grant: reenrollment/reconnect is idempotent, while
+global linking controls and per-copy publication eligibility remain authoritative.
+
+Both bounded admission phases require the exact candidate ID and a fresh output:
+
+```powershell
+pwsh -NoProfile -File scripts/migration_preflight_strict.ps1 `
+  -Phase AuditLinkedSchema -SquareOnboardingReleaseV1 `
+  -ExpectedLocalOnlyIds 20261113050000 -AuditOutDir <new-private-audit-directory>
+# After current source qualification, use the same exact scope with -Phase PrePush.
+```
+
+The reviewed candidate's immutable migration/source/proof pins are in
+`docs/audits/square_onboarding_20261112/release-manifest-v1.json`. Current private
+qualification is `C:/grookai_vault_operator_artifacts/square_onboarding_20261112/candidate-v4`;
+actual acceptance proofs and unchanged SQL labs remain in candidate-v3. Prior
+candidate-v2/v3 source receipts and uninstalled APKs are superseded review evidence.
+Use new unlinked internal-network fresh/retained labs; preserve all consumed labs,
+receipts and historical migration bytes. Require actual local Auth isolation and
+paused/inactive-owner reconnect tests, unchanged retained data, exact schema/ACL
+comparison, website/native workflows, normal hooks, hosted checks and independent
+exact-head review. Simulated Square responses never qualify a real payment.
+Automatic location reads share the seller-operation guard and use stable saved
+connection/location identity. Status reloads retain unsaved choices; explicit
+Retry locations refreshes authorization before another read. Verify a held-lease
+read disables competing sync/reconciliation and ordinary reloads do not refetch.
+
+Production promotion is one official forward495 apply with the control still
+off, then qualified website/source binding and a higher-version same-signer,
+data-preserving Samsung update with live owner readback. Enable self-service only
+through the audited revision/CAS `square_onboarding_controls_set_v1` after those
+gates. A consumed apply/install/activation intent must be inspected, never blindly
+repeated. Retain existing merchant binding, stable QR SKUs, prices, allocations,
+sales and both recovery schedules; never unlink the working seller or invent
+production inventory/payments. Each new vendor supplies their own Square consent.
+Prior owner consent/release authorization remains valid within its approved scope.
+Pricing activation/policy selection and physical label acceptance remain separate;
+do not activate pricing, choose an owner policy or send another print here.
+
+## Vendor pricing and price-free labels — candidate, November 12, 2026
+
+Read [Vendor pricing rules and reusable labels](../playbooks/VENDOR_PRICING_RULES_LABELS_OPERATOR_V1.md)
+for default/preset/manual precedence, stale-reference behavior, Square recovery,
+exact-size printing and physical-output acceptance. This candidate adds one
+default-off migration after schema493. Preparation is not evidence of live
+activation or a Samsung update; use its separate release checkpoint. Existing
+Square enrollment, stable QR SKUs, genuine sales, stock and artwork are retained.
+
+## Square live workflow and native confirmation — November 12, 2026
+
+The November 10 preparation entry below is historical. Production is linked
+under schema493; automatic catalog, stock, artwork and recovery are enabled for
+the verified seller. A genuine Square cash checkout has been reconciled to the
+exact-copy sale and zero-stock state. Preserve its existing connection, stable
+grookai `/q/{GVVI}` SKU, retained operation receipts and recovery schedule.
+Do not repeat migrations, OAuth setup or inventory enrollment as routine recovery.
+
+Read [New card to Square checkout](../playbooks/NEW_CARD_SALE_WORKFLOW_V1.md)
+for reviewed intake, the exact-copy sale editor and truthful Square status.
+The native foreground editor's confirmation uses one 55-second budget
+and at most five wakeups after explicit pending responses; background notices
+keep their short deadline. Unknown/transport results remain pending. Price and
+sale intent are written once, and the fenced server worker retains authority.
+Release evidence lives in the private `new_card_workflow_20261112` checkpoint;
+source qualification, hosted deployment and installed Samsung proof are distinct.
+Samsung updates require normal gates and a higher-version, same-signer,
+data-preserving installation. Do not treat a prepared APK as an installed or
+production-store-signed release; the checkpoint records the actual build proof.
+
+The Card Detail collection shortcut displays the owned copy count, without a
+hardcoded Private or raw-copy assertion. Aggregate ownership does not establish
+an exact copy's publication state or physical format. Read those details from
+Your copies or the exact-copy page when verifying an offer.
+
+The live new-copy test exposed a temporary nonphysical operator fixture ending
+003421. With the owner's explicit one-time exception to the no-direct-DB-edits
+rule, a guarded administrative void archived only that fixture after provider
+zero-stock and no-sale checks. Independent readback confirmed228 active owner
+copies,94 real active allocations, one prior genuine sale and unchanged schema493
+and guard sources. The original cleanup guard failed before writes on an invalid
+worker column; readback proved no mutation, then the corrected environment guard
+passed a full read-only validation before successful cleanup. Retain both
+attempts and their private receipts. This exception does not authorize future
+direct edits. Never assert physical possession or fabricate a payment to retire
+test inventory; future live acceptance must use an actual owned physical card.
 
 ## Square QR catalog automation preparation — November 10, 2026
 
@@ -61,7 +766,7 @@ rollback/readback evidence. This release carries source parity for already-appli
 migrations 482/483; do not reapply them or reset populated local proof labs.
 
 
-## eBay Account access and Android build continuity — November 9, 2026
+## eBay Account access and Android build continuity — November 20, 2026
 
 PR #877 adds the native **Account → Connected accounts → eBay seller account**
 entry and the active
@@ -78,15 +783,25 @@ device is ahead of that baseline; do not edit shared package metadata just to
 advance one device. Download the `signed-release-apk` artifact from the
 successful run.
 
-Before installing any APK, record the installed application ID, version code,
-and signing certificate. An in-place update must keep
-`com.grookai.vault`, use the same signing certificate as the installed app, and
-have a higher version code. Never uninstall the user's app, change its package,
-or bypass a signer mismatch to make an update install. A device already running
-a debug-signed QA build can receive a same-key debug update for local
-verification; label it QA and do not treat it as a production release.
-Production releases use the production signing key. Do not try to update a
-debug-signed install with a production-signed artifact or the reverse.
+Before installing any APK, run
+[`scripts/android_update_preflight.ps1`](../../scripts/android_update_preflight.ps1)
+and record the installed application ID, version code, signer, and candidate
+release identity. Follow the active
+[Mobile Release Continuity V2 contract](../contracts/MOBILE_RELEASE_CONTINUITY_V2.md).
+The package must remain `com.grookai.vault`, the candidate build must be newer,
+and its signer must be the approved production release key. Continuity requires
+either an exact signer match or an APK-embedded, cryptographically verified
+signing lineage from the installed certificate with the `installedData`
+capability granted. Never uninstall, clear app data, downgrade, or bypass
+Android's package-manager signature checks.
+
+For a one-time development-to-production migration, dispatch the workflow with
+`include_debug_rotation=true`. The workflow requires the temporary
+`ANDROID_LEGACY_DEBUG_KEYSTORE_BASE64` Actions secret, rotates only from the
+recorded installed certificate, and embeds the verified lineage in the APK.
+Remove the temporary secret after in-place install and Samsung account/collection
+readback. Do not add debug signing to ordinary release builds. See the
+[signer-lineage migration checkpoint](../checkpoints/2026-11-19_mobile_signing_lineage_migration.md).
 
 After installation, open Account → Connected accounts → eBay seller account,
 verify the native `GET /api/ebay/seller` state and a saved-draft read, and make
@@ -540,11 +1255,16 @@ The hosted route requires `PROD_SUPABASE_URL` (with `SUPABASE_URL` accepted as
 the local compatibility name), `SUPABASE_DB_URL`, `SUPABASE_DB_CA_CERT`, and
 the parent agent's `SUPABASE_SECRET_KEY`. The public URL must resolve to the
 canonical production project, and the database route must pass verified TLS and
-the canonical read-only target guard. Products with zero, multiple, or
-unsupported source finishes are held before batch selection under
-`mapping_authority_source_finish_not_unique` or
-`mapping_authority_source_finish_not_supported`; they cannot suppress unrelated
-single-finish candidates.
+the canonical read-only target guard. Products with zero or unsupported source finishes are held before batch
+selection. A product with exactly one verified base subtype (Normal or Holofoil)
+plus Reverse Holofoil may enter the review only through
+`POKEMON_MAPPING_AUTHORITY_BASE_FINISH_PROJECTION_V1`. That projection binds
+only the base observation to the already-verified Master Index child, recomputes
+the exact-candidate fingerprint, and preserves every Reverse Holo observation
+under `reverse_holo_printing_authority_not_proven`. The parent mapping review
+does not create a Reverse Holo child or authorize its price. All other
+multi-finish products remain held under
+`mapping_authority_source_finish_not_unique`; unrelated candidates continue.
 
 Distinguish an empty queue from an unavailable authority package in
 `agent_run.json`. `pokemon_mapping_review.selected_count = 0` means no current
@@ -2922,6 +3642,34 @@ coverage audit do not authorize canonical mutation. The existing 161-card 30th
 Celebration Holo repair is complete; do not repeat it. Check the checkpoint for
 deployment state rather than assuming local code is scheduled in production.
 
+## English Pokemon fresh-set base printing release — November 15, 2026
+
+Follow `ENGLISH_POKEMON_BASE_PRINTING_RELEASE_V1` after a complete English set
+has been admitted as hidden parents. Freeze the complete parent scope and exact
+base finish for every parent from an official or governed checklist. A
+TCGPlayer subtype or another price-bearing field is corroboration only and may
+not create a child printing. Preserve unsupported Reverse Holo and specialty
+finishes as explicit outside-base review leads.
+
+The first package covers Delta Reign (`me06`): 141 base children, comprising 83
+Normal and 58 Holo. Its current 87 Reverse Holo subtype rows remain held. Run
+the bounded serializable rehearsal, preserve the exact package fingerprint and
+rollback-absence hashes, then obtain exact founder approval before apply. The
+apply may insert one raw receipt, 141 child rows, and 141 verified truth reviews
+only. It must leave the set release control hidden and all parent suppression,
+mapping, publication, image, Vault, and customer state unchanged. Mapping,
+pricing, image readiness, and visibility are separate later releases.
+
+Use
+`scripts/audits/english_pokemon_base_printing_release_guarded_dry_run_v1.mjs`
+from a clean merged SHA and save its immutable receipt outside the repository.
+The apply path is
+`scripts/audits/english_pokemon_base_printing_release_real_apply_v1.mjs`; it
+requires `--apply`, the same SHA and fingerprint, the exact dry-run artifact,
+and the exact approval text in `GROOKAI_PRODUCTION_APPROVAL`. Its output must
+also stay outside the repository. Never retry after a lost commit response;
+use the runner's independent exact readback outcome.
+
 ## Native Anniversary Delivery - September 16
 
 Read `NATIVE_ANNIVERSARY_RELEASE_20260916.md` for the isolated release candidate.
@@ -3707,8 +4455,14 @@ Operate MTG market pricing only through
 `.github/workflows/mtg-pricing-publication-runner.yml` from an exact merged
 `main` SHA. Production requires a shadow run at that SHA with state
 `shadow_verified`, reconciliation state `reconciled`, policy
-`TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3`, and a source sync reused by the
+`TCGPLAYER_MARKET_PUBLICATION_POLICY_V2`, and a source sync reused by the
 production worker.
+
+Current operations follow the [cross-TCG V2 contract](../contracts/TCGPLAYER_CROSS_TCG_MARKET_PUBLICATION_V2.md)
+and [release checkpoint](../checkpoints/pricing/CROSS_TCG_MARKET_PUBLICATION_20261120.md).
+The V2 full-source shadow, new-cohort bootstrap/coverage checks and exact511→512
+release gate supersede the earlier V1_3 operating requirement. English Pokémon
+and MTG retain their unchanged V1 evaluation rules within the V2 run.
 
 The production guard computes last-known MTG and Pokemon baselines plus the
 currently fresh Pokemon subset through the indexed active publication pointer,
@@ -3725,7 +4479,7 @@ The workflow writes a `preflight_started` artifact before database access and a
 prior counts/findings without a stack trace.
 
 The shadow comparison is an early provenance gate. Production worker
-`TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_6` performs the authoritative second
+`TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_24` performs the authoritative second
 comparison inside the activation transaction using the actual staged
 publication snapshots and the then-current indexed MTG and Pokemon baselines. It must
 complete before `activate_market_price_publication_set_v1` can move the
@@ -4542,10 +5296,27 @@ workflow artifact.
 
 The workflow is insert-only. It cannot update or delete canonical rows, change
 Storage or image pointers, write pricing or publication state, mutate Vault or
-customer data, or activate public visibility. `30th-c` and other raw English
-Pokemon missing sets remain held until Master Index admission. On any commit,
-source, package, collision, rollback, or readback mismatch, inspect the durable
-agent run and artifact; never retry blindly or broaden the target.
+customer data, or activate public visibility.
+
+Verified English Pokemon sets that do not yet have a canonical set owner use
+the registered `english_pokemon_incremental` writer with
+`--create-missing-set`. This mode is governed by
+[`ENGLISH_POKEMON_MISSING_SET_PROMOTION_V1`](../contracts/ENGLISH_POKEMON_MISSING_SET_PROMOTION_V1.md).
+It atomically inserts exactly one hidden set, one hidden release control, the
+complete suppressed parent-card scope, one active identity per parent,
+preserved source evidence, and pending non-promotable family reviews. It does
+not create child printings, mappings, prices, publications, images, or public
+visibility. The workflow must prove the same payload fingerprint through the
+transactional dry run, rollback absence, apply, and durable readback.
+
+`30th-c` and other raw English Pokemon missing sets remain held until Master
+Index admission. When diagnosing this lane, inspect the durable
+`catalog-continuous-promotion-v1` agent run and its 90-day artifact for the
+source commit, `create_missing_set` flag, payload and Master Index fingerprints,
+collision preflight, rollback-absence readback, and durable readback. On any
+commit, source, package, collision, rollback, or readback mismatch, never retry
+blindly or broaden the target. Repair the evidence or code, regenerate the
+fingerprinted plan and dry run, and obtain a fresh exact apply approval.
 
 ## Completed TCGplayer publication recovery — October 29, 2026
 
@@ -4568,6 +5339,44 @@ checkpoint under the private recovery root.
 ## Published product-preview image delivery — November 10, 2026
 
 See [the image transport checkpoint](../checkpoints/CATALOG_PUBLIC_CARD_IMAGE_TRANSPORT_20261110.md). Existing public TCGplayer 1000x1000 JPEG previews use the shared direct-delivery path, with strict host/path/URL checks. This preserves representative image truth and does not expand server optimizer access or mutate catalog data. Evidence is under catalog_public_card_image_transport_v1_20261110.
+
+## Square canonical artwork — November 11, 2026
+
+The independent cloud recovery clock follows
+[SQUARE_CLOUD_RECOVERY_V1](../contracts/SQUARE_CLOUD_RECOVERY_V1.md) and
+[its verification playbook](../playbooks/SQUARE_CLOUD_RECOVERY_V1.md).
+The existing Pro hosting project supports its five-minute schedule. The standard
+production-only `CRON_SECRET` authenticates `/api/square/recovery`; new execution
+also requires `GROOKAI_SQUARE_CLOUD_RECOVERY_ENABLED=true`. GitHub scheduling stays
+enabled as a second clock. Both call the existing fenced commerce service; no new
+stock, payment, identity or owner-session authority is introduced. Qualify the
+exact deployment with authenticated and natural invocations plus database receipts,
+not configuration alone. Pause each clock independently; preserve requests and
+claims. No schema migration or Samsung reinstall is part of this extension.
+
+Follow [Square canonical artwork verification and recovery](../playbooks/SQUARE_CANONICAL_ARTWORK_V1.md)
+and [its active contract](../contracts/SQUARE_CANONICAL_ARTWORK_V1.md).
+Website and scheduled worker independently require `GROOKAI_SQUARE_ARTWORK_ENABLED=true`
+for new artwork. Automatic work also respects the seller's automatic-sync setting;
+manual sync may request new artwork. Disabling new work retains recovery of saved
+image requests. Imagery follows stock and cannot undo a ready unit or sale.
+
+Qualify in Sandbox, drain older runtimes, deploy with artwork off, then verify a
+bounded live canary and unchanged item fields/stock before activation and active-copy
+backfill. Read back the actual Square image and a hosted worker run. Preserve seller
+photos and their primary position; promote newer grookai artwork with verified image
+ordering. Parent fallback is visibly representative. Do not repeat database migrations
+or reinstall Samsung531 for this extension. Do not replace uncertain image requests.
+The actual Samsung POS crops portrait thumbnails to a square. Renderer V2 adds a
+square canvas around the full card and centers its footer. Verify the on-device
+thumbnail, including the footer and card bounds, before mass activation; a provider
+file readback alone cannot qualify that UI behavior.
+Artwork qualification also requires a real website card save: its Server Action
+continues sync in the page function after responding. Preserve the global route
+trace for the single bundled Roboto runtime font and verify the generated page
+and API traces as described in the artwork playbook. An endpoint-only font trace
+passed manual sync but failed the real page continuation; read the durable run
+diagnostics rather than treating a successful price save as artwork completion.
 
 ## Square stock and sale recovery candidate — November 11, 2026
 
@@ -4611,3 +5420,158 @@ requests take priority over new card focus. Missing payment creation facts requi
 review; payments predating allocation cannot archive its physical copy. Independent
 updated-refund polling recovers late/missed refund signals without relying on an
 old order update or automatically putting the physical card back into stock.
+
+## MTG TCGPlayer qualifier mapping release V1 — November 13, 2026
+
+This release is the bounded, insert-only production mapping gate implemented by
+`scripts/audits/mtg_tcgplayer_qualifier_mapping_release_apply_v1.mjs`. It covers
+exactly 452 reviewed MTG TCGPlayer parent mappings in 19 sequential batches of
+at most 25 rows. It does not authorize canonical identity, pricing,
+publication-pointer, Vault, update, delete, merge, or migration writes.
+
+Before any batch, retain the content-addressed review package, the successful
+rollback-only rehearsal directory, the exact founder approval text, and a clean
+source commit containing the approved planner and apply runner. The apply runner
+must compare the package's `ready_mappings.jsonl` hash and manifest hash with the
+corresponding hashes in `guarded_dry_run.json`; a self-consistent replacement
+package is not approved authority. Invoke one batch at a time with the exact
+`--package-root`, `--rehearsal-root`, new `--out-root`, full
+`--expected-head-sha`, approved fingerprint, and `--batch-index=1..19`. Do not
+skip a batch: every invocation verifies that all prior rows exist with the exact
+release fingerprint and that no future row exists.
+
+Each batch directory contains `rollback_plan.json` before database access. Once
+the transaction has assigned mapping IDs, it also contains
+`rollback_manifest.json`; preserve this file even when COMMIT returns an error.
+Normal success requires `apply_receipt.json` with
+`committed_zero_mismatch_readback`, exact mapping IDs, protected non-MTG counts
+unchanged, and the expected cumulative mapping count. The complete production
+evidence root is
+`C:\grookai_vault_operator_artifacts\mtg_tcgplayer_qualifier_mapping_release_v1\e308e50dd-0b38d24e`.
+
+If COMMIT returns an error, never rerun the batch immediately and never call the
+same connection's rollback proof of non-commit. The runner performs an
+independent connection readback using the captured mapping IDs. Exact rows may
+be classified `committed_by_independent_readback` and continue through the
+normal full readback. Zero scoped rows may be classified
+`not_committed_zero_mappings`. Any unavailable or mismatched readback produces
+`commit_outcome_unknown_requires_operator_readback`, records `committed: null`,
+and retains the rollback-manifest reference. Stop the release, preserve the
+entire batch directory, and independently inspect those exact IDs before a
+separately reviewed recovery or retry. Never delete mappings or replay a batch
+to resolve uncertainty.
+
+
+## Latios identity search forward correction (November18)
+
+The505 catalog repair passed counts/routing but failed identity API acceptance.
+Preserve505 and its failed receipts. Use only the V3 exact505-to507 baseline and
+release scopes for20261118140000/20261118143000. V2/506 remains immutable local
+replay evidence;507 supplies mixed-word performance margin. Do not reset populated
+labs or weaken timeouts. The final88-call actual-function synthetic proof uses
+173837 parents,244259 printings, production settings and representative widths.
+All449 local tables/security/indexes restore after rollback. Production still
+requires live API proof, all120 retained-row fingerprints, exact schema/security,
+finishes/ownership, canonical routes, merged source and deployment.
+
+Two established append-only market tables can grow while readback runs. Freeze
+every baseline ID privately, compare complete retained rows, verify their immutable
+guards and report new append-only rows separately. Square rows compare in full.
+Never replace a failed earlier fingerprint receipt or claim its four live deltas
+were unchanged; the505 concurrency audit independently explains them.
+
+
+## Latios search final indexed probe (November18)
+
+Applied507 improved set discovery but canonical identity API acceptance still
+failed. Its independent data-only readback passes all120 retained fingerprints
+and full schema/security parity. Preserve its failed API receipt. Use only V5
+for the exact507-to509 release (20261118160000/20261118163000); V4 remains the
+sole508 preparation. Preserve local508 bytes and never reset populated labs.
+
+508 avoids unused NULL-scope resolution, hashes exclusions with explicit Jungle
+NULL semantics, and adds an indexed literal-token superset.509 preserves a direct
+scan without a safe token. Both keep final predicates/ranking and stored data.
+Actual representative performance includes173837 parents,244259 printings and
+128 Jungle exclusion IDs through the unchanged real helper. NULL helper stubs
+serve only rollback equivalence tests. External-only/set-name-only and wildcard
+inputs must compare exactly against507 before committed qualification.
+
+# Pokémon playable artwork versions — November 18, 2026
+
+Current usage mechanics V2 excludes only the additional known artwork field
+`cameoDexIds`; unknown fields and gameplay differences remain distinct. Legacy
+profile integrity checks and source originals retain their existing meaning.
+Verified full-art, IR, SIR and other premium versions join the private refresh
+seed through existing active canonical mappings. The daily worker recomputes
+their usage support with ordinary printings. Missing or ambiguous mappings stay
+outside the positive pool. See [the artwork-version checkpoint](../checkpoints/2026-11-18_pokemon_playables_art_versions_v1.md)
+for the metadata cohort and release readback; never publish source originals.
+
+# Pokémon playables native consumer — November 18, 2026
+
+Native search and card detail consume the existing sanitized `/api/playables`
+publication and shared resolver. Preserve `playable=1` and typed interpretation;
+never quote away the filter or fall back to unrestricted cards. Visible badges
+share one bounded read, refresh within one minute/on resume, and disappear on
+expiry, revocation or failed refresh. Filtered results require current published
+membership and retain the query for retry when unavailable. This adds no native
+classification, private evidence, schema or truth writer.
+
+The isolated branch is `feat/pokemon-playables-native-20261118` in
+`.tmp/pokemon_playables_native_checkout_20261118`. Candidate554 keeps Android
+and iOS source metadata aligned. The Samsung baseline read back as552. Require
+managed/hosted checks, signed artifact provenance, Android update preflight and
+data-preserving device readback. See [the native checkpoint](../checkpoints/2026-11-18_pokemon_playables_native_v1.md)
+and [the consumer contract](../contracts/POKEMON_PLAYABLES_NATIVE_CONSUMER_V1.md).
+An Android candidate is not a paired store release; do not infer store submission
+from this implementation or a successful build.
+
+# Condition coverage recovery V3 — November19,2026
+
+Use the [V3 contract](../contracts/TCGTRACKING_CONDITION_COVERAGE_V3.md) and
+[checkpoint](../checkpoints/pricing/CONDITION_COVERAGE_RECOVERY_20261119.md).
+The reader reuses current exact market-publication provenance and the existing
+governed One Piece product/finish assertion; it performs no canonical, mapping,
+price or inventory writes. A live provider SKU remains necessary for every
+condition. The normal full hooks, hosted checks and deployed acceptance remain
+required. Preserve private `artifacts/pricing_completion_v3/20261119/` receipts.
+The separate market-publication/schema extension remains gated by a passing
+strict linked-schema audit; its failed shadow replay is not an apply approval.
+
+# Pokémon Full Art search metadata — November 20, 2026
+
+See [the artwork metadata checkpoint](../checkpoints/2026-11-20_pokemon_playables_full_art_metadata_v1.md).
+The source of truth for this search enrichment is the exact-card read model
+`shared/catalog/pokemon_artwork_classification_v1.json`, produced by
+`scripts/catalog/build_pokemon_artwork_classification_v1.mjs --input <audit-report> --output <model>`.
+The report supplies bounded canonical candidates, complete reciprocal mappings,
+set references and retained source receipt files beside the report. Offline
+mode uses a private file store; `--stage-raw --expected-project ycdxbpibncqcchqiihfz`
+rechecks current canonical bindings and retains accepted originals through the
+existing private raw-import/artifact store. It cannot mutate catalog truth or
+competitive membership. Preserve original receipts outside the public repository;
+only sanitized facts belong in the model. Missing labels remain unknown. Future
+updates require normal managed/hosted checks and deployed exact-ID readback.
+Each build persists started and terminal run receipts through the existing
+store, including stage, version and safe error details. Target/configuration or
+persistence failures also retain a local receipt beside the input report.
+An uncertain terminal write requires independent DB readback; do not emit a
+second contradictory terminal status. The checkpoint includes the read-only SQL
+and qualified success, integrity-failure and deterministic replay evidence.
+
+Playable names can disambiguate implicit set aliases from visible names in the
+trusted current ID/GV-ID publication. This avoids a global fuzzy-name RPC when
+the published scope already proves the name, and omits that probe when no set
+alias needs checking. Unknown or stale hints retain authoritative disambiguation;
+no database deadline or search constraint is relaxed. See the
+[bounded name checkpoint](../checkpoints/2026-11-20_pokemon_playables_bounded_name_probe_v1.md).
+
+The catalog Filters panel links to `/explore?playable=1`, retaining comparison
+cards. An explicit playable parameter must select the search consumer rather
+than featured catalog discovery; smart-filter submissions preserve it and Clear
+all removes it. Keep these URL and form semantics alongside typed searches.
+See the [filter-navigation checkpoint](../checkpoints/2026-11-20_pokemon_playables_filter_navigation_v1.md)
+and the real-page Chromium/WebKit regression cases in the search audit suite.
+Verify production page routing together with resolver membership; a successful
+resolver-only query cannot prove that a direct browser link displays playables.

@@ -4,6 +4,7 @@ type Commerce = {
  processConnection(ownerId:string,connectionId:string,input?:{maxTargets?:number;manual?:boolean;focusInstanceId?:string}):Promise<unknown>;
  reconcile(ownerId:string,connectionId:string):Promise<unknown>;
  withdraw(ownerId:string,connectionId:string,targetId:string):Promise<unknown>;
+ prepareVaultRemoval(ownerId:string,instanceId:string):Promise<{status:'ready_to_archive';instanceId:string;gvvi:string;readbackId?:string}>;
  releaseStock(ownerId:string,connectionId:string,targetId:string,input:{confirmed:boolean;physicalCopyPresent:boolean;registerOnline:boolean}):Promise<unknown>;
  receiveReturn(ownerId:string,connectionId:string,saleId:string,confirmed:boolean):Promise<unknown>;
 };

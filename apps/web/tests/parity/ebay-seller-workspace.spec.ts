@@ -3,11 +3,11 @@ import { expect, test, type Page } from '@playwright/test';
 const id = (n: number) => `ed000000-0000-4000-8000-${String(n).padStart(12, '0')}`;
 const copy = { id: id(2), gvviId: 'GVVI-SELLER-FIXTURE-000002', name: 'Eevee', gvId: 'GV-PK-PR-SV-173',
   setCode: 'PR-SV', number: '173', condition: null, isGraded: false, grader: null, grade: null, cardPrintingId: id(4) };
-const listing = () => ({ title: 'Eevee 173 exact physical copy', description: 'Actual fixture copy, front and back photographed.',
-  priceCents: 1250, categoryId: '183454', locationKey: 'home', policies: { fulfillment: '20', payment: '21', return: '22' },
+const listing = (categoryId = '183454', categoryName = 'Collectible Card Game Singles', categoryPath = 'Collectible Card Games › Individual Cards') => ({ title: 'Eevee 173 exact physical copy', description: 'Actual fixture copy, front and back photographed.',
+  priceCents: 1250, categoryId, categoryName, categoryPath, locationKey: 'home', policies: { fulfillment: '20', payment: '21', return: '22' },
   aspects: { Game: ['Pokemon'] }, condition: { conditionId: '4000', description: 'Edge wear shown in photos.',
-    descriptors: [{ id: '40001', values: ['400015'] }] } });
-const metadata = { categoryId: '183454', fetchedAt: Date.now(),
+    descriptors: [{ id: '40001', values: [categoryId === '261328' || categoryId === '183050' ? '400011' : '400015'] }] } });
+const metadata = { categoryId: '183454', categoryName: 'Collectible Card Game Singles', categoryPath: 'Collectible Card Games › Individual Cards', fetchedAt: Date.now(),
   policies: Object.fromEntries(['fulfillment', 'payment', 'return'].map((kind, i) => [kind, [{ [kind + 'PolicyId']: String(20 + i), name: `${kind} policy` }]])),
   locations: [{ merchantLocationKey: 'home', merchantLocationStatus: 'ENABLED', name: 'Home stock' }],
   aspects: [{ localizedAspectName: 'Game', aspectConstraint: { aspectRequired: true, aspectMode: 'SELECTION_ONLY', itemToAspectCardinality: 'SINGLE' }, aspectValues: [{ localizedValue: 'Pokemon' }] }],
@@ -17,12 +17,12 @@ const metadata = { categoryId: '183454', fetchedAt: Date.now(),
     conditionDescriptorValues: [{ conditionDescriptorValueId: '400010', conditionDescriptorValueName: 'Near Mint or Better' },
       { conditionDescriptorValueId: '400015', conditionDescriptorValueName: 'Lightly Played (Excellent)' }],
   }] }], suggestedCondition: { conditionId: '4000', description: '', descriptors: [] } };
-const frozenReview = { reviewDetails: { condition: 'Ungraded', conditionDescription: 'Edge wear shown in photos.',
+const frozenReview = { reviewDetails: { category: 'Collectible Card Games › Individual Cards', condition: 'Ungraded', conditionDescription: 'Edge wear shown in photos.',
   descriptors: [{ name: 'Card Condition', values: ['Lightly Played (Excellent)'] }], aspects: { Game: ['Pokemon'] },
   policies: { fulfillment: { name: 'Tracked shipping', terms: ['DOMESTIC · USPSGroundAdvantage · USD 3.99'] },
     payment: { name: 'eBay payments', terms: [] }, return: { name: '30-day returns', terms: ['Returns accepted: 30 day'] } } } };
 
-async function setup(page: Page, options: { saved?: boolean; prepared?: boolean; stale?: boolean; lostSave?: boolean; lostPublish?: boolean; state?: string } = {}) {
+async function setup(page: Page, options: { saved?: boolean; prepared?: boolean; stale?: boolean; lostSave?: boolean; lostPublish?: boolean; state?: string; withoutCopy?: boolean; categoryId?: string; categoryName?: string; categoryPath?: string } = {}) {
   const requests: Record<string, unknown>[] = [];
   let firstSave = true;
   let prepareStep = 0;
@@ -30,7 +30,7 @@ async function setup(page: Page, options: { saved?: boolean; prepared?: boolean;
     body: '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="90"><rect width="64" height="90" rx="7" fill="#d6c886"/><rect x="4" y="4" width="56" height="82" rx="4" fill="#314633"/><circle cx="32" cy="40" r="18" fill="#9cae72"/><text x="8" y="77" fill="white" font-size="10">Fixture 173</text></svg>' }));
   let draft: Record<string, unknown> | null = options.saved || options.prepared || options.state ? {
     id: id(3), instanceId: copy.id, accountId: id(5), revision: 1, state: options.state ?? (options.prepared ? 'prepared' : 'editing'),
-    input: listing(), photos: [{ id: id(6), path: `${id(1)}/${id(3)}/${id(6)}.jpg`, state: 'hosted' }],
+    input: listing(options.categoryId, options.categoryName, options.categoryPath), photos: [{ id: id(6), path: `${id(1)}/${id(3)}/${id(6)}.jpg`, state: 'hosted' }],
     operations: [], reviewHash: 'a'.repeat(64), listingId: null,
     prepared: options.prepared ? frozenReview : null,
     feeQuote: options.prepared ? { requestedAt: Date.now() - (options.stale ? 121000 : 0),
@@ -42,12 +42,28 @@ async function setup(page: Page, options: { saved?: boolean; prepared?: boolean;
       const url = new URL(req.url());
       return route.fulfill({ json: url.searchParams.has('draftId') ? { draft } : {
         account: { accountId: id(5), username: 'Fixture seller', linked: true, reconnectRequired: false,
-          linkingEnabled: true, preparationEnabled: true, publicationEnabled: true }, copy,
-        drafts: draft ? [{ id: draft.id, instanceId: copy.id, revision: draft.revision, state: draft.state, title: 'Eevee' }] : [],
+          linkingEnabled: true, preparationEnabled: true, publicationEnabled: true }, copy: options.withoutCopy ? null : copy,
+        drafts: options.withoutCopy ? [
+          { id: id(11), instanceId: copy.id, revision: 1, state: 'editing', title: 'Active listing' },
+          { id: id(12), instanceId: copy.id, revision: 2, state: 'abandoned', title: 'Discarded listing' },
+        ] : draft ? [{ id: draft.id, instanceId: copy.id, revision: draft.revision, state: draft.state, title: 'Eevee' }] : [],
       } });
     }
     const body = req.postDataJSON(); requests.push(body);
-    if (body.action === 'metadata') return route.fulfill({ json: metadata });
+    if (body.action === 'metadata') {
+      const isSports = body.categoryId === '261328';
+      const categoryChoices = isSports ? structuredClone(metadata.conditionChoices) : metadata.conditionChoices;
+      if (isSports) categoryChoices[0].conditionDescriptors![0].conditionDescriptorValues = [
+        { conditionDescriptorValueId: '400010', conditionDescriptorValueName: 'Near Mint' },
+        { conditionDescriptorValueId: '400011', conditionDescriptorValueName: 'Excellent' },
+        { conditionDescriptorValueId: '400012', conditionDescriptorValueName: 'Very Good' },
+        { conditionDescriptorValueId: '400013', conditionDescriptorValueName: 'Poor' },
+      ];
+      return route.fulfill({ json: { ...metadata, conditionChoices: categoryChoices,
+        categoryId: body.categoryId ?? metadata.categoryId,
+        categoryName: body.categoryName ?? metadata.categoryName,
+        categoryPath: isSports ? 'Sports › Trading Card Singles' : metadata.categoryPath } });
+    }
     if (body.action === 'save') {
       draft = { ...(draft ?? {}), id: body.draftId, instanceId: copy.id, accountId: id(5),
         revision: 1, state: 'editing', input: body.listing, photos: draft?.photos ?? [], operations: [],
@@ -94,6 +110,16 @@ test('unknown copy condition stays unselected while current selling options load
   await page.getByRole('button', { name: 'Load eBay options' }).click();
   await expect(page.getByLabel('Card Condition')).toHaveValue('');
   await expect(page.getByText('Condition unknown', { exact: false })).toBeVisible();
+});
+
+test('discarded drafts leave recent listings but remain available in collapsed history', async ({ page }) => {
+  await setup(page, { withoutCopy: true });
+  await page.goto('/visual-fixtures/ebay-seller');
+  await expect(page.getByRole('link', { name: 'Active listing Draft' })).toBeVisible();
+  const discarded = page.getByRole('link', { name: 'Discarded listing Discarded' });
+  await expect(discarded).toBeHidden();
+  await page.getByText('Discarded drafts', { exact: false }).click();
+  await expect(discarded).toBeVisible();
 });
 
 for (const state of ['live', 'publishing', 'preparing']) {
@@ -164,6 +190,22 @@ test('preparation continues acknowledged steps but does not publish until separa
   await expect(publish).toBeEnabled(); await publish.click();
   await expect(page.getByRole('heading', { name: 'Live listing' })).toBeVisible();
   expect(calls.filter(c => c.action === 'publish')).toHaveLength(1);
+});
+
+test('resuming a sports-card draft keeps its saved category through metadata and draft save', async ({ page }) => {
+  const calls = await setup(page, { saved: true, categoryId: '261328',
+    categoryName: 'Sports Trading Card Singles', categoryPath: 'Sports › Trading Card Singles' });
+  await page.goto('/visual-fixtures/ebay-seller');
+  await page.getByRole('button', { name: 'Load eBay options' }).click();
+  await expect(page.getByText('Category: Sports › Trading Card Singles · Ungraded', { exact: true })).toBeVisible();
+  const metadataCall = calls.find(call => call.action === 'metadata');
+  expect(metadataCall).toMatchObject({ categoryId: '261328', categoryName: 'Sports Trading Card Singles' });
+  await page.getByRole('button', { name: 'Save draft', exact: true }).click();
+  await expect.poll(() => calls.filter(call => call.action === 'save').length).toBe(1);
+  expect(calls.find(call => call.action === 'save')?.listing).toMatchObject({
+    categoryId: '261328', categoryName: 'Sports Trading Card Singles',
+    categoryPath: 'Sports › Trading Card Singles',
+  });
 });
 
 test('a lost publication result stops after one call and remains available for status recovery', async ({ page }) => {

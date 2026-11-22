@@ -145,6 +145,7 @@ const SEARCH_RESULT_INTENT_COPY: Record<
   },
 };
 
+
 const FAMILY_QUERY_PATTERNS: Array<{
   key: string;
   labels: string[];
@@ -501,6 +502,7 @@ export default function ExplorePageClient({
   const smartFinish = (searchParams.get("finish") ?? "").trim();
   const smartStamp = (searchParams.get("stamp") ?? "").trim();
   const smartOwned = (searchParams.get("owned") ?? "").trim();
+  const smartPlayable = /^(1|true|yes)$/i.test(searchParams.get("playable") ?? "");
   const smartImageState = (searchParams.get("image_state") ?? "").trim();
   const smartIllustrator = (searchParams.get("illustrator") ?? "").trim();
   const hasExplicitSmartFilters = Boolean(
@@ -509,6 +511,7 @@ export default function ExplorePageClient({
       smartFinish ||
       smartStamp ||
       smartOwned ||
+      smartPlayable ||
       smartImageState ||
       smartIllustrator,
   );
@@ -674,6 +677,7 @@ export default function ExplorePageClient({
         if (smartOwned) {
           params.set("owned", smartOwned);
         }
+        if (smartPlayable) params.set("playable", "1");
 
         if (smartImageState) {
           params.set("image_state", smartImageState);
@@ -778,6 +782,7 @@ export default function ExplorePageClient({
     smartFinish,
     smartStamp,
     smartOwned,
+    smartPlayable,
     smartImageState,
     languageScope,
     gameScope,
@@ -801,6 +806,7 @@ export default function ExplorePageClient({
     smartFinish,
     smartStamp,
     smartOwned,
+    smartPlayable,
     smartImageState,
     identityFilter,
     imageConfidenceFilter,
@@ -1024,12 +1030,15 @@ export default function ExplorePageClient({
       ? buildSmartSearchRefinementHref((params) => {
           if (residualQuery) {
             params.set("q", residualQuery);
+          } else if (smartSearchIntent.playable) {
+            params.delete("q");
           }
           params.delete("year_min");
           params.delete("year_max");
           params.delete("finish");
           params.delete("stamp");
           params.delete("owned");
+          params.delete("playable");
           params.delete("image_state");
 
           if (typeof smartSearchIntent.releaseYearMin === "number") {
@@ -1047,6 +1056,7 @@ export default function ExplorePageClient({
           if (smartSearchIntent.ownedState && smartSearchIntent.ownedState !== "any") {
             params.set("owned", smartSearchIntent.ownedState);
           }
+          if (smartSearchIntent.playable) params.set("playable", "1");
           if (smartSearchIntent.imageState && smartSearchIntent.imageState !== "any") {
             params.set("image_state", smartSearchIntent.imageState);
             if (smartSearchIntent.imageState === "exact") {
@@ -1069,6 +1079,7 @@ export default function ExplorePageClient({
         params.delete("finish");
         params.delete("stamp");
         params.delete("owned");
+        params.delete("playable");
         params.delete("image_state");
         params.delete("illustrator");
       })
@@ -1146,6 +1157,9 @@ export default function ExplorePageClient({
             href: buildRemoveFilterHref(["image"]),
           }
         : null,
+    smartPlayable
+      ? {key: "playable", label: "Playable", value: "Pokémon Standard", href: buildRemoveFilterHref(["playable"])}
+      : null,
     smartOwned
       ? {
           key: "owned",
@@ -1510,6 +1524,7 @@ export default function ExplorePageClient({
             params.delete("finish");
             params.delete("stamp");
             params.delete("owned");
+            params.delete("playable");
             params.delete("image_state");
             params.delete("image");
             params.delete("illustrator");
@@ -1824,6 +1839,7 @@ export default function ExplorePageClient({
             {identityFilterStrip}
             <form action={pathname} method="get" className="mt-4 space-y-4 border-t border-slate-200/70 pt-4 dark:border-slate-700/70">
               {q ? <input type="hidden" name="q" value={q} /> : null}
+              {smartPlayable ? <input type="hidden" name="playable" value="1" /> : null}
               {languageScope !== "all" ? <input type="hidden" name="lang" value={languageScope} /> : null}
               {gameScope !== "pokemon" ? <input type="hidden" name="game" value={gameScope} /> : null}
               {sortMode !== "relevance" ? <input type="hidden" name="sort" value={sortMode} /> : null}

@@ -17,6 +17,7 @@ export const CATALOG_CONTINUOUS_WRITER_ALLOWLIST_V1 = Object.freeze(new Set([
   "one_piece_incremental_promotion_v1",
   "one_piece_incremental_printing_promotion_v2",
   "english_pokemon_incremental_promotion_v1",
+  "english_pokemon_missing_set_promotion_v1",
   "japanese_structured_incremental_promotion_v1",
 ]));
 

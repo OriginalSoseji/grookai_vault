@@ -34,7 +34,7 @@ try{
   for(const connection of squareScheduledConnections(value.data)){
    await client.rpc('square_worker_run_v1',{p_id:runId,p_action:'heartbeat',p_result:{}});
    try{const response=await backend.commerce.processConnection(connection.ownerId,connection.connectionId,{maxTargets:5});
-    if(response.failed){result.failed++;result.errorCode=response.errorCode??'square_commerce_unconfirmed';}else if(response.busy)result.skipped++;else result.succeeded++;
+    if(response.failed||response.artworkFailures){result.failed++;result.errorCode=response.errorCode??'square_commerce_unconfirmed';}else if(response.busy)result.skipped++;else result.succeeded++;
    }catch(error){result.failed++;result.errorCode=safe(error);}
   }
   if(result.failed)result.status='failed';

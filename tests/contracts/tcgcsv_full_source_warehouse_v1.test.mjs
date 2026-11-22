@@ -19,6 +19,10 @@ const migration = readFileSync(
   "utf8",
 );
 const worker = readFileSync("scripts/workers/tcgcsv_full_source_warehouse_worker_v1.mjs", "utf8");
+const currentSourceLock = readFileSync(
+  "backend/pricing/tcgcsv_current_source_lock_v1.mjs",
+  "utf8",
+);
 const contract = readFileSync("docs/contracts/TCGCSV_FULL_SOURCE_WAREHOUSE_V1.md", "utf8");
 
 test("TCGCSV full warehouse is service-role-only", () => {
@@ -51,7 +55,9 @@ test("TCGCSV worker defaults to dry-run and records no public pricing boundary",
 });
 
 test("current TCGCSV syncs serialize shared dimension ownership", () => {
-  assert.match(worker, /CURRENT_ADVISORY_LOCK_NAME = "grookai:tcgcsv:current:v1"/);
+  assert.match(worker, /TCGCSV_CURRENT_SOURCE_LOCK_NAME_V1/);
+  assert.match(currentSourceLock, /TCGCSV_CURRENT_SOURCE_LOCK_NAME_V1/);
+  assert.match(currentSourceLock, /"grookai:tcgcsv:current:v1"/);
   assert.match(worker, /pg_try_advisory_lock\(hashtext\(\$1\)\)/);
   assert.match(worker, /another current TCGCSV worker already owns the production lock/);
   assert.match(worker, /pg_advisory_unlock\(hashtext\(\$1\)\)/);

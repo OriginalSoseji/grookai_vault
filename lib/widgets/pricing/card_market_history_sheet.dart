@@ -548,7 +548,7 @@ class _CardMarketHistorySheetState extends State<CardMarketHistorySheet> {
                 label: const Text('Search eBay sold listings'),
               ),
               Text(
-                'Opens eBay for your review. Results are not imported into grookai pricing.',
+                'Opens eBay completed listings for your review. grookai does not import or average those results.',
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
                   color: colors.onSurfaceVariant,
@@ -579,6 +579,14 @@ class _SoldCompsList extends StatelessWidget {
       return const Text('No recent sold comps were returned.');
     }
     final textTheme = Theme.of(context).textTheme;
+    final totalsByCurrency = <String, List<double>>{};
+    for (final sale in result.sales) {
+      final currency = sale.currency.trim().toUpperCase();
+      if (!RegExp(r'^[A-Z]{3}$').hasMatch(currency)) continue;
+      totalsByCurrency
+          .putIfAbsent(currency, () => <double>[])
+          .add(sale.totalPrice ?? sale.price);
+    }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -588,6 +596,19 @@ class _SoldCompsList extends StatelessWidget {
         ),
         for (final candidate in result.matchCandidates.take(3))
           Text('Possible match: $candidate', style: textTheme.labelSmall),
+        if (totalsByCurrency.isNotEmpty) ...[
+          const SizedBox(height: 10),
+          Text('Average sold · returned sample', style: textTheme.titleSmall),
+          for (final entry in totalsByCurrency.entries)
+            Text(
+              '${entry.key} ${(entry.value.reduce((a, b) => a + b) / entry.value.length).toStringAsFixed(2)} · ${entry.value.length} comps',
+              style: textTheme.bodyMedium,
+            ),
+          Text(
+            'Sample mean of returned matches, not an eBay-wide average. Conditions and variants may differ.',
+            style: textTheme.labelSmall,
+          ),
+        ],
         const SizedBox(height: 6),
         for (final sale in result.sales.take(20))
           ListTile(

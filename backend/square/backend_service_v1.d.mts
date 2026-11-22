@@ -1,6 +1,6 @@
 export type SquareBackend = {
   start(ownerId: string, input?: {clientReturn:'web'|'native'}): Promise<{launchUrl: string}>;
-  launch(capability: string): Promise<{browserNonce: string; authorizationUrl: string}>;
+  launch(capability: string): Promise<{browserNonce: string; authorizationUrl: string; clientReturn:'web'|'native'}>;
   callback(input: {state: string; browserNonce: string; code?: string; denied?: boolean}): Promise<{clientReturn?:'web'|'native'}>;
   locations(ownerId: string, connectionId: string): Promise<unknown>;
   configure(ownerId: string, connectionId: string, input: {locationId: string; autoSync: boolean}): Promise<unknown>;

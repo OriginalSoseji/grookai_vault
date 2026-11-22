@@ -39,8 +39,13 @@ export async function POST(request: NextRequest) {
     }
     const backend = sellerBackend();
     if (body.action === 'link') return sellerReply(await backend.oauth.start(owner.actorId));
+    if (body.action === 'categories') return sellerReply(await backend.categorySuggestions(owner.actorId, {
+      instanceId: sellerId(body.instanceId), accountId: sellerId(body.accountId),
+      query: typeof body.query === 'string' ? body.query : '' }));
     if (body.action === 'metadata') return sellerReply(await backend.metadata(owner.actorId, {
-      instanceId: sellerId(body.instanceId), accountId: sellerId(body.accountId) }));
+      instanceId: sellerId(body.instanceId), accountId: sellerId(body.accountId),
+      categoryId: typeof body.categoryId === 'string' ? body.categoryId : undefined,
+      categoryName: typeof body.categoryName === 'string' ? body.categoryName : undefined }));
     const draftId = sellerId(body.draftId);
     const revision = sellerRevision(body.revision, body.action === 'save');
     if (body.action === 'save') {

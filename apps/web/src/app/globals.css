@@ -910,7 +910,7 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
   z-index: 40;
   display: grid;
   min-height: 3.5rem;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  grid-template-columns: minmax(2.75rem, 1fr) minmax(0, 2fr) minmax(2.75rem, 1fr);
   align-items: center;
   gap: 0.5rem;
   width: calc(100% + 2.5rem);
@@ -925,6 +925,7 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
 .gv-mobile-pushed-route-back {
   display: inline-flex;
   min-width: 0;
+  max-width: 100%;
   min-height: 2.75rem;
   align-items: center;
   gap: 0.25rem;
@@ -935,11 +936,20 @@ html.gv-dark :where([class*="_#ffffff"], [class*="\\#ffffff"], [class*="_white"]
 }
 
 .gv-mobile-pushed-route-title {
-  max-width: 11rem;
+  min-width: 0;
+  max-width: 100%;
   overflow: hidden;
   color: var(--gv-text-primary);
   font-size: 0.9rem;
   font-weight: 680;
+  text-overflow: ellipsis;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+
+.gv-mobile-pushed-route-back span {
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -1492,7 +1502,7 @@ html.gv-dark .gv-dex-species-grid .gv-dex-species-card:hover {
 
 .gv-vault-overview {
   border-bottom: 1px solid var(--gv-border-soft);
-  padding-block: 1.5rem 2rem;
+  padding-block: 1rem 1.25rem;
 }
 
 .gv-vault-overview .gv-display-title {
@@ -1501,8 +1511,51 @@ html.gv-dark .gv-dex-species-grid .gv-dex-species-card:hover {
 }
 
 .gv-vault-value {
-  background:
-    radial-gradient(circle at 15% 0%, rgba(74, 144, 226, 0.08), transparent 18rem);
+  background: transparent;
+}
+
+.gv-vault-value__primary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.gv-vault-intro {
+  gap: 0.75rem;
+}
+
+.gv-vault-intro > :first-child,
+.gv-vault-intro > :first-child > :last-child {
+  gap: 0.5rem;
+}
+
+.gv-vault-intro .gv-section-title {
+  font-size: clamp(1.9rem, 5vw, 2.45rem);
+  letter-spacing: -0.035em;
+}
+
+.gv-vault-intro .gv-body-copy {
+  font-size: 0.9rem;
+}
+
+.gv-vault-workspace-link {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  color: var(--gv-text-secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--gv-border-soft);
+  text-underline-offset: 0.2em;
+}
+
+.gv-vault-workspace-link:hover {
+  color: var(--gv-text-primary);
+}
+
+.gv-vault-mobile-toolbar {
+  padding: 0.75rem;
 }
 
 .gv-vault-summary {
@@ -1511,7 +1564,7 @@ html.gv-dark .gv-dex-species-grid .gv-dex-species-card:hover {
 
 .gv-vault-stats {
   align-items: center;
-  padding-block: 1rem;
+  padding-block: 0.625rem;
 }
 
 .gv-vault-pagination {
@@ -1683,6 +1736,54 @@ html.gv-dark .gv-vault-value {
 
   .gv-vault-stats {
     row-gap: 0.25rem;
+  }
+
+  .gv-vault-cards-heading {
+    align-items: center;
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+
+  .gv-vault-cards-heading > :first-child {
+    flex: 1 1 auto;
+  }
+
+  .gv-vault-workspace-link {
+    max-width: 8rem;
+    justify-content: flex-end;
+    text-align: right;
+  }
+
+  .gv-vault-overview {
+    padding-block: 0.75rem 1rem;
+  }
+
+  .gv-vault-summary .gv-vault-value {
+    padding-block: 0.75rem;
+  }
+
+  .gv-vault-value__primary {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .gv-vault-value [data-pricing-proof="vault-exact-total"] {
+    font-size: 1.85rem;
+    line-height: 1.1;
+  }
+
+  .gv-vault-stats {
+    padding-block: 0.4rem;
+  }
+
+  .gv-vault-stats > span {
+    padding-block: 0.35rem;
+  }
+
+  .gv-vault-page [data-page-section="plain"] {
+    row-gap: 0.75rem;
   }
 
   .gv-vault-stats > :nth-child(odd) {

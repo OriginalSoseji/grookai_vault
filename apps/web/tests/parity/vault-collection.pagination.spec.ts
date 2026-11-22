@@ -45,6 +45,11 @@ test.describe("Vault collection pagination", () => {
 
     await expect(page.locator("[data-vault-page-items] .gv-visual-card:visible")).toHaveCount(24);
     await expect(page.getByRole("navigation", { name: "Vault card pages" })).toBeVisible();
+    await expect(page.getByRole("searchbox", { name: "Search Vault" })).toBeVisible();
+    const firstCard = page.locator("[data-vault-page-items] .gv-visual-card:visible").first();
+    const firstCardBounds = await firstCard.boundingBox();
+    expect(firstCardBounds).not.toBeNull();
+    expect(firstCardBounds!.y).toBeLessThan(824);
 
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
     expect(overflow).toBeLessThanOrEqual(1);

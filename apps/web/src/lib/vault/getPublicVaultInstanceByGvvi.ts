@@ -91,9 +91,11 @@ type CardPrintRow = {
   sets:
     | {
         name: string | null;
+        code?: string | null;
       }
     | {
         name: string | null;
+        code?: string | null;
       }[]
     | null;
 };
@@ -133,6 +135,13 @@ function normalizeGradeValue(value: number | string | null | undefined) {
 function normalizeSetName(value: CardPrintRow["sets"]) {
   const record = Array.isArray(value) ? value[0] : value;
   return normalizeOptionalText(record?.name) ?? "Unknown set";
+}
+
+function canonicalLabelSetName(value: CardPrintRow["sets"], fallbackCode: string | null) {
+  const record = Array.isArray(value) ? value[0] : value;
+  const name = normalizeOptionalText(record?.name);
+  const code = normalizeOptionalText(record?.code) ?? normalizeOptionalText(fallbackCode);
+  return name && name.toLowerCase() !== code?.toLowerCase() ? name : null;
 }
 
 async function getActiveOwnerEntitlement(
@@ -186,6 +195,7 @@ export type PublicVaultInstanceDetail = {
   cardName: string;
   setCode: string;
   setName: string;
+  canonicalSetName?: string | null;
   number: string;
   imageUrl: string | null;
   providerImageUrl: string | null;
@@ -300,7 +310,7 @@ export const getPublicVaultInstanceByGvvi = cache(async function getPublicVaultI
 
   const { data: cardData } = await admin
     .from("card_prints")
-    .select("id,gv_id,name,set_code,number,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(name)")
+    .select("id,gv_id,name,set_code,number,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,sets(name,code)")
     .eq("id", cardPrintId)
     .maybeSingle();
 
@@ -380,6 +390,7 @@ export const getPublicVaultInstanceByGvvi = cache(async function getPublicVaultI
     cardName: normalizeOptionalText(card.name) ?? "Unknown card",
     setCode: normalizeOptionalText(card.set_code) ?? "Unknown set",
     setName: normalizeSetName(card.sets),
+    canonicalSetName: canonicalLabelSetName(card.sets, card.set_code),
     number: normalizeOptionalText(card.number) ?? "—",
     imageUrl: cardImageFields.display_image_url,
     providerImageUrl: cardImageFields.external_image_fallback_url,

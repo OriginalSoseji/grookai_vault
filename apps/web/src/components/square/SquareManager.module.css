@@ -21,4 +21,8 @@
 .row small {margin-top: 4px; color: var(--gv-text-secondary);}
 .price {font-variant-numeric: tabular-nums; font-size: 15px;}
 .review {border: 1px solid var(--gv-border-soft); border-radius: 8px; padding: 14px; margin-top: 9px;}
+.steps {list-style: decimal; padding-left: 22px; display: grid; gap: 9px; margin: 20px 0; color: var(--gv-text-secondary); font-size: 14px;}
+.details {margin-top: 20px; border-top: 1px solid var(--gv-border-soft); padding-top: 16px;}
+.details summary {cursor: pointer; min-height: 44px; padding: 10px 0; font-weight: 600;}
+.details summary:focus-visible {outline: 2px solid var(--gv-primary); outline-offset: 3px;}
 @media (max-width: 520px) {.page {padding-top: 16px;} .actions .button {flex-grow: 1;} .row {gap: 9px;}}

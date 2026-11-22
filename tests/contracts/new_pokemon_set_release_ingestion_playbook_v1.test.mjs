@@ -4,6 +4,18 @@ import test from 'node:test';
 
 const playbook = fs.readFileSync('docs/playbooks/NEW_POKEMON_SET_RELEASE_INGESTION_PLAYBOOK_V1.md', 'utf8');
 const manifest = JSON.parse(fs.readFileSync('data/set_ingest/20260714_abyss_eye_pitch_black_new_sets_v1.json', 'utf8'));
+const deltaReignManifest = JSON.parse(fs.readFileSync(
+  'data/set_ingest/20261114_delta_reign_new_set_v1.json',
+  'utf8',
+));
+const activeEnglishMasterIndex = JSON.parse(fs.readFileSync(
+  'docs/audits/verified_master_set_index_v1/english_master_index_v1/english_master_index_sets_v1.json',
+  'utf8',
+));
+const deltaReignMasterIndexPreview = JSON.parse(fs.readFileSync(
+  'docs/audits/new_set_release_ingestion_v1/20261114_delta_reign/english_master_index_sets_v1.preview.json',
+  'utf8',
+));
 const runner = fs.readFileSync('scripts/ingest/new_set_release_ingest_v1.mjs', 'utf8');
 const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
 const abyssEyeCombined = JSON.parse(fs.readFileSync(
@@ -73,4 +85,44 @@ test('Abyss Eye selected image artifact has no Pitch Black or placeholder images
   const card118 = abyssEyeCombined.rows.find((row) => String(row.number).padStart(3, '0') === '118');
   assert.match(card118.image_url, /Mega-Darkrai-ex\.M5\.118/);
   assert.doesNotMatch(card118.image_url, /PitchBlack/i);
+});
+
+test('Delta Reign intake is source-bound and parent-identity only', () => {
+  assert.equal(deltaReignManifest.release_slug, '20261114_delta_reign');
+  assert.equal(deltaReignManifest.sets.length, 1);
+
+  const deltaReign = deltaReignManifest.sets[0];
+  assert.equal(deltaReign.target_key, 'delta_reign_en');
+  assert.equal(deltaReign.canonical_set_code, 'me06');
+  assert.equal(deltaReign.printed_set_abbrev, 'DLR');
+  assert.equal(deltaReign.release_date, '2026-11-06');
+  assert.equal(deltaReign.source_ids.tcgdex, 'me06');
+  assert.equal(deltaReign.expected_counts.official, 103);
+  assert.equal(deltaReign.expected_counts.secret, 38);
+  assert.equal(deltaReign.expected_counts.total, 141);
+  assert.equal(deltaReign.expected_counts.parents, 141);
+  assert.equal(deltaReign.expected_counts.printings, null);
+  assert.equal(deltaReign.printing_truth.materializes_child_printings, false);
+  assert.deepEqual(deltaReign.printing_truth.suppressed_printing_facts, []);
+  assert.deepEqual(deltaReign.printing_truth.protected_printing_facts, []);
+  assert.match(JSON.stringify(deltaReign.source_urls), /api\.tcgdex\.net\/v2\/en\/sets\/me06/);
+  assert.match(JSON.stringify(deltaReign.source_urls), /press\.pokemon\.com/);
+});
+
+test('Delta Reign master-index preview preserves stronger existing source evidence', () => {
+  const active = activeEnglishMasterIndex.sets.find((set) => set.key === 'me06');
+  const preview = deltaReignMasterIndexPreview.sets.find((set) => set.key === 'me06');
+
+  assert.ok(active);
+  assert.ok(preview);
+  assert.equal(preview.pokemontcg, active.pokemontcg);
+  assert.equal(preview.tcgdex, active.tcgdex);
+  assert.equal(preview.release_date, active.release_date);
+  assert.deepEqual(preview.source_aliases, active.source_aliases);
+  assert.deepEqual(preview.source_status, active.source_status);
+  assert.deepEqual(preview.source_totals, active.source_totals);
+  assert.equal(
+    preview.new_set_release_ingestion_v1.release_slug,
+    deltaReignManifest.release_slug,
+  );
 });

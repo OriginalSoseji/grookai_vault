@@ -1,5 +1,20 @@
 # CHECKPOINT_INDEX
 
+- [MOBILE_SIGNING_LINEAGE_MIGRATION_20261119](2026-11-19_mobile_signing_lineage_migration.md) - `2026-11-19` - Complete verified debug-to-release signer rotation; merged build 603 installed in place on Samsung, Vault and Binder read back with data retained, temporary signing secret removed
+- [CROSS_TCG_BINDERS_20261119](2026-11-19_cross_tcg_binders.md) - `2026-11-19` - Custom Binder checklists now discover Pokémon, One Piece, and Magic cards through game-scoped search; 72 focused tests passed and live Samsung build 558 returned Magic and One Piece search results
+- [BINDER_CONTENTS_BUILD_557_20261119](2026-11-19_binder_contents_build_557.md) - `2026-11-19` - Carry design build 323's artwork pages into the signed-in Binder detail as a Contents-first view of active contributions; checklist stays secondary; 73 focused tests and Samsung build 557 readback passed
+- [MOBILE_BINDER_BUILD_555_20261118](2026-11-18_mobile_binder_build_555.md) - `2026-11-18` - Repair the Samsung's startup-config failure with a same-signer 555 build; Binder source is already on main, and the paired iOS build remains pending
+- [MOBILE_BINDER_BUILD_554_20261118](2026-11-18_mobile_binder_build_554.md) - `2026-11-18` - Binder refinement was installed from merged source, but startup configuration was omitted; repair with configured build 555
+
+- [SEARCH_PROMO_NAME_SET_PRECEDENCE_20261118](SEARCH_PROMO_NAME_SET_PRECEDENCE_20261118.md) - `2026-11-18` - Printed promo family outranks conflicting implicit opening-word set shortcuts; preserve explicit set constraints, quoted text and retained identities; 77 focused tests and public SDK proof, terminal release gates pending
+
+- [SEARCH_XY_PROMO_COLLECTOR_TIMEOUT_20261118](SEARCH_XY_PROMO_COLLECTOR_TIMEOUT_20261118.md) - `2026-11-18` - Correct printed XY promo interpretation and bound caller-visible collector reads; preserve exact identities, filters and timeout budgets; live deployment and Samsung readback remain gated by terminal receipts
+
+- [NATIVE_CONDITION_PRICING_20261118](pricing/NATIVE_CONDITION_PRICING_20261118.md) - `2026-11-18` - Native exact-condition reference candidate follows Add to Vault and active raw-copy controls through the deployed reader; local synthetic Android/transport/widget proof, existing valuations preserved, native distribution remains separate
+- [CONDITION_COVERAGE_RECOVERY_20261119](pricing/CONDITION_COVERAGE_RECOVERY_20261119.md) - `2026-11-19` - Recover exact condition references from current published finish authority and governed One Piece product/finish assertions; 20 focused tests and nine live recovered printings, terminal release gates pending
+- [MOBILE_BUILD_553_20261118](2026-11-18_mobile_build_553.md) - `2026-11-18` - Samsung is build 552 with debug signer; paired baseline raised to 553, older release candidate blocked, no install or data reset
+- `MOBILE_RELEASE_CONTINUITY_20261118` — `2026-11-18` — Established paired Android/iOS build and signer continuity contract; raised baseline to 551, added Android APK provenance and an ADB preflight that blocks signer mismatch/downgrade without uninstalling; Samsung was build 550 at this checkpoint and Mac was offline, so no paired install or TestFlight release was claimed
+
 - `SEALED_OWNERSHIP_SCHEMA_APPLIED_20260907` - `2026-09-07` - Four approved migrations committed atomically; 391/391 ledger parity, empty reconciled schema diff and 888 security objects match; 3,401 copies unchanged; ownership disabled; client deployment/canary remain
 
 - `SEALED_OWNERSHIP_RELEASE_PREFLIGHT_20260907` - `2026-09-07` - Live read-only ledger/data preconditions pass; inherited service-role grants caught and removed before production; 97 targeted contracts, 36 SQL scenarios and fresh replay pass; replacement frozen plan and production rollout remain gated
@@ -21,6 +36,8 @@
 - `POKEMON_SEALED_FRESHNESS_PROOF_20260907` - `2026-09-07` - Read-only live proof that 16 aging prices are absent from eight hash-verified latest source files; no unpublished newer exact warehouse quotes; seven-day expiry and genuine recovery regression coverage; no publication or Storage writes
 
 - `PRICING_CHECKPOINT_131_MTG_FRESH_VIEW_PRODUCTION_GUARD_REPAIRED` - `2026-09-06` - MTG pricing production preflight now uses an indexed active-publication Pokemon baseline plus freshness state, permits only a 0.1% source delta, and preserves material-loss blocking even when the governed current view has expired
+- [CROSS_TCG_MARKET_PUBLICATION_20261120](pricing/CROSS_TCG_MARKET_PUBLICATION_20261120.md) - `2026-11-20` - Governed One Piece/Japanese Market lanes, full511-to512 qualification and production-sized normal-plan proof; no canonical edits or condition valuation cutover; production apply/publication remain gated
+- [MARKET_RECONCILIATION_SCOPE_FIX_20261120](pricing/MARKET_RECONCILIATION_SCOPE_FIX_20261120.md) - `2026-11-20` - Corrected durable source-scope flag, workerV1_25, behavioral regression reproduction and actual rolled-back five-phase PostgreSQL proof; new full shadow and activation remain gated
 - `APP_CANDIDATE_312_MTG_SIGNED_IN_RELEASE_PARITY_COMPLETE_20260906_V1` - `2026-09-06` - Exact build-312 web, signed Android, and valid TestFlight provenance at `66339000`; current reconciled MTG/Pokemon pricing; active signed-in MTG catalog; anonymous denial and authenticated readback proven; post-commit release-runner connection hardening pending merge
 - `APP_CANDIDATE_312_RELEASE_PARITY_IN_PROGRESS_20260906_V1` - `2026-09-06` - Build 312 is reserved and repository-verified at source commit `dade217c`; no Android or iOS 312 artifact is yet accepted, and exact merged-SHA production web, signed Android, TestFlight, and governed release reconciliation remain open
 - `PRICING_CHECKPOINT_123_MTG_SEALED_SIGNER_DEPLOYED` - `2026-09-05` - Exact commit-bound MTG sealed signer deployment passed production auth probes, authenticated-role hidden denial, and complete protected-state equality while visibility and both clients remained disabled
@@ -79,3 +96,9 @@
 - `BATTLE_ACADEMY_PHASE9_BA_CANON_PROMOTION_V3` — `2026-04-02` — Authoritative final BA execution checkpoint: 328 parent rows, 328 active identity rows, verified uniqueness, domain isolation, and explicit idempotency
 - `BATTLE_ACADEMY_FINAL_STATE_V1` — `2026-04-02` — Final consolidation / handoff checkpoint for future BA resume and historical-proof preservation
 - `REMOTE_PGCRYPTO_REPAIR_V1` — `2026-04-02` — Operational repair checkpoint proving the remote `digest()` failure was a pgcrypto search-path issue, not missing history; `20260402100002` and `0003` were repaired/applied, then the rollout stopped lawfully at a new `20260402100004` backfill blocker
+
+# Shrouded Fable discovery qualification — November18,2026
+
+See [SHROUDED_ALIAS_DISCOVERY_20261118](SHROUDED_ALIAS_DISCOVERY_20261118.md)
+for the exact509-to511 local qualification, unique stamped-parent preservation,
+source/performance evidence and remaining production release gates.

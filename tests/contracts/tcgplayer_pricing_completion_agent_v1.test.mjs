@@ -10,6 +10,7 @@ import {
   buildPokemonPricingMappingReviewWorkItemV1,
   applyPokemonPricingMappingReviewedHoldsV1,
   classifyTcgplayerFutureReleaseBlocksV1,
+  partitionPokemonVerifiedExactMappingCandidatesV1,
   pokemonPricingMappingReviewEvidenceFingerprintV1,
   selectPokemonPricingMappingReviewBatchV1,
   summarizeTcgplayerPricingCompletionRunV1,
@@ -425,6 +426,62 @@ test('Pokemon review selection holds ambiguity and collisions without failing me
   });
 });
 
+test('Pokemon authority review selects only planner-verified exact candidates', () => {
+  const reviewCandidate = {
+    source_product_id: 726510,
+    source_product_name: 'Masquerain - 003/103',
+    source_group_id: 24831,
+    source_group_name: 'ME06: Delta Reign',
+    printed_number: '003/103',
+    source_subtypes: ['Normal'],
+    supporting_gap_observation_ids: ['5c06eca9-1341-4409-8a55-6a08ac446758'],
+    review_targets: [{
+      card_print_id: '6e8cfe3a-3581-55a4-b647-703a5c4fb58e',
+      gv_id: 'GV-PK-DLR-3',
+      set_id: 'c72b4744-db4d-565f-9914-e28a2b244f5c',
+      set_code: 'me06',
+      canonical_name: 'Masquerain',
+      canonical_number: '3',
+      variant_key: '',
+    }],
+  };
+  const exactCandidate = {
+    ...reviewCandidate,
+    review_targets: undefined,
+    target: { ...reviewCandidate.review_targets[0] },
+  };
+  const unrelated = {
+    ...reviewCandidate,
+    source_product_id: 1,
+    review_targets: [{ ...reviewCandidate.review_targets[0], card_print_id: 'other' }],
+  };
+  const changed = {
+    ...reviewCandidate,
+    source_product_id: 726511,
+    review_targets: [{ ...reviewCandidate.review_targets[0], canonical_name: 'Changed' }],
+  };
+  const changedExact = {
+    ...exactCandidate,
+    source_product_id: 726511,
+  };
+  const result = partitionPokemonVerifiedExactMappingCandidatesV1(
+    [unrelated, changed, reviewCandidate],
+    [changedExact, exactCandidate],
+  );
+  assert.deepEqual(result.eligible.map((row) => row.source_product_id), [726510]);
+  assert.equal(result.exact_candidate_count, 2);
+  assert.equal(result.matched_exact_candidate_count, 1);
+  assert.equal(result.missing_review_evidence_count, 1);
+  assert.deepEqual(result.held_by_reason, {
+    mapping_authority_exact_candidate_evidence_mismatch: 1,
+    mapping_authority_not_verified_exact_candidate: 1,
+  });
+  assert.throws(() => partitionPokemonVerifiedExactMappingCandidatesV1(
+    [reviewCandidate],
+    [exactCandidate, exactCandidate],
+  ), /unique source products/);
+});
+
 test('reviewed Pokemon holds suppress unchanged unsafe evidence and reopen changed evidence', () => {
   const candidate = {
     source_product_id: 127381,
@@ -501,6 +558,10 @@ test('scheduled workflow measures production without treating backlog as a crash
     path.join(ROOT, 'scripts/workers/tcgplayer_pricing_completion_agent_v1.mjs'),
     'utf8',
   );
+  const agentSource = fs.readFileSync(
+    path.join(ROOT, 'backend/operations/tcgplayer_pricing_completion_agent_v1.mjs'),
+    'utf8',
+  );
   assert.match(worker, /mtg_identity_product_queue\.jsonl/);
   assert.match(worker, /pokemon_identity_product_queue\.jsonl/);
   assert.match(worker, /sha256: sha256\(mtgIdentityQueueJsonl\)/);
@@ -524,8 +585,23 @@ test('scheduled workflow measures production without treating backlog as a crash
   assert.match(worker, /buildPokemonPricingMappingReviewWorkItemV1/);
   assert.match(worker, /buildPokemonPricingMappingAuthorityReviewWorkItemV1/);
   assert.match(worker, /pokemon_tcgplayer_exact_mapping_authority_v1\.mjs/);
+  assert.match(worker, /reviewedAt: report\.run\.completed_at/);
+  assert.doesNotMatch(worker, /reviewedAt: new Date\(\)\.toISOString\(\)/);
+  assert.match(worker, /supersedeLegacyPokemonMappingAuthorityReviewsV1/);
+  assert.match(worker, /pokemon-mapping-review-supersession-v1/);
+  assert.match(worker, /default_transaction_read_only=off/);
+  assert.match(worker, /legacy_review_supersession: pokemonLegacyReviewSupersession/);
+  assert.match(agentSource, /limit 17[\s\S]*for update of w/);
+  assert.match(agentSource, /state = 'superseded'/);
+  assert.match(agentSource, /insert into public\.founder_work_item_events/);
+  assert.doesNotMatch(agentSource,
+    /update public\.(?:card_prints|external_mappings|tcgplayer_market)/);
   assert.match(worker, /pokemonMappingAuthorityExpected\s*\? null/);
   assert.match(worker, /pokemon_mapping_review:\s*\{[\s\S]*selected_count: pokemonReviewBatch\.selected_count/);
+  assert.match(worker, /pricingMappingAuthorityFailureDetailV1/);
+  assert.match(worker, /\[redacted_database_url\]/);
+  assert.match(worker, /\[redacted_credential\]/);
+  assert.match(worker, /authority_error_detail: pokemonMappingAuthorityProcess\.error_detail/);
   assert.match(worker, /held_count: pokemonReviewHeldCount/);
   assert.match(worker, /exact_mapping_plan:\s*\{[\s\S]*status: exactPlanProcess\.status/);
   assert.match(worker, /pricingExactPlanFailureCodeV1\(error\)/);

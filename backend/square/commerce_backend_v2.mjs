@@ -6,11 +6,14 @@ export function createSquareCommerceBackend({client,config=squareEnvironmentConf
  if(process.env.GV_USER_ACCESS_TOKEN)throw new SquareApiError('square_database_target_unqualified');
  if(!client){
   const target=process.env.SUPABASE_URL;
-  if(target!=='http://127.0.0.1:61841'&&!(target==='https://ycdxbpibncqcchqiihfz.supabase.co'&&process.env.NODE_ENV==='production'))throw new SquareApiError('square_database_target_unqualified');
+  const onboardingLab=target==='http://127.0.0.1:63341'&&process.env.NEXT_PUBLIC_SQUARE_ONBOARDING_LOCAL_TEST==='true'&&process.env.NEXT_PUBLIC_COLLECTOR_STAGING==='true'&&process.env.GROOKAI_DISABLE_TELEMETRY==='1'&&process.env.NODE_ENV==='development'&&!process.env.VERCEL&&!process.env.VERCEL_ENV;
+  if(!onboardingLab&&target!=='http://127.0.0.1:61841'&&!(target==='https://ycdxbpibncqcchqiihfz.supabase.co'&&process.env.NODE_ENV==='production'))throw new SquareApiError('square_database_target_unqualified');
   client=createBackendClient();
  }
  const rpc=async(action,data)=>{
-  const result=action==='commerce_run_detail'?await client.rpc('square_commerce_run_detail_v3',{p_run_id:data.runId,p_owner:data.ownerId,p_connection:data.connectionId,
+  const result=['vault_removal_context','vault_removal_attest'].includes(action)?await client.rpc('square_vault_removal_service_v1',{
+    p_action:action==='vault_removal_context'?'context':'attest',p_data:data})
+   :action==='commerce_run_detail'?await client.rpc('square_commerce_run_detail_v3',{p_run_id:data.runId,p_owner:data.ownerId,p_connection:data.connectionId,
     p_stage:data.stage,p_error_code:data.errorCode??null,p_database_code:data.databaseCode??null,p_target:data.targetId??null})
    :action==='defer'?await client.rpc('square_connection_defer_v1',{p_connection:data.connectionId,p_owner:data.ownerId,p_token:data.leaseToken,p_fence:data.fence,p_seconds:data.seconds})
    :action==='authorization_failed'?await client.rpc('square_connection_authorization_failed_v1',{p_connection:data.connectionId,p_owner:data.ownerId,p_token:data.leaseToken,p_fence:data.fence})

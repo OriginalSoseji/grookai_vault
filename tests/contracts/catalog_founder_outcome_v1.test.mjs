@@ -90,6 +90,79 @@ function mtgPackage({ sourceRunId = "123456" } = {}) {
   });
 }
 
+function englishMissingSetInput() {
+  const target = catalogIncrementalTargetForGapV1({
+    game_code: "pokemon",
+    source_id: "tcgdex_english_set_registry",
+    status: "missing_set",
+    source_code: "me06",
+    source_set_id: "me06",
+    database_code: null,
+    master_index_gate: { decision: "canonical_missing_set_eligible", language: "en" },
+    expected_card_count: 141,
+    count_evidence: [{
+      authority: "english_master_index_completion_v1",
+      scope: "full_set",
+      count: 141,
+    }],
+  });
+  const counts = {
+    sets: 1,
+    set_release_controls: 1,
+    card_prints: 141,
+    identities: 141,
+    evidence: 564,
+    family_reviews: 141,
+  };
+  return {
+    target,
+    result: { target: target.key, exit_code: 0 },
+    summary: {
+      version: "ENGLISH_POKEMON_MISSING_SET_PROMOTION_V1",
+      mode: "plan",
+      counts,
+      payload_fingerprint_sha256: "d".repeat(64),
+      master_index_hashes: { package_sha256: "e".repeat(64) },
+      source_snapshot: { body_sha256: "f".repeat(64) },
+    },
+    preflightProof: {
+      version: "ENGLISH_POKEMON_MISSING_SET_PROMOTION_V1",
+      collision_preflight: Object.fromEntries(Object.keys(counts).map((key) => [key, 0])),
+    },
+    artifactHashes: { "report.json": "1".repeat(64) },
+    sourceCommitSha: "a".repeat(40),
+    sourceRunId: "123456",
+    asOf: "2026-11-14",
+  };
+}
+
+test("English missing-set outcomes preserve the atomic hidden-set scope", () => {
+  const input = englishMissingSetInput();
+  const outcomePackage = buildCatalogFounderOutcomePackageV1(input);
+  assert.equal(outcomePackage.writer_key, "english_pokemon_missing_set_promotion_v1");
+  assert.deepEqual(outcomePackage.expected_counts, input.summary.counts);
+  const invocation = buildCatalogWriterInvocationV1(outcomePackage, {
+    headSha: "a".repeat(40),
+    outDir: path.join(ROOT, ".tmp", "english-missing-set-outcome-test"),
+  });
+  assert.ok(invocation.args.includes("--create-missing-set"));
+  assert.match(
+    invocation.env.ENGLISH_POKEMON_INCREMENTAL_APPLY_APPROVAL,
+    /ENGLISH_POKEMON_MISSING_SET_PROMOTION_V1 apply only/,
+  );
+  assert.match(
+    invocation.env.ENGLISH_POKEMON_INCREMENTAL_APPLY_APPROVAL,
+    /create_missing_set=true/,
+  );
+  const applied = {
+    ...input.summary,
+    mode: "apply",
+    inserted_readback: { ...input.summary.counts },
+    rollback_absence_readback: null,
+  };
+  assert.equal(validateCatalogWriterResultV1(outcomePackage, applied).reconciled, true);
+});
+
 test("a clean read-only writer plan becomes one executable founder outcome", () => {
   const outcomePackage = mtgPackage();
   const item = buildCatalogSetOutcomeWorkItemV1({

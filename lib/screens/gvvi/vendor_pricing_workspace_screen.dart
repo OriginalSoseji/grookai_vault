@@ -11,8 +11,16 @@ import '../../services/gvvi/vendor_pricing_workspace_service.dart';
 import '../../widgets/card_surface_artwork.dart';
 import '../../widgets/card_surface_price.dart';
 import 'public_gvvi_screen.dart';
+import 'vendor_pricing_rules_screen.dart';
+import '../../services/printing/p21_label.dart';
+import '../printing/identity_label_print_screen.dart';
 import '../../services/sealed/owned_sealed_service_v1.dart';
 import '../../widgets/vault/owned_sealed_panel.dart';
+import '../../widgets/vault/vendor_workspace_navigation.dart';
+import '../../widgets/vault/vault_copy_sale_sheet.dart';
+import '../../services/pricing/condition_price_service.dart';
+import '../../widgets/pricing/condition_price_panel.dart';
+import '../square/square_screen.dart';
 
 enum _VendorWorkspaceFilter {
   all,
@@ -31,10 +39,15 @@ enum _TradeCashMode { none, received, paid }
 class VendorPricingWorkspaceScreen extends StatefulWidget {
   const VendorPricingWorkspaceScreen({
     this.service = const VendorPricingWorkspaceService(),
+    this.saleSheetOpener = showVaultCopySaleSheet,
+    this.conditionPriceReader,
     super.key,
   });
 
   final VendorPricingWorkspaceService service;
+  final ConditionPriceReaderFactory? conditionPriceReader;
+  final Future<bool> Function(BuildContext context, String gvviId)
+  saleSheetOpener;
 
   @override
   State<VendorPricingWorkspaceScreen> createState() =>
@@ -49,6 +62,8 @@ class _VendorPricingWorkspaceScreenState
   final Set<String> _busyIds = {};
   final Map<String, String> _errors = {};
   final Set<String> _savedIds = {};
+  final Map<String, String> _pendingConditions = {};
+  final Map<String, String> _pendingPrintings = {};
 
   List<VendorPricingWorkspaceRow> _rows = const [];
   List<VendorWorkspaceSection> _sections = const [];
@@ -56,16 +71,28 @@ class _VendorPricingWorkspaceScreenState
   bool _loading = true;
   bool _showSealed = false;
   String? _loadError;
+  Timer? _priceRefresh;
+  bool _fetching = false;
+  int _loadGeneration = 0;
+  String? _reviewingId;
 
   @override
   void initState() {
     super.initState();
     _searchController.addListener(_refreshFilter);
     unawaited(_load());
+    _priceRefresh = Timer.periodic(const Duration(seconds: 30), (_) {
+      if (mounted &&
+          ModalRoute.of(context)?.isCurrent == true &&
+          WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed) {
+        unawaited(_load(quiet: true));
+      }
+    });
   }
 
   @override
   void dispose() {
+    _priceRefresh?.cancel();
     _searchController
       ..removeListener(_refreshFilter)
       ..dispose();
@@ -84,24 +111,57 @@ class _VendorPricingWorkspaceScreenState
     }
   }
 
-  Future<void> _load() async {
-    setState(() {
-      _loading = true;
-      _loadError = null;
-    });
+  bool _hasPriceEdit(VendorPricingWorkspaceRow row) =>
+      (_priceControllers[row.instanceId]?.text ?? '') !=
+      (row.askingPrice?.toStringAsFixed(2) ?? '');
+
+  bool get _hasPriceEdits => _rows.any(_hasPriceEdit);
+
+  Future<void> _load({bool quiet = false, bool afterNavigation = false}) async {
+    if (quiet &&
+        !afterNavigation &&
+        FocusManager.instance.primaryFocus?.context
+                ?.findAncestorStateOfType<EditableTextState>() !=
+            null) {
+      return;
+    }
+    if (_fetching ||
+        _reviewingId != null ||
+        (quiet &&
+            (_busyIds.isNotEmpty ||
+                _saveTimers.isNotEmpty ||
+                _errors.isNotEmpty ||
+                _hasPriceEdits))) {
+      return;
+    }
+    final generation = _loadGeneration;
+    _fetching = true;
+    if (!quiet) {
+      setState(() {
+        _loading = true;
+        _loadError = null;
+      });
+    }
     try {
       final data = await widget.service.load();
-      if (!mounted) {
+      if (!mounted || generation != _loadGeneration) {
         return;
       }
-      for (final controller in _priceControllers.values) {
-        controller.dispose();
+      if (quiet &&
+          (_busyIds.isNotEmpty || _saveTimers.isNotEmpty || _hasPriceEdits)) {
+        return;
       }
-      _priceControllers.clear();
+      final ids = data.rows.map((row) => row.instanceId).toSet();
+      for (final id in _priceControllers.keys.toList()) {
+        if (!ids.contains(id)) _priceControllers.remove(id)?.dispose();
+      }
       for (final row in data.rows) {
-        _priceControllers[row.instanceId] = TextEditingController(
-          text: row.askingPrice?.toStringAsFixed(2) ?? '',
+        final text = row.askingPrice?.toStringAsFixed(2) ?? '';
+        final controller = _priceControllers.putIfAbsent(
+          row.instanceId,
+          () => TextEditingController(),
         );
+        if (controller.text != text) controller.text = text;
       }
       setState(() {
         _rows = data.rows;
@@ -112,10 +172,168 @@ class _VendorPricingWorkspaceScreenState
       if (!mounted) {
         return;
       }
+      if (quiet) return;
       setState(() {
         _loading = false;
         _loadError = _message(error);
       });
+    } finally {
+      if (generation == _loadGeneration) _fetching = false;
+    }
+  }
+
+  Future<void> _printLabels() async {
+    final eligible = _visibleRows
+        .where(
+          (row) =>
+              row.intent == 'sell' &&
+              row.askingPrice != null &&
+              row.askingPrice! > 0,
+        )
+        .toList();
+    final selected = <String>{};
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => StatefulBuilder(
+        builder: (context, update) => AlertDialog(
+          title: const Text('Choose card labels'),
+          content: SizedBox(
+            width: 440,
+            height: 400,
+            child: eligible.isEmpty
+                ? const Text('Save a copy For sale to print its label.')
+                : ListView(
+                    children: [
+                      const Text(
+                        'Select up to 50 physical copies. No price is printed.',
+                      ),
+                      ...eligible.map(
+                        (row) => CheckboxListTile(
+                          contentPadding: EdgeInsets.zero,
+                          title: Text(row.displayName),
+                          subtitle: Text(
+                            '${row.setName ?? row.setCode ?? ''} · #${row.number} · ${row.gvviId.substring(row.gvviId.length - 6)}',
+                          ),
+                          value: selected.contains(row.instanceId),
+                          onChanged:
+                              selected.length >= 50 &&
+                                  !selected.contains(row.instanceId)
+                              ? null
+                              : (value) => update(() {
+                                  if (value == true) {
+                                    selected.add(row.instanceId);
+                                  } else {
+                                    selected.remove(row.instanceId);
+                                  }
+                                }),
+                        ),
+                      ),
+                    ],
+                  ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(dialogContext, false),
+              child: const Text('Cancel'),
+            ),
+            FilledButton(
+              onPressed: selected.isEmpty
+                  ? null
+                  : () => Navigator.pop(dialogContext, true),
+              child: Text(
+                'Preview ${selected.length} ${selected.length == 1 ? 'label' : 'labels'}',
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+    if (!mounted || confirmed != true) return;
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => IdentityLabelPrintScreen(
+          labels: eligible
+              .where((row) => selected.contains(row.instanceId))
+              .map(
+                (row) => P21LabelContent(
+                  title: row.displayName,
+                  setName: row.setName ?? '',
+                  number: row.number,
+                  qrUri: buildPersistentGvviQrUri(row.gvviId),
+                ),
+              )
+              .toList(),
+        ),
+      ),
+    );
+  }
+
+  Future<void> _openPricing() async {
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(builder: (_) => const VendorPricingRulesScreen()),
+    );
+    if (mounted) await _load(quiet: true, afterNavigation: true);
+  }
+
+  Future<void> _addCard() async {
+    await Navigator.of(
+      context,
+      rootNavigator: true,
+    ).pushNamed<void>('/search', arguments: Uri.parse('/search'));
+    if (mounted) await _load(quiet: true, afterNavigation: true);
+  }
+
+  Future<void> _reviewSale(VendorPricingWorkspaceRow row) async {
+    if (_loading ||
+        _reviewingId != null ||
+        _busyIds.contains(row.instanceId) ||
+        _saveTimers.containsKey(row.instanceId) ||
+        _hasPriceEdit(row)) {
+      return;
+    }
+    FocusManager.instance.primaryFocus?.unfocus();
+    setState(() {
+      _loadGeneration++;
+      _fetching = false;
+      _reviewingId = row.instanceId;
+      _busyIds.add(row.instanceId);
+      _errors.remove(row.instanceId);
+    });
+    try {
+      await widget.saleSheetOpener(context, row.gvviId);
+      if (!mounted) return;
+      final data = await widget.service.loadCopies({row.instanceId});
+      if (!mounted) return;
+      final refreshed = data.rows
+          .where((copy) => copy.instanceId == row.instanceId)
+          .firstOrNull;
+      if (refreshed != null &&
+          (refreshed.gvviId != row.gvviId ||
+              refreshed.cardPrintId != row.cardPrintId)) {
+        throw StateError('Reload your inventory to verify this exact copy.');
+      }
+      setState(() {
+        if (refreshed == null) {
+          _rows = _rows
+              .where((copy) => copy.instanceId != row.instanceId)
+              .toList(growable: false);
+          _priceControllers.remove(row.instanceId)?.dispose();
+        } else {
+          _replaceRow(refreshed);
+          _priceControllers[row.instanceId]?.text =
+              refreshed.askingPrice?.toStringAsFixed(2) ?? '';
+          _sections = data.sections;
+        }
+      });
+    } catch (error) {
+      if (mounted) _setError(row.instanceId, _message(error));
+    } finally {
+      if (mounted) {
+        setState(() {
+          _reviewingId = null;
+          _busyIds.remove(row.instanceId);
+        });
+      }
     }
   }
 
@@ -209,22 +427,34 @@ class _VendorPricingWorkspaceScreenState
     VendorPricingWorkspaceRow row,
     String condition,
   ) async {
-    await _runMutation(
-      row,
-      () => widget.service.saveCondition(row: row, condition: condition),
-    );
+    setState(() => _pendingConditions[row.instanceId] = condition);
+    try {
+      await _runMutation(
+        row,
+        () => widget.service.saveCondition(row: row, condition: condition),
+      );
+    } finally {
+      if (mounted) setState(() => _pendingConditions.remove(row.instanceId));
+    }
   }
 
   Future<void> _savePrinting(
     VendorPricingWorkspaceRow row,
     String cardPrintingId,
   ) async {
-    await _runMutation(
-      row,
-      () =>
-          widget.service.savePrinting(row: row, cardPrintingId: cardPrintingId),
-      successMessage: 'Variant saved.',
-    );
+    setState(() => _pendingPrintings[row.instanceId] = cardPrintingId);
+    try {
+      await _runMutation(
+        row,
+        () => widget.service.savePrinting(
+          row: row,
+          cardPrintingId: cardPrintingId,
+        ),
+        successMessage: 'Variant saved.',
+      );
+    } finally {
+      if (mounted) setState(() => _pendingPrintings.remove(row.instanceId));
+    }
   }
 
   Future<void> _saveWallVisibility(
@@ -656,7 +886,9 @@ class _VendorPricingWorkspaceScreenState
   @override
   Widget build(BuildContext context) {
     final visibleRows = _visibleRows;
-    final compactAppBar = MediaQuery.sizeOf(context).width < 420;
+    final compactActions =
+        MediaQuery.sizeOf(context).width < 360 ||
+        MediaQuery.textScalerOf(context).scale(16) > 22;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Vendor Mode'),
@@ -686,140 +918,212 @@ class _VendorPricingWorkspaceScreenState
               )
             : null,
         actions: [
-          IconButton(
-            tooltip: 'Inventory economics · purchase, aging, P&L',
-            onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute<void>(
-                builder: (_) => const InventoryEconomicsScreen(),
-              ),
-            ),
-            icon: const Icon(Icons.calculate_outlined),
-          ),
-          IconButton(
-            tooltip: 'Sales desk · quick-add and cart',
-            onPressed: () async {
-              await Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (_) => const SalesDeskScreen(),
-                ),
-              );
-              if (mounted) await _load();
-            },
-            icon: const Icon(Icons.point_of_sale),
-          ),
-          if (compactAppBar)
+          if (compactActions)
             IconButton(
-              tooltip: 'Manage store',
-              onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (_) => const StoreManagementScreen(),
-                ),
-              ),
-              icon: const Icon(Icons.storefront_outlined),
+              onPressed: _addCard,
+              tooltip: 'Add card',
+              icon: const Icon(Icons.add_rounded),
             )
           else
             TextButton.icon(
-              onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (_) => const StoreManagementScreen(),
-                ),
-              ),
-              icon: const Icon(Icons.storefront_outlined),
-              label: const Text('Manage store'),
+              onPressed: _addCard,
+              icon: const Icon(Icons.add_rounded),
+              label: const Text('Add card'),
             ),
-          IconButton(
-            tooltip: 'Refresh inventory',
-            onPressed: _loading ? null : _load,
-            icon: const Icon(Icons.refresh_rounded),
+          PopupMenuButton<String>(
+            tooltip: 'Vendor tools',
+            onSelected: (value) async {
+              if (value == 'labels' && !_loading && _loadError == null) {
+                await _printLabels();
+              } else if (value == 'pricing') {
+                await _openPricing();
+              } else if (value == 'square') {
+                await SquareScreen.open(context);
+                if (mounted) await _load(quiet: true, afterNavigation: true);
+              } else if (value == 'sales') {
+                await Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => const SalesDeskScreen(),
+                  ),
+                );
+                if (mounted) await _load();
+              } else if (value == 'store') {
+                await Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => const StoreManagementScreen(),
+                  ),
+                );
+              } else if (value == 'refresh') {
+                await _load();
+              } else if (value == 'economics') {
+                await Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => const InventoryEconomicsScreen(),
+                  ),
+                );
+              }
+            },
+            itemBuilder: (_) => [
+              const PopupMenuItem(
+                value: 'pricing',
+                child: Text('Pricing rules'),
+              ),
+              PopupMenuItem(
+                value: 'labels',
+                enabled: !_loading && _loadError == null,
+                child: const Text('Print card labels'),
+              ),
+              const PopupMenuItem(value: 'square', child: Text('Square setup')),
+              const PopupMenuItem(
+                value: 'sales',
+                child: Text('Sales desk · quick-add and cart'),
+              ),
+              const PopupMenuItem(value: 'store', child: Text('Manage store')),
+              const PopupMenuItem(
+                value: 'economics',
+                child: Text('Inventory economics'),
+              ),
+              PopupMenuItem(
+                value: 'refresh',
+                enabled: !_loading,
+                child: const Text('Refresh inventory'),
+              ),
+            ],
           ),
         ],
       ),
-      body: _showSealed
-          ? const SingleChildScrollView(child: OwnedSealedPanel())
-          : _loading
-          ? const Center(child: CircularProgressIndicator())
-          : _loadError != null
-          ? _WorkspaceState(
-              title: 'Unable to load vendor inventory',
-              body: _loadError!,
-              onRetry: _load,
-            )
-          : _rows.isEmpty
-          ? const _WorkspaceState(
-              title: 'No vendor inventory yet',
-              body: 'Add a card to your Vault to manage it here.',
-            )
-          : Column(
-              children: [
-                _WorkspaceHeader(
-                  rowCount: _rows.length,
-                  visibleCount: visibleRows.length,
-                  searchController: _searchController,
-                  selectedFilter: _filter,
-                  countFor: _countFor,
-                  onFilterChanged: (value) => setState(() => _filter = value),
-                ),
-                const Divider(height: 1),
-                Expanded(
-                  child: visibleRows.isEmpty
-                      ? const Center(child: Text('No matching cards.'))
-                      : RefreshIndicator(
-                          onRefresh: _load,
-                          child: ListView.separated(
-                            padding: const EdgeInsets.fromLTRB(12, 10, 12, 32),
-                            itemCount: visibleRows.length,
-                            separatorBuilder: (_, _) =>
-                                const Divider(height: 18),
-                            itemBuilder: (context, index) {
-                              final row = visibleRows[index];
-                              return Dismissible(
-                                key: Key('vendor_dismiss_${row.instanceId}'),
-                                direction: DismissDirection.horizontal,
-                                background: _DispositionBackground(
-                                  busy: _busyIds.contains(row.instanceId),
-                                ),
-                                secondaryBackground: _RemoveBackground(
-                                  busy: _busyIds.contains(row.instanceId),
-                                ),
-                                confirmDismiss: (direction) async {
-                                  if (direction ==
-                                      DismissDirection.startToEnd) {
-                                    await _chooseDisposition(row);
-                                  } else {
-                                    await _confirmRemove(row);
-                                  }
-                                  return false;
-                                },
-                                child: _VendorInventoryRow(
-                                  key: Key('vendor_row_${row.instanceId}'),
-                                  row: row,
-                                  sections: _sections,
-                                  controller:
-                                      _priceControllers[row.instanceId]!,
-                                  busy: _busyIds.contains(row.instanceId),
-                                  saved: _savedIds.contains(row.instanceId),
-                                  error: _errors[row.instanceId],
-                                  onPriceChanged: (_) =>
-                                      _schedulePriceSave(row),
-                                  onSavePrice: () => _savePrice(row.instanceId),
-                                  onConditionChanged: (value) =>
-                                      _saveCondition(row, value),
-                                  onPrintingChanged: (value) =>
-                                      _savePrinting(row, value),
-                                  onWallChanged: (value) =>
-                                      _saveWallVisibility(row, value),
-                                  onSections: () => _openSections(row),
-                                  onShare: () => _share(row),
-                                  onPreview: () => _previewCustomerCard(row),
-                                  onQr: () => _openVendorQr(row),
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                ),
-              ],
+      body: Column(
+        children: [
+          if (MediaQuery.viewInsetsOf(context).bottom == 0) ...[
+            VendorWorkspaceNavigation(
+              onPricing: _openPricing,
+              onLabels: _loading || _loadError != null ? null : _printLabels,
+              onSquare: () async {
+                await SquareScreen.open(context);
+                if (mounted) await _load(quiet: true, afterNavigation: true);
+              },
             ),
+            const Divider(height: 1),
+          ],
+          Expanded(
+            child: _showSealed
+                ? const SingleChildScrollView(child: OwnedSealedPanel())
+                : _loading
+                ? const Center(child: CircularProgressIndicator())
+                : _loadError != null
+                ? _WorkspaceState(
+                    title: 'Unable to load vendor inventory',
+                    body: _loadError!,
+                    onRetry: _load,
+                  )
+                : _rows.isEmpty
+                ? const _WorkspaceState(
+                    title: 'No vendor inventory yet',
+                    body: 'Add a card to your Vault to manage it here.',
+                  )
+                : Column(
+                    children: [
+                      _WorkspaceHeader(
+                        rowCount: _rows.length,
+                        visibleCount: visibleRows.length,
+                        searchController: _searchController,
+                        selectedFilter: _filter,
+                        countFor: _countFor,
+                        onFilterChanged: (value) =>
+                            setState(() => _filter = value),
+                      ),
+                      const Divider(height: 1),
+                      Expanded(
+                        child: visibleRows.isEmpty
+                            ? const Center(child: Text('No matching cards.'))
+                            : RefreshIndicator(
+                                onRefresh: _load,
+                                child: ListView.separated(
+                                  padding: const EdgeInsets.fromLTRB(
+                                    12,
+                                    10,
+                                    12,
+                                    32,
+                                  ),
+                                  itemCount: visibleRows.length,
+                                  separatorBuilder: (_, _) =>
+                                      const Divider(height: 18),
+                                  itemBuilder: (context, index) {
+                                    final row = visibleRows[index];
+                                    return Dismissible(
+                                      key: Key(
+                                        'vendor_dismiss_${row.instanceId}',
+                                      ),
+                                      direction: DismissDirection.horizontal,
+                                      background: _DispositionBackground(
+                                        busy: _busyIds.contains(row.instanceId),
+                                      ),
+                                      secondaryBackground: _RemoveBackground(
+                                        busy: _busyIds.contains(row.instanceId),
+                                      ),
+                                      confirmDismiss: (direction) async {
+                                        if (direction ==
+                                            DismissDirection.startToEnd) {
+                                          await _chooseDisposition(row);
+                                        } else {
+                                          await _confirmRemove(row);
+                                        }
+                                        return false;
+                                      },
+                                      child: _VendorInventoryRow(
+                                        key: Key(
+                                          'vendor_row_${row.instanceId}',
+                                        ),
+                                        row: row.copyWith(
+                                          conditionLabel:
+                                              _pendingConditions[row
+                                                  .instanceId],
+                                          cardPrintingId:
+                                              _pendingPrintings[row.instanceId],
+                                        ),
+                                        conditionPriceReader:
+                                            widget.conditionPriceReader,
+                                        sections: _sections,
+                                        controller:
+                                            _priceControllers[row.instanceId]!,
+                                        busy: _busyIds.contains(row.instanceId),
+                                        saved: _savedIds.contains(
+                                          row.instanceId,
+                                        ),
+                                        error: _errors[row.instanceId],
+                                        onPriceChanged: (_) =>
+                                            _schedulePriceSave(row),
+                                        onSavePrice: () =>
+                                            _savePrice(row.instanceId),
+                                        onConditionChanged: (value) =>
+                                            _saveCondition(row, value),
+                                        onPrintingChanged: (value) =>
+                                            _savePrinting(row, value),
+                                        onWallChanged: (value) =>
+                                            _saveWallVisibility(row, value),
+                                        onSections: () => _openSections(row),
+                                        onShare: () => _share(row),
+                                        onPreview: () =>
+                                            _previewCustomerCard(row),
+                                        onQr: () => _openVendorQr(row),
+                                        onReviewSale:
+                                            _saveTimers.containsKey(
+                                                  row.instanceId,
+                                                ) ||
+                                                _hasPriceEdit(row)
+                                            ? null
+                                            : () => _reviewSale(row),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                      ),
+                    ],
+                  ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -1364,6 +1668,7 @@ class _VendorSecondaryFilterSheet extends StatelessWidget {
 class _VendorInventoryRow extends StatelessWidget {
   const _VendorInventoryRow({
     required this.row,
+    this.conditionPriceReader,
     required this.sections,
     required this.controller,
     required this.busy,
@@ -1377,6 +1682,7 @@ class _VendorInventoryRow extends StatelessWidget {
     required this.onShare,
     required this.onPreview,
     required this.onQr,
+    required this.onReviewSale,
     this.error,
     super.key,
   });
@@ -1384,6 +1690,7 @@ class _VendorInventoryRow extends StatelessWidget {
   static const _conditions = ['NM', 'LP', 'MP', 'HP', 'DMG'];
 
   final VendorPricingWorkspaceRow row;
+  final ConditionPriceReaderFactory? conditionPriceReader;
   final List<VendorWorkspaceSection> sections;
   final TextEditingController controller;
   final bool busy;
@@ -1398,6 +1705,7 @@ class _VendorInventoryRow extends StatelessWidget {
   final VoidCallback onShare;
   final VoidCallback onPreview;
   final VoidCallback onQr;
+  final VoidCallback? onReviewSale;
 
   @override
   Widget build(BuildContext context) {
@@ -1521,98 +1829,83 @@ class _VendorInventoryRow extends StatelessWidget {
                 ),
         ),
         const SizedBox(height: 10),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: _LabeledField(
-                label: row.isGraded ? 'Grade' : 'Condition',
-                child: row.isGraded
-                    ? _ReadOnlyValue(
-                        value: [row.gradeCompany, row.gradeLabel]
-                            .whereType<String>()
-                            .where((value) => value.trim().isNotEmpty)
-                            .join(' '),
-                      )
-                    : DropdownButtonFormField<String>(
-                        key: Key('vendor_condition_${row.instanceId}'),
-                        initialValue: condition,
-                        hint: const Text('Unknown'),
-                        isExpanded: true,
-                        decoration: const InputDecoration(isDense: true),
-                        items: _conditions
-                            .map(
-                              (value) => DropdownMenuItem(
-                                value: value,
-                                child: Text(value),
-                              ),
-                            )
-                            .toList(growable: false),
-                        onChanged: busy
-                            ? null
-                            : (value) {
-                                if (value != null && value != condition) {
-                                  onConditionChanged(value);
-                                }
-                              },
-                      ),
-              ),
+        _VendorPriceFields(
+          condition: _LabeledField(
+            label: row.isGraded ? 'Grade' : 'Condition',
+            child: row.isGraded
+                ? _ReadOnlyValue(
+                    value: [row.gradeCompany, row.gradeLabel]
+                        .whereType<String>()
+                        .where((value) => value.trim().isNotEmpty)
+                        .join(' '),
+                  )
+                : DropdownButtonFormField<String>(
+                    key: Key('vendor_condition_${row.instanceId}'),
+                    initialValue: condition,
+                    hint: const Text('Unknown'),
+                    isExpanded: true,
+                    decoration: const InputDecoration(isDense: true),
+                    items: _conditions
+                        .map(
+                          (value) => DropdownMenuItem(
+                            value: value,
+                            child: Text(value),
+                          ),
+                        )
+                        .toList(growable: false),
+                    onChanged: busy
+                        ? null
+                        : (value) {
+                            if (value != null && value != condition) {
+                              onConditionChanged(value);
+                            }
+                          },
+                  ),
+          ),
+          market: _LabeledField(
+            label: 'TCGPlayer Market',
+            child: _ReadOnlyValue(
+              value: row.marketPrice == null
+                  ? '—'
+                  : formatCardSurfaceMoney(row.marketPrice!, currency: 'USD'),
             ),
-            const SizedBox(width: 8),
-            Expanded(
-              child: _LabeledField(
-                label: 'TCGPlayer Market',
-                child: _ReadOnlyValue(
-                  value: row.marketPrice == null
-                      ? '—'
-                      : formatCardSurfaceMoney(
-                          row.marketPrice!,
-                          currency: 'USD',
+          ),
+          asking: _LabeledField(
+            label: 'My price',
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(minHeight: 48),
+              child: TextField(
+                key: Key('vendor_price_${row.instanceId}'),
+                controller: controller,
+                enabled: !busy,
+                keyboardType: const TextInputType.numberWithOptions(
+                  decimal: true,
+                ),
+                textInputAction: TextInputAction.done,
+                onChanged: onPriceChanged,
+                onSubmitted: (_) => onSavePrice(),
+                decoration: InputDecoration(
+                  prefixText: r'$ ',
+                  isDense: true,
+                  suffixIcon: busy
+                      ? const Padding(
+                          padding: EdgeInsets.all(12),
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        )
+                      : IconButton(
+                          tooltip: saved ? 'Saved' : 'Save price',
+                          onPressed: onSavePrice,
+                          icon: Icon(
+                            saved
+                                ? Icons.check_circle_rounded
+                                : Icons.check_rounded,
+                            color: saved ? Colors.green : null,
+                          ),
                         ),
                 ),
               ),
             ),
-            const SizedBox(width: 8),
-            Expanded(
-              flex: 2,
-              child: _LabeledField(
-                label: 'My price',
-                child: SizedBox(
-                  height: 44,
-                  child: TextField(
-                    key: Key('vendor_price_${row.instanceId}'),
-                    controller: controller,
-                    enabled: !busy,
-                    keyboardType: const TextInputType.numberWithOptions(
-                      decimal: true,
-                    ),
-                    textInputAction: TextInputAction.done,
-                    onChanged: onPriceChanged,
-                    onSubmitted: (_) => onSavePrice(),
-                    decoration: InputDecoration(
-                      prefixText: r'$ ',
-                      isDense: true,
-                      suffixIcon: busy
-                          ? const Padding(
-                              padding: EdgeInsets.all(12),
-                              child: CircularProgressIndicator(strokeWidth: 2),
-                            )
-                          : IconButton(
-                              tooltip: saved ? 'Saved' : 'Save price',
-                              onPressed: onSavePrice,
-                              icon: Icon(
-                                saved
-                                    ? Icons.check_circle_rounded
-                                    : Icons.check_rounded,
-                                color: saved ? Colors.green : null,
-                              ),
-                            ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
+          ),
         ),
         const SizedBox(height: 7),
         _MarketPositionLabel(row: row),
@@ -1627,6 +1920,21 @@ class _VendorInventoryRow extends StatelessWidget {
             ),
           ),
         const SizedBox(height: 8),
+        Tooltip(
+          message: onReviewSale == null
+              ? 'Save your price before reviewing this sale.'
+              : 'Review this copy, publish it and prepare its label.',
+          child: SizedBox(
+            width: double.infinity,
+            child: OutlinedButton.icon(
+              key: Key('vendor_review_sale_${row.instanceId}'),
+              onPressed: busy ? null : onReviewSale,
+              icon: const Icon(Icons.sell_outlined, size: 18),
+              label: const Text('Review sale'),
+            ),
+          ),
+        ),
+        const SizedBox(height: 4),
         Row(
           children: [
             Expanded(
@@ -1683,9 +1991,57 @@ class _VendorInventoryRow extends StatelessWidget {
             ),
           ],
         ),
+        if (!row.isGraded) ...[
+          const SizedBox(height: 10),
+          ConditionPricePanel(
+            printingId: row.cardPrintingId,
+            condition: condition,
+            createReader: conditionPriceReader,
+          ),
+        ],
       ],
     );
   }
+}
+
+class _VendorPriceFields extends StatelessWidget {
+  const _VendorPriceFields({
+    required this.condition,
+    required this.market,
+    required this.asking,
+  });
+  final Widget condition;
+  final Widget market;
+  final Widget asking;
+
+  @override
+  Widget build(BuildContext context) => LayoutBuilder(
+    builder: (context, constraints) {
+      final scale = MediaQuery.textScalerOf(context).scale(14) / 14;
+      if (constraints.maxWidth / scale < 280) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            condition,
+            const SizedBox(height: 10),
+            market,
+            const SizedBox(height: 10),
+            asking,
+          ],
+        );
+      }
+      return Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(child: condition),
+          const SizedBox(width: 8),
+          Expanded(child: market),
+          const SizedBox(width: 8),
+          Expanded(flex: 2, child: asking),
+        ],
+      );
+    },
+  );
 }
 
 class _LabeledField extends StatelessWidget {
@@ -1716,12 +2072,12 @@ class _ReadOnlyValue extends StatelessWidget {
   Widget build(BuildContext context) {
     final display = value.trim().isEmpty ? '—' : value;
     return Container(
-      height: 44,
+      constraints: const BoxConstraints(minHeight: 48),
       alignment: Alignment.centerLeft,
-      padding: const EdgeInsets.symmetric(horizontal: 9),
+      padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 10),
       decoration: BoxDecoration(
         border: Border.all(color: Theme.of(context).colorScheme.outlineVariant),
-        borderRadius: BorderRadius.circular(6),
+        borderRadius: BorderRadius.circular(8),
       ),
       child: Text(
         display,

@@ -152,6 +152,24 @@ const REVIEWED_SET_AUTHORITIES = Object.freeze([
         "TCGPlayer's 30-card Classic Collection group is the reviewed 30c-classic anthology; only exact normalized name and printed-coordinate matches may enter the base mapping lane",
     },
   },
+  {
+    source_group_id: 24831,
+    source_group_name: "ME06: Delta Reign",
+    target_set_code: "me06",
+    target_set_name: "Delta Reign",
+    evidence_lane: "reviewed_group_set_authority",
+    mapping_method: "exact_reviewed_set_number_name_authority_v1",
+    mapping_confidence: 0.99,
+    authority_evidence: {
+      authority_version: "TCGPLAYER_MARKET_REVIEWED_SET_AUTHORITY_V1",
+      rationale:
+        "TCGPlayer group 24831 is the reviewed English Delta Reign release; canonical me06 contains the complete 141-parent official-checklist projection and exact name/number matches are required",
+      official_source_url:
+        "https://www.pokemon.com/us/features/sneak-a-peek-at-cards-from-the-mega-evolution-delta-reign-expansion",
+      printing_manifest_sha256:
+        "b1a11c6cbcd741b4a2eb6d10a90eaf5a2c7755fc06f41729974c5989e7567b69",
+    },
+  },
 ]);
 
 function parseArgs(argv) {
@@ -469,10 +487,24 @@ export async function resolveAuthorities(client, sources, consensusByGroup) {
   }
   const authorities = new Map();
   for (const authority of applicable) {
+    const sourceGroupNames = [...new Set(sources
+      .filter((source) => source.source_group_id === authority.source_group_id)
+      .map((source) => source.source_group_name))];
+    if (sourceGroupNames.length !== 1
+        || sourceGroupNames[0] !== authority.source_group_name) {
+      throw new Error(
+        `reviewed set authority group ${authority.source_group_id} changed identity`,
+      );
+    }
     const matches = setsByCode.get(authority.target_set_code) ?? [];
     if (matches.length !== 1) {
       throw new Error(
         `reviewed set authority ${authority.target_set_code} resolved ${matches.length} rows`,
+      );
+    }
+    if (authority.target_set_name && matches[0].name !== authority.target_set_name) {
+      throw new Error(
+        `reviewed set authority ${authority.target_set_code} changed set name`,
       );
     }
     authorities.set(authority.source_group_id, {

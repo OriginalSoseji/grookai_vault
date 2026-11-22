@@ -117,6 +117,7 @@ apps/web/out/
 **/node_modules/
 apps/web/playwright-report/
 apps/web/test-results/
+/apps/web/.playwright-cli/
 tmp_schema_local.sql
 
 # Grookai Local Artifacts Ignore
@@ -126,6 +127,25 @@ tmp_schema_local.sql
 *.webp
 *_report.md
 apps/web/src/app/api/*
+!apps/web/src/app/api/playables/
+!apps/web/src/app/api/playables/route.ts
+!apps/web/src/app/api/condition-pricing/
+apps/web/src/app/api/condition-pricing/*
+!apps/web/src/app/api/condition-pricing/v1/
+apps/web/src/app/api/condition-pricing/v1/*
+!apps/web/src/app/api/condition-pricing/v1/route.ts
+!apps/web/src/app/api/founder/
+apps/web/src/app/api/founder/*
+!apps/web/src/app/api/founder/condition-pricing/
+apps/web/src/app/api/founder/condition-pricing/*
+!apps/web/src/app/api/founder/condition-pricing/v1/
+apps/web/src/app/api/founder/condition-pricing/v1/*
+!apps/web/src/app/api/founder/condition-pricing/v1/route.ts
+!apps/web/src/app/api/vendor-pricing/
+apps/web/src/app/api/vendor-pricing/*
+!apps/web/src/app/api/vendor-pricing/recovery/
+apps/web/src/app/api/vendor-pricing/recovery/*
+!apps/web/src/app/api/vendor-pricing/recovery/route.ts
 !apps/web/src/app/api/square/
 !apps/web/src/app/api/square/**
 !apps/web/src/app/api/ebay/

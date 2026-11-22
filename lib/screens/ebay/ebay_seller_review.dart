@@ -166,6 +166,14 @@ class _EbaySellerReviewState extends State<EbaySellerReview> {
         const SizedBox(height: 16),
         _line(context, 'Quantity', '1 exact copy'),
         _line(context, 'Marketplace', 'eBay US'),
+        if (sellerMap(sellerMap(draft['prepared'])['reviewDetails'])['category']
+            is String)
+          _line(
+            context,
+            'Category',
+            sellerMap(sellerMap(draft['prepared'])['reviewDetails'])['category']
+                as String,
+          ),
         _line(context, 'Format', 'Fixed price'),
         for (final fee in sellerRows(quote['fees']))
           _line(
@@ -192,6 +200,34 @@ class _EbaySellerReviewState extends State<EbaySellerReview> {
               style: hint,
             ),
           ),
+          if (model.account['publicationEnabled'] != true)
+            Container(
+              margin: const EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.surfaceContainerLow,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Icon(
+                    Icons.info_outline_rounded,
+                    size: 18,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      model.account.containsKey('publicationEnabled')
+                          ? 'Publishing is not enabled for this seller account yet. This offer will stay unpublished; it cannot go live until publishing is enabled.'
+                          : 'Publishing access could not be verified. Refresh eBay status before continuing.',
+                      style: hint,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           CheckboxListTile(
             contentPadding: EdgeInsets.zero,
             controlAffinity: ListTileControlAffinity.leading,
@@ -350,10 +386,37 @@ class _EbaySellerReviewState extends State<EbaySellerReview> {
         if (['withdrawn', 'ended', 'abandoned'].contains(state) &&
             model.copy['isArchived'] != true)
           _button('Start a new listing', busy ? null : model.startNewDraft),
-        if (['editing', 'prepared', 'uncertain'].contains(state))
+        if (['editing', 'prepared'].contains(state))
           _button(
-            'Discard draft',
-            busy ? null : () => model.operate('abandon'),
+            'Remove draft',
+            busy
+                ? null
+                : () async {
+                    final confirmed = await showDialog<bool>(
+                      context: context,
+                      builder: (dialogContext) => AlertDialog(
+                        title: const Text('Remove this draft?'),
+                        content: const Text(
+                          'This removes the draft from your grookai eBay drafts list. '
+                          'It does not delete anything from eBay or remove the card from your Vault.',
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () =>
+                                Navigator.pop(dialogContext, false),
+                            child: const Text('Keep draft'),
+                          ),
+                          FilledButton(
+                            onPressed: () => Navigator.pop(dialogContext, true),
+                            child: const Text('Remove draft'),
+                          ),
+                        ],
+                      ),
+                    );
+                    if (confirmed == true && context.mounted) {
+                      model.operate('abandon');
+                    }
+                  },
           ),
         if (['withdrawn', 'ended'].contains(state))
           Padding(

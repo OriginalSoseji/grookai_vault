@@ -2,6 +2,8 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import Link from "next/link";
 import TrackPageEvent from "@/components/telemetry/TrackPageEvent";
 import { requireServerUser } from "@/lib/auth/requireServerUser";
+import { resolveServerUserEntitlement } from "@/lib/entitlements/resolveServerUserEntitlement";
+import VendorWorkspaceNavigation from "@/components/vendor/VendorWorkspaceNavigation";
 import { getRecentOwnedCards } from "@/lib/vault/getRecentOwnedCards";
 import {
   VaultCollectionView,
@@ -158,6 +160,7 @@ export default async function VaultPage(
   const searchParams = await props.searchParams;
   const bindersEnabled = isBinderLibraryEnabled();
   const { supabase, user } = await requireServerUser("/vault");
+  const entitlement = await resolveServerUserEntitlement(user);
   const requestedSpeciesSlug = parseSpeciesFilter(searchParams?.species);
   const speciesFilter = requestedSpeciesSlug
     ? await getGrookaiDexSpeciesVaultFilter(requestedSpeciesSlug)
@@ -193,6 +196,7 @@ export default async function VaultPage(
   return (
     <>
       <TrackPageEvent eventName="vault_opened" path="/vault" />
+      {entitlement.capabilities.canUseVendorTools && <div className="mb-4"><VendorWorkspaceNavigation active="Inventory" /></div>}
       {requestedSpeciesSlug ? (
         <section className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-sky-200 bg-sky-50 px-4 py-3 text-sky-950 dark:border-sky-400/20 dark:bg-sky-400/10 dark:text-sky-100">
           <div>

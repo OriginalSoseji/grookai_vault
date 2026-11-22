@@ -2,6 +2,35 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:grookai_vault/services/grookai_objects/sale_listing_service.dart';
 
 void main() {
+  test('quick price edits preserve notes changed on another device', () async {
+    Map<String, dynamic>? written;
+    final service = SaleListingService(
+      currentUserId: 'user-1',
+      persist: ({required userId, required instanceId, required values}) async {
+        written = values;
+        return {
+          'id': instanceId,
+          'gv_vi_id': 'GVVI-123',
+          'card_print_id': 'CARD-123',
+          'intent': 'sell',
+          'asking_price_amount': values['asking_price_amount'],
+          'asking_price_currency': values['asking_price_currency'],
+          'asking_price_note': 'Latest note from another device',
+        };
+      },
+    );
+    final result = await service.saveSingleCardListing(
+      instanceId: 'INSTANCE-123',
+      gvviId: 'GVVI-123',
+      vaultItemId: 'VAULT-123',
+      cardPrintId: 'CARD-123',
+      price: 2,
+      note: 'Stale note',
+      preserveNote: true,
+    );
+    expect(written!.containsKey('asking_price_note'), false);
+    expect(result.note, 'Latest note from another device');
+  });
   test(
     'save listing writes exact-copy sale intent and asking price fields',
     () async {

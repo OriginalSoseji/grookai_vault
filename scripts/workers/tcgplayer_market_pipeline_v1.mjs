@@ -26,6 +26,7 @@ const DEFAULT_PHASE_TIMEOUT_MINUTES = 120;
 const FULL_SYNC_MINIMUM_PHASE_TIMEOUT_MINUTES = 90;
 const DEFAULT_DATABASE_TIMEOUT_MINUTES = 20;
 const MINIMUM_WRITE_DATABASE_TIMEOUT_MINUTES = 10;
+const ACTIVE_ASK_MAX_TIMEOUT_MINUTES = 120;
 const { Client } = pg;
 
 function parseArgs(argv) {
@@ -303,6 +304,10 @@ async function runPhase({
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
+  const activeAskTimeoutMinutes = Math.min(
+    args.databaseTimeoutMinutes,
+    ACTIVE_ASK_MAX_TIMEOUT_MINUTES,
+  );
   const writeMode = args.runMode !== "dry_run";
   const activationMode = new Set(["canary", "production"]).has(args.runMode);
   const runKey =
@@ -345,6 +350,7 @@ async function main() {
       request_ceiling: args.requestCeiling,
       phase_timeout_minutes: args.phaseTimeoutMinutes,
       database_timeout_minutes: args.databaseTimeoutMinutes,
+      active_ask_timeout_minutes: activeAskTimeoutMinutes,
       publication_limit: args.publicationLimit,
       canary_definition_path: args.canaryDefinitionPath
         ? relative(args.canaryDefinitionPath)
@@ -453,7 +459,7 @@ async function main() {
     ),
     activationMode ? "--apply" : "--dry-run",
     `--out-root=${path.join(runDir, "active_ask_refresh")}`,
-    `--timeout-minutes=${args.databaseTimeoutMinutes}`,
+    `--timeout-minutes=${activeAskTimeoutMinutes}`,
   ];
   await runPhase({
     phase: "active_ask_refresh",

@@ -113,7 +113,8 @@ test("set detail counts exact visible set lanes without relationship aggregates"
   assert.match(source, /const PUBLIC_SET_DETAIL_SELECT = PUBLIC_SET_LIST_SELECT;/);
   assert.doesNotMatch(source, /card_prints\(count\)/);
   assert.match(detailFunctionSource, /select\(PUBLIC_SET_DETAIL_SELECT\)/);
-  assert.match(detailFunctionSource, /\.ilike\("code", escapePostgrestLikePattern\(normalizedCode\)\)/);
+  assert.match(detailFunctionSource, /resolveVisiblePublicSetReferences\(supabase, normalizedCode, gameCode\)/);
+  assert.match(detailFunctionSource, /\.in\("id", references\.map\(\(reference\) => reference\.id\)\)/);
   assert.match(detailFunctionSource, /getVisibleCardCountBySetIds/);
   assert.match(detailFunctionSource, /rows\.map\(\(row\) => row\.id \?\? ""\)/);
   assert.match(detailFunctionSource, /combinedCardCount/);

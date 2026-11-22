@@ -42,7 +42,9 @@ test("operator playbook documents the hosted build override and signer continuit
   assert.match(operatorPlaybook, /optional `build_number`/);
   assert.match(operatorPlaybook, /eBay Native Account Access and Release contract/);
   assert.match(operatorPlaybook, /EBAY_NATIVE_ACCOUNT_ACCESS_20261107\.md/);
-  assert.match(operatorPlaybook, /same signing certificate/);
-  assert.match(operatorPlaybook, /do not treat it as a production release/);
+  assert.match(operatorPlaybook, /exact signer match or an APK-embedded/);
+  assert.match(operatorPlaybook, /cryptographically verified\s+signing lineage/);
+  assert.match(operatorPlaybook, /include_debug_rotation=true/);
+  assert.match(operatorPlaybook, /Never uninstall/);
 });
 

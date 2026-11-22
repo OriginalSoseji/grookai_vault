@@ -3,6 +3,7 @@
 import { useEffect, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import OwnedObjectRemoveAction from "@/components/vault/OwnedObjectRemoveAction";
+import ConditionPrice from "@/components/pricing/ConditionPrice";
 import {
   getVaultIntentHelper,
   getVaultIntentLabel,
@@ -24,6 +25,7 @@ type VaultInstanceSettingsCardProps = {
   initialImageDisplayMode: VaultInstanceImageDisplayMode;
   isActive: boolean;
   isGraded: boolean;
+  cardPrintingId?: string | null;
 };
 
 export default function VaultInstanceSettingsCard({
@@ -33,10 +35,11 @@ export default function VaultInstanceSettingsCard({
   initialImageDisplayMode,
   isActive,
   isGraded,
+  cardPrintingId=null,
 }: VaultInstanceSettingsCardProps) {
   const router = useRouter();
   const [intent, setIntent] = useState(initialIntent);
-  const [conditionLabel, setConditionLabel] = useState(initialConditionLabel ?? "NM");
+  const [conditionLabel, setConditionLabel] = useState(initialConditionLabel ?? "Unspecified");
   const [imageDisplayMode, setImageDisplayMode] = useState(initialImageDisplayMode);
   const [statusMessage, setStatusMessage] = useState<{ tone: "success" | "error"; body: string } | null>(null);
   const [pendingField, setPendingField] = useState<"intent" | "condition" | "imageDisplayMode" | null>(null);
@@ -47,7 +50,7 @@ export default function VaultInstanceSettingsCard({
   }, [initialIntent]);
 
   useEffect(() => {
-    setConditionLabel(initialConditionLabel ?? "NM");
+    setConditionLabel(initialConditionLabel ?? "Unspecified");
   }, [initialConditionLabel]);
 
   useEffect(() => {
@@ -79,7 +82,9 @@ export default function VaultInstanceSettingsCard({
         }
 
         setIntent(result.intent);
-        setStatusMessage({ tone: "success", body: "Copy intent saved." });
+        setStatusMessage({ tone: "success", body: result.squareStatus === "ready" ? "Copy saved. Ready to scan in Square."
+          : result.squareStatus === "pending" ? "Copy saved. Square is still syncing; check its status before checkout."
+          : result.squareStatus === "review" ? "Copy saved. Square needs attention before checkout." : "Copy intent saved." });
         setPendingField(null);
         router.refresh();
       } catch {
@@ -210,6 +215,7 @@ export default function VaultInstanceSettingsCard({
               onChange={(event) => handleConditionChange(event.target.value)}
               className="min-h-11 w-full rounded-[0.95rem] border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 transition focus:outline-none focus:ring-2 focus:ring-slate-200 disabled:cursor-not-allowed disabled:opacity-60"
             >
+              {!CONDITION_OPTIONS.includes(conditionLabel as typeof CONDITION_OPTIONS[number]) && <option value={conditionLabel} disabled>Unknown · choose after inspection</option>}
               {CONDITION_OPTIONS.map((option) => (
                 <option key={option} value={option}>
                   {option}
@@ -220,6 +226,8 @@ export default function VaultInstanceSettingsCard({
         </label>
 
       </div>
+
+      {!isGraded && isActive ? <ConditionPrice cardPrintingId={cardPrintingId} condition={conditionLabel} /> : null}
 
       <details className="group border-t border-slate-200 pt-2">
         <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 py-2 text-sm font-medium text-slate-800 marker:content-none">

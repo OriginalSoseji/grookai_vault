@@ -7,14 +7,32 @@ import {
 import {
   classifyTcgplayerMarketProductScopeV1_5,
 } from '../pricing/tcgplayer_market_product_scope_v1.mjs';
+import {
+  tcgplayerExactMappingCandidateFingerprintV1,
+} from '../pricing/tcgplayer_market_exact_mapping_plan_policy_v1.mjs';
 
 export const TCGPLAYER_PRICING_COMPLETION_AGENT_KEY =
   'tcgplayer-pricing-completion-v1';
 export const TCGPLAYER_PRICING_COMPLETION_AGENT_VERSION =
-  'TCGPLAYER_PRICING_COMPLETION_AGENT_V4';
+  'TCGPLAYER_PRICING_COMPLETION_AGENT_V6';
 
 export const TCGPLAYER_POKEMON_MAPPING_REVIEW_VERSION =
   'TCGPLAYER_POKEMON_MAPPING_REVIEW_V1';
+
+export const TCGPLAYER_POKEMON_MAPPING_AUTHORITY_REVIEW_KEY =
+  'pokemon-pricing-mapping-review:master-authority-batch-01';
+
+export const TCGPLAYER_POKEMON_LEGACY_MAPPING_AUTHORITY_REVIEW_KEY_PATTERN =
+  /^pokemon-pricing-mapping-review:[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}(?::master-authority-batch-01)?$/i;
+
+const UUID = /^[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i;
+const ACTIONABLE_REVIEW_STATES = new Set([
+  'ready_for_review', 'deferred', 'repair_requested',
+]);
+const STABLE_REVIEW_STATES = new Set([
+  ...ACTIONABLE_REVIEW_STATES,
+  'approved', 'rejected', 'cancelled', 'expired',
+]);
 
 export const TCGPLAYER_POKEMON_REVIEWED_HOLDS_VERSION =
   'TCGPLAYER_POKEMON_REVIEWED_HOLDS_V1';
@@ -34,6 +52,164 @@ export const TCGPLAYER_FUTURE_RELEASE_GROUP_HOLDS_V1 = Object.freeze([
 function integer(value) {
   const parsed = Number(value);
   return Number.isFinite(parsed) ? Math.max(0, Math.trunc(parsed)) : 0;
+}
+
+function pokemonMappingReviewIdentityProjectionV1(planPayload) {
+  const proposalVersion = String(planPayload?.proposal_version ?? '');
+  const exactAuthority = proposalVersion ===
+    'TCGPLAYER_POKEMON_MAPPING_AUTHORITY_REVIEW_V1';
+  const rows = exactAuthority
+    ? planPayload?.exact_mapping_candidates
+    : planPayload?.review_candidates;
+  if (!Array.isArray(rows) || rows.length < 1 || rows.length > 100) {
+    throw new Error('Pokemon mapping review identity projection is invalid');
+  }
+  const sourceProducts = new Set();
+  const targetParents = new Set();
+  const projection = rows.map((row) => {
+    const sourceProductId = Number(row?.source_product_id);
+    const reviewTargets = row?.review_targets;
+    const cardPrintId = String(exactAuthority
+      ? row?.target?.card_print_id
+      : Array.isArray(reviewTargets) && reviewTargets.length === 1
+        ? reviewTargets[0]?.card_print_id
+        : '').trim().toLowerCase();
+    if (!Number.isSafeInteger(sourceProductId) || sourceProductId < 1 || !UUID.test(cardPrintId)
+        || sourceProducts.has(sourceProductId) || targetParents.has(cardPrintId)) {
+      throw new Error('Pokemon mapping review identity projection contains invalid identities');
+    }
+    sourceProducts.add(sourceProductId);
+    targetParents.add(cardPrintId);
+    return `${sourceProductId}:${cardPrintId}`;
+  });
+  return projection.sort().join('|');
+}
+
+function assertPokemonMappingReviewQueueBoundaryV1(row, { stable = false } = {}) {
+  const proposalVersion = String(row?.plan_payload?.proposal_version ?? '');
+  if (!row || typeof row !== 'object'
+      || row.domain !== 'pricing'
+      || row.work_item_type !== 'tcgplayer_pricing_backlog_repair'
+      || row.action_type !== 'advance_tcgplayer_pricing_backlog'
+      || row.agent_key !== TCGPLAYER_PRICING_COMPLETION_AGENT_KEY
+      || row.command_policy?.execution_enabled !== false) {
+    throw new Error('Pokemon mapping review queue boundary mismatch');
+  }
+  if (stable) {
+    if (row.work_item_key !== TCGPLAYER_POKEMON_MAPPING_AUTHORITY_REVIEW_KEY
+        || proposalVersion !== 'TCGPLAYER_POKEMON_MAPPING_AUTHORITY_REVIEW_V1'
+        || !STABLE_REVIEW_STATES.has(row.state)) {
+      throw new Error('Stable Pokemon mapping review replacement is invalid');
+    }
+  } else if (!TCGPLAYER_POKEMON_LEGACY_MAPPING_AUTHORITY_REVIEW_KEY_PATTERN
+    .test(String(row.work_item_key ?? ''))
+      || ![
+        TCGPLAYER_POKEMON_MAPPING_REVIEW_VERSION,
+        'TCGPLAYER_POKEMON_MAPPING_AUTHORITY_REVIEW_V1',
+      ].includes(proposalVersion)
+      || !ACTIONABLE_REVIEW_STATES.has(row.state)) {
+    throw new Error('Legacy Pokemon mapping review is invalid');
+  }
+  return pokemonMappingReviewIdentityProjectionV1(row.plan_payload);
+}
+
+export async function supersedeLegacyPokemonMappingAuthorityReviewsV1(
+  client,
+  { replacementWorkItemId } = {},
+) {
+  if (!client || typeof client.query !== 'function') {
+    throw new Error('Pokemon mapping review supersession client is required');
+  }
+  if (!UUID.test(String(replacementWorkItemId ?? ''))) {
+    throw new Error('Pokemon mapping review replacement ID is invalid');
+  }
+  let begun = false;
+  try {
+    await client.query('begin');
+    begun = true;
+    await client.query("set local lock_timeout = '5s'");
+    await client.query("set local statement_timeout = '30s'");
+    const replacementResult = await client.query(`
+      select w.id, w.work_item_key, w.work_item_type, w.action_type, w.domain,
+        w.state, w.plan_fingerprint, w.plan_payload, w.command_policy,
+        a.agent_key
+      from public.founder_work_items w
+      join public.operations_agents a on a.id = w.agent_id
+      where w.id = $1::uuid
+      for update of w
+    `, [replacementWorkItemId]);
+    if (replacementResult.rows.length !== 1) {
+      throw new Error('Stable Pokemon mapping review replacement was not found');
+    }
+    const replacement = replacementResult.rows[0];
+    assertPokemonMappingReviewQueueBoundaryV1(replacement, { stable: true });
+    const legacyResult = await client.query(`
+      select w.id, w.work_item_key, w.work_item_type, w.action_type, w.domain,
+        w.state, w.plan_fingerprint, w.plan_payload, w.command_policy,
+        a.agent_key
+      from public.founder_work_items w
+      join public.operations_agents a on a.id = w.agent_id
+      where w.work_item_key ~
+        '^pokemon-pricing-mapping-review:[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}(:master-authority-batch-01)?$'
+        and w.state in ('ready_for_review', 'deferred', 'repair_requested')
+      order by w.created_at, w.id
+      limit 17
+      for update of w
+    `);
+    if (legacyResult.rows.length > 16) {
+      throw new Error('Legacy Pokemon mapping review supersession exceeds its bound');
+    }
+    let supersededCount = 0;
+    for (const legacy of legacyResult.rows) {
+      assertPokemonMappingReviewQueueBoundaryV1(legacy);
+      const updated = await client.query(`
+        update public.founder_work_items
+        set state = 'superseded',
+          state_reason = 'stable_pokemon_mapping_review_published',
+          updated_at = now()
+        where id = $1::uuid
+          and work_item_key = $2::text
+          and state = $3::text
+          and plan_fingerprint = $4::text
+        returning id
+      `, [legacy.id, legacy.work_item_key, legacy.state, legacy.plan_fingerprint]);
+      if (updated.rows.length !== 1) {
+        throw new Error('Legacy Pokemon mapping review changed during supersession');
+      }
+      await client.query(`
+        insert into public.founder_work_item_events (
+          work_item_id, event_type, actor_type, actor_key, payload
+        ) values (
+          $1::uuid, 'superseded', 'agent', $2::text,
+          jsonb_build_object(
+            'replacement_work_item_id', $3::uuid,
+            'replacement_work_item_key', $4::text,
+            'replacement_plan_fingerprint', $5::text,
+            'reason', 'stable_pokemon_mapping_review_published'
+          )
+        )
+      `, [
+        legacy.id,
+        TCGPLAYER_PRICING_COMPLETION_AGENT_KEY,
+        replacement.id,
+        replacement.work_item_key,
+        replacement.plan_fingerprint,
+      ]);
+      supersededCount += 1;
+    }
+    await client.query('commit');
+    begun = false;
+    return {
+      replacement_work_item_id: replacement.id,
+      legacy_review_count: legacyResult.rows.length,
+      superseded_review_count: supersededCount,
+    };
+  } catch (error) {
+    if (begun) {
+      try { await client.query('rollback'); } catch {}
+    }
+    throw error;
+  }
 }
 
 function isoDay(value, label) {
@@ -357,6 +533,230 @@ export function partitionPokemonMappingAuthorityFinishCandidatesV1(candidates) {
   };
 }
 
+export const POKEMON_MAPPING_AUTHORITY_BASE_FINISH_PROJECTION_V1 =
+  'POKEMON_MAPPING_AUTHORITY_BASE_FINISH_PROJECTION_V1';
+
+const POKEMON_MAPPING_AUTHORITY_BASE_FINISHES_V1 = new Set([
+  'Normal',
+  'Holofoil',
+]);
+
+export function projectPokemonMappingAuthorityBaseFinishCandidatesV1({
+  reviewCandidates,
+  exactCandidates,
+  gapRows,
+} = {}) {
+  if (!Array.isArray(reviewCandidates)
+      || !Array.isArray(exactCandidates)
+      || !Array.isArray(gapRows)) {
+    throw new Error('Pokemon base-finish projection inputs must be arrays');
+  }
+  const exactByProduct = new Map();
+  for (const exact of exactCandidates) {
+    const productId = integer(exact?.source_product_id);
+    if (!productId || exactByProduct.has(productId)) {
+      throw new Error('Pokemon base-finish projection requires unique exact products');
+    }
+    exactByProduct.set(productId, exact);
+  }
+  const gapsById = new Map();
+  for (const gap of gapRows) {
+    const id = String(gap?.source_observation_id ?? '').trim();
+    if (!id || gapsById.has(id)) {
+      throw new Error('Pokemon base-finish projection requires unique gap observations');
+    }
+    gapsById.set(id, gap);
+  }
+  const eligible = [];
+  const projectedExactCandidates = [];
+  const held = [];
+  const heldByReason = {};
+  const heldObservations = [];
+  const hold = (candidate, reason) => {
+    held.push({ ...candidate, mapping_authority_hold_reason: reason });
+    heldByReason[reason] = (heldByReason[reason] ?? 0) + 1;
+  };
+  for (const candidate of reviewCandidates) {
+    const productId = integer(candidate?.source_product_id);
+    const exact = exactByProduct.get(productId);
+    if (!exact) {
+      hold(candidate, 'mapping_authority_exact_candidate_missing');
+      continue;
+    }
+    const reviewSubtypes = [...new Set(candidate?.source_subtypes ?? [])].sort();
+    const exactSubtypes = [...new Set(exact?.source_subtypes ?? [])].sort();
+    const reviewObservationIds = [...new Set(
+      candidate?.supporting_gap_observation_ids ?? [],
+    )].sort();
+    const exactObservationIds = [...new Set(
+      exact?.supporting_gap_observation_ids ?? [],
+    )].sort();
+    if (JSON.stringify(reviewSubtypes) !== JSON.stringify(exactSubtypes)
+        || JSON.stringify(reviewObservationIds) !== JSON.stringify(exactObservationIds)) {
+      hold(candidate, 'mapping_authority_exact_candidate_evidence_mismatch');
+      continue;
+    }
+    if (reviewSubtypes.length === 1) {
+      if (!POKEMON_MAPPING_AUTHORITY_FINISHES_V1.has(reviewSubtypes[0])) {
+        hold(candidate, 'mapping_authority_source_finish_not_supported');
+        continue;
+      }
+      eligible.push(candidate);
+      projectedExactCandidates.push(exact);
+      continue;
+    }
+    const baseSubtypes = reviewSubtypes.filter((subtype) =>
+      POKEMON_MAPPING_AUTHORITY_BASE_FINISHES_V1.has(subtype));
+    const heldSubtypes = reviewSubtypes.filter((subtype) => subtype === 'Reverse Holofoil');
+    if (baseSubtypes.length !== 1
+        || heldSubtypes.length < 1
+        || baseSubtypes.length + heldSubtypes.length !== reviewSubtypes.length) {
+      hold(candidate, 'mapping_authority_source_finish_not_unique');
+      continue;
+    }
+    const selectedSubtype = baseSubtypes[0];
+    const observationRows = exactObservationIds.map((id) => gapsById.get(id));
+    if (observationRows.some((row) => !row
+        || integer(row.source_product_id) !== productId)) {
+      hold(candidate, 'mapping_authority_observation_evidence_missing');
+      continue;
+    }
+    const selectedObservationIds = observationRows
+      .filter((row) => row.source_subtype_name === selectedSubtype)
+      .map((row) => row.source_observation_id)
+      .sort();
+    const heldObservationRows = observationRows
+      .filter((row) => row.source_subtype_name !== selectedSubtype);
+    if (selectedObservationIds.length < 1
+        || heldObservationRows.length < 1
+        || heldObservationRows.some((row) => row.source_subtype_name !== 'Reverse Holofoil')) {
+      hold(candidate, 'mapping_authority_base_finish_projection_incomplete');
+      continue;
+    }
+    const projectedReview = {
+      ...candidate,
+      source_subtypes: [selectedSubtype],
+      supporting_gap_observation_ids: selectedObservationIds,
+      supporting_gap_row_count: selectedObservationIds.length,
+    };
+    const { candidate_fingerprint: ignoredFingerprint, ...exactPayload } = exact;
+    const projectedExactPayload = {
+      ...exactPayload,
+      source_subtypes: [selectedSubtype],
+      supporting_gap_observation_ids: selectedObservationIds,
+      supporting_gap_row_count: selectedObservationIds.length,
+      authority_finish_projection: {
+        version: POKEMON_MAPPING_AUTHORITY_BASE_FINISH_PROJECTION_V1,
+        original_source_subtypes: reviewSubtypes,
+        original_supporting_gap_observation_ids: exactObservationIds,
+        selected_source_subtype: selectedSubtype,
+        held_source_subtypes: heldSubtypes,
+        held_observation_ids: heldObservationRows
+          .map((row) => row.source_observation_id)
+          .sort(),
+        held_reason: 'reverse_holo_printing_authority_not_proven',
+      },
+    };
+    const projectedExact = {
+      ...projectedExactPayload,
+      candidate_fingerprint:
+        tcgplayerExactMappingCandidateFingerprintV1(projectedExactPayload),
+    };
+    eligible.push(projectedReview);
+    projectedExactCandidates.push(projectedExact);
+    heldObservations.push(...heldObservationRows.map((row) => ({
+      source_product_id: productId,
+      source_observation_id: row.source_observation_id,
+      source_subtype_name: row.source_subtype_name,
+      reason: 'reverse_holo_printing_authority_not_proven',
+    })));
+  }
+  return {
+    eligible,
+    exact_candidates: projectedExactCandidates,
+    held,
+    held_count: held.length,
+    held_by_reason: Object.fromEntries(Object.entries(heldByReason).sort()),
+    projected_product_count: eligible.filter((row) =>
+      exactByProduct.get(integer(row.source_product_id))?.source_subtypes?.length > 1).length,
+    held_observations: heldObservations.sort((left, right) =>
+      left.source_product_id - right.source_product_id
+      || left.source_observation_id.localeCompare(right.source_observation_id)),
+    held_observation_count: heldObservations.length,
+  };
+}
+
+export function partitionPokemonVerifiedExactMappingCandidatesV1(
+  candidates,
+  exactCandidates,
+) {
+  if (!Array.isArray(candidates) || !Array.isArray(exactCandidates)) {
+    throw new Error('Pokemon mapping candidate inputs must be arrays');
+  }
+  const exactByProduct = new Map();
+  for (const exact of exactCandidates) {
+    const productId = integer(exact?.source_product_id);
+    if (!productId || exactByProduct.has(productId)) {
+      throw new Error('Pokemon exact mapping candidates require unique source products');
+    }
+    exactByProduct.set(productId, exact);
+  }
+  const eligible = [];
+  const held = [];
+  const heldByReason = {};
+  const matchedExactProducts = new Set();
+  const hold = (candidate, reason) => {
+    held.push({ ...candidate, mapping_authority_hold_reason: reason });
+    heldByReason[reason] = (heldByReason[reason] ?? 0) + 1;
+  };
+  for (const candidate of candidates) {
+    const productId = integer(candidate?.source_product_id);
+    const exact = exactByProduct.get(productId);
+    if (!exact) {
+      hold(candidate, 'mapping_authority_not_verified_exact_candidate');
+      continue;
+    }
+    const targets = Array.isArray(candidate?.review_targets)
+      ? candidate.review_targets
+      : [];
+    const target = targets[0] ?? {};
+    const exactTarget = exact?.target ?? {};
+    const sameSource = candidate.source_product_name === exact.source_product_name
+      && integer(candidate.source_group_id) === integer(exact.source_group_id)
+      && candidate.source_group_name === exact.source_group_name
+      && candidate.printed_number === exact.printed_number
+      && JSON.stringify([...(candidate.source_subtypes ?? [])].sort())
+        === JSON.stringify([...(exact.source_subtypes ?? [])].sort())
+      && JSON.stringify([...(candidate.supporting_gap_observation_ids ?? [])].sort())
+        === JSON.stringify([...(exact.supporting_gap_observation_ids ?? [])].sort());
+    const sameTarget = targets.length === 1
+      && target.card_print_id === exactTarget.card_print_id
+      && target.gv_id === exactTarget.gv_id
+      && target.set_id === exactTarget.set_id
+      && target.set_code === exactTarget.set_code
+      && target.canonical_name === exactTarget.canonical_name
+      && target.canonical_number === exactTarget.canonical_number
+      && String(target.variant_key ?? '') === String(exactTarget.variant_key ?? '');
+    if (!sameSource || !sameTarget) {
+      hold(candidate, 'mapping_authority_exact_candidate_evidence_mismatch');
+      continue;
+    }
+    matchedExactProducts.add(productId);
+    eligible.push(candidate);
+  }
+  return {
+    eligible,
+    held,
+    held_count: held.length,
+    held_by_reason: Object.fromEntries(Object.entries(heldByReason).sort()),
+    exact_candidate_count: exactByProduct.size,
+    matched_exact_candidate_count: matchedExactProducts.size,
+    missing_review_evidence_count: [...exactByProduct.keys()].filter(
+      (productId) => !matchedExactProducts.has(productId),
+    ).length,
+  };
+}
+
 export function selectPokemonPricingMappingReviewBatchV1(candidates, limit = 50) {
   if (!Array.isArray(candidates)) throw new Error('Pokemon mapping candidates must be an array');
   if (!Number.isSafeInteger(limit) || limit < 1 || limit > 50) {
@@ -523,7 +923,10 @@ export function buildPokemonPricingMappingAuthorityReviewWorkItemV1({
   };
   return validateFounderWorkItemV1({
     ...base,
-    work_item_key: `${base.work_item_key}:master-authority-batch-01`,
+    // Keep one actionable first-batch review lane. Fresh source evidence may
+    // supersede an unresolved plan, but repeated agent runs for the same
+    // frozen pricing run must not create parallel founder decisions.
+    work_item_key: TCGPLAYER_POKEMON_MAPPING_AUTHORITY_REVIEW_KEY,
     title: `Approve ${candidates.length} evidence-bound Pokemon price mappings`,
     summary: 'Each source product is bound to one live grookai parent, one matching Master Index finish, and frozen source bytes. Approval enables the guarded mapping outcome preflight.',
     plan_payload: planPayload,

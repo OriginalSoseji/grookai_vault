@@ -17,6 +17,7 @@ import '../../services/vault/vault_gvvi_service.dart';
 import '../../services/vault/slab_upgrade_service.dart';
 import '../../utils/display_image_contract.dart';
 import '../../widgets/card_surface_artwork.dart';
+import '../../widgets/vault/vault_copy_sale_sheet.dart';
 import '../../widgets/gv_chip.dart';
 import '../../widgets/pricing/card_marketplace_sheet.dart';
 import '../../widgets/pricing/ebay_listing_links.dart';
@@ -85,6 +86,7 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
   bool _loadingMemories = false;
   bool _savingNotes = false;
   bool _savingIntent = false;
+  bool _openingSaleEditor = false;
   bool _savingMemory = false;
   bool _creatingSection = false;
   String? _busySectionId;
@@ -94,15 +96,22 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
   String? _error;
   String? _status;
   String? _memoryError;
+  Timer? _askingPriceRefresh;
+  bool _readingAskingPrice = false;
 
   @override
   void initState() {
     super.initState();
     _load();
+    _askingPriceRefresh = Timer.periodic(
+      const Duration(seconds: 30),
+      (_) => unawaited(_refreshAskingPrice()),
+    );
   }
 
   @override
   void dispose() {
+    _askingPriceRefresh?.cancel();
     for (final timer in _pendingMemoryArchiveTimers.values) {
       timer.cancel();
     }
@@ -179,6 +188,41 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
         _sectionMemberships = const <VaultGvviSectionMembership>[];
         _error = error.toString().replaceFirst('Exception: ', '');
       });
+    }
+  }
+
+  Future<void> _refreshAskingPrice() async {
+    final previous = _data;
+    if (!mounted ||
+        previous == null ||
+        _readingAskingPrice ||
+        _loading ||
+        _savingNotes ||
+        _savingIntent ||
+        _openingSaleEditor ||
+        _removing ||
+        ModalRoute.of(context)?.isCurrent != true ||
+        WidgetsBinding.instance.lifecycleState != AppLifecycleState.resumed) {
+      return;
+    }
+    _readingAskingPrice = true;
+    try {
+      final current = await VaultGvviService.loadPrivate(
+        client: _client,
+        gvviId: widget.gvviId,
+      );
+      if (!mounted ||
+          !identical(_data, previous) ||
+          _savingNotes ||
+          _savingIntent ||
+          _openingSaleEditor) {
+        return;
+      }
+      if (current != null) setState(() => _data = current);
+    } catch (_) {
+      /* Keep the last confirmed copy visible on transient read failure. */
+    } finally {
+      _readingAskingPrice = false;
     }
   }
 
@@ -583,6 +627,10 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
       return;
     }
 
+    if (nextIntent == 'sell') {
+      await _openSaleEditor();
+      return;
+    }
     setState(() {
       _savingIntent = true;
       _status = null;
@@ -615,6 +663,30 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
         _savingIntent = false;
         _status = error.toString().replaceFirst('Exception: ', '');
       });
+    }
+  }
+
+  Future<void> _openSaleEditor() async {
+    final data = _data;
+    if (data == null ||
+        data.isArchived ||
+        _savingIntent ||
+        _openingSaleEditor) {
+      return;
+    }
+    setState(() => _openingSaleEditor = true);
+    try {
+      final saved = await showVaultCopySaleSheet(context, data.gvviId);
+      if (saved && mounted) await _load();
+    } catch (_) {
+      if (mounted) {
+        setState(
+          () => _status =
+              'The sale editor could not be loaded. Reload this copy and try again.',
+        );
+      }
+    } finally {
+      if (mounted) setState(() => _openingSaleEditor = false);
     }
   }
 
@@ -1288,6 +1360,20 @@ class _VaultGvviScreenState extends State<VaultGvviScreen> {
                         : null,
                   ),
                   const SizedBox(height: 10),
+                  if (!_data!.isArchived) ...[
+                    FilledButton.icon(
+                      onPressed: _savingIntent || _openingSaleEditor
+                          ? null
+                          : _openSaleEditor,
+                      icon: const Icon(Icons.sell_outlined),
+                      label: Text(
+                        _data!.intent == 'sell'
+                            ? 'Edit sale price'
+                            : 'Set sale price',
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                  ],
                   _VaultSectionFrame(
                     title: 'Add to',
                     child: _VaultSectionMembershipSurface(

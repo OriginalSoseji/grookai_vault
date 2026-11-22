@@ -29,6 +29,8 @@ class EbaySellerController extends ChangeNotifier {
   final String? initialInstanceId, initialDraftId;
   String? _selectedDraftId;
   Map<String, dynamic> workspace = {}, draft = {}, metadata = {};
+  List<Map<String, dynamic>> categorySuggestions = [];
+  String categoryQuery = '';
   final Map<String, String> photoUrls = {};
   EbaySellerLocalDraft? local;
   String? busy, error, notice;
@@ -146,7 +148,9 @@ class EbaySellerController extends ChangeNotifier {
                               .take(80)
                               .toString(),
                       'description': '',
-                      'categoryId': '',
+                      'categoryId': '183454',
+                      'categoryName': 'Collectible Card Game Singles',
+                      'categoryPath': 'Collectible Card Game Singles',
                       'priceCents': 0,
                       'locationKey': '',
                       'policies': {
@@ -226,9 +230,16 @@ class EbaySellerController extends ChangeNotifier {
 
   Future<void> loadMetadata() => run('Loading selling options', () async {
     if (copy['id'] is! String || account['accountId'] is! String) return;
+    final savedCategoryId = local?.input['categoryId']?.toString() ?? '';
+    final selectedCategoryId = RegExp(r'^\d{1,12}$').hasMatch(savedCategoryId)
+        ? savedCategoryId
+        : '183454';
     metadata = await api.call('metadata', {
       'instanceId': copy['id'],
       'accountId': account['accountId'],
+      'categoryId': selectedCategoryId,
+      'categoryName':
+          local?.input['categoryName'] ?? 'Collectible Card Game Singles',
     });
     final current = local;
     if (current != null) {
@@ -240,7 +251,17 @@ class EbaySellerController extends ChangeNotifier {
         current.copyWith(
           input: {
             ...current.input,
-            'categoryId': metadata['categoryId'],
+            'categoryId': selectedCategoryId,
+            'categoryName':
+                (current.input['categoryName'] is String &&
+                    (current.input['categoryName'] as String).isNotEmpty)
+                ? current.input['categoryName']
+                : 'Collectible Card Game Singles',
+            'categoryPath':
+                (current.input['categoryPath'] is String &&
+                    (current.input['categoryPath'] as String).isNotEmpty)
+                ? current.input['categoryPath']
+                : 'Collectible Card Game Singles',
             'condition': useDefaults
                 ? sellerMap(metadata['suggestedCondition'])
                 : condition,
@@ -251,6 +272,50 @@ class EbaySellerController extends ChangeNotifier {
     }
     _changed();
   });
+
+  Future<void> searchCategories(String query) => run(
+    'Searching eBay categories',
+    () async {
+      if (copy['id'] is! String || account['accountId'] is! String) return;
+      final normalized = query.trim().replaceAll(RegExp(r'\s+'), ' ');
+      if (normalized.length < 2 || normalized.length > 160) {
+        throw StateError('Enter at least two characters to search categories.');
+      }
+      categoryQuery = normalized;
+      final result = await api.call('categories', {
+        'instanceId': copy['id'],
+        'accountId': account['accountId'],
+        'query': normalized,
+      });
+      categorySuggestions = sellerRows(result['suggestions']);
+      if (categorySuggestions.isEmpty) {
+        notice = 'No supported card categories matched that search.';
+      }
+    },
+  );
+
+  Future<void> selectCategory(Map<String, dynamic> category) async {
+    final id = category['id']?.toString() ?? '';
+    final path =
+        category['path']?.toString() ?? category['name']?.toString() ?? '';
+    if (!RegExp(r'^\d{1,12}$').hasMatch(id) || path.isEmpty || !editable) {
+      return;
+    }
+    metadata = {};
+    categorySuggestions = [];
+    await updateInput({
+      'categoryId': id,
+      'categoryName': category['name']?.toString() ?? '',
+      'categoryPath': path,
+      'condition': {
+        'conditionId': '',
+        'description': '',
+        'descriptors': <dynamic>[],
+      },
+      'aspects': <String, dynamic>{},
+    });
+    _changed();
+  }
 
   Future<void> uploadPhoto({
     required String filename,
@@ -395,6 +460,33 @@ class EbaySellerController extends ChangeNotifier {
     metadata = {};
     photoUrls.clear();
   });
+
+  Future<void> removeDraftSummary(Map<String, dynamic> summary) =>
+      run('Removing listing draft', () async {
+        final id = summary['id'];
+        final revision = summary['revision'];
+        final state = summary['state'];
+        if (id is! String ||
+            !RegExp(
+              r'^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$',
+            ).hasMatch(id) ||
+            revision is! int ||
+            revision < 1 ||
+            !['editing', 'prepared'].contains(state)) {
+          throw StateError(
+            'Open this listing to check its current status before removing it.',
+          );
+        }
+        final result = await api.call('abandon', {
+          'draftId': id,
+          'requestId': _uuid.v4(),
+          'revision': revision,
+        });
+        if (result['state'] != 'abandoned') {
+          throw StateError(EbaySellerService.uncertainMessage);
+        }
+        await _refresh();
+      });
 
   Future<void> removePhoto(String photoId) =>
       run('Removing listing photo', () async {

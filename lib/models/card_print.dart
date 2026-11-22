@@ -18,6 +18,7 @@ String resolverExactNameRetryQuery(String query) {
   if (normalized.isEmpty ||
       normalized.contains('"') ||
       RegExp(r'\bfrom\b', caseSensitive: false).hasMatch(normalized) ||
+      RegExp(r'\bplayables?\b', caseSensitive: false).hasMatch(normalized) ||
       RegExp(r'^artist\b', caseSensitive: false).hasMatch(normalized)) {
     return normalized;
   }
@@ -709,6 +710,7 @@ class CardPrintRepository {
                   'image',
                   'image_state',
                   'owned',
+                  'playable',
                   'game',
                   'lang',
                   'identity',

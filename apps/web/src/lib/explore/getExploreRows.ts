@@ -45,10 +45,15 @@ import type { ExploreResultCard } from "@/components/explore/exploreResultTypes"
 import type { VariantFlags } from "@/lib/cards/variantPresentation";
 import type { PublicGameScope } from "@/lib/publicGameScope";
 import { normalizeSearchText } from "@/lib/search/normalizeSearchText";
+import { readCollectorCardQueryFilters, removeCollectorCardQueryFilters } from "@/lib/search/collectorCardQuery";
+import { hasVerifiedCatalogFullArt } from "@/lib/search/catalogArtworkClassification";
 import { mergeSmartVariantScopeRows } from "@/lib/search/smartVariantSearchPolicy";
 import { fetchPokemonArtistRows, isKnownArtistQuery } from "@/lib/search/artistSearch";
 import { fetchCompleteNamedCardRows } from "@/lib/search/completeNamedCardSearch";
 import type { SearchSet } from "@/lib/search/catalogSetSearch";
+import { getPokemonPlayables } from "@/lib/playables/getPokemonPlayables";
+import { applyPlayableSignals } from "@/lib/playables/publicPlayables";
+
 
 const SEARCH_LIMIT = 64;
 const SET_FETCH_PAGE_SIZE = 500;
@@ -920,7 +925,7 @@ async function buildExploreRows(
         rows,
       );
 
-  return Promise.all(
+  const builtRows = await Promise.all(
     rows.map(async (row) => {
       const tcgdexCardId = extractTcgdexCardId(row.external_ids);
       const tcgdexSetId = extractTcgdexSetId(tcgdexCardId);
@@ -1014,6 +1019,7 @@ async function buildExploreRows(
       };
     }),
   );
+  return applyPlayableSignals(builtRows, await getPokemonPlayables());
 }
 
 function lookupRowToPreRankExploreRow(row: CardPrintLookupRow): ExploreRow {
@@ -3488,12 +3494,22 @@ function rowMatchesSmartDiscoveryText(
     if (Number((row.number ?? "").split("/")[0]) !== Number(fraction[1]) ||
         row.printed_total !== Number(fraction[2])) return false;
   }
-  let remainingText = fraction ? textQuery?.replace(fraction[0], " ") : textQuery;
-  const rarityWords = normalizeCombinedText(row.rarity).split(" ");
-  for (const match of remainingText?.matchAll(/\b(?:(?:hyper|ultra|secret|double|special illustration|illustration)\s+rare|uncommon|common|rare(?!\s+candy))\b/gi) ?? []) {
-    if (!normalizeCombinedText(match[0]).split(" ").every((word) => rarityWords.includes(word))) return false;
-    remainingText = remainingText?.replace(match[0], " ");
+  let remainingText = (fraction ? textQuery?.replace(fraction[0], " ") : textQuery) ?? "";
+  const collectorFilters = readCollectorCardQueryFilters(remainingText, row.gv_id?.startsWith("GV-PK-") === true);
+  const rarity = normalizeCombinedText(row.rarity);
+  for (const filter of collectorFilters) {
+    if (filter.kind === "rarity") {
+      // IR and SIR are distinct categories; Common cannot match Uncommon.
+      const exactCategory = ["common", "uncommon", "illustration rare", "special illustration rare"].includes(filter.value);
+      if (exactCategory ? rarity !== filter.value : !filter.value.split(" ").every((word) => rarity.split(" ").includes(word))) return false;
+    } else {
+      // Artwork must be explicit catalog metadata, never inferred from rarity,
+      // the card's name, price, or shared gameplay membership.
+      const artwork = normalizeTextForMatch([row.rarity, row.variant_key, row.printed_identity_modifier, row.display_discriminator].filter(Boolean).join(" "));
+      if (!/(?:^| )full art(?: |$)/.test(artwork) && !hasVerifiedCatalogFullArt(row)) return false;
+    }
   }
+  remainingText = removeCollectorCardQueryFilters(remainingText, collectorFilters);
   const tokens = getSmartDiscoveryTextTokens(remainingText);
   if (tokens.length === 0) {
     return true;
@@ -4187,10 +4203,15 @@ async function fetchCollectorScopedTextRows(
 
   const requests = ["number", "number_plain"].flatMap((field) =>
     collectorTokens.map(async (collectorToken) => {
-      const scopedRequest = applyLanguageScopeQuery(
+      let scopedRequest = applyLanguageScopeQuery(
         supabase.from("card_prints").select(selectClause),
         languageScope,
       );
+      // Push known collector-family constraints down before case-insensitive
+      // number/name matching; a global scan can exhaust the database budget.
+      if (query.expectedSetCodes.length > 0) {
+        scopedRequest = scopedRequest.in("set_code", query.expectedSetCodes);
+      }
       let request = /^\d+$/.test(collectorToken)
         ? scopedRequest.eq(field, collectorToken)
         : scopedRequest.ilike(field, collectorToken.replace(/[\\%_]/g, "\\$&"));
@@ -5195,6 +5216,29 @@ export async function getExploreRowsForOwnedSmartFilterDiscovery(
   );
 
   return sortRows(rows, query, options.sortMode).slice(0, SMART_FILTER_DISCOVERY_LIMIT);
+}
+
+export async function getExploreRowsForPlayableCards(
+  members: Array<{card_print_id: string; gv_id: string}>,
+  options: SmartFilterDiscoveryOptions,
+): Promise<ExploreRow[]> {
+  assertValueSortPricingEnabled(options.sortMode, Boolean(options.includePricing));
+  if (!members.length) return [];
+  // This module exposes server actions: serialized caller arguments cannot
+  // grant positive membership, even when the canonical IDs themselves are public.
+  const snapshot = await getPokemonPlayables();
+  const positives = new Map(snapshot?.rows.map(member => [member.card_print_id, member.gv_id]) ?? []);
+  const expected = new Map(members.filter(member => positives.get(member.card_print_id) === member.gv_id)
+    .map(member => [member.card_print_id, member.gv_id]));
+  if (!expected.size) return [];
+  let parents = (await fetchCardRowsByIds([...expected.keys()]))
+    .filter(row => expected.get(row.id) === row.gv_id);
+  const supabase = await createServerComponentClient();
+  if (options.cameoSubject) {
+    const cameos = new Set(await fetchConfirmedCameoGvIds(supabase, options.cameoSubject));
+    parents = parents.filter(row => cameos.has(row.gv_id ?? ""));
+  }
+  return enrichCompleteSearchParents(parents, {...options, gameScope: "pokemon"}, supabase);
 }
 
 async function fetchPublicSetMetadata(setCodes: string[], searchSets?: SearchSet[]) {

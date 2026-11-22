@@ -836,8 +836,8 @@ test("worker enriches candidates with source-group evidence before qualification
     WORKER,
     /publication scope evidence missing for \$\{missingScopeEvidence\.length\} Pokemon candidates/i,
   );
-  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_22/);
-  assert.match(WORKER, /v_tcgplayer_market_qualification_candidates_v7/);
+  assert.match(WORKER, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_25/);
+  assert.match(WORKER, /v_tcgplayer_market_qualification_candidates_v8/);
   assert.match(WORKER, /prepare_tcgplayer_jungle_edition_assignments_v1/);
   assert.match(WORKER, /prepare_tcgplayer_gym_challenge_edition_assignments_v1/);
 });
@@ -857,7 +857,7 @@ test("MTG snapshot guard links the already-validated decision without a redundan
     MTG_FINISH_SNAPSHOT_GUARD_FIX_MIGRATION,
     /mtg_tcgplayer_finish_price_row_valid_v1\(to_jsonb\(decision_row\)\)/,
   );
-  assert.match(WORKER, /20261020220000/);
+  assert.match(WORKER, /20261120063000/);
 });
 
 test("MTG missing-number bridge requires an independent mapping to the same exact printing", () => {
@@ -1194,6 +1194,15 @@ test("publication database timeout covers measured assignment preparation", () =
   assert.match(
     PIPELINE,
     /database_timeout_minutes: args\.databaseTimeoutMinutes/,
+  );
+  assert.match(PIPELINE, /ACTIVE_ASK_MAX_TIMEOUT_MINUTES = 120/);
+  assert.match(
+    PIPELINE,
+    /active_ask_timeout_minutes: activeAskTimeoutMinutes/,
+  );
+  assert.match(
+    PIPELINE,
+    /--timeout-minutes=\$\{activeAskTimeoutMinutes\}/,
   );
   assert.match(
     SCHEDULED_RUNNER,

@@ -1,0 +1,47 @@
+{
+  "release_slug": "20261114_delta_reign",
+  "playbook": "NEW_POKEMON_SET_RELEASE_INGESTION_PLAYBOOK_V1",
+  "sets": [
+    {
+      "target_key": "delta_reign_en",
+      "name": "Delta Reign",
+      "language": "en",
+      "region": "english",
+      "release_date": "2026-11-06",
+      "canonical_set_code": "me06",
+      "printed_set_abbrev": "DLR",
+      "source_route": "tcgdex_or_manifest_seed",
+      "source_ids": {
+        "tcgdex": "me06",
+        "pokemon_official": "mega-evolution-delta-reign",
+        "manual_seed": null
+      },
+      "source_urls": [
+        "https://api.tcgdex.net/v2/en/sets/me06",
+        "https://www.pokemon.com/uk/news/the-pokemon-tcg-mega-evolution-delta-reign-expansion-is-available-now",
+        "https://press.pokemon.com/en/Pokemon-TCG-Mega-EvolutionDelta-Reign"
+      ],
+      "expected_counts": {
+        "official": 103,
+        "secret": 38,
+        "total": 141,
+        "parents": 141,
+        "printings": null,
+        "by_finish": {}
+      },
+      "printing_truth": {
+        "materializes_child_printings": false,
+        "suppressed_printing_facts": [],
+        "protected_printing_facts": [],
+        "source_evidence_refs": [
+          "https://api.tcgdex.net/v2/en/sets/me06"
+        ]
+      },
+      "notes": [
+        "Official Pokemon sources identify Delta Reign as released on 2026-11-06.",
+        "TCGdex me06 reports 103 official cards and 141 total cards.",
+        "This intake is parent-card catalog scope only; child printing and pricing writes are excluded."
+      ]
+    }
+  ]
+}

@@ -15,6 +15,8 @@ import 'package:visibility_detector/visibility_detector.dart';
 
 import 'card_detail_screen.dart';
 import 'models/card_print.dart';
+import 'services/competitive/pokemon_playables_service.dart';
+import 'widgets/cards/pokemon_playable_badge.dart';
 import 'models/vault/collection_project.dart';
 import 'models/binders/binder_models.dart';
 import 'models/ownership_state.dart';
@@ -1211,6 +1213,7 @@ class _PressScaleInkWellState extends State<_PressScaleInkWell> {
 }
 
 class _CatalogCardTile extends StatelessWidget {
+  final PokemonPlayablesService? playables;
   final CardPrint card;
   final CardSurfacePricingData? pricing;
   final OwnershipState? ownershipState;
@@ -1224,6 +1227,7 @@ class _CatalogCardTile extends StatelessWidget {
   final String? printingSummary;
 
   const _CatalogCardTile({
+    this.playables,
     required this.card,
     required this.viewMode,
     required this.ownershipState,
@@ -1323,6 +1327,11 @@ class _CatalogCardTile extends StatelessWidget {
                           ],
                           _CatalogOwnershipSummaryLine(
                             ownershipState: ownershipState,
+                          ),
+                          PokemonPlayableBadge(
+                            cardPrintId: card.id,
+                            service: playables,
+                            padding: const EdgeInsets.only(top: 3),
                           ),
                         ],
                       ),
@@ -1488,6 +1497,7 @@ class _CatalogFeedDebugOverlay extends StatelessWidget {
 
 class _CatalogCardGridTile extends StatelessWidget {
   const _CatalogCardGridTile({
+    this.playables,
     required this.card,
     required this.onTap,
     required this.ownershipState,
@@ -1501,6 +1511,7 @@ class _CatalogCardGridTile extends StatelessWidget {
   });
 
   final CardPrint card;
+  final PokemonPlayablesService? playables;
   final VoidCallback onTap;
   final CardSurfacePricingData? pricing;
   final OwnershipState? ownershipState;
@@ -1539,9 +1550,21 @@ class _CatalogCardGridTile extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                AspectRatio(
-                  aspectRatio: GvGridConstants.artworkAspectRatio,
-                  child: _CatalogGridArtwork(card: card),
+                Stack(
+                  children: [
+                    AspectRatio(
+                      aspectRatio: GvGridConstants.artworkAspectRatio,
+                      child: _CatalogGridArtwork(card: card),
+                    ),
+                    Positioned(
+                      left: 6,
+                      bottom: 6,
+                      child: PokemonPlayableBadge(
+                        cardPrintId: card.id,
+                        service: playables,
+                      ),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: GvGridConstants.imageToTitleGap),
                 SizedBox(
@@ -3750,17 +3773,21 @@ class HomePage extends StatefulWidget {
     this.signedOutBrowse = false,
     this.initialQuery = '',
     this.initialSearchParameters = const {},
+    this.playables,
   });
 
   final bool signedOutBrowse;
   final String initialQuery;
   final Map<String, String> initialSearchParameters;
+  final PokemonPlayablesService? playables;
 
   @override
   HomePageState createState() => HomePageState();
 }
 
-class HomePageState extends State<HomePage> {
+class HomePageState extends State<HomePage> with WidgetsBindingObserver {
+  late final _playables = widget.playables ?? PokemonPlayablesService.instance;
+  String? _activePlayableSnapshotId;
   static const _legacyRecentSearchesKey = 'catalog_recent_searches_v1';
   final supabase = Supabase.instance.client;
   final _ownershipAdapter = OwnershipResolverAdapter.instance;
@@ -3918,6 +3945,7 @@ class HomePageState extends State<HomePage> {
   }
 
   void _resetCuratedLandingState() {
+    _activePlayableSnapshotId = null;
     _searchRequestVersion++;
     _debounce?.cancel();
     setState(() {
@@ -4037,6 +4065,8 @@ class HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    _playables.addListener(_playablesChanged);
     unawaited(_loadRecentSearches());
     _searchParameters.addAll(widget.initialSearchParameters);
     if (widget.initialQuery.trim().isNotEmpty || _searchParameters.isNotEmpty) {
@@ -4097,10 +4127,44 @@ class HomePageState extends State<HomePage> {
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    _playables.removeListener(_playablesChanged);
     _debounce?.cancel();
     _searchCtrl.dispose();
     _searchFocusNode.dispose();
     super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      unawaited(_playables.refresh(force: true));
+    }
+  }
+
+  void _playablesChanged() {
+    if (!mounted ||
+        _loading ||
+        _activePlayableSnapshotId == null ||
+        _searchInterpretation?.hasPlayableFilter != true) {
+      return;
+    }
+    final snapshot = _playables.currentSnapshot;
+    if (snapshot == null || snapshot.state != 'ready') {
+      ++_searchRequestVersion;
+      setState(() {
+        _activePlayableSnapshotId = null;
+        _results = const [];
+        _visibleResults = const [];
+        _provisionalResults = const [];
+        _resultPricing = const {};
+        _hasMoreVisibleResults = false;
+        _searchError =
+            'Current playables are temporarily unavailable. Your search has been kept. Please try again.';
+      });
+    } else if (snapshot.id != _activePlayableSnapshotId) {
+      unawaited(_runSearch(_searchCtrl.text));
+    }
   }
 
   Future<void> reload() async {
@@ -4440,6 +4504,7 @@ class HomePageState extends State<HomePage> {
     ]);
     if (_loading && _activeSearchKey == searchKey) return;
     _activeSearchKey = searchKey;
+    _activePlayableSnapshotId = null;
     final requestVersion = ++_searchRequestVersion;
     _searchEnrichmentRequested.clear();
     setState(() {
@@ -4468,6 +4533,21 @@ class HomePageState extends State<HomePage> {
       if (!mounted || requestVersion != _searchRequestVersion) {
         return;
       }
+      PokemonPlayablesSnapshot? playableSnapshot;
+      if (resolved.interpretation?.hasPlayableFilter == true) {
+        playableSnapshot = await _playables.refresh(force: true);
+        if (playableSnapshot == null ||
+            _playables.currentSnapshot?.id != playableSnapshot.id ||
+            playableSnapshot.state != 'ready' ||
+            resolved.rows.any(
+              (card) => !playableSnapshot!.rows.containsKey(card.id),
+            )) {
+          throw StateError(
+            'Current playables are temporarily unavailable. Your search has been kept. Please try again.',
+          );
+        }
+      }
+      if (!mounted || requestVersion != _searchRequestVersion) return;
       final filteredResults = _applyCatalogFilters(resolved.rows);
       final initialVisibleResults = _takeSearchResultBatch(
         filteredResults,
@@ -4482,6 +4562,7 @@ class HomePageState extends State<HomePage> {
         _resultPricing = const <String, CardSurfacePricingData>{};
         _resolverMeta = resolved.meta;
         _searchInterpretation = resolved.interpretation;
+        _activePlayableSnapshotId = playableSnapshot?.id;
         _hasMoreVisibleResults = hasMoreVisibleResults;
         _searchError = null;
         _loading = false;
@@ -4779,6 +4860,11 @@ class HomePageState extends State<HomePage> {
               cardPrintingId: selectedPrintingId,
             );
             if (!mounted || gvviId == null || gvviId.isEmpty) {
+              // The review can close without saving. Refresh the drawer's
+              // busy props after the parent add operation clears its lock.
+              if (sheetContext.mounted) {
+                setSheetState(() {});
+              }
               return;
             }
 
@@ -5449,6 +5535,7 @@ class HomePageState extends State<HomePage> {
         : null;
     if (viewMode == AppCardViewMode.grid) {
       return _CatalogCardGridTile(
+        playables: _playables,
         card: card,
         pricing: pricing,
         ownershipState: ownershipState,
@@ -5467,6 +5554,7 @@ class HomePageState extends State<HomePage> {
     }
 
     return _CatalogCardTile(
+      playables: _playables,
       card: card,
       pricing: pricing,
       ownershipState: ownershipState,

@@ -3,6 +3,7 @@ import { getCompleteNameSearchQuery, NAMED_CARD_PAGE_SIZE, retainNamedCardFirstP
 import { getCatalogSetPresentation } from "../catalogPresentation";
 import { resolveGameScopedSetSearchIntent } from "../publicSets.shared";
 import { anniversarySetOrdinals } from "./anniversarySetSearch";
+import { readCollectorCardQueryFilters, isCollectorCardQuerySubphrase } from "./collectorCardQuery";
 
 type Game = "pokemon" | "one_piece" | "mtg";
 export type SearchSet = { id: string; code: string; name: string; printed_set_abbrev?: string | null;
@@ -31,23 +32,25 @@ function cleanRemainingText(value: string) {
   return trimmed.slice(start, end);
 }
 
-function phraseMatch(query: string, phrase: string, code = false) {
+function phraseMatch(query: string, phrase: string, code = false, game: Game = "pokemon") {
   const pattern = code ? escape(phrase) : words(phrase).map((word) => word === "and" ? "(?:and|&)" : escape(word)).join("[^\\p{L}\\p{N}]+");
   if (!pattern) return null;
   const matches = query.matchAll(new RegExp(`(?<![\\p{L}\\p{N}])${pattern}(?![\\p{L}\\p{N}])`, "giu"));
-  return [...matches].find((match) => (query.slice(0, match.index).match(/"/g) ?? []).length % 2 === 0) ?? null;
+  const filters = game === "pokemon" ? readCollectorCardQueryFilters(query, true) : [];
+  return [...matches].find((match) => (query.slice(0, match.index).match(/"/g) ?? []).length % 2 === 0 &&
+    !isCollectorCardQuerySubphrase(filters, match.index, match[0].length)) ?? null;
 }
 
 // Only remove a connector attached to a recognized set. Unknown words remain
 // constraints, including 'from' elsewhere in a card name.
-export function removeSetPhrase(query: string, phrase: string) {
-  const match = phraseMatch(query, phrase);
+export function removeSetPhrase(query: string, phrase: string, game: Game = "pokemon") {
+  const match = phraseMatch(query, phrase, false, game);
   if (!match) return query.trim();
   const before = stripSetConnector(query.slice(0, match.index));
   return cleanRemainingText(`${before} ${query.slice(match.index + match[0].length)}`);
 }
 
-export function resolveCatalogSetSearchIntent(query: string, game: Game, sets: SearchSet[], ignoredOpeningWords: string[] = []) {
+export function resolveCatalogSetSearchIntent(query: string, game: Game, sets: SearchSet[], ignoredOpeningWords: string[] = [], collectorSetCodes: readonly string[] = []) {
   const empty = { matchedAlias: null as string | null, setCodes: [] as string[], remainingQuery: query.trim(), requiresCardNameCheck: false, openingWordMatch: false };
   if (!query.trim() || /^GV-/i.test(query)) return empty;
   // Reject impossible aliases before compiling thousands of Unicode phrase
@@ -59,10 +62,10 @@ export function resolveCatalogSetSearchIntent(query: string, game: Game, sets: S
   if (query.includes("&")) queryWords.push("and");
   const queryWordPattern = new RegExp(`^(?:${queryWords.map(escape).join("|")})$`, "iu");
   const candidates = new Map<string, { source: string; codes: Set<string>; size: number; requiresCardNameCheck: boolean }>();
-  function add(alias: string, codes: string[], code = false, curated = false) {
+  function add(alias: string, codes: string[], code = false, curated = false, openingWord = false) {
     const requiredWords = code ? alias.match(/[\p{L}\p{N}]+/giu) ?? [] : words(alias);
     if (requiredWords.some((word) => !queryWordPattern.test(word))) return;
-    const match = phraseMatch(query, alias, code);
+    const match = phraseMatch(query, alias, code, game);
     if (!match) return;
     // Catalog set names can be part of an exact card name, including multiword
     // names such as Team Rocket's Handiwork. Check before creating a filter
@@ -70,6 +73,11 @@ export function resolveCatalogSetSearchIntent(query: string, game: Game, sets: S
     const prefix = query.slice(0, match.index);
     const requiresCardNameCheck = !code && !curated &&
       stripSetConnector(prefix) === prefix;
+    // A printed promo family is stronger evidence than an implicit opening
+    // word such as Pikachu (World Collection). Keep explicit connectors and
+    // complete set names/codes, even when they conflict with that family.
+    if (openingWord && requiresCardNameCheck && collectorSetCodes.length > 0 &&
+        !codes.some((value) => collectorSetCodes.includes(value))) return;
     const key = `${match.index}:${match[0].length}`;
     const candidate = candidates.get(key) ?? { source: match[0], codes: new Set<string>(), size: match[0].length, requiresCardNameCheck };
     codes.forEach((value) => candidate.codes.add(value));
@@ -115,12 +123,12 @@ export function resolveCatalogSetSearchIntent(query: string, game: Game, sets: S
     if (!candidates.size && game === "pokemon") {
       openingWordMatch = true;
       for (const [alias, codes] of openingWords) {
-        if (!ignoredOpeningWords.some((ignored) => words(ignored).join(" ") === alias)) add(alias, [...codes]);
+        if (!ignoredOpeningWords.some((ignored) => words(ignored).join(" ") === alias)) add(alias, [...codes], false, false, true);
       }
     }
   }
   const selected = [...candidates.values()].sort((a, b) => b.size - a.size)[0];
-  return selected ? { matchedAlias: selected.source, setCodes: [...selected.codes].sort(), remainingQuery: removeSetPhrase(query, selected.source), requiresCardNameCheck: selected.requiresCardNameCheck, openingWordMatch } : empty;
+  return selected ? { matchedAlias: selected.source, setCodes: [...selected.codes].sort(), remainingQuery: removeSetPhrase(query, selected.source, game), requiresCardNameCheck: selected.requiresCardNameCheck, openingWordMatch } : empty;
 }
 
 async function readCatalogCardName(client: Pick<SupabaseClient, "rpc">, query: string, game: Game,
@@ -146,12 +154,31 @@ export async function isExactCatalogCardName(client: Pick<SupabaseClient, "rpc">
 // this ambiguity check at the caller, so "Chari from Dark" still selects a set.
 export async function isCatalogCardNameQuery(client: Pick<SupabaseClient, "rpc">, query: string, game: Game,
   retain?: (page: import("./completeNamedCardSearch").NamedCardFirstPage) => void) {
-  const nameQuery = getCompleteNameSearchQuery(query);
+  const nameQuery = getCompleteNameSearchQuery(query, game);
   if (!nameQuery) return false;
   const name = await readCatalogCardName(client, nameQuery, game, retain);
   const fragments = words(nameQuery);
   const nameWords = words(name ?? "");
   return fragments.length > 0 && fragments.every((fragment) => nameWords.some((word) => word.includes(fragment)));
+}
+
+// Playable discovery already reads its complete published ID scope. A matching
+// visible name inside that scope is sufficient evidence to preserve a name
+// such as Bloodmoon Ursaluna ex without the broader fuzzy name RPC.
+export async function isPublishedPlayableCardNameQuery(client: Pick<SupabaseClient, "from">, query: string,
+  members: ReadonlyArray<{card_print_id: string; gv_id: string}>) {
+  const fragments = words(getCompleteNameSearchQuery(query, "pokemon"));
+  if (!fragments.some(word => Array.from(word).length >= 3) || !members.length) return false;
+  if (members.length > 20000) throw new Error("Playable name scope exceeds the publication bound");
+  const expected = new Map(members.map(row => [row.card_print_id, row.gv_id]));
+  const ids = [...expected.keys()];
+  for (let offset = 0; offset < ids.length; offset += 200) {
+    const {data, error} = await client.from("card_prints").select("id,gv_id,name").in("id", ids.slice(offset, offset + 200));
+    if (error) throw new Error(error.message);
+    if ((data ?? []).some(row => expected.has(row.id) && expected.get(row.id) === row.gv_id &&
+      fragments.every(fragment => words(row.name ?? "").some(word => word.includes(fragment))))) return true;
+  }
+  return false;
 }
 
 // Request-scoped, caller-visible metadata; never cache one caller's visibility

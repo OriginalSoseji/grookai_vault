@@ -90,6 +90,7 @@ jobs:
           node --check backend/operations/catalog_continuous_promotion_v1.mjs
           node --check scripts/workers/catalog_continuous_promotion_v1.mjs
           node --test \
+            tests/contracts/english_pokemon_incremental_promotion_v1.test.mjs \
             tests/contracts/catalog_incremental_supervisor_v1.test.mjs \
             tests/contracts/catalog_founder_outcome_v1.test.mjs \
             tests/contracts/catalog_continuous_promotion_v1.test.mjs

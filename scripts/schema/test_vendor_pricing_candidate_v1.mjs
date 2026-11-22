@@ -1,0 +1,8 @@
+// Owned493 lab, diagnostic transaction only; no ledger or retained-data changes.
+import fs from 'node:fs';import assert from 'node:assert/strict';import {execFileSync,spawnSync} from 'node:child_process';
+const container='supabase_db_square-commerce-fresh-487-20261111',project='square-commerce-fresh-487-20261111';
+assert.equal(JSON.parse(execFileSync('docker',['network','inspect',project],{encoding:'utf8'}))[0].Internal,true);
+const state=execFileSync('docker',['exec',container,'psql','-X','-qAt','-U','postgres','-d','postgres','-c',"select (select count(*) from auth.users)||':'||(select count(*) from public.vault_item_instances)||':'||(select count(*) from supabase_migrations.schema_migrations)||':'||current_setting('max_worker_processes')"],{encoding:'utf8'}).trim();assert.equal(state,'0:0:493:0');
+const migration=fs.readFileSync('supabase/migrations/20261112180000_vendor_pricing_rules_v1.sql','utf8');assert.match(migration,/commit;\s*$/);const sql=migration.replace(/commit;\s*$/,'')+'\n'+fs.readFileSync('backend/vendor_pricing/tests/authority_v1.sql','utf8')+'\nrollback;';
+const result=spawnSync('docker',['exec','-i',container,'psql','-X','-qAt','-U','postgres','-d','postgres','-v','ON_ERROR_STOP=1'],{input:sql,encoding:'utf8',windowsHide:true,timeout:120000,maxBuffer:16000000});
+const log='C:/grookai_vault_operator_artifacts/vendor_rules_labels_20261112/authority-'+Date.now()+'.log';fs.writeFileSync(log,(result.stdout??'')+'\n'+(result.stderr??''),{flag:'wx'});console.log(JSON.stringify({pass:result.status===0,rolledBack:true,productionWrites:0,log}));if(result.status!==0){console.error(result.stderr?.slice(-3000));process.exitCode=1;}

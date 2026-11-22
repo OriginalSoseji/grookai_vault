@@ -57,11 +57,15 @@ void main() {
       expect(summary?.name, 'Celebrations');
       expect(summary?.cardCount, 25);
       expect(summary?.printedSetAbbrev, 'CEL');
-      expect(requests, hasLength(2));
+      expect(requests, hasLength(3));
 
-      final request = requests.first;
+      expect(
+        requests.first.url.path,
+        '/rest/v1/rpc/resolve_visible_set_references_v1',
+      );
+      final request = requests[1];
       expect(request.url.path, '/rest/v1/sets');
-      expect(request.url.queryParameters['code'], 'ilike.cel25');
+      expect(request.url.queryParameters['code'], 'in.("cel25")');
       expect(request.url.queryParameters.containsKey('limit'), isFalse);
       expect(
         request.url.queryParameters['select'],

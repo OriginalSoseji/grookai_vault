@@ -16,6 +16,23 @@ class _Api implements EbaySellerApi {
   @override
   String get ownerId => _owner;
   final actions = <String>[];
+  bool showDraftList = false;
+  final draftSummaries = <Map<String, dynamic>>[
+    {
+      'id': _draft,
+      'instanceId': _instance,
+      'state': 'editing',
+      'revision': 2,
+      'title': 'Eevee · Japanese 173',
+    },
+    {
+      'id': 'ef000000-0000-4000-8000-000000000004',
+      'instanceId': _instance,
+      'state': 'live',
+      'revision': 4,
+      'title': 'Pikachu · Base Set 58',
+    },
+  ];
   @override
   Future<Map<String, dynamic>> workspace({String? instanceId}) async => {
     'account': {
@@ -25,15 +42,17 @@ class _Api implements EbaySellerApi {
       'preparationEnabled': true,
       'publicationEnabled': true,
     },
-    'copy': {
-      'id': _instance,
-      'name': 'Eevee',
-      'setCode': 'PR-SV',
-      'number': '173',
-      'condition': null,
-      'isGraded': false,
-    },
-    'drafts': [],
+    'copy': showDraftList
+        ? null
+        : {
+            'id': _instance,
+            'name': 'Eevee',
+            'setCode': 'PR-SV',
+            'number': '173',
+            'condition': null,
+            'isGraded': false,
+          },
+    'drafts': showDraftList ? draftSummaries : [],
   };
   @override
   Future<Map<String, dynamic>> draft(String draftId) async => {};
@@ -45,6 +64,16 @@ class _Api implements EbaySellerApi {
     Map<String, dynamic> payload,
   ) async {
     actions.add(action);
+    if (action == 'abandon') {
+      final row = draftSummaries.firstWhere(
+        (item) => item['id'] == payload['draftId'],
+      );
+      row['state'] = 'abandoned';
+      return {
+        'state': 'abandoned',
+        'revision': (payload['revision'] as int) + 1,
+      };
+    }
     throw StateError('Synthetic fixture does not perform provider operations.');
   }
 
@@ -62,6 +91,106 @@ class _Api implements EbaySellerApi {
 
 void main() {
   setUp(() => SharedPreferences.setMockInitialValues({}));
+  testWidgets('saved listing drafts can be removed from their list', (
+    tester,
+  ) async {
+    final api = _Api()..showDraftList = true;
+    final model = EbaySellerController(api: api);
+    addTearDown(model.dispose);
+    await model.refresh();
+    await tester.pumpWidget(
+      MaterialApp(home: EbaySellerScreen(controller: model)),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.text('Eevee · Japanese 173'), findsOneWidget);
+    expect(find.text('Pikachu · Base Set 58'), findsOneWidget);
+    expect(find.byTooltip('Remove draft'), findsOneWidget);
+    await tester.tap(find.byTooltip('Remove draft'));
+    await tester.pumpAndSettle();
+    expect(find.text('Remove this draft?'), findsOneWidget);
+    await tester.tap(find.text('Keep draft'));
+    await tester.pumpAndSettle();
+    expect(api.actions, isEmpty);
+
+    await tester.tap(find.byTooltip('Remove draft'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.widgetWithText(FilledButton, 'Remove draft'));
+    await tester.pumpAndSettle();
+    expect(api.actions, ['abandon']);
+    expect(find.text('Eevee · Japanese 173'), findsNothing);
+    expect(find.text('Pikachu · Base Set 58'), findsOneWidget);
+    expect(find.byTooltip('Remove draft'), findsNothing);
+  });
+
+  for (final state in ['editing', 'prepared']) {
+    testWidgets('$state draft removal requires explicit confirmation', (
+      tester,
+    ) async {
+      final api = _Api();
+      final model = EbaySellerController(api: api);
+      addTearDown(model.dispose);
+      model.local = const EbaySellerLocalDraft(
+        ownerId: _owner,
+        instanceId: _instance,
+        draftId: _draft,
+        revision: 1,
+        dirty: false,
+        input: {},
+      );
+      model.draft = {'id': _draft, 'revision': 1, 'state': state};
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: SingleChildScrollView(
+              child: EbaySellerReview(controller: model, nowMillis: 0),
+            ),
+          ),
+        ),
+      );
+      final remove = find.widgetWithText(OutlinedButton, 'Remove draft');
+      await tester.ensureVisible(remove);
+      await tester.tap(remove);
+      await tester.pumpAndSettle();
+      expect(find.text('Remove this draft?'), findsOneWidget);
+      expect(api.actions, isEmpty);
+      await tester.tap(find.text('Keep draft'));
+      await tester.pumpAndSettle();
+      expect(api.actions, isEmpty);
+      await tester.tap(remove);
+      await tester.pumpAndSettle();
+      await tester.tap(find.widgetWithText(FilledButton, 'Remove draft'));
+      await tester.pumpAndSettle();
+      expect(api.actions, ['abandon']);
+    });
+  }
+  for (final state in [
+    'uncertain',
+    'preparing',
+    'publishing',
+    'live',
+    'sold',
+  ]) {
+    testWidgets('$state cannot remove a draft from the review surface', (
+      tester,
+    ) async {
+      final api = _Api();
+      final model = EbaySellerController(api: api);
+      addTearDown(model.dispose);
+      model.draft = {'id': _draft, 'revision': 1, 'state': state};
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: SingleChildScrollView(
+              child: EbaySellerReview(controller: model, nowMillis: 0),
+            ),
+          ),
+        ),
+      );
+      expect(find.text('Remove draft'), findsNothing);
+      expect(api.actions, isEmpty);
+    });
+  }
   testWidgets('cold OAuth return offers the saved sale-card resume action', (
     tester,
   ) async {
@@ -228,6 +357,57 @@ void main() {
       false,
     );
     expect(publish().onPressed, isNull);
+    expect(api.actions, isEmpty);
+  });
+
+  testWidgets('explains when a prepared offer cannot be published', (
+    tester,
+  ) async {
+    final api = _Api();
+    final model = EbaySellerController(api: api);
+    addTearDown(model.dispose);
+    model.workspace = {
+      'account': {'publicationEnabled': false},
+    };
+    model.local = const EbaySellerLocalDraft(
+      ownerId: _owner,
+      instanceId: _instance,
+      draftId: _draft,
+      revision: 1,
+      dirty: false,
+      input: {'priceCents': 1234},
+    );
+    model.draft = {
+      'id': _draft,
+      'revision': 1,
+      'reviewHash': 'reviewed-payload',
+      'state': 'prepared',
+      'feeQuote': {'requestedAt': 100000, 'fees': []},
+    };
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: SingleChildScrollView(
+            child: EbaySellerReview(controller: model, nowMillis: 101000),
+          ),
+        ),
+      ),
+    );
+
+    expect(
+      find.textContaining(
+        'Publishing is not enabled for this seller account yet.',
+      ),
+      findsOneWidget,
+    );
+    expect(
+      tester
+          .widget<FilledButton>(
+            find.widgetWithText(FilledButton, 'Publish on eBay'),
+          )
+          .onPressed,
+      isNull,
+    );
     expect(api.actions, isEmpty);
   });
 }

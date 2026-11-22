@@ -99,6 +99,43 @@ one durable attempt record per invocation. Only source/transport failures are
 retried. Health, reconciliation, and publication-invariant failures stop
 immediately and notify operations.
 
+`.github/workflows/tcgplayer-market-continuity-watchdog.yml` is the independent
+continuity fallback. It runs every two hours, reads the live pointer, snapshot
+count, source age, latest production state, and producing commit, and does
+nothing while healthy. It invokes the same guarded production scheduled runner
+at 26 hours of source age, or at 18 hours after a terminal production failure,
+so recovery completes before the 36-hour client cutoff. A production run less
+than six hours old is treated as in progress to prevent overlap. The watchdog
+does not bypass reconciliation, the production activation guard, the shared
+source/publication locks, or zero-mismatch readback.
+
+GitHub schedule delivery may be delayed. On the owner workstation, install the
+five-minute dispatch-only continuity clock with:
+
+```powershell
+pwsh -NoProfile -File .\scripts\ops\install_market_continuity_dispatch_watchdog_v1.ps1
+```
+
+The local task dispatches only
+`tcgplayer-market-continuity-watchdog.yml` on `main` when its latest run is more
+than 135 minutes old. A queued or running continuity job receives the workflow's
+full six-hour grace window. The task has no Supabase credential or database,
+mapping, publication, or customer-state authority. Its latest decision and
+append-only history are retained under
+`C:\grookai_vault_operator_artifacts\tcgplayer_market_continuity_dispatch_watchdog_v1`.
+
+The active-ask refresh records `passed_with_warning` plus
+`empty_active_ask_cache` when no exact fresh eBay listing row qualifies. Empty
+availability evidence never substitutes for TCGPlayer Market and does not block
+an otherwise verified TCGPlayer publication. Invalid or stale cache rows remain
+blocking failures.
+
+The source warehouse worker and write-mode publication worker share
+`grookai:tcgcsv:current:v1`. If a current sync owns it, publication exits with
+`TCGCSV_CURRENT_SOURCE_LOCKED` and the scheduled retry policy retries. If a
+publication owns it, a new current sync cannot supersede the source generation
+until that publication reaches a terminal state.
+
 Install the units without activation while shadow proof is pending:
 
 ```bash
@@ -164,6 +201,9 @@ Critical findings require stopping publication rollout. Do not bypass:
 - stale or failed current source sync
 - eligible/snapshot mismatch
 - broken provenance trace
+- an expired/missing active publication or repeated scheduled production
+  failure
+- production runner commit drift accompanying a failed refresh
 - unexpectedly empty current read model
 
 ## Canary Readback
@@ -284,6 +324,9 @@ npm run pricing:market:active-ask:refresh -- --apply
 
 Do not run this command from a dirty tracked worktree. Shadow and dry-run
 pipelines read and validate the existing snapshot but do not refresh it.
+The pipeline caps the active-ask database timeout at 120 minutes even when the
+publication database timeout is longer; this preserves the active-ask worker's
+bounded contract without shortening publication assignment preparation.
 
 ## Full Eligible Signed-In Rollout
 

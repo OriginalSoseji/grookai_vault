@@ -153,6 +153,34 @@ class _EbaySellerScreenState extends State<EbaySellerScreen>
     }
   }
 
+  Future<void> _removeDraftSummary(Map<String, dynamic> summary) async {
+    final model = _model;
+    if (model == null) return;
+    final title = summary['title']?.toString().trim();
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Text('Remove this draft?'),
+        content: Text(
+          '“${title == null || title.isEmpty ? 'Listing draft' : title}” will be removed from your grookai eBay drafts list. It will not delete anything from eBay or remove a card from your Vault.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext, false),
+            child: const Text('Keep draft'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(dialogContext, true),
+            child: const Text('Remove draft'),
+          ),
+        ],
+      ),
+    );
+    if (confirmed == true && mounted) {
+      await model.removeDraftSummary(summary);
+    }
+  }
+
   Future<void> _connect() async {
     final uri = await _model?.startLink();
     if (uri == null || !mounted) return;
@@ -323,23 +351,64 @@ class _EbaySellerScreenState extends State<EbaySellerScreen>
                             'Choose an exact copy from your Vault to start a listing.',
                           ),
                           const SizedBox(height: 16),
-                          for (final summary in sellerRows(
+                          if (sellerRows(
                             model.workspace['drafts'],
-                          ))
-                            ListTile(
-                              contentPadding: EdgeInsets.zero,
-                              leading: const Icon(Icons.sell_outlined),
-                              title: Text(
-                                summary['title']?.toString() ?? 'Listing draft',
+                          ).any((row) => row['state'] != 'abandoned'))
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 8),
+                              child: Text(
+                                'Open a draft to review its photos, price, condition, and listing status.',
+                                style: TextStyle(
+                                  color: colors.onSurfaceVariant,
+                                  fontSize: 13,
+                                ),
                               ),
-                              subtitle: Text(
-                                sellerStateLabel(summary['state']),
+                            ),
+                          ...sellerRows(model.workspace['drafts'])
+                              .where((row) => row['state'] != 'abandoned')
+                              .map(
+                                (summary) => ListTile(
+                                  contentPadding: EdgeInsets.zero,
+                                  leading: const Icon(Icons.sell_outlined),
+                                  title: Text(
+                                    summary['title']?.toString() ??
+                                        'Listing draft',
+                                  ),
+                                  subtitle: Text(
+                                    sellerStateLabel(summary['state']),
+                                  ),
+                                  trailing: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      if ([
+                                        'editing',
+                                        'prepared',
+                                      ].contains(summary['state']))
+                                        IconButton(
+                                          tooltip: 'Remove draft',
+                                          onPressed: model.busy == null
+                                              ? () =>
+                                                    _removeDraftSummary(summary)
+                                              : null,
+                                          icon: const Icon(
+                                            Icons.delete_outline_rounded,
+                                          ),
+                                        ),
+                                      const Icon(Icons.chevron_right_rounded),
+                                    ],
+                                  ),
+                                  onTap: () => openEbaySeller(
+                                    context,
+                                    draftId: summary['id'] as String,
+                                  ),
+                                ),
                               ),
-                              trailing: const Icon(Icons.chevron_right_rounded),
-                              onTap: () => openEbaySeller(
-                                context,
-                                draftId: summary['id'] as String,
-                              ),
+                          if (!sellerRows(
+                            model.workspace['drafts'],
+                          ).any((row) => row['state'] != 'abandoned'))
+                            Text(
+                              'No saved eBay drafts. Start a listing from an exact copy in your Vault.',
+                              style: TextStyle(color: colors.onSurfaceVariant),
                             ),
                         ] else if (model.local != null) ...[
                           Padding(

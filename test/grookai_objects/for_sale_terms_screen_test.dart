@@ -328,6 +328,8 @@ class _FakeSaleListingService extends SaleListingService {
     required double price,
     String currency = 'USD',
     String? note,
+    bool preserveNote = false,
+    bool waitForSquareConfirmation = false,
   }) async {
     saveCalls += 1;
     lastInstanceId = instanceId;

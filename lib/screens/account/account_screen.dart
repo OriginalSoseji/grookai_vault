@@ -592,14 +592,7 @@ class _AccountScreenState extends State<AccountScreen> {
                         icon: Icons.point_of_sale_outlined,
                         title: 'Square',
                         subtitle: 'Sync sale cards, QR codes and Square sales',
-                        onTap: () => Navigator.of(context).push(
-                          MaterialPageRoute<void>(
-                            settings: const RouteSettings(
-                              name: SquareScreen.routeName,
-                            ),
-                            builder: (_) => const SquareScreen(),
-                          ),
-                        ),
+                        onTap: () => SquareScreen.open(context),
                       ),
                     ],
                   ),

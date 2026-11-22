@@ -4,9 +4,11 @@ import test from "node:test";
 
 import {
   partitionPokemonMappingAuthorityFinishCandidatesV1,
+  projectPokemonMappingAuthorityBaseFinishCandidatesV1,
 } from "../../backend/operations/tcgplayer_pricing_completion_agent_v1.mjs";
 import {
   assertCandidateLive,
+  projectReviewedMasterSourceOverrideV1,
 } from "../../scripts/audits/pokemon_tcgplayer_exact_mapping_authority_v1.mjs";
 
 const SCRIPT = fs.readFileSync(new URL(
@@ -51,6 +53,27 @@ test("Pokemon authority binds source, observation, parent, identity, and exact f
   assert.match(SCRIPT, /master_card_evidence_changed/);
   assert.match(SCRIPT, /master_printing_evidence_changed/);
   assert.match(SCRIPT, /english_master_index_publishable_v1/);
+});
+
+test("Delta Reign authority reuses the frozen hidden-set Master and base-printing evidence", () => {
+  const master = JSON.parse(fs.readFileSync(new URL(
+    "../../docs/audits/delta_reign_base_printing_release_v1/authority_20261115_v1/master.json",
+    import.meta.url,
+  ), "utf8"));
+  const manifest = JSON.parse(fs.readFileSync(new URL(
+    "../../docs/audits/delta_reign_base_printing_release_v1/authority_20261115_v1/manifest.json",
+    import.meta.url,
+  ), "utf8"));
+  const cards = projectReviewedMasterSourceOverrideV1("me06", "cards", master);
+  const printings = projectReviewedMasterSourceOverrideV1("me06", "printings", manifest);
+  assert.equal(cards.cards.length, 141);
+  assert.equal(printings.printings.length, 141);
+  assert.equal(printings.printings.filter((row) => row.finish_key === "normal").length, 83);
+  assert.equal(printings.printings.filter((row) => row.finish_key === "holo").length, 58);
+  assert.ok(printings.printings.every((row) => row.status === "master_verified"));
+  assert.equal(projectReviewedMasterSourceOverrideV1("sv1", "cards", {}), null);
+  assert.match(SCRIPT, /delta_reign_base_printing_release_v1\/authority_20261115_v1\/master\.json/);
+  assert.match(SCRIPT, /delta_reign_base_printing_release_v1\/authority_20261115_v1\/manifest\.json/);
 });
 
 test("catalog refresh and pricing observation runs are validated independently", () => {
@@ -163,6 +186,75 @@ test("multi-finish products are held without stalling unrelated authority candid
   assert.deepEqual(result.held_by_reason, {
     mapping_authority_source_finish_not_supported: 1,
     mapping_authority_source_finish_not_unique: 1,
+  });
+});
+
+test("base finish projection advances a parent mapping while retaining Reverse Holo evidence", () => {
+  const review = {
+    source_product_id: 726510,
+    source_subtypes: ["Normal", "Reverse Holofoil"],
+    supporting_gap_observation_ids: ["obs-reverse", "obs-normal"],
+    supporting_gap_row_count: 2,
+  };
+  const exact = {
+    ...review,
+    candidate_fingerprint: "stale",
+  };
+  const result = projectPokemonMappingAuthorityBaseFinishCandidatesV1({
+    reviewCandidates: [review],
+    exactCandidates: [exact],
+    gapRows: [
+      {
+        source_observation_id: "obs-normal",
+        source_product_id: 726510,
+        source_subtype_name: "Normal",
+      },
+      {
+        source_observation_id: "obs-reverse",
+        source_product_id: 726510,
+        source_subtype_name: "Reverse Holofoil",
+      },
+    ],
+  });
+  assert.equal(result.held_count, 0);
+  assert.equal(result.projected_product_count, 1);
+  assert.equal(result.held_observation_count, 1);
+  assert.deepEqual(result.eligible[0].source_subtypes, ["Normal"]);
+  assert.deepEqual(result.eligible[0].supporting_gap_observation_ids, ["obs-normal"]);
+  assert.deepEqual(result.exact_candidates[0].source_subtypes, ["Normal"]);
+  assert.deepEqual(
+    result.exact_candidates[0].authority_finish_projection.held_observation_ids,
+    ["obs-reverse"],
+  );
+  assert.match(result.exact_candidates[0].candidate_fingerprint, /^[a-f0-9]{64}$/);
+  assert.notEqual(result.exact_candidates[0].candidate_fingerprint, "stale");
+  assert.deepEqual(result.held_observations, [{
+    source_product_id: 726510,
+    source_observation_id: "obs-reverse",
+    source_subtype_name: "Reverse Holofoil",
+    reason: "reverse_holo_printing_authority_not_proven",
+  }]);
+
+  const unsupported = projectPokemonMappingAuthorityBaseFinishCandidatesV1({
+    reviewCandidates: [{
+      source_product_id: 700002,
+      source_subtypes: ["Cosmos Holofoil"],
+      supporting_gap_observation_ids: ["obs-cosmos"],
+    }],
+    exactCandidates: [{
+      source_product_id: 700002,
+      source_subtypes: ["Cosmos Holofoil"],
+      supporting_gap_observation_ids: ["obs-cosmos"],
+    }],
+    gapRows: [{
+      source_observation_id: "obs-cosmos",
+      source_product_id: 700002,
+      source_subtype_name: "Cosmos Holofoil",
+    }],
+  });
+  assert.equal(unsupported.eligible.length, 0);
+  assert.deepEqual(unsupported.held_by_reason, {
+    mapping_authority_source_finish_not_supported: 1,
   });
 });
 

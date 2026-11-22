@@ -3,9 +3,10 @@ import { recognizeCombinedArtist, recognizeLiteralArtist } from "./combinedArtis
 import type { PublicGameScope } from "@/lib/publicGameScope";
 import type { PublicLanguageScope } from "@/lib/publicLanguageScope";
 import { resolveGameScopedSetSearchIntent } from "@/lib/publicSets.shared";
+import { readCollectorCardQueryFilters, removeCollectorCardQueryFilters, isCollectorCardQuerySubphrase } from "./collectorCardQuery";
 
 export type SearchQueryFilter = {
-  kind: "artist" | "finish" | "year" | "stamp" | "image" | "owned" | "text" | "game" | "language" | "rarity" | "number" | "set" | "cameo";
+  kind: "artist" | "finish" | "year" | "stamp" | "image" | "owned" | "text" | "game" | "language" | "rarity" | "artwork" | "number" | "set" | "cameo" | "playable";
   label: string;
   sourceText: string;
   queryWithout?: string;
@@ -15,6 +16,7 @@ export type SearchQueryFilter = {
 export type SmartSearchIntent = {
   originalQuery: string;
   residualQuery: string;
+  discoveryQuery?: string;
   releaseYearMin?: number;
   releaseYearMax?: number;
   finishKeys: string[];
@@ -29,6 +31,7 @@ export type SmartSearchIntent = {
   languageScope?: PublicLanguageScope;
   imageState?: "exact" | "representative" | "missing" | "any";
   ownedState?: "owned" | "missing" | "any";
+  playable?: boolean;
   stampLabels: string[];
   interpretedLabels: string[];
   unrecognizedTerms: string[];
@@ -232,15 +235,21 @@ export function buildSmartSearchIntent(rawQuery: string, options: { gameScope?: 
   if (literalArtist) residual = residual.replace(literalArtist.matchedText, " ");
   const queryFilters: SearchQueryFilter[] = [];
   const literalText: string[] = [];
+  const quotedLiteralIndexes = new Set<number>();
   residual = residual.replace(/"([^"\n]*)"/g, (_, text: string) => {
     literalText.push(text);
+    quotedLiteralIndexes.add(literalText.length - 1);
     return `__literal${literalText.length - 1}__`;
   });
   // Catalog set names may contain years, numbers or finish words. Interpret
   // them as one name rather than manufacturing extra constraints from them.
   for (const phrase of options.protectedPhrases ?? []) {
     const escaped = normalizeWhitespace(phrase).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    residual = residual.replace(new RegExp(escaped, "i"), (text) => {
+    const filters = (options.gameScope ?? "pokemon") === "pokemon" ? readCollectorCardQueryFilters(residual, true) : [];
+    let protectedOnce = false;
+    residual = residual.replace(new RegExp(escaped, "gi"), (text, index: number) => {
+      if (protectedOnce || isCollectorCardQuerySubphrase(filters, index, text.length)) return text;
+      protectedOnce = true;
       literalText.push(text);
       return `__literal${literalText.length - 1}__`;
     });
@@ -272,6 +281,15 @@ export function buildSmartSearchIntent(rawQuery: string, options: { gameScope?: 
   const finishKeys: string[] = [];
   const stampLabels: string[] = [];
   const unappliedLabels: string[] = [];
+
+  const playable = /\bplayables?\b/i.test(residual) || undefined;
+  if (playable) {
+    interpretedLabels.push("Playable: Pokémon Standard");
+    for (const sourceText of residual.match(/\bplayables?\b/gi) ?? []) {
+      queryFilters.push({kind: "playable", label: "Playable: Pokémon Standard", sourceText});
+    }
+    residual = residual.replace(/\bplayables?\b/gi, " ").replace(/\bstandard\b/gi, " ");
+  }
 
   const imageState = parseImageStateIntent(residual);
   if (imageState && imageState !== "any") {
@@ -372,17 +390,23 @@ export function buildSmartSearchIntent(rawQuery: string, options: { gameScope?: 
   // These constraints remain in the resolver text, where catalog fields are
   // matched. Expose their individual removal without maintaining a second
   // client-side interpretation. Rare Candy is a card name, not a rarity filter.
-  let displayText = residual;
-  for (const match of residual.matchAll(/\b(?:(?:hyper|ultra|secret|double|special illustration|illustration)\s+rare|uncommon|common|rare(?!\s+candy))\b/gi)) {
-    queryFilters.push({ kind: "rarity", label: `Rarity: ${match[0]}`, sourceText: match[0] });
-    displayText = displayText.replace(match[0], " ");
+  const collectorFilters = readCollectorCardQueryFilters(residual, (gameScope ?? options.gameScope ?? "pokemon") === "pokemon");
+  let displayText = removeCollectorCardQueryFilters(residual, collectorFilters);
+  for (const filter of collectorFilters) {
+    queryFilters.push({ kind: filter.kind, label: filter.label, sourceText: filter.sourceText });
   }
   for (const match of residual.matchAll(/(?:^|\s)(#?\d+(?:\/\d+)?)(?=\s|$)/g)) {
     queryFilters.push({ kind: "number", label: `Number: ${match[1]}`, sourceText: match[1] });
     displayText = displayText.replace(match[1], " ");
   }
   displayText = normalizeWhitespace(displayText);
-  const restoreLiterals = (value: string) => value.replace(/__literal(\d+)__/g, (_, index: string) => literalText[Number(index)] ?? "");
+  const restoreLiterals = (value: string, preserveQuotes = false) => value.replace(/__literal(\d+)__/g, (_, index: string) => {
+    const text = literalText[Number(index)] ?? "";
+    return preserveQuotes && quotedLiteralIndexes.has(Number(index)) ? `"${text}"` : text;
+  });
+  // Display text remains readable; discovery retains the user's literal syntax
+  // so later collector parsing cannot reinterpret quoted SIR or Full Art text.
+  const discoveryQuery = restoreLiterals(residual, true);
   residual = restoreLiterals(residual);
   displayText = restoreLiterals(displayText);
 
@@ -394,6 +418,7 @@ export function buildSmartSearchIntent(rawQuery: string, options: { gameScope?: 
   return {
     originalQuery,
     residualQuery: residual,
+    ...(discoveryQuery !== residual ? { discoveryQuery } : {}),
     cameoSubject,
     releaseYearMin: yearRange?.min,
     releaseYearMax: yearRange?.max,
@@ -414,6 +439,7 @@ export function buildSmartSearchIntent(rawQuery: string, options: { gameScope?: 
     languageScope,
     imageState,
     ownedState,
+    playable,
     stampLabels: unique(stampLabels),
     interpretedLabels: unique(interpretedLabels),
     unrecognizedTerms: [],

@@ -1,3 +1,6 @@
+import {marketPipelineDatabaseConfigV1} from '../../backend/pricing/market_pipeline_database_config_v1.mjs';
+import {CROSS_TCG_MARKET_SCOPE_V2,readCrossTcgMarketBootstrapV2,assertCrossTcgMarketActivationV2} from '../../backend/pricing/cross_tcg_market_activation_guard_v2.mjs';
+import {TCGPLAYER_MARKET_PUBLICATION_POLICY_V2, evaluateTcgplayerMarketQualificationV2} from '../../backend/pricing/tcgplayer_market_publication_policy_v2.mjs';
 import { execFile } from "node:child_process";
 import { createHash } from "node:crypto";
 import { createReadStream } from "node:fs";
@@ -13,7 +16,7 @@ import {
   REVIEWED_SPECIAL_CANDIDATE_COLUMNS_V1,
   REVIEWED_SPECIAL_CANDIDATE_JOINS_V1,
 } from "../../backend/pricing/tcgplayer_reviewed_special_candidate_evidence_v1.mjs";
-import { readMarketActivationCoverageV1 } from "../../backend/pricing/market_activation_coverage_v1.mjs";
+import { readMarketActivationCoverageV2 } from "../../backend/pricing/market_activation_coverage_v2.mjs";
 import { marketSessionConnectionStringV1 } from "../../backend/pricing/market_scheduler_session_v1.mjs";
 import {
   createCandidateStreamReconcilerV1,
@@ -24,9 +27,9 @@ import {
 import "../../backend/env.mjs";
 import {
   TCGPLAYER_MARKET_FRESHNESS_HOURS_V1,
-  TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3,
+
   TCGPLAYER_MARKET_SUPPRESSION_HOURS_V1,
-  evaluateTcgplayerMarketQualificationV1,
+
 } from "../../backend/pricing/tcgplayer_market_publication_policy_v1.mjs";
 import {
   loadTcgplayerMarketCanaryDefinitionV1,
@@ -45,6 +48,10 @@ import {
 import {
   assertTcgplayerMarketSourceRunwayV1,
 } from "../../backend/pricing/tcgplayer_market_source_runway_v1.mjs";
+import {
+  acquireTcgcsvCurrentSourceLockV1,
+  releaseTcgcsvCurrentSourceLockV1,
+} from "../../backend/pricing/tcgcsv_current_source_lock_v1.mjs";
 
 const { Client } = pg;
 const execFileAsync = promisify(execFile);
@@ -56,11 +63,11 @@ const DEFAULT_OUT_ROOT = path.join(
   "artifacts",
   "market_pricing_product_v1",
 );
-const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_22";
+const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_25";
 const PIPELINE_VERSION = "TCGPLAYER_MARKET_PIPELINE_V1";
 const SCHEMA_VERSION = "TCGPLAYER_MARKET_PUBLICATION_SCHEMA_V1";
 const SNAPSHOT_SCHEMA_VERSION = "MARKET_PRICE_PUBLICATION_SNAPSHOT_V1";
-const MIGRATION_VERSION = "20261020220000";
+const MIGRATION_VERSION = "20261120063000";
 const REQUIRED_PHASES = [
   "prepare_variant_assignments",
   "stage_candidates",
@@ -242,11 +249,6 @@ function connectionString() {
   );
 }
 
-function sslConfig(url) {
-  return /localhost|127\.0\.0\.1|\[::1\]/i.test(url)
-    ? false
-    : { rejectUnauthorized: false };
-}
 
 function chunks(rows, size) {
   const result = [];
@@ -409,7 +411,7 @@ async function candidateRows(client, {
          candidate.*,
          source_group.name as source_group_name,
          ${REVIEWED_SPECIAL_CANDIDATE_COLUMNS_V1}
-       from public.v_tcgplayer_market_qualification_candidates_v7 candidate
+       from public.v_tcgplayer_market_qualification_candidates_v8 candidate
        left join public.tcgcsv_source_groups source_group
          on source_group.group_id = candidate.group_id
        ${REVIEWED_SPECIAL_CANDIDATE_JOINS_V1}
@@ -478,7 +480,7 @@ async function candidateRows(client, {
        from public.tcgcsv_source_price_daily_observations observation
        where observation.last_seen_run_id = $1
          and observation.observed_on = $2
-         and observation.category_id in (1, 3)`,
+         and observation.category_id in (1, 3, 68, 85)`,
       [sourceRun.id, sourceRun.observed_on],
     )
   ).rows[0];
@@ -496,7 +498,7 @@ async function candidateRows(client, {
          candidate.*,
          source_group.name as source_group_name,
          ${REVIEWED_SPECIAL_CANDIDATE_COLUMNS_V1}
-       from public.v_tcgplayer_market_qualification_candidates_v7 candidate
+       from public.v_tcgplayer_market_qualification_candidates_v8 candidate
        left join public.tcgcsv_source_groups source_group
          on source_group.group_id = candidate.group_id
        ${REVIEWED_SPECIAL_CANDIDATE_JOINS_V1}
@@ -546,6 +548,8 @@ function buildCandidate(row, runId) {
     edition_assignment_id: row.edition_assignment_id ?? null,
     gym_edition_assignment_id: row.gym_edition_assignment_id ?? null,
     mtg_printing_mapping_id: row.mtg_printing_mapping_id ?? null,
+    cross_tcg_source_mapping_id: row.cross_tcg_source_mapping_id ?? null,
+    cross_tcg_printing_mapping_id: row.cross_tcg_printing_mapping_id ?? null,
     card_print_id: row.card_print_id,
     card_printing_id: row.card_printing_id,
     candidate_hash: sha256({
@@ -556,6 +560,8 @@ function buildCandidate(row, runId) {
       edition_assignment_id: row.edition_assignment_id ?? null,
       gym_edition_assignment_id: row.gym_edition_assignment_id ?? null,
       mtg_printing_mapping_id: row.mtg_printing_mapping_id ?? null,
+      cross_tcg_source_mapping_id: row.cross_tcg_source_mapping_id ?? null,
+      cross_tcg_printing_mapping_id: row.cross_tcg_printing_mapping_id ?? null,
       card_printing_id: row.card_printing_id,
     }),
     candidate_payload: row,
@@ -590,7 +596,10 @@ function buildDecision(candidate, evaluation, run, phaseAttemptId, evaluatedAt) 
     candidate_mapping_identity: editionAssignmentId ? [
       "tcgplayer_edition", row.source_product_id, row.source_subtype_name,
       row.edition_binding_id, editionAssignmentId, row.card_print_id,
-    ].join(":") : row.mtg_printing_mapping_id ? [
+    ].join(":") : (row.cross_tcg_source_mapping_id || row.cross_tcg_printing_mapping_id) ? [
+      'cross_tcg_exact_v2',row.source_product_id,row.source_subtype_name,
+      row.cross_tcg_source_mapping_id ?? row.cross_tcg_printing_mapping_id,row.card_printing_id,
+    ].join(':') : row.mtg_printing_mapping_id ? [
       "tcgplayer_mtg_finish", row.source_product_id, row.source_subtype_name,
       row.mtg_printing_mapping_id, row.card_printing_id,
     ].join(":") : [
@@ -603,6 +612,8 @@ function buildDecision(candidate, evaluation, run, phaseAttemptId, evaluatedAt) 
     edition_assignment_id: row.edition_assignment_id ?? null,
     gym_edition_assignment_id: row.gym_edition_assignment_id ?? null,
     mtg_printing_mapping_id: row.mtg_printing_mapping_id ?? null,
+    cross_tcg_source_mapping_id: row.cross_tcg_source_mapping_id ?? null,
+    cross_tcg_printing_mapping_id: row.cross_tcg_printing_mapping_id ?? null,
     variant_assignment_status:
       row.variant_assignment_status ?? row.derived_variant_assignment_status,
     variant_assignment_version: row.variant_assignment_version,
@@ -671,7 +682,7 @@ async function ensureRun(client, {
     [
       runKey,
       PIPELINE_VERSION,
-      TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3,
+      TCGPLAYER_MARKET_PUBLICATION_POLICY_V2,
       runMode,
       sourceRun.observed_on,
       sourceRun.id,
@@ -699,7 +710,7 @@ async function ensureRun(client, {
     run.git_commit_sha !== commitSha ||
     run.run_mode !== runMode ||
     run.source_sync_run_id !== sourceRun.id ||
-    run.policy_version !== TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3 ||
+    run.policy_version !== TCGPLAYER_MARKET_PUBLICATION_POLICY_V2 ||
     run.worker_version !== WORKER_VERSION
   ) {
     throw new Error(
@@ -917,6 +928,8 @@ async function insertCandidates(client, candidates, batchSize) {
            edition_assignment_id uuid,
            gym_edition_assignment_id uuid,
            mtg_printing_mapping_id uuid,
+           cross_tcg_source_mapping_id bigint,
+           cross_tcg_printing_mapping_id uuid,
            card_print_id uuid,
            card_printing_id uuid,
            candidate_hash text,
@@ -937,6 +950,8 @@ async function insertCandidates(client, candidates, batchSize) {
          edition_assignment_id,
          gym_edition_assignment_id,
          mtg_printing_mapping_id,
+         cross_tcg_source_mapping_id,
+         cross_tcg_printing_mapping_id,
          card_print_id,
          card_printing_id,
          candidate_hash,
@@ -956,6 +971,8 @@ async function insertCandidates(client, candidates, batchSize) {
          edition_assignment_id,
          gym_edition_assignment_id,
          mtg_printing_mapping_id,
+         cross_tcg_source_mapping_id,
+         cross_tcg_printing_mapping_id,
          card_print_id,
          card_printing_id,
          candidate_hash,
@@ -992,6 +1009,8 @@ async function insertDecisions(client, decisions, batchSize) {
            edition_assignment_id uuid,
            gym_edition_assignment_id uuid,
            mtg_printing_mapping_id uuid,
+           cross_tcg_source_mapping_id bigint,
+           cross_tcg_printing_mapping_id uuid,
            variant_assignment_status text,
            variant_assignment_version text,
            mapping_method text,
@@ -1043,6 +1062,8 @@ async function insertDecisions(client, decisions, batchSize) {
          edition_assignment_id,
          gym_edition_assignment_id,
          mtg_printing_mapping_id,
+         cross_tcg_source_mapping_id,
+         cross_tcg_printing_mapping_id,
          variant_assignment_status,
          variant_assignment_version,
          mapping_method,
@@ -1093,6 +1114,8 @@ async function insertDecisions(client, decisions, batchSize) {
          edition_assignment_id,
          gym_edition_assignment_id,
          mtg_printing_mapping_id,
+         cross_tcg_source_mapping_id,
+         cross_tcg_printing_mapping_id,
          variant_assignment_status,
          variant_assignment_version,
          mapping_method,
@@ -1181,6 +1204,8 @@ async function insertSnapshotBatch(client, run, publicationSet, phaseAttemptId, 
        edition_assignment_id,
        gym_edition_assignment_id,
        mtg_printing_mapping_id,
+       cross_tcg_source_mapping_id,
+       cross_tcg_printing_mapping_id,
        source_product_id,
        source_subtype_name,
        source_observed_on,
@@ -1220,6 +1245,8 @@ async function insertSnapshotBatch(client, run, publicationSet, phaseAttemptId, 
        decision.edition_assignment_id,
        decision.gym_edition_assignment_id,
        decision.mtg_printing_mapping_id,
+       decision.cross_tcg_source_mapping_id,
+       decision.cross_tcg_printing_mapping_id,
        decision.source_product_id,
        decision.source_subtype_name,
        decision.source_observed_on,
@@ -1405,7 +1432,7 @@ async function evaluateProductionActivationGuard(client, run, publicationSet) {
     await client.query("select set_config('statement_timeout', $1, true)", [
       `${PRODUCTION_GUARD_STATEMENT_TIMEOUT_MS}ms`,
     ]);
-    const result = await readMarketActivationCoverageV1(client, {
+    const result = await readMarketActivationCoverageV2(client, {
       values: [publicationSet.id, run.id],
       query_timeout: PRODUCTION_GUARD_QUERY_TIMEOUT_MS,
     });
@@ -1413,7 +1440,9 @@ async function evaluateProductionActivationGuard(client, run, publicationSet) {
       previousStatementTimeout,
     ]);
     const counts = result.rows[0];
+    const crossScopeGuard = await assertCrossTcgMarketActivationV2(client,{runId:run.id,workerVersion:WORKER_VERSION,counts});
     guardArtifact = {
+      cross_tcg_scope_guard:crossScopeGuard,
       ...evaluateMtgPricingProductionActivationGuardV1({
         productionMtgSelected: counts.mtg_selected,
         productionMtgEligible: counts.mtg_eligible,
@@ -1623,7 +1652,7 @@ async function runDryRun(client, args, sourceRun, runPlan) {
   const decisions = rows.map((row, index) =>
     buildDecision(
       { id: `dry-run-candidate-${index + 1}`, candidate_payload: row },
-      evaluateTcgplayerMarketQualificationV1(row, {
+      evaluateTcgplayerMarketQualificationV2(row, {
         now: new Date(evaluatedAt),
         freshnessHours: args.freshnessHours,
         suppressionHours: args.suppressionHours,
@@ -1644,6 +1673,7 @@ async function runDryRun(client, args, sourceRun, runPlan) {
 }
 
 async function runDurable(client, args, sourceRun, runPlan) {
+  if(args.runMode==='production')await readCrossTcgMarketBootstrapV2(client,WORKER_VERSION);
   await client.query(
     "select pg_advisory_lock(hashtext('tcgplayer_market_publication_v1'))",
   );
@@ -1744,7 +1774,7 @@ async function runDurable(client, args, sourceRun, runPlan) {
           const decisions = candidates.map((candidate) =>
             buildDecision(
               candidate,
-              evaluateTcgplayerMarketQualificationV1(
+              evaluateTcgplayerMarketQualificationV2(
                 candidate.candidate_payload,
                 {
                   now: new Date(evaluatedAt),
@@ -1829,6 +1859,8 @@ async function runDurable(client, args, sourceRun, runPlan) {
       phaseName: "reconcile",
       operation: async () => {
         const reconciliation = await reconcileRun(client, run.id);
+        reconciliation.source_scope_version=CROSS_TCG_MARKET_SCOPE_V2;
+        reconciliation.complete_source_selection=args.limit===null&&!args.canaryDefinition;
         await persistReconciliation(client, run.id, reconciliation);
         if (reconciliation.mismatches.length) {
           throw new Error(
@@ -1916,8 +1948,7 @@ async function main() {
   }
 
   const client = new Client({
-    connectionString: url,
-    ssl: sslConfig(url),
+    ...marketPipelineDatabaseConfigV1(url, process.env, {readOnly:false}),
     connectionTimeoutMillis: 15_000,
     keepAlive: true,
     keepAliveInitialDelayMillis: 10_000,
@@ -1934,7 +1965,12 @@ async function main() {
     "select set_config('statement_timeout', $1, false)",
     [`${args.databaseTimeoutMinutes}min`],
   );
+  let sourceContinuityLockAcquired = false;
   try {
+    if (WRITE_MODES.has(args.runMode)) {
+      await acquireTcgcsvCurrentSourceLockV1(client);
+      sourceContinuityLockAcquired = true;
+    }
     const sourceRun = await latestSourceRun(client);
     const sourceRunway = WRITE_MODES.has(args.runMode)
       ? assertTcgplayerMarketSourceRunwayV1(sourceRun, {
@@ -1953,7 +1989,7 @@ async function main() {
       pipeline_version: PIPELINE_VERSION,
       worker_version: WORKER_VERSION,
       schema_version: SCHEMA_VERSION,
-      policy_version: TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3,
+      policy_version: TCGPLAYER_MARKET_PUBLICATION_POLICY_V2,
       run_key: runKey,
       run_mode: args.runMode,
       commit_sha: commitSha,
@@ -2024,7 +2060,7 @@ async function main() {
     const counts = await decisionSummary(decisions);
     const summary = {
       worker_version: WORKER_VERSION,
-      policy_version: TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3,
+      policy_version: TCGPLAYER_MARKET_PUBLICATION_POLICY_V2,
       run_key: runKey,
       run_mode: args.runMode,
       commit_sha: commitSha,
@@ -2066,6 +2102,13 @@ async function main() {
       )}\n`,
     );
   } finally {
+    if (sourceContinuityLockAcquired) {
+      await releaseTcgcsvCurrentSourceLockV1(client).catch((error) => {
+        process.stderr.write(
+          `[tcgplayer-market-publication] source continuity unlock failed: ${error.message}\n`,
+        );
+      });
+    }
     await client.end();
   }
 }

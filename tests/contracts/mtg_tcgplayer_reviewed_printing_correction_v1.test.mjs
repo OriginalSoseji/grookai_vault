@@ -16,6 +16,10 @@ const publicationWorker = fs.readFileSync(new URL(
   "../../scripts/workers/tcgplayer_market_publication_worker_v1.mjs",
   import.meta.url,
 ), "utf8");
+const crossTcgMigration = fs.readFileSync(new URL(
+  "../../supabase/migrations/20261120063000_cross_tcg_market_publication_v2.sql",
+  import.meta.url,
+), "utf8");
 const correctionWorker = fs.readFileSync(new URL(
   "../../scripts/audits/mtg_tcgplayer_reviewed_printing_correction_v1.mjs",
   import.meta.url,
@@ -70,8 +74,9 @@ test("V7 override requires the reviewed correction contract and keeps exact line
   assert.match(migration, /normalized_finish'\s*=\s*candidate\.normalized_finish_key/);
   assert.match(migration, /case when exact\.id is not null then null else candidate\.source_mapping_id/);
   assert.match(migration, /case when exact\.id is not null then null else candidate\.variant_assignment_id/);
-  assert.match(publicationWorker, /v_tcgplayer_market_qualification_candidates_v7/);
-  assert.match(publicationWorker, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_22/);
+  assert.match(publicationWorker, /v_tcgplayer_market_qualification_candidates_v8/);
+  assert.match(crossTcgMigration, /select old\.\*,null::bigint cross_tcg_source_mapping_id,null::uuid cross_tcg_printing_mapping_id from public\.v_tcgplayer_market_qualification_candidates_v7 old/);
+  assert.match(publicationWorker, /TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_25/);
 });
 
 test("bounded writer updates only the two reviewed mapping rows", () => {

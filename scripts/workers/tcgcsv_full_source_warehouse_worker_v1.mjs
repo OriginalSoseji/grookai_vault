@@ -1,3 +1,4 @@
+import {marketPipelineDatabaseConfigV1} from '../../backend/pricing/market_pipeline_database_config_v1.mjs';
 import { createHash } from "node:crypto";
 import { execFile } from "node:child_process";
 import { existsSync } from "node:fs";
@@ -19,6 +20,9 @@ import {
   evaluateTcgcsvSourceRunResumeV1,
   TCGCSV_SOURCE_RUN_RESUME_POLICY_V1,
 } from "../../backend/pricing/tcgcsv_source_run_resume_policy_v1.mjs";
+import {
+  TCGCSV_CURRENT_SOURCE_LOCK_NAME_V1,
+} from "../../backend/pricing/tcgcsv_current_source_lock_v1.mjs";
 
 const execFileAsync = promisify(execFile);
 const __filename = fileURLToPath(import.meta.url);
@@ -39,7 +43,6 @@ const DEFAULT_DIMENSION_BATCH_SIZE = 1000;
 const DEFAULT_PRICE_OBSERVATION_BATCH_SIZE = 2000;
 const DEFAULT_PRICE_BATCH_DELAY_MS = 25;
 const FIRST_ARCHIVE_DATE = "2024-02-08";
-const CURRENT_ADVISORY_LOCK_NAME = "grookai:tcgcsv:current:v1";
 const HISTORICAL_ADVISORY_LOCK_NAME = "grookai:tcgcsv:historical:v1";
 const EMPTY_CATEGORY_IDS = new Set([9, 10, 12, 14, 21, 55, 69, 70]);
 const CURL_BIN = os.platform() === "win32" ? "curl.exe" : "curl";
@@ -183,10 +186,6 @@ function directDbUrl() {
   return process.env.SUPABASE_DB_URL || process.env.DATABASE_URL || process.env.POSTGRES_URL;
 }
 
-function pgSslConfig(connectionString) {
-  if (/localhost|127\.0\.0\.1|\[::1\]/i.test(connectionString)) return false;
-  return { rejectUnauthorized: false };
-}
 
 async function gitCommitSha() {
   try {
@@ -419,8 +418,7 @@ async function connectDb() {
   const connectionString = directDbUrl();
   if (!connectionString) throw new Error("SUPABASE_DB_URL/DATABASE_URL/POSTGRES_URL is required for --apply");
   const client = new Client({
-    connectionString,
-    ssl: pgSslConfig(connectionString),
+    ...marketPipelineDatabaseConfigV1(connectionString, process.env, {readOnly:false}),
     connectionTimeoutMillis: 20_000,
     query_timeout: 120_000,
     statement_timeout: 120_000,
@@ -1705,7 +1703,7 @@ async function acquireCurrentGuard(args) {
   const client = await connectDb();
   const lock = await client.query(
     "select pg_try_advisory_lock(hashtext($1)) as acquired",
-    [CURRENT_ADVISORY_LOCK_NAME],
+    [TCGCSV_CURRENT_SOURCE_LOCK_NAME_V1],
   );
   if (!lock.rows[0]?.acquired) {
     await client.end().catch(() => {});
@@ -1719,7 +1717,7 @@ async function acquireCurrentGuard(args) {
 async function releaseCurrentGuard(client) {
   if (!client) return;
   try {
-    await client.query("select pg_advisory_unlock(hashtext($1))", [CURRENT_ADVISORY_LOCK_NAME]);
+    await client.query("select pg_advisory_unlock(hashtext($1))", [TCGCSV_CURRENT_SOURCE_LOCK_NAME_V1]);
   } finally {
     await client.end().catch(() => {});
   }

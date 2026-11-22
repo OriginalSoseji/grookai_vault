@@ -28,6 +28,7 @@ import 'widgets/pricing/ebay_listing_links.dart';
 import 'widgets/pricing/card_marketplace_sheet.dart';
 import 'widgets/cards/card_comments_sheet.dart';
 import 'widgets/cards/card_printing_picker.dart';
+import 'widgets/cards/pokemon_playable_badge.dart';
 import 'widgets/vault/vault_add_review_sheet.dart';
 import 'services/pricing/card_personal_sales_service.dart';
 import 'services/sales/sales_card_reference.dart';
@@ -2683,6 +2684,10 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
             ],
           ),
         ],
+        PokemonPlayableBadge(
+          cardPrintId: widget.cardPrintId,
+          padding: const EdgeInsets.only(top: 6),
+        ),
       ],
     );
   }
@@ -3566,9 +3571,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         _buildTrustRow(
           icon: Icons.inventory_2_outlined,
           label: 'Your collection',
-          actionLabel: ownedCount > 1
-              ? '$ownedCount copies · Private'
-              : '1 raw copy · Private',
+          actionLabel: ownedCount > 1 ? '$ownedCount copies' : '1 copy',
           onAction: _openResolvedOwnedCopy,
           theme: theme,
           colorScheme: colorScheme,
@@ -3717,7 +3720,8 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
   Future<void> _openMarketHistory() async {
     final printing = _selectedPrintingOption;
     final printingId = _cleanText(printing?.id);
-    if (printingId.isEmpty ||
+    if (printing == null ||
+        printingId.isEmpty ||
         !_hasExplicitPrintingContext ||
         supabase.auth.currentUser == null) {
       return;
@@ -3729,7 +3733,7 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
       backgroundColor: Colors.transparent,
       builder: (_) => CardMarketHistorySheet(
         cardName: _marketSearchName,
-        printingLabel: printing?.finishName ?? 'Selected variant',
+        printingLabel: printing.finishName,
         cardPrintingId: printingId,
         loadPersonalSales: (cardPrintingId) =>
             CardPersonalSalesService(supabase).loadForPrinting(cardPrintingId),
