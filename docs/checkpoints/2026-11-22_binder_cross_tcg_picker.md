@@ -86,6 +86,71 @@ The next release step is to resolve PR #1016's locked-main merge blocker. The
 initial transient search error can be investigated if it recurs. Family and
 community Binder flows remain unverified on a second real account.
 
+## Samsung Whole-App QA Follow-up — 2026-11-22
+
+- Vault opened with 233 cards, 221 unique, and 206 valued. Artwork-first Grid,
+  Compact list, Duplicates filtering, and search across card names/set names
+  were exercised. The Latios search also found cards from the `EX Trainer Kit
+  Latios` set, as expected. No collection data was changed.
+- The Sets tab showed a set-level grouping and the Binders tab opened the
+  existing Binder library. The public `Pikachu Binder` opens on **Contents**;
+  **Checklist** is a separate tab. This account currently has no contributed
+  copies in that Binder, so populated Binder contents still need a real
+  contribution to verify visually.
+- Community Binders opened in read-only browse mode and listed the public
+  `Pikachu Binder`. No join request, invite, contribution, privacy change, or
+  account mutation was made. Cross-account family/community flows remain
+  pending a second real account.
+- Opening that public listing uses a separate external-projection screen that
+  shows a checklist-only page (0 of 607 complete); it has no Contents tab.
+  This differs from the member Binder workspace, which opens on Contents. The
+  external view was changed to put **Contents** first and keep **Checklist**
+  separate. Contents filters to canonical slots with externally consented
+  contribution coverage in the existing audience-sanitized projection,
+  including partial coverage. It does not expose Vault IDs, exact-copy data, or
+  unconsented contributions. The current account still has no
+  contributed copies, so populated content rendering awaits consented data.
+- **Review exact copies for trade or sale** showed the exact-copy list.
+  Selecting Froakie (Holo · LP) produced a qualified market subtotal of
+  USD 19.34. **Review bulk intent** showed the explicit Hold / Trade / Sell /
+  Showcase choice and separate **Apply to selected copies** action. The dialog
+  was dismissed and the temporary selection cleared without applying or
+  saving.
+- **Review incoming cards** opened Batch intake with local manual-add drafts;
+  Purchase lots showed an empty state. No local or cloud draft was edited.
+- The OAuth return page showed `status=linked`. After reopening the app, a
+  seller-status refresh showed seller `grookai_vault`. No saved eBay drafts were
+  present. No draft was created, removed, or published. Actual listing
+  preparation and live publication remain unverified until the owner chooses
+  an exact copy to list.
+- Scanner recognition remains intentionally deferred per owner instruction.
+  No scanner scan was run in this pass.
+- These were read-only live checks except for a temporary, cleared selection.
+  No Vault, Binder, trade, intake, or seller-listing data was persisted or
+  changed.
+
+## Public Binder Contents Correction
+
+- `BinderExternalProjectionScreen` now defaults to **Contents** and exposes
+  the canonical checklist separately. Contents includes only contributed
+  canonical slots already present in the public/view-link sanitized response,
+  including partial quantities; it does not broaden the projection or reveal
+  exact-copy ownership.
+- The widget regression covers a partially contributed card in Contents, a
+  missing card in Checklist, and continued checklist pagination.
+- `flutter test --no-pub test/binders/binder_widget_flows_test.dart`: 13
+  passed; the full Binder suite (`flutter test --no-pub --concurrency=1
+  test/binders`) passed all 436 tests. Focused `flutter analyze` on the changed
+  screen and test: no issues.
+- This correction is not in the signed Build 610 installed on the Samsung yet.
+  The repository commit/push hooks stopped at required runtime preflight because
+  `SUPABASE_DB_URL` is not configured in this isolated worktree. The active
+  `AUTOMATED_SHIP_GUARDS_V1` contract permits an intentional local-hook bypass;
+  after the secret-packaging guard, full Binder suite, focused analyzer, and
+  diff check passed, the change was committed and pushed through that documented
+  path. GitHub's PR checks remain required. The DB-dependent full shipcheck did
+  not pass, and no database or production data was changed.
+
 ## Related Artifacts
 
 - `lib/screens/binders/binder_custom_checklist_screen.dart`

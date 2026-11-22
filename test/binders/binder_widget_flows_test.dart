@@ -772,8 +772,15 @@ void main() {
             'slot_id': 'slot-1',
             'card_print_id': 'print-1',
             'name': 'First checklist card',
-            'required_quantity': 1,
+            'required_quantity': 2,
             'active_quantity': 1,
+          },
+          <String, dynamic>{
+            'slot_id': 'slot-missing',
+            'card_print_id': 'print-missing',
+            'name': 'Missing checklist card',
+            'required_quantity': 1,
+            'active_quantity': 0,
           },
         ],
         'next_cursor': <String, dynamic>{'position': 1},
@@ -808,7 +815,19 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('First checklist card'), findsOneWidget);
+    expect(find.text('Shared'), findsOneWidget);
+    expect(find.text('Missing checklist card'), findsNothing);
     expect(find.text('Second checklist card'), findsNothing);
+    await tester.tap(
+      find.descendant(
+        of: find.byType(SegmentedButton<bool>),
+        matching: find.text('Checklist'),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('First checklist card'), findsOneWidget);
+    expect(find.text('Shared'), findsNothing);
+    expect(find.text('Missing checklist card'), findsOneWidget);
     await tester.tap(find.text('Load more checklist cards'));
     await tester.pumpAndSettle();
 
