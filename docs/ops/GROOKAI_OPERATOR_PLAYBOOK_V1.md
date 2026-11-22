@@ -1,3 +1,27 @@
+# Numbered singles and exact EX printing preparation — November22,2026
+
+Use `C:/grookai_stamp_completion_20261122` and the
+[combined checkpoint](../checkpoints/2026-11-22_price_stamp_completion.md).
+The [numbered-single pricing checkpoint](../checkpoints/pricing/ONE_PIECE_NUMBERED_SINGLE_PRICING_20261122.md)
+records worker V1_27: exact governed One Piece singles with an official printed
+Number and CardType can retain eligibility when their titles mention a Premium
+Card Collection or Pre-Release Tournament. The read-only replay covers357
+positive-quote printings; it is not proof of production publication. Finish the
+V1_26 release below first, then require V1_27's own complete same-runtime shadow,
+coverage/provenance checks, guarded activation and independent consumer readback.
+Never reuse V1_26's publication shadow for V1_27 or relax another product hold.
+
+The separate [EX execution contract](../contracts/EX_INTRINSIC_PRINTING_EXECUTION_V1.md)
+and `scripts/audits/ex_intrinsic_printing_execution_v1.mjs` prepare exactly six
+Normal/Reverse children under three reviewed EX base parents. Preparation and
+source qualification grant no canonical write authority. The executor requires
+the original bound evidence, exact plan and producer fingerprints, separately
+approved founder authority, a fresh actual production rollback, and durable
+readback. Preserve all329 parents/620 retained children, existing assignments
+and unassigned copies. This six-finish lane does not close the explicit-stamp
+backlog. Use the combined checkpoint's census to distinguish missing physical
+facts, unresolved mapping/finish authority, held products and absent quotes.
+
 # Cosmo title price guard — November22,2026
 
 Use `C:/grookai_cosmo_price_guard_20261122` and the
