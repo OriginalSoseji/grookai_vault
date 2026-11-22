@@ -23,6 +23,28 @@ device receipts are under the Cosmo guard operator artifact root, outside Git.
 Combined-source normal qualification follows integration of main9f4c9968; its
 updated web lock has a separate dependency installation, preserving shared trees.
 
+# Catalog publication exact printing-gap queue — November 22, 2026
+
+Read [the gap-queue checkpoint](../checkpoints/catalog_discovery/2026-11-22_CATALOG_PUBLICATION_GAP_QUEUE_V1.md).
+The `Catalog Shadow Reconciliation` workflow runs naturally at minute 47 every
+six hours and uploads `catalog-shadow-reconciliation-<run-id>` for 90 days.
+Download that artifact from the qualifying natural run and locate
+`printing_gap_queue.json` inside the publication-gate output. The open
+`[Catalog Publication] Released set gate blocked` issue reports the same run,
+exact affected-parent count, single-parent-gap set count, and reconciliation
+mismatch count. A manual dispatch is diagnostic only and does not replace a
+natural scheduled-run receipt.
+
+Use queue rows to group exact canonical parents into reviewed, game-specific
+evidence tranches. Do not infer a missing finish or create a child printing from
+the queue alone. Require `reconciliation.mismatch_count == 0`; a
+`blocked_reconciliation_mismatch` queue is incomplete evidence and must not be
+used for repair preparation. The artifact is commit-pinned and hashed, but
+records `canonical_authority: false` and `execution_authority: false`. It grants
+no database, Storage, canonical, pricing, publication, or Vault write authority,
+does not dispatch a writer, and never replaces the applicable source review,
+bounded release approval, rollback proof, or durable production readback.
+
 # Cross-TCG Market publication V2 — November20,2026
 
 Use `C:/grookai_cross_tcg_market_v2_20261119` and the

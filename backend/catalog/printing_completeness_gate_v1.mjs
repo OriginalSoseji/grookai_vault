@@ -3,6 +3,8 @@ import {createHash} from 'node:crypto';
 import {isDeepStrictEqual} from 'node:util';
 
 export const PRINTING_COMPLETENESS_VERSION = 'PRINTING_COMPLETENESS_GATE_V1';
+export const PRINTING_COMPLETENESS_GAP_QUEUE_VERSION =
+  'PRINTING_COMPLETENESS_GAP_QUEUE_V1';
 const proofKinds = new Set(['checked_checklist', 'official_printing', 'image_confirmed', 'exact_printing_mapping']);
 const text = v => typeof v === 'string' && v.trim().length > 0;
 const key = r => `${r.card_print_id}|${r.finish_key}`;
@@ -181,3 +183,223 @@ cross join lateral (
 ) p
 where c.set_id=any($1::uuid[])
 group by c.set_id order by c.set_id`;
+
+// Exact read-only defect identities for bulk review. This queue is diagnostic
+// evidence only; it does not infer a missing finish or authorize a writer.
+export const PRINTING_GAP_DETAILS_SQL = `
+select
+ c.set_id,
+ c.id card_print_id,
+ c.gv_id parent_gv_id,
+ c.number::text printed_coordinate,
+ c.name card_name,
+ c.identity_domain,
+ c.variant_key,
+ c.printed_identity_modifier,
+ p.total_printings,
+ p.usable_printings,
+ p.missing_gvid,
+ p.wrong_gvid,
+ p.provisional,
+ p.unproven,
+ p.existing_printings
+from public.card_prints c
+cross join lateral (
+ select
+  count(cp.id)::int total_printings,
+  count(*) filter(where not cp.is_provisional and f.is_active and
+    nullif(cp.printing_gv_id,'') is not null and
+    left(cp.printing_gv_id,length(c.gv_id)+1)=c.gv_id||'-' and
+    nullif(cp.provenance_source,'') is not null and nullif(cp.provenance_ref,'') is not null and
+    not exists(select 1 from public.card_printing_truth_reviews r where r.card_printing_id=cp.id and r.active
+      and (r.review_status<>'verified' or r.public_visibility<>'visible')))::int usable_printings,
+  count(*) filter(where cp.id is not null and nullif(cp.printing_gv_id,'') is null)::int missing_gvid,
+  count(*) filter(where cp.id is not null and nullif(cp.printing_gv_id,'') is not null and
+    left(cp.printing_gv_id,length(c.gv_id)+1)<>c.gv_id||'-')::int wrong_gvid,
+  count(*) filter(where cp.id is not null and cp.is_provisional)::int provisional,
+  count(*) filter(where cp.id is not null and
+    (nullif(cp.provenance_source,'') is null or nullif(cp.provenance_ref,'') is null))::int unproven,
+  coalesce(jsonb_agg(jsonb_build_object(
+    'id', cp.id,
+    'finish_key', cp.finish_key,
+    'printing_gv_id', cp.printing_gv_id,
+    'is_provisional', cp.is_provisional,
+    'finish_is_active', f.is_active,
+    'provenance_source', cp.provenance_source,
+    'provenance_ref', cp.provenance_ref
+  ) order by cp.finish_key, cp.id) filter(where cp.id is not null), '[]'::jsonb) existing_printings
+ from public.card_printings cp
+ left join public.finish_keys f on f.key=cp.finish_key
+ where cp.card_print_id=c.id
+) p
+where c.set_id=any($1::uuid[])
+ and (p.usable_printings=0 or p.missing_gvid>0 or p.wrong_gvid>0 or
+      p.provisional>0 or p.unproven>0)
+order by c.set_id, c.gv_id, c.id`;
+
+function nonnegativeInteger(value, field) {
+  const parsed = Number(value);
+  assert.ok(Number.isSafeInteger(parsed) && parsed >= 0, `invalid_${field}`);
+  return parsed;
+}
+
+export function buildPrintingCompletenessGapQueueV1({
+  sets,
+  gaps,
+  frozenCommit,
+}) {
+  assert.ok(Array.isArray(sets), 'gap_queue_sets_required');
+  assert.ok(Array.isArray(gaps), 'gap_queue_rows_required');
+  assert.match(String(frozenCommit ?? ''), /^[a-f0-9]{40}$/, 'gap_queue_commit_required');
+  const setById = new Map(sets.map((row) => [row.id, row]));
+  assert.equal(setById.size, sets.length, 'gap_queue_duplicate_set');
+  const rows = gaps.map((gap) => {
+    const set = setById.get(gap.set_id);
+    assert.ok(set, 'gap_queue_unknown_set');
+    const counts = {
+      total_printings: nonnegativeInteger(gap.total_printings, 'total_printings'),
+      usable_printings: nonnegativeInteger(gap.usable_printings, 'usable_printings'),
+      missing_gvid: nonnegativeInteger(gap.missing_gvid, 'missing_gvid'),
+      wrong_gvid: nonnegativeInteger(gap.wrong_gvid, 'wrong_gvid'),
+      provisional: nonnegativeInteger(gap.provisional, 'provisional'),
+      unproven: nonnegativeInteger(gap.unproven, 'unproven'),
+    };
+    const defectCodes = [
+      ...(counts.usable_printings === 0 ? ['parent_without_usable_printing'] : []),
+      ...(counts.missing_gvid > 0 ? ['missing_printing_gvid'] : []),
+      ...(counts.wrong_gvid > 0 ? ['wrong_parent_gvid'] : []),
+      ...(counts.provisional > 0 ? ['provisional_printing'] : []),
+      ...(counts.unproven > 0 ? ['unproven_printing'] : []),
+    ];
+    assert.ok(defectCodes.length > 0, 'gap_queue_row_without_defect');
+    return {
+      game: set.game,
+      set_id: set.id,
+      set_code: set.code,
+      set_name: set.name,
+      card_print_id: gap.card_print_id,
+      parent_gv_id: gap.parent_gv_id,
+      printed_coordinate: gap.printed_coordinate ?? null,
+      card_name: gap.card_name,
+      identity_domain: gap.identity_domain ?? null,
+      variant_key: gap.variant_key ?? null,
+      printed_identity_modifier: gap.printed_identity_modifier ?? null,
+      defect_codes: defectCodes,
+      counts,
+      existing_printings: [...(gap.existing_printings ?? [])].sort((left, right) =>
+        String(left.finish_key).localeCompare(String(right.finish_key)) ||
+        String(left.id).localeCompare(String(right.id))),
+    };
+  }).sort((left, right) =>
+    String(left.game).localeCompare(String(right.game)) ||
+    String(left.set_code).localeCompare(String(right.set_code)) ||
+    String(left.parent_gv_id).localeCompare(String(right.parent_gv_id)) ||
+    String(left.card_print_id).localeCompare(String(right.card_print_id)));
+  assert.equal(new Set(rows.map((row) => row.card_print_id)).size, rows.length,
+    'gap_queue_duplicate_parent');
+
+  const affectedSets = new Set(rows.map((row) => row.set_id));
+  const defectParentCounts = {};
+  const defectOccurrenceCounts = {
+    parent_without_usable_printing: 0,
+    missing_printing_gvid: 0,
+    wrong_parent_gvid: 0,
+    provisional_printing: 0,
+    unproven_printing: 0,
+  };
+  const byGame = {};
+  for (const row of rows) {
+    for (const code of row.defect_codes) {
+      defectParentCounts[code] = (defectParentCounts[code] ?? 0) + 1;
+    }
+    defectOccurrenceCounts.parent_without_usable_printing +=
+      row.counts.usable_printings === 0 ? 1 : 0;
+    defectOccurrenceCounts.missing_printing_gvid += row.counts.missing_gvid;
+    defectOccurrenceCounts.wrong_parent_gvid += row.counts.wrong_gvid;
+    defectOccurrenceCounts.provisional_printing += row.counts.provisional;
+    defectOccurrenceCounts.unproven_printing += row.counts.unproven;
+    const game = byGame[row.game] ?? { affected_set_ids: new Set(), parent_count: 0 };
+    game.affected_set_ids.add(row.set_id);
+    game.parent_count += 1;
+    byGame[row.game] = game;
+  }
+  const parentCountsBySet = rows.reduce((counts, row) => {
+    counts.set(row.set_id, (counts.get(row.set_id) ?? 0) + 1);
+    return counts;
+  }, new Map());
+  const expectedDefectOccurrenceCounts = sets.reduce((counts, set) => {
+    const coverage = set.printing_coverage;
+    if (!coverage) return counts;
+    counts.parent_without_usable_printing += nonnegativeInteger(
+      coverage.parents_without_printing,
+      'coverage_parents_without_printing',
+    );
+    counts.missing_printing_gvid += nonnegativeInteger(
+      coverage.missing_printing_gvid,
+      'coverage_missing_printing_gvid',
+    );
+    counts.wrong_parent_gvid += nonnegativeInteger(
+      coverage.wrong_parent_gvid,
+      'coverage_wrong_parent_gvid',
+    );
+    counts.provisional_printing += nonnegativeInteger(
+      coverage.provisional_printings,
+      'coverage_provisional_printings',
+    );
+    counts.unproven_printing += nonnegativeInteger(
+      coverage.unproven_printings,
+      'coverage_unproven_printings',
+    );
+    return counts;
+  }, {
+    parent_without_usable_printing: 0,
+    missing_printing_gvid: 0,
+    wrong_parent_gvid: 0,
+    provisional_printing: 0,
+    unproven_printing: 0,
+  });
+  const reconciliationMismatches = Object.keys(expectedDefectOccurrenceCounts)
+    .filter((code) =>
+      expectedDefectOccurrenceCounts[code] !== defectOccurrenceCounts[code])
+    .map((code) => ({
+      code,
+      expected: expectedDefectOccurrenceCounts[code],
+      actual: defectOccurrenceCounts[code],
+    }));
+  return {
+    version: PRINTING_COMPLETENESS_GAP_QUEUE_VERSION,
+    frozen_commit: frozenCommit,
+    status: reconciliationMismatches.length > 0
+      ? 'blocked_reconciliation_mismatch'
+      : rows.length > 0 ? 'review_required' : 'clear',
+    canonical_authority: false,
+    execution_authority: false,
+    counts: {
+      affected_set_count: affectedSets.size,
+      affected_parent_count: rows.length,
+      single_parent_gap_set_count: [...parentCountsBySet.values()]
+        .filter((count) => count === 1).length,
+      defect_parent_counts: Object.fromEntries(Object.entries(defectParentCounts).sort()),
+      defect_occurrence_counts: defectOccurrenceCounts,
+    },
+    by_game: Object.fromEntries(Object.entries(byGame).sort().map(([game, value]) => [game, {
+      affected_set_count: value.affected_set_ids.size,
+      affected_parent_count: value.parent_count,
+    }])),
+    rows,
+    reconciliation: {
+      expected_defect_occurrence_counts: expectedDefectOccurrenceCounts,
+      actual_defect_occurrence_counts: defectOccurrenceCounts,
+      mismatch_count: reconciliationMismatches.length,
+      mismatches: reconciliationMismatches,
+    },
+    boundaries: {
+      database_writes: false,
+      storage_writes: false,
+      canonical_writes: false,
+      pricing_writes: false,
+      publication_writes: false,
+      vault_writes: false,
+    },
+  };
+}
