@@ -1,5 +1,5 @@
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:grookai_vault/screens/ebay/ebay_seller_screen.dart';
@@ -17,6 +17,11 @@ class _Api implements EbaySellerApi {
   String get ownerId => _owner;
   final actions = <String>[];
   bool showDraftList = false;
+  bool omitAccount = false;
+  bool partialAccount = false;
+  bool partialLinkingDisabled = false;
+  bool linkingDisabled = false;
+  bool accountLinked = true;
   final draftSummaries = <Map<String, dynamic>>[
     {
       'id': _draft,
@@ -35,13 +40,20 @@ class _Api implements EbaySellerApi {
   ];
   @override
   Future<Map<String, dynamic>> workspace({String? instanceId}) async => {
-    'account': {
-      'linked': true,
-      'username': 'Collector seller',
-      'linkingEnabled': true,
-      'preparationEnabled': true,
-      'publicationEnabled': true,
-    },
+    if (!omitAccount)
+      'account': partialAccount
+          ? {
+              'linked': false,
+              if (partialLinkingDisabled) 'linkingEnabled': false,
+            }
+          : {
+              'linked': accountLinked,
+              'username': 'Collector seller',
+              'reconnectRequired': false,
+              'linkingEnabled': !linkingDisabled,
+              'preparationEnabled': true,
+              'publicationEnabled': true,
+            },
     'copy': showDraftList
         ? null
         : {
@@ -64,6 +76,12 @@ class _Api implements EbaySellerApi {
     Map<String, dynamic> payload,
   ) async {
     actions.add(action);
+    if (action == 'link') {
+      return {
+        'launchUrl':
+            'https://grookaivault.com/api/ebay/seller/oauth/launch?capability=${'A' * 43}',
+      };
+    }
     if (action == 'abandon') {
       final row = draftSummaries.firstWhere(
         (item) => item['id'] == payload['draftId'],
@@ -91,6 +109,105 @@ class _Api implements EbaySellerApi {
 
 void main() {
   setUp(() => SharedPreferences.setMockInitialValues({}));
+  testWidgets('seller can start eBay connection when status is missing', (
+    tester,
+  ) async {
+    const launcher = MethodChannel('plugins.flutter.io/url_launcher');
+    final messenger = tester.binding.defaultBinaryMessenger;
+    messenger.setMockMethodCallHandler(launcher, (_) async => false);
+    addTearDown(() => messenger.setMockMethodCallHandler(launcher, null));
+    final api = _Api()..omitAccount = true;
+    final model = EbaySellerController(api: api);
+    addTearDown(model.dispose);
+    await model.refresh();
+    await tester.pumpWidget(
+      MaterialApp(home: EbaySellerScreen(controller: model)),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.text('eBay connection status unavailable'), findsOneWidget);
+    expect(
+      find.textContaining('eBay connection status could not be loaded.'),
+      findsOneWidget,
+    );
+    final connect = tester.widget<FilledButton>(
+      find.widgetWithText(FilledButton, 'Connect eBay'),
+    );
+    expect(connect.onPressed, isNotNull);
+    await tester.tap(find.widgetWithText(FilledButton, 'Connect eBay'));
+    await tester.pumpAndSettle();
+    expect(api.actions, contains('link'));
+  });
+
+  testWidgets('known-disabled seller linking cannot start OAuth', (
+    tester,
+  ) async {
+    final api = _Api()
+      ..linkingDisabled = true
+      ..accountLinked = false;
+    final model = EbaySellerController(api: api);
+    addTearDown(model.dispose);
+    await model.refresh();
+    await tester.pumpWidget(
+      MaterialApp(home: EbaySellerScreen(controller: model)),
+    );
+    await tester.pumpAndSettle();
+
+    expect(
+      find.textContaining('Seller listings aren’t available yet.'),
+      findsOneWidget,
+    );
+    final connect = tester.widget<FilledButton>(
+      find.widgetWithText(FilledButton, 'Connect eBay'),
+    );
+    expect(connect.onPressed, isNull);
+    expect(api.actions, isNot(contains('link')));
+  });
+
+  testWidgets('incomplete seller status keeps the connection action visible', (
+    tester,
+  ) async {
+    final api = _Api()..partialAccount = true;
+    final model = EbaySellerController(api: api);
+    addTearDown(model.dispose);
+    await model.refresh();
+    await tester.pumpWidget(
+      MaterialApp(home: EbaySellerScreen(controller: model)),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.text('eBay connection status unavailable'), findsOneWidget);
+    final connect = tester.widget<FilledButton>(
+      find.widgetWithText(FilledButton, 'Connect eBay'),
+    );
+    expect(connect.onPressed, isNotNull);
+  });
+
+  testWidgets('partial status cannot override explicit linking disablement', (
+    tester,
+  ) async {
+    final api = _Api()
+      ..partialAccount = true
+      ..partialLinkingDisabled = true;
+    final model = EbaySellerController(api: api);
+    addTearDown(model.dispose);
+    await model.refresh();
+    await tester.pumpWidget(
+      MaterialApp(home: EbaySellerScreen(controller: model)),
+    );
+    await tester.pumpAndSettle();
+
+    expect(
+      find.textContaining('Seller listings aren’t available yet.'),
+      findsOneWidget,
+    );
+    final connect = tester.widget<FilledButton>(
+      find.widgetWithText(FilledButton, 'Connect eBay'),
+    );
+    expect(connect.onPressed, isNull);
+    expect(api.actions, isNot(contains('link')));
+  });
+
   testWidgets('saved listing drafts can be removed from their list', (
     tester,
   ) async {
