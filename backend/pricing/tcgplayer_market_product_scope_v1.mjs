@@ -8,6 +8,8 @@ export const TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_4 =
   "TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_4";
 export const TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_5 =
   "TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_5";
+export const TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_6 =
+  "TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_6";
 
 export const TCGPLAYER_MARKET_V1_1_GROUP_SCOPE_RULES = Object.freeze([
   {
@@ -330,10 +332,29 @@ export function classifyTcgplayerMarketProductScopeV1_5(row = {}) {
   });
 }
 
+// Preserve the earlier classifiers for replay. A provider's explicit Cosmo
+// treatment is a review hold; its generic Holofoil bucket grants no authority.
+export function classifyTcgplayerMarketProductScopeV1_6(row = {}) {
+  const prior = classifyTcgplayerMarketProductScopeV1_5(row);
+  const rowEvidence = evidence(row);
+  const category = Number(row.category_id ?? rowEvidence.category_id);
+  const productName = text(row.source_product_name ?? rowEvidence.source_product_name);
+  if (category !== 3 || !prior.in_scope ||
+      !/(?:\(|\[| - )cosmo holo(?:foil)?(?:\)|\]|$)/i.test(productName)) return prior;
+  return result({
+    scopeResult: "special_variant_v1_1",
+    ruleId: "special_holo_treatment",
+    productName,
+    groupName: text(row.source_group_name ?? rowEvidence.source_group_name),
+    hasPrintedNumberEvidence: (row.has_printed_number_evidence ?? rowEvidence.has_printed_number_evidence) === true,
+    policyVersion: TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V1_6,
+  });
+}
+
 // Exact cross-game product identities carry their own variant authority. Keep
 // packaged-product exclusions without applying English Pokemon variant rules.
 export function classifyTcgplayerMarketProductScopeV2(row={}) {
-  if (![68,85].includes(Number(row.category_id))) return classifyTcgplayerMarketProductScopeV1_5(row);
+  if (![68,85].includes(Number(row.category_id))) return classifyTcgplayerMarketProductScopeV1_6(row);
   return classifyTcgplayerMarketProductScope(row, {
     policyVersion: 'TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V2',
     specialVariantRules: [], groupScopeRules: [],
