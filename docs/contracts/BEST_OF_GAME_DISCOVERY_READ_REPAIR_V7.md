@@ -37,3 +37,29 @@ independent real API/data/schema/security acceptance, normal squash merge and
 matching Production deployment plus25-page readback. Restore the temporarily
 paused Founder Ops Dashboard workflow after release and verify its active state.
 Then continue all stamped Reverse Holos under separate exact printing authority.
+
+## Current-main carry-forward — November22
+
+The original approved feature is retained as commit69e20648/tree0918907d in
+C:/grookai_best_of_game_approved_20261122 with its complete managed-commit proof,
+all169 reviewed working-file bytes and all516 SQL bytes. It is an immutable
+ancestor/evidence node; the current publication checkout may integrate main.
+The owner separately approved carrying only the same comparison policy and
+exact5832 candidate/972 unpublished assignment rows across reviewed integrations
+of main. Original expiry remains2026-11-23T13:59:40Z; no clock or data scope
+extension. Bind both actual replies and both proposal hashes. Preserve the
+original120-scope and genuine3s after API assertions. A new current-main source
+still requires full normal commit/push, focused/hosted checks and fresh PrePush.
+
+Main5405f43d includes the reviewed AI dependency security update, Japanese
+integrity failure containment/diagnostics, web parser lock update, and native
+eBay connection/reconnection fixes. Preserve all of them. Qualify the updated
+web lock separately while retaining earlier caches; this adds one isolated
+verification dependency cache and no new image or database lab.
+
+The owner-requested merge pause is now enforced remotely: main is read-only at
+5d0915f1. Every original protection remains; a temporary strict runtime-protection
+requirement guards the current base during the brief normal-merge reopening.
+Use the saved original protection under main-freeze-v7, retain administrator
+enforcement and normal squash checks, relock while Production is verified, then
+restore the original settings after complete deployed closure. No admin bypass.

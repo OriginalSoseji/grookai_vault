@@ -225,6 +225,12 @@ class _EbaySellerScreenState extends State<EbaySellerScreen>
   Widget build(BuildContext context) {
     final model = _model;
     final colors = Theme.of(context).colorScheme;
+    final account = model?.account ?? const <String, dynamic>{};
+    final accountStatusKnown =
+        account['linked'] is bool &&
+        account['reconnectRequired'] is bool &&
+        account['linkingEnabled'] is bool;
+    final linkingExplicitlyDisabled = account['linkingEnabled'] == false;
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 48,
@@ -284,67 +290,82 @@ class _EbaySellerScreenState extends State<EbaySellerScreen>
                           _message(context, model.error!, error: true),
                         if (model.notice != null)
                           _message(context, model.notice!),
-                        if (model.account.isNotEmpty)
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 20),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            model.account['linked'] == true
-                                                ? model.account['username']
-                                                          ?.toString() ??
-                                                      'Seller connected'
-                                                : 'Connect your eBay seller account',
-                                            style: const TextStyle(
-                                              fontWeight: FontWeight.w700,
-                                            ),
+                        // Keep the seller connection entry point visible even
+                        // when the workspace response omits its account map.
+                        // Otherwise an unlinked account has no way to start
+                        // the OAuth flow from Accounts.
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 20),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          account['linked'] == true
+                                              ? account['username']
+                                                        ?.toString() ??
+                                                    'Seller connected'
+                                              : accountStatusKnown
+                                              ? 'Connect your eBay seller account'
+                                              : 'eBay connection status unavailable',
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.w700,
                                           ),
-                                          const SizedBox(height: 5),
-                                          Text(
-                                            model.account['reconnectRequired'] ==
-                                                    true
-                                                ? 'Reconnect to continue listing.'
-                                                : 'One exact copy · your photos · your selling policies',
-                                            style: TextStyle(
-                                              fontSize: 13,
-                                              color: colors.onSurfaceVariant,
-                                            ),
+                                        ),
+                                        const SizedBox(height: 5),
+                                        Text(
+                                          account['reconnectRequired'] == true
+                                              ? 'Reconnect to continue listing.'
+                                              : !accountStatusKnown
+                                              ? 'Refresh status or connect your eBay seller account.'
+                                              : 'One exact copy · your photos · your selling policies',
+                                          style: TextStyle(
+                                            fontSize: 13,
+                                            color: colors.onSurfaceVariant,
                                           ),
-                                        ],
-                                      ),
+                                        ),
+                                      ],
                                     ),
-                                    if (model.account['linked'] != true ||
-                                        model.account['reconnectRequired'] ==
-                                            true)
-                                      FilledButton(
-                                        onPressed:
-                                            model.busy == null &&
-                                                model.account['linkingEnabled'] ==
-                                                    true
-                                            ? _connect
-                                            : null,
-                                        child: const Text('Connect eBay'),
-                                      ),
-                                  ],
-                                ),
-                                const SizedBox(height: 16),
-                                const Divider(height: 1),
-                              ],
-                            ),
+                                  ),
+                                  FilledButton(
+                                    onPressed:
+                                        model.busy == null &&
+                                            !linkingExplicitlyDisabled &&
+                                            (!accountStatusKnown ||
+                                                account['linkingEnabled'] ==
+                                                    true)
+                                        ? _connect
+                                        : null,
+                                    child: Text(
+                                      account['linked'] == true ||
+                                              account['reconnectRequired'] ==
+                                                  true
+                                          ? 'Reconnect eBay'
+                                          : 'Connect eBay',
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 16),
+                              const Divider(height: 1),
+                            ],
                           ),
-                        if (model.account.isNotEmpty &&
-                            model.account['linkingEnabled'] != true)
+                        ),
+                        if (linkingExplicitlyDisabled)
                           _message(
                             context,
                             'Seller listings aren’t available yet. Active and sold searches remain available from your card details.',
+                          ),
+                        if (!accountStatusKnown)
+                          _message(
+                            context,
+                            'eBay connection status could not be loaded. Refresh this screen or try Connect eBay.',
                           ),
                         if (model.copy.isEmpty) ...[
                           const Text(

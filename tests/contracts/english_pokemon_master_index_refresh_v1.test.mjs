@@ -263,7 +263,17 @@ test("scheduled refresh is data-only and opens a governed pull request", () => {
   assert.match(workflow, /english_master_index_cardtrader_normal_containment_v1\.mjs/);
   assert.match(workflow, /gh pr create/);
   assert.match(workflow, /source_discovery_unavailable/);
+  assert.match(workflow, /source_integrity_blocked/);
   assert.match(workflow, /preserved_prior_master_index/);
+  assert.match(workflow, /"canonical_authority":false/);
+  assert.match(
+    workflow,
+    /env\.JAPANESE_DISCOVERY_HEALTH != 'source_integrity_blocked'/,
+  );
+  assert.match(
+    workflow,
+    /Japanese admission and downstream catalog dispatch remain blocked while unrelated verified Master Index refresh lanes continue/,
+  );
   assert.match(workflow, /SOURCE_UNAVAILABLE/);
   assert.match(workflow, /preserved_prior_english_master_index/);
   assert.match(workflow, /cp -a "\$BASELINE_DIR\/\." "\$CANDIDATE_DIR\/"/);

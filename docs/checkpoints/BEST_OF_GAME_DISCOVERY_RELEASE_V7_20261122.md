@@ -19,3 +19,26 @@ anchors remain unchanged. Source/tests, scoped exception qualification and owner
 approval, fresh PrePush, owner-bound before/dry/apply/after, normal merge and actual
 Production web readback remain required. No production apply or dupe closure
 is claimed. All-stamped Reverse Holo work follows closure.
+
+## Publication source refresh
+
+The complete prepared-tree check passed8968 contract cases (8894 passes,74
+declared skips),151 service cases, web typecheck/lint/strict build, clean native
+analysis and2095 native passes with two skips. The real managed commit is
+69e20648ef3ed5025070bbc55af60292266db4ea; its exact0918907d tree and all evidence
+are retained in the approved-feature checkout. Later main updates reached
+5405f43d; the earlier uncommitted9f4 integration is separately archived.
+
+The owner approved the exact comparison packet and separately approved source
+carry-forward with unchanged limits/expiry, then paused other merges again.
+See owner-approval-preservation-v7.json and owner-approval-carry-forward-v7.json
+in the evidence root. New full source qualification, sealing and all production
+gates remain required. No release migration or deployed closure is claimed.
+
+Main5d0915f1 adds only the upstream eBay device-verification checkpoint. The
+earlier c508655b check run passed contracts/services/web but was stopped during
+native tests after main advanced; it is incomplete and cannot qualify release.
+All staged bytes, index and partial logs are retained. Main is now remotely
+read-only under the actual owner merge-pause request. Final full qualification
+uses this held base and the same approved policy/expiry. Restore original branch
+protection and workflow313398421 only after actual deployed closure.
