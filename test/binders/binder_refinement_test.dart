@@ -392,6 +392,12 @@ void main() {
       );
       await tester.tap(find.text('Edit'));
       await tester.pumpAndSettle();
+      await tester.enterText(
+        find.byKey(const ValueKey('binder-custom-card-search')),
+        'Eevee',
+      );
+      await tester.pump(const Duration(milliseconds: 300));
+      await tester.pumpAndSettle();
       await tester.tap(find.byType(ListTile).first);
       await tester.pumpAndSettle();
       await reveal(
@@ -461,25 +467,26 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('new query invalidates previous response before debounce', (
+  testWidgets('empty catalog search is deferred until a query is entered', (
     tester,
   ) async {
-    final stale = Completer<List<BinderCatalogCard>>();
-    final repository = TestRepository()
-      ..search = (query) => query == '' ? stale.future : Future.value([]);
+    final repository = TestRepository()..search = (_) async => [];
     await tester.pumpWidget(
       app(BinderCustomChecklistEditorScreen(repository: repository)),
+    );
+    await tester.pumpAndSettle();
+    expect(repository.queries, isEmpty);
+    expect(
+      find.text('Search by card name, set, or number to build your checklist.'),
+      findsOneWidget,
     );
     await tester.enterText(
       find.byKey(const ValueKey('binder-custom-card-search')),
       'different card',
     );
-    stale.complete([card]);
-    await tester.pump(const Duration(milliseconds: 100));
-    expect(find.text('Eevee'), findsNothing);
     await tester.pump(const Duration(milliseconds: 300));
     await tester.pumpAndSettle();
-    expect(repository.queries, ['', 'different card']);
+    expect(repository.queries, ['different card']);
     expect(
       find.text('No canonical cards matched that search.'),
       findsOneWidget,
@@ -510,7 +517,7 @@ void main() {
       ),
     );
     await tester.pumpAndSettle();
-    expect(repository.gameScopes.last, 'pokemon');
+    expect(repository.gameScopes, isEmpty);
 
     await tester.tap(find.text('Find cards'));
     await tester.pumpAndSettle();
@@ -519,8 +526,15 @@ void main() {
     await tester.tap(find.text('Magic: The Gathering').last);
     await tester.pumpAndSettle();
 
+    expect(repository.gameScopes, isEmpty);
+    await tester.enterText(
+      find.byKey(const ValueKey('binder-custom-card-search')),
+      'Eevee',
+    );
+    await tester.pump(const Duration(milliseconds: 300));
+    await tester.pumpAndSettle();
     expect(repository.gameScopes.last, 'mtg');
-    expect(find.text('Eevee'), findsOneWidget);
+    expect(find.text('Eevee'), findsWidgets);
     await tester.tap(find.text('Checklist'));
     await tester.pumpAndSettle();
     expect(find.textContaining('Pokémon'), findsWidgets);
@@ -539,12 +553,18 @@ void main() {
       app(BinderCustomChecklistEditorScreen(repository: repository)),
     );
     await tester.pumpAndSettle();
+    await tester.enterText(
+      find.byKey(const ValueKey('binder-custom-card-search')),
+      'Eevee',
+    );
+    await tester.pump(const Duration(milliseconds: 300));
+    await tester.pumpAndSettle();
     expect(find.text('Search is offline.'), findsOneWidget);
     expect(find.text('No canonical cards matched that search.'), findsNothing);
     repository.search = (_) async => [card];
     await tester.tap(find.text('Retry card search'));
     await tester.pumpAndSettle();
-    expect(find.text('Eevee'), findsOneWidget);
+    expect(find.byType(ListTile), findsWidgets);
   });
 
   testWidgets('editor rejects any-finish overlap after exact choice', (
@@ -563,6 +583,12 @@ void main() {
     );
     await tester.pumpAndSettle();
     await tester.tap(find.byKey(const ValueKey('binder-view-find')));
+    await tester.pumpAndSettle();
+    await tester.enterText(
+      find.byKey(const ValueKey('binder-custom-card-search')),
+      'Eevee',
+    );
+    await tester.pump(const Duration(milliseconds: 300));
     await tester.pumpAndSettle();
     await tester.tap(find.byType(ListTile).first);
     await tester.pumpAndSettle();

@@ -151,7 +151,7 @@ void main() {
                 ?.text,
             'Eevee 173',
           );
-          expect(repository.queries, ['', 'Eevee 173']);
+          expect(repository.queries, ['Eevee 173']);
           await switchView(tester, 'arrange');
           expect(find.text('Eevee · Reverse Holo'), findsOneWidget);
           expect(tester.takeException(), isNull);
@@ -210,6 +210,12 @@ void main() {
       await switchView(tester, 'arrange');
       expect(find.text('No checklist slots yet'), findsOneWidget);
       await tester.tap(find.widgetWithText(FilledButton, 'Find cards'));
+      await tester.pumpAndSettle();
+      await tester.enterText(
+        find.byKey(const ValueKey('binder-custom-card-search')),
+        'Eevee',
+      );
+      await tester.pump(const Duration(milliseconds: 300));
       await tester.pumpAndSettle();
       await tester.tap(find.byType(ListTile).first);
       await tester.pumpAndSettle();

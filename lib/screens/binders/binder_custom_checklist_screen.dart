@@ -184,7 +184,6 @@ class _BinderCustomChecklistEditorScreenState
     _visibleView = widget.initialSlots.isEmpty ? 0 : 1;
     _tabs = TabController(length: 3, initialIndex: _visibleView, vsync: this);
     _tabs.addListener(_onViewChanged);
-    unawaited(_search(''));
   }
 
   @override
@@ -206,6 +205,14 @@ class _BinderCustomChecklistEditorScreenState
     _debounce?.cancel();
     // Invalidate an in-flight request immediately, including during debounce.
     ++_searchGeneration;
+    if (value.trim().isEmpty) {
+      setState(() {
+        _searching = false;
+        _results = const [];
+        _error = null;
+      });
+      return;
+    }
     setState(() {
       _searching = true;
       _results = const [];
@@ -466,13 +473,14 @@ class _BinderCustomChecklistEditorScreenState
                     if (value == null || value == _gameScope) return;
                     _debounce?.cancel();
                     ++_searchGeneration;
+                    final query = _searchController.text.trim();
                     setState(() {
                       _gameScope = value;
                       _results = const <BinderCatalogCard>[];
-                      _searching = true;
+                      _searching = query.isNotEmpty;
                       _error = null;
                     });
-                    _search(_searchController.text);
+                    if (query.isNotEmpty) _search(query);
                   },
           ),
         ),
@@ -486,7 +494,11 @@ class _BinderCustomChecklistEditorScreenState
             onChanged: _onSearchChanged,
             onSubmitted: (value) {
               _debounce?.cancel();
-              _search(value);
+              if (value.trim().isEmpty) {
+                _onSearchChanged('');
+              } else {
+                _search(value.trim());
+              }
             },
             textInputAction: TextInputAction.search,
             decoration: InputDecoration(
@@ -581,10 +593,14 @@ class _BinderCustomChecklistEditorScreenState
           ),
         )
       else if (_results.isEmpty)
-        const SliverToBoxAdapter(
+        SliverToBoxAdapter(
           child: Padding(
-            padding: EdgeInsets.all(24),
-            child: Text('No canonical cards matched that search.'),
+            padding: const EdgeInsets.all(24),
+            child: Text(
+              _searchController.text.trim().isEmpty
+                  ? 'Search by card name, set, or number to build your checklist.'
+                  : 'No canonical cards matched that search.',
+            ),
           ),
         )
       else
