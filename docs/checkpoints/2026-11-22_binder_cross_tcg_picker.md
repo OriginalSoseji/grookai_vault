@@ -16,11 +16,16 @@ the app calls the catalog.
 - Switching Pokémon, One Piece, or Magic scope with no query does not launch a
   catalog request. A non-empty query is searched in the selected scope.
 - Updated Binder widget tests for the query-on-demand behavior.
+- Added Binder screen/test paths to the required runtime-protection workflow so
+  this branch gate is produced for Binder changes too; added a contract test
+  that locks both push and pull-request filters.
 
 ## What Is Now True
 
 - `flutter test --no-pub test/binders test/local_community_feed_mobile_test.dart`
   passes: 440 tests.
+- `node --test tests/contracts/runtime_ci_automation_v1.test.mjs` passes: 3
+  tests.
 - The focused custom-editor and find/checklist suites pass: 42 tests.
 - No Binder, invite, contribution, or other account data was created or changed.
 - The production catalog and database were not modified.
@@ -37,6 +42,9 @@ the app calls the catalog.
 - The Samsung is connected over ADB, but a production-signed candidate must
   come from the established CI release path before installing over the current
   app while preserving its data.
+- Runtime-protection is a required main-branch check and was previously
+  excluded for UI-only Binder changes. The PR includes the workflow path fix;
+  its passing run is still required before merge.
 - A successful query on device would verify the UI recovery from the slow blank
   request, but would not establish broader catalog-search performance.
 

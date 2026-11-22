@@ -37,6 +37,16 @@ test('runtime protection workflow covers goal changes and runs focused contracts
     2,
     'push and pull-request filters must both cover selectable goal changes',
   );
+  assert.equal(
+    workflow.match(/lib\/screens\/binders\/\*\*/g)?.length,
+    2,
+    'push and pull-request filters must both run runtime protection for Binder UI changes',
+  );
+  assert.equal(
+    workflow.match(/test\/binders\/\*\*/g)?.length,
+    2,
+    'push and pull-request filters must both run runtime protection for Binder tests',
+  );
   assert.match(workflow, /npm run contracts:runtime-health/);
   assert.match(workflow, /npm run contracts:test/);
 });
