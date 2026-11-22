@@ -37,6 +37,12 @@ preserves concurrent main9f4c9968, including the eBay entry repair, Japanese
 integrity isolation/diagnostics and updated web dependency lock. Its combined
 source requires complete normal qualification before runtime freeze.
 
+The final source also preserves main5d0915f14, including the linked-seller
+reconnect action and its separately recorded Samsung609 verification. GitHub
+requires the branch to contain current main; normal auto-merge remains subject
+to its rules. Qualification runs both complete local hooks on this combined
+source. Earlier source-only and native-process-failed attempts remain retained.
+
 Samsung build607 directly displayed Market4.67 and condition references NM4.67
 and LP10.99 for exact product602806/Normal. The unsaved Add-to-Vault form cleared
 its selection after cancel/reopen; both forms were closed without saving. Private

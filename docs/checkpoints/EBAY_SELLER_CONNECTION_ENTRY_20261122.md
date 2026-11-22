@@ -1,38 +1,44 @@
 # eBay Seller Connection Entry Checkpoint — 2026-11-22
 
-## Observed state
+## Findings
 
-- Samsung build 607 was unlocked and signed in to grookai.
-- **Accounts → eBay seller account** opened the eBay listings screen.
-- The screen showed no saved eBay drafts and did not show a seller connection
-  status or **Connect eBay** action.
-- The listing page hid its connection section whenever the workspace response
-  omitted the `account` object. That left an unlinked account without a way to
-  begin OAuth from the app.
+- On Samsung build 607, **Accounts → eBay seller account** opened the seller
+  workspace, but no connection action appeared when the account map was absent.
+- Build 608 exposed the missing-status path, but the live workspace reported
+  `linked: true` and still showed no way to sign in again. The connected seller
+  needed an explicit reauthentication action as well.
 
 ## Source correction
 
-- The seller connection section now remains visible when account status is
-  absent, labels that status as unavailable, and provides an explicit
-  **Connect eBay** action.
-- Missing status permits only an explicit OAuth-start attempt through the
-  authenticated seller endpoint. Server-side linking controls remain
-  authoritative; a known disabled state still disables the button and explains
-  why.
-- Added the active
+- The seller workspace always shows an authentication action: **Connect eBay**
+  when unlinked or status is missing, and **Reconnect eBay** for linked sellers
+  or sellers requiring reconnection.
+- Explicit `linkingEnabled: false` remains authoritative and disables the
+  action, including for partial status responses.
+- OAuth continues through the authenticated seller endpoint. A saved draft is
+  not a published listing.
+- The active
   [eBay Seller Connection Entry Contract V1](../contracts/EBAY_SELLER_CONNECTION_ENTRY_CONTRACT_V1.md)
-  and regression coverage for missing and known-disabled status.
-- An additional review found that a partial response carrying an explicit
-  `linkingEnabled: false` must retain the backend restriction; the UI now keeps
-  it disabled even when other status fields are missing.
+  records these requirements.
 
 ## Verification
 
-- `flutter test --no-pub test/ebay/ebay_seller_screen_test.dart` — 22 tests
-  passed.
-- `flutter analyze --no-pub lib/screens/ebay/ebay_seller_screen.dart test/ebay/ebay_seller_screen_test.dart`
-  — no issues.
-- The correction is not yet installed on the Samsung. OAuth return, live
-  seller status, and publishing remain to be verified on a build containing
-  this change.
+- Focused Flutter widget tests: 23 passed, including linked seller reconnect,
+  missing status, and explicit disablement.
+- Focused Flutter analyzer: no issues.
+- PR [#1012](https://github.com/OriginalSoseji/grookai_vault/pull/1012) merged
+  to `main` as `5405f43d09a20027d117702bcd2c78bf99c0ef51`.
+- Signed release workflow 45033415313 passed analysis, full Flutter tests,
+  Windows renderer goldens, signing identity verification, and artifact upload.
+- Build 609 installed in place on the Samsung. Its signer exactly matches the
+  approved production signer, and existing app data was retained.
+- On device, **Accounts → eBay seller account → Reconnect eBay** opened Chrome.
+  The OAuth handoff reached the grookai return page with `status=linked`.
+  **Open grookai** returned to the seller workspace, which refreshed on resume.
+- No listing draft was created or published during this check.
 
+## Remaining eBay verification
+
+- Separately verify listing preparation and an explicitly selected listing's
+  live publication before claiming the end-to-end selling flow is complete.
+- Average sold-price display remains deferred under issue #1004.

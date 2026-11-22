@@ -139,6 +139,32 @@ void main() {
     expect(api.actions, contains('link'));
   });
 
+  testWidgets('linked seller can explicitly reconnect from Accounts', (
+    tester,
+  ) async {
+    const launcher = MethodChannel('plugins.flutter.io/url_launcher');
+    final messenger = tester.binding.defaultBinaryMessenger;
+    messenger.setMockMethodCallHandler(launcher, (_) async => false);
+    addTearDown(() => messenger.setMockMethodCallHandler(launcher, null));
+    final api = _Api();
+    final model = EbaySellerController(api: api);
+    addTearDown(model.dispose);
+    await model.refresh();
+    await tester.pumpWidget(
+      MaterialApp(home: EbaySellerScreen(controller: model)),
+    );
+    await tester.pumpAndSettle();
+
+    expect(find.text('Collector seller'), findsOneWidget);
+    final reconnect = tester.widget<FilledButton>(
+      find.widgetWithText(FilledButton, 'Reconnect eBay'),
+    );
+    expect(reconnect.onPressed, isNotNull);
+    await tester.tap(find.widgetWithText(FilledButton, 'Reconnect eBay'));
+    await tester.pumpAndSettle();
+    expect(api.actions, contains('link'));
+  });
+
   testWidgets('known-disabled seller linking cannot start OAuth', (
     tester,
   ) async {

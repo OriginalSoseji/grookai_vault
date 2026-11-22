@@ -333,19 +333,23 @@ class _EbaySellerScreenState extends State<EbaySellerScreen>
                                       ],
                                     ),
                                   ),
-                                  if (account['linked'] != true ||
-                                      account['reconnectRequired'] == true)
-                                    FilledButton(
-                                      onPressed:
-                                          model.busy == null &&
-                                              !linkingExplicitlyDisabled &&
-                                              (!accountStatusKnown ||
-                                                  account['linkingEnabled'] ==
-                                                      true)
-                                          ? _connect
-                                          : null,
-                                      child: const Text('Connect eBay'),
+                                  FilledButton(
+                                    onPressed:
+                                        model.busy == null &&
+                                            !linkingExplicitlyDisabled &&
+                                            (!accountStatusKnown ||
+                                                account['linkingEnabled'] ==
+                                                    true)
+                                        ? _connect
+                                        : null,
+                                    child: Text(
+                                      account['linked'] == true ||
+                                              account['reconnectRequired'] ==
+                                                  true
+                                          ? 'Reconnect eBay'
+                                          : 'Connect eBay',
                                     ),
+                                  ),
                                 ],
                               ),
                               const SizedBox(height: 16),
