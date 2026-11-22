@@ -14,6 +14,7 @@ If a contract is missing from this index, it is not authoritative.
 | Contract | Status | Description |
 |--------|--------|-------------|
 | BEST_OF_GAME_DISCOVERY_READ_REPAIR_V5 | Active bounded513-to516 performance release | docs/contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V5.md — Qualified actual PL/pgSQL catalog plan fence; three immutable forward migrations, full-output/API and exact data preservation gates |
+| BEST_OF_GAME_DISCOVERY_READ_REPAIR_V7 | Active | [Current-main V7 successor](contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V7.md); unchanged513-to516 SQL, frozen V5/V6 lineage, exact operational scope approval and independent real API/deployed closure |
 | BEST_OF_GAME_DISCOVERY_READ_REPAIR_V6 | Active | Current-main integration successor to V5; same immutable513-to516 SQL and original conservation baselines, separately sealed source and normal checks, exact owner-bound operational exceptions only |
 | BEST_OF_GAME_DISCOVERY_READ_REPAIR_V4 | Superseded actual-function qualification; retained unchanged | docs/contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V4.md — Scalar preparation and catalog plan fence; actual result-column ambiguity remains failed with all source/proof retained |
 | BEST_OF_GAME_DISCOVERY_READ_REPAIR_V3 | Superseded scalar-only qualification; retained unchanged | docs/contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V3.md — Forward scalar preparation; realistic catalog timeout remains failed and source/labs stay retained |

@@ -1,3 +1,18 @@
+# Best of Game current-main release V7 — November22,2026
+
+Continue in C:/grookai_best_of_game_release_20261122 with the V7 contract and
+checkpoint docs/checkpoints/BEST_OF_GAME_DISCOVERY_RELEASE_V7_20261122.md.
+V5/V6 sources and sealed packets remain frozen. Current main adds only fourteen
+Master Index documents; the same516 SQL bytes and application reads are retained.
+Use the separate BestOfGameDiscoveryReleaseV7 gate. The old exact operational
+proposals are stale: current scoped pricing additions are5832 across six named
+runs, including failed runs whose staging rows confer no publication authority.
+Preserve the real SDK timeout and distinguish data-only metadata diagnostics
+from mandatory real3s acceptance. Require newly qualified exact scope and actual
+owner approval, normal/hosted checks, fresh before/dry/single-use apply/after,
+normal merge and Production web readback. Restore workflow313398421 after closure.
+Do not reset retained labs. Continue all-stamped Reverse Holos only after closure.
+
 # Best of Game current-main release V6 — November20,2026
 
 The V5 source and sealed production packet remain frozen. Continue in
