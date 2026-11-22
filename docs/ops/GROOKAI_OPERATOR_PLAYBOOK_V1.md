@@ -270,6 +270,24 @@ and [the checkpoint](../checkpoints/LATIOS_ALIAS_DISCOVERY_20261118.md).
 
 # Grookai Operator Playbook V1
 
+## Square sold-stock recovery — November 22, 2026
+
+Cloud and scheduled commerce batches reserve one existing slot for the oldest returned
+sold allocation when live inventory would fill the batch. The existing authority's
+`target_checked` timestamp rotates sold copies within their priority group.
+Manual and focused requests keep their existing selection, and total work remains
+within `maxTargets`. Settlement still precedes stock handling. Unexpected Square
+restock uses the existing fenced withdrawal authority; canonical sold state,
+sale history and exact-copy identity remain unchanged. No migration or phone
+update is required.
+
+Verify with `backend/square/tests/sold_recovery_batch_v3.test.mjs` and the normal
+Square suite. The regression covers a larger active queue, multiple sold copies,
+unexpected restock, repeat recovery, focused/manual work and bounded unique batches.
+The live discovery, exact-copy mitigation and release checkpoint are retained in
+`C:/grookai_vault_operator_artifacts/reader_checkout_20261122/`. Confirm that
+checkpoint before claiming publication or genuine reader-payment acceptance.
+
 ## Printed XY promo search correction — November 18, 2026
 
 PR956 is deployed: `pika xy124` returns the retained Pikachu-EX XY124 parent.
