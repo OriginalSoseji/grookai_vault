@@ -1,0 +1,49 @@
+{
+  "executionAuthority": false,
+  "sourcePins": {
+    "docs/audits/english_master_index_publishable_v1/sets/ex13/cards.json": "ecc97f4f1ff8fde68c2b7a2f71e953b567d00f1ac9176c7f86ef56b6c0d5b03f",
+    "docs/audits/english_master_index_publishable_v1/sets/ex13/printings.json": "da1510ce0a2cdeb490910d19975255a043dba8b4ddf0ddfe0c32c6b05aec4a57"
+  },
+  "official": {
+    "url": "https://assets.pokemon.com/assets/cms/pdf/tcg/checklists/holonphantoms_checklist.pdf",
+    "path": "holonphantoms_checklist.pdf",
+    "sha256": "bbcbed1af62ca05d122f87f1dd43564ca6aabb04afdd577f614980e816a12d57",
+    "page": 1,
+    "visuallyInspected": true
+  },
+  "physicalImage": {
+    "gvId": "GV-PK-HP-41",
+    "parentId": "fbe38b87-9c6e-49e4-a34d-0bc4014790f2",
+    "file": "ex13-41-jab-stamped-source-v1.jpg",
+    "sha256": "09179949565e9dbad495ee53e8236c256e93432be0728a34501115baab3af0c6",
+    "listing": "https://jabgames13.com/products/exeggutor-41-110-stamped-reverse-holo-ex-holon-phantoms",
+    "visibleName": "Exeggutor",
+    "visibleNumber": "41/110",
+    "deltaSpeciesGraphic": true,
+    "visibleSetLogo": "EX HOLON PHANTOMS",
+    "prereleaseWordVisible": false,
+    "observations": "Photographed sleeved card; set logo at lower right of artwork, vertical reflective foil visible. Normal version is separately supported by official checklist.",
+    "imageKind": "physical card photograph"
+  },
+  "dependencyStatePin": "0ede6e221310b8636d0f86abfcaed4aaa342f2190c0e928ee881b3c2a5815e69",
+  "parentFullRowSha256": "3fa6363c70a8ebb4b1d92ee6ed961995c9623b2bd453477a6ee2afad4d2f98ba",
+  "identity": {
+    "id": "a082122c-1158-4542-8761-680dd2d92259",
+    "is_active": true,
+    "created_at": "2026-06-15T05:13:03.711116+00:00",
+    "updated_at": "2026-06-15T05:13:03.711116+00:00",
+    "card_print_id": "fbe38b87-9c6e-49e4-a34d-0bc4014790f2",
+    "printed_number": "41",
+    "identity_domain": "pokemon_eng_standard",
+    "source_name_raw": null,
+    "identity_payload": {
+      "printed_total": 110,
+      "printed_set_abbrev": "HP",
+      "variant_key_current": "base"
+    },
+    "identity_key_hash": "c51aa2e2658bc755b2f20774ec5dbe7729683198abd11379c6a8828ae313b306",
+    "set_code_identity": "ex13",
+    "identity_key_version": "pokemon_eng_standard:v1",
+    "normalized_printed_name": "exeggutor δ"
+  }
+}
