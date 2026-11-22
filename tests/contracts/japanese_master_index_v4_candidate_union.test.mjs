@@ -99,6 +99,7 @@ function fixture() {
     {
       evidence_id: 'evidence-1',
       card_print_id: 'parent-1',
+      card_print_identity_id: 'identity-1',
       source_key: 'preserved-source',
       active: true,
       evidence_subject: {
@@ -168,7 +169,8 @@ function fixture() {
 
   return {
     parents,
-    identityRows: [],
+    identityRows: [{ card_print_identity_id: 'identity-1', card_print_id: 'parent-1',
+      is_active: true, identity_payload: { card_name_en_candidates: ['Bulbasaur'] } }],
     evidenceRows,
     printingRows: [
       {
@@ -283,6 +285,52 @@ test('inactive evidence remains in the audit baseline but cannot supply current 
   const historical = result.sourceAssertionUnion.find((row) => row.evidence_id === 'evidence-retired');
   assert.equal(historical.assertion_lane, 'preserved_inactive_evidence');
   assert.equal(historical.resolution_status, 'preserved_inactive_evidence');
+});
+
+test('stale active names cannot contaminate a parent or cross-card species inference', () => {
+  const input = fixture();
+  input.evidenceRows[0].evidence_subject.card_name_en_candidates = ['Former Wrong Name', 'Bulbasaur'];
+  input.sourceAssertions = [{ laneId: 'fixture', assertions: [assertion({
+    sourceId: 'source-1', externalId: 'stale-english', number: '099', englishName: 'Former Wrong Name',
+  })] }];
+  const result = buildJapaneseCandidateUnion(input);
+  const parent = result.identityCandidates.find((row) => row.existing_card_print_id === 'parent-1');
+  assert.deepEqual(parent.english_name_candidates, ['Bulbasaur']);
+  assert.deepEqual(parent.active_baseline_evidence_ids, ['evidence-1']);
+  const novel = result.identityCandidates.find((row) => row.candidate_kind === 'novel_numbered' && row.number_core === '99');
+  const projection = result.familyProjectionRows.find((row) => row.candidate_key === novel.candidate_key);
+  assert.equal(projection.projection_status, 'no_species_projection');
+  assert.equal(projection.species_id, null);
+});
+
+test('English evidence fails closed for missing, ambiguous or different active identity anchors', () => {
+  for (const mutate of [
+    (input) => { input.identityRows = []; },
+    (input) => { input.identityRows.push({ ...input.identityRows[0], card_print_identity_id: 'identity-2' }); },
+    (input) => { input.evidenceRows[0].card_print_identity_id = 'other'; },
+    (input) => { input.identityRows[0].identity_payload = {}; },
+    (input) => { input.identityRows[0].identity_payload.card_name_en_candidates = [null, { name: 'Bulbasaur' }]; },
+  ]) {
+    const input = fixture(); mutate(input);
+    const parent = buildJapaneseCandidateUnion(input).identityCandidates.find((row) => row.existing_card_print_id === 'parent-1');
+    assert.deepEqual(parent.english_name_candidates, []);
+    assert.deepEqual(parent.active_baseline_evidence_ids, ['evidence-1']);
+  }
+});
+
+test('a uniquely anchored current English name can support a novel family projection', () => {
+  const input = fixture();
+  input.identityRows[0].identity_payload.card_name_en_candidates = ['Fixture Current Name'];
+  input.evidenceRows[0].evidence_subject.card_name_en_candidates = ['Fixture Current Name'];
+  input.englishFamilyCards = []; input.englishFamilySpeciesLinks = [];
+  input.sourceAssertions = [{ laneId: 'fixture', assertions: [assertion({
+    sourceId: 'source-1', externalId: 'current-english', number: '099', englishName: 'Fixture Current Name',
+  })] }];
+  const result = buildJapaneseCandidateUnion(input);
+  const novel = result.identityCandidates.find((row) => row.candidate_kind === 'novel_numbered' && row.number_core === '99');
+  const projection = result.familyProjectionRows.find((row) => row.candidate_key === novel.candidate_key);
+  assert.equal(projection.projection_status, 'projected_exact');
+  assert.equal(projection.species_id, 'species-bulbasaur');
 });
 
 test('multipart source cannot join a single parent by number, name or identical image', () => {

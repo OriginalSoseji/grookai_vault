@@ -1,0 +1,16 @@
+{
+  "captured_at": "2026-11-22T22:44:11.790Z",
+  "scope": "Read-only live-input simulation of 92 parent candidates with no source assertions or family links; not full admission, performance, provenance or write qualification.",
+  "sanity": {
+    "read_only": "on",
+    "parents": 173994,
+    "sets": 3421,
+    "traits": 47409
+  },
+  "policy_sha256": "1d2d2487694f85c38fb08ce77f5890605bbbf20fb6cf0f470cd85bbe67341c85",
+  "parents": 92,
+  "active_evidence_ids_retained": 184,
+  "former_name_survivors": 0,
+  "current_name_values_retained": 0,
+  "unknown_name_values": 0
+}

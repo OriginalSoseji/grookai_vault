@@ -1,0 +1,28 @@
+{
+  "captured_at": "2026-11-22T22:43:50.418Z",
+  "scope": "Aggregate raw JSON containment, not the normalized policy result; differences are an upper bound and need further adjudication.",
+  "sanity": {
+    "read_only": "on",
+    "parents": 173994,
+    "sets": 3421,
+    "traits": 47409
+  },
+  "elapsed_ms": 3753,
+  "rows": [
+    {
+      "reason": "all_names_exactly_present",
+      "evidence_rows": 109214,
+      "cards": 24259
+    },
+    {
+      "reason": "at_least_one_nonidentical_name",
+      "evidence_rows": 264,
+      "cards": 132
+    },
+    {
+      "reason": "missing_or_multiple_active_identity",
+      "evidence_rows": 230,
+      "cards": 113
+    }
+  ]
+}
