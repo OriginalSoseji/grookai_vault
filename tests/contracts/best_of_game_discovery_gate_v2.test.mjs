@@ -38,11 +38,17 @@ test('BOG V2 retains the immutable candidate after the independently applied pri
  assert.deepEqual(scoped.history,catalog.history);
  assert.equal(scoped.targetMigrations,516);
  assert.deepEqual(scoped.candidates,{...catalog.candidates,'20261120160000_best_of_game_catalog_column_scope_v1.sql':'2edf452ee104691db9b2f81d82183cb0a4c987838bb305a609134795c0c70d16'});
- assert.deepEqual(fs.readdirSync(root+'/supabase/migrations').filter(f=>/^\d+.*\.sql$/.test(f)).sort(),Object.keys({...sources,...scoped.candidates}).sort());
+ const visible=read('best_of_game_discovery_candidate_v8.json');
+ assert.equal(visible.baselineMigrations,516);
+ assert.equal(visible.targetMigrations,517);
+ assert.deepEqual(visible.history,{...scoped.history,...scoped.candidates});
+ assert.deepEqual(visible.candidates,{'20261122164500_best_of_game_catalog_visible_pruning_v1.sql':'4e54db0f63731e349249011cb689a932417ca93d8233af67c7ead990cb1a63e9'});
+ assert.deepEqual(fs.readdirSync(root+'/supabase/migrations').filter(f=>/^\d+.*\.sql$/.test(f)).sort(),Object.keys({...visible.history,...visible.candidates}).sort());
  for(const [file,hash]of Object.entries(sources))assert.equal(sha(fs.readFileSync(root+'/supabase/migrations/'+file)),hash,file);
  for(const [file,hash]of Object.entries(forward.candidates))assert.equal(sha(fs.readFileSync(root+'/supabase/migrations/'+file)),hash,file);
  for(const [file,hash]of Object.entries(catalog.candidates))assert.equal(sha(fs.readFileSync(root+'/supabase/migrations/'+file)),hash,file);
  for(const [file,hash]of Object.entries(scoped.candidates))assert.equal(sha(fs.readFileSync(root+'/supabase/migrations/'+file)),hash,file);
+ for(const [file,hash]of Object.entries(visible.candidates))assert.equal(sha(fs.readFileSync(root+'/supabase/migrations/'+file)),hash,file);
 });
 
 const output='C:/grookai_vault_operator_artifacts/best_of_game_discovery_v2_20261120/rejected-gate-output';

@@ -1,3 +1,19 @@
+# Best of Game forward517 runtime hold — November22,2026
+
+V7 applied the exact three migrations once; production is516. Complete after
+data/schema/security readback passes all120 original scopes and768 aliases,
+but initial and three fresh SDK catalog probes timed out at3s. Keep its frozen
+source05d0f6ab, manifestd93ee734, every passing/failed receipt and consumed intent.
+Do not merge or deploy based on the one passing60-call run. Continue only in
+C:/grookai_best_of_game_forward_517_20261122 under the V8 contract/checkpoint;
+evidence is C:/grookai_vault_operator_artifacts/best_of_game_forward_517_20261122.
+Qualify the exact one-join517 correction, original120-scope/data limits and
+unchanged expiry, then obtain the separate exact additional-SQL decision before
+production. Require genuine3s API/reliability, normal merge and Production
+closure. The earlier source/caches/labs remain retained. Main remains held and
+dashboard313398421 paused until exact restoration after closure. Stamped Reverse
+Holo execution follows separately; no printing authority is granted here.
+
 # Best of Game enforced merge pause — November22,2026
 
 Main is held read-only at5d0915f1 for the owner-authorized duplicate release.

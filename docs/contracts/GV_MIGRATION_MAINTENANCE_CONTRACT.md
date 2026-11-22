@@ -1,5 +1,16 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Best of Game visible-set forward release V8 — November22,2026
+
+Production516 contains the three immutable V7 migrations and its complete data /
+schema/security proof, but reproduced3s catalog SDK failures block closure.
+Only -BestOfGameDiscoveryReleaseV8 binds516-to517 for20261122164500. Read
+[V8](BEST_OF_GAME_DISCOVERY_READ_REPAIR_V8.md). Preserve all516 applied sources,
+original120 data anchors, old manifests/receipts/labs and the original approval
+expiry. Qualification and an additional exact SQL decision precede any new
+production apply. Require genuine API/reliability and matching deployed closure;
+never edit or repeat the consumed V7 apply or reset retained populated labs.
+
 ## Best of Game exact performance release V5 — November20,2026
 
 Only -BestOfGameDiscoveryReleaseV5 can qualify canonical513-to516 with exact
