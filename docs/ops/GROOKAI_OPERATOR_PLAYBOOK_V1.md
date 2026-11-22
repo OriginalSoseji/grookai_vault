@@ -1,3 +1,17 @@
+# Best of Game identity518 runtime hold — November22,2026
+
+V8's owner-approved catalog migration applied once at19:29UTC; production is517.
+Its catalog SDK returned417 rows in2562ms, then canonical Prismatic identity
+browsing timed out at3103ms. Retain source296f77a3, manifest251e2a30, consumed
+intent and failed after-r1. The independent full data-only audit does not clear
+the API failure. Continue in C:/grookai_best_of_game_identity_518_20261122 under
+the indexed V9 contract/checkpoint; evidence is the matching identity51820261122
+operator root. Qualify the seven conditional typed-scope expressions, original
+data limits and expiry, normal checks and a separate concrete SQL decision.
+Do not edit or repeat517, reset labs, relax3s or claim a passing diagnostic is
+API acceptance. Main/dashboard stay paused until full deployed closure and
+exact restoration. Stamped Reverse Holos follow separately.
+
 # Best of Game forward517 runtime hold — November22,2026
 
 V7 applied the exact three migrations once; production is516. Complete after

@@ -1,5 +1,16 @@
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Best of Game typed identity forward release V9 — November22,2026
+
+Only -BestOfGameDiscoveryReleaseV9 admits517-to518 and20261122194000. Read
+[V9](BEST_OF_GAME_DISCOVERY_READ_REPAIR_V9.md). V8 applied once; its genuine
+identity API timeout remains failed. Preserve all517 SQL, source, receipts,
+original120 data anchors, exact comparison limits and original expiry. Qualify
+the actual typed-scope function, full-output/authority negatives,449 local rows
+and schema/security, normal checks and new exact owner decision before apply.
+No populated lab reset, repeated consumed apply, generated diff execution,
+printing authority or timeout relaxation. Full live and deployed closure remains.
+
 ## Best of Game visible-set forward release V8 — November22,2026
 
 Production516 contains the three immutable V7 migrations and its complete data /
