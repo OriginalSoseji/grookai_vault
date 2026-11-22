@@ -8,8 +8,11 @@ seller connection path and its recovery states.
 ## Required behavior
 
 - Accounts must always expose a direct route to the eBay seller workspace.
-- The seller workspace must show a visible **Connect eBay** action when the
-  account is unlinked, needs reconnection, or its account status is missing.
+- The seller workspace must always show a visible seller authentication
+  action: **Connect eBay** when unlinked or status is missing, and
+  **Reconnect eBay** when a seller is linked or needs reconnection. This gives
+  the owner an explicit recovery path when an existing link is stale or tied to
+  a different seller session.
   An absent or incomplete `account` object must never hide the connection
   action or be interpreted as a linked seller.
 - When status is missing, label it as unavailable and provide refresh plus an
@@ -32,8 +35,9 @@ seller connection path and its recovery states.
 - A widget test omitting `account` from a successful workspace response must
   find an enabled **Connect eBay** action and prove that it invokes the `link`
   action.
-- Known-disabled linking must remain unavailable; reconnect and linked states
-  must keep their existing meanings.
+- Known-disabled linking must remain unavailable, including when the status is
+  partial. A linked seller must still have an explicit **Reconnect eBay**
+  action, and invoking it must use the same server-owned OAuth start flow.
 - Before release, verify on Android and iOS that Accounts → eBay reaches the
   connection action, an OAuth return refreshes status, and the seller workspace
   never silently presents an empty screen when status is unavailable.

@@ -1,5 +1,17 @@
 # eBay Seller Connection Entry Checkpoint — 2026-11-22
 
+## Follow-up finding
+
+Build 608 was installed in place on the Samsung. The seller workspace showed
+`grookai_vault` as linked, so its **Connect eBay** action was hidden even though
+the owner still needed a direct way to sign in again. Updated this screen to
+show **Reconnect eBay** for linked accounts and route it through the existing
+authenticated OAuth start flow. Added a linked-account widget regression test
+and amended the contract. This does not save or publish a listing.
+
+Build 608 therefore did not verify the connection action on device. A new
+signed build and follow-up device check are still required.
+
 ## Observed state
 
 - Samsung build 607 was unlocked and signed in to grookai.
