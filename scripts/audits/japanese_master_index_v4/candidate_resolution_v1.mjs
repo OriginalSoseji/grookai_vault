@@ -41,6 +41,26 @@ function normalizeEnglishName(value) {
   return normalizeAlias(value);
 }
 
+// A live source row may retain an English name from an older identity. It is
+// useful provenance, but cannot supply a current name or a cross-card species
+// mapping unless the unique active identity independently contains that name.
+function currentEvidenceEnglishNames(row, identitiesByCard) {
+  if (row.active !== true) return [];
+  const identities = (identitiesByCard.get(row.card_print_id) ?? [])
+    .filter((identity) => identity.is_active === true);
+  if (identities.length !== 1) return [];
+  const identity = identities[0];
+  if (!identity.card_print_identity_id ||
+      row.card_print_identity_id !== identity.card_print_identity_id) return [];
+  const current = identity.identity_payload?.card_name_en_candidates;
+  const claimed = row.evidence_subject?.card_name_en_candidates;
+  if (!Array.isArray(current) || !Array.isArray(claimed)) return [];
+  const admitted = new Set(current.filter((name) => typeof name === 'string')
+    .map(normalizeEnglishName).filter(Boolean));
+  return claimed.filter((name) => typeof name === 'string' &&
+    admitted.has(normalizeEnglishName(name)));
+}
+
 function assertionNumberCore(assertion) {
   const raw = numberCoreFromRaw(assertion.card_number_raw);
   if (raw !== null) return raw;
@@ -213,6 +233,7 @@ function resolutionPriority(method) {
 function buildFamilyMaps({
   parents,
   evidenceRows,
+  identitiesByCard,
   jpnSpeciesLinks,
   englishFamilyCards,
   englishFamilySpeciesLinks,
@@ -261,7 +282,7 @@ function buildFamilyMaps({
     if (!row.active) continue;
     const speciesIds = sortedSet(jpnSpeciesByCard.get(row.card_print_id));
     if (speciesIds.length !== 1) continue;
-    for (const name of row.evidence_subject?.card_name_en_candidates ?? []) {
+    for (const name of currentEvidenceEnglishNames(row, identitiesByCard)) {
       addMapSet(
         speciesByEnglishName,
         normalizeEnglishName(name),
@@ -796,7 +817,7 @@ export function buildJapaneseCandidateUnion({
       ]),
       english_name_candidates: unique(
         activeEvidence.flatMap(
-          (row) => row.evidence_subject?.card_name_en_candidates ?? [],
+          (row) => currentEvidenceEnglishNames(row, identitiesByCard),
         ),
       ),
       image_urls: model.imageUrls,
@@ -1071,6 +1092,7 @@ export function buildJapaneseCandidateUnion({
   const familyMaps = buildFamilyMaps({
     parents,
     evidenceRows,
+    identitiesByCard,
     jpnSpeciesLinks,
     englishFamilyCards,
     englishFamilySpeciesLinks,
@@ -1319,6 +1341,7 @@ export const candidateResolutionInternals = Object.freeze({
   normalizeSetCode,
   normalizeJapaneseName,
   normalizeEnglishName,
+  currentEvidenceEnglishNames,
   numberCoreFromRaw,
   assertionNumberCore,
   parentNumberCore,
