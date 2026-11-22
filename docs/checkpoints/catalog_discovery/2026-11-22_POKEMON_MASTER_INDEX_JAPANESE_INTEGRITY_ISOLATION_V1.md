@@ -70,3 +70,13 @@ may continue unrelated data-only candidate publication while the Japanese
 source conflict remains visible in source-health evidence. Do not manually
 dispatch discovery, do not promote `M6a`, and do not treat the combined job's
 success as proof that the Japanese conflict is resolved.
+
+## Follow-up diagnostic evidence
+
+The next natural run must also preserve a bounded structured disagreement
+record in the fatal worker error. It includes the TCGdex declared and parsed
+totals plus the Bulbapedia expected and parsed totals, numbering mode, candidate
+and rejected-denominator row counts, card-list table count, modern-row fallback
+state, and bounded unnumbered-table selection counts. The evidence explicitly
+records `fatal: true` and `canonical_authority: false`; it diagnoses the source
+conflict without accepting either checklist or changing the isolation gate.

@@ -7,6 +7,7 @@ import { Client } from "pg";
 import {
   buildCanonicalPromotionCandidatesV1,
   buildCatalogSearchAliases,
+  buildJapaneseChecklistDisagreementEvidenceV1,
   buildPokemonLanguageMasterIndexReconciliationV1,
   buildPokemonMasterIndexUpdateCandidatesV1,
   canUseCompleteOfficialJapaneseExpansionChecklistV1,
@@ -983,9 +984,15 @@ async function discoverJapaneseProducts(sourceSnapshots, options, japaneseCandid
       const bulbapediaFullCount = fullChecklist?.cards?.length ?? null;
       if (tcgdexFullCount !== null && bulbapediaFullCount !== null &&
           tcgdexFullCount !== bulbapediaFullCount) {
+        const disagreementEvidence = buildJapaneseChecklistDisagreementEvidenceV1({
+          sourceSetCode,
+          tcgdexChecklist: tcgdexSet,
+          bulbapediaChecklist: fullChecklist,
+        });
         throw new Error(
           `Japanese set ${sourceSetCode} full-checklist disagreement: ` +
-          `TCGdex=${tcgdexFullCount}, Bulbapedia=${bulbapediaFullCount}`,
+          `TCGdex=${tcgdexFullCount}, Bulbapedia=${bulbapediaFullCount}; ` +
+          `evidence=${stableJson(disagreementEvidence)}`,
         );
       }
       const fullChecklistCount = tcgdexFullCount ?? bulbapediaFullCount ??
