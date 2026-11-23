@@ -198,4 +198,13 @@ community Binder flows remain unverified on a second real account.
   card, then reads back the saved per-Binder order. It passes. The complete
   Binder suite passed all 436 cases; `binder_main_integration_test.dart` passed
   all 24 cases; `flutter analyze` reported no issues.
-- Signed build and Samsung installation are still pending.
+- Signed Samsung Build 612 is installed from workflow run `45104336817` on
+  source commit `d541de57ed81ca2f8e41c2e6a5d8ea8275589d54`. The complete Flutter
+  test job, analyzer, and Windows renderer golden job passed. The artifact
+  manifest identifies `com.grookai.vault` version code 612 and the approved
+  production signer. `android_update_preflight.ps1` proved exact signer match
+  against installed Build 611; `adb install -r` succeeded and preserved the
+  original first-install timestamp (`2026-10-13 14:57:14`).
+- Automated device launch and screenshot confirmed the phone had relocked by
+  then, so on-screen Binder drag verification remains pending until it is
+  unlocked again. No app data was cleared or changed during installation.
