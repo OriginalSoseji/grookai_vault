@@ -1,0 +1,288 @@
+{
+  "version": "MCD22_PROMO_RARITY_PROPOSED_PLAN_V1",
+  "status": "NON_EXECUTABLE_PROPOSAL",
+  "target": "ycdxbpibncqcchqiihfz",
+  "candidate_sha256": "de766699a6673b30ecad1aa9eeefb5a844f4b67827cef3dbc1ce7d7a934392b0",
+  "preflight_sha256": "73e20d12b946f45dbfa4b5410ba35be4ed8d3b7c71dbcb5027811529912bb074",
+  "policy_sha256": "eeaca0b3fd09034ce9b7d9846c86122b8737e2d7a5cba16a172969dc65e737ad",
+  "preflight_input_digest": "c61184505ffee246f426d22c35f5c9b38fe00e38ef154314f00bbfde60f8ee1f",
+  "protected_state": {
+    "parent_other_fields": {
+      "rows": 15,
+      "digest": "b4b49635505779bf70b479a063f2318f"
+    },
+    "card_print_identity": {
+      "rows": 15,
+      "row_versions_1": "1934287898156068729",
+      "row_versions_2": "-4581493610006385276"
+    },
+    "card_printings": {
+      "rows": 15,
+      "row_versions_1": "5891859237245347161",
+      "row_versions_2": "7471044558201462995"
+    },
+    "external_mappings": {
+      "rows": 30,
+      "row_versions_1": "5904418029141632295",
+      "row_versions_2": "5369642797452006737"
+    },
+    "external_mapping_aliases": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "card_print_species": {
+      "rows": 15,
+      "row_versions_1": "5811102864464242045",
+      "row_versions_2": "-2625318492383486907"
+    },
+    "card_print_cameos": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "card_print_traits": {
+      "rows": 73,
+      "row_versions_1": "6356243288653698243",
+      "row_versions_2": "-1042441349899037825"
+    },
+    "card_print_image_faces": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "vault_item_instances": {
+      "rows": 3,
+      "row_versions_1": "3623836283609332688",
+      "row_versions_2": "-1475792523881579295"
+    },
+    "vault_items": {
+      "rows": 2,
+      "row_versions_1": "1746528976355706643",
+      "row_versions_2": "2685353939126365884"
+    },
+    "card_print_price_curves": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "price_observations": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "market_prices": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "market_price_current_publication": {
+      "rows": 1,
+      "digest": "ec3077730171af5beed1ee6d8e76b5a4"
+    },
+    "current_publication_snapshots": {
+      "rows": 15,
+      "row_versions_1": "-4686384327509764778",
+      "row_versions_2": "583983952953093287"
+    },
+    "current_qualification_decisions": {
+      "rows": 15,
+      "row_versions_1": "-1264529024289804548",
+      "row_versions_2": "-433312629172545558"
+    },
+    "sets": {
+      "rows": 1,
+      "digest": "7a5395ec19ec047b3b77ec3cce33f918"
+    }
+  },
+  "scope": {
+    "table": "card_prints",
+    "field": "rarity",
+    "null_only": true,
+    "count": 15
+  },
+  "rows": [
+    {
+      "id": "5ce84e07-d2fa-46bd-8775-5848a904ae9f",
+      "gv_id": "GV-PK-MCD-2022-1",
+      "set_code": "mcd22",
+      "number": "1",
+      "expected_rarity": null,
+      "proposed_rarity": "Promo",
+      "identity_key_hash": "26894470fffc6da3049aaa8125da686af3182ad055d25f38947fb71f1690ead0",
+      "trait_count": 5,
+      "source_product_id": 281476,
+      "source_payload_hash": "4d73a4b9c037cb896698cc65463c4600f15f26cfc38b01ec433904f552dd6e8a"
+    },
+    {
+      "id": "d09c0912-9a8d-45dd-a276-09da28bab494",
+      "gv_id": "GV-PK-MCD-2022-2",
+      "set_code": "mcd22",
+      "number": "2",
+      "expected_rarity": null,
+      "proposed_rarity": "Promo",
+      "identity_key_hash": "16febca188010d5eed15e54c9c4535c53e31ba40c99a0abc50feb96134724531",
+      "trait_count": 4,
+      "source_product_id": 281473,
+      "source_payload_hash": "6b0846ac42411f43393b5380fd22a09f46f98c8431edb072bac6febdc7c5b6df"
+    },
+    {
+      "id": "1c4759db-9b50-45d0-9c0b-655977006168",
+      "gv_id": "GV-PK-MCD-2022-3",
+      "set_code": "mcd22",
+      "number": "3",
+      "expected_rarity": null,
+      "proposed_rarity": "Promo",
+      "identity_key_hash": "4f1b4e8e66bab1a56c6beb76bca88eb74baf89b1afe68f530b246407f68ffc65",
+      "trait_count": 5,
+      "source_product_id": 281482,
+      "source_payload_hash": "a9a7ab85c52d9494d8a7771805b57ca1d50b74d63800b6090428a2187be70ff4"
+    },
+    {
+      "id": "98b5e8e1-99c6-4c6e-9d89-ed1accb2dfb6",
+      "gv_id": "GV-PK-MCD-2022-4",
+      "set_code": "mcd22",
+      "number": "4",
+      "expected_rarity": null,
+      "proposed_rarity": "Promo",
+      "identity_key_hash": "383c4379d0a85e0771713eb94728102a57e84d83c4b3f9858dcbb77d0280c350",
+      "trait_count": 5,
+      "source_product_id": 281503,
+      "source_payload_hash": "7cb91d989107cbc79ff36c39017a49d3e73a6300dc1076f19cd5d117018f1317"
+    },
+    {
+      "id": "60efdde4-8b1e-4d21-b2d5-c8163d93691d",
+      "gv_id": "GV-PK-MCD-2022-5",
+      "set_code": "mcd22",
+      "number": "5",
+      "expected_rarity": null,
+      "proposed_rarity": "Promo",
+      "identity_key_hash": "fa2f46f6646b144e4f675519de4c2b91d5c608f2a0b384426497494829bf2c97",
+      "trait_count": 5,
+      "source_product_id": 281493,
+      "source_payload_hash": "b112241e83bbfba51f51a746ea87ca2bf5e451e3630ed3b4ae363940baa18ee3"
+    },
+    {
+      "id": "b53cb5ce-2f3a-413f-9a12-eb7150afcd79",
+      "gv_id": "GV-PK-MCD-2022-6",
+      "set_code": "mcd22",
+      "number": "6",
+      "expected_rarity": null,
+      "proposed_rarity": "Promo",
+      "identity_key_hash": "d5d58b20099e9026894dfdd0518cd3ac94265efd5c31c5037634664be08c4b24",
+      "trait_count": 5,
+      "source_product_id": 281485,
+      "source_payload_hash": "a521d83f0248088e43cb0311f3a5849987899ae720c5168b80d2849a0987cbe4"
+    },
+    {
+      "id": "f16bd0f6-341f-4085-8047-8c84238bf8e4",
+      "gv_id": "GV-PK-MCD-2022-7",
+      "set_code": "mcd22",
+      "number": "7",
+      "expected_rarity": null,
+      "proposed_rarity": "Promo",
+      "identity_key_hash": "f6273f660056223e3ff07e1c8346aab5afe13c0633fb8adb01b984e719499947",
+      "trait_count": 5,
+      "source_product_id": 282523,
+      "source_payload_hash": "cf4a7237b6e53786661898a469a6f2c1ff7e62e476e5c6d3b124da0efe9cd008"
+    },
+    {
+      "id": "154d3c3b-8318-4701-95f5-2d190b637933",
+      "gv_id": "GV-PK-MCD-2022-8",
+      "set_code": "mcd22",
+      "number": "8",
+      "expected_rarity": null,
+      "proposed_rarity": "Promo",
+      "identity_key_hash": "0a9686d0aadb8c87366968661989fbd3e562a54ab2d74909ee187538f26d900e",
+      "trait_count": 5,
+      "source_product_id": 281491,
+      "source_payload_hash": "ce7fb8523fd767fa87536dac19c4f0ed9164f37ab2fac8bebce2b85c22f46578"
+    },
+    {
+      "id": "e29312a1-1d37-4e2d-89e4-f7b3f3e80028",
+      "gv_id": "GV-PK-MCD-2022-9",
+      "set_code": "mcd22",
+      "number": "9",
+      "expected_rarity": null,
+      "proposed_rarity": "Promo",
+      "identity_key_hash": "0a7d7d3a3c1503ba4061568f6c70e6add5d6062c29d42e9289fd77e09c9294f6",
+      "trait_count": 5,
+      "source_product_id": 281478,
+      "source_payload_hash": "d36ceb858e462b95e2af411610f361b7f63953f3fbd3a4df93f9493829c77fa7"
+    },
+    {
+      "id": "ce08cb77-b737-4b53-9e65-fa29fb10e9fe",
+      "gv_id": "GV-PK-MCD-2022-10",
+      "set_code": "mcd22",
+      "number": "10",
+      "expected_rarity": null,
+      "proposed_rarity": "Promo",
+      "identity_key_hash": "2e7e675bfe1fc082b84321f7722c17d9eafdf38106c7df94b890da9fef543dca",
+      "trait_count": 4,
+      "source_product_id": 281472,
+      "source_payload_hash": "fbfe3a90f073bdfce42e657c800ddbfa3f7b6b1e081b5fbc4c936f096defc47e"
+    },
+    {
+      "id": "688ee024-46df-4900-8078-f036851e0301",
+      "gv_id": "GV-PK-MCD-2022-11",
+      "set_code": "mcd22",
+      "number": "11",
+      "expected_rarity": null,
+      "proposed_rarity": "Promo",
+      "identity_key_hash": "62a7088571bbcfda1ed08ef77634f5a0831f3f7194d99ffad8501f09c5316a3e",
+      "trait_count": 5,
+      "source_product_id": 281494,
+      "source_payload_hash": "6389045465f5b099a072636d6fd0428e2e10136851d2a5092ce7dfe7ec17d68d"
+    },
+    {
+      "id": "4ff2e001-2868-4953-b850-3d3bdbd368d1",
+      "gv_id": "GV-PK-MCD-2022-12",
+      "set_code": "mcd22",
+      "number": "12",
+      "expected_rarity": null,
+      "proposed_rarity": "Promo",
+      "identity_key_hash": "1e16bb54945d929fe570b60a2cd3cb91ee690f7faecf843b636b50b23de05ddb",
+      "trait_count": 5,
+      "source_product_id": 281504,
+      "source_payload_hash": "09872ded14b5058e1cff5adccb401b7ae46b9e5c1ad1b8968d2ab6eccb731080"
+    },
+    {
+      "id": "e7e1377e-7cc4-4381-9a2c-c74e29d04c90",
+      "gv_id": "GV-PK-MCD-2022-13",
+      "set_code": "mcd22",
+      "number": "13",
+      "expected_rarity": null,
+      "proposed_rarity": "Promo",
+      "identity_key_hash": "468b99b0154bd22df94ac58e1b09c8447cfacbc1c8549f8d374abe213cb6f221",
+      "trait_count": 5,
+      "source_product_id": 281505,
+      "source_payload_hash": "14f3406ebb2b3ac0987c4a8676ac2b87a674cc03b9b1e973bc8669d5d37d7a0f"
+    },
+    {
+      "id": "c60371f3-c47e-4de2-9387-33eb6be3b92b",
+      "gv_id": "GV-PK-MCD-2022-14",
+      "set_code": "mcd22",
+      "number": "14",
+      "expected_rarity": null,
+      "proposed_rarity": "Promo",
+      "identity_key_hash": "e330d544389e828e0960bdf6996730e63298d46f87abe0c8f42d16859f3bde6f",
+      "trait_count": 5,
+      "source_product_id": 281497,
+      "source_payload_hash": "8b1c433b4d8dcf87cb656f7988ec37665dd39242ffb7fd62d0636bc42f640a5f"
+    },
+    {
+      "id": "fd2f7b7c-1dcc-47b8-9fe3-df9deccba773",
+      "gv_id": "GV-PK-MCD-2022-15",
+      "set_code": "mcd22",
+      "number": "15",
+      "expected_rarity": null,
+      "proposed_rarity": "Promo",
+      "identity_key_hash": "33d674a17506633591b5843fe28816497af4d570ba21065ac652518e9dac93f5",
+      "trait_count": 5,
+      "source_product_id": 281500,
+      "source_payload_hash": "dbbf0163bf09a769a9e8961793f6fa1176ec316fedd99087f33e762a08df49ae"
+    }
+  ],
+  "outstanding": "Dedicated registered canon writer, fresh source and trait locks, raw-first staging, persisted run/failure, protected before/after proofs, rollback exercise, and durable readback are required before mutation.",
+  "fingerprint_sha256": "e49f07c0b8179915727cfcc23cfd1fa15b5565a31eb1b590198c1caecd30bf3b"
+}

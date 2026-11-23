@@ -1,0 +1,1058 @@
+{
+  "version": "XY_SUFFIX_RARITY_FROZEN_READBACK_V1",
+  "captured_at": "2026-11-19T21:16:06.461Z",
+  "project_ref": "ycdxbpibncqcchqiihfz",
+  "sanity": {
+    "read_only": "on",
+    "parents": 173837,
+    "sets": 3420,
+    "traits": 47409
+  },
+  "parents": [
+    {
+      "id": "2928d70e-b3ff-4c8e-914f-a361cff27396",
+      "name": "M Sharpedo-EX",
+      "gv_id": "GV-PK-PR-XY-XY200A",
+      "artist": "5ban Graphics",
+      "number": "XY200a",
+      "rarity": "Common",
+      "set_id": "076bc367-57a2-44db-853c-dfa32115761f",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "xyp",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/xy/xyp/XY200a/high.webp",
+      "created_at": "2025-11-20T05:56:53.824308+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/xyp/gv-pk-pr-xy-xy200a/bd22f824398effd1a5228992.webp",
+      "updated_at": "2025-12-27T19:26:16.337401+00:00",
+      "ai_metadata": {
+        "tcgdex": {
+          "legalities": {},
+          "flavor_text": null
+        }
+      },
+      "variant_key": "XYa",
+      "external_ids": {
+        "tcgdex": "xyp-XY200a"
+      },
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "200",
+      "tcgplayer_id": null,
+      "image_alt_url": "https://assets.tcgdex.net/en/xy/xyp/XY200a",
+      "printed_total": null,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": null,
+      "data_quality_flags": {
+        "canonical_404": false,
+        "canonical_last_checked_at": "2025-12-02T06:20:36.192Z",
+        "canonical_last_http_status": "200"
+      },
+      "print_identity_key": null,
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "46b9dcd9-3f90-4770-890e-6817eed4d388",
+      "name": "Jirachi",
+      "gv_id": "GV-PK-PR-XY-XY67A",
+      "artist": "sui",
+      "number": "XY67a",
+      "rarity": "Common",
+      "set_id": "076bc367-57a2-44db-853c-dfa32115761f",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "xyp",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/xy/xyp/XY67a/high.webp",
+      "created_at": "2025-11-20T05:57:36.630156+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/xyp/gv-pk-pr-xy-xy67a/aa3b4cbece46bc50935b0a95.webp",
+      "updated_at": "2025-12-27T19:26:16.337401+00:00",
+      "ai_metadata": {
+        "tcgdex": {
+          "legalities": {},
+          "flavor_text": null
+        }
+      },
+      "variant_key": "XYa",
+      "external_ids": {
+        "tcgdex": "xyp-XY67a"
+      },
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "67",
+      "tcgplayer_id": null,
+      "image_alt_url": "https://assets.tcgdex.net/en/xy/xyp/XY67a",
+      "printed_total": null,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": null,
+      "data_quality_flags": {
+        "canonical_404": false,
+        "canonical_last_checked_at": "2025-12-02T06:42:40.825Z",
+        "canonical_last_http_status": "200"
+      },
+      "print_identity_key": null,
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    }
+  ],
+  "sets": [
+    {
+      "id": "076bc367-57a2-44db-853c-dfa32115761f",
+      "code": "xyp",
+      "game": "pokemon",
+      "name": "XY Black Star Promos",
+      "source": {
+        "tcgdex": {
+          "id": "xyp",
+          "raw": {
+            "id": "xyp",
+            "logo": "https://assets.tcgdex.net/en/xy/xyp/logo",
+            "name": "XY Black Star Promos",
+            "symbol": "https://assets.tcgdex.net/univ/xy/xyp/symbol",
+            "cardCount": {
+              "total": 216,
+              "official": 211
+            }
+          },
+          "name": "XY Black Star Promos",
+          "slug": null,
+          "total": null,
+          "series": null,
+          "symbols": null,
+          "releaseDate": null,
+          "printedTotal": null
+        },
+        "pokemonapi": {
+          "id": "xyp",
+          "name": "XY Black Star Promos",
+          "total": 216,
+          "images": {
+            "logo": "https://images.pokemontcg.io/xyp/logo.png",
+            "symbol": "https://images.pokemontcg.io/xyp/symbol.png"
+          },
+          "series": "XY",
+          "ptcgoCode": "PR-XY",
+          "releaseDate": "2013/10/12",
+          "printedTotal": 211
+        }
+      },
+      "logo_url": "https://images.pokemontcg.io/xyp/logo.png",
+      "set_role": null,
+      "created_at": "2025-11-16T06:32:35.437741+00:00",
+      "symbol_url": "https://images.pokemontcg.io/xyp/symbol.png",
+      "updated_at": "2026-04-13T17:58:16.449538+00:00",
+      "release_date": "2013-10-12",
+      "printed_total": 211,
+      "hero_image_url": "https://assets.tcgdex.net/en/xy/xyp/logo.png",
+      "identity_model": "standard",
+      "last_synced_at": null,
+      "hero_image_source": "tcgdex",
+      "search_code_lower": "xyp",
+      "printed_set_abbrev": "PR-XY",
+      "identity_domain_default": "pokemon_eng_standard"
+    }
+  ],
+  "identities": [
+    {
+      "id": "1d0caaa4-a77b-406b-a2a4-a91d3979fbf6",
+      "is_active": true,
+      "created_at": "2026-06-15T05:13:03.711116+00:00",
+      "updated_at": "2026-06-15T05:13:03.711116+00:00",
+      "card_print_id": "46b9dcd9-3f90-4770-890e-6817eed4d388",
+      "printed_number": "XY67a",
+      "identity_domain": "pokemon_eng_standard",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 211,
+        "printed_set_abbrev": "PR-XY",
+        "variant_key_current": "XYa"
+      },
+      "identity_key_hash": "7608ef3121158a7d7181a5c6b3da72f77f7b6901b967c619814d10ff52446cec",
+      "set_code_identity": "xyp",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "normalized_printed_name": "jirachi"
+    },
+    {
+      "id": "f3580a6a-3db5-4a6d-a82d-0546ac63170f",
+      "is_active": true,
+      "created_at": "2026-06-15T05:13:03.711116+00:00",
+      "updated_at": "2026-06-15T05:13:03.711116+00:00",
+      "card_print_id": "2928d70e-b3ff-4c8e-914f-a361cff27396",
+      "printed_number": "XY200a",
+      "identity_domain": "pokemon_eng_standard",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 211,
+        "printed_set_abbrev": "PR-XY",
+        "variant_key_current": "XYa"
+      },
+      "identity_key_hash": "9134b71216655aa603286da032296e9a26234758fcb48fe7d52df5363a28f7a8",
+      "set_code_identity": "xyp",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "normalized_printed_name": "m sharpedo-ex"
+    }
+  ],
+  "traits": [
+    {
+      "hp": 210,
+      "id": 39444,
+      "types": [
+        "Darkness"
+      ],
+      "rarity": "Common",
+      "source": "tcgdex",
+      "supertype": "Pokemon",
+      "confidence": null,
+      "created_at": "2026-03-27T00:44:42.12717+00:00",
+      "trait_type": "pokemon:stats",
+      "trait_value": "tcgdex",
+      "national_dex": 319,
+      "card_category": "MEGA",
+      "card_print_id": "2928d70e-b3ff-4c8e-914f-a361cff27396",
+      "legacy_rarity": null
+    },
+    {
+      "hp": 60,
+      "id": 39503,
+      "types": [
+        "Metal"
+      ],
+      "rarity": "Common",
+      "source": "tcgdex",
+      "supertype": "Pokemon",
+      "confidence": null,
+      "created_at": "2026-03-27T00:45:43.137365+00:00",
+      "trait_type": "pokemon:stats",
+      "trait_value": "tcgdex",
+      "national_dex": 385,
+      "card_category": "Basic",
+      "card_print_id": "46b9dcd9-3f90-4770-890e-6817eed4d388",
+      "legacy_rarity": null
+    }
+  ],
+  "mappings": [
+    {
+      "id": 1483,
+      "meta": {
+        "new_gv_id": "GV-PK-PR-XY-XY67A",
+        "new_number": "XY67a",
+        "previous_gv_id": "GV-PK-PR-XY-XY67",
+        "previous_number": "XY67",
+        "new_card_print_id": "46b9dcd9-3f90-4770-890e-6817eed4d388",
+        "owner_transfer_package": "EXTMAP-ALIAS-04A-POKEMONAPI-SUFFIX-OWNER-TRANSFER",
+        "previous_card_print_id": "1fb96923-9db6-4321-aca3-d00af7acb4ae",
+        "governance_fingerprint_sha256": "3cc52ffb8ccfe9698f3f3a116b7ac8132f1afca0ffea2826216c91bbe6607c53"
+      },
+      "active": true,
+      "owners": 1,
+      "source": "pokemonapi",
+      "synced_at": "2025-11-18T06:45:25.177989+00:00",
+      "external_id": "xyp-XY67a",
+      "card_print_id": "46b9dcd9-3f90-4770-890e-6817eed4d388",
+      "parent_mappings": 1
+    },
+    {
+      "id": 1620,
+      "meta": {
+        "new_gv_id": "GV-PK-PR-XY-XY200A",
+        "new_number": "XY200a",
+        "previous_gv_id": "GV-PK-PR-XY-XY200",
+        "previous_number": "XY200",
+        "new_card_print_id": "2928d70e-b3ff-4c8e-914f-a361cff27396",
+        "owner_transfer_package": "EXTMAP-ALIAS-04A-POKEMONAPI-SUFFIX-OWNER-TRANSFER",
+        "previous_card_print_id": "bf6e9262-f055-4800-a899-76e64458629a",
+        "governance_fingerprint_sha256": "3cc52ffb8ccfe9698f3f3a116b7ac8132f1afca0ffea2826216c91bbe6607c53"
+      },
+      "active": true,
+      "owners": 1,
+      "source": "pokemonapi",
+      "synced_at": "2025-11-18T06:46:37.436998+00:00",
+      "external_id": "xyp-XY200a",
+      "card_print_id": "2928d70e-b3ff-4c8e-914f-a361cff27396",
+      "parent_mappings": 1
+    },
+    {
+      "id": 14562,
+      "meta": null,
+      "active": true,
+      "owners": 1,
+      "source": "tcgdex",
+      "synced_at": "2025-11-20T05:56:53.942382+00:00",
+      "external_id": "xyp-XY200a",
+      "card_print_id": "2928d70e-b3ff-4c8e-914f-a361cff27396",
+      "parent_mappings": 1
+    },
+    {
+      "id": 14621,
+      "meta": null,
+      "active": true,
+      "owners": 1,
+      "source": "tcgdex",
+      "synced_at": "2025-11-20T05:57:36.746711+00:00",
+      "external_id": "xyp-XY67a",
+      "card_print_id": "46b9dcd9-3f90-4770-890e-6817eed4d388",
+      "parent_mappings": 1
+    }
+  ],
+  "raw": [
+    {
+      "id": "1790",
+      "source": "pokemonapi",
+      "status": "normalized",
+      "ingested_at": "2025-11-17T17:23:23.197Z",
+      "payload_md5": "09f27a02a3191a22632707fe2aa9aee0",
+      "payload": {
+        "hp": "210",
+        "id": "xyp-XY200a",
+        "set": {
+          "id": "xyp",
+          "name": "XY Black Star Promos",
+          "total": 216,
+          "images": {
+            "logo": "https://images.pokemontcg.io/xyp/logo.png",
+            "symbol": "https://images.pokemontcg.io/xyp/symbol.png"
+          },
+          "series": "XY",
+          "ptcgoCode": "PR-XY",
+          "updatedAt": "2020/08/14 09:35:00",
+          "legalities": {
+            "expanded": "Legal",
+            "unlimited": "Legal"
+          },
+          "releaseDate": "2013/10/12",
+          "printedTotal": 211
+        },
+        "name": "M Sharpedo-EX",
+        "_kind": "card",
+        "rules": [
+          "Mega Evolution rule: When 1 of your Pokémon becomes a Mega Evolution Pokémon, your turn ends.",
+          "Pokémon-EX rule: When a Pokémon-EX has been Knocked Out, your opponent takes 2 Prize cards."
+        ],
+        "types": [
+          "Darkness"
+        ],
+        "artist": "5ban Graphics",
+        "images": {
+          "large": "https://images.pokemontcg.io/xyp/XY200a_hires.png",
+          "small": "https://images.pokemontcg.io/xyp/XY200a.png"
+        },
+        "number": "XY200a",
+        "rarity": "Promo",
+        "attacks": [
+          {
+            "cost": [
+              "Darkness",
+              "Darkness",
+              "Colorless"
+            ],
+            "name": "Torpedo Dive",
+            "text": "This attack does 10 damage to each of your opponent's Benched Pokémon for each Colorless in that Pokémon's Retreat Cost. (Don't apply Weakness and Resistance for Benched Pokémon.)",
+            "damage": "120",
+            "convertedEnergyCost": 3
+          }
+        ],
+        "subtypes": [
+          "MEGA",
+          "EX"
+        ],
+        "supertype": "Pokémon",
+        "cardmarket": {
+          "url": "https://prices.pokemontcg.io/cardmarket/xyp-XY200a",
+          "prices": {
+            "avg1": 59,
+            "avg7": 63.74,
+            "avg30": 40.22,
+            "lowPrice": 35.37,
+            "trendPrice": 72.65,
+            "germanProLow": 0,
+            "lowPriceExPlus": 89.95,
+            "reverseHoloLow": 0,
+            "suggestedPrice": 0,
+            "reverseHoloAvg1": 7.89,
+            "reverseHoloAvg7": 5.67,
+            "reverseHoloSell": 0,
+            "averageSellPrice": 85,
+            "reverseHoloAvg30": 3.94,
+            "reverseHoloTrend": 5.76
+          },
+          "updatedAt": "2025/11/13"
+        },
+        "legalities": {
+          "expanded": "Legal",
+          "unlimited": "Legal"
+        },
+        "weaknesses": [
+          {
+            "type": "Lightning",
+            "value": "×2"
+          }
+        ],
+        "evolvesFrom": "Sharpedo-EX",
+        "_external_id": "xyp-XY200a",
+        "_set_external_id": "xyp",
+        "nationalPokedexNumbers": [
+          319
+        ]
+      }
+    },
+    {
+      "id": "1653",
+      "source": "pokemonapi",
+      "status": "normalized",
+      "ingested_at": "2025-11-17T17:22:08.062Z",
+      "payload_md5": "ba2cdb1ece21c90baae637b357bb5363",
+      "payload": {
+        "hp": "60",
+        "id": "xyp-XY67a",
+        "set": {
+          "id": "xyp",
+          "name": "XY Black Star Promos",
+          "total": 216,
+          "images": {
+            "logo": "https://images.pokemontcg.io/xyp/logo.png",
+            "symbol": "https://images.pokemontcg.io/xyp/symbol.png"
+          },
+          "series": "XY",
+          "ptcgoCode": "PR-XY",
+          "updatedAt": "2020/08/14 09:35:00",
+          "legalities": {
+            "expanded": "Legal",
+            "unlimited": "Legal"
+          },
+          "releaseDate": "2013/10/12",
+          "printedTotal": 211
+        },
+        "name": "Jirachi",
+        "_kind": "card",
+        "types": [
+          "Metal"
+        ],
+        "artist": "Naoki Saito",
+        "images": {
+          "large": "https://images.pokemontcg.io/xyp/XY67a_hires.png",
+          "small": "https://images.pokemontcg.io/xyp/XY67a.png"
+        },
+        "number": "XY67a",
+        "rarity": "Promo",
+        "attacks": [
+          {
+            "cost": [
+              "Colorless"
+            ],
+            "name": "Stardust",
+            "text": "Discard a Special Energy attached to your opponent's Active Pokémon. If you do, prevent all effects of attacks, including damage, done to this Pokémon during your opponent's next turn.",
+            "damage": "10",
+            "convertedEnergyCost": 1
+          },
+          {
+            "cost": [
+              "Metal",
+              "Colorless"
+            ],
+            "name": "Dream Dance",
+            "text": "Both Active Pokémon are now Asleep.",
+            "damage": "20",
+            "convertedEnergyCost": 2
+          }
+        ],
+        "subtypes": [
+          "Basic"
+        ],
+        "supertype": "Pokémon",
+        "cardmarket": {
+          "url": "https://prices.pokemontcg.io/cardmarket/xyp-XY67a",
+          "prices": {
+            "avg1": 159,
+            "avg7": 147.66,
+            "avg30": 112.56,
+            "lowPrice": 160,
+            "trendPrice": 156.12,
+            "germanProLow": 0,
+            "lowPriceExPlus": 160,
+            "reverseHoloLow": 0,
+            "suggestedPrice": 0,
+            "reverseHoloAvg1": 42,
+            "reverseHoloAvg7": 19.14,
+            "reverseHoloSell": 0,
+            "averageSellPrice": 164.67,
+            "reverseHoloAvg30": 9.38,
+            "reverseHoloTrend": 23.52
+          },
+          "updatedAt": "2025/11/17"
+        },
+        "flavorText": "It is said to have the ability to grant any wish for just one week every thousand years.",
+        "legalities": {
+          "expanded": "Legal",
+          "unlimited": "Legal"
+        },
+        "weaknesses": [
+          {
+            "type": "Fire",
+            "value": "×2"
+          }
+        ],
+        "resistances": [
+          {
+            "type": "Psychic",
+            "value": "-20"
+          }
+        ],
+        "retreatCost": [
+          "Colorless"
+        ],
+        "_external_id": "xyp-XY67a",
+        "_set_external_id": "xyp",
+        "convertedRetreatCost": 1,
+        "nationalPokedexNumbers": [
+          385
+        ]
+      }
+    },
+    {
+      "id": "14989",
+      "source": "tcgdex",
+      "status": "normalized",
+      "ingested_at": "2025-11-19T20:38:00.056Z",
+      "payload_md5": "0a58c14da8e172c7bc8923cb485b12b1",
+      "payload": {
+        "card": {
+          "hp": 60,
+          "id": "xyp-XY67a",
+          "set": {
+            "id": "xyp",
+            "logo": "https://assets.tcgdex.net/en/xy/xyp/logo",
+            "name": "XY Black Star Promos",
+            "symbol": "https://assets.tcgdex.net/univ/xy/xyp/symbol",
+            "cardCount": {
+              "total": 216,
+              "official": 211
+            }
+          },
+          "name": "Jirachi",
+          "dexId": [
+            385
+          ],
+          "image": "https://assets.tcgdex.net/en/xy/xyp/XY67a",
+          "legal": {
+            "expanded": true,
+            "standard": false
+          },
+          "stage": "Basic",
+          "types": [
+            "Metal"
+          ],
+          "rarity": "Common",
+          "attacks": [
+            {
+              "cost": [
+                "Colorless"
+              ],
+              "name": "Stardust",
+              "damage": 10,
+              "effect": "Discard a Special Energy attached to your opponent's Active Pokémon. If you do, prevent all effects of attacks, including damage, done to this Pokémon during your opponent's next turn."
+            },
+            {
+              "cost": [
+                "Metal",
+                "Colorless"
+              ],
+              "name": "Dream Dance",
+              "damage": 20,
+              "effect": "Both Active Pokémon are now Asleep."
+            }
+          ],
+          "localId": "XY67a",
+          "pricing": {
+            "tcgplayer": null,
+            "cardmarket": {
+              "avg": 6.46,
+              "low": 4,
+              "avg1": 5,
+              "avg7": 6.46,
+              "unit": "EUR",
+              "avg30": 5.83,
+              "trend": 7.33,
+              "updated": "2026-02-20T01:45:06.000Z",
+              "avg-holo": null,
+              "low-holo": null,
+              "avg1-holo": 2.3,
+              "avg7-holo": 2.22,
+              "idProduct": 289787,
+              "avg30-holo": 1.51,
+              "trend-holo": 2.03
+            }
+          },
+          "updated": "2026-01-24T23:11:24+01:00",
+          "category": "Pokemon",
+          "variants": {
+            "holo": true,
+            "normal": true,
+            "wPromo": false,
+            "reverse": true,
+            "firstEdition": false
+          },
+          "weaknesses": [
+            {
+              "type": "Fire",
+              "value": "×2"
+            }
+          ],
+          "illustrator": "sui",
+          "resistances": [
+            {
+              "type": "Psychic",
+              "value": "-20"
+            }
+          ],
+          "variants_detailed": [
+            {
+              "size": "standard",
+              "type": "normal"
+            },
+            {
+              "size": "standard",
+              "type": "reverse"
+            },
+            {
+              "size": "standard",
+              "type": "holo"
+            }
+          ]
+        },
+        "_kind": "card",
+        "_source": "tcgdex",
+        "fetched_at": "2026-02-20T05:02:02.755Z",
+        "_external_id": "xyp-XY67a",
+        "set_external_id": "xyp",
+        "_set_external_id": "xyp"
+      }
+    },
+    {
+      "id": "14930",
+      "source": "tcgdex",
+      "status": "normalized",
+      "ingested_at": "2025-11-19T20:37:47.196Z",
+      "payload_md5": "be66d6503b29d5c72014e251e61013e9",
+      "payload": {
+        "card": {
+          "hp": 210,
+          "id": "xyp-XY200a",
+          "set": {
+            "id": "xyp",
+            "logo": "https://assets.tcgdex.net/en/xy/xyp/logo",
+            "name": "XY Black Star Promos",
+            "symbol": "https://assets.tcgdex.net/univ/xy/xyp/symbol",
+            "cardCount": {
+              "total": 216,
+              "official": 211
+            }
+          },
+          "name": "M Sharpedo-EX",
+          "dexId": [
+            319
+          ],
+          "image": "https://assets.tcgdex.net/en/xy/xyp/XY200a",
+          "legal": {
+            "expanded": true,
+            "standard": false
+          },
+          "stage": "MEGA",
+          "types": [
+            "Darkness"
+          ],
+          "rarity": "Common",
+          "attacks": [
+            {
+              "cost": [
+                "Darkness",
+                "Darkness",
+                "Colorless"
+              ],
+              "name": "Torpedo Dive",
+              "damage": 120,
+              "effect": "This attack does 10 damage to each of your opponent's Benched Pokémon for each Colorless in that Pokémon's Retreat Cost. (Don't apply Weakness and Resistance for Benched Pokémon.)"
+            }
+          ],
+          "localId": "XY200a",
+          "pricing": {
+            "tcgplayer": null,
+            "cardmarket": null
+          },
+          "updated": "2026-01-24T23:11:24+01:00",
+          "category": "Pokemon",
+          "variants": {
+            "holo": true,
+            "normal": true,
+            "wPromo": false,
+            "reverse": true,
+            "firstEdition": false
+          },
+          "evolveFrom": "Sharpedo-EX",
+          "weaknesses": [
+            {
+              "type": "Lightning",
+              "value": "×2"
+            }
+          ],
+          "illustrator": "5ban Graphics",
+          "variants_detailed": [
+            {
+              "size": "standard",
+              "type": "normal"
+            },
+            {
+              "size": "standard",
+              "type": "reverse"
+            },
+            {
+              "size": "standard",
+              "type": "holo"
+            }
+          ]
+        },
+        "_kind": "card",
+        "_source": "tcgdex",
+        "fetched_at": "2026-02-20T05:01:51.813Z",
+        "_external_id": "xyp-XY200a",
+        "set_external_id": "xyp",
+        "_set_external_id": "xyp"
+      }
+    }
+  ],
+  "products": [
+    {
+      "row": {
+        "name": "Jirachi - XY67a",
+        "group_id": 1938,
+        "image_url": "https://tcgplayer-cdn.tcgplayer.com/product/148343_200w.jpg",
+        "clean_name": "Jirachi XY67a",
+        "created_at": "2026-07-15T03:58:43.241912+00:00",
+        "product_id": 148343,
+        "source_url": "https://www.tcgplayer.com/product/148343/pokemon-alternate-art-promos-jirachi-xy67a",
+        "updated_at": "2026-11-19T03:22:53.094968+00:00",
+        "category_id": 3,
+        "image_count": 1,
+        "raw_payload": {
+          "url": "https://www.tcgplayer.com/product/148343/pokemon-alternate-art-promos-jirachi-xy67a",
+          "name": "Jirachi - XY67a",
+          "groupId": 1938,
+          "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/148343_200w.jpg",
+          "cleanName": "Jirachi XY67a",
+          "productId": 148343,
+          "categoryId": 3,
+          "imageCount": 1,
+          "modifiedOn": "2026-08-20T16:29:16.263",
+          "presaleInfo": {
+            "note": null,
+            "isPresale": false,
+            "releasedOn": null
+          },
+          "extendedData": [
+            {
+              "name": "Number",
+              "value": "XY67a",
+              "displayName": "Card Number"
+            },
+            {
+              "name": "Rarity",
+              "value": "Promo",
+              "displayName": "Rarity"
+            },
+            {
+              "name": "Card Type",
+              "value": "Metal",
+              "displayName": "Card Type"
+            },
+            {
+              "name": "HP",
+              "value": "60",
+              "displayName": "HP"
+            },
+            {
+              "name": "Stage",
+              "value": "Basic",
+              "displayName": "Stage"
+            },
+            {
+              "name": "Attack 1",
+              "value": "[1] Stardust (10)\r\n<br>Discard a Special Energy attached to your opponent's Active Pokémon. If you do, prevent all effects of attacks, including damage, done to this Pokémon during your opponent's next turn.",
+              "displayName": "Attack 1"
+            },
+            {
+              "name": "Attack 2",
+              "value": "[1M] Dream Dance (20)\r\n<br>Both Active Pokémon are now Asleep.",
+              "displayName": "Attack 2"
+            },
+            {
+              "name": "Weakness",
+              "value": "Rx2",
+              "displayName": "Weakness"
+            },
+            {
+              "name": "Resistance",
+              "value": "P-20",
+              "displayName": "Resistance"
+            },
+            {
+              "name": "RetreatCost",
+              "value": "1",
+              "displayName": "Retreat Cost"
+            }
+          ]
+        },
+        "last_seen_at": "2026-11-19T03:22:53.094968+00:00",
+        "payload_hash": "6a9db0944b1d38a53f0508f0c5b4d883a0bf2ab79682b1f2ae0fef474ff55b7c",
+        "presale_info": {
+          "note": null,
+          "isPresale": false,
+          "releasedOn": null
+        },
+        "extended_data": [
+          {
+            "name": "Number",
+            "value": "XY67a",
+            "displayName": "Card Number"
+          },
+          {
+            "name": "Rarity",
+            "value": "Promo",
+            "displayName": "Rarity"
+          },
+          {
+            "name": "Card Type",
+            "value": "Metal",
+            "displayName": "Card Type"
+          },
+          {
+            "name": "HP",
+            "value": "60",
+            "displayName": "HP"
+          },
+          {
+            "name": "Stage",
+            "value": "Basic",
+            "displayName": "Stage"
+          },
+          {
+            "name": "Attack 1",
+            "value": "[1] Stardust (10)\r\n<br>Discard a Special Energy attached to your opponent's Active Pokémon. If you do, prevent all effects of attacks, including damage, done to this Pokémon during your opponent's next turn.",
+            "displayName": "Attack 1"
+          },
+          {
+            "name": "Attack 2",
+            "value": "[1M] Dream Dance (20)\r\n<br>Both Active Pokémon are now Asleep.",
+            "displayName": "Attack 2"
+          },
+          {
+            "name": "Weakness",
+            "value": "Rx2",
+            "displayName": "Weakness"
+          },
+          {
+            "name": "Resistance",
+            "value": "P-20",
+            "displayName": "Resistance"
+          },
+          {
+            "name": "RetreatCost",
+            "value": "1",
+            "displayName": "Retreat Cost"
+          }
+        ],
+        "first_seen_at": "2026-07-15T03:58:43.241912+00:00",
+        "source_active": true,
+        "last_seen_run_id": "ab6f6a8d-fb7c-49cd-92da-2df335c4c10f",
+        "source_modified_on": "2026-08-20T16:29:16.263",
+        "source_missing_since": null,
+        "catalog_metadata_status": "current"
+      },
+      "raw_md5": "481c569f43aab7b8a6232be55356c570",
+      "active_mappings": []
+    },
+    {
+      "row": {
+        "name": "M Sharpedo EX - XY200a",
+        "group_id": 1938,
+        "image_url": "https://tcgplayer-cdn.tcgplayer.com/product/148346_200w.jpg",
+        "clean_name": "M Sharpedo EX XY200a",
+        "created_at": "2026-07-15T03:58:43.241912+00:00",
+        "product_id": 148346,
+        "source_url": "https://www.tcgplayer.com/product/148346/pokemon-alternate-art-promos-m-sharpedo-ex-xy200a",
+        "updated_at": "2026-11-19T03:22:53.094968+00:00",
+        "category_id": 3,
+        "image_count": 1,
+        "raw_payload": {
+          "url": "https://www.tcgplayer.com/product/148346/pokemon-alternate-art-promos-m-sharpedo-ex-xy200a",
+          "name": "M Sharpedo EX - XY200a",
+          "groupId": 1938,
+          "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/148346_200w.jpg",
+          "cleanName": "M Sharpedo EX XY200a",
+          "productId": 148346,
+          "categoryId": 3,
+          "imageCount": 1,
+          "modifiedOn": "2025-11-21T14:54:33.203",
+          "presaleInfo": {
+            "note": null,
+            "isPresale": false,
+            "releasedOn": null
+          },
+          "extendedData": [
+            {
+              "name": "Number",
+              "value": "XY200a",
+              "displayName": "Card Number"
+            },
+            {
+              "name": "Rarity",
+              "value": "Promo",
+              "displayName": "Rarity"
+            },
+            {
+              "name": "Card Type",
+              "value": "Darkness",
+              "displayName": "Card Type"
+            },
+            {
+              "name": "HP",
+              "value": "210",
+              "displayName": "HP"
+            },
+            {
+              "name": "Stage",
+              "value": "Mega Evolution",
+              "displayName": "Stage"
+            },
+            {
+              "name": "CardText",
+              "value": "<em>Mega Evolution rule — When 1 of your Pokémon becomes a Mega Evolution Pokémon, your turn ends.</em>\r\n<br><br>\r\n<em>Pokémon-EX rule — When a Pokémon-EX has been Knocked Out, your opponent takes 2 Prize cards.</em>",
+              "displayName": "Card Text"
+            },
+            {
+              "name": "Attack 1",
+              "value": "[1DD] Torpedo Strike (120)\r\n<br>This attack does 10 damage to each of your opponent's Benched Pokémon for each Colorless in that Pokémon's Retreat Cost. <em>(Don't apply Weakness and Resistance for Benched Pokémon.)</em>",
+              "displayName": "Attack 1"
+            },
+            {
+              "name": "Weakness",
+              "value": "Lx2",
+              "displayName": "Weakness"
+            }
+          ]
+        },
+        "last_seen_at": "2026-11-19T03:22:53.094968+00:00",
+        "payload_hash": "a07a77a25092eafbdf4f61b2391af9e2ca8be5e0f62159d9f0dfc2b5de6411ec",
+        "presale_info": {
+          "note": null,
+          "isPresale": false,
+          "releasedOn": null
+        },
+        "extended_data": [
+          {
+            "name": "Number",
+            "value": "XY200a",
+            "displayName": "Card Number"
+          },
+          {
+            "name": "Rarity",
+            "value": "Promo",
+            "displayName": "Rarity"
+          },
+          {
+            "name": "Card Type",
+            "value": "Darkness",
+            "displayName": "Card Type"
+          },
+          {
+            "name": "HP",
+            "value": "210",
+            "displayName": "HP"
+          },
+          {
+            "name": "Stage",
+            "value": "Mega Evolution",
+            "displayName": "Stage"
+          },
+          {
+            "name": "CardText",
+            "value": "<em>Mega Evolution rule — When 1 of your Pokémon becomes a Mega Evolution Pokémon, your turn ends.</em>\r\n<br><br>\r\n<em>Pokémon-EX rule — When a Pokémon-EX has been Knocked Out, your opponent takes 2 Prize cards.</em>",
+            "displayName": "Card Text"
+          },
+          {
+            "name": "Attack 1",
+            "value": "[1DD] Torpedo Strike (120)\r\n<br>This attack does 10 damage to each of your opponent's Benched Pokémon for each Colorless in that Pokémon's Retreat Cost. <em>(Don't apply Weakness and Resistance for Benched Pokémon.)</em>",
+            "displayName": "Attack 1"
+          },
+          {
+            "name": "Weakness",
+            "value": "Lx2",
+            "displayName": "Weakness"
+          }
+        ],
+        "first_seen_at": "2026-07-15T03:58:43.241912+00:00",
+        "source_active": true,
+        "last_seen_run_id": "ab6f6a8d-fb7c-49cd-92da-2df335c4c10f",
+        "source_modified_on": "2025-11-21T14:54:33.203",
+        "source_missing_since": null,
+        "catalog_metadata_status": "current"
+      },
+      "raw_md5": "5d739e0a26083b052029e1a1cd981f38",
+      "active_mappings": []
+    }
+  ],
+  "groups": [
+    {
+      "row": {
+        "name": "Alternate Art Promos",
+        "group_id": 1938,
+        "created_at": "2026-07-15T05:47:43.859562+00:00",
+        "updated_at": "2026-11-19T03:18:40.630957+00:00",
+        "category_id": 3,
+        "raw_payload": {
+          "name": "Alternate Art Promos",
+          "groupId": 1938,
+          "categoryId": 3,
+          "modifiedOn": "2026-08-20T17:41:47.18",
+          "publishedOn": "2026-11-18T20:00:06.7243537Z",
+          "abbreviation": "PR",
+          "isSupplemental": true
+        },
+        "abbreviation": "PR",
+        "last_seen_at": "2026-11-19T03:18:40.630957+00:00",
+        "payload_hash": "e71902b278fb0f847b1da84f11b08cf66163abac8af85b730824ad4e403efaef",
+        "published_on": "2026-11-18T20:00:06.7243537Z",
+        "first_seen_at": "2026-07-15T05:47:43.859562+00:00",
+        "source_active": true,
+        "is_supplemental": true,
+        "last_seen_run_id": "ab6f6a8d-fb7c-49cd-92da-2df335c4c10f",
+        "source_modified_on": "2026-08-20T17:41:47.18",
+        "source_missing_since": null,
+        "catalog_metadata_status": "current"
+      },
+      "raw_md5": "ce6402cfe3f6669fdeb0ca1b03a5c533"
+    }
+  ],
+  "runs": [
+    {
+      "id": "ab6f6a8d-fb7c-49cd-92da-2df335c4c10f",
+      "status": "completed",
+      "sync_mode": "current_full_sync",
+      "failed_count": 0,
+      "started_at": "2026-11-19T02:59:24.206Z",
+      "finished_at": "2026-11-19T04:10:44.685Z"
+    }
+  ],
+  "provenance": "Read-only database JSONB serialization; candidate discovery only, no mapping authority."
+}

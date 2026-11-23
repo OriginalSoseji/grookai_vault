@@ -30,6 +30,7 @@ function load(file) {
 const { resolveCatalogSetSearchIntent: resolve, readSearchSets, removeSetPhrase, isExactCatalogCardName, isCatalogCardNameQuery, isPublishedPlayableCardNameQuery } = load(path.join(web, 'lib/search/catalogSetSearch.ts'));
 const { buildSmartSearchIntent } = load(path.join(web, 'lib/search/smartSearchIntent.ts'));
 const { resolveSmartSearchQuery } = load(path.join(web, 'lib/search/resolveSmartSearchQuery.ts'));
+const { getPublicSetEra } = load(path.join(web, 'lib/publicSets.shared.ts'));
 const { fetchCompleteNamedCardRows } = load(path.join(web, 'lib/search/completeNamedCardSearch.ts'));
 
 test('published name probes use bounded ID/GV pairs and require every original name fragment',async()=>{
@@ -54,6 +55,25 @@ const sets = [
  ['me02.5', 'Ascended Heroes'], ['asc-special', 'Ascended Legends'], ['silver', 'Silver Tempest'],
 ].map(([code, name]) => ({ id: code, code, name }));
 const plain = value => JSON.parse(JSON.stringify(value));
+
+test('legacy Pokemon era helper respects explicit promo family codes', () => {
+ assert.equal(getPublicSetEra({code:'swshp', release_year:2019}), 'swsh');
+ assert.equal(getPublicSetEra({code:'svp', release_year:2022}), 'sv');
+ assert.equal(getPublicSetEra({release_year:2019}), 'sm');
+});
+
+test('explicit Sword and Shield promo family outranks the expansion name', () => {
+ const catalog = [...sets, {id:'swsh1',code:'swsh1',name:'Sword & Shield'},
+  {id:'swshp',code:'swshp',name:'SWSH Black Star Promos'}];
+ for (const q of ['Pikachu Sword and Shield promo', 'Pikachu Sword & Shield promos', 'Pikachu sword shield promo']) {
+  const result = resolve(q, 'pokemon', catalog);
+  assert.deepEqual(plain(result.setCodes), ['swshp'], q);
+  assert.equal(result.remainingQuery, 'Pikachu', q);
+ }
+ assert.deepEqual(plain(resolve('Pikachu from Sword and Shield', 'pokemon', catalog).setCodes), ['swsh1']);
+ assert.equal(resolve('Pikachu "Sword and Shield promo"', 'pokemon', catalog).matchedAlias, null);
+ assert.notDeepEqual(plain(resolve('Pikachu Sword and Shield promo', 'mtg', catalog).setCodes), ['swshp']);
+});
 
 test('collector phrases keep partial set aliases from consuming their words', () => {
  const catalog=[{id:'special',code:'sp-test',name:'Special Deck Set'},

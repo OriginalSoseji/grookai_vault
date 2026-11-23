@@ -1,0 +1,507 @@
+{
+  "version": "SWSH301_SOURCE_REVIEW_V2",
+  "captured_at": "2026-11-19T22:21:51.976Z",
+  "project_ref": "ycdxbpibncqcchqiihfz",
+  "sanity": {
+    "read_only": "on",
+    "parents": 173837,
+    "sets": 3420,
+    "traits": 47409
+  },
+  "parents": [
+    {
+      "id": "af831a08-6e93-4e7a-8e8b-1b02d38c9ff1",
+      "name": "Lugia V",
+      "gv_id": "GV-PK-PR-SW-SWSH301",
+      "artist": "PLANETA Mochizuki",
+      "number": "SWSH301",
+      "rarity": "None",
+      "set_id": "fb3eedc5-7234-49b5-b95b-8a9286c27daf",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "swshp",
+      "variants": {
+        "holo": true,
+        "normal": false,
+        "wPromo": false,
+        "reverse": false,
+        "firstEdition": false
+      },
+      "image_res": null,
+      "image_url": null,
+      "created_at": "2026-06-10T14:51:51.473073+00:00",
+      "image_hash": null,
+      "image_note": "IMG-HOST-WH-21A-RESIDUAL-PARENT-CHILD-POINTER-DRY-RUN: representative parent display pointer copied from existing child image GV-PK-PR-SW-SWSH301-HOLO; child_finish:holo; child_status:representative_shared. Parent image remains representative only; no exact parent image claim.",
+      "image_path": "warehouse-derived/image-truth-v1/img02a-missing-display-representative/swshp/e973055a-df3e-4bcb-bdc4-ae7a726e6178/755e1a00a0516c9f9c95ff9f.jpg",
+      "updated_at": "2026-06-15T17:00:31.09949+00:00",
+      "ai_metadata": {
+        "source": "verified_master_set_index_v1",
+        "package_id": "PKG-08G-TRUE-PARENT-CHILD-INSERTS",
+        "source_set_key": "swshp"
+      },
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "swshp-SWSH301"
+      },
+      "image_source": "identity",
+      "image_status": "representative_shared",
+      "number_plain": "301",
+      "tcgplayer_id": null,
+      "image_alt_url": null,
+      "printed_total": null,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": "F",
+      "data_quality_flags": null,
+      "print_identity_key": null,
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": null,
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    }
+  ],
+  "sets": [
+    {
+      "id": "fb3eedc5-7234-49b5-b95b-8a9286c27daf",
+      "code": "swshp",
+      "game": "pokemon",
+      "name": "SWSH Black Star Promos",
+      "source": {
+        "tcgdex": {
+          "id": "swshp",
+          "raw": {
+            "id": "swshp",
+            "logo": "https://assets.tcgdex.net/en/swsh/swshp/logo",
+            "name": "SWSH Black Star Promos",
+            "symbol": "https://assets.tcgdex.net/univ/swsh/swshp/symbol",
+            "cardCount": {
+              "total": 287,
+              "official": 107
+            }
+          },
+          "name": "SWSH Black Star Promos",
+          "slug": null,
+          "total": null,
+          "series": null,
+          "symbols": null,
+          "releaseDate": null,
+          "printedTotal": null
+        },
+        "pokemonapi": {
+          "id": "swshp",
+          "name": "SWSH Black Star Promos",
+          "total": 304,
+          "images": {
+            "logo": "https://images.pokemontcg.io/swshp/logo.png",
+            "symbol": "https://images.pokemontcg.io/swshp/symbol.png"
+          },
+          "series": "Sword & Shield",
+          "ptcgoCode": "PR-SW",
+          "releaseDate": "2019/11/15",
+          "printedTotal": 307
+        }
+      },
+      "logo_url": "https://images.pokemontcg.io/swshp/logo.png",
+      "set_role": null,
+      "created_at": "2025-11-16T06:32:35.437741+00:00",
+      "symbol_url": "https://images.pokemontcg.io/swshp/symbol.png",
+      "updated_at": "2026-04-13T17:58:16.449538+00:00",
+      "release_date": "2019-11-15",
+      "printed_total": 307,
+      "hero_image_url": "https://assets.tcgdex.net/en/swsh/swshp/logo.png",
+      "identity_model": "standard",
+      "last_synced_at": null,
+      "hero_image_source": "tcgdex",
+      "search_code_lower": "swshp",
+      "printed_set_abbrev": "PR-SW",
+      "identity_domain_default": "pokemon_eng_standard"
+    }
+  ],
+  "identities": [
+    {
+      "id": "5e5e7f36-6798-439d-900a-ce16cba6584d",
+      "is_active": true,
+      "created_at": "2026-06-15T05:13:03.711116+00:00",
+      "updated_at": "2026-06-15T05:13:03.711116+00:00",
+      "card_print_id": "af831a08-6e93-4e7a-8e8b-1b02d38c9ff1",
+      "printed_number": "SWSH301",
+      "identity_domain": "pokemon_eng_standard",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 307,
+        "printed_set_abbrev": "PR-SW",
+        "variant_key_current": "base"
+      },
+      "identity_key_hash": "555f3983d65462ef118cd38560972afec9cf86c59a5243202c4526f4c07d4485",
+      "set_code_identity": "swshp",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "normalized_printed_name": "lugia v"
+    }
+  ],
+  "traits": [
+    {
+      "hp": 220,
+      "id": 61173,
+      "types": [
+        "Colorless"
+      ],
+      "rarity": "None",
+      "source": "tcgdex",
+      "supertype": "Pokemon",
+      "confidence": null,
+      "created_at": "2026-06-15T16:11:29.419627+00:00",
+      "trait_type": "pokemon:stats",
+      "trait_value": "tcgdex",
+      "national_dex": 249,
+      "card_category": "Basic",
+      "card_print_id": "af831a08-6e93-4e7a-8e8b-1b02d38c9ff1",
+      "legacy_rarity": null
+    },
+    {
+      "hp": null,
+      "id": 61174,
+      "types": null,
+      "rarity": null,
+      "source": "tcgdex",
+      "supertype": null,
+      "confidence": null,
+      "created_at": "2026-06-15T16:11:29.419627+00:00",
+      "trait_type": "pokemon:type",
+      "trait_value": "Colorless",
+      "national_dex": null,
+      "card_category": null,
+      "card_print_id": "af831a08-6e93-4e7a-8e8b-1b02d38c9ff1",
+      "legacy_rarity": null
+    },
+    {
+      "hp": null,
+      "id": 61175,
+      "types": null,
+      "rarity": null,
+      "source": "tcgdex",
+      "supertype": null,
+      "confidence": null,
+      "created_at": "2026-06-15T16:11:29.419627+00:00",
+      "trait_type": "pokemon:supertype",
+      "trait_value": "Pokemon",
+      "national_dex": null,
+      "card_category": null,
+      "card_print_id": "af831a08-6e93-4e7a-8e8b-1b02d38c9ff1",
+      "legacy_rarity": null
+    },
+    {
+      "hp": null,
+      "id": 61176,
+      "types": null,
+      "rarity": null,
+      "source": "tcgdex",
+      "supertype": null,
+      "confidence": null,
+      "created_at": "2026-06-15T16:11:29.419627+00:00",
+      "trait_type": "pokemon:subtype",
+      "trait_value": "Basic",
+      "national_dex": null,
+      "card_category": null,
+      "card_print_id": "af831a08-6e93-4e7a-8e8b-1b02d38c9ff1",
+      "legacy_rarity": null
+    },
+    {
+      "hp": 220,
+      "id": 61177,
+      "types": [
+        "Colorless"
+      ],
+      "rarity": "None",
+      "source": "tcgdex",
+      "supertype": "Pokemon",
+      "confidence": null,
+      "created_at": "2026-06-15T16:11:29.419627+00:00",
+      "trait_type": "pokemon:national_dex",
+      "trait_value": "249",
+      "national_dex": 249,
+      "card_category": "Basic",
+      "card_print_id": "af831a08-6e93-4e7a-8e8b-1b02d38c9ff1",
+      "legacy_rarity": null
+    },
+    {
+      "hp": null,
+      "id": 61178,
+      "types": null,
+      "rarity": null,
+      "source": "tcgdex",
+      "supertype": null,
+      "confidence": null,
+      "created_at": "2026-06-15T16:11:29.419627+00:00",
+      "trait_type": "pokemon:legal",
+      "trait_value": "expanded",
+      "national_dex": null,
+      "card_category": null,
+      "card_print_id": "af831a08-6e93-4e7a-8e8b-1b02d38c9ff1",
+      "legacy_rarity": null
+    }
+  ],
+  "printings": [
+    {
+      "id": "e973055a-df3e-4bcb-bdc4-ae7a726e6178",
+      "image_url": null,
+      "created_at": "2026-06-10T14:51:51.473073+00:00",
+      "created_by": "pkg08g_true_parent_child_insert_guarded_dry_run_v1",
+      "finish_key": "holo",
+      "image_note": "IMG-02C-MISSING-DISPLAY-REPRESENTATIVE-CHILD-IMAGE-UPLOAD-APPLY:tcgcsv_tcgplayer_catalog:https://www.tcgplayer.com/product/505996/pokemon-swsh-sword-and-shield-promo-cards-lugia-v-swsh301",
+      "image_path": "warehouse-derived/image-truth-v1/img02a-missing-display-representative/swshp/e973055a-df3e-4bcb-bdc4-ae7a726e6178/755e1a00a0516c9f9c95ff9f.jpg",
+      "image_source": "identity",
+      "image_status": "representative_shared",
+      "card_print_id": "af831a08-6e93-4e7a-8e8b-1b02d38c9ff1",
+      "image_alt_url": null,
+      "is_provisional": false,
+      "printing_gv_id": "GV-PK-PR-SW-SWSH301-HOLO",
+      "provenance_ref": "swshp:SWSH301:holo",
+      "provenance_source": "verified_master_set_index_v1"
+    }
+  ],
+  "mappings": [
+    {
+      "id": 121810,
+      "meta": {
+        "set_key": "swshp",
+        "card_name": "Lugia V",
+        "package_id": "PKG-08G-TRUE-PARENT-CHILD-INSERTS",
+        "card_number": "SWSH301",
+        "live_set_code": "swshp"
+      },
+      "active": true,
+      "owners": 1,
+      "source": "tcgdex",
+      "synced_at": "2026-06-10T14:51:51.473073+00:00",
+      "external_id": "swshp-SWSH301",
+      "card_print_id": "af831a08-6e93-4e7a-8e8b-1b02d38c9ff1",
+      "parent_mappings": 1
+    },
+    {
+      "id": 133166,
+      "meta": {
+        "source_url": "https://www.tcgplayer.com/product/505996/pokemon-swsh-sword-and-shield-promo-cards-lugia-v-swsh301",
+        "promoted_by": "tcg_mapping_tcgmap06b_fresh_tcgcsv_mapping_insert_guarded_dry_run_v1",
+        "derived_from": "fresh_tcgcsv_tcgplayer_product_snapshot",
+        "product_name": "Lugia V - SWSH301",
+        "product_number": "SWSH301",
+        "product_rarity": "Promo",
+        "tcgcsv_group_id": "2545",
+        "raw_snapshot_ref": "tcgcsv:2545:505996",
+        "product_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/505996_200w.jpg",
+        "tcgcsv_group_name": "SWSH: Sword & Shield Promo Cards",
+        "source_readiness_fingerprint": "8a0e4ab3ec98c1b984ed3e409a1f50ed888ddf8b5b805c427a865e238a6a25ac"
+      },
+      "active": true,
+      "owners": 1,
+      "source": "tcgplayer",
+      "synced_at": "2026-06-19T14:21:30.28788+00:00",
+      "external_id": "505996",
+      "card_print_id": "af831a08-6e93-4e7a-8e8b-1b02d38c9ff1",
+      "parent_mappings": 1
+    }
+  ],
+  "raw": [],
+  "products": [
+    {
+      "row": {
+        "name": "Lugia V - SWSH301",
+        "group_id": 2545,
+        "image_url": "https://tcgplayer-cdn.tcgplayer.com/product/505996_200w.jpg",
+        "clean_name": "Lugia V SWSH301",
+        "created_at": "2026-07-15T03:58:44.247004+00:00",
+        "product_id": 505996,
+        "source_url": "https://www.tcgplayer.com/product/505996/pokemon-swsh-sword-and-shield-promo-cards-lugia-v-swsh301",
+        "updated_at": "2026-11-19T03:20:06.691689+00:00",
+        "category_id": 3,
+        "image_count": 1,
+        "raw_payload": {
+          "url": "https://www.tcgplayer.com/product/505996/pokemon-swsh-sword-and-shield-promo-cards-lugia-v-swsh301",
+          "name": "Lugia V - SWSH301",
+          "groupId": 2545,
+          "imageUrl": "https://tcgplayer-cdn.tcgplayer.com/product/505996_200w.jpg",
+          "cleanName": "Lugia V SWSH301",
+          "productId": 505996,
+          "categoryId": 3,
+          "imageCount": 1,
+          "modifiedOn": "2026-03-06T14:21:20.113",
+          "presaleInfo": {
+            "note": null,
+            "isPresale": false,
+            "releasedOn": null
+          },
+          "extendedData": [
+            {
+              "name": "Number",
+              "value": "SWSH301",
+              "displayName": "Card Number"
+            },
+            {
+              "name": "Rarity",
+              "value": "Promo",
+              "displayName": "Rarity"
+            },
+            {
+              "name": "Card Type",
+              "value": "Colorless",
+              "displayName": "Card Type"
+            },
+            {
+              "name": "HP",
+              "value": "220",
+              "displayName": "HP"
+            },
+            {
+              "name": "Stage",
+              "value": "Basic",
+              "displayName": "Stage"
+            },
+            {
+              "name": "Attack 1",
+              "value": "[1] Read the Wind\r\n<br>Discard a card from your hand. If you do, draw 3 cards.",
+              "displayName": "Attack 1"
+            },
+            {
+              "name": "Attack 2",
+              "value": "[4] Aero Dive (130)\r\n<br>You may discard a Stadium in play.",
+              "displayName": "Attack 2"
+            },
+            {
+              "name": "Weakness",
+              "value": "Lx2",
+              "displayName": "Weakness"
+            },
+            {
+              "name": "Resistance",
+              "value": "F-30",
+              "displayName": "Resistance"
+            },
+            {
+              "name": "RetreatCost",
+              "value": "2",
+              "displayName": "Retreat Cost"
+            }
+          ]
+        },
+        "last_seen_at": "2026-11-19T03:20:06.691689+00:00",
+        "payload_hash": "27c6854b7f3d5ab46ed64a75b6189d3f0d740891952d2e1165a5ed37e7284845",
+        "presale_info": {
+          "note": null,
+          "isPresale": false,
+          "releasedOn": null
+        },
+        "extended_data": [
+          {
+            "name": "Number",
+            "value": "SWSH301",
+            "displayName": "Card Number"
+          },
+          {
+            "name": "Rarity",
+            "value": "Promo",
+            "displayName": "Rarity"
+          },
+          {
+            "name": "Card Type",
+            "value": "Colorless",
+            "displayName": "Card Type"
+          },
+          {
+            "name": "HP",
+            "value": "220",
+            "displayName": "HP"
+          },
+          {
+            "name": "Stage",
+            "value": "Basic",
+            "displayName": "Stage"
+          },
+          {
+            "name": "Attack 1",
+            "value": "[1] Read the Wind\r\n<br>Discard a card from your hand. If you do, draw 3 cards.",
+            "displayName": "Attack 1"
+          },
+          {
+            "name": "Attack 2",
+            "value": "[4] Aero Dive (130)\r\n<br>You may discard a Stadium in play.",
+            "displayName": "Attack 2"
+          },
+          {
+            "name": "Weakness",
+            "value": "Lx2",
+            "displayName": "Weakness"
+          },
+          {
+            "name": "Resistance",
+            "value": "F-30",
+            "displayName": "Resistance"
+          },
+          {
+            "name": "RetreatCost",
+            "value": "2",
+            "displayName": "Retreat Cost"
+          }
+        ],
+        "first_seen_at": "2026-07-15T03:58:44.247004+00:00",
+        "source_active": true,
+        "last_seen_run_id": "ab6f6a8d-fb7c-49cd-92da-2df335c4c10f",
+        "source_modified_on": "2026-03-06T14:21:20.113",
+        "source_missing_since": null,
+        "catalog_metadata_status": "current"
+      },
+      "raw_md5": "914deca050066f2ca74cc0117378470e"
+    }
+  ],
+  "groups": [
+    {
+      "row": {
+        "name": "SWSH: Sword & Shield Promo Cards",
+        "group_id": 2545,
+        "created_at": "2026-07-15T05:47:43.859562+00:00",
+        "updated_at": "2026-11-19T03:18:40.630957+00:00",
+        "category_id": 3,
+        "raw_payload": {
+          "name": "SWSH: Sword & Shield Promo Cards",
+          "groupId": 2545,
+          "categoryId": 3,
+          "modifiedOn": "2026-10-28T17:50:29.22",
+          "publishedOn": "2019-11-15T00:00:00",
+          "abbreviation": "SWSD",
+          "isSupplemental": false
+        },
+        "abbreviation": "SWSD",
+        "last_seen_at": "2026-11-19T03:18:40.630957+00:00",
+        "payload_hash": "f9fb59f9436ff5e0c16c7a5d31e8064f4e61391b6e8ce58c7df1f1af20f6c7cf",
+        "published_on": "2019-11-15T00:00:00",
+        "first_seen_at": "2026-07-15T05:47:43.859562+00:00",
+        "source_active": true,
+        "is_supplemental": false,
+        "last_seen_run_id": "ab6f6a8d-fb7c-49cd-92da-2df335c4c10f",
+        "source_modified_on": "2026-10-28T17:50:29.22",
+        "source_missing_since": null,
+        "catalog_metadata_status": "current"
+      },
+      "raw_md5": "e5e95f3a1a7eaeadb1574a3c7d43fdbb"
+    }
+  ],
+  "runs": [
+    {
+      "id": "ab6f6a8d-fb7c-49cd-92da-2df335c4c10f",
+      "status": "completed",
+      "sync_mode": "current_full_sync",
+      "failed_count": 0,
+      "started_at": "2026-11-19T02:59:24.206Z",
+      "finished_at": "2026-11-19T04:10:44.685Z"
+    }
+  ],
+  "groupSets": [
+    {
+      "group_id": 2545,
+      "set_count": 1,
+      "set_codes": [
+        "swshp"
+      ]
+    }
+  ],
+  "provenance": "Read-only database JSONB serialization, not original HTTP bytes. Representative catalog image is not proof of exact parent artwork."
+}

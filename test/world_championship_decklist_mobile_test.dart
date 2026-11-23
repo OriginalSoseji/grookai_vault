@@ -2,6 +2,43 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:grookai_vault/services/public/public_sets_service.dart';
 
 void main() {
+  test(
+    'Pokemon promo families retain their named era across date boundaries',
+    () {
+      const swsh = PublicSetSummary(
+        code: 'SWSHP',
+        name: 'SWSH Black Star Promos',
+        cardCount: 1,
+        releaseYear: 2019,
+      );
+      const sv = PublicSetSummary(
+        code: 'svp',
+        name: 'Scarlet & Violet Black Star Promos',
+        cardCount: 1,
+        releaseYear: 2022,
+      );
+      const missingDate = PublicSetSummary(
+        code: 'swshp',
+        name: 'SWSH Black Star Promos',
+        cardCount: 1,
+      );
+      const otherGame = PublicSetSummary(
+        code: 'swshp',
+        name: 'Other game',
+        cardCount: 1,
+        game: PublicCatalogGame.mtg,
+        releaseYear: 2019,
+      );
+      expect(PublicSetsService.getSetEra(swsh), PublicSetEra.swordShield);
+      expect(PublicSetsService.getSetEra(sv), PublicSetEra.scarletViolet);
+      expect(
+        PublicSetsService.getSetEra(missingDate),
+        PublicSetEra.swordShield,
+      );
+      expect(PublicSetsService.getSetEra(otherGame), PublicSetEra.sunMoon);
+    },
+  );
+
   test('mobile set organization classifies eras and lanes', () {
     const svSet = PublicSetSummary(
       code: 'sv03.5',

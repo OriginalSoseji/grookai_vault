@@ -1,0 +1,22 @@
+{
+  "captured_at": "2026-11-23T05:55:33.020Z",
+  "scope": "One anonymous request per homepage example against the existing production site, not the integration candidate; no availability, full-result correctness, pagination, authentication, or latency SLO proof.",
+  "cases": [
+    { "label": "WB Kids Stamp", "status": 200, "elapsed_ms": 2471, "ok": true, "reason": null, "returned_count": 11 },
+    { "label": "Pikachu reverse holo 2022-2024", "status": 200, "elapsed_ms": 5474, "ok": true, "reason": null, "returned_count": 11 },
+    { "label": "Build-A-Bear stamped cards", "status": 200, "elapsed_ms": 1808, "ok": true, "reason": null, "returned_count": 11 },
+    { "label": "Gengar cameos", "status": 200, "elapsed_ms": 1719, "ok": true, "reason": null, "returned_count": 4 }
+  ],
+  "repeat_probe": {
+    "captured_at": "2026-11-23T05:57:48.967Z",
+    "scope": "Six sequential anonymous requests; cache responses mean this is not a fresh-execution or latency proof. Row-ID hashes preserve returned order and do not establish completeness.",
+    "cases": [
+      { "label": "WB Kids Stamp", "status": 200, "elapsed_ms": 326, "returned_count": 11, "ids_sha256": "73a9e34b3146a95f6e99e7c8d079b0c9e1e14ccd93bfaa5cb3dc4e530d775cec", "cache": "STALE" },
+      { "label": "WB Kids Stamp", "status": 200, "elapsed_ms": 84, "returned_count": 11, "ids_sha256": "73a9e34b3146a95f6e99e7c8d079b0c9e1e14ccd93bfaa5cb3dc4e530d775cec", "cache": "STALE" },
+      { "label": "WB Kids Stamp", "status": 200, "elapsed_ms": 69, "returned_count": 11, "ids_sha256": "73a9e34b3146a95f6e99e7c8d079b0c9e1e14ccd93bfaa5cb3dc4e530d775cec", "cache": "STALE" },
+      { "label": "WB Kids Stamp", "status": 200, "elapsed_ms": 75, "returned_count": 11, "ids_sha256": "73a9e34b3146a95f6e99e7c8d079b0c9e1e14ccd93bfaa5cb3dc4e530d775cec", "cache": "HIT" },
+      { "label": "Pikachu reverse holo 2022-2024", "status": 200, "elapsed_ms": 70, "returned_count": 11, "ids_sha256": "d7ab78b0590fe4b4d559a9dd18b92bb295f0c8322fa8ccfc9acf0d235bfc361e", "cache": "STALE" },
+      { "label": "Pikachu reverse holo 2022-2024", "status": 200, "elapsed_ms": 78, "returned_count": 11, "ids_sha256": "d7ab78b0590fe4b4d559a9dd18b92bb295f0c8322fa8ccfc9acf0d235bfc361e", "cache": "STALE" }
+    ]
+  }
+}

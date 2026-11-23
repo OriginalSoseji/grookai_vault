@@ -991,7 +991,7 @@ export async function GET(request: NextRequest) {
       {
         headers: {
           "Cache-Control":
-            playableRequested || hasRequestCredentials || pricingRequested || effectiveSmartSearchIntent.ownedState || gameScope !== "pokemon"
+            resolved.degraded || playableRequested || hasRequestCredentials || pricingRequested || effectiveSmartSearchIntent.ownedState || gameScope !== "pokemon"
               ? "private, no-store"
               : "public, s-maxage=120, stale-while-revalidate=300",
           "Server-Timing": `interpret;dur=${(interpretationFinishedAt - searchStartedAt).toFixed(1)}, resolve;dur=${(resolutionFinishedAt - interpretationFinishedAt).toFixed(1)}, finish;dur=${(performance.now() - resolutionFinishedAt).toFixed(1)}` +
@@ -1069,9 +1069,7 @@ export async function GET(request: NextRequest) {
         {
           status: valueSortRequested ? 503 : 200,
           headers: {
-            "Cache-Control": playableRequested || pricingRequested || effectiveSmartSearchIntent.ownedState
-              ? "private, no-store"
-              : "public, s-maxage=30, stale-while-revalidate=120",
+            "Cache-Control": "private, no-store",
           },
         },
       );
