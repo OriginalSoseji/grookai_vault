@@ -53,8 +53,15 @@ source qualification, fresh exact baseline/preflight, an original exact founder
 approval binding plan and producer, actual production rollback, durable apply,
 independent readback and collector verification are required. General program
 instructions do not manufacture that approval. The earlier Cosmo pricing guard
-merged as PR1011 and has a full-source shadow in progress on its immutable source;
-production release and acceptance remain separately tracked by the operator.
+merged as PR1011. The combined V1_27 source includes that unchanged guard and the
+357 numbered-single repair. Its release explicitly supersedes the unpublished
+V1_26 shadow, avoiding two successive full production publications. The owned
+V1_26 shadow is safely drained and its partial/cancelled evidence retained; no
+qualification or activation is inferred. The completed verified warehouse
+refresh remains reusable only if still latest and fresh. V1_27 must pass its own
+complete same-runtime shadow and every normal/hosted, provenance, coverage,
+activation and independent acceptance gate. Existing V1_25 prices remain live
+through qualification. No old shadow or production flag is carried forward.
 
 Private receipts are under
 `C:/grookai_vault_operator_artifacts/stamp_price_completion_20261122/`:
