@@ -2,6 +2,11 @@
 
 Status: bounded candidate under qualification; no production authority.
 
+The explicit [521 continuity extension](STAMP_SCHEMA_521_CONTINUITY_V1.md)
+preserves the original physical review plan below while separately binding a
+new actual execution context and receipt. Legacy routes, exact mapping rows and
+all ordinary approval/rollback requirements remain unchanged.
+
 This stage appends exactly 28 TCGplayer parent links after the actual V3 Normal
 children, verified visible reviews and raw receipt exist. Its canonical plan is
 `711cb06754c4f51adc4e9ef230d3def2ca708b79e79921a2b73b5c1b5f8782a8`.

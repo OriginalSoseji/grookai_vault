@@ -1,5 +1,6 @@
 // Separate28-parent recovered Normal lane; Fighting Au Lait is explicitly excluded. Original43-parent V1 is unchanged.
 import assert from 'node:assert/strict';
+import {assertStampExecutionSchemaContextV1,assertStampSchema521QualificationV1} from './stamp_schema_521_continuity_v1.mjs';
 import {createHash} from 'node:crypto';
 import index from '../../docs/catalog/play_pokemon_stamp_normal_recovery_v3/index.json' with {type:'json'};
 import {printingManifestHash as hash,printingCandidateId,assertPrintingManifest} from './printing_completeness_gate_v1.mjs';
@@ -156,14 +157,17 @@ function assertRollback(receipt,{plan,codeFingerprint,now=Date.now()}){
  const age=now-Date.parse(receipt.finished_at);assert.ok(age>=0&&age<3600000,'Fresh actual production rollback required');
 }
 export async function executePlayStampTransaction(options){
- assertProductionClient(options.client);const{mode,plan,codeFingerprint,authority,rollbackReceipt}=options;
+ assertProductionClient(options.client);assertStampExecutionSchemaContextV1(options.plan,options.schemaContext,'canonical28');const{mode,plan,codeFingerprint,authority,rollbackReceipt}=options;
  if(['rollback','apply'].includes(mode))assertPlayStampAuthority(authority,{plan,codeFingerprint,mode});
  if(mode==='apply')assertRollback(rollbackReceipt,{plan,codeFingerprint});
  return transaction({...options,production:true,beforeFinalCommit:async proof=>{assertProductionClient(options.client);assertPlayStampAuthority(authority,{plan,codeFingerprint,mode});assertRollback(rollbackReceipt,{plan,codeFingerprint});await (options.beforeFinalCommit??(async()=>{}))(proof);}});
 }
 export async function qualifyPlayStampTransaction(options){
+ if(assertStampExecutionSchemaContextV1(options.plan,options.schemaContext,'canonical28'))await assertStampSchema521QualificationV1(options.client,options.plan,'canonical28');
+ else{
  const c=options.client.connectionParameters;assert.equal(c.host,'127.0.0.1');assert.equal(Number(c.port),55240);assert.equal(c.user,'postgres');assert.equal(c.database,QUALIFICATION_DATABASE);
  assert.equal((await options.client.query('select current_database() name')).rows[0].name,QUALIFICATION_DATABASE);
+ }
  return transaction({...options,production:false});
 }
 async function transaction({client,plan,expectedFingerprint,mode,production,beforeCommit=async()=>{},beforeFinalCommit=async()=>{},onProgress=()=>{}}){

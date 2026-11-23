@@ -2,6 +2,11 @@
 
 Status: bounded source candidate under qualification; no production authority.
 
+The separate [521 continuity extension](STAMP_SCHEMA_521_CONTINUITY_V1.md) may
+qualify an explicit current schema context on new owned targets. It preserves
+this original physical review, all legacy routes and every ordinary exact
+approval/rollback requirement; it does not execute or relabel this frozen plan.
+
 This additional lane admits exactly 28 explicit Normal facts for existing
 `play_pokemon_stamp` parents in Astral Radiance, Lost Origin, Silver Tempest
 and Paldea Evolved. The immutable source programme is

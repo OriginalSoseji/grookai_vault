@@ -2,6 +2,11 @@
 
 Status: bounded source candidate under qualification; no production authority.
 
+The separate [521 continuity extension](STAMP_SCHEMA_521_CONTINUITY_V1.md) may
+qualify an explicit current schema context on new owned targets. It preserves
+this original physical review, all legacy routes and every ordinary exact
+approval/rollback requirement; it does not execute or relabel this frozen plan.
+
 Admit only four Normal children for existing generic Play! stamped Temporal
 Forces parents: Brambleghast021, Heavy Baton151, Morty's Conviction155 and
 Salvatore160. Programme:

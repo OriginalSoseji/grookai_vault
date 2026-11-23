@@ -13,6 +13,7 @@ If a contract is missing from this index, it is not authoritative.
 
 | Contract | Status | Description |
 |--------|--------|-------------|
+| STAMP_SCHEMA_521_CONTINUITY_V1 | Active bounded candidate under qualification; no production authority | docs/contracts/STAMP_SCHEMA_521_CONTINUITY_V1.md — Exact 519 writer definitions plus two fixed ledger IDs, explicit 521 context and separate owned qualification targets; original physical descriptors/98-row scope unchanged |
 | GOVERNED_MTG_MAPPED_SINGLE_KIND_V1 | Active candidate under qualification; production activation pending | docs/contracts/GOVERNED_MTG_MAPPED_SINGLE_KIND_V1.md — 38 exact existing English paper Normal/Foil mappings, original hashed physical source proof, unchanged quotes/coverage and own V1_30 full shadow/release gates |
 | GOVERNED_JAPANESE_NUMBERED_SINGLE_KIND_V1 | Active candidate under qualification; production activation pending | docs/contracts/GOVERNED_JAPANESE_NUMBERED_SINGLE_KIND_V1.md — Four exact current Japanese Normal mappings and independent numbered CardType proof; unchanged prices/coverage and own V1_29 full shadow/release gates |
 | PLAY_STAMP_NORMAL_MARKET_PUBLICATION_V1 | Active candidate under qualification; production activation pending | docs/contracts/PLAY_STAMP_NORMAL_MARKET_PUBLICATION_V1.md — Strict current physical and approved-link authority for closed 75 Normal identities, unchanged foil holds and full-scope worker V1_28 cursor traversal; own full shadow and normal release gates required |

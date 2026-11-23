@@ -1,3 +1,17 @@
+# Stamp schema 521 context preparation — November 23, 2026
+
+Follow [the bounded continuity contract](../contracts/STAMP_SCHEMA_521_CONTINUITY_V1.md).
+Keep the original 519 qualification databases and all frozen plans. An explicit
+`STAMP_SCHEMA_521_CONTEXT_V1` permits only the original scoped writer definitions
+and exact two appended catalog migration IDs, with separate loopback55320 clones.
+Re-capture actual schema/protected state, prove original reviewed physical
+descriptor equality, qualify fresh plans/complete producers and obtain their own
+ordinary exact approval. The old physical review fingerprint is not a claim that
+its old execution context ran. The 98-row proposal and all unverified foil holds
+stay unchanged; original149 must never repeat. Catalog521 approval, offline
+models and this contract grant no data/publication authority. Keep the shared
+merge pause until actual duplicate deployed closure and original-control restore.
+
 # Prepared MTG mapped single-card price correction — November 23, 2026
 
 Follow [the closed MTG kind contract](../contracts/GOVERNED_MTG_MAPPED_SINGLE_KIND_V1.md)
