@@ -1,0 +1,768 @@
+-- Forward-only catalog plan fence after immutable scalar policy preparation514.
+-- Evaluate the same five discovery fields once; preserve every filter, role and returned value.
+begin;
+set local lock_timeout='3s';
+set local statement_timeout='60s';
+do $guard$ declare helper pg_catalog.pg_proc;begin
+ select * into helper from pg_catalog.pg_proc where oid='public.get_public_catalog_sets_v2(text)'::regprocedure;
+ if helper.proowner<>(select oid from pg_catalog.pg_roles where rolname='postgres')
+  or not helper.prosecdef or helper.provolatile<>'s' or helper.pronargs<>1
+  or helper.proconfig is distinct from array['search_path=pg_catalog, public']::text[]
+  or md5(helper.prosrc) not in('77119de8a452fc1efa43cf55a940cc3e','9326457c578a4c6bc5207d2a4453bd30')
+  or (select md5(prosrc) from pg_catalog.pg_proc where oid='public.get_best_of_game_discovery_projection_v1()'::regprocedure)<>'b5d1836d5cb1a50b491cc166ece08716'
+  or cardinality(public.get_best_of_game_discovery_exclusions_v1())<>9
+ then raise exception 'BEST_OF_GAME_CATALOG_MATERIALIZATION_BASELINE_DRIFT' using errcode='23514';end if;
+end $guard$;
+CREATE OR REPLACE FUNCTION public.get_public_catalog_sets_v2(p_game_code text DEFAULT NULL::text)
+ RETURNS TABLE(id uuid, game text, code text, name text, hero_image_url text, hero_image_source text, set_role text, catalog_set_type text, printed_set_abbrev text, printed_total integer, release_date date, created_at timestamp with time zone, card_count bigint)
+ LANGUAGE plpgsql
+ STABLE SECURITY DEFINER
+ SET search_path TO 'pg_catalog', 'public'
+AS $function$
+declare
+  discovery_exclusions uuid[] := public.get_jungle_edition_discovery_exclusions_v1() || public.get_prismatic_discovery_exclusions_v1();
+  paldean_exclusions uuid[] := public.get_paldean_fates_discovery_exclusions_v1();
+  pokemon_go_exclusions uuid[] := public.get_pokemon_go_discovery_exclusions_v1();
+  mcdonalds_2021_exclusions uuid[] := public.get_mcdonalds_2021_discovery_exclusions_v1();
+  latios_exclusions uuid[] := public.get_latios_discovery_exclusions_v1();
+  shrouded_exclusions uuid[] := public.get_shrouded_fable_discovery_exclusions_v1();
+  best_of_game_exclusions uuid[] := public.get_best_of_game_discovery_exclusions_v1();
+  requested_game text := nullif(lower(btrim(coalesce(p_game_code, ''))), '');
+  request_role text := coalesce(auth.role(), '');
+begin
+  if requested_game is not null and length(requested_game) > 64 then
+    raise exception 'get_public_catalog_sets_v2 game code is too long';
+  end if;
+
+  return query
+  with visible_sets as materialized (
+    select
+      target.id,
+      target.game,
+      target.code,
+      target.name,
+      target.hero_image_url,
+      target.hero_image_source,
+      target.set_role,
+      target.source #>> '{scryfall,set_type}' as catalog_set_type,
+      target.printed_set_abbrev,
+      target.printed_total,
+      target.release_date,
+      target.created_at,
+      lower(target.code) as normalized_code
+    from public.sets target
+    left join public.catalog_set_release_controls set_control
+      on set_control.set_id = target.id
+    left join public.catalog_game_release_controls game_control
+      on lower(game_control.game_code) = lower(target.game)
+    where (requested_game is null or lower(target.game) = requested_game)
+      and case
+        when set_control.set_id is not null then
+          set_control.release_status = 'public'
+          or (
+            set_control.release_status = 'signed_in'
+            and request_role in ('authenticated', 'service_role')
+          )
+        when lower(target.game) = 'pokemon' then true
+        else
+          game_control.release_status = 'public'
+          or (
+            game_control.release_status = 'signed_in'
+            and request_role in ('authenticated', 'service_role')
+          )
+      end
+  ),
+  countable_cards as materialized (
+    select id,set_id,set_code,gv_id,data_quality_flags
+    from public.v_card_prints_set_family_discovery_v1
+  ),
+  visible_card_counts as materialized (
+    select
+      lower(card.set_code) as normalized_code,
+      count(*)::bigint as card_count
+    from countable_cards card
+    join visible_sets visible_set
+      on visible_set.id = card.set_id
+    where card.gv_id is not null
+    and card.id <> all(discovery_exclusions)
+      and card.id not in (select unnest(paldean_exclusions))
+      and card.id not in (select unnest(pokemon_go_exclusions))
+      and card.id not in (select unnest(mcdonalds_2021_exclusions))
+      and card.id not in (select unnest(latios_exclusions))
+      and card.id not in (select unnest(shrouded_exclusions))
+      and card.id not in (select unnest(best_of_game_exclusions))
+      and coalesce(
+        card.data_quality_flags #>> '{app_visibility_v1,status}',
+        'visible'
+      ) <> 'suppressed'
+    group by lower(card.set_code)
+  )
+  select
+    visible_set.id,
+    visible_set.game,
+    visible_set.code,
+    visible_set.name,
+    visible_set.hero_image_url,
+    visible_set.hero_image_source,
+    visible_set.set_role,
+    visible_set.catalog_set_type,
+    visible_set.printed_set_abbrev,
+    visible_set.printed_total,
+    visible_set.release_date,
+    visible_set.created_at,
+    count_row.card_count
+  from visible_sets visible_set
+  join visible_card_counts count_row
+    on count_row.normalized_code = visible_set.normalized_code
+  where count_row.card_count > 0
+  order by visible_set.game, visible_set.code, visible_set.id;
+end;
+$function$
+;
+CREATE OR REPLACE FUNCTION public.get_search_set_catalog_v1(game_code_in text)
+ RETURNS jsonb
+ LANGUAGE sql
+ STABLE
+ SET search_path TO 'public'
+AS $function$
+  select jsonb_build_object(
+    'complete', count(*) <= 20000,
+    'sets', coalesce(jsonb_agg(to_jsonb(s) order by s.id), '[]'::jsonb)
+  )
+  from (
+    select id, code, name, printed_set_abbrev, printed_total, release_date, identity_model
+    from public.sets
+    where game = lower(trim(game_code_in))
+      and (code not in ('sv08.5','sv04.5','swsh10.5','2021swsh','tk-ex-latio','sv06.5','bog') or public.resolve_prismatic_discovery_set_code_v1(code, game) = code)
+    order by id limit 20001
+  ) s;
+$function$
+;
+CREATE OR REPLACE FUNCTION public.search_print_identity_v1(q text DEFAULT NULL::text, set_code_in text DEFAULT NULL::text, number_in text DEFAULT NULL::text, object_type_in text DEFAULT NULL::text, limit_in integer DEFAULT 50, offset_in integer DEFAULT 0)
+ RETURNS TABLE(search_document_id text, object_type text, parent_gv_id text, printing_gv_id text, display_name text, display_discriminator text, route_path text, route_query text, matched_fields text[], rank_score integer)
+ LANGUAGE sql
+ STABLE SECURITY DEFINER
+ SET search_path TO 'public'
+AS $function$
+  with prismatic_query as materialized (
+    select case
+      when lower(nullif(trim(q), '')) ~ '(^|[[:space:]])sv08[.]5([[:space:]]|$)'
+      then regexp_replace(lower(nullif(trim(q), '')),
+        '(^|[[:space:]])sv08[.]5(?=[[:space:]]|$)',
+        '\1' || public.resolve_prismatic_discovery_set_code_v1('sv08.5'), 'g')
+      else lower(nullif(trim(q), ''))
+    end as query_text
+  ),
+  paldean_query as materialized (
+    select case
+      when prismatic_query.query_text ~ '(^|[[:space:]])sv04[.]5([[:space:]]|$)'
+      then regexp_replace(prismatic_query.query_text,
+        '(^|[[:space:]])sv04[.]5(?=[[:space:]]|$)',
+        '\1' || public.resolve_catalog_discovery_set_code_v1('sv04.5'), 'g')
+      else prismatic_query.query_text
+    end as query_text
+    from prismatic_query
+  ),
+  pokemon_go_query as materialized (
+    select case
+      when paldean_query.query_text ~ '(^|[[:space:]])swsh10[.]5([[:space:]]|$)'
+      then regexp_replace(paldean_query.query_text,
+        '(^|[[:space:]])swsh10[.]5(?=[[:space:]]|$)',
+        '\1' || public.resolve_catalog_discovery_set_code_v1('swsh10.5'), 'g')
+      else paldean_query.query_text
+    end as query_text
+    from paldean_query
+  ),
+  mcdonalds_2021_query as materialized (
+    select case
+      when pokemon_go_query.query_text ~ '(^|[[:space:]])2021swsh([[:space:]]|$)'
+      then regexp_replace(pokemon_go_query.query_text,
+        '(^|[[:space:]])2021swsh(?=[[:space:]]|$)',
+        '\1' || public.resolve_catalog_discovery_set_code_v1('2021swsh'), 'g')
+      else pokemon_go_query.query_text
+    end as query_text
+    from pokemon_go_query
+  ),
+  latios_query as materialized (
+    select case
+      when mcdonalds_2021_query.query_text ~ '(^|[[:space:]])tk-ex-latio([[:space:]]|$)'
+      then regexp_replace(mcdonalds_2021_query.query_text,
+        '(^|[[:space:]])tk-ex-latio(?=[[:space:]]|$)',
+        '\1' || public.resolve_catalog_discovery_set_code_v1('tk-ex-latio'), 'g')
+      else mcdonalds_2021_query.query_text
+    end as query_text
+    from mcdonalds_2021_query
+  ),
+  normalized_query as materialized (
+    select case
+      when latios_query.query_text ~ '(^|[[:space:]])sv06[.]5([[:space:]]|$)'
+      then regexp_replace(latios_query.query_text,
+        '(^|[[:space:]])sv06[.]5(?=[[:space:]]|$)',
+        '\1' || public.resolve_catalog_discovery_set_code_v1('sv06.5'), 'g')
+      else latios_query.query_text
+    end as query_text,
+      (select case when lower(trim(q)) like 'gv-%' then nullif(lower(trim(set_code_in)), '')
+        else nullif(public.resolve_prismatic_discovery_set_code_v1(coalesce(set_code_in, '')), '') end) as set_code_norm
+    from latios_query
+  ),
+  prepared as not materialized (
+    select
+      normalized_query.query_text as q_norm,
+      regexp_split_to_array(coalesce(normalized_query.query_text, ''), '\s+') as q_tokens,
+      normalized_query.set_code_norm,
+      nullif((regexp_match(coalesce(trim(number_in), ''), '(\d+)'))[1], '') as number_digits_norm,
+      lower(nullif(trim(object_type_in), '')) as object_type_norm,
+      greatest(1, least(coalesce(limit_in, 50), 1000)) as result_limit,
+      greatest(0, coalesce(offset_in, 0)) as result_offset
+    from normalized_query
+  ),
+  family_projection as materialized (
+    select case when coalesce(p.q_norm not like 'gv-%',true)
+      and (p.set_code_norm is null or p.set_code_norm='sv6pt5')
+      then public.get_shrouded_fable_discovery_projection_v1() else null::jsonb end as value
+    from prepared p
+  ),
+  best_of_game_policy as materialized (
+    select case when coalesce(p.q_norm not like 'gv-%',true)
+      and (p.set_code_norm is null or p.set_code_norm='bp')
+      then public.get_best_of_game_discovery_evidence_v1() else null::jsonb end as evidence,
+      case when coalesce(p.q_norm not like 'gv-%',true)
+      and (p.set_code_norm is null or p.set_code_norm='bp')
+      then public.get_best_of_game_discovery_projection_v1() else null::jsonb end as projection
+    from prepared p
+  ),
+  discovery_policy as materialized (
+    select public.get_jungle_edition_discovery_exclusions_v1() as jungle
+  ),
+  discovery_exclusions as materialized (
+    select unnest(jungle) as id from discovery_policy
+    union all select unnest(public.get_prismatic_discovery_exclusions_v1())
+    union all select unnest(public.get_paldean_fates_discovery_exclusions_v1())
+    union all select unnest(public.get_pokemon_go_discovery_exclusions_v1())
+    union all select unnest(public.get_mcdonalds_2021_discovery_exclusions_v1())
+    union all select unnest(public.get_latios_discovery_exclusions_v1())
+    union all select unnest(public.get_shrouded_fable_discovery_exclusions_v1())
+    union all select unnest(public.get_best_of_game_discovery_exclusions_v1())
+  ),
+  parent_identity_seed as materialized (
+    select cp.id
+    from public.card_prints cp
+    cross join prepared p
+    where p.q_norm is not null
+      and cp.gv_id is not null and lower(cp.gv_id) = p.q_norm
+  ),
+  name_seed as materialized (
+    select cp.id
+    from (select discovery_source.* from public.card_prints discovery_source where (select jungle from discovery_policy) is not null and discovery_source.id not in (select id from discovery_exclusions)) cp
+    cross join prepared p
+    where p.q_norm is not null
+      and cp.gv_id is not null
+      and public.catalog_parent_gv_id_visible_to_request_v1(cp.gv_id)
+      and lower(cp.name) like '%' || p.q_norm || '%'
+      and (p.set_code_norm is null or lower(cp.set_code) = p.set_code_norm)
+      and (
+        p.number_digits_norm is null
+        or regexp_replace(coalesce(cp.number_plain, cp.number, ''), '\D', '', 'g') = p.number_digits_norm
+        or lpad(regexp_replace(coalesce(cp.number_plain, cp.number, ''), '\D', '', 'g'), 3, '0') = lpad(p.number_digits_norm, 3, '0')
+      )
+    order by
+      case when lower(cp.name) = p.q_norm then 0 else 1 end,
+      cp.name,
+      cp.gv_id
+    limit greatest(
+      100,
+      (select (result_limit + result_offset) * 2 from prepared)
+    )
+  ),
+  matching_sets as materialized (
+    select s.id
+    from public.sets s
+    cross join prepared p
+    where p.q_norm is not null
+      and (
+        lower(coalesce(s.code, '')) = p.q_norm
+        or lower(coalesce(s.name, '')) like '%' || p.q_norm || '%'
+      )
+  ),
+  set_seed as materialized (
+    select cp.id
+    from matching_sets matched
+    join (select discovery_source.* from public.card_prints discovery_source where (select jungle from discovery_policy) is not null and discovery_source.id not in (select id from discovery_exclusions)) cp on cp.set_id = matched.id
+    union
+    select cp.id
+    from (select discovery_source.* from public.card_prints discovery_source where (select jungle from discovery_policy) is not null and discovery_source.id not in (select id from discovery_exclusions)) cp
+    cross join prepared p
+    where p.q_norm is not null
+      and lower(cp.set_code) = p.q_norm
+  ),
+  printing_identity_seed as materialized (
+    select cp.id
+    from public.card_printings cpn
+    join public.card_prints cp on cp.id = cpn.card_print_id
+    cross join prepared p
+    where p.q_norm is not null
+      and cpn.printing_gv_id is not null and lower(cpn.printing_gv_id) = p.q_norm
+  ),
+  matched_finish_keys as materialized (
+    select fk.key
+    from public.finish_keys fk
+    cross join prepared p
+    where p.q_norm is not null
+      and (
+        lower(fk.key) = p.q_norm
+        or lower(coalesce(fk.label, '')) = p.q_norm
+      )
+  ),
+  finish_seed as materialized (
+    select cp.id
+    from matched_finish_keys matched
+    cross join lateral (
+      select source.card_print_id
+      from public.card_printings source
+      where source.finish_key = matched.key
+      offset 0
+    ) cpn
+    join (select discovery_source.* from public.card_prints discovery_source where (select jungle from discovery_policy) is not null and discovery_source.id not in (select id from discovery_exclusions)) cp on cp.id = cpn.card_print_id
+  ),
+  primary_seed as materialized (
+    select id from parent_identity_seed
+    union
+    select id from name_seed
+    union
+    select id from printing_identity_seed
+  ),
+  name_seed_sufficient as materialized (
+    select
+      count(*) >= (select result_limit + result_offset from prepared) as sufficient
+    from name_seed
+  ),
+  cameo_seed as materialized (
+    select cp.id
+    from public.v_card_print_cameos_public_v1 cameo
+    join (select discovery_source.* from public.card_prints discovery_source where (select jungle from discovery_policy) is not null and discovery_source.id not in (select id from discovery_exclusions)) cp on cp.gv_id = cameo.gv_id
+    cross join prepared p
+    where p.q_norm is not null
+      and (
+        lower(coalesce(cameo.cameo_subject_name, '')) like '%' || p.q_norm || '%'
+        or exists (
+          select 1
+          from unnest(p.q_tokens) token
+          where token <> ''
+            and token <> 'cameo'
+            and lower(concat_ws(
+              ' ',
+              cameo.cameo_subject_name,
+              cameo.pokemon_ndex,
+              array_to_string(cameo.cameo_qualifiers, ' '),
+              cameo.notes_raw
+            )) like '%' || token || '%'
+        )
+      )
+  ),
+  fast_seed as materialized (
+    select id from primary_seed
+    union
+    select id from set_seed
+    where not (select sufficient from name_seed_sufficient)
+    union
+    select id from finish_seed
+    where not (select sufficient from name_seed_sufficient)
+    union
+    select id from cameo_seed
+    where not (select sufficient from name_seed_sufficient)
+  ),
+  filtered_seed as materialized (
+    select cp.id
+    from (select * from prepared where q_norm is null) p
+    cross join lateral (
+      select discovery_source.* from public.card_prints discovery_source
+      where (select jungle from discovery_policy) is not null and discovery_source.id not in (select id from discovery_exclusions)
+        and p.set_code_norm is not null and lower(discovery_source.set_code)=p.set_code_norm
+      union all
+      select discovery_source.* from public.card_prints discovery_source
+      where (select jungle from discovery_policy) is not null and discovery_source.id not in (select id from discovery_exclusions)
+        and p.set_code_norm is null
+      offset 0
+    ) cp
+    where (select q_norm from prepared) is null
+      and (p.set_code_norm is null or lower(coalesce(cp.set_code, '')) = p.set_code_norm)
+      and (
+        p.number_digits_norm is null
+        or regexp_replace(coalesce(cp.number_plain, cp.number, ''), '\D', '', 'g') = p.number_digits_norm
+        or lpad(regexp_replace(coalesce(cp.number_plain, cp.number, ''), '\D', '', 'g'), 3, '0') = lpad(p.number_digits_norm, 3, '0')
+      )
+    order by cp.name, cp.gv_id
+    limit greatest(
+      5000,
+      (select (result_limit + result_offset) * 20 from prepared)
+    )
+  ),
+  fallback_request as materialized (
+    select * from prepared where q_norm is not null and not exists (select 1 from fast_seed)
+  ),
+  fallback_probe as materialized (
+    select token
+    from fallback_request p cross join lateral unnest(p.q_tokens) token
+    where token ~ '^[[:alnum:].-]+$' and token ~ '[[:alnum:]]{3}'
+    order by length(token) desc, token
+    limit 1
+  ),
+  fallback_probe_ids as materialized (
+    select cp.id from public.card_prints cp cross join fallback_probe probe
+    where lower(coalesce(cp.gv_id, '') || ' ' || coalesce(cp.print_identity_key, '') || ' ' || coalesce(cp.name, '') || ' ' || coalesce(cp.number, '') || ' ' || coalesce(cp.number_plain, '') || ' ' || coalesce(cp.set_code, '') || ' ' || coalesce(cp.printed_set_abbrev, '') || ' ' || coalesce(cp.rarity, '') || ' ' || coalesce(cp.variant_key, '') || ' ' || coalesce(cp.printed_identity_modifier, '') || ' ' || coalesce(cp.external_ids::text, '')) like '%' || probe.token || '%'
+    union
+    select cp.id from public.sets s join public.card_prints cp on cp.set_id=s.id
+    cross join fallback_probe probe
+    where lower(coalesce(s.name,'')) like '%' || probe.token || '%'
+  ),
+  fallback_seed as materialized (
+    select cp.id
+    from fallback_request p
+    cross join lateral (
+      select discovery_source.* from (
+        select source.* from fallback_probe_ids selected
+        cross join lateral (
+          select source.* from public.card_prints source where source.id=selected.id offset 0
+        ) source
+        where exists (select 1 from fallback_probe)
+        union all
+        select source.* from public.card_prints source
+        where not exists (select 1 from fallback_probe)
+      ) discovery_source
+      where (select jungle from discovery_policy) is not null and discovery_source.id not in (select id from discovery_exclusions)
+      offset 0
+    ) cp
+    left join public.sets s on s.id = cp.set_id
+    cross join lateral (
+      select lower(concat_ws(
+          ' ',
+          cp.gv_id,
+          cp.print_identity_key,
+          cp.name,
+          cp.number,
+          cp.number_plain,
+          cp.set_code,
+          s.name,
+          cp.printed_set_abbrev,
+          cp.rarity,
+          cp.variant_key,
+          cp.printed_identity_modifier,
+          cp.external_ids::text
+        )) as search_text
+      offset 0
+    ) searchable
+    where p.q_norm is not null
+      and not exists (select 1 from fast_seed)
+      and (
+        searchable.search_text like '%' || p.q_norm || '%'
+        or not exists (
+          select 1
+          from unnest(p.q_tokens) token
+          where token <> ''
+            and searchable.search_text not like '%' || token || '%'
+        )
+      )
+    order by cp.name, cp.gv_id
+    limit 10000
+  ),
+  shrouded_seed as materialized (
+    select card.id from family_projection projection
+    join public.card_prints card on card.id=(projection.value->>'parent_id')::uuid
+    cross join prepared p
+    where coalesce(p.q_norm not like 'gv-%',true)
+      and (p.set_code_norm is null or p.set_code_norm='sv6pt5')
+      and (p.q_norm is not null or p.set_code_norm='sv6pt5')
+      and (select jungle from discovery_policy) is not null
+      and card.id not in (select id from discovery_exclusions)
+  ),
+  best_of_game_seed as materialized (
+    select card.id from best_of_game_policy policy
+    cross join lateral jsonb_array_elements_text(case when policy.projection is not null
+      then (policy.evidence->'canonical_ids')||(policy.evidence->'winner_ids') else '[]'::jsonb end) member(id)
+    join public.card_prints card on card.id=member.id::uuid
+    cross join prepared p
+    where (p.q_norm is not null or p.set_code_norm='bp')
+      and (select jungle from discovery_policy) is not null
+      and card.id not in (select id from discovery_exclusions)
+  ),
+  candidate_ids as materialized (
+    select id from fast_seed
+    union
+    select id from filtered_seed
+    union
+    select id from fallback_seed
+    union select id from shrouded_seed
+    union select id from best_of_game_seed
+  ),
+  candidate_cards as materialized (
+    select cp.*, s.name as joined_set_name,
+      case when cp.id=(select (value->>'parent_id')::uuid from family_projection)
+        and coalesce(p.q_norm not like 'gv-%',true) then 'sv6pt5'::text
+        when cp.id::text in(select jsonb_array_elements_text(projection->'parent_ids') from best_of_game_policy)
+        and coalesce(p.q_norm not like 'gv-%',true) then 'bp'::text else cp.set_code end as discovery_set_code
+    from candidate_ids candidate
+    cross join lateral (
+      select source.*
+      from public.card_prints source
+      where source.id = candidate.id
+      offset 0
+    ) cp
+    left join public.sets s on s.id = cp.set_id
+    cross join prepared p
+    where cp.gv_id is not null
+      and public.catalog_parent_gv_id_visible_to_request_v1(cp.gv_id)
+      and (p.set_code_norm is null or lower(coalesce(cp.set_code, '')) = p.set_code_norm
+        or (p.set_code_norm='sv6pt5' and cp.id=(select (value->>'parent_id')::uuid from family_projection)
+          and coalesce(p.q_norm not like 'gv-%',true))
+        or (p.set_code_norm='bp' and cp.id::text in(select jsonb_array_elements_text(projection->'parent_ids') from best_of_game_policy)
+          and coalesce(p.q_norm not like 'gv-%',true)))
+      and (
+        p.number_digits_norm is null
+        or regexp_replace(coalesce(cp.number_plain, cp.number, ''), '\D', '', 'g') = p.number_digits_norm
+        or lpad(regexp_replace(coalesce(cp.number_plain, cp.number, ''), '\D', '', 'g'), 3, '0') = lpad(p.number_digits_norm, 3, '0')
+      )
+  ),
+  cameo_agg as materialized (
+    select
+      cameo.gv_id,
+      string_agg(
+        lower(concat_ws(
+          ' ',
+          'cameo',
+          case when cameo.cameo_subject_type = 'trainer' then 'trainer' else 'pokemon' end,
+          cameo.cameo_subject_name,
+          cameo.pokemon_ndex,
+          array_to_string(cameo.cameo_qualifiers, ' '),
+          cameo.notes_raw
+        )),
+        ' '
+        order by cameo.cameo_subject_name
+      ) as cameo_search_text,
+      array_agg(
+        distinct (
+          case when cameo.cameo_subject_type = 'trainer' then 'Cameo trainer: ' else 'Cameo: ' end
+          || cameo.cameo_subject_name
+          || case
+            when array_length(cameo.cameo_qualifiers, 1) > 0
+              then ' · ' || array_to_string(cameo.cameo_qualifiers, ', ')
+            else ''
+          end
+        )
+      ) as cameo_labels
+    from public.v_card_print_cameos_public_v1 cameo
+    join candidate_cards cp on cp.gv_id = cameo.gv_id
+    group by cameo.gv_id
+  ),
+  parent_docs as materialized (
+    select
+      ('parent:' || cp.gv_id)::text as search_document_id,
+      'parent_print'::text as object_type,
+      cp.gv_id::text as public_id,
+      cp.gv_id::text as parent_gv_id,
+      null::text as printing_gv_id,
+      cp.name::text as display_name,
+      null::text as display_discriminator,
+      ('/card/' || cp.gv_id)::text as route_path,
+      null::text as route_query,
+      cp.name::text as name,
+      regexp_replace(coalesce(cp.number_plain, cp.number, ''), '\D', '', 'g')::text as number_digits,
+      case
+        when nullif(regexp_replace(coalesce(cp.number_plain, cp.number, ''), '\D', '', 'g'), '') is null then null::text
+        else lpad(regexp_replace(coalesce(cp.number_plain, cp.number, ''), '\D', '', 'g'), 3, '0')
+      end as number_padded,
+      cp.discovery_set_code::text as set_code,
+      lower(concat_ws(
+        ' ',
+        cp.gv_id,
+        cp.print_identity_key,
+        cp.name,
+        cp.number,
+        cp.number_plain,
+        cp.set_code,
+        cp.joined_set_name,
+        cp.printed_set_abbrev,
+        cp.rarity,
+        cp.variant_key,
+        cp.printed_identity_modifier,
+        cp.external_ids::text,
+        cameo.cameo_search_text,
+        case when cp.discovery_set_code is distinct from cp.set_code then cp.discovery_set_code end,
+        case when cp.id::text in(select jsonb_array_elements_text(evidence->'canonical_ids') from best_of_game_policy where projection is not null)
+          or cp.id::text in(select jsonb_array_elements_text(projection->'parent_ids') from best_of_game_policy)
+        then concat_ws(' ','bog bp Best of Game',(select evidence->'legacy_names'->>cp.id::text from best_of_game_policy)) end
+      ))::text as search_text,
+      20::integer as rank_bucket,
+      cameo.cameo_search_text::text as cameo_search_text,
+      cameo.cameo_labels::text[] as cameo_labels
+    from candidate_cards cp
+    left join cameo_agg cameo on cameo.gv_id = cp.gv_id
+  ),
+  child_docs as materialized (
+    select
+      ('child:' || cpn.printing_gv_id)::text as search_document_id,
+      'child_printing'::text as object_type,
+      cpn.printing_gv_id::text as public_id,
+      cp.gv_id::text as parent_gv_id,
+      cpn.printing_gv_id::text as printing_gv_id,
+      cp.name::text as display_name,
+      coalesce(fk.label, cpn.finish_key)::text as display_discriminator,
+      ('/card/' || cp.gv_id)::text as route_path,
+      ('printing=' || cpn.printing_gv_id)::text as route_query,
+      cp.name::text as name,
+      regexp_replace(coalesce(cp.number_plain, cp.number, ''), '\D', '', 'g')::text as number_digits,
+      case
+        when nullif(regexp_replace(coalesce(cp.number_plain, cp.number, ''), '\D', '', 'g'), '') is null then null::text
+        else lpad(regexp_replace(coalesce(cp.number_plain, cp.number, ''), '\D', '', 'g'), 3, '0')
+      end as number_padded,
+      cp.discovery_set_code::text as set_code,
+      lower(concat_ws(
+        ' ',
+        cpn.printing_gv_id,
+        cp.gv_id,
+        cp.print_identity_key,
+        cp.name,
+        cp.number,
+        cp.number_plain,
+        cp.set_code,
+        cp.joined_set_name,
+        cp.printed_set_abbrev,
+        cp.rarity,
+        cp.variant_key,
+        cp.printed_identity_modifier,
+        cpn.finish_key,
+        fk.label,
+        cp.external_ids::text,
+        case when cp.discovery_set_code is distinct from cp.set_code then cp.discovery_set_code end,
+        case when cp.id::text in(select jsonb_array_elements_text(evidence->'canonical_ids') from best_of_game_policy where projection is not null)
+          or cp.id::text in(select jsonb_array_elements_text(projection->'parent_ids') from best_of_game_policy)
+        then concat_ws(' ','bog bp Best of Game',(select evidence->'legacy_names'->>cp.id::text from best_of_game_policy)) end
+      ))::text as search_text,
+      30::integer as rank_bucket,
+      null::text as cameo_search_text,
+      null::text[] as cameo_labels
+    from candidate_cards cp
+    cross join lateral (
+      select source.*
+      from public.card_printings source
+      where source.card_print_id = cp.id
+        and source.printing_gv_id is not null
+      offset 0
+    ) cpn
+    left join public.finish_keys fk on fk.key = cpn.finish_key
+  ),
+  docs as materialized (
+    select * from parent_docs
+    where coalesce((select object_type_norm from prepared),'parent_print') = 'parent_print'
+    union all
+    select * from child_docs
+    where coalesce((select object_type_norm from prepared),'child_printing') = 'child_printing'
+  ),
+  scored as (
+    select
+      d.search_document_id,
+      d.object_type,
+      d.parent_gv_id,
+      d.printing_gv_id,
+      d.display_name,
+      case
+        when p.q_norm is not null
+          and d.cameo_search_text is not null
+          and (
+            d.cameo_search_text like '%' || p.q_norm || '%'
+            or exists (
+              select 1
+              from unnest(p.q_tokens) token
+              where token <> ''
+                and token <> 'cameo'
+                and d.cameo_search_text like '%' || token || '%'
+            )
+          )
+          then coalesce(d.cameo_labels[1], 'Cameo')
+        else d.display_discriminator
+      end as display_discriminator,
+      d.route_path,
+      d.route_query,
+      array_remove(array[
+        case when p.q_norm is not null and lower(coalesce(d.public_id, '')) = p.q_norm then 'public_id' end,
+        case when p.q_norm is not null and lower(coalesce(d.parent_gv_id, '')) = p.q_norm then 'parent_gv_id' end,
+        case when p.q_norm is not null and lower(coalesce(d.printing_gv_id, '')) = p.q_norm then 'printing_gv_id' end,
+        case when p.q_norm is not null and lower(coalesce(d.name, '')) like '%' || p.q_norm || '%' then 'name' end,
+        case when p.q_norm is not null and d.search_text like '%' || p.q_norm || '%' then 'search_text' end,
+        case when p.q_norm is not null and d.cameo_search_text like '%' || p.q_norm || '%' then 'cameo_search_text' end,
+        case when p.q_norm is not null and exists (
+          select 1
+          from unnest(p.q_tokens) token
+          where token <> '' and token <> 'cameo' and d.cameo_search_text like '%' || token || '%'
+        ) then 'cameo_token' end,
+        case when p.number_digits_norm is not null and d.number_digits = p.number_digits_norm then 'number' end,
+        case when p.set_code_norm is not null and lower(coalesce(d.set_code, '')) = p.set_code_norm then 'set_code' end
+      ], null)::text[] as matched_fields,
+      (
+        d.rank_bucket
+        + case when p.q_norm is not null and lower(coalesce(d.public_id, '')) = p.q_norm then 10000 else 0 end
+        + case when p.q_norm is not null and lower(coalesce(d.printing_gv_id, '')) = p.q_norm then 9500 else 0 end
+        + case when p.q_norm is not null and lower(coalesce(d.parent_gv_id, '')) = p.q_norm then 9000 else 0 end
+        + case when p.number_digits_norm is not null and d.number_digits = p.number_digits_norm then 1600 else 0 end
+        + case when p.number_digits_norm is not null and d.number_padded = lpad(p.number_digits_norm, 3, '0') then 1100 else 0 end
+        + case when p.set_code_norm is not null and lower(coalesce(d.set_code, '')) = p.set_code_norm then 1200 else 0 end
+        + case when p.q_norm is not null and lower(coalesce(d.name, '')) = p.q_norm then 1800 else 0 end
+        + case when p.q_norm is not null and lower(coalesce(d.name, '')) like '%' || p.q_norm || '%' then 800 else 0 end
+        + case when p.q_norm is not null and d.search_text like '%' || p.q_norm || '%' then 400 else 0 end
+        + case
+          when p.q_norm is not null then (
+            select count(*)::integer * 120
+            from unnest(p.q_tokens) token
+            where token <> '' and d.search_text like '%' || token || '%'
+          )
+          else 0
+        end
+        + case when p.q_norm is not null and d.cameo_search_text like '%' || p.q_norm || '%' then 300 else 0 end
+        + case
+          when p.q_norm is not null then (
+            select count(*)::integer * 70
+            from unnest(p.q_tokens) token
+            where token <> '' and token <> 'cameo' and d.cameo_search_text like '%' || token || '%'
+          )
+          else 0
+        end
+        + case
+          when p.q_norm is not null and 'cameo' = any(p.q_tokens) and d.cameo_search_text is not null then 90
+          else 0
+        end
+      )::integer as rank_score
+    from docs d
+    cross join prepared p
+    where (p.object_type_norm is null or d.object_type = p.object_type_norm)
+      and (
+        p.q_norm is null
+        or lower(coalesce(d.public_id, '')) = p.q_norm
+        or lower(coalesce(d.parent_gv_id, '')) = p.q_norm
+        or lower(coalesce(d.printing_gv_id, '')) = p.q_norm
+        or d.search_text like '%' || p.q_norm || '%'
+        or d.cameo_search_text like '%' || p.q_norm || '%'
+        or not exists (
+          select 1
+          from unnest(p.q_tokens) token
+          where token <> '' and d.search_text not like '%' || token || '%'
+        )
+      )
+  )
+  select
+    search_document_id,
+    object_type,
+    parent_gv_id,
+    printing_gv_id,
+    display_name,
+    display_discriminator,
+    route_path,
+    route_query,
+    matched_fields,
+    rank_score
+  from scored
+  where rank_score > 0
+  order by rank_score desc, display_name asc, parent_gv_id asc, coalesce(printing_gv_id, '') asc
+  limit (select result_limit from prepared)
+  offset (select result_offset from prepared);
+$function$;
+notify pgrst,'reload schema';
+commit;

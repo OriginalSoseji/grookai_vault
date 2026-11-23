@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import {evaluateTcgplayerMarketQualificationV1} from '../../backend/pricing/tcgplayer_market_publication_policy_v1.mjs';
 import {evaluateTcgplayerMarketQualificationV2} from '../../backend/pricing/tcgplayer_market_publication_policy_v2.mjs';
+import {evaluateTcgplayerMarketQualificationV3} from '../../backend/pricing/tcgplayer_market_publication_policy_v3.mjs';
 
 const now=new Date('2026-11-20T06:00:00Z');
 function candidate(category=68,overrides={}) {
@@ -31,6 +32,14 @@ function candidate(category=68,overrides={}) {
   ...overrides,
  };
 }
+
+test('reviewed Play policy preserves complete old lane decisions and database-pinned policy versions',()=>{
+ for(const category of [1,3,68,85])for(const fields of [{},{market_price:null},{market_price:0},{currency:'EUR'},{source_sync_failed_count:1},{card_print_mapping_count:2},{source_sync_finished_at:'2026-11-16T00:00:00Z'}]){
+  const row=candidate(category,fields),result=evaluateTcgplayerMarketQualificationV3(row,{now});
+  assert.deepEqual(result,evaluateTcgplayerMarketQualificationV2(row,{now}));
+  assert.equal(result.policy_version,[68,85].includes(category)?'TCGPLAYER_MARKET_PUBLICATION_POLICY_V2':'TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3');
+ }
+});
 
 test('One Piece exact product/finish publishes without English Pokemon alternate-art exclusions',()=>{
  const row=candidate(),result=evaluateTcgplayerMarketQualificationV2(row,{now});

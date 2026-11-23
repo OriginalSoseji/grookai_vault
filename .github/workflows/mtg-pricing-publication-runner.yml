@@ -394,7 +394,7 @@ jobs:
                   and run_mode = 'shadow'
                   and state = 'shadow_verified'
                   and reconciliation_state = 'reconciled'
-                  and policy_version = 'TCGPLAYER_MARKET_PUBLICATION_POLICY_V2'
+                  and policy_version = 'TCGPLAYER_MARKET_PUBLICATION_POLICY_V3'
                   and git_commit_sha = $2`,
               [process.env.EXPECTED_SHADOW_RUN_KEY, process.env.EXPECTED_SHA],
             );
