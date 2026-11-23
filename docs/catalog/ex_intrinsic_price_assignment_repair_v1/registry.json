@@ -1,0 +1,104 @@
+{
+  "version": "EX_INTRINSIC_PRICE_ASSIGNMENT_SCOPE_V1",
+  "source_run_id": "a3591eb1-7e55-48ac-8996-b36afdd0d3df",
+  "observed_on": "2026-11-22",
+  "canonical_plan_fingerprint": "88f71b8dee64dca2d832235571375b3a688019a0973982f0af2b01973f5f5999",
+  "assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1_1",
+  "parents": [
+    {
+      "parent": "d905a802-d848-4e1c-ac3d-227323fb6e26",
+      "name": "Dragonair δ",
+      "gv_id": "GV-PK-DF-28",
+      "number": "28",
+      "product_id": 84907,
+      "product_name": "Dragonair (Delta Species)",
+      "product_number": "28/101",
+      "group_id": 1411
+    },
+    {
+      "parent": "fbe38b87-9c6e-49e4-a34d-0bc4014790f2",
+      "name": "Exeggutor δ",
+      "gv_id": "GV-PK-HP-41",
+      "number": "41",
+      "product_id": 85364,
+      "product_name": "Exeggutor (Delta Species)",
+      "product_number": "41/110",
+      "group_id": 1379
+    },
+    {
+      "parent": "c1ff04aa-1015-4a3e-a568-acf419b7eb22",
+      "name": "Metang δ",
+      "gv_id": "GV-PK-DS-49",
+      "number": "49",
+      "product_id": 87384,
+      "product_name": "Metang (Delta Species)",
+      "product_number": "49/113",
+      "group_id": 1429
+    }
+  ],
+  "pairs": [
+    {
+      "observation_id": "1aba208f-b51e-4071-9cea-32a569721ef2",
+      "prior_assignment_id": "573a1ea7-4640-4193-890e-7a988870c28d",
+      "product_id": 84907,
+      "source_subtype": "Reverse Holofoil",
+      "parent": "d905a802-d848-4e1c-ac3d-227323fb6e26",
+      "printing": "f66f16c3-3c5d-55af-a4fa-d3b11e5368e5",
+      "printing_gv_id": "GV-PK-DF-28-RH",
+      "finish": "reverse"
+    },
+    {
+      "observation_id": "272af088-1aff-4883-bfb0-224961290888",
+      "prior_assignment_id": "5ebaf34d-48ae-4d05-aac5-03a46383e702",
+      "product_id": 87384,
+      "source_subtype": "Normal",
+      "parent": "c1ff04aa-1015-4a3e-a568-acf419b7eb22",
+      "printing": "ed4eb46f-6a1b-5679-a6c2-2066a32aa9ed",
+      "printing_gv_id": "GV-PK-DS-49-STD",
+      "finish": "normal"
+    },
+    {
+      "observation_id": "2fc400d4-ac2d-4612-8fda-320604a0a14d",
+      "prior_assignment_id": "cbd37096-de28-49ec-a37b-cf86b107d701",
+      "product_id": 84907,
+      "source_subtype": "Normal",
+      "parent": "d905a802-d848-4e1c-ac3d-227323fb6e26",
+      "printing": "d1a28b57-ceaa-5cf4-acb8-16f06e3fc834",
+      "printing_gv_id": "GV-PK-DF-28-STD",
+      "finish": "normal"
+    },
+    {
+      "observation_id": "b44d690d-9558-4c30-8649-6f1183d7dc1b",
+      "prior_assignment_id": "698f03aa-f6b4-4f71-b9f4-b949fc95b376",
+      "product_id": 85364,
+      "source_subtype": "Reverse Holofoil",
+      "parent": "fbe38b87-9c6e-49e4-a34d-0bc4014790f2",
+      "printing": "99668458-3ee7-532b-a428-b7c9480dcbc4",
+      "printing_gv_id": "GV-PK-HP-41-RH",
+      "finish": "reverse"
+    },
+    {
+      "observation_id": "d933d765-6f96-4450-945b-8c8e13d99caf",
+      "prior_assignment_id": "5b576899-ca97-4d38-98e0-91e386f7a549",
+      "product_id": 87384,
+      "source_subtype": "Reverse Holofoil",
+      "parent": "c1ff04aa-1015-4a3e-a568-acf419b7eb22",
+      "printing": "5da8bbee-5355-58c5-aa4f-7723c777c9c5",
+      "printing_gv_id": "GV-PK-DS-49-RH",
+      "finish": "reverse"
+    },
+    {
+      "observation_id": "e5b3ae46-4521-4364-8f15-452dcc612a49",
+      "prior_assignment_id": "046921d5-b296-457e-81a9-ce00c4990802",
+      "product_id": 85364,
+      "source_subtype": "Normal",
+      "parent": "fbe38b87-9c6e-49e4-a34d-0bc4014790f2",
+      "printing": "da635e4f-8fa5-5747-a653-6ef9564b0a12",
+      "printing_gv_id": "GV-PK-HP-41-STD",
+      "finish": "normal"
+    }
+  ],
+  "canonical_authority": false,
+  "market_publication_authority": false,
+  "fingerprint": "af3a46b5729e30fd55610b865f46af1c775ed09b212ab4312cd273c96a68fb96"
+}
