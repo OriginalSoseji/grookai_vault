@@ -5,7 +5,7 @@ import { applyTrainerKitPilotCoverageScopeV1 } from "./tcgplayer_trainer_kit_pil
 import { applyWcdTeamRushdownCoverageScopeV1 } from "./tcgplayer_wcd_team_rushdown_pilot_v1.mjs";
 import { applyCosmosFinishPublicationScopeV1 } from "./tcgplayer_cosmos_finish_v1.mjs";
 import {
-  classifyTcgplayerMarketProductScopeV1_5,
+  classifyTcgplayerMarketProductScopeV1_6,
   TCGPLAYER_MARKET_V1_1_GROUP_SCOPE_RULES,
 } from "./tcgplayer_market_product_scope_v1.mjs";
 
@@ -96,7 +96,7 @@ function productScope(row) {
   return applyCosmosFinishPublicationScopeV1(
     applyWcdTeamRushdownCoverageScopeV1(
       applyTrainerKitPilotCoverageScopeV1(
-        classifyTcgplayerMarketProductScopeV1_5(row), candidate,
+        classifyTcgplayerMarketProductScopeV1_6(row), candidate,
       ), candidate,
     ), candidate,
   );

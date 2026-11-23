@@ -186,6 +186,75 @@ test("fixture worker writes reconciled immutable artifacts with no write authori
   assert.equal(plan.boundaries.database_writes, false);
   assert.equal(plan.boundaries.storage_writes, false);
   assert.ok(fs.existsSync(path.join(output, "artifact_hashes.json")));
+  const gapQueue = JSON.parse(fs.readFileSync(
+    path.join(output, "printing_gap_queue.json"),
+    "utf8",
+  ));
+  assert.equal(gapQueue.status, "clear");
+  assert.equal(gapQueue.canonical_authority, false);
+  assert.equal(gapQueue.execution_authority, false);
+});
+
+test("fixture worker emits an exact reconciled printing-gap parent queue", () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "set-publication-gap-"));
+  const fixture = path.join(root, "fixture.json");
+  const output = path.join(root, "output");
+  const defectiveSet = row({
+    printing_coverage: {
+      ...row().printing_coverage,
+      parents_without_printing: 1,
+    },
+  });
+  fs.writeFileSync(fixture, `${JSON.stringify({
+    rows: [defectiveSet],
+    printing_gap_details: [{
+      set_id: defectiveSet.id,
+      card_print_id: "00000000-0000-4000-8000-000000000101",
+      parent_gv_id: "GV-OP-ST30-001",
+      printed_coordinate: "001",
+      card_name: "Test Leader",
+      identity_domain: "one_piece_eng_print",
+      variant_key: "",
+      printed_identity_modifier: null,
+      total_printings: 0,
+      usable_printings: 0,
+      missing_gvid: 0,
+      wrong_gvid: 0,
+      provisional: 0,
+      unproven: 0,
+      existing_printings: [],
+    }],
+  })}\n`);
+  const head = spawnSync("git", ["rev-parse", "HEAD"], {
+    cwd: ROOT,
+    encoding: "utf8",
+  }).stdout.trim();
+  const run = spawnSync(process.execPath, [
+    path.join(ROOT, "scripts", "workers", "cross_tcg_set_publication_gate_v1.mjs"),
+    `--fixture=${fixture}`,
+    `--out-dir=${output}`,
+    `--expected-head-sha=${head}`,
+    "--skip-image-probes",
+  ], {
+    cwd: ROOT,
+    encoding: "utf8",
+    env: { ...process.env, SUPABASE_URL: ORIGIN },
+  });
+  assert.equal(run.status, 1, run.stderr);
+  const summary = JSON.parse(fs.readFileSync(path.join(output, "summary.json"), "utf8"));
+  const gapQueue = JSON.parse(fs.readFileSync(
+    path.join(output, "printing_gap_queue.json"),
+    "utf8",
+  ));
+  assert.equal(summary.status, "blocked");
+  assert.equal(gapQueue.status, "review_required");
+  assert.equal(gapQueue.reconciliation.mismatch_count, 0);
+  assert.equal(gapQueue.counts.affected_parent_count, 1);
+  assert.equal(gapQueue.counts.single_parent_gap_set_count, 1);
+  assert.equal(gapQueue.rows[0].card_print_id, "00000000-0000-4000-8000-000000000101");
+  assert.deepEqual(gapQueue.rows[0].defect_codes, ["parent_without_usable_printing"]);
+  assert.equal(gapQueue.canonical_authority, false);
+  assert.equal(gapQueue.execution_authority, false);
 });
 
 test("the scheduled worker is read-only and integrated with the catalog shadow workflow", () => {
@@ -199,12 +268,16 @@ test("the scheduled worker is read-only and integrated with the catalog shadow w
   );
   assert.match(worker, /default_transaction_read_only=on/);
   assert.match(worker, /begin transaction read only/i);
+  assert.match(worker, /PRINTING_GAP_DETAILS_SQL/);
+  assert.match(worker, /printing_gap_queue\.json/);
   assert.doesNotMatch(
     worker,
     /\b(insert\s+into|update\s+public|delete\s+from|truncate\s+table)\b/i,
   );
   assert.match(workflow, /cross_tcg_set_publication_gate_v1\.mjs/);
   assert.match(workflow, /CROSS_TCG_SET_PUBLICATION_GATE_REPORT\.md/);
+  assert.match(workflow, /printing_gap_queue\.json/);
+  assert.match(workflow, /No canonical writer was dispatched/);
   assert.match(workflow, /CATALOG_AUTOMATION_MODE:\s*shadow-only/);
 });
 

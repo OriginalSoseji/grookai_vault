@@ -5,7 +5,8 @@ import os from 'node:os';
 import path from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {assertPrintingManifest,printingManifestHash,evaluatePrintingReadback,assessLivePrintingCoverage,
-  buildPrintingAdmissionPlan,PRINTING_COMPLETENESS_VERSION,PRINTING_COVERAGE_SQL} from '../../backend/catalog/printing_completeness_gate_v1.mjs';
+  buildPrintingAdmissionPlan,buildPrintingCompletenessGapQueueV1,PRINTING_COMPLETENESS_VERSION,
+  PRINTING_COVERAGE_SQL,PRINTING_GAP_DETAILS_SQL} from '../../backend/catalog/printing_completeness_gate_v1.mjs';
 
 function seal(m){delete m.fingerprint;return {...m,fingerprint:printingManifestHash(m)};}
 function fixture(n=1){
@@ -170,6 +171,39 @@ test('coverage requires explicit counts, not absent-as-zero or price inference',
  assert.deepEqual(assessLivePrintingCoverage({...c,parents_without_printing:0},161),[]);
  assert.deepEqual(assessLivePrintingCoverage({...c,parents_checked:160},161),['printing_coverage_readback_mismatch']);
  assert.doesNotMatch(PRINTING_COVERAGE_SQL,/\b(insert|update|delete|truncate)\b/i);
+ assert.doesNotMatch(PRINTING_GAP_DETAILS_SQL,/\b(insert|update|delete|truncate)\b/i);
+});
+test('gap queue exposes exact defective parents without granting authority',()=>{
+ const sets=[{id:'set-1',game:'pokemon',code:'base1',name:'Base Set',printing_coverage:{
+  parents_without_printing:1,missing_printing_gvid:0,wrong_parent_gvid:0,provisional_printings:0,unproven_printings:0}},
+ {id:'set-2',game:'one_piece',code:'OP01',name:'Romance Dawn',printing_coverage:{
+  parents_without_printing:0,missing_printing_gvid:0,wrong_parent_gvid:0,provisional_printings:0,unproven_printings:1}}];
+ const gaps=[{
+  set_id:'set-2',card_print_id:'parent-2',parent_gv_id:'GV-OP-001',printed_coordinate:'001',
+  card_name:'Leader',identity_domain:'one_piece_eng_print',variant_key:'',printed_identity_modifier:null,
+  total_printings:1,usable_printings:1,missing_gvid:0,wrong_gvid:0,provisional:0,unproven:1,
+  existing_printings:[{id:'child-2',finish_key:'foil'}],
+ },{
+  set_id:'set-1',card_print_id:'parent-1',parent_gv_id:'GV-PK-001',printed_coordinate:'1/102',
+  card_name:'Alakazam',identity_domain:'pokemon_eng_standard',variant_key:'',printed_identity_modifier:null,
+  total_printings:0,usable_printings:0,missing_gvid:0,wrong_gvid:0,provisional:0,unproven:0,
+  existing_printings:[],
+ }];
+ const queue=buildPrintingCompletenessGapQueueV1({sets,gaps,frozenCommit:'a'.repeat(40)});
+ assert.equal(queue.status,'review_required');assert.equal(queue.canonical_authority,false);
+ assert.equal(queue.execution_authority,false);assert.equal(queue.counts.affected_set_count,2);
+ assert.equal(queue.counts.affected_parent_count,2);assert.equal(queue.counts.single_parent_gap_set_count,2);
+ assert.equal(queue.reconciliation.mismatch_count,0);
+ assert.deepEqual(queue.rows.map(row=>row.card_print_id),['parent-2','parent-1']);
+ assert.deepEqual(queue.rows[1].defect_codes,['parent_without_usable_printing']);
+ assert.deepEqual(queue.rows[0].defect_codes,['unproven_printing']);
+ assert.deepEqual(queue.boundaries,{database_writes:false,storage_writes:false,canonical_writes:false,
+  pricing_writes:false,publication_writes:false,vault_writes:false});
+ assert.throws(()=>buildPrintingCompletenessGapQueueV1({sets,gaps:[{...gaps[0],set_id:'missing'}],
+  frozenCommit:'a'.repeat(40)}),/unknown_set/);
+ const incomplete=buildPrintingCompletenessGapQueueV1({sets,gaps:[gaps[0]],frozenCommit:'a'.repeat(40)});
+ assert.equal(incomplete.status,'blocked_reconciliation_mismatch');
+ assert.equal(incomplete.reconciliation.mismatch_count,1);
 });
 test('ingestion validates scope before writes and never calls parent import complete',()=>{
  const s=fs.readFileSync('scripts/ingest/new_set_release_ingest_v1.mjs','utf8');
