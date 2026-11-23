@@ -1,0 +1,35 @@
+{
+  "executionAuthority": false,
+  "scope": "normal_only_not_full_inventory",
+  "preservedFiles": {
+    "official-series4": {
+      "sha256": "01fe2d0305b529f44c408c1e326227f5a6b387fc575544ba717e9b4c82d2f91e",
+      "url_or_identifier": "https://web.archive.org/web/20260917210836id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_4_web_cardlist_en.pdf",
+      "retrieved_at": "2026-11-23T06:41:36.442Z",
+      "file": "official-series4-original.pdf",
+      "publisher_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_4_web_cardlist_en.pdf",
+      "original_archive_capture": "20260917210836",
+      "retrieval_does_not_redate_original": true,
+      "source_url": "https://web.archive.org/web/20260917210836id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_4_web_cardlist_en.pdf"
+    },
+    "wiki-series4": {
+      "sha256": "6c5a0be266f3867c28596c0da074ac48b69e56463408cf3ab838699fcad1e993",
+      "url_or_identifier": "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Four_%28TCG%29&prop=wikitext&format=json",
+      "retrieved_at": "2026-11-23T06:41:34.837Z",
+      "file": "wiki-series4-response.json",
+      "source_url": "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Four_%28TCG%29&prop=wikitext&format=json"
+    }
+  },
+  "extraction": {
+    "method": "Original PDF bounding boxes plus unedited110DPI Poppler RGB; visually verified legend, black standard-set only.",
+    "source_extraction_sha256": "878936744c73a43ecbf21574f42dc69e22f9bd39547b9e8c2b2d09053ed240c2",
+    "extractor_sha256": "cf177276d9d5695a9c5a66136cfca8f3ad2cd27a949879c10cf8274f08681dd4",
+    "source_integrity_review_sha256": "999456489af3743a3f9e89afe5da7f3f991503f5fe24e7d32935e99b3aab9378",
+    "original_pdf_pages_visually_inspected": true,
+    "archive_capture_timestamps_preserved": true
+  },
+  "canonicalTargetIds": [
+    "b861b100-b9c2-43b7-8f22-2b8c65b8edb1",
+    "d6c1ec2f-183e-4f1f-924e-1cb30bfcda28"
+  ]
+}
