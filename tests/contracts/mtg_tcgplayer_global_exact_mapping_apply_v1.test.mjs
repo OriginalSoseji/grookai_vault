@@ -17,6 +17,11 @@ test('global exact mapping apply binds the exact founder approval and preflight 
   assert.match(SCRIPT, /approval_text_changed/);
   assert.match(SCRIPT, /preflight_artifact_inventory_changed/);
   assert.match(SCRIPT, /approved_selected_rows_changed/);
+  assert.match(SCRIPT, /authorized_preflight_approval_artifact_changed/);
+  assert.match(SCRIPT, /authorized_preflight_queue_manifest_changed/);
+  assert.match(SCRIPT, /authorized_preflight_batch_manifest_changed/);
+  assert.match(SCRIPT, /authorized_preflight_batch_rows_changed/);
+  assert.match(SCRIPT, /authorized_preflight_decision_changed/);
   assert.ok(SCRIPT.indexOf('bindAuthorizedPreflight(options, packageData)')
     < SCRIPT.indexOf("new pg.Client(connectionConfig('mtg_global_exact_mapping_apply_v1'))"));
 });
@@ -39,6 +44,9 @@ test('global exact mapping apply retains durable rollback and uncertain-commit r
   assert.match(SCRIPT, /committed_zero_mismatch_readback/);
   assert.match(SCRIPT, /committed_by_independent_readback/);
   assert.match(SCRIPT, /commit_outcome_unknown_requires_operator_readback/);
+  assert.match(SCRIPT, /begin transaction isolation level read committed/);
+  assert.ok(SCRIPT.indexOf("pg_advisory_xact_lock(hashtext('tcgplayer_market_exact_mapping_apply_v1'))")
+    < SCRIPT.indexOf("const mappings = await scopedMappings(readback, rows)"));
   assert.match(SCRIPT, /post_commit_readback_failed/);
   assert.match(SCRIPT, /failed_zero_committed_writes/);
   assert.match(SCRIPT, /pricing_writes: 0/);

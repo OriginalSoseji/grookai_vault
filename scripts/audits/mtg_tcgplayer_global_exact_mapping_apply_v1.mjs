@@ -92,6 +92,17 @@ export async function bindAuthorizedPreflight(options, packageData) {
   assert.equal(receipt.value.preflight_fingerprint_sha256, AUTHORIZED_PREFLIGHT_FINGERPRINT);
   assert.equal(receipt.value.decision_fingerprint_sha256, AUTHORIZED_DECISION_FINGERPRINT);
   assert.equal(receipt.value.evidence_source_sync_run_id, AUTHORIZED_EVIDENCE_SOURCE);
+  assert.equal(receipt.value.approval_artifact_sha256, packageData.approvalSha256,
+    'authorized_preflight_approval_artifact_changed');
+  assert.equal(receipt.value.queue_manifest_sha256, packageData.approval.queue_manifest_sha256,
+    'authorized_preflight_queue_manifest_changed');
+  assert.equal(receipt.value.batch_manifest_sha256, packageData.approval.batch_manifest_sha256,
+    'authorized_preflight_batch_manifest_changed');
+  assert.equal(receipt.value.batch_rows_sha256, packageData.batchRowsSha256,
+    'authorized_preflight_batch_rows_changed');
+  assert.equal(receipt.value.decision_fingerprint_sha256,
+    packageData.approval.decision_fingerprint_sha256,
+    'authorized_preflight_decision_changed');
   assert.equal(receipt.value.source_products, TOTAL_ROWS);
   assert.equal(receipt.value.projected_price_observations, TOTAL_ROWS);
   assert.equal(receipt.value.proof?.first_relevant_mappings?.hash_sha256,
@@ -139,14 +150,30 @@ function assertReadback(rows, mappings, rollbackIdentities, applyCommit, expecte
 
 async function reconcileCommitAttempt(rows, rollbackIdentities, applyCommit, expectedIds) {
   let readback;
+  let reconciliationTransactionOpen = false;
   try {
     readback = new pg.Client(connectionConfig('mtg_global_exact_commit_reconcile_v1'));
     await readback.connect();
+    await readback.query('begin transaction isolation level read committed');
+    reconciliationTransactionOpen = true;
+    await readback.query("set local statement_timeout='10min'");
+    // The writer holds this transaction-scoped lock until PostgreSQL has made the
+    // commit or rollback final. Acquiring it here prevents an early empty read
+    // from being mistaken for a definitive rollback after a lost COMMIT response.
+    await readback.query(
+      "select pg_advisory_xact_lock(hashtext('tcgplayer_market_exact_mapping_apply_v1'))",
+    );
     const mappings = await scopedMappings(readback, rows);
-    if (mappings.length === 0) return { outcome: 'not_committed_zero_mappings', mapping_ids: [] };
+    if (mappings.length === 0) {
+      await readback.query('commit');
+      reconciliationTransactionOpen = false;
+      return { outcome: 'not_committed_zero_mappings', mapping_ids: [] };
+    }
     try {
       assertReadback(rows, mappings, rollbackIdentities, applyCommit, expectedIds);
     } catch (error) {
+      await readback.query('commit');
+      reconciliationTransactionOpen = false;
       return {
         outcome: 'unknown_mismatched_independent_readback',
         mapping_ids: mappings.map((row) => row.id),
@@ -154,6 +181,8 @@ async function reconcileCommitAttempt(rows, rollbackIdentities, applyCommit, exp
         error_detail: error.message,
       };
     }
+    await readback.query('commit');
+    reconciliationTransactionOpen = false;
     return { outcome: 'committed_by_independent_readback', mapping_ids: mappings.map((row) => row.id) };
   } catch (error) {
     return {
@@ -163,6 +192,7 @@ async function reconcileCommitAttempt(rows, rollbackIdentities, applyCommit, exp
       error_detail: error.message,
     };
   } finally {
+    if (readback && reconciliationTransactionOpen) await readback.query('rollback').catch(() => {});
     if (readback) await readback.end().catch(() => {});
   }
 }
