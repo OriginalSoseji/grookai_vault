@@ -2,7 +2,7 @@
   "version": "EX_INTRINSIC_PRICE_ASSIGNMENT_SCOPE_V1",
   "source_run_id": "a3591eb1-7e55-48ac-8996-b36afdd0d3df",
   "observed_on": "2026-11-22",
-  "canonical_plan_fingerprint": "dbc9a0ac9a2d501be0ec355686c8caefe89bf1536c7e0738aed0835913b1f3fc",
+  "canonical_plan_fingerprint": "88f71b8dee64dca2d832235571375b3a688019a0973982f0af2b01973f5f5999",
   "assignment_version": "MEE_MARKET_CLOSE_VARIANT_ASSIGNMENT_V1_1",
   "parents": [
     {
@@ -100,5 +100,5 @@
   ],
   "canonical_authority": false,
   "market_publication_authority": false,
-  "fingerprint": "2859bbee9974463670a4febcd501103ee432b5d94c2e6c6c1b0f52de686ebbf9"
+  "fingerprint": "af3a46b5729e30fd55610b865f46af1c775ed09b212ab4312cd273c96a68fb96"
 }

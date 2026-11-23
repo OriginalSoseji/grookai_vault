@@ -1,3 +1,31 @@
+# Price/stamp exact519 continuity — November22,2026
+
+The [519 audit](../audits/PRICE_STAMP_SCHEMA_519_CONTINUITY_20261123.md) binds the
+already-applied search-only migration source and independent complete schema/
+security review. Restore its exact source bytes without reapplying production
+SQL. Use the newly rebound519 plans/producers and separate519 evidence/mapping
+clones. Preserve all old518 plans, labs and the obsolete cancelled V9 run. Both
+full normal hooks and actual hosted checks must qualify the final whole tree;
+never carry an older source's qualification or accept an unknown later ledger.
+The49 physical facts and existing references remain unchanged. This preparation
+grants no original founder authority, Market activation or permission changes.
+
+# Exact Play! Pokémon Market links — November22,2026
+
+Use the [separate43-mapping contract](../contracts/PLAY_STAMP_MARKET_MAPPING_V1.md)
+and `scripts/audits/play_stamp_market_mapping_v1.mjs`. Current source has43
+positive Normal Market quotes but no TCGplayer mappings. The V4 reference lane
+alone cannot fill tiles. Keep the generic base-variant mapper unchanged. Prepare
+the private prospective plan read-only; require actual canonical children,
+original exact raw/candidate/JustTCG links, unique source owners, current products
+and schema pins, then separately approved rollback/apply/readback. Insert only43
+explicit-ID parent mappings; preserve old rows and the sequence. Canonical,
+ownership, assignment and Market writes stay zero in this stage. Four unproven
+Holofoil observations remain unmatched. Run this after both canonical readbacks
+and before the full worker27 shadow. Recheck conditions through the published
+V3 reader after activation; V4 must retain its persistent-assertion exclusion.
+Preserve the separate cloned lab and every failed receipt.
+
 # Exact EX price evidence correction — November22,2026
 
 The [separate six-assignment contract](../contracts/EX_INTRINSIC_PRICE_ASSIGNMENT_REPAIR_V1.md)

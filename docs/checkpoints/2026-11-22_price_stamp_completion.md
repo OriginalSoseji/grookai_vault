@@ -1,5 +1,24 @@
 # Price and stamp completion — November 22, 2026
 
+Current preparation targets exact schema519. The separately approved search
+migration advanced the live ledger during V9 verification; both preflights
+stopped before writing. The obsolete V9 run was cancelled and retained, with no
+qualification waiver. The [519 continuity audit](../audits/PRICE_STAMP_SCHEMA_519_CONTINUITY_20261123.md)
+records the complete four-schema/security comparison, unchanged pricing and
+printing definitions, and exact local forward preservation. No production SQL
+is reapplied. Both canonical production preflights pass on rebound plans with
+identical physical facts and reference baselines. The two noncanonical stages
+passed again in fresh519 clones, including rollback, duplicate failure,
+independent readback and zero-write repeat. Old518 plans remain historical.
+
+The proposed four bounded stages add2 raw receipts,49 printings,49 reviews,
+6 private evidence assignments and43 exact TCGplayer links. They perform zero
+updates/deletes or ownership/source-observation/Market mutations. The ordinary
+complete worker27 shadow and guarded Market activation follow separately.
+Both full normal hooks and actual hosted qualification must cover this final
+source, followed by original exact founder approval and production rollback/
+apply/readback. No approval or production mutation is implied by preparation.
+
 The exact census reconciled 173,994 stored parents and 244,418 printings against
 the current verified TCGplayer publication: 187,246 published printings and
 57,172 without a current publication. There are 6,307 childless parents and
@@ -91,3 +110,24 @@ Auth users stayed zero. This bounded fixture is not a full warehouse/shadow
 qualification. Seven focused regressions passed. Actual production application
 still requires its own exact founder-approved plan/producer and fresh rollback.
 No second warehouse HTTP download or cached-payload re-dating is needed.
+
+The [exact43 Market mapping stage](../contracts/PLAY_STAMP_MARKET_MAPPING_V1.md)
+closes another measured dependency: all43 reviewed Normal cards have fresh
+positive warehouse quotes, but zero persistent TCGplayer parent or printing
+assertions. Reference-only V4 cannot fill their Market tiles. The separate
+insert-only bridge preserves the generic base-variant mapper and binds the
+original JustTCG raw/candidate/mapping link, exact source products and actual
+canonical children. It inserts43 explicit-ID parent mappings, with no sequence,
+canonical, identity, owner, source-observation, assignment or price writes.
+
+The dedicated local clone passed actual43-insert rollback, duplicate-key
+rollback, durable independent readback, zero-write repeat and449 protected-table
+checks. Only `external_mappings` gained43 rows; its sequence and all role grants
+stayed exact. A separate rolled-back official assignment preparation produced47
+receipts: all43 Normal observations passed the actual publication policy, and
+four unproven Holofoil observations stayed quarantined. No Auth users or real
+owner fixtures were created. This is bounded qualification, not the mandatory
+complete production shadow. Original exact founder approval, actual production
+rollback/apply/readback, full shadow/activation and real collector verification
+remain pending. The installed Samsung is now612; preserve that newer Binder
+build and use its existing compatible pricing API for verification.

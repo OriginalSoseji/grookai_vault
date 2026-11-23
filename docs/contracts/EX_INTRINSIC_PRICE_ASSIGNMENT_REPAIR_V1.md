@@ -18,7 +18,7 @@ and `market_truth` all remain false. Existing full-shadow and guarded Market
 publication policies alone decide publication. No schema change is authorized.
 
 The producer binds all canonical executor/source/evidence/migration files plus
-this contract, registry, backend and CLI. It pins the exact reviewed schema518
+this contract, registry, backend and CLI. It pins the exact reviewed schema519
 columns, defaults, constraints, indexes, INSERT triggers, rules, policies and
 ACL. No INSERT triggers/rules or unprovided sequence defaults are admitted.
 Only the six explicit ledger inserts may change during this stage.
@@ -43,8 +43,13 @@ serializable transaction. Recheck original source and code before final commit.
 Retain failed receipts and inspect uncertain commits independently.
 
 Local qualification uses only the separately owned loopback55240 database
-`ex_price_assignment_qualification_v1`, cloned without resetting retained labs.
+`ex_price_assignment_qualification_519_v1`, cloned without resetting retained labs.
 No Auth users or real owner fixtures may be created. Prove actual duplicate-key
 rollback, durable independent readback, zero-write repeat, exact old-row
 preservation, all protected-table fingerprints, and three database-role privacy
 boundaries. A bounded source fixture is not a full warehouse or shadow proof.
+
+The [exact519 continuity audit](../audits/PRICE_STAMP_SCHEMA_519_CONTINUITY_20261123.md)
+binds the reviewed single-ledger forward change. Physical facts/source pairs stay
+identical; canonical plan-link metadata is rebound to the new519 package. Old518
+plans and qualification clones remain preserved and grant no current authority.

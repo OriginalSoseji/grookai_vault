@@ -7,10 +7,10 @@ import {assertExPrintingPlan} from '../catalog/ex_intrinsic_printing_execution_v
 
 export const VERSION='EX_INTRINSIC_PRICE_ASSIGNMENT_REPAIR_V1';
 export const PROJECT='ycdxbpibncqcchqiihfz';
-export const QUALIFICATION_DATABASE='ex_price_assignment_qualification_v1';
+export const QUALIFICATION_DATABASE='ex_price_assignment_qualification_519_v1';
 export const REGISTRY=JSON.parse(fs.readFileSync(new URL('../../docs/catalog/ex_intrinsic_price_assignment_repair_v1/registry.json',import.meta.url)));
 const {fingerprint:registryFingerprint,...registryBody}=REGISTRY;
-assert.equal(hash(registryBody),registryFingerprint);assert.equal(registryFingerprint,'2859bbee9974463670a4febcd501103ee432b5d94c2e6c6c1b0f52de686ebbf9');assert.equal(REGISTRY.pairs.length,6);assert.equal(REGISTRY.parents.length,3);
+assert.equal(hash(registryBody),registryFingerprint);assert.equal(registryFingerprint,'af3a46b5729e30fd55610b865f46af1c775ed09b212ab4312cd273c96a68fb96');assert.equal(REGISTRY.pairs.length,6);assert.equal(REGISTRY.parents.length,3);
 export const BOUNDARIES=Object.freeze({existing_row_updates:0,deletes:0,canonical_writes:0,mapping_writes:0,owner_writes:0,source_observation_writes:0,market_price_writes:0,schema_writes:0});
 const sort=rows=>[...rows].sort((a,b)=>a.id.localeCompare(b.id));
 const same=(a,b,message)=>assert.equal(hash({value:a}),hash({value:b}),message);
@@ -38,7 +38,7 @@ export async function readAssignmentSchema(c){
  };
 }
 export function assertInsertEffects(schema){
- assert.equal(hash(schema),'0a70a16c104b14794356bac5e9f3e3a408d8b0cc96578dc4e17e1e994b739543','Reviewed ledger/schema/security changed');
+ assert.equal(hash(schema),'b495243f631c3318fa1bcf497c156e85f16c0ade2285b9bda3434fa856b9d14c','Reviewed ledger/schema/security changed');
  assert.equal(schema.insert_triggers.length,0,'Unreviewed INSERT trigger');assert.equal(schema.rules.length,0,'Unreviewed rewrite rule');
  assert.deepEqual(schema.columns.map(c=>c.name).sort(),[...ASSIGNMENT_FIELDS,'created_at'].sort(),'Ledger shape changed');
  for(const col of schema.columns){assert.equal(col.identity,'');assert.equal(col.generated,'');if(!ASSIGNMENT_FIELDS.includes(col.name))assert.ok(col.name==='created_at'&&col.default_expression==='now()','Unprovided writer/default');}
