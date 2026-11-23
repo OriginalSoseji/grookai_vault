@@ -106,11 +106,22 @@ repeatable-read, read-only production transactions and fails closed on source,
 identity, price-lane, target, or mapping drift. The preflight contains no insert,
 update, delete, commit, mapping, pricing, publication, canonical, or Vault write
 path. A successful receipt still requires a separate exact founder approval
-before any insert-only executor may be considered.
+before any insert-only executor may be considered. That approval was granted
+for source commit `bb923161c47d582334a564894436802ab7b5df9a`, preflight
+fingerprint
+`f0b5a8df70331fbc4317125ca53a3c133614739d86603fbe286d1464d0697b7c`,
+and the exact 36-row scope. The one-time executor binds the approved preflight
+and selected-row artifact bytes before opening a database connection, then
+revalidates all source, target, identity, price-lane, and collision state inside
+one serializable transaction. It permits only insertions into
+`public.external_mappings`, captures rollback identities before commit, and
+requires an independent zero-mismatch readback.
 
-The proof wrote only temporary local artifacts. It performed no database read
-or write and did not change mappings, prices, publication pointers, canonical
-identity, Vault data, or customer state.
+The original queue proof wrote only temporary local artifacts and performed no
+database read or write. The later mapping-outcome preflight performed only two
+repeatable-read, read-only production transactions and wrote local evidence;
+it did not change mappings, prices, publication pointers, canonical identity,
+Vault data, or customer state.
 
 ## Boundaries and next gate
 

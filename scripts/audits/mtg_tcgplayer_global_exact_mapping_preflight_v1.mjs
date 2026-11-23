@@ -56,7 +56,7 @@ function foldedName(value) {
     .trim();
 }
 
-function git(args) {
+export function git(args) {
   return execFileSync('git', args, {
     cwd: ROOT,
     encoding: 'utf8',
@@ -234,7 +234,7 @@ function numberField(extendedData) {
   return values.length === 1 ? values[0] : '';
 }
 
-function connectionConfig(applicationName) {
+export function connectionConfig(applicationName) {
   const publicUrl = new URL(process.env.SUPABASE_URL);
   assert.equal(publicUrl.hostname.split('.')[0], PROJECT_REF, 'production_project_ref_mismatch');
   assert.ok(process.env.SUPABASE_DB_URL, 'SUPABASE_DB_URL_required');
@@ -250,7 +250,7 @@ function connectionConfig(applicationName) {
   };
 }
 
-async function protectedCounts(client) {
+export async function protectedCounts(client) {
   return (await client.query(`select jsonb_build_object(
     'active_total', count(*) filter(where mapping.active),
     'active_mtg', count(*) filter(where mapping.active and exists(
@@ -273,7 +273,7 @@ async function loadLatestSourceRun(client) {
   return row;
 }
 
-async function loadLiveState(client, expected) {
+export async function loadLiveState(client, expected) {
   const productIds = expected.map((row) => Number(row.source_product_id));
   const targetIds = expected.map((row) => row.target_card_print_id);
   const sourceRun = await loadLatestSourceRun(client);
@@ -363,7 +363,7 @@ export function assertLiveState(expected, live) {
   }
 }
 
-function mappingSnapshot(rows) {
+export function mappingSnapshot(rows) {
   const normalized = rows.map((row) => ({
     id: row.id,
     card_print_id: row.card_print_id,
@@ -376,7 +376,7 @@ function mappingSnapshot(rows) {
   return { rows: normalized, hash_sha256: stableHash(normalized) };
 }
 
-async function independentRead(expected, applicationName) {
+export async function independentRead(expected, applicationName) {
   const client = new pg.Client(connectionConfig(applicationName));
   await client.connect();
   try {
@@ -396,7 +396,7 @@ async function independentRead(expected, applicationName) {
   }
 }
 
-async function writeExclusive(file, bytes) {
+export async function writeExclusive(file, bytes) {
   await fs.mkdir(path.dirname(file), { recursive: true });
   await fs.writeFile(file, bytes, { flag: 'wx' });
 }

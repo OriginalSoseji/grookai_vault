@@ -1733,6 +1733,21 @@ transactional current-state revalidation, durable reconciliation, and later
 pricing publication. Do not point the scheduled task at a checkout lacking the
 producer, and do not treat queue creation as a mapping or price release.
 
+For batch 0001, the conservative founder partition accepts only the 36
+same-set Commander Legends rows, holds 13 promo-context rows, and rejects
+product 58205. The mapping-outcome executor must bind preflight fingerprint
+`f0b5a8df70331fbc4317125ca53a3c133614739d86603fbe286d1464d0697b7c`
+and the two authorized preflight artifact hashes before database access. Run it
+only from a clean descendant of approved source commit
+`bb923161c47d582334a564894436802ab7b5df9a`, with the exact approval token and a
+new output directory. A successful run must report
+`committed_zero_mismatch_readback`, 36 mapping inserts, unchanged non-MTG
+mapping counts, and zero canonical, pricing, publication, Vault, update,
+delete, merge, or migration writes. Preserve the rollback plan, exact inserted
+IDs, apply receipt, and artifact hashes. If commit status is unknown, do not
+replay or delete anything; inspect the independent reconciliation evidence.
+Mapping success does not publish the 36 price observations.
+
 Before review, confirm that every row exposes and content-binds the readable
 target set name, set ID/code, source group, printed number, canonical
 name/number, target identity state, candidate-search result, group-consensus
