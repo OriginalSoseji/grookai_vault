@@ -2,6 +2,11 @@
 
 Status: bounded candidate under qualification; no production authority.
 
+The additional [November 23 source context](STAMP_SOURCE_7DA8_CONTINUITY_V1.md)
+admits only the exact reviewed 7da8 generation with explicit sealed flags and
+schema522. Preserve the original source route, all physical/link rows and the
+complete approval, rollback, freshness and publication requirements below.
+
 The explicit [521 continuity extension](STAMP_SCHEMA_521_CONTINUITY_V1.md)
 preserves the original physical review plan below while separately binding a
 new actual execution context and receipt. Legacy routes, exact mapping rows and
