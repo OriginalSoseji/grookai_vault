@@ -12,6 +12,19 @@ the shared merge pause. Stamped Reverse Holos follow that closure.
 
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Best of Game catalog covering-index correction V15 — November23,2026
+
+Only -BestOfGameDiscoveryReleaseV15 admits canonical520-to521 for the single
+20261123190000 index migration. Read [V15](BEST_OF_GAME_DISCOVERY_READ_REPAIR_V15.md).
+The520 function was applied once and its3187ms genuine API failure remains held.
+Preserve all520 source/SQL/labs, the independent120-scope data-only proof and
+the original data baselines. The explicitly approved V17 comparison deadline
+is fixed at2026-11-24T13:59:40Z; its original predecessor window stays expired.
+Qualify the exact index, unchanged functions/security/data, actual CLI clones,
+realistic cold-buffer/full-output behavior, normal/hosted source and fresh gates
+before a separate exact SQL decision. No cached retry, timeout relaxation,
+printing authority, reset of retained populated labs or early main unlock.
+
 ## Best of Game approved current-main integration V10 — November22,2026
 
 Only -BestOfGameDiscoveryReleaseV10 admits canonical517 and the same pending
