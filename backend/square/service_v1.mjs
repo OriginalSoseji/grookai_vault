@@ -244,5 +244,6 @@ export function squareEnvironmentConfig(env = process.env) {
   return {environment: env.SQUARE_ENVIRONMENT, appId: env.SQUARE_APP_ID, appSecret: env.SQUARE_APP_SECRET,
     encryptionKey: env.SQUARE_TOKEN_ENCRYPTION_KEY, callbackUrl: env.SQUARE_CALLBACK_URL,
     linkingEnabled: env.GROOKAI_SQUARE_LINKING_ENABLED === 'true', catalogEnabled: env.GROOKAI_SQUARE_CATALOG_ENABLED === 'true',
-    commerceEnabled: env.GROOKAI_SQUARE_COMMERCE_ENABLED === 'true',artworkEnabled:env.GROOKAI_SQUARE_ARTWORK_ENABLED==='true'};
+    commerceEnabled: env.GROOKAI_SQUARE_COMMERCE_ENABLED === 'true',artworkEnabled:env.GROOKAI_SQUARE_ARTWORK_ENABLED==='true',
+    recoveryWindowEnabled:env.GROOKAI_SQUARE_RECOVERY_WINDOW_ENABLED==='true'};
 }
