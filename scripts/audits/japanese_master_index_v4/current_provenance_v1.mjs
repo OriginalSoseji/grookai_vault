@@ -1,11 +1,17 @@
 // Older artifacts do not distinguish active from historical evidence.
 export function hasCurrentProvenance(card) {
-  const evidence = card.active_baseline_evidence_ids ?? card.baseline_evidence_ids ?? [];
+  const evidence = Object.hasOwn(card, 'current_eligible_baseline_evidence_ids')
+    ? Array.isArray(card.current_eligible_baseline_evidence_ids)
+      ? card.current_eligible_baseline_evidence_ids : []
+    : card.active_baseline_evidence_ids ?? card.baseline_evidence_ids ?? [];
   return card.independent_source_count > 0 || evidence.length > 0;
 }
 
 export function assertionDisposition(identity, assertion, dispositionsByIdentity) {
   if (assertion.assertion_lane === 'preserved_inactive_evidence') {
+    return 'excluded_source_assertion';
+  }
+  if (assertion.disposition_reason === 'active_evidence_identity_claims_unqualified') {
     return 'excluded_source_assertion';
   }
   if (identity) {

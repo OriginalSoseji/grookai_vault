@@ -148,6 +148,15 @@ function mapBy(rows, key) {
   return new Map(rows.map((row) => [row[key], row]));
 }
 
+function currentBaselineMetadata(master) {
+  return Object.fromEntries([
+    'active_baseline_evidence_ids',
+    'current_eligible_baseline_evidence_ids',
+    'current_eligible_baseline_source_keys',
+  ].filter((key) => Object.hasOwn(master, key))
+    .map((key) => [key, unique(Array.isArray(master[key]) ? master[key] : [])]));
+}
+
 function cardCandidateRow({
   reconciliation,
   master,
@@ -195,6 +204,7 @@ function cardCandidateRow({
       ),
       source_assertion_keys: unique(master.source_assertion_keys),
       baseline_evidence_ids: unique(master.baseline_evidence_ids),
+      ...currentBaselineMetadata(master),
       official_source_present: master.official_source_present === true,
       human_readable_source_present:
         master.human_readable_source_present === true,
@@ -289,6 +299,7 @@ function existingParentReviewRow(reconciliation, master) {
     promotion_blockers: reconciliation.promotion_blockers,
     missing_source_families: reconciliation.missing_source_families,
     source_ids: unique(master.source_ids),
+    ...currentBaselineMetadata(master),
     proposed_resolution: reconciliation.proposed_action,
   };
 }
