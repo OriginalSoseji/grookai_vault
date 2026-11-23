@@ -48,10 +48,10 @@ test('durable recovery is off by default and unsafe combinations fail before SDK
  }
 });
 
-test('100 sellers are admitted once each with four independent workers and bounded five-target batches',async()=>{
+test('100 sellers are admitted once each with eight independent workers and bounded five-target batches',async()=>{
  const h=harness(),result=await runSquareDurableRecovery(h.options);
  assert.equal(result.succeeded,100);assert.equal(result.targetsChecked,500);assert.equal(h.processed.length,100);
- assert.equal(new Set(h.processed).size,100);assert.equal(h.peak(),4);assert.equal(h.factories(),1);
+ assert.equal(new Set(h.processed).size,100);assert.equal(h.peak(),8);assert.equal(h.factories(),1);
  assert.equal(h.calls.at(-1).action,'run_finish');assert.equal(result.reason,'limit');
  assert.equal(JSON.stringify(result).includes(h.runToken),false);assert.equal(JSON.stringify(result).includes('claimToken'),false);
 });
@@ -59,6 +59,22 @@ test('100 sellers are admitted once each with four independent workers and bound
 test('the per-invocation ceiling leaves excess sellers in the durable queue for later admission',async()=>{
  const h=harness({total:137}),result=await runSquareDurableRecovery(h.options);
  assert.equal(result.succeeded,100);assert.equal(h.queue.length,37);assert.equal(h.processed.length,100);
+});
+
+test('slow merchants still reach all100 sellers within the unchanged180-second admission deadline',async()=>{
+ let time=0,done=false;const scheduled=[];
+ const h=harness({clock:()=>time,process:()=>new Promise(resolve=>scheduled.push({at:time+12000,resolve}))});
+ const pending=runSquareDurableRecovery(h.options).then(result=>{done=true;return result;});
+ for(let step=0;!done&&step<100;step++){
+  await tick();if(!scheduled.length)continue;
+  time=Math.min(...scheduled.map(work=>work.at));
+  const due=scheduled.filter(work=>work.at===time);
+  for(const work of due){scheduled.splice(scheduled.indexOf(work),1);work.resolve({runId:randomUUID(),succeeded:5});}
+  await tick();
+ }
+ assert.equal(done,true);const result=await pending;
+ assert.equal(result.succeeded,100);assert.equal(result.targetsChecked,500);assert.equal(result.reason,'limit');
+ assert.equal(h.processed.length,100);assert.ok(time<180000);assert.equal(h.peak(),8);
 });
 
 test('a provider failure is sanitized and does not stop other sellers',async()=>{
@@ -82,16 +98,16 @@ test('busy, review and artwork failures retain distinct outcomes without success
 test('a deadline stops new admissions and awaits every already admitted seller',async()=>{
  let time=0;const releases=[];const h=harness({total:20,clock:()=>time,process:()=>new Promise(resolve=>releases.push(resolve))});
  let done=false;const pending=runSquareDurableRecovery(h.options).then(r=>{done=true;return r;});await tick();
- assert.equal(releases.length,4);time=180000;
- releases[0]({runId:randomUUID(),succeeded:5});await tick();assert.equal(done,false);assert.equal(h.processed.length,4);
+ assert.equal(releases.length,8);time=180000;
+ releases[0]({runId:randomUUID(),succeeded:5});await tick();assert.equal(done,false);assert.equal(h.processed.length,8);
  for(const release of releases.slice(1))release({runId:randomUUID(),succeeded:5});
- const result=await pending;assert.equal(result.succeeded,4);assert.equal(result.reason,'deadline');assert.equal(h.queue.length,16);
+ const result=await pending;assert.equal(result.succeeded,8);assert.equal(result.reason,'deadline');assert.equal(h.queue.length,12);
 });
 
 test('a lost database receipt stops admission, awaits other work and finishes with infrastructure failure',async()=>{
  const h=harness({total:20,failAction:'finish'}),result=await runSquareDurableRecovery(h.options);
  assert.equal(result.status,'failed');assert.equal(result.errorCode,'square_recovery_state_unconfirmed');
- assert.equal(h.processed.length,4);assert.equal(h.finished.length,0);assert.equal(result.succeeded,0);
+ assert.equal(h.processed.length,8);assert.equal(h.finished.length,0);assert.equal(result.succeeded,0);
 });
 
 test('malformed business receipts remain unresolved rather than inventing checked targets',async()=>{

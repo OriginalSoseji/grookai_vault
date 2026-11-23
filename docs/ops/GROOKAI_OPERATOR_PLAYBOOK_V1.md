@@ -1,3 +1,20 @@
+# Square integrated capacity correction — November 23, 2026
+
+Read [the integrated audit](../audits/SQUARE_INTEGRATED_CAPACITY_20261123.md).
+Keep all scaling flags off until full qualification. The separate write-heavy
+four-worker trials reached only96/100 vendors at250ms and64/100 at500ms. The
+forward eight-worker pool reached100/100 and confirmed400 changed prices in
+151.14 seconds at500ms, with unchanged180-second admission,100-merchant and
+five-target limits. Seller writes remain serial. SQL, money, stock, leases and
+provider retry policy are unchanged; no migration or production setting changes.
+
+Preserve the original backlog-heavy lab and both failed profiles. The new lab's
+already-matching baseline events are explicit fixture setup, not service
+acknowledgements. Independent readback still matches100,300 mappings,100,000
+active stock claims,300 unique sales and400 manual prices. This bounded result
+does not prove a complete daily POS refresh. Current-main/production gates,
+live provider/clock proof and the separate main merge pause remain binding.
+
 # Square recovery target-window candidate — November 22, 2026
 
 Read [the candidate contract](../contracts/SQUARE_RECOVERY_TARGET_WINDOW_V1.md).
@@ -38,6 +55,31 @@ diagnostic evidence, not ordinary shadow-diff or production PrePush authority.
 Both hosted clocks now carry the optional recovery flag with a false fallback;
 malformed scheduler values cannot launch a worker. No hosted setting is enabled.
 Final-source normal/hosted/review gates and real provider capacity remain required.
+# Vendor automatic-pricing drain candidate — November22,2026
+
+The100-vendor/100,000-card audit is retained at
+`C:/grookai_vault_operator_artifacts/square_launch_readiness_20261122/READINESS.md`.
+It reproduced global50-copy pricing capacity and sold targets omitted after the
+SQL1,000-target window. Existing small-account sale and recovery evidence does
+not establish this launch capacity.
+
+The candidate in`C:/grookai_square_scale_20261122` adds default-off
+`GROOKAI_VENDOR_PRICING_DRAIN_ENABLED`. Read the candidate section in
+[the pricing contract](../contracts/VENDOR_PRICING_RULES_AND_LABELS_V1.md).
+It drains bounded existing candidate pages under the unchanged run fence and
+time budget, and retains Square handoff in existing durable obligations. Default
+behavior stays on the current single-page inline path. The new receipt's stop
+reason distinguishes an empty queue from budget, work-bound or repeated-page
+stops; a successful batch is not proof of global queue completion or POS price
+acknowledgement. Do not enable it until database durability and separate provider
+capacity are qualified. No schema, stock or payment authority is added here.
+
+The original strict starting schema audit failed on seven applied catalog IDs
+absent from its old main prefix. PR1020 has now integrated their exact source
+into main519; the original failed receipt remains preserved. A fresh read-only
+starting audit is still required before schema work. Do not reapply the existing
+migrations. The separate main merge pause remains; the consumed PR1018-only
+exception cannot publish this candidate.
 
 # Price/stamp exact519 continuity — November22,2026
 
