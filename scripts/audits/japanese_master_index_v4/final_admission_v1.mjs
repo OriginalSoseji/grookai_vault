@@ -283,15 +283,27 @@ function sourceFamily(value) {
   return SOURCE_FAMILY_ALIASES.get(normalized) ?? null;
 }
 
+function qualifiedAssertionFamily(assertion) {
+  const idFamily = sourceFamily(assertion?.source_id);
+  const declaredFamily = sourceFamily(assertion?.source_family);
+  return idFamily && idFamily === declaredFamily ? idFamily : null;
+}
+
 function sourceFamiliesForCandidate(candidate, assertionByKey) {
+  const assertions = (candidate.assertion_keys ?? [])
+    .map((key) => assertionByKey.get(key))
+    .filter(Boolean);
+  // Candidate source IDs combine fresh assertions and retained baseline keys.
+  // Do not let an inconsistent fresh assertion bypass qualification through
+  // that combined list; preserve baseline-only source keys as before.
+  const inconsistentIds = new Set(assertions
+    .filter((row) => !qualifiedAssertionFamily(row))
+    .map((row) => normalizedName(row.source_id)));
   return unique([
-    ...(candidate.source_ids ?? []).map(sourceFamily),
-    ...(candidate.assertion_keys ?? []).map(
-      (key) => sourceFamily(assertionByKey.get(key)?.source_id),
-    ),
-    ...(candidate.assertion_keys ?? []).map(
-      (key) => sourceFamily(assertionByKey.get(key)?.source_family),
-    ),
+    ...(candidate.source_ids ?? [])
+      .filter((id) => !inconsistentIds.has(normalizedName(id)))
+      .map(sourceFamily),
+    ...assertions.map(qualifiedAssertionFamily),
   ]);
 }
 
@@ -630,8 +642,7 @@ function cardResolutionRows({
     );
     const officialJapaneseNames = unique(
       assertions
-        .filter((row) => sourceFamily(row.source_id) === OFFICIAL_FAMILY
-          || sourceFamily(row.source_family) === OFFICIAL_FAMILY)
+        .filter((row) => qualifiedAssertionFamily(row) === OFFICIAL_FAMILY)
         .map((row) => normalizedText(row.printed_name))
         .filter(hasJapaneseScript),
     );
@@ -881,10 +892,7 @@ function printingFactRows({
     const evidenceAssertions = unique(explicitKeys)
       .map((key) => assertionByKey.get(key))
       .filter(Boolean);
-    const families = unique(evidenceAssertions.flatMap((row) => [
-      sourceFamily(row.source_id),
-      sourceFamily(row.source_family),
-    ]));
+    const families = unique(evidenceAssertions.map(qualifiedAssertionFamily));
     const hasHumanReadable = families.some(
       (family) => HUMAN_READABLE_FAMILIES.has(family),
     );
