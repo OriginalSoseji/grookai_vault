@@ -37,3 +37,9 @@ test('missing or empty author extraction cannot supply a credit', () => {
     assert.equal(result.single_illustrator, null);
   }
 });
+
+test('HTML parsing decodes entities once and excludes script and style content', () => {
+  const html = page('<div class="author"><a href="#">A &amp;lt; B<script>hidden</script ><style>hidden too</style><span> C</span></a></div>');
+  const result = inspectOfficialJapaneseCredits(html, '5');
+  assert.deepEqual(result.illustrator_names, ['A &lt; B C']);
+});

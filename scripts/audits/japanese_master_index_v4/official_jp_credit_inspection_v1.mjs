@@ -1,26 +1,30 @@
 // Additive review-only parser. It does not change the frozen V3 card adapter.
 import { parseOfficialJapaneseCardDetail } from './card_source_adapters/official_jp_v1.mjs';
+import { parse } from 'parse5';
 
 export const OFFICIAL_JP_CREDIT_INSPECTION_VERSION = 'JPN-OFFICIAL-CREDIT-INSPECTION-V1';
 
-function text(value) {
-  return String(value ?? '')
-    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, ' ')
-    .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, ' ')
-    .replace(/<[^>]+>/g, ' ')
-    .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number(code)))
-    .replace(/&#x([0-9a-f]+);/gi, (_, code) => String.fromCodePoint(Number.parseInt(code, 16)))
-    .replaceAll('&amp;', '&').replaceAll('&quot;', '"').replaceAll('&#039;', "'")
-    .replaceAll('&apos;', "'").replaceAll('&lt;', '<').replaceAll('&gt;', '>')
-    .replaceAll('&nbsp;', ' ').replace(/\s+/g, ' ').trim();
+function descendants(node, predicate) {
+  return (node.childNodes ?? []).flatMap((child) => [
+    ...(predicate(child) ? [child] : []),
+    ...descendants(child, predicate),
+  ]);
+}
+
+function text(node) {
+  if (node.tagName === 'script' || node.tagName === 'style') return '';
+  if (node.nodeName === '#text') return node.value;
+  return (node.childNodes ?? []).map(text).join(' ');
 }
 
 export function inspectOfficialJapaneseCredits(body, expectedCardId) {
   const html = Buffer.isBuffer(body) ? body.toString('utf8') : String(body);
   const card = parseOfficialJapaneseCardDetail(html, expectedCardId);
-  const author = html.match(/<div\b[^>]*class=["'][^"']*\bauthor\b[^"']*["'][^>]*>(?<body>[\s\S]*?)<\/div>/i);
-  const credits = [...(author?.groups?.body ?? '').matchAll(/<a\b[^>]*>(?<name>[\s\S]*?)<\/a>/gi)]
-    .map((match) => text(match.groups.name)).filter(Boolean);
+  const document = parse(html);
+  const author = descendants(document, (node) => node.tagName === 'div' &&
+    node.attrs?.some((attr) => attr.name === 'class' && attr.value.split(/\s+/).includes('author')))[0];
+  const credits = author ? descendants(author, (node) => node.tagName === 'a')
+    .map((node) => text(node).replace(/\s+/g, ' ').trim()).filter(Boolean) : [];
   const multipart = card.source_fields?.requires_component_reconciliation === true;
   const status = multipart ? 'multipart_requires_component_review'
     : credits.length > 1 ? 'multiple_illustrators_require_review'
