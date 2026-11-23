@@ -138,6 +138,96 @@ test('WB and Build-A-Bear searches narrow every page and keep complete results f
   }
 });
 
+test('cancelled stamp search aborts its active catalog request and never enriches partial results', async () => {
+  const controller = new AbortController();
+  let calls = 0, enriched = false, attached;
+  const db = { from(table) {
+    assert.equal(table, 'v_card_prints_discovery_v1'); calls++;
+    const q = { select() { return q; }, like() { return q; }, order() { return q; }, limit() { return q; },
+      or() { return q; }, abortSignal(signal) {
+        attached = signal;
+        return new Promise((_, reject) => signal.addEventListener('abort', () => reject(signal.reason), { once: true }));
+      } };
+    return q;
+  } };
+  const { getExploreRowsForCombinedSearch } = compile(reader, {
+    normalizeSearchText, assertValueSortPricingEnabled() {}, createServerComponentClient: async () => db,
+    fetchCompleteNamedCardRows: async () => null, getSmartDiscoveryTextTokens: () => [],
+    governedStampCandidateFilter, enrichCompleteSearchParents: async () => { enriched = true; return []; },
+  });
+  const pending = getExploreRowsForCombinedSearch({ textQuery: '', stampLabels: ['WB Kids Stamp'], signal: controller.signal });
+  while (!attached) await new Promise(resolve => setImmediate(resolve));
+  controller.abort();
+  await assert.rejects(pending, { name: 'AbortError' });
+  assert.equal(attached, controller.signal); assert.equal(calls, 1); assert.equal(enriched, false);
+});
+
+test('cancellation after a full catalog page prevents later pages and enrichment', async () => {
+  const controller = new AbortController(); let calls = 0, enriched = false;
+  const db = { from() {
+    calls++;
+    const q = { select() { return q; }, like() { return q; }, order() { return q; }, limit() { return q; },
+      or() { return q; }, abortSignal() {
+        controller.abort();
+        return Promise.resolve({ data: Array.from({ length: 500 }, (_, i) => ({ id: String(i) })), error: null });
+      } };
+    return q;
+  } };
+  const { getExploreRowsForCombinedSearch } = compile(reader, {
+    normalizeSearchText, assertValueSortPricingEnabled() {}, createServerComponentClient: async () => db,
+    fetchCompleteNamedCardRows: async () => null, getSmartDiscoveryTextTokens: () => [],
+    governedStampCandidateFilter, enrichCompleteSearchParents: async () => { enriched = true; return []; },
+  });
+  await assert.rejects(getExploreRowsForCombinedSearch({ textQuery: '', stampLabels: ['WB Kids Stamp'], signal: controller.signal }), { name: 'AbortError' });
+  assert.equal(calls, 1); assert.equal(enriched, false);
+});
+
+test('cancelled explicit-edition lookup aborts its active request', async () => {
+  const controller = new AbortController(); let attached;
+  const db = { from() {
+    const q = { select() { return q; }, in() { return q; }, limit() { return q; }, abortSignal(signal) {
+      attached = signal; return new Promise((_, reject) => signal.addEventListener('abort', () => reject(signal.reason), { once: true }));
+    } }; return q;
+  } };
+  const { fetchExplicitEditionParentRows } = compile(`${reader}\nexport { fetchExplicitEditionParentRows };`, {
+    normalizeSearchText, createServerComponentClient: async () => db, EXPLICIT_EDITION_DISCOVERY_LIMIT: 100,
+  });
+  const pending = fetchExplicitEditionParentRows(['First Edition'], controller.signal);
+  while (!attached) await new Promise(resolve => setImmediate(resolve));
+  controller.abort(); await assert.rejects(pending, { name: 'AbortError' });
+  assert.equal(attached, controller.signal);
+});
+
+test('cancellation during set-metadata enrichment prevents later reads', async () => {
+  const controller = new AbortController(); let laterReads = 0;
+  const enrichSource = parsedSource.statements.find(node => ts.isFunctionDeclaration(node) && node.name?.text === 'enrichCompleteSearchParents').getText(parsedSource);
+  const { enrichCompleteSearchParents } = compile(`${enrichSource}\nexport { enrichCompleteSearchParents };`, {
+    uniqueValues: values => values,
+    fetchPublicSetMetadata: async () => { controller.abort(); return new Map(); },
+    filterSmartDiscoveryRowsByScope: async () => { laterReads++; return []; },
+  });
+  await assert.rejects(enrichCompleteSearchParents([{ id: 'one', set_code: 'base' }], { signal: controller.signal }, {}), { name: 'AbortError' });
+  assert.equal(laterReads, 0);
+});
+
+test('cancellation during parent hydration prevents later chunks', async () => {
+  const controller = new AbortController(); let calls = 0;
+  const db = { from() {
+    calls++;
+    const q = { select() { return q; }, in() { return q; }, abortSignal() {
+      controller.abort(); return Promise.resolve({ data: [{ id: 'first' }], error: null });
+    } }; return q;
+  } };
+  const hydrateSource = parsedSource.statements.find(node => ts.isFunctionDeclaration(node) && node.name?.text === 'fetchCardRowsByIds').getText(parsedSource);
+  const { fetchCardRowsByIds } = compile(`${hydrateSource}\nexport { fetchCardRowsByIds };`, {
+    uniqueValues: values => [...new Set(values)],
+    chunkArray: (values, size) => Array.from({ length: Math.ceil(values.length / size) }, (_, i) => values.slice(i * size, (i + 1) * size)),
+    createServerComponentClient: async () => db,
+  });
+  await assert.rejects(fetchCardRowsByIds(Array.from({ length: 201 }, (_, i) => String(i)), controller.signal), { name: 'AbortError' });
+  assert.equal(calls, 1);
+});
+
 test('cameo discovery hydrates only confirmed IDs and preserves artist and other combined constraints', async () => {
   const scope = { cameoSubject: 'Gengar', cameoArtistNames: ['Ken Sugimori'], textQuery: '', sortMode: 'relevance',
     releaseYearMin: 1999, releaseYearMax: 2024, finishKeys: ['normal'], languageScope: 'en', exactSetCode: 'base5' };

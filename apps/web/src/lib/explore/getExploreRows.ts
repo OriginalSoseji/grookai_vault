@@ -313,6 +313,7 @@ type SortMode =
 type SmartFilterImageState = "exact" | "representative" | "missing" | "any";
 
 type SmartFilterDiscoveryOptions = {
+  signal?: AbortSignal;
   gameScope?: PublicGameScope;
   searchSets?: SearchSet[];
   namedFirstPage?: import("@/lib/search/completeNamedCardSearch").NamedCardFirstPage;
@@ -3322,7 +3323,8 @@ async function fetchCardRowsByReleaseYearRange(minYear?: number, maxYear?: numbe
   return (data ?? []) as CardPrintLookupRow[];
 }
 
-async function fetchCardRowsByIds(cardPrintIds: string[]) {
+async function fetchCardRowsByIds(cardPrintIds: string[], signal?: AbortSignal) {
+  signal?.throwIfAborted();
   const ids = uniqueValues(cardPrintIds.map((id) => id.trim()).filter(Boolean));
   if (ids.length === 0) {
     return [] as CardPrintLookupRow[];
@@ -3334,10 +3336,13 @@ async function fetchCardRowsByIds(cardPrintIds: string[]) {
   const rowsById = new Map<string, CardPrintLookupRow>();
 
   for (const idChunk of chunkArray(ids, 200)) {
-    const { data, error } = await supabase
+    signal?.throwIfAborted();
+    const request = supabase
       .from("card_prints")
       .select(selectClause)
       .in("id", idChunk);
+    const { data, error } = await (signal ? request.abortSignal(signal) : request);
+    signal?.throwIfAborted();
 
     if (error) {
       throw new Error(error.message);
@@ -3387,7 +3392,8 @@ function getExplicitEditionModifiers(stampLabels: string[]) {
   return modifiers;
 }
 
-async function fetchExplicitEditionParentRows(stampLabels: string[]) {
+async function fetchExplicitEditionParentRows(stampLabels: string[], signal?: AbortSignal) {
+  signal?.throwIfAborted();
   const modifiers = getExplicitEditionModifiers(stampLabels);
   if (modifiers.length === 0) {
     return [] as CardPrintLookupRow[];
@@ -3396,11 +3402,13 @@ async function fetchExplicitEditionParentRows(stampLabels: string[]) {
   const supabase = await createServerComponentClient();
   const selectClause =
     "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
-  const { data, error } = await supabase
+  const request = supabase
     .from("card_prints")
     .select(selectClause)
     .in("printed_identity_modifier", modifiers)
     .limit(EXPLICIT_EDITION_DISCOVERY_LIMIT);
+  const { data, error } = await (signal ? request.abortSignal(signal) : request);
+  signal?.throwIfAborted();
 
   if (error) {
     throw new Error(error.message);
@@ -4000,17 +4008,21 @@ export async function getExploreRowsForArtistSearch(
 export async function getExploreRowsForCombinedSearch(
   options: SmartFilterDiscoveryOptions & { gameScope?: PublicGameScope },
 ): Promise<ExploreRow[]> {
+  options.signal?.throwIfAborted();
   assertValueSortPricingEnabled(options.sortMode, Boolean(options.includePricing));
   const supabase = await createServerComponentClient();
   const gameScope = options.gameScope ?? "pokemon";
   if (options.cameoSubject) {
     if (gameScope !== "pokemon") return [];
-    const gvIds = await fetchConfirmedCameoGvIds(supabase, options.cameoSubject);
+    const gvIds = await fetchConfirmedCameoGvIds(supabase, options.cameoSubject, options.signal);
     const parents: CardPrintLookupRow[] = [];
     for (const ids of chunkArray(gvIds, 200)) {
-      const { data, error } = await supabase.from("v_card_prints_discovery_v1")
+      options.signal?.throwIfAborted();
+      const request = supabase.from("v_card_prints_discovery_v1")
         .select("id,gv_id,name,number,printed_total,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants")
         .in("gv_id", ids);
+      const { data, error } = await (options.signal ? request.abortSignal(options.signal) : request);
+      options.signal?.throwIfAborted();
       if (error) throw new Error(error.message);
       parents.push(...(data ?? []) as unknown as CardPrintLookupRow[]);
     }
@@ -4021,12 +4033,16 @@ export async function getExploreRowsForCombinedSearch(
     return enrichCompleteSearchParents(artistScoped, options, supabase);
   }
   const explicitEditionRowsPromise = gameScope === "pokemon"
-    ? fetchExplicitEditionParentRows(options.stampLabels ?? [])
+    ? fetchExplicitEditionParentRows(options.stampLabels ?? [], options.signal)
     : Promise.resolve([] as CardPrintLookupRow[]);
+  // The name read can abort first; retain the edition error for the normal
+  // await while ensuring its speculative rejection is always observed.
+  void explicitEditionRowsPromise.catch(() => {});
   const namePagesStarted = Date.now();
   const namedRows = await fetchCompleteNamedCardRows(supabase, { ...options, gameScope });
   if (options.searchTimings) options.searchTimings.name_pages = Date.now() - namePagesStarted;
   const explicitEditionRows = await explicitEditionRowsPromise;
+  options.signal?.throwIfAborted();
   if (namedRows !== null) {
     // V4 enforces the same visibility predicates as card_prints SELECT and
     // already returns these parent fields. It omits printed_total, so fraction
@@ -4039,7 +4055,8 @@ export async function getExploreRowsForCombinedSearch(
     const parentReadStarted = Date.now();
     const parents = completeParents && !/\b\d+\/\d+\b/.test(options.textQuery ?? "")
       ? namedRows
-      : await fetchCardRowsByIds(namedRows.map((row) => row.id));
+      : await fetchCardRowsByIds(namedRows.map((row) => row.id), options.signal);
+    options.signal?.throwIfAborted();
     if (options.searchTimings) options.searchTimings.parent_read = Date.now() - parentReadStarted;
     return enrichCompleteSearchParents(
       mergeCardPrintLookupRows(parents, explicitEditionRows),
@@ -4065,9 +4082,12 @@ export async function getExploreRowsForCombinedSearch(
   const matchingSets: string[] = [];
   if (firstToken) {
     for (let offset = 0; ; offset += 500) {
-      const { data, error } = await supabase.from("sets").select("code")
+      options.signal?.throwIfAborted();
+      const setRequest = supabase.from("sets").select("code")
         .eq("game", gameScope).ilike("name", `%${firstToken.replace(/[\\%_]/g, "\\$&")}%`)
         .order("id").range(offset, offset + 499);
+      const { data, error } = await (options.signal ? setRequest.abortSignal(options.signal) : setRequest);
+      options.signal?.throwIfAborted();
       if (error) throw new Error(error.message);
       matchingSets.push(...(data ?? []).map((set) => set.code));
       if ((data ?? []).length < 500) break;
@@ -4075,6 +4095,7 @@ export async function getExploreRowsForCombinedSearch(
   }
   let afterId: string | undefined;
   for (;;) {
+    options.signal?.throwIfAborted();
     let request = supabase.from("v_card_prints_discovery_v1")
       .select("id,gv_id,name,number,printed_total,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants")
       .like("gv_id", gameScope === "pokemon" ? "GV-PK-%" : gameScope === "mtg" ? "GV-MTG-%" : "GV-OP-%")
@@ -4094,7 +4115,8 @@ export async function getExploreRowsForCombinedSearch(
       if (matchingSets.length) alternatives.push(`set_code.in.(${matchingSets.map((code) => `"${code.replace(/["\\]/g, "\\$&")}"`).join(",")})`);
       request = request.or(alternatives.join(","));
     }
-    const { data, error } = await request;
+    const { data, error } = await (options.signal ? request.abortSignal(options.signal) : request);
+    options.signal?.throwIfAborted();
     if (error) throw new Error(error.message);
     const page = (data ?? []) as unknown as CardPrintLookupRow[];
     parents.push(...page);
@@ -4103,6 +4125,7 @@ export async function getExploreRowsForCombinedSearch(
     if (!nextId || nextId === afterId) throw new Error("Combined search could not advance to the next catalog page");
     afterId = nextId;
   }
+  options.signal?.throwIfAborted();
   return enrichCompleteSearchParents(
     mergeCardPrintLookupRows(parents, explicitEditionRows),
     options,
@@ -4115,13 +4138,16 @@ async function enrichCompleteSearchParents(
   options: SmartFilterDiscoveryOptions,
   supabase: Awaited<ReturnType<typeof createServerComponentClient>>,
 ): Promise<ExploreRow[]> {
+  options.signal?.throwIfAborted();
   if (parentRows.length === 0) return [];
   if (options.gameScope === "mtg") {
     parentRows = await withMtgPrintReleaseDates(supabase, parentRows);
   }
+  options.signal?.throwIfAborted();
   const metadata = await fetchPublicSetMetadata(uniqueValues(
     parentRows.map((row) => row.set_code ?? "").filter(Boolean),
   ), options.searchSets);
+  options.signal?.throwIfAborted();
   const parentsWithSetMetadata = parentRows.map((row) => {
     const set = metadata.get(row.set_code ?? "");
     return { ...row, set_name: set?.set_name,
@@ -4138,13 +4164,16 @@ async function enrichCompleteSearchParents(
     }), options.stampLabels),
     { ...options, exactReleaseYear: undefined, releaseYearMin: undefined, releaseYearMax: undefined },
   );
+  options.signal?.throwIfAborted();
   if (scopedParents.length === 0) return [];
   const requireChildren = normalizeFinishKeys(options.finishKeys).length > 0 ||
     Boolean(options.imageState && options.imageState !== "any");
   const candidates = requireChildren
     ? await fetchSmartDiscoveryChildRows(options, scopedParents, true)
     : scopedParents;
+  options.signal?.throwIfAborted();
   const query = await buildResolverQuery(normalizeQuery(options.textQuery ?? ""));
+  options.signal?.throwIfAborted();
   const valueSort = options.sortMode === "value_high" || options.sortMode === "value_low";
   // Value sorts retain their existing completeness guard. Ordinary artist
   // browsing must never be trimmed to the relevance candidate budget.
@@ -4152,9 +4181,11 @@ async function enrichCompleteSearchParents(
   const pricing = options.includePricing
     ? await getPublicPricingByCardIds(supabase, candidates.map((row) => row.id), { requireComplete: valueSort })
     : new Map<string, PublicPricingRecord>();
+  options.signal?.throwIfAborted();
   const rows = await buildExploreRows(candidates, new Map(), metadata, pricing, {
     skipChildDisplayImageFallbacks: candidates.length > 24 && !valueSort,
   });
+  options.signal?.throwIfAborted();
   return sortRows(rows, query, options.sortMode);
 }
 

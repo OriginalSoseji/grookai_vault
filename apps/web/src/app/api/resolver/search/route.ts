@@ -287,6 +287,7 @@ function buildDegradedSearchResult(
 function isTimeoutLikeError(error: unknown) {
   const message = error instanceof Error ? error.message : String(error ?? "");
   return (
+    (error instanceof Error && error.name === "AbortError") ||
     message.includes("statement timeout") ||
     message.includes("canceling statement") ||
     message.includes("The operation was aborted") ||
@@ -294,9 +295,9 @@ function isTimeoutLikeError(error: unknown) {
   );
 }
 
-function withTimeout<T>(promise: Promise<T>, timeoutMs: number, fallback: T): Promise<T> {
+function withTimeout<T>(promise: Promise<T>, timeoutMs: number, fallback: T, onTimeout?: () => void): Promise<T> {
   return new Promise((resolve, reject) => {
-    const timeout = setTimeout(() => resolve(fallback), timeoutMs);
+    const timeout = setTimeout(() => { resolve(fallback); onTimeout?.(); }, timeoutMs);
     promise.then(
       (value) => {
         clearTimeout(timeout);
@@ -675,6 +676,10 @@ export async function GET(request: NextRequest) {
       !exactIllustrator &&
       !effectiveSmartSearchIntent.ownedState &&
       !isIdentityFilterActive(identityFilter);
+    const resolutionController = new AbortController();
+    const resolutionSignal = request.signal
+      ? AbortSignal.any([request.signal, resolutionController.signal])
+      : resolutionController.signal;
     const resolvedSearchPromise = playableRequested
       ? getExploreRowsForPlayableCards(playableMembers, {
           sortMode, textQuery: routedQuery, searchSets, exactSetCode: effectiveExactSetCode,
@@ -716,6 +721,7 @@ export async function GET(request: NextRequest) {
         }))
       : completeCombinedSearch
       ? getExploreRowsForCombinedSearch({
+          signal: resolutionSignal,
           searchSets,
           namedFirstPage,
           searchTimings,
@@ -867,6 +873,7 @@ export async function GET(request: NextRequest) {
         resolvedSearchPromise,
         completeSearch ? 12000 : RESOLVER_RESPONSE_TIMEOUT_MS,
         buildDegradedSearchResult(query, effectiveSmartSearchIntent),
+        () => resolutionController.abort(),
       ),
       includeProvisional
         ? getPublicProvisionalCardsFailClosed({

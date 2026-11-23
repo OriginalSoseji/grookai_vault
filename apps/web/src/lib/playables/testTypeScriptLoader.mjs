@@ -24,6 +24,6 @@ export function loadTestTypeScript(relative) {
     return target.endsWith('.json') ? require(target) : loadTestTypeScript(path.relative(src, target));
   };
   vm.runInNewContext(source, {module: testModule, exports: testModule.exports, require: resolve,
-    URL, URLSearchParams, Map, Set, Date, Promise, Buffer, console, process, performance});
+    URL, URLSearchParams, Map, Set, Date, Promise, Buffer, console, process, performance, AbortController, AbortSignal});
   return testModule.exports;
 }

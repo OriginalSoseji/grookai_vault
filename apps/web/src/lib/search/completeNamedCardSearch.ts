@@ -30,8 +30,9 @@ export function getCompleteNameSearchQuery(query: string, gameScope = "pokemon")
 // After the first full page, overlap at most four read-only page requests.
 export async function fetchCompleteNamedCardRows(
   client: Pick<SupabaseClient, "rpc">,
-  options: { textQuery?: string; gameScope: string; languageScope?: string; exactSetCode?: string; namedFirstPage?: NamedCardFirstPage },
+  options: { textQuery?: string; gameScope: string; languageScope?: string; exactSetCode?: string; namedFirstPage?: NamedCardFirstPage; signal?: AbortSignal },
 ): Promise<NamedRow[] | null> {
+  options.signal?.throwIfAborted();
   const name = getCompleteNameSearchQuery(options.textQuery ?? "", options.gameScope);
   if (!name || !supportsCompleteNameSearch(name)) return null;
   const prefix = options.gameScope === "pokemon" ? "GV-PK-" : options.gameScope === "mtg" ? "GV-MTG-" : "GV-OP-";
@@ -41,17 +42,20 @@ export async function fetchCompleteNamedCardRows(
     return fragments.every((fragment) => words.some((word) => word.includes(fragment)));
   };
   let lookupName = name;
-  const readPage = async (offset: number) => {
+  const readPage = async (offset: number, signal = options.signal) => {
+    signal?.throwIfAborted();
     const first = options.namedFirstPage;
     // A serialized server-action argument cannot supply a trusted RPC page.
     if (offset === 0 && lookupName === name && first && retainedPages.has(first) && first.query === name && first.gameScope === options.gameScope &&
         (options.languageScope ?? "all") === "all" && !options.exactSetCode) return first.rows;
-    const { data, error } = await client.rpc("search_game_card_prints_v5", {
+    const request = client.rpc("search_game_card_prints_v5", {
       game_code_in: options.gameScope, q: lookupName,
       set_code_in: options.exactSetCode ?? null, number_in: null,
       illustrator_in: null, language_scope_in: options.languageScope ?? "all",
       limit_in: NAMED_CARD_PAGE_SIZE, offset_in: offset,
     });
+    const { data, error } = await (signal ? request.abortSignal(signal) : request);
+    signal?.throwIfAborted();
     if (error) throw new Error(error.message);
     return (data ?? []) as NamedRow[];
   };
@@ -70,26 +74,35 @@ export async function fetchCompleteNamedCardRows(
   const rows: NamedRow[] = [];
   const seen = new Set<string>();
   for (let offset = 0; offset < 10000;) {
+    options.signal?.throwIfAborted();
     const offsets = Array.from({ length: offset === 0 ? 1 : 4 }, (_, i) => offset + i * NAMED_CARD_PAGE_SIZE)
       .filter((value) => value < 10000);
+    const batchController = options.signal ? new AbortController() : null;
+    const batchSignal = batchController && options.signal
+      ? AbortSignal.any([options.signal, batchController.signal]) : options.signal;
     // Attach both handlers immediately: speculative pages after the first short
     // page cannot cause an unhandled rejection or delay a complete result.
-    const pending = offsets.map((value) => (value === 0 ? Promise.resolve(firstPage) : readPage(value)).then(
+    const pending = offsets.map((value) => (value === 0 ? Promise.resolve(firstPage) : readPage(value, batchSignal)).then(
       (page) => ({ page, error: null }),
       (error: unknown) => ({ page: null, error }),
     ));
     // Consume in offset order even when the network completes out of order.
-    for (let i = 0; i < pending.length; i++) {
-      const result = await pending[i];
-      if (result.page === null) throw result.error;
-      const page = result.page;
-      for (const row of page) {
-        if (seen.has(row.id)) throw new Error("Named-card search could not advance to a complete result set");
-        seen.add(row.id);
-        // Pocket exclusions must not shorten the raw RPC paging boundary.
-        if (row.gv_id?.startsWith(prefix) && matchesName(row)) rows.push(row);
+    try {
+      for (let i = 0; i < pending.length; i++) {
+        const result = await pending[i];
+        options.signal?.throwIfAborted();
+        if (result.page === null) throw result.error;
+        const page = result.page;
+        for (const row of page) {
+          if (seen.has(row.id)) throw new Error("Named-card search could not advance to a complete result set");
+          seen.add(row.id);
+          // Pocket exclusions must not shorten the raw RPC paging boundary.
+          if (row.gv_id?.startsWith(prefix) && matchesName(row)) rows.push(row);
+        }
+        if (page.length < NAMED_CARD_PAGE_SIZE) return rows;
       }
-      if (page.length < NAMED_CARD_PAGE_SIZE) return rows;
+    } finally {
+      batchController?.abort();
     }
     offset += offsets.length * NAMED_CARD_PAGE_SIZE;
   }

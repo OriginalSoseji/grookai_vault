@@ -1,5 +1,9 @@
 import test from 'node:test';import assert from 'node:assert/strict';
+import {createRequire} from 'node:module';
+import {createServer} from 'node:http';
+import {once} from 'node:events';
 import {loadTestTypeScript} from '../../apps/web/src/lib/playables/testTypeScriptLoader.mjs';
+const require=createRequire(new URL('../../apps/web/package.json',import.meta.url));
 const module={exports:loadTestTypeScript('lib/search/completeNamedCardSearch.ts')};
 const {fetchCompleteNamedCardRows:fetchRows}=module.exports;
 const retain = module.exports.retainNamedCardFirstPage;
@@ -107,6 +111,103 @@ test('pages overlap at most four reads and keep deterministic offset order',asyn
  }},{textQuery:'Pika',gameScope:'pokemon',languageScope:'en',exactSetCode:'selected'});
  assert.deepEqual(Array.from(result,r=>r.id),rows.map(r=>r.id));
  assert.equal(maxActive,4);assert.equal(calls[0],0);
+});
+
+test('cancellation aborts all active name pages and never returns a partial set',async()=>{
+ const controller=new AbortController(), calls=[], observed=[];
+ const full=Array.from({length:512},(_,i)=>({id:String(i),name:'Pikachu',gv_id:`GV-PK-T-${i}`}));
+ const client={rpc(_,args){
+  calls.push(args.offset_in);
+  return {abortSignal(signal){
+   observed.push(signal);
+   if(args.offset_in===0) return Promise.resolve({data:full,error:null});
+   return new Promise((_,reject)=>signal.addEventListener('abort',()=>reject(signal.reason),{once:true}));
+  }};
+ }};
+ const pending=fetchRows(client,{textQuery:'Pika',gameScope:'pokemon',signal:controller.signal});
+ while(calls.length<5) await new Promise(resolve=>setImmediate(resolve));
+ controller.abort();
+ await assert.rejects(pending,{name:'AbortError'});
+ assert.deepEqual(calls,[0,512,1024,1536,2048]);
+ assert.ok(observed.every(signal=>signal.aborted));
+});
+
+test('cancellation reaches the actual Supabase client fetch',async()=>{
+ const {createClient}=require('@supabase/supabase-js');
+ const controller=new AbortController(); let attached;
+ const client=createClient('http://127.0.0.1:54321','local-fixture-key',{
+  auth:{persistSession:false,autoRefreshToken:false},
+  global:{fetch:(_url,init)=>new Promise((_,reject)=>{
+   attached=init.signal;
+   attached.addEventListener('abort',()=>reject(attached.reason),{once:true});
+  })},
+ });
+ const pending=fetchRows(client,{textQuery:'Pika',gameScope:'pokemon',signal:controller.signal});
+ while(!attached)await new Promise(resolve=>setImmediate(resolve));
+ controller.abort(); await assert.rejects(pending,{name:'AbortError'});
+ assert.equal(attached.aborted,true);
+});
+
+test('cancelling a name read closes its real loopback HTTP request',async()=>{
+ const {createClient}=require('@supabase/supabase-js');
+ const controller=new AbortController(); let requestArrived,requestClosed;
+ const arrived=new Promise(resolve=>{requestArrived=resolve;});
+ const closed=new Promise(resolve=>{requestClosed=resolve;});
+ const server=createServer((req,res)=>{
+  req.on('error',()=>{}); req.resume();
+  res.once('close',()=>requestClosed(!res.writableEnded));
+  requestArrived();
+ });
+ server.listen(0,'127.0.0.1'); await once(server,'listening');
+ try {
+  const address=server.address();
+  const client=createClient(`http://127.0.0.1:${address.port}`,'local-fixture-key',{
+   auth:{persistSession:false,autoRefreshToken:false},
+  });
+  const pending=fetchRows(client,{textQuery:'Pika',gameScope:'pokemon',signal:controller.signal});
+  void pending.catch(()=>{});
+  let arrivalTimer;
+  const didArrive=await Promise.race([arrived.then(()=>true),new Promise(resolve=>{arrivalTimer=setTimeout(()=>resolve(false),3000);})]);
+  clearTimeout(arrivalTimer); assert.equal(didArrive,true);
+  controller.abort();
+  await assert.rejects(pending,{name:'AbortError'});
+  let timer;
+  const result=await Promise.race([closed,new Promise(resolve=>{timer=setTimeout(()=>resolve(false),3000);})]);
+  clearTimeout(timer); assert.equal(result,true);
+ } finally {
+  controller.abort();
+  server.closeAllConnections();
+  await new Promise(resolve=>server.close(resolve));
+ }
+});
+
+test('a short final page cancels unused speculative reads without cancelling the caller',async()=>{
+ const controller=new AbortController(), calls=[], cancelled=[];
+ const full=Array.from({length:512},(_,i)=>({id:String(i),name:'Pikachu',gv_id:`GV-PK-T-${i}`}));
+ const client={rpc(_,args){
+  calls.push(args.offset_in);
+  return {abortSignal(signal){
+   if(args.offset_in===0)return Promise.resolve({data:full,error:null});
+   if(args.offset_in===512)return Promise.resolve({data:[{id:'last',name:'Pikachu',gv_id:'GV-PK-T-last'}],error:null});
+   return new Promise((_,reject)=>signal.addEventListener('abort',()=>{cancelled.push(args.offset_in);reject(signal.reason);},{once:true}));
+  }};
+ }};
+ const result=await fetchRows(client,{textQuery:'Pika',gameScope:'pokemon',signal:controller.signal});
+ assert.equal(result.length,513); assert.equal(result.at(-1).id,'last');
+ assert.deepEqual(calls,[0,512,1024,1536,2048]);
+ assert.deepEqual(cancelled,[1024,1536,2048]); assert.equal(controller.signal.aborted,false);
+});
+
+test('a failed page cancels remaining speculative reads and rejects the search',async()=>{
+ const controller=new AbortController(), cancelled=[];
+ const full=Array.from({length:512},(_,i)=>({id:String(i),name:'Pikachu',gv_id:`GV-PK-T-${i}`}));
+ const client={rpc(_,args){return {abortSignal(signal){
+  if(args.offset_in===0)return Promise.resolve({data:full,error:null});
+  if(args.offset_in===512)return Promise.resolve({data:null,error:{message:'page unavailable'}});
+  return new Promise((_,reject)=>signal.addEventListener('abort',()=>{cancelled.push(args.offset_in);reject(signal.reason);},{once:true}));
+ }}}};
+ await assert.rejects(fetchRows(client,{textQuery:'Pika',gameScope:'pokemon',signal:controller.signal}),/page unavailable/);
+ assert.deepEqual(cancelled,[1024,1536,2048]); assert.equal(controller.signal.aborted,false);
 });
 
 test('a short page finishes without waiting for unused speculative pages',async()=>{

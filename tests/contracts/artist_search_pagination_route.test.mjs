@@ -12,14 +12,18 @@ const fixture = Array.from({ length: 195 }, (_, index) => ({
   name: `Card ${index}`, artist: 'Yuka Morii', number: String(index),
 }));
 
-function loadRoute({ fail = false, fastSearchTimeout = false, softTimeout = false, sets = [], catalogFail = false, capture = () => {}, captureCollector = () => {}, collectorRows = fixture, captureRanked = () => {}, rankedRows, exactCardName, exactCardNames = [], partialCardNames = {}, rows = fixture } = {}) {
+function loadRoute({ fail = false, fastSearchTimeout = false, softTimeout = false, stallCombined = false, sets = [], catalogFail = false, capture = () => {}, captureCollector = () => {}, collectorRows = fixture, captureRanked = () => {}, rankedRows, exactCardName, exactCardNames = [], partialCardNames = {}, rows = fixture } = {}) {
   const cache = new Map();
   const mocks = {
     'server-only': {},
     '@/lib/playables/getPokemonPlayables': { getPokemonPlayables: async () => null },
     'next/server': { NextResponse: { json: (body, init) => Response.json(body, init) } },
     '@/lib/explore/getExploreRows': {
-      getExploreRowsForCombinedSearch: async (options) => { capture(options); return rows; },
+      getExploreRowsForCombinedSearch: async (options) => {
+        capture(options);
+        if (stallCombined) return new Promise((_, reject) => options.signal.addEventListener('abort', () => reject(options.signal.reason), { once: true }));
+        return rows;
+      },
       getExploreRowsForSmartFilterDiscovery: async (options) => { capture(options); return rows; },
       getExploreRowsForArtistSearch: async (artist, options) => {
         capture({ ...options, artist });
@@ -69,8 +73,8 @@ function loadRoute({ fail = false, fastSearchTimeout = false, softTimeout = fals
     const code = ts.transpileModule(fs.readFileSync(file, 'utf8'), {
       compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, esModuleInterop: true },
     }).outputText;
-    vm.runInNewContext(code, { module, exports: module.exports, process, console, Error, performance,
-      setTimeout: (callback, delay) => setTimeout(callback, softTimeout && delay === 4200 ? 1 : delay), clearTimeout, require: (id) => {
+    vm.runInNewContext(code, { module, exports: module.exports, process, console, Error, performance, AbortController, AbortSignal,
+      setTimeout: (callback, delay) => setTimeout(callback, (softTimeout && delay === 4200) || (stallCombined && delay === 12000) ? 1 : delay), clearTimeout, require: (id) => {
         if (Object.hasOwn(mocks, id)) return mocks[id];
         if (id.startsWith('@/') || id.startsWith('.')) {
           let target = id.startsWith('@/') ? path.join(web, id.slice(2)) : path.resolve(path.dirname(file), id);
@@ -96,6 +100,29 @@ test('timed-out searches are never cached as empty successful results', async ()
     assert.equal(payload.source, options.softTimeout ? 'web_ranked_resolver_v2_degraded_soft_timeout' : 'web_ranked_resolver_v2_degraded_timeout');
     assert.equal(payload.rows.length, 0);
   }
+});
+
+test('complete-search soft timeout aborts the combined reader and returns a no-store failure', async () => {
+  let signal;
+  const response = await loadRoute({ stallCombined: true, capture: options => { signal = options.signal; } })({
+    nextUrl: new URL('https://fixture?q=WB+Kids+Stamp&pagination=1'),
+  });
+  assert.equal(response.status, 503);
+  assert.equal(response.headers.get('cache-control'), 'private, no-store');
+  assert.equal((await response.json()).sort_degraded_reason, 'resolver_timeout');
+  assert.equal(signal.aborted, true);
+});
+
+test('caller cancellation is propagated to the combined reader', async () => {
+  const caller = new AbortController();
+  let signal;
+  const response = await loadRoute({ stallCombined: true, capture: options => {
+    signal = options.signal;
+    queueMicrotask(() => caller.abort());
+  } })({ nextUrl: new URL('https://fixture?q=WB+Kids+Stamp&pagination=1'), signal: caller.signal });
+  assert.equal(response.status, 503);
+  assert.equal((await response.json()).sort_degraded_reason, 'resolver_timeout');
+  assert.equal(signal.aborted, true);
 });
 
 test('missing-image sentence routes to image discovery without spurious text', async () => {
