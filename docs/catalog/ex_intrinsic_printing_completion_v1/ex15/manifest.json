@@ -1,0 +1,132 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "ex15",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "docs/audits/english_master_index_publishable_v1/sets/ex15/printings.json",
+  "master_index_sha256": "9eaec0f839bd847a42464d1bd0102a2516b42c7766eef7f0deb443bbab195bac",
+  "parents": [
+    {
+      "id": "d905a802-d848-4e1c-ac3d-227323fb6e26",
+      "set_id": "d73bcf8f-d74e-4787-9bc9-fca8295730ad",
+      "gv_id": "GV-PK-DF-28",
+      "name": "Dragonair δ",
+      "printed_coordinate": "28",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": "delta_species"
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "d905a802-d848-4e1c-ac3d-227323fb6e26",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DF-28-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-numbered-checklist",
+          "sha256": "8bdecf2a1eb995e33e48e1c0bad60e9affbcabfc50cb08a9a38a8b30aa675fa6",
+          "card_print_id": "d905a802-d848-4e1c-ac3d-227323fb6e26",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "public-master-printings",
+          "sha256": "9eaec0f839bd847a42464d1bd0102a2516b42c7766eef7f0deb443bbab195bac",
+          "card_print_id": "d905a802-d848-4e1c-ac3d-227323fb6e26",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "d905a802-d848-4e1c-ac3d-227323fb6e26",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-DF-28-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-numbered-checklist",
+          "sha256": "8bdecf2a1eb995e33e48e1c0bad60e9affbcabfc50cb08a9a38a8b30aa675fa6",
+          "card_print_id": "d905a802-d848-4e1c-ac3d-227323fb6e26",
+          "finish_key": "reverse"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "public-master-printings",
+          "sha256": "9eaec0f839bd847a42464d1bd0102a2516b42c7766eef7f0deb443bbab195bac",
+          "card_print_id": "d905a802-d848-4e1c-ac3d-227323fb6e26",
+          "finish_key": "reverse"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 2,
+    "finishes": {
+      "normal": 1,
+      "reverse": 1
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "d73bcf8f-d74e-4787-9bc9-fca8295730ad",
+    "source_artifacts": [
+      {
+        "ref": "official-numbered-checklist",
+        "kind": "checked_checklist",
+        "sha256": "8bdecf2a1eb995e33e48e1c0bad60e9affbcabfc50cb08a9a38a8b30aa675fa6",
+        "url_or_identifier": "https://assets.pokemon.com/assets/cms/pdf/tcg/checklists/dragonfrontiers_checklist.pdf",
+        "retrieved_at": "2026-11-20T11:46:35.992Z",
+        "retrieval_method": "preserved_local_artifact_read",
+        "original_network_capture_time": null
+      },
+      {
+        "ref": "public-master-printings",
+        "kind": "checked_checklist",
+        "sha256": "9eaec0f839bd847a42464d1bd0102a2516b42c7766eef7f0deb443bbab195bac",
+        "url_or_identifier": "docs/audits/english_master_index_publishable_v1/sets/ex15/printings.json",
+        "retrieved_at": "2026-11-20T11:46:35.992Z",
+        "retrieval_method": "source_checkout_file_read"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "d905a802-d848-4e1c-ac3d-227323fb6e26",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "d905a802-d848-4e1c-ac3d-227323fb6e26",
+        "finish_key": "reverse"
+      }
+    ],
+    "forbidden_facts": [
+      {
+        "card_print_id": "d905a802-d848-4e1c-ac3d-227323fb6e26",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "d905a802-d848-4e1c-ac3d-227323fb6e26",
+        "finish_key": "stamped"
+      },
+      {
+        "card_print_id": "d905a802-d848-4e1c-ac3d-227323fb6e26",
+        "finish_key": "cosmos"
+      }
+    ],
+    "conflicts": [],
+    "review": {
+      "ref": "review",
+      "sha256": "39b8af6f773266cbde5fc19fa331afbd105c4ab070222e0f90e0fe0e0d1f950c"
+    }
+  },
+  "fingerprint": "0f86e6ea69cc6a5a7e3881d1e26ec3ab33acbe292d843db1bc16322e8c5ef314"
+}
