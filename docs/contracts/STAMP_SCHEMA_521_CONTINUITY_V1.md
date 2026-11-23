@@ -2,6 +2,10 @@
 
 Status: bounded candidate under qualification; no production authority.
 
+The separately reviewed [522 extension](STAMP_SCHEMA_522_CONTINUITY_V1.md)
+preserves this exact context and its laboratories. It does not turn the 521
+helper into a later-version override or authorize any catalog/data deployment.
+
 This is a schema-context extension for the separately reviewed Normal recovery
 28 and Series Five four canonical/mapping stages. Preserve their original
 programmes, physical manifests, tuples, IDs, raw/review payloads, exclusions,

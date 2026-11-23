@@ -13,7 +13,7 @@ import {printingManifestHash as hash} from '../../backend/catalog/printing_compl
 import {marketPipelineDatabaseConfigV1} from '../../backend/pricing/market_pipeline_database_config_v1.mjs';
 import {PROJECT,REGISTRY,CANONICAL_PLAN,readMappingSchema,readMappingSources,freezeMappingPlan,assertMappingPlan,assertMappingAuthority,assertActualPlayChildren,readScopedMappings,classifyMappings,executePlayMarketMapping} from '../../backend/pricing/play_stamp_normal_recovery_market_mapping_v2.mjs';
 
-import {assertStampExecutionSchemaContextV1} from '../../backend/catalog/stamp_schema_521_continuity_v1.mjs';
+import {assertStampExecutionSchemaContextV2 as assertStampExecutionSchemaContextV1} from '../../backend/catalog/stamp_schema_522_continuity_v1.mjs';
 const root=fileURLToPath(new URL('../../',import.meta.url));
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 export function playRecoveryMarketMappingCodeBindingV2(){

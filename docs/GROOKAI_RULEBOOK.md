@@ -50,6 +50,11 @@ This rulebook consolidates all engineering contracts, guardrails, and workflows 
 - The shared visual system uses ink/bone/lime, compact headers, flat surfaces,
   tighter corners, and 9px card gaps. Older visual references do not override it.
 
+The duplicate-set 521-to522 visibility correction follows
+[BEST_OF_GAME_DISCOVERY_READ_REPAIR_V16](contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V16.md).
+Preserve the applied index, failed load samples, original data and fixed approval
+window; qualify equivalent visibility helpers before a separate exact SQL decision.
+
 # Zero-Assumption Rule (Mandatory)
 - Never assume environment, project_ref, DB contents, data presence, or ingestion success.
 - Any conclusion about data/state must be backed by either direct SQL results, explicit file/env inspection, or explicit user confirmation.

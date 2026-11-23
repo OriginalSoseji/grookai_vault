@@ -1,3 +1,15 @@
+# Stamp schema 522 preview — November 23, 2026
+
+Follow [the exact 522 extension](../contracts/STAMP_SCHEMA_522_CONTINUITY_V1.md).
+Keep all original 519 and 521 sources, plans and local laboratories. The preview
+supports only the exact separately proposed direct-visibility migration, explicit
+`STAMP_SCHEMA_522_CONTEXT_V1` and separately owned loopback55330 clones. Complete
+producer binding refuses missing or changed candidate SQL; integrate the actual
+qualified catalog source before full source qualification. Local evidence is not
+catalog approval, deployed closure, new stamp execution authority or publication.
+The original physical descriptors and 98-insert scope stay unchanged. Respect
+the shared merge pause and all fresh production plan/rollback/readback gates.
+
 # Stamp schema 521 context preparation — November 23, 2026
 
 Follow [the bounded continuity contract](../contracts/STAMP_SCHEMA_521_CONTINUITY_V1.md).

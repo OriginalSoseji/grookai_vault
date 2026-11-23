@@ -3,13 +3,15 @@ import{marketPipelineDatabaseConfigV1}from'../../backend/pricing/market_pipeline
 import{printingManifestHash as hash}from'../../backend/catalog/printing_completeness_gate_v1.mjs';
 import{loadPlayStampRecoverySourcesV3}from'./play_stamp_normal_recovery_sources_v3.mjs';
 import{PROJECT,playStampDescriptor,assertPlayStampPlan,assertPlayStampAuthority,executePlayStampTransaction}from'../../backend/catalog/play_stamp_normal_recovery_execution_v3.mjs';
-import {assertStampExecutionSchemaContextV1} from '../../backend/catalog/stamp_schema_521_continuity_v1.mjs';
+import {assertStampExecutionSchemaContextV2 as assertStampExecutionSchemaContextV1,STAMP_SCHEMA_522_MIGRATION_V1,STAMP_SCHEMA_522_MIGRATION_SHA256_V1} from '../../backend/catalog/stamp_schema_522_continuity_v1.mjs';
 const root=fileURLToPath(new URL('../../',import.meta.url)),sha=b=>createHash('sha256').update(b).digest('hex');
 export function playStampRecoveryCodeBindingV3(){
  const files=['scripts/audits/play_stamp_normal_recovery_execution_v3.mjs','scripts/audits/play_stamp_normal_recovery_sources_v3.mjs','backend/catalog/play_stamp_normal_recovery_execution_v3.mjs',
  'backend/pricing/market_pipeline_database_config_v1.mjs','backend/pricing/condition_reference_database_config_v1.mjs','backend/catalog/master_index_printing_execution_v1.mjs','backend/catalog/master_index_printing_execution_guard_v1.mjs','backend/catalog/master_index_printing_authority_v1.mjs','backend/catalog/master_index_printing_repair_plan_v1.mjs','backend/catalog/printing_completeness_gate_v1.mjs','scripts/audits/me04_finish_truth_v1.mjs','docs/contracts/PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3.md','docs/catalog/play_pokemon_stamp_normal_recovery_v3/index.json'];
  files.push('backend/catalog/ex_intrinsic_printing_execution_v1.mjs','docs/audits/PRICE_STAMP_SCHEMA_519_CONTINUITY_20261123.md','docs/audits/PLAY_STAMP_NORMAL_RECOVERY_SOURCE_REVIEW_V3_20261123.md','package.json','package-lock.json');
  files.push('backend/catalog/stamp_schema_521_continuity_v1.mjs','docs/contracts/STAMP_SCHEMA_521_CONTINUITY_V1.md');
+ files.push('backend/catalog/stamp_schema_522_continuity_v1.mjs','docs/contracts/STAMP_SCHEMA_522_CONTINUITY_V1.md');
+ assert.equal(sha(fs.readFileSync(path.join(root,'supabase/migrations',STAMP_SCHEMA_522_MIGRATION_V1))),STAMP_SCHEMA_522_MIGRATION_SHA256_V1,'Reviewed522 migration source required');
  const index=JSON.parse(fs.readFileSync(path.join(root,'docs/catalog/play_pokemon_stamp_normal_recovery_v3/index.json')));
  for(const scope of index.scopes)for(const name of['manifest.json','master_facts.json','review.json','source-bindings.json'])files.push('docs/catalog/play_pokemon_stamp_normal_recovery_v3/'+scope.setCode+'/'+name);
  files.push(...fs.readdirSync(path.join(root,'supabase/migrations')).filter(f=>/^\d+.*\.sql$/.test(f)).sort().map(f=>'supabase/migrations/'+f));

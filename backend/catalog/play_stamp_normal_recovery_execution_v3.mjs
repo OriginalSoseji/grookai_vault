@@ -1,6 +1,6 @@
 // Separate28-parent recovered Normal lane; Fighting Au Lait is explicitly excluded. Original43-parent V1 is unchanged.
 import assert from 'node:assert/strict';
-import {assertStampExecutionSchemaContextV1,assertStampSchema521QualificationV1} from './stamp_schema_521_continuity_v1.mjs';
+import {assertStampExecutionSchemaContextV2 as assertStampExecutionSchemaContextV1,assertStampQualificationContextV2 as assertStampSchema521QualificationV1} from './stamp_schema_522_continuity_v1.mjs';
 import {createHash} from 'node:crypto';
 import index from '../../docs/catalog/play_pokemon_stamp_normal_recovery_v3/index.json' with {type:'json'};
 import {printingManifestHash as hash,printingCandidateId,assertPrintingManifest} from './printing_completeness_gate_v1.mjs';
@@ -163,7 +163,7 @@ export async function executePlayStampTransaction(options){
  return transaction({...options,production:true,beforeFinalCommit:async proof=>{assertProductionClient(options.client);assertPlayStampAuthority(authority,{plan,codeFingerprint,mode});assertRollback(rollbackReceipt,{plan,codeFingerprint});await (options.beforeFinalCommit??(async()=>{}))(proof);}});
 }
 export async function qualifyPlayStampTransaction(options){
- if(assertStampExecutionSchemaContextV1(options.plan,options.schemaContext,'canonical28'))await assertStampSchema521QualificationV1(options.client,options.plan,'canonical28');
+ if(assertStampExecutionSchemaContextV1(options.plan,options.schemaContext,'canonical28'))await assertStampSchema521QualificationV1(options.client,options.plan,'canonical28',options.schemaContext);
  else{
  const c=options.client.connectionParameters;assert.equal(c.host,'127.0.0.1');assert.equal(Number(c.port),55240);assert.equal(c.user,'postgres');assert.equal(c.database,QUALIFICATION_DATABASE);
  assert.equal((await options.client.query('select current_database() name')).rows[0].name,QUALIFICATION_DATABASE);

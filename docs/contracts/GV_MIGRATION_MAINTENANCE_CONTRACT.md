@@ -12,6 +12,16 @@ the shared merge pause. Stamped Reverse Holos follow that closure.
 
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Duplicate-set direct visibility evaluation V16 — November23,2026
+
+Only -BestOfGameDiscoveryReleaseV16 admits canonical521-to522 and the sole
+20261123220000 migration. Read [V16](BEST_OF_GAME_DISCOVERY_READ_REPAIR_V16.md).
+Preserve the once-applied index and all three failed load samples. Qualify
+three equivalent direct visibility helpers with full role/authority/data and
+concurrent-load checks. Keep the ed91 limits and November24 13:59:40Z deadline
+fixed. New exact SQL consent follows complete normal/hosted and fresh gates;
+the V18 index-only approval grants no additional function-change authority.
+
 ## Best of Game catalog covering-index correction V15 — November23,2026
 
 Only -BestOfGameDiscoveryReleaseV15 admits canonical520-to521 for the single
