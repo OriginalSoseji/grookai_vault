@@ -1,3 +1,35 @@
+# Square recovery target-window candidate — November 22, 2026
+
+Read [the candidate contract](../contracts/SQUARE_RECOVERY_TARGET_WINDOW_V1.md).
+`C:/grookai_square_recovery_window_20261122` contains the default-off automatic
+two/five-target read repair. The fresh exact519 starting audit passed without
+database writes; the forward candidate is applied only to two owned local clones. Existing manual/focus
+requests, stock writers, leases and claims are unchanged. Never enable
+`GROOKAI_SQUARE_RECOVERY_WINDOW_ENABLED` based on backend unit tests alone.
+Candidate database replay, actual authority/Auth/concurrency/load and full
+normal/hosted checks must pass first. Preserve the interrupted Docker verification
+receipts and the separate main merge pause. No production approval is inferred.
+
+The [November 23 audit](../audits/SQUARE_RECOVERY_TARGET_WINDOW_20261123.md)
+also preserves a later failed sold-pending counterexample: two sold copies
+could exclude all live work. The separate forward004000 migration corrects
+this with bounded live/sold lanes;003000 stays immutable. Its qualification
+must pass before activation. The earlier audit preserves the populated-query
+alias failure and its pre-apply correction. The
+corrected selection passed20 actual read-only PostgreSQL cases and127 focused
+Square backend/website-route tests. Both clone upgrades/no-op and complete
+four-schema/security comparison passed. Actual RPC/SQL-role/lease tests passed
+over100 synthetic vendors with100,000 active copies plus300 sold-state fixtures.
+HTTP Auth, fresh candidate replay, provider/clock capacity and full release
+checks remain separate gates. Never overwrite old proofs or edit the locally
+applied migration. The private hardening checkpoint records the latest stage.
+
+The forward004000 correction passed36 selection cases, the actual regression
+retest, two521 clone upgrades/no-op, schema/security/idempotence and repeated
+100-vendor RPC/guard/lock checks. Both SQL files are now locally applied and
+immutable. The candidate remains off and unqualified for public launch; these
+proofs do not replace fresh replay, actual HTTP Auth or provider capacity.
+
 # Price/stamp exact519 continuity — November22,2026
 
 The [519 audit](../audits/PRICE_STAMP_SCHEMA_519_CONTINUITY_20261123.md) binds the

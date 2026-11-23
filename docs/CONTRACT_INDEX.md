@@ -13,6 +13,7 @@ If a contract is missing from this index, it is not authoritative.
 
 | Contract | Status | Description |
 |--------|--------|-------------|
+| SQUARE_RECOVERY_TARGET_WINDOW_V1 | Active implementation candidate; default off and unqualified | [Square recovery target window V1](contracts/SQUARE_RECOVERY_TARGET_WINDOW_V1.md) — Bounded automatic live/sold lanes; immutable first candidate plus forward correction for sold-pending starvation, unchanged fenced authorities and separate qualification gates |
 | PLAY_STAMP_MARKET_MAPPING_V1 | Active bounded implementation; exact production approval required | docs/contracts/PLAY_STAMP_MARKET_MAPPING_V1.md — Separate exact43 insert-only TCGplayer parent links after actual reviewed Normal children; original provenance, zero canonical/owner/Market writes and unchanged generic mapper |
 | EX_INTRINSIC_PRICE_ASSIGNMENT_REPAIR_V1 | Active bounded implementation; exact production approval required | docs/contracts/EX_INTRINSIC_PRICE_ASSIGNMENT_REPAIR_V1.md — Separate exact-six append-only private assignment correction after actual approved EX children; immutable held receipts, zero canonical/mapping/owner/Market writes |
 | PLAY_POKEMON_STAMP_NORMAL_EXECUTION_V1 | Active bounded implementation; exact production approval required | docs/contracts/PLAY_POKEMON_STAMP_NORMAL_EXECUTION_V1.md —43 two-source Normal facts, exact nine-set counts/reference preservation, separate approval/rollback/readback gates; no execution authority granted |

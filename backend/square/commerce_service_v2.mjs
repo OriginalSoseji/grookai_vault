@@ -198,8 +198,10 @@ export class SquareCommerceService {
   await checkpoint('reconcile');const reconciled=await this.reconcile(ownerId,connectionId);
   if(this.config.commerceEnabled){await checkpoint('enroll');await this.enroll(ownerId,connectionId,focusInstanceId);}
   await checkpoint('read_targets');
+  const automaticRecoveryLimit=this.config.recoveryWindowEnabled===true&&!manual&&!focusInstanceId&&[2,5].includes(maxTargets)
+   ?{automaticRecoveryLimit:maxTargets}:{};
   const read=await this.catalog.withConnection(ownerId,connectionId,async({connection,context})=>({
-   automatic:connection.auto_sync,targets:await this.rpc('commerce_targets',{...context,focusInstanceId})}));
+   automatic:connection.auto_sync,targets:await this.rpc('commerce_targets',{...context,focusInstanceId,...automaticRecoveryLimit})}));
   if(!Array.isArray(read.targets))fail('square_targets_incomplete');
   const result={succeeded:0,failed:0,reviews:0,skipped:0,orderReviews:reconciled.orderReviews??0,adoptions:[],focusStatus:'pending'};
   const reviewTargets=new Set();
