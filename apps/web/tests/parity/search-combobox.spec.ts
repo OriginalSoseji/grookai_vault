@@ -141,6 +141,18 @@ test("actual search exposes valid expanded semantics and keyboard printing selec
   expect(target.searchParams.get("cards")).toBe("GV-PK-BASE-3");
 });
 
+test("Pokémon suggestions request only the selected game and language", async ({ page }) => {
+  await openSearch(page);
+  await page.goto("/explore?q=x&lang=ja");
+  const input = page.locator("main").getByLabel("Search cards, sets, numbers, or grookai ID", { exact: true });
+  await expect(input).toBeEnabled();
+  const request = page.waitForRequest(request => new URL(request.url()).pathname === "/api/search/suggestions" && new URL(request.url()).searchParams.get("q") === "Pikachu");
+  await input.fill("Pikachu");
+  const url = new URL((await request).url());
+  expect(url.searchParams.get("game")).toBe("pokemon");
+  expect(url.searchParams.get("lang")).toBe("ja");
+});
+
 test("Escape stays dismissed through a delayed response; arrows reopen and Tab dismisses", async ({ page }) => {
   let release!: () => void;
   const gate = new Promise<void>(resolve => { release = resolve; });

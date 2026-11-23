@@ -148,7 +148,7 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
         if (suggestionRequest.requestedNumber) {
           params.set("number", suggestionRequest.requestedNumber);
         }
-        if (gameScope !== "pokemon") params.set("game", gameScope);
+        params.set("game", gameScope);
         if (currentLanguageScope !== "all") params.set("lang", currentLanguageScope);
 
         const endpoint =
