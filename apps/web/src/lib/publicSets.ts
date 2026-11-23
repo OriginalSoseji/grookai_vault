@@ -280,7 +280,7 @@ async function getVisibleCardCountBySetIds(
 
   const exclusions = setCode === "base2" ? await getJungleDiscoveryExclusions(supabase) : [];
   const query = supabase
-    .from("card_prints")
+    .from("v_card_prints_set_family_discovery_v1")
     .select("id", { count: "exact", head: true })
     .in("set_id", exactSetIds)
     .not("gv_id", "is", null);
@@ -473,7 +473,7 @@ const getPublicSetCardOrderIndex = cache(async function getPublicSetCardOrderInd
   const supabase = await createServerSupabase();
   const setIds = JSON.parse(setIdsKey) as string[];
   return readPublicSetCardOrderIndex(async afterId => {
-    let query = supabase.from("card_prints")
+    let query = supabase.from("v_card_prints_set_family_discovery_v1")
       .select("id,number,number_plain", { count: "exact" })
       .in("set_id", setIds)
       .not("gv_id", "is", null)
@@ -597,10 +597,12 @@ export const getPublicSetCards = cache(async function getPublicSetCards(
   const { rows: pageRows, printingRows } = await readPublicSetCardPage(
     pageIds,
     async ids => {
+      // The request-visible family index already scoped these physical IDs.
+      // A projected parent can retain its original stored set (Winner cards,
+      // for example), so a second raw set_id filter would drop valid rows.
       const { data, error } = await supabase
         .from("card_prints")
         .select(selectClause)
-        .in("set_id", exactSetIds)
         .in("id", ids)
         .not("gv_id", "is", null)
         .order("id", { ascending: true });

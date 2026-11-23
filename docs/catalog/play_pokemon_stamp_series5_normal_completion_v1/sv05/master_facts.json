@@ -1,0 +1,259 @@
+{
+  "version": "PLAY_POKEMON_STAMP_SERIES5_NORMAL_MASTER_FACTS_V1",
+  "status": "master_admissible",
+  "language": "en",
+  "set_code": "sv05",
+  "scope": "exact_generic_play_pokemon_stamp_normal_facts_only",
+  "complete_printing_inventory": false,
+  "foil_pattern_adjudicated": false,
+  "records": [
+    {
+      "card_print_id": "71eab7c1-b491-4442-b2aa-dae5311db412",
+      "card_name": "Heavy Baton",
+      "printed_coordinate": "151",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 5,
+          "official_pdf_sha256": "e6db3b6348c1d52d12328265b0460f5f296052c5fadbbf0050204e1745606f97",
+          "official_row": {
+            "series": 5,
+            "name": "Heavy Baton",
+            "name_alignment_resolved": true,
+            "set_token": "TEF",
+            "printed_number": "151",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "TEF",
+              "xMin": 331.4817,
+              "yMin": 381.46,
+              "xMax": 357.4087,
+              "yMax": 393.824,
+              "set_token": "TEF",
+              "number": "151"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 373.6393,
+                "yMin": 382.7234,
+                "xMax": 381.2493,
+                "yMax": 392.2934,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 54
+              }
+            ]
+          },
+          "secondary_raw_sha256": "ff74d24e2a53c3073c9f43bd83195f3d678b00dcec8150d45941ad1c242cb01e",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 5,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Five_(TCG)",
+            "set_key": "sv05",
+            "card_number": "151",
+            "card_name": "Heavy Baton",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "7c413757-c98e-4e27-a791-2e075c545b96",
+      "card_name": "Morty's Conviction",
+      "printed_coordinate": "155",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 5,
+          "official_pdf_sha256": "e6db3b6348c1d52d12328265b0460f5f296052c5fadbbf0050204e1745606f97",
+          "official_row": {
+            "series": 5,
+            "name": "Morty's Conviction",
+            "name_alignment_resolved": true,
+            "set_token": "TEF",
+            "printed_number": "155",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "TEF",
+              "xMin": 331.4817,
+              "yMin": 525.46,
+              "xMax": 359.0147,
+              "yMax": 537.824,
+              "set_token": "TEF",
+              "number": "155"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 373.6393,
+                "yMin": 526.7234,
+                "xMax": 381.2493,
+                "yMax": 536.2934,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 54
+              }
+            ]
+          },
+          "secondary_raw_sha256": "ff74d24e2a53c3073c9f43bd83195f3d678b00dcec8150d45941ad1c242cb01e",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 5,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Five_(TCG)",
+            "set_key": "sv05",
+            "card_number": "155",
+            "card_name": "Morty's Conviction",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "b00cdee1-1552-4e5c-9e33-cd5a15303e9f",
+      "card_name": "Brambleghast",
+      "printed_coordinate": "021",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 5,
+          "official_pdf_sha256": "e6db3b6348c1d52d12328265b0460f5f296052c5fadbbf0050204e1745606f97",
+          "official_row": {
+            "series": 5,
+            "name": "Brambleghast",
+            "name_alignment_resolved": true,
+            "set_token": "TEF",
+            "printed_number": "021",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "TEF",
+              "xMin": 131.995,
+              "yMin": 129.46,
+              "xMax": 159.781,
+              "yMax": 141.824,
+              "set_token": "TEF",
+              "number": "021"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 174.1526,
+                "yMin": 130.7234,
+                "xMax": 181.7626,
+                "yMax": 140.2934,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 45
+              }
+            ]
+          },
+          "secondary_raw_sha256": "ff74d24e2a53c3073c9f43bd83195f3d678b00dcec8150d45941ad1c242cb01e",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 5,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Five_(TCG)",
+            "set_key": "sv05",
+            "card_number": "21",
+            "card_name": "Brambleghast",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "b40344f6-d54f-40bf-9383-3e437ffc6a39",
+      "card_name": "Salvatore",
+      "printed_coordinate": "160",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 5,
+          "official_pdf_sha256": "e6db3b6348c1d52d12328265b0460f5f296052c5fadbbf0050204e1745606f97",
+          "official_row": {
+            "series": 5,
+            "name": "Salvatore",
+            "name_alignment_resolved": true,
+            "set_token": "TEF",
+            "printed_number": "160",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "TEF",
+              "xMin": 530.9683,
+              "yMin": 147.46,
+              "xMax": 558.8423,
+              "yMax": 159.824,
+              "set_token": "TEF",
+              "number": "160"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 573.1259,
+                "yMin": 148.7234,
+                "xMax": 580.7359,
+                "yMax": 158.2934,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 62
+              }
+            ]
+          },
+          "secondary_raw_sha256": "ff74d24e2a53c3073c9f43bd83195f3d678b00dcec8150d45941ad1c242cb01e",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 5,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Five_(TCG)",
+            "set_key": "sv05",
+            "card_number": "160",
+            "card_name": "Salvatore",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    }
+  ]
+}
