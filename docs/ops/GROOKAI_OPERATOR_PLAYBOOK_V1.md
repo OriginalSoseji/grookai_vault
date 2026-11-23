@@ -1870,6 +1870,15 @@ IDs, apply receipt, and artifact hashes. If commit status is unknown, do not
 replay or delete anything; inspect the independent reconciliation evidence.
 Mapping success does not publish the 36 price observations.
 
+After a committed batch, require a newer hosted completion artifact and a new
+content hash before reviewing the next batch. The reusable conservative founder
+review V2 may accept a variable number of same-set exact rows, but it must hold
+every readable source-group/target-set mismatch, preserve the complete batch
+partition and decision fingerprint, and keep the executor bounded to at most 50
+insert-only mappings. The legacy 36/13/1 approval remains valid only for its
+original immutable batch. A refreshed queue must not reuse that approval or its
+preflight artifacts.
+
 Before review, confirm that every row exposes and content-binds the readable
 target set name, set ID/code, source group, printed number, canonical
 name/number, target identity state, candidate-search result, group-consensus

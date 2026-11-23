@@ -30,8 +30,10 @@ test('global exact mapping apply binds the exact founder approval and preflight 
     < SCRIPT.indexOf("new pg.Client(connectionConfig('mtg_global_exact_mapping_apply_v1'))"));
 });
 
-test('global exact mapping apply is one bounded 36-row insert-only transaction', () => {
-  assert.match(SCRIPT, /const TOTAL_ROWS = 36/);
+test('global exact mapping apply is one bounded review-batch insert-only transaction', () => {
+  assert.match(SCRIPT, /const MAX_BATCH_ROWS = 50/);
+  assert.match(SCRIPT, /totalRows >= 1 && totalRows <= MAX_BATCH_ROWS/);
+  assert.doesNotMatch(SCRIPT, /const TOTAL_ROWS = 36/);
   assert.match(SCRIPT, /begin transaction isolation level serializable/);
   assert.equal((SCRIPT.match(/assertVerifiedProductionTls\(/g) ?? []).length, 3);
   assert.match(SCRIPT, /pg_advisory_xact_lock\(hashtext\('tcgplayer_market_exact_mapping_apply_v1'\)\)/);

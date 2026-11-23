@@ -26,7 +26,7 @@ export const MTG_TCGPLAYER_GLOBAL_EXACT_MAPPING_APPLY_V1 =
   'MTG_TCGPLAYER_GLOBAL_EXACT_MAPPING_APPLY_V1';
 
 const PACKAGE_ID = 'MTG-GLOBAL-EXACT-BATCH-0001-MAPPING-OUTCOME-V1';
-const TOTAL_ROWS = 36;
+const MAX_BATCH_ROWS = 50;
 
 function parseArgs(argv) {
   const values = {};
@@ -100,6 +100,10 @@ async function readJsonlRaw(file) {
 }
 
 export async function bindAuthorizedPreflight(options, packageData) {
+  const totalRows = packageData.accepted.length;
+  const projectedPriceObservations = packageData.accepted.reduce(
+    (total, row) => total + Number(row.supporting_gap_row_count), 0,
+  );
   const hashes = (await readJsonRaw(path.join(options.preflightRoot, 'artifact_hashes.json'))).value;
   assert.deepEqual(Object.keys(hashes).sort(), ['preflight.json', 'selected_mappings.jsonl'],
     'preflight_artifact_inventory_changed');
@@ -126,9 +130,9 @@ export async function bindAuthorizedPreflight(options, packageData) {
   assert.equal(receipt.value.decision_fingerprint_sha256,
     packageData.approval.decision_fingerprint_sha256,
     'authorized_preflight_decision_changed');
-  assert.equal(receipt.value.source_products, TOTAL_ROWS);
-  assert.equal(receipt.value.target_card_prints, TOTAL_ROWS);
-  assert.equal(receipt.value.projected_price_observations, TOTAL_ROWS);
+  assert.equal(receipt.value.source_products, totalRows);
+  assert.equal(receipt.value.target_card_prints, totalRows);
+  assert.equal(receipt.value.projected_price_observations, projectedPriceObservations);
   assert.deepEqual(receipt.value.mapping_manifest, packageData.accepted.map((row) => ({
     source_product_id: row.source_product_id,
     target_card_print_id: row.target_card_print_id,
@@ -271,10 +275,9 @@ export async function runMtgTcgplayerGlobalExactMappingApplyV1(argv) {
   const applyCommit = git(['rev-parse', 'HEAD']);
   assert.equal(applyCommit, options.expectedHeadSha, 'expected_head_sha_changed');
   const packageData = await loadApprovedPackage(options, applyCommit);
-  assert.equal(packageData.accepted.length, TOTAL_ROWS, 'authorized_scope_count_changed');
-  assert.equal(packageData.held.length, 13, 'authorized_hold_count_changed');
-  assert.deepEqual(packageData.rejected.map((row) => Number(row.source_product_id)), [58205],
-    'authorized_rejection_changed');
+  const totalRows = packageData.accepted.length;
+  assert.ok(totalRows >= 1 && totalRows <= MAX_BATCH_ROWS,
+    'authorized_scope_count_out_of_bounds');
   const preflight = await bindAuthorizedPreflight(options, packageData);
   git(['merge-base', '--is-ancestor', preflight.source_commit, applyCommit]);
   const authorization = {
@@ -368,7 +371,7 @@ export async function runMtgTcgplayerGlobalExactMappingApplyV1(argv) {
     const insideMappings = await scopedMappings(client, rows);
     assertReadback(rows, insideMappings, rollbackIdentities, applyCommit, authorization, insertedIds);
     const countsInside = await protectedCounts(client);
-    assert.equal(Number(countsInside.active_mtg) - Number(countsBefore.active_mtg), TOTAL_ROWS,
+    assert.equal(Number(countsInside.active_mtg) - Number(countsBefore.active_mtg), totalRows,
       'transaction_mtg_mapping_delta_changed');
     assert.equal(Number(countsInside.active_non_mtg), Number(countsBefore.active_non_mtg),
       'protected_non_mtg_mapping_count_changed');
@@ -425,7 +428,7 @@ export async function runMtgTcgplayerGlobalExactMappingApplyV1(argv) {
       const mappings = await scopedMappings(readback, rows);
       assertReadback(rows, mappings, rollbackIdentities, applyCommit, authorization, insertedIds);
       const countsAfter = await protectedCounts(readback);
-      assert.equal(Number(countsAfter.active_mtg) - Number(countsBefore.active_mtg), TOTAL_ROWS,
+      assert.equal(Number(countsAfter.active_mtg) - Number(countsBefore.active_mtg), totalRows,
         'post_commit_mtg_mapping_delta_changed');
       assert.equal(Number(countsAfter.active_non_mtg), Number(countsBefore.active_non_mtg),
         'post_commit_non_mtg_mapping_count_changed');
@@ -438,7 +441,7 @@ export async function runMtgTcgplayerGlobalExactMappingApplyV1(argv) {
         authorized_source_commit: authorization.sourceCommit,
         apply_commit: applyCommit,
         evidence_source_sync_run_id: authorization.evidenceSource,
-        mapping_writes: TOTAL_ROWS,
+        mapping_writes: totalRows,
         projected_price_observations: preflight.projected_price_observations,
         environment,
         protected_counts_before: countsBefore,
@@ -447,7 +450,7 @@ export async function runMtgTcgplayerGlobalExactMappingApplyV1(argv) {
         mapping_ids: [...insertedIds.values()],
         commit_outcome: commitOutcome,
         boundaries: {
-          mapping_inserts: TOTAL_ROWS,
+          mapping_inserts: totalRows,
           canonical_writes: 0,
           pricing_writes: 0,
           publication_writes: 0,

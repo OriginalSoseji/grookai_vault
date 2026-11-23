@@ -20,7 +20,9 @@ export const MTG_TCGPLAYER_GLOBAL_EXACT_MAPPING_PREFLIGHT_V1 =
   'MTG_TCGPLAYER_GLOBAL_EXACT_MAPPING_PREFLIGHT_V1';
 
 const REVIEW_POLICY = 'MTG_TCGPLAYER_GLOBAL_EXACT_REVIEW_QUEUE_V1';
-const DECISION_VERSION = 'MTG_GLOBAL_EXACT_BATCH_0001_CONSERVATIVE_FOUNDER_REVIEW_V1';
+const LEGACY_DECISION_VERSION =
+  'MTG_GLOBAL_EXACT_BATCH_0001_CONSERVATIVE_FOUNDER_REVIEW_V1';
+const DECISION_VERSION = 'MTG_GLOBAL_EXACT_CONSERVATIVE_FOUNDER_REVIEW_V2';
 const PACKAGE_ID = 'MTG-GLOBAL-EXACT-BATCH-0001-MAPPING-OUTCOME-V1';
 const PROJECT_REF = 'ycdxbpibncqcchqiihfz';
 const PINNED_SUPABASE_ROOT_SHA256 =
@@ -130,17 +132,35 @@ function decisionBinding(row) {
   };
 }
 
-function expectedApprovalText(approval) {
-  return `Approve MTG global exact batch 0001 conservative founder review V1. `
+export function expectedApprovalText(approval) {
+  if (approval.decision_version === LEGACY_DECISION_VERSION) {
+    return `Approve MTG global exact batch 0001 conservative founder review V1. `
+      + `Batch manifest ${approval.batch_manifest_sha256}. `
+      + `Decision fingerprint ${approval.decision_fingerprint_sha256}. `
+      + 'Accept only the 36 same-set exact mappings, hold the 13 promo-context rows, '
+      + 'and reject TCGPlayer product 58205. Review approval only; no mapping, pricing, '
+      + 'publication, canonical, Vault, update, delete, merge, migration, or production writes.';
+  }
+  assert.equal(approval.decision_version, DECISION_VERSION, 'decision_version_changed');
+  const acceptedCount = approval.accepted_source_product_ids.length;
+  const heldCount = approval.held_source_product_ids.length;
+  const rejectedIds = approval.rejected_source_product_ids.map(Number);
+  const batchLabel = String(Number(approval.batch_index)).padStart(4, '0');
+  const rejectionText = rejectedIds.length === 0
+    ? 'reject no TCGPlayer products'
+    : `reject TCGPlayer product${rejectedIds.length === 1 ? '' : 's'} ${rejectedIds.join(', ')}`;
+  return `Approve MTG global exact batch ${batchLabel} conservative founder review V2. `
     + `Batch manifest ${approval.batch_manifest_sha256}. `
     + `Decision fingerprint ${approval.decision_fingerprint_sha256}. `
-    + 'Accept only the 36 same-set exact mappings, hold the 13 promo-context rows, '
-    + 'and reject TCGPlayer product 58205. Review approval only; no mapping, pricing, '
-    + 'publication, canonical, Vault, update, delete, merge, migration, or production writes.';
+    + `Accept only the ${acceptedCount} same-set exact mappings, hold the ${heldCount} `
+    + `context-mismatch rows, and ${rejectionText}. Review approval only; no mapping, `
+    + 'pricing, publication, canonical, Vault, update, delete, merge, migration, or '
+    + 'production writes.';
 }
 
 export function reconcileApprovedDecision(rows, approval) {
-  assert.equal(approval.decision_version, DECISION_VERSION, 'decision_version_changed');
+  assert.ok([LEGACY_DECISION_VERSION, DECISION_VERSION].includes(approval.decision_version),
+    'decision_version_changed');
   assert.equal(approval.status, 'founder_review_approved', 'founder_review_not_approved');
   assert.equal(approval.approval_text, expectedApprovalText(approval), 'approval_text_changed');
   assert.deepEqual(approval.authority, {
@@ -161,14 +181,25 @@ export function reconcileApprovedDecision(rows, approval) {
   assert.equal(allIds.length, rows.length, 'decision_partition_count_changed');
   assert.equal(new Set(allIds).size, rows.length, 'decision_partition_overlap');
   assert.ok(allIds.every((id) => byProduct.has(id)), 'decision_partition_product_changed');
-  assert.equal(acceptedIds.length, 36, 'accepted_scope_changed');
-  assert.equal(heldIds.length, 13, 'held_scope_changed');
-  assert.deepEqual(rejectedIds, [58205], 'rejected_scope_changed');
+  assert.ok(acceptedIds.length > 0, 'accepted_scope_empty');
+  if (approval.decision_version === LEGACY_DECISION_VERSION) {
+    assert.equal(acceptedIds.length, 36, 'accepted_scope_changed');
+    assert.equal(heldIds.length, 13, 'held_scope_changed');
+    assert.deepEqual(rejectedIds, [58205], 'rejected_scope_changed');
+  }
+  assert.deepEqual(approval.counts, {
+    accepted: acceptedIds.length,
+    held: heldIds.length,
+    rejected: rejectedIds.length,
+    total: rows.length,
+  }, 'decision_counts_changed');
 
   const accepted = acceptedIds.map((id) => byProduct.get(id));
   const held = heldIds.map((id) => byProduct.get(id));
   const rejected = rejectedIds.map((id) => byProduct.get(id));
   for (const row of accepted) {
+    assert.equal(foldedName(row.source_group_name), foldedName(row.target_set_name),
+      `accepted_readable_set_context_changed:${row.source_product_id}`);
     assert.ok(text(row.group_consensus_set_code), `accepted_set_consensus_missing:${row.source_product_id}`);
     assert.equal(row.group_consensus_set_code, row.target_set_code,
       `accepted_set_code_changed:${row.source_product_id}`);

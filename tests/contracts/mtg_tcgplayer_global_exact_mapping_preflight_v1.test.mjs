@@ -9,6 +9,7 @@ import {
   assertLiveState,
   assertVerifiedProductionTls,
   connectionConfig,
+  expectedApprovalText,
   reconcileApprovedDecision,
   reviewBatchManifestSha256,
 } from '../../scripts/audits/mtg_tcgplayer_global_exact_mapping_preflight_v1.mjs';
@@ -66,6 +67,12 @@ function decisionFixture() {
     accepted_source_product_ids: accepted.map((candidate) => candidate.source_product_id),
     held_source_product_ids: held.map((candidate) => candidate.source_product_id),
     rejected_source_product_ids: [58205],
+    counts: {
+      accepted: 36,
+      held: 13,
+      rejected: 1,
+      total: 50,
+    },
     authority: {
       mapping_writes: false,
       pricing_writes: false,
@@ -145,6 +152,70 @@ test('review decision rejects scope or authority drift before database access', 
   assert.throws(() => reconcileApprovedDecision(rows.map((candidate, index) =>
     index === 0 ? { ...candidate, target_set_code: 'wrong' } : candidate), approval),
   /accepted_set_code_changed/);
+  assert.throws(() => reconcileApprovedDecision(rows.map((candidate, index) =>
+    index === 0 ? { ...candidate, source_group_name: 'Promo Context' } : candidate), approval),
+  /accepted_readable_set_context_changed/);
+});
+
+test('reusable conservative review supports a content-bound variable partition', () => {
+  const accepted = Array.from({ length: 34 }, (_, index) => row(index + 1));
+  const held = Array.from({ length: 15 }, (_, index) => row(index + 101, {
+    source_group_name: 'Promo Context',
+    target_set_name: 'Canonical Set',
+    target_set_code: 'canonical',
+    group_consensus_set_code: 'promo',
+  }));
+  const rejected = [row(58205, {
+    source_group_name: 'Magic Premiere Shop',
+    target_set_name: 'Summer Magic / Edgar',
+    target_set_code: 'sum',
+    group_consensus_set_code: '',
+  })];
+  const rows = [...accepted, ...held, ...rejected];
+  const bind = (candidate) => ({
+    source_product_id: candidate.source_product_id,
+    target_card_print_id: candidate.target_card_print_id,
+    target_gv_id: candidate.target_gv_id,
+    target_set_code: candidate.target_set_code,
+    mapping_method: candidate.mapping_method,
+  });
+  const approval = {
+    decision_version: 'MTG_GLOBAL_EXACT_CONSERVATIVE_FOUNDER_REVIEW_V2',
+    status: 'founder_review_approved',
+    batch_index: 1,
+    batch_manifest_sha256: 'b'.repeat(64),
+    accepted_source_product_ids: accepted.map((candidate) => candidate.source_product_id),
+    held_source_product_ids: held.map((candidate) => candidate.source_product_id),
+    rejected_source_product_ids: rejected.map((candidate) => candidate.source_product_id),
+    counts: { accepted: 34, held: 15, rejected: 1, total: 50 },
+    authority: {
+      mapping_writes: false,
+      pricing_writes: false,
+      publication_writes: false,
+      canonical_writes: false,
+      vault_writes: false,
+      production_writes: false,
+    },
+  };
+  const decision = {
+    decision_version: approval.decision_version,
+    batch_manifest_sha256: approval.batch_manifest_sha256,
+    accepted: accepted.map(bind),
+    held: held.map(bind),
+    rejected: rejected.map(bind),
+    mapping_authority: false,
+    pricing_authority: false,
+    publication_authority: false,
+  };
+  approval.decision_fingerprint_sha256 = createHash('sha256')
+    .update(JSON.stringify(decision)).digest('hex');
+  approval.approval_text = expectedApprovalText(approval);
+  const reconciled = reconcileApprovedDecision(rows, approval);
+  assert.equal(reconciled.accepted.length, 34);
+  assert.equal(reconciled.held.length, 15);
+  assert.equal(reconciled.rejected.length, 1);
+  assert.match(approval.approval_text, /Accept only the 34 same-set exact mappings/);
+  assert.match(approval.approval_text, /hold the 15 context-mismatch rows/);
 });
 
 test('batch manifest binds review-critical evidence omitted from the decision fingerprint', () => {
