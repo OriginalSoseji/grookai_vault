@@ -177,3 +177,25 @@ community Binder flows remain unverified on a second real account.
 - `test/binders/binder_checklist_find_test.dart`
 - `test/binders/binder_editor_navigation_test.dart`
 - `docs/contracts/COLLABORATIVE_BINDERS_SYSTEM_CONTRACT_V1.md`
+
+## Binder Contents Card Arrangement Follow-up
+
+- Live Binder **Contents** now enables the existing long-press drag arranger.
+  Cards can be moved between available pockets, including across pages.
+- The resulting card order is stored as a device-local presentation preference
+  per Binder and restored when Contents reloads. Newly contributed cards append
+  after the saved cards; removed cards are ignored while absent.
+- The saved order applies only to the artwork-first Contents view. It does not
+  reorder canonical target/checklist requirements, change progress, or mutate
+  contributions or Vault copies. The UI states that the layout is saved on this
+  device.
+- The existing arrangement editor retains its “Order is not saved yet” message;
+  live Contents uses an explicit “Layout saved on this device” status instead.
+- Implementation: `lib/services/binders/binder_contents_order_preferences.dart`,
+  `lib/screens/binders/binder_detail_screen.dart`, and
+  `lib/widgets/binders/binder_page_arrangement.dart`.
+- Added a live Binder integration test that long-presses and moves a contributed
+  card, then reads back the saved per-Binder order. It passes. The complete
+  Binder suite passed all 436 cases; `binder_main_integration_test.dart` passed
+  all 24 cases; `flutter analyze` reported no issues.
+- Signed build and Samsung installation are still pending.

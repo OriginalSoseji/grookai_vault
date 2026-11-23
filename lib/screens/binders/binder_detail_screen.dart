@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 
 import '../../controllers/binders/binder_controllers.dart';
 import '../../models/binders/binder_models.dart';
+import '../../services/binders/binder_contents_order_preferences.dart';
 import '../../services/binders/binder_display_identity.dart';
 import '../../services/binders/binder_feature_flags.dart';
-import '../../services/binders/binder_realtime_service.dart';
 import '../../services/binders/binder_repository.dart';
+import '../../services/binders/binder_realtime_service.dart';
 import '../../widgets/binders/binder_widgets.dart';
 import '../../widgets/binders/binder_metadata_dialog.dart';
 import '../../widgets/binders/binder_page_arrangement.dart';
@@ -394,6 +395,8 @@ class _BinderContentsTabState extends State<_BinderContentsTab> {
   List<BinderChecklistItem> _items = const [];
   bool _loading = true;
   BinderException? _failure;
+  late final BinderContentsOrderPreferences _orderPreferences =
+      BinderContentsOrderPreferences(publicId: widget.publicId);
 
   @override
   void initState() {
@@ -419,11 +422,26 @@ class _BinderContentsTabState extends State<_BinderContentsTab> {
         items.addAll(page.items);
         cursor = page.hasMore && items.length < 1000 ? page.nextCursor : null;
       } while (cursor != null);
+      final visibleItems = items
+          .where((item) => item.activeQuantity > 0)
+          .toList(growable: false);
+      final originalIndex = <String, int>{
+        for (var i = 0; i < visibleItems.length; i++)
+          BinderCustomSlotDraft.fromChecklist(visibleItems[i]).displayKey: i,
+      };
+      final savedOrder = await _orderPreferences.load();
+      final rank = <String, int>{
+        for (var i = 0; i < savedOrder.length; i++) savedOrder[i]: i,
+      };
+      visibleItems.sort((a, b) {
+        final aKey = BinderCustomSlotDraft.fromChecklist(a).displayKey;
+        final bKey = BinderCustomSlotDraft.fromChecklist(b).displayKey;
+        return (rank[aKey] ?? savedOrder.length + originalIndex[aKey]!)
+            .compareTo(rank[bKey] ?? savedOrder.length + originalIndex[bKey]!);
+      });
       if (!mounted) return;
       setState(
-        () => _items = List<BinderChecklistItem>.unmodifiable(
-          items.where((item) => item.activeQuantity > 0),
-        ),
+        () => _items = List<BinderChecklistItem>.unmodifiable(visibleItems),
       );
     } on BinderException catch (failure) {
       if (mounted) setState(() => _failure = failure);
@@ -490,6 +508,15 @@ class _BinderContentsTabState extends State<_BinderContentsTab> {
             )
           else ...[
             Padding(
+              padding: const EdgeInsets.fromLTRB(4, 8, 4, 4),
+              child: Text(
+                'Long press a card, then drag it into position. Your layout is saved on this device.',
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
+              ),
+            ),
+            Padding(
               padding: const EdgeInsets.fromLTRB(4, 10, 4, 14),
               child: Text(
                 '${_items.length} ${_items.length == 1 ? 'card' : 'cards'} · '
@@ -500,7 +527,8 @@ class _BinderContentsTabState extends State<_BinderContentsTab> {
             BinderPageArrangement(
               key: const ValueKey('binder-live-contents-pages'),
               slots: slots,
-              allowReorder: false,
+              allowReorder: true,
+              movesSaved: true,
               onInspect: (slot) {
                 final index = slots.indexOf(slot);
                 if (index >= 0) {
@@ -513,7 +541,25 @@ class _BinderContentsTabState extends State<_BinderContentsTab> {
                   );
                 }
               },
-              onMove: (_, _) {},
+              onMove: (from, to) {
+                if (from < 0 ||
+                    to < 0 ||
+                    from >= _items.length ||
+                    to >= _items.length) {
+                  return;
+                }
+                final reordered = List<BinderChecklistItem>.of(_items);
+                reordered.insert(to, reordered.removeAt(from));
+                setState(() => _items = List.unmodifiable(reordered));
+                unawaited(
+                  _orderPreferences.save(
+                    reordered.map(
+                      (item) =>
+                          BinderCustomSlotDraft.fromChecklist(item).displayKey,
+                    ),
+                  ),
+                );
+              },
             ),
           ],
         ],

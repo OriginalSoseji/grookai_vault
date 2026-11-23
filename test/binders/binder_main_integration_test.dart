@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,6 +19,7 @@ import '../support/collector_refinement/binder_library_repository.dart';
 import 'binder_refinement_test.dart' as f;
 import 'binder_editor_navigation_test.dart' as nav;
 import 'binder_page_picker_test.dart' as picker;
+import 'binder_drag_arrangement_test.dart' as drag;
 
 PreviewBinderLibraryRepository repository({int firstRequiredQuantity = 1}) =>
     PreviewBinderLibraryRepository(
@@ -363,6 +366,37 @@ void main() {
       expect(tester.takeException(), isNull);
     },
   );
+  testWidgets('live Binder Contents long-press move saves device-local order', (
+    tester,
+  ) async {
+    final repo = repository();
+    final firstCardId = previewCatalog[0]['id']!;
+    final secondCardId = previewCatalog[1]['id']!;
+    repo.activeContributions[firstCardId] = 1;
+    repo.activeContributions[secondCardId] = 1;
+    await mount(tester, repo);
+    await openBinder(tester, 'Private Binder · Sample');
+    await tester.pumpAndSettle();
+
+    final gesture = await drag.lift(tester, 0);
+    await drag.hover(tester, gesture, 1);
+    await gesture.up();
+    await tester.pumpAndSettle();
+
+    final savedOrder = SharedPreferences.getInstance().then(
+      (preferences) => preferences.getString(
+        'binder_contents_order_v1_${PreviewBinderLibraryRepository.privateId}',
+      ),
+    );
+    expect(
+      await savedOrder,
+      jsonEncode([
+        '$secondCardId:${f.anyFinish.cardPrintingId ?? 'any'}',
+        '$firstCardId:${f.anyFinish.cardPrintingId ?? 'any'}',
+      ]),
+    );
+    expect(tester.takeException(), isNull);
+  });
   testWidgets(
     'create presets remain main-build Personal Shared/family and Community',
     (tester) async {
