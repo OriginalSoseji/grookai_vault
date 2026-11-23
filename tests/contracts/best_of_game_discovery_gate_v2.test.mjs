@@ -47,7 +47,7 @@ test('BOG V2 retains the immutable candidate after the independently applied pri
  assert.equal(typed.baselineMigrations,517);assert.equal(typed.targetMigrations,518);
  assert.deepEqual(typed.history,{...visible.history,...visible.candidates});
  assert.deepEqual(typed.candidates,{"20261122194000_identity_typed_scope_exclusions_v1.sql":"8c662dcb24ea7bb00e80b108e7d195ab77debdba28215a1c1641b62c6ab7a069"});
- assert.deepEqual(fs.readdirSync(root+'/supabase/migrations').filter(f=>/^\d+.*\.sql$/.test(f)).sort(),Object.keys({...typed.history,...typed.candidates}).sort());
+ const cardSearch=read('best_of_game_discovery_candidate_v11.json');assert.equal(cardSearch.baselineMigrations,518);assert.equal(cardSearch.targetMigrations,519);assert.deepEqual(cardSearch.history,{...typed.history,...typed.candidates});assert.deepEqual(cardSearch.candidates,{'20261123000500_card_search_typed_scope_v2.sql':'70424426ca5b1a57bd47da5b8cd0273f53beced68688990dee9727496871a3f7'});assert.deepEqual(fs.readdirSync(root+'/supabase/migrations').filter(f=>/^\d+.*\.sql$/.test(f)).sort(),Object.keys({...cardSearch.history,...cardSearch.candidates}).sort());for(const[file,hash]of Object.entries(cardSearch.candidates))assert.equal(sha(fs.readFileSync(root+'/supabase/migrations/'+file)),hash,file);
  for(const[file,hash]of Object.entries(typed.candidates))assert.equal(sha(fs.readFileSync(root+'/supabase/migrations/'+file)),hash,file);
  for(const [file,hash]of Object.entries(sources))assert.equal(sha(fs.readFileSync(root+'/supabase/migrations/'+file)),hash,file);
  for(const [file,hash]of Object.entries(forward.candidates))assert.equal(sha(fs.readFileSync(root+'/supabase/migrations/'+file)),hash,file);

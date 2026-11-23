@@ -1,3 +1,15 @@
+# Duplicate-set typed card-search V11 — November22,2026
+
+Follow [the V11 release contract](BEST_OF_GAME_DISCOVERY_READ_REPAIR_V11.md).
+Production518 retained all120 data scopes but failed the mcd21 card-search API
+at3097ms. Keep the consumed identity apply and failure immutable; no retry can
+replace that result. Main stays held at bab8654f. The new000500 SQL needs its
+own fully qualified exact-source owner decision. Preserve all earlier SQL and
+the original5832/972 comparison limits and13:59:40Z November23 expiry. Only
+normal API/data/security/concurrent-sample acceptance, merge and matching
+Production25-page acceptance permit restoring original controls and ending
+the shared merge pause. Stamped Reverse Holos follow that closure.
+
 # Grookai Vault — Migration Maintenance Contract (v1)
 
 ## Best of Game approved current-main integration V10 — November22,2026
