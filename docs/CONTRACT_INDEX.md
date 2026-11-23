@@ -13,6 +13,7 @@ If a contract is missing from this index, it is not authoritative.
 
 | Contract | Status | Description |
 |--------|--------|-------------|
+| EX_INTRINSIC_PRICE_ASSIGNMENT_REPAIR_V1 | Active bounded implementation; exact production approval required | docs/contracts/EX_INTRINSIC_PRICE_ASSIGNMENT_REPAIR_V1.md — Separate exact-six append-only private assignment correction after actual approved EX children; immutable held receipts, zero canonical/mapping/owner/Market writes |
 | PLAY_POKEMON_STAMP_NORMAL_EXECUTION_V1 | Active bounded implementation; exact production approval required | docs/contracts/PLAY_POKEMON_STAMP_NORMAL_EXECUTION_V1.md —43 two-source Normal facts, exact nine-set counts/reference preservation, separate approval/rollback/readback gates; no execution authority granted |
 | EX_INTRINSIC_PRINTING_EXECUTION_V2 | Active bounded implementation; exact production approval required | docs/contracts/EX_INTRINSIC_PRINTING_EXECUTION_V2.md — Audited Dragonair δ 28 overview correction; identical six immutable facts and V1 executor protocol, complete V2 producer binding and unchanged approval/rollback gates |
 | EX_INTRINSIC_PRINTING_EXECUTION_V1 | Superseded by V2 | docs/contracts/EX_INTRINSIC_PRINTING_EXECUTION_V1.md — Historical overview retained; its ex15 human-readable name is corrected by the audited V2 contract, without changing the frozen manifest or scope |

@@ -1,3 +1,19 @@
+# Exact EX price evidence correction — November22,2026
+
+The [separate six-assignment contract](../contracts/EX_INTRINSIC_PRICE_ASSIGNMENT_REPAIR_V1.md)
+and `scripts/audits/ex_intrinsic_price_assignment_repair_v1.mjs` govern six
+append-only private receipts after the actual approved EX printing batch. Existing
+V1 held receipts are immutable; normal preparation alone will not upgrade them.
+Prepare read-only using the original canonical plan/source bytes, then obtain
+exact stage plan/complete-producer approval and run preflight, actual rollback,
+apply and independent readback. Prospective preparation is explicitly not actual
+canonical readiness. Partial/colliding rows, schema/source/mapping drift and
+unknown exact-printing assertions stop execution. No old-row, source observation,
+canonical, mapping, owner or Market mutation belongs to this correction. New
+receipts keep all public flags false. The subsequent complete worker27 shadow
+and ordinary guarded activation remain mandatory. Local449-table/duplicate-key/
+role checks passed without Auth users; retained labs must not be reset/reseeded.
+
 # Numbered singles and exact EX printing preparation — November22,2026
 
 Use `C:/grookai_stamp_completion_20261122` and the

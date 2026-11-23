@@ -73,3 +73,21 @@ Private receipts are under
 `C:/grookai_vault_operator_artifacts/stamp_price_completion_20261122/`:
 `census-v1-r2`, `six-child-plan-v1-r4`, `local-history-517-v1`, and
 `local-execution-v1-r2`. They contain operational evidence, not execution authority.
+
+The separate [exact-six assignment correction](../contracts/EX_INTRINSIC_PRICE_ASSIGNMENT_REPAIR_V1.md)
+addresses an additional verified publication dependency. The six current
+November22 EX observations already have immutable held V1 assignments; normal
+preparation does not upgrade those receipts when canonical children appear.
+The bounded new stage appends six private V1_1 assignments only after all actual
+approved children/reviews/raw exist. Old receipts and source observations remain
+unchanged; canonical, mapping, ownership and Market writes are zero in this stage.
+Existing candidate-view precedence selects the corrected exact-child evidence.
+
+Read-only production schema/source capture passed at schema518. The owned cloned
+local database passed preflight, six-insert rollback, actual duplicate-key
+rollback, durable apply, independent readback, zero-write repeat, and three-role
+privacy checks. All449 protected tables changed only by six ledger inserts;
+Auth users stayed zero. This bounded fixture is not a full warehouse/shadow
+qualification. Seven focused regressions passed. Actual production application
+still requires its own exact founder-approved plan/producer and fresh rollback.
+No second warehouse HTTP download or cached-payload re-dating is needed.
