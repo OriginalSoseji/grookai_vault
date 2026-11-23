@@ -229,3 +229,19 @@ test('continuous runner verifies completion and regenerates partial packages', (
   assert.match(source, /Remove-Item -LiteralPath \$reviewRoot -Recurse -Force/);
   assert.doesNotMatch(source, /Test-Path -LiteralPath \$reviewSummary[\s\S]{0,120}Reusing completed/);
 });
+
+test('continuous runner preserves completed input provenance across unchanged hosted runs', () => {
+  const source = fs.readFileSync(path.join(
+    ROOT,
+    'scripts/ops/run_continuous_pricing_triage_v2.ps1',
+  ), 'utf8');
+  assert.match(source, /function Get-CompletedSourceCommit/);
+  assert.match(source, /\$completion\.input_sha256 -ne \$ExpectedInputSha/);
+  assert.match(source, /\$completion\.github_head_sha/);
+  assert.match(source, /\^\[a-f0-9\]\{40\}\$/);
+  assert.match(source, /-SourceCommit \$completedSourceCommit/);
+  assert.doesNotMatch(
+    source,
+    /if \(Test-Path -LiteralPath \$completePath -PathType Leaf\)[\s\S]{0,700}-SourceCommit \(\[string\]\$latestRun\.headSha\)/,
+  );
+});

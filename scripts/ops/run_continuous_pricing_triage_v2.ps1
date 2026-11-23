@@ -28,6 +28,27 @@ function Invoke-Checked([string]$FilePath, [string[]]$Arguments, [string]$Label)
   return @($commandOutput)
 }
 
+function Get-CompletedSourceCommit(
+  [string]$CompletePath,
+  [string]$ExpectedInputSha
+) {
+  if (-not (Test-Path -LiteralPath $CompletePath -PathType Leaf)) {
+    throw "Completed input receipt is missing: $CompletePath"
+  }
+  $completion = Get-Content -LiteralPath $CompletePath -Raw | ConvertFrom-Json
+  if ([string]$completion.schema_version -ne 'GROOKAI_OLLAMA_CONTINUOUS_TRIAGE_V2') {
+    throw "Completed input receipt schema is invalid: $CompletePath"
+  }
+  if ([string]$completion.input_sha256 -ne $ExpectedInputSha) {
+    throw "Completed input receipt does not match input $ExpectedInputSha."
+  }
+  $sourceCommit = ([string]$completion.github_head_sha).Trim().ToLowerInvariant()
+  if ($sourceCommit -notmatch '^[a-f0-9]{40}$') {
+    throw "Completed input receipt has an invalid source commit: $CompletePath"
+  }
+  return $sourceCommit
+}
+
 function Ensure-MtgGlobalExactReviewQueue(
   [string]$ReviewQueueScript,
   [string]$InputStateDir,
@@ -130,11 +151,15 @@ try {
   }
 
   if (Test-Path -LiteralPath $completePath -PathType Leaf) {
+    $completedSourceCommit = Get-CompletedSourceCommit `
+      -CompletePath $completePath `
+      -ExpectedInputSha $inputSha
     $reviewSummary = Ensure-MtgGlobalExactReviewQueue `
       -ReviewQueueScript $reviewQueueScript `
       -InputStateDir $inputStateDir `
-      -SourceCommit ([string]$latestRun.headSha)
+      -SourceCommit $completedSourceCommit
     $latestReceipt.status = 'unchanged_input_already_complete'
+    $latestReceipt.completed_input_source_commit = $completedSourceCommit
     $latestReceipt.mtg_global_exact_review_summary = $reviewSummary
     $latestReceipt | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $latestReceiptPath -Encoding utf8
     Remove-Item -LiteralPath $downloadDir -Recurse -Force
