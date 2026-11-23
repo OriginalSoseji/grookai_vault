@@ -16,11 +16,17 @@ currently priced child. A childless/other-finish-only classification does not
 prove a physically missing Reverse. Preserve source/variant/finish boundaries.
 
 The first separately reviewed intrinsic EX repair concerns ordinary base
-Metang δ 49 (ex11), Exeggutor δ 41 (ex13), and Seadra δ 28 (ex15). It adds one
+Metang δ 49 (ex11), Exeggutor δ 41 (ex13), and Dragonair δ 28 (ex15). It adds one
 Normal and one Reverse per parent, with one raw receipt and six verified reviews.
 It does not close the separate 357-parent explicit-stamp backlog. Private original
 images/PDFs stay outside this public repository; checked-in manifests and review
 bindings preserve their exact hashes and original review times.
+
+The [scope-name audit](../audits/EX_INTRINSIC_SCOPE_NAME_AUDIT_20261122.md)
+corrects the old ex15 overview label through
+[execution contract V2](../contracts/EX_INTRINSIC_PRINTING_EXECUTION_V2.md).
+All original facts, UUIDs, source bytes and the six-child plan remain unchanged;
+the complete producer fingerprint changes to bind the audited contract.
 
 Fresh canonical preparation passed with 329 parents/620 retained children and
 620 actual visible options across the three sets. Six additions produce 626

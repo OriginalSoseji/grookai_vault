@@ -15,7 +15,7 @@ Require V1_27's own complete same-runtime shadow, coverage/provenance checks,
 guarded activation and independent consumer readback. Never reuse V1_26's partial
 publication shadow, treat cancellation as qualification or relax another hold.
 
-The separate [EX execution contract](../contracts/EX_INTRINSIC_PRINTING_EXECUTION_V1.md)
+The separate [EX execution contract V2](../contracts/EX_INTRINSIC_PRINTING_EXECUTION_V2.md)
 and `scripts/audits/ex_intrinsic_printing_execution_v1.mjs` prepare exactly six
 Normal/Reverse children under three reviewed EX base parents. Preparation and
 source qualification grant no canonical write authority. The executor requires
@@ -25,6 +25,11 @@ readback. Preserve all329 parents/620 retained children, existing assignments
 and unassigned copies. This six-finish lane does not close the explicit-stamp
 backlog. Use the combined checkpoint's census to distinguish missing physical
 facts, unresolved mapping/finish authority, held products and absent quotes.
+V2's [scope-name audit](../audits/EX_INTRINSIC_SCOPE_NAME_AUDIT_20261122.md)
+corrects the overview to Dragonair δ 28 (ex15). The exact six facts, UUIDs,
+source bytes and V1 executor protocol are unchanged. The
+[historical V1 overview](../contracts/EX_INTRINSIC_PRINTING_EXECUTION_V1.md)
+stays preserved; the producer must bind V2 and its audit before approval.
 
 # Play! Pokémon exact condition references V4 — November22,2026
 
