@@ -27,6 +27,7 @@ export type VaultValueSummary = {
   totalRawCopyCount: number;
   unpricedCopyCount: number;
   latestPricingUpdateAt: string | null;
+  latestPricingSourceUpdateAt?: string | null;
 };
 
 export type OwnerVaultItemsResult = {
@@ -64,6 +65,7 @@ export function buildVaultValueSummary(rows: CanonicalVaultCollectorRow[]): Vaul
   let totalRawCopyCount = 0;
   let unpricedCopyCount = 0;
   let latestPricingUpdateAt: string | null = null;
+  let latestPricingSourceUpdateAt: string | null = null;
 
   for (const row of rows) {
     pricedCopyCount += row.priced_raw_copy_count;
@@ -76,6 +78,14 @@ export function buildVaultValueSummary(rows: CanonicalVaultCollectorRow[]): Vaul
     pricedGroupedCount += 1;
     totalEstimatedValue += row.effective_price;
     latestPricingUpdateAt = pickLatestIsoTimestamp(latestPricingUpdateAt, row.pricing_updated_at ?? null);
+    for (const copy of row.copy_items ?? []) {
+      if (typeof copy.market_price === "number" && copy.market_price > 0 &&
+          copy.pricing_observed_at && Number.isFinite(Date.parse(copy.pricing_observed_at))) {
+        latestPricingSourceUpdateAt = pickLatestIsoTimestamp(
+          latestPricingSourceUpdateAt, copy.pricing_observed_at,
+        );
+      }
+    }
   }
 
   return {
@@ -86,6 +96,7 @@ export function buildVaultValueSummary(rows: CanonicalVaultCollectorRow[]): Vaul
     totalRawCopyCount,
     unpricedCopyCount,
     latestPricingUpdateAt,
+    latestPricingSourceUpdateAt,
   };
 }
 

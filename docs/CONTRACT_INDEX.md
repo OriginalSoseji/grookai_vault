@@ -211,6 +211,8 @@ If a contract is missing from this index, it is not authoritative.
 
 | Contract | Status | Description |
 |--------|--------|-------------|
+| MARKET_PRICE_RETENTION_DISPLAY_V1 | Active | [MARKET_PRICE_RETENTION_DISPLAY_V1](contracts/MARKET_PRICE_RETENTION_DISPLAY_V1.md) — Owner November 23 rule: retain last qualified published exact prices indefinitely with source update dates; supersedes age-based display withholding only, preserving fresh-publication and coverage guards |
+| MARKET_PRICE_RETENTION_SCHEMA_BASELINE_V1 | Active | [MARKET_PRICE_RETENTION_SCHEMA_BASELINE_V1](contracts/MARKET_PRICE_RETENTION_SCHEMA_BASELINE_V1.md) — Exact520 read-only baseline qualification using genuine reset, explicit historical catalog prerequisites, unchanged CLI history, four-schema/security equality; no candidate or apply authority |
 | PRICING_ENGINE_V1 | Active | Active listings-based pricing engine |
 | PRICING_ENGINE_V1_5 | Active | Condition curve pricing (NM → DMG) |
 | PRICING_MONITOR_V1 | Planned | Scheduler-driven pricing refresh system |
