@@ -6,10 +6,14 @@ The [numbered-single pricing checkpoint](../checkpoints/pricing/ONE_PIECE_NUMBER
 records worker V1_27: exact governed One Piece singles with an official printed
 Number and CardType can retain eligibility when their titles mention a Premium
 Card Collection or Pre-Release Tournament. The read-only replay covers357
-positive-quote printings; it is not proof of production publication. Finish the
-V1_26 release below first, then require V1_27's own complete same-runtime shadow,
-coverage/provenance checks, guarded activation and independent consumer readback.
-Never reuse V1_26's publication shadow for V1_27 or relax another product hold.
+positive-quote printings; it is not proof of production publication. V1_27 also
+contains the unchanged V1_26 Cosmo guard and supersedes that unpublished release.
+Safely drain the owned V1_26 shadow and preserve its cancelled/partial evidence;
+the existing V1_25 publication stays live. The completed verified full warehouse
+refresh may be reused only while it remains the latest fresh generation.
+Require V1_27's own complete same-runtime shadow, coverage/provenance checks,
+guarded activation and independent consumer readback. Never reuse V1_26's partial
+publication shadow, treat cancellation as qualification or relax another hold.
 
 The separate [EX execution contract](../contracts/EX_INTRINSIC_PRINTING_EXECUTION_V1.md)
 and `scripts/audits/ex_intrinsic_printing_execution_v1.mjs` prepare exactly six
