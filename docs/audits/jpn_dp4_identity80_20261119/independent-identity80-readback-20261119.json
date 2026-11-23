@@ -1,0 +1,24 @@
+{
+  "version": "JPN_DP4_IDENTITY80_INDEPENDENT_READBACK_V1",
+  "verified_at": "2026-11-20T06:22:12.316Z",
+  "status": "passed",
+  "scope": "Separate read-only database snapshot; checks 80 parent, identity, species-link and species postimages plus eight receipt/source packages.",
+  "sanity": {
+    "read_only": "on",
+    "parents": 173837,
+    "sets": 3420,
+    "traits": 47409
+  },
+  "records": 80,
+  "chunks": 8,
+  "receipt_ids": [
+    "177035",
+    "177039",
+    "177043",
+    "177047",
+    "177051",
+    "177055",
+    "177059",
+    "177063"
+  ]
+}

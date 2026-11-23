@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:27:31.320Z",
+  "gv_id": "GV-PK-JPN-DP4-048",
+  "card_print_id": "d04d1ed4-4f2c-46ba-9863-780af748ddc4",
+  "catalog_coordinate": "048",
+  "catalog_name": "ハンテール",
+  "official_id": "10048",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10048/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10048/regu/all",
+    "status": 200,
+    "sha256": "46531ee1b77db0ddb50a132b92ef91e390053031cffc0e4f688c06c13cbd9f39",
+    "bytes": 10724
+  },
+  "heading": "ハンテール",
+  "artist": "Ken Sugimori",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010048_P_HANTERU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010048_P_HANTERU.jpg",
+    "status": 200,
+    "sha256": "b8fca6b3181050d0b4a6a8394736a285ee639a03240acff5950b77bf7e62d656",
+    "bytes": 62183,
+    "catalog_path_hash_prefix": "b8fca6b3181050d0b4a6a839",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

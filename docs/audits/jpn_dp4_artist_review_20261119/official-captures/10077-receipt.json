@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:20:40.626Z",
+  "gv_id": "GV-PK-JPN-DP4-077",
+  "card_print_id": "21078eee-1e6e-4266-a3c5-ff133a4fe0d2",
+  "catalog_coordinate": "077",
+  "catalog_name": "クレセリア",
+  "official_id": "10077",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10077/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10077/regu/all",
+    "status": 200,
+    "sha256": "3dc817949a9cff5238688111e23717062aa82bb1d44c87e7a187c667205d176d",
+    "bytes": 10084
+  },
+  "heading": "クレセリア",
+  "artist": "Shizurow",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010077_P_KURESERIA.gif",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010077_P_KURESERIA.gif",
+    "status": 200,
+    "sha256": "41d34c55b4ffeba5f5f2b95e26d5d07cc545320d91c01ebc1db05491c0ad7623",
+    "bytes": 55568,
+    "catalog_path_hash_prefix": "6afb03107cdee152e876fd98",
+    "hash_prefix_matches": false
+  },
+  "disposition": "needs_manual_review",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

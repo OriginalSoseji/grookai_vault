@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:27:11.287Z",
+  "gv_id": "GV-PK-JPN-DP4-116",
+  "card_print_id": "bfd5b8f5-b6aa-477b-bb1c-bb0029743b25",
+  "catalog_coordinate": "116",
+  "catalog_name": "バクオング",
+  "official_id": "10116",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10116/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10116/regu/all",
+    "status": 200,
+    "sha256": "cdc51f759ccfb30f6a6ea02ca030df5dbeaf6010daa724b245f16b3a63ddf3d0",
+    "bytes": 10956
+  },
+  "heading": "バクオング",
+  "artist": "Daisuke Ito",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010116_P_BAKUONGU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010116_P_BAKUONGU.jpg",
+    "status": 200,
+    "sha256": "a6977c413e3b3300b4abad92a3a6d759c51cc0a88c2b33d3cab7f3528dc8e6e2",
+    "bytes": 51848,
+    "catalog_path_hash_prefix": "a6977c413e3b3300b4abad92",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

@@ -4,6 +4,14 @@ import { recordValidationFailureV1 } from './validate_write_v1.mjs';
 // LOCK: Proof mode must be explicit for every canon-affecting execution that uses the shared executor.
 
 export const POST_WRITE_PROOF_MODES_V1 = {
+  catalog_jpn_dp4_subject_repair_v1: 'transactional_authoritative',
+  catalog_jpn_dp4_family_containment_v1: 'transactional_authoritative',
+  catalog_jpn_dp4_artist12_v1: 'transactional_authoritative',
+  catalog_jpn_dp4_unown6_v1: 'transactional_authoritative',
+  catalog_jpn_dp4_porygon2_v1: 'transactional_authoritative',
+  catalog_jpn_dp4_artist8_v1: 'transactional_authoritative',
+  catalog_jpn_dp4_artist84_v1: 'transactional_authoritative',
+  catalog_jpn_dp4_identity80_v1: 'transactional_authoritative',
   external_discovery_to_warehouse_bridge_v1: 'transactional_authoritative',
   classification_apply_write_plan_v1: 'transactional_authoritative',
   classification_apply_reclassification_result_v1: 'transactional_authoritative',

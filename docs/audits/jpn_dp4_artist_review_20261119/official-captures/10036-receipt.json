@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:28:40.846Z",
+  "gv_id": "GV-PK-JPN-DP4-036",
+  "card_print_id": "fc1d2bc1-23e6-45dd-9acd-ed73504cdb9a",
+  "catalog_coordinate": "036",
+  "catalog_name": "フリーザー",
+  "official_id": "10036",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10036/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10036/regu/all",
+    "status": 200,
+    "sha256": "9a59c997aa0a558d1db727bbb1e3ee498bd31aa653609e319dcd34a57985eb6b",
+    "bytes": 10299
+  },
+  "heading": "フリーザー",
+  "artist": "Masakazu Fukuda",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010036_P_FURIZA.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010036_P_FURIZA.jpg",
+    "status": 200,
+    "sha256": "3f01862a4e1ad3ad27b1f91b710d1a067e2ffa104a375676ac49781de055d093",
+    "bytes": 65193,
+    "catalog_path_hash_prefix": "3f01862a4e1ad3ad27b1f91b",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

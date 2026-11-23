@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:27:08.588Z",
+  "gv_id": "GV-PK-JPN-DP4-047",
+  "card_print_id": "ba9c1d04-b70d-4e65-a136-abeb5ad86d43",
+  "catalog_coordinate": "047",
+  "catalog_name": "パールル",
+  "official_id": "10047",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10047/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10047/regu/all",
+    "status": 200,
+    "sha256": "aa6e7a1ab3b5a311c5c2149c2239ad5abf39c93252b22d9af1d7a03335a9040e",
+    "bytes": 10514
+  },
+  "heading": "パールル",
+  "artist": "Ken Sugimori",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010047_P_PARURU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010047_P_PARURU.jpg",
+    "status": 200,
+    "sha256": "e9f90733dd5d3d7ba641b3a662a5e8364281fb5501b606814a4da6231214c294",
+    "bytes": 60292,
+    "catalog_path_hash_prefix": "e9f90733dd5d3d7ba641b3a6",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

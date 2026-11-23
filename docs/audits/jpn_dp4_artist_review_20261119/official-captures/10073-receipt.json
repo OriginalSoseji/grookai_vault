@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:22:24.417Z",
+  "gv_id": "GV-PK-JPN-DP4-073",
+  "card_print_id": "5ee56680-3d7e-48ad-86ed-05fde0622df3",
+  "catalog_coordinate": "073",
+  "catalog_name": "サーナイト",
+  "official_id": "10073",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10073/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10073/regu/all",
+    "status": 200,
+    "sha256": "e3315a61538ca603b30459f0eb894a5994f39ebc6f7cae55eb3e8d92ef865fa4",
+    "bytes": 11907
+  },
+  "heading": "サーナイト",
+  "artist": "Atsuko Nishida",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010073_P_SANAITO.gif",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010073_P_SANAITO.gif",
+    "status": 200,
+    "sha256": "18fa199d5721017806e842e1255c88e59e62aa5563eecb87e6be40fbda797822",
+    "bytes": 57497,
+    "catalog_path_hash_prefix": "94a8abba5f990f938b4a2da7",
+    "hash_prefix_matches": false
+  },
+  "disposition": "needs_manual_review",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

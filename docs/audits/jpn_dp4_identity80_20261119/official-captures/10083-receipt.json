@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:23:23.036Z",
+  "gv_id": "GV-PK-JPN-DP4-083",
+  "card_print_id": "8eb57bcb-1dc5-4688-a351-416cf25f0642",
+  "catalog_coordinate": "083",
+  "catalog_name": "ハリテヤマ",
+  "official_id": "10083",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10083/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10083/regu/all",
+    "status": 200,
+    "sha256": "45ac6dff3f006ab12a5d021c915f9fa9b8badb83552863c8d6b211b75a4c0649",
+    "bytes": 10606
+  },
+  "heading": "ハリテヤマ",
+  "artist": "Mitsuhiro Arita",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010083_P_HARITEYAMA.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010083_P_HARITEYAMA.jpg",
+    "status": 200,
+    "sha256": "0ad8e25dc4e9735b5059b99d9e2b5b5e4324ab1c0bb8a3db9f0a73683e0e2ff8",
+    "bytes": 60625,
+    "catalog_path_hash_prefix": "0ad8e25dc4e9735b5059b99d",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

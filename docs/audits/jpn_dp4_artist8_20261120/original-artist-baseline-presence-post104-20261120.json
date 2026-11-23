@@ -1,0 +1,18 @@
+{
+  "captured_at": "2026-11-20T10:41:08.468Z",
+  "project_ref": "ycdxbpibncqcchqiihfz",
+  "sanity": {
+    "read_only": "on",
+    "parents": 173837,
+    "sets": 3420,
+    "traits": 47409
+  },
+  "scope": "Presence only for original 30,924 IDs; does not verify artist correctness, approvals, or disposition of retired/suppressed records.",
+  "counts": {
+    "baseline": 30924,
+    "found": 30924,
+    "missing": 0,
+    "artist_nonblank": 24080,
+    "artist_null_or_blank": 6844
+  }
+}

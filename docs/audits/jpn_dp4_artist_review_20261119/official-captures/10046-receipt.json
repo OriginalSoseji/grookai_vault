@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:20:54.897Z",
+  "gv_id": "GV-PK-JPN-DP4-046",
+  "card_print_id": "2b0d3d6f-d010-47a2-afde-d5cc84f899d3",
+  "catalog_coordinate": "046",
+  "catalog_name": "ミロカロス",
+  "official_id": "10046",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10046/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10046/regu/all",
+    "status": 200,
+    "sha256": "1edeb29e55d66e9fd5a6c374aaebc3b70c24b9b656d5f03885d6b9f0b904093d",
+    "bytes": 10755
+  },
+  "heading": "ミロカロス",
+  "artist": "Suwama Chiaki",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010046_P_MIROKAROSU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010046_P_MIROKAROSU.jpg",
+    "status": 200,
+    "sha256": "502e8ed5608be7708774681fe38f6e7154732ca34e14d46a7ba38adb563ca791",
+    "bytes": 63432,
+    "catalog_path_hash_prefix": "502e8ed5608be7708774681f",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

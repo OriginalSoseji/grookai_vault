@@ -1,0 +1,1355 @@
+{
+  "generated_at": "2026-11-20T05:57:10.475Z",
+  "scope": "Heuristic offline intersection only. No current owner recheck, writer, source admission, rollback proof or database write.",
+  "reviewed_image_matches": 118,
+  "flags": 82,
+  "candidates": 80,
+  "held": [
+    {
+      "gv_id": "GV-PK-JPN-DP4-092",
+      "card_print_id": "4fe36686-021f-45e3-9fd6-ca53e37fa5e0",
+      "japanese": "ドンカラス",
+      "expected_en": "Honchkrow",
+      "expected_dex": 430,
+      "official_id": "10092",
+      "official_dex": null,
+      "official_match": false,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Porygon (Moonlit Pursuit & Dawn Dash No. 092)"
+      ],
+      "disposition": "hold"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-122",
+      "card_print_id": "e29e89d3-59ca-40dd-8b75-740be5894897",
+      "japanese": "ガブリアス",
+      "expected_en": "Garchomp",
+      "expected_dex": 445,
+      "official_id": "10122",
+      "official_dex": null,
+      "official_match": false,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Skarmory (Moonlit Pursuit & Dawn Dash No. 122)"
+      ],
+      "disposition": "hold"
+    }
+  ],
+  "rows": [
+    {
+      "gv_id": "GV-PK-JPN-DP4-001",
+      "card_print_id": "8c2c466c-4380-4d68-b358-4e2e0a9aa5e3",
+      "japanese": "キャタピー",
+      "expected_en": "Caterpie",
+      "expected_dex": 10,
+      "official_id": "10001",
+      "official_dex": 10,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Weedle (Moonlit Pursuit & Dawn Dash No. 001)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-002",
+      "card_print_id": "3e86af07-9a62-4778-bb77-7ac9ac1300b2",
+      "japanese": "トランセル",
+      "expected_en": "Metapod",
+      "expected_dex": 11,
+      "official_id": "10002",
+      "official_dex": 11,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Kakuna (Moonlit Pursuit & Dawn Dash No. 002)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-003",
+      "card_print_id": "9ce3e818-bf23-4b8e-9234-df1a97d9434e",
+      "japanese": "バタフリー",
+      "expected_en": "Butterfree",
+      "expected_dex": 12,
+      "official_id": "10003",
+      "official_dex": 12,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Beedrill (Moonlit Pursuit & Dawn Dash No. 003)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-004",
+      "card_print_id": "dec0eefd-2042-4edf-b8cc-37267d99abfa",
+      "japanese": "ビードル",
+      "expected_en": "Weedle",
+      "expected_dex": 13,
+      "official_id": "10004",
+      "official_dex": 13,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Tangela (Moonlit Pursuit & Dawn Dash No. 004)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-005",
+      "card_print_id": "ae26ea99-ade1-4d10-a364-cf0e3b5ac014",
+      "japanese": "コクーン",
+      "expected_en": "Kakuna",
+      "expected_dex": 14,
+      "official_id": "10005",
+      "official_dex": 14,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Tangrowth (Moonlit Pursuit & Dawn Dash No. 005)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-006",
+      "card_print_id": "d510e101-1a1c-4cca-b6f0-088706f06be0",
+      "japanese": "スピアー",
+      "expected_en": "Beedrill",
+      "expected_dex": 15,
+      "official_id": "10006",
+      "official_dex": 15,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Scyther (Moonlit Pursuit & Dawn Dash No. 006)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-007",
+      "card_print_id": "169f7c7c-8dc3-4560-a5e1-f9b7101900b0",
+      "japanese": "モンジャラ",
+      "expected_en": "Tangela",
+      "expected_dex": 114,
+      "official_id": "10007",
+      "official_dex": 114,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Volbeat (Moonlit Pursuit & Dawn Dash No. 007)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-009",
+      "card_print_id": "a0af053b-a5ce-43a3-8135-f565d55a278f",
+      "japanese": "ストライク",
+      "expected_en": "Scyther",
+      "expected_dex": 123,
+      "official_id": "10009",
+      "official_dex": 123,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Metapod (Moonlit Pursuit & Dawn Dash No. 009)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-015",
+      "card_print_id": "15b46348-6cc3-4d04-9afa-72212e9bc04c",
+      "japanese": "バルビート",
+      "expected_en": "Volbeat",
+      "expected_dex": 313,
+      "official_id": "10015",
+      "official_dex": 313,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Illumise (Moonlit Pursuit & Dawn Dash No. 015)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-016",
+      "card_print_id": "869b9dc9-b7db-42dc-a271-001fe4d9d4ee",
+      "japanese": "イルミーゼ",
+      "expected_en": "Illumise",
+      "expected_dex": 314,
+      "official_id": "10016",
+      "official_dex": 314,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Cacnea (Moonlit Pursuit & Dawn Dash No. 016)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-017",
+      "card_print_id": "9c9abd14-264d-4655-96cf-2ae9527299ea",
+      "japanese": "サボネア",
+      "expected_en": "Cacnea",
+      "expected_dex": 331,
+      "official_id": "10017",
+      "official_dex": 331,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Leafeon LV.X (Moonlit Pursuit & Dawn Dash No. 017)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-018",
+      "card_print_id": "cdf8bcb5-965e-450b-be84-5f4c5cc1308c",
+      "japanese": "ブースター",
+      "expected_en": "Flareon",
+      "expected_dex": 136,
+      "official_id": "10018",
+      "official_dex": 136,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Houndour (Moonlit Pursuit & Dawn Dash No. 018)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-019",
+      "card_print_id": "4efeb6bc-6616-4cd9-b373-27c2c974a6f7",
+      "japanese": "ファイヤー",
+      "expected_en": "Moltres",
+      "expected_dex": 146,
+      "official_id": "10019",
+      "official_dex": 146,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Torchic (Moonlit Pursuit & Dawn Dash No. 019)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-020",
+      "card_print_id": "8f75e23e-806d-4533-88cd-70dc16f96e75",
+      "japanese": "マグマッグ",
+      "expected_en": "Slugma",
+      "expected_dex": 218,
+      "official_id": "10020",
+      "official_dex": 218,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Combusken (Moonlit Pursuit & Dawn Dash No. 020)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-021",
+      "card_print_id": "a9477142-ad33-41e7-bfc4-139dc7749003",
+      "japanese": "マグカルゴ",
+      "expected_en": "Magcargo",
+      "expected_dex": 219,
+      "official_id": "10021",
+      "official_dex": 219,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Blaziken (Moonlit Pursuit & Dawn Dash No. 021)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-022",
+      "card_print_id": "ddaf6798-b4ac-480e-98ac-ee2514525f26",
+      "japanese": "デルビル",
+      "expected_en": "Houndour",
+      "expected_dex": 228,
+      "official_id": "10022",
+      "official_dex": 228,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Flareon (Moonlit Pursuit & Dawn Dash No. 022)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-023",
+      "card_print_id": "03b2fb9c-6fd8-4141-8dc0-992fa4197c1e",
+      "japanese": "アチャモ",
+      "expected_en": "Torchic",
+      "expected_dex": 255,
+      "official_id": "10023",
+      "official_dex": 255,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Moltres (Moonlit Pursuit & Dawn Dash No. 023)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-024",
+      "card_print_id": "4f6df757-25c6-4c62-99bc-1da2e4cd1f23",
+      "japanese": "ワカシャモ",
+      "expected_en": "Combusken",
+      "expected_dex": 256,
+      "official_id": "10024",
+      "official_dex": 256,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Slugma (Moonlit Pursuit & Dawn Dash No. 024)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-028",
+      "card_print_id": "638f1ccd-64fb-4528-b160-9c2f52a191ca",
+      "japanese": "クラブ",
+      "expected_en": "Krabby",
+      "expected_dex": 98,
+      "official_id": "10028",
+      "official_dex": 98,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Vaporeon (Moonlit Pursuit & Dawn Dash No. 028)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-029",
+      "card_print_id": "ca018804-3f9e-4b76-b3d5-15e41b95e706",
+      "japanese": "キングラー",
+      "expected_en": "Kingler",
+      "expected_dex": 99,
+      "official_id": "10029",
+      "official_dex": 99,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Omanyte (Moonlit Pursuit & Dawn Dash No. 029)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-030",
+      "card_print_id": "b68c97b2-66ff-4440-aa79-04d9bbbec77c",
+      "japanese": "ラプラス",
+      "expected_en": "Lapras",
+      "expected_dex": 131,
+      "official_id": "10030",
+      "official_dex": 131,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Omastar (Moonlit Pursuit & Dawn Dash No. 030)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-031",
+      "card_print_id": "25ab646f-dcf2-4b1b-9384-0912aca9910f",
+      "japanese": "シャワーズ",
+      "expected_en": "Vaporeon",
+      "expected_dex": 134,
+      "official_id": "10031",
+      "official_dex": 134,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Mudkip (Moonlit Pursuit & Dawn Dash No. 031)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-034",
+      "card_print_id": "a8439fd1-846e-4ba4-9ec0-ec131a14f766",
+      "japanese": "オムナイト",
+      "expected_en": "Omanyte",
+      "expected_dex": 138,
+      "official_id": "10034",
+      "official_dex": 138,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Wailmer (Moonlit Pursuit & Dawn Dash No. 034)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-035",
+      "card_print_id": "45a6b93f-3db6-4e99-8881-ccac7d3ab621",
+      "japanese": "オムスター",
+      "expected_en": "Omastar",
+      "expected_dex": 139,
+      "official_id": "10035",
+      "official_dex": 139,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Wailord (Moonlit Pursuit & Dawn Dash No. 035)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-036",
+      "card_print_id": "fc1d2bc1-23e6-45dd-9acd-ed73504cdb9a",
+      "japanese": "フリーザー",
+      "expected_en": "Articuno",
+      "expected_dex": 144,
+      "official_id": "10036",
+      "official_dex": 144,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Feebas (Moonlit Pursuit & Dawn Dash No. 036)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-037",
+      "card_print_id": "e0bdf68d-c0fa-4ca0-bb28-a8a3f5829c15",
+      "japanese": "デリバード",
+      "expected_en": "Delibird",
+      "expected_dex": 225,
+      "official_id": "10037",
+      "official_dex": 225,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Milotic (Moonlit Pursuit & Dawn Dash No. 037)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-038",
+      "card_print_id": "ff408a7c-d110-472c-8e19-a2fc5c02886f",
+      "japanese": "ミズゴロウ",
+      "expected_en": "Mudkip",
+      "expected_dex": 258,
+      "official_id": "10038",
+      "official_dex": 258,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Relicanth (Moonlit Pursuit & Dawn Dash No. 038)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-039",
+      "card_print_id": "1f2f3ace-f4af-48c9-8e75-1b2ef95d96dc",
+      "japanese": "ヌマクロー",
+      "expected_en": "Marshtomp",
+      "expected_dex": 259,
+      "official_id": "10039",
+      "official_dex": 259,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Weavile (Moonlit Pursuit & Dawn Dash No. 039)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-041",
+      "card_print_id": "59cdadd8-b7bd-4683-a192-5de6140b6b0c",
+      "japanese": "キャモメ",
+      "expected_en": "Wingull",
+      "expected_dex": 278,
+      "official_id": "10041",
+      "official_dex": 278,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Kingler (Moonlit Pursuit & Dawn Dash No. 041)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-042",
+      "card_print_id": "7bd19cb1-8ec5-487e-a6e0-3c925ae0bf21",
+      "japanese": "ペリッパー",
+      "expected_en": "Pelipper",
+      "expected_dex": 279,
+      "official_id": "10042",
+      "official_dex": 279,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Lapras (Moonlit Pursuit & Dawn Dash No. 042)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-043",
+      "card_print_id": "94f89814-5859-4795-a256-4e6bc49febe7",
+      "japanese": "ホエルコ",
+      "expected_en": "Wailmer",
+      "expected_dex": 320,
+      "official_id": "10043",
+      "official_dex": 320,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Glaceon (Moonlit Pursuit & Dawn Dash No. 043)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-044",
+      "card_print_id": "b7d90e0e-3072-4af7-a87a-64c03190063a",
+      "japanese": "ホエルオー",
+      "expected_en": "Wailord",
+      "expected_dex": 321,
+      "official_id": "10044",
+      "official_dex": 321,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Articuno (Moonlit Pursuit & Dawn Dash No. 044)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-045",
+      "card_print_id": "e44753ef-a6bd-443b-81a0-8d8dc6e939f6",
+      "japanese": "ヒンバス",
+      "expected_en": "Feebas",
+      "expected_dex": 349,
+      "official_id": "10045",
+      "official_dex": 349,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Delibird (Moonlit Pursuit & Dawn Dash No. 045)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-046",
+      "card_print_id": "2b0d3d6f-d010-47a2-afde-d5cc84f899d3",
+      "japanese": "ミロカロス",
+      "expected_en": "Milotic",
+      "expected_dex": 350,
+      "official_id": "10046",
+      "official_dex": 350,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Wingull (Moonlit Pursuit & Dawn Dash No. 046)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-047",
+      "card_print_id": "ba9c1d04-b70d-4e65-a136-abeb5ad86d43",
+      "japanese": "パールル",
+      "expected_en": "Clamperl",
+      "expected_dex": 366,
+      "official_id": "10047",
+      "official_dex": 366,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Pelipper (Moonlit Pursuit & Dawn Dash No. 047)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-048",
+      "card_print_id": "d04d1ed4-4f2c-46ba-9863-780af748ddc4",
+      "japanese": "ハンテール",
+      "expected_en": "Huntail",
+      "expected_dex": 367,
+      "official_id": "10048",
+      "official_dex": 367,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Clamperl (Moonlit Pursuit & Dawn Dash No. 048)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-049",
+      "card_print_id": "0e282ae3-8775-4030-ae07-58e981b68e1a",
+      "japanese": "サクラビス",
+      "expected_en": "Gorebyss",
+      "expected_dex": 368,
+      "official_id": "10049",
+      "official_dex": 368,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Huntail (Moonlit Pursuit & Dawn Dash No. 049)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-050",
+      "card_print_id": "86651c8d-fdd8-40cc-95c7-310929946b06",
+      "japanese": "ジーランス",
+      "expected_en": "Relicanth",
+      "expected_dex": 369,
+      "official_id": "10050",
+      "official_dex": 369,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Gorebyss (Moonlit Pursuit & Dawn Dash No. 050)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-053",
+      "card_print_id": "6752210b-ce80-4a8e-a8a5-5d35ec896162",
+      "japanese": "マニューラ",
+      "expected_en": "Weavile",
+      "expected_dex": 461,
+      "official_id": "10053",
+      "official_dex": 461,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Glaceon LV.X (Moonlit Pursuit & Dawn Dash No. 053)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-055",
+      "card_print_id": "17ca7cc4-7876-4574-bdcc-b3c20f2676cc",
+      "japanese": "サンダー",
+      "expected_en": "Zapdos",
+      "expected_dex": 145,
+      "official_id": "10055",
+      "official_dex": 145,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Rotom (Moonlit Pursuit & Dawn Dash No. 055)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-058",
+      "card_print_id": "1399e503-fa92-40e1-a9f7-51e0678dabef",
+      "japanese": "アーボ",
+      "expected_en": "Ekans",
+      "expected_dex": 23,
+      "official_id": "10058",
+      "official_dex": 23,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Slowking (Moonlit Pursuit & Dawn Dash No. 058)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-059",
+      "card_print_id": "4db9306f-043c-48c2-a59f-ebc49dab4297",
+      "japanese": "アーボック",
+      "expected_en": "Arbok",
+      "expected_dex": 24,
+      "official_id": "10059",
+      "official_dex": 24,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Drowzee (Moonlit Pursuit & Dawn Dash No. 059)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-060",
+      "card_print_id": "0838b5d7-59c9-494d-b51b-0c5a43581508",
+      "japanese": "ヤドキング",
+      "expected_en": "Slowking",
+      "expected_dex": 199,
+      "official_id": "10060",
+      "official_dex": 199,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Hypno (Moonlit Pursuit & Dawn Dash No. 060)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-061",
+      "card_print_id": "ec66bd32-4eba-4ca9-8d9d-ff6fb478b3a2",
+      "japanese": "スリープ",
+      "expected_en": "Drowzee",
+      "expected_dex": 96,
+      "official_id": "10061",
+      "official_dex": 96,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Koffing (Moonlit Pursuit & Dawn Dash No. 061)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-062",
+      "card_print_id": "cbd9f026-879a-4e95-bfd4-fc477ab96593",
+      "japanese": "スリーパー",
+      "expected_en": "Hypno",
+      "expected_dex": 97,
+      "official_id": "10062",
+      "official_dex": 97,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Weezing (Moonlit Pursuit & Dawn Dash No. 062)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-063",
+      "card_print_id": "93a5ac46-54ac-42e8-a64e-461695d37c78",
+      "japanese": "ドガース",
+      "expected_en": "Koffing",
+      "expected_dex": 109,
+      "official_id": "10063",
+      "official_dex": 109,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Mewtwo (Moonlit Pursuit & Dawn Dash No. 063)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-065",
+      "card_print_id": "8eb0a52d-7ca9-4be2-ba3c-3e67313ceda1",
+      "japanese": "エーフィ",
+      "expected_en": "Espeon",
+      "expected_dex": 196,
+      "official_id": "10065",
+      "official_dex": 196,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Unown G (Moonlit Pursuit & Dawn Dash No. 065)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-079",
+      "card_print_id": "9ee7df4a-ceaf-4ae2-a461-8f7d72a19879",
+      "japanese": "オコリザル",
+      "expected_en": "Primeape",
+      "expected_dex": 57,
+      "official_id": "10079",
+      "official_dex": 57,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Hariyama (Moonlit Pursuit & Dawn Dash No. 079)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-080",
+      "card_print_id": "5d3097a7-f273-4bcc-9273-d0229d71bffc",
+      "japanese": "カブト",
+      "expected_en": "Kabuto",
+      "expected_dex": 140,
+      "official_id": "10080",
+      "official_dex": 140,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Lunatone (Moonlit Pursuit & Dawn Dash No. 080)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-081",
+      "card_print_id": "59b5340d-d441-4928-aa4b-6a851d32124e",
+      "japanese": "カブトプス",
+      "expected_en": "Kabutops",
+      "expected_dex": 141,
+      "official_id": "10081",
+      "official_dex": 141,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Mankey (Moonlit Pursuit & Dawn Dash No. 081)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-082",
+      "card_print_id": "91a451b3-9462-4781-bc15-d422778970f7",
+      "japanese": "マクノシタ",
+      "expected_en": "Makuhita",
+      "expected_dex": 296,
+      "official_id": "10082",
+      "official_dex": 296,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Primeape (Moonlit Pursuit & Dawn Dash No. 082)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-083",
+      "card_print_id": "8eb57bcb-1dc5-4688-a351-416cf25f0642",
+      "japanese": "ハリテヤマ",
+      "expected_en": "Hariyama",
+      "expected_dex": 297,
+      "official_id": "10083",
+      "official_dex": 297,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Kabuto (Moonlit Pursuit & Dawn Dash No. 083)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-084",
+      "card_print_id": "b42006c0-04a5-448e-bcd7-339ef87c21a4",
+      "japanese": "ルナトーン",
+      "expected_en": "Lunatone",
+      "expected_dex": 337,
+      "official_id": "10084",
+      "official_dex": 337,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Kabutops (Moonlit Pursuit & Dawn Dash No. 084)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-088",
+      "card_print_id": "654e3bdf-7652-4b69-b129-36e5304ff9ff",
+      "japanese": "ブラッキー",
+      "expected_en": "Umbreon",
+      "expected_dex": 197,
+      "official_id": "10088",
+      "official_dex": 197,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Spearow (Moonlit Pursuit & Dawn Dash No. 088)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-089",
+      "card_print_id": "77a5a8e1-2c81-44cb-8262-d56c1aca3f9d",
+      "japanese": "ヘルガー",
+      "expected_en": "Houndoom",
+      "expected_dex": 229,
+      "official_id": "10089",
+      "official_dex": 229,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Fearow (Moonlit Pursuit & Dawn Dash No. 089)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-090",
+      "card_print_id": "111b252c-75e7-4ef7-99bc-36300aad6d16",
+      "japanese": "ノクタス",
+      "expected_en": "Cacturne",
+      "expected_dex": 332,
+      "official_id": "10090",
+      "official_dex": 332,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Kangaskhan (Moonlit Pursuit & Dawn Dash No. 090)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-091",
+      "card_print_id": "5a940990-afc3-4cc2-8f28-daafc8f4a27d",
+      "japanese": "ダークライ",
+      "expected_en": "Darkrai",
+      "expected_dex": 491,
+      "official_id": "10091",
+      "official_dex": 491,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Eevee (Moonlit Pursuit & Dawn Dash No. 091)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-092",
+      "card_print_id": "4fe36686-021f-45e3-9fd6-ca53e37fa5e0",
+      "japanese": "ドンカラス",
+      "expected_en": "Honchkrow",
+      "expected_dex": 430,
+      "official_id": "10092",
+      "official_dex": null,
+      "official_match": false,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Porygon (Moonlit Pursuit & Dawn Dash No. 092)"
+      ],
+      "disposition": "hold"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-093",
+      "card_print_id": "72f4cfa8-84a6-469e-a307-d665f68e8636",
+      "japanese": "ハッサム",
+      "expected_en": "Scizor",
+      "expected_dex": 212,
+      "official_id": "10093",
+      "official_dex": 212,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Porygon2 (Moonlit Pursuit & Dawn Dash No. 093)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-094",
+      "card_print_id": "2be93f5d-0859-4d3f-882d-0ff95cc370b1",
+      "japanese": "エアームド",
+      "expected_en": "Skarmory",
+      "expected_dex": 227,
+      "official_id": "10094",
+      "official_dex": 227,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Porygon-Z (Moonlit Pursuit & Dawn Dash No. 094)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-095",
+      "card_print_id": "ee343bd1-2c63-4861-9819-2a62f66adb52",
+      "japanese": "クチート",
+      "expected_en": "Mawile",
+      "expected_dex": 303,
+      "official_id": "10095",
+      "official_dex": 303,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Snubbull (Moonlit Pursuit & Dawn Dash No. 095)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-096",
+      "card_print_id": "5cbfc75f-dcc0-4d40-aa7c-6975d3cebc17",
+      "japanese": "オニスズメ",
+      "expected_en": "Spearow",
+      "expected_dex": 21,
+      "official_id": "10096",
+      "official_dex": 21,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Granbull (Moonlit Pursuit & Dawn Dash No. 096)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-097",
+      "card_print_id": "f7f2f540-7ee6-4a72-8b42-4d9fa7914a10",
+      "japanese": "オニドリル",
+      "expected_en": "Fearow",
+      "expected_dex": 22,
+      "official_id": "10097",
+      "official_dex": 22,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Whismur (Moonlit Pursuit & Dawn Dash No. 097)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-098",
+      "card_print_id": "2a39f342-e23f-4ae7-9524-1ae83481e631",
+      "japanese": "ププリン",
+      "expected_en": "Igglybuff",
+      "expected_dex": 174,
+      "official_id": "10098",
+      "official_dex": 174,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Loudred (Moonlit Pursuit & Dawn Dash No. 098)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-099",
+      "card_print_id": "cc1c9dbf-7d3d-4a4f-bcab-5699cdf56c3b",
+      "japanese": "プリン",
+      "expected_en": "Jigglypuff",
+      "expected_dex": 39,
+      "official_id": "10099",
+      "official_dex": 39,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Exploud (Moonlit Pursuit & Dawn Dash No. 099)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-100",
+      "card_print_id": "b008e744-711f-406a-bdb6-eb9597ca461b",
+      "japanese": "プクリン",
+      "expected_en": "Wigglytuff",
+      "expected_dex": 40,
+      "official_id": "10100",
+      "official_dex": 40,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Latios (Moonlit Pursuit & Dawn Dash No. 100)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-101",
+      "card_print_id": "e5075573-27d3-4d43-a8bc-8540673510cc",
+      "japanese": "ガルーラ",
+      "expected_en": "Kangaskhan",
+      "expected_dex": 115,
+      "official_id": "10101",
+      "official_dex": 115,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Garchomp LV.X (Moonlit Pursuit & Dawn Dash No. 101)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-102",
+      "card_print_id": "527740f4-daaa-4162-b4aa-662e6085c492",
+      "japanese": "イーブイ",
+      "expected_en": "Eevee",
+      "expected_dex": 133,
+      "official_id": "10102",
+      "official_dex": 133,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Igglybuff (Moonlit Pursuit & Dawn Dash No. 102)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-103",
+      "card_print_id": "9c9600ed-54e7-496d-ae42-3b7f616dcbcc",
+      "japanese": "ポリゴン",
+      "expected_en": "Porygon",
+      "expected_dex": 137,
+      "official_id": "10103",
+      "official_dex": 137,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Jigglypuff (Moonlit Pursuit & Dawn Dash No. 103)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-110",
+      "card_print_id": "60ec3358-6735-4420-b1c1-4a8c420c34ab",
+      "japanese": "ブルー",
+      "expected_en": "Snubbull",
+      "expected_dex": 209,
+      "official_id": "10110",
+      "official_dex": 209,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Zigzagoon (Moonlit Pursuit & Dawn Dash No. 110)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-111",
+      "card_print_id": "37e9667f-0cc9-418e-8aed-38686911d9de",
+      "japanese": "グランブル",
+      "expected_en": "Granbull",
+      "expected_dex": 210,
+      "official_id": "10111",
+      "official_dex": 210,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Linoone (Moonlit Pursuit & Dawn Dash No. 111)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-112",
+      "card_print_id": "ef6f4866-73b2-4824-9b06-257dbac99f3c",
+      "japanese": "ジグザグマ",
+      "expected_en": "Zigzagoon",
+      "expected_dex": 263,
+      "official_id": "10112",
+      "official_dex": 263,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Swablu (Moonlit Pursuit & Dawn Dash No. 112)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-113",
+      "card_print_id": "47e817c5-883b-4577-a6ec-e12d0696efe3",
+      "japanese": "マッスグマ",
+      "expected_en": "Linoone",
+      "expected_dex": 264,
+      "official_id": "10113",
+      "official_dex": 264,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Altaria (Moonlit Pursuit & Dawn Dash No. 113)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-114",
+      "card_print_id": "3dfa366c-31a1-471d-9372-a9f77673c63f",
+      "japanese": "ゴニョニョ",
+      "expected_en": "Whismur",
+      "expected_dex": 293,
+      "official_id": "10114",
+      "official_dex": 293,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Zangoose (Moonlit Pursuit & Dawn Dash No. 114)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-115",
+      "card_print_id": "2eb62789-69f4-4c5f-9642-755732f1994d",
+      "japanese": "ドゴーム",
+      "expected_en": "Loudred",
+      "expected_dex": 294,
+      "official_id": "10115",
+      "official_dex": 294,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Latias (Moonlit Pursuit & Dawn Dash No. 115)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-116",
+      "card_print_id": "bfd5b8f5-b6aa-477b-bb1c-bb0029743b25",
+      "japanese": "バクオング",
+      "expected_en": "Exploud",
+      "expected_dex": 295,
+      "official_id": "10116",
+      "official_dex": 295,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Umbreon (Moonlit Pursuit & Dawn Dash No. 116)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-117",
+      "card_print_id": "ab4baf51-bb9e-4813-b9eb-572e6a19bec8",
+      "japanese": "チルット",
+      "expected_en": "Swablu",
+      "expected_dex": 333,
+      "official_id": "10117",
+      "official_dex": 333,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Houndoom (Moonlit Pursuit & Dawn Dash No. 117)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-118",
+      "card_print_id": "e51aa0ce-fd42-42ad-83f6-6ddb9df0f653",
+      "japanese": "チルタリス",
+      "expected_en": "Altaria",
+      "expected_dex": 334,
+      "official_id": "10118",
+      "official_dex": 334,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Darkrai (Moonlit Pursuit & Dawn Dash No. 118)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-119",
+      "card_print_id": "33ed3d7d-abe2-4bbe-8130-339c0ad5c438",
+      "japanese": "ザングース",
+      "expected_en": "Zangoose",
+      "expected_dex": 335,
+      "official_id": "10119",
+      "official_dex": 335,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Honchkrow LV.X (Moonlit Pursuit & Dawn Dash No. 119)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-120",
+      "card_print_id": "8e7707b0-af69-4948-8523-585d94211861",
+      "japanese": "ラティアス",
+      "expected_en": "Latias",
+      "expected_dex": 380,
+      "official_id": "10120",
+      "official_dex": 380,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Cacturne (Moonlit Pursuit & Dawn Dash No. 120)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-121",
+      "card_print_id": "8a1a28f1-7069-470a-a757-727515a60aec",
+      "japanese": "ラティオス",
+      "expected_en": "Latios",
+      "expected_dex": 381,
+      "official_id": "10121",
+      "official_dex": 381,
+      "official_match": true,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Scizor (Moonlit Pursuit & Dawn Dash No. 121)"
+      ],
+      "disposition": "candidate_requires_fresh_scope_and_guarded_writer"
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-122",
+      "card_print_id": "e29e89d3-59ca-40dd-8b75-740be5894897",
+      "japanese": "ガブリアス",
+      "expected_en": "Garchomp",
+      "expected_dex": 445,
+      "official_id": "10122",
+      "official_dex": null,
+      "official_match": false,
+      "active_primary_links": 1,
+      "link_match": true,
+      "old_english": [
+        "Skarmory (Moonlit Pursuit & Dawn Dash No. 122)"
+      ],
+      "disposition": "hold"
+    }
+  ]
+}

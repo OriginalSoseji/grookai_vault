@@ -1,0 +1,26 @@
+{
+  "version": "JPN_DP4_SUBJECT_REPAIR_V1",
+  "run_id": "c755d7d7-f25a-424e-8f80-da2286824e9b",
+  "mode": "verify",
+  "package_fingerprint": "fdc3bf85c409901e98b84ca304f8101c4564940a13a0aa3e0bcbdfa4182f9a8c",
+  "writer_fingerprint": "a0a6bc1a07db6760f0ec847533fb9efa335af22ea0ff506f3937d83042c08b54",
+  "started_at": "2026-11-20T05:53:58.805Z",
+  "status": "verified_already_applied",
+  "stages": [
+    {
+      "name": "source_identity_and_ownership_verified",
+      "at": "2026-11-20T05:54:05.968Z"
+    },
+    {
+      "name": "verified_already_applied",
+      "at": "2026-11-20T05:54:06.621Z"
+    }
+  ],
+  "sanity": {
+    "parents": 173837,
+    "sets": 3420,
+    "traits": 47409
+  },
+  "receipt_id": "177031",
+  "finished_at": "2026-11-20T05:54:06.621Z"
+}

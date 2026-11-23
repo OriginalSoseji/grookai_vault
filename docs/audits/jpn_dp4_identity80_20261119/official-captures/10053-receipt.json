@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:22:35.788Z",
+  "gv_id": "GV-PK-JPN-DP4-053",
+  "card_print_id": "6752210b-ce80-4a8e-a8a5-5d35ec896162",
+  "catalog_coordinate": "053",
+  "catalog_name": "マニューラ",
+  "official_id": "10053",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10053/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10053/regu/all",
+    "status": 200,
+    "sha256": "c0870c5417e0ee0a270c8bfd7555b11c9fd9ca995222fddc842cf6fb300f82e5",
+    "bytes": 10832
+  },
+  "heading": "マニューラ",
+  "artist": "Kagemaru Himeno",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010053_P_MANYURA.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010053_P_MANYURA.jpg",
+    "status": 200,
+    "sha256": "2e15959fcd88bfad4e6b2396cb90f08f20c9b28562e83096ddd94e67b00898ac",
+    "bytes": 63683,
+    "catalog_path_hash_prefix": "2e15959fcd88bfad4e6b2396",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

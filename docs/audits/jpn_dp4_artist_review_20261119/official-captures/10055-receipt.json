@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:20:32.343Z",
+  "gv_id": "GV-PK-JPN-DP4-055",
+  "card_print_id": "17ca7cc4-7876-4574-bdcc-b3c20f2676cc",
+  "catalog_coordinate": "055",
+  "catalog_name": "サンダー",
+  "official_id": "10055",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10055/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10055/regu/all",
+    "status": 200,
+    "sha256": "692ed0bbcd0b351666d84d7e56f62d71137078a9a450ecfa12992d6f5fa9e629",
+    "bytes": 10222
+  },
+  "heading": "サンダー",
+  "artist": "Mitsuhiro Arita",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010055_P_SANDA.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010055_P_SANDA.jpg",
+    "status": 200,
+    "sha256": "6397c96ca8f82fa4ee5048e71d62941f4674ef6565c851bf5c1f9cadca0f7d2f",
+    "bytes": 61834,
+    "catalog_path_hash_prefix": "6397c96ca8f82fa4ee5048e7",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

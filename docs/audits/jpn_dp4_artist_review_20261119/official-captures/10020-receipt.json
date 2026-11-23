@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:23:25.717Z",
+  "gv_id": "GV-PK-JPN-DP4-020",
+  "card_print_id": "8f75e23e-806d-4533-88cd-70dc16f96e75",
+  "catalog_coordinate": "020",
+  "catalog_name": "マグマッグ",
+  "official_id": "10020",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10020/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10020/regu/all",
+    "status": 200,
+    "sha256": "f9fc0d18020d99e22283ada9d1d19be8bfa80127644951a7b4a72f688effbcd2",
+    "bytes": 10755
+  },
+  "heading": "マグマッグ",
+  "artist": "Masakazu Fukuda",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010020_P_MAGUMAGGU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010020_P_MAGUMAGGU.jpg",
+    "status": 200,
+    "sha256": "98220bca1e8c7bd7e3ee0dd012fe93137f05d014f6087ee268783d5c4553341e",
+    "bytes": 60071,
+    "catalog_path_hash_prefix": "98220bca1e8c7bd7e3ee0dd0",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

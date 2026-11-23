@@ -1,0 +1,2315 @@
+{
+  "version": "JPN_DP4_LIVE_IDENTITY_DIAGNOSTIC_V1",
+  "generated_at": "2026-11-19T23:41:53.589Z",
+  "scope": "Heuristic exact Japanese species-name comparison using a retained source snapshot. Disagreements are review flags, not independently adjudicated repairs.",
+  "readback_captured_at": "2026-11-19T23:39:56.159Z",
+  "parents": 136,
+  "identity_compared": 115,
+  "identity_mismatches": 99,
+  "species_compared": 115,
+  "species_mismatches": 9,
+  "identity": [
+    {
+      "gv_id": "GV-PK-JPN-DP4-023",
+      "japanese_name": "アチャモ",
+      "expected_english": "Torchic",
+      "expected_dex": "255",
+      "existing_english_candidates": [
+        "Moltres (Moonlit Pursuit & Dawn Dash No. 023)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-032",
+      "japanese_name": "グレイシア",
+      "expected_english": "Glaceon",
+      "expected_dex": "471",
+      "existing_english_candidates": [
+        "Marshtomp (Moonlit Pursuit & Dawn Dash No. 032)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-075",
+      "japanese_name": "ハブネーク",
+      "expected_english": "Seviper",
+      "expected_dex": "336",
+      "existing_english_candidates": [
+        "Unown Q (Moonlit Pursuit & Dawn Dash No. 075)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-060",
+      "japanese_name": "ヤドキング",
+      "expected_english": "Slowking",
+      "expected_dex": "199",
+      "existing_english_candidates": [
+        "Hypno (Moonlit Pursuit & Dawn Dash No. 060)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-049",
+      "japanese_name": "サクラビス",
+      "expected_english": "Gorebyss",
+      "expected_dex": "368",
+      "existing_english_candidates": [
+        "Huntail (Moonlit Pursuit & Dawn Dash No. 049)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-090",
+      "japanese_name": "ノクタス",
+      "expected_english": "Cacturne",
+      "expected_dex": "332",
+      "existing_english_candidates": [
+        "Kangaskhan (Moonlit Pursuit & Dawn Dash No. 090)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-058",
+      "japanese_name": "アーボ",
+      "expected_english": "Ekans",
+      "expected_dex": "23",
+      "existing_english_candidates": [
+        "Slowking (Moonlit Pursuit & Dawn Dash No. 058)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-015",
+      "japanese_name": "バルビート",
+      "expected_english": "Volbeat",
+      "expected_dex": "313",
+      "existing_english_candidates": [
+        "Illumise (Moonlit Pursuit & Dawn Dash No. 015)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-007",
+      "japanese_name": "モンジャラ",
+      "expected_english": "Tangela",
+      "expected_dex": "114",
+      "existing_english_candidates": [
+        "Volbeat (Moonlit Pursuit & Dawn Dash No. 007)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-055",
+      "japanese_name": "サンダー",
+      "expected_english": "Zapdos",
+      "expected_dex": "145",
+      "existing_english_candidates": [
+        "Rotom (Moonlit Pursuit & Dawn Dash No. 055)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-040",
+      "japanese_name": "ラグラージ",
+      "expected_english": "Swampert",
+      "expected_dex": "260",
+      "existing_english_candidates": [
+        "Krabby (Moonlit Pursuit & Dawn Dash No. 040)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-039",
+      "japanese_name": "ヌマクロー",
+      "expected_english": "Marshtomp",
+      "expected_dex": "259",
+      "existing_english_candidates": [
+        "Weavile (Moonlit Pursuit & Dawn Dash No. 039)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-077",
+      "japanese_name": "クレセリア",
+      "expected_english": "Cresselia",
+      "expected_dex": "488",
+      "existing_english_candidates": [
+        "Gardevoir LV.X (Moonlit Pursuit & Dawn Dash No. 077)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-086",
+      "japanese_name": "ヤジロン",
+      "expected_english": "Baltoy",
+      "expected_dex": "343",
+      "existing_english_candidates": [
+        "Baltoy (Moonlit Pursuit & Dawn Dash No. 086)"
+      ],
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-031",
+      "japanese_name": "シャワーズ",
+      "expected_english": "Vaporeon",
+      "expected_dex": "134",
+      "existing_english_candidates": [
+        "Mudkip (Moonlit Pursuit & Dawn Dash No. 031)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-057",
+      "japanese_name": "パチリス",
+      "expected_english": "Pachirisu",
+      "expected_dex": "417",
+      "existing_english_candidates": [
+        "Pachirisu (Moonlit Pursuit & Dawn Dash No. 057)"
+      ],
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-098",
+      "japanese_name": "ププリン",
+      "expected_english": "Igglybuff",
+      "expected_dex": "174",
+      "existing_english_candidates": [
+        "Loudred (Moonlit Pursuit & Dawn Dash No. 098)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-046",
+      "japanese_name": "ミロカロス",
+      "expected_english": "Milotic",
+      "expected_dex": "350",
+      "existing_english_candidates": [
+        "Wingull (Moonlit Pursuit & Dawn Dash No. 046)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-094",
+      "japanese_name": "エアームド",
+      "expected_english": "Skarmory",
+      "expected_dex": "227",
+      "existing_english_candidates": [
+        "Porygon-Z (Moonlit Pursuit & Dawn Dash No. 094)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-010",
+      "japanese_name": "リーフィア",
+      "expected_english": "Leafeon",
+      "expected_dex": "470",
+      "existing_english_candidates": [
+        "Butterfree (Moonlit Pursuit & Dawn Dash No. 010)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-115",
+      "japanese_name": "ドゴーム",
+      "expected_english": "Loudred",
+      "expected_dex": "294",
+      "existing_english_candidates": [
+        "Latias (Moonlit Pursuit & Dawn Dash No. 115)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-074",
+      "japanese_name": "サーナイト",
+      "expected_english": "Gardevoir",
+      "expected_dex": "282",
+      "existing_english_candidates": [
+        "Unown P (Moonlit Pursuit & Dawn Dash No. 074)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-085",
+      "japanese_name": "ソルロック",
+      "expected_english": "Solrock",
+      "expected_dex": "338",
+      "existing_english_candidates": [
+        "Solrock (Moonlit Pursuit & Dawn Dash No. 085)"
+      ],
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-107",
+      "japanese_name": "トゲピー",
+      "expected_english": "Togepi",
+      "expected_dex": "175",
+      "existing_english_candidates": [
+        "Togepi (Moonlit Pursuit & Dawn Dash No. 107)"
+      ],
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-119",
+      "japanese_name": "ザングース",
+      "expected_english": "Zangoose",
+      "expected_dex": "335",
+      "existing_english_candidates": [
+        "Honchkrow LV.X (Moonlit Pursuit & Dawn Dash No. 119)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-051",
+      "japanese_name": "ラブカス",
+      "expected_english": "Luvdisc",
+      "expected_dex": "370",
+      "existing_english_candidates": [
+        "Luvdisc (Moonlit Pursuit & Dawn Dash No. 051)"
+      ],
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-111",
+      "japanese_name": "グランブル",
+      "expected_english": "Granbull",
+      "expected_dex": "210",
+      "existing_english_candidates": [
+        "Linoone (Moonlit Pursuit & Dawn Dash No. 111)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-114",
+      "japanese_name": "ゴニョニョ",
+      "expected_english": "Whismur",
+      "expected_dex": "293",
+      "existing_english_candidates": [
+        "Zangoose (Moonlit Pursuit & Dawn Dash No. 114)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-002",
+      "japanese_name": "トランセル",
+      "expected_english": "Metapod",
+      "expected_dex": "11",
+      "existing_english_candidates": [
+        "Kakuna (Moonlit Pursuit & Dawn Dash No. 002)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-035",
+      "japanese_name": "オムスター",
+      "expected_english": "Omastar",
+      "expected_dex": "139",
+      "existing_english_candidates": [
+        "Wailord (Moonlit Pursuit & Dawn Dash No. 035)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-113",
+      "japanese_name": "マッスグマ",
+      "expected_english": "Linoone",
+      "expected_dex": "264",
+      "existing_english_candidates": [
+        "Altaria (Moonlit Pursuit & Dawn Dash No. 113)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-008",
+      "japanese_name": "モジャンボ",
+      "expected_english": "Tangrowth",
+      "expected_dex": "465",
+      "existing_english_candidates": [
+        "Caterpie (Moonlit Pursuit & Dawn Dash No. 008)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-059",
+      "japanese_name": "アーボック",
+      "expected_english": "Arbok",
+      "expected_dex": "24",
+      "existing_english_candidates": [
+        "Drowzee (Moonlit Pursuit & Dawn Dash No. 059)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-019",
+      "japanese_name": "ファイヤー",
+      "expected_english": "Moltres",
+      "expected_dex": "146",
+      "existing_english_candidates": [
+        "Torchic (Moonlit Pursuit & Dawn Dash No. 019)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-024",
+      "japanese_name": "ワカシャモ",
+      "expected_english": "Combusken",
+      "expected_dex": "256",
+      "existing_english_candidates": [
+        "Slugma (Moonlit Pursuit & Dawn Dash No. 024)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-092",
+      "japanese_name": "ドンカラス",
+      "expected_english": "Honchkrow",
+      "expected_dex": "430",
+      "existing_english_candidates": [
+        "Porygon (Moonlit Pursuit & Dawn Dash No. 092)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-087",
+      "japanese_name": "ネンドール",
+      "expected_english": "Claydol",
+      "expected_dex": "344",
+      "existing_english_candidates": [
+        "Claydol (Moonlit Pursuit & Dawn Dash No. 087)"
+      ],
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-012",
+      "japanese_name": "キモリ",
+      "expected_english": "Treecko",
+      "expected_dex": "252",
+      "existing_english_candidates": [
+        "Treecko (Moonlit Pursuit & Dawn Dash No. 012)"
+      ],
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-102",
+      "japanese_name": "イーブイ",
+      "expected_english": "Eevee",
+      "expected_dex": "133",
+      "existing_english_candidates": [
+        "Igglybuff (Moonlit Pursuit & Dawn Dash No. 102)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-064",
+      "japanese_name": "マタドガス",
+      "expected_english": "Weezing",
+      "expected_dex": "110",
+      "existing_english_candidates": [
+        "Unown F (Moonlit Pursuit & Dawn Dash No. 064)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-081",
+      "japanese_name": "カブトプス",
+      "expected_english": "Kabutops",
+      "expected_dex": "141",
+      "existing_english_candidates": [
+        "Mankey (Moonlit Pursuit & Dawn Dash No. 081)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-041",
+      "japanese_name": "キャモメ",
+      "expected_english": "Wingull",
+      "expected_dex": "278",
+      "existing_english_candidates": [
+        "Kingler (Moonlit Pursuit & Dawn Dash No. 041)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-091",
+      "japanese_name": "ダークライ",
+      "expected_english": "Darkrai",
+      "expected_dex": "491",
+      "existing_english_candidates": [
+        "Eevee (Moonlit Pursuit & Dawn Dash No. 091)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-096",
+      "japanese_name": "オニスズメ",
+      "expected_english": "Spearow",
+      "expected_dex": "21",
+      "existing_english_candidates": [
+        "Granbull (Moonlit Pursuit & Dawn Dash No. 096)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-080",
+      "japanese_name": "カブト",
+      "expected_english": "Kabuto",
+      "expected_dex": "140",
+      "existing_english_candidates": [
+        "Lunatone (Moonlit Pursuit & Dawn Dash No. 080)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-073",
+      "japanese_name": "サーナイト",
+      "expected_english": "Gardevoir",
+      "expected_dex": "282",
+      "existing_english_candidates": [
+        "Unown L (Moonlit Pursuit & Dawn Dash No. 073)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-110",
+      "japanese_name": "ブルー",
+      "expected_english": "Snubbull",
+      "expected_dex": "209",
+      "existing_english_candidates": [
+        "Zigzagoon (Moonlit Pursuit & Dawn Dash No. 110)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-028",
+      "japanese_name": "クラブ",
+      "expected_english": "Krabby",
+      "expected_dex": "98",
+      "existing_english_candidates": [
+        "Vaporeon (Moonlit Pursuit & Dawn Dash No. 028)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-088",
+      "japanese_name": "ブラッキー",
+      "expected_english": "Umbreon",
+      "expected_dex": "197",
+      "existing_english_candidates": [
+        "Spearow (Moonlit Pursuit & Dawn Dash No. 088)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-053",
+      "japanese_name": "マニューラ",
+      "expected_english": "Weavile",
+      "expected_dex": "461",
+      "existing_english_candidates": [
+        "Glaceon LV.X (Moonlit Pursuit & Dawn Dash No. 053)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-093",
+      "japanese_name": "ハッサム",
+      "expected_english": "Scizor",
+      "expected_dex": "212",
+      "existing_english_candidates": [
+        "Porygon2 (Moonlit Pursuit & Dawn Dash No. 093)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-011",
+      "japanese_name": "リーフィア",
+      "expected_english": "Leafeon",
+      "expected_dex": "470",
+      "existing_english_candidates": [
+        "Leafeon (Moonlit Pursuit & Dawn Dash No. 011)"
+      ],
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-089",
+      "japanese_name": "ヘルガー",
+      "expected_english": "Houndoom",
+      "expected_dex": "229",
+      "existing_english_candidates": [
+        "Fearow (Moonlit Pursuit & Dawn Dash No. 089)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-042",
+      "japanese_name": "ペリッパー",
+      "expected_english": "Pelipper",
+      "expected_dex": "279",
+      "existing_english_candidates": [
+        "Lapras (Moonlit Pursuit & Dawn Dash No. 042)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-027",
+      "japanese_name": "ヤドラン",
+      "expected_english": "Slowbro",
+      "expected_dex": "80",
+      "existing_english_candidates": [
+        "Slowbro (Moonlit Pursuit & Dawn Dash No. 027)"
+      ],
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-050",
+      "japanese_name": "ジーランス",
+      "expected_english": "Relicanth",
+      "expected_dex": "369",
+      "existing_english_candidates": [
+        "Gorebyss (Moonlit Pursuit & Dawn Dash No. 050)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-016",
+      "japanese_name": "イルミーゼ",
+      "expected_english": "Illumise",
+      "expected_dex": "314",
+      "existing_english_candidates": [
+        "Cacnea (Moonlit Pursuit & Dawn Dash No. 016)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-066",
+      "japanese_name": "ミュウツー",
+      "expected_english": "Mewtwo",
+      "expected_dex": "150",
+      "existing_english_candidates": [
+        "Unown H (Moonlit Pursuit & Dawn Dash No. 066)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-014",
+      "japanese_name": "ジュカイン",
+      "expected_english": "Sceptile",
+      "expected_dex": "254",
+      "existing_english_candidates": [
+        "Sceptile (Moonlit Pursuit & Dawn Dash No. 014)"
+      ],
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-121",
+      "japanese_name": "ラティオス",
+      "expected_english": "Latios",
+      "expected_dex": "381",
+      "existing_english_candidates": [
+        "Scizor (Moonlit Pursuit & Dawn Dash No. 121)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-001",
+      "japanese_name": "キャタピー",
+      "expected_english": "Caterpie",
+      "expected_dex": "10",
+      "existing_english_candidates": [
+        "Weedle (Moonlit Pursuit & Dawn Dash No. 001)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-120",
+      "japanese_name": "ラティアス",
+      "expected_english": "Latias",
+      "expected_dex": "380",
+      "existing_english_candidates": [
+        "Cacturne (Moonlit Pursuit & Dawn Dash No. 120)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-065",
+      "japanese_name": "エーフィ",
+      "expected_english": "Espeon",
+      "expected_dex": "196",
+      "existing_english_candidates": [
+        "Unown G (Moonlit Pursuit & Dawn Dash No. 065)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-083",
+      "japanese_name": "ハリテヤマ",
+      "expected_english": "Hariyama",
+      "expected_dex": "297",
+      "existing_english_candidates": [
+        "Kabuto (Moonlit Pursuit & Dawn Dash No. 083)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-020",
+      "japanese_name": "マグマッグ",
+      "expected_english": "Slugma",
+      "expected_dex": "218",
+      "existing_english_candidates": [
+        "Combusken (Moonlit Pursuit & Dawn Dash No. 020)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-082",
+      "japanese_name": "マクノシタ",
+      "expected_english": "Makuhita",
+      "expected_dex": "296",
+      "existing_english_candidates": [
+        "Primeape (Moonlit Pursuit & Dawn Dash No. 082)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-063",
+      "japanese_name": "ドガース",
+      "expected_english": "Koffing",
+      "expected_dex": "109",
+      "existing_english_candidates": [
+        "Mewtwo (Moonlit Pursuit & Dawn Dash No. 063)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-043",
+      "japanese_name": "ホエルコ",
+      "expected_english": "Wailmer",
+      "expected_dex": "320",
+      "existing_english_candidates": [
+        "Glaceon (Moonlit Pursuit & Dawn Dash No. 043)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-108",
+      "japanese_name": "トゲチック",
+      "expected_english": "Togetic",
+      "expected_dex": "176",
+      "existing_english_candidates": [
+        "Togetic (Moonlit Pursuit & Dawn Dash No. 108)"
+      ],
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-103",
+      "japanese_name": "ポリゴン",
+      "expected_english": "Porygon",
+      "expected_dex": "137",
+      "existing_english_candidates": [
+        "Jigglypuff (Moonlit Pursuit & Dawn Dash No. 103)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-017",
+      "japanese_name": "サボネア",
+      "expected_english": "Cacnea",
+      "expected_dex": "331",
+      "existing_english_candidates": [
+        "Leafeon LV.X (Moonlit Pursuit & Dawn Dash No. 017)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-003",
+      "japanese_name": "バタフリー",
+      "expected_english": "Butterfree",
+      "expected_dex": "12",
+      "existing_english_candidates": [
+        "Beedrill (Moonlit Pursuit & Dawn Dash No. 003)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-079",
+      "japanese_name": "オコリザル",
+      "expected_english": "Primeape",
+      "expected_dex": "57",
+      "existing_english_candidates": [
+        "Hariyama (Moonlit Pursuit & Dawn Dash No. 079)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-136",
+      "japanese_name": "エレブー",
+      "expected_english": "Electabuzz",
+      "expected_dex": "125",
+      "existing_english_candidates": [
+        "Health Energy (Moonlit Pursuit & Dawn Dash No. 136)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-009",
+      "japanese_name": "ストライク",
+      "expected_english": "Scyther",
+      "expected_dex": "123",
+      "existing_english_candidates": [
+        "Metapod (Moonlit Pursuit & Dawn Dash No. 009)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-076",
+      "japanese_name": "クレセリア",
+      "expected_english": "Cresselia",
+      "expected_dex": "488",
+      "existing_english_candidates": [
+        "Gardevoir (Moonlit Pursuit & Dawn Dash No. 076)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-034",
+      "japanese_name": "オムナイト",
+      "expected_english": "Omanyte",
+      "expected_dex": "138",
+      "existing_english_candidates": [
+        "Wailmer (Moonlit Pursuit & Dawn Dash No. 034)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-021",
+      "japanese_name": "マグカルゴ",
+      "expected_english": "Magcargo",
+      "expected_dex": "219",
+      "existing_english_candidates": [
+        "Blaziken (Moonlit Pursuit & Dawn Dash No. 021)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-117",
+      "japanese_name": "チルット",
+      "expected_english": "Swablu",
+      "expected_dex": "333",
+      "existing_english_candidates": [
+        "Houndoom (Moonlit Pursuit & Dawn Dash No. 117)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-026",
+      "japanese_name": "ヤドン",
+      "expected_english": "Slowpoke",
+      "expected_dex": "79",
+      "existing_english_candidates": [
+        "Slowpoke (Moonlit Pursuit & Dawn Dash No. 026)"
+      ],
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-005",
+      "japanese_name": "コクーン",
+      "expected_english": "Kakuna",
+      "expected_dex": "14",
+      "existing_english_candidates": [
+        "Tangrowth (Moonlit Pursuit & Dawn Dash No. 005)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-106",
+      "japanese_name": "プテラ",
+      "expected_english": "Aerodactyl",
+      "expected_dex": "142",
+      "existing_english_candidates": [
+        "Aerodactyl (Moonlit Pursuit & Dawn Dash No. 106)"
+      ],
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-100",
+      "japanese_name": "プクリン",
+      "expected_english": "Wigglytuff",
+      "expected_dex": "40",
+      "existing_english_candidates": [
+        "Latios (Moonlit Pursuit & Dawn Dash No. 100)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-084",
+      "japanese_name": "ルナトーン",
+      "expected_english": "Lunatone",
+      "expected_dex": "337",
+      "existing_english_candidates": [
+        "Kabutops (Moonlit Pursuit & Dawn Dash No. 084)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-078",
+      "japanese_name": "マンキー",
+      "expected_english": "Mankey",
+      "expected_dex": "56",
+      "existing_english_candidates": [
+        "Makuhita (Moonlit Pursuit & Dawn Dash No. 078)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-030",
+      "japanese_name": "ラプラス",
+      "expected_english": "Lapras",
+      "expected_dex": "131",
+      "existing_english_candidates": [
+        "Omastar (Moonlit Pursuit & Dawn Dash No. 030)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-033",
+      "japanese_name": "グレイシア",
+      "expected_english": "Glaceon",
+      "expected_dex": "471",
+      "existing_english_candidates": [
+        "Swampert (Moonlit Pursuit & Dawn Dash No. 033)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-044",
+      "japanese_name": "ホエルオー",
+      "expected_english": "Wailord",
+      "expected_dex": "321",
+      "existing_english_candidates": [
+        "Articuno (Moonlit Pursuit & Dawn Dash No. 044)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-047",
+      "japanese_name": "パールル",
+      "expected_english": "Clamperl",
+      "expected_dex": "366",
+      "existing_english_candidates": [
+        "Pelipper (Moonlit Pursuit & Dawn Dash No. 047)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-116",
+      "japanese_name": "バクオング",
+      "expected_english": "Exploud",
+      "expected_dex": "295",
+      "existing_english_candidates": [
+        "Umbreon (Moonlit Pursuit & Dawn Dash No. 116)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-029",
+      "japanese_name": "キングラー",
+      "expected_english": "Kingler",
+      "expected_dex": "99",
+      "existing_english_candidates": [
+        "Omanyte (Moonlit Pursuit & Dawn Dash No. 029)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-062",
+      "japanese_name": "スリーパー",
+      "expected_english": "Hypno",
+      "expected_dex": "97",
+      "existing_english_candidates": [
+        "Weezing (Moonlit Pursuit & Dawn Dash No. 062)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-099",
+      "japanese_name": "プリン",
+      "expected_english": "Jigglypuff",
+      "expected_dex": "39",
+      "existing_english_candidates": [
+        "Exploud (Moonlit Pursuit & Dawn Dash No. 099)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-018",
+      "japanese_name": "ブースター",
+      "expected_english": "Flareon",
+      "expected_dex": "136",
+      "existing_english_candidates": [
+        "Houndour (Moonlit Pursuit & Dawn Dash No. 018)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-054",
+      "japanese_name": "サンダース",
+      "expected_english": "Jolteon",
+      "expected_dex": "135",
+      "existing_english_candidates": [
+        "Zapdos (Moonlit Pursuit & Dawn Dash No. 054)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-048",
+      "japanese_name": "ハンテール",
+      "expected_english": "Huntail",
+      "expected_dex": "367",
+      "existing_english_candidates": [
+        "Clamperl (Moonlit Pursuit & Dawn Dash No. 048)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-006",
+      "japanese_name": "スピアー",
+      "expected_english": "Beedrill",
+      "expected_dex": "15",
+      "existing_english_candidates": [
+        "Scyther (Moonlit Pursuit & Dawn Dash No. 006)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-056",
+      "japanese_name": "ロトム",
+      "expected_english": "Rotom",
+      "expected_dex": "479",
+      "existing_english_candidates": [
+        "Jolteon (Moonlit Pursuit & Dawn Dash No. 056)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-022",
+      "japanese_name": "デルビル",
+      "expected_english": "Houndour",
+      "expected_dex": "228",
+      "existing_english_candidates": [
+        "Flareon (Moonlit Pursuit & Dawn Dash No. 022)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-004",
+      "japanese_name": "ビードル",
+      "expected_english": "Weedle",
+      "expected_dex": "13",
+      "existing_english_candidates": [
+        "Tangela (Moonlit Pursuit & Dawn Dash No. 004)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-037",
+      "japanese_name": "デリバード",
+      "expected_english": "Delibird",
+      "expected_dex": "225",
+      "existing_english_candidates": [
+        "Milotic (Moonlit Pursuit & Dawn Dash No. 037)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-122",
+      "japanese_name": "ガブリアス",
+      "expected_english": "Garchomp",
+      "expected_dex": "445",
+      "existing_english_candidates": [
+        "Skarmory (Moonlit Pursuit & Dawn Dash No. 122)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-045",
+      "japanese_name": "ヒンバス",
+      "expected_english": "Feebas",
+      "expected_dex": "349",
+      "existing_english_candidates": [
+        "Delibird (Moonlit Pursuit & Dawn Dash No. 045)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-101",
+      "japanese_name": "ガルーラ",
+      "expected_english": "Kangaskhan",
+      "expected_dex": "115",
+      "existing_english_candidates": [
+        "Garchomp LV.X (Moonlit Pursuit & Dawn Dash No. 101)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-118",
+      "japanese_name": "チルタリス",
+      "expected_english": "Altaria",
+      "expected_dex": "334",
+      "existing_english_candidates": [
+        "Darkrai (Moonlit Pursuit & Dawn Dash No. 118)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-061",
+      "japanese_name": "スリープ",
+      "expected_english": "Drowzee",
+      "expected_dex": "96",
+      "existing_english_candidates": [
+        "Koffing (Moonlit Pursuit & Dawn Dash No. 061)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-095",
+      "japanese_name": "クチート",
+      "expected_english": "Mawile",
+      "expected_dex": "303",
+      "existing_english_candidates": [
+        "Snubbull (Moonlit Pursuit & Dawn Dash No. 095)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-112",
+      "japanese_name": "ジグザグマ",
+      "expected_english": "Zigzagoon",
+      "expected_dex": "263",
+      "existing_english_candidates": [
+        "Swablu (Moonlit Pursuit & Dawn Dash No. 112)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-052",
+      "japanese_name": "フィオネ",
+      "expected_english": "Phione",
+      "expected_dex": "489",
+      "existing_english_candidates": [
+        "Phione (Moonlit Pursuit & Dawn Dash No. 052)"
+      ],
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-097",
+      "japanese_name": "オニドリル",
+      "expected_english": "Fearow",
+      "expected_dex": "22",
+      "existing_english_candidates": [
+        "Whismur (Moonlit Pursuit & Dawn Dash No. 097)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-013",
+      "japanese_name": "ジュプトル",
+      "expected_english": "Grovyle",
+      "expected_dex": "253",
+      "existing_english_candidates": [
+        "Grovyle (Moonlit Pursuit & Dawn Dash No. 013)"
+      ],
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-109",
+      "japanese_name": "トゲキッス",
+      "expected_english": "Togekiss",
+      "expected_dex": "468",
+      "existing_english_candidates": [
+        "Togekiss (Moonlit Pursuit & Dawn Dash No. 109)"
+      ],
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-025",
+      "japanese_name": "バシャーモ",
+      "expected_english": "Blaziken",
+      "expected_dex": "257",
+      "existing_english_candidates": [
+        "Magcargo (Moonlit Pursuit & Dawn Dash No. 025)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-036",
+      "japanese_name": "フリーザー",
+      "expected_english": "Articuno",
+      "expected_dex": "144",
+      "existing_english_candidates": [
+        "Feebas (Moonlit Pursuit & Dawn Dash No. 036)"
+      ],
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-038",
+      "japanese_name": "ミズゴロウ",
+      "expected_english": "Mudkip",
+      "expected_dex": "258",
+      "existing_english_candidates": [
+        "Relicanth (Moonlit Pursuit & Dawn Dash No. 038)"
+      ],
+      "match": false
+    }
+  ],
+  "species": [
+    {
+      "gv_id": "GV-PK-JPN-DP4-023",
+      "japanese_name": "アチャモ",
+      "expected_english": "Torchic",
+      "expected_dex": 255,
+      "actual_species": "torchic",
+      "actual_dex": 255,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-032",
+      "japanese_name": "グレイシア",
+      "expected_english": "Glaceon",
+      "expected_dex": 471,
+      "actual_species": "glaceon",
+      "actual_dex": 471,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-075",
+      "japanese_name": "ハブネーク",
+      "expected_english": "Seviper",
+      "expected_dex": 336,
+      "actual_species": "unown",
+      "actual_dex": 201,
+      "role": "primary",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-060",
+      "japanese_name": "ヤドキング",
+      "expected_english": "Slowking",
+      "expected_dex": 199,
+      "actual_species": "slowking",
+      "actual_dex": 199,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-049",
+      "japanese_name": "サクラビス",
+      "expected_english": "Gorebyss",
+      "expected_dex": 368,
+      "actual_species": "gorebyss",
+      "actual_dex": 368,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-090",
+      "japanese_name": "ノクタス",
+      "expected_english": "Cacturne",
+      "expected_dex": 332,
+      "actual_species": "cacturne",
+      "actual_dex": 332,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-058",
+      "japanese_name": "アーボ",
+      "expected_english": "Ekans",
+      "expected_dex": 23,
+      "actual_species": "ekans",
+      "actual_dex": 23,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-015",
+      "japanese_name": "バルビート",
+      "expected_english": "Volbeat",
+      "expected_dex": 313,
+      "actual_species": "volbeat",
+      "actual_dex": 313,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-007",
+      "japanese_name": "モンジャラ",
+      "expected_english": "Tangela",
+      "expected_dex": 114,
+      "actual_species": "tangela",
+      "actual_dex": 114,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-055",
+      "japanese_name": "サンダー",
+      "expected_english": "Zapdos",
+      "expected_dex": 145,
+      "actual_species": "zapdos",
+      "actual_dex": 145,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-040",
+      "japanese_name": "ラグラージ",
+      "expected_english": "Swampert",
+      "expected_dex": 260,
+      "actual_species": "swampert",
+      "actual_dex": 260,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-039",
+      "japanese_name": "ヌマクロー",
+      "expected_english": "Marshtomp",
+      "expected_dex": 259,
+      "actual_species": "marshtomp",
+      "actual_dex": 259,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-077",
+      "japanese_name": "クレセリア",
+      "expected_english": "Cresselia",
+      "expected_dex": 488,
+      "actual_species": "gardevoir",
+      "actual_dex": 282,
+      "role": "primary",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-086",
+      "japanese_name": "ヤジロン",
+      "expected_english": "Baltoy",
+      "expected_dex": 343,
+      "actual_species": "baltoy",
+      "actual_dex": 343,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-031",
+      "japanese_name": "シャワーズ",
+      "expected_english": "Vaporeon",
+      "expected_dex": 134,
+      "actual_species": "vaporeon",
+      "actual_dex": 134,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-057",
+      "japanese_name": "パチリス",
+      "expected_english": "Pachirisu",
+      "expected_dex": 417,
+      "actual_species": "pachirisu",
+      "actual_dex": 417,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-098",
+      "japanese_name": "ププリン",
+      "expected_english": "Igglybuff",
+      "expected_dex": 174,
+      "actual_species": "igglybuff",
+      "actual_dex": 174,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-046",
+      "japanese_name": "ミロカロス",
+      "expected_english": "Milotic",
+      "expected_dex": 350,
+      "actual_species": "milotic",
+      "actual_dex": 350,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-094",
+      "japanese_name": "エアームド",
+      "expected_english": "Skarmory",
+      "expected_dex": 227,
+      "actual_species": "skarmory",
+      "actual_dex": 227,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-010",
+      "japanese_name": "リーフィア",
+      "expected_english": "Leafeon",
+      "expected_dex": 470,
+      "actual_species": "leafeon",
+      "actual_dex": 470,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-115",
+      "japanese_name": "ドゴーム",
+      "expected_english": "Loudred",
+      "expected_dex": 294,
+      "actual_species": "loudred",
+      "actual_dex": 294,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-074",
+      "japanese_name": "サーナイト",
+      "expected_english": "Gardevoir",
+      "expected_dex": 282,
+      "actual_species": "unown",
+      "actual_dex": 201,
+      "role": "primary",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-085",
+      "japanese_name": "ソルロック",
+      "expected_english": "Solrock",
+      "expected_dex": 338,
+      "actual_species": "solrock",
+      "actual_dex": 338,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-107",
+      "japanese_name": "トゲピー",
+      "expected_english": "Togepi",
+      "expected_dex": 175,
+      "actual_species": "togepi",
+      "actual_dex": 175,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-119",
+      "japanese_name": "ザングース",
+      "expected_english": "Zangoose",
+      "expected_dex": 335,
+      "actual_species": "zangoose",
+      "actual_dex": 335,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-051",
+      "japanese_name": "ラブカス",
+      "expected_english": "Luvdisc",
+      "expected_dex": 370,
+      "actual_species": "luvdisc",
+      "actual_dex": 370,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-111",
+      "japanese_name": "グランブル",
+      "expected_english": "Granbull",
+      "expected_dex": 210,
+      "actual_species": "granbull",
+      "actual_dex": 210,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-114",
+      "japanese_name": "ゴニョニョ",
+      "expected_english": "Whismur",
+      "expected_dex": 293,
+      "actual_species": "whismur",
+      "actual_dex": 293,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-002",
+      "japanese_name": "トランセル",
+      "expected_english": "Metapod",
+      "expected_dex": 11,
+      "actual_species": "metapod",
+      "actual_dex": 11,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-035",
+      "japanese_name": "オムスター",
+      "expected_english": "Omastar",
+      "expected_dex": 139,
+      "actual_species": "omastar",
+      "actual_dex": 139,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-113",
+      "japanese_name": "マッスグマ",
+      "expected_english": "Linoone",
+      "expected_dex": 264,
+      "actual_species": "linoone",
+      "actual_dex": 264,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-008",
+      "japanese_name": "モジャンボ",
+      "expected_english": "Tangrowth",
+      "expected_dex": 465,
+      "actual_species": "tangrowth",
+      "actual_dex": 465,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-059",
+      "japanese_name": "アーボック",
+      "expected_english": "Arbok",
+      "expected_dex": 24,
+      "actual_species": "arbok",
+      "actual_dex": 24,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-019",
+      "japanese_name": "ファイヤー",
+      "expected_english": "Moltres",
+      "expected_dex": 146,
+      "actual_species": "moltres",
+      "actual_dex": 146,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-024",
+      "japanese_name": "ワカシャモ",
+      "expected_english": "Combusken",
+      "expected_dex": 256,
+      "actual_species": "combusken",
+      "actual_dex": 256,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-092",
+      "japanese_name": "ドンカラス",
+      "expected_english": "Honchkrow",
+      "expected_dex": 430,
+      "actual_species": "honchkrow",
+      "actual_dex": 430,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-087",
+      "japanese_name": "ネンドール",
+      "expected_english": "Claydol",
+      "expected_dex": 344,
+      "actual_species": "claydol",
+      "actual_dex": 344,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-012",
+      "japanese_name": "キモリ",
+      "expected_english": "Treecko",
+      "expected_dex": 252,
+      "actual_species": "treecko",
+      "actual_dex": 252,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-102",
+      "japanese_name": "イーブイ",
+      "expected_english": "Eevee",
+      "expected_dex": 133,
+      "actual_species": "eevee",
+      "actual_dex": 133,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-064",
+      "japanese_name": "マタドガス",
+      "expected_english": "Weezing",
+      "expected_dex": 110,
+      "actual_species": "unown",
+      "actual_dex": 201,
+      "role": "primary",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-081",
+      "japanese_name": "カブトプス",
+      "expected_english": "Kabutops",
+      "expected_dex": 141,
+      "actual_species": "kabutops",
+      "actual_dex": 141,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-041",
+      "japanese_name": "キャモメ",
+      "expected_english": "Wingull",
+      "expected_dex": 278,
+      "actual_species": "wingull",
+      "actual_dex": 278,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-091",
+      "japanese_name": "ダークライ",
+      "expected_english": "Darkrai",
+      "expected_dex": 491,
+      "actual_species": "darkrai",
+      "actual_dex": 491,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-096",
+      "japanese_name": "オニスズメ",
+      "expected_english": "Spearow",
+      "expected_dex": 21,
+      "actual_species": "spearow",
+      "actual_dex": 21,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-080",
+      "japanese_name": "カブト",
+      "expected_english": "Kabuto",
+      "expected_dex": 140,
+      "actual_species": "kabuto",
+      "actual_dex": 140,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-073",
+      "japanese_name": "サーナイト",
+      "expected_english": "Gardevoir",
+      "expected_dex": 282,
+      "actual_species": "unown",
+      "actual_dex": 201,
+      "role": "primary",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-110",
+      "japanese_name": "ブルー",
+      "expected_english": "Snubbull",
+      "expected_dex": 209,
+      "actual_species": "snubbull",
+      "actual_dex": 209,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-028",
+      "japanese_name": "クラブ",
+      "expected_english": "Krabby",
+      "expected_dex": 98,
+      "actual_species": "krabby",
+      "actual_dex": 98,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-088",
+      "japanese_name": "ブラッキー",
+      "expected_english": "Umbreon",
+      "expected_dex": 197,
+      "actual_species": "umbreon",
+      "actual_dex": 197,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-053",
+      "japanese_name": "マニューラ",
+      "expected_english": "Weavile",
+      "expected_dex": 461,
+      "actual_species": "weavile",
+      "actual_dex": 461,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-093",
+      "japanese_name": "ハッサム",
+      "expected_english": "Scizor",
+      "expected_dex": 212,
+      "actual_species": "scizor",
+      "actual_dex": 212,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-011",
+      "japanese_name": "リーフィア",
+      "expected_english": "Leafeon",
+      "expected_dex": 470,
+      "actual_species": "leafeon",
+      "actual_dex": 470,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-089",
+      "japanese_name": "ヘルガー",
+      "expected_english": "Houndoom",
+      "expected_dex": 229,
+      "actual_species": "houndoom",
+      "actual_dex": 229,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-042",
+      "japanese_name": "ペリッパー",
+      "expected_english": "Pelipper",
+      "expected_dex": 279,
+      "actual_species": "pelipper",
+      "actual_dex": 279,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-027",
+      "japanese_name": "ヤドラン",
+      "expected_english": "Slowbro",
+      "expected_dex": 80,
+      "actual_species": "slowbro",
+      "actual_dex": 80,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-050",
+      "japanese_name": "ジーランス",
+      "expected_english": "Relicanth",
+      "expected_dex": 369,
+      "actual_species": "relicanth",
+      "actual_dex": 369,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-016",
+      "japanese_name": "イルミーゼ",
+      "expected_english": "Illumise",
+      "expected_dex": 314,
+      "actual_species": "illumise",
+      "actual_dex": 314,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-066",
+      "japanese_name": "ミュウツー",
+      "expected_english": "Mewtwo",
+      "expected_dex": 150,
+      "actual_species": "unown",
+      "actual_dex": 201,
+      "role": "primary",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-014",
+      "japanese_name": "ジュカイン",
+      "expected_english": "Sceptile",
+      "expected_dex": 254,
+      "actual_species": "sceptile",
+      "actual_dex": 254,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-121",
+      "japanese_name": "ラティオス",
+      "expected_english": "Latios",
+      "expected_dex": 381,
+      "actual_species": "latios",
+      "actual_dex": 381,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-001",
+      "japanese_name": "キャタピー",
+      "expected_english": "Caterpie",
+      "expected_dex": 10,
+      "actual_species": "caterpie",
+      "actual_dex": 10,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-120",
+      "japanese_name": "ラティアス",
+      "expected_english": "Latias",
+      "expected_dex": 380,
+      "actual_species": "latias",
+      "actual_dex": 380,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-065",
+      "japanese_name": "エーフィ",
+      "expected_english": "Espeon",
+      "expected_dex": 196,
+      "actual_species": "espeon",
+      "actual_dex": 196,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-083",
+      "japanese_name": "ハリテヤマ",
+      "expected_english": "Hariyama",
+      "expected_dex": 297,
+      "actual_species": "hariyama",
+      "actual_dex": 297,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-020",
+      "japanese_name": "マグマッグ",
+      "expected_english": "Slugma",
+      "expected_dex": 218,
+      "actual_species": "slugma",
+      "actual_dex": 218,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-082",
+      "japanese_name": "マクノシタ",
+      "expected_english": "Makuhita",
+      "expected_dex": 296,
+      "actual_species": "makuhita",
+      "actual_dex": 296,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-063",
+      "japanese_name": "ドガース",
+      "expected_english": "Koffing",
+      "expected_dex": 109,
+      "actual_species": "koffing",
+      "actual_dex": 109,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-043",
+      "japanese_name": "ホエルコ",
+      "expected_english": "Wailmer",
+      "expected_dex": 320,
+      "actual_species": "wailmer",
+      "actual_dex": 320,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-108",
+      "japanese_name": "トゲチック",
+      "expected_english": "Togetic",
+      "expected_dex": 176,
+      "actual_species": "togetic",
+      "actual_dex": 176,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-103",
+      "japanese_name": "ポリゴン",
+      "expected_english": "Porygon",
+      "expected_dex": 137,
+      "actual_species": "porygon",
+      "actual_dex": 137,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-017",
+      "japanese_name": "サボネア",
+      "expected_english": "Cacnea",
+      "expected_dex": 331,
+      "actual_species": "cacnea",
+      "actual_dex": 331,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-003",
+      "japanese_name": "バタフリー",
+      "expected_english": "Butterfree",
+      "expected_dex": 12,
+      "actual_species": "butterfree",
+      "actual_dex": 12,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-079",
+      "japanese_name": "オコリザル",
+      "expected_english": "Primeape",
+      "expected_dex": 57,
+      "actual_species": "primeape",
+      "actual_dex": 57,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-136",
+      "japanese_name": "エレブー",
+      "expected_english": "Electabuzz",
+      "expected_dex": 125,
+      "actual_species": "electabuzz",
+      "actual_dex": 125,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-009",
+      "japanese_name": "ストライク",
+      "expected_english": "Scyther",
+      "expected_dex": 123,
+      "actual_species": "scyther",
+      "actual_dex": 123,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-076",
+      "japanese_name": "クレセリア",
+      "expected_english": "Cresselia",
+      "expected_dex": 488,
+      "actual_species": "gardevoir",
+      "actual_dex": 282,
+      "role": "primary",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-034",
+      "japanese_name": "オムナイト",
+      "expected_english": "Omanyte",
+      "expected_dex": 138,
+      "actual_species": "omanyte",
+      "actual_dex": 138,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-021",
+      "japanese_name": "マグカルゴ",
+      "expected_english": "Magcargo",
+      "expected_dex": 219,
+      "actual_species": "magcargo",
+      "actual_dex": 219,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-117",
+      "japanese_name": "チルット",
+      "expected_english": "Swablu",
+      "expected_dex": 333,
+      "actual_species": "swablu",
+      "actual_dex": 333,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-026",
+      "japanese_name": "ヤドン",
+      "expected_english": "Slowpoke",
+      "expected_dex": 79,
+      "actual_species": "slowpoke",
+      "actual_dex": 79,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-005",
+      "japanese_name": "コクーン",
+      "expected_english": "Kakuna",
+      "expected_dex": 14,
+      "actual_species": "kakuna",
+      "actual_dex": 14,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-106",
+      "japanese_name": "プテラ",
+      "expected_english": "Aerodactyl",
+      "expected_dex": 142,
+      "actual_species": "aerodactyl",
+      "actual_dex": 142,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-100",
+      "japanese_name": "プクリン",
+      "expected_english": "Wigglytuff",
+      "expected_dex": 40,
+      "actual_species": "wigglytuff",
+      "actual_dex": 40,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-084",
+      "japanese_name": "ルナトーン",
+      "expected_english": "Lunatone",
+      "expected_dex": 337,
+      "actual_species": "lunatone",
+      "actual_dex": 337,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-078",
+      "japanese_name": "マンキー",
+      "expected_english": "Mankey",
+      "expected_dex": 56,
+      "actual_species": "makuhita",
+      "actual_dex": 296,
+      "role": "primary",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-030",
+      "japanese_name": "ラプラス",
+      "expected_english": "Lapras",
+      "expected_dex": 131,
+      "actual_species": "lapras",
+      "actual_dex": 131,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-033",
+      "japanese_name": "グレイシア",
+      "expected_english": "Glaceon",
+      "expected_dex": 471,
+      "actual_species": "glaceon",
+      "actual_dex": 471,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-044",
+      "japanese_name": "ホエルオー",
+      "expected_english": "Wailord",
+      "expected_dex": 321,
+      "actual_species": "wailord",
+      "actual_dex": 321,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-047",
+      "japanese_name": "パールル",
+      "expected_english": "Clamperl",
+      "expected_dex": 366,
+      "actual_species": "clamperl",
+      "actual_dex": 366,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-116",
+      "japanese_name": "バクオング",
+      "expected_english": "Exploud",
+      "expected_dex": 295,
+      "actual_species": "exploud",
+      "actual_dex": 295,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-029",
+      "japanese_name": "キングラー",
+      "expected_english": "Kingler",
+      "expected_dex": 99,
+      "actual_species": "kingler",
+      "actual_dex": 99,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-062",
+      "japanese_name": "スリーパー",
+      "expected_english": "Hypno",
+      "expected_dex": 97,
+      "actual_species": "hypno",
+      "actual_dex": 97,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-099",
+      "japanese_name": "プリン",
+      "expected_english": "Jigglypuff",
+      "expected_dex": 39,
+      "actual_species": "jigglypuff",
+      "actual_dex": 39,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-018",
+      "japanese_name": "ブースター",
+      "expected_english": "Flareon",
+      "expected_dex": 136,
+      "actual_species": "flareon",
+      "actual_dex": 136,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-054",
+      "japanese_name": "サンダース",
+      "expected_english": "Jolteon",
+      "expected_dex": 135,
+      "actual_species": "zapdos",
+      "actual_dex": 145,
+      "role": "primary",
+      "match": false
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-048",
+      "japanese_name": "ハンテール",
+      "expected_english": "Huntail",
+      "expected_dex": 367,
+      "actual_species": "huntail",
+      "actual_dex": 367,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-006",
+      "japanese_name": "スピアー",
+      "expected_english": "Beedrill",
+      "expected_dex": 15,
+      "actual_species": "beedrill",
+      "actual_dex": 15,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-056",
+      "japanese_name": "ロトム",
+      "expected_english": "Rotom",
+      "expected_dex": 479,
+      "actual_species": "rotom",
+      "actual_dex": 479,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-022",
+      "japanese_name": "デルビル",
+      "expected_english": "Houndour",
+      "expected_dex": 228,
+      "actual_species": "houndour",
+      "actual_dex": 228,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-004",
+      "japanese_name": "ビードル",
+      "expected_english": "Weedle",
+      "expected_dex": 13,
+      "actual_species": "weedle",
+      "actual_dex": 13,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-037",
+      "japanese_name": "デリバード",
+      "expected_english": "Delibird",
+      "expected_dex": 225,
+      "actual_species": "delibird",
+      "actual_dex": 225,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-122",
+      "japanese_name": "ガブリアス",
+      "expected_english": "Garchomp",
+      "expected_dex": 445,
+      "actual_species": "garchomp",
+      "actual_dex": 445,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-045",
+      "japanese_name": "ヒンバス",
+      "expected_english": "Feebas",
+      "expected_dex": 349,
+      "actual_species": "feebas",
+      "actual_dex": 349,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-101",
+      "japanese_name": "ガルーラ",
+      "expected_english": "Kangaskhan",
+      "expected_dex": 115,
+      "actual_species": "kangaskhan",
+      "actual_dex": 115,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-118",
+      "japanese_name": "チルタリス",
+      "expected_english": "Altaria",
+      "expected_dex": 334,
+      "actual_species": "altaria",
+      "actual_dex": 334,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-061",
+      "japanese_name": "スリープ",
+      "expected_english": "Drowzee",
+      "expected_dex": 96,
+      "actual_species": "drowzee",
+      "actual_dex": 96,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-095",
+      "japanese_name": "クチート",
+      "expected_english": "Mawile",
+      "expected_dex": 303,
+      "actual_species": "mawile",
+      "actual_dex": 303,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-112",
+      "japanese_name": "ジグザグマ",
+      "expected_english": "Zigzagoon",
+      "expected_dex": 263,
+      "actual_species": "zigzagoon",
+      "actual_dex": 263,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-052",
+      "japanese_name": "フィオネ",
+      "expected_english": "Phione",
+      "expected_dex": 489,
+      "actual_species": "phione",
+      "actual_dex": 489,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-097",
+      "japanese_name": "オニドリル",
+      "expected_english": "Fearow",
+      "expected_dex": 22,
+      "actual_species": "fearow",
+      "actual_dex": 22,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-013",
+      "japanese_name": "ジュプトル",
+      "expected_english": "Grovyle",
+      "expected_dex": 253,
+      "actual_species": "grovyle",
+      "actual_dex": 253,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-109",
+      "japanese_name": "トゲキッス",
+      "expected_english": "Togekiss",
+      "expected_dex": 468,
+      "actual_species": "togekiss",
+      "actual_dex": 468,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-025",
+      "japanese_name": "バシャーモ",
+      "expected_english": "Blaziken",
+      "expected_dex": 257,
+      "actual_species": "blaziken",
+      "actual_dex": 257,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-036",
+      "japanese_name": "フリーザー",
+      "expected_english": "Articuno",
+      "expected_dex": 144,
+      "actual_species": "articuno",
+      "actual_dex": 144,
+      "role": "primary",
+      "match": true
+    },
+    {
+      "gv_id": "GV-PK-JPN-DP4-038",
+      "japanese_name": "ミズゴロウ",
+      "expected_english": "Mudkip",
+      "expected_dex": 258,
+      "actual_species": "mudkip",
+      "actual_dex": 258,
+      "role": "primary",
+      "match": true
+    }
+  ]
+}

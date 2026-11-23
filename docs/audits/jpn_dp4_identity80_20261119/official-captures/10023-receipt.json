@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:20:01.864Z",
+  "gv_id": "GV-PK-JPN-DP4-023",
+  "card_print_id": "03b2fb9c-6fd8-4141-8dc0-992fa4197c1e",
+  "catalog_coordinate": "023",
+  "catalog_name": "アチャモ",
+  "official_id": "10023",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10023/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10023/regu/all",
+    "status": 200,
+    "sha256": "347841462aa3c956f8c3275c92b81849e48d8cfb0776db34550a600317cfa4a0",
+    "bytes": 10865
+  },
+  "heading": "アチャモ",
+  "artist": "Hiroki Fuchino",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010023_P_ACHAMO.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010023_P_ACHAMO.jpg",
+    "status": 200,
+    "sha256": "c88dcf9cac84a3e7b4abe6f4bb3b82ac36e7dd568e01fa410d2f86e2f770893d",
+    "bytes": 58079,
+    "catalog_path_hash_prefix": "c88dcf9cac84a3e7b4abe6f4",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

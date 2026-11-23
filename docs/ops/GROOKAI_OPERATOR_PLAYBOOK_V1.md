@@ -1,3 +1,14 @@
+# DP4 subject repair applied — November 19, 2026
+
+The four-record `catalog_jpn_dp4_subject_repair_v1` transaction passed the same-writer rollback proof and was applied with durable receipt `177031`; a separate read-only verify and independent pre/post snapshot comparison passed. See `docs/audits/jpn_dp4_artist_review_20261119/README.md`. The writer preserves source and identity preimages and retires old links. Its plan is exact and already applied; a changed writer, source or state requires fresh review and proofs for any new mutation. Later DP4 batches and the remaining source-evidence work are documented separately.
+
+# DP4 official artist credits applied — November 20, 2026
+
+`catalog_jpn_dp4_artist84_v1` filled 84 previously blank artist fields from exact official pages after per-batch rollback proofs. Separate read-only verification passed; see `docs/audits/jpn_dp4_official_artist84_20261120/README.md`. The frozen plan is not a general-purpose writer; any changed source, state, or writer requires fresh review and proofs.
+
+# DP4 English identity-only batches — November 19, 2026
+
+`backend/catalog/jpn_dp4_identity80_v1.mjs` is the guarded writer used for eight exact ten-record identity-only batches, all applied and independently verified. Use `--mode inspect --chunk N` and `--mode verify --chunk N` for read-only checks. Mutating modes require the existing owner execution marker, fresh source and ownership verification, the pinned plan and a same-writer rollback proof for that exact chunk. Raw source bytes and prior identity payloads are staged before changes, and parent, species-link, identity-hash, ownership, image and pricing state is protected. See `docs/audits/jpn_dp4_identity80_20261119/README.md`. An unknown commit outcome requires independent readback before retry; never infer release readiness from a prepared writer.
 # Price/stamp exact519 continuity — November22,2026
 
 The [519 audit](../audits/PRICE_STAMP_SCHEMA_519_CONTINUITY_20261123.md) binds the

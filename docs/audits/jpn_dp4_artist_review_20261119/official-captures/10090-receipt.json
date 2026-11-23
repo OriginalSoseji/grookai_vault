@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:20:18.652Z",
+  "gv_id": "GV-PK-JPN-DP4-090",
+  "card_print_id": "111b252c-75e7-4ef7-99bc-36300aad6d16",
+  "catalog_coordinate": "090",
+  "catalog_name": "ノクタス",
+  "official_id": "10090",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10090/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10090/regu/all",
+    "status": 200,
+    "sha256": "2db3e310800c1c3078f8511309ea9485563b3109f28d9e0e27832b54593330e1",
+    "bytes": 10526
+  },
+  "heading": "ノクタス",
+  "artist": "Midori Harada",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010090_P_NOKUTASU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010090_P_NOKUTASU.jpg",
+    "status": 200,
+    "sha256": "c6fa0fdef5fe8129dbe426833d4bf37d294292c728ba6470b6ae924ca6ef80ca",
+    "bytes": 50936,
+    "catalog_path_hash_prefix": "c6fa0fdef5fe8129dbe42683",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

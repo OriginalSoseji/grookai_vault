@@ -1,0 +1,25 @@
+{
+  "version": "JPN_DP4_FAMILY_CONTAINMENT_V1",
+  "run_id": "a12ab692-1adf-4f37-a2d5-7f1e07706abd",
+  "mode": "inspect",
+  "package_fingerprint": "cb443b3c55ef94bb2691f9c7f48c4336e1bba1bdc61e541b0bb6a77ba01d8493",
+  "writer_fingerprint": "dcf14e57b8aa07322292c31cbfecdd2a42d1b00e4341e5881bcbfd0910f7c4e0",
+  "started_at": "2026-11-20T11:41:10.158Z",
+  "status": "failed_rolled_back",
+  "stages": [
+    {
+      "name": "source_and_ownership_verified",
+      "at": "2026-11-20T11:41:20.596Z"
+    }
+  ],
+  "sanity": {
+    "parents": 173837,
+    "sets": 3420,
+    "traits": 47409
+  },
+  "error": {
+    "code": "55P03",
+    "message": "canceling statement due to lock timeout"
+  },
+  "finished_at": "2026-11-20T11:41:27.198Z"
+}

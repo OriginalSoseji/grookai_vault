@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:21:22.626Z",
+  "gv_id": "GV-PK-JPN-DP4-111",
+  "card_print_id": "37e9667f-0cc9-418e-8aed-38686911d9de",
+  "catalog_coordinate": "111",
+  "catalog_name": "グランブル",
+  "official_id": "10111",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10111/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10111/regu/all",
+    "status": 200,
+    "sha256": "84f7faa3d794ac324ecd6ebb39c58715b47dc0fe00311e09e5bad5bd601d9b06",
+    "bytes": 10533
+  },
+  "heading": "グランブル",
+  "artist": "Mitsuhiro Arita",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010111_P_GURANBURU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010111_P_GURANBURU.jpg",
+    "status": 200,
+    "sha256": "b8fb5a52fac4fe070b149c2fcfb224dd0c501c83e562d2e5d0888e501009e8c5",
+    "bytes": 45685,
+    "catalog_path_hash_prefix": "b8fb5a52fac4fe070b149c2f",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

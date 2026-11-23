@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:21:17.196Z",
+  "gv_id": "GV-PK-JPN-DP4-119",
+  "card_print_id": "33ed3d7d-abe2-4bbe-8130-339c0ad5c438",
+  "catalog_coordinate": "119",
+  "catalog_name": "ザングース",
+  "official_id": "10119",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10119/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10119/regu/all",
+    "status": 200,
+    "sha256": "fa5e3bbef80bda21199b080e9fefb5e230f0241b96281ccfa27449567bc40d37",
+    "bytes": 9954
+  },
+  "heading": "ザングース",
+  "artist": "Masakazu Fukuda",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010119_P_ZANGUSU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010119_P_ZANGUSU.jpg",
+    "status": 200,
+    "sha256": "9ba2c51d189cea06b16fcbb04db96549aa965f188fc0ea6156a83121bdc54d1f",
+    "bytes": 48528,
+    "catalog_path_hash_prefix": "9ba2c51d189cea06b16fcbb0",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

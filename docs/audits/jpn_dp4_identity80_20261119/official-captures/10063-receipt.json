@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:23:31.411Z",
+  "gv_id": "GV-PK-JPN-DP4-063",
+  "card_print_id": "93a5ac46-54ac-42e8-a64e-461695d37c78",
+  "catalog_coordinate": "063",
+  "catalog_name": "ドガース",
+  "official_id": "10063",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10063/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10063/regu/all",
+    "status": 200,
+    "sha256": "192131b01abc771e346e9ad1f3166ca53b315aeb3c25d6409d6507904afc247a",
+    "bytes": 10644
+  },
+  "heading": "ドガース",
+  "artist": "Lee HyunJung",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010063_P_DOGASU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010063_P_DOGASU.jpg",
+    "status": 200,
+    "sha256": "1f2bb4b94834331e7826a207408189645746907b1a5c04ee55687aef3316851b",
+    "bytes": 52984,
+    "catalog_path_hash_prefix": "1f2bb4b94834331e7826a207",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

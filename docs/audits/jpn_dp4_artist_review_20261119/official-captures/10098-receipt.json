@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:20:52.226Z",
+  "gv_id": "GV-PK-JPN-DP4-098",
+  "card_print_id": "2a39f342-e23f-4ae7-9524-1ae83481e631",
+  "catalog_coordinate": "098",
+  "catalog_name": "ププリン",
+  "official_id": "10098",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10098/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10098/regu/all",
+    "status": 200,
+    "sha256": "3b9fb3f6a1140f4d93659238d5c2b5d070a04634755523f562ffc8c095aae6ea",
+    "bytes": 10070
+  },
+  "heading": "ププリン",
+  "artist": "Ken Sugimori",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010098_P_PUPURIN.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010098_P_PUPURIN.jpg",
+    "status": 200,
+    "sha256": "4ed9ce351b3bcc44fa0a3f2cfe0af0fd39b1a09d09ffe2051d91b7768ae2b1a3",
+    "bytes": 45513,
+    "catalog_path_hash_prefix": "4ed9ce351b3bcc44fa0a3f2c",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

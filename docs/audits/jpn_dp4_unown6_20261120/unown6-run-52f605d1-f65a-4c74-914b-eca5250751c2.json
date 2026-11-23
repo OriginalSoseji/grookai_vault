@@ -1,0 +1,26 @@
+{
+  "version": "JPN_DP4_UNOWN6_V1",
+  "run_id": "52f605d1-f65a-4c74-914b-eca5250751c2",
+  "mode": "verify",
+  "package_fingerprint": "c0c1edd6508ffd14c415cb79232b4357b31290f988e3e5c7a6aaf028e7824d6a",
+  "writer_fingerprint": "87fcbec1e93f83ac40b53ef05985c94aa6d581fdede184ff148bf67275de0b29",
+  "started_at": "2026-11-20T10:01:19.519Z",
+  "status": "verified_already_applied",
+  "stages": [
+    {
+      "name": "source_and_ownership_verified",
+      "at": "2026-11-20T10:01:28.065Z"
+    },
+    {
+      "name": "verified_already_applied",
+      "at": "2026-11-20T10:01:28.641Z"
+    }
+  ],
+  "sanity": {
+    "parents": 173837,
+    "sets": 3420,
+    "traits": 47409
+  },
+  "receipt_id": "177099",
+  "finished_at": "2026-11-20T10:01:28.641Z"
+}

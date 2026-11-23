@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:27:05.901Z",
+  "gv_id": "GV-PK-JPN-DP4-044",
+  "card_print_id": "b7d90e0e-3072-4af7-a87a-64c03190063a",
+  "catalog_coordinate": "044",
+  "catalog_name": "ホエルオー",
+  "official_id": "10044",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10044/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10044/regu/all",
+    "status": 200,
+    "sha256": "78b1e92b6fd9eabf7712ef6bbe675e4b251a321f35b279f203d84fc559e3e7d7",
+    "bytes": 10863
+  },
+  "heading": "ホエルオー",
+  "artist": "Mitsuhiro Arita",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010044_P_HOERUO.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010044_P_HOERUO.jpg",
+    "status": 200,
+    "sha256": "d4d6f5acc1b8d499d4dde58269a93a42682e4b80c129966a41caff91bf6bff16",
+    "bytes": 61391,
+    "catalog_path_hash_prefix": "d4d6f5acc1b8d499d4dde582",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

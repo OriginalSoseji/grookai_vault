@@ -1,0 +1,24 @@
+{
+  "captured_at": "2026-11-20T09:42:46.866Z",
+  "scope": "Read-only official page refresh; prior page bytes preserved.",
+  "refresh": [
+    {
+      "official_id": "10012",
+      "prior_sha256": "c39247d37579c9342f7aa9e99ddcf47ff2e12a91068c5e2adf351f2d9781a5e0",
+      "fresh_sha256": "91967b0502bfa86073443162a052debd159e225fbee53fec79faaa79dc39033c",
+      "name": "キモリ",
+      "artist": "Kouki Saitou",
+      "dex": 252,
+      "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010012_P_KIMORI.jpg"
+    },
+    {
+      "official_id": "10013",
+      "prior_sha256": "32fd4d52b121ea79805498286278690e81a677409983b80d9ac6fca726592b56",
+      "fresh_sha256": "558bd8206738c715387c597b25946061b674ad4f46ec6fb5e881aa0fb8d822e4",
+      "name": "ジュプトル",
+      "artist": "Kagemaru Himeno",
+      "dex": 253,
+      "image_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010013_P_JUPUTORU.jpg"
+    }
+  ]
+}

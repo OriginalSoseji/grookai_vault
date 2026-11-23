@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:26:54.821Z",
+  "gv_id": "GV-PK-JPN-DP4-084",
+  "card_print_id": "b42006c0-04a5-448e-bcd7-339ef87c21a4",
+  "catalog_coordinate": "084",
+  "catalog_name": "ルナトーン",
+  "official_id": "10084",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10084/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10084/regu/all",
+    "status": 200,
+    "sha256": "36cde33e93a3a168cc8b65310f72b3b176ae5699efc9c9e9080502b4c8ba9f01",
+    "bytes": 10113
+  },
+  "heading": "ルナトーン",
+  "artist": "Ken Sugimori",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010084_P_RUNATON.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010084_P_RUNATON.jpg",
+    "status": 200,
+    "sha256": "7f3db125b7dee17c2a794c9bc8f7d16929d6d1651fd00b628a9e91e9cfc65c27",
+    "bytes": 53549,
+    "catalog_path_hash_prefix": "7f3db125b7dee17c2a794c9b",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:27:00.499Z",
+  "gv_id": "GV-PK-JPN-DP4-030",
+  "card_print_id": "b68c97b2-66ff-4440-aa79-04d9bbbec77c",
+  "catalog_coordinate": "030",
+  "catalog_name": "ラプラス",
+  "official_id": "10030",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10030/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10030/regu/all",
+    "status": 200,
+    "sha256": "bba7977f2c8b9785a203b8837b8e5e39ac0813edbb693b20d373b43ec8a031e0",
+    "bytes": 10026
+  },
+  "heading": "ラプラス",
+  "artist": "Atsuko Nishida",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010030_P_RAPURASU.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010030_P_RAPURASU.jpg",
+    "status": 200,
+    "sha256": "53577846dddb340200d769eeec7c32d43c1edeace0bb702344444dbdb911f1d1",
+    "bytes": 59925,
+    "catalog_path_hash_prefix": "53577846dddb340200d769ee",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

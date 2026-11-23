@@ -1,0 +1,29 @@
+{
+  "version": "JPN_DP4_OFFICIAL_RESEARCH_CAPTURE_V1",
+  "captured_at": "2026-11-19T23:22:47.466Z",
+  "gv_id": "GV-PK-JPN-DP4-089",
+  "card_print_id": "77a5a8e1-2c81-44cb-8262-d56c1aca3f9d",
+  "catalog_coordinate": "089",
+  "catalog_name": "ヘルガー",
+  "official_id": "10089",
+  "page": {
+    "url": "https://www.pokemon-card.com/card-search/details.php/card/10089/regu/all",
+    "final_url": "https://www.pokemon-card.com/card-search/details.php/card/10089/regu/all",
+    "status": 200,
+    "sha256": "1f1c7a8f42f435392d92b54026ef63a7bcb68659994b2e00476b6d1f73143175",
+    "bytes": 11077
+  },
+  "heading": "ヘルガー",
+  "artist": "Ken Sugimori",
+  "image": {
+    "url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010089_P_HERUGA.jpg",
+    "final_url": "https://www.pokemon-card.com/assets/images/card_images/large/DP4/010089_P_HERUGA.jpg",
+    "status": 200,
+    "sha256": "3d3cbc92743185d639ae2866ac030ae7e84bf9738e0f2cf48fa33f5b64c81803",
+    "bytes": 51064,
+    "catalog_path_hash_prefix": "3d3cbc92743185d639ae2866",
+    "hash_prefix_matches": true
+  },
+  "disposition": "exact_hash_prefix_candidate_only",
+  "scope": "Unadmitted research candidate; match is not approval, full storage-image verification, identity ownership, or a write plan."
+}

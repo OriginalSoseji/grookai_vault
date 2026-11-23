@@ -1,0 +1,12 @@
+{
+  "version": "DP4_PORYGON2_INDEPENDENT_READBACK_V1",
+  "verified_at": "2026-11-20T10:20:35.645Z",
+  "status": "passed",
+  "sanity": {
+    "read_only": "on",
+    "parents": 173837,
+    "sets": 3420
+  },
+  "records": 2,
+  "receipt_id": "177103"
+}

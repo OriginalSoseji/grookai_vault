@@ -4,6 +4,13 @@ Status: Active audit support document
 
 Purpose: coverage-accountable inventory of canon-affecting and ownership-affecting write paths before additional enforcement changes.
 
+## Japanese DP4 subject repair candidate
+
+`catalog_jpn_dp4_subject_repair_v1` is registered as a transactional authoritative path for four exact-source identity/species corrections. It requires a pinned evidence plan, same-writer rollback proof, raw-first source snapshots and post-write protected-state proofs. The exact four-record package passed focused tests, rollback proof and independent readback and was applied with receipt `177031`. The broader source/producer audit and release gates remain open; registration alone does not authorize another package or deployment.
+
+## Japanese DP4 identity-only batches
+
+`catalog_jpn_dp4_identity80_v1` is a transactional authoritative writer used for eight exact ten-record identity-payload corrections. Each chunk requires a pinned source plan, current source/ownership checks, same-writer rollback proof and protected-state post-write proofs. All eight batches were applied and independently read back; see `docs/audits/jpn_dp4_identity80_20261119/README.md`. This is not a deployment receipt.
 ## Classification Key
 
 - `runtime_status`
@@ -25,6 +32,14 @@ Purpose: coverage-accountable inventory of canon-affecting and ownership-affecti
 
 | path_name | source_files | canon_affecting | ownership_affecting | public_trust_affecting | runtime_status | transaction_mode | post_write_proof | risk_level | next_action |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `catalog_jpn_dp4_subject_repair_v1` | `backend/catalog/jpn_dp4_subject_repair_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | high | Keep the exact four-parent identity/species repair behind current source ownership, raw-first, same-writer rollback and protected-state proofs. |
+| `catalog_jpn_dp4_family_containment_v1` | `backend/catalog/jpn_dp4_family_containment_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | high | Six wrong DP4 family approvals superseded with source, rollback and protected-state proofs; see `docs/audits/jpn_dp4_family_containment_20261120/`. |
+| `catalog_jpn_dp4_artist12_v1` | `backend/catalog/jpn_dp4_artist12_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | high | Twelve exact official artist-only fills applied with retained sources, rollback and protected-state proofs. |
+| `catalog_jpn_dp4_unown6_v1` | `backend/catalog/jpn_dp4_unown6_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | high | Six exact Unown form identities repaired with retained sources, rollback and protected-state proofs. |
+| `catalog_jpn_dp4_porygon2_v1` | `backend/catalog/jpn_dp4_porygon2_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | high | Two exact Porygon identities repaired with retained sources, rollback and protected-state proofs. |
+| `catalog_jpn_dp4_artist8_v1` | `backend/catalog/jpn_dp4_artist8_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | high | Eight official artist-only fills applied after subject repairs with retained sources, rollback and protected-state proofs. |
+| `catalog_jpn_dp4_artist84_v1` | `backend/catalog/jpn_dp4_artist84_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | high | Applied seven exact artist-only batches with source, ownership, rollback and protected-state proofs; retain audit receipts and do not generalize scope. |
+| `catalog_jpn_dp4_identity80_v1` | `backend/catalog/jpn_dp4_identity80_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | high | Keep each exact ten-parent identity-only batch behind current source ownership, raw-first, same-writer rollback and protected-state proofs. |
 | `external_discovery_to_warehouse_bridge_v1` | `backend/warehouse/external_discovery_to_warehouse_bridge_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | medium | Keep on the shared executor boundary; do not allow ad hoc RAW candidate writes back in. |
 | `classification_apply_write_plan_v1` | `backend/warehouse/classification_worker_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | medium | Keep candidate locking and evidence freshness checks inside the executor-backed boundary. |
 | `classification_apply_reclassification_result_v1` | `backend/warehouse/classification_worker_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | medium | Keep reclassification update + event append inside the executor-backed boundary. |
