@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 
 import {
   assertLiveState,
+  assertLiveSourceTargetNameBinding,
   assertVerifiedProductionTls,
   connectionConfig,
   expectedApprovalText,
@@ -267,4 +268,46 @@ test('live assertion binds source, target, identity, mapping and current price l
     ...live,
     targets: [{ ...live.targets[0], active_standard_identity_count: 2 }],
   }), /target_identity_not_unique/);
+});
+
+test('live name binding accepts showcase foil etched only with exact canonical treatment evidence', () => {
+  const expected = row(262665, {
+    source_product_name: 'Blade of the Oni (Showcase) (Foil Etched)',
+    canonical_name: 'Blade of the Oni',
+    target_name_match: 'base_name_alias',
+  });
+  const target = {
+    name: 'Blade of the Oni',
+    active_standard_identity_payloads: [{
+      name: 'Blade of the Oni',
+      frame_effects: ['inverted', 'showcase'],
+      finishes: ['etched'],
+    }],
+  };
+  assert.doesNotThrow(() => assertLiveSourceTargetNameBinding(
+    expected.source_product_name,
+    target,
+    expected,
+  ));
+  assert.throws(() => assertLiveSourceTargetNameBinding(
+    expected.source_product_name,
+    { ...target, active_standard_identity_payloads: [{
+      ...target.active_standard_identity_payloads[0],
+      frame_effects: ['inverted'],
+    }] },
+    expected,
+  ), /showcase_identity_treatment_missing/);
+  assert.throws(() => assertLiveSourceTargetNameBinding(
+    expected.source_product_name,
+    { ...target, active_standard_identity_payloads: [{
+      ...target.active_standard_identity_payloads[0],
+      finishes: ['foil'],
+    }] },
+    expected,
+  ), /showcase_identity_finish_missing/);
+  assert.throws(() => assertLiveSourceTargetNameBinding(
+    'Blade of the Oni (Extended Art) (Foil Etched)',
+    target,
+    expected,
+  ), /source_target_name_changed/);
 });

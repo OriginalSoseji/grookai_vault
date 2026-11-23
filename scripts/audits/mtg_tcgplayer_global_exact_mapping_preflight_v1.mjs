@@ -79,6 +79,33 @@ function foldedName(value) {
     .trim();
 }
 
+const SHOWCASE_FOIL_ETCHED_QUALIFIER = '(Showcase) (Foil Etched)';
+
+export function assertLiveSourceTargetNameBinding(productName, target, expectedRow) {
+  const normalized = stripReviewedMtgTcgplayerQualifierV1(productName);
+  if (foldedName(normalized.base_name) === foldedName(target.name)) return;
+
+  const source = text(productName);
+  const suffix = ` ${SHOWCASE_FOIL_ETCHED_QUALIFIER}`;
+  assert.ok(source.endsWith(suffix),
+    `source_target_name_changed:${expectedRow.source_product_id}`);
+  assert.equal(foldedName(source.slice(0, -suffix.length)), foldedName(target.name),
+    `source_target_name_changed:${expectedRow.source_product_id}`);
+  assert.equal(expectedRow.target_name_match, 'base_name_alias',
+    `showcase_name_evidence_changed:${expectedRow.source_product_id}`);
+
+  const identities = target.active_standard_identity_payloads ?? [];
+  assert.equal(identities.length, 1,
+    `showcase_identity_payload_not_unique:${expectedRow.source_product_id}`);
+  const identity = identities[0];
+  assert.equal(foldedName(identity?.name), foldedName(target.name),
+    `showcase_identity_name_changed:${expectedRow.source_product_id}`);
+  assert.ok(identity?.frame_effects?.includes('showcase'),
+    `showcase_identity_treatment_missing:${expectedRow.source_product_id}`);
+  assert.ok(identity?.finishes?.includes('etched'),
+    `showcase_identity_finish_missing:${expectedRow.source_product_id}`);
+}
+
 export function git(args) {
   return execFileSync('git', args, {
     cwd: ROOT,
@@ -402,7 +429,10 @@ export async function loadLiveState(client, expected) {
     count(distinct identity.id) filter(where identity.is_active
       and identity.identity_domain='mtg_eng_paper_print')::integer active_standard_identity_count,
     count(distinct mapping.id) filter(where mapping.source='tcgplayer'
-      and mapping.active)::integer active_tcgplayer_mapping_count
+      and mapping.active)::integer active_tcgplayer_mapping_count,
+    coalesce(jsonb_agg(distinct identity.identity_payload) filter(where identity.is_active
+      and identity.identity_domain='mtg_eng_paper_print'),'[]'::jsonb)
+      active_standard_identity_payloads
     from public.card_prints card
     left join public.card_print_identity identity on identity.card_print_id=card.id
     left join public.external_mappings mapping on mapping.card_print_id=card.id
@@ -447,9 +477,7 @@ export function assertLiveState(expected, live) {
     assert.equal(normalizeTcgplayerMappingNumberV1(numberField(product.extended_data)),
       normalizeTcgplayerMappingNumberV1(row.printed_number),
       `source_number_changed:${row.source_product_id}`);
-    const normalized = stripReviewedMtgTcgplayerQualifierV1(product.name);
-    assert.equal(foldedName(normalized.base_name), foldedName(target.name),
-      `source_target_name_changed:${row.source_product_id}`);
+    assertLiveSourceTargetNameBinding(product.name, target, row);
     assert.equal(target.gv_id, row.target_gv_id, `target_gv_id_changed:${row.source_product_id}`);
     assert.equal(target.set_id, row.target_set_id, `target_set_changed:${row.source_product_id}`);
     assert.equal(target.set_code, row.target_set_code,
