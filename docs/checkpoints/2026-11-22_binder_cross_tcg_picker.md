@@ -214,3 +214,15 @@ community Binder flows remain unverified on a second real account.
   `0a2944dad7c9111a88759756ce24808bb2ee34b3`. The branch now contains that
   authority with no force-push or history rewrite. PR checks must rerun on the
   synchronized head before it can merge.
+- Signed Samsung Build 613 is installed from workflow run `45108591776`, source
+  commit `0cabccf7f942e9fdfedad9d5e90772b58ec9920d`. Full Flutter tests,
+  analyzer, Windows renderer goldens, release signing, and artifact identity
+  checks passed. The manifest records package `com.grookai.vault`, version
+  code 613, and the approved production signer. Update preflight confirmed an
+  exact signer match against Build 612; in-place installation succeeded and
+  retained first-install timestamp `2026-10-13 14:57:14`.
+- PR #1016's synchronized head has all listed CI/status checks successful,
+  including the required `runtime-protection` check, but GitHub still reports
+  merge state `BLOCKED`. No merge or branch-protection bypass was attempted.
+- The phone relocked during the build. Device-side visual drag verification is
+  still pending an unlocked screen; package installation and app data are intact.
