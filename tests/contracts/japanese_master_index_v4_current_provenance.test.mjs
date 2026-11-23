@@ -22,3 +22,9 @@ test('legacy artifacts retain their previous provenance behavior', () => {
   assert.equal(hasCurrentProvenance({ independent_source_count: 0, baseline_evidence_ids: ['old'] }), true);
   assert.equal(hasCurrentProvenance({ independent_source_count: 0, baseline_evidence_ids: [] }), false);
 });
+
+test('unqualified active evidence does not provide current provenance or support', () => {
+  const card = { independent_source_count: 0, baseline_evidence_ids: ['stale'], active_baseline_evidence_ids: ['stale'], current_eligible_baseline_evidence_ids: [] };
+  assert.equal(hasCurrentProvenance(card), false);
+  assert.equal(assertionDisposition({ disposition: 'existing' }, { assertion_lane: 'preserved_live_evidence', disposition_reason: 'active_evidence_identity_claims_unqualified' }, { existing: 'supports_existing' }), 'excluded_source_assertion');
+});

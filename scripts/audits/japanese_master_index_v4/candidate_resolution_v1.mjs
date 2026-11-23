@@ -61,6 +61,26 @@ function currentEvidenceEnglishNames(row, identitiesByCard) {
     admitted.has(normalizeEnglishName(name)));
 }
 
+// Keep active rows as history, but do not count their source as support when
+// the identity anchor or an explicit English identity claim is inconsistent.
+function evidenceEligibleForCurrentSource(row, identitiesByCard) {
+  if (row.active !== true) return false;
+  const identities = (identitiesByCard.get(row.card_print_id) ?? [])
+    .filter((identity) => identity.is_active === true);
+  if (identities.length !== 1 || !identities[0].card_print_identity_id ||
+      row.card_print_identity_id !== identities[0].card_print_identity_id) return false;
+  const claimed = row.evidence_subject?.card_name_en_candidates;
+  if (claimed === undefined || claimed === null) return true;
+  if (!Array.isArray(claimed)) return false;
+  if (claimed.length === 0) return true;
+  const current = identities[0].identity_payload?.card_name_en_candidates;
+  if (!Array.isArray(current)) return false;
+  const admitted = new Set(current.filter((name) => typeof name === 'string')
+    .map(normalizeEnglishName).filter(Boolean));
+  return claimed.every((name) => typeof name === 'string' &&
+    Boolean(normalizeEnglishName(name)) && admitted.has(normalizeEnglishName(name)));
+}
+
 function assertionNumberCore(assertion) {
   const raw = numberCoreFromRaw(assertion.card_number_raw);
   if (raw !== null) return raw;
@@ -448,6 +468,8 @@ function buildNovelCandidate({
     assertion_keys: assertionKeys,
     baseline_evidence_ids: [],
     active_baseline_evidence_ids: [],
+    current_eligible_baseline_evidence_ids: [],
+    current_eligible_baseline_source_keys: [],
     resolution_notes: resolutionNotes,
   };
 }
@@ -799,6 +821,9 @@ export function buildJapaneseCandidateUnion({
     const matched = matchedAssertionsByParent.get(parent.card_print_id) ?? [];
     const baselineEvidence = evidenceByCard.get(parent.card_print_id) ?? [];
     const activeEvidence = baselineEvidence.filter((row) => row.active === true);
+    const eligibleEvidence = activeEvidence.filter((row) => (
+      evidenceEligibleForCurrentSource(row, identitiesByCard)
+    ));
     identityCandidates.push({
       candidate_key: `existing:${parent.card_print_id}`,
       candidate_kind: 'existing_parent',
@@ -831,6 +856,12 @@ export function buildJapaneseCandidateUnion({
       ),
       active_baseline_evidence_ids: unique(
         activeEvidence.map((row) => row.evidence_id),
+      ),
+      current_eligible_baseline_evidence_ids: unique(
+        eligibleEvidence.map((row) => row.evidence_id),
+      ),
+      current_eligible_baseline_source_keys: unique(
+        eligibleEvidence.map((row) => row.source_key),
       ),
       resolution_notes: model.registryKey
         ? []
@@ -1037,11 +1068,13 @@ export function buildJapaneseCandidateUnion({
   );
   const sourceAssertionUnion = [];
   for (const row of evidenceRows) {
+    const eligible = evidenceEligibleForCurrentSource(row, identitiesByCard);
     sourceAssertionUnion.push({
       union_row_key: `preserved:${row.evidence_id}`,
       assertion_lane: row.active === true
         ? 'preserved_live_evidence'
         : 'preserved_inactive_evidence',
+      current_identity_claims_eligible: eligible,
       source_key: row.source_key,
       source_external_id: null,
       registry_key:
@@ -1062,9 +1095,10 @@ export function buildJapaneseCandidateUnion({
       evidence_id: row.evidence_id,
       projected_candidate_key: `existing:${row.card_print_id}`,
       projected_existing_card_print_id: row.card_print_id,
-      resolution_status: row.active === true
-        ? 'preserved_canonical_evidence'
-        : 'preserved_inactive_evidence',
+      resolution_status: row.active !== true
+        ? 'preserved_inactive_evidence'
+        : eligible ? 'preserved_canonical_evidence'
+          : 'preserved_unqualified_active_evidence',
     });
   }
   for (const assertion of assertions) {
@@ -1342,6 +1376,7 @@ export const candidateResolutionInternals = Object.freeze({
   normalizeJapaneseName,
   normalizeEnglishName,
   currentEvidenceEnglishNames,
+  evidenceEligibleForCurrentSource,
   numberCoreFromRaw,
   assertionNumberCore,
   parentNumberCore,

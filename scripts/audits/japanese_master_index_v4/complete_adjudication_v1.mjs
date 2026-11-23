@@ -1197,7 +1197,8 @@ async function main() {
   const assertionRows = assertions.map((row) => {
     const identity = identityByKey.get(row.projected_candidate_key);
     const evidenceNeeded =
-      row.assertion_lane === 'preserved_inactive_evidence' ? null
+      row.assertion_lane === 'preserved_inactive_evidence' ||
+      row.disposition_reason === 'active_evidence_identity_claims_unqualified' ? null
         : identity?.disposition === 'insufficient_evidence'
         ? 'independent_corroborating_identity_source'
         : identity?.disposition === 'blocked_but_otherwise_admissible'
