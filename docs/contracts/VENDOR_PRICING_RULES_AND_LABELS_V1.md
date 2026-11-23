@@ -64,3 +64,29 @@ hosted gates, Auth/tenant tests, exact reference/rounding/race/recovery proof,
 manual overrides surviving market/default changes, no stock or sale regression,
 same-signer Samsung update, actual label output and phone/Square scan. Production
 activation is separate, revision-checked and audited after qualification.
+
+## Bounded pricing drain candidate — November22,2026
+
+The launch target is100 vendors with1,000 cards each. The separate server-only
+`GROOKAI_VENDOR_PRICING_DRAIN_ENABLED` control defaults off. When explicitly
+enabled after qualification, the existing recovery worker may read successive
+unchanged50-copy candidate pages under one existing run ID/fence. It admits at
+most5,000 distinct copies and retains the220-second admission budget and the
+existing300-second database lease. It never starts parallel monetary writers.
+
+Each reprice still uses the existing authority, locks, exact reference, rule
+revisions, manual precedence and checkout guards. Changed asking prices commit
+the existing Square copy-change queue transactionally; unchanged outstanding
+provider updates remain discoverable through the existing pending-price read.
+Drain mode leaves provider handoff to ordinary fenced Square recovery. It does
+not perform inline Square calls or claim an unacknowledged price is POS-ready.
+Its receipt records candidate batches, deferred handoffs and an explicit stop
+reason: empty, time budget, work bound or repeated candidates. Repeated/partially
+repeated pages must not cause an infinite loop or reprice a copy twice in a run.
+Failures retain the original durable failed-run behavior and sanitized errors.
+
+The default-off path retains the existing single-page inline Square behavior.
+This candidate is not authorization to enable drain mode: real database/tenant
+durability, capacity of the separate provider handoff, source/hosted gates and
+normal publication requirements must qualify first. Generated100,000-copy unit
+workloads are distinct from actual database/provider load and live acceptance.

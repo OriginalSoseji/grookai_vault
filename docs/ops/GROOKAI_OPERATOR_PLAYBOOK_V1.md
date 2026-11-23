@@ -1,3 +1,29 @@
+# Vendor automatic-pricing drain candidate — November22,2026
+
+The100-vendor/100,000-card audit is retained at
+`C:/grookai_vault_operator_artifacts/square_launch_readiness_20261122/READINESS.md`.
+It reproduced global50-copy pricing capacity and sold targets omitted after the
+SQL1,000-target window. Existing small-account sale and recovery evidence does
+not establish this launch capacity.
+
+The candidate in`C:/grookai_square_scale_20261122` adds default-off
+`GROOKAI_VENDOR_PRICING_DRAIN_ENABLED`. Read the candidate section in
+[the pricing contract](../contracts/VENDOR_PRICING_RULES_AND_LABELS_V1.md).
+It drains bounded existing candidate pages under the unchanged run fence and
+time budget, and retains Square handoff in existing durable obligations. Default
+behavior stays on the current single-page inline path. The new receipt's stop
+reason distinguishes an empty queue from budget, work-bound or repeated-page
+stops; a successful batch is not proof of global queue completion or POS price
+acknowledgement. Do not enable it until database durability and separate provider
+capacity are qualified. No schema, stock or payment authority is added here.
+
+The strict starting schema audit failed on seven applied catalog-release IDs
+not yet on main. The original failure is retained in the private
+`hardening-v1/audit-linked-schema.log` beneath the audit directory. Do not edit
+migrations or bypass the gate while that baseline is unresolved. Continue only
+independent application implementation/tests. The separate main merge pause
+remains; the consumed PR1018-only exception cannot publish this candidate.
+
 # Cosmo title price guard — November22,2026
 
 Use `C:/grookai_cosmo_price_guard_20261122` and the
