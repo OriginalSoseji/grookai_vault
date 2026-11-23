@@ -92,6 +92,22 @@ product `58205`, `Mountain (The Izzet League)`, points at target set `sum`,
 separate exact set authority proves the proposed target. The other 49 rows are
 also still review evidence, not approved mappings.
 
+The founder subsequently approved a conservative partition bound to decision
+fingerprint
+`97cca525c64f868da34019e0f9713d38e17b62e8280af92e32588adb8697d087`:
+36 Commander Legends rows whose readable target and group-consensus set codes
+match were accepted for a separate mapping-outcome preflight; 13 promo-context
+rows remain held; and product `58205` was rejected. This approval grants no
+mapping or pricing authority.
+
+`scripts/audits/mtg_tcgplayer_global_exact_mapping_preflight_v1.mjs` consumes
+that exact approval and the content-addressed batch. It performs two independent
+repeatable-read, read-only production transactions and fails closed on source,
+identity, price-lane, target, or mapping drift. The preflight contains no insert,
+update, delete, commit, mapping, pricing, publication, canonical, or Vault write
+path. A successful receipt still requires a separate exact founder approval
+before any insert-only executor may be considered.
+
 The proof wrote only temporary local artifacts. It performed no database read
 or write and did not change mappings, prices, publication pointers, canonical
 identity, Vault data, or customer state.
