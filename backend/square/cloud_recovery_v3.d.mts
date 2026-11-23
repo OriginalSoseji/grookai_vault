@@ -7,6 +7,10 @@ export type SquareCloudRecoveryResult = {
   targetsChecked: number;
   errorCode: string;
   resumedTerminalRun?: boolean;
+  admitted?: number;
+  pending?: number;
+  review?: number;
+  reason?: string;
 };
 
 // Production callers use the verified server environment and shared SDK.

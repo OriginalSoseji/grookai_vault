@@ -13,8 +13,9 @@ const fixture={GITHUB_ACTIONS:'true',NODE_ENV:'production',SUPABASE_URL:'https:/
  SQUARE_TOKEN_ENCRYPTION_KEY:'fixture-encryption-key',GROOKAI_SQUARE_LINKING_ENABLED:'true',
  GROOKAI_SQUARE_CATALOG_ENABLED:'true',GROOKAI_SQUARE_COMMERCE_ENABLED:'true',GROOKAI_SQUARE_ARTWORK_ENABLED:'false'};
 
-async function invoke(value){
- const keys=[...Object.keys(fixture),flag],before=new Map(keys.map(key=>[key,process.env[key]]));
+async function invoke(value,durable){
+ const durableFlag='GROOKAI_SQUARE_DURABLE_RECOVERY_ENABLED';
+ const keys=[...Object.keys(fixture),flag,durableFlag],before=new Map(keys.map(key=>[key,process.env[key]]));
  const priorExit=process.exitCode,calls=[],errors=[];let file;
  const spawned=mock.method(childProcess,'spawnSync',(binary,args,options)=>{
   assert.equal(binary,process.execPath);assert.ok(args[0].endsWith('run_commerce_worker_v2.mjs'));
@@ -29,6 +30,7 @@ async function invoke(value){
  const logged=mock.method(console,'error',message=>errors.push(message));
  try{
   Object.assign(process.env,fixture);if(value===undefined)delete process.env[flag];else process.env[flag]=value;
+  if(durable===undefined)delete process.env[durableFlag];else process.env[durableFlag]=durable;
   process.exitCode=undefined;syncBuiltinESMExports();
   // Execute the real adapter. Intercept only process creation: no worker,
   // Supabase client or provider request can start with these fixture values.
@@ -53,5 +55,17 @@ test('malformed recovery flags never launch a scheduled worker or inject private
  for(const value of ['TRUE','1','',' true','true\nSQUARE_ENVIRONMENT=sandbox','false\r\nEXTRA=1']){
   const result=await invoke(value);assert.equal(result.exitCode,1);assert.equal(result.calls.length,0);
   assert.deepEqual(result.errors,['square_scheduler_configuration_unavailable']);assert.equal(result.temporaryFileRemoved,true);
+ }
+});
+
+test('the actual adapter carries durable recovery with a false fallback and requires the bounded selection window',async()=>{
+ for(const durable of [undefined,'false','true']){
+  const result=await invoke('true',durable);assert.equal(result.exitCode,0);assert.equal(result.calls.length,1);
+  assert.equal(result.calls[0].values.GROOKAI_SQUARE_DURABLE_RECOVERY_ENABLED,durable??'false');
+  assert.equal(result.temporaryFileRemoved,true);
+ }
+ for(const [window,durable] of [[undefined,'true'],['false','true'],['true','TRUE'],['true','true\nEXTRA=1']]){
+  const result=await invoke(window,durable);assert.equal(result.exitCode,1);assert.equal(result.calls.length,0);
+  assert.equal(result.temporaryFileRemoved,true);assert.deepEqual(result.errors,['square_scheduler_configuration_unavailable']);
  }
 });

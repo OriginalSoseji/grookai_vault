@@ -6,6 +6,7 @@ import {createSquareCommerceBackend} from './commerce_backend_v2.mjs';
 import {squareEnvironmentConfig} from './service_v1.mjs';
 import {squareScheduledConnections} from './scheduler_batch_v2.mjs';
 import {SquareApiError} from './client_v1.mjs';
+import {runSquareDurableRecovery,assertSquareDurableRecoveryConfig} from './durable_recovery_v1.mjs';
 
 const safeCode=error=>/^square_[a-z_]{1,80}$/.test(error?.code??'')?error.code:'square_worker_failed';
 const paused=()=>({runId:null,status:'paused',succeeded:0,failed:0,skipped:0,targetsChecked:0,errorCode:''});
@@ -17,6 +18,10 @@ export async function runSquareCloudRecovery({env=process.env,createClient=creat
     env.SQUARE_ENVIRONMENT!=='production'||env.GV_USER_ACCESS_TOKEN||
     env.NEXT_PUBLIC_COLLECTOR_STAGING==='true'||env.NEXT_PUBLIC_COLLECTOR_PREVIEW_READ_ONLY==='true'){
   throw new SquareApiError('square_scheduler_configuration_unavailable');
+ }
+ assertSquareDurableRecoveryConfig(env);
+ if(env.GROOKAI_SQUARE_DURABLE_RECOVERY_ENABLED==='true'){
+  return runSquareDurableRecovery({env,createClient,createBackend,now,nextId});
  }
  const runId=nextId(),result={runId,status:'succeeded',succeeded:0,failed:0,skipped:0,targetsChecked:0,errorCode:''};
  let client,started=false;
