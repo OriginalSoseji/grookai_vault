@@ -19,6 +19,21 @@ param(
 
   [string[]]$ExpectedLocalOnlyIds = @(),
 
+  [switch]$BestOfGameDiscoveryReleaseV14,
+  [switch]$BestOfGameDiscoveryReleaseV13,
+  [switch]$BestOfGameDiscoveryReleaseV11,
+  [switch]$BestOfGameDiscoveryReleaseV10,
+  [switch]$BestOfGameDiscoveryReleaseV9,
+  [switch]$BestOfGameDiscoveryReleaseV8,
+  [switch]$BestOfGameDiscoveryReleaseV7,
+  [switch]$BestOfGameDiscoveryReleaseV6,
+  [switch]$BestOfGameDiscoveryReleaseV5,
+  [switch]$BestOfGameDiscoveryReleaseV4,
+  [switch]$BestOfGameDiscoveryBaselineV3,
+  [switch]$BestOfGameDiscoveryReleaseV2,
+  [switch]$BestOfGameDiscoveryBaselineV2,
+  [switch]$BestOfGameDiscoveryReleaseV1,
+  [switch]$BestOfGameDiscoveryBaselineV1,
   [switch]$BestOfGamePrintingBaselineV1,
   [switch]$CrossTcgMarketReleaseV2,
   [switch]$ShroudedAliasDiscoveryReleaseV2,
@@ -143,6 +158,180 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($BestOfGameDiscoveryReleaseV14) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','BestOfGameDiscoveryReleaseV14','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261123050000') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261123050000') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Best of Game discovery release V14 requires exact forward ID20261123050000 at canonical519; no mixed scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_best_of_game_discovery_release_v14.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($BestOfGameDiscoveryReleaseV13) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','BestOfGameDiscoveryReleaseV13','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261123050000') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261123050000') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Best of Game discovery release V13 requires exact forward ID20261123050000 at canonical519; no mixed scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_best_of_game_discovery_release_v13.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($BestOfGameDiscoveryReleaseV11) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','BestOfGameDiscoveryReleaseV11','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261123000500') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261123000500') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Best of Game discovery release V11 requires exact forward ID20261123000500 at canonical518; no mixed scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_best_of_game_discovery_release_v11.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($BestOfGameDiscoveryReleaseV10) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','BestOfGameDiscoveryReleaseV10','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261122194000') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261122194000') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Best of Game discovery release V10 requires exact forward ID20261122194000 at canonical517; no mixed scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_best_of_game_discovery_release_v10.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($BestOfGameDiscoveryReleaseV9) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','BestOfGameDiscoveryReleaseV9','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261122194000') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261122194000') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Best of Game discovery release V9 requires exact forward ID20261122194000 at canonical517; no mixed scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_best_of_game_discovery_release_v9.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($BestOfGameDiscoveryReleaseV8) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','BestOfGameDiscoveryReleaseV8','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261122164500') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261122164500') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Best of Game discovery release V8 requires exact forward ID20261122164500 at canonical516; no mixed scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_best_of_game_discovery_release_v8.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($BestOfGameDiscoveryReleaseV7) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','BestOfGameDiscoveryReleaseV7','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261120150500,20261120153000,20261120160000') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261120150500,20261120153000,20261120160000') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Best of Game discovery release V7 requires exact forward IDs20261120150500,20261120153000,20261120160000 at canonical513; no mixed scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_best_of_game_discovery_release_v7.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($BestOfGameDiscoveryReleaseV6) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','BestOfGameDiscoveryReleaseV6','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261120150500,20261120153000,20261120160000') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261120150500,20261120153000,20261120160000') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Best of Game discovery release V6 requires exact forward IDs20261120150500,20261120153000,20261120160000 at canonical513; no mixed scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_best_of_game_discovery_release_v6.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($BestOfGameDiscoveryReleaseV5) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','BestOfGameDiscoveryReleaseV5','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261120150500,20261120153000,20261120160000') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261120150500,20261120153000,20261120160000') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Best of Game discovery release V5 requires exact forward IDs20261120150500,20261120153000,20261120160000 at canonical513; no mixed scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_best_of_game_discovery_release_v5.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($BestOfGameDiscoveryReleaseV4) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','BestOfGameDiscoveryReleaseV4','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261120150500,20261120153000') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261120150500,20261120153000') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Best of Game discovery release V4 requires exact forward IDs20261120150500,20261120153000 at canonical513; no mixed scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_best_of_game_discovery_release_v4.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($BestOfGameDiscoveryBaselineV3) {
+  if ($Phase -ne 'AuditLinkedSchema' -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','BestOfGameDiscoveryBaselineV3','AuditOutDir') }).Count -gt 0 -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Best of Game discovery baseline V3 is read-only at canonical513; no candidate, PrePush, mixed scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_best_of_game_discovery_baseline_v3.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($BestOfGameDiscoveryReleaseV2) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','BestOfGameDiscoveryReleaseV2','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261120081500') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261120081500') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Best of Game discovery release V2 requires exact candidate20261120081500 at canonical512; no mixed scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_best_of_game_discovery_release_v2.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($BestOfGameDiscoveryBaselineV2) {
+  if ($Phase -ne 'AuditLinkedSchema' -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','BestOfGameDiscoveryBaselineV2','AuditOutDir') }).Count -gt 0 -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Best of Game discovery baseline V2 is read-only at canonical512; no candidate, PrePush, mixed scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_best_of_game_discovery_baseline_v2.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($BestOfGameDiscoveryReleaseV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','BestOfGameDiscoveryReleaseV1','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261120081500') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261120081500') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Best of Game discovery release V1 requires exact candidate20261120081500 at canonical511.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_best_of_game_discovery_release_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+
+if ($BestOfGameDiscoveryBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','BestOfGameDiscoveryBaselineV1','AuditOutDir') }).Count -gt 0 -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Best of Game discovery baseline V1 is read-only at canonical511; no candidate, PrePush or apply authority.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_best_of_game_discovery_baseline_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
 
 if ($BestOfGamePrintingBaselineV1) {
   if ($Phase -ne 'AuditLinkedSchema' -or

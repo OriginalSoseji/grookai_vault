@@ -1,3 +1,18 @@
+## Shared main-merge coordination
+
+On this Windows operator workspace, inspect
+[C:/grookai_vault_operator_artifacts/duplicate_set_merge_pause_20261122/status.json](C:/grookai_vault_operator_artifacts/duplicate_set_merge_pause_20261122/status.json)
+when present before merging a PR or changing main protection. When `active` is
+true, the owner has paused other main merges until the duplicate-set release
+finishes. Keep other work prepared on branches; do not unlock main, merge another
+PR, or re-enable the paused direct-main dashboard writer. The named duplicate
+release PR may complete its normal guarded final merge after its required API /
+data / security checks. An explicit later owner instruction can change this
+pause; otherwise existing authority to work on another task does not lift it.
+The coordination file is advisory workflow state, not production SQL approval.
+Resume other merges only after verified deployed closure and original-control
+restoration, or an explicit owner change to the pause.
+
 # Grookai Agent Entry Point
 
 ## Canonical brand and visual direction

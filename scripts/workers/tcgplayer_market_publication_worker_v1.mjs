@@ -1,6 +1,6 @@
 import {marketPipelineDatabaseConfigV1} from '../../backend/pricing/market_pipeline_database_config_v1.mjs';
 import {CROSS_TCG_MARKET_SCOPE_V2,readCrossTcgMarketBootstrapV3,assertCrossTcgMarketActivationV3} from '../../backend/pricing/cross_tcg_market_activation_guard_v3.mjs';
-import {TCGPLAYER_MARKET_PUBLICATION_POLICY_V3, evaluateTcgplayerMarketQualificationV3} from '../../backend/pricing/tcgplayer_market_publication_policy_v3.mjs';
+import {TCGPLAYER_MARKET_PUBLICATION_POLICY_V3, evaluateTcgplayerMarketQualificationV3_1 as evaluateTcgplayerMarketQualificationV3} from '../../backend/pricing/tcgplayer_market_publication_policy_v3_1.mjs';
 import { execFile } from "node:child_process";
 import { createHash } from "node:crypto";
 import { createReadStream } from "node:fs";
@@ -63,7 +63,7 @@ const DEFAULT_OUT_ROOT = path.join(
   "artifacts",
   "market_pricing_product_v1",
 );
-const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_28";
+const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_29";
 const PIPELINE_VERSION = "TCGPLAYER_MARKET_PIPELINE_V1";
 const SCHEMA_VERSION = "TCGPLAYER_MARKET_PUBLICATION_SCHEMA_V1";
 const SNAPSHOT_SCHEMA_VERSION = "MARKET_PRICE_PUBLICATION_SNAPSHOT_V1";
@@ -2115,7 +2115,7 @@ async function main() {
 
 // Importing the pipeline for isolated database tests must not start a CLI run.
 // The CLI retains its clean-tree, source-run and production activation guards.
-export { candidateRows, runDryRun, runDurable, latestSourceRun, parseArgs };
+export { candidateRows, runDryRun, runDurable, latestSourceRun, parseArgs, buildDecision };
 
 if (process.argv[1] && path.resolve(process.argv[1]) === __filename) main().catch(async (error) => {
   await persistMtgProductionWorkerFailure(error).catch((artifactError) => {
