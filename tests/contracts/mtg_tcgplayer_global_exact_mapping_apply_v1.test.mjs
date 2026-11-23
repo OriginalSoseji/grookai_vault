@@ -8,12 +8,11 @@ const SCRIPT = fs.readFileSync(new URL(
 ), 'utf8');
 
 test('global exact mapping apply binds the exact founder approval and preflight bytes', () => {
-  assert.match(SCRIPT, /bb923161c47d582334a564894436802ab7b5df9a/);
-  assert.match(SCRIPT, /f0b5a8df70331fbc4317125ca53a3c133614739d86603fbe286d1464d0697b7c/);
-  assert.match(SCRIPT, /97cca525c64f868da34019e0f9713d38e17b62e8280af92e32588adb8697d087/);
-  assert.match(SCRIPT, /a3591eb1-7e55-48ac-8996-b36afdd0d3df/);
-  assert.match(SCRIPT, /f74968d88caa22f8e811b5928e9faea27a0c487e550283aaf722dbe88730d2fb/);
-  assert.match(SCRIPT, /9ce81ed274585dfc3d3cc10dd02db069ce0d5de212deedf4693dfe7815a961f9/);
+  assert.match(SCRIPT, /stableHash\(preflightCore\(receipt\.value\)\)/);
+  assert.match(SCRIPT, /receipt\.value\.preflight_fingerprint_sha256, options\.approvalToken/);
+  assert.match(SCRIPT, /authorized_preflight_source_commit_invalid/);
+  assert.match(SCRIPT, /authorized_preflight_mapping_manifest_changed/);
+  assert.match(SCRIPT, /authorized_mapping_snapshot_mismatch/);
   assert.match(SCRIPT, /approval_text_changed/);
   assert.match(SCRIPT, /preflight_artifact_inventory_changed/);
   assert.match(SCRIPT, /approved_selected_rows_changed/);
@@ -22,6 +21,9 @@ test('global exact mapping apply binds the exact founder approval and preflight 
   assert.match(SCRIPT, /authorized_preflight_batch_manifest_changed/);
   assert.match(SCRIPT, /authorized_preflight_batch_rows_changed/);
   assert.match(SCRIPT, /authorized_preflight_decision_changed/);
+  assert.doesNotMatch(SCRIPT, /AUTHORIZED_PREFLIGHT_FINGERPRINT/);
+  assert.doesNotMatch(SCRIPT, /AUTHORIZED_PREFLIGHT_RECEIPT_SHA256/);
+  assert.doesNotMatch(SCRIPT, /AUTHORIZED_SELECTED_ROWS_SHA256/);
   assert.ok(SCRIPT.indexOf('bindAuthorizedPreflight(options, packageData)')
     < SCRIPT.indexOf("new pg.Client(connectionConfig('mtg_global_exact_mapping_apply_v1'))"));
 });

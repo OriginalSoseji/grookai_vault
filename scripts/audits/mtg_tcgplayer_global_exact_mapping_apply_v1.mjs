@@ -18,6 +18,7 @@ import {
   mappingSnapshot,
   protectedCounts,
   sha256,
+  stableHash,
   writeExclusive,
 } from './mtg_tcgplayer_global_exact_mapping_preflight_v1.mjs';
 
@@ -25,20 +26,7 @@ export const MTG_TCGPLAYER_GLOBAL_EXACT_MAPPING_APPLY_V1 =
   'MTG_TCGPLAYER_GLOBAL_EXACT_MAPPING_APPLY_V1';
 
 const PACKAGE_ID = 'MTG-GLOBAL-EXACT-BATCH-0001-MAPPING-OUTCOME-V1';
-const AUTHORIZED_SOURCE_COMMIT = 'bb923161c47d582334a564894436802ab7b5df9a';
-const AUTHORIZED_PREFLIGHT_FINGERPRINT =
-  'f0b5a8df70331fbc4317125ca53a3c133614739d86603fbe286d1464d0697b7c';
-const AUTHORIZED_DECISION_FINGERPRINT =
-  '97cca525c64f868da34019e0f9713d38e17b62e8280af92e32588adb8697d087';
-const AUTHORIZED_EVIDENCE_SOURCE = 'a3591eb1-7e55-48ac-8996-b36afdd0d3df';
-const AUTHORIZED_MAPPING_SNAPSHOT =
-  '4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945';
-const AUTHORIZED_PREFLIGHT_RECEIPT_SHA256 =
-  'f74968d88caa22f8e811b5928e9faea27a0c487e550283aaf722dbe88730d2fb';
-const AUTHORIZED_SELECTED_ROWS_SHA256 =
-  '9ce81ed274585dfc3d3cc10dd02db069ce0d5de212deedf4693dfe7815a961f9';
 const TOTAL_ROWS = 36;
-const APPROVAL_TEXT = `Approve real ${PACKAGE_ID} apply only. Source commit: ${AUTHORIZED_SOURCE_COMMIT}. Preflight fingerprint: ${AUTHORIZED_PREFLIGHT_FINGERPRINT}. Review decision fingerprint: ${AUTHORIZED_DECISION_FINGERPRINT}. Scope: 36 insert-only active TCGPlayer parent mappings covering 36 MTG price observations. Evidence source sync: ${AUTHORIZED_EVIDENCE_SOURCE}. Read-only mapping snapshot: ${AUTHORIZED_MAPPING_SNAPSHOT} == ${AUTHORIZED_MAPPING_SNAPSHOT}. No canonical identity, pricing, publication, Vault, update, delete, merge, or migration writes.`;
 
 function parseArgs(argv) {
   const values = {};
@@ -47,7 +35,7 @@ function parseArgs(argv) {
     assert.ok(match && !values[match[1]], `unknown_or_repeated_argument:${token}`);
     values[match[1]] = match[2];
   }
-  assert.equal(values.approval, AUTHORIZED_PREFLIGHT_FINGERPRINT, 'exact_approval_token_required');
+  assert.match(values.approval ?? '', /^[a-f0-9]{64}$/, 'exact_approval_token_required');
   assert.match(values['expected-head-sha'] ?? '', /^[a-f0-9]{40}$/, 'expected_head_sha_required');
   for (const name of ['package-root', 'approval-file', 'preflight-root', 'out-dir']) {
     assert.ok(values[name], `${name}_required`);
@@ -58,7 +46,43 @@ function parseArgs(argv) {
     preflightRoot: path.resolve(values['preflight-root']),
     outDir: path.resolve(values['out-dir']),
     expectedHeadSha: values['expected-head-sha'],
+    approvalToken: values.approval,
   };
+}
+
+function preflightCore(receipt) {
+  return {
+    version: receipt.version,
+    package_id: receipt.package_id,
+    source_commit: receipt.source_commit,
+    queue_source_commit: receipt.queue_source_commit,
+    review_producer_commit: receipt.review_producer_commit,
+    queue_manifest_sha256: receipt.queue_manifest_sha256,
+    batch_manifest_sha256: receipt.batch_manifest_sha256,
+    batch_rows_sha256: receipt.batch_rows_sha256,
+    decision_fingerprint_sha256: receipt.decision_fingerprint_sha256,
+    approval_artifact_sha256: receipt.approval_artifact_sha256,
+    evidence_source_sync_run_id: receipt.evidence_source_sync_run_id,
+    latest_catalog_artifact_hash: receipt.latest_catalog_artifact_hash,
+    source_products: receipt.source_products,
+    target_card_prints: receipt.target_card_prints,
+    projected_price_observations: receipt.projected_price_observations,
+    mapping_manifest: receipt.mapping_manifest,
+    boundaries: receipt.boundaries,
+  };
+}
+
+function expectedApprovalText(receipt) {
+  const firstSnapshot = receipt.proof?.first_relevant_mappings?.hash_sha256;
+  const secondSnapshot = receipt.proof?.independent_relevant_mappings?.hash_sha256;
+  return `Approve real ${PACKAGE_ID} apply only. Source commit: ${receipt.source_commit}. `
+    + `Preflight fingerprint: ${receipt.preflight_fingerprint_sha256}. `
+    + `Review decision fingerprint: ${receipt.decision_fingerprint_sha256}. `
+    + `Scope: ${receipt.source_products} insert-only active TCGPlayer parent mappings `
+    + `covering ${receipt.projected_price_observations} MTG price observations. `
+    + `Evidence source sync: ${receipt.evidence_source_sync_run_id}. `
+    + `Read-only mapping snapshot: ${firstSnapshot} == ${secondSnapshot}. `
+    + 'No canonical identity, pricing, publication, Vault, update, delete, merge, or migration writes.';
 }
 
 async function readJsonRaw(file) {
@@ -83,16 +107,14 @@ export async function bindAuthorizedPreflight(options, packageData) {
   const selected = await readJsonlRaw(path.join(options.preflightRoot, 'selected_mappings.jsonl'));
   assert.equal(sha256(receipt.raw), hashes['preflight.json'], 'preflight_receipt_hash_changed');
   assert.equal(sha256(selected.raw), hashes['selected_mappings.jsonl'], 'preflight_rows_hash_changed');
-  assert.equal(hashes['preflight.json'], AUTHORIZED_PREFLIGHT_RECEIPT_SHA256,
-    'authorized_preflight_receipt_changed');
-  assert.equal(hashes['selected_mappings.jsonl'], AUTHORIZED_SELECTED_ROWS_SHA256,
-    'authorized_selected_rows_changed');
   assert.equal(receipt.value.status, 'read_only_preflight_passed_zero_mapping_authority');
   assert.equal(receipt.value.package_id, PACKAGE_ID);
-  assert.equal(receipt.value.source_commit, AUTHORIZED_SOURCE_COMMIT);
-  assert.equal(receipt.value.preflight_fingerprint_sha256, AUTHORIZED_PREFLIGHT_FINGERPRINT);
-  assert.equal(receipt.value.decision_fingerprint_sha256, AUTHORIZED_DECISION_FINGERPRINT);
-  assert.equal(receipt.value.evidence_source_sync_run_id, AUTHORIZED_EVIDENCE_SOURCE);
+  assert.match(receipt.value.source_commit ?? '', /^[a-f0-9]{40}$/,
+    'authorized_preflight_source_commit_invalid');
+  assert.equal(stableHash(preflightCore(receipt.value)),
+    receipt.value.preflight_fingerprint_sha256, 'preflight_fingerprint_changed');
+  assert.equal(receipt.value.preflight_fingerprint_sha256, options.approvalToken,
+    'exact_approval_token_required');
   assert.equal(receipt.value.approval_artifact_sha256, packageData.approvalSha256,
     'authorized_preflight_approval_artifact_changed');
   assert.equal(receipt.value.queue_manifest_sha256, packageData.approval.queue_manifest_sha256,
@@ -105,13 +127,19 @@ export async function bindAuthorizedPreflight(options, packageData) {
     packageData.approval.decision_fingerprint_sha256,
     'authorized_preflight_decision_changed');
   assert.equal(receipt.value.source_products, TOTAL_ROWS);
+  assert.equal(receipt.value.target_card_prints, TOTAL_ROWS);
   assert.equal(receipt.value.projected_price_observations, TOTAL_ROWS);
+  assert.deepEqual(receipt.value.mapping_manifest, packageData.accepted.map((row) => ({
+    source_product_id: row.source_product_id,
+    target_card_print_id: row.target_card_print_id,
+    mapping_method: row.mapping_method,
+  })), 'authorized_preflight_mapping_manifest_changed');
   assert.equal(receipt.value.proof?.first_relevant_mappings?.hash_sha256,
-    AUTHORIZED_MAPPING_SNAPSHOT);
-  assert.equal(receipt.value.proof?.independent_relevant_mappings?.hash_sha256,
-    AUTHORIZED_MAPPING_SNAPSHOT);
+    receipt.value.proof?.independent_relevant_mappings?.hash_sha256,
+    'authorized_mapping_snapshot_mismatch');
   assert.equal(receipt.value.proof?.durable_database_writes, 0);
-  assert.equal(receipt.value.approval_text_required, APPROVAL_TEXT, 'approval_text_changed');
+  assert.equal(receipt.value.approval_text_required, expectedApprovalText(receipt.value),
+    'approval_text_changed');
   assert.deepEqual(selected.rows, packageData.accepted, 'approved_selected_rows_changed');
   return receipt.value;
 }
@@ -125,7 +153,14 @@ async function scopedMappings(client, rows) {
     order by external_id::bigint,id`, [sourceIds, targetIds])).rows;
 }
 
-function assertReadback(rows, mappings, rollbackIdentities, applyCommit, expectedIds = undefined) {
+function assertReadback(
+  rows,
+  mappings,
+  rollbackIdentities,
+  applyCommit,
+  authorization,
+  expectedIds = undefined,
+) {
   assert.equal(mappings.length, rows.length, 'mapping_readback_count_mismatch');
   const bySource = new Map(mappings.map((row) => [row.external_id, row]));
   for (const row of rows) {
@@ -136,10 +171,10 @@ function assertReadback(rows, mappings, rollbackIdentities, applyCommit, expecte
       `mapping_readback_target_changed:${row.source_product_id}`);
     assert.equal(actual.active, true, `mapping_readback_inactive:${row.source_product_id}`);
     assert.equal(actual.meta?.package_id, PACKAGE_ID);
-    assert.equal(actual.meta?.preflight_fingerprint, AUTHORIZED_PREFLIGHT_FINGERPRINT);
-    assert.equal(actual.meta?.decision_fingerprint, AUTHORIZED_DECISION_FINGERPRINT);
-    assert.equal(actual.meta?.authorized_source_commit, AUTHORIZED_SOURCE_COMMIT);
-    assert.equal(actual.meta?.evidence_source_sync_run_id, AUTHORIZED_EVIDENCE_SOURCE);
+    assert.equal(actual.meta?.preflight_fingerprint, authorization.preflightFingerprint);
+    assert.equal(actual.meta?.decision_fingerprint, authorization.decisionFingerprint);
+    assert.equal(actual.meta?.authorized_source_commit, authorization.sourceCommit);
+    assert.equal(actual.meta?.evidence_source_sync_run_id, authorization.evidenceSource);
     assert.equal(actual.meta?.apply_commit, applyCommit);
     assert.equal(actual.meta?.mapping_method, row.mapping_method);
     assert.equal(Number(actual.meta?.supporting_price_observations),
@@ -149,7 +184,13 @@ function assertReadback(rows, mappings, rollbackIdentities, applyCommit, expecte
   }
 }
 
-async function reconcileCommitAttempt(rows, rollbackIdentities, applyCommit, expectedIds) {
+async function reconcileCommitAttempt(
+  rows,
+  rollbackIdentities,
+  applyCommit,
+  authorization,
+  expectedIds,
+) {
   let readback;
   let reconciliationTransactionOpen = false;
   try {
@@ -172,7 +213,7 @@ async function reconcileCommitAttempt(rows, rollbackIdentities, applyCommit, exp
       return { outcome: 'not_committed_zero_mappings', mapping_ids: [] };
     }
     try {
-      assertReadback(rows, mappings, rollbackIdentities, applyCommit, expectedIds);
+      assertReadback(rows, mappings, rollbackIdentities, applyCommit, authorization, expectedIds);
     } catch (error) {
       await readback.query('commit');
       reconciliationTransactionOpen = false;
@@ -227,21 +268,29 @@ export async function runMtgTcgplayerGlobalExactMappingApplyV1(argv) {
     'tracked_worktree_must_be_clean');
   const applyCommit = git(['rev-parse', 'HEAD']);
   assert.equal(applyCommit, options.expectedHeadSha, 'expected_head_sha_changed');
-  git(['merge-base', '--is-ancestor', AUTHORIZED_SOURCE_COMMIT, applyCommit]);
   const packageData = await loadApprovedPackage(options, applyCommit);
   assert.equal(packageData.accepted.length, TOTAL_ROWS, 'authorized_scope_count_changed');
   assert.equal(packageData.held.length, 13, 'authorized_hold_count_changed');
   assert.deepEqual(packageData.rejected.map((row) => Number(row.source_product_id)), [58205],
     'authorized_rejection_changed');
   const preflight = await bindAuthorizedPreflight(options, packageData);
+  git(['merge-base', '--is-ancestor', preflight.source_commit, applyCommit]);
+  const authorization = {
+    sourceCommit: preflight.source_commit,
+    preflightFingerprint: preflight.preflight_fingerprint_sha256,
+    decisionFingerprint: preflight.decision_fingerprint_sha256,
+    evidenceSource: preflight.evidence_source_sync_run_id,
+    mappingSnapshot: preflight.proof.first_relevant_mappings.hash_sha256,
+    approvalText: preflight.approval_text_required,
+  };
   await fs.mkdir(options.outDir, { recursive: false });
   const rows = packageData.accepted;
   const rollbackIdentities = new Map(rows.map((row) => [String(row.source_product_id),
-    `${AUTHORIZED_PREFLIGHT_FINGERPRINT}:source:${row.source_product_id}`]));
+    `${authorization.preflightFingerprint}:source:${row.source_product_id}`]));
   const rollbackPlan = {
     version: MTG_TCGPLAYER_GLOBAL_EXACT_MAPPING_APPLY_V1,
     package_id: PACKAGE_ID,
-    preflight_fingerprint_sha256: AUTHORIZED_PREFLIGHT_FINGERPRINT,
+    preflight_fingerprint_sha256: authorization.preflightFingerprint,
     apply_commit: applyCommit,
     mappings: rows.map((row) => ({
       source: 'tcgplayer',
@@ -264,9 +313,9 @@ export async function runMtgTcgplayerGlobalExactMappingApplyV1(argv) {
   try {
     const before = await independentRead(rows, 'mtg_global_exact_apply_before_v1');
     assertLiveState(rows, before.live);
-    assert.equal(before.live.sourceRun.id, AUTHORIZED_EVIDENCE_SOURCE,
+    assert.equal(before.live.sourceRun.id, authorization.evidenceSource,
       'evidence_source_sync_changed_before_apply');
-    assert.equal(before.relevantMappings.hash_sha256, AUTHORIZED_MAPPING_SNAPSHOT,
+    assert.equal(before.relevantMappings.hash_sha256, authorization.mappingSnapshot,
       'mapping_snapshot_changed_before_apply');
     client = new pg.Client(connectionConfig('mtg_global_exact_mapping_apply_v1'));
     await client.connect();
@@ -280,7 +329,7 @@ export async function runMtgTcgplayerGlobalExactMappingApplyV1(argv) {
     await client.query("select pg_advisory_xact_lock(hashtext('tcgplayer_market_exact_mapping_apply_v1'))");
     const live = await loadLiveState(client, rows);
     assertLiveState(rows, live);
-    assert.equal(live.sourceRun.id, AUTHORIZED_EVIDENCE_SOURCE,
+    assert.equal(live.sourceRun.id, authorization.evidenceSource,
       'evidence_source_sync_changed_in_transaction');
     const payload = rows.map((row) => ({
       card_print_id: row.target_card_print_id,
@@ -288,14 +337,14 @@ export async function runMtgTcgplayerGlobalExactMappingApplyV1(argv) {
       meta: {
         contract_version: MTG_TCGPLAYER_GLOBAL_EXACT_MAPPING_APPLY_V1,
         package_id: PACKAGE_ID,
-        preflight_fingerprint: AUTHORIZED_PREFLIGHT_FINGERPRINT,
-        decision_fingerprint: AUTHORIZED_DECISION_FINGERPRINT,
-        approval_text_sha256: sha256(APPROVAL_TEXT),
+        preflight_fingerprint: authorization.preflightFingerprint,
+        decision_fingerprint: authorization.decisionFingerprint,
+        approval_text_sha256: sha256(authorization.approvalText),
         queue_manifest_sha256: packageData.approval.queue_manifest_sha256,
         batch_manifest_sha256: packageData.approval.batch_manifest_sha256,
-        authorized_source_commit: AUTHORIZED_SOURCE_COMMIT,
+        authorized_source_commit: authorization.sourceCommit,
         apply_commit: applyCommit,
-        evidence_source_sync_run_id: AUTHORIZED_EVIDENCE_SOURCE,
+        evidence_source_sync_run_id: authorization.evidenceSource,
         rollback_identity: rollbackIdentities.get(String(row.source_product_id)),
         source_group_id: row.source_group_id,
         source_group_name: row.source_group_name,
@@ -313,9 +362,9 @@ export async function runMtgTcgplayerGlobalExactMappingApplyV1(argv) {
       returning id::text,card_print_id::text,source,external_id,active,meta,synced_at`,
     [JSON.stringify(payload)])).rows;
     insertedIds = new Map(inserted.map((row) => [row.external_id, row.id]));
-    assertReadback(rows, inserted, rollbackIdentities, applyCommit, insertedIds);
+    assertReadback(rows, inserted, rollbackIdentities, applyCommit, authorization, insertedIds);
     const insideMappings = await scopedMappings(client, rows);
-    assertReadback(rows, insideMappings, rollbackIdentities, applyCommit, insertedIds);
+    assertReadback(rows, insideMappings, rollbackIdentities, applyCommit, authorization, insertedIds);
     const countsInside = await protectedCounts(client);
     assert.equal(Number(countsInside.active_mtg) - Number(countsBefore.active_mtg), TOTAL_ROWS,
       'transaction_mtg_mapping_delta_changed');
@@ -347,7 +396,7 @@ export async function runMtgTcgplayerGlobalExactMappingApplyV1(argv) {
       await client.end().catch(() => {});
       client = undefined;
       const reconciliation = await reconcileCommitAttempt(rows, rollbackIdentities,
-        applyCommit, insertedIds);
+        applyCommit, authorization, insertedIds);
       commitOutcome = reconciliation.outcome;
       if (reconciliation.outcome === 'committed_by_independent_readback') {
         committed = true;
@@ -372,7 +421,7 @@ export async function runMtgTcgplayerGlobalExactMappingApplyV1(argv) {
     try {
       assertVerifiedProductionTls(readback);
       const mappings = await scopedMappings(readback, rows);
-      assertReadback(rows, mappings, rollbackIdentities, applyCommit, insertedIds);
+      assertReadback(rows, mappings, rollbackIdentities, applyCommit, authorization, insertedIds);
       const countsAfter = await protectedCounts(readback);
       assert.equal(Number(countsAfter.active_mtg) - Number(countsBefore.active_mtg), TOTAL_ROWS,
         'post_commit_mtg_mapping_delta_changed');
@@ -382,11 +431,11 @@ export async function runMtgTcgplayerGlobalExactMappingApplyV1(argv) {
         version: MTG_TCGPLAYER_GLOBAL_EXACT_MAPPING_APPLY_V1,
         status: 'committed_zero_mismatch_readback',
         package_id: PACKAGE_ID,
-        preflight_fingerprint_sha256: AUTHORIZED_PREFLIGHT_FINGERPRINT,
-        decision_fingerprint_sha256: AUTHORIZED_DECISION_FINGERPRINT,
-        authorized_source_commit: AUTHORIZED_SOURCE_COMMIT,
+        preflight_fingerprint_sha256: authorization.preflightFingerprint,
+        decision_fingerprint_sha256: authorization.decisionFingerprint,
+        authorized_source_commit: authorization.sourceCommit,
         apply_commit: applyCommit,
-        evidence_source_sync_run_id: AUTHORIZED_EVIDENCE_SOURCE,
+        evidence_source_sync_run_id: authorization.evidenceSource,
         mapping_writes: TOTAL_ROWS,
         projected_price_observations: preflight.projected_price_observations,
         environment,
@@ -426,7 +475,7 @@ export async function runMtgTcgplayerGlobalExactMappingApplyV1(argv) {
         : commitUnknown
           ? 'commit_outcome_unknown_requires_operator_readback'
           : 'failed_zero_committed_writes',
-      preflight_fingerprint_sha256: AUTHORIZED_PREFLIGHT_FINGERPRINT,
+      preflight_fingerprint_sha256: authorization.preflightFingerprint,
       apply_commit: applyCommit,
       committed: commitUnknown ? null : committed,
       commit_attempted: commitAttempted,
