@@ -1,3 +1,21 @@
+# Square bulk price protocol candidate — November 23, 2026
+
+Read [the protocol audit](../audits/SQUARE_BULK_PRICE_PROTOCOL_20261123.md).
+`C:/grookai_square_bulk_price_20261123` contains offline 25-member price-only
+request preparation, bounded SKU/full-parent lookup and Sandbox-only protocol
+qualification. No production worker calls the new paths. No schema or flag
+activation is included. The strict starting audit reached production but rejected
+two newer applied migrations missing from this branch; reconcile their exact
+source and prove the current baseline before new application SQL.
+
+Retain the Sandbox 429 and accepted stale-parent counterexample. Do not treat
+parent ITEM version alone as a proven guard or a provider error as proof of no
+member changes. Actual stale-child/invalid-member checks, response-loss readback
+and exact-key replay are protocol observations, not DB durability or launch
+capacity. Keep the whole saved request/source/membership and every failed proof.
+The live mutation method is Sandbox-only and refuses production before IO.
+The active main merge pause remains binding.
+
 # Square integrated capacity correction — November 23, 2026
 
 Read [the integrated audit](../audits/SQUARE_INTEGRATED_CAPACITY_20261123.md).
