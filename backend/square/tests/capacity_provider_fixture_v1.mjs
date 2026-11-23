@@ -7,7 +7,7 @@ const digest=value=>createHash('sha256').update(JSON.stringify(value)).digest('h
 const clone=value=>structuredClone(value);
 const usd=amount=>({amount,currency:'USD'});
 
-export async function createSquareCapacityProvider({vendors,delayMs=0}={}){
+export async function createSquareCapacityProvider({vendors,delayMs=0,initialState}={}){
  assert.ok(Array.isArray(vendors)&&vendors.length>0&&vendors.length<=100);
  assert.ok(Number.isInteger(delayMs)&&delayMs>=0&&delayMs<=1000);
  const byToken=new Map(),byMerchant=new Map();
@@ -17,7 +17,31 @@ export async function createSquareCapacityProvider({vendors,delayMs=0}={}){
   const state={merchantId:vendor.merchantId,locationId:vendor.locationId,items:new Map(),skus:new Map(),counts:new Map(),keys:new Map(),orders:new Map(),payments:new Map(),sequence:0,updating:false,failNext:false,dropNext:false};
   byToken.set(vendor.accessToken,state);byMerchant.set(vendor.merchantId,state);
  }
- const metrics={requests:0,seededItems:0,catalogWrites:0,inventoryWrites:0,idempotentReplays:0,parallelSellerUpdates:0,injectedRateLimits:0,injectedResponseLosses:0,versionConflicts:0,routes:{}};
+ const metrics={requests:0,seededItems:0,catalogWrites:0,inventoryWrites:0,idempotentReplays:0,parallelSellerUpdates:0,injectedRateLimits:0,injectedResponseLosses:0,versionConflicts:0,stateRestores:0,routes:{}};
+ if(initialState!==undefined){
+  const saved=clone(initialState);assert.equal(saved.version,'SQUARE_CAPACITY_PROVIDER_V1');assert.equal(saved.kind,'synthetic provider fixture only');
+  assert.equal(saved.merchants.length,byMerchant.size);const restored=new Set();
+  for(const previous of saved.merchants){
+   const current=byMerchant.get(previous.merchantId);assert.ok(current);assert.equal(previous.locationId,current.locationId);assert.ok(!restored.has(previous.merchantId));restored.add(previous.merchantId);
+   assert.ok(Number.isSafeInteger(previous.sequence)&&previous.sequence>=0);current.sequence=previous.sequence;
+   const variations=new Set();
+   for(const item of previous.items){
+    assert.equal(item.type,'ITEM');assert.ok(Number.isSafeInteger(item.version)&&item.version>0);assert.ok(!current.items.has(item.id));current.items.set(item.id,item);
+    for(const variation of item.item_data.variations){
+     assert.equal(variation.item_variation_data.item_id,item.id);assert.ok(!variations.has(variation.id));variations.add(variation.id);
+     const sku=variation.item_variation_data.sku;assert.ok(typeof sku==='string'&&!current.skus.has(sku));current.skus.set(sku,item.id);
+    }
+   }
+   for(const [id,quantity] of previous.counts){assert.ok(variations.has(id)&&[0,1].includes(quantity)&&!current.counts.has(id));current.counts.set(id,quantity);}
+   for(const [key,value] of previous.keys){assert.ok(typeof key==='string'&&!current.keys.has(key));assert.match(value.hash,/^[0-9a-f]{64}$/);assert.ok(value.result&&typeof value.result==='object');current.keys.set(key,value);}
+   for(const [id,order] of previous.orders){assert.equal(order.id,id);assert.equal(order.location_id,current.locationId);assert.ok(!current.orders.has(id));current.orders.set(id,order);}
+   for(const [id,payment] of previous.payments){assert.equal(payment.id,id);assert.equal(payment.location_id,current.locationId);assert.ok(current.orders.has(payment.order_id)&&!current.payments.has(id));current.payments.set(id,payment);}
+  }
+  for(const key of Object.keys(metrics).filter(key=>!['routes','stateRestores'].includes(key))){assert.ok(Number.isSafeInteger(saved.metrics[key])&&saved.metrics[key]>=0);metrics[key]=saved.metrics[key];}
+  assert.ok(saved.metrics.routes&&typeof saved.metrics.routes==='object'&&!Array.isArray(saved.metrics.routes));
+  for(const [key,value] of Object.entries(saved.metrics.routes)){assert.ok(Number.isSafeInteger(value)&&value>=0);metrics.routes[key]=value;}
+  const previousRestores=saved.metrics.stateRestores??0;assert.ok(Number.isSafeInteger(previousRestores)&&previousRestores>=0);metrics.stateRestores=previousRestores+1;
+ }
  let latency=delayMs;
  const send=(response,status,body,headers={})=>{response.writeHead(status,{'Content-Type':'application/json','Cache-Control':'no-store',...headers});response.end(JSON.stringify(body));};
  const failure=(response,status,code,headers)=>send(response,status,{errors:[{code}]},headers);

@@ -89,7 +89,7 @@ export async function runSquareDurableRecovery({env=process.env,createClient=cre
     }catch(error){remember(error);}
    }
   };
-  await Promise.all(Array.from({length:4},worker));
+  await Promise.all(Array.from({length:8},worker));
   const reason=infrastructureError?'infrastructure':now()-began>=180000?'deadline':claims>=100?'limit':'drained';
   const result=await call('run_finish',{errorCode:infrastructureError,reason});
   if(result?.runId!==runId||!['succeeded','failed'].includes(result?.status))fail();

@@ -52,3 +52,31 @@ test('explicit existing-inventory fixtures are counted separately and can settle
   assert.equal(server.snapshot(vendors[0].merchantId).counts[variation.id],0);assert.equal(server.stats().inventoryWrites,0);
  }finally{await server.close();}
 });
+
+test('an exported accepted-but-lost catalog response retains its exact key and version across provider restart',async()=>{
+ const first=await createSquareCapacityProvider({vendors});let state;
+ const body={idempotency_key:'lost-before-restart',object:item()};
+ try{first.loseNextCatalogResponse(vendors[0].merchantId);await assert.rejects(request(first,0,'/v2/catalog/object',body));state=first.exportState();}
+ finally{await first.close();}
+ const second=await createSquareCapacityProvider({vendors,initialState:state});
+ try{
+  assert.equal(second.stats().stateRestores,1);assert.equal(second.stats().catalogWrites,1);assert.equal(second.stats().seededItems,0);
+  const replay=await request(second,0,'/v2/catalog/object',body);assert.equal(replay.status,200);const saved=(await replay.json()).catalog_object;
+  assert.deepEqual(saved,state.merchants[0].items[0]);assert.equal(second.stats().catalogWrites,1);assert.equal(second.stats().idempotentReplays,1);
+  const updated=structuredClone(saved);updated.item_data.name='Updated after restart';
+  const response=await request(second,0,'/v2/catalog/object',{idempotency_key:'new-after-restart',object:updated});assert.equal(response.status,200);
+  assert.ok((await response.json()).catalog_object.version>saved.version);assert.equal(second.snapshot(vendors[0].merchantId).items.length,1);assert.equal(second.snapshot(vendors[1].merchantId).items.length,0);
+ }finally{await second.close();}
+});
+
+test('provider restoration retains exact sale evidence and rejects a different merchant/location before listening',async()=>{
+ const first=await createSquareCapacityProvider({vendors});let state;
+ try{
+  const existing=item();existing.id='sold-item';existing.version=1;const variation=existing.item_data.variations[0];variation.id='sold-variation';variation.item_variation_data.item_id=existing.id;
+  first.seedExistingInventory({merchantId:vendors[0].merchantId,items:[existing],counts:{[variation.id]:1}});first.completeSale({merchantId:vendors[0].merchantId,variationId:variation.id,saleId:'retained',amountMinor:1100});state=first.exportState();
+ }finally{await first.close();}
+ const second=await createSquareCapacityProvider({vendors,initialState:state});
+ try{assert.deepEqual(second.snapshot(vendors[0].merchantId),{items:state.merchants[0].items,counts:Object.fromEntries(state.merchants[0].counts),orders:state.merchants[0].orders.map(([,value])=>value)});assert.deepEqual(second.exportState().merchants,state.merchants);assert.equal(second.stats().catalogWrites,0);assert.equal(second.stats().inventoryWrites,0);}
+ finally{await second.close();}
+ for(const key of ['merchantId','locationId']){const wrong=structuredClone(state);wrong.merchants[0][key]+='-different';await assert.rejects(createSquareCapacityProvider({vendors,initialState:wrong}));}
+});

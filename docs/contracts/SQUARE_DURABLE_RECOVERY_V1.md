@@ -22,7 +22,7 @@ meaning. Both clocks must carry the same qualified setting. Disabling the new
 flag restores each existing clock path and retains every queue/business row.
 
 Both enabled clocks use one backend scheduler and the shared Supabase SDK.
-Provisional admission is at most 100 distinct connections per invocation, four
+Provisional admission is at most 100 distinct connections per invocation, eight
 concurrent connections, five ordinary automatic targets per connection and
 180 seconds of new admission. The database independently checks the deadline,
 run token and claim ceiling. These limits are qualification inputs, not measured
@@ -31,6 +31,15 @@ prevents their concurrent admission of the same connection. The pre-existing
 unique environment/merchant binding prevents two connections to one seller.
 Foreground work still uses its existing writer lease and can make a scheduled
 connection busy. There is no parallel catalog request inside a seller.
+
+The first four-worker candidate failed the separate write-heavy local profiles:
+96 merchants at 250ms provider delay and 64 at 500ms before admission closed.
+Those failed receipts remain retained. The forward eight-worker candidate
+reached all 100 merchants and acknowledged 400 changed prices in 151.14 seconds
+at 500ms delay, with the same deadline, claims, target ceiling and serial seller
+work. All 100,300 mappings and stock counts matched independent readback.
+No SQL, lease, grant, monetary writer or provider retry policy changed. This
+bounded profile does not qualify the full daily backlog or live Square.
 
 Migration `20261123011000` adds three private RLS tables, one service-only RPC
 and its private result helper. It pins the complete prior commerce authority

@@ -111,6 +111,57 @@ cache/load profile. That projection is not an observed complete drain, excludes
 Square acknowledgement and does not establish daily freshness. The source proof
 uses actual wall time; no scheduler clock or queue eligibility was accelerated.
 
+## Separate write-heavy profiles and forward concurrency correction
+
+A new owned clone preserved every source table fingerprint. Its explicit
+starting-state model completed only 94,619 already-matching active baseline
+copy events after comparing the installed offer reader's entire projection.
+It retained all 4,981 genuine changed prices and 200 pending sold-copy events.
+Every other 451 fingerprinted table stayed exact. No price, stock, sale, source
+lab or scheduler due time changed for this fixture setup.
+
+The provider was restored from its retained state, including merchant sequences,
+object versions, exact idempotency responses, orders, payments and stock. The
+full 100,300-item merchant state matched exactly. Six fixture tests also cover
+restart after a lost accepted response and rejection of another merchant/location.
+All application sources initially matched qualified commit `f8dd27cc` byte for
+byte. The actual SDK/service trials then produced these separate results:
+
+| Workers | Delay per provider request | Merchants reached | New acknowledged prices | Elapsed | Profile |
+| --- | --- | --- | --- | --- | --- |
+| 4 | 250ms | 96 / 100 | 384 | 183.76s | Failed: admission deadline |
+| 4 | 500ms | 64 / 100 | 256 | 186.95s | Failed: admission deadline |
+| 8 | 500ms | 100 / 100 | 400 | 151.14s | Passed bounded profile |
+
+The four-worker invocations completed admitted work safely but did not qualify
+the capacity profile. Their failed qualification receipts were not relabeled or
+rerun with a longer deadline. Both left 300 canonical sales, 100,000 active stock
+claims and every manual price intact. A SELECT-only readback matched all 100,300
+provider/catalog/stock mappings, with zero unresolved catalog or stock operations.
+
+The forward application change raises only cross-merchant workers from four to
+eight. Every seller stays serial; the 100-merchant, five-target and 180-second
+admission limits, existing SQL/fences/leases and provider policy stay unchanged.
+A deterministic slow-merchant regression failed the original pool at 60 / 100
+and passes the correction without changing its clock budget. The corrected
+scheduler and provider fixture passed 19 focused cases with zero skips.
+
+The actual eight-worker run used 10,704 SDK RPCs and 1,900 provider requests. It
+had zero merchant failures, reviews, skipped or pending receipts, overlapping
+seller writes, version conflicts or inventory writes. Two extra claim requests
+returned empty; the database still admitted exactly 100 merchants. The final
+readback again matched every mapping, all 400 manual prices and all 300 unique
+sale dispositions. Cumulatively 1,059 changed prices were acknowledged and
+3,941 of the original 5,000 remained pending. No further prices were calculated.
+
+These profiles share one canonical printing/reference and disable artwork.
+They use actual wall time and ordinary authorities, but a local transport and
+modeled acknowledged baseline. They do not establish real provider throughput,
+hosted clock delivery, a full 100,000-copy tail or overnight freshness.
+Exact executed sources, both failed profiles and the forward result are retained
+under the sibling `daily-capacity-v1` evidence directory. Final normal/hosted
+checks must bind to the forward source separately from the prior `f8dd27cc` head.
+
 ## Release gates
 
 One bounded wave cannot establish that all 100,000 active prices reach POS

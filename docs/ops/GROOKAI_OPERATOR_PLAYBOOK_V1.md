@@ -1,3 +1,20 @@
+# Square integrated capacity correction — November 23, 2026
+
+Read [the integrated audit](../audits/SQUARE_INTEGRATED_CAPACITY_20261123.md).
+Keep all scaling flags off until full qualification. The separate write-heavy
+four-worker trials reached only96/100 vendors at250ms and64/100 at500ms. The
+forward eight-worker pool reached100/100 and confirmed400 changed prices in
+151.14 seconds at500ms, with unchanged180-second admission,100-merchant and
+five-target limits. Seller writes remain serial. SQL, money, stock, leases and
+provider retry policy are unchanged; no migration or production setting changes.
+
+Preserve the original backlog-heavy lab and both failed profiles. The new lab's
+already-matching baseline events are explicit fixture setup, not service
+acknowledgements. Independent readback still matches100,300 mappings,100,000
+active stock claims,300 unique sales and400 manual prices. This bounded result
+does not prove a complete daily POS refresh. Current-main/production gates,
+live provider/clock proof and the separate main merge pause remain binding.
+
 # Square recovery target-window candidate — November 22, 2026
 
 Read [the candidate contract](../contracts/SQUARE_RECOVERY_TARGET_WINDOW_V1.md).
