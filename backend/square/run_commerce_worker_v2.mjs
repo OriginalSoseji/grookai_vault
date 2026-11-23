@@ -7,6 +7,7 @@ import {createBackendClient} from '../supabase_backend_client.mjs';
 import {createSquareCommerceBackend} from './commerce_backend_v2.mjs';
 import {squareEnvironmentConfig} from './service_v1.mjs';
 import {squareScheduledConnections} from './scheduler_batch_v2.mjs';
+import {runSquareDurableRecovery,assertSquareDurableRecoveryConfig} from './durable_recovery_v1.mjs';
 const args=process.argv.slice(2),mode=args.shift();
 let client,runId;
 const safe=error=>/^square_[a-z_]{1,80}$/.test(error?.code||'')?error.code:'square_worker_failed';
@@ -18,6 +19,7 @@ try{
  const local=cfg.SUPABASE_URL==='http://127.0.0.1:61841';
  if(!local&&!(cfg.SUPABASE_URL==='https://ycdxbpibncqcchqiihfz.supabase.co'&&cfg.NODE_ENV==='production'))throw Error();
  if(!['sandbox','production'].includes(cfg.SQUARE_ENVIRONMENT)||(!local&&cfg.SQUARE_ENVIRONMENT!=='production'))throw Error();
+ assertSquareDurableRecoveryConfig(cfg);
  console.log((local?'LOCAL':'REMOTE')+' Square commerce '+mode+': '+cfg.SUPABASE_URL);
  client=createBackendClient();
  if(mode==='--health'){
@@ -25,6 +27,13 @@ try{
   console.log(JSON.stringify(value.data));
   const diagnostics=await client.rpc('square_commerce_run_health_v3',{p_environment:cfg.SQUARE_ENVIRONMENT});if(diagnostics.error)throw Error();
   console.log(JSON.stringify(diagnostics.data));
+  if(cfg.GROOKAI_SQUARE_DURABLE_RECOVERY_ENABLED==='true'){
+   const queue=await client.rpc('square_durable_recovery_v1',{p_action:'health',p_data:{environment:cfg.SQUARE_ENVIRONMENT}});
+   if(queue.error)throw Error();console.log(JSON.stringify(queue.data));
+  }
+ }else if(cfg.GROOKAI_SQUARE_DURABLE_RECOVERY_ENABLED==='true'){
+  const result=await runSquareDurableRecovery({env:cfg,createClient:()=>client});
+  console.log(JSON.stringify(result));if(result.status==='failed')process.exitCode=1;
  }else{
   runId=randomUUID();
   const started=await client.rpc('square_worker_run_v1',{p_id:runId,p_action:'start',p_result:{environment:cfg.SQUARE_ENVIRONMENT}});if(started.error)throw Error();
