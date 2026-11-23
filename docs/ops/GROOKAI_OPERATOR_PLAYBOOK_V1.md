@@ -102,6 +102,54 @@ and producer approval, actual fresh production rollback, durable independent
 readback and collector verification before completion. Keep the earlier EX and
 other bounded executors unchanged; these43 facts do not close every missing stamp.
 
+# Recovered Play! Pokémon Normal sources - November 23, 2026
+
+The [separate Series Five checkpoint](../checkpoints/2026-11-23_series5_stamp_normals.md)
+and [contract](../contracts/PLAY_POKEMON_STAMP_SERIES5_NORMAL_EXECUTION_V1.md)
+cover four Temporal Forces facts after the exact Roaring Moon Standard Set
+tooltip is count-reconciled with its original note retained. Source counts now
+agree; older failed receipts remain preserved. Use the dedicated
+`scripts/audits/play_stamp_series5_normal_execution_v1.mjs`, not the other
+28-parent or original43-parent executor. Preserve257 parents/399 retained children;
+the canonical scope is nine inserts. Require separate product-link gates and
+complete publication. Series Six and Fighting Au Lait remain outside these lanes.
+The [dedicated four-link contract](../contracts/PLAY_STAMP_SERIES5_NORMAL_MARKET_MAPPING_V1.md)
+and `scripts/audits/play_stamp_series5_normal_market_mapping_v1.mjs` require exact
+raw/candidate/product ownership, actual reviewed children and their own original
+approval, fresh rollback and independent readback. The four-source census admits
+only Normal, not a complete finish inventory.
+
+The combined prepared follow-up contains98 bounded inserts across four separately
+approved stages:57 canonical rows and28 links for the other28-parent programme,
+then nine canonical rows and four links for Series Five. The five retained set
+families are disjoint. All updates/deletes/owner/image/identity writes are zero.
+Both full normal hooks and hosted checks must qualify the complete combined tree;
+no partial test result or approval for the preceding149-row package carries over.
+
+Use `C:/grookai_play_stamp_normal_recovery_20261123` and the
+[28-printing checkpoint](../checkpoints/2026-11-23_play_stamp_normal_recovery_v3.md).
+The [source audit](../audits/PLAY_STAMP_NORMAL_RECOVERY_SOURCE_REVIEW_V3_20261123.md)
+preserves recovered official Series Three/Four PDFs and independent Normal facts.
+Series Five's later exact annotation review belongs only to the separate four-parent
+lane above. Series Six's duplicate coordinate remains held.
+The [separate V3 contract](../contracts/PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3.md)
+governs `scripts/audits/play_stamp_normal_recovery_execution_v3.mjs`: exactly
+28 existing parents, four full retained set families, and 57 canonical inserts.
+Fighting Au Lait stays excluded: its active regular-product TCGplayer link must
+be corrected atomically with its printing in a separate reviewed package.
+Keep the earlier 43-parent V1 programme and the active pricing release unchanged.
+This source candidate has no production authority; require local qualification,
+normal source checks, exact plan/producer approval, fresh actual rollback and
+independent readback. Market source links and complete guarded publication are
+separate later gates. Do not apply the new batch during the earlier price run.
+
+The [separate recovered mapping contract](../contracts/PLAY_STAMP_NORMAL_RECOVERY_MARKET_MAPPING_V2.md)
+governs `scripts/audits/play_stamp_normal_recovery_market_mapping_v2.mjs`.
+Require exact actual V3 children, original raw/candidate/product lineage, zero
+existing parent/printing assertions, original stage approval and fresh rollback.
+Append only 28 links with an unchanged sequence. Preserve the two unverified
+Holofoil holds; the generic mapper and published condition reader are unchanged.
+
 # Cosmo title price guard — November22,2026
 
 Use `C:/grookai_cosmo_price_guard_20261122` and the

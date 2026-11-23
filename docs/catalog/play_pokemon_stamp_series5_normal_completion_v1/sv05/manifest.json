@@ -1,0 +1,206 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv05",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "docs/catalog/play_pokemon_stamp_series5_normal_completion_v1/sv05/master_facts.json",
+  "master_index_sha256": "096e5fbeaca084deac602a7a8e08b06f724c2965294b04e032021de2dc31898a",
+  "parents": [
+    {
+      "id": "71eab7c1-b491-4442-b2aa-dae5311db412",
+      "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+      "gv_id": "GV-PK-TEF-151-PLAY-POKEMON-STAMP",
+      "name": "Heavy Baton",
+      "printed_coordinate": "151",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "7c413757-c98e-4e27-a791-2e075c545b96",
+      "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+      "gv_id": "GV-PK-TEF-155-PLAY-POKEMON-STAMP",
+      "name": "Morty's Conviction",
+      "printed_coordinate": "155",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "b00cdee1-1552-4e5c-9e33-cd5a15303e9f",
+      "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+      "gv_id": "GV-PK-TEF-021-PLAY-POKEMON-STAMP",
+      "name": "Brambleghast",
+      "printed_coordinate": "021",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "b40344f6-d54f-40bf-9383-3e437ffc6a39",
+      "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+      "gv_id": "GV-PK-TEF-160-PLAY-POKEMON-STAMP",
+      "name": "Salvatore",
+      "printed_coordinate": "160",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "71eab7c1-b491-4442-b2aa-dae5311db412",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-TEF-151-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series5",
+          "sha256": "e6db3b6348c1d52d12328265b0460f5f296052c5fadbbf0050204e1745606f97",
+          "card_print_id": "71eab7c1-b491-4442-b2aa-dae5311db412",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "wiki-series5",
+          "sha256": "ff74d24e2a53c3073c9f43bd83195f3d678b00dcec8150d45941ad1c242cb01e",
+          "card_print_id": "71eab7c1-b491-4442-b2aa-dae5311db412",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "7c413757-c98e-4e27-a791-2e075c545b96",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-TEF-155-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series5",
+          "sha256": "e6db3b6348c1d52d12328265b0460f5f296052c5fadbbf0050204e1745606f97",
+          "card_print_id": "7c413757-c98e-4e27-a791-2e075c545b96",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "wiki-series5",
+          "sha256": "ff74d24e2a53c3073c9f43bd83195f3d678b00dcec8150d45941ad1c242cb01e",
+          "card_print_id": "7c413757-c98e-4e27-a791-2e075c545b96",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "b00cdee1-1552-4e5c-9e33-cd5a15303e9f",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-TEF-021-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series5",
+          "sha256": "e6db3b6348c1d52d12328265b0460f5f296052c5fadbbf0050204e1745606f97",
+          "card_print_id": "b00cdee1-1552-4e5c-9e33-cd5a15303e9f",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "wiki-series5",
+          "sha256": "ff74d24e2a53c3073c9f43bd83195f3d678b00dcec8150d45941ad1c242cb01e",
+          "card_print_id": "b00cdee1-1552-4e5c-9e33-cd5a15303e9f",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "b40344f6-d54f-40bf-9383-3e437ffc6a39",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-TEF-160-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series5",
+          "sha256": "e6db3b6348c1d52d12328265b0460f5f296052c5fadbbf0050204e1745606f97",
+          "card_print_id": "b40344f6-d54f-40bf-9383-3e437ffc6a39",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "wiki-series5",
+          "sha256": "ff74d24e2a53c3073c9f43bd83195f3d678b00dcec8150d45941ad1c242cb01e",
+          "card_print_id": "b40344f6-d54f-40bf-9383-3e437ffc6a39",
+          "finish_key": "normal"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 4,
+    "printings": 4,
+    "finishes": {
+      "normal": 4
+    }
+  },
+  "scope_notes": [
+    "Normal existence only; this is not a complete physical finish inventory.",
+    "Exact black standard-set markers and independent Standard Set rows agree; original PDFs and legends were visually checked.",
+    "Only four exact Series Five Normal facts are admitted. The separate Roaring Moon Standard Set tooltip is preserved and count-reconciled; Series Six remains excluded.",
+    "No red-marker foil inference, legacy alias merge, parent, image, mapping, price or owner mutation is authorized."
+  ],
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+    "source_artifacts": [
+      {
+        "ref": "official-series5",
+        "kind": "checked_checklist",
+        "sha256": "e6db3b6348c1d52d12328265b0460f5f296052c5fadbbf0050204e1745606f97",
+        "url_or_identifier": "https://web.archive.org/web/20261020203917id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_5_web_cardlist_en.pdf",
+        "retrieved_at": "2026-11-23T06:51:17.318Z",
+        "publisher_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_5_web_cardlist_en.pdf",
+        "original_archive_capture": "20261020203917",
+        "retrieval_does_not_redate_original": true
+      },
+      {
+        "ref": "wiki-series5",
+        "kind": "checked_checklist",
+        "sha256": "ff74d24e2a53c3073c9f43bd83195f3d678b00dcec8150d45941ad1c242cb01e",
+        "url_or_identifier": "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Five_%28TCG%29&prop=wikitext&format=json",
+        "retrieved_at": "2026-11-23T06:51:16.297Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "71eab7c1-b491-4442-b2aa-dae5311db412",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "7c413757-c98e-4e27-a791-2e075c545b96",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "b00cdee1-1552-4e5c-9e33-cd5a15303e9f",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "b40344f6-d54f-40bf-9383-3e437ffc6a39",
+        "finish_key": "normal"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "review",
+      "sha256": "82d5363ad3bc101205e2344ddc7924a923e4821e136759062e903bc389f2a1d6"
+    }
+  },
+  "fingerprint": "f062082f25eee17c2aa053a46786da68ec7722db6329a912d48b71c2d67bf681"
+}
