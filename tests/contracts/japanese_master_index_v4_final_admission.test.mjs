@@ -214,6 +214,49 @@ test('official identity and two-source finish are master-admissible', () => {
   assert.equal(result.completion.all_static_admission_checks_pass, true);
 });
 
+test('mismatched source claims cannot grant official identity or finish authority', () => {
+  const official = assertion({ key: 'official', sourceId: 'official_jp_cards', sourceFamily: 'pokemon_card_official_jp', finishLabels: ['normal'] });
+  const spoofed = assertion({ key: 'spoofed', sourceId: 'pokeapi_species_names_only', sourceFamily: 'limitless_tcg_jp', finishLabels: ['normal'] });
+  const card = candidate({ key: 'card', assertionKeys: ['official', 'spoofed'], sourceIds: [official.source_id, spoofed.source_id] });
+  const result = buildFixture({
+    sourceAssertions: [official, spoofed], identityCandidates: [card],
+    printingCandidates: [{ printing_candidate_key: 'finish', identity_candidate_key: 'card', finish_key: 'normal', assertion_keys: ['official', 'spoofed'], candidate_kind: 'novel_printing_exact_finish' }],
+    familyProjectionRows: [{ candidate_key: 'card', projection_status: 'projected_exact', species_id: 'species-pikachu', projection_methods: ['exact_japanese_name'] }],
+  });
+  const printing = result.datasets.master_printing_fact_rows_v1[0];
+  assert.deepEqual(printing.independent_source_families, ['official_jp']);
+  assert.equal(printing.final_disposition, 'blocked');
+});
+
+test('an unrecognized or inconsistent assertion cannot claim an official family through candidate source IDs', () => {
+  for (const [sourceId, sourceFamily] of [
+    ['pokeapi_species_names_only', 'pokemon_card_official_jp'],
+    ['official_jp_cards', 'limitless_tcg_jp'],
+  ]) {
+    const source = assertion({ key: 'bad', sourceId, sourceFamily });
+    const card = candidate({ key: 'card', assertionKeys: ['bad'], sourceIds: [sourceId] });
+    const result = buildFixture({ sourceAssertions: [source], identityCandidates: [card] });
+    const row = result.datasets.master_card_resolution_rows_v1[0];
+    assert.equal(row.official_source_present, false, sourceId);
+    assert.equal(row.independent_source_count, 0, sourceId);
+  }
+});
+
+test('a false official claim cannot select the canonical Japanese spelling', () => {
+  const source = assertion({ key: 'bad-name', sourceId: 'pokeapi_species_names_only', sourceFamily: 'pokemon_card_official_jp', name: 'バクーダEX' });
+  const card = candidate({ key: 'card', assertionKeys: ['bad-name'], sourceIds: [source.source_id], name: 'バクーダex' });
+  const result = buildFixture({ sourceAssertions: [source], identityCandidates: [card] });
+  assert.equal(result.datasets.master_card_resolution_rows_v1[0].printed_name_ja, 'バクーダex');
+});
+
+test('a baseline-only recognized source key keeps its existing family', () => {
+  const card = candidate({ key: 'existing', assertionKeys: [], sourceIds: ['official_jp_cards'], kind: 'existing_parent', existingCardPrintId: 'parent' });
+  const result = buildFixture({ sourceAssertions: [], identityCandidates: [card] });
+  const row = result.datasets.master_card_resolution_rows_v1[0];
+  assert.deepEqual(row.independent_source_families, ['official_jp']);
+  assert.equal(row.official_source_present, true);
+});
+
 test('final admission independently rejects a composite presented as an exact numbered card', () => {
   const source=assertion({key:'composite',sourceId:'official_jp_cards',sourceFamily:'pokemon_card_official_jp',category:'V-UNION'});
   const card=candidate({key:'composite-candidate',assertionKeys:[source.assertion_key],sourceIds:[source.source_id]});
