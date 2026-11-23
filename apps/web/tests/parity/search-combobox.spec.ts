@@ -236,3 +236,39 @@ test("a degraded search is shown as a timeout instead of no matches", async ({ p
   await expect(page.getByText("No card match yet")).toHaveCount(0);
   await expect(page.getByText("No results yet")).toHaveCount(0);
 });
+
+test("retry search repeats the same filtered request after both timeout attempts fail", async ({ page }) => {
+  const requests: string[] = [];
+  let allowSuccess = false;
+  await page.route("**/*", async (route) => {
+    const url = new URL(route.request().url());
+    if (!["127.0.0.1", "localhost"].includes(url.hostname)) return route.abort();
+    if (url.pathname === "/api/resolver/search") {
+      requests.push(url.toString());
+      if (!allowSuccess) return route.fulfill({ status: 503, json: {
+        ok: false, sort_degraded_reason: "resolver_timeout",
+        error: "Search timed out before the complete matching set could be checked. Please narrow your search or try again.",
+      } });
+      return route.fulfill({ json: { ok: true, rows, canonical: rows, provisional: [], pagination: { total_count: 2, has_more: false, next_offset: null } } });
+    }
+    if (url.pathname.startsWith("/api/")) return route.fulfill({ json: { ok: true, rows: [] } });
+    return route.continue();
+  });
+  await page.goto("/explore?q=Pikachu&finish=reverse&year_min=2022&year_max=2024");
+  const retry = page.getByRole("button", { name: "Retry search" });
+  await expect(retry).toBeVisible();
+  expect(requests.length).toBeGreaterThanOrEqual(2);
+  await expect(page.getByText("No card match yet")).toHaveCount(0);
+  const previousCount = requests.length;
+  const failedRequest = requests[requests.length - 1];
+  allowSuccess = true;
+  await retry.click();
+  await expect(page.getByText("Pikachu 1", { exact: true }).first()).toBeVisible();
+  expect(requests.length).toBeGreaterThan(previousCount);
+  expect(requests[requests.length - 1]).toBe(failedRequest);
+  const retried = new URL(requests[requests.length - 1]);
+  expect(retried.searchParams.get("finish")).toBe("reverse");
+  expect(retried.searchParams.get("year_min")).toBe("2022");
+  expect(retried.searchParams.get("year_max")).toBe("2024");
+  await expect(retry).toHaveCount(0);
+});

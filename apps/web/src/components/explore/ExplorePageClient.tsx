@@ -545,6 +545,7 @@ export default function ExplorePageClient({
   const [assistantPreviewLoading, setAssistantPreviewLoading] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [searchRetryRevision, setSearchRetryRevision] = useState(0);
   const [sortDegradedReason, setSortDegradedReason] = useState<string | null>(
     null,
   );
@@ -792,6 +793,7 @@ export default function ExplorePageClient({
     identityFilter,
     shouldServerFilterByIdentity,
     effectiveCanViewPricing,
+    searchRetryRevision,
   ]);
 
   useEffect(() => {
@@ -1644,7 +1646,15 @@ export default function ExplorePageClient({
             >
               Sign in to use value sorting
             </Link>
-          ) : null}
+          ) : (
+            <button
+              type="button"
+              className="mt-2 inline-flex font-semibold underline underline-offset-2"
+              onClick={() => setSearchRetryRevision((revision) => revision + 1)}
+            >
+              Retry search
+            </button>
+          )}
         </div>
       ) : null}
 
