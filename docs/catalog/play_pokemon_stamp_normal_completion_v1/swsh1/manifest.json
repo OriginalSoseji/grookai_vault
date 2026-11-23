@@ -1,0 +1,95 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "swsh1",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "docs/catalog/play_pokemon_stamp_normal_completion_v1/swsh1/master_facts.json",
+  "master_index_sha256": "c665904492ac58f18e6fe5313d55d2ab3ec8a341410b3ed92c34366c86827476",
+  "parents": [
+    {
+      "id": "adcb8767-df1b-4b95-81f4-02b9562983b5",
+      "set_id": "865570b1-12ba-4d7b-94e7-13c7e4dc0657",
+      "gv_id": "GV-PK-SSH-014-PLAY-POKEMON-STAMP",
+      "name": "Rillaboom",
+      "printed_coordinate": "014",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "adcb8767-df1b-4b95-81f4-02b9562983b5",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-SSH-014-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series1",
+          "sha256": "29500763ba9335d2718ece92a9c3cc074390fc89b2890b44bbfca3c141089323",
+          "card_print_id": "adcb8767-df1b-4b95-81f4-02b9562983b5",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "wiki-series1",
+          "sha256": "c48fefb2c381120f32aa9bb3e00350393c9cc97ff81dd51c369872221c2d806c",
+          "card_print_id": "adcb8767-df1b-4b95-81f4-02b9562983b5",
+          "finish_key": "normal"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "normal": 1
+    }
+  },
+  "scope_notes": [
+    "Normal existence only. This is not a complete physical finish inventory or a whole-set release.",
+    "Black standard-set marker in the official stamped Prize Pack matrix and exact Standard Set in the independent checklist both support this Normal fact.",
+    "Red foil markers are retained as unadjudicated source context; no Holo, Reverse or Cosmos row is inferred.",
+    "Existing prize_pack_stamp and series-specific legacy parents are outside this package; no alias, identity or owner mutation is admitted."
+  ],
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "865570b1-12ba-4d7b-94e7-13c7e4dc0657",
+    "source_artifacts": [
+      {
+        "ref": "official-series1",
+        "kind": "checked_checklist",
+        "sha256": "29500763ba9335d2718ece92a9c3cc074390fc89b2890b44bbfca3c141089323",
+        "url_or_identifier": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+        "retrieved_at": "2026-04-21T03:53:14.810010+00:00"
+      },
+      {
+        "ref": "wiki-series1",
+        "kind": "checked_checklist",
+        "sha256": "c48fefb2c381120f32aa9bb3e00350393c9cc97ff81dd51c369872221c2d806c",
+        "url_or_identifier": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+        "retrieved_at": "2026-11-22T23:29:06.652Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "adcb8767-df1b-4b95-81f4-02b9562983b5",
+        "finish_key": "normal"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "review",
+      "sha256": "156fc63c2d0caa869bb6f1da57b9fdcaa0a4642c795148736cebda8179ee0e55"
+    }
+  },
+  "fingerprint": "7602a826f8155bfd71ccaf21e2ca8d0b75f7f2a2355eeaf827862f2796534115"
+}

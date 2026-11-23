@@ -1,0 +1,83 @@
+{
+  "version": "PLAY_POKEMON_STAMP_NORMAL_MASTER_FACTS_V1",
+  "status": "master_admissible",
+  "language": "en",
+  "set_code": "sv07",
+  "scope": "exact_generic_play_pokemon_stamp_normal_facts_only",
+  "complete_printing_inventory": false,
+  "foil_pattern_adjudicated": false,
+  "records": [
+    {
+      "card_print_id": "3efe6043-c485-435b-aa1b-e6e83b3281e6",
+      "card_name": "Crispin",
+      "printed_coordinate": "133",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 7,
+          "official_pdf_sha256": "a058469447a1e4eaf92027003e0cf77a17333b287169d1e81d492509a3c74007",
+          "official_row": {
+            "series": 7,
+            "name": "Crispin",
+            "name_alignment_resolved": true,
+            "set_token": "SCR",
+            "printed_number": "133",
+            "normal_explicit": true,
+            "foil_marker_present": true,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "SCR",
+              "xMin": 332.4875,
+              "yMin": 652.36,
+              "xMax": 361.6287,
+              "yMax": 664.724,
+              "set_token": "SCR",
+              "number": "133"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 374.6451,
+                "yMin": 653.6234,
+                "xMax": 382.2551,
+                "yMax": 663.1934,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 62
+              },
+              {
+                "text": "■",
+                "xMin": 389.1419,
+                "yMin": 653.6234,
+                "xMax": 396.7519,
+                "yMax": 663.1934,
+                "color": "red",
+                "red_pixels": 62,
+                "black_pixels": 0
+              }
+            ]
+          },
+          "secondary_raw_sha256": "db117f568af98cb19460d2531fc83606fbfe5b4384529b284d7ddff6b53da8fb",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 7,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Seven_(TCG)",
+            "set_key": "sv07",
+            "card_number": "133",
+            "card_name": "Crispin",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    }
+  ]
+}

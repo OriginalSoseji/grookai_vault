@@ -1,0 +1,18 @@
+{
+  "version": "PLAY_STAMP_NORMAL_SOURCE_REVIEW_V1",
+  "status": "verified_scope",
+  "reviewer": "Codex official matrix and independent checklist source review",
+  "reviewed_at": "2026-11-22T23:40:13.430Z",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "swsh8",
+  "scope": "verified_parent_families",
+  "master_index_sha256": "a13a2da3ff581e12b4cbb93ef3dc5d2a46d330d73bda6443b96aa88ee60bd87c",
+  "projection_sha256": "0d26685b41c56f78f3deb58c7418efaa9e61133429a558137fee20376753d31c",
+  "complete_printing_inventory": false,
+  "review_notes": [
+    "Original official PDF headers, contents and black/red legend visually inspected; no substituted image or generic price subtype used.",
+    "All selected exact set/number/name/Normal tuples independently agree; ambiguous coordinates/names, missing identity and unsupported variants are excluded.",
+    "Physical stamp identity is the existing generic play_pokemon_stamp parent. Series appearance never creates a separate parent."
+  ]
+}
