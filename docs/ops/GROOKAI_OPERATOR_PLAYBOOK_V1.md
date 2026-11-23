@@ -11,6 +11,37 @@ complete normal/hosted and actual-schema gates, guarded publication, independent
 source-price/app readback and natural refresh proof. Older shadows cannot qualify
 worker V1_29. Keep the shared main-merge pause and original approval boundaries.
 
+# Best of Game catalog covering-index correction V15 — November 23, 2026
+
+Follow [V15](../contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V15.md). Production
+520 applied once from retained source 1e2b75c2. Its first genuine catalog SDK
+response returned 417 rows in 3187 ms, above the unchanged 3000 ms budget.
+Retain the consumed V17 intent and failed after; no retry, reliability, merge
+or deployment acceptance is claimed. The separate data-only audit passed all
+120 original scopes, all 768 aliases and four-schema/security comparison.
+
+The next candidate is only 20261123190000_catalog_visible_count_covering_index_v1.sql:
+one partial covering index, with no reader, view, helper, grant or row changes.
+Source preparation is C:/grookai_best_of_game_catalog_cover_521_20261123.
+Qualification/release evidence belongs under the matching catalog_cover_521
+operator root; the runtime diagnosis and failed local setup drafts remain in
+C:/grookai_vault_operator_artifacts/best_of_game_catalog_runtime_520_20261123.
+Preserve every old source and laboratory. The newly owned prototype commits
+only synthetic fixture data; cold-buffer instrumentation stays local to it.
+
+The exact 520 approval is consumed. A new concrete source/index-SQL decision
+must follow full local/normal/hosted qualification, exact strict V15 PrePush,
+fresh original 120-scope before and official exact-one dry-run. The existing
+owner-approved V17 comparison limits and November 24 13:59:40Z deadline remain
+fixed; the original November 23 window stays expired. Do not widen or restart
+the comparison. All original and previously observed full rows remain exact.
+
+Main remains held at e2070734 and PR985 is the only permitted guarded release.
+The dashboard writer stays disabled until real API/data/security/reliability,
+normal squash merge, matching Production25-page acceptance and exact original
+control restoration. Only then close shared merge coordination and continue all
+stamped Reverse Holos under their separate physical-printing authority.
+
 # Duplicate-set typed card-search V11 — November22,2026
 
 Follow [the V11 release contract](../contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V11.md).
