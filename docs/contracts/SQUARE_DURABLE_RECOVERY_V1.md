@@ -2,6 +2,10 @@
 
 Status: default-off implementation candidate; not production qualified.
 
+The [integrated capacity audit](../audits/SQUARE_INTEGRATED_CAPACITY_20261123.md)
+separates actual shared-SDK/local-provider measurements from unit models, live
+Square capacity and full-backlog freshness. A bounded wave is not a daily SLO.
+
 The owner launch target is 100 vendors with 1,000 cards each. A clock-selected
 merchant window can skip vendors when scheduled invocations arrive late. This
 candidate stores due work per connection and selects the oldest due eligible

@@ -38,6 +38,31 @@ diagnostic evidence, not ordinary shadow-diff or production PrePush authority.
 Both hosted clocks now carry the optional recovery flag with a false fallback;
 malformed scheduler values cannot launch a worker. No hosted setting is enabled.
 Final-source normal/hosted/review gates and real provider capacity remain required.
+# Vendor automatic-pricing drain candidate — November22,2026
+
+The100-vendor/100,000-card audit is retained at
+`C:/grookai_vault_operator_artifacts/square_launch_readiness_20261122/READINESS.md`.
+It reproduced global50-copy pricing capacity and sold targets omitted after the
+SQL1,000-target window. Existing small-account sale and recovery evidence does
+not establish this launch capacity.
+
+The candidate in`C:/grookai_square_scale_20261122` adds default-off
+`GROOKAI_VENDOR_PRICING_DRAIN_ENABLED`. Read the candidate section in
+[the pricing contract](../contracts/VENDOR_PRICING_RULES_AND_LABELS_V1.md).
+It drains bounded existing candidate pages under the unchanged run fence and
+time budget, and retains Square handoff in existing durable obligations. Default
+behavior stays on the current single-page inline path. The new receipt's stop
+reason distinguishes an empty queue from budget, work-bound or repeated-page
+stops; a successful batch is not proof of global queue completion or POS price
+acknowledgement. Do not enable it until database durability and separate provider
+capacity are qualified. No schema, stock or payment authority is added here.
+
+The original strict starting schema audit failed on seven applied catalog IDs
+absent from its old main prefix. PR1020 has now integrated their exact source
+into main519; the original failed receipt remains preserved. A fresh read-only
+starting audit is still required before schema work. Do not reapply the existing
+migrations. The separate main merge pause remains; the consumed PR1018-only
+exception cannot publish this candidate.
 
 # Price/stamp exact519 continuity — November22,2026
 
