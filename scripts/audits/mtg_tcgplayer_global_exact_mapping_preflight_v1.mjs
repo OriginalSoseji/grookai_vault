@@ -11,6 +11,7 @@ import pg from 'pg';
 
 import '../../backend/env.mjs';
 import { assertPrintingDatabaseTarget } from '../../backend/catalog/master_index_printing_execution_guard_v1.mjs';
+import { mtgTcgplayerGlobalExactReviewManifestRowV1 } from '../../backend/pricing/mtg_tcgplayer_global_exact_review_queue_v1.mjs';
 import { normalizeTcgplayerMappingNumberV1 } from '../../backend/pricing/tcgplayer_market_exact_mapping_plan_policy_v1.mjs';
 import { stripReviewedMtgTcgplayerQualifierV1 } from '../../backend/pricing/mtg_tcgplayer_qualifier_review_plan_v1.mjs';
 
@@ -171,6 +172,10 @@ export function reconcileApprovedDecision(rows, approval) {
   return { accepted, held, rejected, decision };
 }
 
+export function reviewBatchManifestSha256(rows) {
+  return sha256(JSON.stringify(rows.map(mtgTcgplayerGlobalExactReviewManifestRowV1)));
+}
+
 export async function loadApprovedPackage(options, headSha) {
   const approvalRaw = await fs.readFile(options.approvalFile, 'utf8');
   const approval = JSON.parse(approvalRaw.replace(/^\uFEFF/, ''));
@@ -203,6 +208,8 @@ export async function loadApprovedPackage(options, headSha) {
   assert.equal(approval.batch_manifest_sha256, batchSummary.manifest_sha256,
     'approval_batch_manifest_changed');
   assert.equal(review.rows.length, batchSummary.row_count, 'batch_row_count_changed');
+  assert.equal(reviewBatchManifestSha256(review.rows), approval.batch_manifest_sha256,
+    'review_critical_batch_evidence_changed');
   assert.equal(approval.queue_source_commit, rootSummary.source_commit, 'queue_source_commit_changed');
   assert.match(approval.review_producer_commit ?? '', /^[a-f0-9]{40}$/,
     'review_producer_commit_invalid');

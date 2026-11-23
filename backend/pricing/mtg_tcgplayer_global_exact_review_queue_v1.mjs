@@ -174,7 +174,7 @@ export function planMtgTcgplayerGlobalExactReviewRowV1(row) {
   };
 }
 
-function reviewManifestRow(row) {
+export function mtgTcgplayerGlobalExactReviewManifestRowV1(row) {
   return {
     source_product_id: row.source_product_id,
     source_product_name: row.source_product_name,
@@ -259,7 +259,7 @@ export function buildMtgTcgplayerGlobalExactReviewQueueV1(rows) {
       offset + MTG_TCGPLAYER_GLOBAL_EXACT_REVIEW_BATCH_LIMIT_V1,
     );
     const batchIndex = batches.length + 1;
-    const manifest = batchRows.map(reviewManifestRow);
+    const manifest = batchRows.map(mtgTcgplayerGlobalExactReviewManifestRowV1);
     batches.push({
       batch_index: batchIndex,
       batch_id: `mtg-global-exact-${String(batchIndex).padStart(4, '0')}`,
@@ -272,7 +272,7 @@ export function buildMtgTcgplayerGlobalExactReviewQueueV1(rows) {
     });
   }
 
-  const manifest = ready.map(reviewManifestRow);
+  const manifest = ready.map(mtgTcgplayerGlobalExactReviewManifestRowV1);
   return {
     policy_version: MTG_TCGPLAYER_GLOBAL_EXACT_REVIEW_QUEUE_V1,
     status: ready.length

@@ -8,6 +8,7 @@ import { fileURLToPath } from 'node:url';
 import {
   assertLiveState,
   reconcileApprovedDecision,
+  reviewBatchManifestSha256,
 } from '../../scripts/audits/mtg_tcgplayer_global_exact_mapping_preflight_v1.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
@@ -114,6 +115,17 @@ test('review decision rejects scope or authority drift before database access', 
   assert.throws(() => reconcileApprovedDecision(rows.map((candidate, index) =>
     index === 0 ? { ...candidate, target_set_code: 'wrong' } : candidate), approval),
   /accepted_set_code_changed/);
+});
+
+test('batch manifest binds review-critical evidence omitted from the decision fingerprint', () => {
+  const { rows } = decisionFixture();
+  const before = reviewBatchManifestSha256(rows);
+  assert.notEqual(reviewBatchManifestSha256(rows.map((candidate, index) =>
+    index === 0 ? { ...candidate, source_product_name: 'Tampered source name' } : candidate)), before);
+  assert.notEqual(reviewBatchManifestSha256(rows.map((candidate, index) =>
+    index === 0 ? { ...candidate, target_set_id: 'tampered-set-id' } : candidate)), before);
+  assert.notEqual(reviewBatchManifestSha256(rows.map((candidate, index) =>
+    index === 0 ? { ...candidate, group_consensus_set_count: 999 } : candidate)), before);
 });
 
 test('live assertion binds source, target, identity, mapping and current price lane', () => {
