@@ -257,6 +257,58 @@ test('a baseline-only recognized source key keeps its existing family', () => {
   assert.equal(row.official_source_present, true);
 });
 
+test('explicitly ineligible active baseline evidence cannot supply an official family', () => {
+  const card = candidate({ key: 'existing', assertionKeys: [], sourceIds: ['pokemon_card_official_jp'], kind: 'existing_parent', existingCardPrintId: 'parent' });
+  card.baseline_evidence_ids = ['stale'];
+  card.active_baseline_evidence_ids = ['stale'];
+  card.current_eligible_baseline_evidence_ids = [];
+  card.current_eligible_baseline_source_keys = [];
+  const result = buildFixture({ sourceAssertions: [], identityCandidates: [card] });
+  const row = result.datasets.master_card_resolution_rows_v1[0];
+  assert.equal(row.official_source_present, false);
+  assert.deepEqual(row.current_eligible_baseline_evidence_ids, []);
+  assert.deepEqual(row.active_baseline_evidence_ids, ['stale']);
+});
+
+test('valid fresh assertions still count when baseline eligibility is explicitly empty', () => {
+  const source = assertion({ key: 'official', sourceId: 'official_jp_cards', sourceFamily: 'pokemon_card_official_jp' });
+  const card = candidate({ key: 'card', assertionKeys: ['official'], sourceIds: [source.source_id] });
+  card.current_eligible_baseline_source_keys = [];
+  card.current_eligible_baseline_evidence_ids = [];
+  const result = buildFixture({ sourceAssertions: [source], identityCandidates: [card] });
+  assert.equal(result.datasets.master_card_resolution_rows_v1[0].official_source_present, true);
+});
+
+test('malformed explicit baseline eligibility fails closed', () => {
+  const card = candidate({ key: 'existing', assertionKeys: [], sourceIds: ['pokemon_card_official_jp'] });
+  card.current_eligible_baseline_source_keys = null;
+  card.current_eligible_baseline_evidence_ids = null;
+  const result = buildFixture({ sourceAssertions: [], identityCandidates: [card] });
+  const row = result.datasets.master_card_resolution_rows_v1[0];
+  assert.equal(row.official_source_present, false);
+  assert.deepEqual(row.current_eligible_baseline_evidence_ids, []);
+});
+
+test('a qualified baseline source keeps its recognized family', () => {
+  const card = candidate({ key: 'existing', assertionKeys: [], sourceIds: ['pokemon_card_official_jp'] });
+  card.current_eligible_baseline_source_keys = ['pokemon_card_official_jp'];
+  card.current_eligible_baseline_evidence_ids = ['current'];
+  const result = buildFixture({ sourceAssertions: [], identityCandidates: [card] });
+  const row = result.datasets.master_card_resolution_rows_v1[0];
+  assert.equal(row.official_source_present, true);
+  assert.deepEqual(row.current_eligible_baseline_evidence_ids, ['current']);
+});
+
+test('ineligible live evidence remains excluded in the assertion disposition', () => {
+  const rows = assertionDispositionRows({
+    sourceAssertionUnion: [{ union_row_key: 'stale', assertion_lane: 'preserved_live_evidence', current_identity_claims_eligible: false, evidence_id: 'old', projected_candidate_key: 'parent' }],
+    cardRowsByKey: new Map([['parent', { final_disposition: 'master_admissible' }]]),
+    conflictIndexes: { unresolvedAssertions: new Map() }, futureRegistryKeys: new Set(),
+  });
+  assert.equal(rows[0].final_disposition, 'adjudicated_excluded');
+  assert.equal(rows[0].disposition_reason, 'active_evidence_identity_claims_unqualified');
+});
+
 test('final admission independently rejects a composite presented as an exact numbered card', () => {
   const source=assertion({key:'composite',sourceId:'official_jp_cards',sourceFamily:'pokemon_card_official_jp',category:'V-UNION'});
   const card=candidate({key:'composite-candidate',assertionKeys:[source.assertion_key],sourceIds:[source.source_id]});

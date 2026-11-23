@@ -303,6 +303,49 @@ test('stale active names cannot contaminate a parent or cross-card species infer
   assert.equal(projection.species_id, null);
 });
 
+test('stale active evidence remains preserved but cannot contribute a current source', () => {
+  const input = fixture();
+  input.sourceAssertions = [];
+  input.evidenceRows[0].source_key = 'pokemon_card_official_jp';
+  input.evidenceRows[0].evidence_subject.card_name_en_candidates = ['Former Wrong Name'];
+  const result = buildJapaneseCandidateUnion(input);
+  const parent = result.identityCandidates.find((row) => row.existing_card_print_id === 'parent-1');
+  assert.deepEqual(parent.active_baseline_evidence_ids, ['evidence-1']);
+  assert.deepEqual(parent.current_eligible_baseline_evidence_ids, []);
+  assert.deepEqual(parent.current_eligible_baseline_source_keys, []);
+  const evidence = result.sourceAssertionUnion.find((row) => row.evidence_id === 'evidence-1');
+  assert.equal(evidence.assertion_lane, 'preserved_live_evidence');
+  assert.equal(evidence.current_identity_claims_eligible, false);
+  assert.equal(evidence.resolution_status, 'preserved_unqualified_active_evidence');
+});
+
+test('source eligibility requires a unique current anchor and rejects mixed or malformed name claims', () => {
+  for (const mode of ['mixed', 'malformed', 'missing_identity', 'multiple_identities', 'wrong_anchor']) {
+    const input = fixture();
+    input.sourceAssertions = [];
+    const evidence = input.evidenceRows[0];
+    if (mode === 'mixed') evidence.evidence_subject.card_name_en_candidates = ['Bulbasaur', 'Wrong'];
+    if (mode === 'malformed') evidence.evidence_subject.card_name_en_candidates = 'Bulbasaur';
+    if (mode === 'missing_identity') input.identityRows = [];
+    if (mode === 'multiple_identities') input.identityRows.push({ ...input.identityRows[0], card_print_identity_id: 'other' });
+    if (mode === 'wrong_anchor') evidence.card_print_identity_id = 'other';
+    const result = buildJapaneseCandidateUnion(input);
+    const parent = result.identityCandidates.find((row) => row.existing_card_print_id === 'parent-1');
+    assert.deepEqual(parent.current_eligible_baseline_evidence_ids, [], mode);
+    assert.deepEqual(parent.active_baseline_evidence_ids, ['evidence-1'], mode);
+  }
+});
+
+test('an anchored row with no English claim preserves existing source eligibility', () => {
+  const input = fixture();
+  input.sourceAssertions = [];
+  delete input.evidenceRows[0].evidence_subject.card_name_en_candidates;
+  const result = buildJapaneseCandidateUnion(input);
+  const parent = result.identityCandidates.find((row) => row.existing_card_print_id === 'parent-1');
+  assert.deepEqual(parent.current_eligible_baseline_evidence_ids, ['evidence-1']);
+  assert.deepEqual(parent.current_eligible_baseline_source_keys, ['preserved-source']);
+});
+
 test('English evidence fails closed for missing, ambiguous or different active identity anchors', () => {
   for (const mutate of [
     (input) => { input.identityRows = []; },

@@ -299,8 +299,14 @@ function sourceFamiliesForCandidate(candidate, assertionByKey) {
   const inconsistentIds = new Set(assertions
     .filter((row) => !qualifiedAssertionFamily(row))
     .map((row) => normalizedName(row.source_id)));
+  const hasEligibleKeys = Object.hasOwn(candidate, 'current_eligible_baseline_source_keys');
+  const baselineKeys = hasEligibleKeys
+    ? Array.isArray(candidate.current_eligible_baseline_source_keys)
+      ? candidate.current_eligible_baseline_source_keys
+      : []
+    : (candidate.source_ids ?? []);
   return unique([
-    ...(candidate.source_ids ?? [])
+    ...baselineKeys
       .filter((id) => !inconsistentIds.has(normalizedName(id)))
       .map(sourceFamily),
     ...assertions.map(qualifiedAssertionFamily),
@@ -789,6 +795,18 @@ function cardResolutionRows({
       active_baseline_evidence_ids: unique(
         candidate.active_baseline_evidence_ids ?? candidate.baseline_evidence_ids ?? [],
       ),
+      ...(Object.hasOwn(candidate, 'current_eligible_baseline_evidence_ids')
+        ? { current_eligible_baseline_evidence_ids: unique(
+          Array.isArray(candidate.current_eligible_baseline_evidence_ids)
+            ? candidate.current_eligible_baseline_evidence_ids : [],
+        ) }
+        : {}),
+      ...(Object.hasOwn(candidate, 'current_eligible_baseline_source_keys')
+        ? { current_eligible_baseline_source_keys: unique(
+          Array.isArray(candidate.current_eligible_baseline_source_keys)
+            ? candidate.current_eligible_baseline_source_keys : [],
+        ) }
+        : {}),
       source_ids: unique(candidate.source_ids ?? []),
       independent_source_families: families,
       independent_source_count: families.length,
@@ -962,6 +980,10 @@ export function assertionDispositionRows({
     if (row.assertion_lane === 'preserved_inactive_evidence') {
       disposition = 'adjudicated_excluded';
       reason = 'inactive_historical_evidence';
+    } else if (row.assertion_lane === 'preserved_live_evidence' &&
+        row.current_identity_claims_eligible === false) {
+      disposition = 'adjudicated_excluded';
+      reason = 'active_evidence_identity_claims_unqualified';
     } else if (card?.final_disposition === 'master_admissible') {
       disposition = 'mapped_master_admissible';
       reason = 'candidate_satisfies_identity_and_family_admission';
