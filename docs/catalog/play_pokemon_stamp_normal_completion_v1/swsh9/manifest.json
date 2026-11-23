@@ -1,0 +1,419 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "swsh9",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "docs/catalog/play_pokemon_stamp_normal_completion_v1/swsh9/master_facts.json",
+  "master_index_sha256": "160cfe116c5946cab7404688063815401f2fbd91c79aa6ef9627fcc81ce68ecd",
+  "parents": [
+    {
+      "id": "414d875a-f214-4d23-b8fe-7b2217008c50",
+      "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+      "gv_id": "GV-PK-BRS-010-PLAY-POKEMON-STAMP",
+      "name": "Wormadam",
+      "printed_coordinate": "010",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "47d31d1d-2ec2-4041-856c-533eddcaa566",
+      "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+      "gv_id": "GV-PK-BRS-143-PLAY-POKEMON-STAMP",
+      "name": "Kindler",
+      "printed_coordinate": "143",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "528c3eb3-a354-455b-bdad-a4261c642632",
+      "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+      "gv_id": "GV-PK-BRS-044-PLAY-POKEMON-STAMP",
+      "name": "Eiscue",
+      "printed_coordinate": "044",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "7b2e94af-d1d7-437b-97d6-341ad92dc618",
+      "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+      "gv_id": "GV-PK-BRS-135-PLAY-POKEMON-STAMP",
+      "name": "Choice Belt",
+      "printed_coordinate": "135",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "7bb5d2e8-031d-41d9-befa-80c9b2e335c7",
+      "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+      "gv_id": "GV-PK-BRS-077-PLAY-POKEMON-STAMP",
+      "name": "Wormadam",
+      "printed_coordinate": "077",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "7cd46223-4ede-4153-a13a-cc8f3073ffa2",
+      "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+      "gv_id": "GV-PK-BRS-098-PLAY-POKEMON-STAMP",
+      "name": "Wormadam",
+      "printed_coordinate": "098",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "99ff0de9-501a-46d5-82d5-a70f159999dc",
+      "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+      "gv_id": "GV-PK-BRS-052-PLAY-POKEMON-STAMP",
+      "name": "Pachirisu",
+      "printed_coordinate": "052",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "b8bc7c72-583d-4f73-8061-30b59282995f",
+      "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+      "gv_id": "GV-PK-BRS-141-PLAY-POKEMON-STAMP",
+      "name": "Gloria",
+      "printed_coordinate": "141",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "d9475b94-d8e5-4a91-92da-ca99085c5ccc",
+      "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+      "gv_id": "GV-PK-BRS-149-PLAY-POKEMON-STAMP",
+      "name": "Team Yell's Cheer",
+      "printed_coordinate": "149",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "fb85792f-6933-44c3-9bd2-3c598dfbffb3",
+      "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+      "gv_id": "GV-PK-BRS-109-PLAY-POKEMON-STAMP",
+      "name": "Garchomp",
+      "printed_coordinate": "109",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "414d875a-f214-4d23-b8fe-7b2217008c50",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-BRS-010-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series2",
+          "sha256": "61899877c13d57ddd6d9aa8b16aa4f707a78869deb481e205b0165f75161aa59",
+          "card_print_id": "414d875a-f214-4d23-b8fe-7b2217008c50",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "wiki-series2",
+          "sha256": "19e90c8a6ff884d7cd035caf5c6f6756089cdcd17b7159330a847ec0b28d75b5",
+          "card_print_id": "414d875a-f214-4d23-b8fe-7b2217008c50",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "47d31d1d-2ec2-4041-856c-533eddcaa566",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-BRS-143-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series2",
+          "sha256": "61899877c13d57ddd6d9aa8b16aa4f707a78869deb481e205b0165f75161aa59",
+          "card_print_id": "47d31d1d-2ec2-4041-856c-533eddcaa566",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "wiki-series2",
+          "sha256": "19e90c8a6ff884d7cd035caf5c6f6756089cdcd17b7159330a847ec0b28d75b5",
+          "card_print_id": "47d31d1d-2ec2-4041-856c-533eddcaa566",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "528c3eb3-a354-455b-bdad-a4261c642632",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-BRS-044-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series2",
+          "sha256": "61899877c13d57ddd6d9aa8b16aa4f707a78869deb481e205b0165f75161aa59",
+          "card_print_id": "528c3eb3-a354-455b-bdad-a4261c642632",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "wiki-series2",
+          "sha256": "19e90c8a6ff884d7cd035caf5c6f6756089cdcd17b7159330a847ec0b28d75b5",
+          "card_print_id": "528c3eb3-a354-455b-bdad-a4261c642632",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "7b2e94af-d1d7-437b-97d6-341ad92dc618",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-BRS-135-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series2",
+          "sha256": "61899877c13d57ddd6d9aa8b16aa4f707a78869deb481e205b0165f75161aa59",
+          "card_print_id": "7b2e94af-d1d7-437b-97d6-341ad92dc618",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "wiki-series2",
+          "sha256": "19e90c8a6ff884d7cd035caf5c6f6756089cdcd17b7159330a847ec0b28d75b5",
+          "card_print_id": "7b2e94af-d1d7-437b-97d6-341ad92dc618",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "7bb5d2e8-031d-41d9-befa-80c9b2e335c7",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-BRS-077-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series2",
+          "sha256": "61899877c13d57ddd6d9aa8b16aa4f707a78869deb481e205b0165f75161aa59",
+          "card_print_id": "7bb5d2e8-031d-41d9-befa-80c9b2e335c7",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "wiki-series2",
+          "sha256": "19e90c8a6ff884d7cd035caf5c6f6756089cdcd17b7159330a847ec0b28d75b5",
+          "card_print_id": "7bb5d2e8-031d-41d9-befa-80c9b2e335c7",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "7cd46223-4ede-4153-a13a-cc8f3073ffa2",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-BRS-098-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series2",
+          "sha256": "61899877c13d57ddd6d9aa8b16aa4f707a78869deb481e205b0165f75161aa59",
+          "card_print_id": "7cd46223-4ede-4153-a13a-cc8f3073ffa2",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "wiki-series2",
+          "sha256": "19e90c8a6ff884d7cd035caf5c6f6756089cdcd17b7159330a847ec0b28d75b5",
+          "card_print_id": "7cd46223-4ede-4153-a13a-cc8f3073ffa2",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "99ff0de9-501a-46d5-82d5-a70f159999dc",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-BRS-052-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series2",
+          "sha256": "61899877c13d57ddd6d9aa8b16aa4f707a78869deb481e205b0165f75161aa59",
+          "card_print_id": "99ff0de9-501a-46d5-82d5-a70f159999dc",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "wiki-series2",
+          "sha256": "19e90c8a6ff884d7cd035caf5c6f6756089cdcd17b7159330a847ec0b28d75b5",
+          "card_print_id": "99ff0de9-501a-46d5-82d5-a70f159999dc",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "b8bc7c72-583d-4f73-8061-30b59282995f",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-BRS-141-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series2",
+          "sha256": "61899877c13d57ddd6d9aa8b16aa4f707a78869deb481e205b0165f75161aa59",
+          "card_print_id": "b8bc7c72-583d-4f73-8061-30b59282995f",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "wiki-series2",
+          "sha256": "19e90c8a6ff884d7cd035caf5c6f6756089cdcd17b7159330a847ec0b28d75b5",
+          "card_print_id": "b8bc7c72-583d-4f73-8061-30b59282995f",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "d9475b94-d8e5-4a91-92da-ca99085c5ccc",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-BRS-149-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series2",
+          "sha256": "61899877c13d57ddd6d9aa8b16aa4f707a78869deb481e205b0165f75161aa59",
+          "card_print_id": "d9475b94-d8e5-4a91-92da-ca99085c5ccc",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "wiki-series2",
+          "sha256": "19e90c8a6ff884d7cd035caf5c6f6756089cdcd17b7159330a847ec0b28d75b5",
+          "card_print_id": "d9475b94-d8e5-4a91-92da-ca99085c5ccc",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "fb85792f-6933-44c3-9bd2-3c598dfbffb3",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-BRS-109-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series2",
+          "sha256": "61899877c13d57ddd6d9aa8b16aa4f707a78869deb481e205b0165f75161aa59",
+          "card_print_id": "fb85792f-6933-44c3-9bd2-3c598dfbffb3",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "wiki-series2",
+          "sha256": "19e90c8a6ff884d7cd035caf5c6f6756089cdcd17b7159330a847ec0b28d75b5",
+          "card_print_id": "fb85792f-6933-44c3-9bd2-3c598dfbffb3",
+          "finish_key": "normal"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 10,
+    "printings": 10,
+    "finishes": {
+      "normal": 10
+    }
+  },
+  "scope_notes": [
+    "Normal existence only. This is not a complete physical finish inventory or a whole-set release.",
+    "Black standard-set marker in the official stamped Prize Pack matrix and exact Standard Set in the independent checklist both support this Normal fact.",
+    "Red foil markers are retained as unadjudicated source context; no Holo, Reverse or Cosmos row is inferred.",
+    "Existing prize_pack_stamp and series-specific legacy parents are outside this package; no alias, identity or owner mutation is admitted."
+  ],
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+    "source_artifacts": [
+      {
+        "ref": "official-series2",
+        "kind": "checked_checklist",
+        "sha256": "61899877c13d57ddd6d9aa8b16aa4f707a78869deb481e205b0165f75161aa59",
+        "url_or_identifier": "https://web.archive.org/web/20251006052846id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_2_web_cardlist_en.pdf",
+        "retrieved_at": "2026-04-21T17:46:28.455Z"
+      },
+      {
+        "ref": "wiki-series2",
+        "kind": "checked_checklist",
+        "sha256": "19e90c8a6ff884d7cd035caf5c6f6756089cdcd17b7159330a847ec0b28d75b5",
+        "url_or_identifier": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+        "retrieved_at": "2026-11-22T23:25:39.254Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "414d875a-f214-4d23-b8fe-7b2217008c50",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "47d31d1d-2ec2-4041-856c-533eddcaa566",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "528c3eb3-a354-455b-bdad-a4261c642632",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "7b2e94af-d1d7-437b-97d6-341ad92dc618",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "7bb5d2e8-031d-41d9-befa-80c9b2e335c7",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "7cd46223-4ede-4153-a13a-cc8f3073ffa2",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "99ff0de9-501a-46d5-82d5-a70f159999dc",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "b8bc7c72-583d-4f73-8061-30b59282995f",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "d9475b94-d8e5-4a91-92da-ca99085c5ccc",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "fb85792f-6933-44c3-9bd2-3c598dfbffb3",
+        "finish_key": "normal"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "review",
+      "sha256": "16262195c2f2a8eb962e2ea346f8b713343709228f32e202668f3af41ae1c483"
+    }
+  },
+  "fingerprint": "3b7eea8cad9c69255deff773997253c9964e26a889a4cf9acddfbb101862017e"
+}

@@ -1,0 +1,383 @@
+{
+  "version": "PLAY_POKEMON_STAMP_NORMAL_MASTER_FACTS_V1",
+  "status": "master_admissible",
+  "language": "en",
+  "set_code": "swsh7",
+  "scope": "exact_generic_play_pokemon_stamp_normal_facts_only",
+  "complete_printing_inventory": false,
+  "foil_pattern_adjudicated": false,
+  "records": [
+    {
+      "card_print_id": "20a819da-551d-4c5e-bbe1-7befb2729ccb",
+      "card_name": "Eldegoss",
+      "printed_coordinate": "016",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 1,
+          "official_pdf_sha256": "29500763ba9335d2718ece92a9c3cc074390fc89b2890b44bbfca3c141089323",
+          "official_row": {
+            "series": 1,
+            "name": "Eldegoss",
+            "name_alignment_resolved": true,
+            "set_token": "EVS",
+            "printed_number": "016",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "EVS",
+              "xMin": 101.5852,
+              "yMin": 460.434,
+              "xMax": 122.4812,
+              "yMax": 469.426,
+              "set_token": "EVS",
+              "number": "016"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 133.0644,
+                "yMin": 461.1673,
+                "xMax": 138.9241,
+                "yMax": 468.5362,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 42
+              }
+            ]
+          },
+          "secondary_raw_sha256": "c48fefb2c381120f32aa9bb3e00350393c9cc97ff81dd51c369872221c2d806c",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 1,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+            "set_key": "swsh7",
+            "card_number": "16",
+            "card_name": "Eldegoss",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "fcb018bb-2242-462f-b47e-4c9c56c78e77",
+      "card_name": "Ludicolo",
+      "printed_coordinate": "034",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 2,
+          "official_pdf_sha256": "61899877c13d57ddd6d9aa8b16aa4f707a78869deb481e205b0165f75161aa59",
+          "official_row": {
+            "series": 2,
+            "name": "Ludicolo",
+            "name_alignment_resolved": true,
+            "set_token": "EVS",
+            "printed_number": "034",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "EVS",
+              "xMin": 250.7985,
+              "yMin": 230.1739,
+              "xMax": 272.5265,
+              "yMax": 239.1659,
+              "set_token": "EVS",
+              "number": "034"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 282.2777,
+                "yMin": 230.9072,
+                "xMax": 288.1374,
+                "yMax": 238.2761,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 33
+              }
+            ]
+          },
+          "secondary_raw_sha256": "19e90c8a6ff884d7cd035caf5c6f6756089cdcd17b7159330a847ec0b28d75b5",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 2,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+            "set_key": "swsh7",
+            "card_number": "34",
+            "card_name": "Ludicolo",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "916e1289-5743-4e93-b089-6b32cc5798f4",
+      "card_name": "Regieleki",
+      "printed_coordinate": "060",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 1,
+          "official_pdf_sha256": "29500763ba9335d2718ece92a9c3cc074390fc89b2890b44bbfca3c141089323",
+          "official_row": {
+            "series": 1,
+            "name": "Regieleki",
+            "name_alignment_resolved": true,
+            "set_token": "EVS",
+            "printed_number": "060",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "EVS",
+              "xMin": 250.7985,
+              "yMin": 554.1739,
+              "xMax": 272.7665,
+              "yMax": 563.1659,
+              "set_token": "EVS",
+              "number": "060"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 282.2777,
+                "yMin": 554.9073,
+                "xMax": 288.1374,
+                "yMax": 562.2762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 33
+              }
+            ]
+          },
+          "secondary_raw_sha256": "c48fefb2c381120f32aa9bb3e00350393c9cc97ff81dd51c369872221c2d806c",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 1,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+            "set_key": "swsh7",
+            "card_number": "60",
+            "card_name": "Regieleki",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "05950699-f023-4792-b882-34ed31b89e11",
+      "card_name": "Kyurem",
+      "printed_coordinate": "116",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 1,
+          "official_pdf_sha256": "29500763ba9335d2718ece92a9c3cc074390fc89b2890b44bbfca3c141089323",
+          "official_row": {
+            "series": 1,
+            "name": "Kyurem",
+            "name_alignment_resolved": true,
+            "set_token": "EVS",
+            "printed_number": "116",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "EVS",
+              "xMin": 250.7985,
+              "yMin": 311.1739,
+              "xMax": 270.6225,
+              "yMax": 320.1659,
+              "set_token": "EVS",
+              "number": "116"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 282.2777,
+                "yMin": 311.9073,
+                "xMax": 288.1374,
+                "yMax": 319.2762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 48
+              }
+            ]
+          },
+          "secondary_raw_sha256": "c48fefb2c381120f32aa9bb3e00350393c9cc97ff81dd51c369872221c2d806c",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 1,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+            "set_key": "swsh7",
+            "card_number": "116",
+            "card_name": "Kyurem",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "2b8849f6-737b-4db5-b797-df7907e520ca",
+      "card_name": "Smeargle",
+      "printed_coordinate": "128",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 1,
+          "official_pdf_sha256": "29500763ba9335d2718ece92a9c3cc074390fc89b2890b44bbfca3c141089323",
+          "official_row": {
+            "series": 1,
+            "name": "Smeargle",
+            "name_alignment_resolved": true,
+            "set_token": "EVS",
+            "printed_number": "128",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "EVS",
+              "xMin": 250.7985,
+              "yMin": 648.6739,
+              "xMax": 271.5505,
+              "yMax": 657.6659,
+              "set_token": "EVS",
+              "number": "128"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 282.2777,
+                "yMin": 649.4073,
+                "xMax": 288.1374,
+                "yMax": 656.7762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 32
+              }
+            ]
+          },
+          "secondary_raw_sha256": "c48fefb2c381120f32aa9bb3e00350393c9cc97ff81dd51c369872221c2d806c",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 1,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+            "set_key": "swsh7",
+            "card_number": "128",
+            "card_name": "Smeargle",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "93f44333-c167-41fe-9300-eaa0c5f23eb9",
+      "card_name": "Zinnia's Resolve",
+      "printed_coordinate": "164",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 1,
+          "official_pdf_sha256": "29500763ba9335d2718ece92a9c3cc074390fc89b2890b44bbfca3c141089323",
+          "official_row": {
+            "series": 1,
+            "name": "Zinnia’s Resolve",
+            "name_alignment_resolved": true,
+            "set_token": "EVS",
+            "printed_number": "164",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "EVS",
+              "xMin": 549.2281,
+              "yMin": 333.6739,
+              "xMax": 569.9721,
+              "yMax": 342.6659,
+              "set_token": "EVS",
+              "number": "164"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 580.7073,
+                "yMin": 334.4073,
+                "xMax": 586.567,
+                "yMax": 341.7762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 32
+              }
+            ]
+          },
+          "secondary_raw_sha256": "c48fefb2c381120f32aa9bb3e00350393c9cc97ff81dd51c369872221c2d806c",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 1,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+            "set_key": "swsh7",
+            "card_number": "164",
+            "card_name": "Zinnia's Resolve",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -186,6 +186,74 @@ export function stableJson(value) {
   return JSON.stringify(value);
 }
 
+function checklistIntegerOrNullV1(value) {
+  if (value === null || value === undefined || value === "") return null;
+  const parsed = Number(value);
+  return Number.isSafeInteger(parsed) && parsed >= 0 ? parsed : null;
+}
+
+function boundedChecklistCountsV1(value) {
+  return Array.isArray(value)
+    ? value.slice(0, 25).map(checklistIntegerOrNullV1)
+    : [];
+}
+
+export function buildJapaneseChecklistDisagreementEvidenceV1({
+  sourceSetCode,
+  tcgdexChecklist,
+  bulbapediaChecklist,
+}) {
+  const diagnostics = bulbapediaChecklist?.diagnostics ?? {};
+  return {
+    code: "JAPANESE_FULL_CHECKLIST_DISAGREEMENT",
+    fatal: true,
+    canonical_authority: false,
+    source_set_code: String(sourceSetCode ?? "").trim() || null,
+    tcgdex: {
+      declared_total: checklistIntegerOrNullV1(
+        tcgdexChecklist?.cardCount?.total,
+      ),
+      parsed_card_count: Array.isArray(tcgdexChecklist?.cards)
+        ? tcgdexChecklist.cards.length
+        : null,
+    },
+    bulbapedia: {
+      expected_card_count: checklistIntegerOrNullV1(
+        bulbapediaChecklist?.set?.expected_card_count,
+      ),
+      parsed_card_count: Array.isArray(bulbapediaChecklist?.cards)
+        ? bulbapediaChecklist.cards.length
+        : null,
+      diagnostics: {
+        numbering_mode: String(diagnostics.numbering_mode ?? "").trim() || null,
+        candidate_numbered_row_count: checklistIntegerOrNullV1(
+          diagnostics.candidate_numbered_row_count,
+        ),
+        rejected_other_denominator_count: checklistIntegerOrNullV1(
+          diagnostics.rejected_other_denominator_count,
+        ),
+        matching_row_count: checklistIntegerOrNullV1(
+          diagnostics.matching_row_count,
+        ),
+        card_list_table_count: checklistIntegerOrNullV1(
+          diagnostics.card_list_table_count,
+        ),
+        modern_numbered_row_fallback_used:
+          diagnostics.modern_numbered_row_fallback_used === true,
+        unnumbered_candidate_table_counts: boundedChecklistCountsV1(
+          diagnostics.unnumbered_candidate_table_counts,
+        ),
+        selected_unnumbered_table_count: checklistIntegerOrNullV1(
+          diagnostics.selected_unnumbered_table_count,
+        ),
+        selected_unnumbered_table_counts: boundedChecklistCountsV1(
+          diagnostics.selected_unnumbered_table_counts,
+        ),
+      },
+    },
+  };
+}
+
 export function sha256(value) {
   return crypto.createHash("sha256").update(
     typeof value === "string" || Buffer.isBuffer(value)

@@ -139,9 +139,14 @@ jobs:
             const fs = require('fs');
             const reportPath = `${process.env.PUBLICATION_GATE_DIR}/set_results.json`;
             const rows = fs.existsSync(reportPath) ? JSON.parse(fs.readFileSync(reportPath, 'utf8')) : [];
+            const queuePath = `${process.env.PUBLICATION_GATE_DIR}/printing_gap_queue.json`;
+            const queue = fs.existsSync(queuePath) ? JSON.parse(fs.readFileSync(queuePath, 'utf8')) : null;
             const gaps = rows.filter(row => row.issues.some(i => i.code.startsWith('printing_')));
             const detail = gaps.slice(0, 50).map(row => `- ${row.game}:${row.set_code}: ${row.issues.filter(i => i.code.startsWith('printing_')).map(i => i.code).join(', ')}`).join('\n');
-            const body = `Released sets failed the identity, printing/GV-ID, or self-hosted media contract. ${gaps.length} sets have printing gaps. No canonical writer was dispatched.\n\n${detail}\n\nFull details are in set_results.json.\nRun: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const parentCount = Number(queue?.counts?.affected_parent_count || 0);
+            const singleParentSetCount = Number(queue?.counts?.single_parent_gap_set_count || 0);
+            const queueMismatchCount = Number(queue?.reconciliation?.mismatch_count || 0);
+            const body = `Released sets failed the identity, printing/GV-ID, or self-hosted media contract. ${gaps.length} sets have printing gaps covering ${parentCount} exact parent rows; ${singleParentSetCount} sets have a one-parent gap. Gap-detail reconciliation mismatches: ${queueMismatchCount}. No canonical writer was dispatched.\n\n${detail}\n\nFull set details are in set_results.json and exact parent defects are in printing_gap_queue.json.\nRun: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
             const { data: issues } = await github.rest.issues.listForRepo({
               owner: context.repo.owner, repo: context.repo.repo, state: 'open', per_page: 100,
             });

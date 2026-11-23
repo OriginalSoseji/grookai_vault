@@ -9,6 +9,157 @@ The four-record `catalog_jpn_dp4_subject_repair_v1` transaction passed the same-
 # DP4 English identity-only batches — November 19, 2026
 
 `backend/catalog/jpn_dp4_identity80_v1.mjs` is the guarded writer used for eight exact ten-record identity-only batches, all applied and independently verified. Use `--mode inspect --chunk N` and `--mode verify --chunk N` for read-only checks. Mutating modes require the existing owner execution marker, fresh source and ownership verification, the pinned plan and a same-writer rollback proof for that exact chunk. Raw source bytes and prior identity payloads are staged before changes, and parent, species-link, identity-hash, ownership, image and pricing state is protected. See `docs/audits/jpn_dp4_identity80_20261119/README.md`. An unknown commit outcome requires independent readback before retry; never infer release readiness from a prepared writer.
+# Price/stamp exact519 continuity — November22,2026
+
+The [519 audit](../audits/PRICE_STAMP_SCHEMA_519_CONTINUITY_20261123.md) binds the
+already-applied search-only migration source and independent complete schema/
+security review. Restore its exact source bytes without reapplying production
+SQL. Use the newly rebound519 plans/producers and separate519 evidence/mapping
+clones. Preserve all old518 plans, labs and the obsolete cancelled V9 run. Both
+full normal hooks and actual hosted checks must qualify the final whole tree;
+never carry an older source's qualification or accept an unknown later ledger.
+The49 physical facts and existing references remain unchanged. This preparation
+grants no original founder authority, Market activation or permission changes.
+
+# Exact Play! Pokémon Market links — November22,2026
+
+Use the [separate43-mapping contract](../contracts/PLAY_STAMP_MARKET_MAPPING_V1.md)
+and `scripts/audits/play_stamp_market_mapping_v1.mjs`. Current source has43
+positive Normal Market quotes but no TCGplayer mappings. The V4 reference lane
+alone cannot fill tiles. Keep the generic base-variant mapper unchanged. Prepare
+the private prospective plan read-only; require actual canonical children,
+original exact raw/candidate/JustTCG links, unique source owners, current products
+and schema pins, then separately approved rollback/apply/readback. Insert only43
+explicit-ID parent mappings; preserve old rows and the sequence. Canonical,
+ownership, assignment and Market writes stay zero in this stage. Four unproven
+Holofoil observations remain unmatched. Run this after both canonical readbacks
+and before the full worker27 shadow. Recheck conditions through the published
+V3 reader after activation; V4 must retain its persistent-assertion exclusion.
+Preserve the separate cloned lab and every failed receipt.
+
+# Exact EX price evidence correction — November22,2026
+
+The [separate six-assignment contract](../contracts/EX_INTRINSIC_PRICE_ASSIGNMENT_REPAIR_V1.md)
+and `scripts/audits/ex_intrinsic_price_assignment_repair_v1.mjs` govern six
+append-only private receipts after the actual approved EX printing batch. Existing
+V1 held receipts are immutable; normal preparation alone will not upgrade them.
+Prepare read-only using the original canonical plan/source bytes, then obtain
+exact stage plan/complete-producer approval and run preflight, actual rollback,
+apply and independent readback. Prospective preparation is explicitly not actual
+canonical readiness. Partial/colliding rows, schema/source/mapping drift and
+unknown exact-printing assertions stop execution. No old-row, source observation,
+canonical, mapping, owner or Market mutation belongs to this correction. New
+receipts keep all public flags false. The subsequent complete worker27 shadow
+and ordinary guarded activation remain mandatory. Local449-table/duplicate-key/
+role checks passed without Auth users; retained labs must not be reset/reseeded.
+
+# Numbered singles and exact EX printing preparation — November22,2026
+
+Use `C:/grookai_stamp_completion_20261122` and the
+[combined checkpoint](../checkpoints/2026-11-22_price_stamp_completion.md).
+The [numbered-single pricing checkpoint](../checkpoints/pricing/ONE_PIECE_NUMBERED_SINGLE_PRICING_20261122.md)
+records worker V1_27: exact governed One Piece singles with an official printed
+Number and CardType can retain eligibility when their titles mention a Premium
+Card Collection or Pre-Release Tournament. The read-only replay covers357
+positive-quote printings; it is not proof of production publication. V1_27 also
+contains the unchanged V1_26 Cosmo guard and supersedes that unpublished release.
+Safely drain the owned V1_26 shadow and preserve its cancelled/partial evidence;
+the existing V1_25 publication stays live. The completed verified full warehouse
+refresh may be reused only while it remains the latest fresh generation.
+Require V1_27's own complete same-runtime shadow, coverage/provenance checks,
+guarded activation and independent consumer readback. Never reuse V1_26's partial
+publication shadow, treat cancellation as qualification or relax another hold.
+
+The separate [EX execution contract V2](../contracts/EX_INTRINSIC_PRINTING_EXECUTION_V2.md)
+and `scripts/audits/ex_intrinsic_printing_execution_v1.mjs` prepare exactly six
+Normal/Reverse children under three reviewed EX base parents. Preparation and
+source qualification grant no canonical write authority. The executor requires
+the original bound evidence, exact plan and producer fingerprints, separately
+approved founder authority, a fresh actual production rollback, and durable
+readback. Preserve all329 parents/620 retained children, existing assignments
+and unassigned copies. This six-finish lane does not close the explicit-stamp
+backlog. Use the combined checkpoint's census to distinguish missing physical
+facts, unresolved mapping/finish authority, held products and absent quotes.
+V2's [scope-name audit](../audits/EX_INTRINSIC_SCOPE_NAME_AUDIT_20261122.md)
+corrects the overview to Dragonair δ 28 (ex15). The exact six facts, UUIDs,
+source bytes and V1 executor protocol are unchanged. The
+[historical V1 overview](../contracts/EX_INTRINSIC_PRINTING_EXECUTION_V1.md)
+stays preserved; the producer must bind V2 and its audit before approval.
+
+# Play! Pokémon exact condition references V4 — November22,2026
+
+Read [the bounded V4 contract](../contracts/TCGTRACKING_CONDITION_COVERAGE_V4.md).
+Exactly43 reviewed Normal printings can use their preserved JustTCG→TCGplayer
+source crosswalk after the separately approved canonical printing apply. The
+server requires exact program/review/identity/source pins and current unique
+ownership on every request. It neither inserts a TCGplayer mapping nor fills a
+Market tile; existing mapping writers keep their own admission/approval gates.
+The installed clients retain the same authenticated condition API/DTO, supplied
+amounts and unavailable states. Require full source qualification, deployment
+readback and actual collector verification; a source-feed proof alone is not
+live application acceptance.
+
+# Play! Pokémon stamped Normal preparation — November22,2026
+
+Use `C:/grookai_play_stamp_normals_20261122`, the
+[43-printing checkpoint](../checkpoints/2026-11-22_play_stamp_normals.md) and
+[bounded execution contract](../contracts/PLAY_POKEMON_STAMP_NORMAL_EXECUTION_V1.md).
+`scripts/audits/play_stamp_normal_execution_v1.mjs` is a separate exact43-parent,
+Normal-only lane. Original official PDFs and independent checklists are required
+on every mode. Generic red foil markers and legacy stamp variants are not
+admitted. Preserve all nine-set families, hidden options and existing owner
+assignments. Source qualification is not production authority: bind exact plan
+and producer approval, actual fresh production rollback, durable independent
+readback and collector verification before completion. Keep the earlier EX and
+other bounded executors unchanged; these43 facts do not close every missing stamp.
+
+# Cosmo title price guard — November22,2026
+
+Use `C:/grookai_cosmo_price_guard_20261122` and the
+[guard checkpoint](../checkpoints/pricing/COSMO_TITLE_PRICE_GUARD_20261122.md).
+Explicit `Cosmo Holo` / `Cosmo Holofoil` titles must not publish a generic holo
+quote. The additive scope V1.6 guard preserves V1.1 through V1.5 for replay;
+current publication and coverage share the hold. No printing, mapping or source
+price is changed. Worker V1_26 requires normal hooks, hosted checks, a new full
+same-runtime shadow and atomic guarded activation. Never reuse the V1_25 shadow
+for this changed runtime or replay the already-applied512 pricing migration.
+Tinkatink025's missing Cosmos child is a separate catalog-review case, not
+permission to price its generic holo child. Keep the existing publication live
+until this release passes every gate; read back real app quotes and refresh
+health afterward. Preserve the original dirty workspace and all retained labs.
+
+Samsung build607 has now displayed the exact Luffy product602806 Market4.67,
+NM4.67 and LP10.99. Use the supported native `grookai://card/<GV-ID>` route when
+independently checking pricing; condition references are inside Add to Vault.
+Keep verification forms unsaved and close them afterward. Condition labels in
+the card's external TCGplayer row open provider links. One Piece name/number
+search failed during this check and remains a separate resolver issue. Private
+device receipts are under the Cosmo guard operator artifact root, outside Git.
+Combined-source normal qualification follows integration of main9f4c9968; its
+updated web lock has a separate dependency installation, preserving shared trees.
+
+# Catalog publication exact printing-gap queue — November 22, 2026
+
+Read [the gap-queue checkpoint](../checkpoints/catalog_discovery/2026-11-22_CATALOG_PUBLICATION_GAP_QUEUE_V1.md).
+The `Catalog Shadow Reconciliation` workflow runs naturally at minute 47 every
+six hours and uploads `catalog-shadow-reconciliation-<run-id>` for 90 days.
+Download that artifact from the qualifying natural run and locate
+`printing_gap_queue.json` inside the publication-gate output. The open
+`[Catalog Publication] Released set gate blocked` issue reports the same run,
+exact affected-parent count, single-parent-gap set count, and reconciliation
+mismatch count. A manual dispatch is diagnostic only and does not replace a
+natural scheduled-run receipt.
+
+Use queue rows to group exact canonical parents into reviewed, game-specific
+evidence tranches. Do not infer a missing finish or create a child printing from
+the queue alone. Require `reconciliation.mismatch_count == 0`; a
+`blocked_reconciliation_mismatch` queue is incomplete evidence and must not be
+used for repair preparation. The artifact is commit-pinned and hashed, but
+records `canonical_authority: false` and `execution_authority: false`. It grants
+no database, Storage, canonical, pricing, publication, or Vault write authority,
+does not dispatch a writer, and never replaces the applicable source review,
+bounded release approval, rollback proof, or durable production readback.
+
 # Cross-TCG Market publication V2 — November20,2026
 
 Use `C:/grookai_cross_tcg_market_v2_20261119` and the
@@ -255,6 +406,24 @@ merge/deployment closure. See [the contract](../contracts/LATIOS_ALIAS_DISCOVERY
 and [the checkpoint](../checkpoints/LATIOS_ALIAS_DISCOVERY_20261118.md).
 
 # Grookai Operator Playbook V1
+
+## Square sold-stock recovery — November 22, 2026
+
+Cloud and scheduled commerce batches reserve one existing slot for the oldest returned
+sold allocation when live inventory would fill the batch. The existing authority's
+`target_checked` timestamp rotates sold copies within their priority group.
+Manual and focused requests keep their existing selection, and total work remains
+within `maxTargets`. Settlement still precedes stock handling. Unexpected Square
+restock uses the existing fenced withdrawal authority; canonical sold state,
+sale history and exact-copy identity remain unchanged. No migration or phone
+update is required.
+
+Verify with `backend/square/tests/sold_recovery_batch_v3.test.mjs` and the normal
+Square suite. The regression covers a larger active queue, multiple sold copies,
+unexpected restock, repeat recovery, focused/manual work and bounded unique batches.
+The live discovery, exact-copy mitigation and release checkpoint are retained in
+`C:/grookai_vault_operator_artifacts/reader_checkout_20261122/`. Confirm that
+checkpoint before claiming publication or genuine reader-payment acceptance.
 
 ## Printed XY promo search correction — November 18, 2026
 
@@ -3935,6 +4104,20 @@ Evidence lives under the language report's `anomaly_evidence/`, outside candidat
 apply paths, and issue 260 reports its outcome without automatically clearing
 quarantine. Resume command, evidence and upstream defects:
 `docs/checkpoints/catalog_discovery/2026-09-07_POKEMON_LANGUAGE_ANOMALY_EVIDENCE_V1.md`.
+
+Japanese discovery integrity failures are isolated from unrelated Master Index
+candidate publication at the workflow boundary. The discovery worker itself
+still fails closed on parser errors, mixed set codes, and count disagreements.
+When that happens, `pokemon-master-index-refresh.yml` writes a no-change
+`source_integrity_blocked` Japanese plan, preserves the prior Japanese admitted
+index, grants no canonical authority, and suppresses the post-merge discovery
+and promotion dispatches. English and other language candidate updates may
+continue only through their existing independent, data-only guards. Inspect the
+uploaded `pokemon-language-master-index-discovery/discovery.log` and
+`japanese-master-index-incremental-report/source_health.json`; do not treat a
+successful combined job as resolution of the held Japanese set. Current repair
+receipt:
+`docs/checkpoints/catalog_discovery/2026-11-22_POKEMON_MASTER_INDEX_JAPANESE_INTEGRITY_ISOLATION_V1.md`.
 
 ### Pokemon sealed production work
 

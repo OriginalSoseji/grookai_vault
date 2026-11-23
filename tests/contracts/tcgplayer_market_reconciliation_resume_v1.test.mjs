@@ -49,7 +49,7 @@ for(const [name,limit,canaryDefinition,complete]of [
   assert.equal(result.reconciliation.complete_source_selection,complete);
   assert.equal(result.reconciliation.source_scope_version,'CROSS_TCG_MARKET_SCOPE_V2');
   assert.deepEqual(result.reconciliation.mismatches,[]);
-  assert.equal(client.run.worker_version,'TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_25');
+  assert.equal(client.run.worker_version,'TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_27');
   assert.deepEqual(client.phases.map(row=>[row.phase,row.state]),[['reconcile','started'],['reconcile','succeeded']]);
 });
 

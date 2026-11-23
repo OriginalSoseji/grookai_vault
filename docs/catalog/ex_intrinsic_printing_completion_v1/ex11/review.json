@@ -1,0 +1,43 @@
+{
+  "status": "verified_scope",
+  "reviewer": "Codex, source adjudication during authorized stamped Reverse Holo repair preparation",
+  "reviewed_at": "2026-11-20T11:46:35.992Z",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "ex11",
+  "scope": "verified_parent_families",
+  "master_index_sha256": "f61b1c8da2a3d9be1c9f787965a69ebfc0faf7b29b5954d1f0123a66e8adcca5",
+  "projection_sha256": "d5b387525d8dbe46450b5e3c54ac169b2d248e7f5e71383f227707ceac97bea5",
+  "production_execution_authority": false,
+  "decisions": [
+    "Only this existing ordinary base parent and its Normal/Reverse booster printings are verified.",
+    "Official numbered checklist supports one foil and one non-holo version at this exact printed coordinate; the exact reviewed public Master facts classify them as Reverse and Normal.",
+    "The actual image shows this card number and the Delta Species graphic, retaining the exact existing delta_species identity dimension. This is no global name normalization.",
+    "The expansion logo is intrinsic to the Reverse printing in this evidence; generic stamped Master facts supply no additional finish or parent authority.",
+    "Separate prerelease parents, children and all stored references are retained without adopting their unreviewed finish claims.",
+    "All other parents, event/Staff/retailer variants, theme/product finishes, errors and whole-set printing completeness are outside this bounded review.",
+    "No public identifiers, mappings, ownership, prices or artwork are replaced. New -STD and -RH identifiers remain proposals requiring collision checks and an independently qualified executor."
+  ],
+  "physical_image_review": {
+    "file": "ex11-49-mana-stamped-source-v1.jpg",
+    "sha256": "b522ca83281b64e2b196d9e03677d81c82b512e48c902b5718ee951b4e45c3fd",
+    "visibleNumber": "49/113",
+    "visibleSetLogo": "EX DELTA SPECIES",
+    "imageKind": "catalog scan",
+    "finishImageClaimIncluded": true
+  },
+  "protected_outside_scope_parents": [
+    {
+      "id": "7032463f-ca9c-47d5-91fc-c70cb4684cdb",
+      "gv_id": "GV-PK-EX11-49-PRERELEASE-STAMP",
+      "children": [
+        {
+          "id": "81eba8c2-304f-428d-ac51-9ad2e99546da",
+          "printing_gv_id": "GV-PK-EX11-49-PRERELEASE-STAMP-STD",
+          "finish_key": "normal"
+        }
+      ],
+      "finishTruthAdjudicated": false
+    }
+  ]
+}

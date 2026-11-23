@@ -1,5 +1,7 @@
 # CHECKPOINT_INDEX
 
+- [COSMO_TITLE_PRICE_GUARD_20261122](pricing/COSMO_TITLE_PRICE_GUARD_20261122.md) - `2026-11-22` - Additive explicit Cosmo treatment hold preserves historical classifiers and ordinary names; workerV1_26 requires new full shadow and guarded publication; no catalog or quote mutation
+
 - [MOBILE_SIGNING_LINEAGE_MIGRATION_20261119](2026-11-19_mobile_signing_lineage_migration.md) - `2026-11-19` - Complete verified debug-to-release signer rotation; merged build 603 installed in place on Samsung, Vault and Binder read back with data retained, temporary signing secret removed
 - [CROSS_TCG_BINDERS_20261119](2026-11-19_cross_tcg_binders.md) - `2026-11-19` - Custom Binder checklists now discover Pokémon, One Piece, and Magic cards through game-scoped search; 72 focused tests passed and live Samsung build 558 returned Magic and One Piece search results
 - [BINDER_CONTENTS_BUILD_557_20261119](2026-11-19_binder_contents_build_557.md) - `2026-11-19` - Carry design build 323's artwork pages into the signed-in Binder detail as a Contents-first view of active contributions; checklist stays secondary; 73 focused tests and Samsung build 557 readback passed

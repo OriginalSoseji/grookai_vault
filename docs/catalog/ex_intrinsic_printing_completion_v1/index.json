@@ -1,0 +1,39 @@
+{
+  "version": "EX_INTRINSIC_PRINTING_SOURCE_INDEX_V1",
+  "executionAuthority": false,
+  "scopes": [
+    {
+      "setCode": "ex11",
+      "parentId": "c1ff04aa-1015-4a3e-a568-acf419b7eb22",
+      "setId": "1e872421-a1ba-4dc1-bfcf-5620f020ac67",
+      "manifestFingerprint": "fd76bb93111cdc33e62f18be18d1f907359baa3050998ea038e02cb7d22d061d",
+      "files": {
+        "manifest.json": "30a428335e8684859c3888066ceffbea60383523aed2bf635e5efca3a294f2e8",
+        "review.json": "16f4bbed3889f76471fb8d6576a436925f07b027b5642a45d6d76c1d298f4219",
+        "source-bindings.json": "c650184aad8405981a400920e03ed219f3e213316d227c2becceedd244e4cb66"
+      }
+    },
+    {
+      "setCode": "ex13",
+      "parentId": "fbe38b87-9c6e-49e4-a34d-0bc4014790f2",
+      "setId": "05c6454a-02e2-401e-a8f3-1a433c4d6748",
+      "manifestFingerprint": "64a7a5c958ceef90b33fa7d7c678b0a9d493f715174a518a91e446ce66d48383",
+      "files": {
+        "manifest.json": "8bee1b99667a848a04aa8e0fe2801fd530d619d5c83b913ba894900b1ebccd96",
+        "review.json": "cac3b1a006ee4d3bd900ca5bb4e3c032e771732215f38bb0dff4bf071ecfc82b",
+        "source-bindings.json": "fed031f652a714556b12b466062ebee0ac4b9fc5d0391fc1a17f9b168664bd6f"
+      }
+    },
+    {
+      "setCode": "ex15",
+      "parentId": "d905a802-d848-4e1c-ac3d-227323fb6e26",
+      "setId": "d73bcf8f-d74e-4787-9bc9-fca8295730ad",
+      "manifestFingerprint": "0f86e6ea69cc6a5a7e3881d1e26ec3ab33acbe292d843db1bc16322e8c5ef314",
+      "files": {
+        "manifest.json": "764650208eaf293d113064f6200f38317db86722731dabe324e1eb12e980554a",
+        "review.json": "39b8af6f773266cbde5fc19fa331afbd105c4ab070222e0f90e0fe0e0d1f950c",
+        "source-bindings.json": "0a6a46ee8cc30f71065353af7f8ddc979b0fa88de09558b798d2c5f5f7089866"
+      }
+    }
+  ]
+}

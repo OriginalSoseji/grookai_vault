@@ -6,7 +6,11 @@ import process from "node:process";
 import { fileURLToPath } from "node:url";
 
 import pg from "pg";
-import {PRINTING_COVERAGE_SQL} from '../../backend/catalog/printing_completeness_gate_v1.mjs';
+import {
+  buildPrintingCompletenessGapQueueV1,
+  PRINTING_COVERAGE_SQL,
+  PRINTING_GAP_DETAILS_SQL,
+} from '../../backend/catalog/printing_completeness_gate_v1.mjs';
 
 import {
   buildSetPublicationGateV1,
@@ -64,7 +68,12 @@ async function writeJson(file, value) {
 
 async function readFixture(file) {
   const value = JSON.parse(await fs.readFile(file, "utf8"));
-  return Array.isArray(value) ? value : value.rows;
+  return Array.isArray(value)
+    ? { sets: value, printingGapDetails: [] }
+    : {
+        sets: value.rows,
+        printingGapDetails: value.printing_gap_details ?? [],
+      };
 }
 
 async function loadReleasedSetsReadOnly(options) {
@@ -129,9 +138,16 @@ async function loadReleasedSetsReadOnly(options) {
       order by released_sets.game, released_sets.code, released_sets.id
     `, params);
     const coverage = await client.query(PRINTING_COVERAGE_SQL, [result.rows.map(row=>row.id)]);
+    const printingGapDetails = await client.query(
+      PRINTING_GAP_DETAILS_SQL,
+      [result.rows.map(row=>row.id)],
+    );
     const bySet = new Map(coverage.rows.map(row=>[row.set_id,row]));
     await client.query("rollback");
-    return result.rows.map(row=>({...row,printing_coverage:bySet.get(row.id)??null}));
+    return {
+      sets: result.rows.map(row=>({...row,printing_coverage:bySet.get(row.id)??null})),
+      printingGapDetails: printingGapDetails.rows,
+    };
   } catch (error) {
     try {
       await client.query("rollback");
@@ -199,7 +215,7 @@ async function probeImage(url) {
   }
 }
 
-function renderReport(runPlan, result) {
+function renderReport(runPlan, result, printingGapQueue) {
   const lines = [
     "# Cross-TCG Set Publication Gate V1",
     "",
@@ -211,6 +227,10 @@ function renderReport(runPlan, result) {
     `- Exact package covers: \`${result.counts.exact_package_count}\``,
     `- Exact set art: \`${result.counts.exact_set_art_count}\``,
     `- Representative covers: \`${result.counts.representative_card_count}\``,
+    `- Exact printing-gap parents queued: \`${printingGapQueue.counts.affected_parent_count}\``,
+    `- Sets with exact printing-gap parents: \`${printingGapQueue.counts.affected_set_count}\``,
+    `- Single-parent gap sets: \`${printingGapQueue.counts.single_parent_gap_set_count}\``,
+    `- Gap-detail reconciliation mismatches: \`${printingGapQueue.reconciliation.mismatch_count}\``,
     "",
     "## By Game",
     "",
@@ -248,14 +268,14 @@ async function main() {
   }
   await fs.mkdir(options.outDir, { recursive: true });
 
-  const rows = options.fixture
+  const loaded = options.fixture
     ? await readFixture(options.fixture)
     : await loadReleasedSetsReadOnly(options);
   const allowedStorageOrigin = process.env.SUPABASE_URL;
   if (!allowedStorageOrigin) throw new Error("SUPABASE_URL is required to prove media authority");
   const withProbes = options.skipImageProbes
-    ? rows
-    : await mapLimit(rows, IMAGE_PROBE_CONCURRENCY, async (row) => ({
+    ? loaded.sets
+    : await mapLimit(loaded.sets, IMAGE_PROBE_CONCURRENCY, async (row) => ({
         ...row,
         image_probe: await probeImage(row.hero_image_url),
       }));
@@ -284,12 +304,23 @@ async function main() {
     allowedStorageOrigins: [allowedStorageOrigin],
     requireImageProbe: !options.skipImageProbes,
   });
+  const printingGapQueue = buildPrintingCompletenessGapQueueV1({
+    sets: withProbes,
+    gaps: loaded.printingGapDetails,
+    frozenCommit: actualHeadSha,
+  });
   const rowsBody = await writeJson(path.join(options.outDir, "set_results.json"), result.rows);
+  const printingGapQueueBody = await writeJson(
+    path.join(options.outDir, "printing_gap_queue.json"),
+    printingGapQueue,
+  );
   const summary = {
     version: result.version,
     status: result.status,
     counts: result.counts,
     by_game: result.by_game,
+    printing_gap_queue: printingGapQueue.counts,
+    printing_gap_queue_reconciliation: printingGapQueue.reconciliation,
     reconciliation: {
       selected_set_count: runPlan.selected_set_count,
       result_set_count: result.rows.length,
@@ -302,14 +333,22 @@ async function main() {
   if (summary.reconciliation.mismatch_count > 0) {
     summary.status = "blocked";
   }
+  if (printingGapQueue.reconciliation.mismatch_count > 0) {
+    summary.status = "blocked";
+  }
   const summaryBody = await writeJson(path.join(options.outDir, "summary.json"), summary);
-  const reportBody = Buffer.from(renderReport(runPlan, { ...result, status: summary.status }));
+  const reportBody = Buffer.from(renderReport(
+    runPlan,
+    { ...result, status: summary.status },
+    printingGapQueue,
+  ));
   await fs.writeFile(path.join(options.outDir, "CROSS_TCG_SET_PUBLICATION_GATE_REPORT.md"), reportBody);
   await writeJson(path.join(options.outDir, "artifact_hashes.json"), {
     algorithm: "sha256",
     artifacts: [
       ["run_plan.json", runPlanBody],
       ["set_results.json", rowsBody],
+      ["printing_gap_queue.json", printingGapQueueBody],
       ["summary.json", summaryBody],
       ["CROSS_TCG_SET_PUBLICATION_GATE_REPORT.md", reportBody],
     ].map(([artifactPath, body]) => ({
