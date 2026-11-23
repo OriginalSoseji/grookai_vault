@@ -56,3 +56,6 @@ Normal squash merge of exact PR985 head, matching actual Production commit/tree,
 restoration all precede closure. Then mark shared merge coordination inactive
 with the closure proof. Continue all stamped Reverse Holos afterward under their
 separate exact physical-printing authority; none is granted here.
+
+
+Current-main refresh after PR1018 (2026-11-23 UTC): main846597785076aad9a9d266d8ddad6761915f5781 adds only the reviewed Square sold-stock recovery batch and its tests/operator note. No SQL or dependency changes. Preserve the original sealed V11 source f95b50db/tree35dcb241/manifest96e89164 and the fail-closed before attempt, which stopped before output or SQL. The refreshed source has a real two-parent merge, exact unchanged519 SQL and inherited local qualification. Rerun normal commit/push, focused Windows/search, hosted checks, fresh strict PrePush, full120-scope before and exact-one dry-run on this exact source before the still-required new70424426 SQL decision. Do not reuse consumed518 approval, rebaseline protected data or restart the original expiry. No printing authority.

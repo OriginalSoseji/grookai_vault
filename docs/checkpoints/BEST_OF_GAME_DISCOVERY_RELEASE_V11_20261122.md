@@ -19,3 +19,6 @@ The original comparison expiry remains2026-11-23T13:59:40Z. Stamped Reverse Holo
 follow deployed duplicate closure.
 
 Final local qualification passed at519: four profiles, all449 protected tables, all three reader-role view privileges, authenticated22-copy preservation, anonymous ownership denial, fresh/retained schema equality, and sole changed function search_game_card_prints_v5; both discovery views and private schemas remained exact. The SDK temporary containers were removed. Normal and hosted qualification and new exact production consent remain pending.
+
+
+Current-main refresh after PR1018 (2026-11-23 UTC): main846597785076aad9a9d266d8ddad6761915f5781 adds only the reviewed Square sold-stock recovery batch and its tests/operator note. No SQL or dependency changes. Preserve the original sealed V11 source f95b50db/tree35dcb241/manifest96e89164 and the fail-closed before attempt, which stopped before output or SQL. The refreshed source has a real two-parent merge, exact unchanged519 SQL and inherited local qualification. Rerun normal commit/push, focused Windows/search, hosted checks, fresh strict PrePush, full120-scope before and exact-one dry-run on this exact source before the still-required new70424426 SQL decision. Do not reuse consumed518 approval, rebaseline protected data or restart the original expiry. No printing authority.
