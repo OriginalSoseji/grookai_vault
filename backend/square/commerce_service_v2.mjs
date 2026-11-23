@@ -204,7 +204,16 @@ export class SquareCommerceService {
   const result={succeeded:0,failed:0,reviews:0,skipped:0,orderReviews:reconciled.orderReviews??0,adoptions:[],focusStatus:'pending'};
   const reviewTargets=new Set();
   const review=target=>{reviewTargets.add(target.id);result.reviews=reviewTargets.size;};
-  for(const target of read.targets.slice(0,maxTargets)){
+  const batch=read.targets.slice(0,maxTargets);
+  // Sold copies sort after live stock in the authority's bounded read. Reserve
+  // one automatic slot for their oldest check, so active stock cannot starve
+  // restock recovery. target_checked rotates that sold copy to the group's end.
+  // Foreground/focused work and the existing total provider-work bound remain.
+  if(!manual&&!focusInstanceId&&batch.length>1&&!batch.some(target=>target.allocation_state==='sold')){
+   const sold=read.targets.find(target=>target.allocation_state==='sold');
+   if(sold)batch[batch.length-1]=sold;
+  }
+  for(const target of batch){
    const checkedThrough=new Date(this.now()).toISOString();
    let targetFailed=false,failureStage;
    try{
