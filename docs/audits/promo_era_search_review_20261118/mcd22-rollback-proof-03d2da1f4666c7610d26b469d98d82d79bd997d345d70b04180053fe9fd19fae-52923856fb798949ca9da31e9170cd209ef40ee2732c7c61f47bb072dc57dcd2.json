@@ -1,0 +1,121 @@
+{
+  "version": "MCD22_RARITY_APPLY_V1",
+  "run_id": "3b6797f8-cde5-4da6-b2dc-6c41971c1600",
+  "mode": "rollback-proof",
+  "package_fingerprint": "03d2da1f4666c7610d26b469d98d82d79bd997d345d70b04180053fe9fd19fae",
+  "writer_fingerprint": "52923856fb798949ca9da31e9170cd209ef40ee2732c7c61f47bb072dc57dcd2",
+  "started_at": "2026-11-18T19:14:28.459Z",
+  "status": "rollback_proof_passed",
+  "stages": [
+    {
+      "name": "source_and_scope_verified",
+      "at": "2026-11-18T19:14:32.946Z"
+    },
+    {
+      "name": "write_and_proofs_passed",
+      "at": "2026-11-18T19:14:38.144Z"
+    },
+    {
+      "name": "rollback_proof_passed",
+      "at": "2026-11-18T19:14:42.802Z"
+    }
+  ],
+  "sanity": {
+    "parents": 173837,
+    "sets": 3420,
+    "traits": 47409
+  },
+  "state": "pending",
+  "source_digest": "7a7d4a553a7b26c73f8f2f73e54a86b25e686fa3a0b00ddf608060f7c814369a",
+  "protected_before": {
+    "parent_other_fields": {
+      "rows": 15,
+      "digest": "30efd807c9e71804bf989c583e6c664a"
+    },
+    "card_print_identity": {
+      "rows": 15,
+      "row_versions_1": "1934287898156068729",
+      "row_versions_2": "-4581493610006385276"
+    },
+    "card_printings": {
+      "rows": 15,
+      "row_versions_1": "5891859237245347161",
+      "row_versions_2": "7471044558201462995"
+    },
+    "external_mappings": {
+      "rows": 30,
+      "row_versions_1": "5904418029141632295",
+      "row_versions_2": "5369642797452006737"
+    },
+    "external_mapping_aliases": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "card_print_species": {
+      "rows": 15,
+      "row_versions_1": "5811102864464242045",
+      "row_versions_2": "-2625318492383486907"
+    },
+    "card_print_cameos": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "card_print_traits": {
+      "rows": 73,
+      "row_versions_1": "6356243288653698243",
+      "row_versions_2": "-1042441349899037825"
+    },
+    "card_print_image_faces": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "vault_item_instances": {
+      "rows": 3,
+      "row_versions_1": "3623836283609332688",
+      "row_versions_2": "-1475792523881579295"
+    },
+    "vault_items": {
+      "rows": 2,
+      "row_versions_1": "1746528976355706643",
+      "row_versions_2": "2685353939126365884"
+    },
+    "card_print_price_curves": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "price_observations": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "market_prices": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "market_price_current_publication": {
+      "rows": 1,
+      "digest": "ec3077730171af5beed1ee6d8e76b5a4"
+    },
+    "market_price_publication_snapshots": {
+      "rows": 15,
+      "row_versions_1": "-4686384327509764778",
+      "row_versions_2": "583983952953093287"
+    },
+    "market_price_qualification_decisions": {
+      "rows": 15,
+      "row_versions_1": "-1264529024289804548",
+      "row_versions_2": "-433312629172545558"
+    },
+    "sets": {
+      "rows": 1,
+      "digest": "7a5395ec19ec047b3b77ec3cce33f918"
+    }
+  },
+  "receipt_id": "176481",
+  "finished_at": "2026-11-18T19:14:42.719Z"
+}

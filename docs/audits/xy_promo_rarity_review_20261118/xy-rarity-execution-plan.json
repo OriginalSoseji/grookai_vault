@@ -1,0 +1,76 @@
+{
+  "version": "XY_PROMO_RARITY_EXECUTION_PLAN_V1",
+  "status": "FROZEN_GUARDED_PACKAGE",
+  "target": "ycdxbpibncqcchqiihfz",
+  "source_snapshot_sha256": "7406c56d11f9cf92517a67c71358015852e13a6198689fecad01442d28cb6d00",
+  "preflight_sha256": "a2d99babff958813707ae6982529afdf926170485175aabb10485a8dfe29d08f",
+  "visual_review_sha256": "67715d2f4aec34ffabb939771a5bb73f952d5c2b4aa0b586eb09dc7eb5c8f21a",
+  "scope": {
+    "count": 2,
+    "table": "card_prints",
+    "field": "rarity"
+  },
+  "decision_basis": "Exact source payloads and mapped images show Promo-star identities; preserve differing TCGdex source traits. No global rarity rule.",
+  "no_writer": false,
+  "rows": [
+    {
+      "id": "48854339-79de-41bd-a10a-acc158c1b195",
+      "gv_id": "GV-PK-PR-XY-XY177",
+      "number": "XY177",
+      "before": "Common",
+      "proposed": "Promo",
+      "identity_key_hash": "3aa39e4eaf0b464f7f683d0821cd593198291ab576714ab811b41f360c5a56ed",
+      "source_raw_ids": [
+        "1764",
+        "14901"
+      ],
+      "source_product_id": 123438,
+      "protected_trait_ids": [
+        39415
+      ],
+      "review": {
+        "status": "record_scoped_review_candidate",
+        "before": "Common",
+        "proposed": "Promo",
+        "identity_key_hash": "3aa39e4eaf0b464f7f683d0821cd593198291ab576714ab811b41f360c5a56ed",
+        "product_image_sha256": "ed7f8b9c8425152d0c1cf37975ae3e115c2ec1254318fdb1e24fbda57b622a65",
+        "catalog_image_sha256": "bd65a7a0112aa9a1c5bbcd5151279f3b0fb44817bc72f4a6a4156c29666a030a",
+        "checklist_sha256": "20ce442161dd36d238fb8e39aaa44a0c8755af492887c354f346047a5ae91f31",
+        "tcgdex_trait_preserved": true,
+        "semantic_scope": "Promo catalog classification for this exact image-backed identity; no physical copy or finish claim"
+      }
+    },
+    {
+      "id": "fa353da7-a194-4d02-8667-ad9b033a49e5",
+      "gv_id": "GV-PK-PR-XY-XY198",
+      "number": "XY198",
+      "before": "Common",
+      "proposed": "Promo",
+      "identity_key_hash": "2891dfd15e4383c094fd75562da02f49f1e6de3842133a8dff3b68a9ceffdb72",
+      "source_raw_ids": [
+        "1786",
+        "14925"
+      ],
+      "source_product_id": 129898,
+      "protected_trait_ids": [
+        39439
+      ],
+      "review": {
+        "status": "record_scoped_review_candidate",
+        "before": "Common",
+        "proposed": "Promo",
+        "identity_key_hash": "2891dfd15e4383c094fd75562da02f49f1e6de3842133a8dff3b68a9ceffdb72",
+        "product_image_sha256": "2894766346541e6a359d4a931d31ff1c9f3e539c00366468a77af1a7b7a9634b",
+        "catalog_image_sha256": "ec280350908612ede733be5f211acd7357c339be35d97a24f453911eb61643c5",
+        "checklist_sha256": "649c5d6044f8afc2c7db3b59761c27e997cb44b0d53ab7c721a1e215bfb5c07e",
+        "tcgdex_trait_preserved": true,
+        "semantic_scope": "Promo catalog classification for this exact image-backed identity; no physical copy or finish claim"
+      }
+    }
+  ],
+  "source_review_fingerprint": "4fb9d460f93df2c553b1ad3d7ddbcb8dc8a343bb3ab661f3e6c932b4b0298b0a",
+  "candidate_sha256": "d04635c8f3ce67ab1586f6958fa0263f81dfe454d230e99d0b8537d0a0c1db16",
+  "authorization": "User provided PROCEED for catalog cleanup and asked to complete without micro approvals.",
+  "outstanding": "Fresh locked source and identity readback, a same-writer rollback proof, raw-first staging, protected-state proofs, and durable readback are required.",
+  "fingerprint_sha256": "40c18750ed652e83fb5bf04363ee75dfd7edef04269d36a9c44055c24f6592f4"
+}
