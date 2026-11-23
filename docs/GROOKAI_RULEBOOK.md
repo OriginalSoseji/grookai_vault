@@ -134,6 +134,11 @@ Before any L2/L3 audit or implementation:
 - Source: enrichment/mapping audits above.
 
 ## 9. Pricing Engine V3 Contract
+- Owner display rule, November 23, 2026: retain the last qualified published
+  exact price even when old and transparently show its source update date.
+  [MARKET_PRICE_RETENTION_DISPLAY_V1](contracts/MARKET_PRICE_RETENTION_DISPLAY_V1.md)
+  supersedes age-based display withholding only; fresh-publication qualification,
+  identity, coverage and security gates remain unchanged.
 - Sources: price observations (eBay first). Listing intelligence includes skip reasons.
 - Condition curves: NM/LP/MP/HP/DMG; confidence derived from samples.
 - Snapshots: `card_print_price_curves` table; `card_print_latest_price_curve` view for latest per print.

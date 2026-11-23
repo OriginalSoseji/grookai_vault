@@ -2,6 +2,11 @@
 
 **Status: ACTIVE - Production V1 governing contract**
 
+Owner amendment, November 23, 2026: display retention and source-date transparency
+follow [MARKET_PRICE_RETENTION_DISPLAY_V1](MARKET_PRICE_RETENTION_DISPLAY_V1.md).
+Its explicit age-based display supersession leaves new-publication freshness,
+source qualification, coverage, identity, and access gates unchanged.
+
 ## Purpose
 
 Production V1 publishes source-grounded market pricing for ordinary English

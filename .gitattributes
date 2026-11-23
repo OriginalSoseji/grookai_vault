@@ -28,3 +28,8 @@ scripts/schema/best_of_game_discovery_baseline_binding_v3.json -text whitespace=
 # Preserve exact earlier SDK harness bytes alongside their retained receipts.
 docs/audits/best_of_game_discovery_v5_20261120/harness-before-credential-guard/verify_best_of_game_discovery_sdk_v5.mjs.source -text whitespace=trailing-space,space-before-tab,cr-at-eol
 docs/audits/best_of_game_discovery_v5_20261120/harness-before-credential-guard/verify_best_of_game_discovery_sdk_v6.mjs.source -text whitespace=trailing-space,space-before-tab,cr-at-eol
+
+# Preserve retained-price SQL and baseline evidence exactly as qualified locally.
+supabase/migrations/20261124010000_market_price_retention_display_v1.sql -text whitespace=trailing-space,space-before-tab,cr-at-eol
+scripts/schema/audit_market_price_retention_baseline_v1.mjs -text whitespace=trailing-space,space-before-tab,cr-at-eol
+scripts/schema/market_price_retention_baseline_v1.json -text whitespace=trailing-space,space-before-tab,cr-at-eol

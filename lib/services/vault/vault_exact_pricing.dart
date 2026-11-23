@@ -17,6 +17,7 @@ class VaultExactPricingSummary {
     required this.unpricedCopyCount,
     required this.latestObservedAt,
     required this.latestPublishedAt,
+    this.hasStalePrices = false,
   });
 
   final double? totalMarketValue;
@@ -24,6 +25,7 @@ class VaultExactPricingSummary {
   final int unpricedCopyCount;
   final DateTime? latestObservedAt;
   final DateTime? latestPublishedAt;
+  final bool hasStalePrices;
 
   int get totalRawCopyCount => pricedCopyCount + unpricedCopyCount;
 
@@ -40,6 +42,7 @@ class VaultExactPricingSummary {
       sourceLabel: 'TCGPlayer Market',
       observedAt: latestObservedAt,
       publishedAt: latestPublishedAt,
+      freshness: hasStalePrices ? 'stale' : 'fresh',
       proofPricedCopyCount: pricedCopyCount,
       proofUnpricedCopyCount: unpricedCopyCount,
     );
@@ -66,6 +69,7 @@ VaultExactPricingSummary summarizeVaultExactPricing({
   var unpricedCopyCount = 0;
   DateTime? latestObservedAt;
   DateTime? latestPublishedAt;
+  var hasStalePrices = false;
 
   for (final target in targets) {
     final cardPrintingId = target.cardPrintingId?.trim();
@@ -88,6 +92,7 @@ VaultExactPricingSummary summarizeVaultExactPricing({
 
     total += marketClose;
     pricedCopyCount += 1;
+    hasStalePrices = hasStalePrices || pricing.isStale;
     latestObservedAt = _latest(latestObservedAt, pricing.observedAt);
     latestPublishedAt = _latest(latestPublishedAt, pricing.publishedAt);
   }
@@ -100,6 +105,7 @@ VaultExactPricingSummary summarizeVaultExactPricing({
     unpricedCopyCount: unpricedCopyCount,
     latestObservedAt: latestObservedAt,
     latestPublishedAt: latestPublishedAt,
+    hasStalePrices: hasStalePrices,
   );
 }
 
