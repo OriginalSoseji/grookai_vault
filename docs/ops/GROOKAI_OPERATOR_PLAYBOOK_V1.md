@@ -30,6 +30,15 @@ retest, two521 clone upgrades/no-op, schema/security/idempotence and repeated
 immutable. The candidate remains off and unqualified for public launch; these
 proofs do not replace fresh replay, actual HTTP Auth or provider capacity.
 
+The follow-up new lab now has genuine clean-prefix/521-file push/no-op proof,
+complete fresh/retained schema/security and11 actual local Auth/SDK boundary
+checks. Its explicit historical catalog prerequisites and failed attempts are
+preserved in the audit. The official experimental pull export is read-only
+diagnostic evidence, not ordinary shadow-diff or production PrePush authority.
+Both hosted clocks now carry the optional recovery flag with a false fallback;
+malformed scheduler values cannot launch a worker. No hosted setting is enabled.
+Final-source normal/hosted/review gates and real provider capacity remain required.
+
 # Price/stamp exact519 continuity — November22,2026
 
 The [519 audit](../audits/PRICE_STAMP_SCHEMA_519_CONTINUITY_20261123.md) binds the

@@ -31,6 +31,14 @@ Only enabled, automatic, unfocused batches of exactly two or five targets send
 `automaticRecoveryLimit` to the existing commerce authority. Manual, focused,
 other-sized and default-off calls retain their original request and selection.
 
+Both hosted clocks must carry the same server setting. The GitHub workflow
+binds its repository variable with a false fallback; the scheduler adapter
+serializes a missing setting as false into its private worker environment and
+rejects malformed values before launching a worker. Cloud recovery passes the
+same environment through `squareEnvironmentConfig`. This wiring does not
+create or enable a repository/Vercel control. Actual-adapter and cloud tests
+verify default-off behavior and explicit propagation to worker configuration.
+
 Forward migration `20261123003000` adds a read branch inside the existing
 service-only, owner-bound, leased and fenced `commerce_targets` action. It pins
 the entire prior function definition and replacement marker, and rejects drift.
@@ -58,6 +66,16 @@ exact-SQL idempotence and repeated actual RPC/SQL-role/lease/lock checks at
 100 synthetic vendors. These are local proofs only. Fresh candidate replay,
 actual HTTP Auth, provider capacity and final source/release checks remain
 required. Neither locally applied migration may be edited.
+
+A separate new lab completed a genuine clean-prefix reset and all521 exact
+source files, using the explicit647-pair historical prerequisite and100
+unchanged catalog INSERT statements from the frozen Best of Game fixture.
+Its six owner-fixture statements were omitted; no source owner rows were
+copied. Complete fresh/retained schema/security comparison and11 actual local
+Auth/SDK privilege checks passed. An official experimental CLI pull/export
+preserved481 table fingerprints and the ledger; its generated SQL was never
+executed. These receipts do not qualify the ordinary historical shadow-diff
+path, exact production release gate, independent merchant or provider capacity.
 
 Existing `target_checked` rotates a checked sold mapping through the group.
 Existing reconciliation, immutable stock attempts, readback, holds, review

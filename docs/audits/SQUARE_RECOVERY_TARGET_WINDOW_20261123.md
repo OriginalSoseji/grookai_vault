@@ -71,6 +71,53 @@ Both locally applied SQL files are immutable. A further repair requires another
 forward migration. No new empty521 reset, HTTP Auth session, independent
 merchant or actual provider throughput is claimed by these receipts.
 
+## Fresh replay, HTTP Auth and clock wiring follow-up
+
+A separate new owned lab completed the genuine clean-prefix reset and official
+CLI push/no-op of all521 unchanged migration files. The first history attempt
+stopped at the existing Best of Game evidence guard. Its retained correction
+adds only100 catalog INSERT statements from the frozen historical fixture
+`1e066c071592d9b43817cd2bcebdf5158b73d6f2f9598662de36c13bb15b665d`;
+all six owner-fixture statements are omitted. With the existing explicit647-pair
+prerequisite, final replay has1,316 catalog parents and656 aliases, zero copied
+owner rows and no disabled guard. The larger retained clone's1,349 parents
+include extra regression fixtures; equal row counts are not claimed.
+
+Complete four-schema and2,629-object security comparison passed against the
+retained521 clone. Two new real local Auth sessions then passed11 SDK/PostgREST
+checks: isolated owner workspaces, anonymous/owner denial of the privileged
+RPC, foreign-owner/stale-fence/wrong-lease denial for the service caller and
+bounded live/sold results for both owners. The earlier fixture-only42P10 error
+remains failed evidence; its two Auth accounts were retained, never reset.
+These are actual local authentication-boundary tests, not independent seller
+OAuth, a production sign-in session or a provider load test.
+
+The official CLI experimental `db pull --local` export passed using the exact
+owned relay's network namespace. Before/after fingerprints of481 tables,
+security and the migration ledger stayed equal. All1,869 generated SQL files
+remain private diagnostics and were never executed. The first Windows/Docker
+loopback failure and failed extra-relay probe remain preserved. The supported
+export mode is distinct from ordinary historical shadow-diff qualification;
+the exact production release gate is still outstanding.
+
+These receipts are under `stock-lanes-fresh521-v2`,
+`stock-lanes-http-auth-v2`, `stock-lanes-fresh-schema-v1` and
+`stock-lanes-official-pull-v2` beneath the private artifact parent.
+
+Final source review also found that the GitHub scheduler's private-environment
+allowlist omitted the new opt-in flag. The follow-up adds its default-false
+workflow binding and strict optional serialization, without enabling either
+hosted clock.18 focused tests passed across window admission, cloud propagation
+and the actual adapter. The adapter tests intercept only child-process creation,
+inspect the real private environment file, prove worker configuration receives
+the flag and verify malformed/injected values never launch a worker.
+
+The normal20e4ed41 commit passed8,943 contracts,127 Square tests, web checks,
+Flutter analysis and2,100 app tests with two existing skips. Its pre-push run
+was intentionally interrupted for the clock-wiring correction. The source-bound
+checkpoint records the new final-head commit/push checks; the earlier pass
+must not qualify the changed tree. No old SQL bytes changed in this follow-up.
+
 The populated-query regression was corrected before any local or production
 application of the new migration. The full proposed function definition now
 hashes to `a12df583b9c6163cd7be81183ae91956fd92b8264aa98233c46d24f9ba1bc3a2`.
@@ -129,10 +176,9 @@ indexed-database load, provider throughput, fresh reset or production acceptance
 
 ## Outstanding release work
 
-Require a stable verification runtime, actual candidate fresh/retained replay
-and upgrade/no-op, unchanged protected data and complete schema/security,
-real roles/Auth/foreign-owner/concurrency tests, measured database/provider
-capacity, normal commit/push and hosted checks, exact production PrePush and
+Require formal candidate migration/release qualification, independent merchant
+acceptance and measured provider/clock capacity, current-source normal
+commit/push and hosted/review checks, exact production PrePush and
 independent deployment/readback. The main merge pause remains binding.
 
 `GROOKAI_SQUARE_RECOVERY_WINDOW_ENABLED` remains off. No production migration,

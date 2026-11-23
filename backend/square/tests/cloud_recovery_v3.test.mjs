@@ -45,6 +45,15 @@ test('a terminal invocation is replayed without polling connections or repeating
 test('no connected sellers still produces a durable successful empty check',async()=>{
  const h=harness({connections:[]}),result=await runSquareCloudRecovery(h.options);assert.equal(result.succeeded,0);assert.equal(result.failed,0);assert.equal(h.factories(),0);assert.equal(h.calls.at(-1).args.p_action,'finish');
 });
+test('cloud recovery forwards the explicit server recovery-window setting',async()=>{
+ for(const enabled of [undefined,'false','true']){
+  const h=harness();let configured;
+  h.options.env={...env,GROOKAI_SQUARE_RECOVERY_WINDOW_ENABLED:enabled};
+  h.options.createBackend=({config})=>{configured=config;return{commerce:{processConnection:async()=>({succeeded:2,failed:0,skipped:0})}};};
+  const result=await runSquareCloudRecovery(h.options);
+  assert.equal(result.status,'succeeded');assert.equal(configured.recoveryWindowEnabled,enabled==='true');
+ }
+});
 test('the invocation cannot finish before its admitted commerce work resolves',async()=>{
  const h=harness();let release,settled=false;const work=new Promise(resolve=>{release=resolve;});h.options.createBackend=()=>({commerce:{processConnection:()=>work}});
  const pending=runSquareCloudRecovery(h.options).then(result=>{settled=true;return result;});await new Promise(resolve=>setImmediate(resolve));assert.equal(settled,false);assert.equal(h.calls.at(-1).args.p_action,'heartbeat');
