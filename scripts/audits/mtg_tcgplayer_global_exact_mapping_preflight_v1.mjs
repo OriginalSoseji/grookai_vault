@@ -255,14 +255,14 @@ function numberField(extendedData) {
   return values.length === 1 ? values[0] : '';
 }
 
-export function connectionConfig(applicationName) {
-  const publicUrl = new URL(process.env.SUPABASE_URL);
+export function connectionConfig(applicationName, environment = process.env) {
+  const publicUrl = new URL(environment.SUPABASE_URL);
   assert.equal(publicUrl.hostname.split('.')[0], PROJECT_REF, 'production_project_ref_mismatch');
-  assert.ok(process.env.SUPABASE_DB_URL, 'SUPABASE_DB_URL_required');
-  assert.notEqual(process.env.NODE_TLS_REJECT_UNAUTHORIZED, '0',
+  assert.ok(environment.SUPABASE_DB_URL, 'SUPABASE_DB_URL_required');
+  assert.notEqual(environment.NODE_TLS_REJECT_UNAUTHORIZED, '0',
     'production_database_insecure_tls_environment');
-  const databaseUrl = assertPrintingDatabaseTarget(process.env.SUPABASE_DB_URL);
-  const configuredCa = process.env.SUPABASE_DB_CA_CERT?.trim();
+  const databaseUrl = assertPrintingDatabaseTarget(environment.SUPABASE_DB_URL);
+  const configuredCa = environment.SUPABASE_DB_CA_CERT?.trim();
   if (configuredCa) assert.match(configuredCa,
     /^-----BEGIN CERTIFICATE-----[\s\S]+-----END CERTIFICATE-----$/,
     'production_database_invalid_ca_certificate');

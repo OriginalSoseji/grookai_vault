@@ -104,42 +104,31 @@ test('global exact preflight is structurally read-only and production-bound', ()
 });
 
 test('global exact database connections require verified production TLS', () => {
-  const previous = Object.fromEntries([
-    'SUPABASE_URL',
-    'SUPABASE_DB_URL',
-    'SUPABASE_DB_CA_CERT',
-    'NODE_TLS_REJECT_UNAUTHORIZED',
-  ].map((key) => [key, process.env[key]]));
-  try {
-    process.env.SUPABASE_URL = 'https://ycdxbpibncqcchqiihfz.supabase.co';
-    process.env.SUPABASE_DB_URL = 'postgresql://postgres.ycdxbpibncqcchqiihfz:fixture@aws-1-us-east-2.pooler.supabase.com:5432/postgres?sslmode=disable';
-    process.env.SUPABASE_DB_CA_CERT = '-----BEGIN CERTIFICATE-----\nfixture\n-----END CERTIFICATE-----';
-    delete process.env.NODE_TLS_REJECT_UNAUTHORIZED;
-    const config = connectionConfig('global_exact_tls_contract_v1');
-    assert.equal(config.ssl.rejectUnauthorized, true);
-    assert.equal(config.ssl.servername, 'aws-1-us-east-2.pooler.supabase.com');
-    assert.equal(config.ssl.ca, process.env.SUPABASE_DB_CA_CERT);
-    assert.doesNotThrow(() => assertVerifiedProductionTls({
-      connection: { stream: { encrypted: true, authorized: true } },
-    }));
-    assert.throws(() => assertVerifiedProductionTls({
-      connection: { stream: { encrypted: true, authorized: false } },
-    }), /production_database_tls_not_verified/);
-    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-    assert.throws(() => connectionConfig('global_exact_tls_contract_v1'),
-      /production_database_insecure_tls_environment/);
-    assert.match(SCRIPT, /PINNED_SUPABASE_ROOT_SHA256/);
-    assert.match(SCRIPT, /PINNED_SUPABASE_INTERMEDIATE_SHA256/);
-    assert.match(SCRIPT, /openssl/);
-    assert.match(SCRIPT, /production_database_openssl_unavailable/);
-    assert.match(SCRIPT, /certificates\[0\]\.checkHost/);
-    assert.match(SCRIPT, /certificates\[0\]\.verify/);
-  } finally {
-    for (const [key, value] of Object.entries(previous)) {
-      if (value === undefined) delete process.env[key];
-      else process.env[key] = value;
-    }
-  }
+  const environment = {
+    SUPABASE_URL: 'https://ycdxbpibncqcchqiihfz.supabase.co',
+    SUPABASE_DB_URL: 'postgresql://postgres.ycdxbpibncqcchqiihfz:fixture@aws-1-us-east-2.pooler.supabase.com:5432/postgres?sslmode=disable',
+    SUPABASE_DB_CA_CERT: '-----BEGIN CERTIFICATE-----\nfixture\n-----END CERTIFICATE-----',
+  };
+  const config = connectionConfig('global_exact_tls_contract_v1', environment);
+  assert.equal(config.ssl.rejectUnauthorized, true);
+  assert.equal(config.ssl.servername, 'aws-1-us-east-2.pooler.supabase.com');
+  assert.equal(config.ssl.ca, environment.SUPABASE_DB_CA_CERT);
+  assert.doesNotThrow(() => assertVerifiedProductionTls({
+    connection: { stream: { encrypted: true, authorized: true } },
+  }));
+  assert.throws(() => assertVerifiedProductionTls({
+    connection: { stream: { encrypted: true, authorized: false } },
+  }), /production_database_tls_not_verified/);
+  assert.throws(() => connectionConfig('global_exact_tls_contract_v1', {
+    ...environment,
+    NODE_TLS_REJECT_UNAUTHORIZED: '0',
+  }), /production_database_insecure_tls_environment/);
+  assert.match(SCRIPT, /PINNED_SUPABASE_ROOT_SHA256/);
+  assert.match(SCRIPT, /PINNED_SUPABASE_INTERMEDIATE_SHA256/);
+  assert.match(SCRIPT, /openssl/);
+  assert.match(SCRIPT, /production_database_openssl_unavailable/);
+  assert.match(SCRIPT, /certificates\[0\]\.checkHost/);
+  assert.match(SCRIPT, /certificates\[0\]\.verify/);
 });
 
 test('review decision rejects scope or authority drift before database access', () => {
