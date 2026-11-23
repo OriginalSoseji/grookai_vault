@@ -1,0 +1,889 @@
+{
+  "version": "PLAY_POKEMON_STAMP_NORMAL_MASTER_FACTS_V3",
+  "status": "master_admissible",
+  "language": "en",
+  "set_code": "swsh10",
+  "scope": "exact_generic_play_pokemon_stamp_normal_facts_only",
+  "complete_printing_inventory": false,
+  "foil_pattern_adjudicated": false,
+  "records": [
+    {
+      "card_print_id": "017d54d6-badf-48a8-bb10-6c1648ca5a48",
+      "card_name": "Regigigas",
+      "printed_coordinate": "130",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 3,
+          "official_pdf_sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+          "official_row": {
+            "series": 3,
+            "name": "Regigigas",
+            "name_alignment_resolved": true,
+            "set_token": "ASR",
+            "printed_number": "130",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "ASR",
+              "xMin": 250.7985,
+              "yMin": 648.6739,
+              "xMax": 272.0465,
+              "yMax": 657.6659,
+              "set_token": "ASR",
+              "number": "130"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 282.2777,
+                "yMin": 649.4073,
+                "xMax": 288.1374,
+                "yMax": 656.7762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 32
+              }
+            ]
+          },
+          "secondary_raw_sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 3,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+            "set_key": "swsh10",
+            "card_number": "130",
+            "card_name": "Regigigas",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "3837b7a7-5a44-40f7-8f78-15e051e7da4f",
+      "card_name": "Diancie",
+      "printed_coordinate": "068",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 3,
+          "official_pdf_sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+          "official_row": {
+            "series": 3,
+            "name": "Diancie",
+            "name_alignment_resolved": true,
+            "set_token": "ASR",
+            "printed_number": "068",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "ASR",
+              "xMin": 101.5852,
+              "yMin": 311.914,
+              "xMax": 123.9132,
+              "yMax": 320.906,
+              "set_token": "ASR",
+              "number": "068"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 133.0644,
+                "yMin": 312.6473,
+                "xMax": 138.9241,
+                "yMax": 320.0162,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 42
+              }
+            ]
+          },
+          "secondary_raw_sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 3,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+            "set_key": "swsh10",
+            "card_number": "68",
+            "card_name": "Diancie",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "445109da-f36c-4992-83db-dd046ed1f822",
+      "card_name": "Registeel",
+      "printed_coordinate": "108",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 3,
+          "official_pdf_sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+          "official_row": {
+            "series": 3,
+            "name": "Registeel",
+            "name_alignment_resolved": true,
+            "set_token": "ASR",
+            "printed_number": "108",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "ASR",
+              "xMin": 250.7985,
+              "yMin": 675.6739,
+              "xMax": 272.1745,
+              "yMax": 684.6659,
+              "set_token": "ASR",
+              "number": "108"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 282.2777,
+                "yMin": 676.4073,
+                "xMax": 288.1374,
+                "yMax": 683.7762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 42
+              }
+            ]
+          },
+          "secondary_raw_sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 3,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+            "set_key": "swsh10",
+            "card_number": "108",
+            "card_name": "Registeel",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "5997bb7c-2970-4446-9486-bfdc89ca7035",
+      "card_name": "Gallade",
+      "printed_coordinate": "062",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 3,
+          "official_pdf_sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+          "official_row": {
+            "series": 3,
+            "name": "Gallade",
+            "name_alignment_resolved": true,
+            "set_token": "ASR",
+            "printed_number": "062",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "ASR",
+              "xMin": 101.5852,
+              "yMin": 406.4139,
+              "xMax": 123.8092,
+              "yMax": 415.4059,
+              "set_token": "ASR",
+              "number": "062"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 133.0644,
+                "yMin": 407.1473,
+                "xMax": 138.9241,
+                "yMax": 414.5162,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 32
+              }
+            ]
+          },
+          "secondary_raw_sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 3,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+            "set_key": "swsh10",
+            "card_number": "62",
+            "card_name": "Gallade",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "68756c94-8762-412c-9659-392247bd8bca",
+      "card_name": "Regidrago",
+      "printed_coordinate": "118",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 3,
+          "official_pdf_sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+          "official_row": {
+            "series": 3,
+            "name": "Regidrago",
+            "name_alignment_resolved": true,
+            "set_token": "ASR",
+            "printed_number": "118",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "ASR",
+              "xMin": 250.7985,
+              "yMin": 567.6739,
+              "xMax": 271.1025,
+              "yMax": 576.6659,
+              "set_token": "ASR",
+              "number": "118"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 282.2777,
+                "yMin": 568.4073,
+                "xMax": 288.1374,
+                "yMax": 575.7762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 42
+              }
+            ]
+          },
+          "secondary_raw_sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 3,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+            "set_key": "swsh10",
+            "card_number": "118",
+            "card_name": "Regidrago",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "75e4a208-b418-4c6d-a6b0-0a6633c243d0",
+      "card_name": "Gardenia's Vigor",
+      "printed_coordinate": "143",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 3,
+          "official_pdf_sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+          "official_row": {
+            "series": 3,
+            "name": "Gardenia's Vigor",
+            "name_alignment_resolved": true,
+            "set_token": "ASR",
+            "printed_number": "143",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "ASR",
+              "xMin": 400.0119,
+              "yMin": 473.1739,
+              "xMax": 421.1079,
+              "yMax": 482.1659,
+              "set_token": "ASR",
+              "number": "143"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 431.4911,
+                "yMin": 473.9073,
+                "xMax": 437.3508,
+                "yMax": 481.2762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 32
+              }
+            ]
+          },
+          "secondary_raw_sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 3,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+            "set_key": "swsh10",
+            "card_number": "143",
+            "card_name": "Gardenia's Vigor",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "8d361411-28c8-496e-b3f5-c7e494f94702",
+      "card_name": "Regirock",
+      "printed_coordinate": "075",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 3,
+          "official_pdf_sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+          "official_row": {
+            "series": 3,
+            "name": "Regirock",
+            "name_alignment_resolved": true,
+            "set_token": "ASR",
+            "printed_number": "075",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "ASR",
+              "xMin": 250.7985,
+              "yMin": 662.1739,
+              "xMax": 272.7105,
+              "yMax": 671.1659,
+              "set_token": "ASR",
+              "number": "075"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 282.2777,
+                "yMin": 662.9073,
+                "xMax": 288.1374,
+                "yMax": 670.2762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 33
+              }
+            ]
+          },
+          "secondary_raw_sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 3,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+            "set_key": "swsh10",
+            "card_number": "75",
+            "card_name": "Regirock",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "9506c5e3-8d8d-47ed-816d-698c73ae9ab7",
+      "card_name": "Gapejaw Bog",
+      "printed_coordinate": "142",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 3,
+          "official_pdf_sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+          "official_row": {
+            "series": 3,
+            "name": "Gapejaw Bog",
+            "name_alignment_resolved": true,
+            "set_token": "ASR",
+            "printed_number": "142",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "ASR",
+              "xMin": 400.0119,
+              "yMin": 459.6739,
+              "xMax": 421.1319,
+              "yMax": 468.6659,
+              "set_token": "ASR",
+              "number": "142"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 431.4911,
+                "yMin": 460.4073,
+                "xMax": 437.3508,
+                "yMax": 467.7762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 42
+              }
+            ]
+          },
+          "secondary_raw_sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 3,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+            "set_key": "swsh10",
+            "card_number": "142",
+            "card_name": "Gapejaw Bog",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "a09be692-14ee-4cb4-a4b5-a91eb3fa0bb9",
+      "card_name": "Temple of Sinnoh",
+      "printed_coordinate": "155",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 3,
+          "official_pdf_sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+          "official_row": {
+            "series": 3,
+            "name": "Temple of Sinnoh",
+            "name_alignment_resolved": true,
+            "set_token": "ASR",
+            "printed_number": "155",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "ASR",
+              "xMin": 549.2274,
+              "yMin": 261.6739,
+              "xMax": 570.3154,
+              "yMax": 270.6659,
+              "set_token": "ASR",
+              "number": "155"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 580.7066,
+                "yMin": 262.4072,
+                "xMax": 586.5663,
+                "yMax": 269.7761,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 32
+              }
+            ]
+          },
+          "secondary_raw_sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 3,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+            "set_key": "swsh10",
+            "card_number": "155",
+            "card_name": "Temple of Sinnoh",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "aaecd767-1350-47ba-a113-1b2384047b6a",
+      "card_name": "Regieleki",
+      "printed_coordinate": "051",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 3,
+          "official_pdf_sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+          "official_row": {
+            "series": 3,
+            "name": "Regieleki",
+            "name_alignment_resolved": true,
+            "set_token": "ASR",
+            "printed_number": "051",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "ASR",
+              "xMin": 250.7985,
+              "yMin": 608.1739,
+              "xMax": 271.7905,
+              "yMax": 617.1659,
+              "set_token": "ASR",
+              "number": "051"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 282.2777,
+                "yMin": 608.9073,
+                "xMax": 288.1374,
+                "yMax": 616.2762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 33
+              }
+            ]
+          },
+          "secondary_raw_sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 3,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+            "set_key": "swsh10",
+            "card_number": "51",
+            "card_name": "Regieleki",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "bd216ea9-4213-4684-8286-98f346e62de8",
+      "card_name": "Dark Patch",
+      "printed_coordinate": "139",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 3,
+          "official_pdf_sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+          "official_row": {
+            "series": 3,
+            "name": "Dark Patch",
+            "name_alignment_resolved": true,
+            "set_token": "ASR",
+            "printed_number": "139",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "ASR",
+              "xMin": 400.0119,
+              "yMin": 378.6739,
+              "xMax": 421.1399,
+              "yMax": 387.6659,
+              "set_token": "ASR",
+              "number": "139"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 431.4911,
+                "yMin": 379.4073,
+                "xMax": 437.3508,
+                "yMax": 386.7762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 42
+              }
+            ]
+          },
+          "secondary_raw_sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 3,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+            "set_key": "swsh10",
+            "card_number": "139",
+            "card_name": "Dark Patch",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "c97163a2-c596-4209-ba46-4d9f24e00e0a",
+      "card_name": "Grant",
+      "printed_coordinate": "144",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 3,
+          "official_pdf_sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+          "official_row": {
+            "series": 3,
+            "name": "Grant",
+            "name_alignment_resolved": true,
+            "set_token": "ASR",
+            "printed_number": "144",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "ASR",
+              "xMin": 400.0119,
+              "yMin": 486.6739,
+              "xMax": 421.2279,
+              "yMax": 495.6659,
+              "set_token": "ASR",
+              "number": "144"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 431.4911,
+                "yMin": 487.4073,
+                "xMax": 437.3508,
+                "yMax": 494.7762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 42
+              }
+            ]
+          },
+          "secondary_raw_sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 3,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+            "set_key": "swsh10",
+            "card_number": "144",
+            "card_name": "Grant",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "d5353963-8006-4049-afa5-51b45b63b966",
+      "card_name": "Gutsy Pickaxe",
+      "printed_coordinate": "145",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 3,
+          "official_pdf_sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+          "official_row": {
+            "series": 3,
+            "name": "Gutsy Pickaxe",
+            "name_alignment_resolved": true,
+            "set_token": "ASR",
+            "printed_number": "145",
+            "normal_explicit": true,
+            "foil_marker_present": true,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "ASR",
+              "xMin": 400.0119,
+              "yMin": 500.1739,
+              "xMax": 421.1319,
+              "yMax": 509.1659,
+              "set_token": "ASR",
+              "number": "145"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 431.4911,
+                "yMin": 500.9073,
+                "xMax": 437.3508,
+                "yMax": 508.2762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 33
+              },
+              {
+                "text": "■",
+                "xMin": 442.5307,
+                "yMin": 500.9073,
+                "xMax": 448.3904,
+                "yMax": 508.2762,
+                "color": "red",
+                "red_pixels": 32,
+                "black_pixels": 0
+              }
+            ]
+          },
+          "secondary_raw_sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 3,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+            "set_key": "swsh10",
+            "card_number": "145",
+            "card_name": "Gutsy Pickaxe",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "e6da28d9-8e7a-4211-a2de-2c4d6c2b7f18",
+      "card_name": "Regice",
+      "printed_coordinate": "037",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 3,
+          "official_pdf_sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+          "official_row": {
+            "series": 3,
+            "name": "Regice",
+            "name_alignment_resolved": true,
+            "set_token": "ASR",
+            "printed_number": "037",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "ASR",
+              "xMin": 250.7985,
+              "yMin": 554.1739,
+              "xMax": 272.6865,
+              "yMax": 563.1659,
+              "set_token": "ASR",
+              "number": "037"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 282.2777,
+                "yMin": 554.9073,
+                "xMax": 288.1374,
+                "yMax": 562.2762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 33
+              }
+            ]
+          },
+          "secondary_raw_sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 3,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+            "set_key": "swsh10",
+            "card_number": "37",
+            "card_name": "Regice",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    }
+  ]
+}

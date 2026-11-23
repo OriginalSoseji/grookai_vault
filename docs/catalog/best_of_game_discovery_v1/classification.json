@@ -1,0 +1,903 @@
+{
+  "version": "BEST_OF_GAME_EXACT_ALIAS_CLASSIFICATION_V1",
+  "canonicalCoordinate": "bp",
+  "legacyCoordinate": "bog",
+  "canonicalBasis": "PokemonTCG provider coordinate already stored by grookai release metadata; exact nine-card source correspondence independently checked against TCGdex.",
+  "legacyDisposition": "Retain every stored object, coordinate and downstream reference; suppress only nine approved base aliases in discovery.",
+  "finishPolicy": "Preserve congruent existing child inventories; no finish creation, transfer, ID rewrite or whole-set printing certification.",
+  "sources": [
+    {
+      "name": "pokemon-provider-bp",
+      "url": "https://raw.githubusercontent.com/PokemonTCG/pokemon-tcg-data/master/cards/en/bp.json",
+      "sha256": "822ad84d4fa40e91f9a81dece37a678baf9ffe6f8dfb3597bb3cacf3d275a802"
+    },
+    {
+      "name": "tcgdex-bog",
+      "url": "https://api.tcgdex.net/v2/en/sets/bog",
+      "sha256": "3b8ac97cd86a45a22397fd415006c4aef522cffc2bee4116db023f539e3ac67a"
+    },
+    {
+      "name": "tcgdex-bog-1",
+      "url": "https://api.tcgdex.net/v2/en/cards/bog-1",
+      "sha256": "6acce15613b6e7b15f37f12d1f49071005cbda3970b502be5bdb33563d90f2bb"
+    },
+    {
+      "name": "tcgdex-bog-2",
+      "url": "https://api.tcgdex.net/v2/en/cards/bog-2",
+      "sha256": "5eb9f9b3a5bed02657c3165134ecb77b21275779bc9af6fc7ed20407f7ea31d2"
+    },
+    {
+      "name": "tcgdex-bog-3",
+      "url": "https://api.tcgdex.net/v2/en/cards/bog-3",
+      "sha256": "955da396c46e688b45a93468ea4d3f9d171eea68df2ff2a0661f52074dc9fd8a"
+    },
+    {
+      "name": "tcgdex-bog-4",
+      "url": "https://api.tcgdex.net/v2/en/cards/bog-4",
+      "sha256": "26c6e76d0bd8238e10a5a929961811eab50bece066f8099cd4f96bba876992ad"
+    },
+    {
+      "name": "tcgdex-bog-5",
+      "url": "https://api.tcgdex.net/v2/en/cards/bog-5",
+      "sha256": "53f106ef5939cd84a29ed77e7f594b3b91daa9ace1834e7e7b6f46236a834082"
+    },
+    {
+      "name": "tcgdex-bog-6",
+      "url": "https://api.tcgdex.net/v2/en/cards/bog-6",
+      "sha256": "7d236e88507c4290ce5b502b0f2824caa9937317a6239adcda710dbfd4736afb"
+    },
+    {
+      "name": "tcgdex-bog-7",
+      "url": "https://api.tcgdex.net/v2/en/cards/bog-7",
+      "sha256": "cee84474a8a7b8e66d73709b737c8e73b2930ae213bb4114e9bb9014d047391d"
+    },
+    {
+      "name": "tcgdex-bog-8",
+      "url": "https://api.tcgdex.net/v2/en/cards/bog-8",
+      "sha256": "c5116fe98abd9b2493416851c5ff8aaf27ea31155d78d87b551522f29a935fd4"
+    },
+    {
+      "name": "tcgdex-bog-9",
+      "url": "https://api.tcgdex.net/v2/en/cards/bog-9",
+      "sha256": "8ead6ef68474e660f355df777692eeec8026d1f2364bbdbb0af12e08ce8697f3"
+    }
+  ],
+  "pairs": [
+    {
+      "number": "1",
+      "legacy": {
+        "id": "6b07130e-6ce9-468e-828b-3df34f7be2d4",
+        "gv_id": "GV-PK-BOG-1",
+        "set_id": "157ea50d-3ab7-42a4-82d3-9e5c89f0a57c",
+        "set_code": "bog",
+        "name": "Electabuzz",
+        "number": "1",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "",
+        "printed_identity_modifier": null
+      },
+      "canonical": {
+        "id": "4e714b58-bcf3-4931-9c46-163dadba49b8",
+        "gv_id": "GV-PK-BP-1",
+        "set_id": "c8debb57-da6f-46ce-8777-13ecedfe2856",
+        "set_code": "bp",
+        "name": "Electabuzz",
+        "number": "1",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "",
+        "printed_identity_modifier": null
+      },
+      "retainedLegacyChild": {
+        "id": "f8026127-0cc8-42c8-8b6a-0d580465d532",
+        "printing_gv_id": "GV-PK-BOG-1-RH",
+        "finish_key": "reverse",
+        "is_provisional": false
+      },
+      "retainedCanonicalChild": {
+        "id": "c045c213-5273-5241-a9ce-2c5234e8d278",
+        "printing_gv_id": "GV-PK-BP-1-REV",
+        "finish_key": "reverse",
+        "is_provisional": false
+      },
+      "sourceFacts": {
+        "pokemon": {
+          "id": "bp-1",
+          "name": "Electabuzz",
+          "number": "1"
+        },
+        "tcgdex": {
+          "id": "bog-1",
+          "name": "Electabuzz",
+          "number": "1",
+          "set": "bog"
+        }
+      },
+      "typographyOnlyDifference": false
+    },
+    {
+      "number": "2",
+      "legacy": {
+        "id": "2ff0f40b-493e-4a81-ae00-668e621c8b57",
+        "gv_id": "GV-PK-BOG-2",
+        "set_id": "157ea50d-3ab7-42a4-82d3-9e5c89f0a57c",
+        "set_code": "bog",
+        "name": "Hitmonchan",
+        "number": "2",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "",
+        "printed_identity_modifier": null
+      },
+      "canonical": {
+        "id": "cf3b8770-892a-41d8-8a47-647dbb742fee",
+        "gv_id": "GV-PK-BP-2",
+        "set_id": "c8debb57-da6f-46ce-8777-13ecedfe2856",
+        "set_code": "bp",
+        "name": "Hitmonchan",
+        "number": "2",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "",
+        "printed_identity_modifier": null
+      },
+      "retainedLegacyChild": {
+        "id": "09d50360-2444-4035-8b35-47bd917f0a98",
+        "printing_gv_id": "GV-PK-BOG-2-RH",
+        "finish_key": "reverse",
+        "is_provisional": false
+      },
+      "retainedCanonicalChild": {
+        "id": "fb78c3ee-6113-5547-aef5-b927a8273b18",
+        "printing_gv_id": "GV-PK-BP-2-REV",
+        "finish_key": "reverse",
+        "is_provisional": false
+      },
+      "sourceFacts": {
+        "pokemon": {
+          "id": "bp-2",
+          "name": "Hitmonchan",
+          "number": "2"
+        },
+        "tcgdex": {
+          "id": "bog-2",
+          "name": "Hitmonchan",
+          "number": "2",
+          "set": "bog"
+        }
+      },
+      "typographyOnlyDifference": false
+    },
+    {
+      "number": "3",
+      "legacy": {
+        "id": "bdfa57ee-93dd-4ff2-88d0-4f90e217d0ec",
+        "gv_id": "GV-PK-BOG-3",
+        "set_id": "157ea50d-3ab7-42a4-82d3-9e5c89f0a57c",
+        "set_code": "bog",
+        "name": "Professor Elm",
+        "number": "3",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "",
+        "printed_identity_modifier": null
+      },
+      "canonical": {
+        "id": "bd1d64ae-7ce1-469a-821f-2203099eab4f",
+        "gv_id": "GV-PK-BP-3",
+        "set_id": "c8debb57-da6f-46ce-8777-13ecedfe2856",
+        "set_code": "bp",
+        "name": "Professor Elm",
+        "number": "3",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "",
+        "printed_identity_modifier": null
+      },
+      "retainedLegacyChild": {
+        "id": "619f6a8d-08c6-4833-b705-402b7f96c622",
+        "printing_gv_id": "GV-PK-BOG-3-RH",
+        "finish_key": "reverse",
+        "is_provisional": false
+      },
+      "retainedCanonicalChild": {
+        "id": "7777dbc1-645f-5831-ad2d-e3a77d5bb246",
+        "printing_gv_id": "GV-PK-BP-3-REV",
+        "finish_key": "reverse",
+        "is_provisional": false
+      },
+      "sourceFacts": {
+        "pokemon": {
+          "id": "bp-3",
+          "name": "Professor Elm",
+          "number": "3"
+        },
+        "tcgdex": {
+          "id": "bog-3",
+          "name": "Professor Elm",
+          "number": "3",
+          "set": "bog"
+        }
+      },
+      "typographyOnlyDifference": false
+    },
+    {
+      "number": "4",
+      "legacy": {
+        "id": "4e0665d4-2a6a-4602-8799-db55cbb5f588",
+        "gv_id": "GV-PK-BOG-4",
+        "set_id": "157ea50d-3ab7-42a4-82d3-9e5c89f0a57c",
+        "set_code": "bog",
+        "name": "Rocket’s Scizor",
+        "number": "4",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "",
+        "printed_identity_modifier": null
+      },
+      "canonical": {
+        "id": "8dae8f1d-437f-464c-8415-50f763d1801d",
+        "gv_id": "GV-PK-BP-4",
+        "set_id": "c8debb57-da6f-46ce-8777-13ecedfe2856",
+        "set_code": "bp",
+        "name": "Rocket's Scizor",
+        "number": "4",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "",
+        "printed_identity_modifier": null
+      },
+      "retainedLegacyChild": {
+        "id": "a125087f-ec65-4799-9bce-48a5fc7af795",
+        "printing_gv_id": "GV-PK-BOG-4-STD",
+        "finish_key": "normal",
+        "is_provisional": false
+      },
+      "retainedCanonicalChild": {
+        "id": "c06bd6ca-fae7-4314-bf1e-837bc9176dc4",
+        "printing_gv_id": "GV-PK-BP-4-STD",
+        "finish_key": "normal",
+        "is_provisional": false
+      },
+      "sourceFacts": {
+        "pokemon": {
+          "id": "bp-4",
+          "name": "Rocket's Scizor",
+          "number": "4"
+        },
+        "tcgdex": {
+          "id": "bog-4",
+          "name": "Rocket’s Scizor",
+          "number": "4",
+          "set": "bog"
+        }
+      },
+      "typographyOnlyDifference": true
+    },
+    {
+      "number": "5",
+      "legacy": {
+        "id": "da7a223c-b039-4fa0-99c1-c8e396f90f5f",
+        "gv_id": "GV-PK-BOG-5",
+        "set_id": "157ea50d-3ab7-42a4-82d3-9e5c89f0a57c",
+        "set_code": "bog",
+        "name": "Rocket’s Sneasel",
+        "number": "5",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "",
+        "printed_identity_modifier": null
+      },
+      "canonical": {
+        "id": "53761d11-41ee-4971-a393-67052780eb05",
+        "gv_id": "GV-PK-BP-5",
+        "set_id": "c8debb57-da6f-46ce-8777-13ecedfe2856",
+        "set_code": "bp",
+        "name": "Rocket's Sneasel",
+        "number": "5",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "",
+        "printed_identity_modifier": null
+      },
+      "retainedLegacyChild": {
+        "id": "7f3d7529-1f37-41e2-ab0c-eeb59f21bd26",
+        "printing_gv_id": "GV-PK-BOG-5-STD",
+        "finish_key": "normal",
+        "is_provisional": false
+      },
+      "retainedCanonicalChild": {
+        "id": "3b444a39-5509-4ed9-ba8d-db6c44d212e8",
+        "printing_gv_id": "GV-PK-BP-5-STD",
+        "finish_key": "normal",
+        "is_provisional": false
+      },
+      "sourceFacts": {
+        "pokemon": {
+          "id": "bp-5",
+          "name": "Rocket's Sneasel",
+          "number": "5"
+        },
+        "tcgdex": {
+          "id": "bog-5",
+          "name": "Rocket’s Sneasel",
+          "number": "5",
+          "set": "bog"
+        }
+      },
+      "typographyOnlyDifference": true
+    },
+    {
+      "number": "6",
+      "legacy": {
+        "id": "700be8a4-8283-411f-af66-371b61e443f9",
+        "gv_id": "GV-PK-BOG-6",
+        "set_id": "157ea50d-3ab7-42a4-82d3-9e5c89f0a57c",
+        "set_code": "bog",
+        "name": "Dark Ivysaur",
+        "number": "6",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "",
+        "printed_identity_modifier": null
+      },
+      "canonical": {
+        "id": "796dfb87-68c7-43bb-b61f-153d40a64cf4",
+        "gv_id": "GV-PK-BP-6",
+        "set_id": "c8debb57-da6f-46ce-8777-13ecedfe2856",
+        "set_code": "bp",
+        "name": "Dark Ivysaur",
+        "number": "6",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "",
+        "printed_identity_modifier": null
+      },
+      "retainedLegacyChild": {
+        "id": "acbee7b5-5de2-4ffa-92bb-c7efc39a94e2",
+        "printing_gv_id": "GV-PK-BOG-6-STD",
+        "finish_key": "normal",
+        "is_provisional": false
+      },
+      "retainedCanonicalChild": {
+        "id": "a009570b-f50f-473e-9a2d-22951cd5f459",
+        "printing_gv_id": "GV-PK-BP-6-STD",
+        "finish_key": "normal",
+        "is_provisional": false
+      },
+      "sourceFacts": {
+        "pokemon": {
+          "id": "bp-6",
+          "name": "Dark Ivysaur",
+          "number": "6"
+        },
+        "tcgdex": {
+          "id": "bog-6",
+          "name": "Dark Ivysaur",
+          "number": "6",
+          "set": "bog"
+        }
+      },
+      "typographyOnlyDifference": false
+    },
+    {
+      "number": "7",
+      "legacy": {
+        "id": "1c88e69a-1b86-4677-bf93-b977e24e42a2",
+        "gv_id": "GV-PK-BOG-7",
+        "set_id": "157ea50d-3ab7-42a4-82d3-9e5c89f0a57c",
+        "set_code": "bog",
+        "name": "Dark Venusaur",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "",
+        "printed_identity_modifier": null
+      },
+      "canonical": {
+        "id": "03a8bb19-b9c2-42df-b18c-1671746030ab",
+        "gv_id": "GV-PK-BP-7",
+        "set_id": "c8debb57-da6f-46ce-8777-13ecedfe2856",
+        "set_code": "bp",
+        "name": "Dark Venusaur",
+        "number": "7",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "",
+        "printed_identity_modifier": null
+      },
+      "retainedLegacyChild": {
+        "id": "9e0ef6f3-6c2f-4b55-a05b-4c94d0dd37dc",
+        "printing_gv_id": "GV-PK-BOG-7-STD",
+        "finish_key": "normal",
+        "is_provisional": false
+      },
+      "retainedCanonicalChild": {
+        "id": "399cb935-008e-4cfb-8aa2-1317d9b0f316",
+        "printing_gv_id": "GV-PK-BP-7-STD",
+        "finish_key": "normal",
+        "is_provisional": false
+      },
+      "sourceFacts": {
+        "pokemon": {
+          "id": "bp-7",
+          "name": "Dark Venusaur",
+          "number": "7"
+        },
+        "tcgdex": {
+          "id": "bog-7",
+          "name": "Dark Venusaur",
+          "number": "7",
+          "set": "bog"
+        }
+      },
+      "typographyOnlyDifference": false
+    },
+    {
+      "number": "8",
+      "legacy": {
+        "id": "3f63983b-4a5a-41d2-a510-bfd327d62778",
+        "gv_id": "GV-PK-BOG-8",
+        "set_id": "157ea50d-3ab7-42a4-82d3-9e5c89f0a57c",
+        "set_code": "bog",
+        "name": "Rocket’s Mewtwo",
+        "number": "8",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "",
+        "printed_identity_modifier": null
+      },
+      "canonical": {
+        "id": "371e2c1c-4a18-4961-b2a3-8d01edc07e90",
+        "gv_id": "GV-PK-BP-8",
+        "set_id": "c8debb57-da6f-46ce-8777-13ecedfe2856",
+        "set_code": "bp",
+        "name": "Rocket's Mewtwo",
+        "number": "8",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "",
+        "printed_identity_modifier": null
+      },
+      "retainedLegacyChild": {
+        "id": "40ebf6d7-864c-4aef-85ac-bf36d5cd04c6",
+        "printing_gv_id": "GV-PK-BOG-8-RH",
+        "finish_key": "reverse",
+        "is_provisional": false
+      },
+      "retainedCanonicalChild": {
+        "id": "677f6bb6-ee77-58cf-aef5-9b7cba48cbc9",
+        "printing_gv_id": "GV-PK-BP-8-RH",
+        "finish_key": "reverse",
+        "is_provisional": false
+      },
+      "sourceFacts": {
+        "pokemon": {
+          "id": "bp-8",
+          "name": "Rocket's Mewtwo",
+          "number": "8"
+        },
+        "tcgdex": {
+          "id": "bog-8",
+          "name": "Rocket’s Mewtwo",
+          "number": "8",
+          "set": "bog"
+        }
+      },
+      "typographyOnlyDifference": true
+    },
+    {
+      "number": "9",
+      "legacy": {
+        "id": "c9975f91-2815-44f7-b2c8-d7652edaf321",
+        "gv_id": "GV-PK-BOG-9",
+        "set_id": "157ea50d-3ab7-42a4-82d3-9e5c89f0a57c",
+        "set_code": "bog",
+        "name": "Rocket’s Hitmonchan",
+        "number": "9",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "",
+        "printed_identity_modifier": null
+      },
+      "canonical": {
+        "id": "acf3e7a7-5f8d-43d2-ad5c-972db7568be7",
+        "gv_id": "GV-PK-BP-9",
+        "set_id": "c8debb57-da6f-46ce-8777-13ecedfe2856",
+        "set_code": "bp",
+        "name": "Rocket's Hitmonchan",
+        "number": "9",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "",
+        "printed_identity_modifier": null
+      },
+      "retainedLegacyChild": {
+        "id": "66eccac6-5424-4c03-8a57-2bb333065347",
+        "printing_gv_id": "GV-PK-BOG-9-RH",
+        "finish_key": "reverse",
+        "is_provisional": false
+      },
+      "retainedCanonicalChild": {
+        "id": "92bc003d-c229-5ff3-aa6b-a45974d6454c",
+        "printing_gv_id": "GV-PK-BP-9-RH",
+        "finish_key": "reverse",
+        "is_provisional": false
+      },
+      "sourceFacts": {
+        "pokemon": {
+          "id": "bp-9",
+          "name": "Rocket's Hitmonchan",
+          "number": "9"
+        },
+        "tcgdex": {
+          "id": "bog-9",
+          "name": "Rocket’s Hitmonchan",
+          "number": "9",
+          "set": "bog"
+        }
+      },
+      "typographyOnlyDifference": true
+    }
+  ],
+  "protectedWinnerParents": [
+    {
+      "id": "614efd10-0ce3-438b-8466-6584bebb88cb",
+      "gv_id": "GV-PK-BOG-1-WINNER-STAMP",
+      "set_id": "157ea50d-3ab7-42a4-82d3-9e5c89f0a57c",
+      "set_code": "bog",
+      "name": "Electabuzz",
+      "number": "1",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "winner_stamp",
+      "printed_identity_modifier": "winner_stamp",
+      "retainedChildCount": 0,
+      "finishAdjudication": "unresolved; no finish inferred by this discovery release"
+    },
+    {
+      "id": "c0204042-56f4-42a8-878c-7908a2925863",
+      "gv_id": "GV-PK-BOG-2-WINNER-STAMP",
+      "set_id": "157ea50d-3ab7-42a4-82d3-9e5c89f0a57c",
+      "set_code": "bog",
+      "name": "Hitmonchan",
+      "number": "2",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "winner_stamp",
+      "printed_identity_modifier": "winner_stamp",
+      "retainedChildCount": 0,
+      "finishAdjudication": "unresolved; no finish inferred by this discovery release"
+    },
+    {
+      "id": "33126ebf-99f6-4d76-a9bc-179c89e2eb34",
+      "gv_id": "GV-PK-BOG-6-WINNER-STAMP",
+      "set_id": "157ea50d-3ab7-42a4-82d3-9e5c89f0a57c",
+      "set_code": "bog",
+      "name": "Dark Ivysaur",
+      "number": "6",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "winner_stamp",
+      "printed_identity_modifier": "winner_stamp",
+      "retainedChildCount": 0,
+      "finishAdjudication": "unresolved; no finish inferred by this discovery release"
+    },
+    {
+      "id": "03e8e4c7-ad3d-470b-adb3-69082a7f6181",
+      "gv_id": "GV-PK-BOG-7-WINNER-STAMP",
+      "set_id": "157ea50d-3ab7-42a4-82d3-9e5c89f0a57c",
+      "set_code": "bog",
+      "name": "Dark Venusaur",
+      "number": "7",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "winner_stamp",
+      "printed_identity_modifier": "winner_stamp",
+      "retainedChildCount": 0,
+      "finishAdjudication": "unresolved; no finish inferred by this discovery release"
+    }
+  ],
+  "retainedActiveIdentityFacts": [
+    {
+      "card_print_id": "03a8bb19-b9c2-42df-b18c-1671746030ab",
+      "identity_domain": "pokemon_eng_standard",
+      "set_code_identity": "bp",
+      "printed_number": "7",
+      "normalized_printed_name": "dark venusaur",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 9,
+        "printed_set_abbrev": "BP",
+        "variant_key_current": "base"
+      },
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "a88cb033effb12fe52850fad7029116d75a289ef9b1008e4bfafa0a918145090"
+    },
+    {
+      "card_print_id": "03e8e4c7-ad3d-470b-adb3-69082a7f6181",
+      "identity_domain": "pokemon_eng_standard",
+      "set_code_identity": "bog",
+      "printed_number": "7",
+      "normalized_printed_name": "dark venusaur",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 9,
+        "printed_set_abbrev": "BOG",
+        "variant_key_current": "winner_stamp"
+      },
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "9c6f35f905d6bd93987cdd8838e457a1b0245bc9085828b4c78b1a305bd2ba65"
+    },
+    {
+      "card_print_id": "1c88e69a-1b86-4677-bf93-b977e24e42a2",
+      "identity_domain": "pokemon_eng_standard",
+      "set_code_identity": "bog",
+      "printed_number": "7",
+      "normalized_printed_name": "dark venusaur",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 9,
+        "printed_set_abbrev": "BOG"
+      },
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "c2c3cdd5d713b48b235350bd2cd45d996aa606be31a7d0c5c1d554140ea70d28"
+    },
+    {
+      "card_print_id": "2ff0f40b-493e-4a81-ae00-668e621c8b57",
+      "identity_domain": "pokemon_eng_standard",
+      "set_code_identity": "bog",
+      "printed_number": "2",
+      "normalized_printed_name": "hitmonchan",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 9,
+        "printed_set_abbrev": "BOG"
+      },
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "d0407b868821cc920b92e6eecfca16a5ec34bcb95355a51b80130e52ae94e316"
+    },
+    {
+      "card_print_id": "33126ebf-99f6-4d76-a9bc-179c89e2eb34",
+      "identity_domain": "pokemon_eng_standard",
+      "set_code_identity": "bog",
+      "printed_number": "6",
+      "normalized_printed_name": "dark ivysaur",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 9,
+        "printed_set_abbrev": "BOG",
+        "variant_key_current": "winner_stamp"
+      },
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "c342515fcf12957aa34426bc48949cac3ee4ea80de6491845f425d835a8bb05e"
+    },
+    {
+      "card_print_id": "371e2c1c-4a18-4961-b2a3-8d01edc07e90",
+      "identity_domain": "pokemon_eng_standard",
+      "set_code_identity": "bp",
+      "printed_number": "8",
+      "normalized_printed_name": "rocket's mewtwo",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 9,
+        "printed_set_abbrev": "BP",
+        "variant_key_current": "base"
+      },
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "ee8964cfa7a53403fe01d490042305d2753a48bddcd13048ac2bb0b4f5d9bd31"
+    },
+    {
+      "card_print_id": "3f63983b-4a5a-41d2-a510-bfd327d62778",
+      "identity_domain": "pokemon_eng_standard",
+      "set_code_identity": "bog",
+      "printed_number": "8",
+      "normalized_printed_name": "rocket’s mewtwo",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 9,
+        "printed_set_abbrev": "BOG"
+      },
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "62776ad0733e0a95e0f37f0810e65dcf66a71a19ece70f68038750b4ba76924c"
+    },
+    {
+      "card_print_id": "4e0665d4-2a6a-4602-8799-db55cbb5f588",
+      "identity_domain": "pokemon_eng_standard",
+      "set_code_identity": "bog",
+      "printed_number": "4",
+      "normalized_printed_name": "rocket’s scizor",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 9,
+        "printed_set_abbrev": "BOG"
+      },
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "8fe46d66335031029866c632bfe2d3b879f173c1382ed77648a604f9786a0260"
+    },
+    {
+      "card_print_id": "4e714b58-bcf3-4931-9c46-163dadba49b8",
+      "identity_domain": "pokemon_eng_standard",
+      "set_code_identity": "bp",
+      "printed_number": "1",
+      "normalized_printed_name": "electabuzz",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 9,
+        "printed_set_abbrev": "BP",
+        "variant_key_current": "base"
+      },
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "c12482e2f9f2c84858379a93db5afc056097ab046358a356e57b1927d7c588f2"
+    },
+    {
+      "card_print_id": "53761d11-41ee-4971-a393-67052780eb05",
+      "identity_domain": "pokemon_eng_standard",
+      "set_code_identity": "bp",
+      "printed_number": "5",
+      "normalized_printed_name": "rocket's sneasel",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 9,
+        "printed_set_abbrev": "BP",
+        "variant_key_current": "base"
+      },
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "26a91d85c45bb5f5a6dbf7d52f38bdf93aadbfc1446485a774a31fe52abe7223"
+    },
+    {
+      "card_print_id": "614efd10-0ce3-438b-8466-6584bebb88cb",
+      "identity_domain": "pokemon_eng_standard",
+      "set_code_identity": "bog",
+      "printed_number": "1",
+      "normalized_printed_name": "electabuzz",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 9,
+        "printed_set_abbrev": "BOG",
+        "variant_key_current": "winner_stamp"
+      },
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "e3e94de30d709f6cbaaf77f03f2cc8a1496a76b86d78741c374621e6fccc6cc3"
+    },
+    {
+      "card_print_id": "6b07130e-6ce9-468e-828b-3df34f7be2d4",
+      "identity_domain": "pokemon_eng_standard",
+      "set_code_identity": "bog",
+      "printed_number": "1",
+      "normalized_printed_name": "electabuzz",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 9,
+        "printed_set_abbrev": "BOG"
+      },
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "8c5bdd1408c4b8797b09bfa408459ef8fed884a679a74bea3c6eb48fe73145e2"
+    },
+    {
+      "card_print_id": "700be8a4-8283-411f-af66-371b61e443f9",
+      "identity_domain": "pokemon_eng_standard",
+      "set_code_identity": "bog",
+      "printed_number": "6",
+      "normalized_printed_name": "dark ivysaur",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 9,
+        "printed_set_abbrev": "BOG"
+      },
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "b2acddc346de312c2f75f398d9f0177084d5c2d815e36ba9f7a0a2320c9150c3"
+    },
+    {
+      "card_print_id": "796dfb87-68c7-43bb-b61f-153d40a64cf4",
+      "identity_domain": "pokemon_eng_standard",
+      "set_code_identity": "bp",
+      "printed_number": "6",
+      "normalized_printed_name": "dark ivysaur",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 9,
+        "printed_set_abbrev": "BP",
+        "variant_key_current": "base"
+      },
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "e4b5ecbd661a83d97b5b676fda540554200f1e2092b40b9f1f9e71c71f912112"
+    },
+    {
+      "card_print_id": "8dae8f1d-437f-464c-8415-50f763d1801d",
+      "identity_domain": "pokemon_eng_standard",
+      "set_code_identity": "bp",
+      "printed_number": "4",
+      "normalized_printed_name": "rocket's scizor",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 9,
+        "printed_set_abbrev": "BP",
+        "variant_key_current": "base"
+      },
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "eb5eff2ab109dc416ce2bf181cfcc0b8981e2e25f14bbe47acb4ea8f6efa5c03"
+    },
+    {
+      "card_print_id": "acf3e7a7-5f8d-43d2-ad5c-972db7568be7",
+      "identity_domain": "pokemon_eng_standard",
+      "set_code_identity": "bp",
+      "printed_number": "9",
+      "normalized_printed_name": "rocket's hitmonchan",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 9,
+        "printed_set_abbrev": "BP",
+        "variant_key_current": "base"
+      },
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "19e6c066af222d3514411830c1254fe56b0d593d33b8e7c37a78a4a5d3cf1034"
+    },
+    {
+      "card_print_id": "bd1d64ae-7ce1-469a-821f-2203099eab4f",
+      "identity_domain": "pokemon_eng_standard",
+      "set_code_identity": "bp",
+      "printed_number": "3",
+      "normalized_printed_name": "professor elm",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 9,
+        "printed_set_abbrev": "BP",
+        "variant_key_current": "base"
+      },
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "c5f0dde889487188d70b48978a43d512ddd6f7684813a67d5b29699a8a2af75a"
+    },
+    {
+      "card_print_id": "bdfa57ee-93dd-4ff2-88d0-4f90e217d0ec",
+      "identity_domain": "pokemon_eng_standard",
+      "set_code_identity": "bog",
+      "printed_number": "3",
+      "normalized_printed_name": "professor elm",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 9,
+        "printed_set_abbrev": "BOG"
+      },
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "e4288151dd70d3a2357f74503dd313df08911d22560b9b4f8407b50958585b4f"
+    },
+    {
+      "card_print_id": "c0204042-56f4-42a8-878c-7908a2925863",
+      "identity_domain": "pokemon_eng_standard",
+      "set_code_identity": "bog",
+      "printed_number": "2",
+      "normalized_printed_name": "hitmonchan",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 9,
+        "printed_set_abbrev": "BOG",
+        "variant_key_current": "winner_stamp"
+      },
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "2acd2436c3b81d503e5e088f0ec2fe3f464fea879275909e2bf4d1f34a01971c"
+    },
+    {
+      "card_print_id": "c9975f91-2815-44f7-b2c8-d7652edaf321",
+      "identity_domain": "pokemon_eng_standard",
+      "set_code_identity": "bog",
+      "printed_number": "9",
+      "normalized_printed_name": "rocket’s hitmonchan",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 9,
+        "printed_set_abbrev": "BOG"
+      },
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "a040965c5ee71a5b3266bb28d1375f554f483217ea60a239b6c5e0cf5a93999f"
+    },
+    {
+      "card_print_id": "cf3b8770-892a-41d8-8a47-647dbb742fee",
+      "identity_domain": "pokemon_eng_standard",
+      "set_code_identity": "bp",
+      "printed_number": "2",
+      "normalized_printed_name": "hitmonchan",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 9,
+        "printed_set_abbrev": "BP",
+        "variant_key_current": "base"
+      },
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "6b99e190255e06fc235919340f12d9efc46d8f2db43ddeb8c75781dba98362cf"
+    },
+    {
+      "card_print_id": "da7a223c-b039-4fa0-99c1-c8e396f90f5f",
+      "identity_domain": "pokemon_eng_standard",
+      "set_code_identity": "bog",
+      "printed_number": "5",
+      "normalized_printed_name": "rocket’s sneasel",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 9,
+        "printed_set_abbrev": "BOG"
+      },
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "identity_key_hash": "08689663e6d42a51e602e53a23052c99af10928481958109e23f64ce8b8d3704"
+    }
+  ]
+}
