@@ -361,3 +361,42 @@ export function classifyTcgplayerMarketProductScopeV2(row={}) {
     unsupportedProductRules: UNSUPPORTED_PRODUCT_RULES_V1_5,
   });
 }
+
+// Existing V2 SQL binds this exact product, its official printed number and
+// unique canonical parent/finish. A collection/event label in an individual
+// card's title is not evidence that the row is a sealed product. Require the
+// independently retained card-type/number fields as well as that governed lane.
+export function governedOnePieceSingleCardEvidenceV1(row={}) {
+  const uuid=/^[a-f0-9]{8}-(?:[a-f0-9]{4}-){3}[a-f0-9]{12}$/i;
+  const meta=row.source_mapping_meta;
+  if (Number(row.category_id)!==68 || row.identity_domain!=='one_piece_eng_print' ||
+      row.mapping_method!=='governed_cross_tcg_exact_finish_v2' ||
+      !['source_mapping_count','card_print_mapping_count','card_printing_mapping_count','identity_domain_count'].every(k=>Number(row[k])===1) ||
+      !/^[1-9]\d*$/.test(String(row.cross_tcg_source_mapping_id??'')) ||
+      ['cross_tcg_printing_mapping_id','source_mapping_id','variant_assignment_id','edition_assignment_id','gym_edition_assignment_id','mtg_printing_mapping_id'].some(k=>row[k]!=null) ||
+      row.variant_assignment_status!=='exact_child_finish' || row.variant_assignment_version!=='CROSS_TCG_EXACT_FINISH_V2' ||
+      !uuid.test(row.card_print_id??'') || !uuid.test(row.card_printing_id??'') || !text(row.gv_id) || !text(row.printing_gv_id) ||
+      !['normal','foil'].includes(row.finish_key) || row.normalized_finish_key!==row.finish_key || text(row.source_subtype_name).toLowerCase()!==row.finish_key ||
+      row.source_product_active!==true || row.source_product_catalog_status!=='current' ||
+      !Number.isSafeInteger(Number(row.source_product_id)) || Number(row.source_product_id)<=0 ||
+      !Number.isSafeInteger(Number(row.group_id)) || Number(row.group_id)<=0 ||
+      meta?.mapping_authority!=='exact_durable_source_product_with_official_number_name' ||
+      meta.promotion_plan_version!=='ONE_PIECE_COMPLETE_ENGLISH_NUMBERED_PARENT_PROMOTION_PLAN_V1' ||
+      !uuid.test(meta.durable_staging_row_id??'') || Number(meta.source_group_id)!==Number(row.group_id)) return null;
+  const fields=row.source_product_extended_data;
+  if(!Array.isArray(fields))return null;
+  const values=name=>fields.filter(f=>text(f?.name).toLowerCase()===name).map(f=>text(f.value));
+  const numbers=values('number'),types=values('cardtype');
+  if(numbers.length!==1 || types.length!==1 ||
+      !/^(?:(?:OP|ST|EB|PRB)\d{2}|P)-\d{3}$/i.test(numbers[0]) ||
+      !['leader','character','event','stage'].includes(types[0].toLowerCase())) return null;
+  return {version:'GOVERNED_ONE_PIECE_SINGLE_CARD_EVIDENCE_V1',source_product_id:Number(row.source_product_id),source_group_id:Number(row.group_id),source_mapping_id:String(row.cross_tcg_source_mapping_id),durable_staging_row_id:meta.durable_staging_row_id,printed_number:numbers[0].toUpperCase(),card_type:types[0].toLowerCase(),number_match_authority:'v_cross_tcg_market_targets_v2'};
+}
+
+export function classifyTcgplayerMarketProductScopeV2_1(row={}) {
+  const prior=classifyTcgplayerMarketProductScopeV2(row);
+  if(prior.reason_code!=='unsupported_product_kind')return prior;
+  const proof=governedOnePieceSingleCardEvidenceV1(row);
+  if(!proof)return prior;
+  return {...result({scopeResult:'in_scope',ruleId:'governed_one_piece_numbered_single',productName:text(row.source_product_name),groupName:text(row.source_group_name),hasPrintedNumberEvidence:true,policyVersion:'TCGPLAYER_MARKET_PRODUCT_SCOPE_POLICY_V2_1'}),governed_single_card_evidence:proof};
+}

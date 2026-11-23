@@ -1,0 +1,49 @@
+{
+  "executionAuthority": false,
+  "sourcePins": {
+    "docs/audits/english_master_index_publishable_v1/sets/ex11/cards.json": "22b1a68668fab0742786e3cd78fff927e7a22c81af11240e2bda24b9404b2c0e",
+    "docs/audits/english_master_index_publishable_v1/sets/ex11/printings.json": "f61b1c8da2a3d9be1c9f787965a69ebfc0faf7b29b5954d1f0123a66e8adcca5"
+  },
+  "official": {
+    "url": "https://assets.pokemon.com/assets/cms/pdf/tcg/checklists/deltaspecies_checklist.pdf",
+    "path": "deltaspecies_checklist.pdf",
+    "sha256": "a4695552b2465220b222e3901bcbf71d11dba2d27fc84311683f043a1889cfb1",
+    "page": 1,
+    "visuallyInspected": true
+  },
+  "physicalImage": {
+    "gvId": "GV-PK-DS-49",
+    "parentId": "c1ff04aa-1015-4a3e-a568-acf419b7eb22",
+    "file": "ex11-49-mana-stamped-source-v1.jpg",
+    "sha256": "b522ca83281b64e2b196d9e03677d81c82b512e48c902b5718ee951b4e45c3fd",
+    "listing": "https://managaming.shop/products/metang-49-113-delta-species-stamped-ex-delta-species",
+    "visibleName": "Metang",
+    "visibleNumber": "49/113",
+    "deltaSpeciesGraphic": true,
+    "visibleSetLogo": "EX DELTA SPECIES",
+    "prereleaseWordVisible": false,
+    "observations": "Set logo at lower right of artwork; reflective patterned artwork and frame visible. Normal version is separately supported by official checklist.",
+    "imageKind": "catalog scan"
+  },
+  "dependencyStatePin": "0ede6e221310b8636d0f86abfcaed4aaa342f2190c0e928ee881b3c2a5815e69",
+  "parentFullRowSha256": "2c1d3e49868e6d1c08f8af3ab2bb341049985e48efcaef10932fa781be800596",
+  "identity": {
+    "id": "c8c11831-79ab-49f9-bf7c-3f7b52be9406",
+    "is_active": true,
+    "created_at": "2026-06-15T05:13:03.711116+00:00",
+    "updated_at": "2026-06-15T05:13:03.711116+00:00",
+    "card_print_id": "c1ff04aa-1015-4a3e-a568-acf419b7eb22",
+    "printed_number": "49",
+    "identity_domain": "pokemon_eng_standard",
+    "source_name_raw": null,
+    "identity_payload": {
+      "printed_total": 113,
+      "printed_set_abbrev": "DS",
+      "variant_key_current": "base"
+    },
+    "identity_key_hash": "9a54564924e89daddc5bb30f79e4817defc4a721b140a36b9b919a5e77d78cff",
+    "set_code_identity": "ex11",
+    "identity_key_version": "pokemon_eng_standard:v1",
+    "normalized_printed_name": "metang δ"
+  }
+}
