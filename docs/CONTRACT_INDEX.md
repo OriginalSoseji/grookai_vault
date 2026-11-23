@@ -13,6 +13,7 @@ If a contract is missing from this index, it is not authoritative.
 
 | Contract | Status | Description |
 |--------|--------|-------------|
+| PLAY_STAMP_NORMAL_MARKET_PUBLICATION_V1 | Active candidate under qualification; production activation pending | docs/contracts/PLAY_STAMP_NORMAL_MARKET_PUBLICATION_V1.md — Strict current physical and approved-link authority for closed 75 Normal identities, unchanged foil holds and full-scope worker V1_28 cursor traversal; own full shadow and normal release gates required |
 | PLAY_STAMP_MARKET_MAPPING_V1 | Active bounded implementation; exact production approval required | docs/contracts/PLAY_STAMP_MARKET_MAPPING_V1.md — Separate exact43 insert-only TCGplayer parent links after actual reviewed Normal children; original provenance, zero canonical/owner/Market writes and unchanged generic mapper |
 | PLAY_STAMP_NORMAL_RECOVERY_MARKET_MAPPING_V2 | Active bounded candidate under qualification; exact production approval required | docs/contracts/PLAY_STAMP_NORMAL_RECOVERY_MARKET_MAPPING_V2.md — Separate 28 recovered Normal product links, preserved two Holofoil holds and strict existing-parent-link exclusion; no original V1 widening or publication authority |
 | PLAY_STAMP_SERIES5_NORMAL_MARKET_MAPPING_V1 | Active bounded candidate under qualification; exact production approval required | docs/contracts/PLAY_STAMP_SERIES5_NORMAL_MARKET_MAPPING_V1.md — Separate four exact Temporal Forces product links after actual reviewed children, immutable provenance, sequence preservation and independent write gates |
