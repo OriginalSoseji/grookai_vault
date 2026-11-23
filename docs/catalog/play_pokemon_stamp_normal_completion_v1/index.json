@@ -1,0 +1,177 @@
+{
+  "version": "PLAY_STAMP_NORMAL_SOURCE_INDEX_V1",
+  "executionAuthority": false,
+  "physicalPrintingInventoryComplete": false,
+  "targetParents": 43,
+  "normalPrintingInserts": 43,
+  "baselineCounts": {
+    "targets": 43,
+    "sets": 9,
+    "retainedParents": 2262,
+    "retainedChildren": 3557,
+    "childrenAfter": 3600
+  },
+  "scopes": [
+    {
+      "setCode": "sv09",
+      "setId": "220391d1-7e93-440c-b034-8769ef6f74a4",
+      "manifestFingerprint": "322aa629b00390bcbbd57b96c00c3893c0b3241f62aea313c3b24c48444ec8a1",
+      "parents": [
+        "222fad39-fa68-4192-a974-22db66915224",
+        "6f32786c-1485-4e6b-a049-5795a609ae26",
+        "730853a1-878b-4e2e-8be3-81500cc27b81",
+        "d80841d2-8efe-43e7-a446-d173bf12f686"
+      ],
+      "files": {
+        "manifest.json": "2c2591ed43b01f79bfdab26457066e37aa66bc0c1608b7173d21eca11d5f35dd",
+        "review.json": "5775b02d1837404aac025f8727395475535fe2b85ff7cd37497339de662aa937",
+        "master_facts.json": "e6622f26c0e4e94f3821c49ea1507e981bb1fffe9a614286459fa1b2de67ff0a",
+        "source-bindings.json": "2e1fd322736c14bfa1e9e32615b7bc61332358810fab6ab1566bc806cf434822"
+      }
+    },
+    {
+      "setCode": "sv10",
+      "setId": "4538bede-9bd3-489e-8873-b5239863a0c6",
+      "manifestFingerprint": "44728bb8a55785a750230bc7d4af4902d1635b2b0e93376dc3a72238529e2890",
+      "parents": [
+        "11283920-fb73-4927-976c-e8ff90a7b054",
+        "29f49fdd-6e51-453b-a33d-510d2b9e73a6",
+        "5e0b1a21-4b40-4ea3-81ee-b2ac8d8c34a3",
+        "6733781e-089b-4fcb-88f6-b842e326c5c4",
+        "94bdf076-b7b2-437a-8f8d-07cf86efbdf8",
+        "ad1048dc-441a-4393-8bda-ab3cc73e1022"
+      ],
+      "files": {
+        "manifest.json": "aef96b3b6987eda5129e86cf38d4e400529e6a0f8243646736afb0f723addb14",
+        "review.json": "6f56b1b480d4546c5bcc577af1f8a5038537422b67f850cc52d4b24eb249147d",
+        "master_facts.json": "405ae791a74d880415e1d446752360c98c8891d9dfe04530f2e072bee0bd7b20",
+        "source-bindings.json": "a02eb436f04fc1f691238d814a2c1b3c6ad51ef8953953855ac13f85c542d22d"
+      }
+    },
+    {
+      "setCode": "swsh6",
+      "setId": "68dc2f0d-ca52-4b09-b9e4-bbaa26a8037d",
+      "manifestFingerprint": "5fdf22dc0da65361907aac1200e5c6c977844db69f78a5de48eaa93fc496b742",
+      "parents": [
+        "12d4de68-02de-4f36-a2e7-89471dad153f",
+        "29664a58-d062-44df-862e-6a9878902308",
+        "4635c867-d945-4eac-b4ba-d8f0c675066d",
+        "53de5ec1-0263-45de-93bc-3caad7fd8093",
+        "8bbfb4dd-8186-4b52-834d-e9b68cf0c109",
+        "f86a17b4-d692-48e9-aa3a-41af79977b24"
+      ],
+      "files": {
+        "manifest.json": "9dbdf22af3609564ec483ef0a9e2956e6265b5fcaa9886cea7a2029e2d007b89",
+        "review.json": "904c8e353572b13791835c54d9bc810459ea6e0fe239319285bc37933951cefa",
+        "master_facts.json": "4eef6870cf26683160888d41a72d0ae1dc3c1499f8d3b2a0ed9c1a912d20f612",
+        "source-bindings.json": "a3e047b10808325b2b99f866cd149aa56b4979b31047dce658efdb77f71fbfa3"
+      }
+    },
+    {
+      "setCode": "swsh9",
+      "setId": "78d481b4-0300-41d9-8e56-634311e527a2",
+      "manifestFingerprint": "3b7eea8cad9c69255deff773997253c9964e26a889a4cf9acddfbb101862017e",
+      "parents": [
+        "414d875a-f214-4d23-b8fe-7b2217008c50",
+        "47d31d1d-2ec2-4041-856c-533eddcaa566",
+        "528c3eb3-a354-455b-bdad-a4261c642632",
+        "7b2e94af-d1d7-437b-97d6-341ad92dc618",
+        "7bb5d2e8-031d-41d9-befa-80c9b2e335c7",
+        "7cd46223-4ede-4153-a13a-cc8f3073ffa2",
+        "99ff0de9-501a-46d5-82d5-a70f159999dc",
+        "b8bc7c72-583d-4f73-8061-30b59282995f",
+        "d9475b94-d8e5-4a91-92da-ca99085c5ccc",
+        "fb85792f-6933-44c3-9bd2-3c598dfbffb3"
+      ],
+      "files": {
+        "manifest.json": "18d1765d13e46cb2e717fa3c554da9298cae68e18bfa469a8592924109290420",
+        "review.json": "16262195c2f2a8eb962e2ea346f8b713343709228f32e202668f3af41ae1c483",
+        "master_facts.json": "160cfe116c5946cab7404688063815401f2fbd91c79aa6ef9627fcc81ce68ecd",
+        "source-bindings.json": "edd8f2257550998d4b5a41f3bdd408b8ae635e1848131818a8ffd4bee6cf9b0b"
+      }
+    },
+    {
+      "setCode": "swsh5",
+      "setId": "7ca9aefb-ffa9-4b24-ba8c-8b545b80eb83",
+      "manifestFingerprint": "995b0195200f776831f7900e1c29a8be9d2ccbd34e383a975719ebdb02ace417",
+      "parents": [
+        "3af76438-693a-4673-9302-e69101be1108",
+        "64cff63a-ea0e-48be-9df9-dce7da5418af",
+        "aa051709-c991-4f33-bee5-d3b42a944c51"
+      ],
+      "files": {
+        "manifest.json": "acd2d67a48c99ce2c55969520d8528a9dc8ecc4904ba52e81a053deed80d8088",
+        "review.json": "32d92b1a8129ad3c64385d78e995a28bb79d1c286aa15aab3aa900c338aa79b1",
+        "master_facts.json": "27e75fa5a5750475dba5ec39baa9af4443ad767bcfa111034769e1d4bd1e3978",
+        "source-bindings.json": "a3d04630bd558f1d67dc436b98c66c831f4ee77269dce8f2bdf161ed0077b1e8"
+      }
+    },
+    {
+      "setCode": "swsh1",
+      "setId": "865570b1-12ba-4d7b-94e7-13c7e4dc0657",
+      "manifestFingerprint": "7602a826f8155bfd71ccaf21e2ca8d0b75f7f2a2355eeaf827862f2796534115",
+      "parents": [
+        "adcb8767-df1b-4b95-81f4-02b9562983b5"
+      ],
+      "files": {
+        "manifest.json": "235b6eb951122a5bf73c28ab3ef7668bfe4d7d0ee8fd47693268b395fc626272",
+        "review.json": "156fc63c2d0caa869bb6f1da57b9fdcaa0a4642c795148736cebda8179ee0e55",
+        "master_facts.json": "c665904492ac58f18e6fe5313d55d2ab3ec8a341410b3ed92c34366c86827476",
+        "source-bindings.json": "1033beaeaec7146ed8962f127d948382d13e52f7cf66064f14fb4ca4291dcb36"
+      }
+    },
+    {
+      "setCode": "swsh8",
+      "setId": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+      "manifestFingerprint": "9e0d0a707d93226572eaf8e4c4a3fd57729e339d77576bb9cd7f54e24a7fc256",
+      "parents": [
+        "1825f545-d4ed-4095-80ae-fe4337d8c0b6",
+        "40873ac3-f9fc-417f-9c82-dc22169bcd74",
+        "7cc19bb0-8d5c-4d6c-950d-7400fc989dcc",
+        "8c49c5fc-5604-44ed-977f-e191329617e9",
+        "c576a3f9-2890-4a7e-99d1-dacbe433ac86",
+        "f4a7cd0e-ea31-451a-9de9-e7b36164b18f"
+      ],
+      "files": {
+        "manifest.json": "9b46ab832dac5ce1b2c34ffae934ef81cd3de9e740afbc6bf371d8344a2d8677",
+        "review.json": "3c044271291d073233bb16546ba7dcede5209f0fd8a5c22e1c5138ee37a2cd53",
+        "master_facts.json": "a13a2da3ff581e12b4cbb93ef3dc5d2a46d330d73bda6443b96aa88ee60bd87c",
+        "source-bindings.json": "2e96c329830303a6cf1b4615c828c5d6534a8d14c55f7ac24e27de346041b51e"
+      }
+    },
+    {
+      "setCode": "swsh7",
+      "setId": "ced2540c-d8a2-410a-8e13-e4a65b89ec75",
+      "manifestFingerprint": "d9b51e7556d04d51c7039934ebd58e67fba7f5419ef74e404ca6f5856d373c86",
+      "parents": [
+        "05950699-f023-4792-b882-34ed31b89e11",
+        "20a819da-551d-4c5e-bbe1-7befb2729ccb",
+        "2b8849f6-737b-4db5-b797-df7907e520ca",
+        "916e1289-5743-4e93-b089-6b32cc5798f4",
+        "93f44333-c167-41fe-9300-eaa0c5f23eb9",
+        "fcb018bb-2242-462f-b47e-4c9c56c78e77"
+      ],
+      "files": {
+        "manifest.json": "b0ceb2e3a2b1961a02b7b2fa45a2900889e165db0e0e971048f14f3e9bf17b1b",
+        "review.json": "18ad1524db4af82f06953baf780ac443c363abe046614432ee06a4ba71dffcc4",
+        "master_facts.json": "ab60ea06722bcc90fc6c4e331f0874f98f8d8acd3b64c29319cb43e5b244865c",
+        "source-bindings.json": "bbd5f795c8159ac316dec9b26d6c18e8681203ca87beafdeb2ba31f1aa3fb683"
+      }
+    },
+    {
+      "setCode": "sv07",
+      "setId": "ee1a5b54-f271-406e-a24e-4143eb882232",
+      "manifestFingerprint": "0053128a30292dfadd9e89adf605387c24ac300e622a3cad1cc13d626e89c6bb",
+      "parents": [
+        "3efe6043-c485-435b-aa1b-e6e83b3281e6"
+      ],
+      "files": {
+        "manifest.json": "3a509b08e6e9f6e8b08b19b25efcad0eb52ea51f1f8b028c70c5d85900f1165c",
+        "review.json": "695ea62b3e79d39127be57b387bc7fd9f8b5d4be43b32aa6bb5428c2e5da941f",
+        "master_facts.json": "dff20c79846cbc2ec7f20271ada219769b596d3efe4c20886b6b8c8791c80e6a",
+        "source-bindings.json": "2e50bf934a78ce4263485460dae53e655920703f89e42170eb47508887c9a4c0"
+      }
+    }
+  ],
+  "fingerprint": "2f37fcdc2494d9849afcb8a8f9081a296afe9b7032b36f81589e189bf8ffdd4e"
+}

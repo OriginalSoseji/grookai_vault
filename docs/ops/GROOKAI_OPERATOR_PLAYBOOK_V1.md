@@ -159,6 +159,110 @@ The511-to512 lab is isolated; preserve all retained labs, both sets,
 Magic Bog/Boggart matching. No production discovery change is yet qualified.
 After this family, the owner requested all stamped Reverse Holos, including
 Holon Phantoms and Delta Species. Each finish needs exact physical evidence.
+# Price/stamp exact519 continuity — November22,2026
+
+The [519 audit](../audits/PRICE_STAMP_SCHEMA_519_CONTINUITY_20261123.md) binds the
+already-applied search-only migration source and independent complete schema/
+security review. Restore its exact source bytes without reapplying production
+SQL. Use the newly rebound519 plans/producers and separate519 evidence/mapping
+clones. Preserve all old518 plans, labs and the obsolete cancelled V9 run. Both
+full normal hooks and actual hosted checks must qualify the final whole tree;
+never carry an older source's qualification or accept an unknown later ledger.
+The49 physical facts and existing references remain unchanged. This preparation
+grants no original founder authority, Market activation or permission changes.
+
+# Exact Play! Pokémon Market links — November22,2026
+
+Use the [separate43-mapping contract](../contracts/PLAY_STAMP_MARKET_MAPPING_V1.md)
+and `scripts/audits/play_stamp_market_mapping_v1.mjs`. Current source has43
+positive Normal Market quotes but no TCGplayer mappings. The V4 reference lane
+alone cannot fill tiles. Keep the generic base-variant mapper unchanged. Prepare
+the private prospective plan read-only; require actual canonical children,
+original exact raw/candidate/JustTCG links, unique source owners, current products
+and schema pins, then separately approved rollback/apply/readback. Insert only43
+explicit-ID parent mappings; preserve old rows and the sequence. Canonical,
+ownership, assignment and Market writes stay zero in this stage. Four unproven
+Holofoil observations remain unmatched. Run this after both canonical readbacks
+and before the full worker27 shadow. Recheck conditions through the published
+V3 reader after activation; V4 must retain its persistent-assertion exclusion.
+Preserve the separate cloned lab and every failed receipt.
+
+# Exact EX price evidence correction — November22,2026
+
+The [separate six-assignment contract](../contracts/EX_INTRINSIC_PRICE_ASSIGNMENT_REPAIR_V1.md)
+and `scripts/audits/ex_intrinsic_price_assignment_repair_v1.mjs` govern six
+append-only private receipts after the actual approved EX printing batch. Existing
+V1 held receipts are immutable; normal preparation alone will not upgrade them.
+Prepare read-only using the original canonical plan/source bytes, then obtain
+exact stage plan/complete-producer approval and run preflight, actual rollback,
+apply and independent readback. Prospective preparation is explicitly not actual
+canonical readiness. Partial/colliding rows, schema/source/mapping drift and
+unknown exact-printing assertions stop execution. No old-row, source observation,
+canonical, mapping, owner or Market mutation belongs to this correction. New
+receipts keep all public flags false. The subsequent complete worker27 shadow
+and ordinary guarded activation remain mandatory. Local449-table/duplicate-key/
+role checks passed without Auth users; retained labs must not be reset/reseeded.
+
+# Numbered singles and exact EX printing preparation — November22,2026
+
+Use `C:/grookai_stamp_completion_20261122` and the
+[combined checkpoint](../checkpoints/2026-11-22_price_stamp_completion.md).
+The [numbered-single pricing checkpoint](../checkpoints/pricing/ONE_PIECE_NUMBERED_SINGLE_PRICING_20261122.md)
+records worker V1_27: exact governed One Piece singles with an official printed
+Number and CardType can retain eligibility when their titles mention a Premium
+Card Collection or Pre-Release Tournament. The read-only replay covers357
+positive-quote printings; it is not proof of production publication. V1_27 also
+contains the unchanged V1_26 Cosmo guard and supersedes that unpublished release.
+Safely drain the owned V1_26 shadow and preserve its cancelled/partial evidence;
+the existing V1_25 publication stays live. The completed verified full warehouse
+refresh may be reused only while it remains the latest fresh generation.
+Require V1_27's own complete same-runtime shadow, coverage/provenance checks,
+guarded activation and independent consumer readback. Never reuse V1_26's partial
+publication shadow, treat cancellation as qualification or relax another hold.
+
+The separate [EX execution contract V2](../contracts/EX_INTRINSIC_PRINTING_EXECUTION_V2.md)
+and `scripts/audits/ex_intrinsic_printing_execution_v1.mjs` prepare exactly six
+Normal/Reverse children under three reviewed EX base parents. Preparation and
+source qualification grant no canonical write authority. The executor requires
+the original bound evidence, exact plan and producer fingerprints, separately
+approved founder authority, a fresh actual production rollback, and durable
+readback. Preserve all329 parents/620 retained children, existing assignments
+and unassigned copies. This six-finish lane does not close the explicit-stamp
+backlog. Use the combined checkpoint's census to distinguish missing physical
+facts, unresolved mapping/finish authority, held products and absent quotes.
+V2's [scope-name audit](../audits/EX_INTRINSIC_SCOPE_NAME_AUDIT_20261122.md)
+corrects the overview to Dragonair δ 28 (ex15). The exact six facts, UUIDs,
+source bytes and V1 executor protocol are unchanged. The
+[historical V1 overview](../contracts/EX_INTRINSIC_PRINTING_EXECUTION_V1.md)
+stays preserved; the producer must bind V2 and its audit before approval.
+
+# Play! Pokémon exact condition references V4 — November22,2026
+
+Read [the bounded V4 contract](../contracts/TCGTRACKING_CONDITION_COVERAGE_V4.md).
+Exactly43 reviewed Normal printings can use their preserved JustTCG→TCGplayer
+source crosswalk after the separately approved canonical printing apply. The
+server requires exact program/review/identity/source pins and current unique
+ownership on every request. It neither inserts a TCGplayer mapping nor fills a
+Market tile; existing mapping writers keep their own admission/approval gates.
+The installed clients retain the same authenticated condition API/DTO, supplied
+amounts and unavailable states. Require full source qualification, deployment
+readback and actual collector verification; a source-feed proof alone is not
+live application acceptance.
+
+# Play! Pokémon stamped Normal preparation — November22,2026
+
+Use `C:/grookai_play_stamp_normals_20261122`, the
+[43-printing checkpoint](../checkpoints/2026-11-22_play_stamp_normals.md) and
+[bounded execution contract](../contracts/PLAY_POKEMON_STAMP_NORMAL_EXECUTION_V1.md).
+`scripts/audits/play_stamp_normal_execution_v1.mjs` is a separate exact43-parent,
+Normal-only lane. Original official PDFs and independent checklists are required
+on every mode. Generic red foil markers and legacy stamp variants are not
+admitted. Preserve all nine-set families, hidden options and existing owner
+assignments. Source qualification is not production authority: bind exact plan
+and producer approval, actual fresh production rollback, durable independent
+readback and collector verification before completion. Keep the earlier EX and
+other bounded executors unchanged; these43 facts do not close every missing stamp.
+
 # Cosmo title price guard — November22,2026
 
 Use `C:/grookai_cosmo_price_guard_20261122` and the
@@ -5815,3 +5919,18 @@ See the [filter-navigation checkpoint](../checkpoints/2026-11-20_pokemon_playabl
 and the real-page Chromium/WebKit regression cases in the search audit suite.
 Verify production page routing together with resolver membership; a successful
 resolver-only query cannot prove that a direct browser link displays playables.
+
+# Duplicate catalog current-main V14 — November22,2026
+
+The V14 contract preserves both the exact catalog correction and PR1020 stamp/
+pricing preparation. Production remains519 after the approved70424426 SQL;
+the genuine catalog API failed at3253ms and its independent120-scope data audit
+passed. The sole pending SQL is unchanged08201421/050000, with no new index or
+row write. Preserve source2ab08008/tree8deae630 and all local/normal proof;
+the main-advance stop occurred before packaging or520 apply. Require new full
+normal/hosted qualification on actual main e2070734, fresh strict preflight,
+original120-scope before, exact-one dry-run and exact source/SQL owner decision.
+Original data anchors, approved5832+17/972+972 cohorts, named clocks and the
+2026-11-23T13:59:40Z expiry stay fixed. Complete genuineAPI/data/security,
+three fixed fresh samples, normal merge, Production25-page readback and exact
+control restoration before closing dupes or executing any stamped-printing plan.

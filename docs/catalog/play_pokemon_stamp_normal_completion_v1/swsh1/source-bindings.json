@@ -1,0 +1,27 @@
+{
+  "executionAuthority": false,
+  "scope": "normal_only_not_full_inventory",
+  "preservedFiles": {
+    "official-series1": {
+      "file": "official-series1-original.pdf",
+      "sha256": "29500763ba9335d2718ece92a9c3cc074390fc89b2890b44bbfca3c141089323",
+      "source_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_1_web_cardlist_en.pdf",
+      "retrieved_at": "2026-04-21T03:53:14.810010+00:00"
+    },
+    "wiki-series1": {
+      "file": "bulbapedia-pps1-response-v1.txt",
+      "sha256": "c48fefb2c381120f32aa9bb3e00350393c9cc97ff81dd51c369872221c2d806c",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+      "retrieved_at": "2026-11-22T23:29:06.652Z"
+    }
+  },
+  "extraction": {
+    "method": "Official PDF bounding boxes plus actual unedited Poppler-rendered marker RGB. Black standard-set only.",
+    "source_extraction_sha256": "bc404a4a5ca50a73f9c19e8537eab578df5778d4d5b0b5a78ad65070d1e369aa",
+    "extractor_sha256": "07cd2e7b5c7ec38a025fe58862bf4d6e19bc33bab78ef5087b4fe4be77817d81",
+    "original_pdf_pages_visually_inspected": true
+  },
+  "canonicalTargetIds": [
+    "adcb8767-df1b-4b95-81f4-02b9562983b5"
+  ]
+}

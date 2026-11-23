@@ -1,0 +1,49 @@
+{
+  "executionAuthority": false,
+  "sourcePins": {
+    "docs/audits/english_master_index_publishable_v1/sets/ex15/cards.json": "1171d1763b10ecb5f741c3376405242897a73f006a2c9930a3bf203ccabada0f",
+    "docs/audits/english_master_index_publishable_v1/sets/ex15/printings.json": "9eaec0f839bd847a42464d1bd0102a2516b42c7766eef7f0deb443bbab195bac"
+  },
+  "official": {
+    "url": "https://assets.pokemon.com/assets/cms/pdf/tcg/checklists/dragonfrontiers_checklist.pdf",
+    "path": "dragonfrontiers_checklist.pdf",
+    "sha256": "8bdecf2a1eb995e33e48e1c0bad60e9affbcabfc50cb08a9a38a8b30aa675fa6",
+    "page": 1,
+    "visuallyInspected": true
+  },
+  "physicalImage": {
+    "gvId": "GV-PK-DF-28",
+    "parentId": "d905a802-d848-4e1c-ac3d-227323fb6e26",
+    "file": "ex15-28-mana-stamped-source-v1.jpg",
+    "sha256": "649efda5feb88de975182ffd0a313f3bf709e52183c47e19ea0942e2efeaa84b",
+    "listing": "https://managaming.shop/products/dragonair-28-101-delta-species-stamped-ex-dragon-frontiers",
+    "visibleName": "Dragonair",
+    "visibleNumber": "28/101",
+    "deltaSpeciesGraphic": true,
+    "visibleSetLogo": "DRAGON FRONTIERS",
+    "prereleaseWordVisible": false,
+    "observations": "Set logo at lower right of artwork. Flat scan does not independently establish the surface finish; Reverse classification additionally uses exact listing and official parallel checklist.",
+    "imageKind": "catalog scan"
+  },
+  "dependencyStatePin": "0ede6e221310b8636d0f86abfcaed4aaa342f2190c0e928ee881b3c2a5815e69",
+  "parentFullRowSha256": "e10e31913e3446e366702c26274e27bcb783b3ad926cbcf1a70b7ad299d8985a",
+  "identity": {
+    "id": "a3fe3a0e-4aa6-45f7-872d-fc123bba5ed7",
+    "is_active": true,
+    "created_at": "2026-06-15T05:13:03.711116+00:00",
+    "updated_at": "2026-06-15T05:13:03.711116+00:00",
+    "card_print_id": "d905a802-d848-4e1c-ac3d-227323fb6e26",
+    "printed_number": "28",
+    "identity_domain": "pokemon_eng_standard",
+    "source_name_raw": null,
+    "identity_payload": {
+      "printed_total": 101,
+      "printed_set_abbrev": "DF",
+      "variant_key_current": "base"
+    },
+    "identity_key_hash": "38cfe92c1e8efe31cfc5d4d869711131339ab45e61bf5ba187699eb656663197",
+    "set_code_identity": "ex15",
+    "identity_key_version": "pokemon_eng_standard:v1",
+    "normalized_printed_name": "dragonair δ"
+  }
+}

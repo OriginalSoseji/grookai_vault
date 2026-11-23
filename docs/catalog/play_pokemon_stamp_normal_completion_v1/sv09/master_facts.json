@@ -1,0 +1,259 @@
+{
+  "version": "PLAY_POKEMON_STAMP_NORMAL_MASTER_FACTS_V1",
+  "status": "master_admissible",
+  "language": "en",
+  "set_code": "sv09",
+  "scope": "exact_generic_play_pokemon_stamp_normal_facts_only",
+  "complete_printing_inventory": false,
+  "foil_pattern_adjudicated": false,
+  "records": [
+    {
+      "card_print_id": "6f32786c-1485-4e6b-a049-5795a609ae26",
+      "card_name": "Brock's Scouting",
+      "printed_coordinate": "146",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 7,
+          "official_pdf_sha256": "a058469447a1e4eaf92027003e0cf77a17333b287169d1e81d492509a3c74007",
+          "official_row": {
+            "series": 7,
+            "name": "Brock’s Scouting",
+            "name_alignment_resolved": true,
+            "set_token": "JTG",
+            "printed_number": "146",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "JTG",
+              "xMin": 332.4875,
+              "yMin": 550.84,
+              "xMax": 359.9556,
+              "yMax": 563.204,
+              "set_token": "JTG",
+              "number": "146"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 374.6451,
+                "yMin": 552.1034,
+                "xMax": 382.2551,
+                "yMax": 561.6734,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 62
+              }
+            ]
+          },
+          "secondary_raw_sha256": "db117f568af98cb19460d2531fc83606fbfe5b4384529b284d7ddff6b53da8fb",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 7,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Seven_(TCG)",
+            "set_key": "sv09",
+            "card_number": "146",
+            "card_name": "Brock's Scouting",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "730853a1-878b-4e2e-8be3-81500cc27b81",
+      "card_name": "Hop's Bag",
+      "printed_coordinate": "147",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 7,
+          "official_pdf_sha256": "a058469447a1e4eaf92027003e0cf77a17333b287169d1e81d492509a3c74007",
+          "official_row": {
+            "series": 7,
+            "name": "Hop’s Bag",
+            "name_alignment_resolved": true,
+            "set_token": "JTG",
+            "printed_number": "147",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "JTG",
+              "xMin": 531.9741,
+              "yMin": 110.9199,
+              "xMax": 558.8086,
+              "yMax": 123.2839,
+              "set_token": "JTG",
+              "number": "147"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 574.1317,
+                "yMin": 112.1834,
+                "xMax": 581.7417,
+                "yMax": 121.7534,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 42
+              }
+            ]
+          },
+          "secondary_raw_sha256": "db117f568af98cb19460d2531fc83606fbfe5b4384529b284d7ddff6b53da8fb",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 7,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Seven_(TCG)",
+            "set_key": "sv09",
+            "card_number": "147",
+            "card_name": "Hop's Bag",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "222fad39-fa68-4192-a974-22db66915224",
+      "card_name": "Iris's Fighting Spirit",
+      "printed_coordinate": "149",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 7,
+          "official_pdf_sha256": "a058469447a1e4eaf92027003e0cf77a17333b287169d1e81d492509a3c74007",
+          "official_row": {
+            "series": 7,
+            "name": "Iris’s Fighting Spirit",
+            "name_alignment_resolved": true,
+            "set_token": "JTG",
+            "printed_number": "149",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "JTG",
+              "xMin": 531.9741,
+              "yMin": 144.76,
+              "xMax": 559.4367,
+              "yMax": 157.124,
+              "set_token": "JTG",
+              "number": "149"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 574.1317,
+                "yMin": 146.0234,
+                "xMax": 581.7417,
+                "yMax": 155.5934,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 54
+              }
+            ]
+          },
+          "secondary_raw_sha256": "db117f568af98cb19460d2531fc83606fbfe5b4384529b284d7ddff6b53da8fb",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 7,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Seven_(TCG)",
+            "set_key": "sv09",
+            "card_number": "149",
+            "card_name": "Iris's Fighting Spirit",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "d80841d2-8efe-43e7-a446-d173bf12f686",
+      "card_name": "N's Castle",
+      "printed_coordinate": "152",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 7,
+          "official_pdf_sha256": "a058469447a1e4eaf92027003e0cf77a17333b287169d1e81d492509a3c74007",
+          "official_row": {
+            "series": 7,
+            "name": "N’s Castle",
+            "name_alignment_resolved": true,
+            "set_token": "JTG",
+            "printed_number": "152",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "JTG",
+              "xMin": 531.9741,
+              "yMin": 246.28,
+              "xMax": 558.9736,
+              "yMax": 258.644,
+              "set_token": "JTG",
+              "number": "152"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 574.1317,
+                "yMin": 247.5434,
+                "xMax": 581.7417,
+                "yMax": 257.1134,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 54
+              }
+            ]
+          },
+          "secondary_raw_sha256": "db117f568af98cb19460d2531fc83606fbfe5b4384529b284d7ddff6b53da8fb",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 7,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Seven_(TCG)",
+            "set_key": "sv09",
+            "card_number": "152",
+            "card_name": "N's Castle",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    }
+  ]
+}

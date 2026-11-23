@@ -1,0 +1,95 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv07",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "docs/catalog/play_pokemon_stamp_normal_completion_v1/sv07/master_facts.json",
+  "master_index_sha256": "dff20c79846cbc2ec7f20271ada219769b596d3efe4c20886b6b8c8791c80e6a",
+  "parents": [
+    {
+      "id": "3efe6043-c485-435b-aa1b-e6e83b3281e6",
+      "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+      "gv_id": "GV-PK-SCR-133-PLAY-POKEMON-STAMP",
+      "name": "Crispin",
+      "printed_coordinate": "133",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "3efe6043-c485-435b-aa1b-e6e83b3281e6",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-SCR-133-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series7",
+          "sha256": "a058469447a1e4eaf92027003e0cf77a17333b287169d1e81d492509a3c74007",
+          "card_print_id": "3efe6043-c485-435b-aa1b-e6e83b3281e6",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "wiki-series7",
+          "sha256": "db117f568af98cb19460d2531fc83606fbfe5b4384529b284d7ddff6b53da8fb",
+          "card_print_id": "3efe6043-c485-435b-aa1b-e6e83b3281e6",
+          "finish_key": "normal"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "normal": 1
+    }
+  },
+  "scope_notes": [
+    "Normal existence only. This is not a complete physical finish inventory or a whole-set release.",
+    "Black standard-set marker in the official stamped Prize Pack matrix and exact Standard Set in the independent checklist both support this Normal fact.",
+    "Red foil markers are retained as unadjudicated source context; no Holo, Reverse or Cosmos row is inferred.",
+    "Existing prize_pack_stamp and series-specific legacy parents are outside this package; no alias, identity or owner mutation is admitted."
+  ],
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+    "source_artifacts": [
+      {
+        "ref": "official-series7",
+        "kind": "checked_checklist",
+        "sha256": "a058469447a1e4eaf92027003e0cf77a17333b287169d1e81d492509a3c74007",
+        "url_or_identifier": "https://d1wx537rtdixyy.cloudfront.net/expansions/series7/en-us/P11076_USOP_OP_Prize_Packs_Series7_Card_List_EN.pdf",
+        "retrieved_at": "2026-11-22T23:21:16.895Z"
+      },
+      {
+        "ref": "wiki-series7",
+        "kind": "checked_checklist",
+        "sha256": "db117f568af98cb19460d2531fc83606fbfe5b4384529b284d7ddff6b53da8fb",
+        "url_or_identifier": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Seven_(TCG)",
+        "retrieved_at": "2026-11-22T23:29:06.671Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "3efe6043-c485-435b-aa1b-e6e83b3281e6",
+        "finish_key": "normal"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "review",
+      "sha256": "695ea62b3e79d39127be57b387bc7fd9f8b5d4be43b32aa6bb5428c2e5da941f"
+    }
+  },
+  "fingerprint": "0053128a30292dfadd9e89adf605387c24ac300e622a3cad1cc13d626e89c6bb"
+}
