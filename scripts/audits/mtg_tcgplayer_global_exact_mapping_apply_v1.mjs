@@ -134,9 +134,11 @@ export async function bindAuthorizedPreflight(options, packageData) {
     target_card_print_id: row.target_card_print_id,
     mapping_method: row.mapping_method,
   })), 'authorized_preflight_mapping_manifest_changed');
-  assert.equal(receipt.value.proof?.first_relevant_mappings?.hash_sha256,
-    receipt.value.proof?.independent_relevant_mappings?.hash_sha256,
-    'authorized_mapping_snapshot_mismatch');
+  const requiredEmptyMappingSnapshot = mappingSnapshot([]);
+  assert.deepEqual(receipt.value.proof?.first_relevant_mappings,
+    requiredEmptyMappingSnapshot, 'authorized_first_mapping_snapshot_changed');
+  assert.deepEqual(receipt.value.proof?.independent_relevant_mappings,
+    requiredEmptyMappingSnapshot, 'authorized_independent_mapping_snapshot_changed');
   assert.equal(receipt.value.proof?.durable_database_writes, 0);
   assert.equal(receipt.value.approval_text_required, expectedApprovalText(receipt.value),
     'approval_text_changed');

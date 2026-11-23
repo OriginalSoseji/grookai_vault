@@ -12,7 +12,9 @@ test('global exact mapping apply binds the exact founder approval and preflight 
   assert.match(SCRIPT, /receipt\.value\.preflight_fingerprint_sha256, options\.approvalToken/);
   assert.match(SCRIPT, /authorized_preflight_source_commit_invalid/);
   assert.match(SCRIPT, /authorized_preflight_mapping_manifest_changed/);
-  assert.match(SCRIPT, /authorized_mapping_snapshot_mismatch/);
+  assert.match(SCRIPT, /const requiredEmptyMappingSnapshot = mappingSnapshot\(\[\]\)/);
+  assert.match(SCRIPT, /authorized_first_mapping_snapshot_changed/);
+  assert.match(SCRIPT, /authorized_independent_mapping_snapshot_changed/);
   assert.match(SCRIPT, /approval_text_changed/);
   assert.match(SCRIPT, /preflight_artifact_inventory_changed/);
   assert.match(SCRIPT, /approved_selected_rows_changed/);
