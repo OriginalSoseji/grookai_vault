@@ -3,7 +3,7 @@ export const TCGPLAYER_MARKET_PUBLICATION_POLICY_V2='TCGPLAYER_MARKET_PUBLICATIO
 import { applyCosmosFinishPublicationScopeV1, cosmosFinishQualificationReasonsV1 } from "./tcgplayer_cosmos_finish_v1.mjs";
 import { TCGPLAYER_EDITION_IDENTITY_V1, tcgplayerEditionQualificationReasonsV1, isTcgplayerEditionAssignmentProjectionV1 } from "./tcgplayer_edition_identity_v1.mjs";
 import {
-  classifyTcgplayerMarketProductScopeV2,
+  classifyTcgplayerMarketProductScopeV2_1,
 } from "./tcgplayer_market_product_scope_v1.mjs";
 import { applyTrainerKitPilotPublicationScopeV1 } from "./tcgplayer_trainer_kit_pilot_v1.mjs";
 import { applyWcdTeamRushdownPublicationScopeV1 } from "./tcgplayer_wcd_team_rushdown_pilot_v1.mjs";
@@ -114,7 +114,7 @@ function evaluateCrossTcgMarketQualificationV2(
   const scope = applyCosmosFinishPublicationScopeV1(
     applyWcdTeamRushdownPublicationScopeV1(
       applyTrainerKitPilotPublicationScopeV1(
-        classifyTcgplayerMarketProductScopeV2(row), row,
+        classifyTcgplayerMarketProductScopeV2_1(row), row,
       ), row,
     ), row,
   );
@@ -360,6 +360,7 @@ function evaluateCrossTcgMarketQualificationV2(
       product_scope_policy_version: scope.policy_version,
       product_scope_result: scope.scope_result,
       product_scope_rule_id: scope.rule_id,
+      ...(scope.governed_single_card_evidence ? {governed_single_card_evidence:scope.governed_single_card_evidence} : {}),
       ...(scope.pilot_policy_version ? { pilot_policy_version: scope.pilot_policy_version } : {}),
       has_printed_number_evidence: row.has_printed_number_evidence === true,
       source_sync_mode: clean(row.source_sync_mode) || null,

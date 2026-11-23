@@ -1,0 +1,393 @@
+{
+  "version": "PLAY_POKEMON_STAMP_NORMAL_MASTER_FACTS_V1",
+  "status": "master_admissible",
+  "language": "en",
+  "set_code": "swsh8",
+  "scope": "exact_generic_play_pokemon_stamp_normal_facts_only",
+  "complete_printing_inventory": false,
+  "foil_pattern_adjudicated": false,
+  "records": [
+    {
+      "card_print_id": "1825f545-d4ed-4095-80ae-fe4337d8c0b6",
+      "card_name": "Oricorio",
+      "printed_coordinate": "042",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 2,
+          "official_pdf_sha256": "61899877c13d57ddd6d9aa8b16aa4f707a78869deb481e205b0165f75161aa59",
+          "official_row": {
+            "series": 2,
+            "name": "Oricorio",
+            "name_alignment_resolved": true,
+            "set_token": "FST",
+            "printed_number": "042",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "FST",
+              "xMin": 250.7985,
+              "yMin": 365.1739,
+              "xMax": 271.8225,
+              "yMax": 374.1659,
+              "set_token": "FST",
+              "number": "042"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 282.2777,
+                "yMin": 365.9073,
+                "xMax": 288.1374,
+                "yMax": 373.2762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 32
+              }
+            ]
+          },
+          "secondary_raw_sha256": "19e90c8a6ff884d7cd035caf5c6f6756089cdcd17b7159330a847ec0b28d75b5",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 2,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+            "set_key": "swsh8",
+            "card_number": "42",
+            "card_name": "Oricorio",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "8c49c5fc-5604-44ed-977f-e191329617e9",
+      "card_name": "Latias",
+      "printed_coordinate": "193",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 2,
+          "official_pdf_sha256": "61899877c13d57ddd6d9aa8b16aa4f707a78869deb481e205b0165f75161aa59",
+          "official_row": {
+            "series": 2,
+            "name": "Latias",
+            "name_alignment_resolved": true,
+            "set_token": "FST",
+            "printed_number": "193",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "FST",
+              "xMin": 250.7985,
+              "yMin": 135.6739,
+              "xMax": 270.7585,
+              "yMax": 144.6659,
+              "set_token": "FST",
+              "number": "193"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 282.2777,
+                "yMin": 136.4072,
+                "xMax": 288.1374,
+                "yMax": 143.7761,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 42
+              }
+            ]
+          },
+          "secondary_raw_sha256": "19e90c8a6ff884d7cd035caf5c6f6756089cdcd17b7159330a847ec0b28d75b5",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 2,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+            "set_key": "swsh8",
+            "card_number": "193",
+            "card_name": "Latias",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "7cc19bb0-8d5c-4d6c-950d-7400fc989dcc",
+      "card_name": "Latios",
+      "printed_coordinate": "194",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 2,
+          "official_pdf_sha256": "61899877c13d57ddd6d9aa8b16aa4f707a78869deb481e205b0165f75161aa59",
+          "official_row": {
+            "series": 2,
+            "name": "Latios",
+            "name_alignment_resolved": true,
+            "set_token": "FST",
+            "printed_number": "194",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "FST",
+              "xMin": 250.7985,
+              "yMin": 149.1739,
+              "xMax": 270.8145,
+              "yMax": 158.1659,
+              "set_token": "FST",
+              "number": "194"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 282.2777,
+                "yMin": 149.9072,
+                "xMax": 288.1374,
+                "yMax": 157.2761,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 32
+              }
+            ]
+          },
+          "secondary_raw_sha256": "19e90c8a6ff884d7cd035caf5c6f6756089cdcd17b7159330a847ec0b28d75b5",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 2,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+            "set_key": "swsh8",
+            "card_number": "194",
+            "card_name": "Latios",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "40873ac3-f9fc-417f-9c82-dc22169bcd74",
+      "card_name": "Dunsparce",
+      "printed_coordinate": "207",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 2,
+          "official_pdf_sha256": "61899877c13d57ddd6d9aa8b16aa4f707a78869deb481e205b0165f75161aa59",
+          "official_row": {
+            "series": 2,
+            "name": "Dunsparce",
+            "name_alignment_resolved": true,
+            "set_token": "FST",
+            "printed_number": "207",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "FST",
+              "xMin": 101.5852,
+              "yMin": 271.414,
+              "xMax": 122.3292,
+              "yMax": 280.406,
+              "set_token": "FST",
+              "number": "207"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 133.0644,
+                "yMin": 272.1473,
+                "xMax": 138.9241,
+                "yMax": 279.5162,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 33
+              }
+            ]
+          },
+          "secondary_raw_sha256": "19e90c8a6ff884d7cd035caf5c6f6756089cdcd17b7159330a847ec0b28d75b5",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 2,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+            "set_key": "swsh8",
+            "card_number": "207",
+            "card_name": "Dunsparce",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "c576a3f9-2890-4a7e-99d1-dacbe433ac86",
+      "card_name": "Adventurer's Discovery",
+      "printed_coordinate": "224",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 2,
+          "official_pdf_sha256": "61899877c13d57ddd6d9aa8b16aa4f707a78869deb481e205b0165f75161aa59",
+          "official_row": {
+            "series": 2,
+            "name": "Adventurer’s Discovery",
+            "name_alignment_resolved": true,
+            "set_token": "FST",
+            "printed_number": "224",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "FST",
+              "xMin": 400.0119,
+              "yMin": 149.1739,
+              "xMax": 420.6759,
+              "yMax": 158.1659,
+              "set_token": "FST",
+              "number": "224"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 431.4911,
+                "yMin": 149.9072,
+                "xMax": 437.3508,
+                "yMax": 157.2761,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 32
+              }
+            ]
+          },
+          "secondary_raw_sha256": "19e90c8a6ff884d7cd035caf5c6f6756089cdcd17b7159330a847ec0b28d75b5",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 2,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+            "set_key": "swsh8",
+            "card_number": "224",
+            "card_name": "Adventurer's Discovery",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "f4a7cd0e-ea31-451a-9de9-e7b36164b18f",
+      "card_name": "Elesa's Sparkle",
+      "printed_coordinate": "233",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 2,
+          "official_pdf_sha256": "61899877c13d57ddd6d9aa8b16aa4f707a78869deb481e205b0165f75161aa59",
+          "official_row": {
+            "series": 2,
+            "name": "Elesa’s Sparkle",
+            "name_alignment_resolved": true,
+            "set_token": "FST",
+            "printed_number": "233",
+            "normal_explicit": true,
+            "foil_marker_present": true,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "FST",
+              "xMin": 400.0119,
+              "yMin": 365.1739,
+              "xMax": 420.7719,
+              "yMax": 374.1659,
+              "set_token": "FST",
+              "number": "233"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 431.4911,
+                "yMin": 365.9073,
+                "xMax": 437.3508,
+                "yMax": 373.2762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 32
+              },
+              {
+                "text": "■",
+                "xMin": 442.5307,
+                "yMin": 365.9073,
+                "xMax": 448.3904,
+                "yMax": 373.2762,
+                "color": "red",
+                "red_pixels": 32,
+                "black_pixels": 0
+              }
+            ]
+          },
+          "secondary_raw_sha256": "19e90c8a6ff884d7cd035caf5c6f6756089cdcd17b7159330a847ec0b28d75b5",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 2,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+            "set_key": "swsh8",
+            "card_number": "233",
+            "card_name": "Elesa's Sparkle",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    }
+  ]
+}

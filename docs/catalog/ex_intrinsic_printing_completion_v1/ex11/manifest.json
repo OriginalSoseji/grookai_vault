@@ -1,0 +1,146 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "ex11",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "docs/audits/english_master_index_publishable_v1/sets/ex11/printings.json",
+  "master_index_sha256": "f61b1c8da2a3d9be1c9f787965a69ebfc0faf7b29b5954d1f0123a66e8adcca5",
+  "parents": [
+    {
+      "id": "c1ff04aa-1015-4a3e-a568-acf419b7eb22",
+      "set_id": "1e872421-a1ba-4dc1-bfcf-5620f020ac67",
+      "gv_id": "GV-PK-DS-49",
+      "name": "Metang δ",
+      "printed_coordinate": "49",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": "delta_species"
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "c1ff04aa-1015-4a3e-a568-acf419b7eb22",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DS-49-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-numbered-checklist",
+          "sha256": "a4695552b2465220b222e3901bcbf71d11dba2d27fc84311683f043a1889cfb1",
+          "card_print_id": "c1ff04aa-1015-4a3e-a568-acf419b7eb22",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "public-master-printings",
+          "sha256": "f61b1c8da2a3d9be1c9f787965a69ebfc0faf7b29b5954d1f0123a66e8adcca5",
+          "card_print_id": "c1ff04aa-1015-4a3e-a568-acf419b7eb22",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "c1ff04aa-1015-4a3e-a568-acf419b7eb22",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-DS-49-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-numbered-checklist",
+          "sha256": "a4695552b2465220b222e3901bcbf71d11dba2d27fc84311683f043a1889cfb1",
+          "card_print_id": "c1ff04aa-1015-4a3e-a568-acf419b7eb22",
+          "finish_key": "reverse"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "public-master-printings",
+          "sha256": "f61b1c8da2a3d9be1c9f787965a69ebfc0faf7b29b5954d1f0123a66e8adcca5",
+          "card_print_id": "c1ff04aa-1015-4a3e-a568-acf419b7eb22",
+          "finish_key": "reverse"
+        },
+        {
+          "kind": "image_confirmed",
+          "source_ref": "exact-reverse-image",
+          "sha256": "b522ca83281b64e2b196d9e03677d81c82b512e48c902b5718ee951b4e45c3fd",
+          "card_print_id": "c1ff04aa-1015-4a3e-a568-acf419b7eb22",
+          "finish_key": "reverse"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 2,
+    "finishes": {
+      "normal": 1,
+      "reverse": 1
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "1e872421-a1ba-4dc1-bfcf-5620f020ac67",
+    "source_artifacts": [
+      {
+        "ref": "official-numbered-checklist",
+        "kind": "checked_checklist",
+        "sha256": "a4695552b2465220b222e3901bcbf71d11dba2d27fc84311683f043a1889cfb1",
+        "url_or_identifier": "https://assets.pokemon.com/assets/cms/pdf/tcg/checklists/deltaspecies_checklist.pdf",
+        "retrieved_at": "2026-11-20T11:46:35.992Z",
+        "retrieval_method": "preserved_local_artifact_read",
+        "original_network_capture_time": null
+      },
+      {
+        "ref": "public-master-printings",
+        "kind": "checked_checklist",
+        "sha256": "f61b1c8da2a3d9be1c9f787965a69ebfc0faf7b29b5954d1f0123a66e8adcca5",
+        "url_or_identifier": "docs/audits/english_master_index_publishable_v1/sets/ex11/printings.json",
+        "retrieved_at": "2026-11-20T11:46:35.992Z",
+        "retrieval_method": "source_checkout_file_read"
+      },
+      {
+        "ref": "exact-reverse-image",
+        "kind": "image_confirmed",
+        "sha256": "b522ca83281b64e2b196d9e03677d81c82b512e48c902b5718ee951b4e45c3fd",
+        "url_or_identifier": "https://managaming.shop/cdn/shop/files/3ad5325d-830b-524b-b960-ccd79259efbc_800x.jpg?v=1752934591",
+        "retrieved_at": "2026-11-20T11:22:54.1813348Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "c1ff04aa-1015-4a3e-a568-acf419b7eb22",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "c1ff04aa-1015-4a3e-a568-acf419b7eb22",
+        "finish_key": "reverse"
+      }
+    ],
+    "forbidden_facts": [
+      {
+        "card_print_id": "c1ff04aa-1015-4a3e-a568-acf419b7eb22",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "c1ff04aa-1015-4a3e-a568-acf419b7eb22",
+        "finish_key": "stamped"
+      },
+      {
+        "card_print_id": "c1ff04aa-1015-4a3e-a568-acf419b7eb22",
+        "finish_key": "cosmos"
+      }
+    ],
+    "conflicts": [],
+    "review": {
+      "ref": "review",
+      "sha256": "16f4bbed3889f76471fb8d6576a436925f07b027b5642a45d6d76c1d298f4219"
+    }
+  },
+  "fingerprint": "fd76bb93111cdc33e62f18be18d1f907359baa3050998ea038e02cb7d22d061d"
+}

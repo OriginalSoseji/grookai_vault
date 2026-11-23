@@ -1,0 +1,146 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "ex13",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "docs/audits/english_master_index_publishable_v1/sets/ex13/printings.json",
+  "master_index_sha256": "da1510ce0a2cdeb490910d19975255a043dba8b4ddf0ddfe0c32c6b05aec4a57",
+  "parents": [
+    {
+      "id": "fbe38b87-9c6e-49e4-a34d-0bc4014790f2",
+      "set_id": "05c6454a-02e2-401e-a8f3-1a433c4d6748",
+      "gv_id": "GV-PK-HP-41",
+      "name": "Exeggutor δ",
+      "printed_coordinate": "41",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "",
+      "printed_identity_modifier": "delta_species"
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "fbe38b87-9c6e-49e4-a34d-0bc4014790f2",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-HP-41-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-numbered-checklist",
+          "sha256": "bbcbed1af62ca05d122f87f1dd43564ca6aabb04afdd577f614980e816a12d57",
+          "card_print_id": "fbe38b87-9c6e-49e4-a34d-0bc4014790f2",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "public-master-printings",
+          "sha256": "da1510ce0a2cdeb490910d19975255a043dba8b4ddf0ddfe0c32c6b05aec4a57",
+          "card_print_id": "fbe38b87-9c6e-49e4-a34d-0bc4014790f2",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "fbe38b87-9c6e-49e4-a34d-0bc4014790f2",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-HP-41-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-numbered-checklist",
+          "sha256": "bbcbed1af62ca05d122f87f1dd43564ca6aabb04afdd577f614980e816a12d57",
+          "card_print_id": "fbe38b87-9c6e-49e4-a34d-0bc4014790f2",
+          "finish_key": "reverse"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "public-master-printings",
+          "sha256": "da1510ce0a2cdeb490910d19975255a043dba8b4ddf0ddfe0c32c6b05aec4a57",
+          "card_print_id": "fbe38b87-9c6e-49e4-a34d-0bc4014790f2",
+          "finish_key": "reverse"
+        },
+        {
+          "kind": "image_confirmed",
+          "source_ref": "exact-reverse-image",
+          "sha256": "09179949565e9dbad495ee53e8236c256e93432be0728a34501115baab3af0c6",
+          "card_print_id": "fbe38b87-9c6e-49e4-a34d-0bc4014790f2",
+          "finish_key": "reverse"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 2,
+    "finishes": {
+      "normal": 1,
+      "reverse": 1
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "05c6454a-02e2-401e-a8f3-1a433c4d6748",
+    "source_artifacts": [
+      {
+        "ref": "official-numbered-checklist",
+        "kind": "checked_checklist",
+        "sha256": "bbcbed1af62ca05d122f87f1dd43564ca6aabb04afdd577f614980e816a12d57",
+        "url_or_identifier": "https://assets.pokemon.com/assets/cms/pdf/tcg/checklists/holonphantoms_checklist.pdf",
+        "retrieved_at": "2026-11-20T11:46:35.992Z",
+        "retrieval_method": "preserved_local_artifact_read",
+        "original_network_capture_time": null
+      },
+      {
+        "ref": "public-master-printings",
+        "kind": "checked_checklist",
+        "sha256": "da1510ce0a2cdeb490910d19975255a043dba8b4ddf0ddfe0c32c6b05aec4a57",
+        "url_or_identifier": "docs/audits/english_master_index_publishable_v1/sets/ex13/printings.json",
+        "retrieved_at": "2026-11-20T11:46:35.992Z",
+        "retrieval_method": "source_checkout_file_read"
+      },
+      {
+        "ref": "exact-reverse-image",
+        "kind": "image_confirmed",
+        "sha256": "09179949565e9dbad495ee53e8236c256e93432be0728a34501115baab3af0c6",
+        "url_or_identifier": "https://jabgames13.com/cdn/shop/files/IMG-2600_530x@2x.heic?v=1735778705&format=jpg",
+        "retrieved_at": "2026-11-20T11:22:55.6221411Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "fbe38b87-9c6e-49e4-a34d-0bc4014790f2",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "fbe38b87-9c6e-49e4-a34d-0bc4014790f2",
+        "finish_key": "reverse"
+      }
+    ],
+    "forbidden_facts": [
+      {
+        "card_print_id": "fbe38b87-9c6e-49e4-a34d-0bc4014790f2",
+        "finish_key": "holo"
+      },
+      {
+        "card_print_id": "fbe38b87-9c6e-49e4-a34d-0bc4014790f2",
+        "finish_key": "stamped"
+      },
+      {
+        "card_print_id": "fbe38b87-9c6e-49e4-a34d-0bc4014790f2",
+        "finish_key": "cosmos"
+      }
+    ],
+    "conflicts": [],
+    "review": {
+      "ref": "review",
+      "sha256": "cac3b1a006ee4d3bd900ca5bb4e3c032e771732215f38bb0dff4bf071ecfc82b"
+    }
+  },
+  "fingerprint": "64a7a5c958ceef90b33fa7d7c678b0a9d493f715174a518a91e446ce66d48383"
+}

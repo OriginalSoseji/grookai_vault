@@ -1,0 +1,275 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv10",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "docs/catalog/play_pokemon_stamp_normal_completion_v1/sv10/master_facts.json",
+  "master_index_sha256": "405ae791a74d880415e1d446752360c98c8891d9dfe04530f2e072bee0bd7b20",
+  "parents": [
+    {
+      "id": "11283920-fb73-4927-976c-e8ff90a7b054",
+      "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+      "gv_id": "GV-PK-DRI-182-PLAY-POKEMON-STAMP",
+      "name": "Team Rocket's Energy",
+      "printed_coordinate": "182",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "29f49fdd-6e51-453b-a33d-510d2b9e73a6",
+      "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+      "gv_id": "GV-PK-DRI-170-PLAY-POKEMON-STAMP",
+      "name": "Team Rocket's Archer",
+      "printed_coordinate": "170",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "5e0b1a21-4b40-4ea3-81ee-b2ac8d8c34a3",
+      "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+      "gv_id": "GV-PK-DRI-010-PLAY-POKEMON-STAMP",
+      "name": "Shaymin",
+      "printed_coordinate": "010",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "6733781e-089b-4fcb-88f6-b842e326c5c4",
+      "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+      "gv_id": "GV-PK-DRI-178-PLAY-POKEMON-STAMP",
+      "name": "Team Rocket's Transceiver",
+      "printed_coordinate": "178",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "94bdf076-b7b2-437a-8f8d-07cf86efbdf8",
+      "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+      "gv_id": "GV-PK-DRI-033-PLAY-POKEMON-STAMP",
+      "name": "Ethan's Quilava",
+      "printed_coordinate": "033",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "ad1048dc-441a-4393-8bda-ab3cc73e1022",
+      "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+      "gv_id": "GV-PK-DRI-177-PLAY-POKEMON-STAMP",
+      "name": "Team Rocket's Proton",
+      "printed_coordinate": "177",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "11283920-fb73-4927-976c-e8ff90a7b054",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DRI-182-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series8",
+          "sha256": "b3dcd1654030b46adea5fe69cc64ae4d85f86ea5be2b532940645820dfea857e",
+          "card_print_id": "11283920-fb73-4927-976c-e8ff90a7b054",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "wiki-series8",
+          "sha256": "c50bc48bcdf1927db21089af31a0598e723b64707b8d4701dd9bd9d7fce704d4",
+          "card_print_id": "11283920-fb73-4927-976c-e8ff90a7b054",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "29f49fdd-6e51-453b-a33d-510d2b9e73a6",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DRI-170-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series8",
+          "sha256": "b3dcd1654030b46adea5fe69cc64ae4d85f86ea5be2b532940645820dfea857e",
+          "card_print_id": "29f49fdd-6e51-453b-a33d-510d2b9e73a6",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "wiki-series8",
+          "sha256": "c50bc48bcdf1927db21089af31a0598e723b64707b8d4701dd9bd9d7fce704d4",
+          "card_print_id": "29f49fdd-6e51-453b-a33d-510d2b9e73a6",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "5e0b1a21-4b40-4ea3-81ee-b2ac8d8c34a3",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DRI-010-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series8",
+          "sha256": "b3dcd1654030b46adea5fe69cc64ae4d85f86ea5be2b532940645820dfea857e",
+          "card_print_id": "5e0b1a21-4b40-4ea3-81ee-b2ac8d8c34a3",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "wiki-series8",
+          "sha256": "c50bc48bcdf1927db21089af31a0598e723b64707b8d4701dd9bd9d7fce704d4",
+          "card_print_id": "5e0b1a21-4b40-4ea3-81ee-b2ac8d8c34a3",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "6733781e-089b-4fcb-88f6-b842e326c5c4",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DRI-178-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series8",
+          "sha256": "b3dcd1654030b46adea5fe69cc64ae4d85f86ea5be2b532940645820dfea857e",
+          "card_print_id": "6733781e-089b-4fcb-88f6-b842e326c5c4",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "wiki-series8",
+          "sha256": "c50bc48bcdf1927db21089af31a0598e723b64707b8d4701dd9bd9d7fce704d4",
+          "card_print_id": "6733781e-089b-4fcb-88f6-b842e326c5c4",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "94bdf076-b7b2-437a-8f8d-07cf86efbdf8",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DRI-033-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series8",
+          "sha256": "b3dcd1654030b46adea5fe69cc64ae4d85f86ea5be2b532940645820dfea857e",
+          "card_print_id": "94bdf076-b7b2-437a-8f8d-07cf86efbdf8",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "wiki-series8",
+          "sha256": "c50bc48bcdf1927db21089af31a0598e723b64707b8d4701dd9bd9d7fce704d4",
+          "card_print_id": "94bdf076-b7b2-437a-8f8d-07cf86efbdf8",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "ad1048dc-441a-4393-8bda-ab3cc73e1022",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-DRI-177-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series8",
+          "sha256": "b3dcd1654030b46adea5fe69cc64ae4d85f86ea5be2b532940645820dfea857e",
+          "card_print_id": "ad1048dc-441a-4393-8bda-ab3cc73e1022",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "wiki-series8",
+          "sha256": "c50bc48bcdf1927db21089af31a0598e723b64707b8d4701dd9bd9d7fce704d4",
+          "card_print_id": "ad1048dc-441a-4393-8bda-ab3cc73e1022",
+          "finish_key": "normal"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 6,
+    "printings": 6,
+    "finishes": {
+      "normal": 6
+    }
+  },
+  "scope_notes": [
+    "Normal existence only. This is not a complete physical finish inventory or a whole-set release.",
+    "Black standard-set marker in the official stamped Prize Pack matrix and exact Standard Set in the independent checklist both support this Normal fact.",
+    "Red foil markers are retained as unadjudicated source context; no Holo, Reverse or Cosmos row is inferred.",
+    "Existing prize_pack_stamp and series-specific legacy parents are outside this package; no alias, identity or owner mutation is admitted."
+  ],
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+    "source_artifacts": [
+      {
+        "ref": "official-series8",
+        "kind": "checked_checklist",
+        "sha256": "b3dcd1654030b46adea5fe69cc64ae4d85f86ea5be2b532940645820dfea857e",
+        "url_or_identifier": "https://d1wx537rtdixyy.cloudfront.net/expansions/series8/en-us/OP_Prize_Packs_Series8_Card_List_EN.pdf",
+        "retrieved_at": "2026-11-22T23:21:16.944Z"
+      },
+      {
+        "ref": "wiki-series8",
+        "kind": "checked_checklist",
+        "sha256": "c50bc48bcdf1927db21089af31a0598e723b64707b8d4701dd9bd9d7fce704d4",
+        "url_or_identifier": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Eight_(TCG)",
+        "retrieved_at": "2026-11-22T23:29:06.676Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "11283920-fb73-4927-976c-e8ff90a7b054",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "29f49fdd-6e51-453b-a33d-510d2b9e73a6",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "5e0b1a21-4b40-4ea3-81ee-b2ac8d8c34a3",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "6733781e-089b-4fcb-88f6-b842e326c5c4",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "94bdf076-b7b2-437a-8f8d-07cf86efbdf8",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "ad1048dc-441a-4393-8bda-ab3cc73e1022",
+        "finish_key": "normal"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "review",
+      "sha256": "6f56b1b480d4546c5bcc577af1f8a5038537422b67f850cc52d4b24eb249147d"
+    }
+  },
+  "fingerprint": "44728bb8a55785a750230bc7d4af4902d1635b2b0e93376dc3a72238529e2890"
+}

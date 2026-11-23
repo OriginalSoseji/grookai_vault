@@ -1,0 +1,383 @@
+{
+  "version": "PLAY_POKEMON_STAMP_NORMAL_MASTER_FACTS_V1",
+  "status": "master_admissible",
+  "language": "en",
+  "set_code": "swsh6",
+  "scope": "exact_generic_play_pokemon_stamp_normal_facts_only",
+  "complete_printing_inventory": false,
+  "foil_pattern_adjudicated": false,
+  "records": [
+    {
+      "card_print_id": "29664a58-d062-44df-862e-6a9878902308",
+      "card_name": "Froslass",
+      "printed_coordinate": "036",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 1,
+          "official_pdf_sha256": "29500763ba9335d2718ece92a9c3cc074390fc89b2890b44bbfca3c141089323",
+          "official_row": {
+            "series": 1,
+            "name": "Froslass",
+            "name_alignment_resolved": true,
+            "set_token": "CRE",
+            "printed_number": "036",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "CRE",
+              "xMin": 101.5852,
+              "yMin": 608.934,
+              "xMax": 123.4252,
+              "yMax": 617.926,
+              "set_token": "CRE",
+              "number": "036"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 133.0644,
+                "yMin": 609.6673,
+                "xMax": 138.9241,
+                "yMax": 617.0362,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 42
+              }
+            ]
+          },
+          "secondary_raw_sha256": "c48fefb2c381120f32aa9bb3e00350393c9cc97ff81dd51c369872221c2d806c",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 1,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+            "set_key": "swsh6",
+            "card_number": "36",
+            "card_name": "Froslass",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "4635c867-d945-4eac-b4ba-d8f0c675066d",
+      "card_name": "Gardevoir",
+      "printed_coordinate": "061",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 1,
+          "official_pdf_sha256": "29500763ba9335d2718ece92a9c3cc074390fc89b2890b44bbfca3c141089323",
+          "official_row": {
+            "series": 1,
+            "name": "Gardevoir",
+            "name_alignment_resolved": true,
+            "set_token": "CRE",
+            "printed_number": "061",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "CRE",
+              "xMin": 250.7985,
+              "yMin": 149.1739,
+              "xMax": 271.7745,
+              "yMax": 158.1659,
+              "set_token": "CRE",
+              "number": "061"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 282.2777,
+                "yMin": 149.9072,
+                "xMax": 288.1374,
+                "yMax": 157.2761,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 32
+              }
+            ]
+          },
+          "secondary_raw_sha256": "c48fefb2c381120f32aa9bb3e00350393c9cc97ff81dd51c369872221c2d806c",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 1,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+            "set_key": "swsh6",
+            "card_number": "61",
+            "card_name": "Gardevoir",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "8bbfb4dd-8186-4b52-834d-e9b68cf0c109",
+      "card_name": "Lycanroc",
+      "printed_coordinate": "087",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 1,
+          "official_pdf_sha256": "29500763ba9335d2718ece92a9c3cc074390fc89b2890b44bbfca3c141089323",
+          "official_row": {
+            "series": 1,
+            "name": "Lycanroc",
+            "name_alignment_resolved": true,
+            "set_token": "CRE",
+            "printed_number": "087",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "CRE",
+              "xMin": 250.7985,
+              "yMin": 351.6739,
+              "xMax": 272.4545,
+              "yMax": 360.6659,
+              "set_token": "CRE",
+              "number": "087"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 282.2777,
+                "yMin": 352.4073,
+                "xMax": 288.1374,
+                "yMax": 359.7762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 42
+              }
+            ]
+          },
+          "secondary_raw_sha256": "c48fefb2c381120f32aa9bb3e00350393c9cc97ff81dd51c369872221c2d806c",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 1,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+            "set_key": "swsh6",
+            "card_number": "87",
+            "card_name": "Lycanroc",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "12d4de68-02de-4f36-a2e7-89471dad153f",
+      "card_name": "Avery",
+      "printed_coordinate": "130",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 1,
+          "official_pdf_sha256": "29500763ba9335d2718ece92a9c3cc074390fc89b2890b44bbfca3c141089323",
+          "official_row": {
+            "series": 1,
+            "name": "Avery",
+            "name_alignment_resolved": true,
+            "set_token": "CRE",
+            "printed_number": "130",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "CRE",
+              "xMin": 400.0119,
+              "yMin": 311.1739,
+              "xMax": 420.8999,
+              "yMax": 320.1659,
+              "set_token": "CRE",
+              "number": "130"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 431.4911,
+                "yMin": 311.9073,
+                "xMax": 437.3508,
+                "yMax": 319.2762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 48
+              }
+            ]
+          },
+          "secondary_raw_sha256": "c48fefb2c381120f32aa9bb3e00350393c9cc97ff81dd51c369872221c2d806c",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 1,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+            "set_key": "swsh6",
+            "card_number": "130",
+            "card_name": "Avery",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "f86a17b4-d692-48e9-aa3a-41af79977b24",
+      "card_name": "Impact Energy",
+      "printed_coordinate": "157",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 1,
+          "official_pdf_sha256": "29500763ba9335d2718ece92a9c3cc074390fc89b2890b44bbfca3c141089323",
+          "official_row": {
+            "series": 1,
+            "name": "Impact Energy",
+            "name_alignment_resolved": true,
+            "set_token": "CRE",
+            "printed_number": "157",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "CRE",
+              "xMin": 549.2283,
+              "yMin": 374.1739,
+              "xMax": 569.6283,
+              "yMax": 383.1659,
+              "set_token": "CRE",
+              "number": "157"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 580.7075,
+                "yMin": 374.9073,
+                "xMax": 586.5672,
+                "yMax": 382.2762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 32
+              }
+            ]
+          },
+          "secondary_raw_sha256": "c48fefb2c381120f32aa9bb3e00350393c9cc97ff81dd51c369872221c2d806c",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 1,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+            "set_key": "swsh6",
+            "card_number": "157",
+            "card_name": "Impact Energy",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "53de5ec1-0263-45de-93bc-3caad7fd8093",
+      "card_name": "Spiral Energy",
+      "printed_coordinate": "159",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 1,
+          "official_pdf_sha256": "29500763ba9335d2718ece92a9c3cc074390fc89b2890b44bbfca3c141089323",
+          "official_row": {
+            "series": 1,
+            "name": "Spiral Energy",
+            "name_alignment_resolved": true,
+            "set_token": "CRE",
+            "printed_number": "159",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "CRE",
+              "xMin": 549.2285,
+              "yMin": 414.6739,
+              "xMax": 570.0205,
+              "yMax": 423.6659,
+              "set_token": "CRE",
+              "number": "159"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 580.7077,
+                "yMin": 415.4073,
+                "xMax": 586.5674,
+                "yMax": 422.7762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 41
+              }
+            ]
+          },
+          "secondary_raw_sha256": "c48fefb2c381120f32aa9bb3e00350393c9cc97ff81dd51c369872221c2d806c",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 1,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+            "set_key": "swsh6",
+            "card_number": "159",
+            "card_name": "Spiral Energy",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    }
+  ]
+}
