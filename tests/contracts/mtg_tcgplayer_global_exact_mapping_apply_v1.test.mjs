@@ -29,6 +29,7 @@ test('global exact mapping apply binds the exact founder approval and preflight 
 test('global exact mapping apply is one bounded 36-row insert-only transaction', () => {
   assert.match(SCRIPT, /const TOTAL_ROWS = 36/);
   assert.match(SCRIPT, /begin transaction isolation level serializable/);
+  assert.equal((SCRIPT.match(/assertVerifiedProductionTls\(/g) ?? []).length, 3);
   assert.match(SCRIPT, /pg_advisory_xact_lock\(hashtext\('tcgplayer_market_exact_mapping_apply_v1'\)\)/);
   assert.equal((SCRIPT.match(/insert into public\.external_mappings/g) ?? []).length, 1);
   assert.equal((SCRIPT.match(/client\.query\('commit'\)/g) ?? []).length, 1);

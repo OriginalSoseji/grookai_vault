@@ -9,6 +9,7 @@ import pg from 'pg';
 
 import {
   assertLiveState,
+  assertVerifiedProductionTls,
   connectionConfig,
   git,
   independentRead,
@@ -154,6 +155,7 @@ async function reconcileCommitAttempt(rows, rollbackIdentities, applyCommit, exp
   try {
     readback = new pg.Client(connectionConfig('mtg_global_exact_commit_reconcile_v1'));
     await readback.connect();
+    assertVerifiedProductionTls(readback);
     await readback.query('begin transaction isolation level read committed');
     reconciliationTransactionOpen = true;
     await readback.query("set local statement_timeout='10min'");
@@ -268,6 +270,7 @@ export async function runMtgTcgplayerGlobalExactMappingApplyV1(argv) {
       'mapping_snapshot_changed_before_apply');
     client = new pg.Client(connectionConfig('mtg_global_exact_mapping_apply_v1'));
     await client.connect();
+    assertVerifiedProductionTls(client);
     const environment = await sanity(client);
     const countsBefore = await protectedCounts(client);
     await client.query('begin transaction isolation level serializable');
@@ -367,6 +370,7 @@ export async function runMtgTcgplayerGlobalExactMappingApplyV1(argv) {
     const readback = new pg.Client(connectionConfig('mtg_global_exact_mapping_readback_v1'));
     await readback.connect();
     try {
+      assertVerifiedProductionTls(readback);
       const mappings = await scopedMappings(readback, rows);
       assertReadback(rows, mappings, rollbackIdentities, applyCommit, insertedIds);
       const countsAfter = await protectedCounts(readback);

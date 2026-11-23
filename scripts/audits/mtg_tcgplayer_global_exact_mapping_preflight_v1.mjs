@@ -2,7 +2,8 @@
 
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
-import { createHash } from 'node:crypto';
+import { createHash, X509Certificate } from 'node:crypto';
+import { existsSync } from 'node:fs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -22,7 +23,27 @@ const REVIEW_POLICY = 'MTG_TCGPLAYER_GLOBAL_EXACT_REVIEW_QUEUE_V1';
 const DECISION_VERSION = 'MTG_GLOBAL_EXACT_BATCH_0001_CONSERVATIVE_FOUNDER_REVIEW_V1';
 const PACKAGE_ID = 'MTG-GLOBAL-EXACT-BATCH-0001-MAPPING-OUTCOME-V1';
 const PROJECT_REF = 'ycdxbpibncqcchqiihfz';
+const PINNED_SUPABASE_ROOT_SHA256 =
+  '807025ad50d4ed219d2c9c7d299c004f824eb00cf7f65afef607d07b72e6cafa';
+const PINNED_SUPABASE_INTERMEDIATE_SHA256 =
+  '303b0a59bbc8d77e967fbed20b3fe68ec5d7d391c3081ece9936efceef0a55ea';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
+let bootstrappedProductionCa;
+
+function opensslExecutable() {
+  if (process.platform !== 'win32') return 'openssl';
+  const gitExecPath = execFileSync('git', ['--exec-path'], {
+    encoding: 'utf8',
+    windowsHide: true,
+  }).trim();
+  const candidates = [
+    path.resolve(gitExecPath, '..', '..', 'bin', 'openssl.exe'),
+    path.resolve(gitExecPath, '..', '..', '..', 'usr', 'bin', 'openssl.exe'),
+  ];
+  const executable = candidates.find((candidate) => existsSync(candidate));
+  assert.ok(executable, 'production_database_openssl_unavailable');
+  return executable;
+}
 
 export function sha256(value) {
   return createHash('sha256').update(value).digest('hex');
@@ -238,16 +259,72 @@ export function connectionConfig(applicationName) {
   const publicUrl = new URL(process.env.SUPABASE_URL);
   assert.equal(publicUrl.hostname.split('.')[0], PROJECT_REF, 'production_project_ref_mismatch');
   assert.ok(process.env.SUPABASE_DB_URL, 'SUPABASE_DB_URL_required');
+  assert.notEqual(process.env.NODE_TLS_REJECT_UNAUTHORIZED, '0',
+    'production_database_insecure_tls_environment');
   const databaseUrl = assertPrintingDatabaseTarget(process.env.SUPABASE_DB_URL);
-  const ca = process.env.SUPABASE_DB_CA_CERT?.trim();
+  const configuredCa = process.env.SUPABASE_DB_CA_CERT?.trim();
+  if (configuredCa) assert.match(configuredCa,
+    /^-----BEGIN CERTIFICATE-----[\s\S]+-----END CERTIFICATE-----$/,
+    'production_database_invalid_ca_certificate');
+  if (!configuredCa && !bootstrappedProductionCa) {
+    // Bootstrap only public certificate bytes, without database credentials, and
+    // accept the chain only after the same pinned root/intermediate proof used by
+    // the governed catalog release executors.
+    const chainText = execFileSync(opensslExecutable(), [
+      's_client',
+      '-starttls', 'postgres',
+      '-connect', `${databaseUrl.hostname}:${databaseUrl.port}`,
+      '-servername', databaseUrl.hostname,
+      '-showcerts',
+    ], {
+      input: '',
+      encoding: 'utf8',
+      timeout: 15_000,
+      stdio: ['pipe', 'pipe', 'ignore'],
+      windowsHide: true,
+    });
+    const pems = chainText.match(
+      /-----BEGIN CERTIFICATE-----[\s\S]+?-----END CERTIFICATE-----/g,
+    );
+    assert.equal(pems?.length, 3, 'production_database_certificate_chain_changed');
+    const certificates = pems.map((pem) => new X509Certificate(pem));
+    assert.equal(sha256(certificates[2].raw), PINNED_SUPABASE_ROOT_SHA256,
+      'production_database_root_certificate_changed');
+    assert.equal(sha256(certificates[1].raw), PINNED_SUPABASE_INTERMEDIATE_SHA256,
+      'production_database_intermediate_certificate_changed');
+    assert.ok(certificates[0].checkHost(databaseUrl.hostname),
+      'production_database_leaf_hostname_changed');
+    const now = Date.now();
+    for (const certificate of certificates) {
+      assert.ok(Date.parse(certificate.validFrom) < now && Date.parse(certificate.validTo) > now,
+        'production_database_certificate_expired_or_not_yet_valid');
+    }
+    assert.ok(certificates[0].verify(certificates[1].publicKey)
+      && certificates[1].verify(certificates[2].publicKey)
+      && certificates[2].verify(certificates[2].publicKey),
+    'production_database_certificate_signature_changed');
+    bootstrappedProductionCa = pems.slice(1);
+  }
+  const ca = configuredCa || bootstrappedProductionCa;
+  assert.ok(ca, 'production_database_verified_ca_unavailable');
   return {
     connectionString: databaseUrl.href,
-    ssl: ca ? { rejectUnauthorized: true, ca } : { rejectUnauthorized: false },
+    ssl: {
+      rejectUnauthorized: true,
+      servername: databaseUrl.hostname,
+      ca,
+    },
     application_name: applicationName,
     connectionTimeoutMillis: 15_000,
     statement_timeout: 600_000,
     query_timeout: 610_000,
   };
+}
+
+export function assertVerifiedProductionTls(client) {
+  const stream = client?.connection?.stream;
+  assert.equal(stream?.encrypted, true, 'production_database_tls_not_encrypted');
+  assert.equal(stream?.authorized, true, 'production_database_tls_not_verified');
 }
 
 export async function protectedCounts(client) {
@@ -380,6 +457,7 @@ export async function independentRead(expected, applicationName) {
   const client = new pg.Client(connectionConfig(applicationName));
   await client.connect();
   try {
+    assertVerifiedProductionTls(client);
     await client.query('begin transaction isolation level repeatable read read only');
     const server = (await client.query(`select current_database() database,current_user username,
       current_setting('transaction_read_only') read_only`)).rows[0];
