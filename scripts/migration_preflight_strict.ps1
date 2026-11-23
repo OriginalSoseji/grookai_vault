@@ -19,6 +19,7 @@ param(
 
   [string[]]$ExpectedLocalOnlyIds = @(),
 
+  [switch]$BestOfGameDiscoveryReleaseV13,
   [switch]$BestOfGameDiscoveryReleaseV11,
   [switch]$BestOfGameDiscoveryReleaseV10,
   [switch]$BestOfGameDiscoveryReleaseV9,
@@ -156,6 +157,18 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($BestOfGameDiscoveryReleaseV13) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','BestOfGameDiscoveryReleaseV13','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261123050000') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261123050000') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Best of Game discovery release V13 requires exact forward ID20261123050000 at canonical519; no mixed scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_best_of_game_discovery_release_v13.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
 
 if ($BestOfGameDiscoveryReleaseV11) {
   $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
