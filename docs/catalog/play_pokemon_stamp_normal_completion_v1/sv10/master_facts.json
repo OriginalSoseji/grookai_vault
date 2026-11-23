@@ -1,0 +1,383 @@
+{
+  "version": "PLAY_POKEMON_STAMP_NORMAL_MASTER_FACTS_V1",
+  "status": "master_admissible",
+  "language": "en",
+  "set_code": "sv10",
+  "scope": "exact_generic_play_pokemon_stamp_normal_facts_only",
+  "complete_printing_inventory": false,
+  "foil_pattern_adjudicated": false,
+  "records": [
+    {
+      "card_print_id": "5e0b1a21-4b40-4ea3-81ee-b2ac8d8c34a3",
+      "card_name": "Shaymin",
+      "printed_coordinate": "010",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 8,
+          "official_pdf_sha256": "b3dcd1654030b46adea5fe69cc64ae4d85f86ea5be2b532940645820dfea857e",
+          "official_row": {
+            "series": 8,
+            "name": "Shaymin",
+            "name_alignment_resolved": true,
+            "set_token": "DRI",
+            "printed_number": "010",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "DRI",
+              "xMin": 332.4875,
+              "yMin": 195.52,
+              "xMax": 361.1095,
+              "yMax": 207.884,
+              "set_token": "DRI",
+              "number": "010"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 374.6451,
+                "yMin": 196.7834,
+                "xMax": 382.2551,
+                "yMax": 206.3534,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 62
+              }
+            ]
+          },
+          "secondary_raw_sha256": "c50bc48bcdf1927db21089af31a0598e723b64707b8d4701dd9bd9d7fce704d4",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 8,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Eight_(TCG)",
+            "set_key": "sv10",
+            "card_number": "10",
+            "card_name": "Shaymin",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "94bdf076-b7b2-437a-8f8d-07cf86efbdf8",
+      "card_name": "Ethan's Quilava",
+      "printed_coordinate": "033",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 8,
+          "official_pdf_sha256": "b3dcd1654030b46adea5fe69cc64ae4d85f86ea5be2b532940645820dfea857e",
+          "official_row": {
+            "series": 8,
+            "name": "Ethan’s Quilava",
+            "name_alignment_resolved": true,
+            "set_token": "DRI",
+            "printed_number": "033",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "DRI",
+              "xMin": 133.0008,
+              "yMin": 313.96,
+              "xMax": 162.7129,
+              "yMax": 326.324,
+              "set_token": "DRI",
+              "number": "033"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 175.1584,
+                "yMin": 315.2234,
+                "xMax": 182.7684,
+                "yMax": 324.7934,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 62
+              }
+            ]
+          },
+          "secondary_raw_sha256": "c50bc48bcdf1927db21089af31a0598e723b64707b8d4701dd9bd9d7fce704d4",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 8,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Eight_(TCG)",
+            "set_key": "sv10",
+            "card_number": "33",
+            "card_name": "Ethan's Quilava",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "29f49fdd-6e51-453b-a33d-510d2b9e73a6",
+      "card_name": "Team Rocket's Archer",
+      "printed_coordinate": "170",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 8,
+          "official_pdf_sha256": "b3dcd1654030b46adea5fe69cc64ae4d85f86ea5be2b532940645820dfea857e",
+          "official_row": {
+            "series": 8,
+            "name": "Team Rocket’s Archer",
+            "name_alignment_resolved": true,
+            "set_token": "DRI",
+            "printed_number": "170",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "DRI",
+              "xMin": 531.9741,
+              "yMin": 127.84,
+              "xMax": 559.9383,
+              "yMax": 140.204,
+              "set_token": "DRI",
+              "number": "170"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 574.1317,
+                "yMin": 129.1034,
+                "xMax": 581.7417,
+                "yMax": 138.6734,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 54
+              }
+            ]
+          },
+          "secondary_raw_sha256": "c50bc48bcdf1927db21089af31a0598e723b64707b8d4701dd9bd9d7fce704d4",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 8,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Eight_(TCG)",
+            "set_key": "sv10",
+            "card_number": "170",
+            "card_name": "Team Rocket's Archer",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "ad1048dc-441a-4393-8bda-ab3cc73e1022",
+      "card_name": "Team Rocket's Proton",
+      "printed_coordinate": "177",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 8,
+          "official_pdf_sha256": "b3dcd1654030b46adea5fe69cc64ae4d85f86ea5be2b532940645820dfea857e",
+          "official_row": {
+            "series": 8,
+            "name": "Team Rocket’s Proton",
+            "name_alignment_resolved": true,
+            "set_token": "DRI",
+            "printed_number": "177",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "DRI",
+              "xMin": 531.9741,
+              "yMin": 229.36,
+              "xMax": 559.5885,
+              "yMax": 241.724,
+              "set_token": "DRI",
+              "number": "177"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 574.1317,
+                "yMin": 230.6234,
+                "xMax": 581.7417,
+                "yMax": 240.1934,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 42
+              }
+            ]
+          },
+          "secondary_raw_sha256": "c50bc48bcdf1927db21089af31a0598e723b64707b8d4701dd9bd9d7fce704d4",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 8,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Eight_(TCG)",
+            "set_key": "sv10",
+            "card_number": "177",
+            "card_name": "Team Rocket's Proton",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "6733781e-089b-4fcb-88f6-b842e326c5c4",
+      "card_name": "Team Rocket's Transceiver",
+      "printed_coordinate": "178",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 8,
+          "official_pdf_sha256": "b3dcd1654030b46adea5fe69cc64ae4d85f86ea5be2b532940645820dfea857e",
+          "official_row": {
+            "series": 8,
+            "name": "Team Rocket’s Transceiver",
+            "name_alignment_resolved": true,
+            "set_token": "DRI",
+            "printed_number": "178",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "DRI",
+              "xMin": 531.9741,
+              "yMin": 246.28,
+              "xMax": 559.8514,
+              "yMax": 258.644,
+              "set_token": "DRI",
+              "number": "178"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 574.1317,
+                "yMin": 247.5434,
+                "xMax": 581.7417,
+                "yMax": 257.1134,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 54
+              }
+            ]
+          },
+          "secondary_raw_sha256": "c50bc48bcdf1927db21089af31a0598e723b64707b8d4701dd9bd9d7fce704d4",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 8,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Eight_(TCG)",
+            "set_key": "sv10",
+            "card_number": "178",
+            "card_name": "Team Rocket's Transceiver",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "11283920-fb73-4927-976c-e8ff90a7b054",
+      "card_name": "Team Rocket's Energy",
+      "printed_coordinate": "182",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 8,
+          "official_pdf_sha256": "b3dcd1654030b46adea5fe69cc64ae4d85f86ea5be2b532940645820dfea857e",
+          "official_row": {
+            "series": 8,
+            "name": "Team Rocket’s Energy",
+            "name_alignment_resolved": true,
+            "set_token": "DRI",
+            "printed_number": "182",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "DRI",
+              "xMin": 531.9741,
+              "yMin": 161.68,
+              "xMax": 559.9845,
+              "yMax": 174.044,
+              "set_token": "DRI",
+              "number": "182"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 574.1317,
+                "yMin": 162.9434,
+                "xMax": 581.7417,
+                "yMax": 172.5134,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 48
+              }
+            ]
+          },
+          "secondary_raw_sha256": "c50bc48bcdf1927db21089af31a0598e723b64707b8d4701dd9bd9d7fce704d4",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 8,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Eight_(TCG)",
+            "set_key": "sv10",
+            "card_number": "182",
+            "card_name": "Team Rocket's Energy",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    }
+  ]
+}

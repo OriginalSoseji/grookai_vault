@@ -1,0 +1,27 @@
+{
+  "executionAuthority": false,
+  "scope": "normal_only_not_full_inventory",
+  "preservedFiles": {
+    "official-series7": {
+      "file": "retrieved-series7.pdf",
+      "sha256": "a058469447a1e4eaf92027003e0cf77a17333b287169d1e81d492509a3c74007",
+      "source_url": "https://d1wx537rtdixyy.cloudfront.net/expansions/series7/en-us/P11076_USOP_OP_Prize_Packs_Series7_Card_List_EN.pdf",
+      "retrieved_at": "2026-11-22T23:21:16.895Z"
+    },
+    "wiki-series7": {
+      "file": "bulbapedia-pps7-response-v1.txt",
+      "sha256": "db117f568af98cb19460d2531fc83606fbfe5b4384529b284d7ddff6b53da8fb",
+      "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Seven_(TCG)",
+      "retrieved_at": "2026-11-22T23:29:06.671Z"
+    }
+  },
+  "extraction": {
+    "method": "Official PDF bounding boxes plus actual unedited Poppler-rendered marker RGB. Black standard-set only.",
+    "source_extraction_sha256": "bc404a4a5ca50a73f9c19e8537eab578df5778d4d5b0b5a78ad65070d1e369aa",
+    "extractor_sha256": "07cd2e7b5c7ec38a025fe58862bf4d6e19bc33bab78ef5087b4fe4be77817d81",
+    "original_pdf_pages_visually_inspected": true
+  },
+  "canonicalTargetIds": [
+    "3efe6043-c485-435b-aa1b-e6e83b3281e6"
+  ]
+}

@@ -26,6 +26,33 @@ and unassigned copies. This six-finish lane does not close the explicit-stamp
 backlog. Use the combined checkpoint's census to distinguish missing physical
 facts, unresolved mapping/finish authority, held products and absent quotes.
 
+# Play! Pokémon exact condition references V4 — November22,2026
+
+Read [the bounded V4 contract](../contracts/TCGTRACKING_CONDITION_COVERAGE_V4.md).
+Exactly43 reviewed Normal printings can use their preserved JustTCG→TCGplayer
+source crosswalk after the separately approved canonical printing apply. The
+server requires exact program/review/identity/source pins and current unique
+ownership on every request. It neither inserts a TCGplayer mapping nor fills a
+Market tile; existing mapping writers keep their own admission/approval gates.
+The installed clients retain the same authenticated condition API/DTO, supplied
+amounts and unavailable states. Require full source qualification, deployment
+readback and actual collector verification; a source-feed proof alone is not
+live application acceptance.
+
+# Play! Pokémon stamped Normal preparation — November22,2026
+
+Use `C:/grookai_play_stamp_normals_20261122`, the
+[43-printing checkpoint](../checkpoints/2026-11-22_play_stamp_normals.md) and
+[bounded execution contract](../contracts/PLAY_POKEMON_STAMP_NORMAL_EXECUTION_V1.md).
+`scripts/audits/play_stamp_normal_execution_v1.mjs` is a separate exact43-parent,
+Normal-only lane. Original official PDFs and independent checklists are required
+on every mode. Generic red foil markers and legacy stamp variants are not
+admitted. Preserve all nine-set families, hidden options and existing owner
+assignments. Source qualification is not production authority: bind exact plan
+and producer approval, actual fresh production rollback, durable independent
+readback and collector verification before completion. Keep the earlier EX and
+other bounded executors unchanged; these43 facts do not close every missing stamp.
+
 # Cosmo title price guard — November22,2026
 
 Use `C:/grookai_cosmo_price_guard_20261122` and the

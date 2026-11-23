@@ -1,0 +1,197 @@
+{
+  "version": "PLAY_POKEMON_STAMP_NORMAL_MASTER_FACTS_V1",
+  "status": "master_admissible",
+  "language": "en",
+  "set_code": "swsh5",
+  "scope": "exact_generic_play_pokemon_stamp_normal_facts_only",
+  "complete_printing_inventory": false,
+  "foil_pattern_adjudicated": false,
+  "records": [
+    {
+      "card_print_id": "aa051709-c991-4f33-bee5-d3b42a944c51",
+      "card_name": "Orbeetle",
+      "printed_coordinate": "065",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 1,
+          "official_pdf_sha256": "29500763ba9335d2718ece92a9c3cc074390fc89b2890b44bbfca3c141089323",
+          "official_row": {
+            "series": 1,
+            "name": "Orbeetle",
+            "name_alignment_resolved": true,
+            "set_token": "BST",
+            "printed_number": "065",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "BST",
+              "xMin": 250.7985,
+              "yMin": 405.6739,
+              "xMax": 272.3105,
+              "yMax": 414.6659,
+              "set_token": "BST",
+              "number": "065"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 282.2777,
+                "yMin": 406.4073,
+                "xMax": 288.1374,
+                "yMax": 413.7762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 32
+              }
+            ]
+          },
+          "secondary_raw_sha256": "c48fefb2c381120f32aa9bb3e00350393c9cc97ff81dd51c369872221c2d806c",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 1,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+            "set_key": "swsh5",
+            "card_number": "65",
+            "card_name": "Orbeetle",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "64cff63a-ea0e-48be-9df9-dce7da5418af",
+      "card_name": "Crobat",
+      "printed_coordinate": "091",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 1,
+          "official_pdf_sha256": "29500763ba9335d2718ece92a9c3cc074390fc89b2890b44bbfca3c141089323",
+          "official_row": {
+            "series": 1,
+            "name": "Crobat",
+            "name_alignment_resolved": true,
+            "set_token": "BST",
+            "printed_number": "091",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "BST",
+              "xMin": 101.5852,
+              "yMin": 352.414,
+              "xMax": 122.2092,
+              "yMax": 361.406,
+              "set_token": "BST",
+              "number": "091"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 133.0644,
+                "yMin": 353.1473,
+                "xMax": 138.9241,
+                "yMax": 360.5162,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 48
+              }
+            ]
+          },
+          "secondary_raw_sha256": "c48fefb2c381120f32aa9bb3e00350393c9cc97ff81dd51c369872221c2d806c",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 1,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+            "set_key": "swsh5",
+            "card_number": "91",
+            "card_name": "Crobat",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "3af76438-693a-4673-9302-e69101be1108",
+      "card_name": "Exp. Share",
+      "printed_coordinate": "126",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 1,
+          "official_pdf_sha256": "29500763ba9335d2718ece92a9c3cc074390fc89b2890b44bbfca3c141089323",
+          "official_row": {
+            "series": 1,
+            "name": "Exp. Share",
+            "name_alignment_resolved": true,
+            "set_token": "BST",
+            "printed_number": "126",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "BST",
+              "xMin": 400.0119,
+              "yMin": 554.1739,
+              "xMax": 420.4519,
+              "yMax": 563.1659,
+              "set_token": "BST",
+              "number": "126"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 431.4911,
+                "yMin": 554.9073,
+                "xMax": 437.3508,
+                "yMax": 562.2762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 33
+              }
+            ]
+          },
+          "secondary_raw_sha256": "c48fefb2c381120f32aa9bb3e00350393c9cc97ff81dd51c369872221c2d806c",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 1,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_One_(TCG)",
+            "set_key": "swsh5",
+            "card_number": "126",
+            "card_name": "Exp. Share",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    }
+  ]
+}

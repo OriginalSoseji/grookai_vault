@@ -1,0 +1,651 @@
+{
+  "version": "PLAY_POKEMON_STAMP_NORMAL_MASTER_FACTS_V1",
+  "status": "master_admissible",
+  "language": "en",
+  "set_code": "swsh9",
+  "scope": "exact_generic_play_pokemon_stamp_normal_facts_only",
+  "complete_printing_inventory": false,
+  "foil_pattern_adjudicated": false,
+  "records": [
+    {
+      "card_print_id": "414d875a-f214-4d23-b8fe-7b2217008c50",
+      "card_name": "Wormadam",
+      "printed_coordinate": "010",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 2,
+          "official_pdf_sha256": "61899877c13d57ddd6d9aa8b16aa4f707a78869deb481e205b0165f75161aa59",
+          "official_row": {
+            "series": 2,
+            "name": "Wormadam",
+            "name_alignment_resolved": true,
+            "set_token": "BRS",
+            "printed_number": "010",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "BRS",
+              "xMin": 250.7985,
+              "yMin": 702.6739,
+              "xMax": 272.1105,
+              "yMax": 711.6659,
+              "set_token": "BRS",
+              "number": "010"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 282.2777,
+                "yMin": 703.4073,
+                "xMax": 288.1374,
+                "yMax": 710.7762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 42
+              }
+            ]
+          },
+          "secondary_raw_sha256": "19e90c8a6ff884d7cd035caf5c6f6756089cdcd17b7159330a847ec0b28d75b5",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 2,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+            "set_key": "swsh9",
+            "card_number": "10",
+            "card_name": "Wormadam",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "528c3eb3-a354-455b-bdad-a4261c642632",
+      "card_name": "Eiscue",
+      "printed_coordinate": "044",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 2,
+          "official_pdf_sha256": "61899877c13d57ddd6d9aa8b16aa4f707a78869deb481e205b0165f75161aa59",
+          "official_row": {
+            "series": 2,
+            "name": "Eiscue",
+            "name_alignment_resolved": true,
+            "set_token": "BRS",
+            "printed_number": "044",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "BRS",
+              "xMin": 101.5852,
+              "yMin": 325.414,
+              "xMax": 123.7284,
+              "yMax": 334.406,
+              "set_token": "BRS",
+              "number": "044"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 133.0644,
+                "yMin": 326.1473,
+                "xMax": 138.9241,
+                "yMax": 333.5162,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 33
+              }
+            ]
+          },
+          "secondary_raw_sha256": "19e90c8a6ff884d7cd035caf5c6f6756089cdcd17b7159330a847ec0b28d75b5",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 2,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+            "set_key": "swsh9",
+            "card_number": "44",
+            "card_name": "Eiscue",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "99ff0de9-501a-46d5-82d5-a70f159999dc",
+      "card_name": "Pachirisu",
+      "printed_coordinate": "052",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 2,
+          "official_pdf_sha256": "61899877c13d57ddd6d9aa8b16aa4f707a78869deb481e205b0165f75161aa59",
+          "official_row": {
+            "series": 2,
+            "name": "Pachirisu",
+            "name_alignment_resolved": true,
+            "set_token": "BRS",
+            "printed_number": "052",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "BRS",
+              "xMin": 250.7985,
+              "yMin": 378.6739,
+              "xMax": 272.8145,
+              "yMax": 387.6659,
+              "set_token": "BRS",
+              "number": "052"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 282.2777,
+                "yMin": 379.4073,
+                "xMax": 288.1374,
+                "yMax": 386.7762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 42
+              }
+            ]
+          },
+          "secondary_raw_sha256": "19e90c8a6ff884d7cd035caf5c6f6756089cdcd17b7159330a847ec0b28d75b5",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 2,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+            "set_key": "swsh9",
+            "card_number": "52",
+            "card_name": "Pachirisu",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "7bb5d2e8-031d-41d9-befa-80c9b2e335c7",
+      "card_name": "Wormadam",
+      "printed_coordinate": "077",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 2,
+          "official_pdf_sha256": "61899877c13d57ddd6d9aa8b16aa4f707a78869deb481e205b0165f75161aa59",
+          "official_row": {
+            "series": 2,
+            "name": "Wormadam",
+            "name_alignment_resolved": true,
+            "set_token": "BRS",
+            "printed_number": "077",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "BRS",
+              "xMin": 250.7985,
+              "yMin": 716.1739,
+              "xMax": 272.3977,
+              "yMax": 725.1659,
+              "set_token": "BRS",
+              "number": "077"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 282.2777,
+                "yMin": 716.9073,
+                "xMax": 288.1374,
+                "yMax": 724.2762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 33
+              }
+            ]
+          },
+          "secondary_raw_sha256": "19e90c8a6ff884d7cd035caf5c6f6756089cdcd17b7159330a847ec0b28d75b5",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 2,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+            "set_key": "swsh9",
+            "card_number": "77",
+            "card_name": "Wormadam",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "7cd46223-4ede-4153-a13a-cc8f3073ffa2",
+      "card_name": "Wormadam",
+      "printed_coordinate": "098",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 2,
+          "official_pdf_sha256": "61899877c13d57ddd6d9aa8b16aa4f707a78869deb481e205b0165f75161aa59",
+          "official_row": {
+            "series": 2,
+            "name": "Wormadam",
+            "name_alignment_resolved": true,
+            "set_token": "BRS",
+            "printed_number": "098",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "BRS",
+              "xMin": 400.0119,
+              "yMin": 108.6739,
+              "xMax": 422.1959,
+              "yMax": 117.6659,
+              "set_token": "BRS",
+              "number": "098"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 431.4911,
+                "yMin": 109.4072,
+                "xMax": 437.3508,
+                "yMax": 116.7761,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 32
+              }
+            ]
+          },
+          "secondary_raw_sha256": "19e90c8a6ff884d7cd035caf5c6f6756089cdcd17b7159330a847ec0b28d75b5",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 2,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+            "set_key": "swsh9",
+            "card_number": "98",
+            "card_name": "Wormadam",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "fb85792f-6933-44c3-9bd2-3c598dfbffb3",
+      "card_name": "Garchomp",
+      "printed_coordinate": "109",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 2,
+          "official_pdf_sha256": "61899877c13d57ddd6d9aa8b16aa4f707a78869deb481e205b0165f75161aa59",
+          "official_row": {
+            "series": 2,
+            "name": "Garchomp",
+            "name_alignment_resolved": true,
+            "set_token": "BRS",
+            "printed_number": "109",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "BRS",
+              "xMin": 101.5852,
+              "yMin": 514.434,
+              "xMax": 122.7772,
+              "yMax": 523.426,
+              "set_token": "BRS",
+              "number": "109"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 133.0644,
+                "yMin": 515.1673,
+                "xMax": 138.9241,
+                "yMax": 522.5362,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 32
+              }
+            ]
+          },
+          "secondary_raw_sha256": "19e90c8a6ff884d7cd035caf5c6f6756089cdcd17b7159330a847ec0b28d75b5",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 2,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+            "set_key": "swsh9",
+            "card_number": "109",
+            "card_name": "Garchomp",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "7b2e94af-d1d7-437b-97d6-341ad92dc618",
+      "card_name": "Choice Belt",
+      "printed_coordinate": "135",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 2,
+          "official_pdf_sha256": "61899877c13d57ddd6d9aa8b16aa4f707a78869deb481e205b0165f75161aa59",
+          "official_row": {
+            "series": 2,
+            "name": "Choice Belt",
+            "name_alignment_resolved": true,
+            "set_token": "BRS",
+            "printed_number": "135",
+            "normal_explicit": true,
+            "foil_marker_present": true,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "BRS",
+              "xMin": 400.0119,
+              "yMin": 243.6739,
+              "xMax": 420.9319,
+              "yMax": 252.6659,
+              "set_token": "BRS",
+              "number": "135"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 431.4911,
+                "yMin": 244.4072,
+                "xMax": 437.3508,
+                "yMax": 251.7761,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 42
+              },
+              {
+                "text": "■",
+                "xMin": 442.5307,
+                "yMin": 244.4073,
+                "xMax": 448.3904,
+                "yMax": 251.7762,
+                "color": "red",
+                "red_pixels": 41,
+                "black_pixels": 0
+              }
+            ]
+          },
+          "secondary_raw_sha256": "19e90c8a6ff884d7cd035caf5c6f6756089cdcd17b7159330a847ec0b28d75b5",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 2,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+            "set_key": "swsh9",
+            "card_number": "135",
+            "card_name": "Choice Belt",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "b8bc7c72-583d-4f73-8061-30b59282995f",
+      "card_name": "Gloria",
+      "printed_coordinate": "141",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 2,
+          "official_pdf_sha256": "61899877c13d57ddd6d9aa8b16aa4f707a78869deb481e205b0165f75161aa59",
+          "official_row": {
+            "series": 2,
+            "name": "Gloria",
+            "name_alignment_resolved": true,
+            "set_token": "BRS",
+            "printed_number": "141",
+            "normal_explicit": true,
+            "foil_marker_present": true,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "BRS",
+              "xMin": 400.0119,
+              "yMin": 432.6739,
+              "xMax": 420.0999,
+              "yMax": 441.6659,
+              "set_token": "BRS",
+              "number": "141"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 431.4911,
+                "yMin": 433.4073,
+                "xMax": 437.3508,
+                "yMax": 440.7762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 32
+              },
+              {
+                "text": "■",
+                "xMin": 442.5307,
+                "yMin": 433.4073,
+                "xMax": 448.3904,
+                "yMax": 440.7762,
+                "color": "red",
+                "red_pixels": 32,
+                "black_pixels": 0
+              }
+            ]
+          },
+          "secondary_raw_sha256": "19e90c8a6ff884d7cd035caf5c6f6756089cdcd17b7159330a847ec0b28d75b5",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 2,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+            "set_key": "swsh9",
+            "card_number": "141",
+            "card_name": "Gloria",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "47d31d1d-2ec2-4041-856c-533eddcaa566",
+      "card_name": "Kindler",
+      "printed_coordinate": "143",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 2,
+          "official_pdf_sha256": "61899877c13d57ddd6d9aa8b16aa4f707a78869deb481e205b0165f75161aa59",
+          "official_row": {
+            "series": 2,
+            "name": "Kindler",
+            "name_alignment_resolved": true,
+            "set_token": "BRS",
+            "printed_number": "143",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "BRS",
+              "xMin": 400.0119,
+              "yMin": 459.6739,
+              "xMax": 420.9639,
+              "yMax": 468.6659,
+              "set_token": "BRS",
+              "number": "143"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 431.4911,
+                "yMin": 460.4073,
+                "xMax": 437.3508,
+                "yMax": 467.7762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 42
+              }
+            ]
+          },
+          "secondary_raw_sha256": "19e90c8a6ff884d7cd035caf5c6f6756089cdcd17b7159330a847ec0b28d75b5",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 2,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+            "set_key": "swsh9",
+            "card_number": "143",
+            "card_name": "Kindler",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "d9475b94-d8e5-4a91-92da-ca99085c5ccc",
+      "card_name": "Team Yell's Cheer",
+      "printed_coordinate": "149",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 2,
+          "official_pdf_sha256": "61899877c13d57ddd6d9aa8b16aa4f707a78869deb481e205b0165f75161aa59",
+          "official_row": {
+            "series": 2,
+            "name": "Team Yell’s Cheer",
+            "name_alignment_resolved": true,
+            "set_token": "BRS",
+            "printed_number": "149",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "BRS",
+              "xMin": 400.0119,
+              "yMin": 711.6739,
+              "xMax": 421.0519,
+              "yMax": 720.6659,
+              "set_token": "BRS",
+              "number": "149"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 431.4911,
+                "yMin": 712.4073,
+                "xMax": 437.3508,
+                "yMax": 719.7762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 42
+              }
+            ]
+          },
+          "secondary_raw_sha256": "19e90c8a6ff884d7cd035caf5c6f6756089cdcd17b7159330a847ec0b28d75b5",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 2,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Two_(TCG)",
+            "set_key": "swsh9",
+            "card_number": "149",
+            "card_name": "Team Yell's Cheer",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    }
+  ]
+}

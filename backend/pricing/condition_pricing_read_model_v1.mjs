@@ -1,5 +1,6 @@
 import {CONDITIONS,DOMAIN_SCOPES,FINISHES,SOURCE,normalizeGroup,resolveTargets,selectConditionReference} from './tcgtracking_condition_reference_v1.mjs';
 import {resolvePublishedConditionTargetV3,resolveSourceBoundOnePieceTargetV3} from './condition_pricing_published_authority_v3.mjs';
+import {resolveSourceBoundPlayStampNormalTargetV4} from './condition_pricing_play_stamp_authority_v4.mjs';
 
 export const CONDITION_PRICE_VERSION='CONDITION_PRICE_READ_MODEL_V1';
 const UUID=/^[a-f\d]{8}-(?:[a-f\d]{4}-){3}[a-f\d]{12}$/i;
@@ -96,7 +97,7 @@ const sharedSourceCache=createConditionSourceCacheV1();
 
 export async function getConditionPriceV1(client,{cardPrintingId,condition,now=new Date().toISOString()},{readSource=sharedSourceCache}={}){
   if(!UUID.test(cardPrintingId)||!CONDITIONS.includes(condition))throw new Error('INVALID_EXACT_CONDITION');
-  const target=await resolveConditionPriceTargetV1(client,cardPrintingId)??await resolveSourceBoundOnePieceTargetV3(client,cardPrintingId)??await resolvePublishedConditionTargetV3(client,cardPrintingId);
+  const target=await resolveConditionPriceTargetV1(client,cardPrintingId)??await resolveSourceBoundOnePieceTargetV3(client,cardPrintingId)??await resolveSourceBoundPlayStampNormalTargetV4(client,cardPrintingId)??await resolvePublishedConditionTargetV3(client,cardPrintingId);
   const unavailable=reason=>({version:CONDITION_PRICE_VERSION,status:'unavailable',confidence:'unavailable',card_printing_id:cardPrintingId,condition,amount:null,currency:null,currency_hint:'USD',currency_verified:false,source:SOURCE,source_label:'TCGplayer condition price via TCGTracking',pricing_lane:'reference',provider_updated_at:null,unavailable_reason:reason});
   if(!target)return unavailable('exact_mapping_unavailable');
   const {source,fetchedAt}=await readSource(target);

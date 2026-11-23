@@ -1,0 +1,203 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv09",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "docs/catalog/play_pokemon_stamp_normal_completion_v1/sv09/master_facts.json",
+  "master_index_sha256": "e6622f26c0e4e94f3821c49ea1507e981bb1fffe9a614286459fa1b2de67ff0a",
+  "parents": [
+    {
+      "id": "222fad39-fa68-4192-a974-22db66915224",
+      "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+      "gv_id": "GV-PK-JTG-149-PLAY-POKEMON-STAMP",
+      "name": "Iris's Fighting Spirit",
+      "printed_coordinate": "149",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "6f32786c-1485-4e6b-a049-5795a609ae26",
+      "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+      "gv_id": "GV-PK-JTG-146-PLAY-POKEMON-STAMP",
+      "name": "Brock's Scouting",
+      "printed_coordinate": "146",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "730853a1-878b-4e2e-8be3-81500cc27b81",
+      "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+      "gv_id": "GV-PK-JTG-147-PLAY-POKEMON-STAMP",
+      "name": "Hop's Bag",
+      "printed_coordinate": "147",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "d80841d2-8efe-43e7-a446-d173bf12f686",
+      "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+      "gv_id": "GV-PK-JTG-152-PLAY-POKEMON-STAMP",
+      "name": "N's Castle",
+      "printed_coordinate": "152",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "222fad39-fa68-4192-a974-22db66915224",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-JTG-149-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series7",
+          "sha256": "a058469447a1e4eaf92027003e0cf77a17333b287169d1e81d492509a3c74007",
+          "card_print_id": "222fad39-fa68-4192-a974-22db66915224",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "wiki-series7",
+          "sha256": "db117f568af98cb19460d2531fc83606fbfe5b4384529b284d7ddff6b53da8fb",
+          "card_print_id": "222fad39-fa68-4192-a974-22db66915224",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "6f32786c-1485-4e6b-a049-5795a609ae26",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-JTG-146-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series7",
+          "sha256": "a058469447a1e4eaf92027003e0cf77a17333b287169d1e81d492509a3c74007",
+          "card_print_id": "6f32786c-1485-4e6b-a049-5795a609ae26",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "wiki-series7",
+          "sha256": "db117f568af98cb19460d2531fc83606fbfe5b4384529b284d7ddff6b53da8fb",
+          "card_print_id": "6f32786c-1485-4e6b-a049-5795a609ae26",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "730853a1-878b-4e2e-8be3-81500cc27b81",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-JTG-147-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series7",
+          "sha256": "a058469447a1e4eaf92027003e0cf77a17333b287169d1e81d492509a3c74007",
+          "card_print_id": "730853a1-878b-4e2e-8be3-81500cc27b81",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "wiki-series7",
+          "sha256": "db117f568af98cb19460d2531fc83606fbfe5b4384529b284d7ddff6b53da8fb",
+          "card_print_id": "730853a1-878b-4e2e-8be3-81500cc27b81",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "d80841d2-8efe-43e7-a446-d173bf12f686",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-JTG-152-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series7",
+          "sha256": "a058469447a1e4eaf92027003e0cf77a17333b287169d1e81d492509a3c74007",
+          "card_print_id": "d80841d2-8efe-43e7-a446-d173bf12f686",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "wiki-series7",
+          "sha256": "db117f568af98cb19460d2531fc83606fbfe5b4384529b284d7ddff6b53da8fb",
+          "card_print_id": "d80841d2-8efe-43e7-a446-d173bf12f686",
+          "finish_key": "normal"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 4,
+    "printings": 4,
+    "finishes": {
+      "normal": 4
+    }
+  },
+  "scope_notes": [
+    "Normal existence only. This is not a complete physical finish inventory or a whole-set release.",
+    "Black standard-set marker in the official stamped Prize Pack matrix and exact Standard Set in the independent checklist both support this Normal fact.",
+    "Red foil markers are retained as unadjudicated source context; no Holo, Reverse or Cosmos row is inferred.",
+    "Existing prize_pack_stamp and series-specific legacy parents are outside this package; no alias, identity or owner mutation is admitted."
+  ],
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+    "source_artifacts": [
+      {
+        "ref": "official-series7",
+        "kind": "checked_checklist",
+        "sha256": "a058469447a1e4eaf92027003e0cf77a17333b287169d1e81d492509a3c74007",
+        "url_or_identifier": "https://d1wx537rtdixyy.cloudfront.net/expansions/series7/en-us/P11076_USOP_OP_Prize_Packs_Series7_Card_List_EN.pdf",
+        "retrieved_at": "2026-11-22T23:21:16.895Z"
+      },
+      {
+        "ref": "wiki-series7",
+        "kind": "checked_checklist",
+        "sha256": "db117f568af98cb19460d2531fc83606fbfe5b4384529b284d7ddff6b53da8fb",
+        "url_or_identifier": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Seven_(TCG)",
+        "retrieved_at": "2026-11-22T23:29:06.671Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "222fad39-fa68-4192-a974-22db66915224",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "6f32786c-1485-4e6b-a049-5795a609ae26",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "730853a1-878b-4e2e-8be3-81500cc27b81",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "d80841d2-8efe-43e7-a446-d173bf12f686",
+        "finish_key": "normal"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "review",
+      "sha256": "5775b02d1837404aac025f8727395475535fe2b85ff7cd37497339de662aa937"
+    }
+  },
+  "fingerprint": "322aa629b00390bcbbd57b96c00c3893c0b3241f62aea313c3b24c48444ec8a1"
+}
