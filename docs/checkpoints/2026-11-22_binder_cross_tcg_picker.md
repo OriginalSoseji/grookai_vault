@@ -208,3 +208,9 @@ community Binder flows remain unverified on a second real account.
 - Automated device launch and screenshot confirmed the phone had relocked by
   then, so on-screen Binder drag verification remains pending until it is
   unlocked again. No app data was cleared or changed during installation.
+- PR #1016 had all required checks green but was three commits behind `main`.
+  Fetched current `origin/main` at `846597785076aad9a9d266d8ddad6761915f5781`
+  and merged it without conflicts into the Binder branch; merge commit is
+  `0a2944dad7c9111a88759756ce24808bb2ee34b3`. The branch now contains that
+  authority with no force-push or history rewrite. PR checks must rerun on the
+  synchronized head before it can merge.
