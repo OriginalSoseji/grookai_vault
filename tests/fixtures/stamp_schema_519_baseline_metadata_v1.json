@@ -1,0 +1,4334 @@
+{
+  "version": "STAMP_SCHEMA_519_BASELINE_METADATA_FIXTURE_V1",
+  "containsDatabaseRows": false,
+  "productionAuthority": false,
+  "canonical": {
+    "columns": [
+      {
+        "table_name": "card_printing_truth_reviews",
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "column_default": "gen_random_uuid()",
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "card_printing_truth_reviews",
+        "column_name": "card_printing_id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "card_printing_truth_reviews",
+        "column_name": "review_status",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "card_printing_truth_reviews",
+        "column_name": "public_visibility",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "column_default": "'visible'::text",
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "card_printing_truth_reviews",
+        "column_name": "active",
+        "data_type": "boolean",
+        "is_nullable": "NO",
+        "column_default": "true",
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "card_printing_truth_reviews",
+        "column_name": "reason",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "card_printing_truth_reviews",
+        "column_name": "confidence",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "column_default": "'low'::text",
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "card_printing_truth_reviews",
+        "column_name": "evidence_sources_checked",
+        "data_type": "ARRAY",
+        "is_nullable": "NO",
+        "column_default": "ARRAY[]::text[]",
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "card_printing_truth_reviews",
+        "column_name": "evidence_sources_for_finish",
+        "data_type": "ARRAY",
+        "is_nullable": "NO",
+        "column_default": "ARRAY[]::text[]",
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "card_printing_truth_reviews",
+        "column_name": "expected_finish_keys",
+        "data_type": "ARRAY",
+        "is_nullable": "NO",
+        "column_default": "ARRAY[]::text[]",
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "card_printing_truth_reviews",
+        "column_name": "evidence",
+        "data_type": "jsonb",
+        "is_nullable": "NO",
+        "column_default": "'{}'::jsonb",
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "card_printing_truth_reviews",
+        "column_name": "source_report_path",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "card_printing_truth_reviews",
+        "column_name": "reviewed_by",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "card_printing_truth_reviews",
+        "column_name": "reviewed_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "card_printing_truth_reviews",
+        "column_name": "created_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "NO",
+        "column_default": "now()",
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "card_printing_truth_reviews",
+        "column_name": "updated_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "NO",
+        "column_default": "now()",
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "card_printings",
+        "column_name": "id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "column_default": "gen_random_uuid()",
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "card_printings",
+        "column_name": "card_print_id",
+        "data_type": "uuid",
+        "is_nullable": "NO",
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "card_printings",
+        "column_name": "finish_key",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "card_printings",
+        "column_name": "created_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "NO",
+        "column_default": "now()",
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "card_printings",
+        "column_name": "is_provisional",
+        "data_type": "boolean",
+        "is_nullable": "NO",
+        "column_default": "false",
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "card_printings",
+        "column_name": "provenance_source",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "card_printings",
+        "column_name": "provenance_ref",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "card_printings",
+        "column_name": "created_by",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "card_printings",
+        "column_name": "printing_gv_id",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "card_printings",
+        "column_name": "image_source",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "card_printings",
+        "column_name": "image_path",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "card_printings",
+        "column_name": "image_url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "card_printings",
+        "column_name": "image_alt_url",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "card_printings",
+        "column_name": "image_status",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "card_printings",
+        "column_name": "image_note",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "raw_imports",
+        "column_name": "id",
+        "data_type": "bigint",
+        "is_nullable": "NO",
+        "column_default": "nextval('raw_imports_id_seq'::regclass)",
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "raw_imports",
+        "column_name": "payload",
+        "data_type": "jsonb",
+        "is_nullable": "NO",
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "raw_imports",
+        "column_name": "source",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "raw_imports",
+        "column_name": "status",
+        "data_type": "text",
+        "is_nullable": "NO",
+        "column_default": "'pending'::text",
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "raw_imports",
+        "column_name": "ingested_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "NO",
+        "column_default": "now()",
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "raw_imports",
+        "column_name": "processed_at",
+        "data_type": "timestamp with time zone",
+        "is_nullable": "YES",
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      },
+      {
+        "table_name": "raw_imports",
+        "column_name": "notes",
+        "data_type": "text",
+        "is_nullable": "YES",
+        "column_default": null,
+        "is_generated": "NEVER",
+        "generation_expression": null
+      }
+    ],
+    "constraints": [
+      {
+        "table": "card_printing_truth_reviews",
+        "name": "card_printing_truth_reviews_card_printing_id_fkey",
+        "definition": "FOREIGN KEY (card_printing_id) REFERENCES card_printings(id) ON DELETE RESTRICT"
+      },
+      {
+        "table": "card_printing_truth_reviews",
+        "name": "card_printing_truth_reviews_confidence_check",
+        "definition": "CHECK ((confidence = ANY (ARRAY['high'::text, 'medium'::text, 'low'::text])))"
+      },
+      {
+        "table": "card_printing_truth_reviews",
+        "name": "card_printing_truth_reviews_pkey",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "table": "card_printing_truth_reviews",
+        "name": "card_printing_truth_reviews_public_visibility_check",
+        "definition": "CHECK ((public_visibility = ANY (ARRAY['visible'::text, 'hidden_pending_review'::text, 'hidden_unsupported'::text])))"
+      },
+      {
+        "table": "card_printing_truth_reviews",
+        "name": "card_printing_truth_reviews_review_status_check",
+        "definition": "CHECK ((review_status = ANY (ARRAY['verified'::text, 'unsupported'::text, 'conflicting'::text, 'unverifiable'::text, 'quarantined_candidate'::text])))"
+      },
+      {
+        "table": "card_printings",
+        "name": "card_printings_card_print_id_finish_key_key",
+        "definition": "UNIQUE (card_print_id, finish_key)"
+      },
+      {
+        "table": "card_printings",
+        "name": "card_printings_card_print_id_fkey",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+      },
+      {
+        "table": "card_printings",
+        "name": "card_printings_finish_key_fkey",
+        "definition": "FOREIGN KEY (finish_key) REFERENCES finish_keys(key) ON DELETE RESTRICT"
+      },
+      {
+        "table": "card_printings",
+        "name": "card_printings_pkey",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "table": "raw_imports",
+        "name": "raw_imports_pkey",
+        "definition": "PRIMARY KEY (id)"
+      }
+    ],
+    "indexes": [
+      {
+        "tablename": "card_printing_truth_reviews",
+        "indexname": "card_printing_truth_reviews_one_active_idx",
+        "indexdef": "CREATE UNIQUE INDEX card_printing_truth_reviews_one_active_idx ON public.card_printing_truth_reviews USING btree (card_printing_id) WHERE active"
+      },
+      {
+        "tablename": "card_printing_truth_reviews",
+        "indexname": "card_printing_truth_reviews_pkey",
+        "indexdef": "CREATE UNIQUE INDEX card_printing_truth_reviews_pkey ON public.card_printing_truth_reviews USING btree (id)"
+      },
+      {
+        "tablename": "card_printing_truth_reviews",
+        "indexname": "idx_card_printing_truth_reviews_status",
+        "indexdef": "CREATE INDEX idx_card_printing_truth_reviews_status ON public.card_printing_truth_reviews USING btree (review_status, active)"
+      },
+      {
+        "tablename": "card_printing_truth_reviews",
+        "indexname": "idx_card_printing_truth_reviews_visibility",
+        "indexdef": "CREATE INDEX idx_card_printing_truth_reviews_visibility ON public.card_printing_truth_reviews USING btree (public_visibility, active)"
+      },
+      {
+        "tablename": "card_printings",
+        "indexname": "card_printings_card_print_id_finish_key_key",
+        "indexdef": "CREATE UNIQUE INDEX card_printings_card_print_id_finish_key_key ON public.card_printings USING btree (card_print_id, finish_key)"
+      },
+      {
+        "tablename": "card_printings",
+        "indexname": "card_printings_finish_key_idx",
+        "indexdef": "CREATE INDEX card_printings_finish_key_idx ON public.card_printings USING btree (finish_key)"
+      },
+      {
+        "tablename": "card_printings",
+        "indexname": "card_printings_identity_gv_lower_v1_idx",
+        "indexdef": "CREATE INDEX card_printings_identity_gv_lower_v1_idx ON public.card_printings USING btree (lower(printing_gv_id)) WHERE (printing_gv_id IS NOT NULL)"
+      },
+      {
+        "tablename": "card_printings",
+        "indexname": "card_printings_pkey",
+        "indexdef": "CREATE UNIQUE INDEX card_printings_pkey ON public.card_printings USING btree (id)"
+      },
+      {
+        "tablename": "card_printings",
+        "indexname": "card_printings_printing_gv_id_key",
+        "indexdef": "CREATE UNIQUE INDEX card_printings_printing_gv_id_key ON public.card_printings USING btree (printing_gv_id) WHERE (printing_gv_id IS NOT NULL)"
+      },
+      {
+        "tablename": "raw_imports",
+        "indexname": "raw_imports_ingested_at_idx",
+        "indexdef": "CREATE INDEX raw_imports_ingested_at_idx ON public.raw_imports USING btree (ingested_at)"
+      },
+      {
+        "tablename": "raw_imports",
+        "indexname": "raw_imports_pkey",
+        "indexdef": "CREATE UNIQUE INDEX raw_imports_pkey ON public.raw_imports USING btree (id)"
+      },
+      {
+        "tablename": "raw_imports",
+        "indexname": "raw_imports_status_idx",
+        "indexdef": "CREATE INDEX raw_imports_status_idx ON public.raw_imports USING btree (status)"
+      }
+    ],
+    "triggers": [
+      {
+        "table": "card_printing_truth_reviews",
+        "name": "trg_card_printing_truth_reviews_updated_at_v1",
+        "enabled": "O",
+        "definition": "CREATE TRIGGER trg_card_printing_truth_reviews_updated_at_v1 BEFORE UPDATE ON public.card_printing_truth_reviews FOR EACH ROW EXECUTE FUNCTION set_card_printing_truth_reviews_updated_at_v1()",
+        "function_definition": "CREATE OR REPLACE FUNCTION public.set_card_printing_truth_reviews_updated_at_v1()\n RETURNS trigger\n LANGUAGE plpgsql\n SET search_path TO 'pg_catalog'\nAS $function$\nbegin\n  new.updated_at = now();\n  return new;\nend;\n$function$\n"
+      }
+    ],
+    "rules": [],
+    "public_rpc": [
+      {
+        "definition": "CREATE OR REPLACE FUNCTION public.get_public_card_printing_options_v1(p_card_print_ids uuid[], p_limit integer DEFAULT 1000, p_offset integer DEFAULT 0)\n RETURNS TABLE(id uuid, card_print_id uuid, printing_gv_id text, finish_key text, finish_label text, finish_sort_order integer, finish_is_active boolean, image_source text, image_path text, image_url text, image_alt_url text, image_status text, image_note text)\n LANGUAGE plpgsql\n STABLE SECURITY DEFINER\n SET search_path TO ''\nAS $function$\ndeclare\n  v_card_print_ids uuid[];\nbegin\n  v_card_print_ids := array(\n    select distinct requested_id\n    from unnest(coalesce(p_card_print_ids, array[]::uuid[])) as requested(requested_id)\n    where requested_id is not null\n    order by requested_id\n  );\n\n  if cardinality(v_card_print_ids) > 250 then\n    raise exception 'At most 250 card print ids may be requested.'\n      using errcode = '22023';\n  end if;\n  if p_limit is null or p_limit < 1 or p_limit > 1000 then\n    raise exception 'p_limit must be between 1 and 1000.'\n      using errcode = '22023';\n  end if;\n  if p_offset is null or p_offset < 0 then\n    raise exception 'p_offset must be zero or greater.'\n      using errcode = '22023';\n  end if;\n\n  return query\n  select\n    cp.id, cp.card_print_id, cp.printing_gv_id, cp.finish_key,\n    fk.label as finish_label, fk.sort_order as finish_sort_order,\n    fk.is_active as finish_is_active,\n    cp.image_source, cp.image_path, cp.image_url, cp.image_alt_url,\n    cp.image_status, cp.image_note\n  from public.card_printings cp\n  join public.finish_keys fk on fk.key = cp.finish_key\n  where cp.card_print_id = any(v_card_print_ids)\n    and public.catalog_card_print_visible_to_request_v1(cp.card_print_id)\n    and fk.is_active = true\n    and not exists (\n      select 1\n      from public.card_printing_truth_reviews review\n      where review.card_printing_id = cp.id\n        and review.active = true\n        and review.public_visibility in ('hidden_pending_review', 'hidden_unsupported')\n    )\n  order by cp.card_print_id, fk.sort_order, fk.label, cp.id\n  limit p_limit\n  offset p_offset;\nend;\n$function$\n"
+      }
+    ],
+    "foreign_keys": [
+      {
+        "schema": "public",
+        "relation": "ai_decision_logs",
+        "name": "ai_decision_logs_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE SET NULL"
+      },
+      {
+        "schema": "public",
+        "relation": "binder_contributions",
+        "name": "binder_contributions_snapshot_card_print_id_fkey",
+        "column_name": "snapshot_card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (snapshot_card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+      },
+      {
+        "schema": "public",
+        "relation": "binder_contributions",
+        "name": "binder_contributions_snapshot_card_printing_id_fkey",
+        "column_name": "snapshot_card_printing_id",
+        "target": "card_printings",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (snapshot_card_printing_id) REFERENCES card_printings(id) ON DELETE RESTRICT"
+      },
+      {
+        "schema": "public",
+        "relation": "binder_custom_slots",
+        "name": "binder_custom_slots_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+      },
+      {
+        "schema": "public",
+        "relation": "binder_custom_slots",
+        "name": "binder_custom_slots_card_printing_id_fkey",
+        "column_name": "card_printing_id",
+        "target": "card_printings",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_printing_id) REFERENCES card_printings(id) ON DELETE RESTRICT"
+      },
+      {
+        "schema": "public",
+        "relation": "binders",
+        "name": "binders_cover_card_print_id_fkey",
+        "column_name": "cover_card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (cover_card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+      },
+      {
+        "schema": "public",
+        "relation": "canon_warehouse_candidates",
+        "name": "fk_warehouse_candidates_promoted_card_print",
+        "column_name": "promoted_card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (promoted_card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+      },
+      {
+        "schema": "public",
+        "relation": "canon_warehouse_candidates",
+        "name": "fk_warehouse_candidates_promoted_card_printing",
+        "column_name": "promoted_card_printing_id",
+        "target": "card_printings",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (promoted_card_printing_id) REFERENCES card_printings(id) ON DELETE RESTRICT"
+      },
+      {
+        "schema": "public",
+        "relation": "card_comments",
+        "name": "card_comments_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "schema": "public",
+        "relation": "card_embeddings",
+        "name": "card_embeddings_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "schema": "public",
+        "relation": "card_events",
+        "name": "card_events_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE SET NULL"
+      },
+      {
+        "schema": "public",
+        "relation": "card_events_emit_failures",
+        "name": "card_events_emit_failures_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE SET NULL"
+      },
+      {
+        "schema": "public",
+        "relation": "card_feed_events",
+        "name": "card_feed_events_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "schema": "public",
+        "relation": "card_fingerprint_index",
+        "name": "card_fingerprint_index_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+      },
+      {
+        "schema": "public",
+        "relation": "card_interaction_group_states",
+        "name": "card_interaction_group_states_card_printing_id_fkey",
+        "column_name": "card_printing_id",
+        "target": "card_printings",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_printing_id) REFERENCES card_printings(id) ON DELETE SET NULL"
+      },
+      {
+        "schema": "public",
+        "relation": "card_interaction_outcomes",
+        "name": "card_interaction_outcomes_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+      },
+      {
+        "schema": "public",
+        "relation": "card_interactions",
+        "name": "card_interactions_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+      },
+      {
+        "schema": "public",
+        "relation": "card_interactions",
+        "name": "card_interactions_card_printing_id_fkey",
+        "column_name": "card_printing_id",
+        "target": "card_printings",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_printing_id) REFERENCES card_printings(id) ON DELETE SET NULL"
+      },
+      {
+        "schema": "public",
+        "relation": "card_price_observations",
+        "name": "card_price_observations_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "schema": "public",
+        "relation": "card_price_rollups",
+        "name": "card_price_rollups_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "schema": "public",
+        "relation": "card_price_ticks",
+        "name": "card_price_ticks_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "schema": "public",
+        "relation": "card_prices",
+        "name": "card_prices_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "schema": "public",
+        "relation": "card_print_cameos",
+        "name": "card_print_cameos_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+      },
+      {
+        "schema": "public",
+        "relation": "card_print_family_review_queue",
+        "name": "card_print_family_review_queue_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "schema": "public",
+        "relation": "card_print_file_paths",
+        "name": "card_print_file_paths_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "schema": "public",
+        "relation": "card_print_identity",
+        "name": "card_print_identity_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "schema": "public",
+        "relation": "card_print_identity_aliases",
+        "name": "card_print_identity_aliases_canonical_card_print_id_fkey",
+        "column_name": "canonical_card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (canonical_card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+      },
+      {
+        "schema": "public",
+        "relation": "card_print_identity_aliases",
+        "name": "card_print_identity_aliases_legacy_card_print_id_fkey",
+        "column_name": "legacy_card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (legacy_card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+      },
+      {
+        "schema": "public",
+        "relation": "card_print_identity_source_evidence",
+        "name": "card_print_identity_source_evidence_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "schema": "public",
+        "relation": "card_print_image_faces",
+        "name": "card_print_image_faces_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+      },
+      {
+        "schema": "public",
+        "relation": "card_print_price_curves",
+        "name": "card_print_price_curves_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "schema": "public",
+        "relation": "card_print_species",
+        "name": "card_print_species_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "schema": "public",
+        "relation": "card_print_traits",
+        "name": "card_print_traits_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "schema": "public",
+        "relation": "card_print_visual_descriptions",
+        "name": "card_print_visual_descriptions_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "schema": "public",
+        "relation": "card_printing_truth_reviews",
+        "name": "card_printing_truth_reviews_card_printing_id_fkey",
+        "column_name": "card_printing_id",
+        "target": "card_printings",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_printing_id) REFERENCES card_printings(id) ON DELETE RESTRICT"
+      },
+      {
+        "schema": "public",
+        "relation": "card_printings",
+        "name": "card_printings_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+      },
+      {
+        "schema": "public",
+        "relation": "card_signals",
+        "name": "card_signals_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+      },
+      {
+        "schema": "public",
+        "relation": "ebay_active_price_snapshots",
+        "name": "ebay_active_price_snapshots_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "schema": "public",
+        "relation": "ebay_active_prices_latest",
+        "name": "ebay_active_prices_latest_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "schema": "public",
+        "relation": "external_discovery_candidates",
+        "name": "external_discovery_candidates_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE SET NULL"
+      },
+      {
+        "schema": "public",
+        "relation": "external_mapping_aliases",
+        "name": "external_mapping_aliases_canonical_card_print_id_fkey",
+        "column_name": "canonical_card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (canonical_card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "schema": "public",
+        "relation": "external_mappings",
+        "name": "external_mappings_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "schema": "public",
+        "relation": "external_printing_mappings",
+        "name": "external_printing_mappings_card_printing_id_fkey",
+        "column_name": "card_printing_id",
+        "target": "card_printings",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_printing_id) REFERENCES card_printings(id) ON DELETE RESTRICT"
+      },
+      {
+        "schema": "public",
+        "relation": "identity_scan_selections",
+        "name": "identity_scan_selections_selected_card_print_id_fkey",
+        "column_name": "selected_card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (selected_card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+      },
+      {
+        "schema": "public",
+        "relation": "jungle_edition_identity_links_v1",
+        "name": "jungle_edition_identity_links_v1_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+      },
+      {
+        "schema": "public",
+        "relation": "jungle_edition_identity_links_v1",
+        "name": "jungle_edition_identity_links_v1_card_printing_id_fkey",
+        "column_name": "card_printing_id",
+        "target": "card_printings",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_printing_id) REFERENCES card_printings(id) ON DELETE RESTRICT"
+      },
+      {
+        "schema": "public",
+        "relation": "jungle_edition_identity_links_v1",
+        "name": "jungle_edition_identity_links_v1_legacy_card_print_id_fkey",
+        "column_name": "legacy_card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (legacy_card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+      },
+      {
+        "schema": "public",
+        "relation": "jungle_slab_intake_receipts_v1",
+        "name": "jungle_slab_intake_receipts_v1_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+      },
+      {
+        "schema": "public",
+        "relation": "jungle_slab_intake_receipts_v1",
+        "name": "jungle_slab_intake_receipts_v1_card_printing_id_fkey",
+        "column_name": "card_printing_id",
+        "target": "card_printings",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_printing_id) REFERENCES card_printings(id) ON DELETE RESTRICT"
+      },
+      {
+        "schema": "public",
+        "relation": "justtcg_identity_overrides",
+        "name": "justtcg_identity_overrides_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "schema": "public",
+        "relation": "justtcg_variant_price_snapshots",
+        "name": "justtcg_variant_price_snapshots_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+      },
+      {
+        "schema": "public",
+        "relation": "justtcg_variant_prices_latest",
+        "name": "justtcg_variant_prices_latest_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+      },
+      {
+        "schema": "public",
+        "relation": "justtcg_variants",
+        "name": "justtcg_variants_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+      },
+      {
+        "schema": "public",
+        "relation": "listings",
+        "name": "listings_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) NOT VALID"
+      },
+      {
+        "schema": "public",
+        "relation": "market_evidence_variant_assignments",
+        "name": "market_evidence_variant_assignments_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+      },
+      {
+        "schema": "public",
+        "relation": "market_evidence_variant_assignments",
+        "name": "market_evidence_variant_assignments_card_printing_id_fkey",
+        "column_name": "card_printing_id",
+        "target": "card_printings",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_printing_id) REFERENCES card_printings(id)"
+      },
+      {
+        "schema": "public",
+        "relation": "market_listing_card_candidates",
+        "name": "market_listing_card_candidates_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "schema": "public",
+        "relation": "market_listing_rollups",
+        "name": "market_listing_rollups_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "schema": "public",
+        "relation": "market_price_pipeline_candidates",
+        "name": "market_price_pipeline_candidates_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+      },
+      {
+        "schema": "public",
+        "relation": "market_price_pipeline_candidates",
+        "name": "market_price_pipeline_candidates_card_printing_id_fkey",
+        "column_name": "card_printing_id",
+        "target": "card_printings",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_printing_id) REFERENCES card_printings(id) ON DELETE RESTRICT"
+      },
+      {
+        "schema": "public",
+        "relation": "market_price_publication_snapshots",
+        "name": "market_price_publication_snapshots_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+      },
+      {
+        "schema": "public",
+        "relation": "market_price_publication_snapshots",
+        "name": "market_price_publication_snapshots_card_printing_id_fkey",
+        "column_name": "card_printing_id",
+        "target": "card_printings",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_printing_id) REFERENCES card_printings(id) ON DELETE RESTRICT"
+      },
+      {
+        "schema": "public",
+        "relation": "market_price_qualification_decisions",
+        "name": "market_price_qualification_decisions_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+      },
+      {
+        "schema": "public",
+        "relation": "market_price_qualification_decisions",
+        "name": "market_price_qualification_decisions_card_printing_id_fkey",
+        "column_name": "card_printing_id",
+        "target": "card_printings",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_printing_id) REFERENCES card_printings(id) ON DELETE RESTRICT"
+      },
+      {
+        "schema": "public",
+        "relation": "market_prices",
+        "name": "market_prices_card_id_fkey",
+        "column_name": "card_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "schema": "public",
+        "relation": "market_reference_candidates",
+        "name": "market_reference_candidates_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "schema": "public",
+        "relation": "market_reference_normalized_evidence",
+        "name": "market_reference_normalized_evidence_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "schema": "public",
+        "relation": "market_reference_signal_rollups",
+        "name": "market_reference_signal_rollups_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "schema": "public",
+        "relation": "notification_outbox",
+        "name": "notification_outbox_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "schema": "public",
+        "relation": "notifications_log",
+        "name": "notifications_log_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE SET NULL"
+      },
+      {
+        "schema": "public",
+        "relation": "onboarding_ladder_events",
+        "name": "onboarding_ladder_events_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE SET NULL"
+      },
+      {
+        "schema": "public",
+        "relation": "onboarding_ladder_state",
+        "name": "onboarding_ladder_state_owned_card_print_id_fkey",
+        "column_name": "owned_card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (owned_card_print_id) REFERENCES card_prints(id) ON DELETE SET NULL"
+      },
+      {
+        "schema": "public",
+        "relation": "onboarding_ladder_state",
+        "name": "onboarding_ladder_state_wanted_card_print_id_fkey",
+        "column_name": "wanted_card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (wanted_card_print_id) REFERENCES card_prints(id) ON DELETE SET NULL"
+      },
+      {
+        "schema": "public",
+        "relation": "pokemon_card_gameplay_details_v1",
+        "name": "pokemon_card_gameplay_details_v1_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+      },
+      {
+        "schema": "public",
+        "relation": "price_observations",
+        "name": "price_observations_print_id_fkey",
+        "column_name": "print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (print_id) REFERENCES card_prints(id) DEFERRABLE INITIALLY DEFERRED"
+      },
+      {
+        "schema": "public",
+        "relation": "price_targets",
+        "name": "price_targets_printing_id_fkey",
+        "column_name": "printing_id",
+        "target": "card_printings",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (printing_id) REFERENCES card_printings(id) ON DELETE RESTRICT"
+      },
+      {
+        "schema": "public",
+        "relation": "prices",
+        "name": "prices_card_id_fkey",
+        "column_name": "card_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "schema": "public",
+        "relation": "pricing_jobs",
+        "name": "pricing_jobs_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "schema": "public",
+        "relation": "pricing_observations",
+        "name": "pricing_observations_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE SET NULL"
+      },
+      {
+        "schema": "public",
+        "relation": "pricing_watch",
+        "name": "pricing_watch_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+      },
+      {
+        "schema": "public",
+        "relation": "scanner_fingerprint_index",
+        "name": "scanner_fingerprint_index_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+      },
+      {
+        "schema": "public",
+        "relation": "shared_cards",
+        "name": "shared_cards_card_id_fkey",
+        "column_name": "card_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "schema": "public",
+        "relation": "slab_certs",
+        "name": "slab_certs_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+      },
+      {
+        "schema": "public",
+        "relation": "slab_provenance_events",
+        "name": "slab_provenance_events_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+      },
+      {
+        "schema": "public",
+        "relation": "tcgplayer_gym_challenge_edition_bindings_v1",
+        "name": "tcgplayer_gym_challenge_edition_bindings__card_printing_id_fkey",
+        "column_name": "card_printing_id",
+        "target": "card_printings",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_printing_id) REFERENCES card_printings(id) ON DELETE RESTRICT"
+      },
+      {
+        "schema": "public",
+        "relation": "tcgplayer_gym_challenge_edition_bindings_v1",
+        "name": "tcgplayer_gym_challenge_edition_bindings_v1_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE RESTRICT"
+      },
+      {
+        "schema": "public",
+        "relation": "user_card_intents",
+        "name": "user_card_intents_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "schema": "public",
+        "relation": "user_card_photos",
+        "name": "user_card_photos_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "schema": "public",
+        "relation": "vault_item_instance_dispositions",
+        "name": "vault_item_instance_dispositions_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+      },
+      {
+        "schema": "public",
+        "relation": "vault_item_instance_dispositions",
+        "name": "vault_item_instance_dispositions_card_printing_id_fkey",
+        "column_name": "card_printing_id",
+        "target": "card_printings",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_printing_id) REFERENCES card_printings(id)"
+      },
+      {
+        "schema": "public",
+        "relation": "vault_item_instances",
+        "name": "vault_item_instances_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id)"
+      },
+      {
+        "schema": "public",
+        "relation": "vault_item_instances",
+        "name": "vault_item_instances_card_printing_id_fkey",
+        "column_name": "card_printing_id",
+        "target": "card_printings",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_printing_id) REFERENCES card_printings(id) ON DELETE RESTRICT"
+      },
+      {
+        "schema": "public",
+        "relation": "vault_items",
+        "name": "fk_vault_items_card",
+        "column_name": "card_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_id) REFERENCES card_prints(id) DEFERRABLE INITIALLY DEFERRED"
+      },
+      {
+        "schema": "public",
+        "relation": "want_matches",
+        "name": "want_matches_card_print_id_fkey",
+        "column_name": "card_print_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "schema": "public",
+        "relation": "wishlist_items",
+        "name": "wishlist_items_card_id_fkey",
+        "column_name": "card_id",
+        "target": "card_prints",
+        "keys": 1,
+        "target_column": "id",
+        "definition": "FOREIGN KEY (card_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      }
+    ],
+    "json_columns": [
+      {
+        "schema": "grookai_square",
+        "relation": "allocations",
+        "column_name": "source_snapshot",
+        "relkind": "r"
+      },
+      {
+        "schema": "grookai_square",
+        "relation": "operations",
+        "column_name": "payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "grookai_square",
+        "relation": "operations",
+        "column_name": "projection",
+        "relkind": "r"
+      },
+      {
+        "schema": "grookai_square",
+        "relation": "operations",
+        "column_name": "receipt",
+        "relkind": "r"
+      },
+      {
+        "schema": "grookai_square",
+        "relation": "operations",
+        "column_name": "source_snapshot",
+        "relkind": "r"
+      },
+      {
+        "schema": "grookai_square",
+        "relation": "order_observations",
+        "column_name": "evidence",
+        "relkind": "r"
+      },
+      {
+        "schema": "grookai_square",
+        "relation": "run_details",
+        "column_name": "error_detail",
+        "relkind": "r"
+      },
+      {
+        "schema": "grookai_square",
+        "relation": "stock_operations",
+        "column_name": "payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "grookai_square",
+        "relation": "stock_operations",
+        "column_name": "receipt",
+        "relkind": "r"
+      },
+      {
+        "schema": "grookai_square",
+        "relation": "stock_operations",
+        "column_name": "source_snapshot",
+        "relkind": "r"
+      },
+      {
+        "schema": "grookai_square",
+        "relation": "targets",
+        "column_name": "last_synced_projection",
+        "relkind": "r"
+      },
+      {
+        "schema": "grookai_square",
+        "relation": "vault_removal_readbacks_v1",
+        "column_name": "source_snapshot",
+        "relkind": "r"
+      },
+      {
+        "schema": "grookai_vendor_pricing",
+        "relation": "events",
+        "column_name": "data",
+        "relkind": "r"
+      },
+      {
+        "schema": "grookai_vendor_pricing",
+        "relation": "requests",
+        "column_name": "result",
+        "relkind": "r"
+      },
+      {
+        "schema": "grookai_vendor_pricing",
+        "relation": "rules",
+        "column_name": "definition",
+        "relkind": "r"
+      },
+      {
+        "schema": "grookai_vendor_pricing",
+        "relation": "worker_runs",
+        "column_name": "result",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "admin_change_checkpoints",
+        "column_name": "meta",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "ai_decision_logs",
+        "column_name": "input",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "ai_decision_logs",
+        "column_name": "output",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "alerts",
+        "column_name": "rule",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "audit_card_image_backfill_v1_backup_20260520",
+        "column_name": "ai_metadata",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "audit_card_image_backfill_v1_backup_20260520",
+        "column_name": "data_quality_flags",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "audit_card_image_backfill_v1_backup_20260520",
+        "column_name": "external_ids",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "audit_card_image_backfill_v1_backup_20260520",
+        "column_name": "image_res",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "audit_card_image_backfill_v1_backup_20260520",
+        "column_name": "variants",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "backup_card_prints_null_utc",
+        "column_name": "external_ids",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "binder_activity_events",
+        "column_name": "payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "binder_idempotency_keys",
+        "column_name": "response",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "binder_template_versions",
+        "column_name": "definition",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "canon_warehouse_candidate_events",
+        "column_name": "metadata",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "canon_warehouse_candidate_evidence",
+        "column_name": "metadata_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "canon_warehouse_candidates",
+        "column_name": "claimed_identity_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "canon_warehouse_candidates",
+        "column_name": "reference_hints_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "canon_warehouse_promotion_staging",
+        "column_name": "frozen_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "card_comments",
+        "column_name": "metadata",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "card_events",
+        "column_name": "payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "card_events_emit_failures",
+        "column_name": "payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "card_feed_events",
+        "column_name": "metadata",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "card_price_observations",
+        "column_name": "meta",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "card_price_rollups",
+        "column_name": "source_breakdown",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "card_print_family_review_queue",
+        "column_name": "evidence_subject",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "card_print_identity",
+        "column_name": "identity_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "card_print_identity_aliases",
+        "column_name": "authority_decision",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "card_print_identity_source_evidence",
+        "column_name": "evidence_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "card_print_identity_source_evidence",
+        "column_name": "evidence_subject",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "card_print_image_faces",
+        "column_name": "evidence",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "card_print_price_curves",
+        "column_name": "raw_json",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "card_print_species",
+        "column_name": "evidence",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "card_print_visual_descriptions",
+        "column_name": "visual_attributes",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "card_printing_truth_reviews",
+        "column_name": "evidence",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "card_prints",
+        "column_name": "ai_metadata",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "card_prints",
+        "column_name": "data_quality_flags",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "card_prints",
+        "column_name": "external_ids",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "card_prints",
+        "column_name": "image_res",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "card_prints",
+        "column_name": "variants",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "card_prints_backup_20251115",
+        "column_name": "external_ids",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "card_prints_backup_20251115",
+        "column_name": "variants",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "card_visual_description_runs",
+        "column_name": "artifact_hashes",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "card_visual_description_runs",
+        "column_name": "pricing_snapshot",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "catalog_game_release_controls",
+        "column_name": "evidence",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "catalog_set_release_controls",
+        "column_name": "evidence",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "catalog_submissions_v1",
+        "column_name": "signals",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "collector_intake_control_events_v1",
+        "column_name": "error_detail",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "collector_intake_control_events_v1",
+        "column_name": "next_state",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "collector_intake_control_events_v1",
+        "column_name": "previous_state",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "collector_memory_prompt_state",
+        "column_name": "prompt_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "condition_snapshot_analyses",
+        "column_name": "defects",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "condition_snapshot_analyses",
+        "column_name": "measurements",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "condition_snapshot_analyses",
+        "column_name": "scan_quality",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "condition_snapshots",
+        "column_name": "defects",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "condition_snapshots",
+        "column_name": "device_meta",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "condition_snapshots",
+        "column_name": "images",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "condition_snapshots",
+        "column_name": "measurements",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "condition_snapshots",
+        "column_name": "scan_quality",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "contract_violations",
+        "column_name": "payload_snapshot",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "dev_audit",
+        "column_name": "payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "ebay_seller_control_events_v1",
+        "column_name": "next_state",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "ebay_seller_control_events_v1",
+        "column_name": "previous_state",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "ebay_seller_drafts_v1",
+        "column_name": "copy_identity",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "ebay_seller_drafts_v1",
+        "column_name": "fee_quote",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "ebay_seller_drafts_v1",
+        "column_name": "input",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "ebay_seller_drafts_v1",
+        "column_name": "prepared_snapshot",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "ebay_seller_operations_v1",
+        "column_name": "receipts",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "ebay_seller_operations_v1",
+        "column_name": "snapshot",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "ebay_seller_reservations_v1",
+        "column_name": "release_evidence",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "external_cache",
+        "column_name": "payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "external_discovery_candidates",
+        "column_name": "payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "external_mapping_aliases",
+        "column_name": "metadata",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "external_mappings",
+        "column_name": "meta",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "external_printing_mappings",
+        "column_name": "meta",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "fingerprint_provenance_events",
+        "column_name": "event_metadata",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "finish_keys",
+        "column_name": "meta",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "founder_work_item_events",
+        "column_name": "payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "founder_work_items",
+        "column_name": "command_policy",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "founder_work_items",
+        "column_name": "exclusions",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "founder_work_items",
+        "column_name": "plan_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "founder_work_items",
+        "column_name": "scope",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "identity_scan_event_results",
+        "column_name": "candidates",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "identity_scan_event_results",
+        "column_name": "signals",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "identity_scan_events",
+        "column_name": "candidates",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "identity_scan_events",
+        "column_name": "signals",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "identity_snapshots",
+        "column_name": "images",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "identity_snapshots",
+        "column_name": "scan_quality",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "ingestion_jobs",
+        "column_name": "payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "inventory_sale_fee_snapshots",
+        "column_name": "lines",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "job_logs",
+        "column_name": "meta",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "jobs",
+        "column_name": "payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "jungle_slab_intake_receipts_v1",
+        "column_name": "provider_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "justtcg_identity_overrides",
+        "column_name": "notes",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "justtcg_set_mappings",
+        "column_name": "notes",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "justtcg_variant_price_snapshots",
+        "column_name": "raw_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_evidence_lifecycle_events",
+        "column_name": "event_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_evidence_observations",
+        "column_name": "identity_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_evidence_observations",
+        "column_name": "source_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_evidence_price_review_events",
+        "column_name": "action_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_evidence_review_action_events",
+        "column_name": "action_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_evidence_review_dispositions",
+        "column_name": "blocker_summary",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_evidence_review_dispositions",
+        "column_name": "evidence_summary",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_evidence_review_dispositions",
+        "column_name": "review_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_evidence_review_dispositions",
+        "column_name": "source_mix",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_evidence_slab_review_events",
+        "column_name": "action_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_evidence_variant_assignments",
+        "column_name": "assignment_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_listing_acquisition_runs",
+        "column_name": "options",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_listing_acquisition_runs",
+        "column_name": "summary",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_listing_candidate_cleanup_events",
+        "column_name": "action_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_listing_card_candidates",
+        "column_name": "condition_features",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_listing_card_candidates",
+        "column_name": "finish_features",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_listing_card_candidates",
+        "column_name": "number_features",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_listing_card_candidates",
+        "column_name": "set_features",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_listing_card_candidates",
+        "column_name": "title_features",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_listing_price_events",
+        "column_name": "event_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_listing_query_cache",
+        "column_name": "query_filters",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_listing_query_cache",
+        "column_name": "target_hints",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_listing_raw_snapshots",
+        "column_name": "raw_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_listing_rollups",
+        "column_name": "exclusion_counts",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_listing_rollups",
+        "column_name": "rollup_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_price_pipeline_candidates",
+        "column_name": "candidate_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_price_pipeline_phase_attempts",
+        "column_name": "resumability_data",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_price_pipeline_runs",
+        "column_name": "reconciliation",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_price_pipeline_runs",
+        "column_name": "resumability_data",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_price_publication_events",
+        "column_name": "payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_price_publication_sets",
+        "column_name": "reconciliation",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_price_qualification_decisions",
+        "column_name": "evidence",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_pricing_pipeline_phase_runs",
+        "column_name": "payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_reference_acquisition_runs",
+        "column_name": "options",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_reference_acquisition_runs",
+        "column_name": "summary",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_reference_candidates",
+        "column_name": "raw_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_reference_coverage_reports",
+        "column_name": "counts",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_reference_coverage_reports",
+        "column_name": "samples",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_reference_coverage_reports",
+        "column_name": "source_summary",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_reference_normalized_evidence",
+        "column_name": "normalized_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_reference_raw_snapshots",
+        "column_name": "raw_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_reference_signal_rollups",
+        "column_name": "signal_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "market_reference_signal_rollups",
+        "column_name": "source_summary",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "me03_master_set_repair_v1_card_print_species_backup_20260519",
+        "column_name": "evidence",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "me03_master_set_repair_v1_card_prints_backup_20260519",
+        "column_name": "ai_metadata",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "me03_master_set_repair_v1_card_prints_backup_20260519",
+        "column_name": "data_quality_flags",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "me03_master_set_repair_v1_card_prints_backup_20260519",
+        "column_name": "external_ids",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "me03_master_set_repair_v1_card_prints_backup_20260519",
+        "column_name": "image_res",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "me03_master_set_repair_v1_card_prints_backup_20260519",
+        "column_name": "variants",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "me03_master_set_repair_v1_external_mappings_backup_20260519",
+        "column_name": "meta",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "me03_master_set_repair_v1_warehouse_candidates_backup_20260519",
+        "column_name": "claimed_identity_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "me03_master_set_repair_v1_warehouse_candidates_backup_20260519",
+        "column_name": "reference_hints_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "mtg_canonical_import_batches",
+        "column_name": "execution_boundaries",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "mtg_canonical_import_batches",
+        "column_name": "row_counts",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "mtg_canonical_import_rows",
+        "column_name": "payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "north_star_weekly_rollups",
+        "column_name": "input_row_counts",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "notification_emit_failures",
+        "column_name": "payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "notification_outbox",
+        "column_name": "payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "onboarding_ladder_events",
+        "column_name": "payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "one_piece_canonical_import_batches",
+        "column_name": "execution_boundaries",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "one_piece_canonical_import_batches",
+        "column_name": "row_counts",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "one_piece_canonical_import_rows",
+        "column_name": "payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "operations_agent_runs",
+        "column_name": "progress",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "operations_agent_runs",
+        "column_name": "summary",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "operations_agents",
+        "column_name": "escalation_policy",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "operations_command_attempts",
+        "column_name": "error_summary",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "operations_command_attempts",
+        "column_name": "preflight",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "operations_command_attempts",
+        "column_name": "reconciliation",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "operations_command_events",
+        "column_name": "payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "operations_commands",
+        "column_name": "error_summary",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "operations_commands",
+        "column_name": "frozen_scope",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "operations_commands",
+        "column_name": "result_summary",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "operations_evidence_objects",
+        "column_name": "metadata",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "operations_incident_events",
+        "column_name": "payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "operations_incidents",
+        "column_name": "evidence",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "operations_notification_events",
+        "column_name": "payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "operations_outcome_workflow_stage_receipts",
+        "column_name": "result",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "pokemon_card_gameplay_details_v1",
+        "column_name": "abilities",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "pokemon_card_gameplay_details_v1",
+        "column_name": "attacks",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "pokemon_card_gameplay_details_v1",
+        "column_name": "resistances",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "pokemon_card_gameplay_details_v1",
+        "column_name": "retreat_cost",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "pokemon_card_gameplay_details_v1",
+        "column_name": "rules",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "pokemon_card_gameplay_details_v1",
+        "column_name": "weaknesses",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "pokemon_species",
+        "column_name": "source_ref",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "portfolio_history_points",
+        "column_name": "evidence",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "portfolio_history_points",
+        "column_name": "observation",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "portfolio_history_points",
+        "column_name": "summary",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "portfolio_history_requests",
+        "column_name": "request",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "price_observations",
+        "column_name": "raw_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "price_rollup_config",
+        "column_name": "weights",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "price_target_events",
+        "column_name": "payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "price_target_requests",
+        "column_name": "payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "price_target_requests",
+        "column_name": "result",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "price_targets",
+        "column_name": "reference",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "pricing_observations",
+        "column_name": "raw_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "pulse_daily_job_state",
+        "column_name": "last_result",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "quarantine_records",
+        "column_name": "payload_snapshot",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "raw_imports",
+        "column_name": "payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "scanner_fingerprint_index",
+        "column_name": "source_detail",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "scans",
+        "column_name": "defects",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "scans",
+        "column_name": "device_meta",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "scans",
+        "column_name": "images",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "sealed_product_candidate_reviews",
+        "column_name": "decision_evidence",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "sealed_product_candidates",
+        "column_name": "candidate_identity",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "sealed_product_candidates",
+        "column_name": "evidence",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "sealed_product_game_release_controls",
+        "column_name": "evidence",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "sealed_product_pricing_lane_qualifications",
+        "column_name": "qualification_evidence",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "sealed_product_variant_evidence",
+        "column_name": "normalized_value",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "sealed_product_variants",
+        "column_name": "explicit_contents",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "set_sync_audit",
+        "column_name": "extra",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "set_sync_audit",
+        "column_name": "fix",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "set_sync_audit",
+        "column_name": "missing",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "sets",
+        "column_name": "source",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "slab_certs",
+        "column_name": "label_metadata",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "slab_certs",
+        "column_name": "subgrades",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "slab_provenance_events",
+        "column_name": "event_metadata",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "tcgcsv_source_artifacts",
+        "column_name": "payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "tcgcsv_source_artifacts",
+        "column_name": "response_headers",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "tcgcsv_source_categories",
+        "column_name": "raw_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "tcgcsv_source_groups",
+        "column_name": "raw_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "tcgcsv_source_price_daily_observations",
+        "column_name": "raw_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "tcgcsv_source_products",
+        "column_name": "extended_data",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "tcgcsv_source_products",
+        "column_name": "presale_info",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "tcgcsv_source_products",
+        "column_name": "raw_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "tcgcsv_source_sync_runs",
+        "column_name": "payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "tcgdex_cards",
+        "column_name": "raw",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "tcgdex_sets",
+        "column_name": "printed_total",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "tcgdex_sets",
+        "column_name": "raw",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "tcgplayer_gym_challenge_edition_assignments_v1",
+        "column_name": "assignment_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "tcgplayer_jungle_edition_assignments_v1",
+        "column_name": "assignment_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "unmatched_price_rows",
+        "column_name": "raw_payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "user_card_intents",
+        "column_name": "metadata",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "user_entitlements",
+        "column_name": "features",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vault_collection_import_documents_v2",
+        "column_name": "source_rows",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vault_collection_import_groups_v2",
+        "column_name": "target",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vault_collection_import_receipts_v2",
+        "column_name": "result",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vault_collection_import_receipts_v3",
+        "column_name": "result",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vault_copy_cost_requests",
+        "column_name": "request",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vault_copy_cost_requests",
+        "column_name": "result",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vault_import_receipts_v1",
+        "column_name": "result",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vault_intake_allocation_events",
+        "column_name": "snapshot",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vault_intake_batches",
+        "column_name": "snapshot",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vault_intake_commit_receipts_v1",
+        "column_name": "result",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vault_intake_items",
+        "column_name": "payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vault_intake_operations_v1",
+        "column_name": "error_detail",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vault_intake_operations_v1",
+        "column_name": "result_summary",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vault_item_instances",
+        "column_name": "intake_allocation",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vault_sealed_requests_v1",
+        "column_name": "payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vault_sealed_requests_v1",
+        "column_name": "result",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vendor_batch_intake_receipts",
+        "column_name": "request",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vendor_billing_accounts",
+        "column_name": "closeout_reviews",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vendor_billing_closed_accounts",
+        "column_name": "financial_snapshot",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vendor_event_requests",
+        "column_name": "after_state",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vendor_event_requests",
+        "column_name": "before_state",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vendor_event_requests",
+        "column_name": "request",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vendor_event_requests",
+        "column_name": "result",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vendor_order_observations",
+        "column_name": "evidence",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vendor_order_refund_observations",
+        "column_name": "inventory",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vendor_orders",
+        "column_name": "offer",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vendor_orders",
+        "column_name": "seller",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vendor_receipt_books",
+        "column_name": "book",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vendor_receipt_deliveries",
+        "column_name": "receipt",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vendor_sale_cost_correction_requests",
+        "column_name": "request",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vendor_sale_cost_snapshots",
+        "column_name": "snapshot",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vendor_sales_cart_cancellations",
+        "column_name": "request",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vendor_sales_cart_receipts",
+        "column_name": "dispositions",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vendor_sales_cart_receipts",
+        "column_name": "receipt",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vendor_sales_cart_receipts",
+        "column_name": "request",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vendor_sales_catalog_adds",
+        "column_name": "request",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vendor_sales_catalog_adds",
+        "column_name": "result",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vendor_seller_accounts",
+        "column_name": "adoption_evidence",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vendor_seller_accounts",
+        "column_name": "controller",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vendor_stock_reservations",
+        "column_name": "offer",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vendor_store_custom_product_events",
+        "column_name": "snapshot",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vendor_store_team_events",
+        "column_name": "details",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "vendor_store_team_requests",
+        "column_name": "payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "want_match_job_state",
+        "column_name": "last_result",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "want_matches",
+        "column_name": "payload",
+        "relkind": "r"
+      },
+      {
+        "schema": "public",
+        "relation": "web_events",
+        "column_name": "metadata",
+        "relkind": "r"
+      }
+    ],
+    "ledger": [
+      "20251127041609",
+      "20251130090000",
+      "20251130100000",
+      "20251201000000",
+      "20251201181124",
+      "20251201184245",
+      "20251202000000",
+      "20251205090000",
+      "20251206090000",
+      "20251206110000",
+      "20251206113000",
+      "20251206120000",
+      "20251206140000",
+      "20251207150000",
+      "20251207235901",
+      "20251208000000",
+      "20251208121500",
+      "20251208123000",
+      "20251208124500",
+      "20251208133000",
+      "20251208143000",
+      "20251208150000",
+      "20251208151000",
+      "20251209120000",
+      "20251213153624",
+      "20251213153625",
+      "20251213153626",
+      "20251213153627",
+      "20251213153628",
+      "20251213153629",
+      "20251213153630",
+      "20251213153631",
+      "20251213153632",
+      "20251213153633",
+      "20251213153634",
+      "20251213153635",
+      "20251213153636",
+      "20251213153637",
+      "20251213153648",
+      "20251213223000",
+      "20251213230000",
+      "20251213231500",
+      "20251215125604",
+      "20251215131343",
+      "20251215224741",
+      "20251223",
+      "20251227113728",
+      "20251229214410",
+      "20251229215511",
+      "20251229221101",
+      "20251230045041",
+      "20251230060000",
+      "20251230070000",
+      "20251230070001",
+      "20251230080000",
+      "20251230080001",
+      "20251231000000",
+      "20260113233000",
+      "20260113234500",
+      "20260114001500",
+      "20260117120000",
+      "20260117123000",
+      "20260121153000",
+      "20260121170000",
+      "20260121194000",
+      "20260121212000",
+      "20260205222100",
+      "20260205232559",
+      "20260206110803",
+      "20260206143219",
+      "20260206144232",
+      "20260206155742",
+      "20260210043204",
+      "20260214",
+      "20260217235900",
+      "20260218093000",
+      "20260218100000",
+      "20260218194847",
+      "20260218195500",
+      "20260304070000",
+      "20260304100000",
+      "20260304113000",
+      "20260304120000",
+      "20260304143000",
+      "20260304150000",
+      "20260304162000",
+      "20260304170000",
+      "20260304173000",
+      "20260304174000",
+      "20260305090000",
+      "20260305093000",
+      "20260306172935",
+      "20260307053045",
+      "20260312052346",
+      "20260312054313",
+      "20260312181339",
+      "20260312194208",
+      "20260313000100",
+      "20260313021000",
+      "20260313153000",
+      "20260313170000",
+      "20260313171000",
+      "20260314143000",
+      "20260315223000",
+      "20260315233000",
+      "20260316090000",
+      "20260316093000",
+      "20260316094500",
+      "20260316101500",
+      "20260316104500",
+      "20260316110000",
+      "20260316113000",
+      "20260316114500",
+      "20260316120000",
+      "20260316121500",
+      "20260317101500",
+      "20260317113000",
+      "20260317193000",
+      "20260317203000",
+      "20260319090000",
+      "20260319120000",
+      "20260319123000",
+      "20260319130000",
+      "20260319150000",
+      "20260320153000",
+      "20260320160000",
+      "20260321100000",
+      "20260321113000",
+      "20260321120000",
+      "20260321123000",
+      "20260321124500",
+      "20260322193000",
+      "20260324032421",
+      "20260324091500",
+      "20260324094500",
+      "20260324103000",
+      "20260324114500",
+      "20260324143000",
+      "20260324160000",
+      "20260324162500",
+      "20260324163500",
+      "20260324170000",
+      "20260324171000",
+      "20260324172000",
+      "20260324173000",
+      "20260324174000",
+      "20260324175000",
+      "20260324183000",
+      "20260325083000",
+      "20260325113000",
+      "20260325114500",
+      "20260325133000",
+      "20260325143000",
+      "20260326100000",
+      "20260327090000",
+      "20260328034937",
+      "20260328110000",
+      "20260328110001",
+      "20260328110002",
+      "20260328110003",
+      "20260328110004",
+      "20260328110005",
+      "20260328110006",
+      "20260328110007",
+      "20260328110008",
+      "20260328120009",
+      "20260330113000",
+      "20260331103000",
+      "20260331174500",
+      "20260331190000",
+      "20260402100000",
+      "20260402100001",
+      "20260402100002",
+      "20260402100003",
+      "20260402100004",
+      "20260402100005",
+      "20260402100006",
+      "20260402100007",
+      "20260402100008",
+      "20260403133000",
+      "20260408113000",
+      "20260408191000",
+      "20260411165000",
+      "20260412011000",
+      "20260413120000",
+      "20260413143000",
+      "20260414164857",
+      "20260415173000",
+      "20260415174500",
+      "20260415203000",
+      "20260416140605",
+      "20260416160247",
+      "20260416201500",
+      "20260417100000",
+      "20260422120000",
+      "20260422133000",
+      "20260423000000",
+      "20260423150000",
+      "20260427090000",
+      "20260428234000",
+      "20260429002000",
+      "20260518120000",
+      "20260518123000",
+      "20260518180000",
+      "20260519151000",
+      "20260519163000",
+      "20260519190000",
+      "20260519193000",
+      "20260520150000",
+      "20260520160000",
+      "20260520233000",
+      "20260521120000",
+      "20260521123000",
+      "20260521124500",
+      "20260521183000",
+      "20260521203000",
+      "20260521213000",
+      "20260521223000",
+      "20260521231500",
+      "20260522001500",
+      "20260522160000",
+      "20260522161500",
+      "20260522163000",
+      "20260523170500",
+      "20260523183000",
+      "20260524051500",
+      "20260616161500",
+      "20260618120000",
+      "20260624120000",
+      "20260625000000",
+      "20260625010000",
+      "20260625020000",
+      "20260625030000",
+      "20260625040000",
+      "20260625050000",
+      "20260625060000",
+      "20260625070000",
+      "20260625080000",
+      "20260625090000",
+      "20260625100000",
+      "20260625110000",
+      "20260625120000",
+      "20260625130000",
+      "20260625140000",
+      "20260625150000",
+      "20260625160000",
+      "20260625170000",
+      "20260625180000",
+      "20260629120000",
+      "20260629130000",
+      "20260629131000",
+      "20260629190000",
+      "20260703090000",
+      "20260703170000",
+      "20260703173000",
+      "20260706100000",
+      "20260706110000",
+      "20260706120000",
+      "20260706121000",
+      "20260706122000",
+      "20260706123000",
+      "20260707173500",
+      "20260707175500",
+      "20260707182000",
+      "20260708100000",
+      "20260708110000",
+      "20260708120000",
+      "20260708130000",
+      "20260708140000",
+      "20260708150000",
+      "20260708160000",
+      "20260708170000",
+      "20260708174000",
+      "20260709100000",
+      "20260709110000",
+      "20260709120000",
+      "20260709125000",
+      "20260709130000",
+      "20260709131000",
+      "20260710100000",
+      "20260711180000",
+      "20260712090000",
+      "20260713190000",
+      "20260714203000",
+      "20260715010000",
+      "20260715100000",
+      "20260715104500",
+      "20260715110000",
+      "20260715120000",
+      "20260723100000",
+      "20260723101000",
+      "20260723102000",
+      "20260723103000",
+      "20260723104000",
+      "20260728002603",
+      "20260728010000",
+      "20260728020000",
+      "20260728030000",
+      "20260728040000",
+      "20260728050000",
+      "20260728060000",
+      "20260728130000",
+      "20260728133000",
+      "20260729190000",
+      "20260730193000",
+      "20260730194000",
+      "20260731170000",
+      "20260731210500",
+      "20260731211500",
+      "20260801153800",
+      "20260801160000",
+      "20260803010000",
+      "20260803020000",
+      "20260803021000",
+      "20260803183000",
+      "20260803190000",
+      "20260803203000",
+      "20260803210000",
+      "20260803220000",
+      "20260804203000",
+      "20260804210000",
+      "20260804220000",
+      "20260805100000",
+      "20260806143000",
+      "20260806153000",
+      "20260806170000",
+      "20260806220000",
+      "20260807023000",
+      "20260807043000",
+      "20260807133000",
+      "20260811170000",
+      "20260811213000",
+      "20260812183000",
+      "20260813185000",
+      "20260813190000",
+      "20260813200000",
+      "20260814060000",
+      "20260814120000",
+      "20260814150000",
+      "20260816030000",
+      "20260816050000",
+      "20260816120000",
+      "20260816123000",
+      "20260816150000",
+      "20260816160000",
+      "20260816163000",
+      "20260817190000",
+      "20260818130000",
+      "20260818131500",
+      "20260818133000",
+      "20260819014000",
+      "20260819023000",
+      "20260822203000",
+      "20260822210000",
+      "20260822230000",
+      "20260823074000",
+      "20260824021500",
+      "20260824033000",
+      "20260824043000",
+      "20260824170000",
+      "20260824173000",
+      "20260824174500",
+      "20260826053000",
+      "20260826070000",
+      "20260828021500",
+      "20260828024500",
+      "20260828063000",
+      "20260828110000",
+      "20260828173000",
+      "20260828180000",
+      "20260829173500",
+      "20260829203000",
+      "20260830193000",
+      "20260830210500",
+      "20260830233000",
+      "20260831054500",
+      "20260901030000",
+      "20260901070000",
+      "20260901120000",
+      "20260901190000",
+      "20260903130000",
+      "20260903143000",
+      "20260904130000",
+      "20260905040000",
+      "20260905070000",
+      "20260905120000",
+      "20260907060000",
+      "20260907070000",
+      "20260907160000",
+      "20260907180000",
+      "20260907183000",
+      "20260908070000",
+      "20260908193000",
+      "20260912050000",
+      "20260919054500",
+      "20260919100500",
+      "20260919193000",
+      "20260920095000",
+      "20260920173000",
+      "20260921000500",
+      "20260926190000",
+      "20260926200000",
+      "20260926230000",
+      "20260927060000",
+      "20260927070000",
+      "20260927143000",
+      "20260927160000",
+      "20260928020000",
+      "20260928213000",
+      "20260930010000",
+      "20260930233000",
+      "20261001050000",
+      "20261001150000",
+      "20261001190000",
+      "20261001203000",
+      "20261001210000",
+      "20261001211000",
+      "20261001213000",
+      "20261001220000",
+      "20261001223000",
+      "20261001224000",
+      "20261002010000",
+      "20261002220000",
+      "20261003100000",
+      "20261003230000",
+      "20261004090000",
+      "20261004160000",
+      "20261005080000",
+      "20261006140000",
+      "20261007180000",
+      "20261008021000",
+      "20261008060000",
+      "20261008100000",
+      "20261008130000",
+      "20261008160000",
+      "20261008170000",
+      "20261008190000",
+      "20261008220000",
+      "20261009010000",
+      "20261009180000",
+      "20261009181000",
+      "20261009190000",
+      "20261012010000",
+      "20261012013000",
+      "20261012193000",
+      "20261013123000",
+      "20261014003500",
+      "20261015090000",
+      "20261015100000",
+      "20261015110000",
+      "20261015120000",
+      "20261015130000",
+      "20261016120000",
+      "20261016140000",
+      "20261016150000",
+      "20261016160000",
+      "20261016170000",
+      "20261016180000",
+      "20261016190000",
+      "20261016200000",
+      "20261016210000",
+      "20261016220000",
+      "20261016230000",
+      "20261017090000",
+      "20261017093000",
+      "20261017100000",
+      "20261017110000",
+      "20261017120000",
+      "20261017130000",
+      "20261017140000",
+      "20261017141000",
+      "20261018170000",
+      "20261018193000",
+      "20261020062000",
+      "20261020220000",
+      "20261023120000",
+      "20261027230000",
+      "20261028020000",
+      "20261028050700",
+      "20261028112000",
+      "20261028174000",
+      "20261106180000",
+      "20261110090000",
+      "20261111051000",
+      "20261111060000",
+      "20261111063000",
+      "20261111080000",
+      "20261111130000",
+      "20261111133000",
+      "20261111134500",
+      "20261111140000",
+      "20261111170000",
+      "20261111173000",
+      "20261112180000",
+      "20261113050000",
+      "20261114080000",
+      "20261117190000",
+      "20261117200000",
+      "20261117220000",
+      "20261118000000",
+      "20261118021500",
+      "20261118033000",
+      "20261118050000",
+      "20261118080000",
+      "20261118120000",
+      "20261118140000",
+      "20261118143000",
+      "20261118160000",
+      "20261118163000",
+      "20261118180000",
+      "20261118181500",
+      "20261120063000",
+      "20261120081500",
+      "20261120150500",
+      "20261120153000",
+      "20261120160000",
+      "20261122164500",
+      "20261122194000",
+      "20261123000500"
+    ]
+  },
+  "mapping": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "bigint",
+        "not_null": true,
+        "identity": "",
+        "generated": "",
+        "default_expression": "nextval('external_mappings_id_seq'::regclass)"
+      },
+      {
+        "name": "card_print_id",
+        "type": "uuid",
+        "not_null": true,
+        "identity": "",
+        "generated": "",
+        "default_expression": null
+      },
+      {
+        "name": "source",
+        "type": "text",
+        "not_null": true,
+        "identity": "",
+        "generated": "",
+        "default_expression": null
+      },
+      {
+        "name": "external_id",
+        "type": "text",
+        "not_null": true,
+        "identity": "",
+        "generated": "",
+        "default_expression": null
+      },
+      {
+        "name": "meta",
+        "type": "jsonb",
+        "not_null": false,
+        "identity": "",
+        "generated": "",
+        "default_expression": null
+      },
+      {
+        "name": "synced_at",
+        "type": "timestamp with time zone",
+        "not_null": true,
+        "identity": "",
+        "generated": "",
+        "default_expression": "now()"
+      },
+      {
+        "name": "active",
+        "type": "boolean",
+        "not_null": true,
+        "identity": "",
+        "generated": "",
+        "default_expression": "true"
+      }
+    ],
+    "constraints": [
+      {
+        "name": "external_mappings_card_print_id_fkey",
+        "type": "f",
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "name": "external_mappings_pkey",
+        "type": "p",
+        "definition": "PRIMARY KEY (id)"
+      },
+      {
+        "name": "external_mappings_source_external_id_key",
+        "type": "u",
+        "definition": "UNIQUE (source, external_id)"
+      }
+    ],
+    "indexes": [
+      {
+        "name": "external_mappings_card_print_id_idx",
+        "definition": "CREATE INDEX external_mappings_card_print_id_idx ON public.external_mappings USING btree (card_print_id)"
+      },
+      {
+        "name": "external_mappings_pkey",
+        "definition": "CREATE UNIQUE INDEX external_mappings_pkey ON public.external_mappings USING btree (id)"
+      },
+      {
+        "name": "external_mappings_source_external_id_idx",
+        "definition": "CREATE INDEX external_mappings_source_external_id_idx ON public.external_mappings USING btree (source, external_id)"
+      },
+      {
+        "name": "external_mappings_source_external_id_key",
+        "definition": "CREATE UNIQUE INDEX external_mappings_source_external_id_key ON public.external_mappings USING btree (source, external_id)"
+      },
+      {
+        "name": "external_mappings_source_idx",
+        "definition": "CREATE INDEX external_mappings_source_idx ON public.external_mappings USING btree (source)"
+      }
+    ],
+    "insert_triggers": [],
+    "rules": [],
+    "policies": [
+      {
+        "policyname": "service role all",
+        "permissive": "PERMISSIVE",
+        "roles": "{service_role}",
+        "cmd": "ALL",
+        "qual": "true",
+        "with_check": "true"
+      }
+    ],
+    "security": [
+      {
+        "relrowsecurity": true,
+        "relforcerowsecurity": false,
+        "acl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres}"
+      }
+    ],
+    "ledger": [
+      "20251127041609",
+      "20251130090000",
+      "20251130100000",
+      "20251201000000",
+      "20251201181124",
+      "20251201184245",
+      "20251202000000",
+      "20251205090000",
+      "20251206090000",
+      "20251206110000",
+      "20251206113000",
+      "20251206120000",
+      "20251206140000",
+      "20251207150000",
+      "20251207235901",
+      "20251208000000",
+      "20251208121500",
+      "20251208123000",
+      "20251208124500",
+      "20251208133000",
+      "20251208143000",
+      "20251208150000",
+      "20251208151000",
+      "20251209120000",
+      "20251213153624",
+      "20251213153625",
+      "20251213153626",
+      "20251213153627",
+      "20251213153628",
+      "20251213153629",
+      "20251213153630",
+      "20251213153631",
+      "20251213153632",
+      "20251213153633",
+      "20251213153634",
+      "20251213153635",
+      "20251213153636",
+      "20251213153637",
+      "20251213153648",
+      "20251213223000",
+      "20251213230000",
+      "20251213231500",
+      "20251215125604",
+      "20251215131343",
+      "20251215224741",
+      "20251223",
+      "20251227113728",
+      "20251229214410",
+      "20251229215511",
+      "20251229221101",
+      "20251230045041",
+      "20251230060000",
+      "20251230070000",
+      "20251230070001",
+      "20251230080000",
+      "20251230080001",
+      "20251231000000",
+      "20260113233000",
+      "20260113234500",
+      "20260114001500",
+      "20260117120000",
+      "20260117123000",
+      "20260121153000",
+      "20260121170000",
+      "20260121194000",
+      "20260121212000",
+      "20260205222100",
+      "20260205232559",
+      "20260206110803",
+      "20260206143219",
+      "20260206144232",
+      "20260206155742",
+      "20260210043204",
+      "20260214",
+      "20260217235900",
+      "20260218093000",
+      "20260218100000",
+      "20260218194847",
+      "20260218195500",
+      "20260304070000",
+      "20260304100000",
+      "20260304113000",
+      "20260304120000",
+      "20260304143000",
+      "20260304150000",
+      "20260304162000",
+      "20260304170000",
+      "20260304173000",
+      "20260304174000",
+      "20260305090000",
+      "20260305093000",
+      "20260306172935",
+      "20260307053045",
+      "20260312052346",
+      "20260312054313",
+      "20260312181339",
+      "20260312194208",
+      "20260313000100",
+      "20260313021000",
+      "20260313153000",
+      "20260313170000",
+      "20260313171000",
+      "20260314143000",
+      "20260315223000",
+      "20260315233000",
+      "20260316090000",
+      "20260316093000",
+      "20260316094500",
+      "20260316101500",
+      "20260316104500",
+      "20260316110000",
+      "20260316113000",
+      "20260316114500",
+      "20260316120000",
+      "20260316121500",
+      "20260317101500",
+      "20260317113000",
+      "20260317193000",
+      "20260317203000",
+      "20260319090000",
+      "20260319120000",
+      "20260319123000",
+      "20260319130000",
+      "20260319150000",
+      "20260320153000",
+      "20260320160000",
+      "20260321100000",
+      "20260321113000",
+      "20260321120000",
+      "20260321123000",
+      "20260321124500",
+      "20260322193000",
+      "20260324032421",
+      "20260324091500",
+      "20260324094500",
+      "20260324103000",
+      "20260324114500",
+      "20260324143000",
+      "20260324160000",
+      "20260324162500",
+      "20260324163500",
+      "20260324170000",
+      "20260324171000",
+      "20260324172000",
+      "20260324173000",
+      "20260324174000",
+      "20260324175000",
+      "20260324183000",
+      "20260325083000",
+      "20260325113000",
+      "20260325114500",
+      "20260325133000",
+      "20260325143000",
+      "20260326100000",
+      "20260327090000",
+      "20260328034937",
+      "20260328110000",
+      "20260328110001",
+      "20260328110002",
+      "20260328110003",
+      "20260328110004",
+      "20260328110005",
+      "20260328110006",
+      "20260328110007",
+      "20260328110008",
+      "20260328120009",
+      "20260330113000",
+      "20260331103000",
+      "20260331174500",
+      "20260331190000",
+      "20260402100000",
+      "20260402100001",
+      "20260402100002",
+      "20260402100003",
+      "20260402100004",
+      "20260402100005",
+      "20260402100006",
+      "20260402100007",
+      "20260402100008",
+      "20260403133000",
+      "20260408113000",
+      "20260408191000",
+      "20260411165000",
+      "20260412011000",
+      "20260413120000",
+      "20260413143000",
+      "20260414164857",
+      "20260415173000",
+      "20260415174500",
+      "20260415203000",
+      "20260416140605",
+      "20260416160247",
+      "20260416201500",
+      "20260417100000",
+      "20260422120000",
+      "20260422133000",
+      "20260423000000",
+      "20260423150000",
+      "20260427090000",
+      "20260428234000",
+      "20260429002000",
+      "20260518120000",
+      "20260518123000",
+      "20260518180000",
+      "20260519151000",
+      "20260519163000",
+      "20260519190000",
+      "20260519193000",
+      "20260520150000",
+      "20260520160000",
+      "20260520233000",
+      "20260521120000",
+      "20260521123000",
+      "20260521124500",
+      "20260521183000",
+      "20260521203000",
+      "20260521213000",
+      "20260521223000",
+      "20260521231500",
+      "20260522001500",
+      "20260522160000",
+      "20260522161500",
+      "20260522163000",
+      "20260523170500",
+      "20260523183000",
+      "20260524051500",
+      "20260616161500",
+      "20260618120000",
+      "20260624120000",
+      "20260625000000",
+      "20260625010000",
+      "20260625020000",
+      "20260625030000",
+      "20260625040000",
+      "20260625050000",
+      "20260625060000",
+      "20260625070000",
+      "20260625080000",
+      "20260625090000",
+      "20260625100000",
+      "20260625110000",
+      "20260625120000",
+      "20260625130000",
+      "20260625140000",
+      "20260625150000",
+      "20260625160000",
+      "20260625170000",
+      "20260625180000",
+      "20260629120000",
+      "20260629130000",
+      "20260629131000",
+      "20260629190000",
+      "20260703090000",
+      "20260703170000",
+      "20260703173000",
+      "20260706100000",
+      "20260706110000",
+      "20260706120000",
+      "20260706121000",
+      "20260706122000",
+      "20260706123000",
+      "20260707173500",
+      "20260707175500",
+      "20260707182000",
+      "20260708100000",
+      "20260708110000",
+      "20260708120000",
+      "20260708130000",
+      "20260708140000",
+      "20260708150000",
+      "20260708160000",
+      "20260708170000",
+      "20260708174000",
+      "20260709100000",
+      "20260709110000",
+      "20260709120000",
+      "20260709125000",
+      "20260709130000",
+      "20260709131000",
+      "20260710100000",
+      "20260711180000",
+      "20260712090000",
+      "20260713190000",
+      "20260714203000",
+      "20260715010000",
+      "20260715100000",
+      "20260715104500",
+      "20260715110000",
+      "20260715120000",
+      "20260723100000",
+      "20260723101000",
+      "20260723102000",
+      "20260723103000",
+      "20260723104000",
+      "20260728002603",
+      "20260728010000",
+      "20260728020000",
+      "20260728030000",
+      "20260728040000",
+      "20260728050000",
+      "20260728060000",
+      "20260728130000",
+      "20260728133000",
+      "20260729190000",
+      "20260730193000",
+      "20260730194000",
+      "20260731170000",
+      "20260731210500",
+      "20260731211500",
+      "20260801153800",
+      "20260801160000",
+      "20260803010000",
+      "20260803020000",
+      "20260803021000",
+      "20260803183000",
+      "20260803190000",
+      "20260803203000",
+      "20260803210000",
+      "20260803220000",
+      "20260804203000",
+      "20260804210000",
+      "20260804220000",
+      "20260805100000",
+      "20260806143000",
+      "20260806153000",
+      "20260806170000",
+      "20260806220000",
+      "20260807023000",
+      "20260807043000",
+      "20260807133000",
+      "20260811170000",
+      "20260811213000",
+      "20260812183000",
+      "20260813185000",
+      "20260813190000",
+      "20260813200000",
+      "20260814060000",
+      "20260814120000",
+      "20260814150000",
+      "20260816030000",
+      "20260816050000",
+      "20260816120000",
+      "20260816123000",
+      "20260816150000",
+      "20260816160000",
+      "20260816163000",
+      "20260817190000",
+      "20260818130000",
+      "20260818131500",
+      "20260818133000",
+      "20260819014000",
+      "20260819023000",
+      "20260822203000",
+      "20260822210000",
+      "20260822230000",
+      "20260823074000",
+      "20260824021500",
+      "20260824033000",
+      "20260824043000",
+      "20260824170000",
+      "20260824173000",
+      "20260824174500",
+      "20260826053000",
+      "20260826070000",
+      "20260828021500",
+      "20260828024500",
+      "20260828063000",
+      "20260828110000",
+      "20260828173000",
+      "20260828180000",
+      "20260829173500",
+      "20260829203000",
+      "20260830193000",
+      "20260830210500",
+      "20260830233000",
+      "20260831054500",
+      "20260901030000",
+      "20260901070000",
+      "20260901120000",
+      "20260901190000",
+      "20260903130000",
+      "20260903143000",
+      "20260904130000",
+      "20260905040000",
+      "20260905070000",
+      "20260905120000",
+      "20260907060000",
+      "20260907070000",
+      "20260907160000",
+      "20260907180000",
+      "20260907183000",
+      "20260908070000",
+      "20260908193000",
+      "20260912050000",
+      "20260919054500",
+      "20260919100500",
+      "20260919193000",
+      "20260920095000",
+      "20260920173000",
+      "20260921000500",
+      "20260926190000",
+      "20260926200000",
+      "20260926230000",
+      "20260927060000",
+      "20260927070000",
+      "20260927143000",
+      "20260927160000",
+      "20260928020000",
+      "20260928213000",
+      "20260930010000",
+      "20260930233000",
+      "20261001050000",
+      "20261001150000",
+      "20261001190000",
+      "20261001203000",
+      "20261001210000",
+      "20261001211000",
+      "20261001213000",
+      "20261001220000",
+      "20261001223000",
+      "20261001224000",
+      "20261002010000",
+      "20261002220000",
+      "20261003100000",
+      "20261003230000",
+      "20261004090000",
+      "20261004160000",
+      "20261005080000",
+      "20261006140000",
+      "20261007180000",
+      "20261008021000",
+      "20261008060000",
+      "20261008100000",
+      "20261008130000",
+      "20261008160000",
+      "20261008170000",
+      "20261008190000",
+      "20261008220000",
+      "20261009010000",
+      "20261009180000",
+      "20261009181000",
+      "20261009190000",
+      "20261012010000",
+      "20261012013000",
+      "20261012193000",
+      "20261013123000",
+      "20261014003500",
+      "20261015090000",
+      "20261015100000",
+      "20261015110000",
+      "20261015120000",
+      "20261015130000",
+      "20261016120000",
+      "20261016140000",
+      "20261016150000",
+      "20261016160000",
+      "20261016170000",
+      "20261016180000",
+      "20261016190000",
+      "20261016200000",
+      "20261016210000",
+      "20261016220000",
+      "20261016230000",
+      "20261017090000",
+      "20261017093000",
+      "20261017100000",
+      "20261017110000",
+      "20261017120000",
+      "20261017130000",
+      "20261017140000",
+      "20261017141000",
+      "20261018170000",
+      "20261018193000",
+      "20261020062000",
+      "20261020220000",
+      "20261023120000",
+      "20261027230000",
+      "20261028020000",
+      "20261028050700",
+      "20261028112000",
+      "20261028174000",
+      "20261106180000",
+      "20261110090000",
+      "20261111051000",
+      "20261111060000",
+      "20261111063000",
+      "20261111080000",
+      "20261111130000",
+      "20261111133000",
+      "20261111134500",
+      "20261111140000",
+      "20261111170000",
+      "20261111173000",
+      "20261112180000",
+      "20261113050000",
+      "20261114080000",
+      "20261117190000",
+      "20261117200000",
+      "20261117220000",
+      "20261118000000",
+      "20261118021500",
+      "20261118033000",
+      "20261118050000",
+      "20261118080000",
+      "20261118120000",
+      "20261118140000",
+      "20261118143000",
+      "20261118160000",
+      "20261118163000",
+      "20261118180000",
+      "20261118181500",
+      "20261120063000",
+      "20261120081500",
+      "20261120150500",
+      "20261120153000",
+      "20261120160000",
+      "20261122164500",
+      "20261122194000",
+      "20261123000500"
+    ]
+  }
+}

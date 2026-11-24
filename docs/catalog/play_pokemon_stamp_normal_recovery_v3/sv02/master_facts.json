@@ -1,0 +1,145 @@
+{
+  "version": "PLAY_POKEMON_STAMP_NORMAL_MASTER_FACTS_V3",
+  "status": "master_admissible",
+  "language": "en",
+  "set_code": "sv02",
+  "scope": "exact_generic_play_pokemon_stamp_normal_facts_only",
+  "complete_printing_inventory": false,
+  "foil_pattern_adjudicated": false,
+  "records": [
+    {
+      "card_print_id": "b861b100-b9c2-43b7-8f22-2b8c65b8edb1",
+      "card_name": "Bravery Charm",
+      "printed_coordinate": "173",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 4,
+          "official_pdf_sha256": "01fe2d0305b529f44c408c1e326227f5a6b387fc575544ba717e9b4c82d2f91e",
+          "official_row": {
+            "series": 4,
+            "name": "Bravery Charm",
+            "name_alignment_resolved": true,
+            "set_token": "PAL",
+            "printed_number": "173",
+            "normal_explicit": true,
+            "foil_marker_present": true,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "PAL",
+              "xMin": 328.5331,
+              "yMin": 373.9,
+              "xMax": 356.4731,
+              "yMax": 386.264,
+              "set_token": "PAL",
+              "number": "173"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 370.6907,
+                "yMin": 375.1634,
+                "xMax": 378.3007,
+                "yMax": 384.7334,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 54
+              },
+              {
+                "text": "■",
+                "xMin": 385.1876,
+                "yMin": 375.1634,
+                "xMax": 392.7976,
+                "yMax": 384.7334,
+                "color": "red",
+                "red_pixels": 24,
+                "black_pixels": 0
+              }
+            ]
+          },
+          "secondary_raw_sha256": "6c5a0be266f3867c28596c0da074ac48b69e56463408cf3ab838699fcad1e993",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 4,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Four_(TCG)",
+            "set_key": "sv02",
+            "card_number": "173",
+            "card_name": "Bravery Charm",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "d6c1ec2f-183e-4f1f-924e-1cb30bfcda28",
+      "card_name": "Luxray",
+      "printed_coordinate": "071",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 4,
+          "official_pdf_sha256": "01fe2d0305b529f44c408c1e326227f5a6b387fc575544ba717e9b4c82d2f91e",
+          "official_row": {
+            "series": 4,
+            "name": "Luxray",
+            "name_alignment_resolved": true,
+            "set_token": "PAL",
+            "printed_number": "071",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "PAL",
+              "xMin": 130.1467,
+              "yMin": 523.66,
+              "xMax": 158.3727,
+              "yMax": 536.024,
+              "set_token": "PAL",
+              "number": "071"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 172.3043,
+                "yMin": 524.9234,
+                "xMax": 179.9143,
+                "yMax": 534.4934,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 46
+              }
+            ]
+          },
+          "secondary_raw_sha256": "6c5a0be266f3867c28596c0da074ac48b69e56463408cf3ab838699fcad1e993",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 4,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Four_(TCG)",
+            "set_key": "sv02",
+            "card_number": "71",
+            "card_name": "Luxray",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    }
+  ]
+}

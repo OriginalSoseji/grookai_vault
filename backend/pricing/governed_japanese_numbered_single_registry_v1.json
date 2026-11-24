@@ -1,0 +1,154 @@
+{
+  "version": "GOVERNED_JAPANESE_NUMBERED_SINGLE_REGISTRY_V1",
+  "identity_domain": "pokemon_jpn",
+  "category_id": 85,
+  "boundaries": {
+    "canonical_writes": 0,
+    "mapping_writes": 0,
+    "price_estimation": false,
+    "changes_coverage_threshold": false,
+    "grants_publication_authority": false
+  },
+  "targets": [
+    {
+      "product_id": 570729,
+      "group_id": 23640,
+      "source_name": "Box of Disaster - 066/071",
+      "printed_number": "066/071",
+      "card_type": "Trainer - Item",
+      "parent_id": "46609f2b-65e1-438e-a786-c6553a7c1965",
+      "parent_gv_id": "GV-PK-JPN-S10A-066",
+      "canonical_name": "災いの箱",
+      "canonical_number": "066",
+      "printing_id": "bed834e6-27d2-4139-90cd-581ec169b414",
+      "printing_gv_id": "GV-PK-JPN-S10A-066-STD",
+      "finish_key": "normal",
+      "mapping_id": "8a732ca9-8166-5696-a051-3106bcd0b5c6",
+      "mapping_metadata": {
+        "contract": "JAPANESE_OFFICIAL_MIRROR689_EXACT_MAPPING_V1",
+        "parent_id": "46609f2b-65e1-438e-a786-c6553a7c1965",
+        "finish_key": "normal",
+        "source_label": "base",
+        "printing_gv_id": "GV-PK-JPN-S10A-066-STD",
+        "source_subtype": "Normal",
+        "identity_domain": "pokemon_jpn",
+        "truth_review_id": "0be26ecf-1a61-5004-a563-16ea5d5d3e37",
+        "source_product_url": "https://www.tcgplayer.com/product/570729/pokemon-japan-s10a-dark-phantasma-box-of-disaster-066-071",
+        "source_product_hash": "8ba9153b8f06eba4a8064b8668ab583ef52b96a8bdd784c16a869eb425e782c7",
+        "exact_image_verified": false,
+        "manifest_fingerprint": "5dfd1633f3b14e357e3df702c2eff78f03cf72a5c2e568364bfebe2095c20027",
+        "source_observation_ids": [
+          "949557fe-9dbd-4a2c-bbf8-928186e406b8"
+        ],
+        "pricing_publication_authorized": false,
+        "source_printing_payload_fingerprint": "63d0486d435e72d8b1eb73dadd4b7387daaad3ad05ee64cc7cb9f30095dcdd16"
+      },
+      "mapping_metadata_fingerprint": "e67da9869ab8dc00b984d297da22bd965ab44803497f7a693fdeba5576a8afbf"
+    },
+    {
+      "product_id": 574415,
+      "group_id": 23701,
+      "source_name": "Surprise Box",
+      "printed_number": "044/055",
+      "card_type": "Trainer - Item",
+      "parent_id": "489d3b21-ba19-454d-8158-43e8045dfe74",
+      "parent_gv_id": "GV-PK-JPN-SM9A-044",
+      "canonical_name": "びっくりボックス",
+      "canonical_number": "044",
+      "printing_id": "4e472831-1391-4272-9d23-d31a3c15aec7",
+      "printing_gv_id": "GV-PK-JPN-SM9A-044-STD",
+      "finish_key": "normal",
+      "mapping_id": "62da6340-7e09-5628-a5cc-c3385ba6d8d3",
+      "mapping_metadata": {
+        "contract": "JAPANESE_SINGLE_FINISH_MAPPING_V1",
+        "parent_id": "489d3b21-ba19-454d-8158-43e8045dfe74",
+        "finish_key": "normal",
+        "printing_gv_id": "GV-PK-JPN-SM9A-044-STD",
+        "source_subtype": "Normal",
+        "identity_domain": "pokemon_jpn",
+        "truth_review_id": "cb123401-b4dd-50bb-a262-e18d1c463e5a",
+        "source_product_url": "https://www.tcgplayer.com/product/574415/pokemon-japan-sm9a-night-unison-surprise-box",
+        "source_product_hash": "5ab61c108dac4d419ddc1969dab3051c4217108e9e2452c40f0ce8efe04baaf5",
+        "exact_image_verified": false,
+        "manifest_fingerprint": "c5a9a920539069ab5554bb6bbb828fd4d0f7e3706b45570a8d2d3e9f979a0c0f",
+        "source_observation_ids": [
+          "f35fde6d-50ce-489f-b691-c3febe1a568f"
+        ],
+        "pricing_publication_authorized": false,
+        "source_printing_payload_fingerprint": "92573413ed37b900981b973fa6203ea74eba56c294c52f3e3d3dd956a2e046a4"
+      },
+      "mapping_metadata_fingerprint": "a1c982f9e80aa94ab8639d29036179cdeb881c1697e7714da5799007aa6782a0"
+    },
+    {
+      "product_id": 602399,
+      "group_id": 23909,
+      "source_name": "Iron Bundle",
+      "printed_number": "047/187",
+      "card_type": "Water",
+      "parent_id": "ca3dc7ef-2ed7-4ea7-a973-554639a011df",
+      "parent_gv_id": "GV-PK-JPN-SV8A-047",
+      "canonical_name": "テツノツツミ",
+      "canonical_number": "047",
+      "printing_id": "96a2a324-6fde-498c-9c2c-4a887c8e0be0",
+      "printing_gv_id": "GV-PK-JPN-SV8A-047-STD",
+      "finish_key": "normal",
+      "mapping_id": "afbcac7b-2ac8-5000-ad1a-6680f65ffc3e",
+      "mapping_metadata": {
+        "contract": "JAPANESE_OFFICIAL_MIRROR689_EXACT_MAPPING_V1",
+        "parent_id": "ca3dc7ef-2ed7-4ea7-a973-554639a011df",
+        "finish_key": "normal",
+        "source_label": "base",
+        "printing_gv_id": "GV-PK-JPN-SV8A-047-STD",
+        "source_subtype": "Normal",
+        "identity_domain": "pokemon_jpn",
+        "truth_review_id": "173ff98a-b083-5c27-a65f-b5512f92b2de",
+        "source_product_url": "https://www.tcgplayer.com/product/602399/pokemon-japan-sv8a-terastal-fest-ex-iron-bundle",
+        "source_product_hash": "8bc7cc48106428ac17ca3c6a8411c4c6f82f1ce85288a072b5d52152516b3bef",
+        "exact_image_verified": false,
+        "manifest_fingerprint": "296d7c4da2c8471c30c27821faa89ad1a9293c46bb458c9d0c61651d227b3ac9",
+        "source_observation_ids": [
+          "e87fc164-5abc-4ff7-9ae7-39ed39bbcf20"
+        ],
+        "pricing_publication_authorized": false,
+        "source_printing_payload_fingerprint": "63d0486d435e72d8b1eb73dadd4b7387daaad3ad05ee64cc7cb9f30095dcdd16"
+      },
+      "mapping_metadata_fingerprint": "f4a41630b79ee2ae434b66004b1194e48794aede76681043b88c38b7dcceba2e"
+    },
+    {
+      "product_id": 669598,
+      "group_id": 24567,
+      "source_name": "Energy Coin",
+      "printed_number": "637/742",
+      "card_type": "Trainer - Item",
+      "parent_id": "e090ad11-8054-41fe-9144-0e2f9b5a7dcd",
+      "parent_gv_id": "GV-PK-JPN-MC-637",
+      "canonical_name": "エネルギーコイン",
+      "canonical_number": "637",
+      "printing_id": "b4f48b73-40c0-4fdf-a033-4b17297d24a0",
+      "printing_gv_id": "GV-PK-JPN-MC-637-STD",
+      "finish_key": "normal",
+      "mapping_id": "1994fd43-d719-5561-a2ea-7e46bc96644e",
+      "mapping_metadata": {
+        "contract": "JAPANESE_MC_NORMAL513_EXACT_MAPPING_V1",
+        "parent_id": "e090ad11-8054-41fe-9144-0e2f9b5a7dcd",
+        "finish_key": "normal",
+        "source_label": "base",
+        "printing_gv_id": "GV-PK-JPN-MC-637-STD",
+        "source_subtype": "Normal",
+        "identity_domain": "pokemon_jpn",
+        "truth_review_id": "73958f6f-6364-51ce-a6f0-83697327f8f4",
+        "source_product_url": "https://www.tcgplayer.com/product/669598/pokemon-japan-start-deck-100-battle-collection-energy-coin",
+        "source_product_hash": "adeb7ff37a76131a49fa344b54dd68102142a606aef72f249be2309269d88252",
+        "exact_image_verified": false,
+        "manifest_fingerprint": "40c49b15bf61d0d90b528f7bf0aeff66f7745bf855d5a5145e528bdd4c75701d",
+        "source_observation_ids": [
+          "e85b82b8-d197-4a43-b8ea-7a8f69a75372"
+        ],
+        "pricing_publication_authorized": false,
+        "source_printing_payload_fingerprint": "7c3a4ce7b967c44c827424af155013a92596d952b2c13e0f7b38f19cafab0b34"
+      },
+      "mapping_metadata_fingerprint": "0d0faac95b9dd8940cb6a2fd1f7e8e4131de4d50d8da241d653fe7f6fad1eda9"
+    }
+  ],
+  "fingerprint": "631dff3a2cf4b89e7df1b60ca23d18d4d78074790c9896ba726753c1be95e3c4"
+}
