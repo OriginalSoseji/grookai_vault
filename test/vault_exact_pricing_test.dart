@@ -8,6 +8,7 @@ CardSurfacePricingData exactPrice({
   required double marketClose,
   DateTime? observedAt,
   DateTime? publishedAt,
+  String freshness = 'fresh',
 }) {
   return CardSurfacePricingData(
     cardPrintId: cardPrintId,
@@ -18,10 +19,54 @@ CardSurfacePricingData exactPrice({
     sourceLabel: 'TCGPlayer Market',
     observedAt: observedAt,
     publishedAt: publishedAt,
+    freshness: freshness,
   );
 }
 
 void main() {
+  test(
+    'mixed-age totals retain stale copies and identify the latest included update',
+    () {
+      final latest = DateTime.utc(2026, 11, 23, 10);
+      final summary = summarizeVaultExactPricing(
+        targets: const [
+          VaultExactPricingTarget(
+            cardPrintId: 'parent-1',
+            cardPrintingId: 'old',
+          ),
+          VaultExactPricingTarget(
+            cardPrintId: 'parent-1',
+            cardPrintingId: 'old',
+          ),
+          VaultExactPricingTarget(
+            cardPrintId: 'parent-1',
+            cardPrintingId: 'new',
+          ),
+        ],
+        pricingByCardPrintingId: {
+          'old': exactPrice(
+            cardPrintId: 'parent-1',
+            cardPrintingId: 'old',
+            marketClose: 31,
+            observedAt: DateTime.utc(2020, 1, 1),
+            freshness: 'stale',
+          ),
+          'new': exactPrice(
+            cardPrintId: 'parent-1',
+            cardPrintingId: 'new',
+            marketClose: 5,
+            observedAt: latest,
+          ),
+        },
+      );
+      expect(summary.totalMarketValue, 67);
+      expect(summary.pricedCopyCount, 3);
+      expect(summary.latestObservedAt, latest);
+      expect(summary.hasStalePrices, isTrue);
+      expect(summary.asSurfacePricing('parent-1')!.isStale, isTrue);
+    },
+  );
+
   test('duplicate exact raw copies are each included in the total', () {
     final observedAt = DateTime.utc(2026, 7, 28, 10);
     final publishedAt = DateTime.utc(2026, 7, 28, 11);
@@ -88,10 +133,7 @@ void main() {
   test('unresolved printing identity remains unpriced', () {
     final summary = summarizeVaultExactPricing(
       targets: const [
-        VaultExactPricingTarget(
-          cardPrintId: 'parent-1',
-          cardPrintingId: null,
-        ),
+        VaultExactPricingTarget(cardPrintId: 'parent-1', cardPrintingId: null),
       ],
       pricingByCardPrintingId: const {},
     );

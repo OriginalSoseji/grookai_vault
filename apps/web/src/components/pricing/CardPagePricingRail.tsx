@@ -7,6 +7,7 @@ import { useClientViewer } from "@/lib/auth/useClientViewer";
 import { supabase } from "@/lib/supabaseClient";
 import type { CardPricingUiRecord } from "@/lib/pricing/getCardPricingUiByCardPrintId";
 import type { MarketIntelligenceRecordV1 } from "@/lib/pricing/marketIntelligenceReadModelV1";
+import { formatMarketPriceUpdatedAt } from "@/lib/pricing/formatMarketPriceUpdatedAt";
 
 type CardPagePricingRailProps = {
   isAuthenticated: boolean;
@@ -119,6 +120,7 @@ function MarketPriceBlock({
       data-source-label={pricing.source_label}
       data-observed-at={pricing.observed_at}
       data-published-at={pricing.published_at}
+      data-pricing-freshness={pricing.freshness}
       data-provenance-id={pricing.provenance_id}
       data-is-from-price={pricing.is_from_price ? "true" : "false"}
     >
@@ -129,10 +131,13 @@ function MarketPriceBlock({
       <p className="text-sm font-medium text-slate-700 dark:text-slate-300">
         {pricing.source_label}
       </p>
-      <p className="sr-only">
-        {context}
-        {observedAt ? ` · Updated ${observedAt}` : ""}
+      <p className="text-xs leading-5 text-slate-500 dark:text-slate-400">
+        {pricing.freshness === "stale" ? "Last known price · " : ""}
+        <time dateTime={pricing.observed_at}>
+          {formatMarketPriceUpdatedAt(pricing.observed_at)}
+        </time>
       </p>
+      <p className="sr-only">{context}{observedAt ? ` · Updated ${observedAt}` : ""}</p>
     </div>
   );
 }

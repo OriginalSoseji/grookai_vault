@@ -35,6 +35,16 @@ traits and523 migrations. Its plan fingerprint is
 `361f041d585cc8c67b1f4a9e6a51769ec2d90f517239c4865e09203c8552894c`.
 This is a preparation receipt, not owner approval or a production rollback.
 
+The later read-only524 preparation has fingerprint
+`88ea5574427ca6664a4dc6be41bf3b8ca9ef3fbc44aa7947b388ffe28b4a4421`.
+Its reviewed comparison retains exactly the complete protected state and other
+captured schema; only the accepted retention-reader migration was added to the
+ledger. The first candidate committed as `8ddc6e7788be7c4fbfb12509761b97c949df406e`
+after normal managed checks passed. Its Windows PowerShell wrapper reported a
+stderr-handling failure after the commit; actual successful command receipts and
+the exact commit tree remain retained. Current main `086cf5977` is integrated
+separately and requires verification of that combined source before release.
+
 Qualification so far:
 
 - All21 focused contract/boundary tests passed. Incoming child-only foreign-key
