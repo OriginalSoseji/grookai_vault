@@ -20,6 +20,7 @@ function load(relative, expose = '') {
 }
 
 const pricing = load('./marketPricingReadModelV1.ts');
+const dates = load('./formatMarketPriceUpdatedAt.ts');
 const vault = load('../vault/getCanonicalVaultCollectorRows.ts', '\nexport { buildVaultExactPricingSummary };');
 const owner = load('../vault/getOwnerVaultItems.ts');
 const parent = '98d26f6e-83e8-4990-8e42-ea2e3aadb111';
@@ -46,7 +47,7 @@ test('valid exact and parent From evidence retain their distinct scopes', async 
 });
 
 for (const [name, patch] of Object.entries({
-  unavailable: { status: 'unavailable' }, stale: { freshness: 'stale' },
+  unavailable: { status: 'unavailable' }, unknownFreshness: { freshness: 'unknown' },
   missingProvenance: { provenance_id: '' }, missingDate: { observed_at: null },
   invalidDate: { published_at: 'invalid' }, wrongSource: { source_name: 'other' },
   wrongLabel: { source_label: 'Live market' }, currency: { currency: 'EUR' },
@@ -58,6 +59,22 @@ for (const [name, patch] of Object.entries({
 })) {
   test(`rejects ${name} pricing evidence`, async () => assert.equal((await fetch([row(patch)])).length, 0));
 }
+
+test('last known qualified prices stay visible with their original source age', async () => {
+  const observed = '2020-01-01T08:00:00Z';
+  const [retained] = await fetch([row({ freshness: 'stale', observed_at: observed })]);
+  assert.equal(retained.market_close, 12.34);
+  assert.equal(retained.freshness, 'stale');
+  assert.equal(retained.observed_at, observed);
+  assert.equal(retained.provenance_id, row().provenance_id);
+});
+
+test('update labels preserve the year and timezone and never invent recent updates', () => {
+  const text = dates.formatMarketPriceUpdatedAt('2020-01-01T08:00:00Z');
+  assert.match(text, /Last updated.*2020.*UTC/);
+  assert.equal(dates.formatMarketPriceUpdatedAt(null), 'Update time unavailable');
+  assert.equal(dates.formatMarketPriceUpdatedAt('invalid'), 'Update time unavailable');
+});
 
 test('does not accept parent evidence for a printing-only request', async () => {
   assert.equal((await fetch([row({ pricing_scope: 'parent', card_printing_id: null })])).length, 0);
@@ -132,6 +149,16 @@ test('group totals are already copy totals and are not multiplied a second time'
   assert.equal(result.pricedCopyCount, 2);
   assert.equal(result.unpricedCopyCount, 1);
   assert.equal(result.totalRawCopyCount, 3);
+});
+
+test('Vault update transparency uses source dates separately from later publication dates', () => {
+  const result = owner.buildVaultValueSummary([{
+    effective_price: 12.34, raw_count: 1, priced_raw_copy_count: 1, unpriced_raw_copy_count: 0,
+    pricing_updated_at: '2026-11-23T12:00:00Z',
+    copy_items: [{market_price: 12.34, pricing_observed_at: '2020-01-01T08:00:00Z'}],
+  }]);
+  assert.equal(result.latestPricingUpdateAt, '2026-11-23T12:00:00Z');
+  assert.equal(result.latestPricingSourceUpdateAt, '2020-01-01T08:00:00Z');
 });
 
 test('empty and nonfinite Vault prices stay unavailable, never a fabricated zero', () => {
