@@ -12,6 +12,19 @@ the shared merge pause. Stamped Reverse Holos follow that closure.
 
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Duplicate-set bulk catalog authority V17 — November23,2026
+
+Only -BestOfGameDiscoveryReleaseV17 admits canonical522-to523 and sole
+20261124040000_catalog_bulk_alias_visibility_v1.sql. Follow
+[V17](BEST_OF_GAME_DISCOVERY_READ_REPAIR_V17.md). Keep all522 historical files,
+the consumed522 apply and its two failed/one passing fixed load samples exact.
+Qualify the single equivalent catalog body with official upgrades/no-op, all449
+local fingerprints, full schema/security, authority/role/control negatives,
+full-size genuine SDK load and normal/hosted checks. Local baseline also passes;
+local timing never substitutes for independent production acceptance. Require
+fresh strict gates, original120-scope before, exact-one dry-run and a new exact
+source/SQL decision. No comparison expansion or deadline renewal is granted.
+
 ## Duplicate-set direct visibility evaluation V16 — November23,2026
 
 Only -BestOfGameDiscoveryReleaseV16 admits canonical521-to522 and the sole

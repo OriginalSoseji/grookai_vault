@@ -6,14 +6,14 @@ import {createHash} from 'node:crypto';
 import {printingManifestHash as hash} from '../catalog/printing_completeness_gate_v1.mjs';
 import {readExPrintingSchema,exInsertEffectProofV1} from '../catalog/ex_intrinsic_printing_execution_v1.mjs';
 import {readMappingSchema} from './play_stamp_normal_recovery_market_mapping_v2.mjs';
-import {assertStampSchema522FrameV1} from '../catalog/stamp_schema_522_continuity_v1.mjs';
+import {assertStampSchema523FrameV1,STAMP_SCHEMA_523_MIGRATION_V1,STAMP_SCHEMA_523_MIGRATION_SHA256_V1} from '../catalog/stamp_schema_523_frame_v1.mjs';
 import {assertStampSource7da8RunV1} from './stamp_source_7da8_context_v1.mjs';
 import {playRecoveryMarketMappingCodeBindingV2} from '../../scripts/audits/play_stamp_normal_recovery_market_mapping_v2.mjs';
 
 export const VERSION='FIGHTING_REGULAR_MAPPING_REPAIR_V1';
 export const PROJECT='ycdxbpibncqcchqiihfz';
-export const CONTEXT='FIGHTING_REGULAR_MAPPING_SCHEMA522_SOURCE7DA8_V1';
-export const QUALIFICATION_DATABASE='fighting_regular_mapping_qualification_522_v2';
+export const CONTEXT='FIGHTING_REGULAR_MAPPING_SCHEMA523_SOURCE7DA8_V1';
+export const QUALIFICATION_DATABASE='fighting_regular_mapping_qualification_523_v2';
 export const MAPPING_METHOD='reviewed_fighting_regular_coordinate_v1';
 export const REGULAR='54d35e3d-2e91-4ef9-8804-c810559d3f45';
 export const STAMP='94037abf-99a9-4f69-b4ed-7f39801dac95';
@@ -34,8 +34,9 @@ const rawFields=['id','source','status','notes','payload'];
 const target=m=>String(m.id)==='132361';
 
 export function repairCodeBindingV1(){
+ assert.equal(sha(fs.readFileSync(path.join(root,'supabase/migrations',STAMP_SCHEMA_523_MIGRATION_V1))),STAMP_SCHEMA_523_MIGRATION_SHA256_V1,'Reviewed523 migration source required');
  const files=[...playRecoveryMarketMappingCodeBindingV2().files];
- for(const file of ['backend/pricing/fighting_regular_mapping_repair_v1.mjs','scripts/audits/fighting_regular_mapping_repair_v1.mjs','docs/contracts/FIGHTING_REGULAR_MAPPING_REPAIR_V1.md'])files.push({file,sha256:sha(fs.readFileSync(path.join(root,file)))});
+ for(const file of ['backend/pricing/fighting_regular_mapping_repair_v1.mjs','scripts/audits/fighting_regular_mapping_repair_v1.mjs','docs/contracts/FIGHTING_REGULAR_MAPPING_REPAIR_V1.md','backend/catalog/stamp_schema_523_frame_v1.mjs','docs/contracts/STAMP_SCHEMA_523_FRAME_V1.md'])files.push({file,sha256:sha(fs.readFileSync(path.join(root,file)))});
  assert.equal(new Set(files.map(f=>f.file)).size,files.length);
  return {files,fingerprint:hash(files)};
 }
@@ -49,8 +50,8 @@ export async function readRepairSchemaV1(c){
  };
 }
 export function assertRepairSchemaV1(schema){
- assertStampSchema522FrameV1(schema.canonical,'canonical28');
- assertStampSchema522FrameV1(schema.mapping,'mapping28');
+ assertStampSchema523FrameV1(schema.canonical,'canonical28');
+ assertStampSchema523FrameV1(schema.mapping,'mapping28');
  exInsertEffectProofV1(schema.canonical);
  assert.equal(schema.triggers.length,0,'Unreviewed mutation trigger');
  assert.equal(schema.rules.length,0,'Unreviewed rewrite rule');
@@ -137,8 +138,8 @@ export function assertRepairRollbackV1(r,{plan,codeFingerprint,now=Date.now()}){
  assert.ok(r&&r.version===VERSION&&r.project_ref===PROJECT&&r.mode==='rollback'&&r.environment==='production'&&r.rollback_proven===true&&r.committed===false&&r.commit_uncertain===false);assert.equal(r.plan_fingerprint,plan.fingerprint);assert.equal(r.code_fingerprint,codeFingerprint);same(r.writes,EXPECTED);assert.equal(r.before_state_fingerprint,r.rollback_state_fingerprint);const age=now-Date.parse(r.finished_at);assert.ok(Number.isFinite(age)&&age>=0&&age<3600000,'Fresh matching production rollback required');
 }
 export function assertOperatorReleaseGateV1({coordination:g,closure:p},{now=Date.now()}={}){
- assert.equal(g?.active,false,'Shared main-merge hold is active or unknown');assert.equal(g.releaseAccepted,true,'Catalog release not accepted');assert.equal(g.verificationInProgress,false,'Release verification is active or unknown');assert.equal(g.productionLedger,522,'Unreviewed production schema');
- assert.equal(p?.version,'PRICING_DUPLICATE_RELEASE_CLOSURE_VERIFY_V1');assert.equal(p.pass,true);assert.equal(p.project_ref,PROJECT);assert.equal(p.production_ledger,522);assert.equal(p.original_controls_restored,true);assert.equal(p.api_data_security_reliability_verified,true);assert.equal(p.production_pages_verified,25);assert.match(p.main_sha,/^[a-f0-9]{40}$/);assert.equal(p.deployment_sha,p.main_sha);const age=now-Date.parse(p.verified_at);assert.ok(Number.isFinite(age)&&age>=0&&age<3600000,'Fresh independent deployed closure proof required');
+ assert.equal(g?.active,false,'Shared main-merge hold is active or unknown');assert.equal(g.releaseAccepted,true,'Catalog release not accepted');assert.equal(g.verificationInProgress,false,'Release verification is active or unknown');assert.equal(g.productionLedger,523,'Unreviewed production schema');
+ assert.equal(p?.version,'PRICING_DUPLICATE_RELEASE_CLOSURE_VERIFY_V1');assert.equal(p.pass,true);assert.equal(p.project_ref,PROJECT);assert.equal(p.production_ledger,523);assert.equal(p.original_controls_restored,true);assert.equal(p.api_data_security_reliability_verified,true);assert.equal(p.production_pages_verified,25);assert.match(p.main_sha,/^[a-f0-9]{40}$/);assert.equal(p.deployment_sha,p.main_sha);const age=now-Date.parse(p.verified_at);assert.ok(Number.isFinite(age)&&age>=0&&age<3600000,'Fresh independent deployed closure proof required');
  return {coordination_fingerprint:hash(g),closure_fingerprint:hash(p)};
 }
 export function readOperatorReleaseGateV1(){

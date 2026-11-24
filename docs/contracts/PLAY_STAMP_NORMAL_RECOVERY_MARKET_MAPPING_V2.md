@@ -1,5 +1,7 @@
 # Recovered Play! Pokémon Normal Market mapping V2
 
+Production admission is now STOPPED by [STAMP_IDENTITY_ADMISSION_HOLD_V1](STAMP_IDENTITY_ADMISSION_HOLD_V1.md). Preserve this frozen physical review for historical/local replay; do not execute its pending inserts or links before separately governed identity reconciliation.
+
 Status: bounded candidate under qualification; no production authority.
 
 The additional [November 23 source context](STAMP_SOURCE_7DA8_CONTINUITY_V1.md)

@@ -28,8 +28,8 @@ stamped child or adjudicate a stamp alias here. This is separate from the98 new
 stamp inserts and the75-product publication authority. Never repeat the149
 already completed inserts. The wrong regular product must not price a stamp.
 
-The candidate accepts only the exact previously qualified522 raw-insert and
-mapping metadata frames and exact7da8 completed current source generation.
+The candidate accepts only the exact523 metadata extension of the previously
+qualified raw-insert/mapping frames and exact7da8 completed current source.
 Retain all original source/identity/positiveUSD/36-hour freshness checks. Require
 zero triggers/rules on both mutation tables and no inbound foreign key on either
 changed mapping column. Fixed SQL performs only the declared compare-and-swap
@@ -48,8 +48,9 @@ points and precommit reject the shared hold or missing/expired closure proof.
 An advisory flag alone is not SQL authority. The separate fixed closure file
 must bind accepted API/data/security/reliability,25 deployed pages, matching
 main/deployment SHA and restored original controls, verified less than one hour
-ago. This exact522 candidate cannot execute against a later523 or other schema;
-reconcile the actual accepted successor through separately qualified source.
+ago. This exact523 candidate cannot execute against a later524 or other schema.
+The new scoped523 frame is metadata-only; no held32-stamp execution route is
+expanded. Reconcile later successors through separately qualified source.
 
 Rollback/apply require ordinary exact owner approval of plan and complete producer
 fingerprints, expected effects, boundaries and modes, with an original decision
@@ -60,7 +61,7 @@ require independent readback, never a blind retry. No authority is created by
 source qualification, local receipts or a general Next step instruction.
 
 Qualify only in the separately owned
-fighting_regular_mapping_qualification_522_v2 database,127.0.0.1:55340,
+fighting_regular_mapping_qualification_523_v2 database,127.0.0.1:55340,
 postgres, verifying actual database name. Retain every previous laboratory;
 copy no Auth/user/session or real-owner fixtures. Prove rollback, actual duplicate
 failure, rejection of another mapping mutation and partial state, durable apply,
@@ -72,3 +73,7 @@ retains its missing-printing hold. This bounded fixture is not the full source
 corpus or a publication shadow. Full current-source shadow, unchanged coverage,
 guarded activation, independent consumer amounts and natural refresh remain
 mandatory. No percentages, inferred finishes or condition substitutions.
+
+The independent stamp identity admission stop supersedes data readiness for the
+pending98 inserts/32 links. It does not authorize aliases or alter this regular
+product correction. Its frozen producers are included through the mapping binder.

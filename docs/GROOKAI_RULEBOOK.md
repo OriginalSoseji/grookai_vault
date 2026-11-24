@@ -56,6 +56,13 @@ Preserve the applied index, failed load samples, original data and fixed approva
 window; qualify equivalent visibility helpers before a separate exact SQL decision.
 
 # Zero-Assumption Rule (Mandatory)
+The current duplicate-set522-to523 catalog correction follows
+[BEST_OF_GAME_DISCOVERY_READ_REPAIR_V17](contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V17.md).
+Only the separate V17 gate qualifies that exact forward migration. Preserve
+the consumed522 decision, actual failed load samples, original data anchors,
+fixed comparison deadline and all historical SQL/labs. No release closure is
+claimed until genuine API/data/security/reliability and deployed acceptance.
+
 - Never assume environment, project_ref, DB contents, data presence, or ingestion success.
 - Any conclusion about data/state must be backed by either direct SQL results, explicit file/env inspection, or explicit user confirmation.
 - A query returning `0` rows is not proof of data loss; first run the Env / DB Sanity Check and confirm the active environment.

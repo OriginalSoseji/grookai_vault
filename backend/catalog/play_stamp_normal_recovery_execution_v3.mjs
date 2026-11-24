@@ -1,3 +1,4 @@
+import {assertStampIdentityProductionAdmissionV1} from './stamp_identity_admission_hold_v1.mjs';
 // Separate28-parent recovered Normal lane; Fighting Au Lait is explicitly excluded. Original43-parent V1 is unchanged.
 import assert from 'node:assert/strict';
 import {assertStampExecutionSchemaContextV2 as assertStampExecutionSchemaContextV1,assertStampQualificationContextV2 as assertStampSchema521QualificationV1} from './stamp_schema_522_continuity_v1.mjs';
@@ -157,7 +158,7 @@ function assertRollback(receipt,{plan,codeFingerprint,now=Date.now()}){
  const age=now-Date.parse(receipt.finished_at);assert.ok(age>=0&&age<3600000,'Fresh actual production rollback required');
 }
 export async function executePlayStampTransaction(options){
- assertProductionClient(options.client);assertStampExecutionSchemaContextV1(options.plan,options.schemaContext,'canonical28');const{mode,plan,codeFingerprint,authority,rollbackReceipt}=options;
+ assertProductionClient(options.client);assertStampIdentityProductionAdmissionV1('canonical28',{mode:options.mode});assertStampExecutionSchemaContextV1(options.plan,options.schemaContext,'canonical28');const{mode,plan,codeFingerprint,authority,rollbackReceipt}=options;
  if(['rollback','apply'].includes(mode))assertPlayStampAuthority(authority,{plan,codeFingerprint,mode});
  if(mode==='apply')assertRollback(rollbackReceipt,{plan,codeFingerprint});
  return transaction({...options,production:true,beforeFinalCommit:async proof=>{assertProductionClient(options.client);assertPlayStampAuthority(authority,{plan,codeFingerprint,mode});assertRollback(rollbackReceipt,{plan,codeFingerprint});await (options.beforeFinalCommit??(async()=>{}))(proof);}});

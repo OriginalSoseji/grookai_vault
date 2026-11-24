@@ -1,5 +1,7 @@
 # Play! Pokémon Series Five Normal execution V1
 
+Production admission is now STOPPED by [STAMP_IDENTITY_ADMISSION_HOLD_V1](STAMP_IDENTITY_ADMISSION_HOLD_V1.md). Preserve this frozen physical review for historical/local replay; do not execute its pending inserts or links before separately governed identity reconciliation.
+
 Status: bounded source candidate under qualification; no production authority.
 
 The separate [521 continuity extension](STAMP_SCHEMA_521_CONTINUITY_V1.md) may

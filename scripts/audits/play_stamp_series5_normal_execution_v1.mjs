@@ -1,3 +1,4 @@
+import {assertStampIdentityProductionAdmissionV1} from '../../backend/catalog/stamp_identity_admission_hold_v1.mjs';
 import fs from'node:fs';import path from'node:path';import assert from'node:assert/strict';import{fileURLToPath,pathToFileURL}from'node:url';import{createHash}from'node:crypto';import{gunzipSync}from'node:zlib';import dotenv from'dotenv';import pg from'pg';
 import{marketPipelineDatabaseConfigV1}from'../../backend/pricing/market_pipeline_database_config_v1.mjs';
 import{printingManifestHash as hash}from'../../backend/catalog/printing_completeness_gate_v1.mjs';
@@ -8,6 +9,7 @@ const root=fileURLToPath(new URL('../../',import.meta.url)),sha=b=>createHash('s
 export function playSeries5CodeBindingV1(){
  const files=['scripts/audits/play_stamp_series5_normal_execution_v1.mjs','scripts/audits/play_stamp_series5_normal_sources_v1.mjs','backend/catalog/play_stamp_series5_normal_execution_v1.mjs',
  'backend/pricing/market_pipeline_database_config_v1.mjs','backend/pricing/condition_reference_database_config_v1.mjs','backend/catalog/master_index_printing_execution_v1.mjs','backend/catalog/master_index_printing_execution_guard_v1.mjs','backend/catalog/master_index_printing_authority_v1.mjs','backend/catalog/master_index_printing_repair_plan_v1.mjs','backend/catalog/printing_completeness_gate_v1.mjs','scripts/audits/me04_finish_truth_v1.mjs','docs/contracts/PLAY_POKEMON_STAMP_SERIES5_NORMAL_EXECUTION_V1.md','docs/catalog/play_pokemon_stamp_series5_normal_completion_v1/index.json'];
+ files.push('backend/catalog/stamp_identity_admission_hold_v1.mjs','docs/catalog/stamp_identity_admission_hold_v1/index.json','docs/contracts/STAMP_IDENTITY_ADMISSION_HOLD_V1.md');
  files.push('backend/catalog/ex_intrinsic_printing_execution_v1.mjs','docs/audits/PRICE_STAMP_SCHEMA_519_CONTINUITY_20261123.md','docs/audits/PLAY_STAMP_SERIES5_NORMAL_SOURCE_REVIEW_20261123.md','package.json','package-lock.json');
  files.push('backend/catalog/stamp_schema_521_continuity_v1.mjs','docs/contracts/STAMP_SCHEMA_521_CONTINUITY_V1.md');
  files.push('backend/catalog/stamp_schema_522_continuity_v1.mjs','docs/contracts/STAMP_SCHEMA_522_CONTINUITY_V1.md');
@@ -21,6 +23,7 @@ async function main(){
  if(process.argv.length===3&&process.argv[2]==='--print-code-binding'){console.log(JSON.stringify(playSeries5CodeBindingV1()));return;}
  const args={};for(const token of process.argv.slice(2)){const m=/^--(mode|out-dir|plan|plan-fingerprint|code-fingerprint|source-dir|authority|rollback-receipt|schema-context)=(.+)$/.exec(token);assert.ok(m&&!Object.hasOwn(args,m[1]),'Unknown or duplicate argument');args[m[1]]=m[2];}
  assert.ok(['preflight','rollback','apply','readback'].includes(args.mode));for(const name of['out-dir','plan','plan-fingerprint','code-fingerprint','source-dir'])assert.ok(args[name],'Missing '+name);
+ assertStampIdentityProductionAdmissionV1('canonical4',{mode:args.mode});
  const out=path.resolve(args['out-dir']);assert.ok(!fs.existsSync(out));fs.mkdirSync(out);const write=(name,value)=>fs.writeFileSync(path.join(out,name),JSON.stringify(value,null,2)+'\n',{flag:'wx'});
  let c;try{
   const code=playSeries5CodeBindingV1();assert.equal(code.fingerprint,args['code-fingerprint']);const planBytes=fs.readFileSync(args.plan),plan=JSON.parse(args.plan.endsWith('.gz')?gunzipSync(planBytes):planBytes);assertPlayStampPlan(plan,args['plan-fingerprint']);const schemaContext=assertStampExecutionSchemaContextV1(plan,args['schema-context'],'canonical4');

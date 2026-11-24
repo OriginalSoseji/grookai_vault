@@ -1,3 +1,4 @@
+import {assertStampIdentityProductionAdmissionV1} from '../../backend/catalog/stamp_identity_admission_hold_v1.mjs';
 import fs from 'node:fs';
 import {assertStampSourceContextV1,assertStampSourceExecutionContextV1} from '../../backend/pricing/stamp_source_7da8_context_v1.mjs';
 import path from 'node:path';
@@ -31,6 +32,7 @@ async function main(){
  if(process.argv.length===3&&process.argv[2]==='--print-code-binding'){console.log(JSON.stringify(playRecoveryMarketMappingCodeBindingV2()));return;}
  const args={};for(const token of process.argv.slice(2)){const m=/^--(mode|out-dir|canonical-plan|source-dir|plan|plan-fingerprint|code-fingerprint|authority|rollback-receipt|schema-context|source-context)=(.+)$/.exec(token);assert.ok(m&&!Object.hasOwn(args,m[1]),'Unknown/duplicate argument');args[m[1]]=m[2];}
  assertStampSourceContextV1(args['source-context']);assert.ok(['prepare','preflight','rollback','apply','readback'].includes(args.mode));for(const k of ['out-dir','canonical-plan','source-dir','code-fingerprint'])assert.ok(args[k],'Missing '+k);
+ assertStampIdentityProductionAdmissionV1('mapping28',{mode:args.mode});
  const out=path.resolve(args['out-dir']);assert.ok(!fs.existsSync(out));fs.mkdirSync(out);
  const save=(name,value)=>fs.writeFileSync(path.join(out,name),JSON.stringify(value,null,2)+'\n',{flag:'wx'});
  let c;try{

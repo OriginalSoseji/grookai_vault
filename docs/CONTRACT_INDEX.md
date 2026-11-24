@@ -11,8 +11,16 @@ If a contract is missing from this index, it is not authoritative.
 
 ## 🧱 FOUNDATIONAL CONTRACTS
 
+The current duplicate-set catalog successor is
+[BEST_OF_GAME_DISCOVERY_READ_REPAIR_V17](contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V17.md)
+(Active, bounded522-to523). It changes one catalog reader, retains the consumed
+522 apply and failed fixed load samples, and requires a separate exact SQL
+decision after full qualification. Earlier indexed contracts remain binding.
+
 | Contract | Status | Description |
 |--------|--------|-------------|
+| STAMP_IDENTITY_ADMISSION_HOLD_V1 | Active production admission stop | docs/contracts/STAMP_IDENTITY_ADMISSION_HOLD_V1.md — All32 pending parents overlap149 candidate stamp-identity pairs; no production prepare/write until governed identity reconciliation |
+| STAMP_SCHEMA_523_FRAME_V1 | Active bounded metadata candidate; no production authority | docs/contracts/STAMP_SCHEMA_523_FRAME_V1.md — Exact523 scoped frame for separate regular-product repair; held32 stamp execution routes remain closed |
 | FIGHTING_REGULAR_MAPPING_REPAIR_V1 | Active bounded candidate under qualification; no production authority | docs/contracts/FIGHTING_REGULAR_MAPPING_REPAIR_V1.md — One exact regular-product re-anchor and one audit receipt, preserved stamp/printing/owner history, separate closure/approval/rollback and publication gates |
 | STAMP_SOURCE_7DA8_CONTINUITY_V1 | Active bounded candidate under qualification; no production authority | docs/contracts/STAMP_SOURCE_7DA8_CONTINUITY_V1.md — Exact November 23 source generation, sealed source context and separately owned mapping fixtures; preserves legacy source, physical scope, freshness and all release gates |
 | STAMP_SCHEMA_522_CONTINUITY_V1 | Active bounded preview under qualification; no production authority | docs/contracts/STAMP_SCHEMA_522_CONTINUITY_V1.md — Exact proposed direct-visibility ledger extension, sealed context and separate owned labs; preserves 519/521 behavior and original 98-insert physical scope |
@@ -20,6 +28,7 @@ If a contract is missing from this index, it is not authoritative.
 | GOVERNED_MTG_MAPPED_SINGLE_KIND_V1 | Active candidate under qualification; production activation pending | docs/contracts/GOVERNED_MTG_MAPPED_SINGLE_KIND_V1.md — 38 exact existing English paper Normal/Foil mappings, original hashed physical source proof, unchanged quotes/coverage and own V1_30 full shadow/release gates |
 | GOVERNED_JAPANESE_NUMBERED_SINGLE_KIND_V1 | Active candidate under qualification; production activation pending | docs/contracts/GOVERNED_JAPANESE_NUMBERED_SINGLE_KIND_V1.md — Four exact current Japanese Normal mappings and independent numbered CardType proof; unchanged prices/coverage and own V1_29 full shadow/release gates |
 | PLAY_STAMP_NORMAL_MARKET_PUBLICATION_V1 | Active candidate under qualification; production activation pending | docs/contracts/PLAY_STAMP_NORMAL_MARKET_PUBLICATION_V1.md — Strict current physical and approved-link authority for closed 75 Normal identities, unchanged foil holds and full-scope worker V1_28 cursor traversal; own full shadow and normal release gates required |
+| BEST_OF_GAME_DISCOVERY_READ_REPAIR_V17 | Active bounded522-to523 catalog correction | [Bulk catalog authority V17](contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V17.md); one equivalent catalog body, unchanged helpers/security/data, preserved failures and separate exact SQL decision |
 | BEST_OF_GAME_DISCOVERY_READ_REPAIR_V5 | Active bounded513-to516 performance release | docs/contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V5.md — Qualified actual PL/pgSQL catalog plan fence; three immutable forward migrations, full-output/API and exact data preservation gates |
 | BEST_OF_GAME_DISCOVERY_READ_REPAIR_V16 | Active bounded521-to522 direct visibility correction | [Direct visibility V16](contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V16.md); three equivalent helper bodies, preserved authority/data, qualified load behavior and separate exact SQL decision |
 | BEST_OF_GAME_DISCOVERY_READ_REPAIR_V15 | Active bounded520-to521 index correction | [Catalog covering V15](contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V15.md); one exact partial covering index, unchanged readers and approved comparison deadline, cold-buffer qualification and genuine release closure |
