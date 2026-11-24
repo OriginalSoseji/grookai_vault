@@ -1,3 +1,15 @@
+## Retained-price final qualification — November24,2026
+
+Only `-MarketPriceRetentionReleaseV1` admits actual523 and the unchanged sole
+older pending price ID20261124010000. Follow
+[MARKET_PRICE_RETENTION_RELEASE_V1](MARKET_PRICE_RETENTION_RELEASE_V1.md).
+Both AuditLinkedSchema and PrePush are read-only. The bounded official CLI path
+uses `--dry-run --include-all` only after exact source/history, baseline, local,
+normal and hosted qualification; require exactly that one price file. The two
+migration orders preserve governed data/schema/security. No new empty524 reset
+or reset of an earlier populated laboratory is claimed. Separate exact SQL
+consent and independent applied/deployed acceptance remain required.
+
 ## Retained-price read-only baseline — November23,2026
 
 `-MarketPriceRetentionBaselineV1` admits only exact520 `AuditLinkedSchema`.

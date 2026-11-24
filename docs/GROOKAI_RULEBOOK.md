@@ -1,3 +1,11 @@
+# Current retained-price qualification — November24,2026
+
+The catalog523 release closed on main75fe32c0 with deployed acceptance and original
+control restoration. Follow [retained-price release V1](contracts/MARKET_PRICE_RETENTION_RELEASE_V1.md)
+for the sole older pending price migration and actual523 baseline. Both phases are
+read-only; exact production SQL approval remains separate. Earlier catalog release
+instructions below are retained historical boundaries, not an active merge hold.
+
 # Best of Game catalog covering-index correction V15 — November 23, 2026
 
 Follow [V15](contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V15.md). Production

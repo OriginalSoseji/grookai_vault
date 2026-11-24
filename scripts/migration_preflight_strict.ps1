@@ -20,6 +20,7 @@ param(
   [string[]]$ExpectedLocalOnlyIds = @(),
 
   [switch]$MarketPriceRetentionBaselineV1,
+  [switch]$MarketPriceRetentionReleaseV1,
 
   [switch]$BestOfGameDiscoveryReleaseV17,
   [switch]$BestOfGameDiscoveryReleaseV16,
@@ -163,6 +164,18 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($MarketPriceRetentionReleaseV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','MarketPriceRetentionReleaseV1','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261124010000') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261124010000') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Market price retention release V1 requires only ID20261124010000 at canonical523; no mixed scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_market_price_retention_release_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
 
 if ($MarketPriceRetentionBaselineV1) {
   if ($Phase -ne 'AuditLinkedSchema' -or
