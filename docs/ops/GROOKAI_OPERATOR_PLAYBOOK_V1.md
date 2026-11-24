@@ -1,3 +1,17 @@
+# Fifteen GameStop registry entries — November 24, 2026
+
+Follow the [local qualification checkpoint](../checkpoints/identity/GAMESTOP_REGISTRY_FIFTEEN_LOCAL_QUALIFICATION_20261124.md).
+`backend/catalog/gamestop_registry_fifteen_v1.mjs` and its frozen manifest implement
+only the exact fifteen-row registry qualification against the separately owned
+`gamestop_registry_fifteen_qualification_v1` PostgreSQL 17 fixture. The replayable
+SQL qualification harness is `scripts/audits/gamestop_registry_fifteen_local_qualification_v1.mjs`.
+Use a new exclusive output directory and a separately prepared before fixture;
+never reset the retained successful laboratory. The existing thirty synthetic
+copies, all old identity rows and original lab are retained. No new Docker image,
+volume or persistent container is needed. No production apply route is exposed.
+Source checks and a fresh production plan/rollback/release remain separate;
+the active pricing verification window must close before any registry execution.
+
 # Four retail-stamped Cosmos finishes — November 24, 2026
 
 Follow the [bounded Cosmos contract](../contracts/RETAIL_STAMP_COSMOS_FOUR_EXECUTION_V1.md)

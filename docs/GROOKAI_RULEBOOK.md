@@ -1,3 +1,12 @@
+# Fifteen GameStop registry entries — November 24, 2026
+
+The [local qualification checkpoint](checkpoints/identity/GAMESTOP_REGISTRY_FIFTEEN_LOCAL_QUALIFICATION_20261124.md)
+records the bounded missing-registry repair under the existing frozen identity
+law. Only local qualification is implemented; there is no production apply entry
+point. Preserve all existing parent IDs, printings, reviews, owners, prices and
+the Play!/Prize Pack holds. Normal source checks and separate production gates
+remain outstanding. Do not reset old laboratories or replay consumed executors.
+
 # Current retained-price qualification — November24,2026
 
 The current retained-price source reconciles accepted PR1042/maine3080875, including
