@@ -1,3 +1,68 @@
+# Square source after PR1050 — November24,2026
+
+The [source continuity contract](../contracts/SQUARE_MAIN1050_PRODUCER_CONTINUITY_V1.md)
+pins all600 accepted Japanese producer files and the six exact additional Square
+SQL files. Use it for source checks only; Japanese execution stays on its accepted
+immutable runtime and original594/600 fingerprints. Missing/changed/extra files
+fail closed. Preserve the failed113/116 fixed-count run.
+
+The candidate now integrates accepted main136d9879, retaining both Japanese
+427+1 and4916+1 programmes and every unchanged Square524-to530 payload. Follow
+[real Sandbox/native acceptance](../audits/SQUARE_REAL_SANDBOX_NATIVE_20261124.md)
+and the [read-only release contract](../contracts/SQUARE_PRICE_BATCH_RELEASE_V1.md).
+Evidence continues in `bulk-authority-v1/current-main-1050-v1` under the Square
+launch-readiness artifact root. The read-only release binding now names
+main136d9879 and this new source/market evidence root. Its fresh V4 audit
+namespace starts at105001; all earlier outputs are retained. Old qualified sources and laboratories remain
+frozen; never replay consumed native adds, market fixtures, stock/price requests,
+response-loss cases, auth fixture repairs or closures.
+
+Actual native Auth/HTTP plus real Square Sandbox passed default rounding,
+manual precedence and accepted-response recovery. The owned clone is retained
+at91 copies/28 Sandbox items; original530 and large528 laboratories remain
+at63 and100002 copies. All own servers are stopped and private batch admission
+is off. These local fixture publications do not prove live daily freshness,
+hosted scheduling, production capacity or reader checkout.
+
+Require full normal/hosted checks on the new combined source. Preserve both
+Japanese programmes until their own deployed source/data closure; no Square
+production migration may invalidate their524 plans. Then qualify a new accepted
+publication and natural consumer/price refresh before the exact release decision,
+schema-first publication and separately qualified activation. Never repeat
+regular29 or149. The old raw missing13 stamp diagnostic does not establish
+global absence: preserve all four existing stamped parents/Normal facts and
+every approved alias; unresolved identities remain held under their own rules.
+
+# Four retail-stamped Cosmos finishes — November 24, 2026
+
+Follow the [bounded Cosmos contract](../contracts/RETAIL_STAMP_COSMOS_FOUR_EXECUTION_V1.md)
+and [checkpoint](../checkpoints/RETAIL_STAMP_COSMOS_FOUR_20261124.md).
+The separate closed finish-subset model admits only documented Cosmos for
+Forbidden Light Fennekin 15, Ultra Prism Heatran 88, Darkness Ablaze Corviknight
+156 and Rebel Clash Dragapult 091. It preserves the original Master hashes and
+one unresolved Reverse per parent; it does not claim complete families or sets.
+Retain the failed generic-family draft and every original source/receipt.
+
+Only one raw evidence receipt, four Cosmos children and four reviews may be
+inserted. Preserve all original parents, children, reviews, images, mappings,
+prices, owners and references. The four retail UUIDs are outside the independent
+149-pair stamp hold; the 32 held parents and 98 inserts/32 links stay blocked.
+Do not reuse the consumed EX executor or repeat its completed six facts.
+
+The owned local fixture is `retail_stamp_cosmos_four_qualification_v1` on
+loopback 55240. Preserve its originals and every older lab; restore the retained
+relay's original stopped state after local tests. Its PG17/ledger523 apply and
+rollback are local qualification, not a production rollback or ledger524 apply.
+Current canonical ledger524 preflight is read-only and requires exact schema,
+source, complete producer, scope, global collision and reference checks.
+
+Normal exact-source local/hosted checks precede the founder decision binding the
+new model, frozen plan and complete producer. Actual production rollback must
+be less than one hour old before apply. Unknown outcomes require independent
+readback; never blindly retry, delete referenced rows or silently refresh an
+approved baseline. Durable data/public/collector verification remains required.
+No image promotion or pricing publication is included in this programme.
+
 # Square canonical524 integration — November24,2026
 
 Continue from `bulk-authority-v1/current-main-524-v1` under the Square
@@ -2247,6 +2312,63 @@ do not treat a canonical `scryfall:<uuid>` printing key as a Pokemon-style child
 variant; require the exact printed coordinate and keep every result advisory.
 Any other MTG variant-key form remains held. A successful local task with zero
 Magic inputs is not evidence that the Magic backlog is complete.
+
+Checkpoint 170 connects the V2 reconciliation output to a deterministic,
+read-only MTG global-exact review queue. After reconciliation, the runner must
+invoke `scripts/audits/mtg_tcgplayer_global_exact_review_queue_v1.mjs` against
+the collision-free `review_queue.jsonl`; it must also create the queue when an
+unchanged completed input predates this producer. Admission requires an exact
+normalized name, exact printed number, one active MTG paper identity, zero
+existing TCGPlayer mappings, one globally discovered eligible target, a bound
+0.99 Ollama lead, and a Scryfall parent key. The producer independently
+recomputes name and coordinate agreement and holds ambiguity.
+
+The producer shards admitted rows into deterministic founder-review packages
+of at most 50, preserving the V6 limit. These packages are review evidence only.
+They grant no mapping or publication authority. Every batch still requires the
+separate mapping-outcome preflight, founder approval, insert-only executor,
+transactional current-state revalidation, durable reconciliation, and later
+pricing publication. Do not point the scheduled task at a checkout lacking the
+producer, and do not treat queue creation as a mapping or price release.
+
+For batch 0001, the conservative founder partition accepts only the 36
+same-set Commander Legends rows, holds 13 promo-context rows, and rejects
+product 58205. The mapping-outcome executor must bind preflight fingerprint
+`f0b5a8df70331fbc4317125ca53a3c133614739d86603fbe286d1464d0697b7c`
+and the two authorized preflight artifact hashes before database access. Run it
+only from a clean descendant of approved source commit
+`bb923161c47d582334a564894436802ab7b5df9a`, with the exact approval token and a
+new output directory. A successful run must report
+`committed_zero_mismatch_readback`, 36 mapping inserts, unchanged non-MTG
+mapping counts, and zero canonical, pricing, publication, Vault, update,
+delete, merge, or migration writes. Preserve the rollback plan, exact inserted
+IDs, apply receipt, and artifact hashes. If commit status is unknown, do not
+replay or delete anything; inspect the independent reconciliation evidence.
+Mapping success does not publish the 36 price observations.
+
+After a committed batch, require a newer hosted completion artifact and a new
+content hash before reviewing the next batch. The reusable conservative founder
+review V2 may accept a variable number of same-set exact rows, but it must hold
+every readable source-group/target-set mismatch, preserve the complete batch
+partition and decision fingerprint, and keep the executor bounded to at most 50
+insert-only mappings. The legacy 36/13/1 approval remains valid only for its
+original immutable batch. A refreshed queue must not reuse that approval or its
+preflight artifacts.
+
+Before review, confirm that every row exposes and content-binds the readable
+target set name, set ID/code, source group, printed number, canonical
+name/number, target identity state, candidate-search result, group-consensus
+diagnostics, and model reason. A source treatment or promo qualifier that does
+not reconcile with the readable target set must be held; global name-and-number
+uniqueness is not by itself founder approval.
+
+The runner may reuse a generated queue only after the producer's
+`--verify-existing` mode rebuilds the source-bound expectation and verifies all
+artifact bytes, the exact file inventory, `artifact_hashes.json`, and
+`COMPLETE_V1.json`. The producer writes `COMPLETE_V1.json` last. Never use
+`summary.json` as a completion signal. If verification fails, remove only that
+input's generated `mtg-global-exact-review-v1` directory and regenerate it from
+the reconciled review input; do not reuse or manually repair a partial package.
 
 ## Pokémon 30th Celebration Classic aliases — October 14
 
@@ -6192,4 +6314,54 @@ verification found the separately applied retained-price migration. Preserve its
 original plan, producer, decision and labs. Qualify the bounded524 successor and
 a new exact plan/producer decision; never disguise524 as523 or apply both batches.
 The32 stamp/98-insert/32-link admission hold and original149-completed boundary stay.
+
+# Reviewed Japanese printing price links — November24,2026
+
+Use [JAPANESE_REVIEWED_PRICE_LINKS_V1](../contracts/JAPANESE_REVIEWED_PRICE_LINKS_V1.md)
+and [its checkpoint](../checkpoints/pricing/PRICING_CHECKPOINT_20261124_JAPANESE_REVIEWED_PRICE_LINKS.md).
+The separate insert-only programme selects427 existing verified Japanese children
+(383Holo/44Normal), exact archived provider/physical evidence and original current
+USD Market quotes. Its [registry and public evidence](../catalog/japanese_reviewed_price_links_v1/index.json)
+pin nine approved inbound aliases to canonical winners; legacy IDs/finishes remain
+intact. The operator CLI is `scripts/audits/japanese_reviewed_price_links_v1.mjs`.
+Local writes belong only to `japanese_reviewed_price_links_qualification_524_v1`
+at127.0.0.1:55340. Preserve that laboratory and every earlier source/failed receipt.
+Actual qualification/release evidence is under
+`C:/grookai_vault_operator_artifacts/japanese_reviewed_price_links_524_20261124/`.
+
+This source preparation grants no production authority. Exact524 deployed closure,
+complete source/normal/hosted/review qualification and genuine regular29 completion
+must precede a new exact427+1 plan/producer owner decision, scoped acknowledgement,
+actual production rollback and separate apply/readback. Never reuse regular29 or
+another programme's decision. Source7da8 and the original36-hour window stay fixed.
+No physical/owner/source/price/schema/UI/policy/publication write belongs here.
+
+# Additional reviewed Japanese printing price links — November24,2026
+
+Use [JAPANESE_REVIEWED_PRICE_LINKS_V2](../contracts/JAPANESE_REVIEWED_PRICE_LINKS_V2.md)
+and [its checkpoint](../checkpoints/pricing/PRICING_CHECKPOINT_20261124_JAPANESE_REVIEWED_PRICE_LINKS_EXPANDED.md).
+Its [separate registry](../catalog/japanese_reviewed_price_links_v2/index.json)
+selects4916 disjoint existing verified children (2005Holo/2911Normal), excludes
+all frozen V1 products/parents/printings, and pins30 approved inbound aliases.
+The compressed public snapshot binds both file SHA and canonical content hash.
+CLI: `scripts/audits/japanese_reviewed_price_links_v2.mjs`. Only the newly owned
+`japanese_reviewed_price_links_qualification_524_v2_1` at127.0.0.1:55340 may receive
+local writes. Preserve the original qualified V1 lab and both failed V2 labs.
+Receipts: `C:/grookai_vault_operator_artifacts/japanese_reviewed_price_links_expanded_524_20261124/`.
+
+V2 requires its own exact4916+1 plan/complete-producer decision, scoped flag,
+fresh matching production rollback and independent readback after the same full
+release gates. V1 authority never authorizes V2. Unchanged worker30 qualifies4910
+quotes and retains six explicit product-kind exclusions: four Iron Bundle cards,
+Secret Box and Tool Box. Those holds are bound in registry/mapping metadata;
+this programme adds no exception or publication authority. A separate qualified
+classification correction is needed for those six prices.
+
+Both programmes are carried together in the reviewed source release; their SQL
+approval/execution boundaries remain separate. Preserve all32 stamp identity
+holds and13 missing Series6 parents. Original149 and completed regular29 writes
+never repeat. After approved links, a new unlimited corrected full shadow,
+unchanged activation/coverage guards, real publication/source/consumer/app amounts
+and natural refresh remain required. Local fixtures or a merge do not finish
+global pricing or clear stamp admission.
 

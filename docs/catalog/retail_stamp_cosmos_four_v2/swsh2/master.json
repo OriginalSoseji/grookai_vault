@@ -1,0 +1,24 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_RETAIL_COSMOS_ADDENDUM_V2",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "swsh2",
+  "status": "reviewed_finish_subset",
+  "whole_set_completion": false,
+  "base_master_ref": "docs/audits/english_master_index_publishable_v1/sets/swsh2/printings.json",
+  "base_master_sha256": "6c994283adac3285123f00c99ddd108e2ff23a3aa710b01c13ba170288b6e349",
+  "facts": [
+    {
+      "card_print_id": "e01b2c3d-13a7-4539-9ac9-38c350b012d5",
+      "name": "Dragapult",
+      "printed_number": "091/192",
+      "variant_key": "rebel_clash_stamp",
+      "printed_stamp": "Rebel Clash expansion logo overlay",
+      "finish_key": "cosmos",
+      "source_url": "https://pokumon.com/card/stamped-dragapult-091-192-new-set-retail-store-purchase-campaign-special-print/",
+      "human_page_sha256": "2f5a51a7c4f9742f46a63a167a362ae0d128190de4a07b415f61df8b45c72181",
+      "physical_image_sha256": "eaf9239b731ee72e41c1583fbb22ffa42ae0483145d7816bea37867292b2f04b"
+    }
+  ],
+  "preservation": "All original Master facts remain retained. Existing stored Reverse is outside this positive Cosmos admission and is not rejected or verified by it."
+}

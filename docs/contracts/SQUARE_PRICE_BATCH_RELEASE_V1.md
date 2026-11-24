@@ -32,3 +32,12 @@ Admission off still calls those RPCs; it is not compatibility with production 52
 No main protection, global preview, dashboard writer or production setting changes
 are permitted by this contract. Live provider capacity, clock delivery and actual
 device/reader acceptance remain required and are not established by simulation.
+
+The post-PR1050 source context pins accepted main136d987981bffb338dc94c11e33ef882e78397d6
+and `bulk-authority-v1/current-main-1050-v1` for new source/market receipts and
+versioned release outputs. Earlier1046 receipts and gates remain historical.
+Fresh V4 baseline directories use105000 plus the new output version; never
+reuse a consumed earlier baseline path. The six SQL payloads, canonical524
+requirement, both read-only phases, TLS/CLI pins, freshness, normal/hosted and
+independent Japanese-before-Square ordering remain unchanged. This context
+reconciliation grants no production application authority.

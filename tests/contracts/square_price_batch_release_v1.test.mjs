@@ -5,10 +5,10 @@ import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import {validateSquareReleaseInvocationV1,assertSquareReleaseInventoryV1,assertSquareReleaseSourceV1,assertSquareReleaseMarketV1} from '../../scripts/schema/verify_square_price_batch_release_v1.mjs';
 
-const out='C:/grookai_vault_operator_artifacts/square_launch_readiness_20261122/hardening-v1/bulk-authority-v1/current-main-1046-v1/release-gate-v1-v987654321';
+const out='C:/grookai_vault_operator_artifacts/square_launch_readiness_20261122/hardening-v1/bulk-authority-v1/current-main-1050-v1/release-gate-v1-v987654321';
 test('release qualification admits only two read-only phases and versioned owned output',()=>{
  for(const phase of ['AuditLinkedSchema','PrePush'])assert.deepEqual(validateSquareReleaseInvocationV1([phase,'--out-dir='+out]),{phase,out});
- for(const args of [['Apply','--out-dir='+out],['PrePush','--out-dir='+out,'--include-all'],['PrePush','--out-dir='+out+'/..'],['PrePush','--out-dir=C:/tmp/release-v1'],['AuditLinkedSchema']])assert.throws(()=>validateSquareReleaseInvocationV1(args));
+ for(const args of [['Apply','--out-dir='+out],['PrePush','--out-dir='+out,'--include-all'],['PrePush','--out-dir='+out+'/..'],['PrePush','--out-dir=C:/tmp/release-v1'],['PrePush','--out-dir='+out.replace('current-main-1050-v1','current-main-1046-v1')],['AuditLinkedSchema']])assert.throws(()=>validateSquareReleaseInvocationV1(args));
  assert.equal(fs.existsSync(out),false);
 });
 test('all historical SQL and exactly six unchanged candidates are required',()=>{
