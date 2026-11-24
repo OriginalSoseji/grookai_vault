@@ -1,3 +1,33 @@
+# Four retail-stamped Cosmos finishes — November 24, 2026
+
+Follow the [bounded Cosmos contract](../contracts/RETAIL_STAMP_COSMOS_FOUR_EXECUTION_V1.md)
+and [checkpoint](../checkpoints/RETAIL_STAMP_COSMOS_FOUR_20261124.md).
+The separate closed finish-subset model admits only documented Cosmos for
+Forbidden Light Fennekin 15, Ultra Prism Heatran 88, Darkness Ablaze Corviknight
+156 and Rebel Clash Dragapult 091. It preserves the original Master hashes and
+one unresolved Reverse per parent; it does not claim complete families or sets.
+Retain the failed generic-family draft and every original source/receipt.
+
+Only one raw evidence receipt, four Cosmos children and four reviews may be
+inserted. Preserve all original parents, children, reviews, images, mappings,
+prices, owners and references. The four retail UUIDs are outside the independent
+149-pair stamp hold; the 32 held parents and 98 inserts/32 links stay blocked.
+Do not reuse the consumed EX executor or repeat its completed six facts.
+
+The owned local fixture is `retail_stamp_cosmos_four_qualification_v1` on
+loopback 55240. Preserve its originals and every older lab; restore the retained
+relay's original stopped state after local tests. Its PG17/ledger523 apply and
+rollback are local qualification, not a production rollback or ledger524 apply.
+Current canonical ledger524 preflight is read-only and requires exact schema,
+source, complete producer, scope, global collision and reference checks.
+
+Normal exact-source local/hosted checks precede the founder decision binding the
+new model, frozen plan and complete producer. Actual production rollback must
+be less than one hour old before apply. Unknown outcomes require independent
+readback; never blindly retry, delete referenced rows or silently refresh an
+approved baseline. Durable data/public/collector verification remains required.
+No image promotion or pricing publication is included in this programme.
+
 # Regular-product mapping correction candidate — November24,2026
 
 Follow [the29-product contract](../contracts/REGULAR_PRODUCT_MAPPING_CORRECTION_V1.md)
@@ -6122,3 +6152,12 @@ Original data anchors, approved5832+17/972+972 cohorts, named clocks and the
 2026-11-23T13:59:40Z expiry stay fixed. Complete genuineAPI/data/security,
 three fixed fresh samples, normal merge, Production25-page readback and exact
 control restoration before closing dupes or executing any stamped-printing plan.
+# Regular29 after the retained-price524 release
+
+Follow [REGULAR_PRODUCT_MAPPING_CORRECTION_524_V1](../contracts/REGULAR_PRODUCT_MAPPING_CORRECTION_524_V1.md).
+The prior523 batch was explicitly approved but never executed: actual pre-write
+verification found the separately applied retained-price migration. Preserve its
+original plan, producer, decision and labs. Qualify the bounded524 successor and
+a new exact plan/producer decision; never disguise524 as523 or apply both batches.
+The32 stamp/98-insert/32-link admission hold and original149-completed boundary stay.
+

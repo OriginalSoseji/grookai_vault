@@ -42,8 +42,11 @@ captured schema; only the accepted retention-reader migration was added to the
 ledger. The first candidate committed as `8ddc6e7788be7c4fbfb12509761b97c949df406e`
 after normal managed checks passed. Its Windows PowerShell wrapper reported a
 stderr-handling failure after the commit; actual successful command receipts and
-the exact commit tree remain retained. Current main `086cf5977` is integrated
-separately and requires verification of that combined source before release.
+the exact commit tree remain retained. Main `b627164699` is now integrated;
+the separate regular29/524 contract and all stamp holds remain indexed.
+The scoped complete producer is unchanged, and the operator playbook records
+this separate programme. Verification of the final combined source remains
+required before release.
 
 Qualification so far:
 
