@@ -1,5 +1,162 @@
+# Duplicate-set typed card-search V11 — November22,2026
+
+Follow [the V11 release contract](BEST_OF_GAME_DISCOVERY_READ_REPAIR_V11.md).
+Production518 retained all120 data scopes but failed the mcd21 card-search API
+at3097ms. Keep the consumed identity apply and failure immutable; no retry can
+replace that result. Main stays held at bab8654f. The new000500 SQL needs its
+own fully qualified exact-source owner decision. Preserve all earlier SQL and
+the original5832/972 comparison limits and13:59:40Z November23 expiry. Only
+normal API/data/security/concurrent-sample acceptance, merge and matching
+Production25-page acceptance permit restoring original controls and ending
+the shared merge pause. Stamped Reverse Holos follow that closure.
+
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Duplicate-set bulk catalog authority V17 — November23,2026
+
+Only -BestOfGameDiscoveryReleaseV17 admits canonical522-to523 and sole
+20261124040000_catalog_bulk_alias_visibility_v1.sql. Follow
+[V17](BEST_OF_GAME_DISCOVERY_READ_REPAIR_V17.md). Keep all522 historical files,
+the consumed522 apply and its two failed/one passing fixed load samples exact.
+Qualify the single equivalent catalog body with official upgrades/no-op, all449
+local fingerprints, full schema/security, authority/role/control negatives,
+full-size genuine SDK load and normal/hosted checks. Local baseline also passes;
+local timing never substitutes for independent production acceptance. Require
+fresh strict gates, original120-scope before, exact-one dry-run and a new exact
+source/SQL decision. No comparison expansion or deadline renewal is granted.
+
+## Duplicate-set direct visibility evaluation V16 — November23,2026
+
+Only -BestOfGameDiscoveryReleaseV16 admits canonical521-to522 and the sole
+20261123220000 migration. Read [V16](BEST_OF_GAME_DISCOVERY_READ_REPAIR_V16.md).
+Preserve the once-applied index and all three failed load samples. Qualify
+three equivalent direct visibility helpers with full role/authority/data and
+concurrent-load checks. Keep the ed91 limits and November24 13:59:40Z deadline
+fixed. New exact SQL consent follows complete normal/hosted and fresh gates;
+the V18 index-only approval grants no additional function-change authority.
+
+## Best of Game catalog covering-index correction V15 — November23,2026
+
+Only -BestOfGameDiscoveryReleaseV15 admits canonical520-to521 for the single
+20261123190000 index migration. Read [V15](BEST_OF_GAME_DISCOVERY_READ_REPAIR_V15.md).
+The520 function was applied once and its3187ms genuine API failure remains held.
+Preserve all520 source/SQL/labs, the independent120-scope data-only proof and
+the original data baselines. The explicitly approved V17 comparison deadline
+is fixed at2026-11-24T13:59:40Z; its original predecessor window stays expired.
+Qualify the exact index, unchanged functions/security/data, actual CLI clones,
+realistic cold-buffer/full-output behavior, normal/hosted source and fresh gates
+before a separate exact SQL decision. No cached retry, timeout relaxation,
+printing authority, reset of retained populated labs or early main unlock.
+
+## Best of Game approved current-main integration V10 — November22,2026
+
+Only -BestOfGameDiscoveryReleaseV10 admits canonical517 and the same pending
+20261122194000 candidate. Read [V10](BEST_OF_GAME_DISCOVERY_READ_REPAIR_V10.md).
+This integrates reviewed main PR1011 without new SQL. Preserve all518 bytes,
+V9 source/qualification and actual identity instruction; bind that same SQL
+decision to newly checked source instead of requesting it again. Original data
+anchors, exact5832/972 additions, clocks and expiry remain unchanged. New normal
+managed/hosted checks, sealed package, fresh PrePush/full before/dry, one intent,
+actual after/API/reliability and exact deployed closure remain mandatory. Reuse
+the retained same-SQL518 labs/proofs without reset or blind reapply. Shared main
+pause coordination grants no execution authority and clears only at closure.
+
+## Best of Game typed identity forward release V9 — November22,2026
+
+Only -BestOfGameDiscoveryReleaseV9 admits517-to518 and20261122194000. Read
+[V9](BEST_OF_GAME_DISCOVERY_READ_REPAIR_V9.md). V8 applied once; its genuine
+identity API timeout remains failed. Preserve all517 SQL, source, receipts,
+original120 data anchors, exact comparison limits and original expiry. Qualify
+the actual typed-scope function, full-output/authority negatives,449 local rows
+and schema/security, normal checks and new exact owner decision before apply.
+No populated lab reset, repeated consumed apply, generated diff execution,
+printing authority or timeout relaxation. Full live and deployed closure remains.
+
+## Best of Game visible-set forward release V8 — November22,2026
+
+Production516 contains the three immutable V7 migrations and its complete data /
+schema/security proof, but reproduced3s catalog SDK failures block closure.
+Only -BestOfGameDiscoveryReleaseV8 binds516-to517 for20261122164500. Read
+[V8](BEST_OF_GAME_DISCOVERY_READ_REPAIR_V8.md). Preserve all516 applied sources,
+original120 data anchors, old manifests/receipts/labs and the original approval
+expiry. Qualification and an additional exact SQL decision precede any new
+production apply. Require genuine API/reliability and matching deployed closure;
+never edit or repeat the consumed V7 apply or reset retained populated labs.
+
+## Best of Game exact performance release V5 — November20,2026
+
+Only -BestOfGameDiscoveryReleaseV5 can qualify canonical513-to516 with exact
+pending IDs20261120150500,20261120153000,20261120160000. The final forward
+correction qualifies CTE columns against PL/pgSQL output-variable scope.
+Both locally exercised preparations stay immutable. Carry all V4 preservation,
+explicit genuine replay lineage, real SDK/full-output performance and normal
+release requirements forward; require stage-specific idempotence and rejection
+of obsolete plan overwrite. See [V5](BEST_OF_GAME_DISCOVERY_READ_REPAIR_V5.md).
+
+## Best of Game exact performance release V4 — November20,2026
+
+Use only -BestOfGameDiscoveryReleaseV4 for canonical513-to515, pending IDs
+20261120150500 and20261120153000. Scalar-only514 failed realistic catalog
+qualification and stays immutable; the second forward migration fences the
+same discovery rows once without changing reader semantics. Preserve every
+old gate, failed proof, source byte and lab. Pin the explicit genuine reset /
+513 clone / two515 CLI upgrade lineage, unchanged3s/2700ms budgets, all202
+identity cases plus exact3420-set catalog output and the independently proved
+two row-bound Square worker timestamps. See [V4](BEST_OF_GAME_DISCOVERY_READ_REPAIR_V4.md).
+
+## Best of Game forward performance qualification — November20,2026
+
+The nine-alias81500 migration is already applied at513; retain its failed API
+acceptance and two unresolved Square data fingerprints. Use the separate
+`-BestOfGameDiscoveryBaselineV3` read-only513 schema gate before developing a
+forward514 optimization. Preserve all513 source hashes and original labs.
+No earlier gate is widened. See [V3](BEST_OF_GAME_DISCOVERY_READ_REPAIR_V3.md)
+for the two-definition scope, realistic catalog performance requirement,
+retained failures and independent production closure requirements.
+
+## Best of Game discovery V2 after pricing512 — November20,2026
+
+The independent pricing migration20261120063000 is already canonical512.
+Use the separate `-BestOfGameDiscoveryBaselineV2` read-only audit and
+`-BestOfGameDiscoveryReleaseV2` exact512-to513 release for the unchanged
+candidate20261120081500. V1 below remains historical qualification and is
+not widened. Pin all512 applied sources, the immutable candidate, actual
+512 schema/security, new genuine replay/populated upgrade and all retained
+data/runtime/performance/API proofs. PrePush requires clean committed source,
+live remote-main ancestry, exact normal commit/push, hosted checks/review,
+sealed evidence/producers and the513-file official CLI packet. Preserve all
+old laboratories. Only the nine reviewed aliases may change data; pricing
+objects and all759 existing aliases stay protected. See
+[the V2 contract](BEST_OF_GAME_DISCOVERY_READ_REPAIR_V2.md).
+
+## Best of Game exact discovery release — November20,2026
+
+`-BestOfGameDiscoveryReleaseV1` binds only20261120081500 from canonical511 to512.
+AuditLinkedSchema is read-only; exact-ID PrePush additionally requires clean
+committed source, normal managed commit/push proofs, sealed source/evidence,
+the frozen512-file official CLI packet and live schema/data/ledger readback of
+both new qualified databases. Combined switches and target overrides fail
+before access. Existing gates stay unchanged. New qualification passed actual
+prefix reset/full replay, populated upgrade/no-op,449 protected local tables,
+both-role positive/negative cases,202 production-size actual function calls,
+full schema/security comparison and anonymous SDK acceptance. Preserve the
+immutable locally applied512 SQL, all previous labs and unsuccessful proof.
+The only data delta is nine exact BOG-to-BP aliases; all physical objects,
+all759 existing aliases (647 English-family and112 Japanese), four distinct
+Winner parents, copies, mappings and prices stay
+intact. See [the bounded contract](BEST_OF_GAME_DISCOVERY_READ_REPAIR_V1.md).
+
+## Best of Game post-printing discovery baseline — November20,2026
+
+`-BestOfGameDiscoveryBaselineV1` accepts only AuditLinkedSchema at canonical511
+after the sealed BP8/9 printing closure. It rejects combined scopes, expected
+IDs, target overrides and PrePush, verifies all active historical source bytes,
+the exact ledger, four governed schemas/security and retained family counts,
+and writes only new private evidence. No earlier gate is widened. The bounded
+contract is [BEST_OF_GAME_DISCOVERY_READ_REPAIR_V1](BEST_OF_GAME_DISCOVERY_READ_REPAIR_V1.md).
+Future candidate qualification requires a separate exact release gate, actual
+fresh replay/populated upgrade, protected-data/runtime/performance proof and
+normal managed/hosted checks. This baseline grants no apply authority.
 ## Cross-TCG Market exact release V2 — November20,2026
 
 `-CrossTcgMarketReleaseV2` is a separate canonical511-to512 scope for only

@@ -1,0 +1,383 @@
+{
+  "version": "PLAY_POKEMON_STAMP_NORMAL_MASTER_FACTS_V3",
+  "status": "master_admissible",
+  "language": "en",
+  "set_code": "swsh11",
+  "scope": "exact_generic_play_pokemon_stamp_normal_facts_only",
+  "complete_printing_inventory": false,
+  "foil_pattern_adjudicated": false,
+  "records": [
+    {
+      "card_print_id": "06f07c2c-0da1-493f-9bf0-d25dd1d24636",
+      "card_name": "Snorlax",
+      "printed_coordinate": "143",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 3,
+          "official_pdf_sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+          "official_row": {
+            "series": 3,
+            "name": "Snorlax",
+            "name_alignment_resolved": true,
+            "set_token": "LOR",
+            "printed_number": "143",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "LOR",
+              "xMin": 400.0119,
+              "yMin": 122.1739,
+              "xMax": 420.8359,
+              "yMax": 131.1659,
+              "set_token": "LOR",
+              "number": "143"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 431.4911,
+                "yMin": 122.9072,
+                "xMax": 437.3508,
+                "yMax": 130.2761,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 33
+              }
+            ]
+          },
+          "secondary_raw_sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 3,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+            "set_key": "swsh11",
+            "card_number": "143",
+            "card_name": "Snorlax",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "077be7cd-21e7-46cb-b25c-c256da55c10b",
+      "card_name": "Colress's Experiment",
+      "printed_coordinate": "155",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 3,
+          "official_pdf_sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+          "official_row": {
+            "series": 3,
+            "name": "Colress's Experiment",
+            "name_alignment_resolved": true,
+            "set_token": "LOR",
+            "printed_number": "155",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "LOR",
+              "xMin": 400.0119,
+              "yMin": 324.6739,
+              "xMax": 420.8279,
+              "yMax": 333.6659,
+              "set_token": "LOR",
+              "number": "155"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 431.4911,
+                "yMin": 325.4073,
+                "xMax": 437.3508,
+                "yMax": 332.7762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 32
+              }
+            ]
+          },
+          "secondary_raw_sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 3,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+            "set_key": "swsh11",
+            "card_number": "155",
+            "card_name": "Colress's Experiment",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "27183d1b-d482-4bc1-a47e-3da0d7e4dd2c",
+      "card_name": "Lake Acuity",
+      "printed_coordinate": "160",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 3,
+          "official_pdf_sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+          "official_row": {
+            "series": 3,
+            "name": "Lake Acuity",
+            "name_alignment_resolved": true,
+            "set_token": "LOR",
+            "printed_number": "160",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "LOR",
+              "xMin": 400.0119,
+              "yMin": 554.1739,
+              "xMax": 421.0759,
+              "yMax": 563.1659,
+              "set_token": "LOR",
+              "number": "160"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 431.4911,
+                "yMin": 554.9073,
+                "xMax": 437.3508,
+                "yMax": 562.2762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 33
+              }
+            ]
+          },
+          "secondary_raw_sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 3,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+            "set_key": "swsh11",
+            "card_number": "160",
+            "card_name": "Lake Acuity",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "6720f0b2-23c2-4d78-bacf-2d0db6f7ddf5",
+      "card_name": "Clefairy",
+      "printed_coordinate": "062",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 3,
+          "official_pdf_sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+          "official_row": {
+            "series": 3,
+            "name": "Clefairy",
+            "name_alignment_resolved": true,
+            "set_token": "LOR",
+            "printed_number": "062",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "LOR",
+              "xMin": 101.5852,
+              "yMin": 257.914,
+              "xMax": 123.5372,
+              "yMax": 266.906,
+              "set_token": "LOR",
+              "number": "062"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 133.0644,
+                "yMin": 258.6473,
+                "xMax": 138.9241,
+                "yMax": 266.0162,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 32
+              }
+            ]
+          },
+          "secondary_raw_sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 3,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+            "set_key": "swsh11",
+            "card_number": "62",
+            "card_name": "Clefairy",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "8cc7cba0-40e2-48be-a5e7-598322383ded",
+      "card_name": "Tool Box",
+      "printed_coordinate": "168",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 3,
+          "official_pdf_sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+          "official_row": {
+            "series": 3,
+            "name": "Tool Box",
+            "name_alignment_resolved": true,
+            "set_token": "LOR",
+            "printed_number": "168",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "LOR",
+              "xMin": 549.2275,
+              "yMin": 288.6739,
+              "xMax": 570.2115,
+              "yMax": 297.6659,
+              "set_token": "LOR",
+              "number": "168"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 580.7067,
+                "yMin": 289.4073,
+                "xMax": 586.5664,
+                "yMax": 296.7762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 32
+              }
+            ]
+          },
+          "secondary_raw_sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 3,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+            "set_key": "swsh11",
+            "card_number": "168",
+            "card_name": "Tool Box",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "d6ff2988-d72c-42e8-bbe2-67b1947ac042",
+      "card_name": "Thorton",
+      "printed_coordinate": "167",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 3,
+          "official_pdf_sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+          "official_row": {
+            "series": 3,
+            "name": "Thorton",
+            "name_alignment_resolved": true,
+            "set_token": "LOR",
+            "printed_number": "167",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "LOR",
+              "xMin": 549.2274,
+              "yMin": 275.1739,
+              "xMax": 569.8594,
+              "yMax": 284.1659,
+              "set_token": "LOR",
+              "number": "167"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 580.7067,
+                "yMin": 275.9073,
+                "xMax": 586.5664,
+                "yMax": 283.2762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 48
+              }
+            ]
+          },
+          "secondary_raw_sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 3,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+            "set_key": "swsh11",
+            "card_number": "167",
+            "card_name": "Thorton",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    }
+  ]
+}
