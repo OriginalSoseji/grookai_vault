@@ -381,7 +381,7 @@ export async function GET(request: NextRequest) {
   const hasRequestCredentials = Boolean(request.headers.get("authorization") || request.headers.get("cookie"));
   const rawQuery = request.nextUrl.searchParams.get("q") ?? "";
   if (rawQuery.length > 500) {
-    return NextResponse.json({ ok: false, error: "Search text must be 500 characters or fewer." }, { status: 400 });
+    return NextResponse.json({ ok: false, error: "Search text must be 500 characters or fewer." }, { status: 400, headers: { "Cache-Control": "private, no-store" } });
   }
   const resultLimit = parseResultLimit(request.nextUrl.searchParams.get("limit"));
   const selectedGameScope = normalizePublicGameScope(request.nextUrl.searchParams.get("game"));
@@ -447,7 +447,7 @@ export async function GET(request: NextRequest) {
         inlineSetIntent.remainingQuery = removeSetPhrase(query, inlineSetIntent.matchedAlias, gameScope);
       }
     } catch {
-      return NextResponse.json({ ok: false, error: "Search could not verify the set filter. Please try again." }, { status: 503 });
+      return NextResponse.json({ ok: false, error: "Search could not verify the set filter. Please try again." }, { status: 503, headers: { "Cache-Control": "private, no-store" } });
     }
   }
   resolverQuery = normalizeQuery(query);
@@ -488,7 +488,7 @@ export async function GET(request: NextRequest) {
   const artistPaginationRequested = request.nextUrl.searchParams.get("pagination") === "1";
   const offsetText = request.nextUrl.searchParams.get("offset") ?? "0";
   if (completeSearch && artistPaginationRequested && (!/^\d+$/.test(offsetText) || !Number.isSafeInteger(Number(offsetText)))) {
-    return NextResponse.json({ ok: false, error: "Invalid search page offset" }, { status: 400 });
+    return NextResponse.json({ ok: false, error: "Invalid search page offset" }, { status: 400, headers: { "Cache-Control": "private, no-store" } });
   }
   const artistOffset = Number(offsetText);
 
@@ -592,7 +592,7 @@ export async function GET(request: NextRequest) {
         ok: false,
         error: "Missing search criteria",
       },
-      { status: 400 },
+      { status: 400, headers: { "Cache-Control": "private, no-store" } },
     );
   }
 
@@ -1105,7 +1105,7 @@ export async function GET(request: NextRequest) {
             }
           : {}),
       },
-      { status: 500 },
+      { status: 500, headers: { "Cache-Control": "private, no-store" } },
     );
   }
 }

@@ -134,6 +134,7 @@ test('provisional security errors do not become successful partial results', asy
     nextUrl: new URL('https://fixture?q=Pikachu&limit=5'),
   });
   assert.equal(response.status, 500);
+  assert.equal(response.headers.get('cache-control'), 'private, no-store');
   assert.equal((await response.json()).ok, false);
 });
 
@@ -414,6 +415,7 @@ test('route retains artist and finish with a set and refuses catalog-read failur
  assert.deepEqual(JSON.parse(JSON.stringify(options.finishKeys)),['reverse']);
  const failed=await loadRoute({catalogFail:true})({nextUrl:new URL('https://fixture?q=Mewtwo+from+30th+anniversary')});
  assert.equal(failed.status,503);
+ assert.equal(failed.headers.get('cache-control'),'private, no-store');
 });
 
 test('opening-word set filters retain artist and finish constraints', async () => {
@@ -443,6 +445,7 @@ test('oversized queries fail before accessing catalog services', async () => {
  const get=loadRoute({catalogFail:true});
  const response=await get({nextUrl:new URL('https://fixture?q='+encodeURIComponent('Mewtwo '+ '\t'.repeat(501)+'Base Set'))});
  assert.equal(response.status,400);
+ assert.equal(response.headers.get('cache-control'),'private, no-store');
  assert.match((await response.json()).error,/500 characters/);
 });
 
