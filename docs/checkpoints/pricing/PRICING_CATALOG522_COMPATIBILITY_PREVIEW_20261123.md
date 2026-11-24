@@ -82,3 +82,52 @@ After the catalog release is accepted and original controls are restored,
 reconcile its final exact source/schema, complete retained-price release-gate
 and normal/hosted qualification, prepare the bounded SQL release decision,
 and verify actual deployed signed-in card and Vault prices and source dates.
+
+## Hosted credential-name correction
+
+The first integrated source, commit `5dbd735e`, passed both full normal hooks
+and was pushed as draft PR1035. Hosted Windows `Guard: No Legacy Keys` then
+correctly rejected a legacy CLI credential-property reference in the read-only
+retained-upgrade verifier. Preserve that failed job138111162207 and the original
+normal receipts under `normal-catalog522-v1`; do not relabel its hosted state.
+
+The verifier now uses the CLI's canonical `SECRET_KEY` and `PUBLISHABLE_KEY`,
+asserts their modern key prefixes and retains its exact loopback route,
+read-only database defaults, fixture/SQL hashes and permission/data checks.
+The unchanged key guard passed locally. A new actual local read-only SDK proof
+(`retained-upgrade-readback-r3/result.json`) passed the old amount/date, anonymous
+denial, all426 governed table fingerprints and exact security metadata.
+The pricing SQL, application clients, historical verifiers/guards and earlier
+qualification artifacts remain unchanged. No credential-name exception was added.
+
+At this correction's source freeze, both normal hooks must run again; their
+separate actual outcomes belong under `normal-catalog522-v2`. Hosted qualification
+remains pending for the corrected commit. Production release remains held.
+
+## Reviewed timestamp visual baselines
+
+The first hosted Samsung parity run failed only the mobile and desktop P0
+card-detail screenshots. Inspection of the actual/expected images confirmed the
+requested source-update caption was the only change: both views gain24px for
+`Last updated Oct 12, 2026, 6:15 PM UTC`. Pixels above that line are identical,
+and all pixels below it are identical after the24px shift. The two actual images
+are byte-identical across both original CI attempts. The diagnostic artifact
+14875543477 was downloaded and verified against SHA256
+`2b25dc2d027907668c0d71e03d41d1d262b83539095b602cc31bf7556512306c`.
+
+Only those two expected PNGs were updated to the reviewed actual captures.
+Both targeted canonical Samsung/desktop Playwright screenshot assertions then
+passed locally without an update flag, tolerance or timeout change. The fixture
+is loopback-only and uses synthetic browser data; production was not contacted.
+All other hosted native, golden, drift, runtime-protection and browser repair
+checks on the first source passed. The legacy-key and two visual failures remain
+retained evidence, not accepted results.
+
+The intermediate `normal-catalog522-v2` corrective run was deliberately stopped
+before commit so these expected images could be included in the same correction.
+Its original partial output and owned-process stop receipt remain preserved.
+The next frozen correction includes only the canonical-key verifier, these two
+PNGs and this checkpoint. Fresh complete normal hooks belong under
+`normal-catalog522-v3`; their outcomes and corrected-head hosted outcomes remain
+pending at this source freeze. The pricing SQL and all application code are
+unchanged. No production SQL or release authority is granted.
