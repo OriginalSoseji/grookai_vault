@@ -75,6 +75,7 @@ import 'services/search/local_recent_searches.dart';
 import 'services/grookai_dex/grookai_dex_service.dart';
 import 'services/notifications/grookai_push_notification_service.dart';
 import 'services/public/card_surface_pricing_service.dart';
+import 'services/public/market_price_updated_at.dart';
 import 'services/public/compare_service.dart';
 import 'services/public/public_card_printing_options_service.dart';
 import 'services/public/public_collector_service.dart';

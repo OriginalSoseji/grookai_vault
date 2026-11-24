@@ -1,0 +1,3331 @@
+{
+  "version": "STAMP_IDENTITY_ADMISSION_HOLD_V1",
+  "project_ref": "ycdxbpibncqcchqiihfz",
+  "evidence_observed_at": "2026-11-24T04:09:46.907Z",
+  "identity_equivalence_adjudicated": false,
+  "alias_authority": false,
+  "production_authority": false,
+  "candidate_pairs": [
+    {
+      "play": {
+        "id": "9dbcee37-f4d8-499c-9b84-5f652c6a7d49",
+        "name": "Mega Absol ex",
+        "gv_id": "GV-PK-MEG-086-PLAY-POKEMON-STAMP",
+        "number": "086",
+        "set_id": "5ace5029-c163-4251-8cb1-dd57190431cc",
+        "modifier": null,
+        "set_code": "me01",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "b6641b6c-190c-4a84-9aec-0b8dad3bffeb",
+        "name": "Mega Absol ex",
+        "gv_id": "GV-PK-MEG-086-PRIZE-PACK-STAMP",
+        "number": "086",
+        "set_id": "5ace5029-c163-4251-8cb1-dd57190431cc",
+        "modifier": null,
+        "set_code": "me01",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "35fb3b3c-f4c0-4fb8-8ae4-ca9789832616",
+        "name": "Boss's Orders",
+        "gv_id": "GV-PK-MEG-114-PLAY-POKEMON-STAMP",
+        "number": "114",
+        "set_id": "5ace5029-c163-4251-8cb1-dd57190431cc",
+        "modifier": null,
+        "set_code": "me01",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "9d86f96b-a3db-41df-a4ba-90ef12b3bea5",
+        "name": "Boss's Orders",
+        "gv_id": "GV-PK-MEG-114-PRIZE-PACK-STAMP",
+        "number": "114",
+        "set_id": "5ace5029-c163-4251-8cb1-dd57190431cc",
+        "modifier": null,
+        "set_code": "me01",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "94705cb6-430a-45b5-83c6-f60dd0795731",
+        "name": "Forest of Vitality",
+        "gv_id": "GV-PK-MEG-117-PLAY-POKEMON-STAMP",
+        "number": "117",
+        "set_id": "5ace5029-c163-4251-8cb1-dd57190431cc",
+        "modifier": null,
+        "set_code": "me01",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "62446e9e-49c1-477d-8dcc-86ee224870e5",
+        "name": "Forest of Vitality",
+        "gv_id": "GV-PK-MEG-117-PRIZE-PACK-STAMP",
+        "number": "117",
+        "set_id": "5ace5029-c163-4251-8cb1-dd57190431cc",
+        "modifier": null,
+        "set_code": "me01",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "014a2b33-1de0-457c-a93d-3f2aa7e48c81",
+        "name": "Wally's Compassion",
+        "gv_id": "GV-PK-MEG-132-PLAY-POKEMON-STAMP",
+        "number": "132",
+        "set_id": "5ace5029-c163-4251-8cb1-dd57190431cc",
+        "modifier": null,
+        "set_code": "me01",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "500e6cbc-3be6-4ed7-a3ea-db414f7db011",
+        "name": "Wally's Compassion",
+        "gv_id": "GV-PK-MEG-132-PRIZE-PACK-STAMP",
+        "number": "132",
+        "set_id": "5ace5029-c163-4251-8cb1-dd57190431cc",
+        "modifier": null,
+        "set_code": "me01",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "dda6a80d-019b-44e9-a8fb-b6e96b51077b",
+        "name": "Meowscarada ex",
+        "gv_id": "GV-PK-PAL-015-PLAY-POKEMON-STAMP",
+        "number": "015",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "modifier": null,
+        "set_code": "sv02",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "922d662c-6647-439d-a354-b7a5a88c5c8e",
+        "name": "Meowscarada ex",
+        "gv_id": "GV-PK-SV02-15-PRIZE-PACK-STAMP",
+        "number": "15",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "modifier": null,
+        "set_code": "sv02",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "ac3b2dc3-3198-4382-9a38-43c52f61491d",
+        "name": "Skeledirge ex",
+        "gv_id": "GV-PK-PAL-037-PLAY-POKEMON-STAMP",
+        "number": "037",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "modifier": null,
+        "set_code": "sv02",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "789a29e9-f335-49ce-bc44-9ebdf908ee39",
+        "name": "Skeledirge ex",
+        "gv_id": "GV-PK-SV02-37-PRIZE-PACK-STAMP",
+        "number": "37",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "modifier": null,
+        "set_code": "sv02",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "d6c1ec2f-183e-4f1f-924e-1cb30bfcda28",
+        "name": "Luxray",
+        "gv_id": "GV-PK-PAL-071-PLAY-POKEMON-STAMP",
+        "number": "071",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "modifier": null,
+        "set_code": "sv02",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "ae5bd731-7683-415f-98df-99df9b3af308",
+        "name": "Luxray",
+        "gv_id": "GV-PK-SV02-71-PRIZE-PACK-STAMP",
+        "number": "71",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "modifier": null,
+        "set_code": "sv02",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "dbe2a1ae-f598-4ccd-bdf4-09fee621a7f7",
+        "name": "Dedenne ex",
+        "gv_id": "GV-PK-PAL-093-PLAY-POKEMON-STAMP",
+        "number": "093",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "modifier": null,
+        "set_code": "sv02",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "fe10853f-f4e7-438a-aa3b-064bb73a355b",
+        "name": "Dedenne ex",
+        "gv_id": "GV-PK-SV02-93-PRIZE-PACK-STAMP",
+        "number": "93",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "modifier": null,
+        "set_code": "sv02",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "7905ce0c-3cbd-4f9b-b152-8d112c027e5f",
+        "name": "Ting-Lu ex",
+        "gv_id": "GV-PK-PAL-127-PLAY-POKEMON-STAMP",
+        "number": "127",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "modifier": null,
+        "set_code": "sv02",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "498879cd-f8e7-4369-9088-f95a3cba57de",
+        "name": "Ting-Lu ex",
+        "gv_id": "GV-PK-SV02-127-PRIZE-PACK-STAMP",
+        "number": "127",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "modifier": null,
+        "set_code": "sv02",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "979101d6-1dc6-4168-b213-21fceb37e780",
+        "name": "Noivern ex",
+        "gv_id": "GV-PK-PAL-153-PLAY-POKEMON-STAMP",
+        "number": "153",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "modifier": null,
+        "set_code": "sv02",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "06ec11e9-895b-4627-9a07-922c484b549b",
+        "name": "Noivern ex",
+        "gv_id": "GV-PK-SV02-153-PRIZE-PACK-STAMP",
+        "number": "153",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "modifier": null,
+        "set_code": "sv02",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "b861b100-b9c2-43b7-8f22-2b8c65b8edb1",
+        "name": "Bravery Charm",
+        "gv_id": "GV-PK-PAL-173-PLAY-POKEMON-STAMP",
+        "number": "173",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "modifier": null,
+        "set_code": "sv02",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "25919120-26aa-4cd6-a5b8-164de1912c92",
+        "name": "Bravery Charm",
+        "gv_id": "GV-PK-SV02-173-PRIZE-PACK-STAMP",
+        "number": "173",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "modifier": null,
+        "set_code": "sv02",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "94037abf-99a9-4f69-b4ed-7f39801dac95",
+        "name": "Fighting Au Lait",
+        "gv_id": "GV-PK-PAL-181-PLAY-POKEMON-STAMP",
+        "number": "181",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "modifier": null,
+        "set_code": "sv02",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "008b6314-3e64-4f26-b16a-b30d7bd1f000",
+        "name": "Fighting Au Lait",
+        "gv_id": "GV-PK-SV02-181-PRIZE-PACK-STAMP",
+        "number": "181",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "modifier": null,
+        "set_code": "sv02",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "a052209e-8199-48f5-b826-acad334d2789",
+        "name": "Torterra ex",
+        "gv_id": "GV-PK-TEF-012-PLAY-POKEMON-STAMP",
+        "number": "012",
+        "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+        "modifier": null,
+        "set_code": "sv05",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "3285a315-b8f3-4249-b32d-e8ae1dd610aa",
+        "name": "Torterra ex",
+        "gv_id": "GV-PK-SV05-012-PRIZE-PACK-STAMP",
+        "number": "012",
+        "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+        "modifier": null,
+        "set_code": "sv05",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "b00cdee1-1552-4e5c-9e33-cd5a15303e9f",
+        "name": "Brambleghast",
+        "gv_id": "GV-PK-TEF-021-PLAY-POKEMON-STAMP",
+        "number": "021",
+        "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+        "modifier": null,
+        "set_code": "sv05",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "1f793ae8-0a67-47f7-8f4f-094a40de5bfa",
+        "name": "Brambleghast",
+        "gv_id": "GV-PK-SV05-021-PRIZE-PACK-STAMP",
+        "number": "021",
+        "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+        "modifier": null,
+        "set_code": "sv05",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "dc27ebd8-a0bf-42ef-8a6b-6f57da7b2e8f",
+        "name": "Great Tusk",
+        "gv_id": "GV-PK-TEF-097-PLAY-POKEMON-STAMP",
+        "number": "097",
+        "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+        "modifier": null,
+        "set_code": "sv05",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "d4587913-41eb-4bd0-9ff3-7fb88894e11d",
+        "name": "Great Tusk",
+        "gv_id": "GV-PK-SV05-097-PRIZE-PACK-STAMP",
+        "number": "097",
+        "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+        "modifier": null,
+        "set_code": "sv05",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "43b45585-a2bf-4041-8b4b-8409fdeb249b",
+        "name": "Awakening Drum",
+        "gv_id": "GV-PK-TEF-141-PLAY-POKEMON-STAMP",
+        "number": "141",
+        "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+        "modifier": null,
+        "set_code": "sv05",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "2d47e9d4-8396-4288-9078-9d42b9a816aa",
+        "name": "Awakening Drum",
+        "gv_id": "GV-PK-SV05-141-PRIZE-PACK-STAMP",
+        "number": "141",
+        "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+        "modifier": null,
+        "set_code": "sv05",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "71eab7c1-b491-4442-b2aa-dae5311db412",
+        "name": "Heavy Baton",
+        "gv_id": "GV-PK-TEF-151-PLAY-POKEMON-STAMP",
+        "number": "151",
+        "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+        "modifier": null,
+        "set_code": "sv05",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "9aba6d9d-3de3-49cb-b98b-92d1bf1c9a84",
+        "name": "Heavy Baton",
+        "gv_id": "GV-PK-SV05-151-PRIZE-PACK-STAMP",
+        "number": "151",
+        "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+        "modifier": null,
+        "set_code": "sv05",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "2c7bfeb2-4a81-4f31-a1c0-5f171b839cae",
+        "name": "Hero's Cape",
+        "gv_id": "GV-PK-TEF-152-PLAY-POKEMON-STAMP",
+        "number": "152",
+        "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+        "modifier": null,
+        "set_code": "sv05",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "560cd14b-1b4d-447e-b523-529a0737b8cd",
+        "name": "Hero's Cape",
+        "gv_id": "GV-PK-SV05-152-PRIZE-PACK-STAMP",
+        "number": "152",
+        "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+        "modifier": null,
+        "set_code": "sv05",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "316bd945-265b-417a-8092-dd87f3e98cf8",
+        "name": "Maximum Belt",
+        "gv_id": "GV-PK-TEF-154-PLAY-POKEMON-STAMP",
+        "number": "154",
+        "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+        "modifier": null,
+        "set_code": "sv05",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "9dbd9bc9-b68d-412f-a490-04caa2969961",
+        "name": "Maximum Belt",
+        "gv_id": "GV-PK-SV05-154-PRIZE-PACK-STAMP",
+        "number": "154",
+        "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+        "modifier": null,
+        "set_code": "sv05",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "7c413757-c98e-4e27-a791-2e075c545b96",
+        "name": "Morty's Conviction",
+        "gv_id": "GV-PK-TEF-155-PLAY-POKEMON-STAMP",
+        "number": "155",
+        "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+        "modifier": null,
+        "set_code": "sv05",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "1076346d-3184-4be7-8fbb-a010a7f450ea",
+        "name": "Morty's Conviction",
+        "gv_id": "GV-PK-SV05-155-PRIZE-PACK-STAMP",
+        "number": "155",
+        "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+        "modifier": null,
+        "set_code": "sv05",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "f44bc036-873c-44d1-9f31-b9944ea1e71d",
+        "name": "Prime Catcher",
+        "gv_id": "GV-PK-TEF-157-PLAY-POKEMON-STAMP",
+        "number": "157",
+        "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+        "modifier": null,
+        "set_code": "sv05",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "fa30183a-bd96-4705-a2a2-797525481564",
+        "name": "Prime Catcher",
+        "gv_id": "GV-PK-SV05-157-PRIZE-PACK-STAMP",
+        "number": "157",
+        "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+        "modifier": null,
+        "set_code": "sv05",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "2fde392d-fcaf-451c-92ff-002b01b24c19",
+        "name": "Reboot Pod",
+        "gv_id": "GV-PK-TEF-158-PLAY-POKEMON-STAMP",
+        "number": "158",
+        "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+        "modifier": null,
+        "set_code": "sv05",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "4bed6355-ffd6-47d4-857b-899cec9270eb",
+        "name": "Reboot Pod",
+        "gv_id": "GV-PK-SV05-158-PRIZE-PACK-STAMP",
+        "number": "158",
+        "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+        "modifier": null,
+        "set_code": "sv05",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "b40344f6-d54f-40bf-9383-3e437ffc6a39",
+        "name": "Salvatore",
+        "gv_id": "GV-PK-TEF-160-PLAY-POKEMON-STAMP",
+        "number": "160",
+        "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+        "modifier": null,
+        "set_code": "sv05",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "53de47ca-2484-4dcd-8f52-b7d41b95b4b5",
+        "name": "Salvatore",
+        "gv_id": "GV-PK-SV05-160-PRIZE-PACK-STAMP",
+        "number": "160",
+        "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+        "modifier": null,
+        "set_code": "sv05",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "74b5366d-d1f5-4316-a6f7-f80a2e4bba14",
+        "name": "Galvantula ex",
+        "gv_id": "GV-PK-SCR-051-PLAY-POKEMON-STAMP",
+        "number": "051",
+        "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+        "modifier": null,
+        "set_code": "sv07",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "5e4c6674-38de-461f-ada5-67df50ba8132",
+        "name": "Galvantula ex",
+        "gv_id": "GV-PK-SV07-51-PRIZE-PACK-STAMP",
+        "number": "51",
+        "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+        "modifier": null,
+        "set_code": "sv07",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "3efe6043-c485-435b-aa1b-e6e83b3281e6",
+        "name": "Crispin",
+        "gv_id": "GV-PK-SCR-133-PLAY-POKEMON-STAMP",
+        "number": "133",
+        "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+        "modifier": null,
+        "set_code": "sv07",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "71021bfe-9e42-41d9-8157-0038fc172c98",
+        "name": "Crispin",
+        "gv_id": "GV-PK-SV07-133-PRIZE-PACK-STAMP",
+        "number": "133",
+        "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+        "modifier": null,
+        "set_code": "sv07",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "cd7c0cb3-5b39-48af-b18b-7126cae0c2e3",
+        "name": "Sparkling Crystal",
+        "gv_id": "GV-PK-SCR-142-PLAY-POKEMON-STAMP",
+        "number": "142",
+        "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+        "modifier": null,
+        "set_code": "sv07",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "ca95cdec-260a-433b-8d6f-71668b733b32",
+        "name": "Sparkling Crystal",
+        "gv_id": "GV-PK-SV07-142-PRIZE-PACK-STAMP",
+        "number": "142",
+        "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+        "modifier": null,
+        "set_code": "sv07",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "c9754861-4bf9-4a2e-b64f-2eb5630ee7b3",
+        "name": "Iono's Bellibolt ex",
+        "gv_id": "GV-PK-JTG-053-PLAY-POKEMON-STAMP",
+        "number": "053",
+        "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+        "modifier": null,
+        "set_code": "sv09",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "9e86e3c2-e6ca-4604-8402-d02473dfdc51",
+        "name": "Iono's Bellibolt ex",
+        "gv_id": "GV-PK-SV09-53-PRIZE-PACK-STAMP",
+        "number": "53",
+        "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+        "modifier": null,
+        "set_code": "sv09",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "207dd9ae-7d59-45d4-8b38-3627aec97fce",
+        "name": "Mamoswine ex",
+        "gv_id": "GV-PK-JTG-079-PLAY-POKEMON-STAMP",
+        "number": "079",
+        "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+        "modifier": null,
+        "set_code": "sv09",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "ac1dff9f-58d8-4537-b5d5-de88c63f9675",
+        "name": "Mamoswine ex",
+        "gv_id": "GV-PK-SV09-79-PRIZE-PACK-STAMP",
+        "number": "79",
+        "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+        "modifier": null,
+        "set_code": "sv09",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "0f0f7d1c-cc9a-4112-b97e-13ebd29a3bb7",
+        "name": "Tyranitar",
+        "gv_id": "GV-PK-JTG-095-PLAY-POKEMON-STAMP",
+        "number": "095",
+        "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+        "modifier": null,
+        "set_code": "sv09",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "9e36e7fa-3b9a-4d5d-a497-5e125cc98822",
+        "name": "Tyranitar",
+        "gv_id": "GV-PK-SV09-95-PRIZE-PACK-STAMP",
+        "number": "95",
+        "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+        "modifier": null,
+        "set_code": "sv09",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "6f32786c-1485-4e6b-a049-5795a609ae26",
+        "name": "Brock's Scouting",
+        "gv_id": "GV-PK-JTG-146-PLAY-POKEMON-STAMP",
+        "number": "146",
+        "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+        "modifier": null,
+        "set_code": "sv09",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "b4d0afa8-54de-416d-af27-d8cda814fe16",
+        "name": "Brock's Scouting",
+        "gv_id": "GV-PK-SV09-146-PRIZE-PACK-STAMP",
+        "number": "146",
+        "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+        "modifier": null,
+        "set_code": "sv09",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "730853a1-878b-4e2e-8be3-81500cc27b81",
+        "name": "Hop's Bag",
+        "gv_id": "GV-PK-JTG-147-PLAY-POKEMON-STAMP",
+        "number": "147",
+        "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+        "modifier": null,
+        "set_code": "sv09",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "0713ad90-1aba-4cac-baf7-5885e47acb45",
+        "name": "Hop's Bag",
+        "gv_id": "GV-PK-SV09-147-PRIZE-PACK-STAMP",
+        "number": "147",
+        "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+        "modifier": null,
+        "set_code": "sv09",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "222fad39-fa68-4192-a974-22db66915224",
+        "name": "Iris's Fighting Spirit",
+        "gv_id": "GV-PK-JTG-149-PLAY-POKEMON-STAMP",
+        "number": "149",
+        "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+        "modifier": null,
+        "set_code": "sv09",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "49d1f54c-92f5-4463-9c87-e54ab00bddac",
+        "name": "Iris's Fighting Spirit",
+        "gv_id": "GV-PK-SV09-149-PRIZE-PACK-STAMP",
+        "number": "149",
+        "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+        "modifier": null,
+        "set_code": "sv09",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "d80841d2-8efe-43e7-a446-d173bf12f686",
+        "name": "N's Castle",
+        "gv_id": "GV-PK-JTG-152-PLAY-POKEMON-STAMP",
+        "number": "152",
+        "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+        "modifier": null,
+        "set_code": "sv09",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "d5f66714-091e-4853-9af6-0886bef9cd6f",
+        "name": "N's Castle",
+        "gv_id": "GV-PK-SV09-152-PRIZE-PACK-STAMP",
+        "number": "152",
+        "set_id": "220391d1-7e93-440c-b034-8769ef6f74a4",
+        "modifier": null,
+        "set_code": "sv09",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "e8195f3f-fe86-4c01-a4c5-4ff85ccd4fba",
+        "name": "Yanmega ex",
+        "gv_id": "GV-PK-DRI-003-PLAY-POKEMON-STAMP",
+        "number": "003",
+        "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+        "modifier": null,
+        "set_code": "sv10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "6c16e06f-bfd1-470f-8ef0-1906d8798051",
+        "name": "Yanmega ex",
+        "gv_id": "GV-PK-SV10-3-PRIZE-PACK-STAMP",
+        "number": "3",
+        "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+        "modifier": null,
+        "set_code": "sv10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "5e0b1a21-4b40-4ea3-81ee-b2ac8d8c34a3",
+        "name": "Shaymin",
+        "gv_id": "GV-PK-DRI-010-PLAY-POKEMON-STAMP",
+        "number": "010",
+        "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+        "modifier": null,
+        "set_code": "sv10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "4096cb75-53a3-4093-9ed4-f949690f15b2",
+        "name": "Shaymin",
+        "gv_id": "GV-PK-SV10-10-PRIZE-PACK-STAMP",
+        "number": "10",
+        "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+        "modifier": null,
+        "set_code": "sv10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "94bdf076-b7b2-437a-8f8d-07cf86efbdf8",
+        "name": "Ethan's Quilava",
+        "gv_id": "GV-PK-DRI-033-PLAY-POKEMON-STAMP",
+        "number": "033",
+        "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+        "modifier": null,
+        "set_code": "sv10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "cb811f9e-51c8-4b5a-9ae4-6df6bf413b2e",
+        "name": "Ethan's Quilava",
+        "gv_id": "GV-PK-SV10-33-PRIZE-PACK-STAMP",
+        "number": "33",
+        "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+        "modifier": null,
+        "set_code": "sv10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "a64b6280-fd4c-4ae0-9256-2778c33613bb",
+        "name": "Ethan's Ho-Oh ex",
+        "gv_id": "GV-PK-DRI-039-PLAY-POKEMON-STAMP",
+        "number": "039",
+        "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+        "modifier": null,
+        "set_code": "sv10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "0fbb8fa4-a47c-44ac-b89b-af48af685ef6",
+        "name": "Ethan's Ho-Oh ex",
+        "gv_id": "GV-PK-SV10-39-PRIZE-PACK-STAMP",
+        "number": "39",
+        "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+        "modifier": null,
+        "set_code": "sv10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "ea095648-72c2-43d1-b37e-2e609acc0816",
+        "name": "Cynthia's Garchomp ex",
+        "gv_id": "GV-PK-DRI-104-PLAY-POKEMON-STAMP",
+        "number": "104",
+        "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+        "modifier": null,
+        "set_code": "sv10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "d7623851-9430-4b7f-ab7d-15d6d42e2675",
+        "name": "Cynthia's Garchomp ex",
+        "gv_id": "GV-PK-SV10-104-PRIZE-PACK-STAMP",
+        "number": "104",
+        "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+        "modifier": null,
+        "set_code": "sv10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "e83279e7-cfb4-418e-992b-722a68fe9d20",
+        "name": "Team Rocket's Nidoking ex",
+        "gv_id": "GV-PK-DRI-119-PLAY-POKEMON-STAMP",
+        "number": "119",
+        "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+        "modifier": null,
+        "set_code": "sv10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "23a1e3c0-0be1-424b-a9ec-3282fc9c82a8",
+        "name": "Team Rocket's Nidoking ex",
+        "gv_id": "GV-PK-SV10-119-PRIZE-PACK-STAMP",
+        "number": "119",
+        "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+        "modifier": null,
+        "set_code": "sv10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "ed69e9ae-ae70-4c7d-9e37-8a5c7955dd6e",
+        "name": "Team Rocket's Crobat ex",
+        "gv_id": "GV-PK-DRI-122-PLAY-POKEMON-STAMP",
+        "number": "122",
+        "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+        "modifier": null,
+        "set_code": "sv10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "0de93db6-589c-41a9-af1d-aab0bfda3067",
+        "name": "Team Rocket's Crobat ex",
+        "gv_id": "GV-PK-SV10-122-PRIZE-PACK-STAMP",
+        "number": "122",
+        "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+        "modifier": null,
+        "set_code": "sv10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "bec1da68-e739-4ff1-a8dc-5a288de54303",
+        "name": "Cynthia's Power Weight",
+        "gv_id": "GV-PK-DRI-162-PLAY-POKEMON-STAMP",
+        "number": "162",
+        "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+        "modifier": null,
+        "set_code": "sv10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "96ad19f6-3b97-4cea-b458-ed4e052ae53f",
+        "name": "Cynthia's Power Weight",
+        "gv_id": "GV-PK-SV10-162-PRIZE-PACK-STAMP",
+        "number": "162",
+        "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+        "modifier": null,
+        "set_code": "sv10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "29f49fdd-6e51-453b-a33d-510d2b9e73a6",
+        "name": "Team Rocket's Archer",
+        "gv_id": "GV-PK-DRI-170-PLAY-POKEMON-STAMP",
+        "number": "170",
+        "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+        "modifier": null,
+        "set_code": "sv10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "acb1c5a0-ac9d-41c3-b2a8-0b40c29f280e",
+        "name": "Team Rocket's Archer",
+        "gv_id": "GV-PK-SV10-170-PRIZE-PACK-STAMP",
+        "number": "170",
+        "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+        "modifier": null,
+        "set_code": "sv10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "239be054-215f-42a3-bd34-a18a8f16aeb7",
+        "name": "Team Rocket's Ariana",
+        "gv_id": "GV-PK-DRI-171-PLAY-POKEMON-STAMP",
+        "number": "171",
+        "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+        "modifier": null,
+        "set_code": "sv10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "4eda3e29-f2f4-491b-99f9-a8303702e97d",
+        "name": "Team Rocket's Ariana",
+        "gv_id": "GV-PK-SV10-171-PRIZE-PACK-STAMP",
+        "number": "171",
+        "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+        "modifier": null,
+        "set_code": "sv10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "1fc69c2b-cc05-4706-ab10-672f1cf24863",
+        "name": "Team Rocket's Factory",
+        "gv_id": "GV-PK-DRI-173-PLAY-POKEMON-STAMP",
+        "number": "173",
+        "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+        "modifier": null,
+        "set_code": "sv10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "7bb0ade9-173c-483b-9752-ae6c8f7177a1",
+        "name": "Team Rocket's Factory",
+        "gv_id": "GV-PK-SV10-173-PRIZE-PACK-STAMP",
+        "number": "173",
+        "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+        "modifier": null,
+        "set_code": "sv10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "26cf7cc4-3593-4157-9cc5-f8985dc4b834",
+        "name": "Team Rocket's Petrel",
+        "gv_id": "GV-PK-DRI-176-PLAY-POKEMON-STAMP",
+        "number": "176",
+        "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+        "modifier": null,
+        "set_code": "sv10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "e4404f3a-2975-44ce-8b63-660eca2e9982",
+        "name": "Team Rocket's Petrel",
+        "gv_id": "GV-PK-SV10-176-PRIZE-PACK-STAMP",
+        "number": "176",
+        "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+        "modifier": null,
+        "set_code": "sv10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "ad1048dc-441a-4393-8bda-ab3cc73e1022",
+        "name": "Team Rocket's Proton",
+        "gv_id": "GV-PK-DRI-177-PLAY-POKEMON-STAMP",
+        "number": "177",
+        "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+        "modifier": null,
+        "set_code": "sv10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "e9f31f21-1077-4524-8114-4b44dae3629e",
+        "name": "Team Rocket's Proton",
+        "gv_id": "GV-PK-SV10-177-PRIZE-PACK-STAMP",
+        "number": "177",
+        "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+        "modifier": null,
+        "set_code": "sv10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "6733781e-089b-4fcb-88f6-b842e326c5c4",
+        "name": "Team Rocket's Transceiver",
+        "gv_id": "GV-PK-DRI-178-PLAY-POKEMON-STAMP",
+        "number": "178",
+        "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+        "modifier": null,
+        "set_code": "sv10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "238df034-4866-4728-8531-fb7fa1bf3f14",
+        "name": "Team Rocket's Transceiver",
+        "gv_id": "GV-PK-SV10-178-PRIZE-PACK-STAMP",
+        "number": "178",
+        "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+        "modifier": null,
+        "set_code": "sv10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "11283920-fb73-4927-976c-e8ff90a7b054",
+        "name": "Team Rocket's Energy",
+        "gv_id": "GV-PK-DRI-182-PLAY-POKEMON-STAMP",
+        "number": "182",
+        "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+        "modifier": null,
+        "set_code": "sv10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "06e55f0b-3dd1-4b5f-b53f-18a08adf449c",
+        "name": "Team Rocket's Energy",
+        "gv_id": "GV-PK-SV10-182-PRIZE-PACK-STAMP",
+        "number": "182",
+        "set_id": "4538bede-9bd3-489e-8873-b5239863a0c6",
+        "modifier": null,
+        "set_code": "sv10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "fed6ef59-5922-4ea1-868b-af6e7e02d90f",
+        "name": "Basic Fighting Energy",
+        "gv_id": "GV-PK-SVE-006-PLAY-POKEMON-STAMP",
+        "number": "006",
+        "set_id": "01a1376f-75c5-463e-9aff-3446a1676f07",
+        "modifier": null,
+        "set_code": "sve",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "81bdaf1c-9d69-450c-bd88-0bc5b29d523c",
+        "name": "Basic Fighting Energy",
+        "gv_id": "GV-PK-SVE-6-PRIZE-PACK-STAMP",
+        "number": "6",
+        "set_id": "01a1376f-75c5-463e-9aff-3446a1676f07",
+        "modifier": null,
+        "set_code": "sve",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "0a54475d-4c52-4eab-bc39-6fa9d034d466",
+        "name": "Zamazenta V",
+        "gv_id": "GV-PK-SWSH1-139-PLAY-POKEMON-STAMP",
+        "number": "139",
+        "set_id": "865570b1-12ba-4d7b-94e7-13c7e4dc0657",
+        "modifier": null,
+        "set_code": "swsh1",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "250c3eae-387d-47c2-845f-8e7d3cf64010",
+        "name": "Zamazenta V",
+        "gv_id": "GV-PK-SWSH1-139-PRIZE-PACK-STAMP",
+        "number": "139",
+        "set_id": "865570b1-12ba-4d7b-94e7-13c7e4dc0657",
+        "modifier": null,
+        "set_code": "swsh1",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "b19d0858-67f5-4ee0-abf7-be6156758ba3",
+        "name": "Radiant Heatran",
+        "gv_id": "GV-PK-ASR-027-PLAY-POKEMON-STAMP",
+        "number": "027",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "c15dc513-507e-4d7d-bd97-466aabce291b",
+        "name": "Radiant Heatran",
+        "gv_id": "GV-PK-SWSH10-27-PRIZE-PACK-STAMP",
+        "number": "27",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "e6da28d9-8e7a-4211-a2de-2c4d6c2b7f18",
+        "name": "Regice",
+        "gv_id": "GV-PK-ASR-037-PLAY-POKEMON-STAMP",
+        "number": "037",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "88e210db-01d8-442c-a4d7-9d031061064d",
+        "name": "Regice",
+        "gv_id": "GV-PK-SWSH10-37-PRIZE-PACK-STAMP",
+        "number": "37",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "a1952af8-35cf-4f0c-bc21-f518bea54b00",
+        "name": "Origin Forme Palkia V",
+        "gv_id": "GV-PK-ASR-039-PLAY-POKEMON-STAMP",
+        "number": "039",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "5422e2ba-6234-4977-9706-1bd93a825fb2",
+        "name": "Origin Forme Palkia V",
+        "gv_id": "GV-PK-SWSH10-39-PRIZE-PACK-STAMP",
+        "number": "39",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "8c8ac003-d5dc-44ef-85ea-5b9190398e95",
+        "name": "Origin Forme Palkia VSTAR",
+        "gv_id": "GV-PK-ASR-040-PLAY-POKEMON-STAMP",
+        "number": "040",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "8112adb8-c02c-4e4d-83b2-d5f493dd1377",
+        "name": "Origin Forme Palkia VSTAR",
+        "gv_id": "GV-PK-SWSH10-40-PRIZE-PACK-STAMP",
+        "number": "40",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "aaecd767-1350-47ba-a113-1b2384047b6a",
+        "name": "Regieleki",
+        "gv_id": "GV-PK-ASR-051-PLAY-POKEMON-STAMP",
+        "number": "051",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "8723fc07-fdd7-4cf2-a53a-2790ed372b7f",
+        "name": "Regieleki",
+        "gv_id": "GV-PK-SWSH10-51-PRIZE-PACK-STAMP",
+        "number": "51",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "5997bb7c-2970-4446-9486-bfdc89ca7035",
+        "name": "Gallade",
+        "gv_id": "GV-PK-ASR-062-PLAY-POKEMON-STAMP",
+        "number": "062",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "b8d08457-b3c4-4013-9456-3d24347c14ec",
+        "name": "Gallade",
+        "gv_id": "GV-PK-SWSH10-62-PRIZE-PACK-STAMP",
+        "number": "62",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "3837b7a7-5a44-40f7-8f78-15e051e7da4f",
+        "name": "Diancie",
+        "gv_id": "GV-PK-ASR-068-PLAY-POKEMON-STAMP",
+        "number": "068",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "2418af9d-1123-46e5-99af-93ebedc33ba2",
+        "name": "Diancie",
+        "gv_id": "GV-PK-SWSH10-68-PRIZE-PACK-STAMP",
+        "number": "68",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "8d361411-28c8-496e-b3f5-c7e494f94702",
+        "name": "Regirock",
+        "gv_id": "GV-PK-ASR-075-PLAY-POKEMON-STAMP",
+        "number": "075",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "34b8e7b9-996f-4e69-98c1-293464478dd9",
+        "name": "Regirock",
+        "gv_id": "GV-PK-SWSH10-75-PRIZE-PACK-STAMP",
+        "number": "75",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "bd15f458-dc17-4609-9c3c-9286d5d36517",
+        "name": "Radiant Hawlucha",
+        "gv_id": "GV-PK-ASR-081-PLAY-POKEMON-STAMP",
+        "number": "081",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "45db818f-e20d-4eec-9ade-6cff3dc670d0",
+        "name": "Radiant Hawlucha",
+        "gv_id": "GV-PK-SWSH10-81-PRIZE-PACK-STAMP",
+        "number": "81",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "445109da-f36c-4992-83db-dd046ed1f822",
+        "name": "Registeel",
+        "gv_id": "GV-PK-ASR-108-PLAY-POKEMON-STAMP",
+        "number": "108",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "72612631-4a07-44ac-976b-d39d05ce4b56",
+        "name": "Registeel",
+        "gv_id": "GV-PK-SWSH10-108-PRIZE-PACK-STAMP",
+        "number": "108",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "9ccc4844-97cc-4a9d-bc2f-37620fc909b2",
+        "name": "Origin Forme Dialga V",
+        "gv_id": "GV-PK-ASR-113-PLAY-POKEMON-STAMP",
+        "number": "113",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "86ba26ae-a6c6-4de9-8946-24fcb9ff843e",
+        "name": "Origin Forme Dialga V",
+        "gv_id": "GV-PK-SWSH10-113-PRIZE-PACK-STAMP",
+        "number": "113",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "b290efbc-7b21-4173-97e2-14e6d30038c7",
+        "name": "Origin Forme Dialga VSTAR",
+        "gv_id": "GV-PK-ASR-114-PLAY-POKEMON-STAMP",
+        "number": "114",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "9b53d5f9-1a6a-4ea0-9490-1feadb06cc18",
+        "name": "Origin Forme Dialga VSTAR",
+        "gv_id": "GV-PK-SWSH10-114-PRIZE-PACK-STAMP",
+        "number": "114",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "68756c94-8762-412c-9659-392247bd8bca",
+        "name": "Regidrago",
+        "gv_id": "GV-PK-ASR-118-PLAY-POKEMON-STAMP",
+        "number": "118",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "2ca70162-df56-4405-9c0b-c645eea69272",
+        "name": "Regidrago",
+        "gv_id": "GV-PK-SWSH10-118-PRIZE-PACK-STAMP",
+        "number": "118",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "017d54d6-badf-48a8-bb10-6c1648ca5a48",
+        "name": "Regigigas",
+        "gv_id": "GV-PK-ASR-130-PLAY-POKEMON-STAMP",
+        "number": "130",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "a9071835-7dc2-4aaa-930f-17d5cd36897a",
+        "name": "Regigigas",
+        "gv_id": "GV-PK-SWSH10-130-PRIZE-PACK-STAMP",
+        "number": "130",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "bd216ea9-4213-4684-8286-98f346e62de8",
+        "name": "Dark Patch",
+        "gv_id": "GV-PK-ASR-139-PLAY-POKEMON-STAMP",
+        "number": "139",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "78fa28d2-7b94-4e93-8fe4-3de97c2cd335",
+        "name": "Dark Patch",
+        "gv_id": "GV-PK-SWSH10-139-PRIZE-PACK-STAMP",
+        "number": "139",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "9506c5e3-8d8d-47ed-816d-698c73ae9ab7",
+        "name": "Gapejaw Bog",
+        "gv_id": "GV-PK-ASR-142-PLAY-POKEMON-STAMP",
+        "number": "142",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "ba9045db-4186-4a49-bbf9-328ba7556b6a",
+        "name": "Gapejaw Bog",
+        "gv_id": "GV-PK-SWSH10-142-PRIZE-PACK-STAMP",
+        "number": "142",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "75e4a208-b418-4c6d-a6b0-0a6633c243d0",
+        "name": "Gardenia's Vigor",
+        "gv_id": "GV-PK-ASR-143-PLAY-POKEMON-STAMP",
+        "number": "143",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "c519cfa6-ce4e-4a20-82ae-411536a94649",
+        "name": "Gardenia's Vigor",
+        "gv_id": "GV-PK-SWSH10-143-PRIZE-PACK-STAMP",
+        "number": "143",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "c97163a2-c596-4209-ba46-4d9f24e00e0a",
+        "name": "Grant",
+        "gv_id": "GV-PK-ASR-144-PLAY-POKEMON-STAMP",
+        "number": "144",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "7b0adf9d-0b32-443a-8600-780379592e31",
+        "name": "Grant",
+        "gv_id": "GV-PK-SWSH10-144-PRIZE-PACK-STAMP",
+        "number": "144",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "d5353963-8006-4049-afa5-51b45b63b966",
+        "name": "Gutsy Pickaxe",
+        "gv_id": "GV-PK-ASR-145-PLAY-POKEMON-STAMP",
+        "number": "145",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "2629d38c-2c5d-419f-9cda-e5b2ef644d51",
+        "name": "Gutsy Pickaxe",
+        "gv_id": "GV-PK-SWSH10-145-PRIZE-PACK-STAMP",
+        "number": "145",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "a09be692-14ee-4cb4-a4b5-a91eb3fa0bb9",
+        "name": "Temple of Sinnoh",
+        "gv_id": "GV-PK-ASR-155-PLAY-POKEMON-STAMP",
+        "number": "155",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "e5be3b25-3605-468e-bb88-a0cc52c09706",
+        "name": "Temple of Sinnoh",
+        "gv_id": "GV-PK-SWSH10-155-PRIZE-PACK-STAMP",
+        "number": "155",
+        "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+        "modifier": null,
+        "set_code": "swsh10",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "d3f0ef6a-2eeb-4b65-8c38-d5c878744b17",
+        "name": "Kyurem V",
+        "gv_id": "GV-PK-LOR-048-PLAY-POKEMON-STAMP",
+        "number": "048",
+        "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+        "modifier": null,
+        "set_code": "swsh11",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "da332438-3b53-4fdf-9f1a-5c5233273d3b",
+        "name": "Kyurem V",
+        "gv_id": "GV-PK-SWSH11-048-PRIZE-PACK-STAMP",
+        "number": "048",
+        "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+        "modifier": null,
+        "set_code": "swsh11",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "482a8446-7efd-4c0c-a8b7-58ef10ceb6fb",
+        "name": "Kyurem VMAX",
+        "gv_id": "GV-PK-LOR-049-PLAY-POKEMON-STAMP",
+        "number": "049",
+        "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+        "modifier": null,
+        "set_code": "swsh11",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "8f5b9d8b-69d0-458c-b5c0-a393ba58621d",
+        "name": "Kyurem VMAX",
+        "gv_id": "GV-PK-SWSH11-049-PRIZE-PACK-STAMP",
+        "number": "049",
+        "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+        "modifier": null,
+        "set_code": "swsh11",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "6720f0b2-23c2-4d78-bacf-2d0db6f7ddf5",
+        "name": "Clefairy",
+        "gv_id": "GV-PK-LOR-062-PLAY-POKEMON-STAMP",
+        "number": "062",
+        "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+        "modifier": null,
+        "set_code": "swsh11",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "22277b2e-d5f6-46d2-972a-48a0adfa1835",
+        "name": "Clefairy",
+        "gv_id": "GV-PK-SWSH11-062-PRIZE-PACK-STAMP",
+        "number": "062",
+        "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+        "modifier": null,
+        "set_code": "swsh11",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "24be6e14-c961-4fd1-9c20-56835725655d",
+        "name": "Radiant Gardevoir",
+        "gv_id": "GV-PK-LOR-069-PLAY-POKEMON-STAMP",
+        "number": "069",
+        "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+        "modifier": null,
+        "set_code": "swsh11",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "8cc1025a-bed0-4657-8df2-4dcff0b45807",
+        "name": "Radiant Gardevoir",
+        "gv_id": "GV-PK-SWSH11-069-PRIZE-PACK-STAMP",
+        "number": "069",
+        "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+        "modifier": null,
+        "set_code": "swsh11",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "f5c302cc-53bf-4a8a-8de4-af3246c4c351",
+        "name": "Drapion V",
+        "gv_id": "GV-PK-LOR-118-PLAY-POKEMON-STAMP",
+        "number": "118",
+        "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+        "modifier": null,
+        "set_code": "swsh11",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "915598c9-b8c5-4650-a36e-dfa19a5d8687",
+        "name": "Drapion V",
+        "gv_id": "GV-PK-SWSH11-118-PRIZE-PACK-STAMP",
+        "number": "118",
+        "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+        "modifier": null,
+        "set_code": "swsh11",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "c835a5b2-09cc-4830-90d9-4c04af923839",
+        "name": "Drapion VSTAR",
+        "gv_id": "GV-PK-LOR-119-PLAY-POKEMON-STAMP",
+        "number": "119",
+        "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+        "modifier": null,
+        "set_code": "swsh11",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "ae2e0b5e-e22d-4d38-b861-ea9c731e50a1",
+        "name": "Drapion VSTAR",
+        "gv_id": "GV-PK-SWSH11-119-PRIZE-PACK-STAMP",
+        "number": "119",
+        "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+        "modifier": null,
+        "set_code": "swsh11",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "1f3f8dc8-8a95-4883-8010-cc92d3f0fc37",
+        "name": "Radiant Hisuian Sneasler",
+        "gv_id": "GV-PK-LOR-123-PLAY-POKEMON-STAMP",
+        "number": "123",
+        "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+        "modifier": null,
+        "set_code": "swsh11",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "54920908-619b-4c7c-bf41-89d245a8c7e2",
+        "name": "Radiant Hisuian Sneasler",
+        "gv_id": "GV-PK-SWSH11-123-PRIZE-PACK-STAMP",
+        "number": "123",
+        "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+        "modifier": null,
+        "set_code": "swsh11",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "06f07c2c-0da1-493f-9bf0-d25dd1d24636",
+        "name": "Snorlax",
+        "gv_id": "GV-PK-LOR-143-PLAY-POKEMON-STAMP",
+        "number": "143",
+        "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+        "modifier": null,
+        "set_code": "swsh11",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "298159cc-3663-4952-89fd-5da0599587a6",
+        "name": "Snorlax",
+        "gv_id": "GV-PK-SWSH11-143-PRIZE-PACK-STAMP",
+        "number": "143",
+        "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+        "modifier": null,
+        "set_code": "swsh11",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "66ea74fd-8539-4f4c-951f-71a5ccfe35e9",
+        "name": "Hisuian Zoroark V",
+        "gv_id": "GV-PK-LOR-146-PLAY-POKEMON-STAMP",
+        "number": "146",
+        "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+        "modifier": null,
+        "set_code": "swsh11",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "ee8377f4-95c3-4d35-b3fe-a85b351a8c19",
+        "name": "Hisuian Zoroark V",
+        "gv_id": "GV-PK-SWSH11-146-PRIZE-PACK-STAMP",
+        "number": "146",
+        "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+        "modifier": null,
+        "set_code": "swsh11",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "27653cd0-b725-4e9a-9455-15a0a3ca0050",
+        "name": "Hisuian Zoroark VSTAR",
+        "gv_id": "GV-PK-LOR-147-PLAY-POKEMON-STAMP",
+        "number": "147",
+        "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+        "modifier": null,
+        "set_code": "swsh11",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "fb80c6d6-fa51-480e-b8c4-78fbbbfaccc7",
+        "name": "Hisuian Zoroark VSTAR",
+        "gv_id": "GV-PK-SWSH11-147-PRIZE-PACK-STAMP",
+        "number": "147",
+        "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+        "modifier": null,
+        "set_code": "swsh11",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "077be7cd-21e7-46cb-b25c-c256da55c10b",
+        "name": "Colress's Experiment",
+        "gv_id": "GV-PK-LOR-155-PLAY-POKEMON-STAMP",
+        "number": "155",
+        "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+        "modifier": null,
+        "set_code": "swsh11",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "e4ab9c37-f1a0-42c7-a928-bb278ef8c570",
+        "name": "Colress's Experiment",
+        "gv_id": "GV-PK-SWSH11-155-PRIZE-PACK-STAMP",
+        "number": "155",
+        "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+        "modifier": null,
+        "set_code": "swsh11",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "27183d1b-d482-4bc1-a47e-3da0d7e4dd2c",
+        "name": "Lake Acuity",
+        "gv_id": "GV-PK-LOR-160-PLAY-POKEMON-STAMP",
+        "number": "160",
+        "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+        "modifier": null,
+        "set_code": "swsh11",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "0299af19-6b11-40c2-b9f2-cebb3f03b580",
+        "name": "Lake Acuity",
+        "gv_id": "GV-PK-SWSH11-160-PRIZE-PACK-STAMP",
+        "number": "160",
+        "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+        "modifier": null,
+        "set_code": "swsh11",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "d6ff2988-d72c-42e8-bbe2-67b1947ac042",
+        "name": "Thorton",
+        "gv_id": "GV-PK-LOR-167-PLAY-POKEMON-STAMP",
+        "number": "167",
+        "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+        "modifier": null,
+        "set_code": "swsh11",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "b7f24985-f649-4f19-aa95-56bfaadb0fcc",
+        "name": "Thorton",
+        "gv_id": "GV-PK-SWSH11-167-PRIZE-PACK-STAMP",
+        "number": "167",
+        "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+        "modifier": null,
+        "set_code": "swsh11",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "8cc7cba0-40e2-48be-a5e7-598322383ded",
+        "name": "Tool Box",
+        "gv_id": "GV-PK-LOR-168-PLAY-POKEMON-STAMP",
+        "number": "168",
+        "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+        "modifier": null,
+        "set_code": "swsh11",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "651fa245-4e3b-4894-9a95-923854fe2cda",
+        "name": "Tool Box",
+        "gv_id": "GV-PK-SWSH11-168-PRIZE-PACK-STAMP",
+        "number": "168",
+        "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+        "modifier": null,
+        "set_code": "swsh11",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "3ceb5cb1-079d-4b4f-bb31-e291bdaab624",
+        "name": "Radiant Tsareena",
+        "gv_id": "GV-PK-SIT-016-PLAY-POKEMON-STAMP",
+        "number": "016",
+        "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+        "modifier": null,
+        "set_code": "swsh12",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "c0f6af0d-1dc0-4b3a-9338-de83df302c07",
+        "name": "Radiant Tsareena",
+        "gv_id": "GV-PK-SWSH12-16-PRIZE-PACK-STAMP",
+        "number": "16",
+        "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+        "modifier": null,
+        "set_code": "swsh12",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "bdfa1b63-5e20-468d-b934-1f046bb3d563",
+        "name": "Alolan Vulpix VSTAR",
+        "gv_id": "GV-PK-SIT-034-PLAY-POKEMON-STAMP",
+        "number": "034",
+        "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+        "modifier": null,
+        "set_code": "swsh12",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "91e3bb80-88a3-4d5e-ba99-436160c2ec27",
+        "name": "Alolan Vulpix VSTAR",
+        "gv_id": "GV-PK-SWSH12-34-PRIZE-PACK-STAMP",
+        "number": "34",
+        "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+        "modifier": null,
+        "set_code": "swsh12",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "620eebbc-86b8-4910-8110-aa38f420b11c",
+        "name": "Radiant Alakazam",
+        "gv_id": "GV-PK-SIT-059-PLAY-POKEMON-STAMP",
+        "number": "059",
+        "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+        "modifier": null,
+        "set_code": "swsh12",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "0287105d-c94a-47fc-8ee8-31a9dd207ef2",
+        "name": "Radiant Alakazam",
+        "gv_id": "GV-PK-SWSH12-59-PRIZE-PACK-STAMP",
+        "number": "59",
+        "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+        "modifier": null,
+        "set_code": "swsh12",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "0669bf77-7ca8-42d1-8fa4-357d4064a025",
+        "name": "Hisuian Arcanine V",
+        "gv_id": "GV-PK-SIT-090-PLAY-POKEMON-STAMP",
+        "number": "090",
+        "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+        "modifier": null,
+        "set_code": "swsh12",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "ed16bff7-2917-4cf7-ae01-b9451ec6b8f4",
+        "name": "Hisuian Arcanine V",
+        "gv_id": "GV-PK-SWSH12-090-PRIZE-PACK-STAMP",
+        "number": "090",
+        "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+        "modifier": null,
+        "set_code": "swsh12",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "dfcfa92e-a693-4c1d-a28d-bf34c0629797",
+        "name": "Radiant Jirachi",
+        "gv_id": "GV-PK-SIT-120-PLAY-POKEMON-STAMP",
+        "number": "120",
+        "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+        "modifier": null,
+        "set_code": "swsh12",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "0fbb527a-ccfd-41ba-978b-3a16d452a8fa",
+        "name": "Radiant Jirachi",
+        "gv_id": "GV-PK-SWSH12-120-PRIZE-PACK-STAMP",
+        "number": "120",
+        "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+        "modifier": null,
+        "set_code": "swsh12",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "40b5a8f2-c485-487e-8fd8-2d49d3e480f0",
+        "name": "Ho-Oh V",
+        "gv_id": "GV-PK-SIT-140-PLAY-POKEMON-STAMP",
+        "number": "140",
+        "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+        "modifier": null,
+        "set_code": "swsh12",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "103a4326-1d55-4331-aea9-0a344f54ff56",
+        "name": "Ho-Oh V",
+        "gv_id": "GV-PK-SWSH12-140-PRIZE-PACK-STAMP",
+        "number": "140",
+        "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+        "modifier": null,
+        "set_code": "swsh12",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "f993e6ae-bc3d-4951-807b-898bd295f8c3",
+        "name": "Capturing Aroma",
+        "gv_id": "GV-PK-SIT-153-PLAY-POKEMON-STAMP",
+        "number": "153",
+        "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+        "modifier": null,
+        "set_code": "swsh12",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "b6a1bb2e-f3f9-486c-82cc-961bb2dbc4e0",
+        "name": "Capturing Aroma",
+        "gv_id": "GV-PK-SWSH12-153-PRIZE-PACK-STAMP",
+        "number": "153",
+        "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+        "modifier": null,
+        "set_code": "swsh12",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "c768b472-1f0d-46ac-adb7-5f6554c57888",
+        "name": "Earthen Seal Stone",
+        "gv_id": "GV-PK-SIT-154-PLAY-POKEMON-STAMP",
+        "number": "154",
+        "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+        "modifier": null,
+        "set_code": "swsh12",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "d16f8b15-312a-460b-b264-5892989ec3df",
+        "name": "Earthen Seal Stone",
+        "gv_id": "GV-PK-SWSH12-154-PRIZE-PACK-STAMP",
+        "number": "154",
+        "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+        "modifier": null,
+        "set_code": "swsh12",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "e5988601-d908-4dfd-b7ce-ed450b600387",
+        "name": "Emergency Jelly",
+        "gv_id": "GV-PK-SIT-155-PLAY-POKEMON-STAMP",
+        "number": "155",
+        "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+        "modifier": null,
+        "set_code": "swsh12",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "61eb9e70-9bb2-4487-8d44-c422b18e99a0",
+        "name": "Emergency Jelly",
+        "gv_id": "GV-PK-SWSH12-155-PRIZE-PACK-STAMP",
+        "number": "155",
+        "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+        "modifier": null,
+        "set_code": "swsh12",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "656f5776-4853-4619-88cf-4e53454ba867",
+        "name": "Lance",
+        "gv_id": "GV-PK-SIT-159-PLAY-POKEMON-STAMP",
+        "number": "159",
+        "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+        "modifier": null,
+        "set_code": "swsh12",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "fbf752c6-7ef4-4961-861c-53c98707a161",
+        "name": "Lance",
+        "gv_id": "GV-PK-SWSH12-159-PRIZE-PACK-STAMP",
+        "number": "159",
+        "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+        "modifier": null,
+        "set_code": "swsh12",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "c46f94ed-693c-48be-9f0c-2b7288b3a568",
+        "name": "Leafy Camo Poncho",
+        "gv_id": "GV-PK-SIT-160-PLAY-POKEMON-STAMP",
+        "number": "160",
+        "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+        "modifier": null,
+        "set_code": "swsh12",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "2716014d-3431-4b4d-a2a4-2b6f6a9513d0",
+        "name": "Leafy Camo Poncho",
+        "gv_id": "GV-PK-SWSH12-160-PRIZE-PACK-STAMP",
+        "number": "160",
+        "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+        "modifier": null,
+        "set_code": "swsh12",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "b0892865-890c-498b-9efc-395f07999e15",
+        "name": "Serena",
+        "gv_id": "GV-PK-SIT-164-PLAY-POKEMON-STAMP",
+        "number": "164",
+        "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+        "modifier": null,
+        "set_code": "swsh12",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "80af3c34-2b6b-4174-a7ff-4631981f4b81",
+        "name": "Serena",
+        "gv_id": "GV-PK-SWSH12-164-PRIZE-PACK-STAMP",
+        "number": "164",
+        "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+        "modifier": null,
+        "set_code": "swsh12",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "5ee8928f-60a9-4e94-8e47-35f8df072dec",
+        "name": "V Guard Energy",
+        "gv_id": "GV-PK-SIT-169-PLAY-POKEMON-STAMP",
+        "number": "169",
+        "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+        "modifier": null,
+        "set_code": "swsh12",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "d96cf6d2-0ad5-44f7-8216-a6ce7233f4c2",
+        "name": "V Guard Energy",
+        "gv_id": "GV-PK-SWSH12-169-PRIZE-PACK-STAMP",
+        "number": "169",
+        "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+        "modifier": null,
+        "set_code": "swsh12",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "cc35eacf-0ba9-44d8-a3e8-1dc3700fba9e",
+        "name": "Empoleon V",
+        "gv_id": "GV-PK-BST-040-PLAY-POKEMON-STAMP",
+        "number": "040",
+        "set_id": "7ca9aefb-ffa9-4b24-ba8c-8b545b80eb83",
+        "modifier": null,
+        "set_code": "swsh5",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "494b4744-dbc8-45d8-a6ec-892c5ea31eb3",
+        "name": "Empoleon V",
+        "gv_id": "GV-PK-SWSH5-40-PRIZE-PACK-STAMP",
+        "number": "40",
+        "set_id": "7ca9aefb-ffa9-4b24-ba8c-8b545b80eb83",
+        "modifier": null,
+        "set_code": "swsh5",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "aa051709-c991-4f33-bee5-d3b42a944c51",
+        "name": "Orbeetle",
+        "gv_id": "GV-PK-BST-065-PLAY-POKEMON-STAMP",
+        "number": "065",
+        "set_id": "7ca9aefb-ffa9-4b24-ba8c-8b545b80eb83",
+        "modifier": null,
+        "set_code": "swsh5",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "7c54a8ae-6bdd-488e-b7cd-8c521d463e85",
+        "name": "Orbeetle",
+        "gv_id": "GV-PK-SWSH5-65-PRIZE-PACK-STAMP",
+        "number": "65",
+        "set_id": "7ca9aefb-ffa9-4b24-ba8c-8b545b80eb83",
+        "modifier": null,
+        "set_code": "swsh5",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "64cff63a-ea0e-48be-9df9-dce7da5418af",
+        "name": "Crobat",
+        "gv_id": "GV-PK-BST-091-PLAY-POKEMON-STAMP",
+        "number": "091",
+        "set_id": "7ca9aefb-ffa9-4b24-ba8c-8b545b80eb83",
+        "modifier": null,
+        "set_code": "swsh5",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "e861da90-cf95-4e31-876c-79a5b6a2af66",
+        "name": "Crobat",
+        "gv_id": "GV-PK-SWSH5-91-PRIZE-PACK-STAMP",
+        "number": "91",
+        "set_id": "7ca9aefb-ffa9-4b24-ba8c-8b545b80eb83",
+        "modifier": null,
+        "set_code": "swsh5",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "8170ecf2-6695-4bc1-9744-8223602875b5",
+        "name": "Corviknight V",
+        "gv_id": "GV-PK-BST-109-PLAY-POKEMON-STAMP",
+        "number": "109",
+        "set_id": "7ca9aefb-ffa9-4b24-ba8c-8b545b80eb83",
+        "modifier": null,
+        "set_code": "swsh5",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "2080ff57-eb73-4343-8862-d1b97f910801",
+        "name": "Corviknight V",
+        "gv_id": "GV-PK-SWSH5-109-PRIZE-PACK-STAMP",
+        "number": "109",
+        "set_id": "7ca9aefb-ffa9-4b24-ba8c-8b545b80eb83",
+        "modifier": null,
+        "set_code": "swsh5",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "cf1cf123-b596-43e2-969a-c1168018adeb",
+        "name": "Corviknight VMAX",
+        "gv_id": "GV-PK-BST-110-PLAY-POKEMON-STAMP",
+        "number": "110",
+        "set_id": "7ca9aefb-ffa9-4b24-ba8c-8b545b80eb83",
+        "modifier": null,
+        "set_code": "swsh5",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "bed5d209-18dd-475b-9d06-49dc8013da8b",
+        "name": "Corviknight VMAX",
+        "gv_id": "GV-PK-SWSH5-110-PRIZE-PACK-STAMP",
+        "number": "110",
+        "set_id": "7ca9aefb-ffa9-4b24-ba8c-8b545b80eb83",
+        "modifier": null,
+        "set_code": "swsh5",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "3af76438-693a-4673-9302-e69101be1108",
+        "name": "Exp. Share",
+        "gv_id": "GV-PK-BST-126-PLAY-POKEMON-STAMP",
+        "number": "126",
+        "set_id": "7ca9aefb-ffa9-4b24-ba8c-8b545b80eb83",
+        "modifier": null,
+        "set_code": "swsh5",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "6e4f7067-8ddb-41f9-b6db-607a7ce96708",
+        "name": "Exp. Share",
+        "gv_id": "GV-PK-SWSH5-126-PRIZE-PACK-STAMP",
+        "number": "126",
+        "set_id": "7ca9aefb-ffa9-4b24-ba8c-8b545b80eb83",
+        "modifier": null,
+        "set_code": "swsh5",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "516014b6-f00e-40bb-a8be-fdce6d649aff",
+        "name": "Blaziken V",
+        "gv_id": "GV-PK-CRE-020-PLAY-POKEMON-STAMP",
+        "number": "020",
+        "set_id": "68dc2f0d-ca52-4b09-b9e4-bbaa26a8037d",
+        "modifier": null,
+        "set_code": "swsh6",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "de0a9e86-b161-457b-8d59-94ac00641d60",
+        "name": "Blaziken V",
+        "gv_id": "GV-PK-SWSH6-20-PRIZE-PACK-STAMP",
+        "number": "20",
+        "set_id": "68dc2f0d-ca52-4b09-b9e4-bbaa26a8037d",
+        "modifier": null,
+        "set_code": "swsh6",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "04efa566-20f2-4573-a100-691925f966d9",
+        "name": "Blaziken VMAX",
+        "gv_id": "GV-PK-CRE-021-PLAY-POKEMON-STAMP",
+        "number": "021",
+        "set_id": "68dc2f0d-ca52-4b09-b9e4-bbaa26a8037d",
+        "modifier": null,
+        "set_code": "swsh6",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "54cf5553-bf4e-4a13-b512-437ab4e6bea0",
+        "name": "Blaziken VMAX",
+        "gv_id": "GV-PK-SWSH6-21-PRIZE-PACK-STAMP",
+        "number": "21",
+        "set_id": "68dc2f0d-ca52-4b09-b9e4-bbaa26a8037d",
+        "modifier": null,
+        "set_code": "swsh6",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "29664a58-d062-44df-862e-6a9878902308",
+        "name": "Froslass",
+        "gv_id": "GV-PK-CRE-036-PLAY-POKEMON-STAMP",
+        "number": "036",
+        "set_id": "68dc2f0d-ca52-4b09-b9e4-bbaa26a8037d",
+        "modifier": null,
+        "set_code": "swsh6",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "d93bfbc7-8562-4343-ba6e-a9c9942d1c88",
+        "name": "Froslass",
+        "gv_id": "GV-PK-SWSH6-36-PRIZE-PACK-STAMP",
+        "number": "36",
+        "set_id": "68dc2f0d-ca52-4b09-b9e4-bbaa26a8037d",
+        "modifier": null,
+        "set_code": "swsh6",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "42f3b099-7ead-4354-820c-eb5e34361c54",
+        "name": "Zeraora V",
+        "gv_id": "GV-PK-CRE-053-PLAY-POKEMON-STAMP",
+        "number": "053",
+        "set_id": "68dc2f0d-ca52-4b09-b9e4-bbaa26a8037d",
+        "modifier": null,
+        "set_code": "swsh6",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "e5bca5ef-faaf-43a2-bdad-c245d84147ec",
+        "name": "Zeraora V",
+        "gv_id": "GV-PK-SWSH6-53-PRIZE-PACK-STAMP",
+        "number": "53",
+        "set_id": "68dc2f0d-ca52-4b09-b9e4-bbaa26a8037d",
+        "modifier": null,
+        "set_code": "swsh6",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "4635c867-d945-4eac-b4ba-d8f0c675066d",
+        "name": "Gardevoir",
+        "gv_id": "GV-PK-CRE-061-PLAY-POKEMON-STAMP",
+        "number": "061",
+        "set_id": "68dc2f0d-ca52-4b09-b9e4-bbaa26a8037d",
+        "modifier": null,
+        "set_code": "swsh6",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "11c530b3-3f1c-44be-bcfc-6de372aac5f4",
+        "name": "Gardevoir",
+        "gv_id": "GV-PK-SWSH6-61-PRIZE-PACK-STAMP",
+        "number": "61",
+        "set_id": "68dc2f0d-ca52-4b09-b9e4-bbaa26a8037d",
+        "modifier": null,
+        "set_code": "swsh6",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "8bbfb4dd-8186-4b52-834d-e9b68cf0c109",
+        "name": "Lycanroc",
+        "gv_id": "GV-PK-CRE-087-PLAY-POKEMON-STAMP",
+        "number": "087",
+        "set_id": "68dc2f0d-ca52-4b09-b9e4-bbaa26a8037d",
+        "modifier": null,
+        "set_code": "swsh6",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "056b62b3-31c0-4d3b-854a-b38a82a136e0",
+        "name": "Lycanroc",
+        "gv_id": "GV-PK-SWSH6-87-PRIZE-PACK-STAMP",
+        "number": "87",
+        "set_id": "68dc2f0d-ca52-4b09-b9e4-bbaa26a8037d",
+        "modifier": null,
+        "set_code": "swsh6",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "12d4de68-02de-4f36-a2e7-89471dad153f",
+        "name": "Avery",
+        "gv_id": "GV-PK-CRE-130-PLAY-POKEMON-STAMP",
+        "number": "130",
+        "set_id": "68dc2f0d-ca52-4b09-b9e4-bbaa26a8037d",
+        "modifier": null,
+        "set_code": "swsh6",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "3eb730fb-fd97-4f29-b370-e770506d3ce4",
+        "name": "Avery",
+        "gv_id": "GV-PK-SWSH6-130-PRIZE-PACK-STAMP",
+        "number": "130",
+        "set_id": "68dc2f0d-ca52-4b09-b9e4-bbaa26a8037d",
+        "modifier": null,
+        "set_code": "swsh6",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "f86a17b4-d692-48e9-aa3a-41af79977b24",
+        "name": "Impact Energy",
+        "gv_id": "GV-PK-CRE-157-PLAY-POKEMON-STAMP",
+        "number": "157",
+        "set_id": "68dc2f0d-ca52-4b09-b9e4-bbaa26a8037d",
+        "modifier": null,
+        "set_code": "swsh6",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "fc2d59c2-d241-4d87-9752-9d179febc166",
+        "name": "Impact Energy",
+        "gv_id": "GV-PK-SWSH6-157-PRIZE-PACK-STAMP",
+        "number": "157",
+        "set_id": "68dc2f0d-ca52-4b09-b9e4-bbaa26a8037d",
+        "modifier": null,
+        "set_code": "swsh6",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "53de5ec1-0263-45de-93bc-3caad7fd8093",
+        "name": "Spiral Energy",
+        "gv_id": "GV-PK-CRE-159-PLAY-POKEMON-STAMP",
+        "number": "159",
+        "set_id": "68dc2f0d-ca52-4b09-b9e4-bbaa26a8037d",
+        "modifier": null,
+        "set_code": "swsh6",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "93b8aa66-2388-4288-ba56-d98bde888424",
+        "name": "Spiral Energy",
+        "gv_id": "GV-PK-SWSH6-159-PRIZE-PACK-STAMP",
+        "number": "159",
+        "set_id": "68dc2f0d-ca52-4b09-b9e4-bbaa26a8037d",
+        "modifier": null,
+        "set_code": "swsh6",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "20a819da-551d-4c5e-bbe1-7befb2729ccb",
+        "name": "Eldegoss",
+        "gv_id": "GV-PK-EVS-016-PLAY-POKEMON-STAMP",
+        "number": "016",
+        "set_id": "ced2540c-d8a2-410a-8e13-e4a65b89ec75",
+        "modifier": null,
+        "set_code": "swsh7",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "f8007e50-88d6-49f8-b07e-ce0f102909bd",
+        "name": "Eldegoss",
+        "gv_id": "GV-PK-SWSH7-16-PRIZE-PACK-STAMP",
+        "number": "16",
+        "set_id": "ced2540c-d8a2-410a-8e13-e4a65b89ec75",
+        "modifier": null,
+        "set_code": "swsh7",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "fcb018bb-2242-462f-b47e-4c9c56c78e77",
+        "name": "Ludicolo",
+        "gv_id": "GV-PK-EVS-034-PLAY-POKEMON-STAMP",
+        "number": "034",
+        "set_id": "ced2540c-d8a2-410a-8e13-e4a65b89ec75",
+        "modifier": null,
+        "set_code": "swsh7",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "1caef261-3224-48e9-be16-eceeec58c31f",
+        "name": "Ludicolo",
+        "gv_id": "GV-PK-SWSH7-34-PRIZE-PACK-STAMP",
+        "number": "34",
+        "set_id": "ced2540c-d8a2-410a-8e13-e4a65b89ec75",
+        "modifier": null,
+        "set_code": "swsh7",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "916e1289-5743-4e93-b089-6b32cc5798f4",
+        "name": "Regieleki",
+        "gv_id": "GV-PK-EVS-060-PLAY-POKEMON-STAMP",
+        "number": "060",
+        "set_id": "ced2540c-d8a2-410a-8e13-e4a65b89ec75",
+        "modifier": null,
+        "set_code": "swsh7",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "38f8525d-0e10-44cf-a1e9-9ecd47cbcdbe",
+        "name": "Regieleki",
+        "gv_id": "GV-PK-SWSH7-60-PRIZE-PACK-STAMP",
+        "number": "60",
+        "set_id": "ced2540c-d8a2-410a-8e13-e4a65b89ec75",
+        "modifier": null,
+        "set_code": "swsh7",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "84c09a64-5f56-4da5-8697-b658b2c7de7a",
+        "name": "Medicham V",
+        "gv_id": "GV-PK-EVS-083-PLAY-POKEMON-STAMP",
+        "number": "083",
+        "set_id": "ced2540c-d8a2-410a-8e13-e4a65b89ec75",
+        "modifier": null,
+        "set_code": "swsh7",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "20858fc9-d07d-43c7-9481-3ddca2f73bb1",
+        "name": "Medicham V",
+        "gv_id": "GV-PK-SWSH7-83-PRIZE-PACK-STAMP",
+        "number": "83",
+        "set_id": "ced2540c-d8a2-410a-8e13-e4a65b89ec75",
+        "modifier": null,
+        "set_code": "swsh7",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "05950699-f023-4792-b882-34ed31b89e11",
+        "name": "Kyurem",
+        "gv_id": "GV-PK-EVS-116-PLAY-POKEMON-STAMP",
+        "number": "116",
+        "set_id": "ced2540c-d8a2-410a-8e13-e4a65b89ec75",
+        "modifier": null,
+        "set_code": "swsh7",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "08c3fc44-ad4a-4e05-8498-f8dc31ff9d3d",
+        "name": "Kyurem",
+        "gv_id": "GV-PK-SWSH7-116-PRIZE-PACK-STAMP",
+        "number": "116",
+        "set_id": "ced2540c-d8a2-410a-8e13-e4a65b89ec75",
+        "modifier": null,
+        "set_code": "swsh7",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "2b8849f6-737b-4db5-b797-df7907e520ca",
+        "name": "Smeargle",
+        "gv_id": "GV-PK-EVS-128-PLAY-POKEMON-STAMP",
+        "number": "128",
+        "set_id": "ced2540c-d8a2-410a-8e13-e4a65b89ec75",
+        "modifier": null,
+        "set_code": "swsh7",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "e14d09cd-58a5-410a-9545-57646e1ff30b",
+        "name": "Smeargle",
+        "gv_id": "GV-PK-SWSH7-128-PRIZE-PACK-STAMP",
+        "number": "128",
+        "set_id": "ced2540c-d8a2-410a-8e13-e4a65b89ec75",
+        "modifier": null,
+        "set_code": "swsh7",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "93f44333-c167-41fe-9300-eaa0c5f23eb9",
+        "name": "Zinnia's Resolve",
+        "gv_id": "GV-PK-EVS-164-PLAY-POKEMON-STAMP",
+        "number": "164",
+        "set_id": "ced2540c-d8a2-410a-8e13-e4a65b89ec75",
+        "modifier": null,
+        "set_code": "swsh7",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "4b424f30-42f4-4911-a680-b9e2565940dc",
+        "name": "Zinnia's Resolve",
+        "gv_id": "GV-PK-SWSH7-164-PRIZE-PACK-STAMP",
+        "number": "164",
+        "set_id": "ced2540c-d8a2-410a-8e13-e4a65b89ec75",
+        "modifier": null,
+        "set_code": "swsh7",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "1825f545-d4ed-4095-80ae-fe4337d8c0b6",
+        "name": "Oricorio",
+        "gv_id": "GV-PK-FST-042-PLAY-POKEMON-STAMP",
+        "number": "042",
+        "set_id": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+        "modifier": null,
+        "set_code": "swsh8",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "0caad6ed-84a3-4235-962b-cb72f035626b",
+        "name": "Oricorio",
+        "gv_id": "GV-PK-SWSH8-42-PRIZE-PACK-STAMP",
+        "number": "42",
+        "set_id": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+        "modifier": null,
+        "set_code": "swsh8",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "15f9cdee-0115-441e-94ee-25b2a90645ba",
+        "name": "Inteleon V",
+        "gv_id": "GV-PK-FST-078-PLAY-POKEMON-STAMP",
+        "number": "078",
+        "set_id": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+        "modifier": null,
+        "set_code": "swsh8",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "974d8703-228e-49be-a141-9fcc056a41f9",
+        "name": "Inteleon V",
+        "gv_id": "GV-PK-SWSH8-78-PRIZE-PACK-STAMP",
+        "number": "78",
+        "set_id": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+        "modifier": null,
+        "set_code": "swsh8",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "9c6c5726-0619-4d68-819f-c05af2007f9d",
+        "name": "Inteleon VMAX",
+        "gv_id": "GV-PK-FST-079-PLAY-POKEMON-STAMP",
+        "number": "079",
+        "set_id": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+        "modifier": null,
+        "set_code": "swsh8",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "e4dd2c82-7f9e-4638-9083-5deb4fbf3149",
+        "name": "Inteleon VMAX",
+        "gv_id": "GV-PK-SWSH8-79-PRIZE-PACK-STAMP",
+        "number": "79",
+        "set_id": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+        "modifier": null,
+        "set_code": "swsh8",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "2c97b8aa-528c-40af-9fde-3583be685b6a",
+        "name": "Boltund V",
+        "gv_id": "GV-PK-FST-103-PLAY-POKEMON-STAMP",
+        "number": "103",
+        "set_id": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+        "modifier": null,
+        "set_code": "swsh8",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "a921213e-0e55-4bc3-afe2-0e3f06f120d2",
+        "name": "Boltund V",
+        "gv_id": "GV-PK-SWSH8-103-PRIZE-PACK-STAMP",
+        "number": "103",
+        "set_id": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+        "modifier": null,
+        "set_code": "swsh8",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "56cf1a9f-52c8-4fb4-bb7a-05610ff957c6",
+        "name": "Boltund VMAX",
+        "gv_id": "GV-PK-FST-104-PLAY-POKEMON-STAMP",
+        "number": "104",
+        "set_id": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+        "modifier": null,
+        "set_code": "swsh8",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "0ffe7806-b7d0-4c7f-a613-e15d287fcedc",
+        "name": "Boltund VMAX",
+        "gv_id": "GV-PK-SWSH8-104-PRIZE-PACK-STAMP",
+        "number": "104",
+        "set_id": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+        "modifier": null,
+        "set_code": "swsh8",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "3c2ff419-db96-4ee5-9116-645fcaea7a8c",
+        "name": "Mew V",
+        "gv_id": "GV-PK-FST-113-PLAY-POKEMON-STAMP",
+        "number": "113",
+        "set_id": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+        "modifier": null,
+        "set_code": "swsh8",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "c549e34a-128a-4f4a-81aa-7c7a5b73e138",
+        "name": "Mew V",
+        "gv_id": "GV-PK-SWSH8-113-PRIZE-PACK-STAMP",
+        "number": "113",
+        "set_id": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+        "modifier": null,
+        "set_code": "swsh8",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "f92b434c-edcd-40e2-995e-ef3cd4bb6a61",
+        "name": "Gengar V",
+        "gv_id": "GV-PK-FST-156-PLAY-POKEMON-STAMP",
+        "number": "156",
+        "set_id": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+        "modifier": null,
+        "set_code": "swsh8",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "c9fe2208-c1d8-40b9-a07b-7b4a1f997c58",
+        "name": "Gengar V",
+        "gv_id": "GV-PK-SWSH8-156-PRIZE-PACK-STAMP",
+        "number": "156",
+        "set_id": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+        "modifier": null,
+        "set_code": "swsh8",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "1d92a45d-7cea-45db-8c11-25424e8ee62e",
+        "name": "Gengar VMAX",
+        "gv_id": "GV-PK-FST-157-PLAY-POKEMON-STAMP",
+        "number": "157",
+        "set_id": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+        "modifier": null,
+        "set_code": "swsh8",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "0913ad0c-f5d1-4210-ba9f-9dd7aae0e44c",
+        "name": "Gengar VMAX",
+        "gv_id": "GV-PK-SWSH8-157-PRIZE-PACK-STAMP",
+        "number": "157",
+        "set_id": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+        "modifier": null,
+        "set_code": "swsh8",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "6294c297-c0c6-4c16-a39e-6be97a50ce49",
+        "name": "Genesect V",
+        "gv_id": "GV-PK-FST-185-PLAY-POKEMON-STAMP",
+        "number": "185",
+        "set_id": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+        "modifier": null,
+        "set_code": "swsh8",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "c528ca04-47ad-4063-b14b-a94784b1f7fa",
+        "name": "Genesect V",
+        "gv_id": "GV-PK-SWSH8-185-PRIZE-PACK-STAMP",
+        "number": "185",
+        "set_id": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+        "modifier": null,
+        "set_code": "swsh8",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "8c49c5fc-5604-44ed-977f-e191329617e9",
+        "name": "Latias",
+        "gv_id": "GV-PK-FST-193-PLAY-POKEMON-STAMP",
+        "number": "193",
+        "set_id": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+        "modifier": null,
+        "set_code": "swsh8",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "d7d02f81-b442-4354-8923-e9ceb825ddcd",
+        "name": "Latias",
+        "gv_id": "GV-PK-SWSH8-193-PRIZE-PACK-STAMP",
+        "number": "193",
+        "set_id": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+        "modifier": null,
+        "set_code": "swsh8",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "7cc19bb0-8d5c-4d6c-950d-7400fc989dcc",
+        "name": "Latios",
+        "gv_id": "GV-PK-FST-194-PLAY-POKEMON-STAMP",
+        "number": "194",
+        "set_id": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+        "modifier": null,
+        "set_code": "swsh8",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "d48b57eb-c063-4473-8283-3c2c7dbcf419",
+        "name": "Latios",
+        "gv_id": "GV-PK-SWSH8-194-PRIZE-PACK-STAMP",
+        "number": "194",
+        "set_id": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+        "modifier": null,
+        "set_code": "swsh8",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "40873ac3-f9fc-417f-9c82-dc22169bcd74",
+        "name": "Dunsparce",
+        "gv_id": "GV-PK-FST-207-PLAY-POKEMON-STAMP",
+        "number": "207",
+        "set_id": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+        "modifier": null,
+        "set_code": "swsh8",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "e7b03ae9-e8b7-4ed8-959d-bd81ce52e96e",
+        "name": "Dunsparce",
+        "gv_id": "GV-PK-SWSH8-207-PRIZE-PACK-STAMP",
+        "number": "207",
+        "set_id": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+        "modifier": null,
+        "set_code": "swsh8",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "c576a3f9-2890-4a7e-99d1-dacbe433ac86",
+        "name": "Adventurer's Discovery",
+        "gv_id": "GV-PK-FST-224-PLAY-POKEMON-STAMP",
+        "number": "224",
+        "set_id": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+        "modifier": null,
+        "set_code": "swsh8",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "f46184b7-a922-46d5-ab14-cedc90946a72",
+        "name": "Adventurer's Discovery",
+        "gv_id": "GV-PK-SWSH8-224-PRIZE-PACK-STAMP",
+        "number": "224",
+        "set_id": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+        "modifier": null,
+        "set_code": "swsh8",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "f4a7cd0e-ea31-451a-9de9-e7b36164b18f",
+        "name": "Elesa's Sparkle",
+        "gv_id": "GV-PK-FST-233-PLAY-POKEMON-STAMP",
+        "number": "233",
+        "set_id": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+        "modifier": null,
+        "set_code": "swsh8",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "ad48b015-901a-4226-a1c0-b400b6dca187",
+        "name": "Elesa's Sparkle",
+        "gv_id": "GV-PK-SWSH8-233-PRIZE-PACK-STAMP",
+        "number": "233",
+        "set_id": "cb92a8cc-9cb8-4c49-bb85-904fdcfaa0fe",
+        "modifier": null,
+        "set_code": "swsh8",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "414d875a-f214-4d23-b8fe-7b2217008c50",
+        "name": "Wormadam",
+        "gv_id": "GV-PK-BRS-010-PLAY-POKEMON-STAMP",
+        "number": "010",
+        "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+        "modifier": null,
+        "set_code": "swsh9",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "5bf4c02a-d3f5-43b8-a455-c43edc263b04",
+        "name": "Wormadam",
+        "gv_id": "GV-PK-SWSH9-10-PRIZE-PACK-STAMP",
+        "number": "10",
+        "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+        "modifier": null,
+        "set_code": "swsh9",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "0d5864cb-d56a-4e95-a0b7-49997e28e924",
+        "name": "Shaymin V",
+        "gv_id": "GV-PK-BRS-013-PLAY-POKEMON-STAMP",
+        "number": "013",
+        "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+        "modifier": null,
+        "set_code": "swsh9",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "55befe60-3c58-4654-956f-16bc65f5c20f",
+        "name": "Shaymin V",
+        "gv_id": "GV-PK-SWSH9-13-PRIZE-PACK-STAMP",
+        "number": "13",
+        "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+        "modifier": null,
+        "set_code": "swsh9",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "d5ec2dbb-10d3-4c3c-8127-ae7305c22f0e",
+        "name": "Shaymin VSTAR",
+        "gv_id": "GV-PK-BRS-014-PLAY-POKEMON-STAMP",
+        "number": "014",
+        "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+        "modifier": null,
+        "set_code": "swsh9",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "f59b35fb-a213-4702-b168-6082a8006acb",
+        "name": "Shaymin VSTAR",
+        "gv_id": "GV-PK-SWSH9-14-PRIZE-PACK-STAMP",
+        "number": "14",
+        "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+        "modifier": null,
+        "set_code": "swsh9",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "528c3eb3-a354-455b-bdad-a4261c642632",
+        "name": "Eiscue",
+        "gv_id": "GV-PK-BRS-044-PLAY-POKEMON-STAMP",
+        "number": "044",
+        "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+        "modifier": null,
+        "set_code": "swsh9",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "c251c5a3-925c-432b-abcd-3efc5b7d2938",
+        "name": "Eiscue",
+        "gv_id": "GV-PK-SWSH9-44-PRIZE-PACK-STAMP",
+        "number": "44",
+        "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+        "modifier": null,
+        "set_code": "swsh9",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "76039545-5741-4628-8803-6390fa0fb8fb",
+        "name": "Raichu V",
+        "gv_id": "GV-PK-BRS-045-PLAY-POKEMON-STAMP",
+        "number": "045",
+        "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+        "modifier": null,
+        "set_code": "swsh9",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "e3239e56-27cc-491e-b655-59e38f1f301f",
+        "name": "Raichu V",
+        "gv_id": "GV-PK-SWSH9-45-PRIZE-PACK-STAMP",
+        "number": "45",
+        "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+        "modifier": null,
+        "set_code": "swsh9",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "99ff0de9-501a-46d5-82d5-a70f159999dc",
+        "name": "Pachirisu",
+        "gv_id": "GV-PK-BRS-052-PLAY-POKEMON-STAMP",
+        "number": "052",
+        "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+        "modifier": null,
+        "set_code": "swsh9",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "3c0e718d-498e-4c9c-821a-d386adc2a47f",
+        "name": "Pachirisu",
+        "gv_id": "GV-PK-SWSH9-052-PRIZE-PACK-STAMP",
+        "number": "052",
+        "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+        "modifier": null,
+        "set_code": "swsh9",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "51db0068-6ef3-4810-a517-29dd9b18b30c",
+        "name": "Whimsicott VSTAR",
+        "gv_id": "GV-PK-BRS-065-PLAY-POKEMON-STAMP",
+        "number": "065",
+        "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+        "modifier": null,
+        "set_code": "swsh9",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "748db43b-d93b-4439-b63a-d3e860c801de",
+        "name": "Whimsicott VSTAR",
+        "gv_id": "GV-PK-SWSH9-65-PRIZE-PACK-STAMP",
+        "number": "65",
+        "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+        "modifier": null,
+        "set_code": "swsh9",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "7bb5d2e8-031d-41d9-befa-80c9b2e335c7",
+        "name": "Wormadam",
+        "gv_id": "GV-PK-BRS-077-PLAY-POKEMON-STAMP",
+        "number": "077",
+        "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+        "modifier": null,
+        "set_code": "swsh9",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "fbdf179a-80c9-4167-9188-861ce23a0ce3",
+        "name": "Wormadam",
+        "gv_id": "GV-PK-SWSH9-77-PRIZE-PACK-STAMP",
+        "number": "77",
+        "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+        "modifier": null,
+        "set_code": "swsh9",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "7d8038cb-de8c-4d20-a156-b0a20642a073",
+        "name": "Honchkrow V",
+        "gv_id": "GV-PK-BRS-088-PLAY-POKEMON-STAMP",
+        "number": "088",
+        "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+        "modifier": null,
+        "set_code": "swsh9",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "d53ff93b-57e5-4089-8e92-a98275678742",
+        "name": "Honchkrow V",
+        "gv_id": "GV-PK-SWSH9-88-PRIZE-PACK-STAMP",
+        "number": "88",
+        "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+        "modifier": null,
+        "set_code": "swsh9",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "7cd46223-4ede-4153-a13a-cc8f3073ffa2",
+        "name": "Wormadam",
+        "gv_id": "GV-PK-BRS-098-PLAY-POKEMON-STAMP",
+        "number": "098",
+        "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+        "modifier": null,
+        "set_code": "swsh9",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "8d9cdb4f-a95d-438e-8e71-87a3d9bd04f1",
+        "name": "Wormadam",
+        "gv_id": "GV-PK-SWSH9-98-PRIZE-PACK-STAMP",
+        "number": "98",
+        "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+        "modifier": null,
+        "set_code": "swsh9",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "4e556086-a1ed-4197-9477-26f3c6c0439b",
+        "name": "Zamazenta V",
+        "gv_id": "GV-PK-BRS-105-PLAY-POKEMON-STAMP",
+        "number": "105",
+        "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+        "modifier": null,
+        "set_code": "swsh9",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "a38fe2ca-4be0-41d9-9861-8359b96d6aaf",
+        "name": "Zamazenta V",
+        "gv_id": "GV-PK-SWSH9-105-PRIZE-PACK-STAMP",
+        "number": "105",
+        "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+        "modifier": null,
+        "set_code": "swsh9",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "fb85792f-6933-44c3-9bd2-3c598dfbffb3",
+        "name": "Garchomp",
+        "gv_id": "GV-PK-BRS-109-PLAY-POKEMON-STAMP",
+        "number": "109",
+        "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+        "modifier": null,
+        "set_code": "swsh9",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "b21e5c5e-eb46-4470-ba0c-ba9cdf2fb37e",
+        "name": "Garchomp",
+        "gv_id": "GV-PK-SWSH9-109-PRIZE-PACK-STAMP",
+        "number": "109",
+        "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+        "modifier": null,
+        "set_code": "swsh9",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "7b2e94af-d1d7-437b-97d6-341ad92dc618",
+        "name": "Choice Belt",
+        "gv_id": "GV-PK-BRS-135-PLAY-POKEMON-STAMP",
+        "number": "135",
+        "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+        "modifier": null,
+        "set_code": "swsh9",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "35bf168b-690c-4248-816b-a711212e5176",
+        "name": "Choice Belt",
+        "gv_id": "GV-PK-SWSH9-135-PRIZE-PACK-STAMP",
+        "number": "135",
+        "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+        "modifier": null,
+        "set_code": "swsh9",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "b8bc7c72-583d-4f73-8061-30b59282995f",
+        "name": "Gloria",
+        "gv_id": "GV-PK-BRS-141-PLAY-POKEMON-STAMP",
+        "number": "141",
+        "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+        "modifier": null,
+        "set_code": "swsh9",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "db0da030-b987-4515-8f7e-fbf5b8164ed6",
+        "name": "Gloria",
+        "gv_id": "GV-PK-SWSH9-141-PRIZE-PACK-STAMP",
+        "number": "141",
+        "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+        "modifier": null,
+        "set_code": "swsh9",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "47d31d1d-2ec2-4041-856c-533eddcaa566",
+        "name": "Kindler",
+        "gv_id": "GV-PK-BRS-143-PLAY-POKEMON-STAMP",
+        "number": "143",
+        "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+        "modifier": null,
+        "set_code": "swsh9",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "148441e1-c2d9-4073-89b5-041749becdf2",
+        "name": "Kindler",
+        "gv_id": "GV-PK-SWSH9-143-PRIZE-PACK-STAMP",
+        "number": "143",
+        "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+        "modifier": null,
+        "set_code": "swsh9",
+        "variant_key": "prize_pack_stamp"
+      }
+    },
+    {
+      "play": {
+        "id": "d9475b94-d8e5-4a91-92da-ca99085c5ccc",
+        "name": "Team Yell's Cheer",
+        "gv_id": "GV-PK-BRS-149-PLAY-POKEMON-STAMP",
+        "number": "149",
+        "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+        "modifier": null,
+        "set_code": "swsh9",
+        "variant_key": "play_pokemon_stamp"
+      },
+      "prize": {
+        "id": "f46de8ee-71a5-4bd1-af22-acaa54b4626c",
+        "name": "Team Yell's Cheer",
+        "gv_id": "GV-PK-SWSH9-149-PRIZE-PACK-STAMP",
+        "number": "149",
+        "set_id": "78d481b4-0300-41d9-8e56-634311e527a2",
+        "modifier": null,
+        "set_code": "swsh9",
+        "variant_key": "prize_pack_stamp"
+      }
+    }
+  ],
+  "held_scopes": {
+    "canonical28": [
+      "aaecd767-1350-47ba-a113-1b2384047b6a",
+      "bd216ea9-4213-4684-8286-98f346e62de8",
+      "6720f0b2-23c2-4d78-bacf-2d0db6f7ddf5",
+      "27183d1b-d482-4bc1-a47e-3da0d7e4dd2c",
+      "d6c1ec2f-183e-4f1f-924e-1cb30bfcda28",
+      "d5353963-8006-4049-afa5-51b45b63b966",
+      "077be7cd-21e7-46cb-b25c-c256da55c10b",
+      "445109da-f36c-4992-83db-dd046ed1f822",
+      "8d361411-28c8-496e-b3f5-c7e494f94702",
+      "c768b472-1f0d-46ac-adb7-5f6554c57888",
+      "b861b100-b9c2-43b7-8f22-2b8c65b8edb1",
+      "c46f94ed-693c-48be-9f0c-2b7288b3a568",
+      "8cc7cba0-40e2-48be-a5e7-598322383ded",
+      "d6ff2988-d72c-42e8-bbe2-67b1947ac042",
+      "75e4a208-b418-4c6d-a6b0-0a6633c243d0",
+      "06f07c2c-0da1-493f-9bf0-d25dd1d24636",
+      "5ee8928f-60a9-4e94-8e47-35f8df072dec",
+      "e6da28d9-8e7a-4211-a2de-2c4d6c2b7f18",
+      "b0892865-890c-498b-9efc-395f07999e15",
+      "e5988601-d908-4dfd-b7ce-ed450b600387",
+      "9506c5e3-8d8d-47ed-816d-698c73ae9ab7",
+      "5997bb7c-2970-4446-9486-bfdc89ca7035",
+      "c97163a2-c596-4209-ba46-4d9f24e00e0a",
+      "017d54d6-badf-48a8-bb10-6c1648ca5a48",
+      "68756c94-8762-412c-9659-392247bd8bca",
+      "a09be692-14ee-4cb4-a4b5-a91eb3fa0bb9",
+      "656f5776-4853-4619-88cf-4e53454ba867",
+      "3837b7a7-5a44-40f7-8f78-15e051e7da4f"
+    ],
+    "canonical4": [
+      "b00cdee1-1552-4e5c-9e33-cd5a15303e9f",
+      "71eab7c1-b491-4442-b2aa-dae5311db412",
+      "7c413757-c98e-4e27-a791-2e075c545b96",
+      "b40344f6-d54f-40bf-9383-3e437ffc6a39"
+    ]
+  },
+  "original_review_plans": [
+    "711cb06754c4f51adc4e9ef230d3def2ca708b79e79921a2b73b5c1b5f8782a8",
+    "56d4f8c0740477111871884b45181feeba2228ff60c3704f24e586abcbbb13e5"
+  ],
+  "fingerprint": "1c088dd83c399900a1526037f270dd47547bf3ce7c2da17b57b22ea491b80c92"
+}

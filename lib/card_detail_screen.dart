@@ -21,6 +21,7 @@ import 'services/identity/display_identity.dart';
 import 'services/identity/canon_image_url_service.dart';
 import 'services/identity/catalog_artwork_resolution.dart';
 import 'services/identity/image_presentation.dart';
+import 'services/identity/printing_image_presentation.dart';
 import 'services/identity/variant_origin_public_copy.dart';
 import 'services/navigation/grookai_web_route_service.dart';
 import 'services/pricing/ebay_sold_search_uri.dart';
@@ -113,19 +114,17 @@ class _CardDetailPrintingOption {
     required this.id,
     required this.finishName,
     required this.sortOrder,
+    required this.imageFields,
     this.printingGvId,
     this.finishKey,
-    this.imageUrl,
-    this.imageAltUrl,
   });
 
   final String id;
   final String finishName;
   final int sortOrder;
+  final Map<String, dynamic> imageFields;
   final String? printingGvId;
   final String? finishKey;
-  final String? imageUrl;
-  final String? imageAltUrl;
 }
 
 class _CardImageFace {
@@ -496,9 +495,11 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     debugPrint('card.detail.printings.fetch.begin: $normalizedCardPrintId');
     late final List<Map<String, dynamic>> rows;
     try {
-      rows = await PublicCardPrintingOptionsService.fetch(
-        client: supabase,
-        cardPrintIds: <String>[normalizedCardPrintId],
+      rows = await CanonImageUrlService.enrichRows(
+        await PublicCardPrintingOptionsService.fetch(
+          client: supabase,
+          cardPrintIds: <String>[normalizedCardPrintId],
+        ),
       );
       debugPrint(
         'card.detail.printings.fetch.complete: '
@@ -541,14 +542,9 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
               ? null
               : _cleanText(row['printing_gv_id']),
           finishKey: finishKey.isEmpty ? null : finishKey,
-          imageUrl: _cleanText(row['image_url']).isEmpty
-              ? null
-              : _cleanText(row['image_url']),
-          imageAltUrl: _cleanText(row['image_alt_url']).isEmpty
-              ? null
-              : _cleanText(row['image_alt_url']),
           finishName: finishName,
           sortOrder: sortOrder,
+          imageFields: Map<String, dynamic>.unmodifiable(row),
         ),
       );
     }
@@ -1701,14 +1697,31 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     );
   }
 
-  ResolvedImagePresentation get _cardImagePresentation {
+  ResolvedImagePresentation get _parentImagePresentation {
     final presentation = _resolveImagePresentationFromRecord(_cardContextData);
-    if ((presentation.displayImageUrl ?? '').isNotEmpty) {
+    if (presentation.isBlocked ||
+        (presentation.displayImageUrl ?? '').isNotEmpty) {
       return presentation;
     }
-
     return resolveImagePresentationFromFields(
       imageUrl: _cleanText(widget.imageUrl),
+      displayImageKind: presentation.isRepresentative
+          ? presentation.displayImageKind
+          : null,
+      imageStatus: presentation.imageStatus,
+      imageNote: presentation.imageNote,
+    );
+  }
+
+  ResolvedImagePresentation get _cardImagePresentation {
+    final selected = _selectedPrintingForDisplay;
+    return resolvePrintingImagePresentation(
+      parent: _parentImagePresentation,
+      printing: selected?.imageFields,
+      printingDisplayImageUrl: CanonImageUrlService.displayImageUrlFromRow(
+        selected?.imageFields,
+      ),
+      showingParentFace: _imageFaces.isNotEmpty,
     );
   }
 
@@ -1727,15 +1740,31 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
     if (printing == null) {
       return null;
     }
-    return resolveDisplayImageUrl(
-      imageUrl: printing.imageUrl,
-      imageAltUrl: printing.imageAltUrl,
+    final url = CanonImageUrlService.displayImageUrlFromRow(
+      printing.imageFields,
     );
+    final presentation = resolveImagePresentationFromFields(
+      imageUrl: url,
+      imageStatus: printing.imageFields['image_status']?.toString(),
+    );
+    return presentation.isBlocked ? null : url;
   }
 
   CatalogArtworkResolution get _cardArtworkResolution {
+    if (_parentImagePresentation.isBlocked &&
+        _cardImagePresentation.isBlocked) {
+      final supplied = normalizeDisplayImageUrl(widget.imageUrl);
+      return CatalogArtworkResolution(
+        primaryImageUrl: isCollectorUploadedCardImage(supplied)
+            ? supplied
+            : null,
+        fallbackImageUrl: null,
+      );
+    }
     final selectedPrinting = _selectedPrintingForDisplay;
-    final selectedPrintingGvId = _cleanText(selectedPrinting?.printingGvId);
+    final selectedPrintingGvId = _cardImagePresentation.isBlocked
+        ? ''
+        : _cleanText(selectedPrinting?.printingGvId);
     final contextGvId = _cleanText(_cardContextData?['gv_id']);
     final gvId = selectedPrintingGvId.isNotEmpty
         ? selectedPrintingGvId
@@ -3959,9 +3988,16 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         ?.toInt();
     final observedAt = DateTime.tryParse(_cleanText(data['observed_at']));
     final pricingFooterParts = <String>[];
+    if (data['freshness'] == 'stale') {
+      pricingFooterParts.add('Last known price');
+    }
     if (observedAt != null) {
       pricingFooterParts.add(
-        'Updated ${observedAt.toLocal().month}/${observedAt.toLocal().day}',
+        'Last updated ${observedAt.toLocal().year}/'
+        '${observedAt.toLocal().month}/${observedAt.toLocal().day} '
+        '${observedAt.toLocal().hour.toString().padLeft(2, '0')}:'
+        '${observedAt.toLocal().minute.toString().padLeft(2, '0')} '
+        '${observedAt.toLocal().timeZoneName}',
       );
     }
     if (_hasVaultContext) {

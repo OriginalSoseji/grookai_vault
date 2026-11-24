@@ -1,0 +1,32 @@
+// Clone only this task's populated synthetic511 database. Never reset a retained lab.
+import fs from 'node:fs';import assert from 'node:assert/strict';import{execFileSync}from'node:child_process';import{createRequire}from'node:module';import{fileURLToPath}from'node:url';import{gzipSync}from'node:zlib';import{createHash}from'node:crypto';
+const root=fileURLToPath(new URL('../../',import.meta.url)),art='C:/grookai_vault_operator_artifacts/best_of_game_discovery_20261120',lab=art+'/fresh-512',project='bog-discovery-512-20261120',database='bog_discovery_retained_511_v1',out=art+'/retained-511';
+assert.equal(process.argv.length,2);assert.equal(fs.existsSync(out),false);fs.mkdirSync(out);assert.equal(fs.existsSync(lab+'/supabase/.temp/project-ref'),false);
+const sha=b=>createHash('sha256').update(b).digest('hex'),read=f=>JSON.parse(fs.readFileSync(f,'utf8')),binding=read(root+'/scripts/schema/best_of_game_discovery_candidate_v1.json');for(const[f,p]of Object.entries({...binding.history,...binding.candidates}))assert.equal(sha(fs.readFileSync(root+'/supabase/migrations/'+f)),p);
+const full=read(art+'/fullsize-v1-r1/result.json');assert.equal(full.pass,true);assert.equal(full.candidateSha256,Object.values(binding.candidates)[0]);assert.equal(full.restoredAllProtectedTablesSchemaSecurityIndexes,true);
+const docker=args=>execFileSync('docker',args,{encoding:'utf8',timeout:60000,maxBuffer:4000000,windowsHide:true}).trim(),inspect=name=>JSON.parse(docker(['inspect',name]))[0];
+const info=inspect('supabase_db_'+project);assert.equal(info.State.Running,true);assert.deepEqual(Object.keys(info.NetworkSettings.Networks),[project]);assert.equal(JSON.parse(docker(['network','inspect',project]))[0].Internal,true);
+const services=['rest','auth','storage'].map(kind=>inspect('supabase_'+kind+'_'+project));for(const s of services){assert.equal(s.State.Running,true);assert.deepEqual(Object.keys(s.NetworkSettings.Networks),[project]);}
+const r=createRequire(root+'/package.json'),config={host:'127.0.0.1',port:54940,user:'postgres',password:'postgres',connectionTimeoutMillis:15000},source=new(r('pg').Client)({...config,database:'postgres',application_name:'bog-discovery-clone-source-readonly'}),admin=new(r('pg').Client)({...config,user:'supabase_admin',database:'template1',application_name:'bog-discovery-clone-admin'});
+const report={pass:false,productionWrites:0,startedAt:new Date().toISOString(),project,database,sourceReset:false,sourceDataWrites:0,temporaryServices:services.map(s=>({id:s.Id,name:s.Name})),candidateSha256:Object.values(binding.candidates)[0]};let before,settings;
+const save=(n,v)=>fs.writeFileSync(out+'/'+n+'.private.json.gz',gzipSync(Buffer.from(JSON.stringify(v))),{flag:'wx'});
+const fingerprint=async client=>(await client.query('select prismatic_fixture.fingerprints() value')).rows[0].value;
+const state=async client=>(await client.query("select jsonb_build_object('cards',(select count(*) from public.card_prints),'copies',(select count(*) from public.vault_item_instances),'users',(select count(*) from auth.users),'ledger',(select count(*) from supabase_migrations.schema_migrations),'workers',current_setting('max_worker_processes'))value")).rows[0].value;
+try{
+ await source.connect();assert.deepEqual(await state(source),{cards:1349,copies:22,users:1,ledger:511,workers:'0'});before=await fingerprint(source);save('before-fingerprints',before);
+ for(const[name,file]of[['catalog','reviewed_intake_public_catalog_v1.sql'],['security','vendor_pricing_security_snapshot_v1.sql']])save('before-'+name,(await source.query(fs.readFileSync(root+'/scripts/schema/'+file,'utf8'))).find(v=>v.rows?.[0]?.receipt).rows[0].receipt);
+ settings=(await source.query("select unnest(setconfig) value from pg_db_role_setting where setdatabase=(select oid from pg_database where datname='postgres') and setrole=0 order by value")).rows.map(x=>x.value);await source.end();
+ await admin.connect();assert.equal((await admin.query('select count(*)::int n from pg_database where datname=$1',[database])).rows[0].n,0);
+ fs.writeFileSync(out+'/clone-intent.json',JSON.stringify({...report,sourceImage:info.Image,syntheticOnly:true,sourceOwnerRowsCopied:0},null,2)+'\n',{flag:'wx'});
+ report.stage='pause_only_owned_api';for(const s of services){const current=inspect(s.Id);assert.equal(current.Name,s.Name);assert.equal(current.Image,s.Image);docker(['stop','--time','20',s.Id]);}
+ assert.equal((await admin.query("select count(*)::int n from pg_stat_activity where datname='postgres'")).rows[0].n,0,'Never terminate another connection to clone a database');
+ report.stage='clone';await admin.query('create database '+database+' with template postgres owner postgres');
+ for(const setting of settings){const p=setting.indexOf('='),key=setting.slice(0,p),value=setting.slice(p+1);await admin.query('alter database '+database+' set "'+key.replaceAll('"','""')+'" to \''+value.replaceAll("'","''")+'\'');}
+ const target=new(r('pg').Client)({...config,database,application_name:'bog-discovery-clone-target-readonly'});await target.connect();assert.deepEqual(await state(target),{cards:1349,copies:22,users:1,ledger:511,workers:'0'});const after=await fingerprint(target);assert.deepEqual(after,before);save('before-upgrade-fingerprints',after);await target.end();
+ report.protectedTables=Object.keys(before).length;report.exactPopulatedClone=true;report.pass=true;
+}catch(error){report.error=error.message;process.exitCode=1;}finally{
+ await source.end().catch(()=>{});await admin.end().catch(()=>{});
+ for(const s of services){try{const current=inspect(s.Id);assert.equal(current.Name,s.Name);assert.equal(current.Image,s.Image);if(!current.State.Running)docker(['start',s.Id]);assert.equal(inspect(s.Id).State.Running,true);}catch(e){report.pass=false;report.serviceRestoreError=e.message;process.exitCode=1;}}
+ if(before){const check=new(r('pg').Client)({...config,database:'postgres',application_name:'bog-discovery-clone-source-readback'});try{await check.connect();assert.deepEqual(await fingerprint(check),before);report.originalSourceStateExact=true;}catch(e){report.pass=false;report.sourceProtectionError=e.message;process.exitCode=1;}finally{await check.end().catch(()=>{});}}
+ report.finishedAt=new Date().toISOString();fs.writeFileSync(out+'/clone-result.json',JSON.stringify(report,null,2)+'\n',{flag:'wx'});console.log(JSON.stringify(report));
+}

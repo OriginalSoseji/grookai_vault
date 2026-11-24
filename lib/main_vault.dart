@@ -982,6 +982,7 @@ class VaultPageState extends State<VaultPage> {
     var unpricedCopyCount = 0;
     DateTime? latestPricingObservedAt;
     DateTime? latestPricingPublishedAt;
+    var hasStalePricing = false;
     for (final row in _items) {
       final cardPrintId = (row['card_id'] ?? '').toString().trim();
       final pricingSummary = _pricingSummaryByCardPrintId[cardPrintId];
@@ -996,6 +997,7 @@ class VaultPageState extends State<VaultPage> {
       pricedUniqueCount += 1;
       pricedCopyCount += pricingSummary.pricedCopyCount;
       unpricedCopyCount += pricingSummary.unpricedCopyCount;
+      hasStalePricing = hasStalePricing || pricingSummary.hasStalePrices;
       latestPricingObservedAt = _latestVaultPricingTimestamp(
         latestPricingObservedAt,
         pricingSummary.latestObservedAt,
@@ -1011,6 +1013,7 @@ class VaultPageState extends State<VaultPage> {
       unpricedCopyCount: unpricedCopyCount,
       latestObservedAt: latestPricingObservedAt,
       latestPublishedAt: latestPricingPublishedAt,
+      hasStalePrices: hasStalePricing,
     );
 
     _derivedData = _VaultDerivedData(
@@ -2953,6 +2956,18 @@ class VaultPageState extends State<VaultPage> {
                     ),
                   ),
                   const SizedBox(height: 8),
+                  if (derivedData.vaultPricingSummary.pricedCopyCount > 0) ...[
+                    Text(
+                      '${derivedData.vaultPricingSummary.hasStalePrices ? 'Includes last known prices · ' : ''}'
+                      '${marketPriceUpdatedAt(derivedData.vaultPricingSummary.latestObservedAt, label: 'Latest included card price update')}',
+                      style: theme.textTheme.labelSmall?.copyWith(
+                        color: theme.colorScheme.onSurface.withValues(
+                          alpha: 0.66,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                  ],
                   Semantics(
                     textField: true,
                     label: 'Search your Vault',

@@ -1,0 +1,42 @@
+{
+  "version": "BEST_OF_GAME_EXACT_ALIAS_COLLISIONS_V1",
+  "basePairs": 9,
+  "distinctLegacyIds": 9,
+  "distinctCanonicalIds": 9,
+  "protectedWinnerIds": [
+    "614efd10-0ce3-438b-8466-6584bebb88cb",
+    "c0204042-56f4-42a8-878c-7908a2925863",
+    "33126ebf-99f6-4d76-a9bc-179c89e2eb34",
+    "03e8e4c7-ad3d-470b-adb3-69082a7f6181"
+  ],
+  "existingFamilyAliasCount": 0,
+  "storedParents": 22,
+  "storedChildren": 18,
+  "canonicalChildren": 9,
+  "normal": 4,
+  "reverse": 5,
+  "typographyDifferences": [
+    {
+      "number": "4",
+      "legacy": "Rocket’s Scizor",
+      "canonical": "Rocket's Scizor"
+    },
+    {
+      "number": "5",
+      "legacy": "Rocket’s Sneasel",
+      "canonical": "Rocket's Sneasel"
+    },
+    {
+      "number": "8",
+      "legacy": "Rocket’s Mewtwo",
+      "canonical": "Rocket's Mewtwo"
+    },
+    {
+      "number": "9",
+      "legacy": "Rocket’s Hitmonchan",
+      "canonical": "Rocket's Hitmonchan"
+    }
+  ],
+  "unresolvedWinnerChildren": 4,
+  "physicalMerges": 0
+}

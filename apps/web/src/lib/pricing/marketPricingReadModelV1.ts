@@ -45,7 +45,7 @@ export type MarketPricingRecordV1 = {
   source_label: string;
   observed_at: string;
   published_at: string;
-  freshness: "fresh";
+  freshness: "fresh" | "stale";
   low_price?: number;
   mid_price?: number;
   high_price?: number;
@@ -100,7 +100,7 @@ function mapRow(row: MarketPricingReadRowV1): MarketPricingRecordV1 | null {
     row.currency !== "USD" ||
     row.source_name !== "tcgplayer" ||
     row.source_label?.trim() !== expectedSourceLabel ||
-    row.freshness !== "fresh" ||
+    (row.freshness !== "fresh" && row.freshness !== "stale") ||
     !observedAt ||
     !publishedAt ||
     !provenanceId ||
@@ -124,7 +124,7 @@ function mapRow(row: MarketPricingReadRowV1): MarketPricingRecordV1 | null {
     source_label: expectedSourceLabel,
     observed_at: observedAt,
     published_at: publishedAt,
-    freshness: "fresh",
+    freshness: row.freshness,
     low_price: finite(row.low_price),
     mid_price: finite(row.mid_price),
     high_price: finite(row.high_price),

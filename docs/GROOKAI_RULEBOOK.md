@@ -1,3 +1,49 @@
+# Current retained-price qualification — November24,2026
+
+The current retained-price source reconciles accepted PR1042/maine3080875, including
+worker30 mainf6e105f5 and selected-printing image confidence, while
+preserving the independently closed catalog main75fe32c0. Exact sourceMain and
+catalog closure are separately pinned; original migration bytes, worker30 policy
+and hard stamp-identity holds remain unchanged. Previous6389 andd1c05d0 source checks passed; both real main advances remain
+recorded and require the current exact combined-source qualification.
+
+The catalog523 release closed on main75fe32c0 with deployed acceptance and original
+control restoration. Follow [retained-price release V1](contracts/MARKET_PRICE_RETENTION_RELEASE_V1.md)
+for the sole older pending price migration and actual523 baseline. Both phases are
+read-only; exact production SQL approval remains separate. Earlier catalog release
+instructions below are retained historical boundaries, not an active merge hold.
+
+# Best of Game catalog covering-index correction V15 — November 23, 2026
+
+Follow [V15](contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V15.md). Production
+520 applied once from retained source 1e2b75c2. Its first genuine catalog SDK
+response returned 417 rows in 3187 ms, above the unchanged 3000 ms budget.
+Retain the consumed V17 intent and failed after; no retry, reliability, merge
+or deployment acceptance is claimed. The separate data-only audit passed all
+120 original scopes, all 768 aliases and four-schema/security comparison.
+
+The next candidate is only 20261123190000_catalog_visible_count_covering_index_v1.sql:
+one partial covering index, with no reader, view, helper, grant or row changes.
+Source preparation is C:/grookai_best_of_game_catalog_cover_521_20261123.
+Qualification/release evidence belongs under the matching catalog_cover_521
+operator root; the runtime diagnosis and failed local setup drafts remain in
+C:/grookai_vault_operator_artifacts/best_of_game_catalog_runtime_520_20261123.
+Preserve every old source and laboratory. The newly owned prototype commits
+only synthetic fixture data; cold-buffer instrumentation stays local to it.
+
+The exact 520 approval is consumed. A new concrete source/index-SQL decision
+must follow full local/normal/hosted qualification, exact strict V15 PrePush,
+fresh original 120-scope before and official exact-one dry-run. The existing
+owner-approved V17 comparison limits and November 24 13:59:40Z deadline remain
+fixed; the original November 23 window stays expired. Do not widen or restart
+the comparison. All original and previously observed full rows remain exact.
+
+Main remains held at e2070734 and PR985 is the only permitted guarded release.
+The dashboard writer stays disabled until real API/data/security/reliability,
+normal squash merge, matching Production25-page acceptance and exact original
+control restoration. Only then close shared merge coordination and continue all
+stamped Reverse Holos under their separate physical-printing authority.
+
 # Grookai Vault — Master Engineering Rulebook (V1)
 
 This rulebook consolidates all engineering contracts, guardrails, and workflows across Grookai Vault. It is the single reference for migrations, backend architecture, ingestion, pricing, environments, secrets, and developer conduct. Link here before starting any new work.
@@ -19,7 +65,19 @@ This rulebook consolidates all engineering contracts, guardrails, and workflows 
 - The shared visual system uses ink/bone/lime, compact headers, flat surfaces,
   tighter corners, and 9px card gaps. Older visual references do not override it.
 
+The duplicate-set 521-to522 visibility correction follows
+[BEST_OF_GAME_DISCOVERY_READ_REPAIR_V16](contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V16.md).
+Preserve the applied index, failed load samples, original data and fixed approval
+window; qualify equivalent visibility helpers before a separate exact SQL decision.
+
 # Zero-Assumption Rule (Mandatory)
+The current duplicate-set522-to523 catalog correction follows
+[BEST_OF_GAME_DISCOVERY_READ_REPAIR_V17](contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V17.md).
+Only the separate V17 gate qualifies that exact forward migration. Preserve
+the consumed522 decision, actual failed load samples, original data anchors,
+fixed comparison deadline and all historical SQL/labs. No release closure is
+claimed until genuine API/data/security/reliability and deployed acceptance.
+
 - Never assume environment, project_ref, DB contents, data presence, or ingestion success.
 - Any conclusion about data/state must be backed by either direct SQL results, explicit file/env inspection, or explicit user confirmation.
 - A query returning `0` rows is not proof of data loss; first run the Env / DB Sanity Check and confirm the active environment.
@@ -134,6 +192,11 @@ Before any L2/L3 audit or implementation:
 - Source: enrichment/mapping audits above.
 
 ## 9. Pricing Engine V3 Contract
+- Owner display rule, November 23, 2026: retain the last qualified published
+  exact price even when old and transparently show its source update date.
+  [MARKET_PRICE_RETENTION_DISPLAY_V1](contracts/MARKET_PRICE_RETENTION_DISPLAY_V1.md)
+  supersedes age-based display withholding only; fresh-publication qualification,
+  identity, coverage and security gates remain unchanged.
 - Sources: price observations (eBay first). Listing intelligence includes skip reasons.
 - Condition curves: NM/LP/MP/HP/DMG; confidence derived from samples.
 - Snapshots: `card_print_price_curves` table; `card_print_latest_price_curve` view for latest per print.

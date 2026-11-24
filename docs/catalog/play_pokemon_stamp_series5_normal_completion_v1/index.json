@@ -1,0 +1,34 @@
+{
+  "version": "PLAY_STAMP_SERIES5_NORMAL_SOURCE_INDEX_V1",
+  "executionAuthority": false,
+  "physicalPrintingInventoryComplete": false,
+  "targetParents": 4,
+  "normalPrintingInserts": 4,
+  "baselineCounts": {
+    "targets": 4,
+    "sets": 1,
+    "retainedParents": 257,
+    "retainedChildren": 399,
+    "childrenAfter": 403
+  },
+  "scopes": [
+    {
+      "setCode": "sv05",
+      "setId": "53ebedef-ab76-4a6f-aae9-29b344512790",
+      "manifestFingerprint": "f062082f25eee17c2aa053a46786da68ec7722db6329a912d48b71c2d67bf681",
+      "parents": [
+        "71eab7c1-b491-4442-b2aa-dae5311db412",
+        "7c413757-c98e-4e27-a791-2e075c545b96",
+        "b00cdee1-1552-4e5c-9e33-cd5a15303e9f",
+        "b40344f6-d54f-40bf-9383-3e437ffc6a39"
+      ],
+      "files": {
+        "manifest.json": "557b899e965052a2023949e9e1ee7251c1c6b36ce055b390660c11eb33574c39",
+        "review.json": "82d5363ad3bc101205e2344ddc7924a923e4821e136759062e903bc389f2a1d6",
+        "master_facts.json": "096e5fbeaca084deac602a7a8e08b06f724c2965294b04e032021de2dc31898a",
+        "source-bindings.json": "b450584ca573bc4b777037455bd5631d87e05085628986a8b5cdd10f919bde27"
+      }
+    }
+  ],
+  "fingerprint": "599088b19bfa67932f4653334c50b8b42fc5224f0e4a0d5c6195223c4ed52e39"
+}
