@@ -1,3 +1,223 @@
+# Duplicate-set bulk catalog authority V17 — November23,2026
+
+Follow [V17](../contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V17.md). Production522
+applied once under V20. Its60 API and120 original data/schema/security checks
+passed, but fixed concurrent catalog samples failed3504/3377ms with57014; the
+third passed1237ms and all18 other sampled calls passed. Preserve all receipts
+and consumed authority. Do not rerun acceptance at522 or unlock/merge/deploy.
+
+Prepare the one-body523 correction in
+C:/grookai_best_of_game_bulk_catalog_523_20261124; retain diagnosis and proofs
+under C:/grookai_vault_operator_artifacts/best_of_game_catalog_load_522_20261124.
+Factor six identical alias authority clauses into one bulk query, keep direct
+Pokemon visibility equivalent and reuse existing projection exclusions. Keep
+all522 historical SQL/helpers/indexes/security/data exact. The fresh actual522
+audit precedes schema work; only V17 qualifies the new exact ID. Preserve failed
+prototype/packaging proofs as failed. No populated lab reset or Docker pruning.
+If a diagnostic pg_get_functiondef is embedded in a multi-statement migration,
+terminate it explicitly and verify the actual official CLI package.
+
+Local baseline also passes under load: do not claim a reproduced production
+failure or use local timings as production acceptance. Full local/normal/hosted
+qualification and fresh original-scope gates precede new exact SQL consent.
+The unchanged comparison deadline is2026-11-24T13:59:40Z; no new cohort/window is
+admitted. Main/dashboard stay paused through genuine API/data/security/load,
+normal PR985 merge, matching Production25-page verification and exact original
+control restoration. Then continue all stamped Reverse Holos, including Holon
+Phantoms and Delta Species, under their separate printing authority.
+
+# Best of Game catalog covering-index correction V15 — November 23, 2026
+
+Follow [V15](../contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V15.md). Production
+520 applied once from retained source 1e2b75c2. Its first genuine catalog SDK
+response returned 417 rows in 3187 ms, above the unchanged 3000 ms budget.
+Retain the consumed V17 intent and failed after; no retry, reliability, merge
+or deployment acceptance is claimed. The separate data-only audit passed all
+120 original scopes, all 768 aliases and four-schema/security comparison.
+
+The next candidate is only 20261123190000_catalog_visible_count_covering_index_v1.sql:
+one partial covering index, with no reader, view, helper, grant or row changes.
+Source preparation is C:/grookai_best_of_game_catalog_cover_521_20261123.
+Qualification/release evidence belongs under the matching catalog_cover_521
+operator root; the runtime diagnosis and failed local setup drafts remain in
+C:/grookai_vault_operator_artifacts/best_of_game_catalog_runtime_520_20261123.
+Preserve every old source and laboratory. The newly owned prototype commits
+only synthetic fixture data; cold-buffer instrumentation stays local to it.
+
+The exact 520 approval is consumed. A new concrete source/index-SQL decision
+must follow full local/normal/hosted qualification, exact strict V15 PrePush,
+fresh original 120-scope before and official exact-one dry-run. The existing
+owner-approved V17 comparison limits and November 24 13:59:40Z deadline remain
+fixed; the original November 23 window stays expired. Do not widen or restart
+the comparison. All original and previously observed full rows remain exact.
+
+Main remains held at e2070734 and PR985 is the only permitted guarded release.
+The dashboard writer stays disabled until real API/data/security/reliability,
+normal squash merge, matching Production25-page acceptance and exact original
+control restoration. Only then close shared merge coordination and continue all
+stamped Reverse Holos under their separate physical-printing authority.
+
+# Duplicate-set typed card-search V11 — November22,2026
+
+Follow [the V11 release contract](../contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V11.md).
+Production518 retained all120 data scopes but failed the mcd21 card-search API
+at3097ms. Keep the consumed identity apply and failure immutable; no retry can
+replace that result. Main stays held at bab8654f. The new000500 SQL needs its
+own fully qualified exact-source owner decision. Preserve all earlier SQL and
+the original5832/972 comparison limits and13:59:40Z November23 expiry. Only
+normal API/data/security/concurrent-sample acceptance, merge and matching
+Production25-page acceptance permit restoring original controls and ending
+the shared merge pause. Stamped Reverse Holos follow that closure.
+
+# Best of Game approved identity current-main integration V10 — November22,2026
+
+The owner instructed proceeding with packet2522d6f2 for the one identity SQL8c662dcb.
+Retain actual instruction c18b0366. The fresh gate passed, then main advanced via
+pricing PR1011 before the before-readback guard; no identity apply was started.
+Continue in C:/grookai_best_of_game_main_refresh_518_20261122 under the indexed V10
+contract/checkpoint. Preserve all12 Cosmo safeguard files and both playbook sides,
+all V9 feature/SQL bytes, labs, evidence and the original data limits/expiry.
+This is the same authorized SQL, not a new request for SQL or data authority.
+Bind the existing decision after fresh combined-source normal/hosted qualification.
+Use only V10 exact517-to518 PrePush, full before/dry/one intent, real API/data /
+security and three concurrent five-call SDK batches, then normal merge and actual
+Production25-page closure. Do not edit old SQL, reset labs or bypass source guards.
+
+Shared local owner-pause state is
+C:/grookai_vault_operator_artifacts/duplicate_set_merge_pause_20261122/status.json.
+Read it before other main merges/protection changes. Main is held atbab8654f and
+the dashboard remains disabled. Other work may prepare branches; do not lift the
+pause for an unrelated merge. Restore exact original controls after deployed
+duplicate closure, then mark coordination inactive with its proof. An explicit
+later owner instruction can supersede the pause. Stamped Reverse Holos follow.
+
+# Best of Game identity518 runtime hold — November22,2026
+
+V8's owner-approved catalog migration applied once at19:29UTC; production is517.
+Its catalog SDK returned417 rows in2562ms, then canonical Prismatic identity
+browsing timed out at3103ms. Retain source296f77a3, manifest251e2a30, consumed
+intent and failed after-r1. The independent full data-only audit does not clear
+the API failure. Continue in C:/grookai_best_of_game_identity_518_20261122 under
+the indexed V9 contract/checkpoint; evidence is the matching identity51820261122
+operator root. Qualify the seven conditional typed-scope expressions, original
+data limits and expiry, normal checks and a separate concrete SQL decision.
+Do not edit or repeat517, reset labs, relax3s or claim a passing diagnostic is
+API acceptance. Main/dashboard stay paused until full deployed closure and
+exact restoration. Stamped Reverse Holos follow separately.
+
+# Best of Game forward517 runtime hold — November22,2026
+
+V7 applied the exact three migrations once; production is516. Complete after
+data/schema/security readback passes all120 original scopes and768 aliases,
+but initial and three fresh SDK catalog probes timed out at3s. Keep its frozen
+source05d0f6ab, manifestd93ee734, every passing/failed receipt and consumed intent.
+Do not merge or deploy based on the one passing60-call run. Continue only in
+C:/grookai_best_of_game_forward_517_20261122 under the V8 contract/checkpoint;
+evidence is C:/grookai_vault_operator_artifacts/best_of_game_forward_517_20261122.
+Qualify the exact one-join517 correction, original120-scope/data limits and
+unchanged expiry, then obtain the separate exact additional-SQL decision before
+production. Require genuine3s API/reliability, normal merge and Production
+closure. The earlier source/caches/labs remain retained. Main remains held and
+dashboard313398421 paused until exact restoration after closure. Stamped Reverse
+Holo execution follows separately; no printing authority is granted here.
+
+# Best of Game enforced merge pause — November22,2026
+
+Main is held read-only at5d0915f1 for the owner-authorized duplicate release.
+The exact prior branch-protection snapshot and restore payload are retained in
+C:/grookai_vault_operator_artifacts/best_of_game_resume_20261122/main-freeze-v7.
+Administrator enforcement, linear history and conversation resolution remain.
+A temporary strict runtime-protection check guards the base during the normal
+squash-merge reopening; no admin bypass. Relock immediately while matching
+Production deployment and25-page readback run, then restore the original
+protection after closure and enable workflow313398421. Other merges can resume
+only after restoration. All source/data/expiry/printing boundaries below remain.
+
+# Best of Game publication source refresh — November22,2026
+
+The fully checked prepared feature69e20648/tree0918907d is frozen in
+C:/grookai_best_of_game_approved_20261122. Continue publication integration in
+C:/grookai_best_of_game_release_20261122. Main reached5405f43d while checks ran;
+preserve its native eBay, dependency security and Japanese integrity changes.
+The owner approved carrying the same exact comparison limits through reviewed
+main integrations, with the original2026-11-23T13:59:40Z expiry. Both replies and
+proposal hashes must remain bound. No additional data or SQL scope is granted.
+The updated web lock has one new isolated verification cache; retain prior
+caches and all labs. All final normal/hosted/fresh PrePush/API/data/security and
+matching Production closure gates remain mandatory. Restore workflow313398421
+after duplicate closure, then continue all-stamped Reverse Holos separately.
+
+# Best of Game current-main release V7 — November22,2026
+
+Continue in C:/grookai_best_of_game_release_20261122 with the V7 contract and
+checkpoint docs/checkpoints/BEST_OF_GAME_DISCOVERY_RELEASE_V7_20261122.md.
+V5/V6 sources and sealed packets remain frozen. Current main adds only fourteen
+Master Index documents; the same516 SQL bytes and application reads are retained.
+Use the separate BestOfGameDiscoveryReleaseV7 gate. The old exact operational
+proposals are stale: current scoped pricing additions are5832 across six named
+runs, including failed runs whose staging rows confer no publication authority.
+Preserve the real SDK timeout and distinguish data-only metadata diagnostics
+from mandatory real3s acceptance. Require newly qualified exact scope and actual
+owner approval, normal/hosted checks, fresh before/dry/single-use apply/after,
+normal merge and Production web readback. Restore workflow313398421 after closure.
+Do not reset retained labs. Continue all-stamped Reverse Holos only after closure.
+
+# Best of Game current-main release V6 — November20,2026
+
+The V5 source and sealed production packet remain frozen. Continue in
+C:/grookai_best_of_game_release_20261120 under the V6 checkpoint
+(docs/checkpoints/BEST_OF_GAME_DISCOVERY_RELEASE_V6_20261120.md) and V6 contract.
+Only generated dashboard snapshots changed on main; application and immutable
+516-file SQL bytes remain unchanged. The owner approved the exact V8 operational
+exception, but later Square/pricing activity is outside that approval. Preserve
+the original baselines and qualify any additional exception before applying
+the same three pending read migrations. No new production apply or deployment
+closure is claimed. Keep all retained labs and frozen producers. Stamped Reverse
+Holo work follows full duplicate closure and needs separate printing authority.
+
+# Best of Game discovery V2 after pricing512 — November20,2026
+
+Continue the same nine-alias repair in `C:/grookai_best_of_game_discovery_20261120`.
+The independent pricing migration is now canonical512; the old V1 scope below
+is retained qualification. Read [the V2 checkpoint](../checkpoints/BEST_OF_GAME_DISCOVERY_V2_20261120.md)
+and [V2 contract](../contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V2.md).
+The separate `-BestOfGameDiscoveryBaselineV2` audit passed actual canonical512,
+all applied bytes, four schemas/security,22 retained parents,18 children,
+one family copy and all759 existing aliases. New evidence is under
+`C:/grookai_vault_operator_artifacts/best_of_game_discovery_v2_20261120`.
+Use `-BestOfGameDiscoveryReleaseV2` for exact candidate20261120081500 only;
+normal/hosted checks, PrePush and independent production closure remain required.
+Never edit the first locally applied SQL or reset any older populated lab.
+The new isolated project is `bog-discovery-513-20261120`; SDK/dependency images
+are reused. Subsequent stamped printing execution remains a separate authority.
+
+# Best of Game printing closure and discovery V1 — November20,2026
+
+The exact BP8/9 production printing execution is complete; read
+[the closure](../checkpoints/BEST_OF_GAME_PRINTING_PRODUCTION_CLOSURE_20261120.md).
+Actual rollback, commit, independent readback, zero-write replay and anonymous
+acceptance passed before authority expiry. Keep the frozen producer and all
+receipts; its consumed authority cannot be reused for aliases or other sets.
+
+The nine discovery aliases continue in the separate
+`C:/grookai_best_of_game_discovery_20261120` worktree. Its
+`-BestOfGameDiscoveryBaselineV1` audit passed canonical511 after the printing
+commit. See [the current checkpoint](../checkpoints/BEST_OF_GAME_DISCOVERY_20261120.md)
+and [bounded contract](../contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V1.md).
+Both new511-to512 synthetic database upgrades/no-ops,449-table preservation,
+both-role identity/negative checks, full schema/security comparison and public
+SDK acceptance passed. The updated202-call production-size proof passed at
+1,621ms maximum, including the112 unrelated-alias cardinality. Use the separate
+`-BestOfGameDiscoveryReleaseV1` for exact20261120081500 only; normal managed/
+hosted checks, exact PrePush and production acceptance remain open. Protect
+all759 existing production alias rows, including112 Japanese rows. The new
+verification runtime reuses existing SDK/dependency images and volumes; only
+its mutable Git metadata is separate, with earlier objects mounted read-only.
+The511-to512 lab is isolated; preserve all retained labs, both sets,
+22 parents,18 children, four distinct Winner parents, saved copies and global
+Magic Bog/Boggart matching. No production discovery change is yet qualified.
+After this family, the owner requested all stamped Reverse Holos, including
+Holon Phantoms and Delta Species. Each finish needs exact physical evidence.
 # Price/stamp exact519 continuity — November22,2026
 
 The [519 audit](../audits/PRICE_STAMP_SCHEMA_519_CONTINUITY_20261123.md) binds the
@@ -5758,3 +5978,18 @@ See the [filter-navigation checkpoint](../checkpoints/2026-11-20_pokemon_playabl
 and the real-page Chromium/WebKit regression cases in the search audit suite.
 Verify production page routing together with resolver membership; a successful
 resolver-only query cannot prove that a direct browser link displays playables.
+
+# Duplicate catalog current-main V14 — November22,2026
+
+The V14 contract preserves both the exact catalog correction and PR1020 stamp/
+pricing preparation. Production remains519 after the approved70424426 SQL;
+the genuine catalog API failed at3253ms and its independent120-scope data audit
+passed. The sole pending SQL is unchanged08201421/050000, with no new index or
+row write. Preserve source2ab08008/tree8deae630 and all local/normal proof;
+the main-advance stop occurred before packaging or520 apply. Require new full
+normal/hosted qualification on actual main e2070734, fresh strict preflight,
+original120-scope before, exact-one dry-run and exact source/SQL owner decision.
+Original data anchors, approved5832+17/972+972 cohorts, named clocks and the
+2026-11-23T13:59:40Z expiry stay fixed. Complete genuineAPI/data/security,
+three fixed fresh samples, normal merge, Production25-page readback and exact
+control restoration before closing dupes or executing any stamped-printing plan.
