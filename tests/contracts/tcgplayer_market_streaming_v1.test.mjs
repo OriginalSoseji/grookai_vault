@@ -89,8 +89,8 @@ test('decision exports sort once per pass and close on success, early exit and f
 test('durable stage, qualification and exports no longer accumulate whole ledgers', () => {
   const worker = readFileSync(new URL('../../scripts/workers/tcgplayer_market_publication_worker_v1.mjs', import.meta.url), 'utf8');
   assert.match(worker, /onBatch: async rows => insertCandidates/);
-  assert.match(worker, /for await \(const candidates of readMarketLedgerBatchesV1/);
-  assert.match(worker, /decisions: marketLedgerRowsV1/);
+  assert.match(worker, /for await \(const candidates of readMarketLedgerBatchesV2/);
+  assert.match(worker, /decisions: marketLedgerRowsV2/);
   assert.match(worker, /const counts = await decisionSummary\(decisions\)/);
   assert.doesNotMatch(worker, /await stagedCandidates\(|decisionResult\.rows|const candidates = rows\.map/);
 });

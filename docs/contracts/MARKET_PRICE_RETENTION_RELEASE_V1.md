@@ -83,3 +83,27 @@ changes, preserved existing security and old source-date/provenance readback.
 Then complete the guarded client merge/deployment and real signed-in card/Vault
 acceptance under the approved release scope. No replacement publication, coverage
 override, unrelated write or protection change is granted by this contract.
+
+## Accepted main1040 source reconciliation
+
+The previous source6389cc42 passed both full managed hooks and all11 hosted jobs
+plus Vercel. Its final strict preflight correctly stopped before production
+access because PR1040 had advanced main to
+`f6e105f58faf53269713437014cc5be2196545a9`, tree
+`8e2b0e28121db070a08b355b08a1ee6f3145a004`. Preserve draft1041 and its source,
+failed preflight boundary, normal-v2 and hosted receipts unchanged.
+
+The new source binds that exact accepted sourceMain separately from the catalog
+closure main75fe32c0. It requires accepted-source ancestry and that exact remote
+main; it is not a generic descendant/version override. Main1040 changes no
+migration or lockfile. Retain its complete worker30, registry, mapping correction
+and stamp-admission producers unchanged. The price SQL and all client code remain
+byte-identical; no old publication or mapping data is rewritten. New normal-v3,
+exact-head hosted and fresh strict preflight must qualify the combined source.
+The locked Linux Square runtime uses its own new read-only mount/profile evidence.
+
+All unresolved stamp identity programmes remain hard-held. The separate29-row
+regular mapping executor admits only523; this524 price migration does not extend
+that programme. If its exact separately approved execution has not completed
+before524, it needs a separately qualified later-ledger successor. No29-row,
+stamp, worker shadow or publication authority is granted by this price release.

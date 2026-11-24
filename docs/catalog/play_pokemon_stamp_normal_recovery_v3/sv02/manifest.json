@@ -1,0 +1,134 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv02",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "docs/catalog/play_pokemon_stamp_normal_recovery_v3/sv02/master_facts.json",
+  "master_index_sha256": "2c258abea9d67bd09a30f96622f04f36a51705dbda68f9e51c4ec9a783a2a00c",
+  "parents": [
+    {
+      "id": "b861b100-b9c2-43b7-8f22-2b8c65b8edb1",
+      "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+      "gv_id": "GV-PK-PAL-173-PLAY-POKEMON-STAMP",
+      "name": "Bravery Charm",
+      "printed_coordinate": "173",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "d6c1ec2f-183e-4f1f-924e-1cb30bfcda28",
+      "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+      "gv_id": "GV-PK-PAL-071-PLAY-POKEMON-STAMP",
+      "name": "Luxray",
+      "printed_coordinate": "071",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "b861b100-b9c2-43b7-8f22-2b8c65b8edb1",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-PAL-173-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series4",
+          "sha256": "01fe2d0305b529f44c408c1e326227f5a6b387fc575544ba717e9b4c82d2f91e",
+          "card_print_id": "b861b100-b9c2-43b7-8f22-2b8c65b8edb1",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "wiki-series4",
+          "sha256": "6c5a0be266f3867c28596c0da074ac48b69e56463408cf3ab838699fcad1e993",
+          "card_print_id": "b861b100-b9c2-43b7-8f22-2b8c65b8edb1",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "d6c1ec2f-183e-4f1f-924e-1cb30bfcda28",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-PAL-071-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series4",
+          "sha256": "01fe2d0305b529f44c408c1e326227f5a6b387fc575544ba717e9b4c82d2f91e",
+          "card_print_id": "d6c1ec2f-183e-4f1f-924e-1cb30bfcda28",
+          "finish_key": "normal"
+        },
+        {
+          "kind": "checked_checklist",
+          "source_ref": "wiki-series4",
+          "sha256": "6c5a0be266f3867c28596c0da074ac48b69e56463408cf3ab838699fcad1e993",
+          "card_print_id": "d6c1ec2f-183e-4f1f-924e-1cb30bfcda28",
+          "finish_key": "normal"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 2,
+    "printings": 2,
+    "finishes": {
+      "normal": 2
+    }
+  },
+  "scope_notes": [
+    "Normal existence only; this is not a complete physical finish inventory.",
+    "Exact black standard-set markers and independent Standard Set rows agree; original PDFs and legends were visually checked.",
+    "Only source-count-consistent Series Three/Four are admitted. Series Five count disagreement and Series Six duplicate coordinates remain excluded.",
+    "No red-marker foil inference, legacy alias merge, parent, image, mapping, price or owner mutation is authorized."
+  ],
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+    "source_artifacts": [
+      {
+        "ref": "official-series4",
+        "kind": "checked_checklist",
+        "sha256": "01fe2d0305b529f44c408c1e326227f5a6b387fc575544ba717e9b4c82d2f91e",
+        "url_or_identifier": "https://web.archive.org/web/20260917210836id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_4_web_cardlist_en.pdf",
+        "retrieved_at": "2026-11-23T06:41:36.442Z",
+        "publisher_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_4_web_cardlist_en.pdf",
+        "original_archive_capture": "20260917210836",
+        "retrieval_does_not_redate_original": true
+      },
+      {
+        "ref": "wiki-series4",
+        "kind": "checked_checklist",
+        "sha256": "6c5a0be266f3867c28596c0da074ac48b69e56463408cf3ab838699fcad1e993",
+        "url_or_identifier": "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Four_%28TCG%29&prop=wikitext&format=json",
+        "retrieved_at": "2026-11-23T06:41:34.837Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "b861b100-b9c2-43b7-8f22-2b8c65b8edb1",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "d6c1ec2f-183e-4f1f-924e-1cb30bfcda28",
+        "finish_key": "normal"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "review",
+      "sha256": "4ef63493e296b9b13f127fb11b0c0d53289a2cd9ae4b98ff9960905668d8078b"
+    }
+  },
+  "fingerprint": "b4101ee821693744fad22c64ccdb7570cbd5cc2f14bb9a1066a55b0e68d579cb"
+}

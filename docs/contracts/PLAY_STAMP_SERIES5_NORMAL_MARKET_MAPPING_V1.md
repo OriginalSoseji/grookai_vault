@@ -1,0 +1,53 @@
+# Series Five exact Normal Market links V1
+
+Production admission is now STOPPED by [STAMP_IDENTITY_ADMISSION_HOLD_V1](STAMP_IDENTITY_ADMISSION_HOLD_V1.md). Preserve this frozen physical review for historical/local replay; do not execute its pending inserts or links before separately governed identity reconciliation.
+
+Status: bounded candidate under qualification; no production authority.
+
+The additional [November 23 source context](STAMP_SOURCE_7DA8_CONTINUITY_V1.md)
+admits only the exact reviewed 7da8 generation with explicit sealed flags and
+schema522. Preserve the original source route, all physical/link rows and the
+complete approval, rollback, freshness and publication requirements below.
+
+The explicit [521 continuity extension](STAMP_SCHEMA_521_CONTINUITY_V1.md)
+preserves the original physical review plan below while separately binding a
+new actual execution context and receipt. Legacy routes, exact mapping rows and
+all ordinary approval/rollback requirements remain unchanged.
+
+After the actual four approved Series Five children, reviews and raw receipt
+exist, append exactly four TCGplayer parent mappings. Canonical plan:
+`56d4f8c0740477111871884b45181feeba2228ff60c3704f24e586abcbbb13e5`.
+Bind each original unique JustTCG mapping, raw identity, discovery candidate,
+literal spelling/number, active canonical identity, current category-3/group-22880
+product and positive Normal quote. No source amount proves physical printing.
+
+The source snapshot contains exactly four Normal observations and no other
+subtype. Reject any new observation, prior assignment, existing active or inactive
+TCGplayer parent link, exact-printing assertion, competing owner, partial state or
+ID collision. Do not widen the original43-parent or separate28-parent mapper.
+
+Use verified production TLS, serializable transactions, official source and
+publication advisory locks, locked source/canonical rows, exact reviewed519
+schema/security and insert effects. Insert four deterministic negative safe-bigint
+IDs without sequence calls. Preserve the sequence and all old rows. Updates,
+deletes, canonical, identity, owner, assignment, source-observation, image, Market
+price and schema writes are zero.
+
+Require original exact plan/complete-producer approval with counts, boundaries,
+rollback/apply modes and expiry within24 hours. Apply needs its own matching
+actual production rollback less than one hour old. Rehash physical originals and
+producer before commit. Uncertain outcomes require independent readback; do not
+blindly retry or silently rebind a package. Prior approvals grant no authority.
+
+Qualify only on loopback55240 in
+`play_stamp_series5_normal_mapping_qualification_519_v1`. Preserve all older labs.
+Require actual rollback, duplicate rejection, durable new-connection readback,
+zero-write repeat, unchanged sequence/grants and all449 tracked-table checks.
+Separately rehearse ordinary preparation and four exact publish decisions in a
+rolled-back transaction. Create no Auth or real owner fixtures and do not claim
+that local projection is a complete publication shadow.
+
+These links publish no price themselves. Complete exact-runtime full shadow,
+ordinary guarded publication, consumer/device readback and a fresh census remain
+required. Do not apply during the preceding pricing release, and do not count
+four source candidates as completed production repairs.

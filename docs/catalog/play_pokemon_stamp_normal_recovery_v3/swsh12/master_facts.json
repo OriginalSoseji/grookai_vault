@@ -1,0 +1,383 @@
+{
+  "version": "PLAY_POKEMON_STAMP_NORMAL_MASTER_FACTS_V3",
+  "status": "master_admissible",
+  "language": "en",
+  "set_code": "swsh12",
+  "scope": "exact_generic_play_pokemon_stamp_normal_facts_only",
+  "complete_printing_inventory": false,
+  "foil_pattern_adjudicated": false,
+  "records": [
+    {
+      "card_print_id": "5ee8928f-60a9-4e94-8e47-35f8df072dec",
+      "card_name": "V Guard Energy",
+      "printed_coordinate": "169",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 3,
+          "official_pdf_sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+          "official_row": {
+            "series": 3,
+            "name": "V Guard Energy",
+            "name_alignment_resolved": true,
+            "set_token": "SIT",
+            "printed_number": "169",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "SIT",
+              "xMin": 549.2278,
+              "yMin": 356.1739,
+              "xMax": 567.9638,
+              "yMax": 365.1659,
+              "set_token": "SIT",
+              "number": "169"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 580.707,
+                "yMin": 356.9073,
+                "xMax": 586.5667,
+                "yMax": 364.2762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 32
+              }
+            ]
+          },
+          "secondary_raw_sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 3,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+            "set_key": "swsh12",
+            "card_number": "169",
+            "card_name": "V Guard Energy",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "656f5776-4853-4619-88cf-4e53454ba867",
+      "card_name": "Lance",
+      "printed_coordinate": "159",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 3,
+          "official_pdf_sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+          "official_row": {
+            "series": 3,
+            "name": "Lance",
+            "name_alignment_resolved": true,
+            "set_token": "SIT",
+            "printed_number": "159",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "SIT",
+              "xMin": 400.0119,
+              "yMin": 567.6739,
+              "xMax": 418.6839,
+              "yMax": 576.6659,
+              "set_token": "SIT",
+              "number": "159"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 431.4911,
+                "yMin": 568.4073,
+                "xMax": 437.3508,
+                "yMax": 575.7762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 42
+              }
+            ]
+          },
+          "secondary_raw_sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 3,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+            "set_key": "swsh12",
+            "card_number": "159",
+            "card_name": "Lance",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "b0892865-890c-498b-9efc-395f07999e15",
+      "card_name": "Serena",
+      "printed_coordinate": "164",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 3,
+          "official_pdf_sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+          "official_row": {
+            "series": 3,
+            "name": "Serena",
+            "name_alignment_resolved": true,
+            "set_token": "SIT",
+            "printed_number": "164",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "SIT",
+              "xMin": 549.2271,
+              "yMin": 194.1739,
+              "xMax": 567.9311,
+              "yMax": 203.1659,
+              "set_token": "SIT",
+              "number": "164"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 580.7063,
+                "yMin": 194.9072,
+                "xMax": 586.566,
+                "yMax": 202.2761,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 32
+              }
+            ]
+          },
+          "secondary_raw_sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 3,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+            "set_key": "swsh12",
+            "card_number": "164",
+            "card_name": "Serena",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "c46f94ed-693c-48be-9f0c-2b7288b3a568",
+      "card_name": "Leafy Camo Poncho",
+      "printed_coordinate": "160",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 3,
+          "official_pdf_sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+          "official_row": {
+            "series": 3,
+            "name": "Leafy Camo Poncho",
+            "name_alignment_resolved": true,
+            "set_token": "SIT",
+            "printed_number": "160",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "SIT",
+              "xMin": 400.0119,
+              "yMin": 581.1739,
+              "xMax": 418.8679,
+              "yMax": 590.1659,
+              "set_token": "SIT",
+              "number": "160"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 431.4911,
+                "yMin": 581.9073,
+                "xMax": 437.3508,
+                "yMax": 589.2762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 32
+              }
+            ]
+          },
+          "secondary_raw_sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 3,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+            "set_key": "swsh12",
+            "card_number": "160",
+            "card_name": "Leafy Camo Poncho",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "c768b472-1f0d-46ac-adb7-5f6554c57888",
+      "card_name": "Earthen Seal Stone",
+      "printed_coordinate": "154",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 3,
+          "official_pdf_sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+          "official_row": {
+            "series": 3,
+            "name": "Earthen Seal Stone",
+            "name_alignment_resolved": true,
+            "set_token": "SIT",
+            "printed_number": "154",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "SIT",
+              "xMin": 400.0119,
+              "yMin": 405.6739,
+              "xMax": 418.6519,
+              "yMax": 414.6659,
+              "set_token": "SIT",
+              "number": "154"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 431.4911,
+                "yMin": 406.4073,
+                "xMax": 437.3508,
+                "yMax": 413.7762,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 32
+              }
+            ]
+          },
+          "secondary_raw_sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 3,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Three_(TCG)",
+            "set_key": "swsh12",
+            "card_number": "154",
+            "card_name": "Earthen Seal Stone",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    },
+    {
+      "card_print_id": "e5988601-d908-4dfd-b7ce-ed450b600387",
+      "card_name": "Emergency Jelly",
+      "printed_coordinate": "155",
+      "variant_key": "play_pokemon_stamp",
+      "finish_key": "normal",
+      "status": "master_admissible",
+      "source_count": 2,
+      "independent_source_families": [
+        "official_pokemon_checklist",
+        "bulbapedia_human_checklist"
+      ],
+      "evidence": [
+        {
+          "series": 4,
+          "official_pdf_sha256": "01fe2d0305b529f44c408c1e326227f5a6b387fc575544ba717e9b4c82d2f91e",
+          "official_row": {
+            "series": 4,
+            "name": "Emergency Jelly",
+            "name_alignment_resolved": true,
+            "set_token": "SIT",
+            "printed_number": "155",
+            "normal_explicit": true,
+            "foil_marker_present": false,
+            "foil_pattern_adjudicated": false,
+            "coordinate_bbox": {
+              "text": "SIT",
+              "xMin": 328.5331,
+              "yMin": 467.5,
+              "xMax": 354.1191,
+              "yMax": 479.864,
+              "set_token": "SIT",
+              "number": "155"
+            },
+            "checkboxes": [
+              {
+                "text": "■",
+                "xMin": 370.6907,
+                "yMin": 468.7634,
+                "xMax": 378.3007,
+                "yMax": 478.3334,
+                "color": "black",
+                "red_pixels": 0,
+                "black_pixels": 54
+              }
+            ]
+          },
+          "secondary_raw_sha256": "6c5a0be266f3867c28596c0da074ac48b69e56463408cf3ab838699fcad1e993",
+          "secondary_row": {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 4,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Four_(TCG)",
+            "set_key": "swsh12",
+            "card_number": "155",
+            "card_name": "Emergency Jelly",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "executionAuthority": false,
+  "scope": "normal_only_not_full_inventory",
+  "preservedFiles": {
+    "official-series5": {
+      "sha256": "e6db3b6348c1d52d12328265b0460f5f296052c5fadbbf0050204e1745606f97",
+      "url_or_identifier": "https://web.archive.org/web/20261020203917id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_5_web_cardlist_en.pdf",
+      "retrieved_at": "2026-11-23T06:51:17.318Z",
+      "file": "official-series5-original.pdf",
+      "publisher_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_5_web_cardlist_en.pdf",
+      "original_archive_capture": "20261020203917",
+      "retrieval_does_not_redate_original": true,
+      "source_url": "https://web.archive.org/web/20261020203917id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_5_web_cardlist_en.pdf"
+    },
+    "wiki-series5": {
+      "sha256": "ff74d24e2a53c3073c9f43bd83195f3d678b00dcec8150d45941ad1c242cb01e",
+      "url_or_identifier": "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Five_%28TCG%29&prop=wikitext&format=json",
+      "retrieved_at": "2026-11-23T06:51:16.297Z",
+      "file": "wiki-series5-response.json",
+      "source_url": "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Five_%28TCG%29&prop=wikitext&format=json"
+    },
+    "source-integrity-series5": {
+      "file": "series5-source-integrity-review-v1.json",
+      "sha256": "a6bafbed26de2d6fb111b736c03063d32145ff5ad90bab08bebff27ce054bbca"
+    }
+  },
+  "extraction": {
+    "method": "Original PDF bounding boxes plus unedited110DPI Poppler RGB; visually verified legend, black standard-set only.",
+    "source_extraction_sha256": "e134c969ca132aca2c40ab591234058c7c3c2a84c6824dc48d253624cbb918bc",
+    "extractor_sha256": "afd63b27cd404e505e72476051db1f2ba8ab6893638ce726eb89f7b26f317c1b",
+    "source_integrity_review_sha256": "a6bafbed26de2d6fb111b736c03063d32145ff5ad90bab08bebff27ce054bbca",
+    "original_pdf_pages_visually_inspected": true,
+    "archive_capture_timestamps_preserved": true
+  },
+  "canonicalTargetIds": [
+    "71eab7c1-b491-4442-b2aa-dae5311db412",
+    "7c413757-c98e-4e27-a791-2e075c545b96",
+    "b00cdee1-1552-4e5c-9e33-cd5a15303e9f",
+    "b40344f6-d54f-40bf-9383-3e437ffc6a39"
+  ]
+}
