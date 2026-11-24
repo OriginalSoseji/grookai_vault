@@ -1,0 +1,331 @@
+{
+  "version": "JAPANESE_SOURCE_GAP_SEVENTEEN_PREPARATION_V1",
+  "preparationOnly": true,
+  "productionExecutionApproved": false,
+  "sourceSyncRun": "7da8a525-2fdb-4437-9cb5-3daa2d11e0a5",
+  "sourceFinishedAt": "2026-11-23T21:08:53.629Z",
+  "expiresAt": "2026-11-25T09:08:53.629Z",
+  "baselinePublication": "e26f4ee7-3320-4cf4-b2ef-b53f08d86a9c",
+  "baselineRun": "a94c5a93-2360-4b78-a4ef-8ee6eb566ce7",
+  "baselineJapaneseCount": 2545,
+  "materialLossThreshold": 0.001,
+  "ownerPreparationProposalSha256": "a7d8338b1d1c7c5bc382a15736b06647b4a3b3e559eea50a72a0272fa106e0cf",
+  "sourceProofSha256": "7865bb2e83710580a1d1d8ee1a70fea9d75ae96203ec5636807a0def530c01fc",
+  "gaps": [
+    {
+      "printingId": "2c5139e6-3b9b-47ae-8776-9b1fa656f5d2",
+      "productId": 570445,
+      "groupId": 23636,
+      "subtype": "Holofoil",
+      "classification": "price_row_absent_in_original_source",
+      "sourcePriceSha256": "fc7df92be6c6cabbdc770e09623e24d9dbe2f2d576cc41af9c1e417081e50038",
+      "sourceProductSha256": "32b7525260da0df10fb13c7cdba66398e5a6f5c936c82f23a82419059119d3a4"
+    },
+    {
+      "printingId": "dc52749a-d148-46ea-a52d-d1d757bca7f6",
+      "productId": 569031,
+      "groupId": 23621,
+      "subtype": "Holofoil",
+      "classification": "price_row_absent_in_original_source",
+      "sourcePriceSha256": "a44d240d2c522ee88ab94864b841d8af50b6ca5c133eeb5e5f7777b0b5af9bb3",
+      "sourceProductSha256": "a2e82bded2e88db297bd92a3618f2382c82d9cc3c293a827281114caf9fea0ba"
+    },
+    {
+      "printingId": "9aac7722-c213-4cc5-8067-e9a0bfde879f",
+      "productId": 569038,
+      "groupId": 23621,
+      "subtype": "Holofoil",
+      "classification": "price_row_absent_in_original_source",
+      "sourcePriceSha256": "a44d240d2c522ee88ab94864b841d8af50b6ca5c133eeb5e5f7777b0b5af9bb3",
+      "sourceProductSha256": "a2e82bded2e88db297bd92a3618f2382c82d9cc3c293a827281114caf9fea0ba"
+    },
+    {
+      "printingId": "e607d509-16a3-48a9-8c40-1fdd14ac808d",
+      "productId": 574598,
+      "groupId": 23690,
+      "subtype": "Holofoil",
+      "classification": "price_row_absent_in_original_source",
+      "sourcePriceSha256": "252872bf7fa2066e028e98a34564527cc6c839f81a45aee3b75aceafba6e47cc",
+      "sourceProductSha256": "1a9ac9524d003fe836dbee81e4dee924971b55a180e517a4eb33d3b50c9f998d"
+    },
+    {
+      "printingId": "3c012843-64d0-48b3-8075-bde849aeb0e4",
+      "productId": 574605,
+      "groupId": 23690,
+      "subtype": "Holofoil",
+      "classification": "price_row_absent_in_original_source",
+      "sourcePriceSha256": "252872bf7fa2066e028e98a34564527cc6c839f81a45aee3b75aceafba6e47cc",
+      "sourceProductSha256": "1a9ac9524d003fe836dbee81e4dee924971b55a180e517a4eb33d3b50c9f998d"
+    },
+    {
+      "printingId": "2325791e-2ed3-4a11-bac5-3948c291f77b",
+      "productId": 571892,
+      "groupId": 23678,
+      "subtype": "Holofoil",
+      "classification": "price_row_absent_in_original_source",
+      "sourcePriceSha256": "b227e7932476a06993fa7eaa540952311eb06f814efd62c34d37a526e8b827cc",
+      "sourceProductSha256": "111b09085e7f4d80fe6f1840004f53ab1935f30b8b416208d087b429e24c74fe"
+    },
+    {
+      "printingId": "ebe2015b-a2c1-4858-bc8b-a5079d652931",
+      "productId": 573522,
+      "groupId": 23680,
+      "subtype": "Holofoil",
+      "classification": "no_positive_market_price_in_original_source",
+      "sourcePriceSha256": "9df7531f4fdbb254087b9ba56c15621284da83509b250c7137aa238b6ef79f95",
+      "sourceProductSha256": "41c17e3ea9a1f54381444b30a34ccb0c32fe59b3c0f962f6f45ddf13da3221f4"
+    },
+    {
+      "printingId": "248238a2-9264-4241-9f95-d856caf2e69b",
+      "productId": 574011,
+      "groupId": 23685,
+      "subtype": "Normal",
+      "classification": "price_row_absent_in_original_source",
+      "sourcePriceSha256": "7b374874db1f0ab95c15add1a7c5ef6a9d9ed7f4c59bdcef9348b13c83bba627",
+      "sourceProductSha256": "7ff9e65f867655159108df71853b6f32a66198938449d6ffd6be45f860c3a50b"
+    },
+    {
+      "printingId": "2d13d9fe-b8e9-4f1c-a680-aaa228223956",
+      "productId": 574020,
+      "groupId": 23685,
+      "subtype": "Holofoil",
+      "classification": "price_row_absent_in_original_source",
+      "sourcePriceSha256": "7b374874db1f0ab95c15add1a7c5ef6a9d9ed7f4c59bdcef9348b13c83bba627",
+      "sourceProductSha256": "7ff9e65f867655159108df71853b6f32a66198938449d6ffd6be45f860c3a50b"
+    },
+    {
+      "printingId": "2943f311-b3bc-4939-86c5-421baf889040",
+      "productId": 574051,
+      "groupId": 23685,
+      "subtype": "Holofoil",
+      "classification": "price_row_absent_in_original_source",
+      "sourcePriceSha256": "7b374874db1f0ab95c15add1a7c5ef6a9d9ed7f4c59bdcef9348b13c83bba627",
+      "sourceProductSha256": "7ff9e65f867655159108df71853b6f32a66198938449d6ffd6be45f860c3a50b"
+    },
+    {
+      "printingId": "49c97187-c4a3-4e7a-8670-acf441c0d254",
+      "productId": 572975,
+      "groupId": 23687,
+      "subtype": "Holofoil",
+      "classification": "price_row_absent_in_original_source",
+      "sourcePriceSha256": "2e7056b72535effa79ae44a9fc025c2e904a1e14a2c5548d59a9bcfc9a6289d7",
+      "sourceProductSha256": "64aea60e9f53cb199c7834da52ea37ca7d112dbef80c5793701bd77c00bff9d9"
+    },
+    {
+      "printingId": "310155db-5838-408a-a7c7-e633cd6d2b13",
+      "productId": 573440,
+      "groupId": 23700,
+      "subtype": "Normal",
+      "classification": "no_positive_market_price_in_original_source",
+      "sourcePriceSha256": "47fdb9dd0360dec2b63b70d4793a4e544e626e4441bec7877629cd557c424a70",
+      "sourceProductSha256": "46287d076896bbdb1559dc70eb0b2375400230b3958fc4ba89fedf4e086e9af5"
+    },
+    {
+      "printingId": "aa9f8f16-fcd9-41cb-8874-023c27e9f674",
+      "productId": 574797,
+      "groupId": 23708,
+      "subtype": "Holofoil",
+      "classification": "price_row_absent_in_original_source",
+      "sourcePriceSha256": "ec2ce05e659476d50257da2d7f0ace8edb26d62f21a326972bdd3a9682a6c7ec",
+      "sourceProductSha256": "0a1b6666c73feceb3823841f8538cad250bf8f7dfe0b7566b3f5769e21eef856"
+    },
+    {
+      "printingId": "d8596ce1-f236-4b6d-b25f-b3597f29e293",
+      "productId": 574799,
+      "groupId": 23708,
+      "subtype": "Holofoil",
+      "classification": "price_row_absent_in_original_source",
+      "sourcePriceSha256": "ec2ce05e659476d50257da2d7f0ace8edb26d62f21a326972bdd3a9682a6c7ec",
+      "sourceProductSha256": "0a1b6666c73feceb3823841f8538cad250bf8f7dfe0b7566b3f5769e21eef856"
+    },
+    {
+      "printingId": "6bfd523a-92bd-422b-aebf-1abc98a53587",
+      "productId": 574839,
+      "groupId": 23708,
+      "subtype": "Holofoil",
+      "classification": "price_row_absent_in_original_source",
+      "sourcePriceSha256": "ec2ce05e659476d50257da2d7f0ace8edb26d62f21a326972bdd3a9682a6c7ec",
+      "sourceProductSha256": "0a1b6666c73feceb3823841f8538cad250bf8f7dfe0b7566b3f5769e21eef856"
+    },
+    {
+      "printingId": "d776b3da-83c8-4a43-8c64-49b232e9a1b4",
+      "productId": 574148,
+      "groupId": 23702,
+      "subtype": "Normal",
+      "classification": "price_row_absent_in_original_source",
+      "sourcePriceSha256": "842dd0bc4442d860f57910ba4d6e808dc0e75d5e4b4c9c4fa888ea42699c938f",
+      "sourceProductSha256": "8d0d23fb90c9835bd05d6e1dd4565e622bf327d1cd075935c1e5554285a6f6d8"
+    },
+    {
+      "printingId": "3172a1a9-f681-43b6-b889-5a61ef65a70c",
+      "productId": 574162,
+      "groupId": 23702,
+      "subtype": "Holofoil",
+      "classification": "price_row_absent_in_original_source",
+      "sourcePriceSha256": "842dd0bc4442d860f57910ba4d6e808dc0e75d5e4b4c9c4fa888ea42699c938f",
+      "sourceProductSha256": "8d0d23fb90c9835bd05d6e1dd4565e622bf327d1cd075935c1e5554285a6f6d8"
+    }
+  ],
+  "sourceArtifactPins": [
+    {
+      "id": "af6a5ab0-04cc-4861-8721-410f19882981",
+      "artifact_kind": "prices",
+      "category_id": 85,
+      "group_id": 23621,
+      "sha256": "a44d240d2c522ee88ab94864b841d8af50b6ca5c133eeb5e5f7777b0b5af9bb3",
+      "byte_size": "13378"
+    },
+    {
+      "id": "b916b9a4-4813-4740-86b5-72f4e9a7411d",
+      "artifact_kind": "products",
+      "category_id": 85,
+      "group_id": 23621,
+      "sha256": "a2e82bded2e88db297bd92a3618f2382c82d9cc3c293a827281114caf9fea0ba",
+      "byte_size": "107062"
+    },
+    {
+      "id": "3c750470-c3c7-44d0-8895-c20cfb1da194",
+      "artifact_kind": "prices",
+      "category_id": 85,
+      "group_id": 23636,
+      "sha256": "fc7df92be6c6cabbdc770e09623e24d9dbe2f2d576cc41af9c1e417081e50038",
+      "byte_size": "14651"
+    },
+    {
+      "id": "55164f1c-060e-451a-a6a9-b874db84d1be",
+      "artifact_kind": "products",
+      "category_id": 85,
+      "group_id": 23636,
+      "sha256": "32b7525260da0df10fb13c7cdba66398e5a6f5c936c82f23a82419059119d3a4",
+      "byte_size": "111528"
+    },
+    {
+      "id": "27005501-4f45-4e99-8572-b668c3cb456e",
+      "artifact_kind": "prices",
+      "category_id": 85,
+      "group_id": 23678,
+      "sha256": "b227e7932476a06993fa7eaa540952311eb06f814efd62c34d37a526e8b827cc",
+      "byte_size": "8012"
+    },
+    {
+      "id": "4ea6ebaf-ed4d-4c61-8780-7a6067d9e2b9",
+      "artifact_kind": "products",
+      "category_id": 85,
+      "group_id": 23678,
+      "sha256": "111b09085e7f4d80fe6f1840004f53ab1935f30b8b416208d087b429e24c74fe",
+      "byte_size": "76832"
+    },
+    {
+      "id": "b86a5424-6727-49e0-af89-0d0fc4d2e3c6",
+      "artifact_kind": "prices",
+      "category_id": 85,
+      "group_id": 23680,
+      "sha256": "9df7531f4fdbb254087b9ba56c15621284da83509b250c7137aa238b6ef79f95",
+      "byte_size": "8619"
+    },
+    {
+      "id": "0f174de1-80a4-4bb5-87eb-717c60ae8f07",
+      "artifact_kind": "products",
+      "category_id": 85,
+      "group_id": 23680,
+      "sha256": "41c17e3ea9a1f54381444b30a34ccb0c32fe59b3c0f962f6f45ddf13da3221f4",
+      "byte_size": "79943"
+    },
+    {
+      "id": "092d61e7-2058-4ba6-a201-db9a9d6af972",
+      "artifact_kind": "prices",
+      "category_id": 85,
+      "group_id": 23685,
+      "sha256": "7b374874db1f0ab95c15add1a7c5ef6a9d9ed7f4c59bdcef9348b13c83bba627",
+      "byte_size": "14365"
+    },
+    {
+      "id": "c2fbb1f9-f67c-40c6-a5e1-d68d120d02ea",
+      "artifact_kind": "products",
+      "category_id": 85,
+      "group_id": 23685,
+      "sha256": "7ff9e65f867655159108df71853b6f32a66198938449d6ffd6be45f860c3a50b",
+      "byte_size": "130990"
+    },
+    {
+      "id": "ee7a334f-1f37-4067-8af3-7d62f9d02433",
+      "artifact_kind": "prices",
+      "category_id": 85,
+      "group_id": 23687,
+      "sha256": "2e7056b72535effa79ae44a9fc025c2e904a1e14a2c5548d59a9bcfc9a6289d7",
+      "byte_size": "15717"
+    },
+    {
+      "id": "6e71b1f0-598b-4295-a934-5b5a86d08096",
+      "artifact_kind": "products",
+      "category_id": 85,
+      "group_id": 23687,
+      "sha256": "64aea60e9f53cb199c7834da52ea37ca7d112dbef80c5793701bd77c00bff9d9",
+      "byte_size": "133531"
+    },
+    {
+      "id": "f82fea16-738c-4de6-9138-ee54508f8967",
+      "artifact_kind": "prices",
+      "category_id": 85,
+      "group_id": 23690,
+      "sha256": "252872bf7fa2066e028e98a34564527cc6c839f81a45aee3b75aceafba6e47cc",
+      "byte_size": "16390"
+    },
+    {
+      "id": "5ba67d58-8bda-478c-a21c-e93fa6c48718",
+      "artifact_kind": "products",
+      "category_id": 85,
+      "group_id": 23690,
+      "sha256": "1a9ac9524d003fe836dbee81e4dee924971b55a180e517a4eb33d3b50c9f998d",
+      "byte_size": "136963"
+    },
+    {
+      "id": "55124f15-35fd-4cf4-82c4-e774cc9ec965",
+      "artifact_kind": "prices",
+      "category_id": 85,
+      "group_id": 23700,
+      "sha256": "47fdb9dd0360dec2b63b70d4793a4e544e626e4441bec7877629cd557c424a70",
+      "byte_size": "9506"
+    },
+    {
+      "id": "05a56416-211b-4caf-8d8e-bea4f8dcb1ca",
+      "artifact_kind": "products",
+      "category_id": 85,
+      "group_id": 23700,
+      "sha256": "46287d076896bbdb1559dc70eb0b2375400230b3958fc4ba89fedf4e086e9af5",
+      "byte_size": "83639"
+    },
+    {
+      "id": "dd686dcf-516f-46ed-b61a-aacae95fb879",
+      "artifact_kind": "prices",
+      "category_id": 85,
+      "group_id": 23702,
+      "sha256": "842dd0bc4442d860f57910ba4d6e808dc0e75d5e4b4c9c4fa888ea42699c938f",
+      "byte_size": "9993"
+    },
+    {
+      "id": "90690923-ac58-4dcd-8d1d-95ace8057898",
+      "artifact_kind": "products",
+      "category_id": 85,
+      "group_id": 23702,
+      "sha256": "8d0d23fb90c9835bd05d6e1dd4565e622bf327d1cd075935c1e5554285a6f6d8",
+      "byte_size": "88289"
+    },
+    {
+      "id": "a39dd3f9-2485-4ac3-84a3-0d085812f790",
+      "artifact_kind": "prices",
+      "category_id": 85,
+      "group_id": 23708,
+      "sha256": "ec2ce05e659476d50257da2d7f0ace8edb26d62f21a326972bdd3a9682a6c7ec",
+      "byte_size": "47128"
+    },
+    {
+      "id": "e6569841-e814-4879-b48b-0be0783282b8",
+      "artifact_kind": "products",
+      "category_id": 85,
+      "group_id": 23708,
+      "sha256": "0a1b6666c73feceb3823841f8538cad250bf8f7dfe0b7566b3f5769e21eef856",
+      "byte_size": "457609"
+    }
+  ]
+}

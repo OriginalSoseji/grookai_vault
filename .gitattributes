@@ -33,3 +33,7 @@ docs/audits/best_of_game_discovery_v5_20261120/harness-before-credential-guard/v
 supabase/migrations/20261124010000_market_price_retention_display_v1.sql -text whitespace=trailing-space,space-before-tab,cr-at-eol
 scripts/schema/audit_market_price_retention_baseline_v1.mjs -text whitespace=trailing-space,space-before-tab,cr-at-eol
 scripts/schema/market_price_retention_baseline_v1.json -text whitespace=trailing-space,space-before-tab,cr-at-eol
+
+# Frozen Japanese source-gap preparation evidence.
+backend/pricing/japanese_source_gap_seventeen_preparation_v1.json -text whitespace=trailing-space,space-before-tab,cr-at-eol
+docs/pricing/japanese_source_gap_seventeen_v1/source/*.json -text

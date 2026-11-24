@@ -1,3 +1,20 @@
+# Seventeen Japanese source gaps — November 24, 2026
+
+The owner approved preparation only. Follow the planned
+[coverage exception](../contracts/JAPANESE_SOURCE_GAP_COVERAGE_EXCEPTION_V1.md)
+and [worker checkpoint](../checkpoints/pricing/PRICING_CHECKPOINT_20261124_SOURCE_GAP_WORKER31.md).
+Keep the original proposal, preparation workspace, twenty provider files and
+November 25 at 09:08:53.629 UTC expiry. Only the seventeen exact unavailable fresh
+quotes may be excluded from the Japanese baseline; dated last-known prices and
+every other guard remain intact. No candidate flag grants production authority.
+
+Worker 31 requires a new full shadow with V4 coverage qualification. Do not reuse
+worker 30 proof, interrupt another writer, or activate a failed generation.
+Check actual source/pointer state and running writers before any shadow dispatch.
+Normal local/hosted source checks, exact owner release, atomic activation and
+independent app/natural-refresh readback remain required. This programme has no
+canonical, mapping, printing, image, ownership or migration-write authority.
+
 # Regular-product mapping correction candidate — November24,2026
 
 Follow [the29-product contract](../contracts/REGULAR_PRODUCT_MAPPING_CORRECTION_V1.md)
