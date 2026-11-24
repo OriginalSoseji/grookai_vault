@@ -1,0 +1,25 @@
+{
+  "executionAuthority": false,
+  "baseMasterRef": "docs/audits/english_master_index_publishable_v1/sets/swsh2/printings.json",
+  "baseMasterSha256": "6c994283adac3285123f00c99ddd108e2ff23a3aa710b01c13ba170288b6e349",
+  "humanReference": {
+    "path": "retail-cosmos-human-pages-v1/51409.html",
+    "sha256": "2f5a51a7c4f9742f46a63a167a362ae0d128190de4a07b415f61df8b45c72181",
+    "url": "https://pokumon.com/card/stamped-dragapult-091-192-new-set-retail-store-purchase-campaign-special-print/"
+  },
+  "physicalImage": {
+    "path": "stamped-cosmos-conflict-images-v1/ce6f663f-771d-41a3-9503-a76f86b48019.jpg",
+    "sha256": "eaf9239b731ee72e41c1583fbb22ffa42ae0483145d7816bea37867292b2f04b",
+    "url": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S960StampedSpecial-Print.jpg"
+  },
+  "parentFullRowSha256": "4b18f2fcb7eb6688af443aff14569660b04f3133414974e1aeb2658f417887bd",
+  "identityFullRowSha256": "d1a857cf15a0e6f081ef0b78143137b732b4c912b9935ef073330b12effd8efc",
+  "retainedReverse": [
+    {
+      "id": "ce6f663f-771d-41a3-9503-a76f86b48019",
+      "printingGvId": "GV-PK-SWSH2-91-REBEL-CLASH-STAMP-RH",
+      "finishKey": "reverse",
+      "beforeSha256": "dd188558bbeef1927890942a41685d45b739d1f02709366a6436bb4110427b00"
+    }
+  ]
+}

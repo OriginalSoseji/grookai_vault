@@ -1,0 +1,35 @@
+{
+  "status": "verified_positive_subset",
+  "reviewer": "Codex, source adjudication during owner-authorized all-stamped printing repair preparation",
+  "reviewed_at": "2026-11-24T09:08:58.762Z",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "swsh2",
+  "scope": "verified_finish_subset",
+  "master_index_sha256": "57601a1317172d54404482d9b134c8f3c9fbc5c10a40c73a4ea0aa1c274c3bef",
+  "projection_sha256": "0e4563568fe62fcdc57e83ab618b8b5777669678ec1e1f5995890b672d1f8c53",
+  "production_execution_authority": false,
+  "whole_set_completion": false,
+  "decisions": [
+    "Only the exact existing stamped parent and documented Cosmos finish are admitted in this bounded working Master addendum.",
+    "The exact human-readable collector reference names Cosmos Holo and this expansion stamp. Pricing buckets and provider variant booleans are not used.",
+    "The separate Reverse child remains unchanged and unadjudicated; Cosmos presence does not establish another finish absence.",
+    "No parent, identity, old child, old review, image, mapping, pricing, owner or visibility update is proposed."
+  ],
+  "physical_image_review": {
+    "file": "ce6f663f-771d-41a3-9503-a76f86b48019.jpg",
+    "sha256": "eaf9239b731ee72e41c1583fbb22ffa42ae0483145d7816bea37867292b2f04b",
+    "printed_name": "Dragapult",
+    "printed_number": "091/192",
+    "printed_stamp": "Rebel Clash expansion logo overlay",
+    "foil_observation": "Circular Cosmos foil reflections are visible in the illustration; the text field lacks the ordinary Reverse treatment."
+  },
+  "protected_outside_scope_children": [
+    {
+      "id": "ce6f663f-771d-41a3-9503-a76f86b48019",
+      "printingGvId": "GV-PK-SWSH2-91-REBEL-CLASH-STAMP-RH",
+      "finishKey": "reverse",
+      "beforeSha256": "dd188558bbeef1927890942a41685d45b739d1f02709366a6436bb4110427b00"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_RETAIL_COSMOS_ADDENDUM_V2",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "swsh3",
+  "status": "reviewed_finish_subset",
+  "whole_set_completion": false,
+  "base_master_ref": "docs/audits/english_master_index_publishable_v1/sets/swsh3/printings.json",
+  "base_master_sha256": "297a696c070a10f32e14ff49dc2b9e58ac599310859d27a480bafa141315a882",
+  "facts": [
+    {
+      "card_print_id": "c94ae9cd-dcf9-4258-b701-dc8882cdd39a",
+      "name": "Corviknight",
+      "printed_number": "156/189",
+      "variant_key": "darkness_ablaze_stamp",
+      "printed_stamp": "Darkness Ablaze expansion logo overlay",
+      "finish_key": "cosmos",
+      "source_url": "https://pokumon.com/card/stamped-corviknight-156-189-new-set-retail-store-purchase-campaign-special-print/",
+      "human_page_sha256": "ea292a35b7de0a8a8f288b1275fe13299b4817c625b28a68580d12889ea4ba1a",
+      "physical_image_sha256": "a94cdb9924f0d3ac96f5b0fee2bf6c1be280524466bb0bd5bd1586d795f3fdf4"
+    }
+  ],
+  "preservation": "All original Master facts remain retained. Existing stored Reverse is outside this positive Cosmos admission and is not rejected or verified by it."
+}

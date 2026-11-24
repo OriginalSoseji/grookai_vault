@@ -19,6 +19,7 @@ decision after full qualification. Earlier indexed contracts remain binding.
 
 | Contract | Status | Description |
 |--------|--------|-------------|
+| RETAIL_STAMP_COSMOS_FOUR_EXECUTION_V1 | Active bounded candidate under qualification; no production authority | docs/contracts/RETAIL_STAMP_COSMOS_FOUR_EXECUTION_V1.md — Four source-bound retail Cosmos additions, explicit incomplete finish-subset authority, preserved unresolved Reverse children and all retained references; independent qualification and exact owner/rollback/readback gates |
 | REGULAR_PRODUCT_MAPPING_CORRECTION_V1 | Active bounded candidate under qualification; no production authority | docs/contracts/REGULAR_PRODUCT_MAPPING_CORRECTION_V1.md — Separate29 ordinary-product re-anchors, exact523 effects/source/reference preservation and independent qualification/approval/rollback; all stamp identity holds remain |
 | STAMP_IDENTITY_ADMISSION_HOLD_V1 | Active production admission stop | docs/contracts/STAMP_IDENTITY_ADMISSION_HOLD_V1.md — All32 pending parents overlap149 candidate stamp-identity pairs; no production prepare/write until governed identity reconciliation |
 | STAMP_SCHEMA_523_FRAME_V1 | Active bounded metadata candidate; no production authority | docs/contracts/STAMP_SCHEMA_523_FRAME_V1.md — Exact523 scoped frame for separate regular-product repair; held32 stamp execution routes remain closed |
