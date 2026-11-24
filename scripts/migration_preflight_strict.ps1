@@ -23,6 +23,7 @@ param(
   [switch]$MarketPriceRetentionReleaseV1,
 
   [switch]$BestOfGameDiscoveryReleaseV17,
+  [switch]$SquarePriceBatchReleaseV1,
   [switch]$SquarePriceBatchBaselineV4,
   [switch]$SquarePriceBatchBaselineV3,
   [switch]$SquarePriceBatchBaselineV2,
@@ -201,6 +202,20 @@ if ($BestOfGameDiscoveryReleaseV17) {
   }
   & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_best_of_game_discovery_release_v17.mjs') $Phase "--out-dir=$AuditOutDir"
   exit $LASTEXITCODE
+}
+
+if ($SquarePriceBatchReleaseV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  $exact = '20261124230000,20261124231000,20261124232000,20261124233000,20261124234000,20261124235000'
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','SquarePriceBatchReleaseV1','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne $exact) -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne $exact) -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Square price batch release V1 requires only the exact six late-day IDs at canonical524; no mixed scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_square_price_batch_release_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  if ($LASTEXITCODE -ne 0) { throw 'Square price batch release V1 failed.' }
+  exit 0
 }
 
 if ($SquarePriceBatchBaselineV4) {

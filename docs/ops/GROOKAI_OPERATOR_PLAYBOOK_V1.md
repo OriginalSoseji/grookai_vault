@@ -6184,3 +6184,12 @@ Original data anchors, approved5832+17/972+972 cohorts, named clocks and the
 2026-11-23T13:59:40Z expiry stay fixed. Complete genuineAPI/data/security,
 three fixed fresh samples, normal merge, Production25-page readback and exact
 control restoration before closing dupes or executing any stamped-printing plan.
+# Regular29 after the retained-price524 release
+
+Follow [REGULAR_PRODUCT_MAPPING_CORRECTION_524_V1](../contracts/REGULAR_PRODUCT_MAPPING_CORRECTION_524_V1.md).
+The prior523 batch was explicitly approved but never executed: actual pre-write
+verification found the separately applied retained-price migration. Preserve its
+original plan, producer, decision and labs. Qualify the bounded524 successor and
+a new exact plan/producer decision; never disguise524 as523 or apply both batches.
+The32 stamp/98-insert/32-link admission hold and original149-completed boundary stay.
+

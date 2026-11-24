@@ -1,0 +1,85 @@
+{
+  "version": "SQUARE_PRICE_BATCH_RELEASE_V1",
+  "project": "ycdxbpibncqcchqiihfz",
+  "baseline": 524,
+  "target": 530,
+  "main": "b62716469953d4c8d51687e7ebc5edd8d4e9c1f1",
+  "branch": "feat/square-bulk-price-release-main1046-20261124",
+  "inventorySha256": "847d5641683db2236dc9d8c0cdf13629a932c7ce6f2a7bedc35ee65bf919ab2d",
+  "candidates": {
+    "20261124230000_square_recovery_target_window_release_v3.sql": "c60f33c0637a0b95e01d0a8c0356a616f8a2082035d8887bd72ec6f3571c27a2",
+    "20261124231000_square_recovery_target_lanes_release_v3.sql": "117356aca4172d110d71f50add63e5d7e38c5d81aafa7b663cf7b5560235b64b",
+    "20261124232000_square_durable_recovery_scheduler_release_v3.sql": "69c2a0e866d2b9d862f2e34f572f132c922b430540e3f91f38995006fb0e66c2",
+    "20261124233000_square_price_batch_authority_v3.sql": "8f7e9f472177edacee5145bc27eac183beb42cf593f9e945386c197bd36e2a1e",
+    "20261124234000_square_price_batch_attempt_receipts_v3.sql": "23a3662d6853044008b24f381a8753f09bb2eea00c94bf514b1bbf9a6df1efcc",
+    "20261124235000_square_price_batch_pause_recovery_v3.sql": "34f52613cad54f3e6760cfc84aeef41df4cfe808e9e1400565fa64659105131e"
+  },
+  "cliSha256": "31c2a25bd590a36ad803a7c669cf76a62eac3cd5aa7112eeb2e1c5f308c8b39c",
+  "proofs": [
+    {
+      "file": "C:/grookai_vault_operator_artifacts/square_launch_readiness_20261122/hardening-v1/bulk-authority-v1/current-main-524-v1/starting-gate-v2/baseline.json",
+      "sha256": "208c8c7052a0446054bc5e5645f3078b6da7e55a39b0ae3e7faa06f0a3ab1bfd"
+    },
+    {
+      "file": "C:/grookai_vault_operator_artifacts/square_launch_readiness_20261122/hardening-v1/bulk-authority-v1/current-main-524-v1/fresh530-v1/replay-proof.json",
+      "sha256": "a22b2f5c7d48c6555a71224c1eb1d1ce98425f4f9d0fe655d7e26f4f1b18fc4d"
+    },
+    {
+      "file": "C:/grookai_vault_operator_artifacts/square_launch_readiness_20261122/hardening-v1/bulk-authority-v1/current-main-524-v1/fresh530-schema-v2/result.json",
+      "sha256": "4e247cf2263ddb42555be7d51d971bb3fd3a19bfb0f265e1486d2a2001134c86"
+    },
+    {
+      "file": "C:/grookai_vault_operator_artifacts/square_launch_readiness_20261122/hardening-v1/bulk-authority-v1/current-main-524-v1/populated530-v2/result.json",
+      "sha256": "038e109cdd7804a6dcf9e9f281c109af9b7ed2c89bb2447cdedfa507147a21f3"
+    },
+    {
+      "file": "C:/grookai_vault_operator_artifacts/square_launch_readiness_20261122/hardening-v1/bulk-authority-v1/current-main-524-v1/populated530-schema-v2/result.json",
+      "sha256": "503f277f26dde096d214cabfd4f915d4bf80a403a34a01b7ef08855518222404"
+    },
+    {
+      "file": "C:/grookai_vault_operator_artifacts/square_launch_readiness_20261122/hardening-v1/bulk-authority-v1/current-main-524-v1/official-pull530-v1/result.json",
+      "sha256": "e523ffb0477c9bcc473e93e3e03642a086b1d28a377997af82f099e5d24d681b"
+    },
+    {
+      "file": "C:/grookai_vault_operator_artifacts/square_launch_readiness_20261122/hardening-v1/bulk-authority-v1/current-main-524-v1/clock-concurrency530-v1/runtime-result-v1.json",
+      "sha256": "be119996bb8faa623496bd0427d59cb1a93b7f08767ad7f8a871e128bf9631d0"
+    },
+    {
+      "file": "C:/grookai_vault_operator_artifacts/square_launch_readiness_20261122/hardening-v1/bulk-authority-v1/current-main-524-v1/clock-concurrency530-v1/fault-result-v1.json",
+      "sha256": "f309608a711f4426d50e190cde2a73ec4d5e55c6604bd070992cbd09dc3bc8f9"
+    },
+    {
+      "file": "C:/grookai_vault_operator_artifacts/square_launch_readiness_20261122/hardening-v1/bulk-authority-v1/current-main-524-v1/runtime530-schema-v1/result.json",
+      "sha256": "f5c05da76e53aa4d2d8ab653417a91e2f6b77c3ca62065f18ac9367f26fb72c4"
+    },
+    {
+      "file": "C:/grookai_vault_operator_artifacts/square_launch_readiness_20261122/hardening-v1/bulk-authority-v1/current-main-524-v1/retained-pricing-interop-v1.json",
+      "sha256": "d030624076773166988927ee7d1ab1d9047431af03ea797e8f2d58601a8ced9c"
+    },
+    {
+      "file": "C:/grookai_vault_operator_artifacts/square_launch_readiness_20261122/hardening-v1/bulk-authority-v1/current-main-524-v1/qr-http-v1/http-result-v1.json",
+      "sha256": "7935a86738a53e9f33664bb883f2e8ac20fef63eddd7411f9a5016f2105f9875"
+    },
+    {
+      "file": "C:/grookai_vault_operator_artifacts/square_launch_readiness_20261122/hardening-v1/bulk-authority-v1/current-main-524-v1/qr-http-v1/browser-result-v1.json",
+      "sha256": "65815e9337856af530d71b6152f1b21cd286c79f11c1cbc0b21ff543caba3ba0"
+    },
+    {
+      "file": "C:/grookai_vault_operator_artifacts/square_launch_readiness_20261122/hardening-v1/bulk-authority-v1/current-main-524-v1/native-edge-http-v1/sale-setup-result-v3.json",
+      "sha256": "cad75963355acda10bab53f4d6c0e9aa23bca3a4c092fbf3cb486f81c82520ce"
+    },
+    {
+      "file": "C:/grookai_vault_operator_artifacts/square_launch_readiness_20261122/hardening-v1/bulk-authority-v1/current-main-524-v1/native530-schema-v1/result.json",
+      "sha256": "a76ddc6d4342958ecf11a7eab1349f3045ff2e49bf882155599352e6b218f9be"
+    },
+    {
+      "file": "C:/grookai_vault_operator_artifacts/square_launch_readiness_20261122/hardening-v1/bulk-authority-v1/full-backlog-v1/ordinary-tail-recovery-v1/result.json",
+      "sha256": "44e07f7e75a3aecfd0a5221cdea2d6c6d70edaa5488aa0d4c6640f911e48845f"
+    },
+    {
+      "file": "C:/grookai_vault_operator_artifacts/square_launch_readiness_20261122/hardening-v1/bulk-authority-v1/full-backlog-v1/native-full-size-http-v1/result.json",
+      "sha256": "5a2922c97b8b05090fb30b8c9f6b6d35b65fd0b9aee61c5ff8a39f30ec862406"
+    }
+  ],
+  "productionApplyAuthority": false
+}
