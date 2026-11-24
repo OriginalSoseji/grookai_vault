@@ -153,6 +153,38 @@ test("Pokémon suggestions request only the selected game and language", async (
   expect(url.searchParams.get("lang")).toBe("ja");
 });
 
+test("changing games hides old suggestions until the new scope returns", async ({ page }) => {
+  const input = await openSearch(page);
+  await input.fill("Pikachu");
+  const options = page.getByRole("listbox", { name: "Card suggestions" }).getByRole("option");
+  await expect(options).toHaveCount(2);
+
+  let release!: () => void;
+  const gate = new Promise<void>(resolve => { release = resolve; });
+  await page.route("**/api/resolver/search?**", async route => {
+    const url = new URL(route.request().url());
+    if (url.searchParams.get("game") !== "mtg" || url.searchParams.get("q") !== "Pikachu") return route.continue();
+    await gate;
+    return route.fulfill({ json: { ok: true, canonical: [{ ...rows[0], id: "mtg-fixture", gv_id: "GV-MTG-FIXTURE-1", name: "Magic fixture" }] } }).catch(() => {});
+  });
+  try {
+    const request = page.waitForRequest(request => {
+      const url = new URL(request.url());
+      return url.pathname === "/api/resolver/search" && url.searchParams.get("game") === "mtg" && url.searchParams.get("q") === "Pikachu";
+    });
+    await page.locator("main").getByLabel("Trading card game").selectOption("mtg");
+    await input.focus();
+    await request;
+    await expect(input).toHaveAttribute("aria-busy", "true");
+    await expect(options).toHaveCount(0);
+    release();
+    await expect(options).toHaveCount(1);
+    await expect(options.first()).toContainText("Magic fixture");
+  } finally {
+    release();
+  }
+});
+
 test("Escape stays dismissed through a delayed response; arrows reopen and Tab dismisses", async ({ page }) => {
   let release!: () => void;
   const gate = new Promise<void>(resolve => { release = resolve; });
