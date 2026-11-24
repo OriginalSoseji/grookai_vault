@@ -11,8 +11,15 @@ If a contract is missing from this index, it is not authoritative.
 
 ## 🧱 FOUNDATIONAL CONTRACTS
 
+The current duplicate-set catalog successor is
+[BEST_OF_GAME_DISCOVERY_READ_REPAIR_V17](contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V17.md)
+(Active, bounded522-to523). It changes one catalog reader, retains the consumed
+522 apply and failed fixed load samples, and requires a separate exact SQL
+decision after full qualification. Earlier indexed contracts remain binding.
+
 | Contract | Status | Description |
 |--------|--------|-------------|
+| BEST_OF_GAME_DISCOVERY_READ_REPAIR_V17 | Active bounded522-to523 catalog correction | [Bulk catalog authority V17](contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V17.md); one equivalent catalog body, unchanged helpers/security/data, preserved failures and separate exact SQL decision |
 | BEST_OF_GAME_DISCOVERY_READ_REPAIR_V5 | Active bounded513-to516 performance release | docs/contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V5.md — Qualified actual PL/pgSQL catalog plan fence; three immutable forward migrations, full-output/API and exact data preservation gates |
 | BEST_OF_GAME_DISCOVERY_READ_REPAIR_V16 | Active bounded521-to522 direct visibility correction | [Direct visibility V16](contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V16.md); three equivalent helper bodies, preserved authority/data, qualified load behavior and separate exact SQL decision |
 | BEST_OF_GAME_DISCOVERY_READ_REPAIR_V15 | Active bounded520-to521 index correction | [Catalog covering V15](contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V15.md); one exact partial covering index, unchanged readers and approved comparison deadline, cold-buffer qualification and genuine release closure |
