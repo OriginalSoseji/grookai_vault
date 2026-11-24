@@ -1,4 +1,5 @@
 import { formatUsdPrice } from "@/lib/cards/formatUsdPrice";
+import { formatMarketPriceUpdatedAt } from "@/lib/pricing/formatMarketPriceUpdatedAt";
 
 type VisiblePriceProps = {
   value?: number | null;
@@ -96,6 +97,11 @@ export default function VisiblePrice({
         {isFromPrice ? "From " : ""}
         {formatUsdPrice(value)}
       </p>
+      {typeof value === "number" && observedAt ? (
+        <p className={classes.note}>
+          <time dateTime={observedAt}>{formatMarketPriceUpdatedAt(observedAt)}</time>
+        </p>
+      ) : null}
       {note === "compact" ? <p className={classes.note}>Latest qualified close</p> : null}
       {note === "full" ? (
         <p className={classes.note}>

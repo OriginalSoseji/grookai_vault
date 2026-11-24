@@ -49,6 +49,7 @@ type VaultHeaderValueSummary = {
   totalRawCopyCount: number;
   unpricedCopyCount: number;
   latestPricingUpdateAt: string | null;
+  latestPricingSourceUpdateAt?: string | null;
 };
 
 type SetGroup = {
@@ -194,35 +195,35 @@ function formatLastAdded(value: string | null) {
 
 function formatPricingFreshness(value: string | null) {
   if (!value) {
-    return "Updated recently";
+    return "Update time unavailable";
   }
 
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) {
-    return "Updated recently";
+    return "Update time unavailable";
   }
 
   const diffMs = Date.now() - date.getTime();
   const diffMinutes = Math.max(1, Math.floor(diffMs / 60000));
 
   if (diffMinutes < 60) {
-    return `Updated ${diffMinutes}m ago`;
+    return `Latest included price update ${diffMinutes}m ago`;
   }
 
   const diffHours = Math.floor(diffMinutes / 60);
   if (diffHours < 24) {
-    return `Updated ${diffHours}h ago`;
+    return `Latest included price update ${diffHours}h ago`;
   }
 
   const diffDays = Math.floor(diffHours / 24);
   if (diffDays < 7) {
-    return `Updated ${diffDays}d ago`;
+    return `Latest included price update ${diffDays}d ago`;
   }
 
   const formatter = date.getFullYear() !== new Date().getFullYear()
     ? VAULT_FULL_DATE_FORMATTER
     : VAULT_SHORT_DATE_FORMATTER;
-  return `Updated ${formatter.format(date)}`;
+  return `Latest included price update ${formatter.format(date)}`;
 }
 
 function SmartViewButton({
@@ -381,8 +382,8 @@ export function VaultCollectionView({
       : null;
   const coverageLabel = `${valueSummary.pricedCopyCount + (sealedTotals?.priced_copy_count ?? 0)} / ${valueSummary.totalRawCopyCount + (sealedTotals?.active_copy_count ?? 0)}`;
   const freshnessLabel = clientReady
-    ? formatPricingFreshness(valueSummary.latestPricingUpdateAt)
-    : "Updated recently";
+    ? formatPricingFreshness(valueSummary.latestPricingSourceUpdateAt ?? null)
+    : "Update time unavailable";
 
   const recentItems = useMemo(
     () =>

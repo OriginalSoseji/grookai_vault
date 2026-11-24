@@ -3988,9 +3988,16 @@ class _CardDetailScreenState extends State<CardDetailScreen> {
         ?.toInt();
     final observedAt = DateTime.tryParse(_cleanText(data['observed_at']));
     final pricingFooterParts = <String>[];
+    if (data['freshness'] == 'stale') {
+      pricingFooterParts.add('Last known price');
+    }
     if (observedAt != null) {
       pricingFooterParts.add(
-        'Updated ${observedAt.toLocal().month}/${observedAt.toLocal().day}',
+        'Last updated ${observedAt.toLocal().year}/'
+        '${observedAt.toLocal().month}/${observedAt.toLocal().day} '
+        '${observedAt.toLocal().hour.toString().padLeft(2, '0')}:'
+        '${observedAt.toLocal().minute.toString().padLeft(2, '0')} '
+        '${observedAt.toLocal().timeZoneName}',
       );
     }
     if (_hasVaultContext) {

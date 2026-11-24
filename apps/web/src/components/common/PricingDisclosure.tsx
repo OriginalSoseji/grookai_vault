@@ -12,7 +12,8 @@ export default function PricingDisclosure() {
       </p>
 
       <p>
-        Pricing is withheld when the exact printing is uncertain, the finish does not match, or the latest source data is stale.
+        Older prices remain visible with their original last-updated date until a newer qualified price is available.
+        Pricing is withheld when the exact printing is uncertain or the finish does not match.
       </p>
     </section>
   );
