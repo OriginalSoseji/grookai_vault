@@ -6131,3 +6131,53 @@ original plan, producer, decision and labs. Qualify the bounded524 successor and
 a new exact plan/producer decision; never disguise524 as523 or apply both batches.
 The32 stamp/98-insert/32-link admission hold and original149-completed boundary stay.
 
+# Reviewed Japanese printing price links — November24,2026
+
+Use [JAPANESE_REVIEWED_PRICE_LINKS_V1](../contracts/JAPANESE_REVIEWED_PRICE_LINKS_V1.md)
+and [its checkpoint](../checkpoints/pricing/PRICING_CHECKPOINT_20261124_JAPANESE_REVIEWED_PRICE_LINKS.md).
+The separate insert-only programme selects427 existing verified Japanese children
+(383Holo/44Normal), exact archived provider/physical evidence and original current
+USD Market quotes. Its [registry and public evidence](../catalog/japanese_reviewed_price_links_v1/index.json)
+pin nine approved inbound aliases to canonical winners; legacy IDs/finishes remain
+intact. The operator CLI is `scripts/audits/japanese_reviewed_price_links_v1.mjs`.
+Local writes belong only to `japanese_reviewed_price_links_qualification_524_v1`
+at127.0.0.1:55340. Preserve that laboratory and every earlier source/failed receipt.
+Actual qualification/release evidence is under
+`C:/grookai_vault_operator_artifacts/japanese_reviewed_price_links_524_20261124/`.
+
+This source preparation grants no production authority. Exact524 deployed closure,
+complete source/normal/hosted/review qualification and genuine regular29 completion
+must precede a new exact427+1 plan/producer owner decision, scoped acknowledgement,
+actual production rollback and separate apply/readback. Never reuse regular29 or
+another programme's decision. Source7da8 and the original36-hour window stay fixed.
+No physical/owner/source/price/schema/UI/policy/publication write belongs here.
+
+# Additional reviewed Japanese printing price links — November24,2026
+
+Use [JAPANESE_REVIEWED_PRICE_LINKS_V2](../contracts/JAPANESE_REVIEWED_PRICE_LINKS_V2.md)
+and [its checkpoint](../checkpoints/pricing/PRICING_CHECKPOINT_20261124_JAPANESE_REVIEWED_PRICE_LINKS_EXPANDED.md).
+Its [separate registry](../catalog/japanese_reviewed_price_links_v2/index.json)
+selects4916 disjoint existing verified children (2005Holo/2911Normal), excludes
+all frozen V1 products/parents/printings, and pins30 approved inbound aliases.
+The compressed public snapshot binds both file SHA and canonical content hash.
+CLI: `scripts/audits/japanese_reviewed_price_links_v2.mjs`. Only the newly owned
+`japanese_reviewed_price_links_qualification_524_v2_1` at127.0.0.1:55340 may receive
+local writes. Preserve the original qualified V1 lab and both failed V2 labs.
+Receipts: `C:/grookai_vault_operator_artifacts/japanese_reviewed_price_links_expanded_524_20261124/`.
+
+V2 requires its own exact4916+1 plan/complete-producer decision, scoped flag,
+fresh matching production rollback and independent readback after the same full
+release gates. V1 authority never authorizes V2. Unchanged worker30 qualifies4910
+quotes and retains six explicit product-kind exclusions: four Iron Bundle cards,
+Secret Box and Tool Box. Those holds are bound in registry/mapping metadata;
+this programme adds no exception or publication authority. A separate qualified
+classification correction is needed for those six prices.
+
+Both programmes are carried together in the reviewed source release; their SQL
+approval/execution boundaries remain separate. Preserve all32 stamp identity
+holds and13 missing Series6 parents. Original149 and completed regular29 writes
+never repeat. After approved links, a new unlimited corrected full shadow,
+unchanged activation/coverage guards, real publication/source/consumer/app amounts
+and natural refresh remain required. Local fixtures or a merge do not finish
+global pricing or clear stamp admission.
+
