@@ -11,8 +11,30 @@ If a contract is missing from this index, it is not authoritative.
 
 ## 🧱 FOUNDATIONAL CONTRACTS
 
+The current duplicate-set catalog successor is
+[BEST_OF_GAME_DISCOVERY_READ_REPAIR_V17](contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V17.md)
+(Active, bounded522-to523). It changes one catalog reader, retains the consumed
+522 apply and failed fixed load samples, and requires a separate exact SQL
+decision after full qualification. Earlier indexed contracts remain binding.
+
 | Contract | Status | Description |
 |--------|--------|-------------|
+| BEST_OF_GAME_DISCOVERY_READ_REPAIR_V17 | Active bounded522-to523 catalog correction | [Bulk catalog authority V17](contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V17.md); one equivalent catalog body, unchanged helpers/security/data, preserved failures and separate exact SQL decision |
+| BEST_OF_GAME_DISCOVERY_READ_REPAIR_V5 | Active bounded513-to516 performance release | docs/contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V5.md — Qualified actual PL/pgSQL catalog plan fence; three immutable forward migrations, full-output/API and exact data preservation gates |
+| BEST_OF_GAME_DISCOVERY_READ_REPAIR_V16 | Active bounded521-to522 direct visibility correction | [Direct visibility V16](contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V16.md); three equivalent helper bodies, preserved authority/data, qualified load behavior and separate exact SQL decision |
+| BEST_OF_GAME_DISCOVERY_READ_REPAIR_V15 | Active bounded520-to521 index correction | [Catalog covering V15](contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V15.md); one exact partial covering index, unchanged readers and approved comparison deadline, cold-buffer qualification and genuine release closure |
+| BEST_OF_GAME_DISCOVERY_READ_REPAIR_V14 | Active same-SQL current-main integration | [Catalog V14 integration](contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V14.md); retained exact08201421 SQL/local proofs, reviewed stamp/pricing main, full normal/hosted and fresh original-scope release gates |
+| BEST_OF_GAME_DISCOVERY_READ_REPAIR_V13 | Active bounded519-to520 catalog access correction | [Catalog count V13](contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V13.md); existing-index visible filtering, unchanged original and approved extra cohorts/expiry, new exact SQL decision and full genuine API/deployed closure |
+| BEST_OF_GAME_DISCOVERY_READ_REPAIR_V11 | Active bounded518-to519 card-search correction | [Typed card-search V11](contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V11.md); sole guarded read body, preserved original data window, new exact decision and complete production/deployed closure |
+| BEST_OF_GAME_DISCOVERY_READ_REPAIR_V10 | Active same-SQL current-main integration | [Approved identity V10 integration](contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V10.md); retain reviewed Cosmo main changes, unchanged518 inventory and identity consent, original data window, full normal/live/deployed closure |
+| BEST_OF_GAME_DISCOVERY_READ_REPAIR_V9 | Active | [Typed identity V9 correction](contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V9.md); exact517-to518, unchanged free text/Jungle policy and original data window, independent API failure retention, full qualification and separate exact SQL decision |
+| BEST_OF_GAME_DISCOVERY_READ_REPAIR_V8 | Active | [Visible-set V8 forward correction](contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V8.md); actual516 baseline, one additional517 read definition, original data anchors and approval expiry, new exact SQL decision, complete runtime/reliability and deployed closure |
+| BEST_OF_GAME_DISCOVERY_READ_REPAIR_V7 | Active | [Current-main V7 successor](contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V7.md); unchanged513-to516 SQL, frozen V5/V6 lineage, exact operational scope approval and independent real API/deployed closure |
+| BEST_OF_GAME_DISCOVERY_READ_REPAIR_V6 | Active | Current-main integration successor to V5; same immutable513-to516 SQL and original conservation baselines, separately sealed source and normal checks, exact owner-bound operational exceptions only |
+| BEST_OF_GAME_DISCOVERY_READ_REPAIR_V4 | Superseded actual-function qualification; retained unchanged | docs/contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V4.md — Scalar preparation and catalog plan fence; actual result-column ambiguity remains failed with all source/proof retained |
+| BEST_OF_GAME_DISCOVERY_READ_REPAIR_V3 | Superseded scalar-only qualification; retained unchanged | docs/contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V3.md — Forward scalar preparation; realistic catalog timeout remains failed and source/labs stay retained |
+| BEST_OF_GAME_DISCOVERY_READ_REPAIR_V2 | Active bounded512-to513 implementation | docs/contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V2.md — Same immutable nine-alias SQL after independently applied pricing512; separate strict baseline/release gates and new retained qualification labs |
+| BEST_OF_GAME_DISCOVERY_READ_REPAIR_V1 | Superseded deployment qualification; retained unchanged | docs/contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V1.md — Original511-to512 nine-alias qualification and immutable SQL; preserve all source, failed proof and laboratories |
 | PLAY_STAMP_MARKET_MAPPING_V1 | Active bounded implementation; exact production approval required | docs/contracts/PLAY_STAMP_MARKET_MAPPING_V1.md — Separate exact43 insert-only TCGplayer parent links after actual reviewed Normal children; original provenance, zero canonical/owner/Market writes and unchanged generic mapper |
 | EX_INTRINSIC_PRICE_ASSIGNMENT_REPAIR_V1 | Active bounded implementation; exact production approval required | docs/contracts/EX_INTRINSIC_PRICE_ASSIGNMENT_REPAIR_V1.md — Separate exact-six append-only private assignment correction after actual approved EX children; immutable held receipts, zero canonical/mapping/owner/Market writes |
 | PLAY_POKEMON_STAMP_NORMAL_EXECUTION_V1 | Active bounded implementation; exact production approval required | docs/contracts/PLAY_POKEMON_STAMP_NORMAL_EXECUTION_V1.md —43 two-source Normal facts, exact nine-set counts/reference preservation, separate approval/rollback/readback gates; no execution authority granted |

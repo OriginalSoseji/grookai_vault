@@ -25,3 +25,10 @@ docs/audits/intake_recovery_20261027/replay-v5-source-as-executed.mjs -text whit
 # Preserve the hash-pinned inspector query's original indentation.
 scripts/schema/reviewed_intake_public_catalog_v1.sql whitespace=-space-before-tab
 docs/audits/xy_promo_rarity_review_20261118/checklists/*.html -text -diff
+
+# Preserve the already-qualified513 baseline binding's original CRLF bytes.
+scripts/schema/best_of_game_discovery_baseline_binding_v3.json -text whitespace=trailing-space,space-before-tab,cr-at-eol
+
+# Preserve exact earlier SDK harness bytes alongside their retained receipts.
+docs/audits/best_of_game_discovery_v5_20261120/harness-before-credential-guard/verify_best_of_game_discovery_sdk_v5.mjs.source -text whitespace=trailing-space,space-before-tab,cr-at-eol
+docs/audits/best_of_game_discovery_v5_20261120/harness-before-credential-guard/verify_best_of_game_discovery_sdk_v6.mjs.source -text whitespace=trailing-space,space-before-tab,cr-at-eol
