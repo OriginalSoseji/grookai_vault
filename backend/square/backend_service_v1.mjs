@@ -15,6 +15,7 @@ export function createSquareBackendService({client, config = squareEnvironmentCo
       p_connection:data.connectionId,p_owner:data.ownerId,p_token:data.leaseToken,p_fence:data.fence,p_seconds:data.seconds})
       : action === 'authorization_failed' ? await client.rpc('square_connection_authorization_failed_v1', {
         p_connection:data.connectionId,p_owner:data.ownerId,p_token:data.leaseToken,p_fence:data.fence})
+      : action.startsWith('price_batch_') ? await client.rpc('square_price_batch_service_v1', {p_action:action.slice(12),p_data:data})
       : await client.rpc(config.commerceEnabled ? 'square_commerce_service_v2' : 'square_service_v1', {p_action: action, p_data: data});
     if (result.error) {
       const code = /^square_[a-z_]{1,80}$/.test(result.error.message) ? result.error.message : 'square_state_unavailable';

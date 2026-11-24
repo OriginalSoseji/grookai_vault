@@ -1,3 +1,50 @@
+# Square scheduled price batch candidate — November 23, 2026
+
+Continue from `bulk-authority-v1/scheduled-batches-v1` under the November22
+Square readiness artifact root below. Follow the
+[scheduled integration audit](../audits/SQUARE_PRICE_BATCH_SCHEDULING_20261123.md).
+Prepared source integrates recover-only/focused/manual and scheduled batch
+work, with both clock flags default off. No deployed setting changed.
+
+The sixth forward SQL240060 repairs vendor pause and pending-only recovery.
+The populated527 upgrade is now528; preserve its four-copy/sale/review fixtures.
+The separate new528 project passed full replay, four-schema/2,656-security-object
+comparison and official export before adding two real local Auth users and60
+synthetic copies. Actual overlapping clock functions admitted each seller once,
+checked10 ordinary targets and acknowledged50 batch members. A focused new61st
+copy reached positive stock with21 price changes still pending. Its existing
+five-target call also advanced four older copies. Preserve the original failed
+harness expectation and read-only continuation; do not repeat provider writes.
+The new lab is populated and must never be reset. All six SQL bytes are immutable.
+
+The audit-only V2 gate binds canonical522 plus six candidates; V1 stays unchanged.
+Neither grants PrePush/apply authority. Full100,000-copy and varied reference/
+manual-price/artwork checks, real provider/hosted delivery, normal managed/hosted
+and exact current-canonical release checks remain. The shared main pause stays
+active; do not merge another PR, unlock main or enable the dashboard writer.
+
+# Earlier Square durable price batch checkpoint — November 23, 2026
+
+Continue from C:/grookai_vault_operator_artifacts/square_launch_readiness_20261122/hardening-v1/bulk-authority-v1.
+Follow [the batch authority contract](../contracts/SQUARE_PRICE_BATCH_AUTHORITY_V1.md)
+and [its qualification audit](../audits/SQUARE_PRICE_BATCH_AUTHORITY_20261123.md).
+This is prepared source on feat/square-bulk-price-authority-20261123, based on
+canonical522 source4b5489e4, with no production application or activation.
+The five forward SQL files have now been persistently applied only in the new
+owned local database (ledger 527). Preserve their bytes and consumed local receipts;
+any SQL correction must be forward-only. Old prototype sources/labs are retained.
+The new isolated 527-prefix reset/full replay/no-op, fresh/populated four-schema
+and 2,656-object security comparison, read-only official experimental pull/export,
+real local Auth and bounded concurrent-service/sale/withdrawal checks passed.
+Continue from bulk-authority-v1/replay-qualification-v1 and its retained receipts.
+The signed-in runtime fixture is only in sq-price-fresh527-20261123-v1; preserve
+its two synthetic users, four copies, sale and zero-stock review claim. It is no
+longer empty and must never be reset. No existing laboratory was reset or seeded.
+Scheduling/both clocks, the full launch backlog and exact normal/release gates
+remain. Local transport models do not qualify live Square or mass-scale use.
+The shared duplicate-release main pause remains binding; do not change its
+control files, protection, dashboard writer or approved release packet.
+
 # Duplicate-set bulk catalog authority V17 — November23,2026
 
 Follow [V17](../contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V17.md). Production522

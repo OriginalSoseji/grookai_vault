@@ -12,6 +12,74 @@ the shared merge pause. Stamped Reverse Holos follow that closure.
 
 # Grookai Vault — Migration Maintenance Contract (v1)
 
+## Square price batch current-baseline audit V3 — November 23, 2026
+
+V3 is a separately named, read-only `-SquarePriceBatchBaselineV3` scope for
+canonical523 and six exact future candidates `20261124230000,20261124231000,
+20261124232000,20261124233000,20261124234000,20261124235000`, targeting529.
+It binds the qualified canonical523 source, complete four-schema/security
+baseline and duplicate-set V17 closure. V1/V2 retain their historical scopes.
+The six payloads retain the exact bytes qualified in the older528 labs;
+those applied files remain immutable in their original source and labs.
+The separately prepared current-main branch uses new forward IDs because the
+old IDs sort before the now-applied canonical523 migration.
+
+V3 accepts only AuditLinkedSchema with its versioned artifact directory. Partial
+candidate source, PrePush, combined modes and target/environment/ID overrides
+fail before database access. This audit is not an apply gate or production SQL
+approval. Fresh529 prefix reset, historical prerequisites, complete replay/no-op,
+four-schema/security comparison and official export have passed. The populated
+523-to529 upgrade preserved all 481 existing table fingerprints and 54 copies;
+all four schemas and 2,656 security objects matched the fresh replay. The frozen
+528 component separately passed its complete 100,000-copy backlog, new-copy and
+interruption model. Normal managed/hosted release checks and a separate exact
+production release scope remain required before production application.
+Failed restore or verification attempts remain evidence; generated comparison
+and export SQL is never executed. No populated lab may be reset.
+
+## Square price batch current-baseline audit V2 — November 23, 2026
+
+V2 is a separate audit-only scope for canonical522 plus six exact candidates
+240010/20/30/40/50/60, targeting528. Preserve V1 below without widening it.
+The sixth SQL fixes auto-sync pause and pending-only recovery eligibility by
+replacing only two pinned authority function bodies. Its populated527 upgrade
+and no-op preserve all488 table fingerprints except the exact ledger append;
+four schemas and all security metadata match the declared two-body change.
+The new isolated528 prefix reset, historical prerequisites, full replay/no-op,
+fresh/populated comparison and official export passed. Generated SQL was never
+executed. Both old and new projects now contain local Auth/inventory fixtures
+and must never be reset. The six locally applied migration bytes are immutable.
+
+V2 rejects PrePush, combined flags and environment/expected-ID overrides before
+database access. Its current522 audit does not approve future main/schema
+ordering, replace failed catalog reliability samples, lift the shared merge
+pause, or grant production SQL authority. A separate exact release scope after
+current-canonical integration and normal/hosted checks remains required. See the
+[scheduled batch audit](../audits/SQUARE_PRICE_BATCH_SCHEDULING_20261123.md).
+
+## Square price batch current-baseline audit V1 — November 23, 2026
+
+`-SquarePriceBatchBaselineV1` admits only AuditLinkedSchema, canonical 522 and
+the exact five immutable 20261124001000/20/30/40/50 candidates targeting 527.
+It pins all 527 source files, current ledger, four governed schemas and full
+security against the qualified canonical 522 fresh lineage. PrePush, combined
+flags, expected-ID overrides and environment/target overrides fail before access.
+Earlier gate scopes remain unchanged. This is not production apply authority.
+The separately failed catalog reliability samples remain failed evidence.
+
+The new isolated 527 lab completed genuine CLI prefix reset, the declared
+647-pair historical alias prerequisite, 100 unchanged catalog INSERT statements
+without owner rows, full source push and no-op. Complete fresh/populated schema
+and owner/ACL/RLS/function-definition security equivalence passed. The official
+experimental CLI pull/export retained all 488 table fingerprints and ledger;
+its generated SQL was not executed. This preserves the existing Square scoped
+historical-prerequisite boundary; ordinary shadow replay is not claimed.
+Actual local Auth/runtime fixtures were added only after those receipts. That
+lab is now populated and must never be reset. Preserve every prior lab and all
+five persistently applied local SQL bytes. Remaining release gates require a
+separate exact PrePush scope, normal managed/hosted source proof and the shared
+release pause/production SQL controls. The audit flag cannot substitute for them.
+
 ## Duplicate-set bulk catalog authority V17 — November23,2026
 
 Only -BestOfGameDiscoveryReleaseV17 admits canonical522-to523 and sole
