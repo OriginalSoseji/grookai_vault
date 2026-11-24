@@ -1,0 +1,25 @@
+{
+  "executionAuthority": false,
+  "baseMasterRef": "docs/audits/english_master_index_publishable_v1/sets/swsh3/printings.json",
+  "baseMasterSha256": "297a696c070a10f32e14ff49dc2b9e58ac599310859d27a480bafa141315a882",
+  "humanReference": {
+    "path": "retail-cosmos-human-pages-v1/51432.html",
+    "sha256": "ea292a35b7de0a8a8f288b1275fe13299b4817c625b28a68580d12889ea4ba1a",
+    "url": "https://pokumon.com/card/stamped-corviknight-156-189-new-set-retail-store-purchase-campaign-special-print/"
+  },
+  "physicalImage": {
+    "path": "stamped-cosmos-conflict-images-v1/57554bc8-61ab-49a2-ba4b-189abb8ecd6f.jpg",
+    "sha256": "a94cdb9924f0d3ac96f5b0fee2bf6c1be280524466bb0bd5bd1586d795f3fdf4",
+    "url": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S979StampedSpecial-Print.jpg"
+  },
+  "parentFullRowSha256": "ff27b72b3e638fafb8889f30efdcb4dcfc6f9630846a5e70595120393f6f7dfb",
+  "identityFullRowSha256": "a605bb01d5a86e81ef70ec03afb58e578f0230925a019163eacbce4a36d3d319",
+  "retainedReverse": [
+    {
+      "id": "57554bc8-61ab-49a2-ba4b-189abb8ecd6f",
+      "printingGvId": "GV-PK-SWSH3-156-DARKNESS-ABLAZE-STAMP-RH",
+      "finishKey": "reverse",
+      "beforeSha256": "ff51242bd16059d6b202c19baa902e127a80d3f481c41404b89b79fc432e2132"
+    }
+  ]
+}

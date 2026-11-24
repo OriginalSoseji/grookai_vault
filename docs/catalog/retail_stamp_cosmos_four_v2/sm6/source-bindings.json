@@ -1,0 +1,25 @@
+{
+  "executionAuthority": false,
+  "baseMasterRef": "docs/audits/english_master_index_publishable_v1/sets/sm6/printings.json",
+  "baseMasterSha256": "f3e804a6c4108f99177eb322c4bc66dfba6a118d4368005cd05a5c14568bb121",
+  "humanReference": {
+    "path": "retail-cosmos-human-pages-v1/51203.html",
+    "sha256": "8865bf617db34aac887bb47ee114a75b65ab8eaf650322b3972c50d9f80a8a2d",
+    "url": "https://pokumon.com/card/stamped-fennekin-15-131-toys-r-us-special-print/"
+  },
+  "physicalImage": {
+    "path": "stamped-cosmos-conflict-images-v1/be9b29c3-236d-44c7-a029-7ec4720f135e.jpg",
+    "sha256": "850ffcdc478aea1cfbe82a5530d4024a5d3befbb85acc2caa79c6d8f79f9b9f4",
+    "url": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S819StampedSpecial-Print.jpg"
+  },
+  "parentFullRowSha256": "048dd917fd31088962979119dbff3848189743d19772bca9e4c4cd5b014580cd",
+  "identityFullRowSha256": "819e636444399d3ffa2f5ea6c225fa194a157278a33ab9e54302e489eae1c649",
+  "retainedReverse": [
+    {
+      "id": "be9b29c3-236d-44c7-a029-7ec4720f135e",
+      "printingGvId": "GV-PK-SM6-15-FORBIDDEN-LIGHT-STAMP-RH",
+      "finishKey": "reverse",
+      "beforeSha256": "87977bd097ba1c87f26c3b9c56515900e34c8ca5d729d9e1ffa67b6edbbd6813"
+    }
+  ]
+}

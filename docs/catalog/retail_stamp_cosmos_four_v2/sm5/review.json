@@ -1,0 +1,35 @@
+{
+  "status": "verified_positive_subset",
+  "reviewer": "Codex, source adjudication during owner-authorized all-stamped printing repair preparation",
+  "reviewed_at": "2026-11-24T09:08:58.762Z",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sm5",
+  "scope": "verified_finish_subset",
+  "master_index_sha256": "7c8e5e3f896eca94f4aff9c9da9b590700a8e9bede14d28e921b4845767644ca",
+  "projection_sha256": "80e0c9975ad982cd96d678f8427009f81db4c86053158dba54ae1d592df45c52",
+  "production_execution_authority": false,
+  "whole_set_completion": false,
+  "decisions": [
+    "Only the exact existing stamped parent and documented Cosmos finish are admitted in this bounded working Master addendum.",
+    "The exact human-readable collector reference names Cosmos Holo and this expansion stamp. Pricing buckets and provider variant booleans are not used.",
+    "The separate Reverse child remains unchanged and unadjudicated; Cosmos presence does not establish another finish absence.",
+    "No parent, identity, old child, old review, image, mapping, pricing, owner or visibility update is proposed."
+  ],
+  "physical_image_review": {
+    "file": "ce746f69-793c-4819-aef3-7ee5e77a0a53.jpg",
+    "sha256": "1df1afb9a1b3a2c515f9ff82db87996c13b1b0e54e159e4f83bde1bbfb15edc8",
+    "printed_name": "Heatran",
+    "printed_number": "88/156",
+    "printed_stamp": "Ultra Prism expansion logo overlay",
+    "foil_observation": "The retained exact source classifies Cosmos. The scan clearly shows identity and expansion stamp; its foil reflection is less conclusive than the Fennekin/Dragapult photos."
+  },
+  "protected_outside_scope_children": [
+    {
+      "id": "ce746f69-793c-4819-aef3-7ee5e77a0a53",
+      "printingGvId": "GV-PK-SM5-88-ULTRA-PRISM-STAMP-RH",
+      "finishKey": "reverse",
+      "beforeSha256": "67af009618eff62eb97bedbafd9a657a300b3ddcabea781d64d8b1f38836d892"
+    }
+  ]
+}

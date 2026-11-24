@@ -1,0 +1,93 @@
+{
+  "version": "RETAIL_COSMOS_FINISH_SUBSET_AUTHORITY_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sm5",
+  "scope": "verified_finish_subset",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "docs/catalog/retail_stamp_cosmos_four_v2/sm5/master.json",
+  "master_index_sha256": "7c8e5e3f896eca94f4aff9c9da9b590700a8e9bede14d28e921b4845767644ca",
+  "parents": [
+    {
+      "id": "c254ec21-1cab-47a7-94f4-b29b6fe97b3b",
+      "set_id": "0ccab8fe-5cb3-4535-860b-c051d1f0cf73",
+      "gv_id": "GV-PK-SM5-88-ULTRA-PRISM-STAMP",
+      "name": "Heatran",
+      "printed_coordinate": "88",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "ultra_prism_stamp",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "c254ec21-1cab-47a7-94f4-b29b6fe97b3b",
+      "finish_key": "cosmos",
+      "printing_gv_id": "GV-PK-SM5-88-ULTRA-PRISM-STAMP-COSMOS",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "exact-human-reference",
+          "sha256": "d45b48bb23e500c327fe8501655932ab06fe04481b08524f687b1d8fc0f9befb",
+          "card_print_id": "c254ec21-1cab-47a7-94f4-b29b6fe97b3b",
+          "finish_key": "cosmos"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [
+    {
+      "key": "ce746f69-793c-4819-aef3-7ee5e77a0a53",
+      "card_print_id": "c254ec21-1cab-47a7-94f4-b29b6fe97b3b",
+      "source_ref": "exact-human-reference",
+      "reason": "The separately stored Reverse child is preserved and unadjudicated outside the Cosmos-only finish subset; this source does not prove its absence.",
+      "status": "needs_review",
+      "scope": "retained_unadjudicated_existing_finish"
+    }
+  ],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "admitted_printings": 1,
+    "retained_unadjudicated_printings": 1,
+    "finishes": {
+      "cosmos": 1
+    }
+  },
+  "authority": {
+    "version": "RETAIL_COSMOS_FINISH_SUBSET_AUTHORITY_V1",
+    "status": "verified_positive_subset",
+    "set_id": "0ccab8fe-5cb3-4535-860b-c051d1f0cf73",
+    "source_artifacts": [
+      {
+        "ref": "exact-human-reference",
+        "kind": "checked_checklist",
+        "sha256": "d45b48bb23e500c327fe8501655932ab06fe04481b08524f687b1d8fc0f9befb",
+        "url_or_identifier": "https://pokumon.com/card/cosmos-holofoil-heatran-88-156-gamestop-special-print/",
+        "retrieved_at": "2026-11-24T08:47:26.518Z"
+      },
+      {
+        "ref": "exact-card-image",
+        "kind": "image_confirmed",
+        "sha256": "1df1afb9a1b3a2c515f9ff82db87996c13b1b0e54e159e4f83bde1bbfb15edc8",
+        "url_or_identifier": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S806Cosmos-HolofoilSpecial-Print.jpg",
+        "retrieved_at": "2026-11-24T07:40:48.667Z",
+        "role": "Exact printed identity and stamp corroboration; finish relies on the explicit human-readable claim where foil reflection is inconclusive."
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "c254ec21-1cab-47a7-94f4-b29b6fe97b3b",
+        "finish_key": "cosmos"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "docs/catalog/retail_stamp_cosmos_four_v2/sm5/review.json",
+      "sha256": "4ce65aa5a196f3cd1dea9e6b416f3a56b46e0fe5263ad1aefb4f55504aef105f"
+    }
+  },
+  "fingerprint": "aa72b61993fc337ea4f4c372036ef23298e4165b75a586de460183470345b7ad"
+}

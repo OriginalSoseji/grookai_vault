@@ -1,0 +1,35 @@
+{
+  "status": "verified_positive_subset",
+  "reviewer": "Codex, source adjudication during owner-authorized all-stamped printing repair preparation",
+  "reviewed_at": "2026-11-24T09:08:58.762Z",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "swsh3",
+  "scope": "verified_finish_subset",
+  "master_index_sha256": "a22250e7c55989a433336d04c02ecebe80f2b95ebde16e865dabac0918497059",
+  "projection_sha256": "1a943444d172cbfaf1caa364d4a70e79b72f4adf86cbed57d9bd1478de6512ee",
+  "production_execution_authority": false,
+  "whole_set_completion": false,
+  "decisions": [
+    "Only the exact existing stamped parent and documented Cosmos finish are admitted in this bounded working Master addendum.",
+    "The exact human-readable collector reference names Cosmos Holo and this expansion stamp. Pricing buckets and provider variant booleans are not used.",
+    "The separate Reverse child remains unchanged and unadjudicated; Cosmos presence does not establish another finish absence.",
+    "No parent, identity, old child, old review, image, mapping, pricing, owner or visibility update is proposed."
+  ],
+  "physical_image_review": {
+    "file": "57554bc8-61ab-49a2-ba4b-189abb8ecd6f.jpg",
+    "sha256": "a94cdb9924f0d3ac96f5b0fee2bf6c1be280524466bb0bd5bd1586d795f3fdf4",
+    "printed_name": "Corviknight",
+    "printed_number": "156/189",
+    "printed_stamp": "Darkness Ablaze expansion logo overlay",
+    "foil_observation": "The retained exact source classifies Cosmos. The scan clearly shows identity and expansion stamp; its foil reflection is less conclusive than the Fennekin/Dragapult photos."
+  },
+  "protected_outside_scope_children": [
+    {
+      "id": "57554bc8-61ab-49a2-ba4b-189abb8ecd6f",
+      "printingGvId": "GV-PK-SWSH3-156-DARKNESS-ABLAZE-STAMP-RH",
+      "finishKey": "reverse",
+      "beforeSha256": "ff51242bd16059d6b202c19baa902e127a80d3f481c41404b89b79fc432e2132"
+    }
+  ]
+}
