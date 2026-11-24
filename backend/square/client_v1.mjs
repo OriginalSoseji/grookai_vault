@@ -177,6 +177,49 @@ export class SquareClient {
     }
     return {itemId: item.id, variationId: matches[0].id};
   }
+  // Complete bounded lookup for a future price batch. No writer currently calls
+  // this path. A mapped-ID fetch alone cannot establish QR/SKU uniqueness.
+  async itemsForExactSkus(skus) {
+    if(!Array.isArray(skus)||skus.length<1||skus.length>25||new Set(skus).size!==skus.length||
+      skus.some(sku=>typeof sku!=='string'||!/^https:\/\/grookaivault\.com\/q\/GVVI-[A-Z0-9]+-[0-9]{6}$/.test(sku)))fail('square_invalid_sku');
+    const wanted=new Set(skus),variations=new Map(),parents=new Set(),counts=new Map(),seen=new Set();let cursor;
+    for(let page=0;page<5;page++){
+      const data=await this.#request('POST','/v2/catalog/search',{object_types:['ITEM_VARIATION'],include_deleted_objects:false,
+        limit:100,query:{set_query:{attribute_name:'sku',attribute_values:skus}},...(cursor?{cursor}:{})});
+      if(data.objects!==undefined&&!Array.isArray(data.objects))fail('square_catalog_incomplete');
+      for(const variation of data.objects??[]){
+        const details=variation.item_variation_data;
+        if(variation.type!=='ITEM_VARIATION'||variation.is_deleted===true||!wanted.has(details?.sku)||variations.has(variation.id))fail('square_catalog_incomplete');
+        id(variation.id);id(details.item_id);variations.set(variation.id,{parent:details.item_id,sku:details.sku});parents.add(details.item_id);
+        counts.set(details.sku,(counts.get(details.sku)??0)+1);if(counts.get(details.sku)>10)fail('square_duplicate_sku');
+      }
+      if(!data.cursor){
+        if(!parents.size)return [];
+        const result=await this.#request('POST','/v2/catalog/batch-retrieve',{object_ids:[...parents],include_related_objects:false});
+        if(result.cursor||!Array.isArray(result.objects)||result.objects.length!==parents.size)fail('square_catalog_incomplete');
+        const found=new Set(),foundVariations=new Set();
+        for(const item of result.objects){
+          if(item.type!=='ITEM'||item.is_deleted===true||!parents.has(item.id)||found.has(item.id)||!Array.isArray(item.item_data?.variations)||
+            !Number.isSafeInteger(item.version)||item.version<=0)fail('square_catalog_incomplete');found.add(item.id);
+          for(const variation of item.item_data.variations){
+            const details=variation.item_variation_data;
+            if(variation.type!=='ITEM_VARIATION'||variation.is_deleted===true||details?.item_id!==item.id||
+              !Number.isSafeInteger(variation.version)||variation.version<=0)fail('square_catalog_incomplete');
+            id(variation.id);
+            if(wanted.has(details.sku)){
+              const expected=variations.get(variation.id);
+              if(!expected||expected.parent!==item.id||expected.sku!==details.sku||foundVariations.has(variation.id))fail('square_catalog_incomplete');
+              foundVariations.add(variation.id);
+            }
+          }
+        }
+        if(foundVariations.size!==variations.size)fail('square_catalog_incomplete');
+        return result.objects;
+      }
+      if(typeof data.cursor!=='string'||data.cursor.length>4096||seen.has(data.cursor))fail('square_catalog_incomplete');seen.add(data.cursor);cursor=data.cursor;
+    }
+    fail('square_catalog_incomplete');
+  }
   async inventoryQuantity(variationId, locationId) {
     id(variationId); id(locationId);
     const data = await this.#request('POST','/v2/inventory/counts/batch-retrieve',{
@@ -236,6 +279,16 @@ export class SquareClient {
   }
   // Operator qualification only. Production always rejects before IO. There is
   // no user-facing payment/refund-create route or production write permission.
+  async sandboxCatalogTestRequest(kind,payload){
+    if(this.#origin!==origins.sandbox)fail('square_sandbox_required');
+    const routes={search:'/v2/catalog/search',retrieve:'/v2/catalog/batch-retrieve',upsert:'/v2/catalog/batch-upsert'};
+    if(!Object.hasOwn(routes,kind)||!payload||typeof payload!=='object'||Array.isArray(payload))fail('square_invalid_request');
+    if(kind==='upsert'&&(!payload.idempotency_key||payload.batches?.length!==1||
+      !Array.isArray(payload.batches[0].objects)||payload.batches[0].objects.length<1||payload.batches[0].objects.length>25||
+      payload.batches[0].objects.some(object=>object?.type!=='ITEM')))fail('square_invalid_request');
+    if(kind==='retrieve'&&(!Array.isArray(payload.object_ids)||payload.object_ids.length<1||payload.object_ids.length>25))fail('square_invalid_request');
+    return this.#request('POST',routes[kind],payload,{mutation:kind==='upsert'});
+  }
   async sandboxTestMutation(kind,payload){
     if(this.#origin!==origins.sandbox)fail('square_sandbox_required');
     const routes={order:'/v2/orders',payment:'/v2/payments',refund:'/v2/refunds'};
