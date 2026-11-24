@@ -1,3 +1,31 @@
+# Duplicate-set bulk catalog authority V17 — November23,2026
+
+Follow [V17](../contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V17.md). Production522
+applied once under V20. Its60 API and120 original data/schema/security checks
+passed, but fixed concurrent catalog samples failed3504/3377ms with57014; the
+third passed1237ms and all18 other sampled calls passed. Preserve all receipts
+and consumed authority. Do not rerun acceptance at522 or unlock/merge/deploy.
+
+Prepare the one-body523 correction in
+C:/grookai_best_of_game_bulk_catalog_523_20261124; retain diagnosis and proofs
+under C:/grookai_vault_operator_artifacts/best_of_game_catalog_load_522_20261124.
+Factor six identical alias authority clauses into one bulk query, keep direct
+Pokemon visibility equivalent and reuse existing projection exclusions. Keep
+all522 historical SQL/helpers/indexes/security/data exact. The fresh actual522
+audit precedes schema work; only V17 qualifies the new exact ID. Preserve failed
+prototype/packaging proofs as failed. No populated lab reset or Docker pruning.
+If a diagnostic pg_get_functiondef is embedded in a multi-statement migration,
+terminate it explicitly and verify the actual official CLI package.
+
+Local baseline also passes under load: do not claim a reproduced production
+failure or use local timings as production acceptance. Full local/normal/hosted
+qualification and fresh original-scope gates precede new exact SQL consent.
+The unchanged comparison deadline is2026-11-24T13:59:40Z; no new cohort/window is
+admitted. Main/dashboard stay paused through genuine API/data/security/load,
+normal PR985 merge, matching Production25-page verification and exact original
+control restoration. Then continue all stamped Reverse Holos, including Holon
+Phantoms and Delta Species, under their separate printing authority.
+
 # Best of Game catalog covering-index correction V15 — November 23, 2026
 
 Follow [V15](../contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V15.md). Production

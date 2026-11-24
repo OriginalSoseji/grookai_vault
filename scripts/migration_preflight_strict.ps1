@@ -21,6 +21,7 @@ param(
 
   [switch]$MarketPriceRetentionBaselineV1,
 
+  [switch]$BestOfGameDiscoveryReleaseV17,
   [switch]$BestOfGameDiscoveryReleaseV16,
   [switch]$BestOfGameDiscoveryReleaseV15,
   [switch]$BestOfGameDiscoveryReleaseV14,
@@ -170,6 +171,18 @@ if ($MarketPriceRetentionBaselineV1) {
     throw 'Market retention baseline is read-only AuditLinkedSchema only, with a new bounded output directory and exact520 history. No candidate or PrePush authority.'
   }
   & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_market_price_retention_baseline_v1.mjs') $AuditOutDir
+  exit $LASTEXITCODE
+}
+
+if ($BestOfGameDiscoveryReleaseV17) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','BestOfGameDiscoveryReleaseV17','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne '20261124040000') -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne '20261124040000') -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Best of Game discovery release V17 requires only ID20261124040000 at canonical522; no mixed scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_best_of_game_discovery_release_v17.mjs') $Phase "--out-dir=$AuditOutDir"
   exit $LASTEXITCODE
 }
 
