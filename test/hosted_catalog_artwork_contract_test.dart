@@ -202,8 +202,12 @@ void main() {
         r'CatalogArtworkResolution get _cardArtworkResolution[\s\S]*?String get _resolvedSetName',
       ).firstMatch(detail)!.group(0)!;
 
-      expect(printingLoader, contains("row['image_url']"));
-      expect(printingLoader, contains("row['image_alt_url']"));
+      expect(printingLoader, contains('CanonImageUrlService.enrichRows'));
+      expect(
+        printingLoader,
+        contains('imageFields: Map<String, dynamic>.unmodifiable(row)'),
+      );
+      expect(detail, contains('printing: selected?.imageFields'));
       expect(
         printingLoader,
         contains('PublicCardPrintingOptionsService.fetch'),
