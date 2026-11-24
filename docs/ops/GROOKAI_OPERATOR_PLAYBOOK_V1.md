@@ -1,3 +1,38 @@
+# Square source after PR1050 — November24,2026
+
+The [source continuity contract](../contracts/SQUARE_MAIN1050_PRODUCER_CONTINUITY_V1.md)
+pins all600 accepted Japanese producer files and the six exact additional Square
+SQL files. Use it for source checks only; Japanese execution stays on its accepted
+immutable runtime and original594/600 fingerprints. Missing/changed/extra files
+fail closed. Preserve the failed113/116 fixed-count run.
+
+The candidate now integrates accepted main136d9879, retaining both Japanese
+427+1 and4916+1 programmes and every unchanged Square524-to530 payload. Follow
+[real Sandbox/native acceptance](../audits/SQUARE_REAL_SANDBOX_NATIVE_20261124.md)
+and the [read-only release contract](../contracts/SQUARE_PRICE_BATCH_RELEASE_V1.md).
+Evidence continues in `bulk-authority-v1/current-main-1050-v1` under the Square
+launch-readiness artifact root. The read-only release binding now names
+main136d9879 and this new source/market evidence root. Its fresh V4 audit
+namespace starts at105001; all earlier outputs are retained. Old qualified sources and laboratories remain
+frozen; never replay consumed native adds, market fixtures, stock/price requests,
+response-loss cases, auth fixture repairs or closures.
+
+Actual native Auth/HTTP plus real Square Sandbox passed default rounding,
+manual precedence and accepted-response recovery. The owned clone is retained
+at91 copies/28 Sandbox items; original530 and large528 laboratories remain
+at63 and100002 copies. All own servers are stopped and private batch admission
+is off. These local fixture publications do not prove live daily freshness,
+hosted scheduling, production capacity or reader checkout.
+
+Require full normal/hosted checks on the new combined source. Preserve both
+Japanese programmes until their own deployed source/data closure; no Square
+production migration may invalidate their524 plans. Then qualify a new accepted
+publication and natural consumer/price refresh before the exact release decision,
+schema-first publication and separately qualified activation. Never repeat
+regular29 or149. The old raw missing13 stamp diagnostic does not establish
+global absence: preserve all four existing stamped parents/Normal facts and
+every approved alias; unresolved identities remain held under their own rules.
+
 # Four retail-stamped Cosmos finishes — November 24, 2026
 
 Follow the [bounded Cosmos contract](../contracts/RETAIL_STAMP_COSMOS_FOUR_EXECUTION_V1.md)
@@ -27,6 +62,21 @@ be less than one hour old before apply. Unknown outcomes require independent
 readback; never blindly retry, delete referenced rows or silently refresh an
 approved baseline. Durable data/public/collector verification remains required.
 No image promotion or pricing publication is included in this programme.
+
+# Square canonical524 integration — November24,2026
+
+Continue from `bulk-authority-v1/current-main-524-v1` under the Square
+launch-readiness artifact root. Follow the [current audit](../audits/SQUARE_CANONICAL_524_INTEGRATION_20261124.md).
+Production independently released retained-price524 on main086cf597. The new
+Square source composes its unchanged six late-day payloads after524, targeting530.
+V4 is audit-only. Keep every earlier source, applied migration, failed receipt
+and populated lab. Fresh530, populated524-to530, full schema/security, official
+export and bounded current-runtime recovery passed; production is unchanged.
+The frozen100,001-copy ordinary stock-check drain continues independently.
+Prior checkpoint statements below retain their original historical scope;
+consult the shared coordination status for the current main-pause state.
+Complete current normal/hosted and exact production release gates before SQL,
+schema-before-server publication and separately qualified clock activation.
 
 # Regular-product mapping correction candidate — November24,2026
 
@@ -108,6 +158,53 @@ not permission to publish. Require the runtime's own full reconciled V3 shadow,
 complete normal/hosted and actual-schema gates, guarded publication, independent
 source-price/app readback and natural refresh proof. Older shadows cannot qualify
 worker V1_29. Keep the shared main-merge pause and original approval boundaries.
+
+# Square scheduled price batch candidate — November 23, 2026
+
+Continue from `bulk-authority-v1/scheduled-batches-v1` under the November22
+Square readiness artifact root below. Follow the
+[scheduled integration audit](../audits/SQUARE_PRICE_BATCH_SCHEDULING_20261123.md).
+Prepared source integrates recover-only/focused/manual and scheduled batch
+work, with both clock flags default off. No deployed setting changed.
+
+The sixth forward SQL240060 repairs vendor pause and pending-only recovery.
+The populated527 upgrade is now528; preserve its four-copy/sale/review fixtures.
+The separate new528 project passed full replay, four-schema/2,656-security-object
+comparison and official export before adding two real local Auth users and60
+synthetic copies. Actual overlapping clock functions admitted each seller once,
+checked10 ordinary targets and acknowledged50 batch members. A focused new61st
+copy reached positive stock with21 price changes still pending. Its existing
+five-target call also advanced four older copies. Preserve the original failed
+harness expectation and read-only continuation; do not repeat provider writes.
+The new lab is populated and must never be reset. All six SQL bytes are immutable.
+
+The audit-only V2 gate binds canonical522 plus six candidates; V1 stays unchanged.
+Neither grants PrePush/apply authority. Full100,000-copy and varied reference/
+manual-price/artwork checks, real provider/hosted delivery, normal managed/hosted
+and exact current-canonical release checks remain. The shared main pause stays
+active; do not merge another PR, unlock main or enable the dashboard writer.
+
+# Earlier Square durable price batch checkpoint — November 23, 2026
+
+Continue from C:/grookai_vault_operator_artifacts/square_launch_readiness_20261122/hardening-v1/bulk-authority-v1.
+Follow [the batch authority contract](../contracts/SQUARE_PRICE_BATCH_AUTHORITY_V1.md)
+and [its qualification audit](../audits/SQUARE_PRICE_BATCH_AUTHORITY_20261123.md).
+This is prepared source on feat/square-bulk-price-authority-20261123, based on
+canonical522 source4b5489e4, with no production application or activation.
+The five forward SQL files have now been persistently applied only in the new
+owned local database (ledger 527). Preserve their bytes and consumed local receipts;
+any SQL correction must be forward-only. Old prototype sources/labs are retained.
+The new isolated 527-prefix reset/full replay/no-op, fresh/populated four-schema
+and 2,656-object security comparison, read-only official experimental pull/export,
+real local Auth and bounded concurrent-service/sale/withdrawal checks passed.
+Continue from bulk-authority-v1/replay-qualification-v1 and its retained receipts.
+The signed-in runtime fixture is only in sq-price-fresh527-20261123-v1; preserve
+its two synthetic users, four copies, sale and zero-stock review claim. It is no
+longer empty and must never be reset. No existing laboratory was reset or seeded.
+Scheduling/both clocks, the full launch backlog and exact normal/release gates
+remain. Local transport models do not qualify live Square or mass-scale use.
+The shared duplicate-release main pause remains binding; do not change its
+control files, protection, dashboard writer or approved release packet.
 
 # Duplicate-set bulk catalog authority V17 — November23,2026
 

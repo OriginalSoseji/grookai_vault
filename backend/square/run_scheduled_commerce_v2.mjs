@@ -8,8 +8,17 @@ let directory;
 try{
  if(process.env.GITHUB_ACTIONS!=='true'||process.env.NODE_ENV!=='production'||process.env.SUPABASE_URL!=='https://ycdxbpibncqcchqiihfz.supabase.co'||process.env.SQUARE_ENVIRONMENT!=='production')throw Error();
  if(names.some(name=>!process.env[name]||/[\r\n\0]/.test(process.env[name])))throw Error();
+ const recoveryWindow=process.env.GROOKAI_SQUARE_RECOVERY_WINDOW_ENABLED??'false';
+ const durableRecovery=process.env.GROOKAI_SQUARE_DURABLE_RECOVERY_ENABLED??'false';
+ const priceBatch=process.env.GROOKAI_SQUARE_PRICE_BATCH_ENABLED??'false';
+ if(!['true','false'].includes(recoveryWindow)||!['true','false'].includes(durableRecovery)||!['true','false'].includes(priceBatch)||
+   priceBatch==='true'&&durableRecovery!=='true'||
+   durableRecovery==='true'&&recoveryWindow!=='true')throw Error();
  directory=fs.mkdtempSync(path.join(os.tmpdir(),'grookai-square-'));fs.chmodSync(directory,0o700);
- const file=path.join(directory,'worker.private.env');fs.writeFileSync(file,names.map(name=>name+'='+JSON.stringify(process.env[name])).join('\n')+'\n',{mode:0o600,flag:'wx'});
+ const file=path.join(directory,'worker.private.env');fs.writeFileSync(file,[...names.map(name=>name+'='+JSON.stringify(process.env[name])),
+  'GROOKAI_SQUARE_RECOVERY_WINDOW_ENABLED='+JSON.stringify(recoveryWindow),
+  'GROOKAI_SQUARE_DURABLE_RECOVERY_ENABLED='+JSON.stringify(durableRecovery),
+  'GROOKAI_SQUARE_PRICE_BATCH_ENABLED='+JSON.stringify(priceBatch)].join('\n')+'\n',{mode:0o600,flag:'wx'});
  const result=spawnSync(process.execPath,[fileURLToPath(new URL('./run_commerce_worker_v2.mjs',import.meta.url)),'--once','--env-file='+file],{stdio:'inherit',timeout:12*60*1000,windowsHide:true});
  if(result.error||result.status!==0)process.exitCode=1;
 }catch{console.error('square_scheduler_configuration_unavailable');process.exitCode=1;}

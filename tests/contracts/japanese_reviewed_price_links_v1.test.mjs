@@ -5,6 +5,7 @@ import {execFileSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import {printingManifestHash as hash} from '../../backend/catalog/printing_completeness_gate_v1.mjs';
 import * as m from '../../backend/pricing/japanese_reviewed_price_links_v1.mjs';
+import {assertSquareMain1050ProducerContinuityV1 as assertSourceComposition} from '../../scripts/lib/square_main1050_producer_continuity_v1.mjs';
 
 const schema=JSON.parse(fs.readFileSync(new URL('../../docs/catalog/japanese_reviewed_price_links_v1/schema524.json',import.meta.url))),now=Date.parse(m.SNAPSHOT.source.run.finished_at)+18*3600000,time=new Date(now).toISOString();
 const fixture=()=>({...structuredClone(m.SNAPSHOT),parent_mappings:[],printing_mappings:[],raw:[],prerequisite:{regular29_correct:29,regular29_audit_present:true}});
@@ -19,8 +20,8 @@ test('427 exact prior reviewed provider identities select only existing verified
  assert.deepEqual(m.assertPriceLinkFactsV1(fixture(),{now}),{existing_printings:427,normal:44,holo:383,current_quotes:427,prior_reviewed_provider_quotes:427,approved_inbound_aliases:9,physical_writes:0});
  for(const t of m.REGISTRY.targets){const r=m.SNAPSHOT.reviews.find(x=>x.id===t.review_id),q=m.SNAPSHOT.source.prior_quotes.find(x=>x.id===t.prior_observation_id);assert.equal(r.evidence.source_observation_id,q.id);assert.equal(q.product_id,t.product_id);assert.equal(q.subtype_name,t.source_subtype);assert.equal(r.evidence.finish_key,t.finish_key);assert.ok(r.evidence.official_assertion_keys.length);}
 });
-test('complete594-file producer, exact524 metadata and original source amounts are bound',()=>{
- assert.equal(code.files.length,594);assert.equal(new Set(code.files.map(x=>x.file)).size,594);assert.equal(m.assertPriceLinkSchemaV1(schema).schema_fingerprint,m.REGISTRY.schema_fingerprint);assert.equal(plan.code_fingerprint,code.fingerprint);
+test('exact original594-file producer plus six pinned Square files, exact524 metadata and original source amounts are bound',()=>{
+ assert.equal(assertSourceComposition(code,'japaneseV1').historicalFiles,594);assert.equal(m.assertPriceLinkSchemaV1(schema).schema_fingerprint,m.REGISTRY.schema_fingerprint);assert.equal(plan.code_fingerprint,code.fingerprint);
  assert.deepEqual(plan.expected,{printing_mapping_inserts:427,raw_inserts:1});assert.ok(Object.values(plan.boundaries).every(x=>x===0));assert.equal(m.classifyPriceLinkStateV1(plan,fixture()),'before');assert.equal(m.classifyPriceLinkStateV1(plan,after()),'exact');
 });
 for(const[name,mutate]of[

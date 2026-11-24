@@ -23,6 +23,11 @@ param(
   [switch]$MarketPriceRetentionReleaseV1,
 
   [switch]$BestOfGameDiscoveryReleaseV17,
+  [switch]$SquarePriceBatchReleaseV1,
+  [switch]$SquarePriceBatchBaselineV4,
+  [switch]$SquarePriceBatchBaselineV3,
+  [switch]$SquarePriceBatchBaselineV2,
+  [switch]$SquarePriceBatchBaselineV1,
   [switch]$BestOfGameDiscoveryReleaseV16,
   [switch]$BestOfGameDiscoveryReleaseV15,
   [switch]$BestOfGameDiscoveryReleaseV14,
@@ -197,6 +202,64 @@ if ($BestOfGameDiscoveryReleaseV17) {
   }
   & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_best_of_game_discovery_release_v17.mjs') $Phase "--out-dir=$AuditOutDir"
   exit $LASTEXITCODE
+}
+
+if ($SquarePriceBatchReleaseV1) {
+  $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
+  $exact = '20261124230000,20261124231000,20261124232000,20261124233000,20261124234000,20261124235000'
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','SquarePriceBatchReleaseV1','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
+      ($requested.Count -gt 0 -and ($requested -join ',') -ne $exact) -or
+      ($Phase -eq 'PrePush' -and ($requested -join ',') -ne $exact) -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Square price batch release V1 requires only the exact six late-day IDs at canonical524; no mixed scopes or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_square_price_batch_release_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  if ($LASTEXITCODE -ne 0) { throw 'Square price batch release V1 failed.' }
+  exit 0
+}
+
+if ($SquarePriceBatchBaselineV4) {
+  if ($Phase -ne 'AuditLinkedSchema' -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','SquarePriceBatchBaselineV4','AuditOutDir') }).Count -gt 0 -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'SquarePriceBatchBaselineV4 admits only its named read-only AuditLinkedSchema scope; no apply, PrePush, combined flags or target override.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_square_price_batch_baseline_v4.mjs') $Phase "--out-dir=$AuditOutDir"
+  if ($LASTEXITCODE -ne 0) { throw 'SquarePriceBatchBaselineV4 failed.' }
+  exit 0
+}
+
+if ($SquarePriceBatchBaselineV3) {
+  if ($Phase -ne 'AuditLinkedSchema' -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','SquarePriceBatchBaselineV3','AuditOutDir') }).Count -gt 0 -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'SquarePriceBatchBaselineV3 admits only its named read-only AuditLinkedSchema scope; no apply, PrePush, combined flags or target override.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_square_price_batch_baseline_v3.mjs') $Phase "--out-dir=$AuditOutDir"
+  if ($LASTEXITCODE -ne 0) { throw 'SquarePriceBatchBaselineV3 failed.' }
+  exit 0
+}
+
+if ($SquarePriceBatchBaselineV2) {
+  if ($Phase -ne 'AuditLinkedSchema' -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','SquarePriceBatchBaselineV2','AuditOutDir') }).Count -gt 0 -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'SquarePriceBatchBaselineV2 admits only its named read-only AuditLinkedSchema scope; no apply, PrePush, combined flags or target override.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_square_price_batch_baseline_v2.mjs') $Phase "--out-dir=$AuditOutDir"
+  if ($LASTEXITCODE -ne 0) { throw 'SquarePriceBatchBaselineV2 failed.' }
+  exit 0
+}
+
+if ($SquarePriceBatchBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','SquarePriceBatchBaselineV1','AuditOutDir') }).Count -gt 0 -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'SquarePriceBatchBaselineV1 admits only its named read-only AuditLinkedSchema scope; no apply, PrePush, combined flags or target override.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_square_price_batch_baseline_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  if ($LASTEXITCODE -ne 0) { throw 'SquarePriceBatchBaselineV1 failed.' }
+  exit 0
 }
 
 if ($BestOfGameDiscoveryReleaseV16) {

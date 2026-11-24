@@ -16,6 +16,8 @@ export async function runVendorPricingRecovery({env=process.env,createClient=cre
  if(env.GROOKAI_VENDOR_PRICING_RECOVERY_ENABLED!=='true')return{status:'paused',checked:0,updated:0};
  if(env.NODE_ENV!=='production'||env.SUPABASE_URL!=='https://ycdxbpibncqcchqiihfz.supabase.co'||env.SQUARE_ENVIRONMENT!=='production'||env.GV_USER_ACCESS_TOKEN||env.NEXT_PUBLIC_COLLECTOR_STAGING==='true'||env.NEXT_PUBLIC_COLLECTOR_PREVIEW_READ_ONLY==='true')throw failure('vendor_pricing_configuration_unavailable');
  const runId=nextId(),startTime=now(),result={runId,status:'succeeded',checked:0,updated:0,waiting:0,squareReady:0,squarePending:0,failed:0,errorCode:''};
+ const draining=env.GROOKAI_VENDOR_PRICING_DRAIN_ENABLED==='true',seen=new Set();
+ if(draining)result.drain={candidateBatches:0,deferredHandoffs:0,stopReason:'capacity'};
  let client,context,started=false,square,connections;
  const call=async(action,data={})=>{const response=await client.rpc('vendor_pricing_service_v1',{p_action:action,p_data:{...context,...data}});if(response.error)throw failure('vendor_pricing_state_unavailable');return response.data;};
  try{
@@ -24,17 +26,30 @@ export async function runVendorPricingRecovery({env=process.env,createClient=cre
   if(['paused','busy','succeeded','failed','abandoned'].includes(claim?.status))return{...result,status:claim.status==='abandoned'?'failed':claim.status};
   if(claim?.status!=='running'||!Number.isSafeInteger(claim.fence)||claim.fence<1)throw failure('vendor_pricing_state_unavailable');
   context={runId,fence:claim.fence};started=true;
-  const ids=await call('candidates');
-  if(!Array.isArray(ids)||ids.length>50||new Set(ids).size!==ids.length||!ids.every(uuid))throw failure('vendor_pricing_candidates_invalid');
-  for(const instanceId of ids){
+  // Each page and price still uses the existing global run fence. The optional
+  // drain has independent work/time bounds, never concurrent monetary writers.
+  work: while(result.checked<(draining?5000:50)){
+   if(draining&&now()-startTime>=220000){result.drain.stopReason='budget';break;}
+   const ids=await call('candidates');
+   if(!Array.isArray(ids)||ids.length>50||new Set(ids).size!==ids.length||!ids.every(uuid))throw failure('vendor_pricing_candidates_invalid');
+   if(draining)result.drain.candidateBatches++;
+   const page=draining?ids.filter(id=>!seen.has(id)):ids;
+   if(draining&&!page.length){result.drain.stopReason=ids.length?'repeated':'empty';break;}
+   for(const instanceId of page){
    // Leave enough time for the existing bounded Square call and durable finish.
-   if(now()-startTime>=220000)break;
+   if(now()-startTime>=220000){if(draining)result.drain.stopReason='budget';break work;}
+   if(draining){if(result.checked>=5000)break work;seen.add(instanceId);}
    const price=await call('reprice',{instanceId});result.checked++;
    if(price?.status==='ready'){
     if(price.id!==instanceId||!uuid(price.ownerId)||!Number.isSafeInteger(price.amountMinor)||price.amountMinor<=0)throw failure('vendor_pricing_result_invalid');
     if(price.changed)result.updated++;
     if(price.changed||price.needsSquareSync){
-     try{
+     if(draining){
+      // apply_quote commits the existing copy-change queue with changed asks;
+      // unchanged pending prices remain discoverable by square_pending. Do not
+      // wait for external IO here or report an unacknowledged price as POS-ready.
+      result.drain.deferredHandoffs++;if(price.needsSquareSync)result.squarePending++;
+     }else try{
       if(!connections){const reply=await client.rpc('square_commerce_service_v2',{p_action:'commerce_connections',p_data:{environment:'production'}});if(reply.error||!Array.isArray(reply.data))throw failure('vendor_pricing_square_unavailable');connections=reply.data;}
       const connection=connections.find(c=>c.ownerId===price.ownerId);
       if(connection){
@@ -47,6 +62,8 @@ export async function runVendorPricingRecovery({env=process.env,createClient=cre
    }else if(['waiting','stale','held','paused','busy','skipped'].includes(price?.status))result.waiting++;
    else if(price?.status==='failed'){result.failed++;result.errorCode=safeCode(price?.error?{code:price.error}:null);}
    else throw failure('vendor_pricing_result_invalid');
+   }
+   if(!draining)break;
   }
   if(result.failed)result.status='failed';
   await call('run_finish',{result});return result;
