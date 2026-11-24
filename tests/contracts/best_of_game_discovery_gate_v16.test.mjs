@@ -1,3 +1,4 @@
+import {assertRetainedPriceForwardInventoryV3} from '../helpers/retained_price_forward_inventory_v3.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -13,7 +14,7 @@ test('V16 preserves every521 historical migration and bounds the new definition-
   assert.equal(b.baselineMigrations,521);assert.equal(b.targetMigrations,522);assert.deepEqual(b.history,{...previous.history,...previous.candidates});
   assert.equal(Object.keys(b.history).length,521);assert.deepEqual(Object.keys(b.candidates),['20261123220000_catalog_direct_visibility_evaluation_v1.sql']);
   for(const [file,hash] of Object.entries({...b.history,...b.candidates}))assert.equal(sha(fs.readFileSync(root+'/supabase/migrations/'+file)),hash,file);
-  assert.deepEqual(fs.readdirSync(root+'/supabase/migrations').filter(file=>/^\d+.*\.sql$/.test(file)).sort(),Object.keys({...b.history,...b.candidates}).sort());
+  assertRetainedPriceForwardInventoryV3(root,{...b.history,...b.candidates});
   assert.equal(b.canonicalRowWrites,0);assert.equal(b.operationalRowWrites,0);assert.equal(b.newIndexes,0);assert.deepEqual(b.changedViews,[]);
   assert.deepEqual(b.changedFunctions,['public.catalog_set_visible_to_request_v1(uuid)','public.catalog_card_print_visible_to_request_v1(uuid)','public.catalog_parent_gv_id_visible_to_request_v1(text)']);
   const sql=fs.readFileSync(root+'/supabase/migrations/'+Object.keys(b.candidates)[0],'utf8');assert.equal(sha(sql),b.candidateBundleSha256);
