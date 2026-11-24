@@ -1,0 +1,2139 @@
+{
+  "version": "REGULAR_PRODUCT_MAPPING_CORRECTION_REGISTRY_V1",
+  "context": "REGULAR_PRODUCT_29_SCHEMA523_SOURCE7DA8_V1",
+  "source_run": "7da8a525-2fdb-4437-9cb5-3daa2d11e0a5",
+  "source_review_sha256": "532683a79b71c8914b918bb05bb8cb6d099b3f81ba7fffbd4cb264234e8caf30",
+  "schema_fingerprint": "3c8904a590839beb55d4006c15911a41e701d86c7549ce2f0615e4f52b9b2459",
+  "expected": {
+    "raw_inserts": 1,
+    "mapping_updates": 29
+  },
+  "parents": [
+    "008b6314-3e64-4f26-b16a-b30d7bd1f000",
+    "027e087d-7d9d-4258-a711-994cc86b4561",
+    "047ff227-5e1f-471c-a735-9c1e38e443b3",
+    "05d9fd10-a18f-45b6-bbe0-4163ef8c8821",
+    "06ec11e9-895b-4627-9a07-922c484b549b",
+    "08a82d5f-a97c-491b-b715-912b5357c5a1",
+    "093647d3-31e4-4290-822e-d38dc6174094",
+    "10b6b8a7-ccd5-47b1-97f7-65f55df0703d",
+    "1a079b94-3d14-4de0-94f2-6fbe1b663c2a",
+    "1c1b2f2e-9b6c-4b16-b737-3d5d7659bc53",
+    "232e724d-e9d2-4150-94be-cdcd08275a28",
+    "25919120-26aa-4cd6-a5b8-164de1912c92",
+    "2984f01b-3976-453b-b1f6-e590d1fe3d4d",
+    "322483c7-382c-4363-b5e9-df19c85cb532",
+    "3bde91dd-0a87-4b19-a03e-5fc05de960cb",
+    "3d873cfd-8380-42e2-9f11-4a9588bf68c6",
+    "3f0c43c6-3f3a-462e-a637-88d7af8c42a7",
+    "44852672-52b9-48e4-aa78-4f49278481d9",
+    "498879cd-f8e7-4369-9088-f95a3cba57de",
+    "4ebe2e23-60dd-4f9e-b1b6-6f3ffdbc7146",
+    "54d35e3d-2e91-4ef9-8804-c810559d3f45",
+    "5852f054-8b92-4cc0-9d99-a785cfa79484",
+    "72e19b10-5062-4a94-85fb-407819e89f90",
+    "7393c4e1-c7a9-4e8f-a2fb-4d8ff58593f8",
+    "789a29e9-f335-49ce-bc44-9ebdf908ee39",
+    "7905ce0c-3cbd-4f9b-b152-8d112c027e5f",
+    "7b55df94-5e30-4cfc-962e-0674a820721e",
+    "8667c455-7108-45b9-ad40-02686047ffb5",
+    "8b84f3f9-d9fa-42a4-8d0f-e8e80a9ca4e3",
+    "8c1adcce-0d3c-460f-8887-9bd7b91846fb",
+    "8f2732ce-078a-4574-a830-2cb7dc4cf065",
+    "922d662c-6647-439d-a354-b7a5a88c5c8e",
+    "93565059-dcfe-4515-860e-4607694a9381",
+    "94037abf-99a9-4f69-b4ed-7f39801dac95",
+    "94f3f19d-70f1-4fc8-9ef6-b6f2fdfe0a30",
+    "979101d6-1dc6-4168-b213-21fceb37e780",
+    "a08bf25d-a431-4daf-8d52-53fbf9a5d0a9",
+    "a0ad6076-e7e6-4fb5-9298-ac8cbee79b37",
+    "a150705b-bd7c-4853-a626-89412bdbc7cd",
+    "a46aa57c-13a5-4426-b79c-bbfabacda96f",
+    "a5cc63c1-f25e-40c5-9031-9e4957c3d8c0",
+    "ac3b2dc3-3198-4382-9a38-43c52f61491d",
+    "ae5bd731-7683-415f-98df-99df9b3af308",
+    "b226b140-e217-4ea2-b5a5-b2c62a1b262e",
+    "b3132f9c-0f6a-466a-a6a0-6ecc795f4912",
+    "b861b100-b9c2-43b7-8f22-2b8c65b8edb1",
+    "bf566fbd-7f4c-4a43-8c03-7246dc14101f",
+    "c0640ced-2105-4289-adc7-5d46e32843ad",
+    "c0ba0c28-8d62-449c-9540-ed11a1879741",
+    "ca997f88-a183-4839-9baa-75be30e2adcd",
+    "cb282e9a-414a-4872-8363-cd837c0b99d8",
+    "d6c1ec2f-183e-4f1f-924e-1cb30bfcda28",
+    "db71ab6f-2bfd-408e-ae62-6f343c72235c",
+    "dbe2a1ae-f598-4ccd-bdf4-09fee621a7f7",
+    "dbe97a36-e476-4b59-8962-6f13a0118a47",
+    "dbfe3ad7-ac03-4e8a-bdc7-b93435c53f76",
+    "dda6a80d-019b-44e9-a8fb-b6e96b51077b",
+    "e59a640b-b21a-49f3-8b39-b8db75c8c0c2",
+    "e6fc9254-f050-4a39-b9c2-ef52d6bb3454",
+    "f01f4923-c01e-4e99-864a-378b0b3d9d2b",
+    "f2273d3a-9737-4ae9-bbfa-58fbd25c93dd",
+    "fbc8663b-477b-4c38-a487-0434b8b12baf",
+    "fe10853f-f4e7-438a-aa3b-064bb73a355b",
+    "fe593f96-7286-4604-a4be-07383450e816",
+    "fe99be8d-daf7-43db-a4f1-46d463cdc741",
+    "ff65323d-c1f5-44d6-b834-7cf82d6ce2ef"
+  ],
+  "targets": [
+    {
+      "mapping_id": "132198",
+      "product_id": 497426,
+      "source_name": "Meowscarada ex - 015/193",
+      "group_id": 23120,
+      "source_number": [
+        "015/193"
+      ],
+      "regular": {
+        "id": "fe593f96-7286-4604-a4be-07383450e816",
+        "gv_id": "GV-PK-PAL-15",
+        "name": "Meowscarada ex",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "15",
+        "variant_key": ""
+      },
+      "stamp": {
+        "id": "922d662c-6647-439d-a354-b7a5a88c5c8e",
+        "gv_id": "GV-PK-SV02-15-PRIZE-PACK-STAMP",
+        "name": "Meowscarada ex",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "15",
+        "variant_key": "prize_pack_stamp",
+        "tcgplayer_id": null,
+        "printed_identity_modifier": null
+      },
+      "identity": {
+        "id": "db85ec82-0b21-4b69-a262-846b6219b0c3",
+        "printed_number": "015",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv02"
+      },
+      "anchors": [
+        {
+          "id": "24326",
+          "source": "tcgdex",
+          "external_id": "sv02-015",
+          "card_print_id": "fe593f96-7286-4604-a4be-07383450e816"
+        },
+        {
+          "id": "28771",
+          "source": "pokemonapi",
+          "external_id": "sv2-15",
+          "card_print_id": "fe593f96-7286-4604-a4be-07383450e816"
+        },
+        {
+          "id": "94405",
+          "source": "justtcg",
+          "external_id": "pokemon-sv02-paldea-evolved-meowscarada-ex-015-193-double-rare",
+          "card_print_id": "fe593f96-7286-4604-a4be-07383450e816"
+        }
+      ],
+      "printings": [
+        {
+          "id": "c2de2a3f-b392-4b9d-a308-d8cf12f6c295",
+          "card_print_id": "fe593f96-7286-4604-a4be-07383450e816",
+          "finish_key": "holo",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PAL-15-HOLO"
+        }
+      ],
+      "subtypes": [
+        "Holofoil"
+      ]
+    },
+    {
+      "mapping_id": "132220",
+      "product_id": 497448,
+      "source_name": "Skeledirge ex - 037/193",
+      "group_id": 23120,
+      "source_number": [
+        "037/193"
+      ],
+      "regular": {
+        "id": "cb282e9a-414a-4872-8363-cd837c0b99d8",
+        "gv_id": "GV-PK-PAL-37",
+        "name": "Skeledirge ex",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "37",
+        "variant_key": ""
+      },
+      "stamp": {
+        "id": "789a29e9-f335-49ce-bc44-9ebdf908ee39",
+        "gv_id": "GV-PK-SV02-37-PRIZE-PACK-STAMP",
+        "name": "Skeledirge ex",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "37",
+        "variant_key": "prize_pack_stamp",
+        "tcgplayer_id": null,
+        "printed_identity_modifier": null
+      },
+      "identity": {
+        "id": "43381087-1017-4283-a315-c5bb87a85378",
+        "printed_number": "037",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv02"
+      },
+      "anchors": [
+        {
+          "id": "24348",
+          "source": "tcgdex",
+          "external_id": "sv02-037",
+          "card_print_id": "cb282e9a-414a-4872-8363-cd837c0b99d8"
+        },
+        {
+          "id": "28925",
+          "source": "pokemonapi",
+          "external_id": "sv2-37",
+          "card_print_id": "cb282e9a-414a-4872-8363-cd837c0b99d8"
+        },
+        {
+          "id": "94559",
+          "source": "justtcg",
+          "external_id": "pokemon-sv02-paldea-evolved-skeledirge-ex-037-193-double-rare",
+          "card_print_id": "cb282e9a-414a-4872-8363-cd837c0b99d8"
+        }
+      ],
+      "printings": [
+        {
+          "id": "83635486-a121-4d01-8e38-4fda7d2fba27",
+          "card_print_id": "cb282e9a-414a-4872-8363-cd837c0b99d8",
+          "finish_key": "holo",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PAL-37-HOLO"
+        }
+      ],
+      "subtypes": [
+        "Holofoil"
+      ]
+    },
+    {
+      "mapping_id": "132244",
+      "product_id": 497472,
+      "source_name": "Chien-Pao ex - 061/193",
+      "group_id": 23120,
+      "source_number": [
+        "061/193"
+      ],
+      "regular": {
+        "id": "db71ab6f-2bfd-408e-ae62-6f343c72235c",
+        "gv_id": "GV-PK-PAL-61",
+        "name": "Chien-Pao ex",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "61",
+        "variant_key": ""
+      },
+      "stamp": {
+        "id": "44852672-52b9-48e4-aa78-4f49278481d9",
+        "gv_id": "GV-PK-SV02-61-PRIZE-PACK-STAMP",
+        "name": "Chien-Pao ex",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "61",
+        "variant_key": "prize_pack_stamp",
+        "tcgplayer_id": null,
+        "printed_identity_modifier": "prize_pack_stamp"
+      },
+      "identity": {
+        "id": "4bf30b10-7ea1-485b-b699-30da45190dbe",
+        "printed_number": "061",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv02"
+      },
+      "anchors": [
+        {
+          "id": "24372",
+          "source": "tcgdex",
+          "external_id": "sv02-061",
+          "card_print_id": "db71ab6f-2bfd-408e-ae62-6f343c72235c"
+        },
+        {
+          "id": "28952",
+          "source": "pokemonapi",
+          "external_id": "sv2-61",
+          "card_print_id": "db71ab6f-2bfd-408e-ae62-6f343c72235c"
+        },
+        {
+          "id": "94586",
+          "source": "justtcg",
+          "external_id": "pokemon-sv02-paldea-evolved-chien-pao-ex-061-193-double-rare",
+          "card_print_id": "db71ab6f-2bfd-408e-ae62-6f343c72235c"
+        }
+      ],
+      "printings": [
+        {
+          "id": "0fe962dd-c237-45b6-87a2-511d55e4aea3",
+          "card_print_id": "db71ab6f-2bfd-408e-ae62-6f343c72235c",
+          "finish_key": "holo",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PAL-61-HOLO"
+        }
+      ],
+      "subtypes": [
+        "Holofoil"
+      ]
+    },
+    {
+      "mapping_id": "132254",
+      "product_id": 497482,
+      "source_name": "Luxray",
+      "group_id": 23120,
+      "source_number": [
+        "071/193"
+      ],
+      "regular": {
+        "id": "05d9fd10-a18f-45b6-bbe0-4163ef8c8821",
+        "gv_id": "GV-PK-PAL-71",
+        "name": "Luxray",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "71",
+        "variant_key": ""
+      },
+      "stamp": {
+        "id": "ae5bd731-7683-415f-98df-99df9b3af308",
+        "gv_id": "GV-PK-SV02-71-PRIZE-PACK-STAMP",
+        "name": "Luxray",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "71",
+        "variant_key": "prize_pack_stamp",
+        "tcgplayer_id": null,
+        "printed_identity_modifier": null
+      },
+      "identity": {
+        "id": "6409c25e-f3c0-43a0-b4ed-912a0c919965",
+        "printed_number": "071",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv02"
+      },
+      "anchors": [
+        {
+          "id": "24382",
+          "source": "tcgdex",
+          "external_id": "sv02-071",
+          "card_print_id": "05d9fd10-a18f-45b6-bbe0-4163ef8c8821"
+        },
+        {
+          "id": "28963",
+          "source": "pokemonapi",
+          "external_id": "sv2-71",
+          "card_print_id": "05d9fd10-a18f-45b6-bbe0-4163ef8c8821"
+        },
+        {
+          "id": "94597",
+          "source": "justtcg",
+          "external_id": "pokemon-sv02-paldea-evolved-luxray-rare",
+          "card_print_id": "05d9fd10-a18f-45b6-bbe0-4163ef8c8821"
+        }
+      ],
+      "printings": [
+        {
+          "id": "2f0f09dd-76c2-4029-8073-2b7e6d423cbd",
+          "card_print_id": "05d9fd10-a18f-45b6-bbe0-4163ef8c8821",
+          "finish_key": "holo",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PAL-71-HOLO"
+        },
+        {
+          "id": "ec2c9d66-8087-48ef-9841-23cb419b6abf",
+          "card_print_id": "05d9fd10-a18f-45b6-bbe0-4163ef8c8821",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PAL-71-RH"
+        },
+        {
+          "id": "fbaeff15-48d1-4d56-880c-d0c5226b39cb",
+          "card_print_id": "05d9fd10-a18f-45b6-bbe0-4163ef8c8821",
+          "finish_key": "cosmos",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PAL-71-COSMOS"
+        }
+      ],
+      "subtypes": [
+        "Holofoil",
+        "Reverse Holofoil"
+      ]
+    },
+    {
+      "mapping_id": "132272",
+      "product_id": 497504,
+      "source_name": "Spiritomb",
+      "group_id": 23120,
+      "source_number": [
+        "089/193"
+      ],
+      "regular": {
+        "id": "fe99be8d-daf7-43db-a4f1-46d463cdc741",
+        "gv_id": "GV-PK-PAL-89",
+        "name": "Spiritomb",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "89",
+        "variant_key": ""
+      },
+      "stamp": {
+        "id": "f2273d3a-9737-4ae9-bbfa-58fbd25c93dd",
+        "gv_id": "GV-PK-PAL-089-PLAY-POKEMON-STAMP",
+        "name": "Spiritomb",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "089",
+        "variant_key": "play_pokemon_stamp",
+        "tcgplayer_id": "538740",
+        "printed_identity_modifier": null
+      },
+      "identity": {
+        "id": "309ed79d-8f66-4416-9b0c-7efc377478d1",
+        "printed_number": "089",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv02"
+      },
+      "anchors": [
+        {
+          "id": "24400",
+          "source": "tcgdex",
+          "external_id": "sv02-089",
+          "card_print_id": "fe99be8d-daf7-43db-a4f1-46d463cdc741"
+        },
+        {
+          "id": "28982",
+          "source": "pokemonapi",
+          "external_id": "sv2-89",
+          "card_print_id": "fe99be8d-daf7-43db-a4f1-46d463cdc741"
+        },
+        {
+          "id": "94616",
+          "source": "justtcg",
+          "external_id": "pokemon-sv02-paldea-evolved-spiritomb-rare",
+          "card_print_id": "fe99be8d-daf7-43db-a4f1-46d463cdc741"
+        }
+      ],
+      "printings": [
+        {
+          "id": "b1635d14-d281-459f-b80f-3e89719ff666",
+          "card_print_id": "fe99be8d-daf7-43db-a4f1-46d463cdc741",
+          "finish_key": "holo",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PAL-89-HOLO"
+        },
+        {
+          "id": "b763b348-f2ae-48e6-81a6-dd233c3d4194",
+          "card_print_id": "fe99be8d-daf7-43db-a4f1-46d463cdc741",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PAL-89-RH"
+        }
+      ],
+      "subtypes": [
+        "Holofoil",
+        "Reverse Holofoil"
+      ]
+    },
+    {
+      "mapping_id": "132276",
+      "product_id": 497508,
+      "source_name": "Dedenne ex - 093/193",
+      "group_id": 23120,
+      "source_number": [
+        "093/193"
+      ],
+      "regular": {
+        "id": "a150705b-bd7c-4853-a626-89412bdbc7cd",
+        "gv_id": "GV-PK-PAL-93",
+        "name": "Dedenne ex",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "93",
+        "variant_key": ""
+      },
+      "stamp": {
+        "id": "fe10853f-f4e7-438a-aa3b-064bb73a355b",
+        "gv_id": "GV-PK-SV02-93-PRIZE-PACK-STAMP",
+        "name": "Dedenne ex",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "93",
+        "variant_key": "prize_pack_stamp",
+        "tcgplayer_id": null,
+        "printed_identity_modifier": null
+      },
+      "identity": {
+        "id": "e36c1f99-4227-43c5-a3b5-9d9b2c299b4a",
+        "printed_number": "093",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv02"
+      },
+      "anchors": [
+        {
+          "id": "24404",
+          "source": "tcgdex",
+          "external_id": "sv02-093",
+          "card_print_id": "a150705b-bd7c-4853-a626-89412bdbc7cd"
+        },
+        {
+          "id": "28987",
+          "source": "pokemonapi",
+          "external_id": "sv2-93",
+          "card_print_id": "a150705b-bd7c-4853-a626-89412bdbc7cd"
+        },
+        {
+          "id": "94621",
+          "source": "justtcg",
+          "external_id": "pokemon-sv02-paldea-evolved-dedenne-ex-093-193-double-rare",
+          "card_print_id": "a150705b-bd7c-4853-a626-89412bdbc7cd"
+        }
+      ],
+      "printings": [
+        {
+          "id": "14912de7-0084-4c1e-909b-f56a1afc8dd8",
+          "card_print_id": "a150705b-bd7c-4853-a626-89412bdbc7cd",
+          "finish_key": "holo",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PAL-93-HOLO"
+        }
+      ],
+      "subtypes": [
+        "Holofoil"
+      ]
+    },
+    {
+      "mapping_id": "132280",
+      "product_id": 497512,
+      "source_name": "Mimikyu",
+      "group_id": 23120,
+      "source_number": [
+        "097/193"
+      ],
+      "regular": {
+        "id": "94f3f19d-70f1-4fc8-9ef6-b6f2fdfe0a30",
+        "gv_id": "GV-PK-PAL-97",
+        "name": "Mimikyu",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "97",
+        "variant_key": ""
+      },
+      "stamp": {
+        "id": "08a82d5f-a97c-491b-b715-912b5357c5a1",
+        "gv_id": "GV-PK-PAL-097-PLAY-POKEMON-STAMP",
+        "name": "Mimikyu",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "097",
+        "variant_key": "play_pokemon_stamp",
+        "tcgplayer_id": "538734",
+        "printed_identity_modifier": null
+      },
+      "identity": {
+        "id": "ad6266fe-0d52-42ff-8c2d-fb9aad2cd667",
+        "printed_number": "097",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv02"
+      },
+      "anchors": [
+        {
+          "id": "24408",
+          "source": "tcgdex",
+          "external_id": "sv02-097",
+          "card_print_id": "94f3f19d-70f1-4fc8-9ef6-b6f2fdfe0a30"
+        },
+        {
+          "id": "28991",
+          "source": "pokemonapi",
+          "external_id": "sv2-97",
+          "card_print_id": "94f3f19d-70f1-4fc8-9ef6-b6f2fdfe0a30"
+        },
+        {
+          "id": "94625",
+          "source": "justtcg",
+          "external_id": "pokemon-sv02-paldea-evolved-mimikyu-rare",
+          "card_print_id": "94f3f19d-70f1-4fc8-9ef6-b6f2fdfe0a30"
+        }
+      ],
+      "printings": [
+        {
+          "id": "789c5c4d-7740-44e2-9a06-b83d207efa54",
+          "card_print_id": "94f3f19d-70f1-4fc8-9ef6-b6f2fdfe0a30",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PAL-97-RH"
+        },
+        {
+          "id": "e01b26d4-e552-4c1e-9b7e-5f4f3657ab1a",
+          "card_print_id": "94f3f19d-70f1-4fc8-9ef6-b6f2fdfe0a30",
+          "finish_key": "holo",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PAL-97-HOLO"
+        }
+      ],
+      "subtypes": [
+        "Holofoil",
+        "Reverse Holofoil"
+      ]
+    },
+    {
+      "mapping_id": "132310",
+      "product_id": 497543,
+      "source_name": "Ting-Lu ex",
+      "group_id": 23120,
+      "source_number": [
+        "127/193"
+      ],
+      "regular": {
+        "id": "a46aa57c-13a5-4426-b79c-bbfabacda96f",
+        "gv_id": "GV-PK-PAL-127",
+        "name": "Ting-Lu ex",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "127",
+        "variant_key": ""
+      },
+      "stamp": {
+        "id": "7905ce0c-3cbd-4f9b-b152-8d112c027e5f",
+        "gv_id": "GV-PK-PAL-127-PLAY-POKEMON-STAMP",
+        "name": "Ting-Lu ex",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "127",
+        "variant_key": "play_pokemon_stamp",
+        "tcgplayer_id": "538742",
+        "printed_identity_modifier": null
+      },
+      "identity": {
+        "id": "93dd8fa3-4146-4c6b-97f0-167d428e5cb3",
+        "printed_number": "127",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv02"
+      },
+      "anchors": [
+        {
+          "id": "24438",
+          "source": "tcgdex",
+          "external_id": "sv02-127",
+          "card_print_id": "a46aa57c-13a5-4426-b79c-bbfabacda96f"
+        },
+        {
+          "id": "28746",
+          "source": "pokemonapi",
+          "external_id": "sv2-127",
+          "card_print_id": "a46aa57c-13a5-4426-b79c-bbfabacda96f"
+        },
+        {
+          "id": "94380",
+          "source": "justtcg",
+          "external_id": "pokemon-sv02-paldea-evolved-ting-lu-ex-double-rare",
+          "card_print_id": "a46aa57c-13a5-4426-b79c-bbfabacda96f"
+        }
+      ],
+      "printings": [
+        {
+          "id": "808b8323-e6e9-4acd-b708-ed5697d19fcf",
+          "card_print_id": "a46aa57c-13a5-4426-b79c-bbfabacda96f",
+          "finish_key": "holo",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PAL-127-HOLO"
+        }
+      ],
+      "subtypes": [
+        "Holofoil"
+      ]
+    },
+    {
+      "mapping_id": "132335",
+      "product_id": 497571,
+      "source_name": "Noivern ex",
+      "group_id": 23120,
+      "source_number": [
+        "153/193"
+      ],
+      "regular": {
+        "id": "e6fc9254-f050-4a39-b9c2-ef52d6bb3454",
+        "gv_id": "GV-PK-PAL-153",
+        "name": "Noivern ex",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "153",
+        "variant_key": ""
+      },
+      "stamp": {
+        "id": "979101d6-1dc6-4168-b213-21fceb37e780",
+        "gv_id": "GV-PK-PAL-153-PLAY-POKEMON-STAMP",
+        "name": "Noivern ex",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "153",
+        "variant_key": "play_pokemon_stamp",
+        "tcgplayer_id": "538735",
+        "printed_identity_modifier": null
+      },
+      "identity": {
+        "id": "ed7cb984-563c-45f0-8594-1afd992af870",
+        "printed_number": "153",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv02"
+      },
+      "anchors": [
+        {
+          "id": "24464",
+          "source": "tcgdex",
+          "external_id": "sv02-153",
+          "card_print_id": "e6fc9254-f050-4a39-b9c2-ef52d6bb3454"
+        },
+        {
+          "id": "28775",
+          "source": "pokemonapi",
+          "external_id": "sv2-153",
+          "card_print_id": "e6fc9254-f050-4a39-b9c2-ef52d6bb3454"
+        },
+        {
+          "id": "94409",
+          "source": "justtcg",
+          "external_id": "pokemon-sv02-paldea-evolved-noivern-ex-double-rare",
+          "card_print_id": "e6fc9254-f050-4a39-b9c2-ef52d6bb3454"
+        }
+      ],
+      "printings": [
+        {
+          "id": "d1df3337-fa66-40ca-8424-7b10e066c989",
+          "card_print_id": "e6fc9254-f050-4a39-b9c2-ef52d6bb3454",
+          "finish_key": "holo",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PAL-153-HOLO"
+        }
+      ],
+      "subtypes": [
+        "Holofoil"
+      ]
+    },
+    {
+      "mapping_id": "132341",
+      "product_id": 497577,
+      "source_name": "Pelipper",
+      "group_id": 23120,
+      "source_number": [
+        "159/193"
+      ],
+      "regular": {
+        "id": "b3132f9c-0f6a-466a-a6a0-6ecc795f4912",
+        "gv_id": "GV-PK-PAL-159",
+        "name": "Pelipper",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "159",
+        "variant_key": ""
+      },
+      "stamp": {
+        "id": "c0640ced-2105-4289-adc7-5d46e32843ad",
+        "gv_id": "GV-PK-PAL-159-PLAY-POKEMON-STAMP",
+        "name": "Pelipper",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "159",
+        "variant_key": "play_pokemon_stamp",
+        "tcgplayer_id": "538736",
+        "printed_identity_modifier": null
+      },
+      "identity": {
+        "id": "9a1a3805-a7c6-454a-b76f-01ff25c3fbdc",
+        "printed_number": "159",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv02"
+      },
+      "anchors": [
+        {
+          "id": "24470",
+          "source": "tcgdex",
+          "external_id": "sv02-159",
+          "card_print_id": "b3132f9c-0f6a-466a-a6a0-6ecc795f4912"
+        },
+        {
+          "id": "28781",
+          "source": "pokemonapi",
+          "external_id": "sv2-159",
+          "card_print_id": "b3132f9c-0f6a-466a-a6a0-6ecc795f4912"
+        },
+        {
+          "id": "94415",
+          "source": "justtcg",
+          "external_id": "pokemon-sv02-paldea-evolved-pelipper-uncommon",
+          "card_print_id": "b3132f9c-0f6a-466a-a6a0-6ecc795f4912"
+        }
+      ],
+      "printings": [
+        {
+          "id": "0cc22dab-3924-4a6f-bbdb-2849e9ef83b8",
+          "card_print_id": "b3132f9c-0f6a-466a-a6a0-6ecc795f4912",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PAL-159-RH"
+        },
+        {
+          "id": "ad09104e-14a7-4718-94f6-6b9d43da8c64",
+          "card_print_id": "b3132f9c-0f6a-466a-a6a0-6ecc795f4912",
+          "finish_key": "normal",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PAL-159-STD"
+        }
+      ],
+      "subtypes": [
+        "Normal",
+        "Reverse Holofoil"
+      ]
+    },
+    {
+      "mapping_id": "132351",
+      "product_id": 497590,
+      "source_name": "Squawkabilly ex",
+      "group_id": 23120,
+      "source_number": [
+        "169/193"
+      ],
+      "regular": {
+        "id": "72e19b10-5062-4a94-85fb-407819e89f90",
+        "gv_id": "GV-PK-PAL-169",
+        "name": "Squawkabilly ex",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "169",
+        "variant_key": ""
+      },
+      "stamp": {
+        "id": "fbc8663b-477b-4c38-a487-0434b8b12baf",
+        "gv_id": "GV-PK-SV02-169-PRIZE-PACK-STAMP",
+        "name": "Squawkabilly ex",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "169",
+        "variant_key": "prize_pack_stamp",
+        "tcgplayer_id": null,
+        "printed_identity_modifier": null
+      },
+      "identity": {
+        "id": "e43c0232-5e75-4a0c-9c83-dabb982a418d",
+        "printed_number": "169",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv02"
+      },
+      "anchors": [
+        {
+          "id": "24480",
+          "source": "tcgdex",
+          "external_id": "sv02-169",
+          "card_print_id": "72e19b10-5062-4a94-85fb-407819e89f90"
+        },
+        {
+          "id": "28792",
+          "source": "pokemonapi",
+          "external_id": "sv2-169",
+          "card_print_id": "72e19b10-5062-4a94-85fb-407819e89f90"
+        },
+        {
+          "id": "94426",
+          "source": "justtcg",
+          "external_id": "pokemon-sv02-paldea-evolved-squawkabilly-ex-double-rare",
+          "card_print_id": "72e19b10-5062-4a94-85fb-407819e89f90"
+        }
+      ],
+      "printings": [
+        {
+          "id": "91749a1e-1d1f-4efe-9248-8fd4a3236fe2",
+          "card_print_id": "72e19b10-5062-4a94-85fb-407819e89f90",
+          "finish_key": "holo",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PAL-169-HOLO"
+        }
+      ],
+      "subtypes": [
+        "Holofoil"
+      ]
+    },
+    {
+      "mapping_id": "132352",
+      "product_id": 497541,
+      "source_name": "Artazon",
+      "group_id": 23120,
+      "source_number": [
+        "171/193"
+      ],
+      "regular": {
+        "id": "1a079b94-3d14-4de0-94f2-6fbe1b663c2a",
+        "gv_id": "GV-PK-PAL-171",
+        "name": "Artazon",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "171",
+        "variant_key": ""
+      },
+      "stamp": {
+        "id": "047ff227-5e1f-471c-a735-9c1e38e443b3",
+        "gv_id": "GV-PK-PAL-171-PLAY-POKEMON-STAMP",
+        "name": "Artazon",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "171",
+        "variant_key": "play_pokemon_stamp",
+        "tcgplayer_id": "538753",
+        "printed_identity_modifier": null
+      },
+      "identity": {
+        "id": "b075719a-9869-44a4-9f7a-246d4c78a3d1",
+        "printed_number": "171",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv02"
+      },
+      "anchors": [
+        {
+          "id": "24482",
+          "source": "tcgdex",
+          "external_id": "sv02-171",
+          "card_print_id": "1a079b94-3d14-4de0-94f2-6fbe1b663c2a"
+        },
+        {
+          "id": "28795",
+          "source": "pokemonapi",
+          "external_id": "sv2-171",
+          "card_print_id": "1a079b94-3d14-4de0-94f2-6fbe1b663c2a"
+        },
+        {
+          "id": "94429",
+          "source": "justtcg",
+          "external_id": "pokemon-sv02-paldea-evolved-artazon-uncommon",
+          "card_print_id": "1a079b94-3d14-4de0-94f2-6fbe1b663c2a"
+        }
+      ],
+      "printings": [
+        {
+          "id": "85abbbe0-2076-4f77-ba63-eb580759400a",
+          "card_print_id": "1a079b94-3d14-4de0-94f2-6fbe1b663c2a",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PAL-171-RH"
+        },
+        {
+          "id": "e52781d8-9218-434f-80b0-2a6545b878f2",
+          "card_print_id": "1a079b94-3d14-4de0-94f2-6fbe1b663c2a",
+          "finish_key": "normal",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PAL-171-STD"
+        }
+      ],
+      "subtypes": [
+        "Normal",
+        "Reverse Holofoil"
+      ]
+    },
+    {
+      "mapping_id": "132353",
+      "product_id": 497545,
+      "source_name": "Bravery Charm",
+      "group_id": 23120,
+      "source_number": [
+        "173/193"
+      ],
+      "regular": {
+        "id": "a08bf25d-a431-4daf-8d52-53fbf9a5d0a9",
+        "gv_id": "GV-PK-PAL-173",
+        "name": "Bravery Charm",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "173",
+        "variant_key": ""
+      },
+      "stamp": {
+        "id": "25919120-26aa-4cd6-a5b8-164de1912c92",
+        "gv_id": "GV-PK-SV02-173-PRIZE-PACK-STAMP",
+        "name": "Bravery Charm",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "173",
+        "variant_key": "prize_pack_stamp",
+        "tcgplayer_id": null,
+        "printed_identity_modifier": null
+      },
+      "identity": {
+        "id": "c8d169a1-cf13-4524-bf83-9fa58c72e885",
+        "printed_number": "173",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv02"
+      },
+      "anchors": [
+        {
+          "id": "24484",
+          "source": "tcgdex",
+          "external_id": "sv02-173",
+          "card_print_id": "a08bf25d-a431-4daf-8d52-53fbf9a5d0a9"
+        },
+        {
+          "id": "28797",
+          "source": "pokemonapi",
+          "external_id": "sv2-173",
+          "card_print_id": "a08bf25d-a431-4daf-8d52-53fbf9a5d0a9"
+        },
+        {
+          "id": "94431",
+          "source": "justtcg",
+          "external_id": "pokemon-sv02-paldea-evolved-bravery-charm-uncommon",
+          "card_print_id": "a08bf25d-a431-4daf-8d52-53fbf9a5d0a9"
+        }
+      ],
+      "printings": [
+        {
+          "id": "910254d4-600b-4847-a419-e721f2b8f79b",
+          "card_print_id": "a08bf25d-a431-4daf-8d52-53fbf9a5d0a9",
+          "finish_key": "normal",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PAL-173-STD"
+        },
+        {
+          "id": "e9537505-85a9-4b4a-a013-c0107c8ff17d",
+          "card_print_id": "a08bf25d-a431-4daf-8d52-53fbf9a5d0a9",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PAL-173-RH"
+        }
+      ],
+      "subtypes": [
+        "Normal",
+        "Reverse Holofoil"
+      ]
+    },
+    {
+      "mapping_id": "132357",
+      "product_id": 497549,
+      "source_name": "Clavell",
+      "group_id": 23120,
+      "source_number": [
+        "177/193"
+      ],
+      "regular": {
+        "id": "dbfe3ad7-ac03-4e8a-bdc7-b93435c53f76",
+        "gv_id": "GV-PK-PAL-177",
+        "name": "Clavell",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "177",
+        "variant_key": ""
+      },
+      "stamp": {
+        "id": "93565059-dcfe-4515-860e-4607694a9381",
+        "gv_id": "GV-PK-PAL-177-PLAY-POKEMON-STAMP",
+        "name": "Clavell",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "177",
+        "variant_key": "play_pokemon_stamp",
+        "tcgplayer_id": "538757",
+        "printed_identity_modifier": null
+      },
+      "identity": {
+        "id": "7f315aaf-a02e-4d6e-9b3d-c739870f3b16",
+        "printed_number": "177",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv02"
+      },
+      "anchors": [
+        {
+          "id": "24488",
+          "source": "tcgdex",
+          "external_id": "sv02-177",
+          "card_print_id": "dbfe3ad7-ac03-4e8a-bdc7-b93435c53f76"
+        },
+        {
+          "id": "28801",
+          "source": "pokemonapi",
+          "external_id": "sv2-177",
+          "card_print_id": "dbfe3ad7-ac03-4e8a-bdc7-b93435c53f76"
+        },
+        {
+          "id": "94435",
+          "source": "justtcg",
+          "external_id": "pokemon-sv02-paldea-evolved-clavell-common",
+          "card_print_id": "dbfe3ad7-ac03-4e8a-bdc7-b93435c53f76"
+        }
+      ],
+      "printings": [
+        {
+          "id": "c5d99448-e597-4aa5-92e9-591473df8e03",
+          "card_print_id": "dbfe3ad7-ac03-4e8a-bdc7-b93435c53f76",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PAL-177-RH"
+        },
+        {
+          "id": "e54ca11b-a2bd-49e9-96e1-8052e2e8177e",
+          "card_print_id": "dbfe3ad7-ac03-4e8a-bdc7-b93435c53f76",
+          "finish_key": "normal",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PAL-177-STD"
+        }
+      ],
+      "subtypes": [
+        "Normal",
+        "Reverse Holofoil"
+      ]
+    },
+    {
+      "mapping_id": "132361",
+      "product_id": 497553,
+      "source_name": "Fighting Au Lait",
+      "group_id": 23120,
+      "source_number": [
+        "181/193"
+      ],
+      "regular": {
+        "id": "54d35e3d-2e91-4ef9-8804-c810559d3f45",
+        "gv_id": "GV-PK-PAL-181",
+        "name": "Fighting Au Lait",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "181",
+        "variant_key": ""
+      },
+      "stamp": {
+        "id": "94037abf-99a9-4f69-b4ed-7f39801dac95",
+        "gv_id": "GV-PK-PAL-181-PLAY-POKEMON-STAMP",
+        "name": "Fighting Au Lait",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "181",
+        "variant_key": "play_pokemon_stamp",
+        "tcgplayer_id": "538759",
+        "printed_identity_modifier": null
+      },
+      "identity": {
+        "id": "5b2938a1-ce62-49d7-af22-90adc3c45317",
+        "printed_number": "181",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv02"
+      },
+      "anchors": [
+        {
+          "id": "24492",
+          "source": "tcgdex",
+          "external_id": "sv02-181",
+          "card_print_id": "54d35e3d-2e91-4ef9-8804-c810559d3f45"
+        },
+        {
+          "id": "28806",
+          "source": "pokemonapi",
+          "external_id": "sv2-181",
+          "card_print_id": "54d35e3d-2e91-4ef9-8804-c810559d3f45"
+        },
+        {
+          "id": "94440",
+          "source": "justtcg",
+          "external_id": "pokemon-sv02-paldea-evolved-fighting-au-lait-uncommon",
+          "card_print_id": "54d35e3d-2e91-4ef9-8804-c810559d3f45"
+        }
+      ],
+      "printings": [
+        {
+          "id": "6ce9db48-296f-46e7-adab-b2a7e241f94d",
+          "card_print_id": "54d35e3d-2e91-4ef9-8804-c810559d3f45",
+          "finish_key": "normal",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PAL-181-STD"
+        },
+        {
+          "id": "8e80aba4-c2b1-441c-931f-f94c052638c7",
+          "card_print_id": "54d35e3d-2e91-4ef9-8804-c810559d3f45",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PAL-181-RH"
+        }
+      ],
+      "subtypes": [
+        "Normal",
+        "Reverse Holofoil"
+      ]
+    },
+    {
+      "mapping_id": "132369",
+      "product_id": 497562,
+      "source_name": "Superior Energy Retrieval - 189/193",
+      "group_id": 23120,
+      "source_number": [
+        "189/193"
+      ],
+      "regular": {
+        "id": "5852f054-8b92-4cc0-9d99-a785cfa79484",
+        "gv_id": "GV-PK-PAL-189",
+        "name": "Superior Energy Retrieval",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "189",
+        "variant_key": ""
+      },
+      "stamp": {
+        "id": "7393c4e1-c7a9-4e8f-a2fb-4d8ff58593f8",
+        "gv_id": "GV-PK-PAL-189-PLAY-POKEMON-STAMP",
+        "name": "Superior Energy Retrieval",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "189",
+        "variant_key": "play_pokemon_stamp",
+        "tcgplayer_id": "538770",
+        "printed_identity_modifier": null
+      },
+      "identity": {
+        "id": "ecd57d89-49b4-4726-8860-50edf319b41e",
+        "printed_number": "189",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv02"
+      },
+      "anchors": [
+        {
+          "id": "24500",
+          "source": "tcgdex",
+          "external_id": "sv02-189",
+          "card_print_id": "5852f054-8b92-4cc0-9d99-a785cfa79484"
+        },
+        {
+          "id": "28814",
+          "source": "pokemonapi",
+          "external_id": "sv2-189",
+          "card_print_id": "5852f054-8b92-4cc0-9d99-a785cfa79484"
+        },
+        {
+          "id": "94448",
+          "source": "justtcg",
+          "external_id": "pokemon-sv02-paldea-evolved-superior-energy-retrieval-189-193-uncommon",
+          "card_print_id": "5852f054-8b92-4cc0-9d99-a785cfa79484"
+        }
+      ],
+      "printings": [
+        {
+          "id": "4c439e37-3ac9-4a8a-a90c-7a260a89c5f8",
+          "card_print_id": "5852f054-8b92-4cc0-9d99-a785cfa79484",
+          "finish_key": "normal",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PAL-189-STD"
+        },
+        {
+          "id": "60e73ae8-e071-4ee1-a448-26c9f087fef4",
+          "card_print_id": "5852f054-8b92-4cc0-9d99-a785cfa79484",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PAL-189-RH"
+        }
+      ],
+      "subtypes": [
+        "Normal",
+        "Reverse Holofoil"
+      ]
+    },
+    {
+      "mapping_id": "132371",
+      "product_id": 497564,
+      "source_name": "Luminous Energy",
+      "group_id": 23120,
+      "source_number": [
+        "191/193"
+      ],
+      "regular": {
+        "id": "ca997f88-a183-4839-9baa-75be30e2adcd",
+        "gv_id": "GV-PK-PAL-191",
+        "name": "Luminous Energy",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "191",
+        "variant_key": ""
+      },
+      "stamp": {
+        "id": "ff65323d-c1f5-44d6-b834-7cf82d6ce2ef",
+        "gv_id": "GV-PK-PAL-191-PLAY-POKEMON-STAMP",
+        "name": "Luminous Energy",
+        "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+        "set_code": "sv02",
+        "number": "191",
+        "variant_key": "play_pokemon_stamp",
+        "tcgplayer_id": "538773",
+        "printed_identity_modifier": null
+      },
+      "identity": {
+        "id": "24603057-e765-4c65-bc52-3f9a688f7a98",
+        "printed_number": "191",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv02"
+      },
+      "anchors": [
+        {
+          "id": "24502",
+          "source": "tcgdex",
+          "external_id": "sv02-191",
+          "card_print_id": "ca997f88-a183-4839-9baa-75be30e2adcd"
+        },
+        {
+          "id": "28817",
+          "source": "pokemonapi",
+          "external_id": "sv2-191",
+          "card_print_id": "ca997f88-a183-4839-9baa-75be30e2adcd"
+        },
+        {
+          "id": "94451",
+          "source": "justtcg",
+          "external_id": "pokemon-sv02-paldea-evolved-luminous-energy-uncommon",
+          "card_print_id": "ca997f88-a183-4839-9baa-75be30e2adcd"
+        }
+      ],
+      "printings": [
+        {
+          "id": "06624027-0a53-4a85-ba8e-06dbd430453c",
+          "card_print_id": "ca997f88-a183-4839-9baa-75be30e2adcd",
+          "finish_key": "normal",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PAL-191-STD"
+        },
+        {
+          "id": "4b2929c7-bf59-4edd-8951-f733894da533",
+          "card_print_id": "ca997f88-a183-4839-9baa-75be30e2adcd",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PAL-191-RH"
+        }
+      ],
+      "subtypes": [
+        "Normal",
+        "Reverse Holofoil"
+      ]
+    },
+    {
+      "mapping_id": "132464",
+      "product_id": 642480,
+      "source_name": "Kyurem ex",
+      "group_id": 24325,
+      "source_number": [
+        "028/086"
+      ],
+      "regular": {
+        "id": "b226b140-e217-4ea2-b5a5-b2c62a1b262e",
+        "gv_id": "GV-PK-BLK-028",
+        "name": "Kyurem ex",
+        "set_id": "b4795cd9-aac4-4717-bf69-824ac4c2128e",
+        "set_code": "sv10.5b",
+        "number": "028",
+        "variant_key": ""
+      },
+      "stamp": {
+        "id": "027e087d-7d9d-4258-a711-994cc86b4561",
+        "gv_id": "GV-PK-BLK-028-PLAY-POKEMON-STAMP",
+        "name": "Kyurem ex",
+        "set_id": "b4795cd9-aac4-4717-bf69-824ac4c2128e",
+        "set_code": "sv10.5b",
+        "number": "028",
+        "variant_key": "play_pokemon_stamp",
+        "tcgplayer_id": "671619",
+        "printed_identity_modifier": null
+      },
+      "identity": {
+        "id": "92a5993b-069a-473f-8b7b-ec9cfa090b57",
+        "printed_number": "028",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv10.5b"
+      },
+      "anchors": [
+        {
+          "id": "55087",
+          "source": "tcgdex",
+          "external_id": "sv10.5b-028",
+          "card_print_id": "b226b140-e217-4ea2-b5a5-b2c62a1b262e"
+        },
+        {
+          "id": "96444",
+          "source": "justtcg",
+          "external_id": "pokemon-sv-black-bolt-kyurem-ex-double-rare",
+          "card_print_id": "b226b140-e217-4ea2-b5a5-b2c62a1b262e"
+        }
+      ],
+      "printings": [
+        {
+          "id": "40237d63-17b0-439b-b152-4ddea6da5a1a",
+          "card_print_id": "b226b140-e217-4ea2-b5a5-b2c62a1b262e",
+          "finish_key": "holo",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-BLK-028-HOLO"
+        }
+      ],
+      "subtypes": [
+        "Holofoil"
+      ]
+    },
+    {
+      "mapping_id": "132468",
+      "product_id": 642518,
+      "source_name": "Genesect ex",
+      "group_id": 24325,
+      "source_number": [
+        "067/086"
+      ],
+      "regular": {
+        "id": "093647d3-31e4-4290-822e-d38dc6174094",
+        "gv_id": "GV-PK-BLK-067",
+        "name": "Genesect ex",
+        "set_id": "b4795cd9-aac4-4717-bf69-824ac4c2128e",
+        "set_code": "sv10.5b",
+        "number": "067",
+        "variant_key": ""
+      },
+      "stamp": {
+        "id": "8b84f3f9-d9fa-42a4-8d0f-e8e80a9ca4e3",
+        "gv_id": "GV-PK-BLK-067-PLAY-POKEMON-STAMP",
+        "name": "Genesect ex",
+        "set_id": "b4795cd9-aac4-4717-bf69-824ac4c2128e",
+        "set_code": "sv10.5b",
+        "number": "067",
+        "variant_key": "play_pokemon_stamp",
+        "tcgplayer_id": "671556",
+        "printed_identity_modifier": null
+      },
+      "identity": {
+        "id": "15ecf723-2250-438f-8058-d18231442cf8",
+        "printed_number": "067",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv10.5b"
+      },
+      "anchors": [
+        {
+          "id": "55165",
+          "source": "tcgdex",
+          "external_id": "sv10.5b-067",
+          "card_print_id": "093647d3-31e4-4290-822e-d38dc6174094"
+        },
+        {
+          "id": "96483",
+          "source": "justtcg",
+          "external_id": "pokemon-sv-black-bolt-genesect-ex-double-rare",
+          "card_print_id": "093647d3-31e4-4290-822e-d38dc6174094"
+        }
+      ],
+      "printings": [
+        {
+          "id": "d3482221-d9f2-44b6-8405-72954922d72d",
+          "card_print_id": "093647d3-31e4-4290-822e-d38dc6174094",
+          "finish_key": "holo",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-BLK-067-HOLO"
+        }
+      ],
+      "subtypes": [
+        "Holofoil"
+      ]
+    },
+    {
+      "mapping_id": "132558",
+      "product_id": 487435,
+      "source_name": "Mimikyu ex - 004",
+      "group_id": 22872,
+      "source_number": [
+        "004"
+      ],
+      "regular": {
+        "id": "322483c7-382c-4363-b5e9-df19c85cb532",
+        "gv_id": "GV-PK-PR-SV-004",
+        "name": "Mimikyu ex",
+        "set_id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+        "set_code": "svp",
+        "number": "004",
+        "variant_key": ""
+      },
+      "stamp": {
+        "id": "8667c455-7108-45b9-ad40-02686047ffb5",
+        "gv_id": "GV-PK-PR-SV-004-PLAY-POKEMON-STAMP",
+        "name": "Mimikyu ex",
+        "set_id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+        "set_code": "svp",
+        "number": "004",
+        "variant_key": "play_pokemon_stamp",
+        "tcgplayer_id": "513798",
+        "printed_identity_modifier": null
+      },
+      "identity": {
+        "id": "d0ab8ed4-f27e-4fba-924f-1ca2a60a1191",
+        "printed_number": "004",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "svp"
+      },
+      "anchors": [
+        {
+          "id": "23838",
+          "source": "tcgdex",
+          "external_id": "svp-004",
+          "card_print_id": "322483c7-382c-4363-b5e9-df19c85cb532"
+        },
+        {
+          "id": "93209",
+          "source": "justtcg",
+          "external_id": "pokemon-sv-scarlet-violet-promo-cards-mimikyu-ex-004-promo",
+          "card_print_id": "322483c7-382c-4363-b5e9-df19c85cb532"
+        },
+        {
+          "id": "372143",
+          "source": "pokemonapi",
+          "external_id": "svp-4",
+          "card_print_id": "322483c7-382c-4363-b5e9-df19c85cb532"
+        }
+      ],
+      "printings": [
+        {
+          "id": "b648fec6-a9e3-4b2b-8749-183590553c31",
+          "card_print_id": "322483c7-382c-4363-b5e9-df19c85cb532",
+          "finish_key": "holo",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PR-SV-004-HOLO"
+        }
+      ],
+      "subtypes": [
+        "Holofoil"
+      ]
+    },
+    {
+      "mapping_id": "132563",
+      "product_id": 484397,
+      "source_name": "Ampharos ex - 016",
+      "group_id": 22872,
+      "source_number": [
+        "016"
+      ],
+      "regular": {
+        "id": "3bde91dd-0a87-4b19-a03e-5fc05de960cb",
+        "gv_id": "GV-PK-PR-SV-016",
+        "name": "Ampharos ex",
+        "set_id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+        "set_code": "svp",
+        "number": "016",
+        "variant_key": ""
+      },
+      "stamp": {
+        "id": "dbe97a36-e476-4b59-8962-6f13a0118a47",
+        "gv_id": "GV-PK-PR-SV-016-PLAY-POKEMON-STAMP",
+        "name": "Ampharos ex",
+        "set_id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+        "set_code": "svp",
+        "number": "016",
+        "variant_key": "play_pokemon_stamp",
+        "tcgplayer_id": "513773",
+        "printed_identity_modifier": null
+      },
+      "identity": {
+        "id": "df1013d6-b917-40d2-a98a-295cbe12f09a",
+        "printed_number": "016",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "svp"
+      },
+      "anchors": [
+        {
+          "id": "23850",
+          "source": "tcgdex",
+          "external_id": "svp-016",
+          "card_print_id": "3bde91dd-0a87-4b19-a03e-5fc05de960cb"
+        },
+        {
+          "id": "93212",
+          "source": "justtcg",
+          "external_id": "pokemon-sv-scarlet-violet-promo-cards-ampharos-ex-016-promo",
+          "card_print_id": "3bde91dd-0a87-4b19-a03e-5fc05de960cb"
+        },
+        {
+          "id": "372886",
+          "source": "pokemonapi",
+          "external_id": "svp-16",
+          "card_print_id": "3bde91dd-0a87-4b19-a03e-5fc05de960cb"
+        }
+      ],
+      "printings": [
+        {
+          "id": "2b7a8005-3a94-4f59-bd04-6adb500d2715",
+          "card_print_id": "3bde91dd-0a87-4b19-a03e-5fc05de960cb",
+          "finish_key": "holo",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PR-SV-016-HOLO"
+        }
+      ],
+      "subtypes": [
+        "Holofoil"
+      ]
+    },
+    {
+      "mapping_id": "132564",
+      "product_id": 484396,
+      "source_name": "Lucario ex - 017",
+      "group_id": 22872,
+      "source_number": [
+        "017"
+      ],
+      "regular": {
+        "id": "10b6b8a7-ccd5-47b1-97f7-65f55df0703d",
+        "gv_id": "GV-PK-PR-SV-017",
+        "name": "Lucario ex",
+        "set_id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+        "set_code": "svp",
+        "number": "017",
+        "variant_key": ""
+      },
+      "stamp": {
+        "id": "3f0c43c6-3f3a-462e-a637-88d7af8c42a7",
+        "gv_id": "GV-PK-PR-SV-017-PLAY-POKEMON-STAMP",
+        "name": "Lucario ex",
+        "set_id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+        "set_code": "svp",
+        "number": "017",
+        "variant_key": "play_pokemon_stamp",
+        "tcgplayer_id": "513792",
+        "printed_identity_modifier": null
+      },
+      "identity": {
+        "id": "396e2ce4-e42d-44ea-97f7-a4d8b23c0a4f",
+        "printed_number": "017",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "svp"
+      },
+      "anchors": [
+        {
+          "id": "38267",
+          "source": "tcgdex",
+          "external_id": "svp-017",
+          "card_print_id": "10b6b8a7-ccd5-47b1-97f7-65f55df0703d"
+        },
+        {
+          "id": "93287",
+          "source": "justtcg",
+          "external_id": "pokemon-sv-scarlet-violet-promo-cards-lucario-ex-017-promo",
+          "card_print_id": "10b6b8a7-ccd5-47b1-97f7-65f55df0703d"
+        },
+        {
+          "id": "370901",
+          "source": "pokemonapi",
+          "external_id": "svp-17",
+          "card_print_id": "10b6b8a7-ccd5-47b1-97f7-65f55df0703d"
+        }
+      ],
+      "printings": [
+        {
+          "id": "2a46bab2-6877-4e3e-af73-1233e86d84f8",
+          "card_print_id": "10b6b8a7-ccd5-47b1-97f7-65f55df0703d",
+          "finish_key": "holo",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PR-SV-017-HOLO"
+        },
+        {
+          "id": "6b41439c-da3f-4f4f-89d0-28538dfc95dd",
+          "card_print_id": "10b6b8a7-ccd5-47b1-97f7-65f55df0703d",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PR-SV-017-RH"
+        },
+        {
+          "id": "a9975ecd-bf87-4a1f-871a-8d1873a107b4",
+          "card_print_id": "10b6b8a7-ccd5-47b1-97f7-65f55df0703d",
+          "finish_key": "normal",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PR-SV-017-STD"
+        }
+      ],
+      "subtypes": [
+        "Holofoil"
+      ]
+    },
+    {
+      "mapping_id": "132565",
+      "product_id": 496429,
+      "source_name": "Cyclizar ex - 018",
+      "group_id": 22872,
+      "source_number": [
+        "018"
+      ],
+      "regular": {
+        "id": "1c1b2f2e-9b6c-4b16-b737-3d5d7659bc53",
+        "gv_id": "GV-PK-PR-SV-018",
+        "name": "Cyclizar ex",
+        "set_id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+        "set_code": "svp",
+        "number": "018",
+        "variant_key": ""
+      },
+      "stamp": {
+        "id": "3d873cfd-8380-42e2-9f11-4a9588bf68c6",
+        "gv_id": "GV-PK-PR-SV-018-PLAY-POKEMON-STAMP",
+        "name": "Cyclizar ex",
+        "set_id": "082139da-c6d1-4b08-ba00-2b5219bb74d6",
+        "set_code": "svp",
+        "number": "018",
+        "variant_key": "play_pokemon_stamp",
+        "tcgplayer_id": "513776",
+        "printed_identity_modifier": null
+      },
+      "identity": {
+        "id": "187d5407-9402-4aa6-8f5c-7cce5edcb0f3",
+        "printed_number": "018",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "svp"
+      },
+      "anchors": [
+        {
+          "id": "38268",
+          "source": "tcgdex",
+          "external_id": "svp-018",
+          "card_print_id": "1c1b2f2e-9b6c-4b16-b737-3d5d7659bc53"
+        },
+        {
+          "id": "93293",
+          "source": "justtcg",
+          "external_id": "pokemon-sv-scarlet-violet-promo-cards-cyclizar-ex-018-promo",
+          "card_print_id": "1c1b2f2e-9b6c-4b16-b737-3d5d7659bc53"
+        },
+        {
+          "id": "371150",
+          "source": "pokemonapi",
+          "external_id": "svp-18",
+          "card_print_id": "1c1b2f2e-9b6c-4b16-b737-3d5d7659bc53"
+        }
+      ],
+      "printings": [
+        {
+          "id": "4856944b-f169-46a8-9cf5-35e853300baf",
+          "card_print_id": "1c1b2f2e-9b6c-4b16-b737-3d5d7659bc53",
+          "finish_key": "normal",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PR-SV-018-STD"
+        },
+        {
+          "id": "d3309908-462a-468f-93ca-a32aa940bbae",
+          "card_print_id": "1c1b2f2e-9b6c-4b16-b737-3d5d7659bc53",
+          "finish_key": "holo",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PR-SV-018-HOLO"
+        },
+        {
+          "id": "e4d5f185-4ce6-46ef-80a1-9d6da03d0169",
+          "card_print_id": "1c1b2f2e-9b6c-4b16-b737-3d5d7659bc53",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PR-SV-018-RH"
+        }
+      ],
+      "subtypes": [
+        "Holofoil"
+      ]
+    },
+    {
+      "mapping_id": "132992",
+      "product_id": 236054,
+      "source_name": "Galarian Rapidash V - SWSH111",
+      "group_id": 2545,
+      "source_number": [
+        "SWSH111"
+      ],
+      "regular": {
+        "id": "a0ad6076-e7e6-4fb5-9298-ac8cbee79b37",
+        "gv_id": "GV-PK-PR-SW-SWSH111",
+        "name": "Galarian Rapidash V",
+        "set_id": "fb3eedc5-7234-49b5-b95b-8a9286c27daf",
+        "set_code": "swshp",
+        "number": "SWSH111",
+        "variant_key": ""
+      },
+      "stamp": {
+        "id": "7b55df94-5e30-4cfc-962e-0674a820721e",
+        "gv_id": "GV-PK-SWSHP-111-PRIZE-PACK-STAMP",
+        "name": "Galarian Rapidash V",
+        "set_id": "fb3eedc5-7234-49b5-b95b-8a9286c27daf",
+        "set_code": "swshp",
+        "number": "SWSH111",
+        "variant_key": "prize_pack_stamp",
+        "tcgplayer_id": null,
+        "printed_identity_modifier": null
+      },
+      "identity": {
+        "id": "e2806750-8e7f-47a4-9d81-ed42a8775edc",
+        "printed_number": "SWSH111",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "swshp"
+      },
+      "anchors": [
+        {
+          "id": "4488",
+          "source": "pokemonapi",
+          "external_id": "swshp-SWSH111",
+          "card_print_id": "a0ad6076-e7e6-4fb5-9298-ac8cbee79b37"
+        },
+        {
+          "id": "40873",
+          "source": "tcgdex",
+          "external_id": "swshp-SWSH111",
+          "card_print_id": "a0ad6076-e7e6-4fb5-9298-ac8cbee79b37"
+        },
+        {
+          "id": "93454",
+          "source": "justtcg",
+          "external_id": "pokemon-swsh-sword-shield-promo-cards-galarian-rapidash-v-swsh111-promo",
+          "card_print_id": "a0ad6076-e7e6-4fb5-9298-ac8cbee79b37"
+        }
+      ],
+      "printings": [
+        {
+          "id": "62d95ab1-748c-4031-9d99-4e043c9b74fc",
+          "card_print_id": "a0ad6076-e7e6-4fb5-9298-ac8cbee79b37",
+          "finish_key": "holo",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PR-SW-SWSH111-HOLO"
+        }
+      ],
+      "subtypes": [
+        "Holofoil"
+      ]
+    },
+    {
+      "mapping_id": "133027",
+      "product_id": 247295,
+      "source_name": "Flareon V - SWSH149",
+      "group_id": 2545,
+      "source_number": [
+        "SWSH149"
+      ],
+      "regular": {
+        "id": "a5cc63c1-f25e-40c5-9031-9e4957c3d8c0",
+        "gv_id": "GV-PK-PR-SW-SWSH149",
+        "name": "Flareon V",
+        "set_id": "fb3eedc5-7234-49b5-b95b-8a9286c27daf",
+        "set_code": "swshp",
+        "number": "SWSH149",
+        "variant_key": ""
+      },
+      "stamp": {
+        "id": "e59a640b-b21a-49f3-8b39-b8db75c8c0c2",
+        "gv_id": "GV-PK-SWSHP-149-PRIZE-PACK-STAMP",
+        "name": "Flareon V",
+        "set_id": "fb3eedc5-7234-49b5-b95b-8a9286c27daf",
+        "set_code": "swshp",
+        "number": "SWSH149",
+        "variant_key": "prize_pack_stamp",
+        "tcgplayer_id": null,
+        "printed_identity_modifier": null
+      },
+      "identity": {
+        "id": "1a0dc264-9e31-4e26-aa5d-d07a3aaf7792",
+        "printed_number": "SWSH149",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "swshp"
+      },
+      "anchors": [
+        {
+          "id": "4529",
+          "source": "pokemonapi",
+          "external_id": "swshp-SWSH149",
+          "card_print_id": "a5cc63c1-f25e-40c5-9031-9e4957c3d8c0"
+        },
+        {
+          "id": "40911",
+          "source": "tcgdex",
+          "external_id": "swshp-SWSH149",
+          "card_print_id": "a5cc63c1-f25e-40c5-9031-9e4957c3d8c0"
+        },
+        {
+          "id": "93480",
+          "source": "justtcg",
+          "external_id": "pokemon-swsh-sword-shield-promo-cards-flareon-v-swsh149-promo",
+          "card_print_id": "a5cc63c1-f25e-40c5-9031-9e4957c3d8c0"
+        }
+      ],
+      "printings": [
+        {
+          "id": "196d1870-6074-4031-97d6-b78da37642e8",
+          "card_print_id": "a5cc63c1-f25e-40c5-9031-9e4957c3d8c0",
+          "finish_key": "holo",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PR-SW-SWSH149-HOLO"
+        }
+      ],
+      "subtypes": [
+        "Holofoil"
+      ]
+    },
+    {
+      "mapping_id": "133030",
+      "product_id": 247297,
+      "source_name": "Jolteon V - SWSH151",
+      "group_id": 2545,
+      "source_number": [
+        "SWSH151"
+      ],
+      "regular": {
+        "id": "8c1adcce-0d3c-460f-8887-9bd7b91846fb",
+        "gv_id": "GV-PK-PR-SW-SWSH151",
+        "name": "Jolteon V",
+        "set_id": "fb3eedc5-7234-49b5-b95b-8a9286c27daf",
+        "set_code": "swshp",
+        "number": "SWSH151",
+        "variant_key": ""
+      },
+      "stamp": {
+        "id": "4ebe2e23-60dd-4f9e-b1b6-6f3ffdbc7146",
+        "gv_id": "GV-PK-SWSHP-151-PRIZE-PACK-STAMP",
+        "name": "Jolteon V",
+        "set_id": "fb3eedc5-7234-49b5-b95b-8a9286c27daf",
+        "set_code": "swshp",
+        "number": "SWSH151",
+        "variant_key": "prize_pack_stamp",
+        "tcgplayer_id": null,
+        "printed_identity_modifier": null
+      },
+      "identity": {
+        "id": "7de75b5c-1c45-48cb-b33b-a662616bf921",
+        "printed_number": "SWSH151",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "swshp"
+      },
+      "anchors": [
+        {
+          "id": "4531",
+          "source": "pokemonapi",
+          "external_id": "swshp-SWSH151",
+          "card_print_id": "8c1adcce-0d3c-460f-8887-9bd7b91846fb"
+        },
+        {
+          "id": "40913",
+          "source": "tcgdex",
+          "external_id": "swshp-SWSH151",
+          "card_print_id": "8c1adcce-0d3c-460f-8887-9bd7b91846fb"
+        },
+        {
+          "id": "93482",
+          "source": "justtcg",
+          "external_id": "pokemon-swsh-sword-shield-promo-cards-jolteon-v-swsh151-promo",
+          "card_print_id": "8c1adcce-0d3c-460f-8887-9bd7b91846fb"
+        }
+      ],
+      "printings": [
+        {
+          "id": "72532616-7923-4023-b0c7-1fc36404b8a6",
+          "card_print_id": "8c1adcce-0d3c-460f-8887-9bd7b91846fb",
+          "finish_key": "holo",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-PR-SW-SWSH151-HOLO"
+        }
+      ],
+      "subtypes": [
+        "Holofoil"
+      ]
+    },
+    {
+      "mapping_id": "133937",
+      "product_id": 567229,
+      "source_name": "Ledian - 003/142",
+      "group_id": 23537,
+      "source_number": [
+        "003/142"
+      ],
+      "regular": {
+        "id": "c0ba0c28-8d62-449c-9540-ed11a1879741",
+        "gv_id": "GV-PK-SCR-3",
+        "name": "Ledian",
+        "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+        "set_code": "sv07",
+        "number": "3",
+        "variant_key": ""
+      },
+      "stamp": {
+        "id": "bf566fbd-7f4c-4a43-8c03-7246dc14101f",
+        "gv_id": "GV-PK-SCR-003-PLAY-POKEMON-STAMP",
+        "name": "Ledian",
+        "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+        "set_code": "sv07",
+        "number": "003",
+        "variant_key": "play_pokemon_stamp",
+        "tcgplayer_id": "619138",
+        "printed_identity_modifier": null
+      },
+      "identity": {
+        "id": "2aaa6fcc-b22e-4981-bb1a-e8d33d06fa3c",
+        "printed_number": "003",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv07"
+      },
+      "anchors": [
+        {
+          "id": "58653",
+          "source": "tcgdex",
+          "external_id": "sv07-003",
+          "card_print_id": "c0ba0c28-8d62-449c-9540-ed11a1879741"
+        },
+        {
+          "id": "95656",
+          "source": "justtcg",
+          "external_id": "pokemon-sv07-stellar-crown-ledian-003-142-rare",
+          "card_print_id": "c0ba0c28-8d62-449c-9540-ed11a1879741"
+        }
+      ],
+      "printings": [
+        {
+          "id": "765271c8-47ad-480d-beca-b30f286bfbc7",
+          "card_print_id": "c0ba0c28-8d62-449c-9540-ed11a1879741",
+          "finish_key": "holo",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-SCR-3-HOLO"
+        },
+        {
+          "id": "bf023b02-d683-4f28-947c-fa41ca9fdce8",
+          "card_print_id": "c0ba0c28-8d62-449c-9540-ed11a1879741",
+          "finish_key": "normal",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-SCR-3-STD"
+        },
+        {
+          "id": "f9ee7bfe-89e6-4cd1-976f-c1e08cd66cf8",
+          "card_print_id": "c0ba0c28-8d62-449c-9540-ed11a1879741",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-SCR-3-RH"
+        }
+      ],
+      "subtypes": [
+        "Holofoil",
+        "Reverse Holofoil"
+      ]
+    },
+    {
+      "mapping_id": "133939",
+      "product_id": 567337,
+      "source_name": "Raging Bolt",
+      "group_id": 23537,
+      "source_number": [
+        "111/142"
+      ],
+      "regular": {
+        "id": "f01f4923-c01e-4e99-864a-378b0b3d9d2b",
+        "gv_id": "GV-PK-SCR-111",
+        "name": "Raging Bolt",
+        "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+        "set_code": "sv07",
+        "number": "111",
+        "variant_key": ""
+      },
+      "stamp": {
+        "id": "2984f01b-3976-453b-b1f6-e590d1fe3d4d",
+        "gv_id": "GV-PK-SCR-111-PLAY-POKEMON-STAMP",
+        "name": "Raging Bolt",
+        "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+        "set_code": "sv07",
+        "number": "111",
+        "variant_key": "play_pokemon_stamp",
+        "tcgplayer_id": "619159",
+        "printed_identity_modifier": null
+      },
+      "identity": {
+        "id": "7ef71d5f-c995-4572-b09b-789ff57aa0ad",
+        "printed_number": "111",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv07"
+      },
+      "anchors": [
+        {
+          "id": "58752",
+          "source": "tcgdex",
+          "external_id": "sv07-111",
+          "card_print_id": "f01f4923-c01e-4e99-864a-378b0b3d9d2b"
+        },
+        {
+          "id": "95572",
+          "source": "justtcg",
+          "external_id": "pokemon-sv07-stellar-crown-raging-bolt-rare",
+          "card_print_id": "f01f4923-c01e-4e99-864a-378b0b3d9d2b"
+        }
+      ],
+      "printings": [
+        {
+          "id": "42c6d1c2-fd89-48ba-96d1-dabea902bc3f",
+          "card_print_id": "f01f4923-c01e-4e99-864a-378b0b3d9d2b",
+          "finish_key": "holo",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-SCR-111-HOLO"
+        },
+        {
+          "id": "db77e9b9-7ece-4d93-988a-4a7ea12d147c",
+          "card_print_id": "f01f4923-c01e-4e99-864a-378b0b3d9d2b",
+          "finish_key": "reverse",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-SCR-111-RH"
+        }
+      ],
+      "subtypes": [
+        "Holofoil",
+        "Reverse Holofoil"
+      ]
+    },
+    {
+      "mapping_id": "133941",
+      "product_id": 589983,
+      "source_name": "Latias ex - 076/191",
+      "group_id": 23651,
+      "source_number": [
+        "076/191"
+      ],
+      "regular": {
+        "id": "232e724d-e9d2-4150-94be-cdcd08275a28",
+        "gv_id": "GV-PK-SSP-76",
+        "name": "Latias ex",
+        "set_id": "2fd89c59-23c4-4fab-940b-32a4527f9890",
+        "set_code": "sv08",
+        "number": "76",
+        "variant_key": ""
+      },
+      "stamp": {
+        "id": "8f2732ce-078a-4574-a830-2cb7dc4cf065",
+        "gv_id": "GV-PK-SSP-076-PLAY-POKEMON-STAMP",
+        "name": "Latias ex",
+        "set_id": "2fd89c59-23c4-4fab-940b-32a4527f9890",
+        "set_code": "sv08",
+        "number": "076",
+        "variant_key": "play_pokemon_stamp",
+        "tcgplayer_id": "648669",
+        "printed_identity_modifier": null
+      },
+      "identity": {
+        "id": "4f312377-7af0-4d54-b5f1-bc24e2ce5a60",
+        "printed_number": "076",
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv08"
+      },
+      "anchors": [
+        {
+          "id": "8248",
+          "source": "tcgdex",
+          "external_id": "sv08-076",
+          "card_print_id": "232e724d-e9d2-4150-94be-cdcd08275a28"
+        },
+        {
+          "id": "29957",
+          "source": "pokemonapi",
+          "external_id": "sv8-76",
+          "card_print_id": "232e724d-e9d2-4150-94be-cdcd08275a28"
+        },
+        {
+          "id": "95959",
+          "source": "justtcg",
+          "external_id": "pokemon-sv08-surging-sparks-latias-ex-076-191-double-rare",
+          "card_print_id": "232e724d-e9d2-4150-94be-cdcd08275a28"
+        }
+      ],
+      "printings": [
+        {
+          "id": "b1218f4c-4644-46b4-bac3-7e9861f89489",
+          "card_print_id": "232e724d-e9d2-4150-94be-cdcd08275a28",
+          "finish_key": "holo",
+          "is_provisional": false,
+          "printing_gv_id": "GV-PK-SSP-76-HOLO"
+        }
+      ],
+      "subtypes": [
+        "Holofoil"
+      ]
+    }
+  ],
+  "fingerprint": "765fd5b92d99a906ac969ac2dd042e711f6caa51325cc420ab567c4f3003429b"
+}

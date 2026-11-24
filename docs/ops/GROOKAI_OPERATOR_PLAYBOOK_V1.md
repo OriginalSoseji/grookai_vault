@@ -1,3 +1,30 @@
+# Regular-product mapping correction candidate — November24,2026
+
+Follow [the29-product contract](../contracts/REGULAR_PRODUCT_MAPPING_CORRECTION_V1.md)
+and its [checkpoint](../checkpoints/pricing/PRICING_CHECKPOINT_20261124_REGULAR_PRODUCT_MAPPING_CORRECTION.md).
+Read-only inspection of all72 active Play!/Prize Pack TCGplayer links found43
+current Prize Pack products and29 ordinary products linked to stamped parents.
+All29 have unique existing regular parents and41 real positive USD quotes with
+matching existing nonprovisional children; the authenticated SQL price reader
+currently returns no qualified price for every regular parent. This is SQL-role
+inspection, not phone or authenticated HTTP acceptance.
+
+The new programme is separate from the frozen one-row Fighting proposal, which
+remains unapplied. Never apply both, silently widen an old plan or retry a partial
+scope. It permits only29 reviewed mapping updates and one private audit after
+complete qualification, fresh deployed523 closure, ordinary exact owner decision,
+actual production rollback and independent readback. Its own schema snapshot,
+registry and complete producer binding preserve66 parents and all references.
+Only the newly owned regular_product_mapping_29_qualification_523_v1 database on
+127.0.0.1:55340 may run its local write qualification. Preserve every old lab and
+copy no Auth or owner fixtures. No local proof activates pricing.
+
+The independent149-pair stamp identity stop still holds all32 old Normal targets
+and98 inserts/32 links. Thirteen missing Series6 parents remain a separate source
+programme. Keep all old IDs, stamp/foil distinctions, prices, owners and original
+149 completed inserts. Current-source full shadow, coverage, guarded publication,
+consumer/app amounts and natural refresh remain necessary before completion.
+
 # Stamp schema 522 preview — November 23, 2026
 
 Follow [the exact 522 extension](../contracts/STAMP_SCHEMA_522_CONTINUITY_V1.md).
