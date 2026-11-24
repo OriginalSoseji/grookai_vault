@@ -1,4 +1,7 @@
 export function assertCollectorReleaseEnvironment(env) {
+  if (env.NEXT_PUBLIC_SQUARE_SCALE_LOCAL_TEST && env.NEXT_PUBLIC_SQUARE_SCALE_LOCAL_TEST !== 'false') {
+    throw new Error('Production cannot include collector test modes.');
+  }
   if (env.GROOKAI_COLLECTOR_RELEASE_V1 !== 'true') {
     throw new Error('Collector production release requires explicit activation.');
   }

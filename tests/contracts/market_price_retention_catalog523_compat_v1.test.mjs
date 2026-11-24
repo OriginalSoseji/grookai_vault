@@ -1,3 +1,4 @@
+import {assertSquareForwardSourceV4} from './helpers/square_forward_source_v4.mjs';
 import assert from 'node:assert/strict';
 import {readFileSync,existsSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
@@ -11,7 +12,7 @@ const read=file=>JSON.parse(readFileSync(root+'/scripts/schema/'+file));
 test('catalog523 pricing inventory rejects all extra, omitted and changed migration bytes',()=>{
   const bulk=read('best_of_game_discovery_candidate_v17.json'),history={...bulk.history,...bulk.candidates};
   const actual={...history,...retainedPriceForwardCandidateV1};
-  assertRetainedPriceForwardInventoryV4(root,history);
+  assertSquareForwardSourceV4(root,history);
   for(const file of [Object.keys(bulk.history)[0],...Object.keys(bulk.candidates),...Object.keys(retainedPriceForwardCandidateV1)]){
     const missing={...actual};delete missing[file];
     assert.throws(()=>assertRetainedPriceForwardHashesV4(history,missing));

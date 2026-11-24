@@ -1,12 +1,16 @@
+import {assertSquareForwardSourceV4} from './helpers/square_forward_source_v4.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import {createHash} from 'node:crypto';import {fileURLToPath} from 'node:url';import {spawnSync} from 'node:child_process';
 import {validatePriceReleaseInvocationV1,assertPriceReleaseInventoryV1,assertPriceReleaseHostedV1} from '../../scripts/schema/verify_market_price_retention_release_v1.mjs';
 const root=fileURLToPath(new URL('../../',import.meta.url)),out='C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/release-gate-v1-contract-negative';
 const candidate={'20261124010000_market_price_retention_display_v1.sql':'bf85f532b45f88abf181f4e943c82493c440d4d7a034154b4a9f13df6139d03e'};
 test('final price inventory requires all523 original hashes plus the unchanged sole candidate',()=>{
  const b=JSON.parse(fs.readFileSync(root+'/scripts/schema/best_of_game_discovery_candidate_v17.json')),history={...b.history,...b.candidates},actual=Object.fromEntries(fs.readdirSync(root+'/supabase/migrations').filter(f=>/^\d+.*\.sql$/.test(f)).map(f=>[f,createHash('sha256').update(fs.readFileSync(root+'/supabase/migrations/'+f)).digest('hex')]));
- assertPriceReleaseInventoryV1(history,candidate,actual);
- for(const file of [Object.keys(history)[0],...Object.keys(b.candidates),...Object.keys(candidate)]){const missing={...actual};delete missing[file];assert.throws(()=>assertPriceReleaseInventoryV1(history,candidate,missing));assert.throws(()=>assertPriceReleaseInventoryV1(history,candidate,{...actual,[file]:'0'.repeat(64)}));}
- assert.throws(()=>assertPriceReleaseInventoryV1(history,candidate,{...actual,'20261124050000_unreviewed.sql':'0'.repeat(64)}));assert.throws(()=>assertPriceReleaseInventoryV1(history,{},actual));
+ assertSquareForwardSourceV4(root,history);
+ assert.throws(()=>assertPriceReleaseInventoryV1(history,candidate,actual));
+ const scoped={...actual};for(const file of Object.keys(JSON.parse(fs.readFileSync(root+'/scripts/schema/square_price_batch_candidate_v4.json')).candidates))delete scoped[file];
+ assertPriceReleaseInventoryV1(history,candidate,scoped);
+ for(const file of [Object.keys(history)[0],...Object.keys(b.candidates),...Object.keys(candidate)]){const missing={...scoped};delete missing[file];assert.throws(()=>assertPriceReleaseInventoryV1(history,candidate,missing));assert.throws(()=>assertPriceReleaseInventoryV1(history,candidate,{...scoped,[file]:'0'.repeat(64)}));}
+ assert.throws(()=>assertPriceReleaseInventoryV1(history,candidate,{...scoped,'20261124050000_unreviewed.sql':'0'.repeat(64)}));assert.throws(()=>assertPriceReleaseInventoryV1(history,{},scoped));
 });
 test('hosted proof requires matching source and every distinct successful job/run',()=>{
  const runs=Array.from({length:5},(_,i)=>({id:i+1,status:'completed',conclusion:'success'})),jobs=Array.from({length:11},(_,i)=>({id:i+100,run_id:i%5+1,status:'completed',conclusion:'success'}));

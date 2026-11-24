@@ -4,6 +4,7 @@ import {sealSquareCredential, openSquareCredential} from './credential_envelope_
 import {planSquareCatalog, squareQrSku, squareManagedProjection, squareDesiredProjection} from './catalog_plan_v1.mjs';
 import {syncSquareArtwork} from './artwork_sync_v1.mjs';
 import {loadSquareArtwork} from './artwork_source_v1.mjs';
+import {processSquarePriceBatch} from './price_batch_service_v1.mjs';
 
 const fail = code => {throw new SquareApiError(code);};
 const uuidPattern = /^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/;
@@ -120,6 +121,14 @@ export class SquareCatalogService {
   async withConnection(ownerId, connectionId, action) {
     if(typeof action !== 'function') fail('square_invalid_request');
     return this.#leased(ownerId, connectionId, action);
+  }
+  // Recovery is independent of new admission. Foreground callers can recover
+  // a saved parent without admitting unrelated background price work.
+  async syncPriceBatch(ownerId,connectionId,{admit=true}={}) {
+    if(typeof admit!=='boolean')fail('square_invalid_request');
+    return this.#leased(ownerId,connectionId,async({connection,context,client})=>processSquarePriceBatch({
+      connection,context,client,rpc:(action,data)=>this.#call(action,data),
+      enabled:admit&&this.#config.priceBatchEnabled===true&&connection.auto_sync===true,catalogEnabled:this.#config.catalogEnabled===true}));
   }
   async configure(ownerId, connectionId, {locationId, autoSync = false}) {
     this.#configuration('catalogEnabled');
@@ -244,5 +253,7 @@ export function squareEnvironmentConfig(env = process.env) {
   return {environment: env.SQUARE_ENVIRONMENT, appId: env.SQUARE_APP_ID, appSecret: env.SQUARE_APP_SECRET,
     encryptionKey: env.SQUARE_TOKEN_ENCRYPTION_KEY, callbackUrl: env.SQUARE_CALLBACK_URL,
     linkingEnabled: env.GROOKAI_SQUARE_LINKING_ENABLED === 'true', catalogEnabled: env.GROOKAI_SQUARE_CATALOG_ENABLED === 'true',
-    commerceEnabled: env.GROOKAI_SQUARE_COMMERCE_ENABLED === 'true',artworkEnabled:env.GROOKAI_SQUARE_ARTWORK_ENABLED==='true'};
+    commerceEnabled: env.GROOKAI_SQUARE_COMMERCE_ENABLED === 'true',artworkEnabled:env.GROOKAI_SQUARE_ARTWORK_ENABLED==='true',
+    recoveryWindowEnabled:env.GROOKAI_SQUARE_RECOVERY_WINDOW_ENABLED==='true',
+    priceBatchEnabled:env.GROOKAI_SQUARE_PRICE_BATCH_ENABLED==='true'};
 }
