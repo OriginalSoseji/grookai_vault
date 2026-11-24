@@ -1,0 +1,124 @@
+{
+  "version": "GENERIC_PLAY_STAMP_VISUAL_REVIEW_V2",
+  "reviewed_at": "2026-11-24T18:43:58.211Z",
+  "reviewer": "Codex direct full-original-image and complete official checklist page inspection",
+  "scope": "Printed generic Play! stamp identity evidence only; no execution, finish, alias, source-admission or owner authority.",
+  "observations": [
+    {
+      "product_id": 565488,
+      "image_file": "sources/tcgplayer-565488.original.jpg",
+      "image_sha256": "23f4b8fc1c399fbfb3dc2780405380c4ac9d563cfc9209a9a0b21c40c1f354f6",
+      "printed_name": "Morpeko",
+      "printed_number": "121/182",
+      "printed_set_mark": "PAR",
+      "play_stamp_observed": true,
+      "explicit_series_marker_observed": false,
+      "more_specific_printed_stamp_observed": false,
+      "foil_finish_adjudicated": false
+    },
+    {
+      "product_id": 577579,
+      "image_file": "sources/tcgplayer-577579.original.jpg",
+      "image_sha256": "120065f138c3105ab9445d26eca791a20a6581c31bfff467a69dff19206e350c",
+      "printed_name": "Roaring Moon",
+      "printed_number": "109/162",
+      "printed_set_mark": "TEF",
+      "play_stamp_observed": true,
+      "explicit_series_marker_observed": false,
+      "more_specific_printed_stamp_observed": false,
+      "foil_finish_adjudicated": false
+    },
+    {
+      "product_id": 565473,
+      "image_file": "sources/tcgplayer-565473.original.jpg",
+      "image_sha256": "36b90b80c30a270306441b711ee17d07f346c4b3d16c9f3e599fe09394d5a75d",
+      "printed_name": "Koraidon",
+      "printed_number": "119/162",
+      "printed_set_mark": "TEF",
+      "play_stamp_observed": true,
+      "explicit_series_marker_observed": false,
+      "more_specific_printed_stamp_observed": false,
+      "foil_finish_adjudicated": false
+    },
+    {
+      "product_id": 565482,
+      "image_file": "sources/tcgplayer-565482.original.jpg",
+      "image_sha256": "441e1ee17276c2f353d381931ac1ba4e5900df0eda97bbe929c0af18301ef145",
+      "printed_name": "Miraidon",
+      "printed_number": "121/162",
+      "printed_set_mark": "TEF",
+      "play_stamp_observed": true,
+      "explicit_series_marker_observed": false,
+      "more_specific_printed_stamp_observed": false,
+      "foil_finish_adjudicated": false
+    },
+    {
+      "product_id": 619153,
+      "image_file": "sources/tcgplayer-619153.original.jpg",
+      "image_sha256": "438fb3074e283f655f970d5e48eb42ade148a488dd8037f6a27acbc62ee896ec",
+      "printed_name": "Okidogi",
+      "printed_number": "111/167",
+      "printed_set_mark": "TWM",
+      "play_stamp_observed": true,
+      "explicit_series_marker_observed": false,
+      "more_specific_printed_stamp_observed": false,
+      "foil_finish_adjudicated": false
+    },
+    {
+      "product_id": 623656,
+      "image_file": "sources/tcgplayer-623656.original.jpg",
+      "image_sha256": "dd95c6991628d337432ae1b702ee67a90340fd90ca0fd798d3fb7f2d0cd6a9b4",
+      "printed_name": "Carmine",
+      "printed_number": "145/167",
+      "printed_set_mark": "TWM",
+      "play_stamp_observed": true,
+      "explicit_series_marker_observed": false,
+      "more_specific_printed_stamp_observed": false,
+      "foil_finish_adjudicated": false
+    },
+    {
+      "product_id": 619147,
+      "image_file": "sources/tcgplayer-619147.original.jpg",
+      "image_sha256": "871f9d45fb3c9a6675dffa0c0e7aac6fb84bdf9ee496a121260fdf726489a692",
+      "printed_name": "Night Stretcher",
+      "printed_number": "061/064",
+      "printed_set_mark": "SFA",
+      "play_stamp_observed": true,
+      "explicit_series_marker_observed": false,
+      "more_specific_printed_stamp_observed": false,
+      "foil_finish_adjudicated": false
+    },
+    {
+      "product_id": 619051,
+      "image_file": "sources/tcgplayer-619051.original.jpg",
+      "image_sha256": "d6377742ee3bce0a41cb666582998718320de5bcf752c18324b3d1c9a169ea2a",
+      "printed_name": "Archaludon",
+      "printed_number": "107/142",
+      "printed_set_mark": "SCR",
+      "play_stamp_observed": true,
+      "explicit_series_marker_observed": false,
+      "more_specific_printed_stamp_observed": false,
+      "foil_finish_adjudicated": false
+    },
+    {
+      "product_id": 619068,
+      "image_file": "sources/tcgplayer-619068.original.jpg",
+      "image_sha256": "b8ea2c75da71cd205396c2ecec86f4bc7f001d923215577f095315363a9d325d",
+      "printed_name": "Bouffalant",
+      "printed_number": "119/142",
+      "printed_set_mark": "SCR",
+      "play_stamp_observed": true,
+      "explicit_series_marker_observed": false,
+      "more_specific_printed_stamp_observed": false,
+      "foil_finish_adjudicated": false
+    }
+  ],
+  "full_original_official_pages_visually_reviewed": [
+    6,
+    7,
+    8,
+    9
+  ],
+  "series9_has_no_target_names": true,
+  "fingerprint": "03d26660651f09b8eab7645017309eb21b52efd775663d482e39f3e129364e98"
+}

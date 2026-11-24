@@ -1,0 +1,931 @@
+{
+  "version": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_EVIDENCE_V2",
+  "status": "preparation_only_no_production_authority",
+  "project_ref": "ycdxbpibncqcchqiihfz",
+  "target_count": 9,
+  "source_bytes": [
+    {
+      "file": "sources/series6.original.pdf",
+      "sha256": "d9274b48889b139400fc0ac021f8d6c0f147e1d8b88d57d53f72dd02d6da727f",
+      "kind": "official_checklist",
+      "originalSourceBytesPreserved": true
+    },
+    {
+      "file": "sources/series6.independent.json",
+      "sha256": "c8f84cf1c11d7eb1277eec92ebfae14891f5ee423fc54fb0b76cf287b30d2794",
+      "kind": "independent_extracted_checklist",
+      "originalSourceBytesPreserved": true
+    },
+    {
+      "file": "sources/tcgplayer-565488.original.jpg",
+      "sha256": "23f4b8fc1c399fbfb3dc2780405380c4ac9d563cfc9209a9a0b21c40c1f354f6",
+      "kind": "provider_card_front_image",
+      "url": "https://product-images.tcgplayer.com/fit-in/1000x1000/565488.jpg",
+      "originalSourceBytesPreserved": true
+    },
+    {
+      "file": "sources/tcgplayer-577579.original.jpg",
+      "sha256": "120065f138c3105ab9445d26eca791a20a6581c31bfff467a69dff19206e350c",
+      "kind": "provider_card_front_image",
+      "url": "https://product-images.tcgplayer.com/fit-in/1000x1000/577579.jpg",
+      "originalSourceBytesPreserved": true
+    },
+    {
+      "file": "sources/tcgplayer-565473.original.jpg",
+      "sha256": "36b90b80c30a270306441b711ee17d07f346c4b3d16c9f3e599fe09394d5a75d",
+      "kind": "provider_card_front_image",
+      "url": "https://product-images.tcgplayer.com/fit-in/1000x1000/565473.jpg",
+      "originalSourceBytesPreserved": true
+    },
+    {
+      "file": "sources/tcgplayer-565482.original.jpg",
+      "sha256": "441e1ee17276c2f353d381931ac1ba4e5900df0eda97bbe929c0af18301ef145",
+      "kind": "provider_card_front_image",
+      "url": "https://product-images.tcgplayer.com/fit-in/1000x1000/565482.jpg",
+      "originalSourceBytesPreserved": true
+    },
+    {
+      "file": "sources/tcgplayer-619153.original.jpg",
+      "sha256": "438fb3074e283f655f970d5e48eb42ade148a488dd8037f6a27acbc62ee896ec",
+      "kind": "provider_card_front_image",
+      "url": "https://product-images.tcgplayer.com/fit-in/1000x1000/619153.jpg",
+      "originalSourceBytesPreserved": true
+    },
+    {
+      "file": "sources/tcgplayer-623656.original.jpg",
+      "sha256": "dd95c6991628d337432ae1b702ee67a90340fd90ca0fd798d3fb7f2d0cd6a9b4",
+      "kind": "provider_card_front_image",
+      "url": "https://product-images.tcgplayer.com/fit-in/1000x1000/623656.jpg",
+      "originalSourceBytesPreserved": true
+    },
+    {
+      "file": "sources/tcgplayer-619147.original.jpg",
+      "sha256": "871f9d45fb3c9a6675dffa0c0e7aac6fb84bdf9ee496a121260fdf726489a692",
+      "kind": "provider_card_front_image",
+      "url": "https://product-images.tcgplayer.com/fit-in/1000x1000/619147.jpg",
+      "originalSourceBytesPreserved": true
+    },
+    {
+      "file": "sources/tcgplayer-619051.original.jpg",
+      "sha256": "d6377742ee3bce0a41cb666582998718320de5bcf752c18324b3d1c9a169ea2a",
+      "kind": "provider_card_front_image",
+      "url": "https://product-images.tcgplayer.com/fit-in/1000x1000/619051.jpg",
+      "originalSourceBytesPreserved": true
+    },
+    {
+      "file": "sources/tcgplayer-619068.original.jpg",
+      "sha256": "b8ea2c75da71cd205396c2ecec86f4bc7f001d923215577f095315363a9d325d",
+      "kind": "provider_card_front_image",
+      "url": "https://product-images.tcgplayer.com/fit-in/1000x1000/619068.jpg",
+      "originalSourceBytesPreserved": true
+    },
+    {
+      "file": "sources/series7.original.pdf",
+      "sha256": "a058469447a1e4eaf92027003e0cf77a17333b287169d1e81d492509a3c74007",
+      "kind": "official_checklist",
+      "url": "https://d1wx537rtdixyy.cloudfront.net/expansions/series7/en-us/P11076_USOP_OP_Prize_Packs_Series7_Card_List_EN.pdf",
+      "originalSourceBytesPreserved": true
+    },
+    {
+      "file": "sources/series8.original.pdf",
+      "sha256": "b3dcd1654030b46adea5fe69cc64ae4d85f86ea5be2b532940645820dfea857e",
+      "kind": "official_checklist",
+      "url": "https://d1wx537rtdixyy.cloudfront.net/expansions/series8/en-us/OP_Prize_Packs_Series8_Card_List_EN.pdf",
+      "originalSourceBytesPreserved": true
+    },
+    {
+      "file": "sources/series9.original.pdf",
+      "sha256": "8e5c870f41485996a65b9b2c66ff43f0cfd3dc9587359ceda5830e821d8c36fa",
+      "kind": "official_checklist",
+      "url": "https://d1wx537rtdixyy.cloudfront.net/expansions/series9/en-us/P12252_OP_Prize_Packs_Series9_Card_List_EN.pdf",
+      "originalSourceBytesPreserved": true
+    }
+  ],
+  "visual_review_fingerprint": "03d26660651f09b8eab7645017309eb21b52efd775663d482e39f3e129364e98",
+  "base_aliases_are_existing_approved_routes_only": true,
+  "identity_variant_key": "play_pokemon_stamp",
+  "series_is_distribution_provenance_not_printed_identity": true,
+  "all_series_membership_claimed_complete": false,
+  "excluded_existing_products": [
+    619059,
+    619070,
+    619135,
+    619158
+  ],
+  "excluded_original_stamp_hold_targets": 32,
+  "old98_and32_programmes_remain_held": true,
+  "original149_never_repeat": true,
+  "raw_coordinate_missing13_superseded": true,
+  "source_conflicts_retained": [
+    {
+      "series": 6,
+      "set": "SFA",
+      "number": "040",
+      "names": [
+        "Pecharunt ex",
+        "Genesect"
+      ],
+      "admitted": false
+    },
+    {
+      "series": 7,
+      "literalSet": "SHF",
+      "source6AndCardPhotoSet": "SFA",
+      "names": [
+        "Colress’s Tenacity",
+        "Night Stretcher",
+        "Powerglass"
+      ],
+      "silently_corrected": false,
+      "admitted": false
+    }
+  ],
+  "targets": [
+    {
+      "base": {
+        "id": "c3e4974f-c021-4330-9663-7d94a74e4d9d",
+        "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+        "set_id": "1e501229-9396-49cd-b3eb-e6658e722ee2",
+        "set_code": "sv04",
+        "gv_id": "GV-PK-PAR-121",
+        "name": "Morpeko",
+        "number": "121",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "",
+        "printed_identity_modifier": null
+      },
+      "base_fingerprint": "e6c55b0a52562d5a30ca63995a3ee6755a71176d91cb2534b9b4d475faae1482",
+      "base_identity": {
+        "id": "be088c33-6a23-4a19-b729-e3d77f1b1a97",
+        "identity_key_hash": "6167b7a9a6571640db2ab53de061c8b930f4ba74eebc672c0da729f37f6906e2",
+        "is_active": true
+      },
+      "approved_base_aliases": [],
+      "product_id": 565488,
+      "printed_name": "Morpeko",
+      "printed_number": "121/182",
+      "printed_set_mark": "PAR",
+      "image_file": "sources/tcgplayer-565488.original.jpg",
+      "image_sha256": "23f4b8fc1c399fbfb3dc2780405380c4ac9d563cfc9209a9a0b21c40c1f354f6",
+      "known_series_evidence": [
+        6
+      ],
+      "all_series_membership_claimed_complete": false,
+      "captured_existing_generic_stamp_parent_ids": [],
+      "normal_checklist_evidence_preserved_but_not_admitted": {
+        "official": {
+          "series": 6,
+          "name": "Morpeko",
+          "raw_name_with_markers": "Morpeko",
+          "name_alignment_resolved": true,
+          "set_token": "PAR",
+          "printed_number": "121",
+          "normal_explicit": true,
+          "foil_marker_present": false,
+          "foil_pattern_adjudicated": false,
+          "coordinate_bbox": {
+            "text": "PAR",
+            "xMin": 133.0008,
+            "yMin": 618.52,
+            "xMax": 161.9242,
+            "yMax": 630.884,
+            "set_token": "PAR",
+            "number": "121"
+          },
+          "checkboxes": [
+            {
+              "text": "■",
+              "xMin": 175.1584,
+              "yMin": 619.7834,
+              "xMax": 182.7684,
+              "yMax": 629.3534,
+              "color": "black",
+              "red_pixels": 0,
+              "black_pixels": 54
+            }
+          ]
+        },
+        "independentMatches": [
+          {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 6,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Six_(TCG)",
+            "set_key": "sv04",
+            "card_number": "121",
+            "card_name": "Morpeko",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        ],
+        "exactNormalFactAgreement": true
+      }
+    },
+    {
+      "base": {
+        "id": "f8003028-e419-490b-8a31-b231ab79ec16",
+        "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+        "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+        "set_code": "sv05",
+        "gv_id": "GV-PK-TEF-109",
+        "name": "Roaring Moon",
+        "number": "109",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "",
+        "printed_identity_modifier": null
+      },
+      "base_fingerprint": "687db7e572816a274d4433f17fe468bf78e696bd5d050405606ae4f652769bc3",
+      "base_identity": {
+        "id": "86b37441-72bc-4de1-b388-b5f3dec0e645",
+        "identity_key_hash": "a8d4e3344c415505203fb91273e0faa0f91d62bcc55f5b791a1ce2e71e02fbc4",
+        "is_active": true
+      },
+      "approved_base_aliases": [],
+      "product_id": 577579,
+      "printed_name": "Roaring Moon",
+      "printed_number": "109/162",
+      "printed_set_mark": "TEF",
+      "image_file": "sources/tcgplayer-577579.original.jpg",
+      "image_sha256": "120065f138c3105ab9445d26eca791a20a6581c31bfff467a69dff19206e350c",
+      "known_series_evidence": [
+        6
+      ],
+      "all_series_membership_claimed_complete": false,
+      "captured_existing_generic_stamp_parent_ids": [],
+      "normal_checklist_evidence_preserved_but_not_admitted": {
+        "official": {
+          "series": 6,
+          "name": "Roaring Moon",
+          "raw_name_with_markers": "Roaring Moon",
+          "name_alignment_resolved": true,
+          "set_token": "TEF",
+          "printed_number": "109",
+          "normal_explicit": true,
+          "foil_marker_present": false,
+          "foil_pattern_adjudicated": false,
+          "coordinate_bbox": {
+            "text": "TEF",
+            "xMin": 332.4875,
+            "yMin": 195.52,
+            "xMax": 361.0358,
+            "yMax": 207.884,
+            "set_token": "TEF",
+            "number": "109"
+          },
+          "checkboxes": [
+            {
+              "text": "■",
+              "xMin": 374.6451,
+              "yMin": 196.7834,
+              "xMax": 382.2551,
+              "yMax": 206.3534,
+              "color": "black",
+              "red_pixels": 0,
+              "black_pixels": 62
+            }
+          ]
+        },
+        "independentMatches": [
+          {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 6,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Six_(TCG)",
+            "set_key": "sv05",
+            "card_number": "109",
+            "card_name": "Roaring Moon",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        ],
+        "exactNormalFactAgreement": true
+      }
+    },
+    {
+      "base": {
+        "id": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11",
+        "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+        "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+        "set_code": "sv05",
+        "gv_id": "GV-PK-TEF-119",
+        "name": "Koraidon",
+        "number": "119",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "",
+        "printed_identity_modifier": null
+      },
+      "base_fingerprint": "ae1744606c6e748ad75bae07ff400cc190742f40148c7054e0690b5eacd6d1c0",
+      "base_identity": {
+        "id": "08e91675-2c26-4116-afaf-fcb3fab46734",
+        "identity_key_hash": "606de7cb7df50eaa1832706507a6c86db14874b033944f6182569adad12cbe63",
+        "is_active": true
+      },
+      "approved_base_aliases": [],
+      "product_id": 565473,
+      "printed_name": "Koraidon",
+      "printed_number": "119/162",
+      "printed_set_mark": "TEF",
+      "image_file": "sources/tcgplayer-565473.original.jpg",
+      "image_sha256": "36b90b80c30a270306441b711ee17d07f346c4b3d16c9f3e599fe09394d5a75d",
+      "known_series_evidence": [
+        6
+      ],
+      "all_series_membership_claimed_complete": false,
+      "captured_existing_generic_stamp_parent_ids": [],
+      "normal_checklist_evidence_preserved_but_not_admitted": {
+        "official": {
+          "series": 6,
+          "name": "Koraidon",
+          "raw_name_with_markers": "Koraidon",
+          "name_alignment_resolved": true,
+          "set_token": "TEF",
+          "printed_number": "119",
+          "normal_explicit": true,
+          "foil_marker_present": false,
+          "foil_pattern_adjudicated": false,
+          "coordinate_bbox": {
+            "text": "TEF",
+            "xMin": 133.0008,
+            "yMin": 533.92,
+            "xMax": 159.9728,
+            "yMax": 546.284,
+            "set_token": "TEF",
+            "number": "119"
+          },
+          "checkboxes": [
+            {
+              "text": "■",
+              "xMin": 175.1584,
+              "yMin": 535.1834,
+              "xMax": 182.7684,
+              "yMax": 544.7534,
+              "color": "black",
+              "red_pixels": 0,
+              "black_pixels": 62
+            }
+          ]
+        },
+        "independentMatches": [
+          {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 6,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Six_(TCG)",
+            "set_key": "sv05",
+            "card_number": "119",
+            "card_name": "Koraidon",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        ],
+        "exactNormalFactAgreement": true
+      }
+    },
+    {
+      "base": {
+        "id": "90278a2b-971e-4000-9ffb-e127b11aaf0d",
+        "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+        "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+        "set_code": "sv05",
+        "gv_id": "GV-PK-TEF-121",
+        "name": "Miraidon",
+        "number": "121",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "",
+        "printed_identity_modifier": null
+      },
+      "base_fingerprint": "00ec1888e1d0c9e1048b6a741e78d58e0c482d4a5bd58406a5540cc59bef5598",
+      "base_identity": {
+        "id": "c054f742-3234-4442-8f8e-7fcc6b0309aa",
+        "identity_key_hash": "d6e6d006db17e0329a3324f9987183287b0aa7826ae050e223e1eda6ea37acf7",
+        "is_active": true
+      },
+      "approved_base_aliases": [],
+      "product_id": 565482,
+      "printed_name": "Miraidon",
+      "printed_number": "121/162",
+      "printed_set_mark": "TEF",
+      "image_file": "sources/tcgplayer-565482.original.jpg",
+      "image_sha256": "441e1ee17276c2f353d381931ac1ba4e5900df0eda97bbe929c0af18301ef145",
+      "known_series_evidence": [
+        6
+      ],
+      "all_series_membership_claimed_complete": false,
+      "captured_existing_generic_stamp_parent_ids": [],
+      "normal_checklist_evidence_preserved_but_not_admitted": {
+        "official": {
+          "series": 6,
+          "name": "Miraidon",
+          "raw_name_with_markers": "Miraidon",
+          "name_alignment_resolved": true,
+          "set_token": "TEF",
+          "printed_number": "121",
+          "normal_explicit": true,
+          "foil_marker_present": false,
+          "foil_pattern_adjudicated": false,
+          "coordinate_bbox": {
+            "text": "TEF",
+            "xMin": 133.0008,
+            "yMin": 601.6,
+            "xMax": 160.1917,
+            "yMax": 613.964,
+            "set_token": "TEF",
+            "number": "121"
+          },
+          "checkboxes": [
+            {
+              "text": "■",
+              "xMin": 175.1584,
+              "yMin": 602.8634,
+              "xMax": 182.7684,
+              "yMax": 612.4334,
+              "color": "black",
+              "red_pixels": 0,
+              "black_pixels": 63
+            }
+          ]
+        },
+        "independentMatches": [
+          {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 6,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Six_(TCG)",
+            "set_key": "sv05",
+            "card_number": "121",
+            "card_name": "Miraidon",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        ],
+        "exactNormalFactAgreement": true
+      }
+    },
+    {
+      "base": {
+        "id": "a524d59b-26b4-4be2-8839-338585171310",
+        "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+        "set_id": "0471b152-bbd1-4660-ae4e-8c67540ae1ac",
+        "set_code": "sv06",
+        "gv_id": "GV-PK-TWM-111",
+        "name": "Okidogi",
+        "number": "111",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "",
+        "printed_identity_modifier": null
+      },
+      "base_fingerprint": "35115290a2f21dbe21648d6284a4ea7dd8614bc6b1a88aea75cd026a20c29659",
+      "base_identity": {
+        "id": "9a544760-42a6-4a2e-9911-54dfdef27484",
+        "identity_key_hash": "0cdc859531eef737ec78195de82e1d5759fc9567cdbe3be0234db70fc7275d15",
+        "is_active": true
+      },
+      "approved_base_aliases": [],
+      "product_id": 619153,
+      "printed_name": "Okidogi",
+      "printed_number": "111/167",
+      "printed_set_mark": "TWM",
+      "image_file": "sources/tcgplayer-619153.original.jpg",
+      "image_sha256": "438fb3074e283f655f970d5e48eb42ade148a488dd8037f6a27acbc62ee896ec",
+      "known_series_evidence": [
+        6
+      ],
+      "all_series_membership_claimed_complete": false,
+      "captured_existing_generic_stamp_parent_ids": [],
+      "normal_checklist_evidence_preserved_but_not_admitted": {
+        "official": {
+          "series": 6,
+          "name": "Okidogi",
+          "raw_name_with_markers": "Okidogi",
+          "name_alignment_resolved": true,
+          "set_token": "TWM",
+          "printed_number": "111",
+          "normal_explicit": true,
+          "foil_marker_present": false,
+          "foil_pattern_adjudicated": false,
+          "coordinate_bbox": {
+            "text": "TWM",
+            "xMin": 133.0008,
+            "yMin": 703.12,
+            "xMax": 165.0988,
+            "yMax": 715.484,
+            "set_token": "TWM",
+            "number": "111"
+          },
+          "checkboxes": [
+            {
+              "text": "■",
+              "xMin": 175.1584,
+              "yMin": 704.3834,
+              "xMax": 182.7684,
+              "yMax": 713.9534,
+              "color": "black",
+              "red_pixels": 0,
+              "black_pixels": 62
+            }
+          ]
+        },
+        "independentMatches": [
+          {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 6,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Six_(TCG)",
+            "set_key": "sv06",
+            "card_number": "111",
+            "card_name": "Okidogi",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        ],
+        "exactNormalFactAgreement": true
+      }
+    },
+    {
+      "base": {
+        "id": "1a4f41a6-4e5f-45f9-ab3d-ecb3be9d5dd7",
+        "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+        "set_id": "0471b152-bbd1-4660-ae4e-8c67540ae1ac",
+        "set_code": "sv06",
+        "gv_id": "GV-PK-TWM-145",
+        "name": "Carmine",
+        "number": "145",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "",
+        "printed_identity_modifier": null
+      },
+      "base_fingerprint": "5e3a19a403159d03da3e8eef1f71d0c607831cf2ea7f32593bcead08ea179af2",
+      "base_identity": {
+        "id": "0a9185e7-b9c8-4f9c-af80-9743f89aa096",
+        "identity_key_hash": "7baee2239b2a98e80aaefc69060b49428a3c0c5070ffeee4b0d6d4a63d53c090",
+        "is_active": true
+      },
+      "approved_base_aliases": [],
+      "product_id": 623656,
+      "printed_name": "Carmine",
+      "printed_number": "145/167",
+      "printed_set_mark": "TWM",
+      "image_file": "sources/tcgplayer-623656.original.jpg",
+      "image_sha256": "dd95c6991628d337432ae1b702ee67a90340fd90ca0fd798d3fb7f2d0cd6a9b4",
+      "known_series_evidence": [
+        6,
+        7
+      ],
+      "all_series_membership_claimed_complete": false,
+      "captured_existing_generic_stamp_parent_ids": [],
+      "normal_checklist_evidence_preserved_but_not_admitted": {
+        "official": {
+          "series": 6,
+          "name": "Carmine",
+          "raw_name_with_markers": "Carmine",
+          "name_alignment_resolved": true,
+          "set_token": "TWM",
+          "printed_number": "145",
+          "normal_explicit": true,
+          "foil_marker_present": false,
+          "foil_pattern_adjudicated": false,
+          "coordinate_bbox": {
+            "text": "TWM",
+            "xMin": 332.4875,
+            "yMin": 364.72,
+            "xMax": 367.2596,
+            "yMax": 377.084,
+            "set_token": "TWM",
+            "number": "145"
+          },
+          "checkboxes": [
+            {
+              "text": "■",
+              "xMin": 374.6451,
+              "yMin": 365.9834,
+              "xMax": 382.2551,
+              "yMax": 375.5534,
+              "color": "black",
+              "red_pixels": 0,
+              "black_pixels": 62
+            }
+          ]
+        },
+        "independentMatches": [
+          {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 6,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Six_(TCG)",
+            "set_key": "sv06",
+            "card_number": "145",
+            "card_name": "Carmine",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        ],
+        "exactNormalFactAgreement": true
+      }
+    },
+    {
+      "base": {
+        "id": "29500623-96e6-4afd-8381-17edc14cf20f",
+        "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+        "set_id": "100c97f1-6611-4cf4-8310-9b9b79b377bb",
+        "set_code": "sv6pt5",
+        "gv_id": "GV-PK-SFA-61",
+        "name": "Night Stretcher",
+        "number": "61",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "",
+        "printed_identity_modifier": null
+      },
+      "base_fingerprint": "59b3180ffa180ade54400eb4ab777127c9b96f9864040532022837ef13c81538",
+      "base_identity": {
+        "id": "2a787dba-6dc0-45b6-91ca-84a3caa3c711",
+        "identity_key_hash": "49939020a888d9e7de86d315a44a27903ac2bc92a61966d458aa4b5ef55d7de3",
+        "is_active": true
+      },
+      "approved_base_aliases": [
+        {
+          "id": "bb584354-a040-4466-ba7c-387fcdc8344a",
+          "active": true,
+          "created_at": "2026-10-12T06:17:06.731906+00:00",
+          "retired_at": null,
+          "adjudicated_at": "2026-10-12T06:52:58.947795+00:00",
+          "evidence_reason": "Source-backed set authority selects the PokemonTCG coordinate already used by Grookai release metadata. Exact card identity fields bind the retained TCGdex parent as reversible provider lineage; canonical finish evidence remains authoritative.",
+          "legacy_set_code": "sv06.5",
+          "authority_status": "approved",
+          "authority_sources": [
+            "pokemon_tcg_api_set_coordinate",
+            "tcgdex_set_coordinate",
+            "grookai_release_metadata"
+          ],
+          "authority_decision": {
+            "finish_policy": "Use only verified canonical printing inventory; a legacy-only finish never qualifies an import",
+            "canonical_basis": "PokemonTCG set coordinate already used by Grookai release metadata",
+            "legacy_set_code": "sv06.5",
+            "identity_evidence": "Exact normalized name, printed number, variant and printed modifier inside this source-adjudicated set family",
+            "canonical_set_code": "sv6pt5",
+            "legacy_disposition": "Retain the alternate TCGdex coordinate and every downstream reference as provider lineage",
+            "classification_sha256": "87c1916e78103667c75a5b68e1bd235dd41257852597107b2298b1d6a69fa0b7",
+            "expected_overlap_count": 99,
+            "collision_matrix_sha256": "3d558f036afb0d0080819c6976b1343018c9750585ba4ada9f6383a16823cfc4"
+          },
+          "canonical_set_code": "sv6pt5",
+          "created_from_audit": "collectr_catalog_review_20261009",
+          "legacy_card_print_id": "c2572a85-d90f-4558-b67d-b6610cbe5361",
+          "canonical_card_print_id": "29500623-96e6-4afd-8381-17edc14cf20f"
+        }
+      ],
+      "product_id": 619147,
+      "printed_name": "Night Stretcher",
+      "printed_number": "061/064",
+      "printed_set_mark": "SFA",
+      "image_file": "sources/tcgplayer-619147.original.jpg",
+      "image_sha256": "871f9d45fb3c9a6675dffa0c0e7aac6fb84bdf9ee496a121260fdf726489a692",
+      "known_series_evidence": [
+        6
+      ],
+      "all_series_membership_claimed_complete": false,
+      "captured_existing_generic_stamp_parent_ids": [],
+      "normal_checklist_evidence_preserved_but_not_admitted": {
+        "official": {
+          "series": 6,
+          "name": "Night Stretcher",
+          "raw_name_with_markers": "Night Stretcher",
+          "name_alignment_resolved": true,
+          "set_token": "SFA",
+          "printed_number": "061",
+          "normal_explicit": true,
+          "foil_marker_present": true,
+          "foil_pattern_adjudicated": false,
+          "coordinate_bbox": {
+            "text": "SFA",
+            "xMin": 332.4875,
+            "yMin": 635.44,
+            "xMax": 362.0401,
+            "yMax": 647.804,
+            "set_token": "SFA",
+            "number": "061"
+          },
+          "checkboxes": [
+            {
+              "text": "■",
+              "xMin": 374.6451,
+              "yMin": 636.7034,
+              "xMax": 382.2551,
+              "yMax": 646.2734,
+              "color": "black",
+              "red_pixels": 0,
+              "black_pixels": 54
+            },
+            {
+              "text": "■",
+              "xMin": 389.1419,
+              "yMin": 636.7034,
+              "xMax": 396.7519,
+              "yMax": 646.2734,
+              "color": "red",
+              "red_pixels": 34,
+              "black_pixels": 0
+            }
+          ]
+        },
+        "independentMatches": [
+          {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 6,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Six_(TCG)",
+            "set_key": "sv06.5",
+            "card_number": "61",
+            "card_name": "Night Stretcher",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        ],
+        "exactNormalFactAgreement": true
+      }
+    },
+    {
+      "base": {
+        "id": "7bf55366-9a6b-466f-bd71-f617d626b5d9",
+        "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+        "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+        "set_code": "sv07",
+        "gv_id": "GV-PK-SCR-107",
+        "name": "Archaludon",
+        "number": "107",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "",
+        "printed_identity_modifier": null
+      },
+      "base_fingerprint": "417060b4281003c39c2ce07f063866b588fb080ea83cbe69c438adec48b2b581",
+      "base_identity": {
+        "id": "022899de-b61b-42b6-ac30-4908d8be54c6",
+        "identity_key_hash": "08d512cd8c10387d0d2afecea6e4be3956780dda487374d9d98d7c122e22d6f0",
+        "is_active": true
+      },
+      "approved_base_aliases": [],
+      "product_id": 619051,
+      "printed_name": "Archaludon",
+      "printed_number": "107/142",
+      "printed_set_mark": "SCR",
+      "image_file": "sources/tcgplayer-619051.original.jpg",
+      "image_sha256": "d6377742ee3bce0a41cb666582998718320de5bcf752c18324b3d1c9a169ea2a",
+      "known_series_evidence": [
+        6,
+        7,
+        8
+      ],
+      "all_series_membership_claimed_complete": false,
+      "captured_existing_generic_stamp_parent_ids": [],
+      "normal_checklist_evidence_preserved_but_not_admitted": {
+        "official": {
+          "series": 6,
+          "name": "Archaludon",
+          "raw_name_with_markers": "Archaludon",
+          "name_alignment_resolved": true,
+          "set_token": "SCR",
+          "printed_number": "107",
+          "normal_explicit": true,
+          "foil_marker_present": true,
+          "foil_pattern_adjudicated": false,
+          "coordinate_bbox": {
+            "text": "SCR",
+            "xMin": 133.0008,
+            "yMin": 110.9199,
+            "xMax": 162.0034,
+            "yMax": 123.2839,
+            "set_token": "SCR",
+            "number": "107"
+          },
+          "checkboxes": [
+            {
+              "text": "■",
+              "xMin": 175.1584,
+              "yMin": 112.1834,
+              "xMax": 182.7684,
+              "yMax": 121.7534,
+              "color": "black",
+              "red_pixels": 0,
+              "black_pixels": 51
+            },
+            {
+              "text": "■",
+              "xMin": 189.6553,
+              "yMin": 112.1834,
+              "xMax": 197.2653,
+              "yMax": 121.7534,
+              "color": "red",
+              "red_pixels": 40,
+              "black_pixels": 0
+            }
+          ]
+        },
+        "independentMatches": [
+          {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 6,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Six_(TCG)",
+            "set_key": "sv07",
+            "card_number": "107",
+            "card_name": "Archaludon",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        ],
+        "exactNormalFactAgreement": true
+      }
+    },
+    {
+      "base": {
+        "id": "1dd005a1-ce85-4088-9cb1-99185d961506",
+        "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+        "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+        "set_code": "sv07",
+        "gv_id": "GV-PK-SCR-119",
+        "name": "Bouffalant",
+        "number": "119",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "",
+        "printed_identity_modifier": null
+      },
+      "base_fingerprint": "2b447f9fe0508b67225aef1068e6dc63f30db9febcf5bb52958df0b2dbd90a16",
+      "base_identity": {
+        "id": "99287258-a9de-4607-9076-3e00825a4209",
+        "identity_key_hash": "f423783d34e149b09924c5e574ed87dd02bac4667cf8509c9d9c748bb7df9e24",
+        "is_active": true
+      },
+      "approved_base_aliases": [],
+      "product_id": 619068,
+      "printed_name": "Bouffalant",
+      "printed_number": "119/142",
+      "printed_set_mark": "SCR",
+      "image_file": "sources/tcgplayer-619068.original.jpg",
+      "image_sha256": "b8ea2c75da71cd205396c2ecec86f4bc7f001d923215577f095315363a9d325d",
+      "known_series_evidence": [
+        6,
+        7
+      ],
+      "all_series_membership_claimed_complete": false,
+      "captured_existing_generic_stamp_parent_ids": [],
+      "normal_checklist_evidence_preserved_but_not_admitted": {
+        "official": {
+          "series": 6,
+          "name": "Bouffalant",
+          "raw_name_with_markers": "Bouffalant",
+          "name_alignment_resolved": true,
+          "set_token": "SCR",
+          "printed_number": "119",
+          "normal_explicit": true,
+          "foil_marker_present": true,
+          "foil_pattern_adjudicated": false,
+          "coordinate_bbox": {
+            "text": "SCR",
+            "xMin": 133.0008,
+            "yMin": 144.76,
+            "xMax": 160.8297,
+            "yMax": 157.124,
+            "set_token": "SCR",
+            "number": "119"
+          },
+          "checkboxes": [
+            {
+              "text": "■",
+              "xMin": 175.1584,
+              "yMin": 146.0234,
+              "xMax": 182.7684,
+              "yMax": 155.5934,
+              "color": "black",
+              "red_pixels": 0,
+              "black_pixels": 62
+            },
+            {
+              "text": "■",
+              "xMin": 189.6553,
+              "yMin": 146.0235,
+              "xMax": 197.2653,
+              "yMax": 155.5935,
+              "color": "red",
+              "red_pixels": 51,
+              "black_pixels": 0
+            }
+          ]
+        },
+        "independentMatches": [
+          {
+            "source_key": "bulbapedia_prize_pack_current_gap_finish",
+            "source_kind": "human_readable_checklist",
+            "source_series": 6,
+            "source_url": "https://bulbapedia.bulbagarden.net/wiki/Play!_Pokémon_Prize_Pack_Series_Six_(TCG)",
+            "set_key": "sv07",
+            "card_number": "119",
+            "card_name": "Bouffalant",
+            "promotion": "Standard Set",
+            "source": "bulbapedia"
+          }
+        ],
+        "exactNormalFactAgreement": true
+      }
+    }
+  ],
+  "fingerprint": "7a9fac6bb539af6ba438d057d148f20be7ba3b79f848d1917267c212a4f935b5"
+}
