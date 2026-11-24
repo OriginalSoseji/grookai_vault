@@ -47,3 +47,18 @@ verified complete worker31 shadow, older-writer closure, exact owner release
 and independent production/app/natural-refresh readback remain outstanding.
 No production writes, activation, mapping/identity/printing changes, image
 promotion, owner edits or new migration occurred in this preparation.
+
+The first committed candidate `5d63311a4544cb98d21e427d8924c343d3e58faf`
+passed normal managed precommit/pre-push checks, all 15 triggered hosted check
+entries, 421 Windows tests and the 157 focused cases. Its source and receipts
+remain retained. These checks do not constitute a new full worker31 shadow or
+production policy approval.
+
+The preparation now integrates accepted main
+`8e9ca5a4c914f93796d9f86cac3118f034e76082`, including the separate MTG mapping
+programme and passive four-card Cosmos operator. Both Playbook entries are
+retained. The pricing producer bytes, twenty provider files, seventeen IDs,
+original source/baseline and expiry stay fixed; this integration grants no
+Cosmos or MTG execution authority. The new combined candidate must complete
+ordinary source checks before its own full shadow. Production release remains
+a separate exact owner decision.

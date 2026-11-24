@@ -1,0 +1,25 @@
+{
+  "executionAuthority": false,
+  "baseMasterRef": "docs/audits/english_master_index_publishable_v1/sets/sm5/printings.json",
+  "baseMasterSha256": "4304ff6be0503547af874f130a725a5c2034d6599fcfe417276f69c845d1ed12",
+  "humanReference": {
+    "path": "retail-cosmos-human-pages-v1/51173.html",
+    "sha256": "d45b48bb23e500c327fe8501655932ab06fe04481b08524f687b1d8fc0f9befb",
+    "url": "https://pokumon.com/card/cosmos-holofoil-heatran-88-156-gamestop-special-print/"
+  },
+  "physicalImage": {
+    "path": "stamped-cosmos-conflict-images-v1/ce746f69-793c-4819-aef3-7ee5e77a0a53.jpg",
+    "sha256": "1df1afb9a1b3a2c515f9ff82db87996c13b1b0e54e159e4f83bde1bbfb15edc8",
+    "url": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S806Cosmos-HolofoilSpecial-Print.jpg"
+  },
+  "parentFullRowSha256": "4c43b7fde7bb5d898bd208468a8326abb2df711f6e97f5e2ff334e9c363d6b67",
+  "identityFullRowSha256": "87954ce861b84e0891ed3bca811f4f6b85e6537ea5ceac46c3a906b7bdec70cc",
+  "retainedReverse": [
+    {
+      "id": "ce746f69-793c-4819-aef3-7ee5e77a0a53",
+      "printingGvId": "GV-PK-SM5-88-ULTRA-PRISM-STAMP-RH",
+      "finishKey": "reverse",
+      "beforeSha256": "67af009618eff62eb97bedbafd9a657a300b3ddcabea781d64d8b1f38836d892"
+    }
+  ]
+}

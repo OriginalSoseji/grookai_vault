@@ -1,0 +1,93 @@
+{
+  "version": "RETAIL_COSMOS_FINISH_SUBSET_AUTHORITY_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "swsh2",
+  "scope": "verified_finish_subset",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "docs/catalog/retail_stamp_cosmos_four_v2/swsh2/master.json",
+  "master_index_sha256": "57601a1317172d54404482d9b134c8f3c9fbc5c10a40c73a4ea0aa1c274c3bef",
+  "parents": [
+    {
+      "id": "e01b2c3d-13a7-4539-9ac9-38c350b012d5",
+      "set_id": "71ebdec9-9eeb-4adc-b8ef-1e6e23e6c5ec",
+      "gv_id": "GV-PK-SWSH2-91-REBEL-CLASH-STAMP",
+      "name": "Dragapult",
+      "printed_coordinate": "91",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "rebel_clash_stamp",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "e01b2c3d-13a7-4539-9ac9-38c350b012d5",
+      "finish_key": "cosmos",
+      "printing_gv_id": "GV-PK-SWSH2-91-REBEL-CLASH-STAMP-COSMOS",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "exact-human-reference",
+          "sha256": "2f5a51a7c4f9742f46a63a167a362ae0d128190de4a07b415f61df8b45c72181",
+          "card_print_id": "e01b2c3d-13a7-4539-9ac9-38c350b012d5",
+          "finish_key": "cosmos"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [
+    {
+      "key": "ce6f663f-771d-41a3-9503-a76f86b48019",
+      "card_print_id": "e01b2c3d-13a7-4539-9ac9-38c350b012d5",
+      "source_ref": "exact-human-reference",
+      "reason": "The separately stored Reverse child is preserved and unadjudicated outside the Cosmos-only finish subset; this source does not prove its absence.",
+      "status": "needs_review",
+      "scope": "retained_unadjudicated_existing_finish"
+    }
+  ],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "admitted_printings": 1,
+    "retained_unadjudicated_printings": 1,
+    "finishes": {
+      "cosmos": 1
+    }
+  },
+  "authority": {
+    "version": "RETAIL_COSMOS_FINISH_SUBSET_AUTHORITY_V1",
+    "status": "verified_positive_subset",
+    "set_id": "71ebdec9-9eeb-4adc-b8ef-1e6e23e6c5ec",
+    "source_artifacts": [
+      {
+        "ref": "exact-human-reference",
+        "kind": "checked_checklist",
+        "sha256": "2f5a51a7c4f9742f46a63a167a362ae0d128190de4a07b415f61df8b45c72181",
+        "url_or_identifier": "https://pokumon.com/card/stamped-dragapult-091-192-new-set-retail-store-purchase-campaign-special-print/",
+        "retrieved_at": "2026-11-24T08:47:31.919Z"
+      },
+      {
+        "ref": "exact-card-image",
+        "kind": "image_confirmed",
+        "sha256": "eaf9239b731ee72e41c1583fbb22ffa42ae0483145d7816bea37867292b2f04b",
+        "url_or_identifier": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S960StampedSpecial-Print.jpg",
+        "retrieved_at": "2026-11-24T07:40:48.946Z",
+        "role": "Exact printed identity and stamp corroboration; finish relies on the explicit human-readable claim where foil reflection is inconclusive."
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "e01b2c3d-13a7-4539-9ac9-38c350b012d5",
+        "finish_key": "cosmos"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "docs/catalog/retail_stamp_cosmos_four_v2/swsh2/review.json",
+      "sha256": "ce754c6b5154015b3ebd7e18405ff6a0de14deea73fe660a782c533c13fe82b7"
+    }
+  },
+  "fingerprint": "e553351d6130f5cb537b49910f1ef7b522807f5f6b92ecd344f7bf83d72ea465"
+}

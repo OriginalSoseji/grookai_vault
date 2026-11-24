@@ -15,6 +15,36 @@ Normal local/hosted source checks, exact owner release, atomic activation and
 independent app/natural-refresh readback remain required. This programme has no
 canonical, mapping, printing, image, ownership or migration-write authority.
 
+# Four retail-stamped Cosmos finishes — November 24, 2026
+
+Follow the [bounded Cosmos contract](../contracts/RETAIL_STAMP_COSMOS_FOUR_EXECUTION_V1.md)
+and [checkpoint](../checkpoints/RETAIL_STAMP_COSMOS_FOUR_20261124.md).
+The separate closed finish-subset model admits only documented Cosmos for
+Forbidden Light Fennekin 15, Ultra Prism Heatran 88, Darkness Ablaze Corviknight
+156 and Rebel Clash Dragapult 091. It preserves the original Master hashes and
+one unresolved Reverse per parent; it does not claim complete families or sets.
+Retain the failed generic-family draft and every original source/receipt.
+
+Only one raw evidence receipt, four Cosmos children and four reviews may be
+inserted. Preserve all original parents, children, reviews, images, mappings,
+prices, owners and references. The four retail UUIDs are outside the independent
+149-pair stamp hold; the 32 held parents and 98 inserts/32 links stay blocked.
+Do not reuse the consumed EX executor or repeat its completed six facts.
+
+The owned local fixture is `retail_stamp_cosmos_four_qualification_v1` on
+loopback 55240. Preserve its originals and every older lab; restore the retained
+relay's original stopped state after local tests. Its PG17/ledger523 apply and
+rollback are local qualification, not a production rollback or ledger524 apply.
+Current canonical ledger524 preflight is read-only and requires exact schema,
+source, complete producer, scope, global collision and reference checks.
+
+Normal exact-source local/hosted checks precede the founder decision binding the
+new model, frozen plan and complete producer. Actual production rollback must
+be less than one hour old before apply. Unknown outcomes require independent
+readback; never blindly retry, delete referenced rows or silently refresh an
+approved baseline. Durable data/public/collector verification remains required.
+No image promotion or pricing publication is included in this programme.
+
 # Regular-product mapping correction candidate — November24,2026
 
 Follow [the29-product contract](../contracts/REGULAR_PRODUCT_MAPPING_CORRECTION_V1.md)
@@ -2202,6 +2232,63 @@ do not treat a canonical `scryfall:<uuid>` printing key as a Pokemon-style child
 variant; require the exact printed coordinate and keep every result advisory.
 Any other MTG variant-key form remains held. A successful local task with zero
 Magic inputs is not evidence that the Magic backlog is complete.
+
+Checkpoint 170 connects the V2 reconciliation output to a deterministic,
+read-only MTG global-exact review queue. After reconciliation, the runner must
+invoke `scripts/audits/mtg_tcgplayer_global_exact_review_queue_v1.mjs` against
+the collision-free `review_queue.jsonl`; it must also create the queue when an
+unchanged completed input predates this producer. Admission requires an exact
+normalized name, exact printed number, one active MTG paper identity, zero
+existing TCGPlayer mappings, one globally discovered eligible target, a bound
+0.99 Ollama lead, and a Scryfall parent key. The producer independently
+recomputes name and coordinate agreement and holds ambiguity.
+
+The producer shards admitted rows into deterministic founder-review packages
+of at most 50, preserving the V6 limit. These packages are review evidence only.
+They grant no mapping or publication authority. Every batch still requires the
+separate mapping-outcome preflight, founder approval, insert-only executor,
+transactional current-state revalidation, durable reconciliation, and later
+pricing publication. Do not point the scheduled task at a checkout lacking the
+producer, and do not treat queue creation as a mapping or price release.
+
+For batch 0001, the conservative founder partition accepts only the 36
+same-set Commander Legends rows, holds 13 promo-context rows, and rejects
+product 58205. The mapping-outcome executor must bind preflight fingerprint
+`f0b5a8df70331fbc4317125ca53a3c133614739d86603fbe286d1464d0697b7c`
+and the two authorized preflight artifact hashes before database access. Run it
+only from a clean descendant of approved source commit
+`bb923161c47d582334a564894436802ab7b5df9a`, with the exact approval token and a
+new output directory. A successful run must report
+`committed_zero_mismatch_readback`, 36 mapping inserts, unchanged non-MTG
+mapping counts, and zero canonical, pricing, publication, Vault, update,
+delete, merge, or migration writes. Preserve the rollback plan, exact inserted
+IDs, apply receipt, and artifact hashes. If commit status is unknown, do not
+replay or delete anything; inspect the independent reconciliation evidence.
+Mapping success does not publish the 36 price observations.
+
+After a committed batch, require a newer hosted completion artifact and a new
+content hash before reviewing the next batch. The reusable conservative founder
+review V2 may accept a variable number of same-set exact rows, but it must hold
+every readable source-group/target-set mismatch, preserve the complete batch
+partition and decision fingerprint, and keep the executor bounded to at most 50
+insert-only mappings. The legacy 36/13/1 approval remains valid only for its
+original immutable batch. A refreshed queue must not reuse that approval or its
+preflight artifacts.
+
+Before review, confirm that every row exposes and content-binds the readable
+target set name, set ID/code, source group, printed number, canonical
+name/number, target identity state, candidate-search result, group-consensus
+diagnostics, and model reason. A source treatment or promo qualifier that does
+not reconcile with the readable target set must be held; global name-and-number
+uniqueness is not by itself founder approval.
+
+The runner may reuse a generated queue only after the producer's
+`--verify-existing` mode rebuilds the source-bound expectation and verifies all
+artifact bytes, the exact file inventory, `artifact_hashes.json`, and
+`COMPLETE_V1.json`. The producer writes `COMPLETE_V1.json` last. Never use
+`summary.json` as a completion signal. If verification fails, remove only that
+input's generated `mtg-global-exact-review-v1` directory and regenerate it from
+the reconciled review input; do not reuse or manually repair a partial package.
 
 ## Pokémon 30th Celebration Classic aliases — October 14
 

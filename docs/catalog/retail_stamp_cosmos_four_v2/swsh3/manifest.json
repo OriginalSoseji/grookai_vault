@@ -1,0 +1,93 @@
+{
+  "version": "RETAIL_COSMOS_FINISH_SUBSET_AUTHORITY_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "swsh3",
+  "scope": "verified_finish_subset",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "docs/catalog/retail_stamp_cosmos_four_v2/swsh3/master.json",
+  "master_index_sha256": "a22250e7c55989a433336d04c02ecebe80f2b95ebde16e865dabac0918497059",
+  "parents": [
+    {
+      "id": "c94ae9cd-dcf9-4258-b701-dc8882cdd39a",
+      "set_id": "b9aebbf0-31c9-40d3-a878-f1d8a1c44f14",
+      "gv_id": "GV-PK-SWSH3-156-DARKNESS-ABLAZE-STAMP",
+      "name": "Corviknight",
+      "printed_coordinate": "156",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "darkness_ablaze_stamp",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "c94ae9cd-dcf9-4258-b701-dc8882cdd39a",
+      "finish_key": "cosmos",
+      "printing_gv_id": "GV-PK-SWSH3-156-DARKNESS-ABLAZE-STAMP-COSMOS",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "exact-human-reference",
+          "sha256": "ea292a35b7de0a8a8f288b1275fe13299b4817c625b28a68580d12889ea4ba1a",
+          "card_print_id": "c94ae9cd-dcf9-4258-b701-dc8882cdd39a",
+          "finish_key": "cosmos"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [
+    {
+      "key": "57554bc8-61ab-49a2-ba4b-189abb8ecd6f",
+      "card_print_id": "c94ae9cd-dcf9-4258-b701-dc8882cdd39a",
+      "source_ref": "exact-human-reference",
+      "reason": "The separately stored Reverse child is preserved and unadjudicated outside the Cosmos-only finish subset; this source does not prove its absence.",
+      "status": "needs_review",
+      "scope": "retained_unadjudicated_existing_finish"
+    }
+  ],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "admitted_printings": 1,
+    "retained_unadjudicated_printings": 1,
+    "finishes": {
+      "cosmos": 1
+    }
+  },
+  "authority": {
+    "version": "RETAIL_COSMOS_FINISH_SUBSET_AUTHORITY_V1",
+    "status": "verified_positive_subset",
+    "set_id": "b9aebbf0-31c9-40d3-a878-f1d8a1c44f14",
+    "source_artifacts": [
+      {
+        "ref": "exact-human-reference",
+        "kind": "checked_checklist",
+        "sha256": "ea292a35b7de0a8a8f288b1275fe13299b4817c625b28a68580d12889ea4ba1a",
+        "url_or_identifier": "https://pokumon.com/card/stamped-corviknight-156-189-new-set-retail-store-purchase-campaign-special-print/",
+        "retrieved_at": "2026-11-24T08:47:29.195Z"
+      },
+      {
+        "ref": "exact-card-image",
+        "kind": "image_confirmed",
+        "sha256": "a94cdb9924f0d3ac96f5b0fee2bf6c1be280524466bb0bd5bd1586d795f3fdf4",
+        "url_or_identifier": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S979StampedSpecial-Print.jpg",
+        "retrieved_at": "2026-11-24T07:40:48.723Z",
+        "role": "Exact printed identity and stamp corroboration; finish relies on the explicit human-readable claim where foil reflection is inconclusive."
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "c94ae9cd-dcf9-4258-b701-dc8882cdd39a",
+        "finish_key": "cosmos"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "docs/catalog/retail_stamp_cosmos_four_v2/swsh3/review.json",
+      "sha256": "2eeb3bce99784e4b3f5d198a199ac6b41cecbc2dd57869c6f5358f72ec1a0b37"
+    }
+  },
+  "fingerprint": "34bc0dcb83970f0f661846706f81197464018347cf97073a60e3ab3bc542eeb0"
+}
