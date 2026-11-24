@@ -1,3 +1,5 @@
+import {fileURLToPath} from 'node:url';
+import {assertRetainedPriceForwardInventoryV4} from '../helpers/retained_price_forward_inventory_v4.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -82,7 +84,7 @@ test('exact523 metadata rejects a later ledger and mutation-table effects',()=>{
  for(const edit of[s=>s.canonical.ledger.push('20261125000000'),s=>s.rules.push({unexpected:true}),s=>s.mapping_inbound.push({target_columns:['meta']})]){const s=structuredClone(schema);edit(s);assert.throws(()=>m.assertRepairSchemaV1(s));}
 });
 test('actual schema fingerprint and dependency binding include the dedicated programme',()=>{
- assert.equal(hash(schema),m.REGISTRY.schema_fingerprint);const b=m.repairCodeBindingV1();assert.equal(b.files.length,580);assert.equal(new Set(b.files.map(f=>f.file)).size,580);for(const suffix of['regular_product_mapping_correction_v1.mjs','regular_product_mapping_correction_v1/index.json','regular_product_mapping_correction_v1/schema523.json','REGULAR_PRODUCT_MAPPING_CORRECTION_V1.md','stamp_identity_admission_hold_v1.mjs'])assert.ok(b.files.some(f=>f.file.endsWith(suffix)));
+ assert.equal(hash(schema),m.REGISTRY.schema_fingerprint);const catalog=JSON.parse(fs.readFileSync(new URL('../../scripts/schema/best_of_game_discovery_candidate_v17.json',import.meta.url)));assertRetainedPriceForwardInventoryV4(fileURLToPath(new URL('../../',import.meta.url)),{...catalog.history,...catalog.candidates});const b=m.repairCodeBindingV1();assert.equal(b.files.length,581);assert.equal(new Set(b.files.map(f=>f.file)).size,581);assert.equal(b.files.find(f=>f.file==='supabase/migrations/20261124010000_market_price_retention_display_v1.sql')?.sha256,'bf85f532b45f88abf181f4e943c82493c440d4d7a034154b4a9f13df6139d03e');for(const suffix of['regular_product_mapping_correction_v1.mjs','regular_product_mapping_correction_v1/index.json','regular_product_mapping_correction_v1/schema523.json','REGULAR_PRODUCT_MAPPING_CORRECTION_V1.md','stamp_identity_admission_hold_v1.mjs'])assert.ok(b.files.some(f=>f.file.endsWith(suffix)));
 });
 test('partial29 update and missing audit cannot be counted as a repeat success',()=>{
  const p=freeze(fixture()),s=after(p);s.mappings=s.mappings.map(x=>x.id===p.before[0].id?p.before[0]:x);assert.throws(()=>m.classifyRepairStateV1(p,s),/Partial/);const missing=after(p);missing.raw=[];assert.throws(()=>m.classifyRepairStateV1(p,missing),/Missing/);
