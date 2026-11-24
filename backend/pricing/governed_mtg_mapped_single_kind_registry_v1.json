@@ -1,0 +1,1827 @@
+{
+  "version": "GOVERNED_MTG_MAPPED_SINGLE_KIND_REGISTRY_V1",
+  "category_id": 1,
+  "identity_domain": "mtg_eng_paper_print",
+  "targets": [
+    {
+      "product_id": 3578,
+      "group_id": 109,
+      "source_name": "Stone Calendar",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "bb04bca3-c41d-511f-9e65-172b946a048c",
+      "parent_gv_id": "GV-MTG-SF-A49BA1A5-33B1-40F2-9780-26139ED829D7",
+      "printing_id": "bd3df906-298e-5888-bbd3-ff57c8a29241",
+      "printing_gv_id": "GV-MTG-SF-A49BA1A5-33B1-40F2-9780-26139ED829D7-NORMAL",
+      "mapping_id": "1bd533b8-9c34-49b5-89fe-453e7f860ac1",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "bd7e9eaea039e1ae44fa3e0f329a85fa8363bdb6023d37752f6a6a72d502084d",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Artifact"
+      ],
+      "source_rarity_fields": [
+        "R"
+      ],
+      "scryfall": {
+        "id": "a49ba1a5-33b1-40f2-9780-26139ed829d7",
+        "name": "Stone Calendar",
+        "set": "drk",
+        "collector_number": "111",
+        "type_line": "Artifact",
+        "layout": "normal",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "12b4e156be69e257ebfc3caf6be42f482608e51a3b820dc5dda6942ca76a4fe0",
+        "source_raw_import_id": "148665",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 5218,
+      "group_id": 74,
+      "source_name": "Sealed Fate",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "2774fa7b-8054-5341-89c7-8beda3f771de",
+      "parent_gv_id": "GV-MTG-SF-36CF9DA8-F078-4F6E-8077-BB24A7ED487F",
+      "printing_id": "d34b7950-0238-50bb-83e6-af5877b89094",
+      "printing_gv_id": "GV-MTG-SF-36CF9DA8-F078-4F6E-8077-BB24A7ED487F-NORMAL",
+      "mapping_id": "5b15fdbb-5945-45b3-811f-099510c38a7d",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "4b05a2713e27ccc5719baad352dc0e1e16dac6ddb15b4cd7a1f08156fca6f0f9",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Sorcery"
+      ],
+      "source_rarity_fields": [
+        "U"
+      ],
+      "scryfall": {
+        "id": "36cf9da8-f078-4f6e-8077-bb24a7ed487f",
+        "name": "Sealed Fate",
+        "set": "mir",
+        "collector_number": "282",
+        "type_line": "Sorcery",
+        "layout": "normal",
+        "lang": "en",
+        "games": [
+          "paper",
+          "mtgo"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "a5f4de634efb2ba393541475d3f1a832b31123da2c081a1a70026192cf06bfc8",
+        "source_raw_import_id": "148209",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 5941,
+      "group_id": 120,
+      "source_name": "Teferi's Puzzle Box",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "f3d482e9-5822-5442-9276-6b9b74dc6897",
+      "parent_gv_id": "GV-MTG-SF-1377DAB4-B814-46CC-A097-24A3CF8D0F8F",
+      "printing_id": "6bddbd4f-3adc-56ad-aa65-b44a742585eb",
+      "printing_gv_id": "GV-MTG-SF-1377DAB4-B814-46CC-A097-24A3CF8D0F8F-NORMAL",
+      "mapping_id": "77308906-4a99-41c0-b540-6572879c5b67",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "7be64c4cdeafc094e26c1a45e79a14ee7a00fb9d24a7cc7be02be41b2f5d17ab",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Artifact"
+      ],
+      "source_rarity_fields": [
+        "R"
+      ],
+      "scryfall": {
+        "id": "1377dab4-b814-46cc-a097-24a3cf8d0f8f",
+        "name": "Teferi's Puzzle Box",
+        "set": "vis",
+        "collector_number": "156",
+        "type_line": "Artifact",
+        "layout": "normal",
+        "lang": "en",
+        "games": [
+          "paper",
+          "mtgo"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "bba75a574b35c754dd1c37e0d79d75103321164e12cf9732777112e9cf6a6e1b",
+        "source_raw_import_id": "148837",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 5946,
+      "group_id": 120,
+      "source_name": "Tin-Wing Chimera",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "6fef67a3-9180-5e9a-b5b7-658b712ad3c2",
+      "parent_gv_id": "GV-MTG-SF-3375DCC6-9399-48EB-9AA4-7B40C3686CC5",
+      "printing_id": "85e0e51a-fdd9-5825-bee5-0f108b1fc3a0",
+      "printing_gv_id": "GV-MTG-SF-3375DCC6-9399-48EB-9AA4-7B40C3686CC5-NORMAL",
+      "mapping_id": "3dc8af3c-5bf2-482a-9ea8-71977901ee2d",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "6511c1d4b38d82d2fc9fb8b0a3888397cd831ecb4378596db5ef3d1895794ea5",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Artifact Creature"
+      ],
+      "source_rarity_fields": [
+        "U"
+      ],
+      "scryfall": {
+        "id": "3375dcc6-9399-48eb-9aa4-7b40c3686cc5",
+        "name": "Tin-Wing Chimera",
+        "set": "vis",
+        "collector_number": "157",
+        "type_line": "Artifact Creature — Chimera",
+        "layout": "normal",
+        "lang": "en",
+        "games": [
+          "paper",
+          "mtgo"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "9048bdb7e29e0e9920404110aa5ec577bcae2f23f21ea68f742c9de329c7005c",
+        "source_raw_import_id": "148433",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 36375,
+      "group_id": 100,
+      "source_name": "Poison Counter Token",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "6213a175-d776-598c-80b8-03309ab370a3",
+      "parent_gv_id": "GV-MTG-SF-856E308D-6268-4311-9667-C2F761DB8F99",
+      "printing_id": "c26f9242-31ae-5269-aa77-535a36155f12",
+      "printing_gv_id": "GV-MTG-SF-856E308D-6268-4311-9667-C2F761DB8F99-NORMAL",
+      "mapping_id": "1070bddf-6912-448b-b974-ec823973d9a9",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "c75ea8a745f668f1b70a3c66f32b11db265864e9a4a44fc5af385857fcacbbb1",
+      "source_number_fields": [],
+      "source_type_fields": [],
+      "source_rarity_fields": [
+        "T"
+      ],
+      "scryfall": {
+        "id": "856e308d-6268-4311-9667-c2f761db8f99",
+        "name": "Poison Counter",
+        "set": "tsom",
+        "collector_number": "10",
+        "type_line": "Card",
+        "layout": "normal",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "c176648fa36fa1bc08b84a3f9d3696510c82bbe5eab08680239c7aa0a83045bd",
+        "source_raw_import_id": "148389",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 37086,
+      "group_id": 82,
+      "source_name": "A Display of My Dark Power (Archenemy)",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "9338f404-f826-507f-84af-18bf16bd6291",
+      "parent_gv_id": "GV-MTG-SF-C5287E77-890D-41BD-ACC6-7A8F1866426D",
+      "printing_id": "9d7a10ec-a6eb-58c2-8e6f-29c24787f0b7",
+      "printing_gv_id": "GV-MTG-SF-C5287E77-890D-41BD-ACC6-7A8F1866426D-NORMAL",
+      "mapping_id": "3d82f596-b11b-42da-b178-a23878e1d144",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "73cace9ecde9236c2e3d32963674b72f553b3175ae35fe8baf082fe5cc7f897f",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Scheme"
+      ],
+      "source_rarity_fields": [
+        "C"
+      ],
+      "scryfall": {
+        "id": "c5287e77-890d-41bd-acc6-7a8f1866426d",
+        "name": "A Display of My Dark Power",
+        "set": "oarc",
+        "collector_number": "8★",
+        "type_line": "Scheme",
+        "layout": "scheme",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "00d864a267564fcbab7797ce515c1aaf7dc85f9113ecbe6b07b8a36a2a65ca8b",
+        "source_raw_import_id": "148541",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 37267,
+      "group_id": 82,
+      "source_name": "Your Fate Is Thrice Sealed (Archenemy)",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "ef0d95d1-a2db-5cba-8614-15f274f6cf8b",
+      "parent_gv_id": "GV-MTG-SF-AEA1A231-03D2-4F75-8A43-C5E38EA0DAE7",
+      "printing_id": "260b18f3-1a7f-5a91-b83f-1bf96c52e153",
+      "printing_gv_id": "GV-MTG-SF-AEA1A231-03D2-4F75-8A43-C5E38EA0DAE7-NORMAL",
+      "mapping_id": "b68bf159-f9a6-4369-9dfd-8b3fd7e4a4f0",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "dfcae40b71a6edda71628b078f18f8778f0118a04fb88f427925c236488f7e6e",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Scheme"
+      ],
+      "source_rarity_fields": [
+        "C"
+      ],
+      "scryfall": {
+        "id": "aea1a231-03d2-4f75-8a43-c5e38ea0dae7",
+        "name": "Your Fate Is Thrice Sealed",
+        "set": "oarc",
+        "collector_number": "43★",
+        "type_line": "Scheme",
+        "layout": "scheme",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "027d6c1834e8063387bdff21c8638c8d185c5140737da2c2cca5c169f42f05bc",
+        "source_raw_import_id": "148825",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 78437,
+      "group_id": 1874,
+      "source_name": "Marit Lage Token",
+      "source_subtype": "Foil",
+      "finish_key": "foil",
+      "parent_id": "f64e0ef9-7e00-54bb-873f-fb62c668c921",
+      "parent_gv_id": "GV-MTG-SF-8F5C3863-C876-48A8-9BC8-BE20CD61074C",
+      "printing_id": "143ac9be-0ce9-59bb-a581-bd9acb56d71b",
+      "printing_gv_id": "GV-MTG-SF-8F5C3863-C876-48A8-9BC8-BE20CD61074C-FOIL",
+      "mapping_id": "696b7c07-9b1c-4503-bc56-6b8f8ed4323e",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "6909a95c7efcb977fc676e3b400cd62e59a2c0a7a71544b4680276db03f35ff5",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Legendary Creature Token — Avatar"
+      ],
+      "source_rarity_fields": [
+        "T"
+      ],
+      "scryfall": {
+        "id": "8f5c3863-c876-48a8-9bc8-be20cd61074c",
+        "name": "Marit Lage",
+        "set": "pcsp",
+        "collector_number": "1",
+        "type_line": "Token Legendary Creature — Avatar",
+        "layout": "token",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "foil"
+        ],
+        "source_body_sha256": "d9d1685b99b39404133e500d3c694dde8b833879dc768d950e6295d4da0e4b1c",
+        "source_raw_import_id": "148845",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 78451,
+      "group_id": 59,
+      "source_name": "Spirit Token",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "f22e5a14-02fd-5827-a00c-bc9217d28c18",
+      "parent_gv_id": "GV-MTG-SF-0DBEDE5B-8E61-4ED8-BCCB-8B54F69CCCEE",
+      "printing_id": "cfd7d47a-7eee-5469-86ee-c951eb35ba47",
+      "printing_gv_id": "GV-MTG-SF-0DBEDE5B-8E61-4ED8-BCCB-8B54F69CCCEE-NORMAL",
+      "mapping_id": "9f193e66-d33d-4d15-93e4-e251029ffa54",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "26360ec38615e864d2fb3b422c5cf9e03a3a88ba34d03c5c94f93256f1ec1b4c",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Token"
+      ],
+      "source_rarity_fields": [
+        "T"
+      ],
+      "scryfall": {
+        "id": "0dbede5b-8e61-4ed8-bccb-8b54f69cccee",
+        "name": "Spirit",
+        "set": "tisd",
+        "collector_number": "2",
+        "type_line": "Token Creature — Spirit",
+        "layout": "token",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "e1f7f8b1d41a373bc994698d94c828eba83ab4f3ba5ca9abd8a44e044193fe1e",
+        "source_raw_import_id": "148833",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 78613,
+      "group_id": 71,
+      "source_name": "Angel Token",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "8544b781-8553-5459-9343-b81d050c0b3a",
+      "parent_gv_id": "GV-MTG-SF-C7F3264A-7B4A-4FEF-AF73-D4241742A4E8",
+      "printing_id": "87c57828-d00d-58ed-ad73-b151f184db1a",
+      "printing_gv_id": "GV-MTG-SF-C7F3264A-7B4A-4FEF-AF73-D4241742A4E8-NORMAL",
+      "mapping_id": "f5a0652e-91ff-4be8-bab5-0ec8918ecdb4",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "0e5a7ba50d6a01b55ddd06286057368ada535d6cde9d7c1b318887dcfb8b09aa",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Creature Token — Angel"
+      ],
+      "source_rarity_fields": [
+        "T"
+      ],
+      "scryfall": {
+        "id": "c7f3264a-7b4a-4fef-af73-d4241742a4e8",
+        "name": "Angel",
+        "set": "p04",
+        "collector_number": "2",
+        "type_line": "Token Creature — Angel",
+        "layout": "token",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "f5e7f35c5ac44f088e382b6cd07e150fc18699e0407ad8ad4712576e362b98e0",
+        "source_raw_import_id": "148501",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 78614,
+      "group_id": 71,
+      "source_name": "Bear Token (ODY)",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "ef8dd73b-36a2-5a76-8075-7c363f1429be",
+      "parent_gv_id": "GV-MTG-SF-0A21BC37-6F21-4DDA-A313-A0D75696F7FC",
+      "printing_id": "0b7a062f-675e-51dc-a94b-9b4753e457e1",
+      "printing_gv_id": "GV-MTG-SF-0A21BC37-6F21-4DDA-A313-A0D75696F7FC-NORMAL",
+      "mapping_id": "51903dbd-8b5c-427f-9df7-6a58a992e717",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "59a9c105f890a510123a18229e2105eeb3d16feef032d27a410cd03ebb15e430",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Creature — Bear"
+      ],
+      "source_rarity_fields": [
+        "T"
+      ],
+      "scryfall": {
+        "id": "0a21bc37-6f21-4dda-a313-a0d75696f7fc",
+        "name": "Bear",
+        "set": "mpr",
+        "collector_number": "7",
+        "type_line": "Token Creature — Bear",
+        "layout": "token",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "d191adf95f085bc553529995f42da5432407b9e2d65beafab71c9f796bf408c5",
+        "source_raw_import_id": "148825",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 78615,
+      "group_id": 71,
+      "source_name": "Bear Token (ONS)",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "5887c9d8-fd9f-592d-ab71-3418d2912067",
+      "parent_gv_id": "GV-MTG-SF-6E1FC8DB-F4A3-4F9C-BFAB-64D5A3968435",
+      "printing_id": "7c784b65-6d25-5829-84b3-3e0c2b2bcbf6",
+      "printing_gv_id": "GV-MTG-SF-6E1FC8DB-F4A3-4F9C-BFAB-64D5A3968435-NORMAL",
+      "mapping_id": "1fa696f8-d1b6-48dd-b3ae-d2ef141be6c2",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "e5cbefb91ca3474329f59129e8ac7346ccf0777257d0cacb506f91233ffee626",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Creature — Bear"
+      ],
+      "source_rarity_fields": [
+        "T"
+      ],
+      "scryfall": {
+        "id": "6e1fc8db-f4a3-4f9c-bfab-64d5a3968435",
+        "name": "Bear",
+        "set": "p03",
+        "collector_number": "4",
+        "type_line": "Token Creature — Bear",
+        "layout": "token",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "592c37458067de77e4b7f5d06fa58a095df977a10823f3326ca23a156fa5a82e",
+        "source_raw_import_id": "148361",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 78616,
+      "group_id": 71,
+      "source_name": "Beast Token (Darksteel)",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "36b21be7-21f6-58bc-bafb-a4cd7f8748cb",
+      "parent_gv_id": "GV-MTG-SF-D02D5670-FFF3-4011-8E45-E6843E4E8988",
+      "printing_id": "e534f568-1e37-52ed-8c03-b46ad0a85c73",
+      "printing_gv_id": "GV-MTG-SF-D02D5670-FFF3-4011-8E45-E6843E4E8988-NORMAL",
+      "mapping_id": "5f1ccc1d-c44b-49c4-bafe-3e856e017b4b",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "1f7eaaa57239ad5c689a1fb51042b53ad68ae106b505f7f709a277779987ce64",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Creature — Beast"
+      ],
+      "source_rarity_fields": [
+        "T"
+      ],
+      "scryfall": {
+        "id": "d02d5670-fff3-4011-8e45-e6843e4e8988",
+        "name": "Beast",
+        "set": "p04",
+        "collector_number": "5",
+        "type_line": "Token Creature — Beast",
+        "layout": "token",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "4a3445da436d54dd934b3436a95636c5642c5cb11d9ac4a9e8659f56bf8e92b7",
+        "source_raw_import_id": "148253",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 78617,
+      "group_id": 71,
+      "source_name": "Beast Token (ODY)",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "00c89db3-b27b-57c5-9bad-5432a7a6f741",
+      "parent_gv_id": "GV-MTG-SF-CE45E037-5EFB-4735-AFEE-12D7DC3127D1",
+      "printing_id": "d3b59ffa-fbb3-5bed-803d-a5176d98ba4d",
+      "printing_gv_id": "GV-MTG-SF-CE45E037-5EFB-4735-AFEE-12D7DC3127D1-NORMAL",
+      "mapping_id": "ea69ec70-d939-4c59-94e7-0f4d602ebead",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "038a51b53646eff19afe9041174551af9e6ba428d7c4aa6715043c221bb52d9e",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Creature — Beast"
+      ],
+      "source_rarity_fields": [
+        "T"
+      ],
+      "scryfall": {
+        "id": "ce45e037-5efb-4735-afee-12d7dc3127d1",
+        "name": "Beast",
+        "set": "mpr",
+        "collector_number": "8",
+        "type_line": "Token Creature — Beast",
+        "layout": "token",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "b4c82b5f3736c474363c22548c9dd7588995138ce5c16f3968e4ee02b3332dd8",
+        "source_raw_import_id": "148089",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 78618,
+      "group_id": 71,
+      "source_name": "Bird Token (INV)",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "aa9a6ef3-28ff-5e98-b14d-85ca0e9e337e",
+      "parent_gv_id": "GV-MTG-SF-26E0E196-36E6-4D7A-A76B-1C2A18270267",
+      "printing_id": "7971c26b-92be-56ff-91b1-603bd20ef109",
+      "printing_gv_id": "GV-MTG-SF-26E0E196-36E6-4D7A-A76B-1C2A18270267-NORMAL",
+      "mapping_id": "629c1f71-54f6-4ebf-9293-7b95803ecf8f",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "341372a2b3fbdca019c82debf2c38423ae5b46a2c6d5ab0d5556af2e999dfbee",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Creature — Bird"
+      ],
+      "source_rarity_fields": [
+        "T"
+      ],
+      "scryfall": {
+        "id": "26e0e196-36e6-4d7a-a76b-1c2a18270267",
+        "name": "Bird",
+        "set": "mpr",
+        "collector_number": "4",
+        "type_line": "Token Creature — Bird",
+        "layout": "token",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "8dc2ec7ba6eac6b175613462bf43e80f9a71e92e70d5862a451551a96d97d01d",
+        "source_raw_import_id": "148617",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 78619,
+      "group_id": 71,
+      "source_name": "Demon Token (MRD)",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "9a884650-b8c3-5504-9be9-18b0c98d74e2",
+      "parent_gv_id": "GV-MTG-SF-084C3292-C3EC-431E-B162-309B5CF6309E",
+      "printing_id": "1f9e0df1-70b3-56cc-87da-c9d91ab53ff0",
+      "printing_gv_id": "GV-MTG-SF-084C3292-C3EC-431E-B162-309B5CF6309E-NORMAL",
+      "mapping_id": "ece8ea12-8fbd-4f57-b516-73caa1271bee",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "6a6566d72255fbd463508faff560b4352673cb35493a2e36907902e0ac1e038a",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Creature Token — Demon"
+      ],
+      "source_rarity_fields": [
+        "T"
+      ],
+      "scryfall": {
+        "id": "084c3292-c3ec-431e-b162-309b5cf6309e",
+        "name": "Demon",
+        "set": "p03",
+        "collector_number": "6",
+        "type_line": "Token Creature — Demon",
+        "layout": "token",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "152c371c1207b530603b8a71448607e5751602faa8ee2fe6a0a28ee28638b636",
+        "source_raw_import_id": "148565",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 78620,
+      "group_id": 71,
+      "source_name": "Dragon Token (ONS)",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "0d2575df-2c1a-5c8a-a1f7-6a9ccea3cc2a",
+      "parent_gv_id": "GV-MTG-SF-56C0FA29-FBCB-41FE-94AB-A39B1154C99B",
+      "printing_id": "82e217e8-d704-581f-9534-63590b0f493c",
+      "printing_gv_id": "GV-MTG-SF-56C0FA29-FBCB-41FE-94AB-A39B1154C99B-NORMAL",
+      "mapping_id": "4837bdb6-b37e-4cc3-8d54-eb03b61cf788",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "d5fcc21ed7916c5603eee8602014b57c5b809c2365cbac56e0b443a6b8cfe45e",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Creature — Dragon"
+      ],
+      "source_rarity_fields": [
+        "T"
+      ],
+      "scryfall": {
+        "id": "56c0fa29-fbcb-41fe-94ab-a39b1154c99b",
+        "name": "Dragon",
+        "set": "pr2",
+        "collector_number": "7",
+        "type_line": "Token Creature — Dragon",
+        "layout": "token",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "3201eb82e96842ec0939f10fba93aabdf3f7dc917e015f376ea0693bf47e721d",
+        "source_raw_import_id": "148129",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 78621,
+      "group_id": 71,
+      "source_name": "Elephant Token (INV)",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "8c4e2c65-0eac-5f47-a4e1-4f11260215b4",
+      "parent_gv_id": "GV-MTG-SF-540A3B26-CA61-46C6-9E75-981CAE435B2E",
+      "printing_id": "f7381222-2026-52f6-b095-f799a60a3a70",
+      "printing_gv_id": "GV-MTG-SF-540A3B26-CA61-46C6-9E75-981CAE435B2E-NORMAL",
+      "mapping_id": "c47ca75e-47c7-47fa-b98d-b43885fce647",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "6f3fb27c4d6c479a9736526b635e1ee42e1e253e21ec4e3e88ec2946a21f5146",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Creature — Elephant"
+      ],
+      "source_rarity_fields": [
+        "T"
+      ],
+      "scryfall": {
+        "id": "540a3b26-ca61-46c6-9e75-981cae435b2e",
+        "name": "Elephant",
+        "set": "mpr",
+        "collector_number": "3",
+        "type_line": "Token Creature — Elephant",
+        "layout": "token",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "151009885c00207bb865eab6b97077d2d4cde00a0578ed3caedd21f52fdc247d",
+        "source_raw_import_id": "148521",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 78622,
+      "group_id": 71,
+      "source_name": "Elephant Token (ODY)",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "e23cf1e2-dad5-56e6-9677-60fffcdc8ed0",
+      "parent_gv_id": "GV-MTG-SF-3DC13CF6-665A-4D92-836F-B2E10CA08ECD",
+      "printing_id": "71ed9066-2ba0-50d8-9992-67757c444384",
+      "printing_gv_id": "GV-MTG-SF-3DC13CF6-665A-4D92-836F-B2E10CA08ECD-NORMAL",
+      "mapping_id": "826ba6de-52fe-4bf3-9b07-e526a83b385d",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "1052e34a3570fe302627395985e00add219d4dbc29a130a0e7265c577e90301a",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Creature — Elephant"
+      ],
+      "source_rarity_fields": [
+        "T"
+      ],
+      "scryfall": {
+        "id": "3dc13cf6-665a-4d92-836f-b2e10ca08ecd",
+        "name": "Elephant",
+        "set": "pr2",
+        "collector_number": "5",
+        "type_line": "Token Creature — Elephant",
+        "layout": "token",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "49095b5a52db3695540a9d7f6cf45ce80a736b1434b31d2d820eefb4007b6f76",
+        "source_raw_import_id": "148785",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 78623,
+      "group_id": 71,
+      "source_name": "Goblin Token (LGN)",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "10622786-f06b-55e4-81f5-b812d14248eb",
+      "parent_gv_id": "GV-MTG-SF-08CA3900-3845-40AC-8581-D4AEBC2850A0",
+      "printing_id": "22702fde-1ff9-5dcc-97f9-ef118f833ce1",
+      "printing_gv_id": "GV-MTG-SF-08CA3900-3845-40AC-8581-D4AEBC2850A0-NORMAL",
+      "mapping_id": "730eeb2d-5073-492f-bf82-5e0c7f0ef336",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "d5d30386e15acee58a76f766f5595b3cd5ed0d422e604f1e651f2fd6703aff78",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Creature — Goblin"
+      ],
+      "source_rarity_fields": [
+        "T"
+      ],
+      "scryfall": {
+        "id": "08ca3900-3845-40ac-8581-d4aebc2850a0",
+        "name": "Goblin",
+        "set": "p03",
+        "collector_number": "5",
+        "type_line": "Token Creature — Goblin",
+        "layout": "token",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "5356208e1fdb22b7a33a403d73197263ec49fd4610779814b43e707a9be873b1",
+        "source_raw_import_id": "148137",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 78624,
+      "group_id": 71,
+      "source_name": "Goblin Soldier Token (APC)",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "4f4de693-af59-54d4-88d7-c4af0406f625",
+      "parent_gv_id": "GV-MTG-SF-B3B52233-D240-4BE5-BBDE-B1E67367EDE4",
+      "printing_id": "2462d701-1c18-5c74-945f-eb91323cf293",
+      "printing_gv_id": "GV-MTG-SF-B3B52233-D240-4BE5-BBDE-B1E67367EDE4-NORMAL",
+      "mapping_id": "25f1bd68-826d-4fc5-b857-4aafe7265fe9",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "60480fcabf8d3c47694e08996517c46780cde486c3f1a475d89b6d692d906449",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Creature — Goblin Soldier"
+      ],
+      "source_rarity_fields": [
+        "T"
+      ],
+      "scryfall": {
+        "id": "b3b52233-d240-4be5-bbde-b1e67367ede4",
+        "name": "Goblin Soldier",
+        "set": "mpr",
+        "collector_number": "6",
+        "type_line": "Token Creature — Goblin Soldier",
+        "layout": "token",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "fe451f03e00e6d1d969a16a14525e4dae4f19c1dee2d978c8e3f1f0937244489",
+        "source_raw_import_id": "148333",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 78625,
+      "group_id": 71,
+      "source_name": "Insect Token (ONS)",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "ac307e01-e93f-5a87-9c4a-d87e77201a07",
+      "parent_gv_id": "GV-MTG-SF-AA47DF37-F246-4F80-A944-008CDF347DAD",
+      "printing_id": "b49be00d-cede-594e-bd40-e60b1fe12574",
+      "printing_gv_id": "GV-MTG-SF-AA47DF37-F246-4F80-A944-008CDF347DAD-NORMAL",
+      "mapping_id": "3097e7c0-386c-401e-977d-786b2047f4a1",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "8d1fdcecd2e032ba39c5a488666979316091fda37a04e3b2f92ce33b483eb01d",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Creature — Insect"
+      ],
+      "source_rarity_fields": [
+        "T"
+      ],
+      "scryfall": {
+        "id": "aa47df37-f246-4f80-a944-008cdf347dad",
+        "name": "Insect",
+        "set": "p03",
+        "collector_number": "2",
+        "type_line": "Token Creature — Insect",
+        "layout": "token",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "194af146abd2a8f815d42645fc39e45fed828e73e198a43275d6c7f283266f9c",
+        "source_raw_import_id": "148621",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 78626,
+      "group_id": 71,
+      "source_name": "Myr Token (MRD)",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "3abab45a-7310-59b9-b3fc-9c608b7bc3dd",
+      "parent_gv_id": "GV-MTG-SF-187CF6D5-C352-48F2-B8BF-FE1BF946E2AC",
+      "printing_id": "880a8f9c-ad5a-58e3-b416-ed564395fd78",
+      "printing_gv_id": "GV-MTG-SF-187CF6D5-C352-48F2-B8BF-FE1BF946E2AC-NORMAL",
+      "mapping_id": "138b92a3-368a-432f-af31-d8a24c2eebc8",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "c68cc2a1d1ed339f368f3d4c511d8992e7203682f80d183a36b3ed20c3691a62",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Artifact Creature Token — Myr"
+      ],
+      "source_rarity_fields": [
+        "T"
+      ],
+      "scryfall": {
+        "id": "187cf6d5-c352-48f2-b8bf-fe1bf946e2ac",
+        "name": "Myr",
+        "set": "p04",
+        "collector_number": "4",
+        "type_line": "Token Artifact Creature — Myr",
+        "layout": "token",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "817a467f510035bed44ae96af216b1cca3cc60a7a94d368d1e5b24da20df6317",
+        "source_raw_import_id": "148269",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 78627,
+      "group_id": 71,
+      "source_name": "Pentavite Token (MRD)",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "15f6930d-10c5-5304-b331-b6b7eacac2f0",
+      "parent_gv_id": "GV-MTG-SF-4FBB0DC6-2F9E-4389-8A90-531E94009BFB",
+      "printing_id": "086aa630-b9a2-5975-bbe6-bea891d10e0a",
+      "printing_gv_id": "GV-MTG-SF-4FBB0DC6-2F9E-4389-8A90-531E94009BFB-NORMAL",
+      "mapping_id": "88fdccee-d5ac-4f86-bdf5-2a7158ea09f2",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "6ddb6a9d438d9e3e0511950b78d57d928cd2679aada99a7b3c4173248753deb8",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Artifact Creature Token — Pentavite"
+      ],
+      "source_rarity_fields": [
+        "T"
+      ],
+      "scryfall": {
+        "id": "4fbb0dc6-2f9e-4389-8a90-531e94009bfb",
+        "name": "Pentavite",
+        "set": "p04",
+        "collector_number": "3",
+        "type_line": "Token Artifact Creature — Pentavite",
+        "layout": "token",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "66692fe024b89f58336cf171f6a20ffaa682c5c4d6c999ad48c309d148892f99",
+        "source_raw_import_id": "148157",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 78628,
+      "group_id": 71,
+      "source_name": "Rukh Token (8ED)",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "e0c48ee2-6c2f-5fef-a796-424f17102b08",
+      "parent_gv_id": "GV-MTG-SF-B5489E26-6AEC-4706-9C3E-8454878FA6C3",
+      "printing_id": "356d6cbc-30a1-5643-bcc1-1b3fafd17236",
+      "printing_gv_id": "GV-MTG-SF-B5489E26-6AEC-4706-9C3E-8454878FA6C3-NORMAL",
+      "mapping_id": "14b2d708-1098-4e62-9a15-609e0f4781f2",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "8ab2c3cb7c008f3291ed2e3e5928a7f6d765f6d28eeb28a08573fd25e543db82",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Creature Token — Rukh"
+      ],
+      "source_rarity_fields": [
+        "T"
+      ],
+      "scryfall": {
+        "id": "b5489e26-6aec-4706-9c3e-8454878fa6c3",
+        "name": "Rukh",
+        "set": "p03",
+        "collector_number": "7",
+        "type_line": "Token Creature — Rukh",
+        "layout": "token",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "3e2d222e279112512fb8e3059771923fc177c414d37aa0aee6dc32a30d0c1dc2",
+        "source_raw_import_id": "148781",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 78629,
+      "group_id": 71,
+      "source_name": "Saproling Token (INV)",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "a9085ccf-939c-51d9-8040-f6478754b5ce",
+      "parent_gv_id": "GV-MTG-SF-61587AC5-0CFE-4E5D-BAA2-C9A458E40474",
+      "printing_id": "5a0d4a6f-b0fc-5396-bff4-0f662d251804",
+      "printing_gv_id": "GV-MTG-SF-61587AC5-0CFE-4E5D-BAA2-C9A458E40474-NORMAL",
+      "mapping_id": "967c9671-4e0d-4548-bc68-bfd19f32386e",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "c0a1f343afccd36c5314b6635f54b47018e2fcddc856a42a106daa01de8178b5",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Creature — Saproling"
+      ],
+      "source_rarity_fields": [
+        "T"
+      ],
+      "scryfall": {
+        "id": "61587ac5-0cfe-4e5d-baa2-c9a458e40474",
+        "name": "Saproling",
+        "set": "mpr",
+        "collector_number": "2",
+        "type_line": "Token Creature — Saproling",
+        "layout": "token",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "5df9ca4f70e52d5579b4393509c97636e79e4f9b41e0a336143c4345e0c8ec7e",
+        "source_raw_import_id": "148609",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 78630,
+      "group_id": 71,
+      "source_name": "Sliver Token (LGN)",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "1fc0df6f-92fa-526f-a011-501cc5b00b0d",
+      "parent_gv_id": "GV-MTG-SF-F3B8AE33-F0C3-4FE7-8121-41307D13BB4A",
+      "printing_id": "6c8bcc02-72d6-541f-b0b6-20ad348f0602",
+      "printing_gv_id": "GV-MTG-SF-F3B8AE33-F0C3-4FE7-8121-41307D13BB4A-NORMAL",
+      "mapping_id": "c87faccb-1b24-4be2-9869-e280ae880dcb",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "2f678e2244ea77bf6bf6d2886bd91dca9acee9e05e7b16961c9e81b806ffdf6c",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Creature — Sliver"
+      ],
+      "source_rarity_fields": [
+        "T"
+      ],
+      "scryfall": {
+        "id": "f3b8ae33-f0c3-4fe7-8121-41307d13bb4a",
+        "name": "Sliver",
+        "set": "p03",
+        "collector_number": "3",
+        "type_line": "Token Creature — Sliver",
+        "layout": "token",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "502e500fedb4e1f406ec191f4bbf4d9bf27943ee487672dff4f3f1a00b5a011e",
+        "source_raw_import_id": "148185",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 78631,
+      "group_id": 71,
+      "source_name": "Soldier Token (ONS)",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "cb76ff22-1bcd-5fb5-9ba8-94a06c5f635d",
+      "parent_gv_id": "GV-MTG-SF-5B953CA2-5BE4-4C6A-A0FD-B53219CA6341",
+      "printing_id": "462d984f-a5a2-5d8b-8a19-08c9e9f25eae",
+      "printing_gv_id": "GV-MTG-SF-5B953CA2-5BE4-4C6A-A0FD-B53219CA6341-NORMAL",
+      "mapping_id": "bc34f616-a4d4-4b11-b21e-7c7d943200ab",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "93b23a78e5dd698ac8d32b885753aca49dfe1b1a0a48f8d10411b9bd7fb4843f",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Creature — Soldier"
+      ],
+      "source_rarity_fields": [
+        "T"
+      ],
+      "scryfall": {
+        "id": "5b953ca2-5be4-4c6a-a0fd-b53219ca6341",
+        "name": "Soldier",
+        "set": "pr2",
+        "collector_number": "8",
+        "type_line": "Token Creature — Soldier",
+        "layout": "token",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "c92ad8197c491872397997562622e3ce8adbb671e6caa8061aebf1fcdbedb7ef",
+        "source_raw_import_id": "148717",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 78632,
+      "group_id": 71,
+      "source_name": "Spirit Token (PLS)",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "addff0db-8f57-5741-8a4d-352e66a4b994",
+      "parent_gv_id": "GV-MTG-SF-14EF4815-3DFE-47B3-AD81-1506925280D3",
+      "printing_id": "00dd18e0-66f5-5ad5-b5ca-74807f1fbbd9",
+      "printing_gv_id": "GV-MTG-SF-14EF4815-3DFE-47B3-AD81-1506925280D3-NORMAL",
+      "mapping_id": "97cf48ab-1b9f-40c6-9203-5222fa9f45a8",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "56e20e1e9d8ed71c1e5364561fbee281f71808a05301677d53bc76d161e5a42a",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Creature — Spirit"
+      ],
+      "source_rarity_fields": [
+        "T"
+      ],
+      "scryfall": {
+        "id": "14ef4815-3dfe-47b3-ad81-1506925280d3",
+        "name": "Spirit",
+        "set": "mpr",
+        "collector_number": "5",
+        "type_line": "Token Creature — Spirit",
+        "layout": "token",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "e0d2927d30826748b8c2aace0462adc07a428f901b40bc11ea642c0e8cf729f2",
+        "source_raw_import_id": "148625",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 78633,
+      "group_id": 71,
+      "source_name": "Spirit Token (CHK)",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "763b84d7-5c71-5b55-a4c0-dd7446d10964",
+      "parent_gv_id": "GV-MTG-SF-46B60D95-B9BC-40F8-B986-BFA8E3EB74F3",
+      "printing_id": "a1cd886e-a22e-5b15-bb30-b33ca9806828",
+      "printing_gv_id": "GV-MTG-SF-46B60D95-B9BC-40F8-B986-BFA8E3EB74F3-NORMAL",
+      "mapping_id": "17a4993f-4a32-4048-b717-bbe5015b5c53",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "1d54eb4d8f007f557aa645c11ad0e0bc3bc1edf4f33cf538524e35f8daa661ae",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Creature Token — Spirit"
+      ],
+      "source_rarity_fields": [
+        "T"
+      ],
+      "scryfall": {
+        "id": "46b60d95-b9bc-40f8-b986-bfa8e3eb74f3",
+        "name": "Spirit",
+        "set": "p04",
+        "collector_number": "6",
+        "type_line": "Token Creature — Spirit",
+        "layout": "token",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "e2067191f56d4847193a7d32aca31f25781984af9703ab9b362fad960f39ced2",
+        "source_raw_import_id": "148453",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 78634,
+      "group_id": 71,
+      "source_name": "Squirrel Token (ODY)",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "3c0d09d8-d2ee-58ec-948a-e78bfaad9c0d",
+      "parent_gv_id": "GV-MTG-SF-AF7C2DEF-D20D-4670-8950-7042E9380844",
+      "printing_id": "1de821fc-69f3-5f0d-a521-4d6b6e60a1a3",
+      "printing_gv_id": "GV-MTG-SF-AF7C2DEF-D20D-4670-8950-7042E9380844-NORMAL",
+      "mapping_id": "d5c171d8-d374-49a9-8a8c-f557feb4a23e",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "37dc424d057e0f88b3bc24cbbc3f10b8e87192712c4afed7cb4b860bbfdcb23b",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Creature — Squirrel"
+      ],
+      "source_rarity_fields": [
+        "T"
+      ],
+      "scryfall": {
+        "id": "af7c2def-d20d-4670-8950-7042e9380844",
+        "name": "Squirrel",
+        "set": "pr2",
+        "collector_number": "3",
+        "type_line": "Token Creature — Squirrel",
+        "layout": "token",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "bac5589197d05fcb4a983a8f47c7bd694bd2f6ca4fa8b06b36da65b21f3bd7b3",
+        "source_raw_import_id": "148273",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 78635,
+      "group_id": 71,
+      "source_name": "Wurm Token (ODY)",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "d06cdb51-896f-5863-b238-fb33b4025dfd",
+      "parent_gv_id": "GV-MTG-SF-9FC04B19-E636-4868-8224-A5DA75EA01C8",
+      "printing_id": "d4fd8dd3-fdd9-5cf3-8240-8c313184e1de",
+      "printing_gv_id": "GV-MTG-SF-9FC04B19-E636-4868-8224-A5DA75EA01C8-NORMAL",
+      "mapping_id": "b4d9cc0a-bb17-474a-a8e5-c2343f40cc52",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "8efa38dca1872c5ff8a847e447d4fe04fd87b4a5c50b0edb7d62db97a1d6f3de",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Creature — Wurm"
+      ],
+      "source_rarity_fields": [
+        "T"
+      ],
+      "scryfall": {
+        "id": "9fc04b19-e636-4868-8224-a5da75ea01c8",
+        "name": "Wurm",
+        "set": "pr2",
+        "collector_number": "6",
+        "type_line": "Token Creature — Wurm",
+        "layout": "token",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "9df20f058a4e6830abbe3bb926ee03ffe0eb39949cbe73bf391e2b617dfd2ff0",
+        "source_raw_import_id": "148729",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 78636,
+      "group_id": 71,
+      "source_name": "Zombie Token (ODY)",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "6491464a-1636-567e-a983-181f78cb3609",
+      "parent_gv_id": "GV-MTG-SF-657FA00D-DDB5-49E6-A01E-82038CCCFE30",
+      "printing_id": "76dbeede-7ee0-5587-8a07-47c295c610da",
+      "printing_gv_id": "GV-MTG-SF-657FA00D-DDB5-49E6-A01E-82038CCCFE30-NORMAL",
+      "mapping_id": "45449d12-b113-4949-92e5-ee1191a5e90b",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "f8470418b7100ba8a18ddb862642792798d6e322fcb116a76501281898973f03",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Creature — Zombie"
+      ],
+      "source_rarity_fields": [
+        "T"
+      ],
+      "scryfall": {
+        "id": "657fa00d-ddb5-49e6-a01e-82038cccfe30",
+        "name": "Zombie",
+        "set": "pr2",
+        "collector_number": "4",
+        "type_line": "Token Creature — Zombie",
+        "layout": "token",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "048e5981f4b5504254f7567ca8a694ed6f481f7835d9ec0fd80f7919b805d5de",
+        "source_raw_import_id": "148397",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 91394,
+      "group_id": 76,
+      "source_name": "Poison Counter Token",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "93652341-9264-5b3a-92ee-4b87fbdd3986",
+      "parent_gv_id": "GV-MTG-SF-92FCDD2B-DD90-458D-9B8B-5B1B9A3F8BD3",
+      "printing_id": "4d29e167-60c9-5a59-95a5-9c58db5457ae",
+      "printing_gv_id": "GV-MTG-SF-92FCDD2B-DD90-458D-9B8B-5B1B9A3F8BD3-NORMAL",
+      "mapping_id": "37a6c2ad-7530-46e0-b979-c4d95530692f",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "eee3652b0234181b0e6289d324c232b25cb5d816fe92d1da3da83230834b5b51",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Token"
+      ],
+      "source_rarity_fields": [
+        "T"
+      ],
+      "scryfall": {
+        "id": "92fcdd2b-dd90-458d-9b8b-5b1b9a3f8bd3",
+        "name": "Poison Counter",
+        "set": "tmbs",
+        "collector_number": "6",
+        "type_line": "Card",
+        "layout": "normal",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "5bb36d27f909ef9210fcfe3b289c35658384a7ef5c48ff97b862d679171ad7c4",
+        "source_raw_import_id": "148541",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 91395,
+      "group_id": 79,
+      "source_name": "Poison Counter Token",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "1a59a09e-b8f0-5103-b785-48aac99cee2f",
+      "parent_gv_id": "GV-MTG-SF-470618F6-F67F-44C6-A086-285632508915",
+      "printing_id": "2322afe7-5b01-569d-b47b-eda17abbe606",
+      "printing_gv_id": "GV-MTG-SF-470618F6-F67F-44C6-A086-285632508915-NORMAL",
+      "mapping_id": "0a2260a7-bb3c-4120-87fb-d07ee3d8bb90",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "b482ffd6e90f5614c835a7bf4501013d4b8912a382ec767a7eac36c139e639d9",
+      "source_number_fields": [],
+      "source_type_fields": [],
+      "source_rarity_fields": [
+        "T"
+      ],
+      "scryfall": {
+        "id": "470618f6-f67f-44c6-a086-285632508915",
+        "name": "Poison Counter",
+        "set": "tnph",
+        "collector_number": "5",
+        "type_line": "Card",
+        "layout": "normal",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "cf4ec3a1ea05787e3f40da9ed253b5b10e2480d1255fc481703d3b4b43de9dba",
+        "source_raw_import_id": "148169",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 108198,
+      "group_id": 1673,
+      "source_name": "Experience Double-Sided Token",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "41cead14-0cf2-5375-841c-2cada69f8971",
+      "parent_gv_id": "GV-MTG-SF-73805B39-7624-4FBD-BCC0-4241E733A97F",
+      "printing_id": "0b701e06-0e2c-5218-8e36-c2de1753e007",
+      "printing_gv_id": "GV-MTG-SF-73805B39-7624-4FBD-BCC0-4241E733A97F-NORMAL",
+      "mapping_id": "5ec97bc0-e997-464c-9e73-ae7e717a9d84",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "68a29297fc76ea68f318f7c20a668bc95e8c40c83a1a8c0f377d85a8c0af9d87",
+      "source_number_fields": [],
+      "source_type_fields": [],
+      "source_rarity_fields": [
+        "T"
+      ],
+      "scryfall": {
+        "id": "73805b39-7624-4fbd-bcc0-4241e733a97f",
+        "name": "Experience",
+        "set": "tc15",
+        "collector_number": "0",
+        "type_line": "Card",
+        "layout": "normal",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "d192a5836e29b3b704facca6d4be3e680925d476672a5b42cd744e80265b91ab",
+        "source_raw_import_id": "148289",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 123476,
+      "group_id": 1791,
+      "source_name": "Energy Reserve Token",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "12194d88-450b-52f1-a4ec-772e8bd325f7",
+      "parent_gv_id": "GV-MTG-SF-A446B9F8-CB22-408A-93FF-BEE44A0DCCC0",
+      "printing_id": "6884afaa-24b4-5756-8eec-ac1ea11c0ba9",
+      "printing_gv_id": "GV-MTG-SF-A446B9F8-CB22-408A-93FF-BEE44A0DCCC0-NORMAL",
+      "mapping_id": "57bd43ca-4eb3-49c3-b1b1-227f9c3f216d",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "206c6104ac56eda6c34fcc10d2c57171a99474226e9cc9df371bdb5209fe026a",
+      "source_number_fields": [],
+      "source_type_fields": [],
+      "source_rarity_fields": [
+        "T"
+      ],
+      "scryfall": {
+        "id": "a446b9f8-cb22-408a-93ff-bee44a0dccc0",
+        "name": "Energy Reserve",
+        "set": "tkld",
+        "collector_number": "13",
+        "type_line": "Card",
+        "layout": "token",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "85e76de4b25aff1c8bb184a809e08f34b8b2ba2db1b4687ef0a5bbc5dbb90ca4",
+        "source_raw_import_id": "148145",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    },
+    {
+      "product_id": 593505,
+      "group_id": 23025,
+      "source_name": "Fear of Unsleeved Decks",
+      "source_subtype": "Normal",
+      "finish_key": "normal",
+      "parent_id": "769fb701-fad8-5060-88ec-fdad93af92a5",
+      "parent_gv_id": "GV-MTG-SF-361CF5A6-11DE-4729-A504-B67FCE772FCD",
+      "printing_id": "dcf7bb7f-a089-58e4-ae6a-7c154c7b642b",
+      "printing_gv_id": "GV-MTG-SF-361CF5A6-11DE-4729-A504-B67FCE772FCD-NORMAL",
+      "mapping_id": "ce426d7e-7488-481f-b8a4-baa3dd39b2c4",
+      "parent_mapping_metadata": {
+        "confidence": "1.0000",
+        "derived_from": "exact_tcgplayer_market_printing_mappings",
+        "mapping_method": "deterministic_mtg_printing_evidence_bridge",
+        "contract_version": "MTG_TCGPLAYER_PARENT_MAPPING_BACKFILL_V1",
+        "source_category_id": 1,
+        "supporting_printing_mapping_count": 1
+      },
+      "parent_mapping_metadata_fingerprint": "307d5103c406f2b40d5d4a41c30d8994a4a6aaef097c50466443f8ebf6238a31",
+      "exact_mapping_metadata_fingerprint": "ae6eaef5ffabcdad559c16d45a637eca2c7289f35da1aed20d135b9576909942",
+      "source_number_fields": [],
+      "source_type_fields": [
+        "Enchantment Creature — Nightmare"
+      ],
+      "source_rarity_fields": [
+        "P"
+      ],
+      "scryfall": {
+        "id": "361cf5a6-11de-4729-a504-b67fce772fcd",
+        "name": "Fear of Unsleeved Decks",
+        "set": "unk",
+        "collector_number": "CG04",
+        "type_line": "Enchantment Creature — Nightmare",
+        "layout": "normal",
+        "lang": "en",
+        "games": [
+          "paper"
+        ],
+        "finishes": [
+          "nonfoil"
+        ],
+        "source_body_sha256": "971175dbdb10e6df0c78e68ba75dca52a1f85331808239b8de14a277f726c07a",
+        "source_raw_import_id": "148453",
+        "source_bulk_sha256": "42a921fd8e75c0d573cbc12280afa6416b4955678d1d097ffb3ee6504bbc516f",
+        "source_url": "https://data.scryfall.io/default-cards/default-cards-20261110100759.jsonl.gz"
+      }
+    }
+  ],
+  "fingerprint": "7814d85c4ae550b47ae04e92ab74704338d777183cc6d554203da0533f7c2ede"
+}

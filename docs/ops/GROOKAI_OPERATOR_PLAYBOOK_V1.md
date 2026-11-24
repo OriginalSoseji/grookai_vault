@@ -1,3 +1,84 @@
+# Regular-product mapping correction candidate — November24,2026
+
+Follow [the29-product contract](../contracts/REGULAR_PRODUCT_MAPPING_CORRECTION_V1.md)
+and its [checkpoint](../checkpoints/pricing/PRICING_CHECKPOINT_20261124_REGULAR_PRODUCT_MAPPING_CORRECTION.md).
+Read-only inspection of all72 active Play!/Prize Pack TCGplayer links found43
+current Prize Pack products and29 ordinary products linked to stamped parents.
+All29 have unique existing regular parents and41 real positive USD quotes with
+matching existing nonprovisional children; the authenticated SQL price reader
+currently returns no qualified price for every regular parent. This is SQL-role
+inspection, not phone or authenticated HTTP acceptance.
+
+The new programme is separate from the frozen one-row Fighting proposal, which
+remains unapplied. Never apply both, silently widen an old plan or retry a partial
+scope. It permits only29 reviewed mapping updates and one private audit after
+complete qualification, fresh deployed523 closure, ordinary exact owner decision,
+actual production rollback and independent readback. Its own schema snapshot,
+registry and complete producer binding preserve66 parents and all references.
+Only the newly owned regular_product_mapping_29_qualification_523_v1 database on
+127.0.0.1:55340 may run its local write qualification. Preserve every old lab and
+copy no Auth or owner fixtures. No local proof activates pricing.
+
+The independent149-pair stamp identity stop still holds all32 old Normal targets
+and98 inserts/32 links. Thirteen missing Series6 parents remain a separate source
+programme. Keep all old IDs, stamp/foil distinctions, prices, owners and original
+149 completed inserts. Current-source full shadow, coverage, guarded publication,
+consumer/app amounts and natural refresh remain necessary before completion.
+
+# Stamp schema 522 preview — November 23, 2026
+
+Follow [the exact 522 extension](../contracts/STAMP_SCHEMA_522_CONTINUITY_V1.md).
+Keep all original 519 and 521 sources, plans and local laboratories. The preview
+supports only the exact separately proposed direct-visibility migration, explicit
+`STAMP_SCHEMA_522_CONTEXT_V1` and separately owned loopback55330 clones. Complete
+producer binding refuses missing or changed candidate SQL; integrate the actual
+qualified catalog source before full source qualification. Local evidence is not
+catalog approval, deployed closure, new stamp execution authority or publication.
+The original physical descriptors and 98-insert scope stay unchanged. Respect
+the shared merge pause and all fresh production plan/rollback/readback gates.
+
+# Stamp schema 521 context preparation — November 23, 2026
+
+Follow [the bounded continuity contract](../contracts/STAMP_SCHEMA_521_CONTINUITY_V1.md).
+Keep the original 519 qualification databases and all frozen plans. An explicit
+`STAMP_SCHEMA_521_CONTEXT_V1` permits only the original scoped writer definitions
+and exact two appended catalog migration IDs, with separate loopback55320 clones.
+Re-capture actual schema/protected state, prove original reviewed physical
+descriptor equality, qualify fresh plans/complete producers and obtain their own
+ordinary exact approval. The old physical review fingerprint is not a claim that
+its old execution context ran. The 98-row proposal and all unverified foil holds
+stay unchanged; original149 must never repeat. Catalog521 approval, offline
+models and this contract grant no data/publication authority. Keep the shared
+merge pause until actual duplicate deployed closure and original-control restore.
+
+# Prepared MTG mapped single-card price correction — November 23, 2026
+
+Follow [the closed MTG kind contract](../contracts/GOVERNED_MTG_MAPPED_SINGLE_KIND_V1.md)
+and [its checkpoint](../checkpoints/pricing/MTG_MAPPED_SINGLE_KIND_PRICE_REPAIR_20261123.md).
+Worker V1_30 adds 38 exact existing English paper product/finish cases whose names
+tripped generic packaging/accessory words. Their original retained Scryfall bodies
+were independently re-parsed and hashed; current exact mappings were separately
+read. Preserve all real source prices, existing V1_3 MTG decision lineage, the
+four Japanese admissions, 75 Play targets and unverified foil holds. No canonical,
+mapping, SQL or publication authority is granted here. Require complete normal,
+hosted, final dependency/schema/runtime gates, worker30's own unlimited reconciled
+shadow, guarded publication, independent source-price/app readback and natural
+refresh. Older shadows cannot qualify worker30. Keep the shared main-merge pause;
+new98 stamp inserts remain separately gated and original149 must never repeat.
+
+# Prepared Japanese numbered single-card price correction — November 23, 2026
+
+Follow [the closed four-card contract](../contracts/GOVERNED_JAPANESE_NUMBERED_SINGLE_KIND_V1.md)
+and [its source review](../audits/JAPANESE_NUMBERED_SINGLE_KIND_REVIEW_20261123.md).
+Worker V1_29 adds exact current Normal-mapping and independent Number/CardType
+evidence for four individual Japanese cards whose names contain Box, Bundle or
+Coin. Other products/finishes, the existing 75 Play targets, missing real quotes,
+database lineage and the coverage threshold remain unchanged. The registry is
+not permission to publish. Require the runtime's own full reconciled V3 shadow,
+complete normal/hosted and actual-schema gates, guarded publication, independent
+source-price/app readback and natural refresh proof. Older shadows cannot qualify
+worker V1_29. Keep the shared main-merge pause and original approval boundaries.
+
 # Duplicate-set bulk catalog authority V17 — November23,2026
 
 Follow [V17](../contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V17.md). Production522
@@ -321,6 +402,54 @@ assignments. Source qualification is not production authority: bind exact plan
 and producer approval, actual fresh production rollback, durable independent
 readback and collector verification before completion. Keep the earlier EX and
 other bounded executors unchanged; these43 facts do not close every missing stamp.
+
+# Recovered Play! Pokémon Normal sources - November 23, 2026
+
+The [separate Series Five checkpoint](../checkpoints/2026-11-23_series5_stamp_normals.md)
+and [contract](../contracts/PLAY_POKEMON_STAMP_SERIES5_NORMAL_EXECUTION_V1.md)
+cover four Temporal Forces facts after the exact Roaring Moon Standard Set
+tooltip is count-reconciled with its original note retained. Source counts now
+agree; older failed receipts remain preserved. Use the dedicated
+`scripts/audits/play_stamp_series5_normal_execution_v1.mjs`, not the other
+28-parent or original43-parent executor. Preserve257 parents/399 retained children;
+the canonical scope is nine inserts. Require separate product-link gates and
+complete publication. Series Six and Fighting Au Lait remain outside these lanes.
+The [dedicated four-link contract](../contracts/PLAY_STAMP_SERIES5_NORMAL_MARKET_MAPPING_V1.md)
+and `scripts/audits/play_stamp_series5_normal_market_mapping_v1.mjs` require exact
+raw/candidate/product ownership, actual reviewed children and their own original
+approval, fresh rollback and independent readback. The four-source census admits
+only Normal, not a complete finish inventory.
+
+The combined prepared follow-up contains98 bounded inserts across four separately
+approved stages:57 canonical rows and28 links for the other28-parent programme,
+then nine canonical rows and four links for Series Five. The five retained set
+families are disjoint. All updates/deletes/owner/image/identity writes are zero.
+Both full normal hooks and hosted checks must qualify the complete combined tree;
+no partial test result or approval for the preceding149-row package carries over.
+
+Use `C:/grookai_play_stamp_normal_recovery_20261123` and the
+[28-printing checkpoint](../checkpoints/2026-11-23_play_stamp_normal_recovery_v3.md).
+The [source audit](../audits/PLAY_STAMP_NORMAL_RECOVERY_SOURCE_REVIEW_V3_20261123.md)
+preserves recovered official Series Three/Four PDFs and independent Normal facts.
+Series Five's later exact annotation review belongs only to the separate four-parent
+lane above. Series Six's duplicate coordinate remains held.
+The [separate V3 contract](../contracts/PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3.md)
+governs `scripts/audits/play_stamp_normal_recovery_execution_v3.mjs`: exactly
+28 existing parents, four full retained set families, and 57 canonical inserts.
+Fighting Au Lait stays excluded: its active regular-product TCGplayer link must
+be corrected atomically with its printing in a separate reviewed package.
+Keep the earlier 43-parent V1 programme and the active pricing release unchanged.
+This source candidate has no production authority; require local qualification,
+normal source checks, exact plan/producer approval, fresh actual rollback and
+independent readback. Market source links and complete guarded publication are
+separate later gates. Do not apply the new batch during the earlier price run.
+
+The [separate recovered mapping contract](../contracts/PLAY_STAMP_NORMAL_RECOVERY_MARKET_MAPPING_V2.md)
+governs `scripts/audits/play_stamp_normal_recovery_market_mapping_v2.mjs`.
+Require exact actual V3 children, original raw/candidate/product lineage, zero
+existing parent/printing assertions, original stage approval and fresh rollback.
+Append only 28 links with an unchanged sequence. Preserve the two unverified
+Holofoil holds; the generic mapper and published condition reader are unchanged.
 
 # Cosmo title price guard — November22,2026
 
