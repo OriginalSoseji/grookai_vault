@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 
 import '../services/public/card_surface_pricing_service.dart';
+import '../services/public/market_price_updated_at.dart';
 import '../theme/gv_tokens.dart';
 
 enum CardSurfacePriceSize { grid, list, dense }
 
 enum CardSurfacePriceMode { automatic, market, manual, hidden }
+
+String _priceUpdateLabel(CardSurfacePricingData pricing) {
+  final aggregate = pricing.pricingScope == 'vault_exact_total';
+  final staleLabel = pricing.isStale
+      ? (aggregate ? 'Includes last known prices · ' : 'Last known price · ')
+      : '';
+  return '$staleLabel${marketPriceUpdatedAt(pricing.observedAt, label: aggregate ? 'Latest included price update' : 'Last updated')}';
+}
 
 String cardSurfacePricingProofKey(CardSurfacePricingData pricing) {
   return <String>[
@@ -89,29 +98,36 @@ class CardSurfacePricePill extends StatelessWidget {
       label: mode == CardSurfacePriceMode.manual
           ? 'Collector asking price'
           : 'TCGPlayer Market',
-      value: formattedValue,
-      child: Container(
-        key: !carriesMarketProof
-            ? null
-            : ValueKey<String>(cardSurfacePricingProofKey(resolvedPricing)),
-        padding: EdgeInsets.symmetric(
-          horizontal: metrics.horizontal,
-          vertical: metrics.vertical,
-        ),
-        decoration: BoxDecoration(
-          color: colorScheme.surface.withValues(alpha: 0.74),
-          borderRadius: BorderRadius.circular(999),
-          border: Border.all(
-            color: colorScheme.outline.withValues(alpha: 0.08),
+      value: carriesMarketProof
+          ? '$formattedValue · ${_priceUpdateLabel(resolvedPricing)}'
+          : formattedValue,
+      child: Tooltip(
+        message: carriesMarketProof
+            ? _priceUpdateLabel(resolvedPricing)
+            : 'Collector asking price',
+        child: Container(
+          key: !carriesMarketProof
+              ? null
+              : ValueKey<String>(cardSurfacePricingProofKey(resolvedPricing)),
+          padding: EdgeInsets.symmetric(
+            horizontal: metrics.horizontal,
+            vertical: metrics.vertical,
           ),
-        ),
-        child: Text(
-          formattedValue,
-          style: theme.textTheme.labelSmall?.copyWith(
-            color: colorScheme.onSurface.withValues(alpha: 0.76),
-            fontWeight: GvText.semibold,
-            fontSize: metrics.font,
-            height: 1.0,
+          decoration: BoxDecoration(
+            color: colorScheme.surface.withValues(alpha: 0.74),
+            borderRadius: BorderRadius.circular(999),
+            border: Border.all(
+              color: colorScheme.outline.withValues(alpha: 0.08),
+            ),
+          ),
+          child: Text(
+            formattedValue,
+            style: theme.textTheme.labelSmall?.copyWith(
+              color: colorScheme.onSurface.withValues(alpha: 0.76),
+              fontWeight: GvText.semibold,
+              fontSize: metrics.font,
+              height: 1.0,
+            ),
           ),
         ),
       ),
@@ -177,21 +193,28 @@ class CardSurfacePriceText extends StatelessWidget {
       label: mode == CardSurfacePriceMode.manual
           ? 'Collector asking price'
           : 'TCGPlayer Market',
-      value: formattedValue,
-      child: Text(
-        formattedValue,
-        key: !carriesMarketProof
-            ? null
-            : ValueKey<String>(cardSurfacePricingProofKey(resolvedPricing)),
-        textAlign: textAlign,
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
-        style: theme.textTheme.labelLarge?.copyWith(
-          color: colorScheme.onSurface.withValues(alpha: 0.92),
-          fontSize: fontSize,
-          fontWeight: GvText.semibold,
-          height: 1.05,
-          fontFeatures: const [FontFeature.tabularFigures()],
+      value: carriesMarketProof
+          ? '$formattedValue · ${_priceUpdateLabel(resolvedPricing)}'
+          : formattedValue,
+      child: Tooltip(
+        message: carriesMarketProof
+            ? _priceUpdateLabel(resolvedPricing)
+            : 'Collector asking price',
+        child: Text(
+          formattedValue,
+          key: !carriesMarketProof
+              ? null
+              : ValueKey<String>(cardSurfacePricingProofKey(resolvedPricing)),
+          textAlign: textAlign,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: theme.textTheme.labelLarge?.copyWith(
+            color: colorScheme.onSurface.withValues(alpha: 0.92),
+            fontSize: fontSize,
+            fontWeight: GvText.semibold,
+            height: 1.05,
+            fontFeatures: const [FontFeature.tabularFigures()],
+          ),
         ),
       ),
     );

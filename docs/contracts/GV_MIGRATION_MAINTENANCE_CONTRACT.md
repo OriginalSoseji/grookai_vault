@@ -1,3 +1,14 @@
+## Retained-price read-only baseline — November23,2026
+
+`-MarketPriceRetentionBaselineV1` admits only exact520 `AuditLinkedSchema`.
+Follow [the baseline contract](MARKET_PRICE_RETENTION_SCHEMA_BASELINE_V1.md).
+The genuine reset, explicit647 alias-pair and22 Best of Game catalog prerequisites,
+unchanged520 CLI replay/no-op and four-schema/security comparison are pinned.
+Zero Auth users/copies; disabled workers; production reads only. Changed history,
+proofs, pending IDs, combined flags and PrePush reject. This grants no candidate,
+production apply, merge-pause override or release authority. Existing scopes and
+the ordinary strict failure remain unchanged.
+
 # Duplicate-set typed card-search V11 — November22,2026
 
 Follow [the V11 release contract](BEST_OF_GAME_DISCOVERY_READ_REPAIR_V11.md).

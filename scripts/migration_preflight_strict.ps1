@@ -19,6 +19,8 @@ param(
 
   [string[]]$ExpectedLocalOnlyIds = @(),
 
+  [switch]$MarketPriceRetentionBaselineV1,
+
   [switch]$BestOfGameDiscoveryReleaseV17,
   [switch]$BestOfGameDiscoveryReleaseV16,
   [switch]$BestOfGameDiscoveryReleaseV15,
@@ -161,6 +163,16 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+if ($MarketPriceRetentionBaselineV1) {
+  if ($Phase -ne 'AuditLinkedSchema' -or
+      @($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','MarketPriceRetentionBaselineV1','AuditOutDir') }).Count -gt 0 -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Market retention baseline is read-only AuditLinkedSchema only, with a new bounded output directory and exact520 history. No candidate or PrePush authority.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/audit_market_price_retention_baseline_v1.mjs') $AuditOutDir
+  exit $LASTEXITCODE
+}
 
 if ($BestOfGameDiscoveryReleaseV17) {
   $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
