@@ -1,10 +1,11 @@
 # Current retained-price qualification — November24,2026
 
-The current retained-price source reconciles accepted PR1040/mainf6e105f5 while
+The current retained-price source reconciles accepted PR1042/maine3080875, including
+worker30 mainf6e105f5 and selected-printing image confidence, while
 preserving the independently closed catalog main75fe32c0. Exact sourceMain and
 catalog closure are separately pinned; original migration bytes, worker30 policy
-and hard stamp-identity holds remain unchanged. Previous6389 source checks passed,
-but its strict release preflight stopped on that real main advance.
+and hard stamp-identity holds remain unchanged. Previous6389 andd1c05d0 source checks passed; both real main advances remain
+recorded and require the current exact combined-source qualification.
 
 The catalog523 release closed on main75fe32c0 with deployed acceptance and original
 control restoration. Follow [retained-price release V1](contracts/MARKET_PRICE_RETENTION_RELEASE_V1.md)

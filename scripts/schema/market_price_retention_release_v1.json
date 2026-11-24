@@ -120,7 +120,7 @@
     "tests/contracts/play_stamp_normal_publication_authority_v1.test.mjs": "76f775b33c1373bad3a04d32b48b190a5f92fc7a5237c53081e3bbca5fdeb405",
     "tests/contracts/play_stamp_normal_recovery_execution_v3.test.mjs": "f4af9a3356aeaa7765537155cbcefe0fb9aedda958d4b2b2248d0a3431d08728",
     "tests/contracts/play_stamp_series5_normal_execution_v1.test.mjs": "1900541b20d6b2c1068a9624ba3557904935d048d1223e4f48c89ef778a9c3e1",
-    "tests/contracts/regular_product_mapping_correction_v1.test.mjs": "b9a2c0ce425d1decfb1c461cf7f66254401d5dcce432af1693e6e0d494bd60c9",
+    "tests/contracts/regular_product_mapping_correction_v1.test.mjs": "87a8cd915b52495395b8638d397748e43ef5cb7ae187b7edf33059917fc7fe2d",
     "tests/contracts/stamp_identity_admission_hold_v1.test.mjs": "e84cdcbcccc0b785975646ab2ad383126c42b41a5e862d0d58df3f41205edd5e",
     "tests/contracts/stamp_schema_521_continuity_v1.test.mjs": "691f7481fd00dadd3d7c30144fe712538116ec4e11c4cf9c6ffb5b0814925b76",
     "tests/contracts/stamp_schema_522_continuity_v1.test.mjs": "d22b90cfb4f4e4824fefb7dace00036db3d387c6be7d7e07471860a900ea40db",
@@ -131,7 +131,12 @@
     "tests/contracts/tcgplayer_market_reconciliation_resume_v1.test.mjs": "d99c1c995310015eec0f379b2afc13da9c48ab31f2f9ca01b5e498fd5a1af27a",
     "tests/contracts/tcgplayer_market_streaming_v1.test.mjs": "761f0c9879818074d0aa75d47c0dd6e3095cef61b60c9cc0c977d00b35f88c6e",
     "tests/fixtures/stamp_original_physical_descriptors_v1.json": "477ced1244f21ccfc53ddb698c29a8704c238a9ed80d87e589de3e251439ac9f",
-    "tests/fixtures/stamp_schema_519_baseline_metadata_v1.json": "ee2cca6f4abeaf742090487513d889eb7d4c5e363cf9dd3172493fa366104198"
+    "tests/fixtures/stamp_schema_519_baseline_metadata_v1.json": "ee2cca6f4abeaf742090487513d889eb7d4c5e363cf9dd3172493fa366104198",
+    "docs/checkpoints/STAMPED_REVERSE_HOLO_AUDIT_20261124.md": "f9af75f54d39d41a936ce070306d4576c1f9a520a1d48a563cc82f6da20e9378",
+    "lib/card_detail_screen.dart": "8c97889fd7b23029d9e890d722cc86782974443b315bcffca4114cf81a16baba",
+    "lib/services/identity/printing_image_presentation.dart": "5b9cadbb6fbc95c87cf6bcc272c71d89faab123b13ab3cb1d5b9ffff02dc143a",
+    "test/hosted_catalog_artwork_contract_test.dart": "d0535d7c61ffb1985207bdc9a82232b9b047cc0892782b8e2cb9dc44eec1e1f5",
+    "test/printing_image_presentation_test.dart": "0d989d695a20761b6b4a20363bc2c665c5648efb5a0b88ba41b9ad0865c099eb"
   },
   "closure": {
     "file": "C:/grookai_vault_operator_artifacts/best_of_game_catalog_load_522_20261124/release-closure-v23.json",
@@ -201,7 +206,21 @@
     "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/square-runtime-v2/bin/npm": "e22de470b2f56d1ecc2c6d55adeb36c3d3478d3805ed26acb8ab793205519c51",
     "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/square-runtime-v2/bin/npm.cmd": "ea9e68a9b5b028e90dce980a56b53c3d3387a538b7c698b8b98e5385385e9a9f",
     "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/main1040-reconciliation-v1.json": "ced7d6aa866e7350c7afb2c99569338249628f1fd57fc3f1fe88527efba9d24a",
-    "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/prepush-main-advanced-v1.json": "f8f567962e1e0567dfedc3832261b2782d582143535771e7dd58c709df516198"
+    "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/prepush-main-advanced-v1.json": "f8f567962e1e0567dfedc3832261b2782d582143535771e7dd58c709df516198",
+    "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/square-runtime-v3/profile.json": "29720ecbfaa6a459e75ed8c34d2c0b9467a6e96091ddb5814e684c9bb7e080d2",
+    "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/square-runtime-v3/route-npm.mjs": "e7703e0577020485ed245629390a748743f150bba6e48a3d26caddbf7042a85e",
+    "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/square-runtime-v3/qualification.json": "69d564356f9d898a2ad161366df57f95b2aeea0282770b3ec78086e13a9efa56",
+    "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/square-runtime-v3/focused.log": "85860a27a0acf83d61a8db736f34a485291d8e43d1dc8826da1e910e2b8505df",
+    "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/square-runtime-v3/lookup-smoke.json": "c99cebb0bfc73470ab5e00403984ce3485f98ea26f2bc4e7530b3b162d35c626",
+    "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/square-runtime-v3/bin/npm": "a9186598c0270f38d94c98a9ddcd7330a2c6b4f960013eb2b00f2e859c80741a",
+    "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/square-runtime-v3/bin/npm.cmd": "312b471985f2faf1ba8bf2ffc1b442031f00ff7f9444b64386caa139cf524287",
+    "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/main1042-reconciliation-v1.json": "9e3478783a7c6ed4c2656dff82150aee08e563c3792edaac4145c98585944c30",
+    "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/main1042-observed-advance-v1.json": "0e0024a8915db68a75f64ffd562d375a4b52801d8e6354fe21ab1138a7002489",
+    "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/main1042-focused-native-v1.json": "c83697e0fcae5ed02cdeba57ae475675f94fe7a9a990f64e137b579229ebdb54",
+    "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/main1042-focused-native-v1.log": "04cc890003f53ea0c5480932a425c2ca09d485e85d1e7d53cb29f7f45142381f",
+    "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/normal-v3/normal-verification.json": "39e888d35e45fadf56b846b04aef4a147552413e02da7c4e08ebe400198f435c",
+    "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/normal-v3/hosted-final-v1.json": "94e271f24f15407dfa7acdc3db4fbd0ecfe8bf16b992771f9cd03f5243206d07",
+    "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/main1042-input-bytes-precondition-v1.json": "d2edac544445968fd3d2919da2c369161ed8dfe52c43e2f112201a5ff1cbda0c"
   },
   "passReceipts": [
     "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/physical-runtime-v2/result.json",
@@ -216,7 +235,10 @@
     "C:/grookai_vault_operator_artifacts/pricing_visibility_schema_20261123/catalog522-compat-v1/dense-history-scale-reader-v1/result.json",
     "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/square-runtime-v1/qualification.json",
     "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/square-runtime-v2/qualification.json",
-    "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/main1040-reconciliation-v1.json"
+    "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/main1040-reconciliation-v1.json",
+    "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/square-runtime-v3/qualification.json",
+    "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/main1042-reconciliation-v1.json",
+    "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/main1042-focused-native-v1.json"
   ],
   "localFingerprints": "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/fresh-order-v5/protected-after.json.gz",
   "installedFunctions": {
@@ -227,17 +249,23 @@
   },
   "cliSha256": "31c2a25bd590a36ad803a7c669cf76a62eac3cd5aa7112eeb2e1c5f308c8b39c",
   "qualifiedSquareLinuxRuntime": {
-    "qualification": "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/square-runtime-v2/qualification.json",
-    "profile": "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/square-runtime-v2/profile.json",
-    "runner": "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/square-runtime-v2/route-npm.mjs",
+    "qualification": "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/square-runtime-v3/qualification.json",
+    "profile": "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/square-runtime-v3/profile.json",
+    "runner": "C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/square-runtime-v3/route-npm.mjs",
     "completeSuiteOnly": true
   },
-  "sourceMain": "f6e105f58faf53269713437014cc5be2196545a9",
-  "sourceMainTree": "8e2b0e28121db070a08b355b08a1ee6f3145a004",
-  "sourceMainPr": 1040,
+  "sourceMain": "e3080875daa838c10f0324dc53ad04e3c102743a",
+  "sourceMainTree": "f6510fa825af0abcc900b8a221eccb2b24617712",
+  "sourceMainPr": 1042,
   "upstreamSourceTestAdjustment": {
     "file": "tests/contracts/regular_product_mapping_correction_v1.test.mjs",
     "acceptedMainSha256": "b9889e8737f863e88788c4665cee1859974cf020d8b1d13e140e3de449fedb93",
-    "reason": "source-only producer inventory admits exactly original523 history plus unchanged pinned price file; actual523 metadata and operational gates unchanged"
-  }
+    "reason": "source-only producer inventory admits exactly original523 history plus unchanged pinned price file; actual523 metadata and operational gates unchanged",
+    "canonicalQualifiedGitBlobSha256": "87a8cd915b52495395b8638d397748e43ef5cb7ae187b7edf33059917fc7fe2d",
+    "priorWorkingCrLfSha256": "b9a2c0ce425d1decfb1c461cf7f66254401d5dcce432af1693e6e0d494bd60c9"
+  },
+  "sourceMainAncestryPrs": [
+    1040,
+    1042
+  ]
 }

@@ -107,3 +107,29 @@ regular mapping executor admits only523; this524 price migration does not extend
 that programme. If its exact separately approved execution has not completed
 before524, it needs a separately qualified later-ledger successor. No29-row,
 stamp, worker shadow or publication authority is granted by this price release.
+
+## Accepted main1042 image/price reconciliation
+
+The main1040 source d1c05d0b passed both full normal-v3 hooks and all11 hosted
+jobs plus Vercel. Before its strict PrePush, main independently advanced through
+PR1042 to e3080875daa838c10f0324dc53ad04e3c102743a, tree
+f6510fa825af0abcc900b8a221eccb2b24617712. Preserve draft1043 and every normal,
+hosted and observed-main receipt; no release-source-v2 or approval packet was
+sealed and no production price SQL was applied.
+
+The current sourceMain is that exact accepted image-confidence source. It adds
+no migration, dependency or marketing-version change. The merge is conflict-free;
+the only card-detail difference against accepted main is the original retained
+price/footer disclosure. Keep the full selected-printing image metadata, hosted
+child resolver and missing/representative/blocked image labels. Artwork confidence
+does not become price freshness or printing identity authority. All35 focused
+image/artwork/price/Vault cases passed together, as did the complete123-case Square
+suite on its separately pinned new read-only runtime mount.
+
+Require new normal-v4, exact-head hosted and fresh strict PrePush against exactly
+main1042, with original catalog closure and all523 history/security/local proofs
+unchanged. This is an exact source integration, not a generic main/version waiver.
+The29-link ledger523 boundary and hard32-stamp hold remain unchanged. Native
+source qualification is not a phone release: the upstream audit records installed
+Samsung614, while checkout601 must not be installed. Re-read actual installed
+version/signing and satisfy the paired-release contract before native distribution.
