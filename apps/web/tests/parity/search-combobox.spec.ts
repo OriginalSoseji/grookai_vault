@@ -281,6 +281,42 @@ test("a degraded search is shown as a timeout instead of no matches", async ({ p
   await expect(page.getByText("No results yet")).toHaveCount(0);
 });
 
+for (const canonicalRows of [[], rows]) {
+  test(`unavailable unconfirmed results are disclosed and retry preserves filters (${canonicalRows.length} canonical rows)`, async ({ page }) => {
+    const requests: string[] = [];
+    let recovered = false;
+    await page.route("**/*", async (route) => {
+      const url = new URL(route.request().url());
+      if (!["127.0.0.1", "localhost"].includes(url.hostname)) return route.abort();
+      if (url.pathname === "/api/resolver/search") {
+        requests.push(url.toString());
+        return route.fulfill({ json: {
+          ok: true, rows: canonicalRows, provisional: [],
+          provisional_status: recovered ? "available" : "unavailable",
+          smart_search: { originalQuery: "Pikachu", residualQuery: "Pikachu", finishKeys: ["reverse"], stampLabels: [], interpretedLabels: [], unrecognizedTerms: [], unappliedLabels: [] },
+          pagination: { total_count: canonicalRows.length, has_more: false, next_offset: null },
+        } });
+      }
+      if (url.pathname.startsWith("/api/")) return route.fulfill({ json: { ok: true, rows: [] } });
+      return route.continue();
+    });
+    await page.goto("/explore?q=Pikachu&finish=reverse&year_min=2022&year_max=2024");
+    const warning = page.getByRole("status").filter({ hasText: "Additional unconfirmed matches are temporarily unavailable" });
+    await expect(warning).toBeVisible();
+    if (canonicalRows.length) await expect(page.getByText("Pikachu 1", { exact: true }).first()).toBeVisible();
+    else {
+      await expect(page.getByText("Some results are unavailable")).toBeVisible();
+      await expect(page.getByText("No card match yet")).toHaveCount(0);
+      await expect(page.getByText("No recorded matches for all these filters.", { exact: false })).toHaveCount(0);
+    }
+    const original = requests[requests.length - 1];
+    recovered = true;
+    await warning.getByRole("button", { name: "Retry search" }).click();
+    await expect(warning).toHaveCount(0);
+    expect(requests[requests.length - 1]).toBe(original);
+  });
+}
+
 test("retry search repeats the same filtered request after both timeout attempts fail", async ({ page }) => {
   const requests: string[] = [];
   let allowSuccess = false;

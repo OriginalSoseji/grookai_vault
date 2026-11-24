@@ -322,7 +322,10 @@ function getPublicProvisionalCardsFailClosed(input: {
     ? AbortSignal.any([input.signal, timeoutController.signal])
     : timeoutController.signal;
   return withTimeout(
-    getPublicProvisionalCards({ ...input, signal }).catch((error) => {
+    getPublicProvisionalCards({ ...input, signal }).then((rows) => ({
+      rows,
+      status: "available" as const,
+    })).catch((error) => {
       if (error instanceof Error && error.message.startsWith("SECURITY:")) {
         throw error;
       }
@@ -332,10 +335,10 @@ function getPublicProvisionalCardsFailClosed(input: {
           message: error instanceof Error ? error.message : "unknown",
         });
       }
-      return [];
+      return { rows: [], status: "unavailable" as const };
     }),
     1200,
-    [],
+    { rows: [], status: "unavailable" as const },
     () => timeoutController.abort(),
   );
 }
@@ -874,7 +877,7 @@ export async function GET(request: NextRequest) {
               smartSearchIntent: effectiveSmartSearchIntent,
               degraded: false,
             }));
-    const [resolved, provisionalResults] = await Promise.all([
+    const [resolved, provisionalResult] = await Promise.all([
       withTimeout(
         resolvedSearchPromise,
         completeSearch ? 12000 : RESOLVER_RESPONSE_TIMEOUT_MS,
@@ -888,7 +891,7 @@ export async function GET(request: NextRequest) {
             limit: 12,
             signal: request.signal,
           })
-        : Promise.resolve([]),
+        : Promise.resolve({ rows: [], status: "not_requested" as const }),
     ]);
     if (completeSearch && resolved.degraded) {
       return NextResponse.json({
@@ -965,7 +968,7 @@ export async function GET(request: NextRequest) {
     const canonicalResultIds = new Set(
       smartFilteredCanonicalResults.map((row) => normalizeOptionalText(row.id)).filter(Boolean),
     );
-    const provisionalResultsAfterCanonicalIdGuard = provisionalResults.filter((row) => {
+    const provisionalResultsAfterCanonicalIdGuard = provisionalResult.rows.filter((row) => {
       const promotedCardPrintId = normalizeOptionalText(
         (row as { promoted_card_print_id?: unknown }).promoted_card_print_id,
       );
@@ -991,6 +994,7 @@ export async function GET(request: NextRequest) {
         smart_search: responseSmartSearchIntent,
         rows: limitedCanonicalResults,
         provisional: provisionalResultsForResponse,
+        provisional_status: provisionalResult.status,
         meta: resolved.meta,
         limit: artistPage && !artistPaginationRequested ? limitedCanonicalResults.length : resultLimit,
         pagination: artistPage?.pagination,
@@ -1005,7 +1009,7 @@ export async function GET(request: NextRequest) {
       {
         headers: {
           "Cache-Control":
-            resolved.degraded || playableRequested || hasRequestCredentials || pricingRequested || effectiveSmartSearchIntent.ownedState || gameScope !== "pokemon"
+            resolved.degraded || provisionalResult.status === "unavailable" || playableRequested || hasRequestCredentials || pricingRequested || effectiveSmartSearchIntent.ownedState || gameScope !== "pokemon"
               ? "private, no-store"
               : "public, s-maxage=120, stale-while-revalidate=300",
           "Server-Timing": `interpret;dur=${(interpretationFinishedAt - searchStartedAt).toFixed(1)}, resolve;dur=${(resolutionFinishedAt - interpretationFinishedAt).toFixed(1)}, finish;dur=${(performance.now() - resolutionFinishedAt).toFixed(1)}` +

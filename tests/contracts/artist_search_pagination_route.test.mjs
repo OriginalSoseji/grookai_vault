@@ -12,7 +12,7 @@ const fixture = Array.from({ length: 195 }, (_, index) => ({
   name: `Card ${index}`, artist: 'Yuka Morii', number: String(index),
 }));
 
-function loadRoute({ fail = false, fastSearchTimeout = false, softTimeout = false, stallCombined = false, stallProvisional = false, captureProvisional = () => {}, sets = [], catalogFail = false, capture = () => {}, captureCollector = () => {}, collectorRows = fixture, captureRanked = () => {}, rankedRows, exactCardName, exactCardNames = [], partialCardNames = {}, rows = fixture } = {}) {
+function loadRoute({ fail = false, fastSearchTimeout = false, softTimeout = false, stallCombined = false, stallProvisional = false, provisionalError = null, captureProvisional = () => {}, sets = [], catalogFail = false, capture = () => {}, captureCollector = () => {}, collectorRows = fixture, captureRanked = () => {}, rankedRows, exactCardName, exactCardNames = [], partialCardNames = {}, rows = fixture } = {}) {
   const cache = new Map();
   const mocks = {
     'server-only': {},
@@ -40,6 +40,7 @@ function loadRoute({ fail = false, fastSearchTimeout = false, softTimeout = fals
     '@/lib/provisional/getPublicProvisionalCards': { getPublicProvisionalCards: async (input) => {
       captureProvisional(input);
       if (stallProvisional) return new Promise((_, reject) => input.signal.addEventListener('abort', () => reject(input.signal.reason), { once: true }));
+      if (provisionalError) throw new Error(provisionalError);
       return [];
     } },
     '@/lib/provisional/getPromotionTransitionState': {
@@ -101,9 +102,39 @@ test('provisional lookup timeout aborts its request without losing canonical res
   });
   assert.equal(response.status, 200);
   assert.equal(signal.aborted, true);
+  assert.equal(response.headers.get('cache-control'), 'private, no-store');
   const body = await response.json();
   assert.ok(body.rows.length > 0);
   assert.equal(body.provisional.length, 0);
+  assert.equal(body.provisional_status, 'unavailable');
+});
+
+test('failed provisional lookup preserves canonical rows and cannot be shared-cached', async () => {
+  const response = await loadRoute({ provisionalError: 'upstream unavailable' })({
+    nextUrl: new URL('https://fixture?q=Pikachu&limit=5'),
+  });
+  const body = await response.json();
+  assert.equal(response.status, 200);
+  assert.ok(body.rows.length > 0);
+  assert.equal(body.provisional_status, 'unavailable');
+  assert.equal(body.provisional.length, 0);
+  assert.equal(response.headers.get('cache-control'), 'private, no-store');
+});
+
+test('successful empty provisional lookup remains cacheable and distinct from unavailable', async () => {
+  const response = await loadRoute()({ nextUrl: new URL('https://fixture?q=Pikachu&limit=5') });
+  const body = await response.json();
+  assert.equal(body.provisional_status, 'available');
+  assert.equal(body.provisional.length, 0);
+  assert.match(response.headers.get('cache-control'), /^public/);
+});
+
+test('provisional security errors do not become successful partial results', async () => {
+  const response = await loadRoute({ provisionalError: 'SECURITY: test violation' })({
+    nextUrl: new URL('https://fixture?q=Pikachu&limit=5'),
+  });
+  assert.equal(response.status, 500);
+  assert.equal((await response.json()).ok, false);
 });
 
 test('caller cancellation reaches the optional provisional lookup', async () => {
