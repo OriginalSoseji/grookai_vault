@@ -1,0 +1,3114 @@
+{
+  "version": "STAMP_ORIGINAL_PHYSICAL_DESCRIPTORS_V1",
+  "executionAuthority": false,
+  "containsOwnerAuthData": false,
+  "proposedCanonicalFactsOnly": true,
+  "scopes": {
+    "canonical28": {
+      "original_review_plan_fingerprint": "711cb06754c4f51adc4e9ef230d3def2ca708b79e79921a2b73b5c1b5f8782a8",
+      "descriptor_fingerprint": "b505940c655aae4a956d1a24a251bc078f753e40d8fc8e739542b4a0424bc6a9",
+      "descriptor": {
+        "version": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+        "project_ref": "ycdxbpibncqcchqiihfz",
+        "program_fingerprint": "53e6b320860b991d3cfee13888b249c79713dfa58b29c2ab949fd1c2a8cf2cc2",
+        "manifest_fingerprints": [
+          "11644fcd972bfc7d05ab4a10ee037f6cdb607daea36e7f4c3b17c3b954b1d635",
+          "b4101ee821693744fad22c64ccdb7570cbd5cc2f14bb9a1066a55b0e68d579cb",
+          "f43efe687b66748370f7adf834c47954b46c9a5988e0870db9afce8c4cfa3543",
+          "388bbe81eb5ee9f9ff282eb4fbe86f60b96826a0bbfbfc5568a61c8388a5d925"
+        ],
+        "children": [
+          {
+            "id": "00a1d2b3-70be-52da-a012-19f66a3ade8c",
+            "card_print_id": "aaecd767-1350-47ba-a113-1b2384047b6a",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-ASR-051-PLAY-POKEMON-STAMP-STD",
+            "is_provisional": false,
+            "provenance_source": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "provenance_ref": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "created_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3"
+          },
+          {
+            "id": "0444a1cd-78cf-5b2f-acd7-60a554200889",
+            "card_print_id": "bd216ea9-4213-4684-8286-98f346e62de8",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-ASR-139-PLAY-POKEMON-STAMP-STD",
+            "is_provisional": false,
+            "provenance_source": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "provenance_ref": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "created_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3"
+          },
+          {
+            "id": "173cb7d0-e25b-588b-af26-f0d8cee209d3",
+            "card_print_id": "6720f0b2-23c2-4d78-bacf-2d0db6f7ddf5",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-LOR-062-PLAY-POKEMON-STAMP-STD",
+            "is_provisional": false,
+            "provenance_source": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "provenance_ref": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "created_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3"
+          },
+          {
+            "id": "18a0a1d1-47ec-5c1c-a48f-021ce66e48bc",
+            "card_print_id": "27183d1b-d482-4bc1-a47e-3da0d7e4dd2c",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-LOR-160-PLAY-POKEMON-STAMP-STD",
+            "is_provisional": false,
+            "provenance_source": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "provenance_ref": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "created_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3"
+          },
+          {
+            "id": "242dc544-943b-5faa-a9e5-4096261e9fef",
+            "card_print_id": "d6c1ec2f-183e-4f1f-924e-1cb30bfcda28",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-PAL-071-PLAY-POKEMON-STAMP-STD",
+            "is_provisional": false,
+            "provenance_source": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "provenance_ref": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "created_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3"
+          },
+          {
+            "id": "2b9b0ac9-4047-579b-acad-93a081f681e6",
+            "card_print_id": "d5353963-8006-4049-afa5-51b45b63b966",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-ASR-145-PLAY-POKEMON-STAMP-STD",
+            "is_provisional": false,
+            "provenance_source": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "provenance_ref": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "created_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3"
+          },
+          {
+            "id": "2e119ece-4139-5e43-a768-32272e018537",
+            "card_print_id": "077be7cd-21e7-46cb-b25c-c256da55c10b",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-LOR-155-PLAY-POKEMON-STAMP-STD",
+            "is_provisional": false,
+            "provenance_source": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "provenance_ref": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "created_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3"
+          },
+          {
+            "id": "34699856-894a-5803-ad7b-e9949637b3ed",
+            "card_print_id": "445109da-f36c-4992-83db-dd046ed1f822",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-ASR-108-PLAY-POKEMON-STAMP-STD",
+            "is_provisional": false,
+            "provenance_source": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "provenance_ref": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "created_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3"
+          },
+          {
+            "id": "362f35e9-adcf-5c3b-ad75-e6adb9ba7ac2",
+            "card_print_id": "8d361411-28c8-496e-b3f5-c7e494f94702",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-ASR-075-PLAY-POKEMON-STAMP-STD",
+            "is_provisional": false,
+            "provenance_source": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "provenance_ref": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "created_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3"
+          },
+          {
+            "id": "4d7a62ff-3b47-5378-a4ce-028db6481555",
+            "card_print_id": "c768b472-1f0d-46ac-adb7-5f6554c57888",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-SIT-154-PLAY-POKEMON-STAMP-STD",
+            "is_provisional": false,
+            "provenance_source": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "provenance_ref": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "created_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3"
+          },
+          {
+            "id": "5aac6237-f396-501c-abc3-581220f197db",
+            "card_print_id": "b861b100-b9c2-43b7-8f22-2b8c65b8edb1",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-PAL-173-PLAY-POKEMON-STAMP-STD",
+            "is_provisional": false,
+            "provenance_source": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "provenance_ref": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "created_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3"
+          },
+          {
+            "id": "5b02441f-b266-59ff-a094-0c4186c5ead9",
+            "card_print_id": "c46f94ed-693c-48be-9f0c-2b7288b3a568",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-SIT-160-PLAY-POKEMON-STAMP-STD",
+            "is_provisional": false,
+            "provenance_source": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "provenance_ref": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "created_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3"
+          },
+          {
+            "id": "6ae3874e-e423-5689-a260-f7a26d570b18",
+            "card_print_id": "8cc7cba0-40e2-48be-a5e7-598322383ded",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-LOR-168-PLAY-POKEMON-STAMP-STD",
+            "is_provisional": false,
+            "provenance_source": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "provenance_ref": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "created_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3"
+          },
+          {
+            "id": "6b508fec-503a-5131-aa74-b5ac73e6341f",
+            "card_print_id": "d6ff2988-d72c-42e8-bbe2-67b1947ac042",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-LOR-167-PLAY-POKEMON-STAMP-STD",
+            "is_provisional": false,
+            "provenance_source": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "provenance_ref": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "created_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3"
+          },
+          {
+            "id": "6e89abd2-5bc3-50f4-a7d2-9f814e449884",
+            "card_print_id": "75e4a208-b418-4c6d-a6b0-0a6633c243d0",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-ASR-143-PLAY-POKEMON-STAMP-STD",
+            "is_provisional": false,
+            "provenance_source": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "provenance_ref": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "created_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3"
+          },
+          {
+            "id": "70b0aaed-184d-503d-a890-cc1b385c9ec8",
+            "card_print_id": "06f07c2c-0da1-493f-9bf0-d25dd1d24636",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-LOR-143-PLAY-POKEMON-STAMP-STD",
+            "is_provisional": false,
+            "provenance_source": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "provenance_ref": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "created_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3"
+          },
+          {
+            "id": "7604726f-3009-5aaa-aca3-f6fe60cf7203",
+            "card_print_id": "5ee8928f-60a9-4e94-8e47-35f8df072dec",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-SIT-169-PLAY-POKEMON-STAMP-STD",
+            "is_provisional": false,
+            "provenance_source": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "provenance_ref": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "created_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3"
+          },
+          {
+            "id": "7a319260-05e1-5834-a54a-5d318ab9f25c",
+            "card_print_id": "e6da28d9-8e7a-4211-a2de-2c4d6c2b7f18",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-ASR-037-PLAY-POKEMON-STAMP-STD",
+            "is_provisional": false,
+            "provenance_source": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "provenance_ref": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "created_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3"
+          },
+          {
+            "id": "7b8625b8-0efe-522a-affb-9e71e8ea62de",
+            "card_print_id": "b0892865-890c-498b-9efc-395f07999e15",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-SIT-164-PLAY-POKEMON-STAMP-STD",
+            "is_provisional": false,
+            "provenance_source": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "provenance_ref": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "created_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3"
+          },
+          {
+            "id": "7fbc1d45-5c39-527a-a7c6-50ec99d0d214",
+            "card_print_id": "e5988601-d908-4dfd-b7ce-ed450b600387",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-SIT-155-PLAY-POKEMON-STAMP-STD",
+            "is_provisional": false,
+            "provenance_source": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "provenance_ref": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "created_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3"
+          },
+          {
+            "id": "8bbc7b62-7f5f-5085-aab8-c74f2952ba0a",
+            "card_print_id": "9506c5e3-8d8d-47ed-816d-698c73ae9ab7",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-ASR-142-PLAY-POKEMON-STAMP-STD",
+            "is_provisional": false,
+            "provenance_source": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "provenance_ref": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "created_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3"
+          },
+          {
+            "id": "91041d4f-9c6e-550f-a1f4-6903b5f2e2e3",
+            "card_print_id": "5997bb7c-2970-4446-9486-bfdc89ca7035",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-ASR-062-PLAY-POKEMON-STAMP-STD",
+            "is_provisional": false,
+            "provenance_source": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "provenance_ref": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "created_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3"
+          },
+          {
+            "id": "95dd7217-bcbc-560b-abe9-3df694c04d41",
+            "card_print_id": "c97163a2-c596-4209-ba46-4d9f24e00e0a",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-ASR-144-PLAY-POKEMON-STAMP-STD",
+            "is_provisional": false,
+            "provenance_source": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "provenance_ref": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "created_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3"
+          },
+          {
+            "id": "a9bf21ba-dda6-543e-ac78-93962efaa13c",
+            "card_print_id": "017d54d6-badf-48a8-bb10-6c1648ca5a48",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-ASR-130-PLAY-POKEMON-STAMP-STD",
+            "is_provisional": false,
+            "provenance_source": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "provenance_ref": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "created_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3"
+          },
+          {
+            "id": "b138a210-2e31-5b7e-a2fc-5aa029f6b9ea",
+            "card_print_id": "68756c94-8762-412c-9659-392247bd8bca",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-ASR-118-PLAY-POKEMON-STAMP-STD",
+            "is_provisional": false,
+            "provenance_source": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "provenance_ref": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "created_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3"
+          },
+          {
+            "id": "e4c29f93-b69f-59d1-a823-c9ef147539bf",
+            "card_print_id": "a09be692-14ee-4cb4-a4b5-a91eb3fa0bb9",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-ASR-155-PLAY-POKEMON-STAMP-STD",
+            "is_provisional": false,
+            "provenance_source": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "provenance_ref": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "created_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3"
+          },
+          {
+            "id": "e9aa6a93-6435-5422-a1ad-ceacc4b94df3",
+            "card_print_id": "656f5776-4853-4619-88cf-4e53454ba867",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-SIT-159-PLAY-POKEMON-STAMP-STD",
+            "is_provisional": false,
+            "provenance_source": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "provenance_ref": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "created_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3"
+          },
+          {
+            "id": "ff5ec79f-6e13-5625-acb6-8698e40c85d6",
+            "card_print_id": "3837b7a7-5a44-40f7-8f78-15e051e7da4f",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-ASR-068-PLAY-POKEMON-STAMP-STD",
+            "is_provisional": false,
+            "provenance_source": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "provenance_ref": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "created_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3"
+          }
+        ],
+        "reviews": [
+          {
+            "id": "0a3c6fa4-da8d-5ac3-aac6-5bcaba8d3f9b",
+            "card_printing_id": "34699856-894a-5803-ad7b-e9949637b3ed",
+            "review_status": "verified",
+            "public_visibility": "visible",
+            "active": true,
+            "confidence": "high",
+            "reason": "Exact generic Play! Pokemon stamped Normal: official black standard-set marker and independent exact Standard Set checklist agree. Normal fact only; no complete foil inventory asserted.",
+            "evidence_sources_checked": [
+              "https://web.archive.org/web/20261104221520id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Three_%28TCG%29&prop=wikitext&format=json"
+            ],
+            "evidence_sources_for_finish": [
+              "official-series3",
+              "wiki-series3"
+            ],
+            "expected_finish_keys": [
+              "normal"
+            ],
+            "evidence": {
+              "program_fingerprint": "53e6b320860b991d3cfee13888b249c79713dfa58b29c2ab949fd1c2a8cf2cc2",
+              "manifest_fingerprint": "388bbe81eb5ee9f9ff282eb4fbe86f60b96826a0bbfbfc5568a61c8388a5d925",
+              "master_index_sha256": "aca041c0e4c179c3fa6bed6eab2446fe59740849b54b6628e4f88c3dc762a558",
+              "review_sha256": "535494ad12ce860782a4756c5788fe7ead37e74bd284f33f277b4ed8743b0e11",
+              "card_print_id": "445109da-f36c-4992-83db-dd046ed1f822",
+              "finish_key": "normal",
+              "raw_import_id": "-695043614612069578",
+              "finish_inventory_complete": false,
+              "foil_pattern_adjudicated": false
+            },
+            "source_report_path": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_at": "2026-11-23T07:58:48.997Z"
+          },
+          {
+            "id": "2211310b-6281-577d-a45e-98ac5dde5310",
+            "card_printing_id": "6b508fec-503a-5131-aa74-b5ac73e6341f",
+            "review_status": "verified",
+            "public_visibility": "visible",
+            "active": true,
+            "confidence": "high",
+            "reason": "Exact generic Play! Pokemon stamped Normal: official black standard-set marker and independent exact Standard Set checklist agree. Normal fact only; no complete foil inventory asserted.",
+            "evidence_sources_checked": [
+              "https://web.archive.org/web/20261104221520id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Three_%28TCG%29&prop=wikitext&format=json"
+            ],
+            "evidence_sources_for_finish": [
+              "official-series3",
+              "wiki-series3"
+            ],
+            "expected_finish_keys": [
+              "normal"
+            ],
+            "evidence": {
+              "program_fingerprint": "53e6b320860b991d3cfee13888b249c79713dfa58b29c2ab949fd1c2a8cf2cc2",
+              "manifest_fingerprint": "f43efe687b66748370f7adf834c47954b46c9a5988e0870db9afce8c4cfa3543",
+              "master_index_sha256": "b5d2aa9fd859b48f7462e2e58358994f4923ba808c16b2b1668323318b595e1f",
+              "review_sha256": "47fbefee9da4140b5cdec0c61b11935b36a573e2570a653462a9aef721e8298a",
+              "card_print_id": "d6ff2988-d72c-42e8-bbe2-67b1947ac042",
+              "finish_key": "normal",
+              "raw_import_id": "-695043614612069578",
+              "finish_inventory_complete": false,
+              "foil_pattern_adjudicated": false
+            },
+            "source_report_path": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_at": "2026-11-23T07:58:48.997Z"
+          },
+          {
+            "id": "245d0974-f1f8-5301-a8c2-d6781c9fa933",
+            "card_printing_id": "7a319260-05e1-5834-a54a-5d318ab9f25c",
+            "review_status": "verified",
+            "public_visibility": "visible",
+            "active": true,
+            "confidence": "high",
+            "reason": "Exact generic Play! Pokemon stamped Normal: official black standard-set marker and independent exact Standard Set checklist agree. Normal fact only; no complete foil inventory asserted.",
+            "evidence_sources_checked": [
+              "https://web.archive.org/web/20261104221520id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Three_%28TCG%29&prop=wikitext&format=json"
+            ],
+            "evidence_sources_for_finish": [
+              "official-series3",
+              "wiki-series3"
+            ],
+            "expected_finish_keys": [
+              "normal"
+            ],
+            "evidence": {
+              "program_fingerprint": "53e6b320860b991d3cfee13888b249c79713dfa58b29c2ab949fd1c2a8cf2cc2",
+              "manifest_fingerprint": "388bbe81eb5ee9f9ff282eb4fbe86f60b96826a0bbfbfc5568a61c8388a5d925",
+              "master_index_sha256": "aca041c0e4c179c3fa6bed6eab2446fe59740849b54b6628e4f88c3dc762a558",
+              "review_sha256": "535494ad12ce860782a4756c5788fe7ead37e74bd284f33f277b4ed8743b0e11",
+              "card_print_id": "e6da28d9-8e7a-4211-a2de-2c4d6c2b7f18",
+              "finish_key": "normal",
+              "raw_import_id": "-695043614612069578",
+              "finish_inventory_complete": false,
+              "foil_pattern_adjudicated": false
+            },
+            "source_report_path": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_at": "2026-11-23T07:58:48.997Z"
+          },
+          {
+            "id": "254f7e4f-5b88-5419-aa58-4cc8f91064a9",
+            "card_printing_id": "5aac6237-f396-501c-abc3-581220f197db",
+            "review_status": "verified",
+            "public_visibility": "visible",
+            "active": true,
+            "confidence": "high",
+            "reason": "Exact generic Play! Pokemon stamped Normal: official black standard-set marker and independent exact Standard Set checklist agree. Normal fact only; no complete foil inventory asserted.",
+            "evidence_sources_checked": [
+              "https://web.archive.org/web/20260917210836id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_4_web_cardlist_en.pdf",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Four_%28TCG%29&prop=wikitext&format=json"
+            ],
+            "evidence_sources_for_finish": [
+              "official-series4",
+              "wiki-series4"
+            ],
+            "expected_finish_keys": [
+              "normal"
+            ],
+            "evidence": {
+              "program_fingerprint": "53e6b320860b991d3cfee13888b249c79713dfa58b29c2ab949fd1c2a8cf2cc2",
+              "manifest_fingerprint": "b4101ee821693744fad22c64ccdb7570cbd5cc2f14bb9a1066a55b0e68d579cb",
+              "master_index_sha256": "2c258abea9d67bd09a30f96622f04f36a51705dbda68f9e51c4ec9a783a2a00c",
+              "review_sha256": "4ef63493e296b9b13f127fb11b0c0d53289a2cd9ae4b98ff9960905668d8078b",
+              "card_print_id": "b861b100-b9c2-43b7-8f22-2b8c65b8edb1",
+              "finish_key": "normal",
+              "raw_import_id": "-695043614612069578",
+              "finish_inventory_complete": false,
+              "foil_pattern_adjudicated": false
+            },
+            "source_report_path": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_at": "2026-11-23T07:58:48.997Z"
+          },
+          {
+            "id": "2dc7b331-a15b-5f5b-ae2b-a58ea4660cc8",
+            "card_printing_id": "00a1d2b3-70be-52da-a012-19f66a3ade8c",
+            "review_status": "verified",
+            "public_visibility": "visible",
+            "active": true,
+            "confidence": "high",
+            "reason": "Exact generic Play! Pokemon stamped Normal: official black standard-set marker and independent exact Standard Set checklist agree. Normal fact only; no complete foil inventory asserted.",
+            "evidence_sources_checked": [
+              "https://web.archive.org/web/20261104221520id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Three_%28TCG%29&prop=wikitext&format=json"
+            ],
+            "evidence_sources_for_finish": [
+              "official-series3",
+              "wiki-series3"
+            ],
+            "expected_finish_keys": [
+              "normal"
+            ],
+            "evidence": {
+              "program_fingerprint": "53e6b320860b991d3cfee13888b249c79713dfa58b29c2ab949fd1c2a8cf2cc2",
+              "manifest_fingerprint": "388bbe81eb5ee9f9ff282eb4fbe86f60b96826a0bbfbfc5568a61c8388a5d925",
+              "master_index_sha256": "aca041c0e4c179c3fa6bed6eab2446fe59740849b54b6628e4f88c3dc762a558",
+              "review_sha256": "535494ad12ce860782a4756c5788fe7ead37e74bd284f33f277b4ed8743b0e11",
+              "card_print_id": "aaecd767-1350-47ba-a113-1b2384047b6a",
+              "finish_key": "normal",
+              "raw_import_id": "-695043614612069578",
+              "finish_inventory_complete": false,
+              "foil_pattern_adjudicated": false
+            },
+            "source_report_path": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_at": "2026-11-23T07:58:48.997Z"
+          },
+          {
+            "id": "2faa2473-86ef-5dee-a2ef-22c41f98bb0f",
+            "card_printing_id": "7604726f-3009-5aaa-aca3-f6fe60cf7203",
+            "review_status": "verified",
+            "public_visibility": "visible",
+            "active": true,
+            "confidence": "high",
+            "reason": "Exact generic Play! Pokemon stamped Normal: official black standard-set marker and independent exact Standard Set checklist agree. Normal fact only; no complete foil inventory asserted.",
+            "evidence_sources_checked": [
+              "https://web.archive.org/web/20261104221520id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+              "https://web.archive.org/web/20260917210836id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_4_web_cardlist_en.pdf",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Three_%28TCG%29&prop=wikitext&format=json",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Four_%28TCG%29&prop=wikitext&format=json"
+            ],
+            "evidence_sources_for_finish": [
+              "official-series3",
+              "wiki-series3"
+            ],
+            "expected_finish_keys": [
+              "normal"
+            ],
+            "evidence": {
+              "program_fingerprint": "53e6b320860b991d3cfee13888b249c79713dfa58b29c2ab949fd1c2a8cf2cc2",
+              "manifest_fingerprint": "11644fcd972bfc7d05ab4a10ee037f6cdb607daea36e7f4c3b17c3b954b1d635",
+              "master_index_sha256": "816056ac34a9eb81b2c4ada3d3d75c04173d4fe0da7892075f6e1e5754371505",
+              "review_sha256": "2d41cf003da36609b2b463b7a023dff702632e9268a8dac060643331cf8661f9",
+              "card_print_id": "5ee8928f-60a9-4e94-8e47-35f8df072dec",
+              "finish_key": "normal",
+              "raw_import_id": "-695043614612069578",
+              "finish_inventory_complete": false,
+              "foil_pattern_adjudicated": false
+            },
+            "source_report_path": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_at": "2026-11-23T07:58:48.997Z"
+          },
+          {
+            "id": "3307095a-3ab1-5ea5-a40d-3677ede1d5ac",
+            "card_printing_id": "18a0a1d1-47ec-5c1c-a48f-021ce66e48bc",
+            "review_status": "verified",
+            "public_visibility": "visible",
+            "active": true,
+            "confidence": "high",
+            "reason": "Exact generic Play! Pokemon stamped Normal: official black standard-set marker and independent exact Standard Set checklist agree. Normal fact only; no complete foil inventory asserted.",
+            "evidence_sources_checked": [
+              "https://web.archive.org/web/20261104221520id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Three_%28TCG%29&prop=wikitext&format=json"
+            ],
+            "evidence_sources_for_finish": [
+              "official-series3",
+              "wiki-series3"
+            ],
+            "expected_finish_keys": [
+              "normal"
+            ],
+            "evidence": {
+              "program_fingerprint": "53e6b320860b991d3cfee13888b249c79713dfa58b29c2ab949fd1c2a8cf2cc2",
+              "manifest_fingerprint": "f43efe687b66748370f7adf834c47954b46c9a5988e0870db9afce8c4cfa3543",
+              "master_index_sha256": "b5d2aa9fd859b48f7462e2e58358994f4923ba808c16b2b1668323318b595e1f",
+              "review_sha256": "47fbefee9da4140b5cdec0c61b11935b36a573e2570a653462a9aef721e8298a",
+              "card_print_id": "27183d1b-d482-4bc1-a47e-3da0d7e4dd2c",
+              "finish_key": "normal",
+              "raw_import_id": "-695043614612069578",
+              "finish_inventory_complete": false,
+              "foil_pattern_adjudicated": false
+            },
+            "source_report_path": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_at": "2026-11-23T07:58:48.997Z"
+          },
+          {
+            "id": "353d5916-a287-595d-af74-df326778dc6e",
+            "card_printing_id": "7fbc1d45-5c39-527a-a7c6-50ec99d0d214",
+            "review_status": "verified",
+            "public_visibility": "visible",
+            "active": true,
+            "confidence": "high",
+            "reason": "Exact generic Play! Pokemon stamped Normal: official black standard-set marker and independent exact Standard Set checklist agree. Normal fact only; no complete foil inventory asserted.",
+            "evidence_sources_checked": [
+              "https://web.archive.org/web/20261104221520id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+              "https://web.archive.org/web/20260917210836id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_4_web_cardlist_en.pdf",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Three_%28TCG%29&prop=wikitext&format=json",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Four_%28TCG%29&prop=wikitext&format=json"
+            ],
+            "evidence_sources_for_finish": [
+              "official-series4",
+              "wiki-series4"
+            ],
+            "expected_finish_keys": [
+              "normal"
+            ],
+            "evidence": {
+              "program_fingerprint": "53e6b320860b991d3cfee13888b249c79713dfa58b29c2ab949fd1c2a8cf2cc2",
+              "manifest_fingerprint": "11644fcd972bfc7d05ab4a10ee037f6cdb607daea36e7f4c3b17c3b954b1d635",
+              "master_index_sha256": "816056ac34a9eb81b2c4ada3d3d75c04173d4fe0da7892075f6e1e5754371505",
+              "review_sha256": "2d41cf003da36609b2b463b7a023dff702632e9268a8dac060643331cf8661f9",
+              "card_print_id": "e5988601-d908-4dfd-b7ce-ed450b600387",
+              "finish_key": "normal",
+              "raw_import_id": "-695043614612069578",
+              "finish_inventory_complete": false,
+              "foil_pattern_adjudicated": false
+            },
+            "source_report_path": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_at": "2026-11-23T07:58:48.997Z"
+          },
+          {
+            "id": "35b91b60-4dea-5bbd-aa56-5fe54cf9b4fd",
+            "card_printing_id": "173cb7d0-e25b-588b-af26-f0d8cee209d3",
+            "review_status": "verified",
+            "public_visibility": "visible",
+            "active": true,
+            "confidence": "high",
+            "reason": "Exact generic Play! Pokemon stamped Normal: official black standard-set marker and independent exact Standard Set checklist agree. Normal fact only; no complete foil inventory asserted.",
+            "evidence_sources_checked": [
+              "https://web.archive.org/web/20261104221520id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Three_%28TCG%29&prop=wikitext&format=json"
+            ],
+            "evidence_sources_for_finish": [
+              "official-series3",
+              "wiki-series3"
+            ],
+            "expected_finish_keys": [
+              "normal"
+            ],
+            "evidence": {
+              "program_fingerprint": "53e6b320860b991d3cfee13888b249c79713dfa58b29c2ab949fd1c2a8cf2cc2",
+              "manifest_fingerprint": "f43efe687b66748370f7adf834c47954b46c9a5988e0870db9afce8c4cfa3543",
+              "master_index_sha256": "b5d2aa9fd859b48f7462e2e58358994f4923ba808c16b2b1668323318b595e1f",
+              "review_sha256": "47fbefee9da4140b5cdec0c61b11935b36a573e2570a653462a9aef721e8298a",
+              "card_print_id": "6720f0b2-23c2-4d78-bacf-2d0db6f7ddf5",
+              "finish_key": "normal",
+              "raw_import_id": "-695043614612069578",
+              "finish_inventory_complete": false,
+              "foil_pattern_adjudicated": false
+            },
+            "source_report_path": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_at": "2026-11-23T07:58:48.997Z"
+          },
+          {
+            "id": "419394be-e388-5e55-accd-00f043bdb3b2",
+            "card_printing_id": "362f35e9-adcf-5c3b-ad75-e6adb9ba7ac2",
+            "review_status": "verified",
+            "public_visibility": "visible",
+            "active": true,
+            "confidence": "high",
+            "reason": "Exact generic Play! Pokemon stamped Normal: official black standard-set marker and independent exact Standard Set checklist agree. Normal fact only; no complete foil inventory asserted.",
+            "evidence_sources_checked": [
+              "https://web.archive.org/web/20261104221520id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Three_%28TCG%29&prop=wikitext&format=json"
+            ],
+            "evidence_sources_for_finish": [
+              "official-series3",
+              "wiki-series3"
+            ],
+            "expected_finish_keys": [
+              "normal"
+            ],
+            "evidence": {
+              "program_fingerprint": "53e6b320860b991d3cfee13888b249c79713dfa58b29c2ab949fd1c2a8cf2cc2",
+              "manifest_fingerprint": "388bbe81eb5ee9f9ff282eb4fbe86f60b96826a0bbfbfc5568a61c8388a5d925",
+              "master_index_sha256": "aca041c0e4c179c3fa6bed6eab2446fe59740849b54b6628e4f88c3dc762a558",
+              "review_sha256": "535494ad12ce860782a4756c5788fe7ead37e74bd284f33f277b4ed8743b0e11",
+              "card_print_id": "8d361411-28c8-496e-b3f5-c7e494f94702",
+              "finish_key": "normal",
+              "raw_import_id": "-695043614612069578",
+              "finish_inventory_complete": false,
+              "foil_pattern_adjudicated": false
+            },
+            "source_report_path": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_at": "2026-11-23T07:58:48.997Z"
+          },
+          {
+            "id": "43c46edd-83c5-53fe-a1f3-a30fee46aed1",
+            "card_printing_id": "2b9b0ac9-4047-579b-acad-93a081f681e6",
+            "review_status": "verified",
+            "public_visibility": "visible",
+            "active": true,
+            "confidence": "high",
+            "reason": "Exact generic Play! Pokemon stamped Normal: official black standard-set marker and independent exact Standard Set checklist agree. Normal fact only; no complete foil inventory asserted.",
+            "evidence_sources_checked": [
+              "https://web.archive.org/web/20261104221520id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Three_%28TCG%29&prop=wikitext&format=json"
+            ],
+            "evidence_sources_for_finish": [
+              "official-series3",
+              "wiki-series3"
+            ],
+            "expected_finish_keys": [
+              "normal"
+            ],
+            "evidence": {
+              "program_fingerprint": "53e6b320860b991d3cfee13888b249c79713dfa58b29c2ab949fd1c2a8cf2cc2",
+              "manifest_fingerprint": "388bbe81eb5ee9f9ff282eb4fbe86f60b96826a0bbfbfc5568a61c8388a5d925",
+              "master_index_sha256": "aca041c0e4c179c3fa6bed6eab2446fe59740849b54b6628e4f88c3dc762a558",
+              "review_sha256": "535494ad12ce860782a4756c5788fe7ead37e74bd284f33f277b4ed8743b0e11",
+              "card_print_id": "d5353963-8006-4049-afa5-51b45b63b966",
+              "finish_key": "normal",
+              "raw_import_id": "-695043614612069578",
+              "finish_inventory_complete": false,
+              "foil_pattern_adjudicated": false
+            },
+            "source_report_path": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_at": "2026-11-23T07:58:48.997Z"
+          },
+          {
+            "id": "6534fa45-f622-5041-a1cf-57ba9f320db2",
+            "card_printing_id": "a9bf21ba-dda6-543e-ac78-93962efaa13c",
+            "review_status": "verified",
+            "public_visibility": "visible",
+            "active": true,
+            "confidence": "high",
+            "reason": "Exact generic Play! Pokemon stamped Normal: official black standard-set marker and independent exact Standard Set checklist agree. Normal fact only; no complete foil inventory asserted.",
+            "evidence_sources_checked": [
+              "https://web.archive.org/web/20261104221520id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Three_%28TCG%29&prop=wikitext&format=json"
+            ],
+            "evidence_sources_for_finish": [
+              "official-series3",
+              "wiki-series3"
+            ],
+            "expected_finish_keys": [
+              "normal"
+            ],
+            "evidence": {
+              "program_fingerprint": "53e6b320860b991d3cfee13888b249c79713dfa58b29c2ab949fd1c2a8cf2cc2",
+              "manifest_fingerprint": "388bbe81eb5ee9f9ff282eb4fbe86f60b96826a0bbfbfc5568a61c8388a5d925",
+              "master_index_sha256": "aca041c0e4c179c3fa6bed6eab2446fe59740849b54b6628e4f88c3dc762a558",
+              "review_sha256": "535494ad12ce860782a4756c5788fe7ead37e74bd284f33f277b4ed8743b0e11",
+              "card_print_id": "017d54d6-badf-48a8-bb10-6c1648ca5a48",
+              "finish_key": "normal",
+              "raw_import_id": "-695043614612069578",
+              "finish_inventory_complete": false,
+              "foil_pattern_adjudicated": false
+            },
+            "source_report_path": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_at": "2026-11-23T07:58:48.997Z"
+          },
+          {
+            "id": "6b618802-5973-545e-a635-2156c2a88ddd",
+            "card_printing_id": "0444a1cd-78cf-5b2f-acd7-60a554200889",
+            "review_status": "verified",
+            "public_visibility": "visible",
+            "active": true,
+            "confidence": "high",
+            "reason": "Exact generic Play! Pokemon stamped Normal: official black standard-set marker and independent exact Standard Set checklist agree. Normal fact only; no complete foil inventory asserted.",
+            "evidence_sources_checked": [
+              "https://web.archive.org/web/20261104221520id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Three_%28TCG%29&prop=wikitext&format=json"
+            ],
+            "evidence_sources_for_finish": [
+              "official-series3",
+              "wiki-series3"
+            ],
+            "expected_finish_keys": [
+              "normal"
+            ],
+            "evidence": {
+              "program_fingerprint": "53e6b320860b991d3cfee13888b249c79713dfa58b29c2ab949fd1c2a8cf2cc2",
+              "manifest_fingerprint": "388bbe81eb5ee9f9ff282eb4fbe86f60b96826a0bbfbfc5568a61c8388a5d925",
+              "master_index_sha256": "aca041c0e4c179c3fa6bed6eab2446fe59740849b54b6628e4f88c3dc762a558",
+              "review_sha256": "535494ad12ce860782a4756c5788fe7ead37e74bd284f33f277b4ed8743b0e11",
+              "card_print_id": "bd216ea9-4213-4684-8286-98f346e62de8",
+              "finish_key": "normal",
+              "raw_import_id": "-695043614612069578",
+              "finish_inventory_complete": false,
+              "foil_pattern_adjudicated": false
+            },
+            "source_report_path": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_at": "2026-11-23T07:58:48.997Z"
+          },
+          {
+            "id": "73e620ac-8b74-567e-a87b-ec351aace17a",
+            "card_printing_id": "91041d4f-9c6e-550f-a1f4-6903b5f2e2e3",
+            "review_status": "verified",
+            "public_visibility": "visible",
+            "active": true,
+            "confidence": "high",
+            "reason": "Exact generic Play! Pokemon stamped Normal: official black standard-set marker and independent exact Standard Set checklist agree. Normal fact only; no complete foil inventory asserted.",
+            "evidence_sources_checked": [
+              "https://web.archive.org/web/20261104221520id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Three_%28TCG%29&prop=wikitext&format=json"
+            ],
+            "evidence_sources_for_finish": [
+              "official-series3",
+              "wiki-series3"
+            ],
+            "expected_finish_keys": [
+              "normal"
+            ],
+            "evidence": {
+              "program_fingerprint": "53e6b320860b991d3cfee13888b249c79713dfa58b29c2ab949fd1c2a8cf2cc2",
+              "manifest_fingerprint": "388bbe81eb5ee9f9ff282eb4fbe86f60b96826a0bbfbfc5568a61c8388a5d925",
+              "master_index_sha256": "aca041c0e4c179c3fa6bed6eab2446fe59740849b54b6628e4f88c3dc762a558",
+              "review_sha256": "535494ad12ce860782a4756c5788fe7ead37e74bd284f33f277b4ed8743b0e11",
+              "card_print_id": "5997bb7c-2970-4446-9486-bfdc89ca7035",
+              "finish_key": "normal",
+              "raw_import_id": "-695043614612069578",
+              "finish_inventory_complete": false,
+              "foil_pattern_adjudicated": false
+            },
+            "source_report_path": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_at": "2026-11-23T07:58:48.997Z"
+          },
+          {
+            "id": "7ccea38b-eef9-5701-a3db-155eeb41651d",
+            "card_printing_id": "6ae3874e-e423-5689-a260-f7a26d570b18",
+            "review_status": "verified",
+            "public_visibility": "visible",
+            "active": true,
+            "confidence": "high",
+            "reason": "Exact generic Play! Pokemon stamped Normal: official black standard-set marker and independent exact Standard Set checklist agree. Normal fact only; no complete foil inventory asserted.",
+            "evidence_sources_checked": [
+              "https://web.archive.org/web/20261104221520id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Three_%28TCG%29&prop=wikitext&format=json"
+            ],
+            "evidence_sources_for_finish": [
+              "official-series3",
+              "wiki-series3"
+            ],
+            "expected_finish_keys": [
+              "normal"
+            ],
+            "evidence": {
+              "program_fingerprint": "53e6b320860b991d3cfee13888b249c79713dfa58b29c2ab949fd1c2a8cf2cc2",
+              "manifest_fingerprint": "f43efe687b66748370f7adf834c47954b46c9a5988e0870db9afce8c4cfa3543",
+              "master_index_sha256": "b5d2aa9fd859b48f7462e2e58358994f4923ba808c16b2b1668323318b595e1f",
+              "review_sha256": "47fbefee9da4140b5cdec0c61b11935b36a573e2570a653462a9aef721e8298a",
+              "card_print_id": "8cc7cba0-40e2-48be-a5e7-598322383ded",
+              "finish_key": "normal",
+              "raw_import_id": "-695043614612069578",
+              "finish_inventory_complete": false,
+              "foil_pattern_adjudicated": false
+            },
+            "source_report_path": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_at": "2026-11-23T07:58:48.997Z"
+          },
+          {
+            "id": "8f681291-6ee6-538b-a788-3a5237e5f937",
+            "card_printing_id": "b138a210-2e31-5b7e-a2fc-5aa029f6b9ea",
+            "review_status": "verified",
+            "public_visibility": "visible",
+            "active": true,
+            "confidence": "high",
+            "reason": "Exact generic Play! Pokemon stamped Normal: official black standard-set marker and independent exact Standard Set checklist agree. Normal fact only; no complete foil inventory asserted.",
+            "evidence_sources_checked": [
+              "https://web.archive.org/web/20261104221520id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Three_%28TCG%29&prop=wikitext&format=json"
+            ],
+            "evidence_sources_for_finish": [
+              "official-series3",
+              "wiki-series3"
+            ],
+            "expected_finish_keys": [
+              "normal"
+            ],
+            "evidence": {
+              "program_fingerprint": "53e6b320860b991d3cfee13888b249c79713dfa58b29c2ab949fd1c2a8cf2cc2",
+              "manifest_fingerprint": "388bbe81eb5ee9f9ff282eb4fbe86f60b96826a0bbfbfc5568a61c8388a5d925",
+              "master_index_sha256": "aca041c0e4c179c3fa6bed6eab2446fe59740849b54b6628e4f88c3dc762a558",
+              "review_sha256": "535494ad12ce860782a4756c5788fe7ead37e74bd284f33f277b4ed8743b0e11",
+              "card_print_id": "68756c94-8762-412c-9659-392247bd8bca",
+              "finish_key": "normal",
+              "raw_import_id": "-695043614612069578",
+              "finish_inventory_complete": false,
+              "foil_pattern_adjudicated": false
+            },
+            "source_report_path": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_at": "2026-11-23T07:58:48.997Z"
+          },
+          {
+            "id": "93f6d970-d9f9-5469-a5aa-47a68a7db474",
+            "card_printing_id": "95dd7217-bcbc-560b-abe9-3df694c04d41",
+            "review_status": "verified",
+            "public_visibility": "visible",
+            "active": true,
+            "confidence": "high",
+            "reason": "Exact generic Play! Pokemon stamped Normal: official black standard-set marker and independent exact Standard Set checklist agree. Normal fact only; no complete foil inventory asserted.",
+            "evidence_sources_checked": [
+              "https://web.archive.org/web/20261104221520id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Three_%28TCG%29&prop=wikitext&format=json"
+            ],
+            "evidence_sources_for_finish": [
+              "official-series3",
+              "wiki-series3"
+            ],
+            "expected_finish_keys": [
+              "normal"
+            ],
+            "evidence": {
+              "program_fingerprint": "53e6b320860b991d3cfee13888b249c79713dfa58b29c2ab949fd1c2a8cf2cc2",
+              "manifest_fingerprint": "388bbe81eb5ee9f9ff282eb4fbe86f60b96826a0bbfbfc5568a61c8388a5d925",
+              "master_index_sha256": "aca041c0e4c179c3fa6bed6eab2446fe59740849b54b6628e4f88c3dc762a558",
+              "review_sha256": "535494ad12ce860782a4756c5788fe7ead37e74bd284f33f277b4ed8743b0e11",
+              "card_print_id": "c97163a2-c596-4209-ba46-4d9f24e00e0a",
+              "finish_key": "normal",
+              "raw_import_id": "-695043614612069578",
+              "finish_inventory_complete": false,
+              "foil_pattern_adjudicated": false
+            },
+            "source_report_path": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_at": "2026-11-23T07:58:48.997Z"
+          },
+          {
+            "id": "967e0fd5-ce7e-538f-ad2f-e7747636411d",
+            "card_printing_id": "6e89abd2-5bc3-50f4-a7d2-9f814e449884",
+            "review_status": "verified",
+            "public_visibility": "visible",
+            "active": true,
+            "confidence": "high",
+            "reason": "Exact generic Play! Pokemon stamped Normal: official black standard-set marker and independent exact Standard Set checklist agree. Normal fact only; no complete foil inventory asserted.",
+            "evidence_sources_checked": [
+              "https://web.archive.org/web/20261104221520id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Three_%28TCG%29&prop=wikitext&format=json"
+            ],
+            "evidence_sources_for_finish": [
+              "official-series3",
+              "wiki-series3"
+            ],
+            "expected_finish_keys": [
+              "normal"
+            ],
+            "evidence": {
+              "program_fingerprint": "53e6b320860b991d3cfee13888b249c79713dfa58b29c2ab949fd1c2a8cf2cc2",
+              "manifest_fingerprint": "388bbe81eb5ee9f9ff282eb4fbe86f60b96826a0bbfbfc5568a61c8388a5d925",
+              "master_index_sha256": "aca041c0e4c179c3fa6bed6eab2446fe59740849b54b6628e4f88c3dc762a558",
+              "review_sha256": "535494ad12ce860782a4756c5788fe7ead37e74bd284f33f277b4ed8743b0e11",
+              "card_print_id": "75e4a208-b418-4c6d-a6b0-0a6633c243d0",
+              "finish_key": "normal",
+              "raw_import_id": "-695043614612069578",
+              "finish_inventory_complete": false,
+              "foil_pattern_adjudicated": false
+            },
+            "source_report_path": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_at": "2026-11-23T07:58:48.997Z"
+          },
+          {
+            "id": "994979df-c482-5d84-a9be-32e4875321dd",
+            "card_printing_id": "8bbc7b62-7f5f-5085-aab8-c74f2952ba0a",
+            "review_status": "verified",
+            "public_visibility": "visible",
+            "active": true,
+            "confidence": "high",
+            "reason": "Exact generic Play! Pokemon stamped Normal: official black standard-set marker and independent exact Standard Set checklist agree. Normal fact only; no complete foil inventory asserted.",
+            "evidence_sources_checked": [
+              "https://web.archive.org/web/20261104221520id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Three_%28TCG%29&prop=wikitext&format=json"
+            ],
+            "evidence_sources_for_finish": [
+              "official-series3",
+              "wiki-series3"
+            ],
+            "expected_finish_keys": [
+              "normal"
+            ],
+            "evidence": {
+              "program_fingerprint": "53e6b320860b991d3cfee13888b249c79713dfa58b29c2ab949fd1c2a8cf2cc2",
+              "manifest_fingerprint": "388bbe81eb5ee9f9ff282eb4fbe86f60b96826a0bbfbfc5568a61c8388a5d925",
+              "master_index_sha256": "aca041c0e4c179c3fa6bed6eab2446fe59740849b54b6628e4f88c3dc762a558",
+              "review_sha256": "535494ad12ce860782a4756c5788fe7ead37e74bd284f33f277b4ed8743b0e11",
+              "card_print_id": "9506c5e3-8d8d-47ed-816d-698c73ae9ab7",
+              "finish_key": "normal",
+              "raw_import_id": "-695043614612069578",
+              "finish_inventory_complete": false,
+              "foil_pattern_adjudicated": false
+            },
+            "source_report_path": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_at": "2026-11-23T07:58:48.997Z"
+          },
+          {
+            "id": "9b78019a-1b60-55e4-a08c-ce477f4c6b66",
+            "card_printing_id": "7b8625b8-0efe-522a-affb-9e71e8ea62de",
+            "review_status": "verified",
+            "public_visibility": "visible",
+            "active": true,
+            "confidence": "high",
+            "reason": "Exact generic Play! Pokemon stamped Normal: official black standard-set marker and independent exact Standard Set checklist agree. Normal fact only; no complete foil inventory asserted.",
+            "evidence_sources_checked": [
+              "https://web.archive.org/web/20261104221520id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+              "https://web.archive.org/web/20260917210836id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_4_web_cardlist_en.pdf",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Three_%28TCG%29&prop=wikitext&format=json",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Four_%28TCG%29&prop=wikitext&format=json"
+            ],
+            "evidence_sources_for_finish": [
+              "official-series3",
+              "wiki-series3"
+            ],
+            "expected_finish_keys": [
+              "normal"
+            ],
+            "evidence": {
+              "program_fingerprint": "53e6b320860b991d3cfee13888b249c79713dfa58b29c2ab949fd1c2a8cf2cc2",
+              "manifest_fingerprint": "11644fcd972bfc7d05ab4a10ee037f6cdb607daea36e7f4c3b17c3b954b1d635",
+              "master_index_sha256": "816056ac34a9eb81b2c4ada3d3d75c04173d4fe0da7892075f6e1e5754371505",
+              "review_sha256": "2d41cf003da36609b2b463b7a023dff702632e9268a8dac060643331cf8661f9",
+              "card_print_id": "b0892865-890c-498b-9efc-395f07999e15",
+              "finish_key": "normal",
+              "raw_import_id": "-695043614612069578",
+              "finish_inventory_complete": false,
+              "foil_pattern_adjudicated": false
+            },
+            "source_report_path": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_at": "2026-11-23T07:58:48.997Z"
+          },
+          {
+            "id": "9e9cefb3-5c3c-5510-a17a-83d374944405",
+            "card_printing_id": "e4c29f93-b69f-59d1-a823-c9ef147539bf",
+            "review_status": "verified",
+            "public_visibility": "visible",
+            "active": true,
+            "confidence": "high",
+            "reason": "Exact generic Play! Pokemon stamped Normal: official black standard-set marker and independent exact Standard Set checklist agree. Normal fact only; no complete foil inventory asserted.",
+            "evidence_sources_checked": [
+              "https://web.archive.org/web/20261104221520id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Three_%28TCG%29&prop=wikitext&format=json"
+            ],
+            "evidence_sources_for_finish": [
+              "official-series3",
+              "wiki-series3"
+            ],
+            "expected_finish_keys": [
+              "normal"
+            ],
+            "evidence": {
+              "program_fingerprint": "53e6b320860b991d3cfee13888b249c79713dfa58b29c2ab949fd1c2a8cf2cc2",
+              "manifest_fingerprint": "388bbe81eb5ee9f9ff282eb4fbe86f60b96826a0bbfbfc5568a61c8388a5d925",
+              "master_index_sha256": "aca041c0e4c179c3fa6bed6eab2446fe59740849b54b6628e4f88c3dc762a558",
+              "review_sha256": "535494ad12ce860782a4756c5788fe7ead37e74bd284f33f277b4ed8743b0e11",
+              "card_print_id": "a09be692-14ee-4cb4-a4b5-a91eb3fa0bb9",
+              "finish_key": "normal",
+              "raw_import_id": "-695043614612069578",
+              "finish_inventory_complete": false,
+              "foil_pattern_adjudicated": false
+            },
+            "source_report_path": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_at": "2026-11-23T07:58:48.997Z"
+          },
+          {
+            "id": "a1ba2a87-b8e7-53d9-ac14-61a1b30c0b36",
+            "card_printing_id": "ff5ec79f-6e13-5625-acb6-8698e40c85d6",
+            "review_status": "verified",
+            "public_visibility": "visible",
+            "active": true,
+            "confidence": "high",
+            "reason": "Exact generic Play! Pokemon stamped Normal: official black standard-set marker and independent exact Standard Set checklist agree. Normal fact only; no complete foil inventory asserted.",
+            "evidence_sources_checked": [
+              "https://web.archive.org/web/20261104221520id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Three_%28TCG%29&prop=wikitext&format=json"
+            ],
+            "evidence_sources_for_finish": [
+              "official-series3",
+              "wiki-series3"
+            ],
+            "expected_finish_keys": [
+              "normal"
+            ],
+            "evidence": {
+              "program_fingerprint": "53e6b320860b991d3cfee13888b249c79713dfa58b29c2ab949fd1c2a8cf2cc2",
+              "manifest_fingerprint": "388bbe81eb5ee9f9ff282eb4fbe86f60b96826a0bbfbfc5568a61c8388a5d925",
+              "master_index_sha256": "aca041c0e4c179c3fa6bed6eab2446fe59740849b54b6628e4f88c3dc762a558",
+              "review_sha256": "535494ad12ce860782a4756c5788fe7ead37e74bd284f33f277b4ed8743b0e11",
+              "card_print_id": "3837b7a7-5a44-40f7-8f78-15e051e7da4f",
+              "finish_key": "normal",
+              "raw_import_id": "-695043614612069578",
+              "finish_inventory_complete": false,
+              "foil_pattern_adjudicated": false
+            },
+            "source_report_path": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_at": "2026-11-23T07:58:48.997Z"
+          },
+          {
+            "id": "a1f52a9f-95ad-5ca4-ab6c-3c9193db875f",
+            "card_printing_id": "4d7a62ff-3b47-5378-a4ce-028db6481555",
+            "review_status": "verified",
+            "public_visibility": "visible",
+            "active": true,
+            "confidence": "high",
+            "reason": "Exact generic Play! Pokemon stamped Normal: official black standard-set marker and independent exact Standard Set checklist agree. Normal fact only; no complete foil inventory asserted.",
+            "evidence_sources_checked": [
+              "https://web.archive.org/web/20261104221520id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+              "https://web.archive.org/web/20260917210836id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_4_web_cardlist_en.pdf",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Three_%28TCG%29&prop=wikitext&format=json",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Four_%28TCG%29&prop=wikitext&format=json"
+            ],
+            "evidence_sources_for_finish": [
+              "official-series3",
+              "wiki-series3"
+            ],
+            "expected_finish_keys": [
+              "normal"
+            ],
+            "evidence": {
+              "program_fingerprint": "53e6b320860b991d3cfee13888b249c79713dfa58b29c2ab949fd1c2a8cf2cc2",
+              "manifest_fingerprint": "11644fcd972bfc7d05ab4a10ee037f6cdb607daea36e7f4c3b17c3b954b1d635",
+              "master_index_sha256": "816056ac34a9eb81b2c4ada3d3d75c04173d4fe0da7892075f6e1e5754371505",
+              "review_sha256": "2d41cf003da36609b2b463b7a023dff702632e9268a8dac060643331cf8661f9",
+              "card_print_id": "c768b472-1f0d-46ac-adb7-5f6554c57888",
+              "finish_key": "normal",
+              "raw_import_id": "-695043614612069578",
+              "finish_inventory_complete": false,
+              "foil_pattern_adjudicated": false
+            },
+            "source_report_path": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_at": "2026-11-23T07:58:48.997Z"
+          },
+          {
+            "id": "b14b1c8e-4b2a-5ea3-a86d-c8c54a3d6e92",
+            "card_printing_id": "70b0aaed-184d-503d-a890-cc1b385c9ec8",
+            "review_status": "verified",
+            "public_visibility": "visible",
+            "active": true,
+            "confidence": "high",
+            "reason": "Exact generic Play! Pokemon stamped Normal: official black standard-set marker and independent exact Standard Set checklist agree. Normal fact only; no complete foil inventory asserted.",
+            "evidence_sources_checked": [
+              "https://web.archive.org/web/20261104221520id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Three_%28TCG%29&prop=wikitext&format=json"
+            ],
+            "evidence_sources_for_finish": [
+              "official-series3",
+              "wiki-series3"
+            ],
+            "expected_finish_keys": [
+              "normal"
+            ],
+            "evidence": {
+              "program_fingerprint": "53e6b320860b991d3cfee13888b249c79713dfa58b29c2ab949fd1c2a8cf2cc2",
+              "manifest_fingerprint": "f43efe687b66748370f7adf834c47954b46c9a5988e0870db9afce8c4cfa3543",
+              "master_index_sha256": "b5d2aa9fd859b48f7462e2e58358994f4923ba808c16b2b1668323318b595e1f",
+              "review_sha256": "47fbefee9da4140b5cdec0c61b11935b36a573e2570a653462a9aef721e8298a",
+              "card_print_id": "06f07c2c-0da1-493f-9bf0-d25dd1d24636",
+              "finish_key": "normal",
+              "raw_import_id": "-695043614612069578",
+              "finish_inventory_complete": false,
+              "foil_pattern_adjudicated": false
+            },
+            "source_report_path": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_at": "2026-11-23T07:58:48.997Z"
+          },
+          {
+            "id": "bded4ad7-9e85-5416-a13d-b4c6538292ed",
+            "card_printing_id": "2e119ece-4139-5e43-a768-32272e018537",
+            "review_status": "verified",
+            "public_visibility": "visible",
+            "active": true,
+            "confidence": "high",
+            "reason": "Exact generic Play! Pokemon stamped Normal: official black standard-set marker and independent exact Standard Set checklist agree. Normal fact only; no complete foil inventory asserted.",
+            "evidence_sources_checked": [
+              "https://web.archive.org/web/20261104221520id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Three_%28TCG%29&prop=wikitext&format=json"
+            ],
+            "evidence_sources_for_finish": [
+              "official-series3",
+              "wiki-series3"
+            ],
+            "expected_finish_keys": [
+              "normal"
+            ],
+            "evidence": {
+              "program_fingerprint": "53e6b320860b991d3cfee13888b249c79713dfa58b29c2ab949fd1c2a8cf2cc2",
+              "manifest_fingerprint": "f43efe687b66748370f7adf834c47954b46c9a5988e0870db9afce8c4cfa3543",
+              "master_index_sha256": "b5d2aa9fd859b48f7462e2e58358994f4923ba808c16b2b1668323318b595e1f",
+              "review_sha256": "47fbefee9da4140b5cdec0c61b11935b36a573e2570a653462a9aef721e8298a",
+              "card_print_id": "077be7cd-21e7-46cb-b25c-c256da55c10b",
+              "finish_key": "normal",
+              "raw_import_id": "-695043614612069578",
+              "finish_inventory_complete": false,
+              "foil_pattern_adjudicated": false
+            },
+            "source_report_path": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_at": "2026-11-23T07:58:48.997Z"
+          },
+          {
+            "id": "e09ac600-aa6f-5062-a1d3-2c7dffd92d48",
+            "card_printing_id": "242dc544-943b-5faa-a9e5-4096261e9fef",
+            "review_status": "verified",
+            "public_visibility": "visible",
+            "active": true,
+            "confidence": "high",
+            "reason": "Exact generic Play! Pokemon stamped Normal: official black standard-set marker and independent exact Standard Set checklist agree. Normal fact only; no complete foil inventory asserted.",
+            "evidence_sources_checked": [
+              "https://web.archive.org/web/20260917210836id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_4_web_cardlist_en.pdf",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Four_%28TCG%29&prop=wikitext&format=json"
+            ],
+            "evidence_sources_for_finish": [
+              "official-series4",
+              "wiki-series4"
+            ],
+            "expected_finish_keys": [
+              "normal"
+            ],
+            "evidence": {
+              "program_fingerprint": "53e6b320860b991d3cfee13888b249c79713dfa58b29c2ab949fd1c2a8cf2cc2",
+              "manifest_fingerprint": "b4101ee821693744fad22c64ccdb7570cbd5cc2f14bb9a1066a55b0e68d579cb",
+              "master_index_sha256": "2c258abea9d67bd09a30f96622f04f36a51705dbda68f9e51c4ec9a783a2a00c",
+              "review_sha256": "4ef63493e296b9b13f127fb11b0c0d53289a2cd9ae4b98ff9960905668d8078b",
+              "card_print_id": "d6c1ec2f-183e-4f1f-924e-1cb30bfcda28",
+              "finish_key": "normal",
+              "raw_import_id": "-695043614612069578",
+              "finish_inventory_complete": false,
+              "foil_pattern_adjudicated": false
+            },
+            "source_report_path": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_at": "2026-11-23T07:58:48.997Z"
+          },
+          {
+            "id": "ecc3f9d9-2513-5677-a299-acf949c89b95",
+            "card_printing_id": "5b02441f-b266-59ff-a094-0c4186c5ead9",
+            "review_status": "verified",
+            "public_visibility": "visible",
+            "active": true,
+            "confidence": "high",
+            "reason": "Exact generic Play! Pokemon stamped Normal: official black standard-set marker and independent exact Standard Set checklist agree. Normal fact only; no complete foil inventory asserted.",
+            "evidence_sources_checked": [
+              "https://web.archive.org/web/20261104221520id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+              "https://web.archive.org/web/20260917210836id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_4_web_cardlist_en.pdf",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Three_%28TCG%29&prop=wikitext&format=json",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Four_%28TCG%29&prop=wikitext&format=json"
+            ],
+            "evidence_sources_for_finish": [
+              "official-series3",
+              "wiki-series3"
+            ],
+            "expected_finish_keys": [
+              "normal"
+            ],
+            "evidence": {
+              "program_fingerprint": "53e6b320860b991d3cfee13888b249c79713dfa58b29c2ab949fd1c2a8cf2cc2",
+              "manifest_fingerprint": "11644fcd972bfc7d05ab4a10ee037f6cdb607daea36e7f4c3b17c3b954b1d635",
+              "master_index_sha256": "816056ac34a9eb81b2c4ada3d3d75c04173d4fe0da7892075f6e1e5754371505",
+              "review_sha256": "2d41cf003da36609b2b463b7a023dff702632e9268a8dac060643331cf8661f9",
+              "card_print_id": "c46f94ed-693c-48be-9f0c-2b7288b3a568",
+              "finish_key": "normal",
+              "raw_import_id": "-695043614612069578",
+              "finish_inventory_complete": false,
+              "foil_pattern_adjudicated": false
+            },
+            "source_report_path": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_at": "2026-11-23T07:58:48.997Z"
+          },
+          {
+            "id": "f821f718-de74-5ba6-ae88-d095c9a49a10",
+            "card_printing_id": "e9aa6a93-6435-5422-a1ad-ceacc4b94df3",
+            "review_status": "verified",
+            "public_visibility": "visible",
+            "active": true,
+            "confidence": "high",
+            "reason": "Exact generic Play! Pokemon stamped Normal: official black standard-set marker and independent exact Standard Set checklist agree. Normal fact only; no complete foil inventory asserted.",
+            "evidence_sources_checked": [
+              "https://web.archive.org/web/20261104221520id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+              "https://web.archive.org/web/20260917210836id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_4_web_cardlist_en.pdf",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Three_%28TCG%29&prop=wikitext&format=json",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Four_%28TCG%29&prop=wikitext&format=json"
+            ],
+            "evidence_sources_for_finish": [
+              "official-series3",
+              "wiki-series3"
+            ],
+            "expected_finish_keys": [
+              "normal"
+            ],
+            "evidence": {
+              "program_fingerprint": "53e6b320860b991d3cfee13888b249c79713dfa58b29c2ab949fd1c2a8cf2cc2",
+              "manifest_fingerprint": "11644fcd972bfc7d05ab4a10ee037f6cdb607daea36e7f4c3b17c3b954b1d635",
+              "master_index_sha256": "816056ac34a9eb81b2c4ada3d3d75c04173d4fe0da7892075f6e1e5754371505",
+              "review_sha256": "2d41cf003da36609b2b463b7a023dff702632e9268a8dac060643331cf8661f9",
+              "card_print_id": "656f5776-4853-4619-88cf-4e53454ba867",
+              "finish_key": "normal",
+              "raw_import_id": "-695043614612069578",
+              "finish_inventory_complete": false,
+              "foil_pattern_adjudicated": false
+            },
+            "source_report_path": "raw_imports:-695043614612069578|PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_by": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "reviewed_at": "2026-11-23T07:58:48.997Z"
+          }
+        ],
+        "raw": {
+          "id": "-695043614612069578",
+          "source": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+          "status": "processed",
+          "notes": "28 exact existing generic Play! Pokemon stamped parents: Normal facts only; no inferred foil, alias, parent or ownership changes.",
+          "payload": {
+            "version": "PLAY_POKEMON_STAMP_NORMAL_RECOVERY_EXECUTION_V3",
+            "program_fingerprint": "53e6b320860b991d3cfee13888b249c79713dfa58b29c2ab949fd1c2a8cf2cc2",
+            "finish_scope": "normal_only_not_complete_inventory",
+            "manifests": [
+              {
+                "version": "PRINTING_COMPLETENESS_GATE_V1",
+                "game": "pokemon",
+                "language": "en",
+                "set_code": "sv02",
+                "scope": "verified_parent_families",
+                "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+                "master_index_ref": "docs/catalog/play_pokemon_stamp_normal_recovery_v3/sv02/master_facts.json",
+                "master_index_sha256": "2c258abea9d67bd09a30f96622f04f36a51705dbda68f9e51c4ec9a783a2a00c",
+                "parents": [
+                  {
+                    "id": "b861b100-b9c2-43b7-8f22-2b8c65b8edb1",
+                    "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+                    "gv_id": "GV-PK-PAL-173-PLAY-POKEMON-STAMP",
+                    "name": "Bravery Charm",
+                    "printed_coordinate": "173",
+                    "identity_domain": "pokemon_eng_standard",
+                    "variant_key": "play_pokemon_stamp",
+                    "printed_identity_modifier": null
+                  },
+                  {
+                    "id": "d6c1ec2f-183e-4f1f-924e-1cb30bfcda28",
+                    "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+                    "gv_id": "GV-PK-PAL-071-PLAY-POKEMON-STAMP",
+                    "name": "Luxray",
+                    "printed_coordinate": "071",
+                    "identity_domain": "pokemon_eng_standard",
+                    "variant_key": "play_pokemon_stamp",
+                    "printed_identity_modifier": null
+                  }
+                ],
+                "printings": [
+                  {
+                    "card_print_id": "b861b100-b9c2-43b7-8f22-2b8c65b8edb1",
+                    "finish_key": "normal",
+                    "printing_gv_id": "GV-PK-PAL-173-PLAY-POKEMON-STAMP-STD",
+                    "review_status": "verified",
+                    "evidence": [
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "official-series4",
+                        "sha256": "01fe2d0305b529f44c408c1e326227f5a6b387fc575544ba717e9b4c82d2f91e",
+                        "card_print_id": "b861b100-b9c2-43b7-8f22-2b8c65b8edb1",
+                        "finish_key": "normal"
+                      },
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "wiki-series4",
+                        "sha256": "6c5a0be266f3867c28596c0da074ac48b69e56463408cf3ab838699fcad1e993",
+                        "card_print_id": "b861b100-b9c2-43b7-8f22-2b8c65b8edb1",
+                        "finish_key": "normal"
+                      }
+                    ]
+                  },
+                  {
+                    "card_print_id": "d6c1ec2f-183e-4f1f-924e-1cb30bfcda28",
+                    "finish_key": "normal",
+                    "printing_gv_id": "GV-PK-PAL-071-PLAY-POKEMON-STAMP-STD",
+                    "review_status": "verified",
+                    "evidence": [
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "official-series4",
+                        "sha256": "01fe2d0305b529f44c408c1e326227f5a6b387fc575544ba717e9b4c82d2f91e",
+                        "card_print_id": "d6c1ec2f-183e-4f1f-924e-1cb30bfcda28",
+                        "finish_key": "normal"
+                      },
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "wiki-series4",
+                        "sha256": "6c5a0be266f3867c28596c0da074ac48b69e56463408cf3ab838699fcad1e993",
+                        "card_print_id": "d6c1ec2f-183e-4f1f-924e-1cb30bfcda28",
+                        "finish_key": "normal"
+                      }
+                    ]
+                  }
+                ],
+                "unresolved_variants": [],
+                "suppressed_printing_facts": [],
+                "expected": {
+                  "parents": 2,
+                  "printings": 2,
+                  "finishes": {
+                    "normal": 2
+                  }
+                },
+                "scope_notes": [
+                  "Normal existence only; this is not a complete physical finish inventory.",
+                  "Exact black standard-set markers and independent Standard Set rows agree; original PDFs and legends were visually checked.",
+                  "Only source-count-consistent Series Three/Four are admitted. Series Five count disagreement and Series Six duplicate coordinates remain excluded.",
+                  "No red-marker foil inference, legacy alias merge, parent, image, mapping, price or owner mutation is authorized."
+                ],
+                "authority": {
+                  "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+                  "status": "verified_scope",
+                  "set_id": "5fc35881-b563-4fb7-870b-8d14035f4557",
+                  "source_artifacts": [
+                    {
+                      "ref": "official-series4",
+                      "kind": "checked_checklist",
+                      "sha256": "01fe2d0305b529f44c408c1e326227f5a6b387fc575544ba717e9b4c82d2f91e",
+                      "url_or_identifier": "https://web.archive.org/web/20260917210836id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_4_web_cardlist_en.pdf",
+                      "retrieved_at": "2026-11-23T06:41:36.442Z",
+                      "publisher_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_4_web_cardlist_en.pdf",
+                      "original_archive_capture": "20260917210836",
+                      "retrieval_does_not_redate_original": true
+                    },
+                    {
+                      "ref": "wiki-series4",
+                      "kind": "checked_checklist",
+                      "sha256": "6c5a0be266f3867c28596c0da074ac48b69e56463408cf3ab838699fcad1e993",
+                      "url_or_identifier": "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Four_%28TCG%29&prop=wikitext&format=json",
+                      "retrieved_at": "2026-11-23T06:41:34.837Z"
+                    }
+                  ],
+                  "protected_facts": [
+                    {
+                      "card_print_id": "b861b100-b9c2-43b7-8f22-2b8c65b8edb1",
+                      "finish_key": "normal"
+                    },
+                    {
+                      "card_print_id": "d6c1ec2f-183e-4f1f-924e-1cb30bfcda28",
+                      "finish_key": "normal"
+                    }
+                  ],
+                  "forbidden_facts": [],
+                  "conflicts": [],
+                  "review": {
+                    "ref": "review",
+                    "sha256": "4ef63493e296b9b13f127fb11b0c0d53289a2cd9ae4b98ff9960905668d8078b"
+                  }
+                },
+                "fingerprint": "b4101ee821693744fad22c64ccdb7570cbd5cc2f14bb9a1066a55b0e68d579cb"
+              },
+              {
+                "version": "PRINTING_COMPLETENESS_GATE_V1",
+                "game": "pokemon",
+                "language": "en",
+                "set_code": "swsh10",
+                "scope": "verified_parent_families",
+                "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+                "master_index_ref": "docs/catalog/play_pokemon_stamp_normal_recovery_v3/swsh10/master_facts.json",
+                "master_index_sha256": "aca041c0e4c179c3fa6bed6eab2446fe59740849b54b6628e4f88c3dc762a558",
+                "parents": [
+                  {
+                    "id": "017d54d6-badf-48a8-bb10-6c1648ca5a48",
+                    "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+                    "gv_id": "GV-PK-ASR-130-PLAY-POKEMON-STAMP",
+                    "name": "Regigigas",
+                    "printed_coordinate": "130",
+                    "identity_domain": "pokemon_eng_standard",
+                    "variant_key": "play_pokemon_stamp",
+                    "printed_identity_modifier": null
+                  },
+                  {
+                    "id": "3837b7a7-5a44-40f7-8f78-15e051e7da4f",
+                    "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+                    "gv_id": "GV-PK-ASR-068-PLAY-POKEMON-STAMP",
+                    "name": "Diancie",
+                    "printed_coordinate": "068",
+                    "identity_domain": "pokemon_eng_standard",
+                    "variant_key": "play_pokemon_stamp",
+                    "printed_identity_modifier": null
+                  },
+                  {
+                    "id": "445109da-f36c-4992-83db-dd046ed1f822",
+                    "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+                    "gv_id": "GV-PK-ASR-108-PLAY-POKEMON-STAMP",
+                    "name": "Registeel",
+                    "printed_coordinate": "108",
+                    "identity_domain": "pokemon_eng_standard",
+                    "variant_key": "play_pokemon_stamp",
+                    "printed_identity_modifier": null
+                  },
+                  {
+                    "id": "5997bb7c-2970-4446-9486-bfdc89ca7035",
+                    "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+                    "gv_id": "GV-PK-ASR-062-PLAY-POKEMON-STAMP",
+                    "name": "Gallade",
+                    "printed_coordinate": "062",
+                    "identity_domain": "pokemon_eng_standard",
+                    "variant_key": "play_pokemon_stamp",
+                    "printed_identity_modifier": null
+                  },
+                  {
+                    "id": "68756c94-8762-412c-9659-392247bd8bca",
+                    "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+                    "gv_id": "GV-PK-ASR-118-PLAY-POKEMON-STAMP",
+                    "name": "Regidrago",
+                    "printed_coordinate": "118",
+                    "identity_domain": "pokemon_eng_standard",
+                    "variant_key": "play_pokemon_stamp",
+                    "printed_identity_modifier": null
+                  },
+                  {
+                    "id": "75e4a208-b418-4c6d-a6b0-0a6633c243d0",
+                    "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+                    "gv_id": "GV-PK-ASR-143-PLAY-POKEMON-STAMP",
+                    "name": "Gardenia's Vigor",
+                    "printed_coordinate": "143",
+                    "identity_domain": "pokemon_eng_standard",
+                    "variant_key": "play_pokemon_stamp",
+                    "printed_identity_modifier": null
+                  },
+                  {
+                    "id": "8d361411-28c8-496e-b3f5-c7e494f94702",
+                    "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+                    "gv_id": "GV-PK-ASR-075-PLAY-POKEMON-STAMP",
+                    "name": "Regirock",
+                    "printed_coordinate": "075",
+                    "identity_domain": "pokemon_eng_standard",
+                    "variant_key": "play_pokemon_stamp",
+                    "printed_identity_modifier": null
+                  },
+                  {
+                    "id": "9506c5e3-8d8d-47ed-816d-698c73ae9ab7",
+                    "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+                    "gv_id": "GV-PK-ASR-142-PLAY-POKEMON-STAMP",
+                    "name": "Gapejaw Bog",
+                    "printed_coordinate": "142",
+                    "identity_domain": "pokemon_eng_standard",
+                    "variant_key": "play_pokemon_stamp",
+                    "printed_identity_modifier": null
+                  },
+                  {
+                    "id": "a09be692-14ee-4cb4-a4b5-a91eb3fa0bb9",
+                    "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+                    "gv_id": "GV-PK-ASR-155-PLAY-POKEMON-STAMP",
+                    "name": "Temple of Sinnoh",
+                    "printed_coordinate": "155",
+                    "identity_domain": "pokemon_eng_standard",
+                    "variant_key": "play_pokemon_stamp",
+                    "printed_identity_modifier": null
+                  },
+                  {
+                    "id": "aaecd767-1350-47ba-a113-1b2384047b6a",
+                    "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+                    "gv_id": "GV-PK-ASR-051-PLAY-POKEMON-STAMP",
+                    "name": "Regieleki",
+                    "printed_coordinate": "051",
+                    "identity_domain": "pokemon_eng_standard",
+                    "variant_key": "play_pokemon_stamp",
+                    "printed_identity_modifier": null
+                  },
+                  {
+                    "id": "bd216ea9-4213-4684-8286-98f346e62de8",
+                    "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+                    "gv_id": "GV-PK-ASR-139-PLAY-POKEMON-STAMP",
+                    "name": "Dark Patch",
+                    "printed_coordinate": "139",
+                    "identity_domain": "pokemon_eng_standard",
+                    "variant_key": "play_pokemon_stamp",
+                    "printed_identity_modifier": null
+                  },
+                  {
+                    "id": "c97163a2-c596-4209-ba46-4d9f24e00e0a",
+                    "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+                    "gv_id": "GV-PK-ASR-144-PLAY-POKEMON-STAMP",
+                    "name": "Grant",
+                    "printed_coordinate": "144",
+                    "identity_domain": "pokemon_eng_standard",
+                    "variant_key": "play_pokemon_stamp",
+                    "printed_identity_modifier": null
+                  },
+                  {
+                    "id": "d5353963-8006-4049-afa5-51b45b63b966",
+                    "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+                    "gv_id": "GV-PK-ASR-145-PLAY-POKEMON-STAMP",
+                    "name": "Gutsy Pickaxe",
+                    "printed_coordinate": "145",
+                    "identity_domain": "pokemon_eng_standard",
+                    "variant_key": "play_pokemon_stamp",
+                    "printed_identity_modifier": null
+                  },
+                  {
+                    "id": "e6da28d9-8e7a-4211-a2de-2c4d6c2b7f18",
+                    "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+                    "gv_id": "GV-PK-ASR-037-PLAY-POKEMON-STAMP",
+                    "name": "Regice",
+                    "printed_coordinate": "037",
+                    "identity_domain": "pokemon_eng_standard",
+                    "variant_key": "play_pokemon_stamp",
+                    "printed_identity_modifier": null
+                  }
+                ],
+                "printings": [
+                  {
+                    "card_print_id": "017d54d6-badf-48a8-bb10-6c1648ca5a48",
+                    "finish_key": "normal",
+                    "printing_gv_id": "GV-PK-ASR-130-PLAY-POKEMON-STAMP-STD",
+                    "review_status": "verified",
+                    "evidence": [
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "official-series3",
+                        "sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+                        "card_print_id": "017d54d6-badf-48a8-bb10-6c1648ca5a48",
+                        "finish_key": "normal"
+                      },
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "wiki-series3",
+                        "sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+                        "card_print_id": "017d54d6-badf-48a8-bb10-6c1648ca5a48",
+                        "finish_key": "normal"
+                      }
+                    ]
+                  },
+                  {
+                    "card_print_id": "3837b7a7-5a44-40f7-8f78-15e051e7da4f",
+                    "finish_key": "normal",
+                    "printing_gv_id": "GV-PK-ASR-068-PLAY-POKEMON-STAMP-STD",
+                    "review_status": "verified",
+                    "evidence": [
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "official-series3",
+                        "sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+                        "card_print_id": "3837b7a7-5a44-40f7-8f78-15e051e7da4f",
+                        "finish_key": "normal"
+                      },
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "wiki-series3",
+                        "sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+                        "card_print_id": "3837b7a7-5a44-40f7-8f78-15e051e7da4f",
+                        "finish_key": "normal"
+                      }
+                    ]
+                  },
+                  {
+                    "card_print_id": "445109da-f36c-4992-83db-dd046ed1f822",
+                    "finish_key": "normal",
+                    "printing_gv_id": "GV-PK-ASR-108-PLAY-POKEMON-STAMP-STD",
+                    "review_status": "verified",
+                    "evidence": [
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "official-series3",
+                        "sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+                        "card_print_id": "445109da-f36c-4992-83db-dd046ed1f822",
+                        "finish_key": "normal"
+                      },
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "wiki-series3",
+                        "sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+                        "card_print_id": "445109da-f36c-4992-83db-dd046ed1f822",
+                        "finish_key": "normal"
+                      }
+                    ]
+                  },
+                  {
+                    "card_print_id": "5997bb7c-2970-4446-9486-bfdc89ca7035",
+                    "finish_key": "normal",
+                    "printing_gv_id": "GV-PK-ASR-062-PLAY-POKEMON-STAMP-STD",
+                    "review_status": "verified",
+                    "evidence": [
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "official-series3",
+                        "sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+                        "card_print_id": "5997bb7c-2970-4446-9486-bfdc89ca7035",
+                        "finish_key": "normal"
+                      },
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "wiki-series3",
+                        "sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+                        "card_print_id": "5997bb7c-2970-4446-9486-bfdc89ca7035",
+                        "finish_key": "normal"
+                      }
+                    ]
+                  },
+                  {
+                    "card_print_id": "68756c94-8762-412c-9659-392247bd8bca",
+                    "finish_key": "normal",
+                    "printing_gv_id": "GV-PK-ASR-118-PLAY-POKEMON-STAMP-STD",
+                    "review_status": "verified",
+                    "evidence": [
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "official-series3",
+                        "sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+                        "card_print_id": "68756c94-8762-412c-9659-392247bd8bca",
+                        "finish_key": "normal"
+                      },
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "wiki-series3",
+                        "sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+                        "card_print_id": "68756c94-8762-412c-9659-392247bd8bca",
+                        "finish_key": "normal"
+                      }
+                    ]
+                  },
+                  {
+                    "card_print_id": "75e4a208-b418-4c6d-a6b0-0a6633c243d0",
+                    "finish_key": "normal",
+                    "printing_gv_id": "GV-PK-ASR-143-PLAY-POKEMON-STAMP-STD",
+                    "review_status": "verified",
+                    "evidence": [
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "official-series3",
+                        "sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+                        "card_print_id": "75e4a208-b418-4c6d-a6b0-0a6633c243d0",
+                        "finish_key": "normal"
+                      },
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "wiki-series3",
+                        "sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+                        "card_print_id": "75e4a208-b418-4c6d-a6b0-0a6633c243d0",
+                        "finish_key": "normal"
+                      }
+                    ]
+                  },
+                  {
+                    "card_print_id": "8d361411-28c8-496e-b3f5-c7e494f94702",
+                    "finish_key": "normal",
+                    "printing_gv_id": "GV-PK-ASR-075-PLAY-POKEMON-STAMP-STD",
+                    "review_status": "verified",
+                    "evidence": [
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "official-series3",
+                        "sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+                        "card_print_id": "8d361411-28c8-496e-b3f5-c7e494f94702",
+                        "finish_key": "normal"
+                      },
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "wiki-series3",
+                        "sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+                        "card_print_id": "8d361411-28c8-496e-b3f5-c7e494f94702",
+                        "finish_key": "normal"
+                      }
+                    ]
+                  },
+                  {
+                    "card_print_id": "9506c5e3-8d8d-47ed-816d-698c73ae9ab7",
+                    "finish_key": "normal",
+                    "printing_gv_id": "GV-PK-ASR-142-PLAY-POKEMON-STAMP-STD",
+                    "review_status": "verified",
+                    "evidence": [
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "official-series3",
+                        "sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+                        "card_print_id": "9506c5e3-8d8d-47ed-816d-698c73ae9ab7",
+                        "finish_key": "normal"
+                      },
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "wiki-series3",
+                        "sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+                        "card_print_id": "9506c5e3-8d8d-47ed-816d-698c73ae9ab7",
+                        "finish_key": "normal"
+                      }
+                    ]
+                  },
+                  {
+                    "card_print_id": "a09be692-14ee-4cb4-a4b5-a91eb3fa0bb9",
+                    "finish_key": "normal",
+                    "printing_gv_id": "GV-PK-ASR-155-PLAY-POKEMON-STAMP-STD",
+                    "review_status": "verified",
+                    "evidence": [
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "official-series3",
+                        "sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+                        "card_print_id": "a09be692-14ee-4cb4-a4b5-a91eb3fa0bb9",
+                        "finish_key": "normal"
+                      },
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "wiki-series3",
+                        "sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+                        "card_print_id": "a09be692-14ee-4cb4-a4b5-a91eb3fa0bb9",
+                        "finish_key": "normal"
+                      }
+                    ]
+                  },
+                  {
+                    "card_print_id": "aaecd767-1350-47ba-a113-1b2384047b6a",
+                    "finish_key": "normal",
+                    "printing_gv_id": "GV-PK-ASR-051-PLAY-POKEMON-STAMP-STD",
+                    "review_status": "verified",
+                    "evidence": [
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "official-series3",
+                        "sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+                        "card_print_id": "aaecd767-1350-47ba-a113-1b2384047b6a",
+                        "finish_key": "normal"
+                      },
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "wiki-series3",
+                        "sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+                        "card_print_id": "aaecd767-1350-47ba-a113-1b2384047b6a",
+                        "finish_key": "normal"
+                      }
+                    ]
+                  },
+                  {
+                    "card_print_id": "bd216ea9-4213-4684-8286-98f346e62de8",
+                    "finish_key": "normal",
+                    "printing_gv_id": "GV-PK-ASR-139-PLAY-POKEMON-STAMP-STD",
+                    "review_status": "verified",
+                    "evidence": [
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "official-series3",
+                        "sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+                        "card_print_id": "bd216ea9-4213-4684-8286-98f346e62de8",
+                        "finish_key": "normal"
+                      },
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "wiki-series3",
+                        "sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+                        "card_print_id": "bd216ea9-4213-4684-8286-98f346e62de8",
+                        "finish_key": "normal"
+                      }
+                    ]
+                  },
+                  {
+                    "card_print_id": "c97163a2-c596-4209-ba46-4d9f24e00e0a",
+                    "finish_key": "normal",
+                    "printing_gv_id": "GV-PK-ASR-144-PLAY-POKEMON-STAMP-STD",
+                    "review_status": "verified",
+                    "evidence": [
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "official-series3",
+                        "sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+                        "card_print_id": "c97163a2-c596-4209-ba46-4d9f24e00e0a",
+                        "finish_key": "normal"
+                      },
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "wiki-series3",
+                        "sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+                        "card_print_id": "c97163a2-c596-4209-ba46-4d9f24e00e0a",
+                        "finish_key": "normal"
+                      }
+                    ]
+                  },
+                  {
+                    "card_print_id": "d5353963-8006-4049-afa5-51b45b63b966",
+                    "finish_key": "normal",
+                    "printing_gv_id": "GV-PK-ASR-145-PLAY-POKEMON-STAMP-STD",
+                    "review_status": "verified",
+                    "evidence": [
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "official-series3",
+                        "sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+                        "card_print_id": "d5353963-8006-4049-afa5-51b45b63b966",
+                        "finish_key": "normal"
+                      },
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "wiki-series3",
+                        "sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+                        "card_print_id": "d5353963-8006-4049-afa5-51b45b63b966",
+                        "finish_key": "normal"
+                      }
+                    ]
+                  },
+                  {
+                    "card_print_id": "e6da28d9-8e7a-4211-a2de-2c4d6c2b7f18",
+                    "finish_key": "normal",
+                    "printing_gv_id": "GV-PK-ASR-037-PLAY-POKEMON-STAMP-STD",
+                    "review_status": "verified",
+                    "evidence": [
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "official-series3",
+                        "sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+                        "card_print_id": "e6da28d9-8e7a-4211-a2de-2c4d6c2b7f18",
+                        "finish_key": "normal"
+                      },
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "wiki-series3",
+                        "sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+                        "card_print_id": "e6da28d9-8e7a-4211-a2de-2c4d6c2b7f18",
+                        "finish_key": "normal"
+                      }
+                    ]
+                  }
+                ],
+                "unresolved_variants": [],
+                "suppressed_printing_facts": [],
+                "expected": {
+                  "parents": 14,
+                  "printings": 14,
+                  "finishes": {
+                    "normal": 14
+                  }
+                },
+                "scope_notes": [
+                  "Normal existence only; this is not a complete physical finish inventory.",
+                  "Exact black standard-set markers and independent Standard Set rows agree; original PDFs and legends were visually checked.",
+                  "Only source-count-consistent Series Three/Four are admitted. Series Five count disagreement and Series Six duplicate coordinates remain excluded.",
+                  "No red-marker foil inference, legacy alias merge, parent, image, mapping, price or owner mutation is authorized."
+                ],
+                "authority": {
+                  "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+                  "status": "verified_scope",
+                  "set_id": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+                  "source_artifacts": [
+                    {
+                      "ref": "official-series3",
+                      "kind": "checked_checklist",
+                      "sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+                      "url_or_identifier": "https://web.archive.org/web/20261104221520id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+                      "retrieved_at": "2026-11-23T06:41:35.421Z",
+                      "publisher_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+                      "original_archive_capture": "20261104221520",
+                      "retrieval_does_not_redate_original": true
+                    },
+                    {
+                      "ref": "wiki-series3",
+                      "kind": "checked_checklist",
+                      "sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+                      "url_or_identifier": "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Three_%28TCG%29&prop=wikitext&format=json",
+                      "retrieved_at": "2026-11-23T06:41:34.834Z"
+                    }
+                  ],
+                  "protected_facts": [
+                    {
+                      "card_print_id": "017d54d6-badf-48a8-bb10-6c1648ca5a48",
+                      "finish_key": "normal"
+                    },
+                    {
+                      "card_print_id": "3837b7a7-5a44-40f7-8f78-15e051e7da4f",
+                      "finish_key": "normal"
+                    },
+                    {
+                      "card_print_id": "445109da-f36c-4992-83db-dd046ed1f822",
+                      "finish_key": "normal"
+                    },
+                    {
+                      "card_print_id": "5997bb7c-2970-4446-9486-bfdc89ca7035",
+                      "finish_key": "normal"
+                    },
+                    {
+                      "card_print_id": "68756c94-8762-412c-9659-392247bd8bca",
+                      "finish_key": "normal"
+                    },
+                    {
+                      "card_print_id": "75e4a208-b418-4c6d-a6b0-0a6633c243d0",
+                      "finish_key": "normal"
+                    },
+                    {
+                      "card_print_id": "8d361411-28c8-496e-b3f5-c7e494f94702",
+                      "finish_key": "normal"
+                    },
+                    {
+                      "card_print_id": "9506c5e3-8d8d-47ed-816d-698c73ae9ab7",
+                      "finish_key": "normal"
+                    },
+                    {
+                      "card_print_id": "a09be692-14ee-4cb4-a4b5-a91eb3fa0bb9",
+                      "finish_key": "normal"
+                    },
+                    {
+                      "card_print_id": "aaecd767-1350-47ba-a113-1b2384047b6a",
+                      "finish_key": "normal"
+                    },
+                    {
+                      "card_print_id": "bd216ea9-4213-4684-8286-98f346e62de8",
+                      "finish_key": "normal"
+                    },
+                    {
+                      "card_print_id": "c97163a2-c596-4209-ba46-4d9f24e00e0a",
+                      "finish_key": "normal"
+                    },
+                    {
+                      "card_print_id": "d5353963-8006-4049-afa5-51b45b63b966",
+                      "finish_key": "normal"
+                    },
+                    {
+                      "card_print_id": "e6da28d9-8e7a-4211-a2de-2c4d6c2b7f18",
+                      "finish_key": "normal"
+                    }
+                  ],
+                  "forbidden_facts": [],
+                  "conflicts": [],
+                  "review": {
+                    "ref": "review",
+                    "sha256": "535494ad12ce860782a4756c5788fe7ead37e74bd284f33f277b4ed8743b0e11"
+                  }
+                },
+                "fingerprint": "388bbe81eb5ee9f9ff282eb4fbe86f60b96826a0bbfbfc5568a61c8388a5d925"
+              },
+              {
+                "version": "PRINTING_COMPLETENESS_GATE_V1",
+                "game": "pokemon",
+                "language": "en",
+                "set_code": "swsh11",
+                "scope": "verified_parent_families",
+                "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+                "master_index_ref": "docs/catalog/play_pokemon_stamp_normal_recovery_v3/swsh11/master_facts.json",
+                "master_index_sha256": "b5d2aa9fd859b48f7462e2e58358994f4923ba808c16b2b1668323318b595e1f",
+                "parents": [
+                  {
+                    "id": "06f07c2c-0da1-493f-9bf0-d25dd1d24636",
+                    "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+                    "gv_id": "GV-PK-LOR-143-PLAY-POKEMON-STAMP",
+                    "name": "Snorlax",
+                    "printed_coordinate": "143",
+                    "identity_domain": "pokemon_eng_standard",
+                    "variant_key": "play_pokemon_stamp",
+                    "printed_identity_modifier": null
+                  },
+                  {
+                    "id": "077be7cd-21e7-46cb-b25c-c256da55c10b",
+                    "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+                    "gv_id": "GV-PK-LOR-155-PLAY-POKEMON-STAMP",
+                    "name": "Colress's Experiment",
+                    "printed_coordinate": "155",
+                    "identity_domain": "pokemon_eng_standard",
+                    "variant_key": "play_pokemon_stamp",
+                    "printed_identity_modifier": null
+                  },
+                  {
+                    "id": "27183d1b-d482-4bc1-a47e-3da0d7e4dd2c",
+                    "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+                    "gv_id": "GV-PK-LOR-160-PLAY-POKEMON-STAMP",
+                    "name": "Lake Acuity",
+                    "printed_coordinate": "160",
+                    "identity_domain": "pokemon_eng_standard",
+                    "variant_key": "play_pokemon_stamp",
+                    "printed_identity_modifier": null
+                  },
+                  {
+                    "id": "6720f0b2-23c2-4d78-bacf-2d0db6f7ddf5",
+                    "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+                    "gv_id": "GV-PK-LOR-062-PLAY-POKEMON-STAMP",
+                    "name": "Clefairy",
+                    "printed_coordinate": "062",
+                    "identity_domain": "pokemon_eng_standard",
+                    "variant_key": "play_pokemon_stamp",
+                    "printed_identity_modifier": null
+                  },
+                  {
+                    "id": "8cc7cba0-40e2-48be-a5e7-598322383ded",
+                    "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+                    "gv_id": "GV-PK-LOR-168-PLAY-POKEMON-STAMP",
+                    "name": "Tool Box",
+                    "printed_coordinate": "168",
+                    "identity_domain": "pokemon_eng_standard",
+                    "variant_key": "play_pokemon_stamp",
+                    "printed_identity_modifier": null
+                  },
+                  {
+                    "id": "d6ff2988-d72c-42e8-bbe2-67b1947ac042",
+                    "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+                    "gv_id": "GV-PK-LOR-167-PLAY-POKEMON-STAMP",
+                    "name": "Thorton",
+                    "printed_coordinate": "167",
+                    "identity_domain": "pokemon_eng_standard",
+                    "variant_key": "play_pokemon_stamp",
+                    "printed_identity_modifier": null
+                  }
+                ],
+                "printings": [
+                  {
+                    "card_print_id": "06f07c2c-0da1-493f-9bf0-d25dd1d24636",
+                    "finish_key": "normal",
+                    "printing_gv_id": "GV-PK-LOR-143-PLAY-POKEMON-STAMP-STD",
+                    "review_status": "verified",
+                    "evidence": [
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "official-series3",
+                        "sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+                        "card_print_id": "06f07c2c-0da1-493f-9bf0-d25dd1d24636",
+                        "finish_key": "normal"
+                      },
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "wiki-series3",
+                        "sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+                        "card_print_id": "06f07c2c-0da1-493f-9bf0-d25dd1d24636",
+                        "finish_key": "normal"
+                      }
+                    ]
+                  },
+                  {
+                    "card_print_id": "077be7cd-21e7-46cb-b25c-c256da55c10b",
+                    "finish_key": "normal",
+                    "printing_gv_id": "GV-PK-LOR-155-PLAY-POKEMON-STAMP-STD",
+                    "review_status": "verified",
+                    "evidence": [
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "official-series3",
+                        "sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+                        "card_print_id": "077be7cd-21e7-46cb-b25c-c256da55c10b",
+                        "finish_key": "normal"
+                      },
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "wiki-series3",
+                        "sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+                        "card_print_id": "077be7cd-21e7-46cb-b25c-c256da55c10b",
+                        "finish_key": "normal"
+                      }
+                    ]
+                  },
+                  {
+                    "card_print_id": "27183d1b-d482-4bc1-a47e-3da0d7e4dd2c",
+                    "finish_key": "normal",
+                    "printing_gv_id": "GV-PK-LOR-160-PLAY-POKEMON-STAMP-STD",
+                    "review_status": "verified",
+                    "evidence": [
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "official-series3",
+                        "sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+                        "card_print_id": "27183d1b-d482-4bc1-a47e-3da0d7e4dd2c",
+                        "finish_key": "normal"
+                      },
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "wiki-series3",
+                        "sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+                        "card_print_id": "27183d1b-d482-4bc1-a47e-3da0d7e4dd2c",
+                        "finish_key": "normal"
+                      }
+                    ]
+                  },
+                  {
+                    "card_print_id": "6720f0b2-23c2-4d78-bacf-2d0db6f7ddf5",
+                    "finish_key": "normal",
+                    "printing_gv_id": "GV-PK-LOR-062-PLAY-POKEMON-STAMP-STD",
+                    "review_status": "verified",
+                    "evidence": [
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "official-series3",
+                        "sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+                        "card_print_id": "6720f0b2-23c2-4d78-bacf-2d0db6f7ddf5",
+                        "finish_key": "normal"
+                      },
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "wiki-series3",
+                        "sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+                        "card_print_id": "6720f0b2-23c2-4d78-bacf-2d0db6f7ddf5",
+                        "finish_key": "normal"
+                      }
+                    ]
+                  },
+                  {
+                    "card_print_id": "8cc7cba0-40e2-48be-a5e7-598322383ded",
+                    "finish_key": "normal",
+                    "printing_gv_id": "GV-PK-LOR-168-PLAY-POKEMON-STAMP-STD",
+                    "review_status": "verified",
+                    "evidence": [
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "official-series3",
+                        "sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+                        "card_print_id": "8cc7cba0-40e2-48be-a5e7-598322383ded",
+                        "finish_key": "normal"
+                      },
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "wiki-series3",
+                        "sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+                        "card_print_id": "8cc7cba0-40e2-48be-a5e7-598322383ded",
+                        "finish_key": "normal"
+                      }
+                    ]
+                  },
+                  {
+                    "card_print_id": "d6ff2988-d72c-42e8-bbe2-67b1947ac042",
+                    "finish_key": "normal",
+                    "printing_gv_id": "GV-PK-LOR-167-PLAY-POKEMON-STAMP-STD",
+                    "review_status": "verified",
+                    "evidence": [
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "official-series3",
+                        "sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+                        "card_print_id": "d6ff2988-d72c-42e8-bbe2-67b1947ac042",
+                        "finish_key": "normal"
+                      },
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "wiki-series3",
+                        "sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+                        "card_print_id": "d6ff2988-d72c-42e8-bbe2-67b1947ac042",
+                        "finish_key": "normal"
+                      }
+                    ]
+                  }
+                ],
+                "unresolved_variants": [],
+                "suppressed_printing_facts": [],
+                "expected": {
+                  "parents": 6,
+                  "printings": 6,
+                  "finishes": {
+                    "normal": 6
+                  }
+                },
+                "scope_notes": [
+                  "Normal existence only; this is not a complete physical finish inventory.",
+                  "Exact black standard-set markers and independent Standard Set rows agree; original PDFs and legends were visually checked.",
+                  "Only source-count-consistent Series Three/Four are admitted. Series Five count disagreement and Series Six duplicate coordinates remain excluded.",
+                  "No red-marker foil inference, legacy alias merge, parent, image, mapping, price or owner mutation is authorized."
+                ],
+                "authority": {
+                  "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+                  "status": "verified_scope",
+                  "set_id": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+                  "source_artifacts": [
+                    {
+                      "ref": "official-series3",
+                      "kind": "checked_checklist",
+                      "sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+                      "url_or_identifier": "https://web.archive.org/web/20261104221520id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+                      "retrieved_at": "2026-11-23T06:41:35.421Z",
+                      "publisher_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+                      "original_archive_capture": "20261104221520",
+                      "retrieval_does_not_redate_original": true
+                    },
+                    {
+                      "ref": "wiki-series3",
+                      "kind": "checked_checklist",
+                      "sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+                      "url_or_identifier": "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Three_%28TCG%29&prop=wikitext&format=json",
+                      "retrieved_at": "2026-11-23T06:41:34.834Z"
+                    }
+                  ],
+                  "protected_facts": [
+                    {
+                      "card_print_id": "06f07c2c-0da1-493f-9bf0-d25dd1d24636",
+                      "finish_key": "normal"
+                    },
+                    {
+                      "card_print_id": "077be7cd-21e7-46cb-b25c-c256da55c10b",
+                      "finish_key": "normal"
+                    },
+                    {
+                      "card_print_id": "27183d1b-d482-4bc1-a47e-3da0d7e4dd2c",
+                      "finish_key": "normal"
+                    },
+                    {
+                      "card_print_id": "6720f0b2-23c2-4d78-bacf-2d0db6f7ddf5",
+                      "finish_key": "normal"
+                    },
+                    {
+                      "card_print_id": "8cc7cba0-40e2-48be-a5e7-598322383ded",
+                      "finish_key": "normal"
+                    },
+                    {
+                      "card_print_id": "d6ff2988-d72c-42e8-bbe2-67b1947ac042",
+                      "finish_key": "normal"
+                    }
+                  ],
+                  "forbidden_facts": [],
+                  "conflicts": [],
+                  "review": {
+                    "ref": "review",
+                    "sha256": "47fbefee9da4140b5cdec0c61b11935b36a573e2570a653462a9aef721e8298a"
+                  }
+                },
+                "fingerprint": "f43efe687b66748370f7adf834c47954b46c9a5988e0870db9afce8c4cfa3543"
+              },
+              {
+                "version": "PRINTING_COMPLETENESS_GATE_V1",
+                "game": "pokemon",
+                "language": "en",
+                "set_code": "swsh12",
+                "scope": "verified_parent_families",
+                "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+                "master_index_ref": "docs/catalog/play_pokemon_stamp_normal_recovery_v3/swsh12/master_facts.json",
+                "master_index_sha256": "816056ac34a9eb81b2c4ada3d3d75c04173d4fe0da7892075f6e1e5754371505",
+                "parents": [
+                  {
+                    "id": "5ee8928f-60a9-4e94-8e47-35f8df072dec",
+                    "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+                    "gv_id": "GV-PK-SIT-169-PLAY-POKEMON-STAMP",
+                    "name": "V Guard Energy",
+                    "printed_coordinate": "169",
+                    "identity_domain": "pokemon_eng_standard",
+                    "variant_key": "play_pokemon_stamp",
+                    "printed_identity_modifier": null
+                  },
+                  {
+                    "id": "656f5776-4853-4619-88cf-4e53454ba867",
+                    "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+                    "gv_id": "GV-PK-SIT-159-PLAY-POKEMON-STAMP",
+                    "name": "Lance",
+                    "printed_coordinate": "159",
+                    "identity_domain": "pokemon_eng_standard",
+                    "variant_key": "play_pokemon_stamp",
+                    "printed_identity_modifier": null
+                  },
+                  {
+                    "id": "b0892865-890c-498b-9efc-395f07999e15",
+                    "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+                    "gv_id": "GV-PK-SIT-164-PLAY-POKEMON-STAMP",
+                    "name": "Serena",
+                    "printed_coordinate": "164",
+                    "identity_domain": "pokemon_eng_standard",
+                    "variant_key": "play_pokemon_stamp",
+                    "printed_identity_modifier": null
+                  },
+                  {
+                    "id": "c46f94ed-693c-48be-9f0c-2b7288b3a568",
+                    "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+                    "gv_id": "GV-PK-SIT-160-PLAY-POKEMON-STAMP",
+                    "name": "Leafy Camo Poncho",
+                    "printed_coordinate": "160",
+                    "identity_domain": "pokemon_eng_standard",
+                    "variant_key": "play_pokemon_stamp",
+                    "printed_identity_modifier": null
+                  },
+                  {
+                    "id": "c768b472-1f0d-46ac-adb7-5f6554c57888",
+                    "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+                    "gv_id": "GV-PK-SIT-154-PLAY-POKEMON-STAMP",
+                    "name": "Earthen Seal Stone",
+                    "printed_coordinate": "154",
+                    "identity_domain": "pokemon_eng_standard",
+                    "variant_key": "play_pokemon_stamp",
+                    "printed_identity_modifier": null
+                  },
+                  {
+                    "id": "e5988601-d908-4dfd-b7ce-ed450b600387",
+                    "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+                    "gv_id": "GV-PK-SIT-155-PLAY-POKEMON-STAMP",
+                    "name": "Emergency Jelly",
+                    "printed_coordinate": "155",
+                    "identity_domain": "pokemon_eng_standard",
+                    "variant_key": "play_pokemon_stamp",
+                    "printed_identity_modifier": null
+                  }
+                ],
+                "printings": [
+                  {
+                    "card_print_id": "5ee8928f-60a9-4e94-8e47-35f8df072dec",
+                    "finish_key": "normal",
+                    "printing_gv_id": "GV-PK-SIT-169-PLAY-POKEMON-STAMP-STD",
+                    "review_status": "verified",
+                    "evidence": [
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "official-series3",
+                        "sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+                        "card_print_id": "5ee8928f-60a9-4e94-8e47-35f8df072dec",
+                        "finish_key": "normal"
+                      },
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "wiki-series3",
+                        "sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+                        "card_print_id": "5ee8928f-60a9-4e94-8e47-35f8df072dec",
+                        "finish_key": "normal"
+                      }
+                    ]
+                  },
+                  {
+                    "card_print_id": "656f5776-4853-4619-88cf-4e53454ba867",
+                    "finish_key": "normal",
+                    "printing_gv_id": "GV-PK-SIT-159-PLAY-POKEMON-STAMP-STD",
+                    "review_status": "verified",
+                    "evidence": [
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "official-series3",
+                        "sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+                        "card_print_id": "656f5776-4853-4619-88cf-4e53454ba867",
+                        "finish_key": "normal"
+                      },
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "wiki-series3",
+                        "sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+                        "card_print_id": "656f5776-4853-4619-88cf-4e53454ba867",
+                        "finish_key": "normal"
+                      }
+                    ]
+                  },
+                  {
+                    "card_print_id": "b0892865-890c-498b-9efc-395f07999e15",
+                    "finish_key": "normal",
+                    "printing_gv_id": "GV-PK-SIT-164-PLAY-POKEMON-STAMP-STD",
+                    "review_status": "verified",
+                    "evidence": [
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "official-series3",
+                        "sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+                        "card_print_id": "b0892865-890c-498b-9efc-395f07999e15",
+                        "finish_key": "normal"
+                      },
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "wiki-series3",
+                        "sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+                        "card_print_id": "b0892865-890c-498b-9efc-395f07999e15",
+                        "finish_key": "normal"
+                      }
+                    ]
+                  },
+                  {
+                    "card_print_id": "c46f94ed-693c-48be-9f0c-2b7288b3a568",
+                    "finish_key": "normal",
+                    "printing_gv_id": "GV-PK-SIT-160-PLAY-POKEMON-STAMP-STD",
+                    "review_status": "verified",
+                    "evidence": [
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "official-series3",
+                        "sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+                        "card_print_id": "c46f94ed-693c-48be-9f0c-2b7288b3a568",
+                        "finish_key": "normal"
+                      },
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "wiki-series3",
+                        "sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+                        "card_print_id": "c46f94ed-693c-48be-9f0c-2b7288b3a568",
+                        "finish_key": "normal"
+                      }
+                    ]
+                  },
+                  {
+                    "card_print_id": "c768b472-1f0d-46ac-adb7-5f6554c57888",
+                    "finish_key": "normal",
+                    "printing_gv_id": "GV-PK-SIT-154-PLAY-POKEMON-STAMP-STD",
+                    "review_status": "verified",
+                    "evidence": [
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "official-series3",
+                        "sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+                        "card_print_id": "c768b472-1f0d-46ac-adb7-5f6554c57888",
+                        "finish_key": "normal"
+                      },
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "wiki-series3",
+                        "sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+                        "card_print_id": "c768b472-1f0d-46ac-adb7-5f6554c57888",
+                        "finish_key": "normal"
+                      }
+                    ]
+                  },
+                  {
+                    "card_print_id": "e5988601-d908-4dfd-b7ce-ed450b600387",
+                    "finish_key": "normal",
+                    "printing_gv_id": "GV-PK-SIT-155-PLAY-POKEMON-STAMP-STD",
+                    "review_status": "verified",
+                    "evidence": [
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "official-series4",
+                        "sha256": "01fe2d0305b529f44c408c1e326227f5a6b387fc575544ba717e9b4c82d2f91e",
+                        "card_print_id": "e5988601-d908-4dfd-b7ce-ed450b600387",
+                        "finish_key": "normal"
+                      },
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "wiki-series4",
+                        "sha256": "6c5a0be266f3867c28596c0da074ac48b69e56463408cf3ab838699fcad1e993",
+                        "card_print_id": "e5988601-d908-4dfd-b7ce-ed450b600387",
+                        "finish_key": "normal"
+                      }
+                    ]
+                  }
+                ],
+                "unresolved_variants": [],
+                "suppressed_printing_facts": [],
+                "expected": {
+                  "parents": 6,
+                  "printings": 6,
+                  "finishes": {
+                    "normal": 6
+                  }
+                },
+                "scope_notes": [
+                  "Normal existence only; this is not a complete physical finish inventory.",
+                  "Exact black standard-set markers and independent Standard Set rows agree; original PDFs and legends were visually checked.",
+                  "Only source-count-consistent Series Three/Four are admitted. Series Five count disagreement and Series Six duplicate coordinates remain excluded.",
+                  "No red-marker foil inference, legacy alias merge, parent, image, mapping, price or owner mutation is authorized."
+                ],
+                "authority": {
+                  "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+                  "status": "verified_scope",
+                  "set_id": "10dc128e-0d22-42c9-a981-74a46c780896",
+                  "source_artifacts": [
+                    {
+                      "ref": "official-series3",
+                      "kind": "checked_checklist",
+                      "sha256": "29f44178134556657660c1042881d56e9f39c589d469aeea1c76855c3689091c",
+                      "url_or_identifier": "https://web.archive.org/web/20261104221520id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+                      "retrieved_at": "2026-11-23T06:41:35.421Z",
+                      "publisher_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_3_web_cardlist_en.pdf",
+                      "original_archive_capture": "20261104221520",
+                      "retrieval_does_not_redate_original": true
+                    },
+                    {
+                      "ref": "official-series4",
+                      "kind": "checked_checklist",
+                      "sha256": "01fe2d0305b529f44c408c1e326227f5a6b387fc575544ba717e9b4c82d2f91e",
+                      "url_or_identifier": "https://web.archive.org/web/20260917210836id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_4_web_cardlist_en.pdf",
+                      "retrieved_at": "2026-11-23T06:41:36.442Z",
+                      "publisher_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_4_web_cardlist_en.pdf",
+                      "original_archive_capture": "20260917210836",
+                      "retrieval_does_not_redate_original": true
+                    },
+                    {
+                      "ref": "wiki-series3",
+                      "kind": "checked_checklist",
+                      "sha256": "79aec2f04c01973efe3686db4e793e557fb703ab7951c0ae192e43f27c564dcc",
+                      "url_or_identifier": "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Three_%28TCG%29&prop=wikitext&format=json",
+                      "retrieved_at": "2026-11-23T06:41:34.834Z"
+                    },
+                    {
+                      "ref": "wiki-series4",
+                      "kind": "checked_checklist",
+                      "sha256": "6c5a0be266f3867c28596c0da074ac48b69e56463408cf3ab838699fcad1e993",
+                      "url_or_identifier": "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Four_%28TCG%29&prop=wikitext&format=json",
+                      "retrieved_at": "2026-11-23T06:41:34.837Z"
+                    }
+                  ],
+                  "protected_facts": [
+                    {
+                      "card_print_id": "5ee8928f-60a9-4e94-8e47-35f8df072dec",
+                      "finish_key": "normal"
+                    },
+                    {
+                      "card_print_id": "656f5776-4853-4619-88cf-4e53454ba867",
+                      "finish_key": "normal"
+                    },
+                    {
+                      "card_print_id": "b0892865-890c-498b-9efc-395f07999e15",
+                      "finish_key": "normal"
+                    },
+                    {
+                      "card_print_id": "c46f94ed-693c-48be-9f0c-2b7288b3a568",
+                      "finish_key": "normal"
+                    },
+                    {
+                      "card_print_id": "c768b472-1f0d-46ac-adb7-5f6554c57888",
+                      "finish_key": "normal"
+                    },
+                    {
+                      "card_print_id": "e5988601-d908-4dfd-b7ce-ed450b600387",
+                      "finish_key": "normal"
+                    }
+                  ],
+                  "forbidden_facts": [],
+                  "conflicts": [],
+                  "review": {
+                    "ref": "review",
+                    "sha256": "2d41cf003da36609b2b463b7a023dff702632e9268a8dac060643331cf8661f9"
+                  }
+                },
+                "fingerprint": "11644fcd972bfc7d05ab4a10ee037f6cdb607daea36e7f4c3b17c3b954b1d635"
+              }
+            ],
+            "reviews": [
+              {
+                "version": "PLAY_STAMP_NORMAL_SOURCE_REVIEW_V3",
+                "status": "verified_scope",
+                "reviewer": "Codex original-PDF, independent-checklist and live-identity source review",
+                "reviewed_at": "2026-11-23T07:58:48.997Z",
+                "game": "pokemon",
+                "language": "en",
+                "set_code": "swsh12",
+                "scope": "verified_parent_families",
+                "master_index_sha256": "816056ac34a9eb81b2c4ada3d3d75c04173d4fe0da7892075f6e1e5754371505",
+                "projection_sha256": "552f68755eaa3e04ba83175a02d5f3898be48a70a9759b999b6955e9530dbfbb",
+                "complete_printing_inventory": false,
+                "execution_authority": false,
+                "review_notes": [
+                  "Official archived source bytes, actual unedited Poppler rendering and black/red legend inspected; no re-dated original or substituted image.",
+                  "Every selected exact set/number/name/Normal tuple independently agrees and current target identity was rechecked.",
+                  "All targets are existing childless generic play_pokemon_stamp parents; other stamp families and foil patterns remain outside scope.",
+                  "This source review grants no production execution approval."
+                ]
+              },
+              {
+                "version": "PLAY_STAMP_NORMAL_SOURCE_REVIEW_V3",
+                "status": "verified_scope",
+                "reviewer": "Codex original-PDF, independent-checklist and live-identity source review",
+                "reviewed_at": "2026-11-23T07:58:48.997Z",
+                "game": "pokemon",
+                "language": "en",
+                "set_code": "sv02",
+                "scope": "verified_parent_families",
+                "master_index_sha256": "2c258abea9d67bd09a30f96622f04f36a51705dbda68f9e51c4ec9a783a2a00c",
+                "projection_sha256": "b2dd62936e6e182663f744dee3a560d00ceec78de0fc61179114a8d1f210e8aa",
+                "complete_printing_inventory": false,
+                "execution_authority": false,
+                "review_notes": [
+                  "Official archived source bytes, actual unedited Poppler rendering and black/red legend inspected; no re-dated original or substituted image.",
+                  "Every selected exact set/number/name/Normal tuple independently agrees and current target identity was rechecked.",
+                  "All targets are existing childless generic play_pokemon_stamp parents; other stamp families and foil patterns remain outside scope.",
+                  "This source review grants no production execution approval."
+                ]
+              },
+              {
+                "version": "PLAY_STAMP_NORMAL_SOURCE_REVIEW_V3",
+                "status": "verified_scope",
+                "reviewer": "Codex original-PDF, independent-checklist and live-identity source review",
+                "reviewed_at": "2026-11-23T07:58:48.997Z",
+                "game": "pokemon",
+                "language": "en",
+                "set_code": "swsh11",
+                "scope": "verified_parent_families",
+                "master_index_sha256": "b5d2aa9fd859b48f7462e2e58358994f4923ba808c16b2b1668323318b595e1f",
+                "projection_sha256": "3cd8f9fd6b113a812bfba0f35787c854e4d6778414c4efaa67add3896bd87cce",
+                "complete_printing_inventory": false,
+                "execution_authority": false,
+                "review_notes": [
+                  "Official archived source bytes, actual unedited Poppler rendering and black/red legend inspected; no re-dated original or substituted image.",
+                  "Every selected exact set/number/name/Normal tuple independently agrees and current target identity was rechecked.",
+                  "All targets are existing childless generic play_pokemon_stamp parents; other stamp families and foil patterns remain outside scope.",
+                  "This source review grants no production execution approval."
+                ]
+              },
+              {
+                "version": "PLAY_STAMP_NORMAL_SOURCE_REVIEW_V3",
+                "status": "verified_scope",
+                "reviewer": "Codex original-PDF, independent-checklist and live-identity source review",
+                "reviewed_at": "2026-11-23T07:58:48.997Z",
+                "game": "pokemon",
+                "language": "en",
+                "set_code": "swsh10",
+                "scope": "verified_parent_families",
+                "master_index_sha256": "aca041c0e4c179c3fa6bed6eab2446fe59740849b54b6628e4f88c3dc762a558",
+                "projection_sha256": "3abe559fb3dc9e8ec33e6178211e4ad4c4ca33684cda62ad45ac22bada46e472",
+                "complete_printing_inventory": false,
+                "execution_authority": false,
+                "review_notes": [
+                  "Official archived source bytes, actual unedited Poppler rendering and black/red legend inspected; no re-dated original or substituted image.",
+                  "Every selected exact set/number/name/Normal tuple independently agrees and current target identity was rechecked.",
+                  "All targets are existing childless generic play_pokemon_stamp parents; other stamp families and foil patterns remain outside scope.",
+                  "This source review grants no production execution approval."
+                ]
+              }
+            ]
+          }
+        },
+        "expected": {
+          "retained_sets": 4,
+          "retained_parents": 1098,
+          "retained_children": 1643,
+          "children_after": 1671,
+          "raw": 1,
+          "printing_inserts": 28,
+          "reviews": 28,
+          "updates": 0
+        },
+        "boundaries": {
+          "parent_writes": 0,
+          "existing_row_updates": 0,
+          "ownership_writes": 0,
+          "mapping_writes": 0,
+          "pricing_writes": 0,
+          "image_writes": 0,
+          "identity_writes": 0,
+          "deletes": 0,
+          "other_set_writes": 0
+        }
+      }
+    },
+    "canonical4": {
+      "original_review_plan_fingerprint": "56d4f8c0740477111871884b45181feeba2228ff60c3704f24e586abcbbb13e5",
+      "descriptor_fingerprint": "ab5c89e8c3732b4f3fbffaca9cf5fc170a06b09aad3d4d385ba6ff123ec623d6",
+      "descriptor": {
+        "version": "PLAY_POKEMON_STAMP_SERIES5_NORMAL_EXECUTION_V1",
+        "project_ref": "ycdxbpibncqcchqiihfz",
+        "program_fingerprint": "599088b19bfa67932f4653334c50b8b42fc5224f0e4a0d5c6195223c4ed52e39",
+        "manifest_fingerprints": [
+          "f062082f25eee17c2aa053a46786da68ec7722db6329a912d48b71c2d67bf681"
+        ],
+        "children": [
+          {
+            "id": "b9597a60-e573-5853-ac9d-48bea14b322e",
+            "card_print_id": "b00cdee1-1552-4e5c-9e33-cd5a15303e9f",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-TEF-021-PLAY-POKEMON-STAMP-STD",
+            "is_provisional": false,
+            "provenance_source": "PLAY_POKEMON_STAMP_SERIES5_NORMAL_EXECUTION_V1",
+            "provenance_ref": "raw_imports:-1067879822330081923|PLAY_POKEMON_STAMP_SERIES5_NORMAL_EXECUTION_V1",
+            "created_by": "PLAY_POKEMON_STAMP_SERIES5_NORMAL_EXECUTION_V1"
+          },
+          {
+            "id": "c34bd4c8-083d-5424-ab03-f8aa73650350",
+            "card_print_id": "71eab7c1-b491-4442-b2aa-dae5311db412",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-TEF-151-PLAY-POKEMON-STAMP-STD",
+            "is_provisional": false,
+            "provenance_source": "PLAY_POKEMON_STAMP_SERIES5_NORMAL_EXECUTION_V1",
+            "provenance_ref": "raw_imports:-1067879822330081923|PLAY_POKEMON_STAMP_SERIES5_NORMAL_EXECUTION_V1",
+            "created_by": "PLAY_POKEMON_STAMP_SERIES5_NORMAL_EXECUTION_V1"
+          },
+          {
+            "id": "eead157b-0388-5390-a6f6-61f8bdd3a734",
+            "card_print_id": "7c413757-c98e-4e27-a791-2e075c545b96",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-TEF-155-PLAY-POKEMON-STAMP-STD",
+            "is_provisional": false,
+            "provenance_source": "PLAY_POKEMON_STAMP_SERIES5_NORMAL_EXECUTION_V1",
+            "provenance_ref": "raw_imports:-1067879822330081923|PLAY_POKEMON_STAMP_SERIES5_NORMAL_EXECUTION_V1",
+            "created_by": "PLAY_POKEMON_STAMP_SERIES5_NORMAL_EXECUTION_V1"
+          },
+          {
+            "id": "f0180ead-392c-58cb-a8d0-98aeac3b4728",
+            "card_print_id": "b40344f6-d54f-40bf-9383-3e437ffc6a39",
+            "finish_key": "normal",
+            "printing_gv_id": "GV-PK-TEF-160-PLAY-POKEMON-STAMP-STD",
+            "is_provisional": false,
+            "provenance_source": "PLAY_POKEMON_STAMP_SERIES5_NORMAL_EXECUTION_V1",
+            "provenance_ref": "raw_imports:-1067879822330081923|PLAY_POKEMON_STAMP_SERIES5_NORMAL_EXECUTION_V1",
+            "created_by": "PLAY_POKEMON_STAMP_SERIES5_NORMAL_EXECUTION_V1"
+          }
+        ],
+        "reviews": [
+          {
+            "id": "24271e29-b9bc-5ca3-a0dc-ef72a1367fa6",
+            "card_printing_id": "b9597a60-e573-5853-ac9d-48bea14b322e",
+            "review_status": "verified",
+            "public_visibility": "visible",
+            "active": true,
+            "confidence": "high",
+            "reason": "Exact generic Play! Pokemon stamped Normal: official black standard-set marker and independent exact Standard Set checklist agree. Normal fact only; no complete foil inventory asserted.",
+            "evidence_sources_checked": [
+              "https://web.archive.org/web/20261020203917id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_5_web_cardlist_en.pdf",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Five_%28TCG%29&prop=wikitext&format=json"
+            ],
+            "evidence_sources_for_finish": [
+              "official-series5",
+              "wiki-series5"
+            ],
+            "expected_finish_keys": [
+              "normal"
+            ],
+            "evidence": {
+              "program_fingerprint": "599088b19bfa67932f4653334c50b8b42fc5224f0e4a0d5c6195223c4ed52e39",
+              "manifest_fingerprint": "f062082f25eee17c2aa053a46786da68ec7722db6329a912d48b71c2d67bf681",
+              "master_index_sha256": "096e5fbeaca084deac602a7a8e08b06f724c2965294b04e032021de2dc31898a",
+              "review_sha256": "82d5363ad3bc101205e2344ddc7924a923e4821e136759062e903bc389f2a1d6",
+              "card_print_id": "b00cdee1-1552-4e5c-9e33-cd5a15303e9f",
+              "finish_key": "normal",
+              "raw_import_id": "-1067879822330081923",
+              "finish_inventory_complete": false,
+              "foil_pattern_adjudicated": false
+            },
+            "source_report_path": "raw_imports:-1067879822330081923|PLAY_POKEMON_STAMP_SERIES5_NORMAL_EXECUTION_V1",
+            "reviewed_by": "PLAY_POKEMON_STAMP_SERIES5_NORMAL_EXECUTION_V1",
+            "reviewed_at": "2026-11-23T08:41:10.032Z"
+          },
+          {
+            "id": "42ebf2ef-3388-541c-aae9-99265acc73ef",
+            "card_printing_id": "f0180ead-392c-58cb-a8d0-98aeac3b4728",
+            "review_status": "verified",
+            "public_visibility": "visible",
+            "active": true,
+            "confidence": "high",
+            "reason": "Exact generic Play! Pokemon stamped Normal: official black standard-set marker and independent exact Standard Set checklist agree. Normal fact only; no complete foil inventory asserted.",
+            "evidence_sources_checked": [
+              "https://web.archive.org/web/20261020203917id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_5_web_cardlist_en.pdf",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Five_%28TCG%29&prop=wikitext&format=json"
+            ],
+            "evidence_sources_for_finish": [
+              "official-series5",
+              "wiki-series5"
+            ],
+            "expected_finish_keys": [
+              "normal"
+            ],
+            "evidence": {
+              "program_fingerprint": "599088b19bfa67932f4653334c50b8b42fc5224f0e4a0d5c6195223c4ed52e39",
+              "manifest_fingerprint": "f062082f25eee17c2aa053a46786da68ec7722db6329a912d48b71c2d67bf681",
+              "master_index_sha256": "096e5fbeaca084deac602a7a8e08b06f724c2965294b04e032021de2dc31898a",
+              "review_sha256": "82d5363ad3bc101205e2344ddc7924a923e4821e136759062e903bc389f2a1d6",
+              "card_print_id": "b40344f6-d54f-40bf-9383-3e437ffc6a39",
+              "finish_key": "normal",
+              "raw_import_id": "-1067879822330081923",
+              "finish_inventory_complete": false,
+              "foil_pattern_adjudicated": false
+            },
+            "source_report_path": "raw_imports:-1067879822330081923|PLAY_POKEMON_STAMP_SERIES5_NORMAL_EXECUTION_V1",
+            "reviewed_by": "PLAY_POKEMON_STAMP_SERIES5_NORMAL_EXECUTION_V1",
+            "reviewed_at": "2026-11-23T08:41:10.032Z"
+          },
+          {
+            "id": "462c630f-d453-5d8d-abba-93246c29120f",
+            "card_printing_id": "c34bd4c8-083d-5424-ab03-f8aa73650350",
+            "review_status": "verified",
+            "public_visibility": "visible",
+            "active": true,
+            "confidence": "high",
+            "reason": "Exact generic Play! Pokemon stamped Normal: official black standard-set marker and independent exact Standard Set checklist agree. Normal fact only; no complete foil inventory asserted.",
+            "evidence_sources_checked": [
+              "https://web.archive.org/web/20261020203917id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_5_web_cardlist_en.pdf",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Five_%28TCG%29&prop=wikitext&format=json"
+            ],
+            "evidence_sources_for_finish": [
+              "official-series5",
+              "wiki-series5"
+            ],
+            "expected_finish_keys": [
+              "normal"
+            ],
+            "evidence": {
+              "program_fingerprint": "599088b19bfa67932f4653334c50b8b42fc5224f0e4a0d5c6195223c4ed52e39",
+              "manifest_fingerprint": "f062082f25eee17c2aa053a46786da68ec7722db6329a912d48b71c2d67bf681",
+              "master_index_sha256": "096e5fbeaca084deac602a7a8e08b06f724c2965294b04e032021de2dc31898a",
+              "review_sha256": "82d5363ad3bc101205e2344ddc7924a923e4821e136759062e903bc389f2a1d6",
+              "card_print_id": "71eab7c1-b491-4442-b2aa-dae5311db412",
+              "finish_key": "normal",
+              "raw_import_id": "-1067879822330081923",
+              "finish_inventory_complete": false,
+              "foil_pattern_adjudicated": false
+            },
+            "source_report_path": "raw_imports:-1067879822330081923|PLAY_POKEMON_STAMP_SERIES5_NORMAL_EXECUTION_V1",
+            "reviewed_by": "PLAY_POKEMON_STAMP_SERIES5_NORMAL_EXECUTION_V1",
+            "reviewed_at": "2026-11-23T08:41:10.032Z"
+          },
+          {
+            "id": "97f588f9-0c17-536d-aa02-021f3c115a1c",
+            "card_printing_id": "eead157b-0388-5390-a6f6-61f8bdd3a734",
+            "review_status": "verified",
+            "public_visibility": "visible",
+            "active": true,
+            "confidence": "high",
+            "reason": "Exact generic Play! Pokemon stamped Normal: official black standard-set marker and independent exact Standard Set checklist agree. Normal fact only; no complete foil inventory asserted.",
+            "evidence_sources_checked": [
+              "https://web.archive.org/web/20261020203917id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_5_web_cardlist_en.pdf",
+              "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Five_%28TCG%29&prop=wikitext&format=json"
+            ],
+            "evidence_sources_for_finish": [
+              "official-series5",
+              "wiki-series5"
+            ],
+            "expected_finish_keys": [
+              "normal"
+            ],
+            "evidence": {
+              "program_fingerprint": "599088b19bfa67932f4653334c50b8b42fc5224f0e4a0d5c6195223c4ed52e39",
+              "manifest_fingerprint": "f062082f25eee17c2aa053a46786da68ec7722db6329a912d48b71c2d67bf681",
+              "master_index_sha256": "096e5fbeaca084deac602a7a8e08b06f724c2965294b04e032021de2dc31898a",
+              "review_sha256": "82d5363ad3bc101205e2344ddc7924a923e4821e136759062e903bc389f2a1d6",
+              "card_print_id": "7c413757-c98e-4e27-a791-2e075c545b96",
+              "finish_key": "normal",
+              "raw_import_id": "-1067879822330081923",
+              "finish_inventory_complete": false,
+              "foil_pattern_adjudicated": false
+            },
+            "source_report_path": "raw_imports:-1067879822330081923|PLAY_POKEMON_STAMP_SERIES5_NORMAL_EXECUTION_V1",
+            "reviewed_by": "PLAY_POKEMON_STAMP_SERIES5_NORMAL_EXECUTION_V1",
+            "reviewed_at": "2026-11-23T08:41:10.032Z"
+          }
+        ],
+        "raw": {
+          "id": "-1067879822330081923",
+          "source": "PLAY_POKEMON_STAMP_SERIES5_NORMAL_EXECUTION_V1",
+          "status": "processed",
+          "notes": "4 exact existing generic Play! Pokemon stamped parents: Normal facts only; no inferred foil, alias, parent or ownership changes.",
+          "payload": {
+            "version": "PLAY_POKEMON_STAMP_SERIES5_NORMAL_EXECUTION_V1",
+            "program_fingerprint": "599088b19bfa67932f4653334c50b8b42fc5224f0e4a0d5c6195223c4ed52e39",
+            "finish_scope": "normal_only_not_complete_inventory",
+            "manifests": [
+              {
+                "version": "PRINTING_COMPLETENESS_GATE_V1",
+                "game": "pokemon",
+                "language": "en",
+                "set_code": "sv05",
+                "scope": "verified_parent_families",
+                "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+                "master_index_ref": "docs/catalog/play_pokemon_stamp_series5_normal_completion_v1/sv05/master_facts.json",
+                "master_index_sha256": "096e5fbeaca084deac602a7a8e08b06f724c2965294b04e032021de2dc31898a",
+                "parents": [
+                  {
+                    "id": "71eab7c1-b491-4442-b2aa-dae5311db412",
+                    "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+                    "gv_id": "GV-PK-TEF-151-PLAY-POKEMON-STAMP",
+                    "name": "Heavy Baton",
+                    "printed_coordinate": "151",
+                    "identity_domain": "pokemon_eng_standard",
+                    "variant_key": "play_pokemon_stamp",
+                    "printed_identity_modifier": null
+                  },
+                  {
+                    "id": "7c413757-c98e-4e27-a791-2e075c545b96",
+                    "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+                    "gv_id": "GV-PK-TEF-155-PLAY-POKEMON-STAMP",
+                    "name": "Morty's Conviction",
+                    "printed_coordinate": "155",
+                    "identity_domain": "pokemon_eng_standard",
+                    "variant_key": "play_pokemon_stamp",
+                    "printed_identity_modifier": null
+                  },
+                  {
+                    "id": "b00cdee1-1552-4e5c-9e33-cd5a15303e9f",
+                    "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+                    "gv_id": "GV-PK-TEF-021-PLAY-POKEMON-STAMP",
+                    "name": "Brambleghast",
+                    "printed_coordinate": "021",
+                    "identity_domain": "pokemon_eng_standard",
+                    "variant_key": "play_pokemon_stamp",
+                    "printed_identity_modifier": null
+                  },
+                  {
+                    "id": "b40344f6-d54f-40bf-9383-3e437ffc6a39",
+                    "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+                    "gv_id": "GV-PK-TEF-160-PLAY-POKEMON-STAMP",
+                    "name": "Salvatore",
+                    "printed_coordinate": "160",
+                    "identity_domain": "pokemon_eng_standard",
+                    "variant_key": "play_pokemon_stamp",
+                    "printed_identity_modifier": null
+                  }
+                ],
+                "printings": [
+                  {
+                    "card_print_id": "71eab7c1-b491-4442-b2aa-dae5311db412",
+                    "finish_key": "normal",
+                    "printing_gv_id": "GV-PK-TEF-151-PLAY-POKEMON-STAMP-STD",
+                    "review_status": "verified",
+                    "evidence": [
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "official-series5",
+                        "sha256": "e6db3b6348c1d52d12328265b0460f5f296052c5fadbbf0050204e1745606f97",
+                        "card_print_id": "71eab7c1-b491-4442-b2aa-dae5311db412",
+                        "finish_key": "normal"
+                      },
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "wiki-series5",
+                        "sha256": "ff74d24e2a53c3073c9f43bd83195f3d678b00dcec8150d45941ad1c242cb01e",
+                        "card_print_id": "71eab7c1-b491-4442-b2aa-dae5311db412",
+                        "finish_key": "normal"
+                      }
+                    ]
+                  },
+                  {
+                    "card_print_id": "7c413757-c98e-4e27-a791-2e075c545b96",
+                    "finish_key": "normal",
+                    "printing_gv_id": "GV-PK-TEF-155-PLAY-POKEMON-STAMP-STD",
+                    "review_status": "verified",
+                    "evidence": [
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "official-series5",
+                        "sha256": "e6db3b6348c1d52d12328265b0460f5f296052c5fadbbf0050204e1745606f97",
+                        "card_print_id": "7c413757-c98e-4e27-a791-2e075c545b96",
+                        "finish_key": "normal"
+                      },
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "wiki-series5",
+                        "sha256": "ff74d24e2a53c3073c9f43bd83195f3d678b00dcec8150d45941ad1c242cb01e",
+                        "card_print_id": "7c413757-c98e-4e27-a791-2e075c545b96",
+                        "finish_key": "normal"
+                      }
+                    ]
+                  },
+                  {
+                    "card_print_id": "b00cdee1-1552-4e5c-9e33-cd5a15303e9f",
+                    "finish_key": "normal",
+                    "printing_gv_id": "GV-PK-TEF-021-PLAY-POKEMON-STAMP-STD",
+                    "review_status": "verified",
+                    "evidence": [
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "official-series5",
+                        "sha256": "e6db3b6348c1d52d12328265b0460f5f296052c5fadbbf0050204e1745606f97",
+                        "card_print_id": "b00cdee1-1552-4e5c-9e33-cd5a15303e9f",
+                        "finish_key": "normal"
+                      },
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "wiki-series5",
+                        "sha256": "ff74d24e2a53c3073c9f43bd83195f3d678b00dcec8150d45941ad1c242cb01e",
+                        "card_print_id": "b00cdee1-1552-4e5c-9e33-cd5a15303e9f",
+                        "finish_key": "normal"
+                      }
+                    ]
+                  },
+                  {
+                    "card_print_id": "b40344f6-d54f-40bf-9383-3e437ffc6a39",
+                    "finish_key": "normal",
+                    "printing_gv_id": "GV-PK-TEF-160-PLAY-POKEMON-STAMP-STD",
+                    "review_status": "verified",
+                    "evidence": [
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "official-series5",
+                        "sha256": "e6db3b6348c1d52d12328265b0460f5f296052c5fadbbf0050204e1745606f97",
+                        "card_print_id": "b40344f6-d54f-40bf-9383-3e437ffc6a39",
+                        "finish_key": "normal"
+                      },
+                      {
+                        "kind": "checked_checklist",
+                        "source_ref": "wiki-series5",
+                        "sha256": "ff74d24e2a53c3073c9f43bd83195f3d678b00dcec8150d45941ad1c242cb01e",
+                        "card_print_id": "b40344f6-d54f-40bf-9383-3e437ffc6a39",
+                        "finish_key": "normal"
+                      }
+                    ]
+                  }
+                ],
+                "unresolved_variants": [],
+                "suppressed_printing_facts": [],
+                "expected": {
+                  "parents": 4,
+                  "printings": 4,
+                  "finishes": {
+                    "normal": 4
+                  }
+                },
+                "scope_notes": [
+                  "Normal existence only; this is not a complete physical finish inventory.",
+                  "Exact black standard-set markers and independent Standard Set rows agree; original PDFs and legends were visually checked.",
+                  "Only four exact Series Five Normal facts are admitted. The separate Roaring Moon Standard Set tooltip is preserved and count-reconciled; Series Six remains excluded.",
+                  "No red-marker foil inference, legacy alias merge, parent, image, mapping, price or owner mutation is authorized."
+                ],
+                "authority": {
+                  "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+                  "status": "verified_scope",
+                  "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+                  "source_artifacts": [
+                    {
+                      "ref": "official-series5",
+                      "kind": "checked_checklist",
+                      "sha256": "e6db3b6348c1d52d12328265b0460f5f296052c5fadbbf0050204e1745606f97",
+                      "url_or_identifier": "https://web.archive.org/web/20261020203917id_/https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_5_web_cardlist_en.pdf",
+                      "retrieved_at": "2026-11-23T06:51:17.318Z",
+                      "publisher_url": "https://www.pokemon.com/static-assets/content-assets/cms2/pdf/trading-card-game/checklist/prize_pack_series_5_web_cardlist_en.pdf",
+                      "original_archive_capture": "20261020203917",
+                      "retrieval_does_not_redate_original": true
+                    },
+                    {
+                      "ref": "wiki-series5",
+                      "kind": "checked_checklist",
+                      "sha256": "ff74d24e2a53c3073c9f43bd83195f3d678b00dcec8150d45941ad1c242cb01e",
+                      "url_or_identifier": "https://bulbapedia.bulbagarden.net/w/api.php?action=parse&page=Play%21_Pok%C3%A9mon_Prize_Pack_Series_Five_%28TCG%29&prop=wikitext&format=json",
+                      "retrieved_at": "2026-11-23T06:51:16.297Z"
+                    }
+                  ],
+                  "protected_facts": [
+                    {
+                      "card_print_id": "71eab7c1-b491-4442-b2aa-dae5311db412",
+                      "finish_key": "normal"
+                    },
+                    {
+                      "card_print_id": "7c413757-c98e-4e27-a791-2e075c545b96",
+                      "finish_key": "normal"
+                    },
+                    {
+                      "card_print_id": "b00cdee1-1552-4e5c-9e33-cd5a15303e9f",
+                      "finish_key": "normal"
+                    },
+                    {
+                      "card_print_id": "b40344f6-d54f-40bf-9383-3e437ffc6a39",
+                      "finish_key": "normal"
+                    }
+                  ],
+                  "forbidden_facts": [],
+                  "conflicts": [],
+                  "review": {
+                    "ref": "review",
+                    "sha256": "82d5363ad3bc101205e2344ddc7924a923e4821e136759062e903bc389f2a1d6"
+                  }
+                },
+                "fingerprint": "f062082f25eee17c2aa053a46786da68ec7722db6329a912d48b71c2d67bf681"
+              }
+            ],
+            "reviews": [
+              {
+                "version": "PLAY_STAMP_SERIES5_NORMAL_SOURCE_REVIEW_V1",
+                "status": "verified_scope",
+                "reviewer": "Codex original-PDF, independent-checklist and live-identity source review",
+                "reviewed_at": "2026-11-23T08:41:10.032Z",
+                "game": "pokemon",
+                "language": "en",
+                "set_code": "sv05",
+                "scope": "verified_parent_families",
+                "master_index_sha256": "096e5fbeaca084deac602a7a8e08b06f724c2965294b04e032021de2dc31898a",
+                "projection_sha256": "01cb4b32d16362a1e70f397433065a16fc9f0db67319bce60d59d59b0538f5b8",
+                "complete_printing_inventory": false,
+                "execution_authority": false,
+                "review_notes": [
+                  "Official archived source bytes, actual unedited Poppler rendering and black/red legend inspected; no re-dated original or substituted image.",
+                  "Every selected exact set/number/name/Normal tuple independently agrees and current target identity was rechecked.",
+                  "All targets are existing childless generic play_pokemon_stamp parents; other stamp families and foil patterns remain outside scope.",
+                  "This source review grants no production execution approval."
+                ]
+              }
+            ]
+          }
+        },
+        "expected": {
+          "retained_sets": 1,
+          "retained_parents": 257,
+          "retained_children": 399,
+          "children_after": 403,
+          "raw": 1,
+          "printing_inserts": 4,
+          "reviews": 4,
+          "updates": 0
+        },
+        "boundaries": {
+          "parent_writes": 0,
+          "existing_row_updates": 0,
+          "ownership_writes": 0,
+          "mapping_writes": 0,
+          "pricing_writes": 0,
+          "image_writes": 0,
+          "identity_writes": 0,
+          "deletes": 0,
+          "other_set_writes": 0
+        }
+      }
+    }
+  }
+}

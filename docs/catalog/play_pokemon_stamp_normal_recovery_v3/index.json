@@ -1,0 +1,103 @@
+{
+  "version": "PLAY_STAMP_NORMAL_SOURCE_INDEX_V3",
+  "executionAuthority": false,
+  "physicalPrintingInventoryComplete": false,
+  "targetParents": 28,
+  "normalPrintingInserts": 28,
+  "heldExecutionParents": [
+    {
+      "id": "94037abf-99a9-4f69-b4ed-7f39801dac95",
+      "reason": "Existing active regular-product TCGplayer mapping requires a separate atomic correction before any child is admitted."
+    }
+  ],
+  "baselineCounts": {
+    "targets": 29,
+    "sets": 4,
+    "retainedParents": 1098,
+    "retainedChildren": 1643,
+    "childrenAfter": 1671
+  },
+  "scopes": [
+    {
+      "setCode": "swsh12",
+      "setId": "10dc128e-0d22-42c9-a981-74a46c780896",
+      "manifestFingerprint": "11644fcd972bfc7d05ab4a10ee037f6cdb607daea36e7f4c3b17c3b954b1d635",
+      "parents": [
+        "5ee8928f-60a9-4e94-8e47-35f8df072dec",
+        "656f5776-4853-4619-88cf-4e53454ba867",
+        "b0892865-890c-498b-9efc-395f07999e15",
+        "c46f94ed-693c-48be-9f0c-2b7288b3a568",
+        "c768b472-1f0d-46ac-adb7-5f6554c57888",
+        "e5988601-d908-4dfd-b7ce-ed450b600387"
+      ],
+      "files": {
+        "manifest.json": "cf78f59d2b1fccf34254ddf5f62ed1aca0d6bcb01c1ffb358f5790425f3724de",
+        "review.json": "2d41cf003da36609b2b463b7a023dff702632e9268a8dac060643331cf8661f9",
+        "master_facts.json": "816056ac34a9eb81b2c4ada3d3d75c04173d4fe0da7892075f6e1e5754371505",
+        "source-bindings.json": "f7e6bb8045d8670308a5b24ee127fb936ae1f81d38a8b6ea75ea70b74c22b11e"
+      }
+    },
+    {
+      "setCode": "sv02",
+      "setId": "5fc35881-b563-4fb7-870b-8d14035f4557",
+      "manifestFingerprint": "b4101ee821693744fad22c64ccdb7570cbd5cc2f14bb9a1066a55b0e68d579cb",
+      "parents": [
+        "b861b100-b9c2-43b7-8f22-2b8c65b8edb1",
+        "d6c1ec2f-183e-4f1f-924e-1cb30bfcda28"
+      ],
+      "files": {
+        "manifest.json": "c16b8763e93328c622195f3ac1b4cbf5f592328c92ca67ce129d9da33baa718e",
+        "review.json": "4ef63493e296b9b13f127fb11b0c0d53289a2cd9ae4b98ff9960905668d8078b",
+        "master_facts.json": "2c258abea9d67bd09a30f96622f04f36a51705dbda68f9e51c4ec9a783a2a00c",
+        "source-bindings.json": "7d9d776acfef5732dd463007a52787554047d93f447d82fe7ae5959427a38b76"
+      }
+    },
+    {
+      "setCode": "swsh11",
+      "setId": "8ed73c03-2631-4e9e-8cf5-f0d4cab9603c",
+      "manifestFingerprint": "f43efe687b66748370f7adf834c47954b46c9a5988e0870db9afce8c4cfa3543",
+      "parents": [
+        "06f07c2c-0da1-493f-9bf0-d25dd1d24636",
+        "077be7cd-21e7-46cb-b25c-c256da55c10b",
+        "27183d1b-d482-4bc1-a47e-3da0d7e4dd2c",
+        "6720f0b2-23c2-4d78-bacf-2d0db6f7ddf5",
+        "8cc7cba0-40e2-48be-a5e7-598322383ded",
+        "d6ff2988-d72c-42e8-bbe2-67b1947ac042"
+      ],
+      "files": {
+        "manifest.json": "6d15d7a4565d6477c65085c13caec625141ffc6b685b27e387d63dd4a8b38e1d",
+        "review.json": "47fbefee9da4140b5cdec0c61b11935b36a573e2570a653462a9aef721e8298a",
+        "master_facts.json": "b5d2aa9fd859b48f7462e2e58358994f4923ba808c16b2b1668323318b595e1f",
+        "source-bindings.json": "678cefc08a7f376d0077ac12574d450654d446e21e6b79aba3ea0e1c80d672bf"
+      }
+    },
+    {
+      "setCode": "swsh10",
+      "setId": "fc7476af-51b1-47fa-9d6e-c910de99d247",
+      "manifestFingerprint": "388bbe81eb5ee9f9ff282eb4fbe86f60b96826a0bbfbfc5568a61c8388a5d925",
+      "parents": [
+        "017d54d6-badf-48a8-bb10-6c1648ca5a48",
+        "3837b7a7-5a44-40f7-8f78-15e051e7da4f",
+        "445109da-f36c-4992-83db-dd046ed1f822",
+        "5997bb7c-2970-4446-9486-bfdc89ca7035",
+        "68756c94-8762-412c-9659-392247bd8bca",
+        "75e4a208-b418-4c6d-a6b0-0a6633c243d0",
+        "8d361411-28c8-496e-b3f5-c7e494f94702",
+        "9506c5e3-8d8d-47ed-816d-698c73ae9ab7",
+        "a09be692-14ee-4cb4-a4b5-a91eb3fa0bb9",
+        "aaecd767-1350-47ba-a113-1b2384047b6a",
+        "bd216ea9-4213-4684-8286-98f346e62de8",
+        "c97163a2-c596-4209-ba46-4d9f24e00e0a",
+        "d5353963-8006-4049-afa5-51b45b63b966",
+        "e6da28d9-8e7a-4211-a2de-2c4d6c2b7f18"
+      ],
+      "files": {
+        "manifest.json": "7d6896c92287a6b06e1b4e191fceeb8bd14efa4c4005266a0e71d69fb211f9c4",
+        "review.json": "535494ad12ce860782a4756c5788fe7ead37e74bd284f33f277b4ed8743b0e11",
+        "master_facts.json": "aca041c0e4c179c3fa6bed6eab2446fe59740849b54b6628e4f88c3dc762a558",
+        "source-bindings.json": "69210d126459baf6e107601715e221f07b8158286f4a965351ca77e995e3c9f1"
+      }
+    }
+  ],
+  "fingerprint": "53e6b320860b991d3cfee13888b249c79713dfa58b29c2ab949fd1c2a8cf2cc2"
+}
