@@ -13,6 +13,7 @@ If a contract is missing from this index, it is not authoritative.
 
 | Contract | Status | Description |
 |--------|--------|-------------|
+| FIGHTING_REGULAR_MAPPING_REPAIR_V1 | Active bounded candidate under qualification; no production authority | docs/contracts/FIGHTING_REGULAR_MAPPING_REPAIR_V1.md — One exact regular-product re-anchor and one audit receipt, preserved stamp/printing/owner history, separate closure/approval/rollback and publication gates |
 | STAMP_SOURCE_7DA8_CONTINUITY_V1 | Active bounded candidate under qualification; no production authority | docs/contracts/STAMP_SOURCE_7DA8_CONTINUITY_V1.md — Exact November 23 source generation, sealed source context and separately owned mapping fixtures; preserves legacy source, physical scope, freshness and all release gates |
 | STAMP_SCHEMA_522_CONTINUITY_V1 | Active bounded preview under qualification; no production authority | docs/contracts/STAMP_SCHEMA_522_CONTINUITY_V1.md — Exact proposed direct-visibility ledger extension, sealed context and separate owned labs; preserves 519/521 behavior and original 98-insert physical scope |
 | STAMP_SCHEMA_521_CONTINUITY_V1 | Active bounded candidate under qualification; no production authority | docs/contracts/STAMP_SCHEMA_521_CONTINUITY_V1.md — Exact 519 writer definitions plus two fixed ledger IDs, explicit 521 context and separate owned qualification targets; original physical descriptors/98-row scope unchanged |
