@@ -1,5 +1,6 @@
 import {marketPipelineDatabaseConfigV1} from '../../backend/pricing/market_pipeline_database_config_v1.mjs';
-import {CROSS_TCG_MARKET_SCOPE_V2,readCrossTcgMarketBootstrapV3,assertCrossTcgMarketActivationV3} from '../../backend/pricing/cross_tcg_market_activation_guard_v3.mjs';
+import {CROSS_TCG_MARKET_SCOPE_V2} from '../../backend/pricing/cross_tcg_market_activation_guard_v3.mjs';
+import {readCrossTcgMarketBootstrapV4,assertCrossTcgMarketActivationV4} from '../../backend/pricing/cross_tcg_market_activation_guard_v4.mjs';
 import {TCGPLAYER_MARKET_PUBLICATION_POLICY_V3, evaluateTcgplayerMarketQualificationV3_2 as evaluateTcgplayerMarketQualificationV3} from '../../backend/pricing/tcgplayer_market_publication_policy_v3_2.mjs';
 import { execFile } from "node:child_process";
 import { createHash } from "node:crypto";
@@ -63,7 +64,7 @@ const DEFAULT_OUT_ROOT = path.join(
   "artifacts",
   "market_pricing_product_v1",
 );
-const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_30";
+const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_31";
 const PIPELINE_VERSION = "TCGPLAYER_MARKET_PIPELINE_V1";
 const SCHEMA_VERSION = "TCGPLAYER_MARKET_PUBLICATION_SCHEMA_V1";
 const SNAPSHOT_SCHEMA_VERSION = "MARKET_PRICE_PUBLICATION_SNAPSHOT_V1";
@@ -1440,7 +1441,7 @@ async function evaluateProductionActivationGuard(client, run, publicationSet) {
       previousStatementTimeout,
     ]);
     const counts = result.rows[0];
-    const crossScopeGuard = await assertCrossTcgMarketActivationV3(client,{runId:run.id,workerVersion:WORKER_VERSION,counts});
+    const crossScopeGuard = await assertCrossTcgMarketActivationV4(client,{runId:run.id,publicationSetId:publicationSet.id,workerVersion:WORKER_VERSION,counts});
     guardArtifact = {
       cross_tcg_scope_guard:crossScopeGuard,
       ...evaluateMtgPricingProductionActivationGuardV1({
@@ -1454,14 +1455,20 @@ async function evaluateProductionActivationGuard(client, run, publicationSet) {
       run_id: run.id,
       publication_set_id: publicationSet.id,
     };
+    if (run.run_mode === 'shadow') {
+      guardArtifact.guard_stage = 'shadow_pre_verification';
+      guardArtifact.evidence_scope = 'shadow_publication_snapshots';
+      guardArtifact.status = guardArtifact.ready_for_production ? 'shadow_coverage_qualified' : 'blocked';
+      guardArtifact.production_execution_authority = false;
+    }
   } catch (error) {
     guardArtifact = buildMtgPricingProductionGuardFailureArtifactV1({
       priorArtifact: guardArtifact,
       error,
       errorField: "worker_error",
     });
-    guardArtifact.guard_stage = "production_pre_activation";
-    guardArtifact.evidence_scope = "production_publication_snapshots";
+    guardArtifact.guard_stage = run.run_mode === 'shadow' ? 'shadow_pre_verification' : 'production_pre_activation';
+    guardArtifact.evidence_scope = run.run_mode === 'shadow' ? 'shadow_publication_snapshots' : 'production_publication_snapshots';
     guardArtifact.run_id = run.id;
     guardArtifact.publication_set_id = publicationSet.id;
     await persistMtgProductionGuardArtifact(guardArtifact);
@@ -1470,7 +1477,7 @@ async function evaluateProductionActivationGuard(client, run, publicationSet) {
   await persistMtgProductionGuardArtifact(guardArtifact);
   if (!guardArtifact.ready_for_production) {
     throw new Error(
-      `MTG pricing production activation guard blocked: ${JSON.stringify(guardArtifact.findings)}`,
+      `MTG pricing ${run.run_mode === 'shadow' ? 'shadow coverage qualification' : 'production activation'} guard blocked: ${JSON.stringify(guardArtifact.findings)}`,
     );
   }
   return guardArtifact;
@@ -1483,6 +1490,7 @@ async function activateAndVerify(client, run, publicationSet, runMode) {
       runMode === "production"
         ? await evaluateProductionActivationGuard(client, run, publicationSet)
         : null;
+    if (productionGuard) await persistActivationCoverageQualification(client, run.id, productionGuard);
     const activation = await client.query(
       `select *
          from public.activate_market_price_publication_set_v1($1, $2, $3)`,
@@ -1672,8 +1680,32 @@ async function runDryRun(client, args, sourceRun, runPlan) {
   return { decisions, reconciliation };
 }
 
+async function persistActivationCoverageQualification(client, runId, qualification) {
+  const result = await client.query(`update public.market_price_pipeline_runs
+    set reconciliation = reconciliation || jsonb_build_object('activation_coverage_qualification', $2::jsonb)
+    where id = $1 and reconciliation_state = 'reconciled'`,[runId,JSON.stringify(qualification)]);
+  if(result.rowCount!==1)throw new Error('activation_coverage_qualification_scope_changed');
+}
+
+async function qualifyFullShadowActivationCoverage(client, run, publicationSet) {
+  await client.query('begin');
+  try {
+    const qualification = await evaluateProductionActivationGuard(client, run, publicationSet);
+    await persistActivationCoverageQualification(client, run.id, qualification);
+    await client.query('commit');
+    return qualification;
+  } catch (error) {
+    await client.query('rollback');
+    await client.query(`update public.market_price_pipeline_runs
+      set state='failed',current_phase='shadow_verify',error=$2
+      where id=$1 and run_mode='shadow' and state not in('shadow_verified','verified')`,
+    [run.id,'shadow_activation_coverage_qualification:'+error.message]);
+    throw error;
+  }
+}
+
 async function runDurable(client, args, sourceRun, runPlan) {
-  if(args.runMode==='production')await readCrossTcgMarketBootstrapV3(client,WORKER_VERSION);
+  if(args.runMode==='production')await readCrossTcgMarketBootstrapV4(client,WORKER_VERSION);
   await client.query(
     "select pg_advisory_lock(hashtext('tcgplayer_market_publication_v1'))",
   );
@@ -1881,6 +1913,7 @@ async function runDurable(client, args, sourceRun, runPlan) {
     });
 
     if (args.runMode === "shadow") {
+      if(args.limit===null&&!args.canaryDefinition)await qualifyFullShadowActivationCoverage(client,run,publicationSet);
       await client.query(
         `update public.market_price_pipeline_runs
             set state = 'shadow_verified',
