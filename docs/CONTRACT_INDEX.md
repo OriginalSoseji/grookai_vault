@@ -19,6 +19,7 @@ decision after full qualification. Earlier indexed contracts remain binding.
 
 | Contract | Status | Description |
 |--------|--------|-------------|
+| JAPANESE_REVIEWED_PRICE_LINKS_V1 | Active bounded candidate under qualification; no production authority | docs/contracts/JAPANESE_REVIEWED_PRICE_LINKS_V1.md — Exact427 insert-only provider links to existing verified Japanese printings, archived physical/source lineage, retained-price524 effects, separate qualification/decision/rollback and unchanged publication guards |
 | REGULAR_PRODUCT_MAPPING_CORRECTION_524_V1 | Active bounded candidate under qualification; no production authority | docs/contracts/REGULAR_PRODUCT_MAPPING_CORRECTION_524_V1.md — Same29 regular-product corrections on the accepted retained-price524 frame, four reader/security pins, separate complete qualification and exact new decision; preserve the approved but unapplied523 package and all stamp holds |
 | REGULAR_PRODUCT_MAPPING_CORRECTION_V1 | Active bounded candidate under qualification; no production authority | docs/contracts/REGULAR_PRODUCT_MAPPING_CORRECTION_V1.md — Separate29 ordinary-product re-anchors, exact523 effects/source/reference preservation and independent qualification/approval/rollback; all stamp identity holds remain |
 | STAMP_IDENTITY_ADMISSION_HOLD_V1 | Active production admission stop | docs/contracts/STAMP_IDENTITY_ADMISSION_HOLD_V1.md — All32 pending parents overlap149 candidate stamp-identity pairs; no production prepare/write until governed identity reconciliation |
