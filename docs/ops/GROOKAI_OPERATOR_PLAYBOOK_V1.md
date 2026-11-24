@@ -1,3 +1,26 @@
+# Generic Play stamp identity evidence preparation — November 24, 2026
+
+Use [the V2 evidence model](../contracts/GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V2.md)
+and [checkpoint](../checkpoints/GENERIC_PLAY_STAMP_IDENTITY_EVIDENCE_20261124.md).
+The pure offline module is `backend/identity/generic_play_stamp_identity_evidence_v2.mjs`;
+its original source bundle and literal visual review are under
+`docs/catalog/generic_play_stamp_identity_evidence_v2`. It has no database or
+warehouse execution entry point. Series membership remains distribution
+provenance; an actual printed series marker requires separate identity review.
+
+The old raw-coordinate missing13 result is superseded by approved-base-alias
+and global collision reads: four existing Prize97 Normal stamped facts are
+preserved; nine targets lack a generic stamped parent. Keep GameStop and World
+Championship deck variants distinct. The model binds only those nine and never
+clears the independent32 hold, old98/32 programmes or original149 replay stop.
+
+Current base/identity/alias and collision inputs are required. Captured fixture
+inputs are offline inspection only, not current uniqueness proof or approval.
+A NEW_CANONICAL_REQUIRED result still needs governed bridge/classification/
+staging, exact public-ID minting, full bounded executor qualification and the
+ordinary concrete owner/rollback/readback gates. No finish, image, source,
+alias, owner or price row is changed by this preparation.
+
 # Four retail-stamped Cosmos finishes — November 24, 2026
 
 Follow the [bounded Cosmos contract](../contracts/RETAIL_STAMP_COSMOS_FOUR_EXECUTION_V1.md)
