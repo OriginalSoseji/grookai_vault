@@ -12,7 +12,7 @@ const fixture = Array.from({ length: 195 }, (_, index) => ({
   name: `Card ${index}`, artist: 'Yuka Morii', number: String(index),
 }));
 
-function loadRoute({ fail = false, fastSearchTimeout = false, softTimeout = false, stallCombined = false, sets = [], catalogFail = false, capture = () => {}, captureCollector = () => {}, collectorRows = fixture, captureRanked = () => {}, rankedRows, exactCardName, exactCardNames = [], partialCardNames = {}, rows = fixture } = {}) {
+function loadRoute({ fail = false, fastSearchTimeout = false, softTimeout = false, stallCombined = false, stallProvisional = false, captureProvisional = () => {}, sets = [], catalogFail = false, capture = () => {}, captureCollector = () => {}, collectorRows = fixture, captureRanked = () => {}, rankedRows, exactCardName, exactCardNames = [], partialCardNames = {}, rows = fixture } = {}) {
   const cache = new Map();
   const mocks = {
     'server-only': {},
@@ -37,7 +37,11 @@ function loadRoute({ fail = false, fastSearchTimeout = false, softTimeout = fals
         return collectorRows;
       },
     },
-    '@/lib/provisional/getPublicProvisionalCards': { getPublicProvisionalCards: async () => [] },
+    '@/lib/provisional/getPublicProvisionalCards': { getPublicProvisionalCards: async (input) => {
+      captureProvisional(input);
+      if (stallProvisional) return new Promise((_, reject) => input.signal.addEventListener('abort', () => reject(input.signal.reason), { once: true }));
+      return [];
+    } },
     '@/lib/provisional/getPromotionTransitionState': {
       getPromotionTransitionStateForCanonicalCards: async () => new Map(),
       applyPromotionTransitionsToCanonicalRows: (rows) => rows,
@@ -74,7 +78,7 @@ function loadRoute({ fail = false, fastSearchTimeout = false, softTimeout = fals
       compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, esModuleInterop: true },
     }).outputText;
     vm.runInNewContext(code, { module, exports: module.exports, process, console, Error, performance, AbortController, AbortSignal,
-      setTimeout: (callback, delay) => setTimeout(callback, (softTimeout && delay === 4200) || (stallCombined && delay === 12000) ? 1 : delay), clearTimeout, require: (id) => {
+      setTimeout: (callback, delay) => setTimeout(callback, (softTimeout && delay === 4200) || (stallCombined && delay === 12000) || (stallProvisional && delay === 1200) ? 1 : delay), clearTimeout, require: (id) => {
         if (Object.hasOwn(mocks, id)) return mocks[id];
         if (id.startsWith('@/') || id.startsWith('.')) {
           let target = id.startsWith('@/') ? path.join(web, id.slice(2)) : path.resolve(path.dirname(file), id);
@@ -89,6 +93,28 @@ function loadRoute({ fail = false, fastSearchTimeout = false, softTimeout = fals
   const get = load(path.join(web, 'app/api/resolver/search/route.ts')).GET;
   return request => get({headers:new Headers(),...request});
 }
+
+test('provisional lookup timeout aborts its request without losing canonical results', async () => {
+  let signal;
+  const response = await loadRoute({ stallProvisional: true, captureProvisional: input => { signal = input.signal; } })({
+    nextUrl: new URL('https://fixture?q=Pikachu&limit=5'),
+  });
+  assert.equal(response.status, 200);
+  assert.equal(signal.aborted, true);
+  const body = await response.json();
+  assert.ok(body.rows.length > 0);
+  assert.equal(body.provisional.length, 0);
+});
+
+test('caller cancellation reaches the optional provisional lookup', async () => {
+  const caller = new AbortController();
+  let signal;
+  await loadRoute({ stallProvisional: true, captureProvisional: input => {
+    signal = input.signal;
+    queueMicrotask(() => caller.abort());
+  } })({ nextUrl: new URL('https://fixture?q=Pikachu&limit=5'), signal: caller.signal });
+  assert.equal(signal.aborted, true);
+});
 
 test('timed-out searches are never cached as empty successful results', async () => {
   for (const options of [{ fastSearchTimeout: true }, { softTimeout: true }]) {

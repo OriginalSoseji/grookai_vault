@@ -315,9 +315,14 @@ function getPublicProvisionalCardsFailClosed(input: {
   query: string;
   setCode: string;
   limit: number;
+  signal?: AbortSignal;
 }) {
+  const timeoutController = new AbortController();
+  const signal = input.signal
+    ? AbortSignal.any([input.signal, timeoutController.signal])
+    : timeoutController.signal;
   return withTimeout(
-    getPublicProvisionalCards(input).catch((error) => {
+    getPublicProvisionalCards({ ...input, signal }).catch((error) => {
       if (error instanceof Error && error.message.startsWith("SECURITY:")) {
         throw error;
       }
@@ -331,6 +336,7 @@ function getPublicProvisionalCardsFailClosed(input: {
     }),
     1200,
     [],
+    () => timeoutController.abort(),
   );
 }
 
@@ -880,6 +886,7 @@ export async function GET(request: NextRequest) {
             query: rawQuery,
             setCode: effectiveExactSetCode,
             limit: 12,
+            signal: request.signal,
           })
         : Promise.resolve([]),
     ]);
