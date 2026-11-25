@@ -31,8 +31,14 @@ test('full-scope workflow is shadow-only and has no publication limit', () => {
 
 test('full-scope workflow preserves artifacts even when a phase fails', () => {
   assert.match(workflow, /timeout-minutes: 330/);
-  assert.match(workflow, /SCHEDULE_MAX_ATTEMPTS: '2'/);
-  assert.match(workflow, /--max-attempts=2/);
+  assert.match(workflow, /SCHEDULE_MAX_ATTEMPTS: '1'/);
+  assert.match(workflow, /--max-attempts=1/);
+  assert.doesNotMatch(workflow, /--max-attempts=2/);
+  assert.match(workflow, /DATABASE_TIMEOUT_MINUTES: '180'/);
+  assert.match(workflow, /PHASE_TIMEOUT_MINUTES: '240'/);
+  assert.match(workflow, /resume_run_key:/);
+  assert.match(workflow, /SCHEDULE_RUN_KEY: \$\{\{ inputs\.resume_run_key/);
+  assert.match(workflow, /TCGPLAYER-MARKET-FULL-SHADOW-\[A-Za-z0-9-\]/);
   assert.match(workflow, /if: always\(\)/);
   assert.match(workflow, /scheduled_summary\.json/);
   assert.match(workflow, /pipeline_state\.json/);
