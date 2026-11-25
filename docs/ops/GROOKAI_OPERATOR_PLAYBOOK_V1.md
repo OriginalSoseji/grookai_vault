@@ -1,3 +1,26 @@
+# Generic Play stamp identity evidence preparation — November 24, 2026
+
+Use [the V2 evidence model](../contracts/GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V2.md)
+and [checkpoint](../checkpoints/GENERIC_PLAY_STAMP_IDENTITY_EVIDENCE_20261124.md).
+The pure offline module is `backend/identity/generic_play_stamp_identity_evidence_v2.mjs`;
+its original source bundle and literal visual review are under
+`docs/catalog/generic_play_stamp_identity_evidence_v2`. It has no database or
+warehouse execution entry point. Series membership remains distribution
+provenance; an actual printed series marker requires separate identity review.
+
+The old raw-coordinate missing13 result is superseded by approved-base-alias
+and global collision reads: four existing Prize97 Normal stamped facts are
+preserved; nine targets lack a generic stamped parent. Keep GameStop and World
+Championship deck variants distinct. The model binds only those nine and never
+clears the independent32 hold, old98/32 programmes or original149 replay stop.
+
+Current base/identity/alias and collision inputs are required. Captured fixture
+inputs are offline inspection only, not current uniqueness proof or approval.
+A NEW_CANONICAL_REQUIRED result still needs governed bridge/classification/
+staging, exact public-ID minting, full bounded executor qualification and the
+ordinary concrete owner/rollback/readback gates. No finish, image, source,
+alias, owner or price row is changed by this preparation.
+
 # Four retail-stamped Cosmos finishes — November 24, 2026
 
 Follow the [bounded Cosmos contract](../contracts/RETAIL_STAMP_COSMOS_FOUR_EXECUTION_V1.md)
@@ -6284,3 +6307,38 @@ apply and separate-connection readback. Current frame drift blocks that plan;
 never refresh it silently. No source/price/owner/canonical/publication write, no
 coverage exception, no original149 or regular29 repeat, and no stamp-hold
 clearance. Full corrected unlimited shadow/publication/app/refresh follow.
+
+## Six current Japanese single-card kind corrections
+
+Worker32/policyV3_3 extends the unchanged predecessor for exactly six reviewed
+Japanese singles whose titles contain Bundle or Box. Fixed product/group/number/
+CardType/parent/child/mapping facts and the full immutable V4 metadata digest
+are required. Only the canonical past reviewed_at audit timestamp may differ;
+it never refreshes a quote. Altered/missing evidence fails closed, including a
+changed harmless title that otherwise would publish. Other products/finishes and
+Japanese4/MTG38/Play75 decisions retain predecessor behavior.
+
+Keep this source unmerged until actual V3/V4 insertion and independent production
+metadata/audit readback match the six registry targets and original V4 producer.
+Local fixture proof alone is not production acceptance. Then require full normal/
+hosted/exact review, NEW unlimited durable shadow and original coverage/activation
+guards, real source/consumer/app price/date checks and natural refresh. No physical/
+owner/source/price write, no percentage, no17-gap exception or stamp-hold release.
+
+### Reviewed generic Play bridge numbers — November24,2026
+
+Follow REVIEWED_GENERIC_PLAY_BRIDGE_NUMBER_V1 for the nine-target V2 evidence
+rule. Carmine discovery103/131 contradicts both its current TCGplayer product
+and reviewed original image145/167. Use the byte-bound reviewed number in all
+candidate identity fields; retain original discovery coordinates in provenance.
+Changed product/name/set/stamp/number evidence blocks intake. Other intake rules
+retain their current behavior. This is review preparation, never automatic
+founder approval, staging, execution, finish/price admission or hold clearance.
+Two historical Okidogi/Bouffalant promotions point to ordinary base parents and
+must not be replayed or relabelled. Nine canonical-stamp preparations, GameStop
+coexistence and the four already-existing Prize97 Normal facts remain distinct.
+Original149/regular29 never repeat;32/old98/32links stay held. Keep this bridge
+source branch unmerged until current Japanese V3/V4 exact producer data effects
+are applied and independently read back. Complete its own full normal, hosted
+and exact-source review before any subsequent release.
+
