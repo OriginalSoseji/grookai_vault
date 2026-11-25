@@ -1,0 +1,42 @@
+# Cached TCGCSV source TLS recovery — November 25, 2026
+
+The pipeline's outage fallback used a separate `pg.Client` configuration with
+certificate verification disabled. It now calls the shared canonical database
+configuration and a dedicated read-only source reader. The active source query,
+ordering, selected fields, freshness policy and source timestamps are unchanged.
+
+Remote connections must have an authorized TLS socket. The reader starts and
+verifies an explicit read-only transaction before selecting source evidence,
+because the actual session pooler ignores startup read-only options. Failure to
+verify either condition prevents fallback evidence from being returned. Cleanup
+rolls back and closes the connection on success or failure. Literal loopback
+remains available for owned qualification databases.
+
+Tests cover the real reader boundary, verified direct and session-pooler routes,
+unverified TLS, unenforced transaction mode, invalid project/database/routes,
+missing evidence, connection/query errors and cleanup. The pipeline imports this
+reader; it has no second unverified fallback configuration. The scheduled health
+reader had the same independent TLS bypass. It now uses the shared connection
+helper, verifies the actual remote socket and explicitly confirms its existing
+read-only transaction before reading evidence. All health SQL and thresholds are
+unchanged. A regression against its original source fails before this correction.
+
+Prepared reader qualification used a fresh verified production read-only
+transaction and retained the exact original source row. Receipts are under
+`C:/grookai_vault_operator_artifacts/square_launch_readiness_20261122/hardening-v1/bulk-authority-v1/current-main-1055-v1/tls-preparation-v1/`.
+That prototype proof is not final-source release acceptance. The first full check
+was deliberately stopped when the additional health-reader bypass was observed;
+its original partial log and stop reason are retained. Normal full hooks,
+hosted checks, review and runtime qualification remain required for this source.
+
+The full worker32 shadow from source `62cb16aba7` reached all 249,767 candidate
+decisions before its original four-hour outer timeout. Its original failure is
+retained. One separately terminal-qualified continuation resumes the same durable
+run under the original locks, unchanged worker/source/freshness and no activation.
+This branch changes neither that staged source nor any running pricing worker.
+
+No schema, mapping, canonical identity, owner, price, source observation or
+publication pointer is written by this change. Completed Japanese link batches
+and original stamp holds must not be replayed. Production completion still needs
+full reconciled publication, guarded activation, actual consumer/app comparison
+and a natural scheduled refresh.

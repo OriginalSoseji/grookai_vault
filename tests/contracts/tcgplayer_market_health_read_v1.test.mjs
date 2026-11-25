@@ -3,6 +3,13 @@ import fs from 'node:fs';
 import test from 'node:test';
 
 const source = fs.readFileSync(new URL('../../scripts/workers/tcgplayer_market_health_v1.mjs', import.meta.url), 'utf8');
+test('health verifies TLS and transaction mode before reading publication evidence', () => {
+  assert.doesNotMatch(source, /rejectUnauthorized\s*:\s*false/);
+  assert.match(source, /marketPipelineDatabaseConfigV1\(url, process\.env, \{readOnly:true/);
+  assert.match(source, /client\.connection\?\.stream\?\.authorized !== true/);
+  assert.match(source, /show transaction_read_only/);
+  assert.ok(source.indexOf('show transaction_read_only') < source.indexOf('with latest_source as'));
+});
 test('health bulk joins are fenced to selected and active evidence', () => {
   assert.match(source, /selected_decisions as materialized/);
   assert.match(source, /left join selected_decisions decision/);
