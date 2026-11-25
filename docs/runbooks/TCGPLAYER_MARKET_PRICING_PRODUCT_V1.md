@@ -381,6 +381,18 @@ node scripts/workers/tcgplayer_market_pipeline_v1.mjs `
   --run-key=TCGPLAYER-MARKET-FULL-SHADOW-<timestamp>
 ```
 
+The hosted equivalent is `.github/workflows/tcgplayer-market-full-scope-shadow.yml`.
+Dispatch it from the exact deployed main commit. Leave `resume_run_key` blank for
+a new shadow. A failed run can resume with its artifact's run key only when the
+dispatch SHA is the same producing SHA recorded by that run. If workflow or
+application code has advanced, start a new shadow run key; the worker rejects a
+cross-commit resume to preserve source provenance. Shadow mode never activates
+publication, has no row limit, runs one attempt per dispatch, and uses a
+180-minute database timeout so the full-scope preparation phase can complete
+on production-sized source data. After a timeout, inspect the immutable
+artifacts before deciding whether an identical-commit resume or a new run is
+appropriate.
+
 4. Require corrected coverage against the resulting publication run:
 
 ```powershell

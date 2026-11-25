@@ -40,3 +40,30 @@ publication pointer is written by this change. Completed Japanese link batches
 and original stamp holds must not be replayed. Production completion still needs
 full reconciled publication, guarded activation, actual consumer/app comparison
 and a natural scheduled refresh.
+
+## Server runtime handoff
+
+The credential-free Linux candidate is under
+`/var/lib/grookai/market-pricing/worker32-tls-staging-20261125-e848d8fb21`.
+Its complete target Git tree and all 609 original execution inputs passed; all
+178 publication/transport tests passed without failures or skips. This is the
+historical `e848d8fb21` candidate. Main subsequently advanced through PR1062;
+the integrated source must complete fresh normal, hosted and review checks.
+Neither candidate staging nor these tests activate pricing.
+
+Production handoff must use the runtime deployment lock, a recorded exact
+qualified source SHA, the verified Node22.23.5 binary and approved CA. Preserve
+the existing private environment file, original rollback evidence and MEE link.
+Protect executable runtime paths from service-user writes and scope Git trust to
+that exact runtime directory when required. Put writable output under the data
+volume, with both existing storage floors intact.
+
+The real full shadow exceeded the original four-hour outer publication budget.
+Budget the server publication phase for eight hours and its service for twelve
+hours; retain the active-ask 120-minute cap, unlimited source scope, 36-hour
+freshness, reconciliation, coverage and activation checks. The separate manual
+GitHub workflow retains its own checked-in bounds. Keep the daily08:15UTC timer;
+do not count an incomplete or failed daily slot as natural-refresh acceptance.
+Bind replacement verification to the actual completed full shadow and source
+qualification, never a copied historical release flag. Capture actual first-run
+resource use and source/consumer/app amounts before declaring the handoff done.
