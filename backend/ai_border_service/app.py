@@ -751,7 +751,7 @@ async def ocr_card_signals(request: Request):
                             roi_thresh,
                             config=(
                                 f"--psm {psm} "
-                                "-c tessedit_char_whitelist=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'’ -"
+                                "-c \"tessedit_char_whitelist=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'’ -\""
                             ),
                         )
                         or ""
