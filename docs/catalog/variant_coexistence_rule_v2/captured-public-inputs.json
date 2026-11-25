@@ -1,0 +1,2425 @@
+[
+  {
+    "candidate": {
+      "row": {
+        "id": "87c862d8-e22d-4301-88e6-f5522a8e6ebf",
+        "source": "justtcg",
+        "raw_import_id": "42066",
+        "upstream_id": "pokemon-prize-pack-series-cards-koraidon-rare",
+        "tcgplayer_id": "565473",
+        "set_id": "prize-pack-series-cards-pokemon",
+        "name_raw": "Koraidon",
+        "number_raw": "119/162",
+        "normalized_name": "Koraidon",
+        "normalized_number_left": "119",
+        "normalized_number_plain": "119",
+        "normalized_printed_total": "162",
+        "has_slash_number": true,
+        "has_alpha_suffix_number": false,
+        "has_parenthetical_modifier": false,
+        "match_status": "AMBIGUOUS",
+        "candidate_bucket": "PRINTED_IDENTITY_REVIEW",
+        "classifier_version": "CONTROLLED_GROWTH_INGESTION_PIPELINE_V1",
+        "resolved_set_code": null,
+        "card_print_id": null,
+        "payload": {
+          "name": "Koraidon",
+          "number": "119/162",
+          "rarity": "Rare",
+          "set_name": "Prize Pack Series Cards",
+          "variants": [
+            {
+              "id": "pokemon-prize-pack-series-cards-koraidon-rare_near-mint",
+              "price": 0.16,
+              "avgPrice": 0.16,
+              "language": "English",
+              "printing": "Normal",
+              "condition": "Near Mint",
+              "covPrice7d": 0,
+              "iqrPrice7d": 0,
+              "maxPrice1y": 0.21,
+              "maxPrice7d": 0.16,
+              "minPrice1y": 0.09,
+              "minPrice7d": 0.16,
+              "avgPrice30d": 0.16,
+              "avgPrice90d": 0.14,
+              "covPrice30d": 0.044952859044159355,
+              "covPrice90d": 0.17763832009285294,
+              "iqrPrice30d": 0.01,
+              "iqrPrice90d": 0.05,
+              "lastUpdated": 1774929204,
+              "maxPrice30d": 0.16,
+              "maxPrice90d": 0.17,
+              "minPrice30d": 0.14,
+              "minPrice90d": 0.09,
+              "priceHistory": [
+                {
+                  "p": 0.16,
+                  "t": 1774396800
+                },
+                {
+                  "p": 0.16,
+                  "t": 1774483200
+                },
+                {
+                  "p": 0.16,
+                  "t": 1774569600
+                },
+                {
+                  "p": 0.16,
+                  "t": 1774656000
+                },
+                {
+                  "p": 0.16,
+                  "t": 1774742400
+                },
+                {
+                  "p": 0.16,
+                  "t": 1774828800
+                }
+              ],
+              "trendSlope7d": 0,
+              "priceChange7d": 0,
+              "trendSlope30d": 0.000253884787385854,
+              "trendSlope90d": 0.0007893812696746549,
+              "priceChange30d": 0,
+              "priceChange90d": 45.45,
+              "tcgplayerSkuId": "8109838",
+              "maxPriceAllTime": 0.21,
+              "minPriceAllTime": 0.09,
+              "priceChange24hr": 0,
+              "priceHistory30d": [
+                {
+                  "p": 0.16,
+                  "t": 1774396800
+                },
+                {
+                  "p": 0.16,
+                  "t": 1774483200
+                },
+                {
+                  "p": 0.16,
+                  "t": 1774569600
+                },
+                {
+                  "p": 0.16,
+                  "t": 1774656000
+                },
+                {
+                  "p": 0.16,
+                  "t": 1774742400
+                },
+                {
+                  "p": 0.16,
+                  "t": 1774828800
+                }
+              ],
+              "stddevPopPrice7d": 0,
+              "stddevPopPrice30d": 0.01,
+              "stddevPopPrice90d": 0.02,
+              "maxPriceAllTimeDate": "2025-04-02T06:32:49.365Z",
+              "minPriceAllTimeDate": "2026-01-04T11:31:04.340Z",
+              "priceChangesCount7d": 0,
+              "priceChangesCount30d": 4,
+              "priceChangesCount90d": 25,
+              "priceRelativeTo30dRange": 1,
+              "priceRelativeTo90dRange": 0.875
+            },
+            {
+              "id": "pokemon-prize-pack-series-cards-koraidon-rare_lightly-played",
+              "price": 0.1,
+              "avgPrice": 0.1,
+              "language": "English",
+              "printing": "Normal",
+              "condition": "Lightly Played",
+              "covPrice7d": 0,
+              "iqrPrice7d": 0,
+              "maxPrice1y": 0.35,
+              "maxPrice7d": 0.1,
+              "minPrice1y": 0.09,
+              "minPrice7d": 0.1,
+              "avgPrice30d": 0.1,
+              "avgPrice90d": 0.1,
+              "covPrice30d": 0.04111426856687981,
+              "covPrice90d": 0.047407625328148774,
+              "iqrPrice30d": 0,
+              "iqrPrice90d": 0.01,
+              "lastUpdated": 1774929204,
+              "maxPrice30d": 0.11,
+              "maxPrice90d": 0.11,
+              "minPrice30d": 0.09,
+              "minPrice90d": 0.09,
+              "priceHistory": [
+                {
+                  "p": 0.1,
+                  "t": 1774396800
+                },
+                {
+                  "p": 0.1,
+                  "t": 1774483200
+                },
+                {
+                  "p": 0.1,
+                  "t": 1774569600
+                },
+                {
+                  "p": 0.1,
+                  "t": 1774656000
+                },
+                {
+                  "p": 0.1,
+                  "t": 1774742400
+                },
+                {
+                  "p": 0.1,
+                  "t": 1774828800
+                }
+              ],
+              "trendSlope7d": 0,
+              "priceChange7d": 0,
+              "trendSlope30d": -0.000247494566246211,
+              "trendSlope90d": -0.00006264137555502351,
+              "priceChange30d": -9.09,
+              "priceChange90d": -9.09,
+              "tcgplayerSkuId": "8109839",
+              "maxPriceAllTime": 0.35,
+              "minPriceAllTime": 0.09,
+              "priceChange24hr": 0,
+              "priceHistory30d": [
+                {
+                  "p": 0.1,
+                  "t": 1774396800
+                },
+                {
+                  "p": 0.1,
+                  "t": 1774483200
+                },
+                {
+                  "p": 0.1,
+                  "t": 1774569600
+                },
+                {
+                  "p": 0.1,
+                  "t": 1774656000
+                },
+                {
+                  "p": 0.1,
+                  "t": 1774742400
+                },
+                {
+                  "p": 0.1,
+                  "t": 1774828800
+                }
+              ],
+              "stddevPopPrice7d": 0,
+              "stddevPopPrice30d": 0,
+              "stddevPopPrice90d": 0,
+              "maxPriceAllTimeDate": "2025-04-01T03:02:40.173Z",
+              "minPriceAllTimeDate": "2026-03-09T18:56:00.567Z",
+              "priceChangesCount7d": 0,
+              "priceChangesCount30d": 3,
+              "priceChangesCount90d": 6,
+              "priceRelativeTo30dRange": 0.5,
+              "priceRelativeTo90dRange": 0.5
+            },
+            {
+              "id": "pokemon-prize-pack-series-cards-koraidon-rare_moderately-played",
+              "price": 0.08,
+              "language": "English",
+              "printing": "Normal",
+              "condition": "Moderately Played",
+              "iqrPrice7d": 0,
+              "maxPrice1y": 0.08,
+              "minPrice1y": 0.08,
+              "avgPrice90d": 0.08,
+              "covPrice90d": 0,
+              "iqrPrice30d": 0,
+              "iqrPrice90d": 0,
+              "lastUpdated": 1769320672,
+              "maxPrice90d": 0.08,
+              "minPrice90d": 0.08,
+              "trendSlope90d": 0,
+              "priceChange90d": 0,
+              "tcgplayerSkuId": "8109840",
+              "maxPriceAllTime": 0.08,
+              "minPriceAllTime": 0.08,
+              "stddevPopPrice90d": 0,
+              "maxPriceAllTimeDate": "2026-01-25T05:57:52.217Z",
+              "minPriceAllTimeDate": "2026-01-25T05:57:52.217Z",
+              "priceChangesCount7d": 0,
+              "priceChangesCount30d": 0,
+              "priceChangesCount90d": 0
+            }
+          ],
+          "tcgplayerId": "565473",
+          "_external_id": "pokemon-prize-pack-series-cards-koraidon-rare",
+          "_set_external_id": "prize-pack-series-cards-pokemon",
+          "_grookai_ingestion_v1": {
+            "source_phase": "CONTROLLED_GROWTH_INGESTION_PIPELINE_V1",
+            "classification": "NEEDS_REVIEW",
+            "worker_version": "CONTROLLED_GROWTH_INGESTION_PIPELINE_V1",
+            "confidence_score": 0.35,
+            "normalized_number": "119",
+            "normalized_name_key": "koraidon",
+            "inferred_variant_key": "",
+            "candidate_set_mapping": [],
+            "classification_reason": "set_mapping_missing",
+            "extracted_number_plain": "119",
+            "candidate_card_print_ids": []
+          }
+        },
+        "raw_payload": {
+          "name": "Koraidon",
+          "number": "119/162",
+          "rarity": "Rare",
+          "set_name": "Prize Pack Series Cards",
+          "variants": [
+            {
+              "id": "pokemon-prize-pack-series-cards-koraidon-rare_near-mint",
+              "price": 0.16,
+              "avgPrice": 0.16,
+              "language": "English",
+              "printing": "Normal",
+              "condition": "Near Mint",
+              "covPrice7d": 0,
+              "iqrPrice7d": 0,
+              "maxPrice1y": 0.21,
+              "maxPrice7d": 0.16,
+              "minPrice1y": 0.09,
+              "minPrice7d": 0.16,
+              "avgPrice30d": 0.16,
+              "avgPrice90d": 0.14,
+              "covPrice30d": 0.044952859044159355,
+              "covPrice90d": 0.17763832009285294,
+              "iqrPrice30d": 0.01,
+              "iqrPrice90d": 0.05,
+              "lastUpdated": 1774929204,
+              "maxPrice30d": 0.16,
+              "maxPrice90d": 0.17,
+              "minPrice30d": 0.14,
+              "minPrice90d": 0.09,
+              "priceHistory": [
+                {
+                  "p": 0.16,
+                  "t": 1774396800
+                },
+                {
+                  "p": 0.16,
+                  "t": 1774483200
+                },
+                {
+                  "p": 0.16,
+                  "t": 1774569600
+                },
+                {
+                  "p": 0.16,
+                  "t": 1774656000
+                },
+                {
+                  "p": 0.16,
+                  "t": 1774742400
+                },
+                {
+                  "p": 0.16,
+                  "t": 1774828800
+                }
+              ],
+              "trendSlope7d": 0,
+              "priceChange7d": 0,
+              "trendSlope30d": 0.000253884787385854,
+              "trendSlope90d": 0.0007893812696746549,
+              "priceChange30d": 0,
+              "priceChange90d": 45.45,
+              "tcgplayerSkuId": "8109838",
+              "maxPriceAllTime": 0.21,
+              "minPriceAllTime": 0.09,
+              "priceChange24hr": 0,
+              "priceHistory30d": [
+                {
+                  "p": 0.16,
+                  "t": 1774396800
+                },
+                {
+                  "p": 0.16,
+                  "t": 1774483200
+                },
+                {
+                  "p": 0.16,
+                  "t": 1774569600
+                },
+                {
+                  "p": 0.16,
+                  "t": 1774656000
+                },
+                {
+                  "p": 0.16,
+                  "t": 1774742400
+                },
+                {
+                  "p": 0.16,
+                  "t": 1774828800
+                }
+              ],
+              "stddevPopPrice7d": 0,
+              "stddevPopPrice30d": 0.01,
+              "stddevPopPrice90d": 0.02,
+              "maxPriceAllTimeDate": "2025-04-02T06:32:49.365Z",
+              "minPriceAllTimeDate": "2026-01-04T11:31:04.340Z",
+              "priceChangesCount7d": 0,
+              "priceChangesCount30d": 4,
+              "priceChangesCount90d": 25,
+              "priceRelativeTo30dRange": 1,
+              "priceRelativeTo90dRange": 0.875
+            },
+            {
+              "id": "pokemon-prize-pack-series-cards-koraidon-rare_lightly-played",
+              "price": 0.1,
+              "avgPrice": 0.1,
+              "language": "English",
+              "printing": "Normal",
+              "condition": "Lightly Played",
+              "covPrice7d": 0,
+              "iqrPrice7d": 0,
+              "maxPrice1y": 0.35,
+              "maxPrice7d": 0.1,
+              "minPrice1y": 0.09,
+              "minPrice7d": 0.1,
+              "avgPrice30d": 0.1,
+              "avgPrice90d": 0.1,
+              "covPrice30d": 0.04111426856687981,
+              "covPrice90d": 0.047407625328148774,
+              "iqrPrice30d": 0,
+              "iqrPrice90d": 0.01,
+              "lastUpdated": 1774929204,
+              "maxPrice30d": 0.11,
+              "maxPrice90d": 0.11,
+              "minPrice30d": 0.09,
+              "minPrice90d": 0.09,
+              "priceHistory": [
+                {
+                  "p": 0.1,
+                  "t": 1774396800
+                },
+                {
+                  "p": 0.1,
+                  "t": 1774483200
+                },
+                {
+                  "p": 0.1,
+                  "t": 1774569600
+                },
+                {
+                  "p": 0.1,
+                  "t": 1774656000
+                },
+                {
+                  "p": 0.1,
+                  "t": 1774742400
+                },
+                {
+                  "p": 0.1,
+                  "t": 1774828800
+                }
+              ],
+              "trendSlope7d": 0,
+              "priceChange7d": 0,
+              "trendSlope30d": -0.000247494566246211,
+              "trendSlope90d": -0.00006264137555502351,
+              "priceChange30d": -9.09,
+              "priceChange90d": -9.09,
+              "tcgplayerSkuId": "8109839",
+              "maxPriceAllTime": 0.35,
+              "minPriceAllTime": 0.09,
+              "priceChange24hr": 0,
+              "priceHistory30d": [
+                {
+                  "p": 0.1,
+                  "t": 1774396800
+                },
+                {
+                  "p": 0.1,
+                  "t": 1774483200
+                },
+                {
+                  "p": 0.1,
+                  "t": 1774569600
+                },
+                {
+                  "p": 0.1,
+                  "t": 1774656000
+                },
+                {
+                  "p": 0.1,
+                  "t": 1774742400
+                },
+                {
+                  "p": 0.1,
+                  "t": 1774828800
+                }
+              ],
+              "stddevPopPrice7d": 0,
+              "stddevPopPrice30d": 0,
+              "stddevPopPrice90d": 0,
+              "maxPriceAllTimeDate": "2025-04-01T03:02:40.173Z",
+              "minPriceAllTimeDate": "2026-03-09T18:56:00.567Z",
+              "priceChangesCount7d": 0,
+              "priceChangesCount30d": 3,
+              "priceChangesCount90d": 6,
+              "priceRelativeTo30dRange": 0.5,
+              "priceRelativeTo90dRange": 0.5
+            },
+            {
+              "id": "pokemon-prize-pack-series-cards-koraidon-rare_moderately-played",
+              "price": 0.08,
+              "language": "English",
+              "printing": "Normal",
+              "condition": "Moderately Played",
+              "iqrPrice7d": 0,
+              "maxPrice1y": 0.08,
+              "minPrice1y": 0.08,
+              "avgPrice90d": 0.08,
+              "covPrice90d": 0,
+              "iqrPrice30d": 0,
+              "iqrPrice90d": 0,
+              "lastUpdated": 1769320672,
+              "maxPrice90d": 0.08,
+              "minPrice90d": 0.08,
+              "trendSlope90d": 0,
+              "priceChange90d": 0,
+              "tcgplayerSkuId": "8109840",
+              "maxPriceAllTime": 0.08,
+              "minPriceAllTime": 0.08,
+              "stddevPopPrice90d": 0,
+              "maxPriceAllTimeDate": "2026-01-25T05:57:52.217Z",
+              "minPriceAllTimeDate": "2026-01-25T05:57:52.217Z",
+              "priceChangesCount7d": 0,
+              "priceChangesCount30d": 0,
+              "priceChangesCount90d": 0
+            }
+          ],
+          "tcgplayerId": "565473",
+          "_external_id": "pokemon-prize-pack-series-cards-koraidon-rare",
+          "_set_external_id": "prize-pack-series-cards-pokemon"
+        }
+      },
+      "bridge_scope_reason": "stamped_ready_batch_scope",
+      "canonical_set_code": "sv05",
+      "canonical_set_name": "Temporal Forces",
+      "stamped_batch_entry": {
+        "batch_index": 3,
+        "source_external_id": "pokemon-prize-pack-series-cards-koraidon-rare",
+        "source_set_id": "prize-pack-series-cards-pokemon",
+        "name": "Koraidon",
+        "candidate_name": "Koraidon",
+        "printed_number": "119/162",
+        "number_plain": "119",
+        "proposed_variant_key": "play_pokemon_stamp",
+        "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V2",
+        "stamp_label": "Play! Pokémon",
+        "canonical_queue_key": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11:play_pokemon_stamp",
+        "effective_routed_set_code": "sv05",
+        "effective_routed_set_name": "Temporal Forces",
+        "effective_identity_space": "pokemon_eng_standard",
+        "underlying_base_proof_summary": {
+          "underlying_base_state": "PROVEN",
+          "live_base_card_print_id": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11",
+          "live_base_set_code": "sv05",
+          "live_base_name": "Koraidon",
+          "live_base_number": "119",
+          "review_only": true,
+          "current_evidence_sha256": "fae53365cb7552b55da8ac53d5fe9d899eaea439a26ab27c5f02a73595af06cb"
+        },
+        "target_base_resolution": {
+          "target_set_code": "sv05",
+          "target_set_name": "Temporal Forces",
+          "target_base_card_print_id": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11"
+        },
+        "pre_intake_audit": {
+          "live_source_candidate_id": "87c862d8-e22d-4301-88e6-f5522a8e6ebf",
+          "review_only": true,
+          "production_authority": false,
+          "registry_fingerprint": "7a9fac6bb539af6ba438d057d148f20be7ba3b79f848d1917267c212a4f935b5"
+        }
+      },
+      "variant_identity": {
+        "rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V2",
+        "applies": true,
+        "status": "RESOLVED_STAMPED_IDENTITY",
+        "collision_group_key": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11:play_pokemon_stamp",
+        "collision_resolution_reason": "resolved_by_stamped_identity_rule_v1_batch",
+        "variant_key": "play_pokemon_stamp",
+        "illustration_category": null,
+        "stamp_label": "Play! Pokémon",
+        "source_evidence": {
+          "source_set_id": "prize-pack-series-cards-pokemon",
+          "source_external_id": "pokemon-prize-pack-series-cards-koraidon-rare",
+          "canonical_queue_key": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11:play_pokemon_stamp",
+          "batch_index": 3,
+          "underlying_base_proof_summary": {
+            "underlying_base_state": "PROVEN",
+            "live_base_card_print_id": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11",
+            "live_base_set_code": "sv05",
+            "live_base_name": "Koraidon",
+            "live_base_number": "119",
+            "review_only": true,
+            "current_evidence_sha256": "fae53365cb7552b55da8ac53d5fe9d899eaea439a26ab27c5f02a73595af06cb"
+          },
+          "pre_intake_audit": {
+            "live_source_candidate_id": "87c862d8-e22d-4301-88e6-f5522a8e6ebf",
+            "review_only": true,
+            "production_authority": false,
+            "registry_fingerprint": "7a9fac6bb539af6ba438d057d148f20be7ba3b79f848d1917267c212a4f935b5"
+          }
+        }
+      },
+      "claimed_identity_payload": {
+        "bridge_source": "external_discovery_bridge_v1",
+        "bridge_version": "EXTERNAL_DISCOVERY_TO_WAREHOUSE_BRIDGE_V1",
+        "source_candidate_id": "87c862d8-e22d-4301-88e6-f5522a8e6ebf",
+        "source_table": "external_discovery_candidates",
+        "source_set_id": "prize-pack-series-cards-pokemon",
+        "source_raw_import_id": "42066",
+        "upstream_id": "pokemon-prize-pack-series-cards-koraidon-rare",
+        "external_source": "justtcg",
+        "set_hint": "sv05",
+        "set_code": "sv05",
+        "set_name": "Temporal Forces",
+        "card_name": "Koraidon",
+        "name": "Koraidon",
+        "printed_number": "119/162",
+        "number": "119/162",
+        "number_plain": "119",
+        "rarity_hint": "Rare",
+        "rarity": "Rare",
+        "variant_key": "play_pokemon_stamp",
+        "illustration_category": null,
+        "variant_identity_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V2",
+        "variant_identity_status": "RESOLVED_STAMPED_IDENTITY",
+        "collision_group_key": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11:play_pokemon_stamp",
+        "collision_resolution_reason": "resolved_by_stamped_identity_rule_v1_batch",
+        "variant_identity": {
+          "rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V2",
+          "applies": true,
+          "status": "RESOLVED_STAMPED_IDENTITY",
+          "collision_group_key": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11:play_pokemon_stamp",
+          "collision_resolution_reason": "resolved_by_stamped_identity_rule_v1_batch",
+          "variant_key": "play_pokemon_stamp",
+          "illustration_category": null,
+          "stamp_label": "Play! Pokémon",
+          "source_evidence": {
+            "source_set_id": "prize-pack-series-cards-pokemon",
+            "source_external_id": "pokemon-prize-pack-series-cards-koraidon-rare",
+            "canonical_queue_key": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11:play_pokemon_stamp",
+            "batch_index": 3,
+            "underlying_base_proof_summary": {
+              "underlying_base_state": "PROVEN",
+              "live_base_card_print_id": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11",
+              "live_base_set_code": "sv05",
+              "live_base_name": "Koraidon",
+              "live_base_number": "119",
+              "review_only": true,
+              "current_evidence_sha256": "fae53365cb7552b55da8ac53d5fe9d899eaea439a26ab27c5f02a73595af06cb"
+            },
+            "pre_intake_audit": {
+              "live_source_candidate_id": "87c862d8-e22d-4301-88e6-f5522a8e6ebf",
+              "review_only": true,
+              "production_authority": false,
+              "registry_fingerprint": "7a9fac6bb539af6ba438d057d148f20be7ba3b79f848d1917267c212a4f935b5"
+            }
+          }
+        },
+        "source_evidence": {
+          "normalized_name": "Koraidon",
+          "normalized_number_plain": "119",
+          "classification_reason": "set_mapping_missing",
+          "stamp_label": "Play! Pokémon"
+        }
+      },
+      "reference_hints_payload": {
+        "bridge_source": "external_discovery_bridge_v1",
+        "bridge_version": "EXTERNAL_DISCOVERY_TO_WAREHOUSE_BRIDGE_V1",
+        "source_candidate_id": "87c862d8-e22d-4301-88e6-f5522a8e6ebf",
+        "source_table": "external_discovery_candidates",
+        "source_set_id": "prize-pack-series-cards-pokemon",
+        "source_raw_import_id": "42066",
+        "upstream_id": "pokemon-prize-pack-series-cards-koraidon-rare",
+        "external_source": "justtcg",
+        "set_hint": "sv05",
+        "set_code": "sv05",
+        "set_name": "Temporal Forces",
+        "card_name": "Koraidon",
+        "name": "Koraidon",
+        "printed_number": "119/162",
+        "number": "119/162",
+        "number_plain": "119",
+        "rarity_hint": "Rare",
+        "rarity": "Rare",
+        "tcgplayer_id": "565473",
+        "normalized_name": "Koraidon",
+        "normalized_number_left": "119",
+        "normalized_number_plain": "119",
+        "normalized_printed_total": "162",
+        "has_slash_number": true,
+        "has_alpha_suffix_number": false,
+        "has_parenthetical_modifier": false,
+        "match_status": "AMBIGUOUS",
+        "candidate_bucket": "PRINTED_IDENTITY_REVIEW",
+        "classifier_version": "CONTROLLED_GROWTH_INGESTION_PIPELINE_V1",
+        "original_classification_reason": "set_mapping_missing",
+        "variant_key": "play_pokemon_stamp",
+        "illustration_category": null,
+        "variant_identity_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V2",
+        "variant_identity_status": "RESOLVED_STAMPED_IDENTITY",
+        "collision_group_key": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11:play_pokemon_stamp",
+        "collision_resolution_reason": "resolved_by_stamped_identity_rule_v1_batch",
+        "variant_identity": {
+          "rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V2",
+          "applies": true,
+          "status": "RESOLVED_STAMPED_IDENTITY",
+          "collision_group_key": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11:play_pokemon_stamp",
+          "collision_resolution_reason": "resolved_by_stamped_identity_rule_v1_batch",
+          "variant_key": "play_pokemon_stamp",
+          "illustration_category": null,
+          "stamp_label": "Play! Pokémon",
+          "source_evidence": {
+            "source_set_id": "prize-pack-series-cards-pokemon",
+            "source_external_id": "pokemon-prize-pack-series-cards-koraidon-rare",
+            "canonical_queue_key": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11:play_pokemon_stamp",
+            "batch_index": 3,
+            "underlying_base_proof_summary": {
+              "underlying_base_state": "PROVEN",
+              "live_base_card_print_id": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11",
+              "live_base_set_code": "sv05",
+              "live_base_name": "Koraidon",
+              "live_base_number": "119",
+              "review_only": true,
+              "current_evidence_sha256": "fae53365cb7552b55da8ac53d5fe9d899eaea439a26ab27c5f02a73595af06cb"
+            },
+            "pre_intake_audit": {
+              "live_source_candidate_id": "87c862d8-e22d-4301-88e6-f5522a8e6ebf",
+              "review_only": true,
+              "production_authority": false,
+              "registry_fingerprint": "7a9fac6bb539af6ba438d057d148f20be7ba3b79f848d1917267c212a4f935b5"
+            }
+          }
+        },
+        "stamp_label": "Play! Pokémon",
+        "source_card_snapshot": {
+          "original_discovery_number_fields": {
+            "number_raw": "119/162",
+            "normalized_number_left": "119",
+            "normalized_number_plain": "119",
+            "normalized_printed_total": "162"
+          },
+          "external_id": "pokemon-prize-pack-series-cards-koraidon-rare",
+          "set_external_id": "prize-pack-series-cards-pokemon",
+          "set_name": "Prize Pack Series Cards",
+          "name": "Koraidon",
+          "number": "119/162",
+          "rarity": "Rare",
+          "tcgplayer_id": "565473",
+          "variant_summary": {
+            "variant_count": 3,
+            "printing_labels": [
+              "Normal"
+            ],
+            "condition_labels": [
+              "Lightly Played",
+              "Moderately Played",
+              "Near Mint"
+            ],
+            "language_labels": [
+              "English"
+            ]
+          }
+        },
+        "stamped_identity_evidence": {
+          "canonical_queue_key": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11:play_pokemon_stamp",
+          "batch_index": 3,
+          "underlying_base_proof_summary": {
+            "underlying_base_state": "PROVEN",
+            "live_base_card_print_id": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11",
+            "live_base_set_code": "sv05",
+            "live_base_name": "Koraidon",
+            "live_base_number": "119",
+            "review_only": true,
+            "current_evidence_sha256": "fae53365cb7552b55da8ac53d5fe9d899eaea439a26ab27c5f02a73595af06cb"
+          },
+          "pre_intake_audit": {
+            "live_source_candidate_id": "87c862d8-e22d-4301-88e6-f5522a8e6ebf",
+            "review_only": true,
+            "production_authority": false,
+            "registry_fingerprint": "7a9fac6bb539af6ba438d057d148f20be7ba3b79f848d1917267c212a4f935b5"
+          }
+        },
+        "provenance": {
+          "bridge_source": "external_discovery_bridge_v1",
+          "bridge_version": "EXTERNAL_DISCOVERY_TO_WAREHOUSE_BRIDGE_V1",
+          "source_candidate_id": "87c862d8-e22d-4301-88e6-f5522a8e6ebf",
+          "source_table": "external_discovery_candidates",
+          "source_set_id": "prize-pack-series-cards-pokemon",
+          "source_raw_import_id": "42066"
+        }
+      },
+      "notes": "External discovery bridge v1 candidate for Temporal Forces: Koraidon 119/162. Source candidate 87c862d8-e22d-4301-88e6-f5522a8e6ebf from external_discovery_candidates (prize-pack-series-cards-pokemon). Original discovery classification: set_mapping_missing.",
+      "tcgplayer_id": "565473",
+      "state": "RAW"
+    },
+    "candidateVariantIdentity": {
+      "rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V2",
+      "applies": true,
+      "status": "RESOLVED_STAMPED_IDENTITY",
+      "collision_group_key": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11:play_pokemon_stamp",
+      "collision_resolution_reason": "resolved_by_stamped_identity_rule_v1_batch",
+      "variant_key": "play_pokemon_stamp",
+      "illustration_category": null,
+      "stamp_label": "Play! Pokémon",
+      "source_evidence": {
+        "source_set_id": "prize-pack-series-cards-pokemon",
+        "source_external_id": "pokemon-prize-pack-series-cards-koraidon-rare",
+        "canonical_queue_key": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11:play_pokemon_stamp",
+        "batch_index": 3,
+        "underlying_base_proof_summary": {
+          "underlying_base_state": "PROVEN",
+          "live_base_card_print_id": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11",
+          "live_base_set_code": "sv05",
+          "live_base_name": "Koraidon",
+          "live_base_number": "119",
+          "review_only": true,
+          "current_evidence_sha256": "fae53365cb7552b55da8ac53d5fe9d899eaea439a26ab27c5f02a73595af06cb"
+        },
+        "pre_intake_audit": {
+          "live_source_candidate_id": "87c862d8-e22d-4301-88e6-f5522a8e6ebf",
+          "review_only": true,
+          "production_authority": false,
+          "registry_fingerprint": "7a9fac6bb539af6ba438d057d148f20be7ba3b79f848d1917267c212a4f935b5"
+        }
+      }
+    },
+    "sourceBackedIdentity": {
+      "source_type": "SOURCE_BACKED",
+      "bridge_source": "external_discovery_bridge_v1",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_candidate_id": "87c862d8-e22d-4301-88e6-f5522a8e6ebf",
+      "name": "Koraidon",
+      "printed_number": "119/162",
+      "number_plain": "119",
+      "set_code": "sv05",
+      "set_name": "Temporal Forces",
+      "declared_set_code": "sv05",
+      "declared_set_name": "Temporal Forces",
+      "set_routing_reason": null,
+      "underlying_base_set_code": "sv05",
+      "underlying_base_card_print_id": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "live_base_card_print_id": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11",
+        "live_base_set_code": "sv05",
+        "live_base_name": "Koraidon",
+        "live_base_number": "119",
+        "review_only": true,
+        "current_evidence_sha256": "fae53365cb7552b55da8ac53d5fe9d899eaea439a26ab27c5f02a73595af06cb"
+      },
+      "rarity": "Rare",
+      "variant_key": "play_pokemon_stamp",
+      "illustration_category": null,
+      "variant_identity_status": "RESOLVED_STAMPED_IDENTITY",
+      "variant_identity_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V2",
+      "collision_group_key": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11:play_pokemon_stamp",
+      "variant_identity": {
+        "rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V2",
+        "applies": true,
+        "status": "RESOLVED_STAMPED_IDENTITY",
+        "collision_group_key": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11:play_pokemon_stamp",
+        "collision_resolution_reason": "resolved_by_stamped_identity_rule_v1_batch",
+        "variant_key": "play_pokemon_stamp",
+        "illustration_category": null,
+        "stamp_label": "Play! Pokémon",
+        "source_evidence": {
+          "source_set_id": "prize-pack-series-cards-pokemon",
+          "source_external_id": "pokemon-prize-pack-series-cards-koraidon-rare",
+          "canonical_queue_key": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11:play_pokemon_stamp",
+          "batch_index": 3,
+          "underlying_base_proof_summary": {
+            "underlying_base_state": "PROVEN",
+            "live_base_card_print_id": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11",
+            "live_base_set_code": "sv05",
+            "live_base_name": "Koraidon",
+            "live_base_number": "119",
+            "review_only": true,
+            "current_evidence_sha256": "fae53365cb7552b55da8ac53d5fe9d899eaea439a26ab27c5f02a73595af06cb"
+          },
+          "pre_intake_audit": {
+            "live_source_candidate_id": "87c862d8-e22d-4301-88e6-f5522a8e6ebf",
+            "review_only": true,
+            "production_authority": false,
+            "registry_fingerprint": "7a9fac6bb539af6ba438d057d148f20be7ba3b79f848d1917267c212a4f935b5"
+          }
+        }
+      },
+      "ambiguity_notes": [],
+      "is_bridge_candidate": true,
+      "is_complete": true,
+      "requires_variant_key": true,
+      "variant_missing": false,
+      "auto_ready": true
+    },
+    "slotRows": [
+      {
+        "id": "12e6eaf0-d294-4ffa-9f81-9a9eeace7ed8",
+        "name": "Koraidon",
+        "gv_id": "GV-PK-TEF-119-GAMESTOP-STAMP",
+        "artist": null,
+        "number": "119",
+        "rarity": "Promo",
+        "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+        "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+        "set_code": "sv05",
+        "variants": null,
+        "image_res": null,
+        "image_url": null,
+        "created_at": "2026-10-01T20:17:07.023934+00:00",
+        "image_hash": null,
+        "image_note": null,
+        "image_path": "warehouse-derived/self-hosted-images-v1/f7b52e40-833e-4f25-8805-15be3be82400/5edc15451f0072c59cdab89c1e43e0e1a5e78155401fd54c045aa43c38dcebad/front.jpg",
+        "updated_at": "2026-10-01T20:17:07.023934+00:00",
+        "ai_metadata": null,
+        "variant_key": "gamestop_stamp",
+        "external_ids": {},
+        "image_source": "identity",
+        "image_status": null,
+        "number_plain": "119",
+        "tcgplayer_id": "543954",
+        "image_alt_url": null,
+        "printed_total": null,
+        "last_synced_at": null,
+        "identity_domain": "pokemon_eng_standard",
+        "regulation_mark": null,
+        "data_quality_flags": null,
+        "print_identity_key": null,
+        "printed_set_abbrev": null,
+        "set_identity_model": "standard",
+        "image_last_checked_at": null,
+        "representative_image_url": null,
+        "printed_identity_modifier": "gamestop_stamp"
+      },
+      {
+        "id": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11",
+        "name": "Koraidon",
+        "gv_id": "GV-PK-TEF-119",
+        "artist": "Teeziro",
+        "number": "119",
+        "rarity": "Rare",
+        "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+        "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+        "set_code": "sv05",
+        "variants": null,
+        "image_res": null,
+        "image_url": "https://assets.tcgdex.net/en/sv/sv05/119/high.webp",
+        "created_at": "2025-12-18T18:34:26.451745+00:00",
+        "image_hash": null,
+        "image_note": null,
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv05/gv-pk-tef-119/58805a008e6c5a40bb712c63.webp",
+        "updated_at": "2025-12-27T19:26:16.337401+00:00",
+        "ai_metadata": {
+          "tcgdex": {
+            "legalities": {},
+            "flavor_text": null
+          }
+        },
+        "variant_key": "",
+        "external_ids": {
+          "tcgdex": "sv05-119"
+        },
+        "image_source": "identity",
+        "image_status": "exact",
+        "number_plain": "119",
+        "tcgplayer_id": null,
+        "image_alt_url": "https://assets.tcgdex.net/en/sv/sv05/119",
+        "printed_total": null,
+        "last_synced_at": null,
+        "identity_domain": "pokemon_eng_standard",
+        "regulation_mark": "H",
+        "data_quality_flags": null,
+        "print_identity_key": null,
+        "printed_set_abbrev": null,
+        "set_identity_model": "standard",
+        "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+        "representative_image_url": null,
+        "printed_identity_modifier": null
+      }
+    ]
+  },
+  {
+    "candidate": {
+      "row": {
+        "id": "1758e2a3-5877-439a-b8bc-21f3f96b439e",
+        "source": "justtcg",
+        "raw_import_id": "42024",
+        "upstream_id": "pokemon-prize-pack-series-cards-archaludon-rare",
+        "tcgplayer_id": "619051",
+        "set_id": "prize-pack-series-cards-pokemon",
+        "name_raw": "Archaludon",
+        "number_raw": "107/142",
+        "normalized_name": "Archaludon",
+        "normalized_number_left": "107",
+        "normalized_number_plain": "107",
+        "normalized_printed_total": "142",
+        "has_slash_number": true,
+        "has_alpha_suffix_number": false,
+        "has_parenthetical_modifier": false,
+        "match_status": "AMBIGUOUS",
+        "candidate_bucket": "PRINTED_IDENTITY_REVIEW",
+        "classifier_version": "CONTROLLED_GROWTH_INGESTION_PIPELINE_V1",
+        "resolved_set_code": null,
+        "card_print_id": null,
+        "payload": {
+          "name": "Archaludon",
+          "number": "107/142",
+          "rarity": "Rare",
+          "set_name": "Prize Pack Series Cards",
+          "variants": [
+            {
+              "id": "pokemon-prize-pack-series-cards-archaludon-rare_lightly-played_holofoil",
+              "price": 0.21,
+              "avgPrice": 0.21,
+              "language": "English",
+              "printing": "Holofoil",
+              "condition": "Lightly Played",
+              "covPrice7d": 0,
+              "iqrPrice7d": 0,
+              "maxPrice1y": 1.25,
+              "maxPrice7d": 0.21,
+              "minPrice1y": 0.2,
+              "minPrice7d": 0.21,
+              "avgPrice30d": 0.2,
+              "avgPrice90d": 0.22,
+              "covPrice30d": 0.023280988544093714,
+              "covPrice90d": 0.08822525067827572,
+              "iqrPrice30d": 0.01,
+              "iqrPrice90d": 0.04,
+              "lastUpdated": 1774929201,
+              "maxPrice30d": 0.21,
+              "maxPrice90d": 0.27,
+              "minPrice30d": 0.2,
+              "minPrice90d": 0.2,
+              "priceHistory": [
+                {
+                  "p": 0.21,
+                  "t": 1774396800
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774483200
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774569600
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774656000
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774742400
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774828800
+                }
+              ],
+              "trendSlope7d": 0,
+              "priceChange7d": 0,
+              "trendSlope30d": 0.000449180444237003,
+              "trendSlope90d": -0.000576799382356536,
+              "priceChange30d": 5,
+              "priceChange90d": -8.7,
+              "tcgplayerSkuId": "8582275",
+              "maxPriceAllTime": 1.25,
+              "minPriceAllTime": 0.2,
+              "priceChange24hr": 0,
+              "priceHistory30d": [
+                {
+                  "p": 0.21,
+                  "t": 1774396800
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774483200
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774569600
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774656000
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774742400
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774828800
+                }
+              ],
+              "stddevPopPrice7d": 0,
+              "stddevPopPrice30d": 0,
+              "stddevPopPrice90d": 0.02,
+              "maxPriceAllTimeDate": "2025-04-22T06:15:04.883Z",
+              "minPriceAllTimeDate": "2026-03-20T19:14:42.785Z",
+              "priceChangesCount7d": 0,
+              "priceChangesCount30d": 1,
+              "priceChangesCount90d": 6,
+              "priceRelativeTo30dRange": 1,
+              "priceRelativeTo90dRange": 0.14285714285714285
+            },
+            {
+              "id": "pokemon-prize-pack-series-cards-archaludon-rare_near-mint_holofoil",
+              "price": 0.21,
+              "avgPrice": 0.21,
+              "language": "English",
+              "printing": "Holofoil",
+              "condition": "Near Mint",
+              "covPrice7d": 0.017056057308448835,
+              "iqrPrice7d": 0,
+              "maxPrice1y": 1.11,
+              "maxPrice7d": 0.22,
+              "minPrice1y": 0.19,
+              "minPrice7d": 0.21,
+              "avgPrice30d": 0.22,
+              "avgPrice90d": 0.22,
+              "covPrice30d": 0.01984528107299636,
+              "covPrice90d": 0.037512756701856824,
+              "iqrPrice30d": 0,
+              "iqrPrice90d": 0.01,
+              "lastUpdated": 1774929201,
+              "maxPrice30d": 0.22,
+              "maxPrice90d": 0.23,
+              "minPrice30d": 0.21,
+              "minPrice90d": 0.2,
+              "priceHistory": [
+                {
+                  "p": 0.21,
+                  "t": 1774396800
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774483200
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774569600
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774656000
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774742400
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774828800
+                }
+              ],
+              "trendSlope7d": -0.00112407816476633,
+              "priceChange7d": -4.55,
+              "trendSlope30d": -0.000276875661742826,
+              "trendSlope90d": 0.0000455580993380043,
+              "priceChange30d": -4.55,
+              "priceChange90d": -8.7,
+              "tcgplayerSkuId": "8582274",
+              "maxPriceAllTime": 1.11,
+              "minPriceAllTime": 0.19,
+              "priceChange24hr": 0,
+              "priceHistory30d": [
+                {
+                  "p": 0.21,
+                  "t": 1774396800
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774483200
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774569600
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774656000
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774742400
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774828800
+                }
+              ],
+              "stddevPopPrice7d": 0,
+              "stddevPopPrice30d": 0,
+              "stddevPopPrice90d": 0.01,
+              "maxPriceAllTimeDate": "2025-03-31T12:28:54.861Z",
+              "minPriceAllTimeDate": "2025-08-25T11:04:48.671Z",
+              "priceChangesCount7d": 1,
+              "priceChangesCount30d": 3,
+              "priceChangesCount90d": 12,
+              "priceRelativeTo30dRange": 0,
+              "priceRelativeTo90dRange": 0.3333333333333333
+            },
+            {
+              "id": "pokemon-prize-pack-series-cards-archaludon-rare_lightly-played",
+              "price": 0.18,
+              "avgPrice": 0.22,
+              "language": "English",
+              "printing": "Normal",
+              "condition": "Lightly Played",
+              "covPrice7d": 0.0892156417557376,
+              "iqrPrice7d": 0.02,
+              "maxPrice1y": 0.42,
+              "maxPrice7d": 0.23,
+              "minPrice1y": 0.18,
+              "minPrice7d": 0.18,
+              "avgPrice30d": 0.21,
+              "avgPrice90d": 0.22,
+              "covPrice30d": 0.05195682908132041,
+              "covPrice90d": 0.04701406279643814,
+              "iqrPrice30d": 0,
+              "iqrPrice90d": 0.02,
+              "lastUpdated": 1774929201,
+              "maxPrice30d": 0.23,
+              "maxPrice90d": 0.23,
+              "minPrice30d": 0.18,
+              "minPrice90d": 0.18,
+              "priceHistory": [
+                {
+                  "p": 0.23,
+                  "t": 1774396800
+                },
+                {
+                  "p": 0.23,
+                  "t": 1774483200
+                },
+                {
+                  "p": 0.23,
+                  "t": 1774569600
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774656000
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774742400
+                },
+                {
+                  "p": 0.18,
+                  "t": 1774828800
+                }
+              ],
+              "trendSlope7d": -0.008144577634931401,
+              "priceChange7d": -21.74,
+              "trendSlope30d": 0.000264134634604594,
+              "trendSlope90d": -0.000261313555765966,
+              "priceChange30d": -14.29,
+              "priceChange90d": -21.74,
+              "tcgplayerSkuId": "8582270",
+              "maxPriceAllTime": 0.42,
+              "minPriceAllTime": 0.18,
+              "priceChange24hr": 0,
+              "priceHistory30d": [
+                {
+                  "p": 0.23,
+                  "t": 1774396800
+                },
+                {
+                  "p": 0.23,
+                  "t": 1774483200
+                },
+                {
+                  "p": 0.23,
+                  "t": 1774569600
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774656000
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774742400
+                },
+                {
+                  "p": 0.18,
+                  "t": 1774828800
+                }
+              ],
+              "stddevPopPrice7d": 0.02,
+              "stddevPopPrice30d": 0.01,
+              "stddevPopPrice90d": 0.01,
+              "maxPriceAllTimeDate": "2025-07-21T13:11:48.565Z",
+              "minPriceAllTimeDate": "2026-03-31T03:53:21.170Z",
+              "priceChangesCount7d": 2,
+              "priceChangesCount30d": 3,
+              "priceChangesCount90d": 5,
+              "priceRelativeTo30dRange": 0,
+              "priceRelativeTo90dRange": 0
+            },
+            {
+              "id": "pokemon-prize-pack-series-cards-archaludon-rare_near-mint",
+              "price": 0.09,
+              "avgPrice": 0.09,
+              "language": "English",
+              "printing": "Normal",
+              "condition": "Near Mint",
+              "covPrice7d": 0,
+              "iqrPrice7d": 0,
+              "maxPrice1y": 0.34,
+              "maxPrice7d": 0.09,
+              "minPrice1y": 0.05,
+              "minPrice7d": 0.09,
+              "avgPrice30d": 0.08,
+              "avgPrice90d": 0.08,
+              "covPrice30d": 0.11075373034627059,
+              "covPrice90d": 0.1343337595783447,
+              "iqrPrice30d": 0.02,
+              "iqrPrice90d": 0.02,
+              "lastUpdated": 1774929201,
+              "maxPrice30d": 0.09,
+              "maxPrice90d": 0.1,
+              "minPrice30d": 0.07,
+              "minPrice90d": 0.06,
+              "priceHistory": [
+                {
+                  "p": 0.09,
+                  "t": 1774396800
+                },
+                {
+                  "p": 0.09,
+                  "t": 1774483200
+                },
+                {
+                  "p": 0.09,
+                  "t": 1774569600
+                },
+                {
+                  "p": 0.09,
+                  "t": 1774656000
+                },
+                {
+                  "p": 0.09,
+                  "t": 1774742400
+                },
+                {
+                  "p": 0.09,
+                  "t": 1774828800
+                }
+              ],
+              "trendSlope7d": 0,
+              "priceChange7d": 0,
+              "trendSlope30d": 0.000939610484992542,
+              "trendSlope90d": -0.00016177434197524502,
+              "priceChange30d": 28.57,
+              "priceChange90d": 0,
+              "tcgplayerSkuId": "8582269",
+              "maxPriceAllTime": 0.34,
+              "minPriceAllTime": 0.05,
+              "priceChange24hr": 0,
+              "priceHistory30d": [
+                {
+                  "p": 0.09,
+                  "t": 1774396800
+                },
+                {
+                  "p": 0.09,
+                  "t": 1774483200
+                },
+                {
+                  "p": 0.09,
+                  "t": 1774569600
+                },
+                {
+                  "p": 0.09,
+                  "t": 1774656000
+                },
+                {
+                  "p": 0.09,
+                  "t": 1774742400
+                },
+                {
+                  "p": 0.09,
+                  "t": 1774828800
+                }
+              ],
+              "stddevPopPrice7d": 0,
+              "stddevPopPrice30d": 0.01,
+              "stddevPopPrice90d": 0.01,
+              "maxPriceAllTimeDate": "2025-04-02T06:32:47.565Z",
+              "minPriceAllTimeDate": "2025-09-24T09:36:03.359Z",
+              "priceChangesCount7d": 0,
+              "priceChangesCount30d": 8,
+              "priceChangesCount90d": 23,
+              "priceRelativeTo30dRange": 1,
+              "priceRelativeTo90dRange": 0.75
+            },
+            {
+              "id": "pokemon-prize-pack-series-cards-archaludon-rare_moderately-played",
+              "price": 0.01,
+              "avgPrice": 0.01,
+              "language": "English",
+              "printing": "Normal",
+              "condition": "Moderately Played",
+              "covPrice7d": 0,
+              "iqrPrice7d": 0,
+              "maxPrice1y": 0.1,
+              "maxPrice7d": 0.01,
+              "minPrice1y": 0.01,
+              "minPrice7d": 0.01,
+              "avgPrice30d": 0.01,
+              "avgPrice90d": 0.04,
+              "covPrice30d": 0,
+              "covPrice90d": 0.671253391029897,
+              "iqrPrice30d": 0,
+              "iqrPrice90d": 0.05,
+              "lastUpdated": 1774929201,
+              "maxPrice30d": 0.01,
+              "maxPrice90d": 0.06,
+              "minPrice30d": 0.01,
+              "minPrice90d": 0.01,
+              "priceHistory": [
+                {
+                  "p": 0.01,
+                  "t": 1774396800
+                },
+                {
+                  "p": 0.01,
+                  "t": 1774483200
+                },
+                {
+                  "p": 0.01,
+                  "t": 1774569600
+                },
+                {
+                  "p": 0.01,
+                  "t": 1774656000
+                },
+                {
+                  "p": 0.01,
+                  "t": 1774742400
+                },
+                {
+                  "p": 0.01,
+                  "t": 1774828800
+                }
+              ],
+              "trendSlope7d": 0,
+              "priceChange7d": 0,
+              "trendSlope30d": 0,
+              "trendSlope90d": -0.00084085022535525,
+              "priceChange30d": 0,
+              "priceChange90d": -83.33,
+              "tcgplayerSkuId": "8582271",
+              "maxPriceAllTime": 0.1,
+              "minPriceAllTime": 0.01,
+              "priceChange24hr": 0,
+              "priceHistory30d": [
+                {
+                  "p": 0.01,
+                  "t": 1774396800
+                },
+                {
+                  "p": 0.01,
+                  "t": 1774483200
+                },
+                {
+                  "p": 0.01,
+                  "t": 1774569600
+                },
+                {
+                  "p": 0.01,
+                  "t": 1774656000
+                },
+                {
+                  "p": 0.01,
+                  "t": 1774742400
+                },
+                {
+                  "p": 0.01,
+                  "t": 1774828800
+                }
+              ],
+              "stddevPopPrice7d": 0,
+              "stddevPopPrice30d": 0,
+              "stddevPopPrice90d": 0.02,
+              "maxPriceAllTimeDate": "2025-05-18T00:39:32.415Z",
+              "minPriceAllTimeDate": "2026-03-31T03:53:21.170Z",
+              "priceChangesCount7d": 0,
+              "priceChangesCount30d": 0,
+              "priceChangesCount90d": 2,
+              "priceRelativeTo90dRange": 0
+            }
+          ],
+          "tcgplayerId": "619051",
+          "_external_id": "pokemon-prize-pack-series-cards-archaludon-rare",
+          "_set_external_id": "prize-pack-series-cards-pokemon",
+          "_grookai_ingestion_v1": {
+            "source_phase": "CONTROLLED_GROWTH_INGESTION_PIPELINE_V1",
+            "classification": "NEEDS_REVIEW",
+            "worker_version": "CONTROLLED_GROWTH_INGESTION_PIPELINE_V1",
+            "confidence_score": 0.35,
+            "normalized_number": "107",
+            "normalized_name_key": "archaludon",
+            "inferred_variant_key": "",
+            "candidate_set_mapping": [],
+            "classification_reason": "set_mapping_missing",
+            "extracted_number_plain": "107",
+            "candidate_card_print_ids": []
+          }
+        },
+        "raw_payload": {
+          "name": "Archaludon",
+          "number": "107/142",
+          "rarity": "Rare",
+          "set_name": "Prize Pack Series Cards",
+          "variants": [
+            {
+              "id": "pokemon-prize-pack-series-cards-archaludon-rare_lightly-played_holofoil",
+              "price": 0.21,
+              "avgPrice": 0.21,
+              "language": "English",
+              "printing": "Holofoil",
+              "condition": "Lightly Played",
+              "covPrice7d": 0,
+              "iqrPrice7d": 0,
+              "maxPrice1y": 1.25,
+              "maxPrice7d": 0.21,
+              "minPrice1y": 0.2,
+              "minPrice7d": 0.21,
+              "avgPrice30d": 0.2,
+              "avgPrice90d": 0.22,
+              "covPrice30d": 0.023280988544093714,
+              "covPrice90d": 0.08822525067827572,
+              "iqrPrice30d": 0.01,
+              "iqrPrice90d": 0.04,
+              "lastUpdated": 1774929201,
+              "maxPrice30d": 0.21,
+              "maxPrice90d": 0.27,
+              "minPrice30d": 0.2,
+              "minPrice90d": 0.2,
+              "priceHistory": [
+                {
+                  "p": 0.21,
+                  "t": 1774396800
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774483200
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774569600
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774656000
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774742400
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774828800
+                }
+              ],
+              "trendSlope7d": 0,
+              "priceChange7d": 0,
+              "trendSlope30d": 0.000449180444237003,
+              "trendSlope90d": -0.000576799382356536,
+              "priceChange30d": 5,
+              "priceChange90d": -8.7,
+              "tcgplayerSkuId": "8582275",
+              "maxPriceAllTime": 1.25,
+              "minPriceAllTime": 0.2,
+              "priceChange24hr": 0,
+              "priceHistory30d": [
+                {
+                  "p": 0.21,
+                  "t": 1774396800
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774483200
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774569600
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774656000
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774742400
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774828800
+                }
+              ],
+              "stddevPopPrice7d": 0,
+              "stddevPopPrice30d": 0,
+              "stddevPopPrice90d": 0.02,
+              "maxPriceAllTimeDate": "2025-04-22T06:15:04.883Z",
+              "minPriceAllTimeDate": "2026-03-20T19:14:42.785Z",
+              "priceChangesCount7d": 0,
+              "priceChangesCount30d": 1,
+              "priceChangesCount90d": 6,
+              "priceRelativeTo30dRange": 1,
+              "priceRelativeTo90dRange": 0.14285714285714285
+            },
+            {
+              "id": "pokemon-prize-pack-series-cards-archaludon-rare_near-mint_holofoil",
+              "price": 0.21,
+              "avgPrice": 0.21,
+              "language": "English",
+              "printing": "Holofoil",
+              "condition": "Near Mint",
+              "covPrice7d": 0.017056057308448835,
+              "iqrPrice7d": 0,
+              "maxPrice1y": 1.11,
+              "maxPrice7d": 0.22,
+              "minPrice1y": 0.19,
+              "minPrice7d": 0.21,
+              "avgPrice30d": 0.22,
+              "avgPrice90d": 0.22,
+              "covPrice30d": 0.01984528107299636,
+              "covPrice90d": 0.037512756701856824,
+              "iqrPrice30d": 0,
+              "iqrPrice90d": 0.01,
+              "lastUpdated": 1774929201,
+              "maxPrice30d": 0.22,
+              "maxPrice90d": 0.23,
+              "minPrice30d": 0.21,
+              "minPrice90d": 0.2,
+              "priceHistory": [
+                {
+                  "p": 0.21,
+                  "t": 1774396800
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774483200
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774569600
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774656000
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774742400
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774828800
+                }
+              ],
+              "trendSlope7d": -0.00112407816476633,
+              "priceChange7d": -4.55,
+              "trendSlope30d": -0.000276875661742826,
+              "trendSlope90d": 0.0000455580993380043,
+              "priceChange30d": -4.55,
+              "priceChange90d": -8.7,
+              "tcgplayerSkuId": "8582274",
+              "maxPriceAllTime": 1.11,
+              "minPriceAllTime": 0.19,
+              "priceChange24hr": 0,
+              "priceHistory30d": [
+                {
+                  "p": 0.21,
+                  "t": 1774396800
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774483200
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774569600
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774656000
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774742400
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774828800
+                }
+              ],
+              "stddevPopPrice7d": 0,
+              "stddevPopPrice30d": 0,
+              "stddevPopPrice90d": 0.01,
+              "maxPriceAllTimeDate": "2025-03-31T12:28:54.861Z",
+              "minPriceAllTimeDate": "2025-08-25T11:04:48.671Z",
+              "priceChangesCount7d": 1,
+              "priceChangesCount30d": 3,
+              "priceChangesCount90d": 12,
+              "priceRelativeTo30dRange": 0,
+              "priceRelativeTo90dRange": 0.3333333333333333
+            },
+            {
+              "id": "pokemon-prize-pack-series-cards-archaludon-rare_lightly-played",
+              "price": 0.18,
+              "avgPrice": 0.22,
+              "language": "English",
+              "printing": "Normal",
+              "condition": "Lightly Played",
+              "covPrice7d": 0.0892156417557376,
+              "iqrPrice7d": 0.02,
+              "maxPrice1y": 0.42,
+              "maxPrice7d": 0.23,
+              "minPrice1y": 0.18,
+              "minPrice7d": 0.18,
+              "avgPrice30d": 0.21,
+              "avgPrice90d": 0.22,
+              "covPrice30d": 0.05195682908132041,
+              "covPrice90d": 0.04701406279643814,
+              "iqrPrice30d": 0,
+              "iqrPrice90d": 0.02,
+              "lastUpdated": 1774929201,
+              "maxPrice30d": 0.23,
+              "maxPrice90d": 0.23,
+              "minPrice30d": 0.18,
+              "minPrice90d": 0.18,
+              "priceHistory": [
+                {
+                  "p": 0.23,
+                  "t": 1774396800
+                },
+                {
+                  "p": 0.23,
+                  "t": 1774483200
+                },
+                {
+                  "p": 0.23,
+                  "t": 1774569600
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774656000
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774742400
+                },
+                {
+                  "p": 0.18,
+                  "t": 1774828800
+                }
+              ],
+              "trendSlope7d": -0.008144577634931401,
+              "priceChange7d": -21.74,
+              "trendSlope30d": 0.000264134634604594,
+              "trendSlope90d": -0.000261313555765966,
+              "priceChange30d": -14.29,
+              "priceChange90d": -21.74,
+              "tcgplayerSkuId": "8582270",
+              "maxPriceAllTime": 0.42,
+              "minPriceAllTime": 0.18,
+              "priceChange24hr": 0,
+              "priceHistory30d": [
+                {
+                  "p": 0.23,
+                  "t": 1774396800
+                },
+                {
+                  "p": 0.23,
+                  "t": 1774483200
+                },
+                {
+                  "p": 0.23,
+                  "t": 1774569600
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774656000
+                },
+                {
+                  "p": 0.21,
+                  "t": 1774742400
+                },
+                {
+                  "p": 0.18,
+                  "t": 1774828800
+                }
+              ],
+              "stddevPopPrice7d": 0.02,
+              "stddevPopPrice30d": 0.01,
+              "stddevPopPrice90d": 0.01,
+              "maxPriceAllTimeDate": "2025-07-21T13:11:48.565Z",
+              "minPriceAllTimeDate": "2026-03-31T03:53:21.170Z",
+              "priceChangesCount7d": 2,
+              "priceChangesCount30d": 3,
+              "priceChangesCount90d": 5,
+              "priceRelativeTo30dRange": 0,
+              "priceRelativeTo90dRange": 0
+            },
+            {
+              "id": "pokemon-prize-pack-series-cards-archaludon-rare_near-mint",
+              "price": 0.09,
+              "avgPrice": 0.09,
+              "language": "English",
+              "printing": "Normal",
+              "condition": "Near Mint",
+              "covPrice7d": 0,
+              "iqrPrice7d": 0,
+              "maxPrice1y": 0.34,
+              "maxPrice7d": 0.09,
+              "minPrice1y": 0.05,
+              "minPrice7d": 0.09,
+              "avgPrice30d": 0.08,
+              "avgPrice90d": 0.08,
+              "covPrice30d": 0.11075373034627059,
+              "covPrice90d": 0.1343337595783447,
+              "iqrPrice30d": 0.02,
+              "iqrPrice90d": 0.02,
+              "lastUpdated": 1774929201,
+              "maxPrice30d": 0.09,
+              "maxPrice90d": 0.1,
+              "minPrice30d": 0.07,
+              "minPrice90d": 0.06,
+              "priceHistory": [
+                {
+                  "p": 0.09,
+                  "t": 1774396800
+                },
+                {
+                  "p": 0.09,
+                  "t": 1774483200
+                },
+                {
+                  "p": 0.09,
+                  "t": 1774569600
+                },
+                {
+                  "p": 0.09,
+                  "t": 1774656000
+                },
+                {
+                  "p": 0.09,
+                  "t": 1774742400
+                },
+                {
+                  "p": 0.09,
+                  "t": 1774828800
+                }
+              ],
+              "trendSlope7d": 0,
+              "priceChange7d": 0,
+              "trendSlope30d": 0.000939610484992542,
+              "trendSlope90d": -0.00016177434197524502,
+              "priceChange30d": 28.57,
+              "priceChange90d": 0,
+              "tcgplayerSkuId": "8582269",
+              "maxPriceAllTime": 0.34,
+              "minPriceAllTime": 0.05,
+              "priceChange24hr": 0,
+              "priceHistory30d": [
+                {
+                  "p": 0.09,
+                  "t": 1774396800
+                },
+                {
+                  "p": 0.09,
+                  "t": 1774483200
+                },
+                {
+                  "p": 0.09,
+                  "t": 1774569600
+                },
+                {
+                  "p": 0.09,
+                  "t": 1774656000
+                },
+                {
+                  "p": 0.09,
+                  "t": 1774742400
+                },
+                {
+                  "p": 0.09,
+                  "t": 1774828800
+                }
+              ],
+              "stddevPopPrice7d": 0,
+              "stddevPopPrice30d": 0.01,
+              "stddevPopPrice90d": 0.01,
+              "maxPriceAllTimeDate": "2025-04-02T06:32:47.565Z",
+              "minPriceAllTimeDate": "2025-09-24T09:36:03.359Z",
+              "priceChangesCount7d": 0,
+              "priceChangesCount30d": 8,
+              "priceChangesCount90d": 23,
+              "priceRelativeTo30dRange": 1,
+              "priceRelativeTo90dRange": 0.75
+            },
+            {
+              "id": "pokemon-prize-pack-series-cards-archaludon-rare_moderately-played",
+              "price": 0.01,
+              "avgPrice": 0.01,
+              "language": "English",
+              "printing": "Normal",
+              "condition": "Moderately Played",
+              "covPrice7d": 0,
+              "iqrPrice7d": 0,
+              "maxPrice1y": 0.1,
+              "maxPrice7d": 0.01,
+              "minPrice1y": 0.01,
+              "minPrice7d": 0.01,
+              "avgPrice30d": 0.01,
+              "avgPrice90d": 0.04,
+              "covPrice30d": 0,
+              "covPrice90d": 0.671253391029897,
+              "iqrPrice30d": 0,
+              "iqrPrice90d": 0.05,
+              "lastUpdated": 1774929201,
+              "maxPrice30d": 0.01,
+              "maxPrice90d": 0.06,
+              "minPrice30d": 0.01,
+              "minPrice90d": 0.01,
+              "priceHistory": [
+                {
+                  "p": 0.01,
+                  "t": 1774396800
+                },
+                {
+                  "p": 0.01,
+                  "t": 1774483200
+                },
+                {
+                  "p": 0.01,
+                  "t": 1774569600
+                },
+                {
+                  "p": 0.01,
+                  "t": 1774656000
+                },
+                {
+                  "p": 0.01,
+                  "t": 1774742400
+                },
+                {
+                  "p": 0.01,
+                  "t": 1774828800
+                }
+              ],
+              "trendSlope7d": 0,
+              "priceChange7d": 0,
+              "trendSlope30d": 0,
+              "trendSlope90d": -0.00084085022535525,
+              "priceChange30d": 0,
+              "priceChange90d": -83.33,
+              "tcgplayerSkuId": "8582271",
+              "maxPriceAllTime": 0.1,
+              "minPriceAllTime": 0.01,
+              "priceChange24hr": 0,
+              "priceHistory30d": [
+                {
+                  "p": 0.01,
+                  "t": 1774396800
+                },
+                {
+                  "p": 0.01,
+                  "t": 1774483200
+                },
+                {
+                  "p": 0.01,
+                  "t": 1774569600
+                },
+                {
+                  "p": 0.01,
+                  "t": 1774656000
+                },
+                {
+                  "p": 0.01,
+                  "t": 1774742400
+                },
+                {
+                  "p": 0.01,
+                  "t": 1774828800
+                }
+              ],
+              "stddevPopPrice7d": 0,
+              "stddevPopPrice30d": 0,
+              "stddevPopPrice90d": 0.02,
+              "maxPriceAllTimeDate": "2025-05-18T00:39:32.415Z",
+              "minPriceAllTimeDate": "2026-03-31T03:53:21.170Z",
+              "priceChangesCount7d": 0,
+              "priceChangesCount30d": 0,
+              "priceChangesCount90d": 2,
+              "priceRelativeTo90dRange": 0
+            }
+          ],
+          "tcgplayerId": "619051",
+          "_external_id": "pokemon-prize-pack-series-cards-archaludon-rare",
+          "_set_external_id": "prize-pack-series-cards-pokemon"
+        }
+      },
+      "bridge_scope_reason": "stamped_ready_batch_scope",
+      "canonical_set_code": "sv07",
+      "canonical_set_name": "Stellar Crown",
+      "stamped_batch_entry": {
+        "batch_index": 8,
+        "source_external_id": "pokemon-prize-pack-series-cards-archaludon-rare",
+        "source_set_id": "prize-pack-series-cards-pokemon",
+        "name": "Archaludon",
+        "candidate_name": "Archaludon",
+        "printed_number": "107/142",
+        "number_plain": "107",
+        "proposed_variant_key": "play_pokemon_stamp",
+        "governing_rule_source": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V2",
+        "stamp_label": "Play! Pokémon",
+        "canonical_queue_key": "7bf55366-9a6b-466f-bd71-f617d626b5d9:play_pokemon_stamp",
+        "effective_routed_set_code": "sv07",
+        "effective_routed_set_name": "Stellar Crown",
+        "effective_identity_space": "pokemon_eng_standard",
+        "underlying_base_proof_summary": {
+          "underlying_base_state": "PROVEN",
+          "live_base_card_print_id": "7bf55366-9a6b-466f-bd71-f617d626b5d9",
+          "live_base_set_code": "sv07",
+          "live_base_name": "Archaludon",
+          "live_base_number": "107",
+          "review_only": true,
+          "current_evidence_sha256": "fae53365cb7552b55da8ac53d5fe9d899eaea439a26ab27c5f02a73595af06cb"
+        },
+        "target_base_resolution": {
+          "target_set_code": "sv07",
+          "target_set_name": "Stellar Crown",
+          "target_base_card_print_id": "7bf55366-9a6b-466f-bd71-f617d626b5d9"
+        },
+        "pre_intake_audit": {
+          "live_source_candidate_id": "1758e2a3-5877-439a-b8bc-21f3f96b439e",
+          "review_only": true,
+          "production_authority": false,
+          "registry_fingerprint": "7a9fac6bb539af6ba438d057d148f20be7ba3b79f848d1917267c212a4f935b5"
+        }
+      },
+      "variant_identity": {
+        "rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V2",
+        "applies": true,
+        "status": "RESOLVED_STAMPED_IDENTITY",
+        "collision_group_key": "7bf55366-9a6b-466f-bd71-f617d626b5d9:play_pokemon_stamp",
+        "collision_resolution_reason": "resolved_by_stamped_identity_rule_v1_batch",
+        "variant_key": "play_pokemon_stamp",
+        "illustration_category": null,
+        "stamp_label": "Play! Pokémon",
+        "source_evidence": {
+          "source_set_id": "prize-pack-series-cards-pokemon",
+          "source_external_id": "pokemon-prize-pack-series-cards-archaludon-rare",
+          "canonical_queue_key": "7bf55366-9a6b-466f-bd71-f617d626b5d9:play_pokemon_stamp",
+          "batch_index": 8,
+          "underlying_base_proof_summary": {
+            "underlying_base_state": "PROVEN",
+            "live_base_card_print_id": "7bf55366-9a6b-466f-bd71-f617d626b5d9",
+            "live_base_set_code": "sv07",
+            "live_base_name": "Archaludon",
+            "live_base_number": "107",
+            "review_only": true,
+            "current_evidence_sha256": "fae53365cb7552b55da8ac53d5fe9d899eaea439a26ab27c5f02a73595af06cb"
+          },
+          "pre_intake_audit": {
+            "live_source_candidate_id": "1758e2a3-5877-439a-b8bc-21f3f96b439e",
+            "review_only": true,
+            "production_authority": false,
+            "registry_fingerprint": "7a9fac6bb539af6ba438d057d148f20be7ba3b79f848d1917267c212a4f935b5"
+          }
+        }
+      },
+      "claimed_identity_payload": {
+        "bridge_source": "external_discovery_bridge_v1",
+        "bridge_version": "EXTERNAL_DISCOVERY_TO_WAREHOUSE_BRIDGE_V1",
+        "source_candidate_id": "1758e2a3-5877-439a-b8bc-21f3f96b439e",
+        "source_table": "external_discovery_candidates",
+        "source_set_id": "prize-pack-series-cards-pokemon",
+        "source_raw_import_id": "42024",
+        "upstream_id": "pokemon-prize-pack-series-cards-archaludon-rare",
+        "external_source": "justtcg",
+        "set_hint": "sv07",
+        "set_code": "sv07",
+        "set_name": "Stellar Crown",
+        "card_name": "Archaludon",
+        "name": "Archaludon",
+        "printed_number": "107/142",
+        "number": "107/142",
+        "number_plain": "107",
+        "rarity_hint": "Rare",
+        "rarity": "Rare",
+        "variant_key": "play_pokemon_stamp",
+        "illustration_category": null,
+        "variant_identity_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V2",
+        "variant_identity_status": "RESOLVED_STAMPED_IDENTITY",
+        "collision_group_key": "7bf55366-9a6b-466f-bd71-f617d626b5d9:play_pokemon_stamp",
+        "collision_resolution_reason": "resolved_by_stamped_identity_rule_v1_batch",
+        "variant_identity": {
+          "rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V2",
+          "applies": true,
+          "status": "RESOLVED_STAMPED_IDENTITY",
+          "collision_group_key": "7bf55366-9a6b-466f-bd71-f617d626b5d9:play_pokemon_stamp",
+          "collision_resolution_reason": "resolved_by_stamped_identity_rule_v1_batch",
+          "variant_key": "play_pokemon_stamp",
+          "illustration_category": null,
+          "stamp_label": "Play! Pokémon",
+          "source_evidence": {
+            "source_set_id": "prize-pack-series-cards-pokemon",
+            "source_external_id": "pokemon-prize-pack-series-cards-archaludon-rare",
+            "canonical_queue_key": "7bf55366-9a6b-466f-bd71-f617d626b5d9:play_pokemon_stamp",
+            "batch_index": 8,
+            "underlying_base_proof_summary": {
+              "underlying_base_state": "PROVEN",
+              "live_base_card_print_id": "7bf55366-9a6b-466f-bd71-f617d626b5d9",
+              "live_base_set_code": "sv07",
+              "live_base_name": "Archaludon",
+              "live_base_number": "107",
+              "review_only": true,
+              "current_evidence_sha256": "fae53365cb7552b55da8ac53d5fe9d899eaea439a26ab27c5f02a73595af06cb"
+            },
+            "pre_intake_audit": {
+              "live_source_candidate_id": "1758e2a3-5877-439a-b8bc-21f3f96b439e",
+              "review_only": true,
+              "production_authority": false,
+              "registry_fingerprint": "7a9fac6bb539af6ba438d057d148f20be7ba3b79f848d1917267c212a4f935b5"
+            }
+          }
+        },
+        "source_evidence": {
+          "normalized_name": "Archaludon",
+          "normalized_number_plain": "107",
+          "classification_reason": "set_mapping_missing",
+          "stamp_label": "Play! Pokémon"
+        }
+      },
+      "reference_hints_payload": {
+        "bridge_source": "external_discovery_bridge_v1",
+        "bridge_version": "EXTERNAL_DISCOVERY_TO_WAREHOUSE_BRIDGE_V1",
+        "source_candidate_id": "1758e2a3-5877-439a-b8bc-21f3f96b439e",
+        "source_table": "external_discovery_candidates",
+        "source_set_id": "prize-pack-series-cards-pokemon",
+        "source_raw_import_id": "42024",
+        "upstream_id": "pokemon-prize-pack-series-cards-archaludon-rare",
+        "external_source": "justtcg",
+        "set_hint": "sv07",
+        "set_code": "sv07",
+        "set_name": "Stellar Crown",
+        "card_name": "Archaludon",
+        "name": "Archaludon",
+        "printed_number": "107/142",
+        "number": "107/142",
+        "number_plain": "107",
+        "rarity_hint": "Rare",
+        "rarity": "Rare",
+        "tcgplayer_id": "619051",
+        "normalized_name": "Archaludon",
+        "normalized_number_left": "107",
+        "normalized_number_plain": "107",
+        "normalized_printed_total": "142",
+        "has_slash_number": true,
+        "has_alpha_suffix_number": false,
+        "has_parenthetical_modifier": false,
+        "match_status": "AMBIGUOUS",
+        "candidate_bucket": "PRINTED_IDENTITY_REVIEW",
+        "classifier_version": "CONTROLLED_GROWTH_INGESTION_PIPELINE_V1",
+        "original_classification_reason": "set_mapping_missing",
+        "variant_key": "play_pokemon_stamp",
+        "illustration_category": null,
+        "variant_identity_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V2",
+        "variant_identity_status": "RESOLVED_STAMPED_IDENTITY",
+        "collision_group_key": "7bf55366-9a6b-466f-bd71-f617d626b5d9:play_pokemon_stamp",
+        "collision_resolution_reason": "resolved_by_stamped_identity_rule_v1_batch",
+        "variant_identity": {
+          "rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V2",
+          "applies": true,
+          "status": "RESOLVED_STAMPED_IDENTITY",
+          "collision_group_key": "7bf55366-9a6b-466f-bd71-f617d626b5d9:play_pokemon_stamp",
+          "collision_resolution_reason": "resolved_by_stamped_identity_rule_v1_batch",
+          "variant_key": "play_pokemon_stamp",
+          "illustration_category": null,
+          "stamp_label": "Play! Pokémon",
+          "source_evidence": {
+            "source_set_id": "prize-pack-series-cards-pokemon",
+            "source_external_id": "pokemon-prize-pack-series-cards-archaludon-rare",
+            "canonical_queue_key": "7bf55366-9a6b-466f-bd71-f617d626b5d9:play_pokemon_stamp",
+            "batch_index": 8,
+            "underlying_base_proof_summary": {
+              "underlying_base_state": "PROVEN",
+              "live_base_card_print_id": "7bf55366-9a6b-466f-bd71-f617d626b5d9",
+              "live_base_set_code": "sv07",
+              "live_base_name": "Archaludon",
+              "live_base_number": "107",
+              "review_only": true,
+              "current_evidence_sha256": "fae53365cb7552b55da8ac53d5fe9d899eaea439a26ab27c5f02a73595af06cb"
+            },
+            "pre_intake_audit": {
+              "live_source_candidate_id": "1758e2a3-5877-439a-b8bc-21f3f96b439e",
+              "review_only": true,
+              "production_authority": false,
+              "registry_fingerprint": "7a9fac6bb539af6ba438d057d148f20be7ba3b79f848d1917267c212a4f935b5"
+            }
+          }
+        },
+        "stamp_label": "Play! Pokémon",
+        "source_card_snapshot": {
+          "original_discovery_number_fields": {
+            "number_raw": "107/142",
+            "normalized_number_left": "107",
+            "normalized_number_plain": "107",
+            "normalized_printed_total": "142"
+          },
+          "external_id": "pokemon-prize-pack-series-cards-archaludon-rare",
+          "set_external_id": "prize-pack-series-cards-pokemon",
+          "set_name": "Prize Pack Series Cards",
+          "name": "Archaludon",
+          "number": "107/142",
+          "rarity": "Rare",
+          "tcgplayer_id": "619051",
+          "variant_summary": {
+            "variant_count": 5,
+            "printing_labels": [
+              "Holofoil",
+              "Normal"
+            ],
+            "condition_labels": [
+              "Lightly Played",
+              "Moderately Played",
+              "Near Mint"
+            ],
+            "language_labels": [
+              "English"
+            ]
+          }
+        },
+        "stamped_identity_evidence": {
+          "canonical_queue_key": "7bf55366-9a6b-466f-bd71-f617d626b5d9:play_pokemon_stamp",
+          "batch_index": 8,
+          "underlying_base_proof_summary": {
+            "underlying_base_state": "PROVEN",
+            "live_base_card_print_id": "7bf55366-9a6b-466f-bd71-f617d626b5d9",
+            "live_base_set_code": "sv07",
+            "live_base_name": "Archaludon",
+            "live_base_number": "107",
+            "review_only": true,
+            "current_evidence_sha256": "fae53365cb7552b55da8ac53d5fe9d899eaea439a26ab27c5f02a73595af06cb"
+          },
+          "pre_intake_audit": {
+            "live_source_candidate_id": "1758e2a3-5877-439a-b8bc-21f3f96b439e",
+            "review_only": true,
+            "production_authority": false,
+            "registry_fingerprint": "7a9fac6bb539af6ba438d057d148f20be7ba3b79f848d1917267c212a4f935b5"
+          }
+        },
+        "provenance": {
+          "bridge_source": "external_discovery_bridge_v1",
+          "bridge_version": "EXTERNAL_DISCOVERY_TO_WAREHOUSE_BRIDGE_V1",
+          "source_candidate_id": "1758e2a3-5877-439a-b8bc-21f3f96b439e",
+          "source_table": "external_discovery_candidates",
+          "source_set_id": "prize-pack-series-cards-pokemon",
+          "source_raw_import_id": "42024"
+        }
+      },
+      "notes": "External discovery bridge v1 candidate for Stellar Crown: Archaludon 107/142. Source candidate 1758e2a3-5877-439a-b8bc-21f3f96b439e from external_discovery_candidates (prize-pack-series-cards-pokemon). Original discovery classification: set_mapping_missing.",
+      "tcgplayer_id": "619051",
+      "state": "RAW"
+    },
+    "candidateVariantIdentity": {
+      "rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V2",
+      "applies": true,
+      "status": "RESOLVED_STAMPED_IDENTITY",
+      "collision_group_key": "7bf55366-9a6b-466f-bd71-f617d626b5d9:play_pokemon_stamp",
+      "collision_resolution_reason": "resolved_by_stamped_identity_rule_v1_batch",
+      "variant_key": "play_pokemon_stamp",
+      "illustration_category": null,
+      "stamp_label": "Play! Pokémon",
+      "source_evidence": {
+        "source_set_id": "prize-pack-series-cards-pokemon",
+        "source_external_id": "pokemon-prize-pack-series-cards-archaludon-rare",
+        "canonical_queue_key": "7bf55366-9a6b-466f-bd71-f617d626b5d9:play_pokemon_stamp",
+        "batch_index": 8,
+        "underlying_base_proof_summary": {
+          "underlying_base_state": "PROVEN",
+          "live_base_card_print_id": "7bf55366-9a6b-466f-bd71-f617d626b5d9",
+          "live_base_set_code": "sv07",
+          "live_base_name": "Archaludon",
+          "live_base_number": "107",
+          "review_only": true,
+          "current_evidence_sha256": "fae53365cb7552b55da8ac53d5fe9d899eaea439a26ab27c5f02a73595af06cb"
+        },
+        "pre_intake_audit": {
+          "live_source_candidate_id": "1758e2a3-5877-439a-b8bc-21f3f96b439e",
+          "review_only": true,
+          "production_authority": false,
+          "registry_fingerprint": "7a9fac6bb539af6ba438d057d148f20be7ba3b79f848d1917267c212a4f935b5"
+        }
+      }
+    },
+    "sourceBackedIdentity": {
+      "source_type": "SOURCE_BACKED",
+      "bridge_source": "external_discovery_bridge_v1",
+      "source_set_id": "prize-pack-series-cards-pokemon",
+      "source_candidate_id": "1758e2a3-5877-439a-b8bc-21f3f96b439e",
+      "name": "Archaludon",
+      "printed_number": "107/142",
+      "number_plain": "107",
+      "set_code": "sv07",
+      "set_name": "Stellar Crown",
+      "declared_set_code": "sv07",
+      "declared_set_name": "Stellar Crown",
+      "set_routing_reason": null,
+      "underlying_base_set_code": "sv07",
+      "underlying_base_card_print_id": "7bf55366-9a6b-466f-bd71-f617d626b5d9",
+      "underlying_base_proof_summary": {
+        "underlying_base_state": "PROVEN",
+        "live_base_card_print_id": "7bf55366-9a6b-466f-bd71-f617d626b5d9",
+        "live_base_set_code": "sv07",
+        "live_base_name": "Archaludon",
+        "live_base_number": "107",
+        "review_only": true,
+        "current_evidence_sha256": "fae53365cb7552b55da8ac53d5fe9d899eaea439a26ab27c5f02a73595af06cb"
+      },
+      "rarity": "Rare",
+      "variant_key": "play_pokemon_stamp",
+      "illustration_category": null,
+      "variant_identity_status": "RESOLVED_STAMPED_IDENTITY",
+      "variant_identity_rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V2",
+      "collision_group_key": "7bf55366-9a6b-466f-bd71-f617d626b5d9:play_pokemon_stamp",
+      "variant_identity": {
+        "rule": "GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V2",
+        "applies": true,
+        "status": "RESOLVED_STAMPED_IDENTITY",
+        "collision_group_key": "7bf55366-9a6b-466f-bd71-f617d626b5d9:play_pokemon_stamp",
+        "collision_resolution_reason": "resolved_by_stamped_identity_rule_v1_batch",
+        "variant_key": "play_pokemon_stamp",
+        "illustration_category": null,
+        "stamp_label": "Play! Pokémon",
+        "source_evidence": {
+          "source_set_id": "prize-pack-series-cards-pokemon",
+          "source_external_id": "pokemon-prize-pack-series-cards-archaludon-rare",
+          "canonical_queue_key": "7bf55366-9a6b-466f-bd71-f617d626b5d9:play_pokemon_stamp",
+          "batch_index": 8,
+          "underlying_base_proof_summary": {
+            "underlying_base_state": "PROVEN",
+            "live_base_card_print_id": "7bf55366-9a6b-466f-bd71-f617d626b5d9",
+            "live_base_set_code": "sv07",
+            "live_base_name": "Archaludon",
+            "live_base_number": "107",
+            "review_only": true,
+            "current_evidence_sha256": "fae53365cb7552b55da8ac53d5fe9d899eaea439a26ab27c5f02a73595af06cb"
+          },
+          "pre_intake_audit": {
+            "live_source_candidate_id": "1758e2a3-5877-439a-b8bc-21f3f96b439e",
+            "review_only": true,
+            "production_authority": false,
+            "registry_fingerprint": "7a9fac6bb539af6ba438d057d148f20be7ba3b79f848d1917267c212a4f935b5"
+          }
+        }
+      },
+      "ambiguity_notes": [],
+      "is_bridge_candidate": true,
+      "is_complete": true,
+      "requires_variant_key": true,
+      "variant_missing": false,
+      "auto_ready": true
+    },
+    "slotRows": [
+      {
+        "id": "7bf55366-9a6b-466f-bd71-f617d626b5d9",
+        "name": "Archaludon",
+        "gv_id": "GV-PK-SCR-107",
+        "artist": "Oswaldo KATO",
+        "number": "107",
+        "rarity": "Rare",
+        "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+        "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+        "set_code": "sv07",
+        "variants": null,
+        "image_res": null,
+        "image_url": "https://assets.tcgdex.net/en/sv/sv07/107/high.webp",
+        "created_at": "2025-11-16T06:32:35.437741+00:00",
+        "image_hash": null,
+        "image_note": null,
+        "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv07/gv-pk-scr-107/6a15b6ae8db6d284dd6b6900.webp",
+        "updated_at": "2025-12-27T19:26:16.337401+00:00",
+        "ai_metadata": null,
+        "variant_key": "",
+        "external_ids": {},
+        "image_source": "identity",
+        "image_status": "exact",
+        "number_plain": "107",
+        "tcgplayer_id": null,
+        "image_alt_url": null,
+        "printed_total": 142,
+        "last_synced_at": null,
+        "identity_domain": "pokemon_eng_standard",
+        "regulation_mark": "H",
+        "data_quality_flags": {
+          "legacy_image_url": "https://images.pokemontcg.io/sv7/107_hires.png",
+          "pokemontcg_legacy": true
+        },
+        "print_identity_key": "sv07:107/142",
+        "printed_set_abbrev": null,
+        "set_identity_model": "standard",
+        "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+        "representative_image_url": null,
+        "printed_identity_modifier": null
+      },
+      {
+        "id": "b5795fdf-6e2c-4016-af5c-779aa607f96f",
+        "name": "Archaludon",
+        "gv_id": "GV-PK-SCR-107-GAMESTOP-STAMP",
+        "artist": null,
+        "number": "107",
+        "rarity": "Rare",
+        "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+        "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+        "set_code": "sv07",
+        "variants": null,
+        "image_res": null,
+        "image_url": null,
+        "created_at": "2026-10-01T20:17:18.741918+00:00",
+        "image_hash": null,
+        "image_note": null,
+        "image_path": "warehouse-derived/self-hosted-images-v1/87633e8b-dbdd-4ca5-828c-bd9e94e13c6d/0689a30d2da57c5f4453b0fee10c3efb2d6856c930e6189dcf083bdd6ef14d00/front.jpg",
+        "updated_at": "2026-10-01T20:17:18.741918+00:00",
+        "ai_metadata": null,
+        "variant_key": "gamestop_stamp",
+        "external_ids": {},
+        "image_source": "identity",
+        "image_status": null,
+        "number_plain": "107",
+        "tcgplayer_id": "576862",
+        "image_alt_url": null,
+        "printed_total": null,
+        "last_synced_at": null,
+        "identity_domain": "pokemon_eng_standard",
+        "regulation_mark": null,
+        "data_quality_flags": null,
+        "print_identity_key": null,
+        "printed_set_abbrev": null,
+        "set_identity_model": "standard",
+        "image_last_checked_at": null,
+        "representative_image_url": null,
+        "printed_identity_modifier": "gamestop_stamp"
+      }
+    ]
+  }
+]
