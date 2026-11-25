@@ -2,6 +2,11 @@ name: TCGPlayer Market Full-Scope Shadow
 
 on:
   workflow_dispatch:
+    inputs:
+      resume_run_key:
+        description: Existing TCGPlayer full-scope shadow key to resume
+        required: false
+        type: string
 
 permissions:
   contents: read
@@ -19,15 +24,15 @@ jobs:
       SUPABASE_DB_CA_CERT: ${{ secrets.SUPABASE_DB_CA_CERT }}
       TCGPLAYER_MARKET_SCHEDULE_ALLOW_RUN: '1'
       TCGPLAYER_MARKET_SCHEDULE_MODE: shadow
-      TCGPLAYER_MARKET_SCHEDULE_MAX_ATTEMPTS: '2'
+      TCGPLAYER_MARKET_SCHEDULE_MAX_ATTEMPTS: '1'
       TCGPLAYER_MARKET_SCHEDULE_RETRY_DELAYS_SECONDS: '60'
       TCGPLAYER_MARKET_SCHEDULE_REQUEST_CEILING: '10000'
-      TCGPLAYER_MARKET_PHASE_TIMEOUT_MINUTES: '180'
-      TCGPLAYER_MARKET_DATABASE_TIMEOUT_MINUTES: '30'
+      TCGPLAYER_MARKET_PHASE_TIMEOUT_MINUTES: '240'
+      TCGPLAYER_MARKET_DATABASE_TIMEOUT_MINUTES: '180'
       TCGPLAYER_MARKET_SCHEDULE_FRESHNESS_HOURS: '36'
       TCGPLAYER_MARKET_SCHEDULE_OUT_ROOT: /tmp/tcgplayer-market-full-scope-shadow-${{ github.run_id }}
       TCGPLAYER_MARKET_SCHEDULE_EXPECTED_COMMIT_SHA: ${{ github.sha }}
-      TCGPLAYER_MARKET_SCHEDULE_RUN_KEY: TCGPLAYER-MARKET-FULL-SHADOW-${{ github.run_id }}
+      TCGPLAYER_MARKET_SCHEDULE_RUN_KEY: ${{ inputs.resume_run_key || format('TCGPLAYER-MARKET-FULL-SHADOW-{0}', github.run_id) }}
 
     steps:
       - name: Check out exact dispatch SHA
@@ -54,6 +59,7 @@ jobs:
           test -z "$(git status --porcelain --untracked-files=no)"
           test "$TCGPLAYER_MARKET_SCHEDULE_MODE" = "shadow"
           test -z "${TCGPLAYER_MARKET_SCHEDULE_PUBLICATION_LIMIT:-}"
+          [[ "$TCGPLAYER_MARKET_SCHEDULE_RUN_KEY" =~ ^TCGPLAYER-MARKET-FULL-SHADOW-[A-Za-z0-9-]+$ ]]
 
       - name: Run full-source shadow
         timeout-minutes: 330
@@ -79,6 +85,7 @@ jobs:
             echo "## TCGPlayer full-scope shadow"
             echo
             echo "- Producing SHA: \`$TCGPLAYER_MARKET_SCHEDULE_EXPECTED_COMMIT_SHA\`"
+            echo "- Run key: \`$TCGPLAYER_MARKET_SCHEDULE_RUN_KEY\`"
             echo "- Publication activation: \`false\`"
             echo "- Publication limit: \`none\`"
             if [[ -n "$summary" ]]; then
