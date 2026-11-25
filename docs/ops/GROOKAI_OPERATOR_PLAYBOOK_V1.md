@@ -6268,3 +6268,36 @@ unchanged activation/coverage guards, real publication/source/consumer/app amoun
 and natural refresh remain required. Local fixtures or a merge do not finish
 global pricing or clear stamp admission.
 
+
+## Current-source Japanese price-link preparation — November24,2026
+
+V3/V4 preserve original427/4916 verified child/product matches and archived
+physical proofs. The daily source refreshed to2509 before V1/V2 execution; those
+old plans remain unapplied. Current evidence now freezes in each exact plan,
+independently of immutable physical source. Three products570051/571943/630237
+lost usable current Market quotes and may join only with explicit missing/null
+metadata; no stale/estimated quote can publish. Six kind holds remain.
+
+Use the V3/V4 contracts/CLIs, actual local/full normal/hosted/review qualification,
+new exact owner decisions and scoped ACK, own matching production rollback, one
+apply and separate-connection readback. Current frame drift blocks that plan;
+never refresh it silently. No source/price/owner/canonical/publication write, no
+coverage exception, no original149 or regular29 repeat, and no stamp-hold
+clearance. Full corrected unlimited shadow/publication/app/refresh follow.
+
+## Six current Japanese single-card kind corrections
+
+Worker32/policyV3_3 extends the unchanged predecessor for exactly six reviewed
+Japanese singles whose titles contain Bundle or Box. Fixed product/group/number/
+CardType/parent/child/mapping facts and the full immutable V4 metadata digest
+are required. Only the canonical past reviewed_at audit timestamp may differ;
+it never refreshes a quote. Altered/missing evidence fails closed, including a
+changed harmless title that otherwise would publish. Other products/finishes and
+Japanese4/MTG38/Play75 decisions retain predecessor behavior.
+
+Keep this source unmerged until actual V3/V4 insertion and independent production
+metadata/audit readback match the six registry targets and original V4 producer.
+Local fixture proof alone is not production acceptance. Then require full normal/
+hosted/exact review, NEW unlimited durable shadow and original coverage/activation
+guards, real source/consumer/app price/date checks and natural refresh. No physical/
+owner/source/price write, no percentage, no17-gap exception or stamp-hold release.
