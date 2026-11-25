@@ -1,4 +1,26 @@
-# Fifteen GameStop registry entries — November 24, 2026
+# Fifteen GameStop maintenance adapter — November 24, 2026
+
+Follow the [adapter checkpoint](../checkpoints/identity/GAMESTOP_REGISTRY_FIFTEEN_MAINTENANCE_ADAPTER_20261124.md).
+The existing identity maintenance launcher discovers the new exact fifteen-row
+repair task. Default dry-run prepares/verifies only; explicit maintenance write
+mode also requires the exact bounded owner/source/plan/run authority. All actual
+production actions remain unapproved. `GAMESTOP_REGISTRY_RELEASE_CONFIG` references
+private operator JSON and existing env/CA files; never copy credentials into the
+checkout. Apply's audit row is atomic with the fifteen identities, and failures
+are persisted separately. Replays add zero identities and one audit row.
+
+The separately owned audited fixture keeps thirty synthetic copies and all old
+labs unchanged. Its replayable harness covers durable success/failure, original
+job preservation, a real pricing exclusion lock and audit-ID collision. Never
+reset it. Finish final-source normal/platform/hosted checks, then a fresh plan,
+owner decision, production rollback/apply and independent verification. No
+registry execution while a production pricing writer holds its locks.
+
+The frozen seventeen-printing pricing preparation cannot follow a newer source.
+The actual live-source change is retained in `competing-pricing-writer-v3.json`;
+do not restart the old shadow queue or carry its exception limits forward.
+
+# Fifteen GameStop registry entries — initial local milestone, November 24, 2026
 
 Follow the [local qualification checkpoint](../checkpoints/identity/GAMESTOP_REGISTRY_FIFTEEN_LOCAL_QUALIFICATION_20261124.md).
 `backend/catalog/gamestop_registry_fifteen_v1.mjs` and its frozen manifest implement

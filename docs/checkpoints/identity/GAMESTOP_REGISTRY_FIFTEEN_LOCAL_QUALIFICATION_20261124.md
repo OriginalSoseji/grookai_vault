@@ -1,6 +1,8 @@
 # Fifteen GameStop registry entries — local qualification
 
-Status: locally qualified preparation; no production execution entry point or release.
+Status: historical local-only milestone; no production execution or release at
+that milestone. The separate [maintenance adapter checkpoint](GAMESTOP_REGISTRY_FIFTEEN_MAINTENANCE_ADAPTER_20261124.md)
+owns subsequent production-path preparation.
 
 Authority: [master rulebook](../../GROOKAI_RULEBOOK.md) and the frozen
 [identity subsystem](../../contracts/CARD_PRINT_IDENTITY_SUBSYSTEM_CONTRACT_V1.md).

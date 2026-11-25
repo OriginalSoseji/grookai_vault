@@ -4,6 +4,7 @@ import {printingManifestHash as hash} from './printing_completeness_gate_v1.mjs'
 
 export const VERSION='GAMESTOP_REGISTRY_FIFTEEN_V1';
 export const QUALIFICATION_DATABASE='gamestop_registry_fifteen_qualification_v1';
+export const AUDITED_QUALIFICATION_DATABASE='gamestop_registry_fifteen_audited_qualification_v1';
 export const PROJECT='ycdxbpibncqcchqiihfz';
 const REVIEWED_MANIFEST='4aedb835926e964265fec75e81c110c01086ac6048a81b3ba908f3871d4967fe';
 const identifier=s=>'"'+s.replaceAll('"','""')+'"';
@@ -136,17 +137,74 @@ export function classifyGameStopRegistryState(plan,state){
  return'exact';
 }
 
-// Qualification has an explicit local-only route. This module exposes no production execution entry point.
-export async function qualifyGameStopRegistryTransaction({client,plan,mode,committedIdentityRows,beforeCommit=async()=>{}}){
+export async function qualifyGameStopRegistryTransaction(options){
+ const {client}=options;
  const p=client.connectionParameters;assert.ok(['127.0.0.1','localhost'].includes(p.host));assert.equal(Number(p.port),5432);
- assert.equal(p.user,'postgres');assert.equal(p.database,QUALIFICATION_DATABASE);
+ assert.equal(p.user,'postgres');assert.ok([QUALIFICATION_DATABASE,AUDITED_QUALIFICATION_DATABASE].includes(p.database));
  const route=(await client.query("select current_database() database,current_setting('max_worker_processes') workers,version() version")).rows[0];
- assert.equal(route.database,QUALIFICATION_DATABASE);assert.equal(route.workers,'0');assert.match(route.version,/PostgreSQL 17\./);
+ assert.equal(route.database,p.database);assert.equal(route.workers,'0');assert.match(route.version,/PostgreSQL 17\./);
+ return registryTransaction({...options,environment:'local_qualification'});
+}
+
+// Only the gated maintenance adapter may supply this capability. The function
+// itself repeats the canonical route and maintenance checks before any query.
+export async function executeGameStopRegistryMaintenanceTransaction(options){
+ const {assertMaintenanceWriteAllowed,getIdentityMaintenanceDryRunV1}=await import('../identity/identity_maintenance_boundary_v1.mjs');
+ assertMaintenanceWriteAllowed();assert.equal(getIdentityMaintenanceDryRunV1(),false,'Explicit maintenance apply required');
+ const p=options.client.connectionParameters;
+ assert.equal(p.database,'postgres');assert.equal(Number(p.port),5432);assert.equal(p.ssl?.rejectUnauthorized,true);assert.equal(options.client.connection?.stream?.authorized,true);
+ assert.ok((p.host===`db.${PROJECT}.supabase.co`&&p.user==='postgres')||(p.host==='aws-1-us-east-2.pooler.supabase.com'&&p.user===`postgres.${PROJECT}`),'Canonical production session required');
+ const {assertGameStopReleaseContext,assertGameStopProductionClient}=await import('./gamestop_registry_release_guard_v1.mjs');
+ const {assertGameStopRunRecordStorage,readGameStopRunRecord,retainedJobDigest,appendGameStopRunRecord,persistGameStopFailure}=await import('./gamestop_registry_run_records_v1.mjs');
+ const {client,auditClient,plan,mode,release,revalidate=async()=>{}}=options;
+ assertGameStopProductionClient(client);
+ assertGameStopProductionClient(auditClient);assert.notEqual(client,auditClient,'Independent audit connection required');assert.ok(['rollback','apply'].includes(mode));
+ assert.equal((await client.query('select current_database() name')).rows[0].name,'postgres');
+ assert.equal((await client.query("select current_setting('application_name') name")).rows[0].name,'gamestop_registry_fifteen_maintenance_v1');
+ const sanity=(await client.query('select(select count(*)::int from public.card_prints) cards,(select count(*)::int from public.sets) sets,(select count(*)::int from public.card_print_traits) traits')).rows[0];
+ assert.ok(sanity.cards>=40000&&sanity.sets>=150&&sanity.traits>=5000,'Environment mismatch — fix before proceeding.');
+ const time=async()=>(await client.query('select clock_timestamp() at')).rows[0].at;
+ const startedAt=new Date(await time()).toISOString();
+ const context={authority:release?.authority,plan,codeFingerprint:release?.codeFingerprint,runId:release?.runId,mode,rollbackReceipt:release?.rollbackReceipt,committedReceipt:release?.committedReceipt};
+ const authorize=async()=>{assertGameStopProductionClient(client);await revalidate();return assertGameStopReleaseContext({...context,now:new Date(await time()).toISOString()});};
+ const selected=await authorize();
+ const auditContext={runId:context.runId,planFingerprint:plan.fingerprint,codeFingerprint:context.codeFingerprint,mode,startedAt};
+ let successRecorded=false,retainedJobsBefore,finishedAt;
+ try{
+  const result=await registryTransaction({client,plan,mode,committedIdentityRows:release?.committedReceipt?.identityRows,environment:'production',authorize,
+   afterBegin:async()=>{
+    await assertGameStopPricingWindowClear(client);
+    await assertGameStopRunRecordStorage(client);assert.equal(await readGameStopRunRecord(client,context.runId),null,'Run already has an outcome; diagnose instead of retrying');
+    retainedJobsBefore=await retainedJobDigest(client,context.runId);
+   },
+   recordSuccess:async proof=>{assert.equal(proof.inserts,selected.expected_identity_inserts,'Approved identity INSERT count changed');const row=await appendGameStopRunRecord(client,{...auditContext,expectedRetainedDigest:retainedJobsBefore,result:{...proof,otherTableWrites:1,auditRows:1,committed:true,commitUncertain:false}});finishedAt=row.payload.finished_at;successRecorded=true;},
+  });
+  assert.equal(result.inserts,selected.expected_identity_inserts);
+  if(mode==='rollback'){
+   await authorize();
+   assert.equal(result.rollbackProven,true);await auditClient.query('begin isolation level serializable');
+   let auditCommitAttempted=false;
+   try{const row=await appendGameStopRunRecord(auditClient,{...auditContext,result:{...result,otherTableWrites:1,auditRows:1}});finishedAt=row.payload.finished_at;auditCommitAttempted=true;await auditClient.query('commit');successRecorded=true;}catch(error){await auditClient.query('rollback').catch(()=>{});error.auditCommitUncertain=auditCommitAttempted;throw error;}
+  }
+  return {...result,otherTableWrites:1,runId:context.runId,codeFingerprint:context.codeFingerprint,auditRows:1,auditPersisted:successRecorded,finishedAt};
+ }catch(error){
+  try{assertGameStopProductionClient(auditClient);error.audit=await persistGameStopFailure(auditClient,auditContext,error);}catch(failure){error.auditPersistenceFailure=String(failure.message).slice(0,1000);}
+  throw error;
+ }
+}
+
+export async function assertGameStopPricingWindowClear(client){
+ for(const name of ['tcgplayer_market_scheduled_runner_v1','grookai:tcgcsv:current:v1'])assert.equal((await client.query('select pg_try_advisory_xact_lock(hashtext($1)::bigint) acquired',[name])).rows[0].acquired,true,'Active pricing window blocks registry execution');
+}
+
+async function registryTransaction({client,plan,mode,committedIdentityRows,beforeCommit=async()=>{},environment,authorize=async()=>{},recordSuccess=async()=>{},afterBegin=async()=>{}}){
  assertGameStopRegistryPlan(plan);assert.ok(['preflight','rollback','apply','readback'].includes(mode));
  let commitAttempted=false,committed=false;
  try{
   await client.query(`begin isolation level serializable${['preflight','readback'].includes(mode)?' read only':''}`);
   await client.query("set local statement_timeout='45s';set local lock_timeout='3s'");
+  await authorize();
+  await afterBegin();
   if(['rollback','apply'].includes(mode)){
    await client.query('select pg_advisory_xact_lock(hashtextextended($1,0))',[VERSION]);
    await client.query('select id from public.card_prints where id=any($1::uuid[]) order by id for update',[parentIds()]);
@@ -158,17 +216,19 @@ export async function qualifyGameStopRegistryTransaction({client,plan,mode,commi
   if(mode==='readback')assert.equal(beforeClass,'exact');
   let inserts=0;
   if(beforeClass==='before'&&['rollback','apply'].includes(mode)){
+   await authorize();
    const fields=identityFields.map(identifier).join(',');
    inserts=(await client.query(`insert into public.card_print_identity(${fields}) select ${fields} from jsonb_populate_recordset(null::public.card_print_identity,$1::jsonb)`,[JSON.stringify(plan.identities)])).rowCount;
    assert.equal(inserts,15);
   }
   const after=await readGameStopRegistryState(client,plan.schema),afterClass=classifyGameStopRegistryState(plan,after);
   if(mode!=='preflight'||beforeClass==='exact')assert.equal(afterClass,'exact');
-  const result={version:VERSION,environment:'local_qualification',mode,planFingerprint:plan.fingerprint,before:beforeClass,after:afterClass,inserts,updates:0,otherTableWrites:0,exactReadback:afterClass==='exact',identityRows:after.identities};
+  const result={version:VERSION,environment,mode,planFingerprint:plan.fingerprint,before:beforeClass,after:afterClass,inserts,updates:0,otherTableWrites:0,exactReadback:afterClass==='exact',identityRows:after.identities};
   if(mode==='apply'){
    await beforeCommit(result);same(await readGameStopRegistrySchema(client),plan.schema,'Precommit schema drift');
    const finalState=await readGameStopRegistryState(client,plan.schema);
    assert.equal(classifyGameStopRegistryState(plan,finalState),'exact');same(finalState.identities,after.identities,'New identity metadata changed before commit');
+   await authorize();await recordSuccess(result);
    commitAttempted=true;await client.query('commit');committed=true;
   }else await client.query('rollback');
   if(mode==='rollback'){

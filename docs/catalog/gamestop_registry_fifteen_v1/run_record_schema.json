@@ -1,0 +1,118 @@
+{
+  "columns": [
+    {
+      "attname": "id",
+      "type": "bigint",
+      "attnotnull": true,
+      "attgenerated": "",
+      "default_expression": "nextval('ingestion_jobs_id_seq'::regclass)"
+    },
+    {
+      "attname": "job_type",
+      "type": "text",
+      "attnotnull": true,
+      "attgenerated": "",
+      "default_expression": null
+    },
+    {
+      "attname": "payload",
+      "type": "jsonb",
+      "attnotnull": false,
+      "attgenerated": "",
+      "default_expression": null
+    },
+    {
+      "attname": "status",
+      "type": "text",
+      "attnotnull": true,
+      "attgenerated": "",
+      "default_expression": "'pending'::text"
+    },
+    {
+      "attname": "attempts",
+      "type": "integer",
+      "attnotnull": true,
+      "attgenerated": "",
+      "default_expression": "0"
+    },
+    {
+      "attname": "created_at",
+      "type": "timestamp with time zone",
+      "attnotnull": true,
+      "attgenerated": "",
+      "default_expression": "now()"
+    },
+    {
+      "attname": "last_attempt_at",
+      "type": "timestamp with time zone",
+      "attnotnull": false,
+      "attgenerated": "",
+      "default_expression": null
+    },
+    {
+      "attname": "locked_by",
+      "type": "text",
+      "attnotnull": false,
+      "attgenerated": "",
+      "default_expression": null
+    },
+    {
+      "attname": "locked_at",
+      "type": "timestamp with time zone",
+      "attnotnull": false,
+      "attgenerated": "",
+      "default_expression": null
+    },
+    {
+      "attname": "requester_user_id",
+      "type": "uuid",
+      "attnotnull": false,
+      "attgenerated": "",
+      "default_expression": null
+    }
+  ],
+  "constraints": [
+    {
+      "conname": "ingestion_jobs_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (id)"
+    }
+  ],
+  "indexes": [
+    {
+      "indexname": "ingestion_jobs_created_at_idx",
+      "indexdef": "CREATE INDEX ingestion_jobs_created_at_idx ON public.ingestion_jobs USING btree (created_at)"
+    },
+    {
+      "indexname": "ingestion_jobs_job_type_idx",
+      "indexdef": "CREATE INDEX ingestion_jobs_job_type_idx ON public.ingestion_jobs USING btree (job_type)"
+    },
+    {
+      "indexname": "ingestion_jobs_pkey",
+      "indexdef": "CREATE UNIQUE INDEX ingestion_jobs_pkey ON public.ingestion_jobs USING btree (id)"
+    },
+    {
+      "indexname": "ingestion_jobs_requester_user_id_idx",
+      "indexdef": "CREATE INDEX ingestion_jobs_requester_user_id_idx ON public.ingestion_jobs USING btree (requester_user_id)"
+    },
+    {
+      "indexname": "ingestion_jobs_status_idx",
+      "indexdef": "CREATE INDEX ingestion_jobs_status_idx ON public.ingestion_jobs USING btree (status)"
+    }
+  ],
+  "triggers": [],
+  "rules": [],
+  "policies": [
+    {
+      "schemaname": "public",
+      "tablename": "ingestion_jobs",
+      "policyname": "user select own",
+      "permissive": "PERMISSIVE",
+      "roles": "{authenticated}",
+      "cmd": "SELECT",
+      "qual": "(requester_user_id = auth.uid())",
+      "with_check": null
+    }
+  ],
+  "incomingReferences": []
+}

@@ -1,9 +1,20 @@
-# Fifteen GameStop registry entries — November 24, 2026
+# Fifteen GameStop maintenance adapter — November 24, 2026
+
+The [maintenance adapter checkpoint](checkpoints/identity/GAMESTOP_REGISTRY_FIFTEEN_MAINTENANCE_ADAPTER_20261124.md)
+owns current preparation. The exact fifteen identities use the existing
+maintenance launcher, approved run/source/plan scope, pricing exclusion locks and
+durable outcome records. One operational audit row per write run is proposed
+separately from the fifteen canonical INSERTs. Preparation is not production
+authority; final source checks, fresh canonical plan/rollback and the applicable
+owner decision remain required. All original labs and closed releases stay retained.
+
+# Fifteen GameStop registry entries — initial local milestone, November 24, 2026
 
 The [local qualification checkpoint](checkpoints/identity/GAMESTOP_REGISTRY_FIFTEEN_LOCAL_QUALIFICATION_20261124.md)
 records the bounded missing-registry repair under the existing frozen identity
-law. Only local qualification is implemented; there is no production apply entry
-point. Preserve all existing parent IDs, printings, reviews, owners, prices and
+law. That initial milestone exposes only local qualification. The separate
+adapter checkpoint above owns subsequent production-path preparation. Preserve
+all existing parent IDs, printings, reviews, owners, prices and
 the Play!/Prize Pack holds. Normal source checks and separate production gates
 remain outstanding. Do not reset old laboratories or replay consumed executors.
 
