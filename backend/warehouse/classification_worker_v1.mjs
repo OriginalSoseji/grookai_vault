@@ -1742,8 +1742,18 @@ async function insertWarehouseEvent(client, payload) {
   ]);
 }
 
-async function applyWritePlan(pool, buildResult) {
+// Read-only preparation shared by the ordinary worker and bounded batch qualification.
+export async function buildClassificationForCandidateV1(connection, candidateId) {
+  const artifact = await buildCandidateArtifacts(connection, candidateId);
+  if (!artifact.candidate) throw new Error(`candidate_not_found:${candidateId}`);
+  return buildPackages(connection, artifact);
+}
+
+// Transaction ownership stays with the caller. Every write still enters the
+// registered classification executor and its original post-write proofs.
+export async function applyClassificationWithinTransactionV1(connection, buildResult, {ledgerTarget = connection, executionContext = null} = {}) {
   const payloadSnapshot = {
+    ...(executionContext ?? {}),
     candidate_id: buildResult.candidate?.id ?? null,
     latest_evidence_at: buildResult.latestEvidenceAt ?? null,
     write_step_types: Array.isArray(buildResult.writePlan)
@@ -1756,9 +1766,6 @@ async function applyWritePlan(pool, buildResult) {
       : [],
   };
 
-  const connection = await pool.connect();
-  try {
-    await connection.query('begin');
     const candidateStateProofStep =
       [...buildResult.writePlan]
         .reverse()
@@ -1769,7 +1776,7 @@ async function applyWritePlan(pool, buildResult) {
       payload_snapshot: payloadSnapshot,
       write_target: connection,
       audit_target: connection,
-      ledger_target: connection,
+      ledger_target: ledgerTarget,
       transaction_control: 'external',
       actor_type: 'system_worker',
       source_worker: WORKER_NAME,
@@ -1926,6 +1933,13 @@ async function applyWritePlan(pool, buildResult) {
       },
     });
 
+}
+
+async function applyWritePlan(pool, buildResult) {
+  const connection = await pool.connect();
+  try {
+    await connection.query('begin');
+    await applyClassificationWithinTransactionV1(connection, buildResult);
     await connection.query('commit');
   } catch (error) {
     await connection.query('rollback');
