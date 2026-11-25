@@ -25,6 +25,7 @@ Purpose: coverage-accountable inventory of canon-affecting and ownership-affecti
 
 | path_name | source_files | canon_affecting | ownership_affecting | public_trust_affecting | runtime_status | transaction_mode | post_write_proof | risk_level | next_action |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `catalog_mcd22_rarity_apply_v1` | `backend/catalog/mcd22_rarity_apply_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | medium | Keep the exact 15-row, null-only package behind raw-first staging, current source and identity checks, protected-state proofs and a same-writer rollback proof. |
 | `external_discovery_to_warehouse_bridge_v1` | `backend/warehouse/external_discovery_to_warehouse_bridge_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | medium | Keep on the shared executor boundary; do not allow ad hoc RAW candidate writes back in. |
 | `classification_apply_write_plan_v1` | `backend/warehouse/classification_worker_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | medium | Keep candidate locking and evidence freshness checks inside the executor-backed boundary. |
 | `classification_apply_reclassification_result_v1` | `backend/warehouse/classification_worker_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | medium | Keep reclassification update + event append inside the executor-backed boundary. |
