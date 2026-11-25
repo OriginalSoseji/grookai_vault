@@ -1,0 +1,666 @@
+{
+  "version": "GAMESTOP_REGISTRY_FIFTEEN_V1",
+  "project_ref": "ycdxbpibncqcchqiihfz",
+  "existingLaw": "CARD_PRINT_IDENTITY_SUBSYSTEM_CONTRACT_V1 / pokemon_eng_standard:v1",
+  "sourceAuditSha256": "9f20d1f9ad91031c518727920c767cf2d729792a1f3b5b0285f85c52df4d6850",
+  "holdManifest": "1c088dd83c399900a1526037f270dd47547bf3ce7c2da17b57b22ea491b80c92",
+  "targets": [
+    {
+      "parentId": "01112b31-39c4-4483-a4e2-081257b3a872",
+      "parentRow": "{\"id\": \"01112b31-39c4-4483-a4e2-081257b3a872\", \"name\": \"Sandaconda\", \"gv_id\": \"GV-PK-BST-082-GAMESTOP-STAMP\", \"artist\": null, \"number\": \"082\", \"rarity\": \"Promo\", \"set_id\": \"7ca9aefb-ffa9-4b24-ba8c-8b545b80eb83\", \"game_id\": \"b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5\", \"set_code\": \"swsh5\", \"variants\": null, \"image_res\": null, \"image_url\": null, \"created_at\": \"2026-10-01T19:33:19.509535+00:00\", \"image_hash\": null, \"image_note\": null, \"image_path\": \"warehouse-derived/self-hosted-images-v1/63cf77d2-2319-48f1-ba63-6176dbc3558b/d6ad1bc3a7fbdcc9d71237e69fea2d6d3c9e577d441a31e68138ba94e6abd8d3/front.jpg\", \"updated_at\": \"2026-10-01T19:33:19.509535+00:00\", \"ai_metadata\": null, \"variant_key\": \"gamestop_stamp\", \"external_ids\": {}, \"image_source\": \"identity\", \"image_status\": null, \"number_plain\": \"082\", \"tcgplayer_id\": \"242553\", \"image_alt_url\": null, \"printed_total\": null, \"last_synced_at\": null, \"identity_domain\": \"pokemon_eng_standard\", \"regulation_mark\": null, \"data_quality_flags\": null, \"print_identity_key\": null, \"printed_set_abbrev\": null, \"set_identity_model\": \"standard\", \"image_last_checked_at\": null, \"representative_image_url\": null, \"printed_identity_modifier\": \"gamestop_stamp\"}",
+      "childRow": "{\"id\": \"14013a29-8df5-52d8-a4e3-b257e82ce82e\", \"image_url\": null, \"created_at\": \"2026-10-01T19:50:51.56882+00:00\", \"created_by\": \"WAREHOUSE_PRINTING_ADMISSION_V1\", \"finish_key\": \"cosmos\", \"image_note\": null, \"image_path\": null, \"image_source\": null, \"image_status\": null, \"card_print_id\": \"01112b31-39c4-4483-a4e2-081257b3a872\", \"image_alt_url\": null, \"is_provisional\": false, \"printing_gv_id\": \"GV-PK-BST-082-GAMESTOP-STAMP-COSMOS\", \"provenance_ref\": \"raw_imports:-30940410426949466|master-index:687f189df3b2a1f89e7bd97f53286e5d847356fa317d0c798c5c00b87fadfbac\", \"provenance_source\": \"WAREHOUSE_PRINTING_ADMISSION_V1\"}",
+      "reviewRow": "{\"id\": \"04820c4b-b808-5abc-a875-3db8a0453e38\", \"active\": true, \"reason\": \"Exact printing supported by the reviewed Master Index; admission does not assert whole-set readiness.\", \"evidence\": {\"finish_key\": \"cosmos\", \"card_print_id\": \"01112b31-39c4-4483-a4e2-081257b3a872\", \"raw_import_id\": \"-30940410426949466\", \"review_sha256\": \"959ebfc89db5a747e1bafded1f80bd3689d1db02f85ce0d4d7e7c21a3475feee\", \"master_index_sha256\": \"3137b5649816f28256e1ce63eccfafb53ecdca3e7d2541847a6681dca95947a7\", \"manifest_fingerprint\": \"687f189df3b2a1f89e7bd97f53286e5d847356fa317d0c798c5c00b87fadfbac\", \"warehouse_authority_fingerprint\": \"6474abc9445f2110386c0f8b63adfb26150109fffbd9534faa19cda8f6716e60\"}, \"confidence\": \"high\", \"created_at\": \"2026-10-01T19:50:51.56882+00:00\", \"updated_at\": \"2026-10-01T19:50:51.56882+00:00\", \"reviewed_at\": \"2026-10-01T19:34:31.39+00:00\", \"reviewed_by\": \"WAREHOUSE_PRINTING_ADMISSION_V1\", \"review_status\": \"verified\", \"card_printing_id\": \"14013a29-8df5-52d8-a4e3-b257e82ce82e\", \"public_visibility\": \"visible\", \"source_report_path\": \"raw_imports:-30940410426949466|master-index:687f189df3b2a1f89e7bd97f53286e5d847356fa317d0c798c5c00b87fadfbac\", \"expected_finish_keys\": [\"cosmos\"], \"evidence_sources_checked\": [\"https://www.psacard.com/spec/psa/6789121\", \"https://www.tcgplayer.com/product/242553\", \"https://tcgplayer-cdn.tcgplayer.com/product/242553_400w.jpg\"], \"evidence_sources_for_finish\": [\"sandaconda-psa-indexed-specification\", \"sandaconda-tcgcsv-source-product\", \"sandaconda-tcgplayer-exact-image\"]}",
+      "identity": {
+        "id": "81fb208d-0067-4d4d-941d-115b0d6410ba",
+        "card_print_id": "01112b31-39c4-4483-a4e2-081257b3a872",
+        "printed_number": "082",
+        "identity_domain": "pokemon_eng_standard",
+        "source_name_raw": null,
+        "identity_payload": {
+          "variant_key_current": "gamestop_stamp"
+        },
+        "identity_key_hash": "9fa3558771b5593a888e6f05386278071cd0b82cf9f4f303cceba093f98d8145",
+        "set_code_identity": "swsh5",
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "normalized_printed_name": "sandaconda",
+        "is_active": true
+      }
+    },
+    {
+      "parentId": "02235b0e-d870-4e9a-b6b0-49bb3526f13f",
+      "parentRow": "{\"id\": \"02235b0e-d870-4e9a-b6b0-49bb3526f13f\", \"name\": \"Umbreon\", \"gv_id\": \"GV-PK-OBF-130-GAMESTOP-STAMP\", \"artist\": null, \"number\": \"130\", \"rarity\": \"Promo\", \"set_id\": \"58a601d0-5d14-47a5-b589-425423207912\", \"game_id\": \"b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5\", \"set_code\": \"sv03\", \"variants\": null, \"image_res\": null, \"image_url\": null, \"created_at\": \"2026-10-01T20:34:20.71109+00:00\", \"image_hash\": null, \"image_note\": null, \"image_path\": \"warehouse-derived/self-hosted-images-v1/d4c0cd5b-0280-42a3-a557-4c9600d47146/a8e216ca890ca9460fa2699710e2c5a2dabfd2309220f7477b6b0628160744ea/front.jpg\", \"updated_at\": \"2026-10-01T20:34:20.71109+00:00\", \"ai_metadata\": null, \"variant_key\": \"gamestop_stamp\", \"external_ids\": {}, \"image_source\": \"identity\", \"image_status\": null, \"number_plain\": \"130\", \"tcgplayer_id\": \"512583\", \"image_alt_url\": null, \"printed_total\": null, \"last_synced_at\": null, \"identity_domain\": \"pokemon_eng_standard\", \"regulation_mark\": null, \"data_quality_flags\": null, \"print_identity_key\": null, \"printed_set_abbrev\": null, \"set_identity_model\": \"standard\", \"image_last_checked_at\": null, \"representative_image_url\": null, \"printed_identity_modifier\": \"gamestop_stamp\"}",
+      "childRow": "{\"id\": \"f955ba0d-f72a-50bb-a361-e50ae5026677\", \"image_url\": null, \"created_at\": \"2026-10-01T20:46:28.802973+00:00\", \"created_by\": \"WAREHOUSE_PRINTING_ADMISSION_V1\", \"finish_key\": \"reverse\", \"image_note\": null, \"image_path\": null, \"image_source\": null, \"image_status\": null, \"card_print_id\": \"02235b0e-d870-4e9a-b6b0-49bb3526f13f\", \"image_alt_url\": null, \"is_provisional\": false, \"printing_gv_id\": \"GV-PK-OBF-130-GAMESTOP-STAMP-REVERSE\", \"provenance_ref\": \"raw_imports:-802638110534867520|master-index:f23a9db1332ecfeee5f48e048fa80a2e4a7d1cdda63d804fd40553fa59eb697c\", \"provenance_source\": \"WAREHOUSE_PRINTING_ADMISSION_V1\"}",
+      "reviewRow": "{\"id\": \"e5dc3f5e-ac53-5a1f-ab61-f38ecf4202c6\", \"active\": true, \"reason\": \"Exact printing supported by the reviewed Master Index; admission does not assert whole-set readiness.\", \"evidence\": {\"finish_key\": \"reverse\", \"card_print_id\": \"02235b0e-d870-4e9a-b6b0-49bb3526f13f\", \"raw_import_id\": \"-802638110534867520\", \"review_sha256\": \"3621d71b675bf605e213f87135aad3c40163d1adeb302bf6a2f16a9017230432\", \"master_index_sha256\": \"b3d87577cf91739ade8e40c0fa928ddf7d617a96cccbde75e64129a681e5f1c0\", \"manifest_fingerprint\": \"f23a9db1332ecfeee5f48e048fa80a2e4a7d1cdda63d804fd40553fa59eb697c\", \"warehouse_authority_fingerprint\": \"210f1c3634c0993d7aa2bfa2c0f39f43667a9b5a3d5003371b0ee671751ae6c0\"}, \"confidence\": \"high\", \"created_at\": \"2026-10-01T20:46:28.802973+00:00\", \"updated_at\": \"2026-10-01T20:46:28.802973+00:00\", \"reviewed_at\": \"2026-10-01T20:36:22.998+00:00\", \"reviewed_by\": \"WAREHOUSE_PRINTING_ADMISSION_V1\", \"review_status\": \"verified\", \"card_printing_id\": \"f955ba0d-f72a-50bb-a361-e50ae5026677\", \"public_visibility\": \"visible\", \"source_report_path\": \"raw_imports:-802638110534867520|master-index:f23a9db1332ecfeee5f48e048fa80a2e4a7d1cdda63d804fd40553fa59eb697c\", \"expected_finish_keys\": [\"reverse\"], \"evidence_sources_checked\": [\"https://www.pokebeach.com/2023/08/after-some-doubt-espeon-and-umbreon-store-promos-now-available\", \"https://www.tcgplayer.com/product/512583\", \"https://tcgplayer-cdn.tcgplayer.com/product/512583_400w.jpg\"], \"evidence_sources_for_finish\": [\"umbreon-release-history\", \"umbreon-tcgcsv-product\", \"umbreon-exact-image\"]}",
+      "identity": {
+        "id": "139b4fd2-191d-4fa9-9503-1ee2ddb4d384",
+        "card_print_id": "02235b0e-d870-4e9a-b6b0-49bb3526f13f",
+        "printed_number": "130",
+        "identity_domain": "pokemon_eng_standard",
+        "source_name_raw": null,
+        "identity_payload": {
+          "variant_key_current": "gamestop_stamp"
+        },
+        "identity_key_hash": "9e70049a4b7fcd23662da719355fe6ec8ba0256563430eec5c15e92678b45e39",
+        "set_code_identity": "sv03",
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "normalized_printed_name": "umbreon",
+        "is_active": true
+      }
+    },
+    {
+      "parentId": "12e6eaf0-d294-4ffa-9f81-9a9eeace7ed8",
+      "parentRow": "{\"id\": \"12e6eaf0-d294-4ffa-9f81-9a9eeace7ed8\", \"name\": \"Koraidon\", \"gv_id\": \"GV-PK-TEF-119-GAMESTOP-STAMP\", \"artist\": null, \"number\": \"119\", \"rarity\": \"Promo\", \"set_id\": \"53ebedef-ab76-4a6f-aae9-29b344512790\", \"game_id\": \"b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5\", \"set_code\": \"sv05\", \"variants\": null, \"image_res\": null, \"image_url\": null, \"created_at\": \"2026-10-01T20:17:07.023934+00:00\", \"image_hash\": null, \"image_note\": null, \"image_path\": \"warehouse-derived/self-hosted-images-v1/f7b52e40-833e-4f25-8805-15be3be82400/5edc15451f0072c59cdab89c1e43e0e1a5e78155401fd54c045aa43c38dcebad/front.jpg\", \"updated_at\": \"2026-10-01T20:17:07.023934+00:00\", \"ai_metadata\": null, \"variant_key\": \"gamestop_stamp\", \"external_ids\": {}, \"image_source\": \"identity\", \"image_status\": null, \"number_plain\": \"119\", \"tcgplayer_id\": \"543954\", \"image_alt_url\": null, \"printed_total\": null, \"last_synced_at\": null, \"identity_domain\": \"pokemon_eng_standard\", \"regulation_mark\": null, \"data_quality_flags\": null, \"print_identity_key\": null, \"printed_set_abbrev\": null, \"set_identity_model\": \"standard\", \"image_last_checked_at\": null, \"representative_image_url\": null, \"printed_identity_modifier\": \"gamestop_stamp\"}",
+      "childRow": "{\"id\": \"65ffc98d-2f77-517f-a9d0-7b79270eea38\", \"image_url\": null, \"created_at\": \"2026-10-01T20:31:10.235861+00:00\", \"created_by\": \"WAREHOUSE_PRINTING_ADMISSION_V1\", \"finish_key\": \"cosmos\", \"image_note\": null, \"image_path\": null, \"image_source\": null, \"image_status\": null, \"card_print_id\": \"12e6eaf0-d294-4ffa-9f81-9a9eeace7ed8\", \"image_alt_url\": null, \"is_provisional\": false, \"printing_gv_id\": \"GV-PK-TEF-119-GAMESTOP-STAMP-COSMOS\", \"provenance_ref\": \"raw_imports:-175394847902377795|master-index:ed2ed3ff5c6bc8187f8af6da6907e34bcb02ec52ca7339fb866d88b271318986\", \"provenance_source\": \"WAREHOUSE_PRINTING_ADMISSION_V1\"}",
+      "reviewRow": "{\"id\": \"fa47a6b1-4793-536b-ae69-44c6e2381379\", \"active\": true, \"reason\": \"Exact printing supported by the reviewed Master Index; admission does not assert whole-set readiness.\", \"evidence\": {\"finish_key\": \"cosmos\", \"card_print_id\": \"12e6eaf0-d294-4ffa-9f81-9a9eeace7ed8\", \"raw_import_id\": \"-175394847902377795\", \"review_sha256\": \"55416654f7857a3a900eaae2c53c1078e1bb1047de8e6b913b78dc47eefddcf0\", \"master_index_sha256\": \"ccca476bebe95863fee2869f2bbfa0bc7436b4da1e0baf1c88bb52648046a99f\", \"manifest_fingerprint\": \"ed2ed3ff5c6bc8187f8af6da6907e34bcb02ec52ca7339fb866d88b271318986\", \"warehouse_authority_fingerprint\": \"1bf5d55fd4edf95575d42de46ef360979c68f818990a74ad5287e61f7af65a45\"}, \"confidence\": \"high\", \"created_at\": \"2026-10-01T20:31:10.235861+00:00\", \"updated_at\": \"2026-10-01T20:31:10.235861+00:00\", \"reviewed_at\": \"2026-10-01T20:19:27.731+00:00\", \"reviewed_by\": \"WAREHOUSE_PRINTING_ADMISSION_V1\", \"review_status\": \"verified\", \"card_printing_id\": \"65ffc98d-2f77-517f-a9d0-7b79270eea38\", \"public_visibility\": \"visible\", \"source_report_path\": \"raw_imports:-175394847902377795|master-index:ed2ed3ff5c6bc8187f8af6da6907e34bcb02ec52ca7339fb866d88b271318986\", \"expected_finish_keys\": [\"cosmos\"], \"evidence_sources_checked\": [\"https://bulbapedia.bulbagarden.net/wiki/Koraidon_(Temporal_Forces_119)\", \"https://www.tcgplayer.com/product/543954\", \"https://tcgplayer-cdn.tcgplayer.com/product/543954_400w.jpg\"], \"evidence_sources_for_finish\": [\"koraidon-release-history\", \"koraidon-tcgcsv-product\", \"koraidon-exact-image\"]}",
+      "identity": {
+        "id": "e74e269a-6f4b-451f-b9e0-9f48542238e9",
+        "card_print_id": "12e6eaf0-d294-4ffa-9f81-9a9eeace7ed8",
+        "printed_number": "119",
+        "identity_domain": "pokemon_eng_standard",
+        "source_name_raw": null,
+        "identity_payload": {
+          "variant_key_current": "gamestop_stamp"
+        },
+        "identity_key_hash": "7f70f84adfb9d2d7ecd23fc0380b5131f7b822ec35547c50e92cb5be5b78101f",
+        "set_code_identity": "sv05",
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "normalized_printed_name": "koraidon",
+        "is_active": true
+      }
+    },
+    {
+      "parentId": "2b9dc517-461e-40a6-af91-d91c9f9ce8bd",
+      "parentRow": "{\"id\": \"2b9dc517-461e-40a6-af91-d91c9f9ce8bd\", \"name\": \"Iron Moth\", \"gv_id\": \"GV-PK-PAR-028-GAMESTOP-STAMP\", \"artist\": null, \"number\": \"028\", \"rarity\": \"Promo\", \"set_id\": \"1e501229-9396-49cd-b3eb-e6658e722ee2\", \"game_id\": \"b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5\", \"set_code\": \"sv04\", \"variants\": null, \"image_res\": null, \"image_url\": null, \"created_at\": \"2026-10-01T16:54:06.375759+00:00\", \"image_hash\": null, \"image_note\": null, \"image_path\": \"warehouse-derived/self-hosted-images-v1/0ce59f8e-d728-4400-8d1c-68df95073747/4963db894f3feebe0c0fe08a5e603344ac1e0b6df0755ebf3dda7a1b1ae654e6/front.jpg\", \"updated_at\": \"2026-10-01T16:54:06.375759+00:00\", \"ai_metadata\": null, \"variant_key\": \"gamestop_stamp\", \"external_ids\": {}, \"image_source\": \"identity\", \"image_status\": null, \"number_plain\": \"028\", \"tcgplayer_id\": \"527015\", \"image_alt_url\": null, \"printed_total\": null, \"last_synced_at\": null, \"identity_domain\": \"pokemon_eng_standard\", \"regulation_mark\": null, \"data_quality_flags\": null, \"print_identity_key\": null, \"printed_set_abbrev\": null, \"set_identity_model\": \"standard\", \"image_last_checked_at\": null, \"representative_image_url\": null, \"printed_identity_modifier\": \"gamestop_stamp\"}",
+      "childRow": "{\"id\": \"4e21dc3b-2766-537f-ac80-92d1d015b00b\", \"image_url\": null, \"created_at\": \"2026-10-01T17:05:54.353573+00:00\", \"created_by\": \"WAREHOUSE_PRINTING_ADMISSION_V1\", \"finish_key\": \"reverse\", \"image_note\": null, \"image_path\": null, \"image_source\": null, \"image_status\": null, \"card_print_id\": \"2b9dc517-461e-40a6-af91-d91c9f9ce8bd\", \"image_alt_url\": null, \"is_provisional\": false, \"printing_gv_id\": \"GV-PK-PAR-028-GAMESTOP-STAMP-REVERSE\", \"provenance_ref\": \"raw_imports:-1088922956160599961|master-index:91c5f7ed57c45c2a76001a4030d99e9bb5bfac69b979552d09614fa138cea37d\", \"provenance_source\": \"WAREHOUSE_PRINTING_ADMISSION_V1\"}",
+      "reviewRow": "{\"id\": \"d46339b8-8778-52bf-a05b-0ace2f7672bd\", \"active\": true, \"reason\": \"Exact printing supported by the reviewed Master Index; admission does not assert whole-set readiness.\", \"evidence\": {\"finish_key\": \"reverse\", \"card_print_id\": \"2b9dc517-461e-40a6-af91-d91c9f9ce8bd\", \"raw_import_id\": \"-1088922956160599961\", \"review_sha256\": \"fd75ef124bf27af4af1fa9ae3352dfe2a59f079e57f56cc470fb68238a5d582f\", \"master_index_sha256\": \"22b535864e84637ff01fb83015718586ed681a3328035f7ea94eedd0e13e03eb\", \"manifest_fingerprint\": \"91c5f7ed57c45c2a76001a4030d99e9bb5bfac69b979552d09614fa138cea37d\", \"warehouse_authority_fingerprint\": \"fb2de7950d8306f1a5c84c60767d0a781d3edfd7dd0534da02fe250b5ed1f164\"}, \"confidence\": \"high\", \"created_at\": \"2026-10-01T17:05:54.353573+00:00\", \"updated_at\": \"2026-10-01T17:05:54.353573+00:00\", \"reviewed_at\": \"2026-10-01T16:55:19.676+00:00\", \"reviewed_by\": \"WAREHOUSE_PRINTING_ADMISSION_V1\", \"review_status\": \"verified\", \"card_printing_id\": \"4e21dc3b-2766-537f-ac80-92d1d015b00b\", \"public_visibility\": \"visible\", \"source_report_path\": \"raw_imports:-1088922956160599961|master-index:91c5f7ed57c45c2a76001a4030d99e9bb5bfac69b979552d09614fa138cea37d\", \"expected_finish_keys\": [\"reverse\"], \"evidence_sources_checked\": [\"https://www.pokebeach.com/2023/10/slither-wing-and-iron-moth-promos-at-best-buy-and-gamestop\", \"https://www.danireon.com/en-us/products/iron-moth-028-182-gamestop-promo-miscellaneous-cards\", \"https://www.danireon.com/cdn/shop/files/527015_729d6440-90b3-4c4d-a7ad-aebf1c26276b.jpg?v=1747267047\"], \"evidence_sources_for_finish\": [\"iron-moth-pokebeach-extraction\", \"iron-moth-merchant-product-html\", \"iron-moth-merchant-image\"]}",
+      "identity": {
+        "id": "257b0784-a1d4-467a-a1df-0e2082b0735d",
+        "card_print_id": "2b9dc517-461e-40a6-af91-d91c9f9ce8bd",
+        "printed_number": "028",
+        "identity_domain": "pokemon_eng_standard",
+        "source_name_raw": null,
+        "identity_payload": {
+          "variant_key_current": "gamestop_stamp"
+        },
+        "identity_key_hash": "f1fcbf85d90afcdf8f8b935208b5099e2de5a2e659c17bb33ebd8221b614083f",
+        "set_code_identity": "sv04",
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "normalized_printed_name": "iron moth",
+        "is_active": true
+      }
+    },
+    {
+      "parentId": "3aef5f65-5038-47a4-8e17-69f6331909c7",
+      "parentRow": "{\"id\": \"3aef5f65-5038-47a4-8e17-69f6331909c7\", \"name\": \"Team Rocket's Zapdos\", \"gv_id\": \"GV-PK-DRI-070-GAMESTOP-STAMP\", \"artist\": null, \"number\": \"070\", \"rarity\": \"Promo\", \"set_id\": \"4538bede-9bd3-489e-8873-b5239863a0c6\", \"game_id\": \"b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5\", \"set_code\": \"sv10\", \"variants\": null, \"image_res\": null, \"image_url\": null, \"created_at\": \"2026-10-01T20:17:41.980091+00:00\", \"image_hash\": null, \"image_note\": null, \"image_path\": \"warehouse-derived/self-hosted-images-v1/8d570540-1b5e-42de-bbc3-e9fce01f5fd2/9cbd1206d7461bb8d0e130114567cd3b1cdd71049e3270ceb8d8213c04ee42a2/front.jpg\", \"updated_at\": \"2026-10-01T20:17:41.980091+00:00\", \"ai_metadata\": null, \"variant_key\": \"gamestop_stamp\", \"external_ids\": {}, \"image_source\": \"identity\", \"image_status\": null, \"number_plain\": \"070\", \"tcgplayer_id\": \"635500\", \"image_alt_url\": null, \"printed_total\": null, \"last_synced_at\": null, \"identity_domain\": \"pokemon_eng_standard\", \"regulation_mark\": null, \"data_quality_flags\": null, \"print_identity_key\": null, \"printed_set_abbrev\": null, \"set_identity_model\": \"standard\", \"image_last_checked_at\": null, \"representative_image_url\": null, \"printed_identity_modifier\": \"gamestop_stamp\"}",
+      "childRow": "{\"id\": \"0d327a18-720d-5d36-a809-ab730e1b09e2\", \"image_url\": null, \"created_at\": \"2026-10-01T20:32:27.704815+00:00\", \"created_by\": \"WAREHOUSE_PRINTING_ADMISSION_V1\", \"finish_key\": \"cosmos\", \"image_note\": null, \"image_path\": null, \"image_source\": null, \"image_status\": null, \"card_print_id\": \"3aef5f65-5038-47a4-8e17-69f6331909c7\", \"image_alt_url\": null, \"is_provisional\": false, \"printing_gv_id\": \"GV-PK-DRI-070-GAMESTOP-STAMP-COSMOS\", \"provenance_ref\": \"raw_imports:-259585731648662101|master-index:deaf5ab1c2e2bce3e2ba781285d620b1ee969ebe7ce531f37ba3b5e05939a095\", \"provenance_source\": \"WAREHOUSE_PRINTING_ADMISSION_V1\"}",
+      "reviewRow": "{\"id\": \"0f3cde94-4099-5331-a055-e51139780c08\", \"active\": true, \"reason\": \"Exact printing supported by the reviewed Master Index; admission does not assert whole-set readiness.\", \"evidence\": {\"finish_key\": \"cosmos\", \"card_print_id\": \"3aef5f65-5038-47a4-8e17-69f6331909c7\", \"raw_import_id\": \"-259585731648662101\", \"review_sha256\": \"fe2d9759f09dfb562a716c618f88131c2680f3424e2b6846cc075ad517c57a99\", \"master_index_sha256\": \"79d601d7b60fd0f332637ce8c7eb9ca0ad3497392838e47b6de33c0510400a11\", \"manifest_fingerprint\": \"deaf5ab1c2e2bce3e2ba781285d620b1ee969ebe7ce531f37ba3b5e05939a095\", \"warehouse_authority_fingerprint\": \"60f9146977d4fb6251686be592e035c9f9039ac888f40c0b8324a3248944da77\"}, \"confidence\": \"high\", \"created_at\": \"2026-10-01T20:32:27.704815+00:00\", \"updated_at\": \"2026-10-01T20:32:27.704815+00:00\", \"reviewed_at\": \"2026-10-01T20:19:27.742+00:00\", \"reviewed_by\": \"WAREHOUSE_PRINTING_ADMISSION_V1\", \"review_status\": \"verified\", \"card_printing_id\": \"0d327a18-720d-5d36-a809-ab730e1b09e2\", \"public_visibility\": \"visible\", \"source_report_path\": \"raw_imports:-259585731648662101|master-index:deaf5ab1c2e2bce3e2ba781285d620b1ee969ebe7ce531f37ba3b5e05939a095\", \"expected_finish_keys\": [\"cosmos\"], \"evidence_sources_checked\": [\"https://bulbapedia.bulbagarden.net/wiki/Team_Rocket%27s_Zapdos_(Destined_Rivals_70)\", \"https://www.tcgplayer.com/product/635500\", \"https://www.cardtrader.com/uploads/blueprints/image/335913/team-rocket-s-zapdos-gamestop-promo-070-182-sv-black-star-promos.jpg\"], \"evidence_sources_for_finish\": [\"rockets-zapdos-release-history\", \"rockets-zapdos-tcgcsv-product\", \"rockets-zapdos-exact-image\"]}",
+      "identity": {
+        "id": "593f8f6b-962e-4d9b-b02f-2b9cc5e4ba10",
+        "card_print_id": "3aef5f65-5038-47a4-8e17-69f6331909c7",
+        "printed_number": "070",
+        "identity_domain": "pokemon_eng_standard",
+        "source_name_raw": null,
+        "identity_payload": {
+          "variant_key_current": "gamestop_stamp"
+        },
+        "identity_key_hash": "af7d12da31311ad26621ffd33df9955693d1c32adcb8449e8e3bfdaa18953996",
+        "set_code_identity": "sv10",
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "normalized_printed_name": "team rocket's zapdos",
+        "is_active": true
+      }
+    },
+    {
+      "parentId": "441777a6-4247-4b1e-913d-6b2665077c2b",
+      "parentRow": "{\"id\": \"441777a6-4247-4b1e-913d-6b2665077c2b\", \"name\": \"Tinkaton\", \"gv_id\": \"GV-PK-PAL-105-GAMESTOP-STAMP\", \"artist\": null, \"number\": \"105\", \"rarity\": \"Promo\", \"set_id\": \"5fc35881-b563-4fb7-870b-8d14035f4557\", \"game_id\": \"b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5\", \"set_code\": \"sv02\", \"variants\": null, \"image_res\": null, \"image_url\": null, \"created_at\": \"2026-10-01T20:15:12.152646+00:00\", \"image_hash\": null, \"image_note\": null, \"image_path\": \"warehouse-derived/self-hosted-images-v1/290939e2-02f9-4bb9-8468-08335b6908dc/6ce37bb09ab6b41ad7402315b758345fd44c1ccc0709f3ef6a8c48d571f82b33/front.jpg\", \"updated_at\": \"2026-10-01T20:15:12.152646+00:00\", \"ai_metadata\": null, \"variant_key\": \"gamestop_stamp\", \"external_ids\": {}, \"image_source\": \"identity\", \"image_status\": null, \"number_plain\": \"105\", \"tcgplayer_id\": \"502625\", \"image_alt_url\": null, \"printed_total\": null, \"last_synced_at\": null, \"identity_domain\": \"pokemon_eng_standard\", \"regulation_mark\": null, \"data_quality_flags\": null, \"print_identity_key\": null, \"printed_set_abbrev\": null, \"set_identity_model\": \"standard\", \"image_last_checked_at\": null, \"representative_image_url\": null, \"printed_identity_modifier\": \"gamestop_stamp\"}",
+      "childRow": "{\"id\": \"0c7d7ce6-b99e-5745-adf6-f4f7b9b5177c\", \"image_url\": null, \"created_at\": \"2026-10-01T20:30:41.809609+00:00\", \"created_by\": \"WAREHOUSE_PRINTING_ADMISSION_V1\", \"finish_key\": \"holo\", \"image_note\": null, \"image_path\": null, \"image_source\": null, \"image_status\": null, \"card_print_id\": \"441777a6-4247-4b1e-913d-6b2665077c2b\", \"image_alt_url\": null, \"is_provisional\": false, \"printing_gv_id\": \"GV-PK-PAL-105-GAMESTOP-STAMP-HOLO\", \"provenance_ref\": \"raw_imports:-377104496447887428|master-index:e8f3c91a83bb2ed57bd4b9ee23d9f0f7ef92c96876e937605e9e3cf1b1ab1966\", \"provenance_source\": \"WAREHOUSE_PRINTING_ADMISSION_V1\"}",
+      "reviewRow": "{\"id\": \"3c7e4460-07b0-5920-ad9d-1a625ea7a994\", \"active\": true, \"reason\": \"Exact printing supported by the reviewed Master Index; admission does not assert whole-set readiness.\", \"evidence\": {\"finish_key\": \"holo\", \"card_print_id\": \"441777a6-4247-4b1e-913d-6b2665077c2b\", \"raw_import_id\": \"-377104496447887428\", \"review_sha256\": \"95d6bee39163758b41119937e02406d3e2485328b2451d01546445151ff15f4e\", \"master_index_sha256\": \"122b75394ac67ad13466909621437689bdd1b46a9b5d78c6f816596f7659ed17\", \"manifest_fingerprint\": \"e8f3c91a83bb2ed57bd4b9ee23d9f0f7ef92c96876e937605e9e3cf1b1ab1966\", \"warehouse_authority_fingerprint\": \"08342602b79916d9a6314a44d0ecb5009770806857a1a57a9056f8c536a0140b\"}, \"confidence\": \"high\", \"created_at\": \"2026-10-01T20:30:41.809609+00:00\", \"updated_at\": \"2026-10-01T20:30:41.809609+00:00\", \"reviewed_at\": \"2026-10-01T20:19:27.725+00:00\", \"reviewed_by\": \"WAREHOUSE_PRINTING_ADMISSION_V1\", \"review_status\": \"verified\", \"card_printing_id\": \"0c7d7ce6-b99e-5745-adf6-f4f7b9b5177c\", \"public_visibility\": \"visible\", \"source_report_path\": \"raw_imports:-377104496447887428|master-index:e8f3c91a83bb2ed57bd4b9ee23d9f0f7ef92c96876e937605e9e3cf1b1ab1966\", \"expected_finish_keys\": [\"holo\"], \"evidence_sources_checked\": [\"https://www.pokebeach.com/2023/06/tinkaton-gamestop-promo-releasing-this-week\", \"https://www.tcgplayer.com/product/502625\", \"https://tcgplayer-cdn.tcgplayer.com/product/502625_400w.jpg\"], \"evidence_sources_for_finish\": [\"tinkaton-release-history\", \"tinkaton-tcgcsv-product\", \"tinkaton-exact-image\"]}",
+      "identity": {
+        "id": "74236d26-7307-4f74-91d4-24cc6998a216",
+        "card_print_id": "441777a6-4247-4b1e-913d-6b2665077c2b",
+        "printed_number": "105",
+        "identity_domain": "pokemon_eng_standard",
+        "source_name_raw": null,
+        "identity_payload": {
+          "variant_key_current": "gamestop_stamp"
+        },
+        "identity_key_hash": "9f5c9ebaa16df17efa13f2860a4b219d836dcf7164c73b7276fdbe2a87d74652",
+        "set_code_identity": "sv02",
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "normalized_printed_name": "tinkaton",
+        "is_active": true
+      }
+    },
+    {
+      "parentId": "5aba2276-5a3f-4d25-902f-6d0a4e96b038",
+      "parentRow": "{\"id\": \"5aba2276-5a3f-4d25-902f-6d0a4e96b038\", \"name\": \"Charmander\", \"gv_id\": \"GV-PK-MEW-004-GAMESTOP-STAMP\", \"artist\": null, \"number\": \"004\", \"rarity\": \"Promo\", \"set_id\": \"ef51e693-459f-43d1-a823-9146f387ab32\", \"game_id\": \"b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5\", \"set_code\": \"sv03.5\", \"variants\": null, \"image_res\": null, \"image_url\": null, \"created_at\": \"2026-10-01T20:34:32.491042+00:00\", \"image_hash\": null, \"image_note\": null, \"image_path\": \"warehouse-derived/self-hosted-images-v1/543cd0af-b48b-4e1a-ab7e-19803754d343/a0d7a2bd688718f5abdbbda8509d41b3c6f2ae1d44b6f0ef87a4d602ace72fbf/front.jpg\", \"updated_at\": \"2026-10-01T20:34:32.491042+00:00\", \"ai_metadata\": null, \"variant_key\": \"gamestop_stamp\", \"external_ids\": {}, \"image_source\": \"identity\", \"image_status\": null, \"number_plain\": \"004\", \"tcgplayer_id\": \"517557\", \"image_alt_url\": null, \"printed_total\": null, \"last_synced_at\": null, \"identity_domain\": \"pokemon_eng_standard\", \"regulation_mark\": null, \"data_quality_flags\": null, \"print_identity_key\": null, \"printed_set_abbrev\": null, \"set_identity_model\": \"standard\", \"image_last_checked_at\": null, \"representative_image_url\": null, \"printed_identity_modifier\": \"gamestop_stamp\"}",
+      "childRow": "{\"id\": \"b7f925e6-c7b6-59e3-a899-679f9e3118ba\", \"image_url\": null, \"created_at\": \"2026-10-01T20:46:54.02281+00:00\", \"created_by\": \"WAREHOUSE_PRINTING_ADMISSION_V1\", \"finish_key\": \"reverse\", \"image_note\": null, \"image_path\": null, \"image_source\": null, \"image_status\": null, \"card_print_id\": \"5aba2276-5a3f-4d25-902f-6d0a4e96b038\", \"image_alt_url\": null, \"is_provisional\": false, \"printing_gv_id\": \"GV-PK-MEW-004-GAMESTOP-STAMP-REVERSE\", \"provenance_ref\": \"raw_imports:-449650731118907650|master-index:bd040857678a9f999eb56e377840c93fcd7f6a5299a856a8ba08a47e2f39cf1e\", \"provenance_source\": \"WAREHOUSE_PRINTING_ADMISSION_V1\"}",
+      "reviewRow": "{\"id\": \"105e572c-e3dc-5f34-a283-76399bff362e\", \"active\": true, \"reason\": \"Exact printing supported by the reviewed Master Index; admission does not assert whole-set readiness.\", \"evidence\": {\"finish_key\": \"reverse\", \"card_print_id\": \"5aba2276-5a3f-4d25-902f-6d0a4e96b038\", \"raw_import_id\": \"-449650731118907650\", \"review_sha256\": \"237a9caf10d4045c17f50b0f585fd4c8b99389bb3107ba46fd97bcc3381affc0\", \"master_index_sha256\": \"2f0165e6ff0a593406280928a1f0f69cf99064219c37d231148e216f897fcfdb\", \"manifest_fingerprint\": \"bd040857678a9f999eb56e377840c93fcd7f6a5299a856a8ba08a47e2f39cf1e\", \"warehouse_authority_fingerprint\": \"2f7e3d0035f8b1ee6156f1711deb1d6b4f6223678b0fbfa372b6bd1a2f03c250\"}, \"confidence\": \"high\", \"created_at\": \"2026-10-01T20:46:54.02281+00:00\", \"updated_at\": \"2026-10-01T20:46:54.02281+00:00\", \"reviewed_at\": \"2026-10-01T20:36:23.015+00:00\", \"reviewed_by\": \"WAREHOUSE_PRINTING_ADMISSION_V1\", \"review_status\": \"verified\", \"card_printing_id\": \"b7f925e6-c7b6-59e3-a899-679f9e3118ba\", \"public_visibility\": \"visible\", \"source_report_path\": \"raw_imports:-449650731118907650|master-index:bd040857678a9f999eb56e377840c93fcd7f6a5299a856a8ba08a47e2f39cf1e\", \"expected_finish_keys\": [\"reverse\"], \"evidence_sources_checked\": [\"https://www.pokebeach.com/2023/09/scarlet-violet-151-complete-set-guide-card-images-products-demigod-packs-store-giveaways-and-more\", \"https://www.tcgplayer.com/product/517557\", \"https://tcgplayer-cdn.tcgplayer.com/product/517557_400w.jpg\", \"https://cdn-vault.fanaticscollect.com/2025/11/25/rm1/medium/v2001675_2020112313591937R_101.jpg\"], \"evidence_sources_for_finish\": [\"charmander-release-history\", \"charmander-tcgcsv-product\", \"charmander-exact-image\", \"charmander-physical-slab-photo\"]}",
+      "identity": {
+        "id": "52910c77-a493-4445-a1e9-bc68207fe950",
+        "card_print_id": "5aba2276-5a3f-4d25-902f-6d0a4e96b038",
+        "printed_number": "004",
+        "identity_domain": "pokemon_eng_standard",
+        "source_name_raw": null,
+        "identity_payload": {
+          "variant_key_current": "gamestop_stamp"
+        },
+        "identity_key_hash": "d419e030b406df2484d4b93ff067473f67b66aaea10f99b5a8d1e0a8fbdd55b4",
+        "set_code_identity": "sv03.5",
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "normalized_printed_name": "charmander",
+        "is_active": true
+      }
+    },
+    {
+      "parentId": "7a938ee8-4322-4541-bfc0-89cf534b64b2",
+      "parentRow": "{\"id\": \"7a938ee8-4322-4541-bfc0-89cf534b64b2\", \"name\": \"Hisuian Zoroark\", \"gv_id\": \"GV-PK-LOR-076-GAMESTOP-STAMP\", \"artist\": null, \"number\": \"076\", \"rarity\": \"Promo\", \"set_id\": \"8ed73c03-2631-4e9e-8cf5-f0d4cab9603c\", \"game_id\": \"b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5\", \"set_code\": \"swsh11\", \"variants\": null, \"image_res\": null, \"image_url\": null, \"created_at\": \"2026-10-01T15:31:54.532997+00:00\", \"image_hash\": null, \"image_note\": null, \"image_path\": \"warehouse-derived/self-hosted-images-v1/fb4d468b-f6fe-479d-936e-85d44ce9c1da/65ea06e61f76eca134b87aadcfaee3e320e40381ba95a93eb5049e6a86398f30/front.jpg\", \"updated_at\": \"2026-10-01T15:31:54.532997+00:00\", \"ai_metadata\": null, \"variant_key\": \"gamestop_stamp\", \"external_ids\": {}, \"image_source\": \"identity\", \"image_status\": null, \"number_plain\": \"076\", \"tcgplayer_id\": \"287017\", \"image_alt_url\": null, \"printed_total\": null, \"last_synced_at\": null, \"identity_domain\": \"pokemon_eng_standard\", \"regulation_mark\": null, \"data_quality_flags\": null, \"print_identity_key\": null, \"printed_set_abbrev\": null, \"set_identity_model\": \"standard\", \"image_last_checked_at\": null, \"representative_image_url\": null, \"printed_identity_modifier\": \"gamestop_stamp\"}",
+      "childRow": "{\"id\": \"66d7ed17-19e3-52d7-ac04-0bf9928a719c\", \"image_url\": null, \"created_at\": \"2026-10-01T15:55:48.573737+00:00\", \"created_by\": \"WAREHOUSE_PRINTING_ADMISSION_V1\", \"finish_key\": \"holo\", \"image_note\": null, \"image_path\": null, \"image_source\": null, \"image_status\": null, \"card_print_id\": \"7a938ee8-4322-4541-bfc0-89cf534b64b2\", \"image_alt_url\": null, \"is_provisional\": false, \"printing_gv_id\": \"GV-PK-LOR-076-GAMESTOP-STAMP-HOLO\", \"provenance_ref\": \"raw_imports:-200305499235428685|master-index:8d71c9c394e21f82130ad8de7780ba1c09cabaaecf40493fabfb6dbbbb604073\", \"provenance_source\": \"WAREHOUSE_PRINTING_ADMISSION_V1\"}",
+      "reviewRow": "{\"id\": \"598c0ba7-b1ea-586d-adba-66fecedc86ce\", \"active\": true, \"reason\": \"Exact printing supported by the reviewed Master Index; admission does not assert whole-set readiness.\", \"evidence\": {\"finish_key\": \"holo\", \"card_print_id\": \"7a938ee8-4322-4541-bfc0-89cf534b64b2\", \"raw_import_id\": \"-200305499235428685\", \"review_sha256\": \"d0d30f6585ae4ba8e82880e3f8e85d449c27782b3a965c2b88477f812e720fe5\", \"master_index_sha256\": \"52a1a3d1cf911f60e2e161006d2729e5a4ef1bac78eb5ebe12bdfbe8797b6637\", \"manifest_fingerprint\": \"8d71c9c394e21f82130ad8de7780ba1c09cabaaecf40493fabfb6dbbbb604073\", \"warehouse_authority_fingerprint\": \"a497651fa0a43b7d71c9b557769a9b543caf7dac945ad9b87b48e330c291efeb\"}, \"confidence\": \"high\", \"created_at\": \"2026-10-01T15:55:48.573737+00:00\", \"updated_at\": \"2026-10-01T15:55:48.573737+00:00\", \"reviewed_at\": \"2026-10-01T15:33:07.802+00:00\", \"reviewed_by\": \"WAREHOUSE_PRINTING_ADMISSION_V1\", \"review_status\": \"verified\", \"card_printing_id\": \"66d7ed17-19e3-52d7-ac04-0bf9928a719c\", \"public_visibility\": \"visible\", \"source_report_path\": \"raw_imports:-200305499235428685|master-index:8d71c9c394e21f82130ad8de7780ba1c09cabaaecf40493fabfb6dbbbb604073\", \"expected_finish_keys\": [\"holo\"], \"evidence_sources_checked\": [\"https://bulbapedia.bulbagarden.net/wiki/Hisuian_Zoroark_(Lost_Origin_76)\", \"https://facetofacegames.com/products/hisuian-zoroark-076196-promo-gamestop-stamp-swsh11msp-076-holo\", \"https://facetofacegames.com/cdn/shop/files/cfdf7a3d5e5eea5fd9d903193789ee91e7c81715_Asset_PKM_SWSH11MSP_076_Event_Gamestop_ENG_H_jpg.jpg\"], \"evidence_sources_for_finish\": [\"zoroark-bulbapedia-rendered-extraction\", \"zoroark-face-to-face-product-html\", \"zoroark-face-to-face-product-image\"]}",
+      "identity": {
+        "id": "490be952-56d6-4ffa-973a-631dbc222de6",
+        "card_print_id": "7a938ee8-4322-4541-bfc0-89cf534b64b2",
+        "printed_number": "076",
+        "identity_domain": "pokemon_eng_standard",
+        "source_name_raw": null,
+        "identity_payload": {
+          "variant_key_current": "gamestop_stamp"
+        },
+        "identity_key_hash": "00696f12776928f8635cac57a9fecf121dfe25176d228bf963b09e938182913f",
+        "set_code_identity": "swsh11",
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "normalized_printed_name": "hisuian zoroark",
+        "is_active": true
+      }
+    },
+    {
+      "parentId": "7cf9347e-9164-436b-8261-bf40fc1ac6e8",
+      "parentRow": "{\"id\": \"7cf9347e-9164-436b-8261-bf40fc1ac6e8\", \"name\": \"Lechonk\", \"gv_id\": \"GV-PK-SVI-154-GAMESTOP-STAMP\", \"artist\": null, \"number\": \"154\", \"rarity\": \"Promo\", \"set_id\": \"97122072-f868-492c-913d-b3fa77deab09\", \"game_id\": \"b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5\", \"set_code\": \"sv01\", \"variants\": null, \"image_res\": null, \"image_url\": null, \"created_at\": \"2026-10-01T16:53:46.883396+00:00\", \"image_hash\": null, \"image_note\": null, \"image_path\": \"warehouse-derived/self-hosted-images-v1/1a44f964-0a0c-4a4b-8045-f810b2ee0d89/8bc1fdd1582937cf295ec94d159b76a9bdcaa45cfb7f116b7df3f9c9920479db/front.jpg\", \"updated_at\": \"2026-10-01T16:53:46.883396+00:00\", \"ai_metadata\": null, \"variant_key\": \"gamestop_stamp\", \"external_ids\": {}, \"image_source\": \"identity\", \"image_status\": null, \"number_plain\": \"154\", \"tcgplayer_id\": \"492049\", \"image_alt_url\": null, \"printed_total\": null, \"last_synced_at\": null, \"identity_domain\": \"pokemon_eng_standard\", \"regulation_mark\": null, \"data_quality_flags\": null, \"print_identity_key\": null, \"printed_set_abbrev\": null, \"set_identity_model\": \"standard\", \"image_last_checked_at\": null, \"representative_image_url\": null, \"printed_identity_modifier\": \"gamestop_stamp\"}",
+      "childRow": "{\"id\": \"776ea4cb-69fb-5c4e-a005-339b7268f5d8\", \"image_url\": null, \"created_at\": \"2026-10-01T17:05:16.112054+00:00\", \"created_by\": \"WAREHOUSE_PRINTING_ADMISSION_V1\", \"finish_key\": \"reverse\", \"image_note\": null, \"image_path\": null, \"image_source\": null, \"image_status\": null, \"card_print_id\": \"7cf9347e-9164-436b-8261-bf40fc1ac6e8\", \"image_alt_url\": null, \"is_provisional\": false, \"printing_gv_id\": \"GV-PK-SVI-154-GAMESTOP-STAMP-REVERSE\", \"provenance_ref\": \"raw_imports:-463927244446074958|master-index:0b19f681043093895bea176f26084752f55a251b6ad90e6e0a7f68c11b237dee\", \"provenance_source\": \"WAREHOUSE_PRINTING_ADMISSION_V1\"}",
+      "reviewRow": "{\"id\": \"94bc6536-f271-588e-a49b-cd9b95e19547\", \"active\": true, \"reason\": \"Exact printing supported by the reviewed Master Index; admission does not assert whole-set readiness.\", \"evidence\": {\"finish_key\": \"reverse\", \"card_print_id\": \"7cf9347e-9164-436b-8261-bf40fc1ac6e8\", \"raw_import_id\": \"-463927244446074958\", \"review_sha256\": \"e09909d4cfaeb4388d038202f8e3e39880a0173ceada652705d174612f4838c9\", \"master_index_sha256\": \"b40983630476efbcd310a2939906ddc9edb3cb4d9eb94fedf22c43d64eed7f2e\", \"manifest_fingerprint\": \"0b19f681043093895bea176f26084752f55a251b6ad90e6e0a7f68c11b237dee\", \"warehouse_authority_fingerprint\": \"d365d3bed4923ad5b1c3ded03c38c54c187434fb0d8a94577c6fc404282c5905\"}, \"confidence\": \"high\", \"created_at\": \"2026-10-01T17:05:16.112054+00:00\", \"updated_at\": \"2026-10-01T17:05:16.112054+00:00\", \"reviewed_at\": \"2026-10-01T16:55:19.666+00:00\", \"reviewed_by\": \"WAREHOUSE_PRINTING_ADMISSION_V1\", \"review_status\": \"verified\", \"card_printing_id\": \"776ea4cb-69fb-5c4e-a005-339b7268f5d8\", \"public_visibility\": \"visible\", \"source_report_path\": \"raw_imports:-463927244446074958|master-index:0b19f681043093895bea176f26084752f55a251b6ad90e6e0a7f68c11b237dee\", \"expected_finish_keys\": [\"reverse\"], \"evidence_sources_checked\": [\"https://www.pokebeach.com/2023/03/gamestop-lechonk-promo-for-scarlet-violet-changes-to-promos\", \"https://magicmadhouse.co.uk/pokemon-scarlet-violet-base-set-154-198-lechonk-reverse-holo-gamestop-stamp\", \"https://cdn11.bigcommerce.com/s-b4ioc4fed9/images/stencil/original/products/467892/3312027/47XLMCvOKkommC6GlWtJMvxPg__06160.1770199123.jpg\"], \"evidence_sources_for_finish\": [\"lechonk-pokebeach-extraction\", \"lechonk-merchant-product-html\", \"lechonk-merchant-image\"]}",
+      "identity": {
+        "id": "efaac0e9-1114-4a72-854c-030bc18376fb",
+        "card_print_id": "7cf9347e-9164-436b-8261-bf40fc1ac6e8",
+        "printed_number": "154",
+        "identity_domain": "pokemon_eng_standard",
+        "source_name_raw": null,
+        "identity_payload": {
+          "variant_key_current": "gamestop_stamp"
+        },
+        "identity_key_hash": "808f2a4a26a2e93c5dfb2d4d3a9a40de9eb23c5dfbe7452188996b3f42c1cb07",
+        "set_code_identity": "sv01",
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "normalized_printed_name": "lechonk",
+        "is_active": true
+      }
+    },
+    {
+      "parentId": "8c6bb226-5dd3-4260-9841-98de71b86531",
+      "parentRow": "{\"id\": \"8c6bb226-5dd3-4260-9841-98de71b86531\", \"name\": \"Yveltal\", \"gv_id\": \"GV-PK-MEG-088-GAMESTOP-STAMP\", \"artist\": null, \"number\": \"088\", \"rarity\": \"Rare\", \"set_id\": \"5ace5029-c163-4251-8cb1-dd57190431cc\", \"game_id\": \"b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5\", \"set_code\": \"me01\", \"variants\": null, \"image_res\": null, \"image_url\": null, \"created_at\": \"2026-10-01T20:34:58.281705+00:00\", \"image_hash\": null, \"image_note\": null, \"image_path\": \"warehouse-derived/self-hosted-images-v1/8aaf2aa3-0379-4cfa-b919-d6af7b851470/79df2b7c2b2383cb1e25bdbd24adfb913320f5af1fb0d81b5140ea704d1509ba/front.jpg\", \"updated_at\": \"2026-10-01T20:34:58.281705+00:00\", \"ai_metadata\": null, \"variant_key\": \"gamestop_stamp\", \"external_ids\": {}, \"image_source\": \"identity\", \"image_status\": null, \"number_plain\": \"088\", \"tcgplayer_id\": \"655978\", \"image_alt_url\": null, \"printed_total\": null, \"last_synced_at\": null, \"identity_domain\": \"pokemon_eng_standard\", \"regulation_mark\": null, \"data_quality_flags\": null, \"print_identity_key\": null, \"printed_set_abbrev\": null, \"set_identity_model\": \"standard\", \"image_last_checked_at\": null, \"representative_image_url\": null, \"printed_identity_modifier\": \"gamestop_stamp\"}",
+      "childRow": "{\"id\": \"6be7c5f1-7574-5044-a274-58fd015dec48\", \"image_url\": null, \"created_at\": \"2026-10-01T20:47:44.181378+00:00\", \"created_by\": \"WAREHOUSE_PRINTING_ADMISSION_V1\", \"finish_key\": \"cosmos\", \"image_note\": null, \"image_path\": null, \"image_source\": null, \"image_status\": null, \"card_print_id\": \"8c6bb226-5dd3-4260-9841-98de71b86531\", \"image_alt_url\": null, \"is_provisional\": false, \"printing_gv_id\": \"GV-PK-MEG-088-GAMESTOP-STAMP-COSMOS\", \"provenance_ref\": \"raw_imports:-891904319252777995|master-index:dc29fc377d76314931e95b7b387a9667762adfcb0dab64dd66e23f01dccc3d47\", \"provenance_source\": \"WAREHOUSE_PRINTING_ADMISSION_V1\"}",
+      "reviewRow": "{\"id\": \"5e09b1e1-c5de-5e2b-a03a-d224987a7ca3\", \"active\": true, \"reason\": \"Exact printing supported by the reviewed Master Index; admission does not assert whole-set readiness.\", \"evidence\": {\"finish_key\": \"cosmos\", \"card_print_id\": \"8c6bb226-5dd3-4260-9841-98de71b86531\", \"raw_import_id\": \"-891904319252777995\", \"review_sha256\": \"1c6ea5095d01162b22e1dec1991f4b388391ec315e41e4f8c12532109a496cd4\", \"master_index_sha256\": \"19aeb63f5de3a846c2d89f58ee04c5bb52a7ad0237483e17965d395c437a73b5\", \"manifest_fingerprint\": \"dc29fc377d76314931e95b7b387a9667762adfcb0dab64dd66e23f01dccc3d47\", \"warehouse_authority_fingerprint\": \"34faf6af2904fe5824ee0bb2e5e8eb8c8e86272a712917db901a6efacc4b86fd\"}, \"confidence\": \"high\", \"created_at\": \"2026-10-01T20:47:44.181378+00:00\", \"updated_at\": \"2026-10-01T20:47:44.181378+00:00\", \"reviewed_at\": \"2026-10-01T20:36:23.026+00:00\", \"reviewed_by\": \"WAREHOUSE_PRINTING_ADMISSION_V1\", \"review_status\": \"verified\", \"card_printing_id\": \"6be7c5f1-7574-5044-a274-58fd015dec48\", \"public_visibility\": \"visible\", \"source_report_path\": \"raw_imports:-891904319252777995|master-index:dc29fc377d76314931e95b7b387a9667762adfcb0dab64dd66e23f01dccc3d47\", \"expected_finish_keys\": [\"cosmos\"], \"evidence_sources_checked\": [\"https://bulbapedia.bulbagarden.net/wiki/Yveltal_(Mega_Evolution_88)\", \"https://www.tcgplayer.com/product/655978\", \"https://tcgplayer-cdn.tcgplayer.com/product/655978_400w.jpg\"], \"evidence_sources_for_finish\": [\"yveltal-release-history\", \"yveltal-tcgcsv-product\", \"yveltal-exact-image\"]}",
+      "identity": {
+        "id": "e226a4da-b97a-4ab6-ba9d-07a7c452f7be",
+        "card_print_id": "8c6bb226-5dd3-4260-9841-98de71b86531",
+        "printed_number": "088",
+        "identity_domain": "pokemon_eng_standard",
+        "source_name_raw": null,
+        "identity_payload": {
+          "variant_key_current": "gamestop_stamp"
+        },
+        "identity_key_hash": "27289c40aaea09178e5241751e35d13ac754f878ff4eb8f38d7066dec1c40d25",
+        "set_code_identity": "me01",
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "normalized_printed_name": "yveltal",
+        "is_active": true
+      }
+    },
+    {
+      "parentId": "926fc1a3-3414-45eb-8190-cb02cd8110c0",
+      "parentRow": "{\"id\": \"926fc1a3-3414-45eb-8190-cb02cd8110c0\", \"name\": \"Teal Mask Ogerpon\", \"gv_id\": \"GV-PK-TWM-024-GAMESTOP-STAMP\", \"artist\": null, \"number\": \"024\", \"rarity\": \"Rare\", \"set_id\": \"0471b152-bbd1-4660-ae4e-8c67540ae1ac\", \"game_id\": \"b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5\", \"set_code\": \"sv06\", \"variants\": null, \"image_res\": null, \"image_url\": null, \"created_at\": \"2026-10-01T20:34:44.276032+00:00\", \"image_hash\": null, \"image_note\": null, \"image_path\": \"warehouse-derived/self-hosted-images-v1/0beb8161-3573-4f5e-9d19-e9ea8c31f833/dfcba2bd58d229aeac91848e176180b05a6193bec539a51712161962b9fe92c9/front.jpg\", \"updated_at\": \"2026-10-01T20:34:44.276032+00:00\", \"ai_metadata\": null, \"variant_key\": \"gamestop_stamp\", \"external_ids\": {}, \"image_source\": \"identity\", \"image_status\": null, \"number_plain\": \"024\", \"tcgplayer_id\": \"558552\", \"image_alt_url\": null, \"printed_total\": null, \"last_synced_at\": null, \"identity_domain\": \"pokemon_eng_standard\", \"regulation_mark\": null, \"data_quality_flags\": null, \"print_identity_key\": null, \"printed_set_abbrev\": null, \"set_identity_model\": \"standard\", \"image_last_checked_at\": null, \"representative_image_url\": null, \"printed_identity_modifier\": \"gamestop_stamp\"}",
+      "childRow": "{\"id\": \"e294467f-e47b-508f-ab01-059c8b75dffe\", \"image_url\": null, \"created_at\": \"2026-10-01T20:47:19.260128+00:00\", \"created_by\": \"WAREHOUSE_PRINTING_ADMISSION_V1\", \"finish_key\": \"cosmos\", \"image_note\": null, \"image_path\": null, \"image_source\": null, \"image_status\": null, \"card_print_id\": \"926fc1a3-3414-45eb-8190-cb02cd8110c0\", \"image_alt_url\": null, \"is_provisional\": false, \"printing_gv_id\": \"GV-PK-TWM-024-GAMESTOP-STAMP-COSMOS\", \"provenance_ref\": \"raw_imports:-432543420695846047|master-index:ad239646558deac368045e275b980c65bebaa3e020c272f8f67e95051d81d279\", \"provenance_source\": \"WAREHOUSE_PRINTING_ADMISSION_V1\"}",
+      "reviewRow": "{\"id\": \"89723763-ec47-596d-a918-c8b1bff1a07c\", \"active\": true, \"reason\": \"Exact printing supported by the reviewed Master Index; admission does not assert whole-set readiness.\", \"evidence\": {\"finish_key\": \"cosmos\", \"card_print_id\": \"926fc1a3-3414-45eb-8190-cb02cd8110c0\", \"raw_import_id\": \"-432543420695846047\", \"review_sha256\": \"44a5c780345c6ec5d68484433a7c093a28675844fb75ab04e876f610110ca15c\", \"master_index_sha256\": \"3b1eae6578a1884e93f8f1eaf236c20253de5d8b144ab95286685755ce1aba67\", \"manifest_fingerprint\": \"ad239646558deac368045e275b980c65bebaa3e020c272f8f67e95051d81d279\", \"warehouse_authority_fingerprint\": \"f56b8202b590a1b567fc1438a06d05e4efe13bf84a4e0d6d9ac6ad25ee5a440d\"}, \"confidence\": \"high\", \"created_at\": \"2026-10-01T20:47:19.260128+00:00\", \"updated_at\": \"2026-10-01T20:47:19.260128+00:00\", \"reviewed_at\": \"2026-10-01T20:36:23.022+00:00\", \"reviewed_by\": \"WAREHOUSE_PRINTING_ADMISSION_V1\", \"review_status\": \"verified\", \"card_printing_id\": \"e294467f-e47b-508f-ab01-059c8b75dffe\", \"public_visibility\": \"visible\", \"source_report_path\": \"raw_imports:-432543420695846047|master-index:ad239646558deac368045e275b980c65bebaa3e020c272f8f67e95051d81d279\", \"expected_finish_keys\": [\"cosmos\"], \"evidence_sources_checked\": [\"https://bulbapedia.bulbagarden.net/wiki/Teal_Mask_Ogerpon_(Twilight_Masquerade_24)\", \"https://www.tcgplayer.com/product/558552\", \"https://tcgplayer-cdn.tcgplayer.com/product/558552_400w.jpg\"], \"evidence_sources_for_finish\": [\"teal-mask-ogerpon-release-history\", \"teal-mask-ogerpon-tcgcsv-product\", \"teal-mask-ogerpon-exact-image\"]}",
+      "identity": {
+        "id": "4b0ec4a4-8f5a-4eaf-8e46-9c95f7c41f13",
+        "card_print_id": "926fc1a3-3414-45eb-8190-cb02cd8110c0",
+        "printed_number": "024",
+        "identity_domain": "pokemon_eng_standard",
+        "source_name_raw": null,
+        "identity_payload": {
+          "variant_key_current": "gamestop_stamp"
+        },
+        "identity_key_hash": "c7120b5dac69951f3189d422796b0a17733955c6777a7371f11fc1ca3a75ba1f",
+        "set_code_identity": "sv06",
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "normalized_printed_name": "teal mask ogerpon",
+        "is_active": true
+      }
+    },
+    {
+      "parentId": "a27cca55-5d27-432b-9d45-ff330d583958",
+      "parentRow": "{\"id\": \"a27cca55-5d27-432b-9d45-ff330d583958\", \"name\": \"Hop's Snorlax\", \"gv_id\": \"GV-PK-JTG-117-GAMESTOP-STAMP\", \"artist\": null, \"number\": \"117\", \"rarity\": \"Promo\", \"set_id\": \"220391d1-7e93-440c-b034-8769ef6f74a4\", \"game_id\": \"b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5\", \"set_code\": \"sv09\", \"variants\": null, \"image_res\": null, \"image_url\": null, \"created_at\": \"2026-10-01T20:17:30.317604+00:00\", \"image_hash\": null, \"image_note\": null, \"image_path\": \"warehouse-derived/self-hosted-images-v1/a75fded7-cfde-430b-8201-6ef1cf017b8a/d7b00d7d98c23b5f3a5345457cbceadeed6d9f2dc4ce821c1a205ee8f505091e/front.jpg\", \"updated_at\": \"2026-10-01T20:17:30.317604+00:00\", \"ai_metadata\": null, \"variant_key\": \"gamestop_stamp\", \"external_ids\": {}, \"image_source\": \"identity\", \"image_status\": null, \"number_plain\": \"117\", \"tcgplayer_id\": \"626640\", \"image_alt_url\": null, \"printed_total\": null, \"last_synced_at\": null, \"identity_domain\": \"pokemon_eng_standard\", \"regulation_mark\": null, \"data_quality_flags\": null, \"print_identity_key\": null, \"printed_set_abbrev\": null, \"set_identity_model\": \"standard\", \"image_last_checked_at\": null, \"representative_image_url\": null, \"printed_identity_modifier\": \"gamestop_stamp\"}",
+      "childRow": "{\"id\": \"c228f4d3-56fe-5660-ad5e-9195ed53889d\", \"image_url\": null, \"created_at\": \"2026-10-01T20:32:01.897405+00:00\", \"created_by\": \"WAREHOUSE_PRINTING_ADMISSION_V1\", \"finish_key\": \"cosmos\", \"image_note\": null, \"image_path\": null, \"image_source\": null, \"image_status\": null, \"card_print_id\": \"a27cca55-5d27-432b-9d45-ff330d583958\", \"image_alt_url\": null, \"is_provisional\": false, \"printing_gv_id\": \"GV-PK-JTG-117-GAMESTOP-STAMP-COSMOS\", \"provenance_ref\": \"raw_imports:-401561926979094218|master-index:a0f42983c8b5162880dd703aca8a20dcc31e35ae9511a618381eb5c4c38d9e9a\", \"provenance_source\": \"WAREHOUSE_PRINTING_ADMISSION_V1\"}",
+      "reviewRow": "{\"id\": \"49ce8e55-a192-5868-ae66-ed7112def402\", \"active\": true, \"reason\": \"Exact printing supported by the reviewed Master Index; admission does not assert whole-set readiness.\", \"evidence\": {\"finish_key\": \"cosmos\", \"card_print_id\": \"a27cca55-5d27-432b-9d45-ff330d583958\", \"raw_import_id\": \"-401561926979094218\", \"review_sha256\": \"b9ddeed20dfc3f1108271a9e94045331c822bbb967878df4f0007aeb337013a5\", \"master_index_sha256\": \"b6f3db9a788b4e64cb524bd4c3d77c1afd26546175e63b47b9443b62073f10ea\", \"manifest_fingerprint\": \"a0f42983c8b5162880dd703aca8a20dcc31e35ae9511a618381eb5c4c38d9e9a\", \"warehouse_authority_fingerprint\": \"2be413e06f7d0c8906736a24ffd1478b27b5dcf295fb02ef7c72fbfdb2769b01\"}, \"confidence\": \"high\", \"created_at\": \"2026-10-01T20:32:01.897405+00:00\", \"updated_at\": \"2026-10-01T20:32:01.897405+00:00\", \"reviewed_at\": \"2026-10-01T20:19:27.738+00:00\", \"reviewed_by\": \"WAREHOUSE_PRINTING_ADMISSION_V1\", \"review_status\": \"verified\", \"card_printing_id\": \"c228f4d3-56fe-5660-ad5e-9195ed53889d\", \"public_visibility\": \"visible\", \"source_report_path\": \"raw_imports:-401561926979094218|master-index:a0f42983c8b5162880dd703aca8a20dcc31e35ae9511a618381eb5c4c38d9e9a\", \"expected_finish_keys\": [\"cosmos\"], \"evidence_sources_checked\": [\"https://bulbapedia.bulbagarden.net/wiki/Hop%27s_Snorlax_(Journey_Together_117)\", \"https://www.tcgplayer.com/product/626640\", \"https://tcgplayer-cdn.tcgplayer.com/product/626640_400w.jpg\"], \"evidence_sources_for_finish\": [\"hops-snorlax-release-history\", \"hops-snorlax-tcgcsv-product\", \"hops-snorlax-exact-image\"]}",
+      "identity": {
+        "id": "a46c1a0a-aa1b-4324-b82f-96eefd0fe6bc",
+        "card_print_id": "a27cca55-5d27-432b-9d45-ff330d583958",
+        "printed_number": "117",
+        "identity_domain": "pokemon_eng_standard",
+        "source_name_raw": null,
+        "identity_payload": {
+          "variant_key_current": "gamestop_stamp"
+        },
+        "identity_key_hash": "12c143553ad379e2ae218c53cdff4e3cad631e0b4b1c8f02c460582959a43468",
+        "set_code_identity": "sv09",
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "normalized_printed_name": "hop's snorlax",
+        "is_active": true
+      }
+    },
+    {
+      "parentId": "b5795fdf-6e2c-4016-af5c-779aa607f96f",
+      "parentRow": "{\"id\": \"b5795fdf-6e2c-4016-af5c-779aa607f96f\", \"name\": \"Archaludon\", \"gv_id\": \"GV-PK-SCR-107-GAMESTOP-STAMP\", \"artist\": null, \"number\": \"107\", \"rarity\": \"Rare\", \"set_id\": \"ee1a5b54-f271-406e-a24e-4143eb882232\", \"game_id\": \"b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5\", \"set_code\": \"sv07\", \"variants\": null, \"image_res\": null, \"image_url\": null, \"created_at\": \"2026-10-01T20:17:18.741918+00:00\", \"image_hash\": null, \"image_note\": null, \"image_path\": \"warehouse-derived/self-hosted-images-v1/87633e8b-dbdd-4ca5-828c-bd9e94e13c6d/0689a30d2da57c5f4453b0fee10c3efb2d6856c930e6189dcf083bdd6ef14d00/front.jpg\", \"updated_at\": \"2026-10-01T20:17:18.741918+00:00\", \"ai_metadata\": null, \"variant_key\": \"gamestop_stamp\", \"external_ids\": {}, \"image_source\": \"identity\", \"image_status\": null, \"number_plain\": \"107\", \"tcgplayer_id\": \"576862\", \"image_alt_url\": null, \"printed_total\": null, \"last_synced_at\": null, \"identity_domain\": \"pokemon_eng_standard\", \"regulation_mark\": null, \"data_quality_flags\": null, \"print_identity_key\": null, \"printed_set_abbrev\": null, \"set_identity_model\": \"standard\", \"image_last_checked_at\": null, \"representative_image_url\": null, \"printed_identity_modifier\": \"gamestop_stamp\"}",
+      "childRow": "{\"id\": \"75cd5f60-ddd9-578e-a676-b9cf090ad967\", \"image_url\": null, \"created_at\": \"2026-10-01T20:31:35.224175+00:00\", \"created_by\": \"WAREHOUSE_PRINTING_ADMISSION_V1\", \"finish_key\": \"cosmos\", \"image_note\": null, \"image_path\": null, \"image_source\": null, \"image_status\": null, \"card_print_id\": \"b5795fdf-6e2c-4016-af5c-779aa607f96f\", \"image_alt_url\": null, \"is_provisional\": false, \"printing_gv_id\": \"GV-PK-SCR-107-GAMESTOP-STAMP-COSMOS\", \"provenance_ref\": \"raw_imports:-215267673316162708|master-index:297d3aee8f79c00e1b0bf2eda2c37960e4bcde1e104ee40b29c46712aad1969b\", \"provenance_source\": \"WAREHOUSE_PRINTING_ADMISSION_V1\"}",
+      "reviewRow": "{\"id\": \"31c52aa4-f231-5f60-ab6f-dd90e50421db\", \"active\": true, \"reason\": \"Exact printing supported by the reviewed Master Index; admission does not assert whole-set readiness.\", \"evidence\": {\"finish_key\": \"cosmos\", \"card_print_id\": \"b5795fdf-6e2c-4016-af5c-779aa607f96f\", \"raw_import_id\": \"-215267673316162708\", \"review_sha256\": \"9cafdd557637a1f198237095bb5fb607f5f2149dceaba5f88b76f4f645a465ea\", \"master_index_sha256\": \"06ac70fe8fb8bbe786a52e166c6731b2ed1665d4e611d6f60fb97ea4360d8480\", \"manifest_fingerprint\": \"297d3aee8f79c00e1b0bf2eda2c37960e4bcde1e104ee40b29c46712aad1969b\", \"warehouse_authority_fingerprint\": \"55160b691d45c92836b8a3d24eab94aa3b6fd1da249c63cb63b4b0992a508181\"}, \"confidence\": \"high\", \"created_at\": \"2026-10-01T20:31:35.224175+00:00\", \"updated_at\": \"2026-10-01T20:31:35.224175+00:00\", \"reviewed_at\": \"2026-10-01T20:19:27.735+00:00\", \"reviewed_by\": \"WAREHOUSE_PRINTING_ADMISSION_V1\", \"review_status\": \"verified\", \"card_printing_id\": \"75cd5f60-ddd9-578e-a676-b9cf090ad967\", \"public_visibility\": \"visible\", \"source_report_path\": \"raw_imports:-215267673316162708|master-index:297d3aee8f79c00e1b0bf2eda2c37960e4bcde1e104ee40b29c46712aad1969b\", \"expected_finish_keys\": [\"cosmos\"], \"evidence_sources_checked\": [\"https://bulbapedia.bulbagarden.net/wiki/Archaludon_(Stellar_Crown_107)\", \"https://www.tcgplayer.com/product/576862\", \"https://tcgplayer-cdn.tcgplayer.com/product/576862_400w.jpg\"], \"evidence_sources_for_finish\": [\"archaludon-release-history\", \"archaludon-tcgcsv-product\", \"archaludon-exact-image\"]}",
+      "identity": {
+        "id": "89953585-94a5-4d2f-9e67-ca1966fa5732",
+        "card_print_id": "b5795fdf-6e2c-4016-af5c-779aa607f96f",
+        "printed_number": "107",
+        "identity_domain": "pokemon_eng_standard",
+        "source_name_raw": null,
+        "identity_payload": {
+          "variant_key_current": "gamestop_stamp"
+        },
+        "identity_key_hash": "382d48544b9e5c2b58a7942d53032f838cef8282bd93e83667f699413a10b43b",
+        "set_code_identity": "sv07",
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "normalized_printed_name": "archaludon",
+        "is_active": true
+      }
+    },
+    {
+      "parentId": "bfe95820-edc9-4323-aa3d-918e2016f1b4",
+      "parentRow": "{\"id\": \"bfe95820-edc9-4323-aa3d-918e2016f1b4\", \"name\": \"Dragonite\", \"gv_id\": \"GV-PK-SIT-131-GAMESTOP-STAMP\", \"artist\": null, \"number\": \"131\", \"rarity\": \"Promo\", \"set_id\": \"10dc128e-0d22-42c9-a981-74a46c780896\", \"game_id\": \"b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5\", \"set_code\": \"swsh12\", \"variants\": null, \"image_res\": null, \"image_url\": null, \"created_at\": \"2026-10-01T13:25:03.812472+00:00\", \"image_hash\": null, \"image_note\": null, \"image_path\": \"warehouse-derived/self-hosted-images-v1/3c0bef90-25b5-48b6-9a70-23deaf613a66/30b3a7b6af7a1baeda235141c19347479dff7df50e89dd00488e11d76e3978bb/front.jpg\", \"updated_at\": \"2026-10-01T13:25:03.812472+00:00\", \"ai_metadata\": null, \"variant_key\": \"gamestop_stamp\", \"external_ids\": {}, \"image_source\": \"identity\", \"image_status\": null, \"number_plain\": \"131\", \"tcgplayer_id\": \"456093\", \"image_alt_url\": null, \"printed_total\": null, \"last_synced_at\": null, \"identity_domain\": \"pokemon_eng_standard\", \"regulation_mark\": null, \"data_quality_flags\": null, \"print_identity_key\": null, \"printed_set_abbrev\": null, \"set_identity_model\": \"standard\", \"image_last_checked_at\": null, \"representative_image_url\": null, \"printed_identity_modifier\": \"gamestop_stamp\"}",
+      "childRow": "{\"id\": \"cbbfcfae-7925-56e6-a68b-139229f44bf4\", \"image_url\": null, \"created_at\": \"2026-10-01T13:35:47.169286+00:00\", \"created_by\": \"WAREHOUSE_PRINTING_ADMISSION_V1\", \"finish_key\": \"holo\", \"image_note\": null, \"image_path\": null, \"image_source\": null, \"image_status\": null, \"card_print_id\": \"bfe95820-edc9-4323-aa3d-918e2016f1b4\", \"image_alt_url\": null, \"is_provisional\": false, \"printing_gv_id\": \"GV-PK-SIT-131-GAMESTOP-STAMP-HOLO\", \"provenance_ref\": \"raw_imports:-512794813900006835|master-index:2a80767446149dc4f053f2e554f08aa9670b0f61915d831a46f4612e0e59aab7\", \"provenance_source\": \"WAREHOUSE_PRINTING_ADMISSION_V1\"}",
+      "reviewRow": "{\"id\": \"a7047836-a805-5aee-a70c-9fceb820e7a4\", \"active\": true, \"reason\": \"Exact printing supported by the reviewed Master Index; admission does not assert whole-set readiness.\", \"evidence\": {\"finish_key\": \"holo\", \"card_print_id\": \"bfe95820-edc9-4323-aa3d-918e2016f1b4\", \"raw_import_id\": \"-512794813900006835\", \"review_sha256\": \"0db1b2b6aa7e354e72e76c3784c32a16190ffdf3dac6c53a36dbd3d4dba7a23c\", \"master_index_sha256\": \"90845cce5f9a5aa25fdf16eeee5f02d6fece1f37b65ccad5d487a886d738281d\", \"manifest_fingerprint\": \"2a80767446149dc4f053f2e554f08aa9670b0f61915d831a46f4612e0e59aab7\", \"warehouse_authority_fingerprint\": \"f5ef6e1f658a73affbba4c279b5a90c70eb03ebf1b58efc533a9e6d72598dc71\"}, \"confidence\": \"high\", \"created_at\": \"2026-10-01T13:35:47.169286+00:00\", \"updated_at\": \"2026-10-01T13:35:47.169286+00:00\", \"reviewed_at\": \"2026-10-01T13:25:19.978+00:00\", \"reviewed_by\": \"WAREHOUSE_PRINTING_ADMISSION_V1\", \"review_status\": \"verified\", \"card_printing_id\": \"cbbfcfae-7925-56e6-a68b-139229f44bf4\", \"public_visibility\": \"visible\", \"source_report_path\": \"raw_imports:-512794813900006835|master-index:2a80767446149dc4f053f2e554f08aa9670b0f61915d831a46f4612e0e59aab7\", \"expected_finish_keys\": [\"holo\"], \"evidence_sources_checked\": [\"https://bulbapedia.bulbagarden.net/wiki/Dragonite_(Silver_Tempest_131)\", \"https://facetofacegames.com/products/dragonite-131195-promo-gamestop-stamp-swsh12msp-131-holo\", \"https://tcgplayer-cdn.tcgplayer.com/product/456093_200w.jpg\"], \"evidence_sources_for_finish\": [\"dragonite-bulbapedia-rendered-extraction\", \"dragonite-face-to-face-product-html\", \"dragonite-tcgplayer-product-image\"]}",
+      "identity": {
+        "id": "088eaf90-6e4a-4a85-b6f2-872dbe8e7547",
+        "card_print_id": "bfe95820-edc9-4323-aa3d-918e2016f1b4",
+        "printed_number": "131",
+        "identity_domain": "pokemon_eng_standard",
+        "source_name_raw": null,
+        "identity_payload": {
+          "variant_key_current": "gamestop_stamp"
+        },
+        "identity_key_hash": "a40d642222de6a6e84d38b9ee6301ae9f08d50d573a945b8c0b2a470141db731",
+        "set_code_identity": "swsh12",
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "normalized_printed_name": "dragonite",
+        "is_active": true
+      }
+    },
+    {
+      "parentId": "d4f765f9-3833-4273-a44d-367d634a98c3",
+      "parentRow": "{\"id\": \"d4f765f9-3833-4273-a44d-367d634a98c3\", \"name\": \"Flapple\", \"gv_id\": \"GV-PK-RCL-022-GAMESTOP-STAMP\", \"artist\": null, \"number\": \"022\", \"rarity\": \"Promo\", \"set_id\": \"71ebdec9-9eeb-4adc-b8ef-1e6e23e6c5ec\", \"game_id\": \"b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5\", \"set_code\": \"swsh2\", \"variants\": null, \"image_res\": null, \"image_url\": null, \"created_at\": \"2026-10-01T20:34:09.061173+00:00\", \"image_hash\": null, \"image_note\": null, \"image_path\": \"warehouse-derived/self-hosted-images-v1/166b0dc6-a481-4c0a-9e1a-b3af3657e462/3e8569345ba579d96c5a1482823651f414cef615063fa39eaa7a20f73d342dcc/front.jpg\", \"updated_at\": \"2026-10-01T20:34:09.061173+00:00\", \"ai_metadata\": null, \"variant_key\": \"gamestop_stamp\", \"external_ids\": {}, \"image_source\": \"identity\", \"image_status\": null, \"number_plain\": \"022\", \"tcgplayer_id\": \"234699\", \"image_alt_url\": null, \"printed_total\": null, \"last_synced_at\": null, \"identity_domain\": \"pokemon_eng_standard\", \"regulation_mark\": null, \"data_quality_flags\": null, \"print_identity_key\": null, \"printed_set_abbrev\": null, \"set_identity_model\": \"standard\", \"image_last_checked_at\": null, \"representative_image_url\": null, \"printed_identity_modifier\": \"gamestop_stamp\"}",
+      "childRow": "{\"id\": \"3131f9ac-958a-529f-a992-78a951c048a0\", \"image_url\": null, \"created_at\": \"2026-10-01T20:46:03.783974+00:00\", \"created_by\": \"WAREHOUSE_PRINTING_ADMISSION_V1\", \"finish_key\": \"cosmos\", \"image_note\": null, \"image_path\": null, \"image_source\": null, \"image_status\": null, \"card_print_id\": \"d4f765f9-3833-4273-a44d-367d634a98c3\", \"image_alt_url\": null, \"is_provisional\": false, \"printing_gv_id\": \"GV-PK-RCL-022-GAMESTOP-STAMP-COSMOS\", \"provenance_ref\": \"raw_imports:-136318642619876204|master-index:1f972b889599425710632c9b87d88193548eb327a9ce4e80d9d376b2a2c43955\", \"provenance_source\": \"WAREHOUSE_PRINTING_ADMISSION_V1\"}",
+      "reviewRow": "{\"id\": \"b7f1709d-6e06-570c-ab71-386f1a072d4a\", \"active\": true, \"reason\": \"Exact printing supported by the reviewed Master Index; admission does not assert whole-set readiness.\", \"evidence\": {\"finish_key\": \"cosmos\", \"card_print_id\": \"d4f765f9-3833-4273-a44d-367d634a98c3\", \"raw_import_id\": \"-136318642619876204\", \"review_sha256\": \"534af6cb9c15d7b61637e8ecd12d9fd99fbf0cb7f023c31508ba29cedf843f7f\", \"master_index_sha256\": \"39a910dc57e3cc6ad4890f649943926d47e1c5143ff50fd1a4f8ed4bf353330b\", \"manifest_fingerprint\": \"1f972b889599425710632c9b87d88193548eb327a9ce4e80d9d376b2a2c43955\", \"warehouse_authority_fingerprint\": \"d96dc11514d187927e065765be966a4cca5ebc084b53afdabeb5d259c4bf4d29\"}, \"confidence\": \"high\", \"created_at\": \"2026-10-01T20:46:03.783974+00:00\", \"updated_at\": \"2026-10-01T20:46:03.783974+00:00\", \"reviewed_at\": \"2026-10-01T20:36:22.992+00:00\", \"reviewed_by\": \"WAREHOUSE_PRINTING_ADMISSION_V1\", \"review_status\": \"verified\", \"card_printing_id\": \"3131f9ac-958a-529f-a992-78a951c048a0\", \"public_visibility\": \"visible\", \"source_report_path\": \"raw_imports:-136318642619876204|master-index:1f972b889599425710632c9b87d88193548eb327a9ce4e80d9d376b2a2c43955\", \"expected_finish_keys\": [\"cosmos\"], \"evidence_sources_checked\": [\"https://www.pokebeach.com/2021/03/gamestop-flapple-promo-is-holo-no-gigantamax-event\", \"https://www.tcgplayer.com/product/234699\", \"https://tcgplayer-cdn.tcgplayer.com/product/234699_400w.jpg\"], \"evidence_sources_for_finish\": [\"flapple-release-history\", \"flapple-tcgcsv-product\", \"flapple-exact-image\"]}",
+      "identity": {
+        "id": "e3969262-b3de-4209-b7aa-8317138c4460",
+        "card_print_id": "d4f765f9-3833-4273-a44d-367d634a98c3",
+        "printed_number": "022",
+        "identity_domain": "pokemon_eng_standard",
+        "source_name_raw": null,
+        "identity_payload": {
+          "variant_key_current": "gamestop_stamp"
+        },
+        "identity_key_hash": "8bbc43c75c840f73922204b440ac7b75ea1cce3c39e90ffa3a204507cd0db9f8",
+        "set_code_identity": "swsh2",
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "normalized_printed_name": "flapple",
+        "is_active": true
+      }
+    }
+  ],
+  "insertEffects": {
+    "columns": [
+      {
+        "attname": "id",
+        "type": "uuid",
+        "attnotnull": true,
+        "attidentity": "",
+        "attgenerated": "",
+        "default_expression": "gen_random_uuid()"
+      },
+      {
+        "attname": "card_print_id",
+        "type": "uuid",
+        "attnotnull": true,
+        "attidentity": "",
+        "attgenerated": "",
+        "default_expression": null
+      },
+      {
+        "attname": "identity_domain",
+        "type": "text",
+        "attnotnull": true,
+        "attidentity": "",
+        "attgenerated": "",
+        "default_expression": null
+      },
+      {
+        "attname": "set_code_identity",
+        "type": "text",
+        "attnotnull": true,
+        "attidentity": "",
+        "attgenerated": "",
+        "default_expression": null
+      },
+      {
+        "attname": "printed_number",
+        "type": "text",
+        "attnotnull": false,
+        "attidentity": "",
+        "attgenerated": "",
+        "default_expression": null
+      },
+      {
+        "attname": "normalized_printed_name",
+        "type": "text",
+        "attnotnull": false,
+        "attidentity": "",
+        "attgenerated": "",
+        "default_expression": null
+      },
+      {
+        "attname": "source_name_raw",
+        "type": "text",
+        "attnotnull": false,
+        "attidentity": "",
+        "attgenerated": "",
+        "default_expression": null
+      },
+      {
+        "attname": "identity_payload",
+        "type": "jsonb",
+        "attnotnull": true,
+        "attidentity": "",
+        "attgenerated": "",
+        "default_expression": "'{}'::jsonb"
+      },
+      {
+        "attname": "identity_key_version",
+        "type": "text",
+        "attnotnull": true,
+        "attidentity": "",
+        "attgenerated": "",
+        "default_expression": null
+      },
+      {
+        "attname": "identity_key_hash",
+        "type": "text",
+        "attnotnull": true,
+        "attidentity": "",
+        "attgenerated": "",
+        "default_expression": null
+      },
+      {
+        "attname": "is_active",
+        "type": "boolean",
+        "attnotnull": true,
+        "attidentity": "",
+        "attgenerated": "",
+        "default_expression": "true"
+      },
+      {
+        "attname": "created_at",
+        "type": "timestamp with time zone",
+        "attnotnull": true,
+        "attidentity": "",
+        "attgenerated": "",
+        "default_expression": "now()"
+      },
+      {
+        "attname": "updated_at",
+        "type": "timestamp with time zone",
+        "attnotnull": true,
+        "attidentity": "",
+        "attgenerated": "",
+        "default_expression": "now()"
+      }
+    ],
+    "constraints": [
+      {
+        "conname": "card_print_identity_card_print_id_fkey",
+        "contype": "f",
+        "convalidated": true,
+        "condeferrable": false,
+        "condeferred": false,
+        "definition": "FOREIGN KEY (card_print_id) REFERENCES card_prints(id) ON DELETE CASCADE"
+      },
+      {
+        "conname": "card_print_identity_identity_domain_check",
+        "contype": "c",
+        "convalidated": true,
+        "condeferrable": false,
+        "condeferred": false,
+        "definition": "CHECK ((identity_domain = ANY (ARRAY['pokemon_eng_standard'::text, 'pokemon_ba'::text, 'pokemon_eng_special_print'::text, 'pokemon_jpn'::text, 'mtg_eng_paper_print'::text, 'one_piece_eng_print'::text])))"
+      },
+      {
+        "conname": "card_print_identity_identity_payload_object_check",
+        "contype": "c",
+        "convalidated": true,
+        "condeferrable": false,
+        "condeferred": false,
+        "definition": "CHECK ((jsonb_typeof(identity_payload) = 'object'::text))"
+      },
+      {
+        "conname": "card_print_identity_number_or_japanese_unnumbered_v2_check",
+        "contype": "c",
+        "convalidated": true,
+        "condeferrable": false,
+        "condeferred": false,
+        "definition": "CHECK (\nCASE\n    WHEN (identity_key_version = 'pokemon_jpn:unnumbered_event:v1'::text) THEN card_print_identity_is_japanese_unnumbered_event_v1(identity_domain, identity_key_version, printed_number, identity_payload)\n    WHEN (identity_key_version = 'pokemon_jpn:unnumbered_basic_energy:v1'::text) THEN card_print_identity_is_japanese_unnumbered_basic_energy_v1(identity_domain, identity_key_version, printed_number, identity_payload)\n    ELSE (printed_number IS NOT NULL)\nEND)"
+      },
+      {
+        "conname": "card_print_identity_pkey",
+        "contype": "p",
+        "convalidated": true,
+        "condeferrable": false,
+        "condeferred": false,
+        "definition": "PRIMARY KEY (id)"
+      }
+    ],
+    "indexes": [
+      {
+        "indexname": "card_print_identity_pkey",
+        "indexdef": "CREATE UNIQUE INDEX card_print_identity_pkey ON public.card_print_identity USING btree (id)"
+      },
+      {
+        "indexname": "idx_card_print_identity_card_print_id",
+        "indexdef": "CREATE INDEX idx_card_print_identity_card_print_id ON public.card_print_identity USING btree (card_print_id)"
+      },
+      {
+        "indexname": "idx_card_print_identity_domain_normalized_name_not_null",
+        "indexdef": "CREATE INDEX idx_card_print_identity_domain_normalized_name_not_null ON public.card_print_identity USING btree (identity_domain, normalized_printed_name) WHERE (normalized_printed_name IS NOT NULL)"
+      },
+      {
+        "indexname": "idx_card_print_identity_domain_set_code_number",
+        "indexdef": "CREATE INDEX idx_card_print_identity_domain_set_code_number ON public.card_print_identity USING btree (identity_domain, set_code_identity, printed_number)"
+      },
+      {
+        "indexname": "idx_card_print_identity_identity_domain",
+        "indexdef": "CREATE INDEX idx_card_print_identity_identity_domain ON public.card_print_identity USING btree (identity_domain)"
+      },
+      {
+        "indexname": "uq_card_print_identity_active_card_print_id",
+        "indexdef": "CREATE UNIQUE INDEX uq_card_print_identity_active_card_print_id ON public.card_print_identity USING btree (card_print_id) WHERE (is_active = true)"
+      },
+      {
+        "indexname": "uq_card_print_identity_active_domain_hash",
+        "indexdef": "CREATE UNIQUE INDEX uq_card_print_identity_active_domain_hash ON public.card_print_identity USING btree (identity_domain, identity_key_version, identity_key_hash) WHERE (is_active = true)"
+      }
+    ],
+    "table": [
+      {
+        "relrowsecurity": true,
+        "relforcerowsecurity": false,
+        "relacl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres,anon=r/postgres,authenticated=r/postgres}",
+        "relkind": "r"
+      }
+    ],
+    "policies": [
+      {
+        "schemaname": "public",
+        "tablename": "card_print_identity",
+        "policyname": "card_print_identity_catalog_release_visibility_v1",
+        "permissive": "RESTRICTIVE",
+        "roles": "{public}",
+        "cmd": "SELECT",
+        "qual": "catalog_card_print_visible_to_request_v1(card_print_id)",
+        "with_check": null
+      },
+      {
+        "schemaname": "public",
+        "tablename": "card_print_identity",
+        "policyname": "card_print_identity_reference_read",
+        "permissive": "PERMISSIVE",
+        "roles": "{anon,authenticated}",
+        "cmd": "SELECT",
+        "qual": "true",
+        "with_check": null
+      },
+      {
+        "schemaname": "public",
+        "tablename": "card_print_identity",
+        "policyname": "card_print_identity_service_role_all",
+        "permissive": "PERMISSIVE",
+        "roles": "{service_role}",
+        "cmd": "ALL",
+        "qual": "true",
+        "with_check": "true"
+      }
+    ],
+    "triggers": [
+      {
+        "tgname": "trg_card_print_identity_updated_at",
+        "tgenabled": "O",
+        "fires_insert": false,
+        "definition": "CREATE TRIGGER trg_card_print_identity_updated_at BEFORE UPDATE ON public.card_print_identity FOR EACH ROW EXECUTE FUNCTION set_timestamp_updated_at()",
+        "function_signature": "set_timestamp_updated_at()",
+        "function_definition": "CREATE OR REPLACE FUNCTION public.set_timestamp_updated_at()\n RETURNS trigger\n LANGUAGE plpgsql\n SET search_path TO 'public'\nAS $function$\n    begin\n      new.updated_at = now();\n      return new;\n    end;\n    $function$\n"
+      }
+    ],
+    "rules": [],
+    "functions": [
+      {
+        "signature": "card_print_identity_approved_hash_dimension_keys_v1(text,text)",
+        "provolatile": "i",
+        "prosecdef": false,
+        "proconfig": [
+          "search_path=public"
+        ],
+        "definition": "CREATE OR REPLACE FUNCTION public.card_print_identity_approved_hash_dimension_keys_v1(p_identity_domain text, p_identity_key_version text)\n RETURNS text[]\n LANGUAGE sql\n IMMUTABLE\n SET search_path TO 'public'\nAS $function$\n  select case\n    when p_identity_domain = 'pokemon_eng_standard' and p_identity_key_version = 'pokemon_eng_standard:v1' then\n      array['variant_key_current']::text[]\n    when p_identity_domain = 'pokemon_ba' and p_identity_key_version = 'pokemon_ba:v1' then\n      array[]::text[]\n    when p_identity_domain = 'pokemon_eng_special_print' and p_identity_key_version = 'pokemon_eng_special_print:v1' then\n      array[\n        'distribution_mark',\n        'release_marking',\n        'stamp_program',\n        'stamp_text',\n        'variant_key_current'\n      ]::text[]\n    when p_identity_domain = 'pokemon_jpn' and p_identity_key_version = 'pokemon_jpn:v1' then\n      array[\n        'edition_marking',\n        'language_code',\n        'rarity_policy',\n        'release_context',\n        'variant_key_current'\n      ]::text[]\n    else\n      array[]::text[]\n  end\n$function$\n"
+      },
+      {
+        "signature": "card_print_identity_backfill_projection_v1(jsonb,text,text,text,text,text,text,integer,text)",
+        "provolatile": "i",
+        "prosecdef": false,
+        "proconfig": [
+          "search_path=public"
+        ],
+        "definition": "CREATE OR REPLACE FUNCTION public.card_print_identity_backfill_projection_v1(p_set_source jsonb, p_card_print_set_code text, p_sets_code text, p_number text, p_number_plain text, p_name text, p_variant_key text, p_printed_total integer, p_printed_set_abbrev text)\n RETURNS jsonb\n LANGUAGE plpgsql\n IMMUTABLE\n SET search_path TO 'public'\nAS $function$\ndeclare\n  v_set_source_domain text := public.card_print_identity_normalize_optional_text_v1(p_set_source ->> 'domain');\n  v_set_code_identity text := public.card_print_identity_select_set_code_v1(p_card_print_set_code, p_sets_code);\n  v_printed_number text := public.card_print_identity_select_printed_number_v1(p_number, p_number_plain);\n  v_normalized_printed_name text := public.card_print_identity_normalize_printed_name_v1(p_name);\n  v_taxonomy_class text;\n  v_identity_domain text;\n  v_identity_key_version text;\n  v_identity_payload jsonb;\nbegin\n  if v_set_source_domain = 'tcg_pocket' then\n    return jsonb_build_object(\n      'status', 'excluded',\n      'taxonomy_class', 'EXCLUDED_NONCANON_DOMAIN',\n      'excluded_domain', 'tcg_pocket',\n      'exclusion_reason', 'NON_CANON_DOMAIN:tcg_pocket'\n    );\n  end if;\n\n  if v_set_source_domain is not null\n     and v_set_source_domain not in (\n       'pokemon_eng_standard',\n       'pokemon_ba',\n       'pokemon_eng_special_print',\n       'pokemon_jpn'\n     ) then\n    return jsonb_build_object(\n      'status', 'blocked',\n      'taxonomy_class', 'BLOCKED_UNKNOWN_DOMAIN',\n      'block_reason', 'UNKNOWN_SET_SOURCE_DOMAIN:' || v_set_source_domain\n    );\n  end if;\n\n  v_taxonomy_class := 'SUPPORTED_CANON_DOMAIN';\n\n  if v_set_code_identity is null then\n    return jsonb_build_object(\n      'status', 'blocked',\n      'taxonomy_class', v_taxonomy_class,\n      'block_reason', 'MISSING_SET_CODE_IDENTITY'\n    );\n  end if;\n\n  if v_printed_number is null then\n    return jsonb_build_object(\n      'status', 'blocked',\n      'taxonomy_class', v_taxonomy_class,\n      'block_reason', 'MISSING_PRINTED_NUMBER'\n    );\n  end if;\n\n  if v_normalized_printed_name is null then\n    return jsonb_build_object(\n      'status', 'blocked',\n      'taxonomy_class', v_taxonomy_class,\n      'block_reason', 'MISSING_NORMALIZED_PRINTED_NAME'\n    );\n  end if;\n\n  if lower(v_set_code_identity) like 'ba-%' then\n    return jsonb_build_object(\n      'status', 'blocked',\n      'taxonomy_class', v_taxonomy_class,\n      'block_reason', 'EXISTING_BA_ROWS_REQUIRE_BA_PHASE'\n    );\n  end if;\n\n  if v_set_source_domain in ('pokemon_ba', 'pokemon_eng_special_print', 'pokemon_jpn') then\n    return jsonb_build_object(\n      'status', 'blocked',\n      'taxonomy_class', v_taxonomy_class,\n      'block_reason', 'DOMAIN_PRESENT_BUT_NOT_BACKFILLABLE_IN_PHASE8:' || v_set_source_domain\n    );\n  end if;\n\n  v_identity_domain := 'pokemon_eng_standard';\n  v_identity_key_version := 'pokemon_eng_standard:v1';\n  v_identity_payload := jsonb_strip_nulls(\n    jsonb_build_object(\n      'variant_key_current', public.card_print_identity_normalize_variant_key_current_v1(p_variant_key),\n      'printed_total', p_printed_total,\n      'printed_set_abbrev', public.card_print_identity_normalize_optional_text_v1(p_printed_set_abbrev)\n    )\n  );\n\n  return jsonb_build_object(\n    'status', 'ready',\n    'taxonomy_class', v_taxonomy_class,\n    'identity_domain', v_identity_domain,\n    'identity_key_version', v_identity_key_version,\n    'set_code_identity', v_set_code_identity,\n    'printed_number', v_printed_number,\n    'normalized_printed_name', v_normalized_printed_name,\n    'source_name_raw', null,\n    'identity_payload', v_identity_payload,\n    'identity_key_hash',\n      public.card_print_identity_hash_v1(\n        v_identity_domain,\n        v_identity_key_version,\n        v_set_code_identity,\n        v_printed_number,\n        v_normalized_printed_name,\n        null,\n        v_identity_payload\n      )\n  );\nend;\n$function$\n"
+      },
+      {
+        "signature": "card_print_identity_hash_v1(text,text,text,text,text,text,jsonb)",
+        "provolatile": "i",
+        "prosecdef": false,
+        "proconfig": [
+          "search_path=public"
+        ],
+        "definition": "CREATE OR REPLACE FUNCTION public.card_print_identity_hash_v1(p_identity_domain text, p_identity_key_version text, p_set_code_identity text, p_printed_number text, p_normalized_printed_name text, p_source_name_raw text, p_identity_payload jsonb)\n RETURNS text\n LANGUAGE sql\n IMMUTABLE\n SET search_path TO 'public'\nAS $function$\n  select encode(\n    extensions.digest(\n      public.card_print_identity_serialize_key_v1(\n        p_identity_domain,\n        p_identity_key_version,\n        p_set_code_identity,\n        p_printed_number,\n        p_normalized_printed_name,\n        p_source_name_raw,\n        p_identity_payload\n      ),\n      'sha256'\n    ),\n    'hex'\n  )\n$function$\n"
+      },
+      {
+        "signature": "card_print_identity_is_japanese_unnumbered_basic_energy_v1(text,text,text,jsonb)",
+        "provolatile": "i",
+        "prosecdef": false,
+        "proconfig": [
+          "search_path=public"
+        ],
+        "definition": "CREATE OR REPLACE FUNCTION public.card_print_identity_is_japanese_unnumbered_basic_energy_v1(p_identity_domain text, p_identity_key_version text, p_printed_number text, p_identity_payload jsonb)\n RETURNS boolean\n LANGUAGE sql\n IMMUTABLE\n SET search_path TO 'public'\nAS $function$\n  select coalesce(\n    p_identity_domain = 'pokemon_jpn'\n    and p_identity_key_version = 'pokemon_jpn:unnumbered_basic_energy:v1'\n    and p_printed_number is null\n    and jsonb_typeof(p_identity_payload) = 'object'\n    and p_identity_payload ->> 'printed_coordinate_kind' = 'unnumbered_basic_energy'\n    and p_identity_payload ->> 'number_evidence_status' = 'image_confirmed_absent'\n    and p_identity_payload ->> 'language_code' = 'ja'\n    and p_identity_payload ->> 'variant_key_current' = 'base'\n    and p_identity_payload ->> 'card_domain' = 'energy'\n    and p_identity_payload ->> 'energy_kind' = 'basic'\n    and p_identity_payload ->> 'energy_type' in\n      ('grass','fire','water','lightning','psychic','fighting','darkness','metal','fairy')\n    and p_identity_payload -> 'normalized_printed_number' = 'null'::jsonb\n    and p_identity_payload -> 'printed_total' = 'null'::jsonb\n    and p_identity_payload ->> 'printed_set_code' ~ '^[A-Za-z0-9-]+$'\n    and p_identity_payload #> '{release_context,same_name_official_release_members}' = '1'::jsonb\n    and p_identity_payload #>> '{image_identity_evidence,image_review_sha256}' ~ '^[0-9a-f]{64}$'\n    and p_identity_payload #>> '{image_identity_evidence,current_image_sha256}' ~ '^[0-9a-f]{64}$'\n    and p_identity_payload #>> '{image_identity_evidence,official_image_sha256}' ~ '^[0-9a-f]{64}$'\n    and p_identity_payload #>> '{image_identity_evidence,source_raw_sha256}' ~ '^[0-9a-f]{64}$'\n    and p_identity_payload #>> '{image_identity_evidence,official_card_id}' ~ '^[0-9]+$'\n    and p_identity_payload #>> '{image_identity_evidence,source_url}' =\n      'https://www.pokemon-card.com/card-search/details.php/card/' ||\n      (p_identity_payload #>> '{image_identity_evidence,official_card_id}') || '/regu/all',\n    false\n  );\n$function$\n"
+      },
+      {
+        "signature": "card_print_identity_is_japanese_unnumbered_event_v1(text,text,text,jsonb)",
+        "provolatile": "i",
+        "prosecdef": false,
+        "proconfig": [
+          "search_path=public"
+        ],
+        "definition": "CREATE OR REPLACE FUNCTION public.card_print_identity_is_japanese_unnumbered_event_v1(p_identity_domain text, p_identity_key_version text, p_printed_number text, p_identity_payload jsonb)\n RETURNS boolean\n LANGUAGE sql\n IMMUTABLE\n SET search_path TO 'public'\nAS $function$\n  select coalesce(\n    p_identity_domain = 'pokemon_jpn'\n    and p_identity_key_version = 'pokemon_jpn:unnumbered_event:v1'\n    and p_printed_number is null\n    and jsonb_typeof(p_identity_payload) = 'object'\n    and p_identity_payload ->> 'printed_coordinate_kind' = 'unnumbered_event'\n    and p_identity_payload ->> 'number_evidence_status' = 'image_confirmed_absent'\n    and p_identity_payload ->> 'language_code' = 'ja'\n    and p_identity_payload ->> 'variant_key_current' = 'base'\n    and p_identity_payload ->> 'printed_promo_code' in ('S-P', 'SV-P')\n    and jsonb_typeof(p_identity_payload #> '{release_context,observed_event}') = 'object'\n    and (p_identity_payload #> '{release_context,observed_event}') ?& array['series','year','venue','place']\n    and jsonb_typeof(p_identity_payload #> '{release_context,observed_event,year}') = 'number'\n    and p_identity_payload #>> '{release_context,observed_event,year}' ~ '^(199[6-9]|20[0-9]{2}|2100)$'\n    and (\n      (p_identity_payload #>> '{release_context,observed_event,series}' = 'champions_league'\n       and jsonb_typeof(p_identity_payload #> '{release_context,observed_event,venue}') = 'string'\n       and nullif(btrim(p_identity_payload #>> '{release_context,observed_event,venue}'), '') is not null\n       and jsonb_typeof(p_identity_payload #> '{release_context,observed_event,place}') = 'number'\n       and p_identity_payload #>> '{release_context,observed_event,place}' in ('1','2','3'))\n      or\n      (p_identity_payload #>> '{release_context,observed_event,series}' = 'world_championships'\n       and p_identity_payload #> '{release_context,observed_event,venue}' = 'null'::jsonb\n       and p_identity_payload #> '{release_context,observed_event,place}' = 'null'::jsonb)\n    )\n    and p_identity_payload #>> '{image_identity_evidence,current_image_sha256}' ~ '^[0-9a-f]{64}$'\n    and p_identity_payload #>> '{image_identity_evidence,official_image_sha256}' ~ '^[0-9a-f]{64}$'\n    and p_identity_payload #>> '{image_identity_evidence,source_raw_sha256}' ~ '^[0-9a-f]{64}$'\n    and p_identity_payload #>> '{image_identity_evidence,official_card_id}' ~ '^[0-9]+$'\n    and p_identity_payload #>> '{image_identity_evidence,source_url}' =\n      'https://www.pokemon-card.com/card-search/details.php/card/' ||\n      (p_identity_payload #>> '{image_identity_evidence,official_card_id}') || '/regu/all',\n    false\n  );\n$function$\n"
+      },
+      {
+        "signature": "card_print_identity_normalize_optional_text_v1(text)",
+        "provolatile": "i",
+        "prosecdef": false,
+        "proconfig": [
+          "search_path=public"
+        ],
+        "definition": "CREATE OR REPLACE FUNCTION public.card_print_identity_normalize_optional_text_v1(p_value text)\n RETURNS text\n LANGUAGE sql\n IMMUTABLE\n SET search_path TO 'public'\nAS $function$\n  select case\n    when p_value is null then null\n    when btrim(p_value) = '' then null\n    else btrim(p_value)\n  end\n$function$\n"
+      },
+      {
+        "signature": "card_print_identity_normalize_printed_name_v1(text)",
+        "provolatile": "i",
+        "prosecdef": false,
+        "proconfig": [
+          "search_path=public"
+        ],
+        "definition": "CREATE OR REPLACE FUNCTION public.card_print_identity_normalize_printed_name_v1(p_value text)\n RETURNS text\n LANGUAGE sql\n IMMUTABLE\n SET search_path TO 'public'\nAS $function$\n  select case\n    when p_value is null then null\n    when btrim(p_value) = '' then null\n    else lower(regexp_replace(btrim(p_value), '\\s+', ' ', 'g'))\n  end\n$function$\n"
+      },
+      {
+        "signature": "card_print_identity_normalize_variant_key_current_v1(text)",
+        "provolatile": "i",
+        "prosecdef": false,
+        "proconfig": [
+          "search_path=public"
+        ],
+        "definition": "CREATE OR REPLACE FUNCTION public.card_print_identity_normalize_variant_key_current_v1(p_variant_key text)\n RETURNS text\n LANGUAGE sql\n IMMUTABLE\n SET search_path TO 'public'\nAS $function$\n  select coalesce(public.card_print_identity_normalize_optional_text_v1(p_variant_key), 'base')\n$function$\n"
+      },
+      {
+        "signature": "card_print_identity_ordered_domain_dimensions_v1(text,text,jsonb)",
+        "provolatile": "i",
+        "prosecdef": false,
+        "proconfig": [
+          "search_path=public"
+        ],
+        "definition": "CREATE OR REPLACE FUNCTION public.card_print_identity_ordered_domain_dimensions_v1(p_identity_domain text, p_identity_key_version text, p_identity_payload jsonb)\n RETURNS jsonb\n LANGUAGE sql\n IMMUTABLE\n SET search_path TO 'public'\nAS $function$\n  with approved(key_name) as (\n    select unnest(\n      public.card_print_identity_approved_hash_dimension_keys_v1(\n        p_identity_domain,\n        p_identity_key_version\n      )\n    )\n  )\n  select coalesce(\n    jsonb_agg(\n      jsonb_build_array(\n        approved.key_name,\n        coalesce(coalesce(p_identity_payload, '{}'::jsonb) -> approved.key_name, 'null'::jsonb)\n      )\n      order by approved.key_name\n    ),\n    '[]'::jsonb\n  )\n  from approved\n$function$\n"
+      },
+      {
+        "signature": "card_print_identity_select_printed_number_v1(text,text)",
+        "provolatile": "i",
+        "prosecdef": false,
+        "proconfig": [
+          "search_path=public"
+        ],
+        "definition": "CREATE OR REPLACE FUNCTION public.card_print_identity_select_printed_number_v1(p_number text, p_number_plain text)\n RETURNS text\n LANGUAGE sql\n IMMUTABLE\n SET search_path TO 'public'\nAS $function$\n  select coalesce(\n    public.card_print_identity_normalize_optional_text_v1(p_number),\n    public.card_print_identity_normalize_optional_text_v1(p_number_plain)\n  )\n$function$\n"
+      },
+      {
+        "signature": "card_print_identity_select_set_code_v1(text,text)",
+        "provolatile": "i",
+        "prosecdef": false,
+        "proconfig": [
+          "search_path=public"
+        ],
+        "definition": "CREATE OR REPLACE FUNCTION public.card_print_identity_select_set_code_v1(p_card_print_set_code text, p_sets_code text)\n RETURNS text\n LANGUAGE sql\n IMMUTABLE\n SET search_path TO 'public'\nAS $function$\n  select coalesce(\n    public.card_print_identity_normalize_optional_text_v1(p_card_print_set_code),\n    public.card_print_identity_normalize_optional_text_v1(p_sets_code)\n  )\n$function$\n"
+      },
+      {
+        "signature": "card_print_identity_serialize_key_v1(text,text,text,text,text,text,jsonb)",
+        "provolatile": "i",
+        "prosecdef": false,
+        "proconfig": [
+          "search_path=public"
+        ],
+        "definition": "CREATE OR REPLACE FUNCTION public.card_print_identity_serialize_key_v1(p_identity_domain text, p_identity_key_version text, p_set_code_identity text, p_printed_number text, p_normalized_printed_name text, p_source_name_raw text, p_identity_payload jsonb)\n RETURNS text\n LANGUAGE plpgsql\n IMMUTABLE\n SET search_path TO 'public'\nAS $function$\ndeclare\n  v_identity_domain text := public.card_print_identity_normalize_optional_text_v1(p_identity_domain);\n  v_identity_key_version text := public.card_print_identity_normalize_optional_text_v1(p_identity_key_version);\n  v_set_code_identity text := public.card_print_identity_normalize_optional_text_v1(p_set_code_identity);\n  v_printed_number text := public.card_print_identity_normalize_optional_text_v1(p_printed_number);\n  v_normalized_printed_name text := public.card_print_identity_normalize_optional_text_v1(p_normalized_printed_name);\n  v_source_name_raw text := public.card_print_identity_normalize_optional_text_v1(p_source_name_raw);\nbegin\n  if v_identity_domain is null then\n    raise exception 'card_print_identity_serialize_key_v1: identity_domain is required';\n  end if;\n\n  if v_identity_key_version is null then\n    raise exception 'card_print_identity_serialize_key_v1: identity_key_version is required';\n  end if;\n\n  if v_set_code_identity is null then\n    raise exception 'card_print_identity_serialize_key_v1: set_code_identity is required';\n  end if;\n\n  -- Basic Energy absence is distinct from event identity and missing legacy data.\n  if v_identity_key_version = 'pokemon_jpn:unnumbered_basic_energy:v1' then\n    if not public.card_print_identity_is_japanese_unnumbered_basic_energy_v1(\n      p_identity_domain,p_identity_key_version,p_printed_number,p_identity_payload\n    ) or v_normalized_printed_name is null or v_source_name_raw is null then\n      raise exception 'card_print_identity_serialize_key_v1: invalid unnumbered basic Energy evidence';\n    end if;\n    if lower(v_set_code_identity) <> 'jpn-' || lower(p_identity_payload ->> 'printed_set_code') then\n      raise exception 'card_print_identity_serialize_key_v1: unnumbered basic Energy set mismatch';\n    end if;\n    return jsonb_build_array(\n      jsonb_build_array('identity_domain', v_identity_domain),\n      jsonb_build_array('identity_key_version', v_identity_key_version),\n      jsonb_build_array('set_code_identity', v_set_code_identity),\n      jsonb_build_array('printed_number', null::text),\n      jsonb_build_array('normalized_printed_name', v_normalized_printed_name),\n      jsonb_build_array('source_name_raw', v_source_name_raw),\n      jsonb_build_array('domain_dimensions', jsonb_build_array(\n        jsonb_build_array('language_code','ja'),\n        jsonb_build_array('printed_coordinate_kind','unnumbered_basic_energy'),\n        jsonb_build_array('card_domain','energy'),\n        jsonb_build_array('energy_kind','basic'),\n        jsonb_build_array('energy_type',p_identity_payload ->> 'energy_type'),\n        jsonb_build_array('variant_key_current','base')\n      ))\n    )::text;\n  end if;\n\n  -- This new version cannot alter the serialization of any existing version.\n  if v_identity_key_version = 'pokemon_jpn:unnumbered_event:v1' then\n    if not public.card_print_identity_is_japanese_unnumbered_event_v1(\n      p_identity_domain,p_identity_key_version,p_printed_number,p_identity_payload\n    ) or v_normalized_printed_name is null or v_source_name_raw is null then\n      raise exception 'card_print_identity_serialize_key_v1: invalid unnumbered event evidence';\n    end if;\n    if lower(v_set_code_identity) not in ('jpn-sp','jpn-s-p','jpn-svp','jpn-sv-p')\n       or replace(lower(v_set_code_identity),'-','') <>\n          'jpn' || replace(lower(p_identity_payload ->> 'printed_promo_code'),'-','') then\n      raise exception 'card_print_identity_serialize_key_v1: unnumbered event promo series mismatch';\n    end if;\n    return jsonb_build_array(\n      jsonb_build_array('identity_domain', v_identity_domain),\n      jsonb_build_array('identity_key_version', v_identity_key_version),\n      jsonb_build_array('set_code_identity', v_set_code_identity),\n      jsonb_build_array('printed_number', null::text),\n      jsonb_build_array('normalized_printed_name', v_normalized_printed_name),\n      jsonb_build_array('source_name_raw', v_source_name_raw),\n      jsonb_build_array('domain_dimensions', jsonb_build_array(\n        jsonb_build_array('language_code','ja'),\n        jsonb_build_array('printed_coordinate_kind','unnumbered_event'),\n        jsonb_build_array('printed_promo_code',p_identity_payload ->> 'printed_promo_code'),\n        jsonb_build_array('event_series',p_identity_payload #>> '{release_context,observed_event,series}'),\n        jsonb_build_array('event_year',p_identity_payload #> '{release_context,observed_event,year}'),\n        jsonb_build_array('event_venue',p_identity_payload #> '{release_context,observed_event,venue}'),\n        jsonb_build_array('award_place',p_identity_payload #> '{release_context,observed_event,place}'),\n        jsonb_build_array('variant_key_current','base')\n      ))\n    )::text;\n  end if;\n\n  if v_printed_number is null then\n    raise exception 'card_print_identity_serialize_key_v1: printed_number is required';\n  end if;\n\n  return jsonb_build_array(\n    jsonb_build_array('identity_domain', v_identity_domain),\n    jsonb_build_array('identity_key_version', v_identity_key_version),\n    jsonb_build_array('set_code_identity', v_set_code_identity),\n    jsonb_build_array('printed_number', v_printed_number),\n    jsonb_build_array('normalized_printed_name', v_normalized_printed_name),\n    jsonb_build_array('source_name_raw', v_source_name_raw),\n    jsonb_build_array(\n      'domain_dimensions',\n      public.card_print_identity_ordered_domain_dimensions_v1(\n        v_identity_domain,\n        v_identity_key_version,\n        coalesce(p_identity_payload, '{}'::jsonb)\n      )\n    )\n  )::text;\nend;\n$function$\n"
+      }
+    ]
+  },
+  "fingerprint": "4aedb835926e964265fec75e81c110c01086ac6048a81b3ba908f3871d4967fe"
+}
