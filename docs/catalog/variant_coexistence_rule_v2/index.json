@@ -1,0 +1,63 @@
+{
+  "version": "VARIANT_COEXISTENCE_RULE_V2",
+  "scope": "two_reviewed_game_stop_and_generic_play_slots_only",
+  "source_review_recorded_at": "2026-11-24T19:23:57.343Z",
+  "current_slot_frame_at": "2026-11-25T06:41:59.884Z",
+  "visual_review_reused_not_newly_claimed": true,
+  "targets": [
+    {
+      "play_product_id": 565473,
+      "base_id": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11",
+      "base_gv_id": "GV-PK-TEF-119",
+      "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+      "set_code": "sv05",
+      "name": "Koraidon",
+      "number_plain": "119",
+      "printed_number": "119/162",
+      "game_stop_parent_id": "12e6eaf0-d294-4ffa-9f81-9a9eeace7ed8",
+      "game_stop_gv_id": "GV-PK-TEF-119-GAMESTOP-STAMP",
+      "game_stop_product_id": "543954",
+      "game_stop_photo": {
+        "file": "543954.original.jpg",
+        "sha256": "804b7097e9fc83804128800ec1c1aae84fcde0a68615a9d20f723b5a0dca9057",
+        "url": "https://product-images.tcgplayer.com/fit-in/1000x1000/543954.jpg",
+        "printed_name": "Koraidon",
+        "printed_number": "119/162",
+        "printed_set_mark": "TEF",
+        "game_stop_logo_observed": true,
+        "play_logo_observed": false,
+        "foil_pattern_adjudicated": false
+      },
+      "play_evidence_registry": "7a9fac6bb539af6ba438d057d148f20be7ba3b79f848d1917267c212a4f935b5"
+    },
+    {
+      "play_product_id": 619051,
+      "base_id": "7bf55366-9a6b-466f-bd71-f617d626b5d9",
+      "base_gv_id": "GV-PK-SCR-107",
+      "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+      "set_code": "sv07",
+      "name": "Archaludon",
+      "number_plain": "107",
+      "printed_number": "107/142",
+      "game_stop_parent_id": "b5795fdf-6e2c-4016-af5c-779aa607f96f",
+      "game_stop_gv_id": "GV-PK-SCR-107-GAMESTOP-STAMP",
+      "game_stop_product_id": "576862",
+      "game_stop_photo": {
+        "file": "576862.original.jpg",
+        "sha256": "61f186c9119e4a698b4b354f57c9255ddfbf91e950612b2f2772817f6db208f5",
+        "url": "https://product-images.tcgplayer.com/fit-in/1000x1000/576862.jpg",
+        "printed_name": "Archaludon",
+        "printed_number": "107/142",
+        "printed_set_mark": "SCR",
+        "game_stop_logo_observed": true,
+        "play_logo_observed": false,
+        "foil_pattern_adjudicated": false
+      },
+      "play_evidence_registry": "7a9fac6bb539af6ba438d057d148f20be7ba3b79f848d1917267c212a4f935b5"
+    }
+  ],
+  "production_authority": false,
+  "finish_authority": false,
+  "hold_cleared": false,
+  "fingerprint": "5861772bbd3b8332e87296a8adcd8f43db52a48d2858c756cefae0d3541d929d"
+}

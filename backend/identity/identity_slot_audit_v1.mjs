@@ -3,7 +3,7 @@ import '../env.mjs';
 import pg from 'pg';
 
 import { normalizeCardNameV1 } from './normalizeCardNameV1.mjs';
-import { evaluateVariantCoexistenceV1 } from './variant_coexistence_rule_v1.mjs';
+import { evaluateVariantCoexistenceV2 as evaluateVariantCoexistenceV1 } from './variant_coexistence_rule_v2.mjs';
 import { getSourceBackedIdentity, normalizeVariantKey } from '../warehouse/source_identity_contract_v1.mjs';
 
 const { Pool } = pg;
