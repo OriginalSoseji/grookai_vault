@@ -24,6 +24,111 @@ const readerHelpers = new Set(['getExploreRowsForCombinedSearch',
 const reader = parsedSource.statements
   .filter(node => ts.isFunctionDeclaration(node) && readerHelpers.has(node.name?.text))
   .map(node => node.getText(parsedSource)).join('\n');
+const boundedReader = parsedSource.statements
+  .filter(node => ts.isFunctionDeclaration(node) && node.name?.text === 'getExploreRowsForGameScopedTextSearch')
+  .map(node => node.getText(parsedSource)).join('\n');
+const directReader = parsedSource.statements
+  .filter(node => ts.isFunctionDeclaration(node) && ['fetchCardRowsBySetCode', 'fetchLanguageScopedTextRows'].includes(node.name?.text))
+  .map(node => node.getText(parsedSource)).join('\n') + '\nexports.directReaders = { fetchCardRowsBySetCode, fetchLanguageScopedTextRows };';
+
+function boundedReaderWith(client, variantKey = '') {
+  return compile(boundedReader, {
+    assertValueSortPricingEnabled() {}, createServerComponentClient: async () => client,
+    normalizeIdentityFilterKey: () => '', getVariantKeyForFilter: () => variantKey,
+    normalizeFinishKeys: keys => keys ?? [], SEARCH_LIMIT: 2, MAX_STRUCTURED_PARENT_CANDIDATES: 6,
+  }).getExploreRowsForGameScopedTextSearch;
+}
+
+test('cancelled filtered game search aborts its active game lookup', async () => {
+  const controller = new AbortController(); let attached, calls = 0;
+  const query = { select() { return this; }, eq() { return this; }, abortSignal(signal) { attached = signal; return this; },
+    maybeSingle() { return new Promise((_, reject) => attached.addEventListener('abort', () => reject(attached.reason), { once: true })); } };
+  const search = boundedReaderWith({ from(table) { assert.equal(table, 'games'); calls++; return query; } }, 'alt');
+  const pending = search('Pikachu', 'pokemon', 'relevance', { exactSetCode: 'base1', signal: controller.signal });
+  while (!attached) await new Promise(resolve => setImmediate(resolve));
+  controller.abort(); await assert.rejects(pending, { name: 'AbortError' });
+  assert.equal(attached, controller.signal); assert.equal(calls, 1);
+});
+
+test('cancelled filtered game search aborts the active card lookup', async () => {
+  const controller = new AbortController(); let attached, cardCalls = 0;
+  const client = { from(table) {
+    if (table === 'games') return { select() { return this; }, eq() { return this; }, abortSignal() { return this; },
+      maybeSingle() { return Promise.resolve({ data: { id: 'pokemon' }, error: null }); } };
+    assert.equal(table, 'v_card_prints_discovery_v1'); cardCalls++;
+    return { select() { return this; }, eq() { return this; }, ilike() { return this; }, order() { return this; }, limit() { return this; },
+      abortSignal(signal) { attached = signal; return new Promise((_, reject) => signal.addEventListener('abort', () => reject(signal.reason), { once: true })); } };
+  } };
+  const pending = boundedReaderWith(client, 'alt')('Pikachu', 'pokemon', 'relevance', { exactSetCode: 'base1', signal: controller.signal });
+  while (!attached) await new Promise(resolve => setImmediate(resolve));
+  controller.abort(); await assert.rejects(pending, { name: 'AbortError' });
+  assert.equal(attached, controller.signal); assert.equal(cardCalls, 1);
+});
+
+test('cancelled bounded game search aborts the active RPC before enrichment', async () => {
+  const controller = new AbortController(); let attached, calls = 0;
+  const search = boundedReaderWith({ rpc() { calls++; return { abortSignal(signal) {
+    attached = signal;
+    return new Promise((_, reject) => signal.addEventListener('abort', () => reject(signal.reason), { once: true }));
+  } }; } });
+  const pending = search('Pikachu', 'pokemon', 'relevance', { exactSetCode: 'base1', signal: controller.signal });
+  while (!attached) await new Promise(resolve => setImmediate(resolve));
+  controller.abort(); await assert.rejects(pending, { name: 'AbortError' });
+  assert.equal(attached, controller.signal); assert.equal(calls, 1);
+});
+
+test('cancellation after a bounded full page prevents later pages', async () => {
+  const controller = new AbortController(); let calls = 0;
+  const search = boundedReaderWith({ rpc() { calls++; return { abortSignal() {
+    controller.abort(); return Promise.resolve({ data: [{ id: '1' }, { id: '2' }], error: null });
+  } }; } });
+  await assert.rejects(search('Pikachu', 'pokemon', 'relevance', {
+    exactSetCode: 'base1', finishKeys: ['holo'], signal: controller.signal,
+  }), { name: 'AbortError' });
+  assert.equal(calls, 1);
+});
+
+test('bounded game search passes cancellation through the Supabase client transport', async () => {
+  const { createClient } = require('@supabase/supabase-js');
+  const controller = new AbortController(); let attached;
+  const client = createClient('http://127.0.0.1:54321', 'local-fixture-key', {
+    auth: { persistSession: false, autoRefreshToken: false },
+    global: { fetch: (_url, init) => new Promise((_, reject) => {
+      attached = init.signal;
+      attached.addEventListener('abort', () => reject(attached.reason), { once: true });
+    }) },
+  });
+  const search = boundedReaderWith(client);
+  const pending = search('Pikachu', 'pokemon', 'relevance', { exactSetCode: 'base1', signal: controller.signal });
+  while (!attached) await new Promise(resolve => setImmediate(resolve));
+  controller.abort(); await assert.rejects(pending, { name: 'AbortError' });
+  assert.equal(attached.aborted, true);
+});
+
+test('cancelling exact identity lookup aborts the active request before fallback', async () => {
+  const controller = new AbortController(); let attached, requests = 0;
+  const query = { select() { return this; }, eq() { return this; }, limit() { return this; },
+    abortSignal(signal) { attached = signal; return new Promise((_, reject) => signal.addEventListener('abort', () => reject(signal.reason), { once: true })); } };
+  const { directReaders } = compile(directReader, {
+    createServerComponentClient: async () => ({ from() { requests++; return query; } }),
+    applyLanguageScopeQuery: request => request, GENERIC_TOKENS: new Set(),
+  });
+  const pending = directReaders.fetchLanguageScopedTextRows({ significantTextTokens: [], textTokens: [], directGvId: 'GV-PK-TEST-001', expectedSetCodes: [] }, 'en', controller.signal);
+  while (!attached) await new Promise(resolve => setImmediate(resolve));
+  controller.abort(); await assert.rejects(pending, { name: 'AbortError' });
+  assert.equal(attached, controller.signal); assert.equal(requests, 1);
+});
+
+test('cancellation after a full set page prevents the next page', async () => {
+  const controller = new AbortController(); let calls = 0;
+  const query = { select() { return this; }, eq() { return this; }, order() { return this; }, range() { return this; },
+    abortSignal() { controller.abort(); return Promise.resolve({ data: [{ id: '1' }, { id: '2' }], error: null }); } };
+  const { directReaders } = compile(directReader, { SET_FETCH_PAGE_SIZE: 2,
+    createServerComponentClient: async () => ({ from() { calls++; return query; } }),
+  });
+  await assert.rejects(directReaders.fetchCardRowsBySetCode('base1', controller.signal), { name: 'AbortError' });
+  assert.equal(calls, 1);
+});
 
 test('complete governed name rows are reused; fractions and sparse contracts hydrate parents', async()=>{
  const row={id:'visible',gv_id:'GV-PK-T-001',name:'Pikachu',number:'7',rarity:'Common',artist:'Artist',

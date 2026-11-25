@@ -122,6 +122,29 @@ test('a later catalog-page failure does not publish a partial artist collection'
     'id,gv_id,artist', 'Yuka Morii', { complete: true }), /Artist lookup unavailable/);
 });
 
+test('artist search cancellation reaches the active Supabase request', async () => {
+  const controller = new AbortController(); let attached;
+  const client = createClient('http://127.0.0.1:54321', 'local-fixture-key', {
+    auth: { persistSession: false, autoRefreshToken: false },
+    global: { fetch: (_url, init) => new Promise((_, reject) => {
+      attached = init.signal;
+      attached.addEventListener('abort', () => reject(attached.reason), { once: true });
+    }) },
+  });
+  const pending = fetchPokemonArtistRows(client, 'id,gv_id,artist', 'Yuka Morii', { complete: true, signal: controller.signal });
+  while (!attached) await new Promise(resolve => setImmediate(resolve));
+  controller.abort(); await assert.rejects(pending, { name: 'AbortError' });
+  assert.equal(attached.aborted, true);
+});
+
+test('cancelled complete artist search does not request the next page', async () => {
+  const controller = new AbortController(); let calls = 0;
+  const query = { select() { return this; }, like() { return this; }, in() { return this; }, order() { return this; }, limit() { return this; },
+    abortSignal() { calls++; controller.abort(); return Promise.resolve({ data: Array.from({ length: 500 }, (_, i) => ({ id: String(i) })), error: null }); } };
+  await assert.rejects(fetchPokemonArtistRows({ from: () => query }, 'id', 'Yuka Morii', { complete: true, signal: controller.signal }), { name: 'AbortError' });
+  assert.equal(calls, 1);
+});
+
 test('parsed individual artists retain shared credits across complete catalog pages', async () => {
   const records = Array.from({ length: 1005 }, (_, index) => ({
     id: String(index).padStart(6, '0'), gv_id: `GV-PK-SHARED-${index}`,

@@ -187,7 +187,7 @@ test('explicit edition search supplements the deduplicated discovery view from c
   );
   assert.match(
     source,
-    /for \(const row of await fetchExplicitEditionParentRows\(options\.stampLabels \?\? \[\]\)\)[\s\S]*rowsById\.set\(row\.id, row\)/,
+    /for \(const row of await fetchExplicitEditionParentRows\(options\.stampLabels \?\? \[\], options\.signal\)\)[\s\S]*rowsById\.set\(row\.id, row\)/,
   );
   const combinedSearch = source.slice(
     source.indexOf('export async function getExploreRowsForCombinedSearch'),

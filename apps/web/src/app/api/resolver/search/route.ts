@@ -705,6 +705,7 @@ export async function GET(request: NextRequest) {
           smartSearchIntent: effectiveSmartSearchIntent, degraded: false}))
       : artistSearch && !effectiveSmartSearchIntent.cameoSubject
       ? getExploreRowsForArtistSearch(artistSearch, {
+          signal: resolutionSignal,
           searchSets,
           sortMode,
           exactArtist: Boolean(exactIllustrator),
@@ -760,6 +761,7 @@ export async function GET(request: NextRequest) {
         }))
       : gameScope !== "pokemon"
       ? getExploreRowsForGameScopedTextSearch(routedQuery, gameScope, sortMode, {
+          signal: resolutionSignal,
           exactSetCode: effectiveExactSetCode,
           exactReleaseYear,
           exactIllustrator,
@@ -809,6 +811,7 @@ export async function GET(request: NextRequest) {
             languageScope,
             sortMode,
             includePricingDuringResolution,
+            resolutionSignal,
           ).then((rows) => ({
             rows,
             meta: canUseFastStructuredCollectorSearch
@@ -839,6 +842,7 @@ export async function GET(request: NextRequest) {
           }))
         : shouldUseStructuredTextExpansion
           ? getExploreRowsForGameScopedTextSearch(routedQuery, gameScope, sortMode, {
+              signal: resolutionSignal,
               exactSetCode: effectiveExactSetCode,
               exactReleaseYear,
               exactIllustrator,

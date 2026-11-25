@@ -3082,19 +3082,23 @@ async function fetchExactCardRows(
   return suppressParentOnlyRowsWhenChildMatchExists([...deduped.values()]);
 }
 
-async function fetchCardRowsBySetCode(setCode: string) {
+async function fetchCardRowsBySetCode(setCode: string, signal?: AbortSignal) {
+  signal?.throwIfAborted();
   const supabase = await createServerComponentClient();
   const selectClause =
     "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
   const rows: CardPrintLookupRow[] = [];
 
   for (let offset = 0; ; offset += SET_FETCH_PAGE_SIZE) {
-    const { data, error } = await supabase
+    signal?.throwIfAborted();
+    const request = supabase
       .from("v_card_prints_discovery_v1")
       .select(selectClause)
       .eq("set_code", setCode)
       .order("id", { ascending: true })
       .range(offset, offset + SET_FETCH_PAGE_SIZE - 1);
+    const { data, error } = await (signal ? request.abortSignal(signal) : request);
+    signal?.throwIfAborted();
 
     if (error) {
       throw new Error(error.message);
@@ -3866,7 +3870,9 @@ function cleanFastSearchToken(token: string) {
 async function fetchLanguageScopedTextRows(
   query: ResolverQuery,
   languageScope: PublicLanguageScope,
+  signal?: AbortSignal,
 ) {
+  signal?.throwIfAborted();
   const tokens = (query.significantTextTokens.length > 0
     ? query.significantTextTokens
     : query.textTokens
@@ -3896,7 +3902,8 @@ async function fetchLanguageScopedTextRows(
         .limit(1),
       languageScope,
     );
-    const { data, error } = await directRequest;
+    const { data, error } = await (signal ? directRequest.abortSignal(signal) : directRequest);
+    signal?.throwIfAborted();
     if (error) {
       throw new Error(error.message);
     }
@@ -3913,10 +3920,11 @@ async function fetchLanguageScopedTextRows(
     const setRows = (
       await Promise.all(
         normalizeExpectedSetCodes(query.expectedSetCodes).map((setCode) =>
-          fetchCardRowsBySetCode(setCode),
+          fetchCardRowsBySetCode(setCode, signal),
         ),
       )
     ).flat();
+    signal?.throwIfAborted();
 
     const languageScopedSetRows = applyLanguageScopeRows(setRows, languageScope);
     if (tokens.length === 0) {
@@ -3931,6 +3939,7 @@ async function fetchLanguageScopedTextRows(
   }
 
   const runTokenRequest = async (token: string, mode: "name" | "broad") => {
+    signal?.throwIfAborted();
     const safeToken = cleanFastSearchToken(token);
     if (!safeToken) {
       return [] as CardPrintLookupRow[];
@@ -3948,7 +3957,8 @@ async function fetchLanguageScopedTextRows(
             buildStructuredFastSearchOrExpression(safeToken) ??
               `gv_id.ilike.${safeToken}%`,
           );
-    const { data, error } = await request;
+    const { data, error } = await (signal ? request.abortSignal(signal) : request);
+    signal?.throwIfAborted();
     if (error) {
       throw new Error(error.message);
     }
@@ -3967,6 +3977,7 @@ async function fetchLanguageScopedTextRows(
       return nameRows.length > 0 ? nameRows : runTokenRequest(safeToken, "broad");
     }),
   );
+  signal?.throwIfAborted();
 
   for (const candidateRows of tokenResults) {
     for (const row of candidateRows) {
@@ -3981,6 +3992,7 @@ async function fetchLanguageScopedTextRows(
     languageScope,
     selectClause,
   );
+  signal?.throwIfAborted();
   for (const row of speciesFamilyRows) {
     if (rowMatchesScopedTextTokens(row, query)) {
       rowsById.set(row.id, row);
@@ -3994,14 +4006,16 @@ export async function getExploreRowsForArtistSearch(
   artist: string,
   options: SmartFilterDiscoveryOptions & { exactArtist: boolean; artistNames?: string[] },
 ): Promise<ExploreRow[]> {
+  options.signal?.throwIfAborted();
   assertValueSortPricingEnabled(options.sortMode, Boolean(options.includePricing));
   const supabase = await createServerComponentClient();
   const parentRows = await fetchPokemonArtistRows(
     supabase,
     "id,gv_id,name,number,printed_total,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants",
     artist,
-    { exact: options.exactArtist, names: options.artistNames, languageScope: options.languageScope, complete: true },
+    { exact: options.exactArtist, names: options.artistNames, languageScope: options.languageScope, complete: true, signal: options.signal },
   ) as unknown as CardPrintLookupRow[];
+  options.signal?.throwIfAborted();
   return enrichCompleteSearchParents(parentRows, options, supabase);
 }
 
@@ -4192,7 +4206,9 @@ async function enrichCompleteSearchParents(
 async function fetchCollectorScopedTextRows(
   query: ResolverQuery,
   languageScope: PublicLanguageScope,
+  signal?: AbortSignal,
 ) {
+  signal?.throwIfAborted();
   const collectorCandidates = new Set(
     query.numberTokens.map((token) => normalizeCollectorToken(token)).filter(Boolean),
   );
@@ -4234,6 +4250,7 @@ async function fetchCollectorScopedTextRows(
 
   const requests = ["number", "number_plain"].flatMap((field) =>
     collectorTokens.map(async (collectorToken) => {
+      signal?.throwIfAborted();
       let scopedRequest = applyLanguageScopeQuery(
         supabase.from("card_prints").select(selectClause),
         languageScope,
@@ -4250,7 +4267,9 @@ async function fetchCollectorScopedTextRows(
         request = request.ilike("name", `%${nameToken}%`);
       }
 
-      const { data, error } = await request.limit(SEARCH_LIMIT);
+      const limitedRequest = request.limit(SEARCH_LIMIT);
+      const { data, error } = await (signal ? limitedRequest.abortSignal(signal) : limitedRequest);
+      signal?.throwIfAborted();
       if (error) {
         throw new Error(error.message);
       }
@@ -4258,6 +4277,7 @@ async function fetchCollectorScopedTextRows(
     }),
   );
   for (const candidateRows of await Promise.all(requests)) {
+    signal?.throwIfAborted();
     for (const row of candidateRows) {
       if (rowMatchesScopedTextTokens(row, query)) {
         rowsById.set(row.id, row);
@@ -4273,9 +4293,12 @@ export async function getExploreRowsForLanguageScopedTextSearch(
   languageScope: PublicLanguageScope,
   sortMode: SortMode,
   includePricing = false,
+  signal?: AbortSignal,
 ): Promise<ExploreRow[]> {
+  signal?.throwIfAborted();
   const packet = normalizeQuery(rawQuery);
   const query = await buildResolverQuery(packet);
+  signal?.throwIfAborted();
   const originalQueryTokens = new Set(
     packet.normalizedTokens.map((token) => normalizeTextForMatch(token)),
   );
@@ -4328,16 +4351,18 @@ export async function getExploreRowsForLanguageScopedTextSearch(
           await createServerComponentClient(),
           "id,gv_id,name,number,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants",
           rawQuery,
-          { languageScope },
+          { languageScope, signal },
         ) as unknown as CardPrintLookupRow[]
       : query.numberTokens.length > 0 || query.fractionTokens.length > 0
-        ? await fetchCollectorScopedTextRows(query, languageScope)
-        : await fetchLanguageScopedTextRows(query, languageScope);
+        ? await fetchCollectorScopedTextRows(query, languageScope, signal)
+        : await fetchLanguageScopedTextRows(query, languageScope, signal);
     const enrichmentRows = limitRowsBeforeEnrichment(exactRows, query, sortMode);
+    signal?.throwIfAborted();
     const setMetadataByCode = await fetchPublicSetMetadata(
       uniqueValues(enrichmentRows.map((row) => row.set_code ?? "").filter(Boolean)),
     );
     const supabase = await createServerComponentClient();
+    signal?.throwIfAborted();
     const valueSort = sortMode === "value_high" || sortMode === "value_low";
     const pricingByCardId = includePricing
       ? await getPublicPricingByCardIds(
@@ -4357,6 +4382,8 @@ export async function getExploreRowsForLanguageScopedTextSearch(
       },
     );
 
+    signal?.throwIfAborted();
+
     return sortRows(rows, query, sortMode).slice(0, SEARCH_LIMIT);
   }
 
@@ -4366,6 +4393,7 @@ export async function getExploreRowsForLanguageScopedTextSearch(
     sortMode,
     {
       includePricing,
+      signal,
       languageScope,
       exactSetCode: boundedSetCode || undefined,
     },
@@ -4381,8 +4409,10 @@ export async function getExploreRowsForGameScopedTextSearch(
     "sortMode" | "textQuery"
   > = {},
 ): Promise<ExploreRow[]> {
+  options.signal?.throwIfAborted();
   assertValueSortPricingEnabled(sortMode, options.includePricing ?? false);
   const supabase = await createServerComponentClient();
+  options.signal?.throwIfAborted();
 
   const selectClause =
     "id,gv_id,name,number,number_plain,rarity,artist,image_url,image_alt_url,image_source,image_path,representative_image_url,image_status,image_note,set_code,printed_set_abbrev,external_ids,variant_key,printed_identity_modifier,variants";
@@ -4398,12 +4428,14 @@ export async function getExploreRowsForGameScopedTextSearch(
   }
   if (inferredSetCodes.length === 0 && searchText) {
     const [firstToken, ...remainder] = searchText.split(" ");
-    const { data: setRows, error: setError } = await supabase
+    const setRequest = supabase
       .from("sets")
       .select("code")
       .eq("game", gameScope)
       .ilike("code", firstToken)
       .limit(2);
+    const { data: setRows, error: setError } = await (options.signal ? setRequest.abortSignal(options.signal) : setRequest);
+    options.signal?.throwIfAborted();
     if (setError) throw new Error(setError.message);
     if ((setRows ?? []).length === 1) {
       inferredSetCodes = [String(setRows?.[0]?.code ?? "").trim().toLowerCase()];
@@ -4469,7 +4501,8 @@ export async function getExploreRowsForGameScopedTextSearch(
         offset < maxCandidates;
         offset += SEARCH_LIMIT
       ) {
-        const { data, error } = await supabase.rpc("search_game_card_prints_v4", {
+        options.signal?.throwIfAborted();
+        const request = supabase.rpc("search_game_card_prints_v4", {
           game_code_in: gameScope,
           q: queryText,
           set_code_in: setCode,
@@ -4480,6 +4513,8 @@ export async function getExploreRowsForGameScopedTextSearch(
           limit_in: SEARCH_LIMIT,
           offset_in: offset,
         });
+        const { data, error } = await (options.signal ? request.abortSignal(options.signal) : request);
+        options.signal?.throwIfAborted();
         if (error) return { data: [] as CardPrintLookupRow[], error };
         const pageRows = (data ?? []) as CardPrintLookupRow[];
         boundedRows.push(...pageRows);
@@ -4490,6 +4525,7 @@ export async function getExploreRowsForGameScopedTextSearch(
     const boundedSetCodes = inferredSetCodes.length > 0 ? inferredSetCodes : [null];
     const initialSearches = await Promise.all(boundedSetCodes.map((setCode) =>
       runBoundedSearch(nameText || null, collectorToken || null, setCode)));
+    options.signal?.throwIfAborted();
     const initialError = initialSearches.find((result) => result.error)?.error;
     if (initialError) throw new Error(initialError.message);
     let data = initialSearches.flatMap((result) => result.data ?? []);
@@ -4534,6 +4570,7 @@ export async function getExploreRowsForGameScopedTextSearch(
     const setMetadataByCode = await fetchPublicSetMetadata(
       uniqueValues(parentRows.map((row) => row.set_code ?? "").filter(Boolean)),
     );
+    options.signal?.throwIfAborted();
     const releaseScopedParentRows = filterRowsByReleaseYear(
       parentRows,
       setMetadataByCode,
@@ -4547,11 +4584,13 @@ export async function getExploreRowsForGameScopedTextSearch(
           releaseScopedParentRows,
         )
       : releaseScopedParentRows;
+    options.signal?.throwIfAborted();
     const pricingByCardId = options.includePricing
       ? await getPublicPricingByCardIds(supabase, lookupRows.map((row) => row.id), {
           requireComplete: false,
         })
       : new Map<string, PublicPricingRecord>();
+    options.signal?.throwIfAborted();
     const rows = await buildExploreRows(
       lookupRows,
       new Map<string, string>(),
@@ -4570,14 +4609,17 @@ export async function getExploreRowsForGameScopedTextSearch(
       },
     );
     const resolverQuery = await buildResolverQuery(normalizeQuery(rawQuery));
+    options.signal?.throwIfAborted();
     return sortRows(rows, resolverQuery, sortMode).slice(0, SEARCH_LIMIT);
   }
 
-  const { data: gameRow, error: gameError } = await supabase
+  options.signal?.throwIfAborted();
+  const gameRequest = supabase
     .from("games")
     .select("id")
-    .eq("code", gameScope)
-    .maybeSingle();
+    .eq("code", gameScope);
+  const { data: gameRow, error: gameError } = await (options.signal ? gameRequest.abortSignal(options.signal) : gameRequest).maybeSingle();
+  options.signal?.throwIfAborted();
   if (gameError) throw new Error(gameError.message);
   const gameId = typeof gameRow?.id === "string" ? gameRow.id.trim() : "";
   if (!gameId) return [];
@@ -4591,7 +4633,9 @@ export async function getExploreRowsForGameScopedTextSearch(
     if (typeof releaseYearMax === "number") {
       setQuery = setQuery.lt("release_date", `${releaseYearMax + 1}-01-01`);
     }
-    const { data: releaseSets, error: releaseSetError } = await setQuery.limit(2000);
+    const releaseRequest = setQuery.limit(2000);
+    const { data: releaseSets, error: releaseSetError } = await (options.signal ? releaseRequest.abortSignal(options.signal) : releaseRequest);
+    options.signal?.throwIfAborted();
     if (releaseSetError) throw new Error(releaseSetError.message);
     releaseScopedSetCodes = uniqueValues(
       (releaseSets ?? [])
@@ -4621,6 +4665,7 @@ export async function getExploreRowsForGameScopedTextSearch(
           : [null];
     const resultRows: CardPrintLookupRow[] = [];
     for (const releaseSetChunk of releaseSetChunks) {
+      options.signal?.throwIfAborted();
       let query = supabase.from(directGvIdSearch ? "card_prints" : "v_card_prints_discovery_v1").select(selectClause).eq("game_id", gameId);
       if (typeof releaseSetChunk === "string") query = query.ilike("set_code", releaseSetChunk);
       if (Array.isArray(releaseSetChunk)) query = query.in("set_code", releaseSetChunk);
@@ -4630,9 +4675,11 @@ export async function getExploreRowsForGameScopedTextSearch(
       if (field && value) {
         query = query.ilike(field, contains ? `%${value}%` : value);
       }
-      const { data, error } = await query
+      const request = query
         .order("name", { ascending: true })
         .limit(valueSortRequested ? VALUE_SORT_CANDIDATE_LIMIT + 1 : SEARCH_LIMIT);
+      const { data, error } = await (options.signal ? request.abortSignal(options.signal) : request);
+      options.signal?.throwIfAborted();
       if (error) throw new Error(error.message);
       resultRows.push(...((data ?? []) as CardPrintLookupRow[]));
     }
@@ -4652,11 +4699,14 @@ export async function getExploreRowsForGameScopedTextSearch(
 
   const rowsById = new Map<string, CardPrintLookupRow>();
   for (const rows of await Promise.all(lookups)) {
+    options.signal?.throwIfAborted();
     for (const row of rows) rowsById.set(row.id, row);
   }
-  for (const row of await fetchExplicitEditionParentRows(options.stampLabels ?? [])) {
+  options.signal?.throwIfAborted();
+  for (const row of await fetchExplicitEditionParentRows(options.stampLabels ?? [], options.signal)) {
     rowsById.set(row.id, row);
   }
+  options.signal?.throwIfAborted();
   const normalizedNameText = nameText.toLowerCase();
   const normalizedCollectorToken = collectorToken.toLowerCase();
   let scopedParentRows = applyLanguageScopeRows(
@@ -4680,9 +4730,11 @@ export async function getExploreRowsForGameScopedTextSearch(
   });
   if (gameScope === "mtg") {
     scopedParentRows = await withMtgPrintReleaseDates(supabase, scopedParentRows);
+    options.signal?.throwIfAborted();
     scopedParentRows = filterRowsByReleaseYear(scopedParentRows, new Map(), releaseYearMin, releaseYearMax);
   }
   const resolverQuery = await buildResolverQuery(normalizeQuery(rawQuery));
+  options.signal?.throwIfAborted();
   const parentRows = limitRowsBeforeEnrichment(
     scopedParentRows,
     resolverQuery,
@@ -4691,20 +4743,24 @@ export async function getExploreRowsForGameScopedTextSearch(
   const lookupRows = shouldRequireChildScope
     ? await fetchSmartDiscoveryChildRows({ ...options, sortMode }, parentRows)
     : parentRows;
+  options.signal?.throwIfAborted();
   const setMetadataByCode = await fetchPublicSetMetadata(
     uniqueValues(lookupRows.map((row) => row.set_code ?? "").filter(Boolean)),
   );
+  options.signal?.throwIfAborted();
   const pricingByCardId = options.includePricing
     ? await getPublicPricingByCardIds(supabase, lookupRows.map((row) => row.id), {
         requireComplete: sortMode === "value_high" || sortMode === "value_low",
       })
     : new Map<string, PublicPricingRecord>();
+  options.signal?.throwIfAborted();
   const rows = await buildExploreRows(
     lookupRows,
     new Map<string, string>(),
     setMetadataByCode,
     pricingByCardId,
   );
+  options.signal?.throwIfAborted();
   return sortRows(rows, resolverQuery, sortMode).slice(0, SEARCH_LIMIT);
 }
 

@@ -12,7 +12,7 @@ const fixture = Array.from({ length: 195 }, (_, index) => ({
   name: `Card ${index}`, artist: 'Yuka Morii', number: String(index),
 }));
 
-function loadRoute({ fail = false, fastSearchTimeout = false, softTimeout = false, stallCombined = false, stallProvisional = false, provisionalError = null, captureProvisional = () => {}, sets = [], catalogFail = false, capture = () => {}, captureCollector = () => {}, collectorRows = fixture, captureRanked = () => {}, rankedRows, exactCardName, exactCardNames = [], partialCardNames = {}, rows = fixture } = {}) {
+function loadRoute({ fail = false, fastSearchTimeout = false, softTimeout = false, stallFast = false, stallArtist = false, stallCombined = false, stallProvisional = false, provisionalError = null, captureProvisional = () => {}, sets = [], catalogFail = false, capture = () => {}, captureCollector = () => {}, collectorRows = fixture, captureRanked = () => {}, rankedRows, exactCardName, exactCardNames = [], partialCardNames = {}, rows = fixture } = {}) {
   const cache = new Map();
   const mocks = {
     'server-only': {},
@@ -27,10 +27,12 @@ function loadRoute({ fail = false, fastSearchTimeout = false, softTimeout = fals
       getExploreRowsForSmartFilterDiscovery: async (options) => { capture(options); return rows; },
       getExploreRowsForArtistSearch: async (artist, options) => {
         capture({ ...options, artist });
+        if (stallArtist) return new Promise((_, reject) => options.signal.addEventListener('abort', () => reject(options.signal.reason), { once: true }));
         if (fail) throw new Error('canceling statement due to statement timeout');
         return rows;
       },
       getExploreRowsForLanguageScopedTextSearch: async (...args) => {
+        if (stallFast) { captureCollector(args); return new Promise((_, reject) => args[4].addEventListener('abort', () => reject(args[4].reason), { once: true })); }
         if (fastSearchTimeout) throw new Error('canceling statement due to statement timeout');
         if (softTimeout) return new Promise(() => {});
         captureCollector(args);
@@ -181,6 +183,24 @@ test('caller cancellation is propagated to the combined reader', async () => {
   assert.equal(response.status, 503);
   assert.equal((await response.json()).sort_degraded_reason, 'resolver_timeout');
   assert.equal(signal.aborted, true);
+});
+
+test('caller cancellation is propagated to the bounded Pokemon reader', async () => {
+  const caller = new AbortController(); let signal;
+  const response = await loadRoute({ stallFast: true, captureCollector: args => {
+    signal = args[4]; queueMicrotask(() => caller.abort());
+  } })({ nextUrl: new URL('https://fixture?q=Pikachu'), signal: caller.signal });
+  assert.equal(signal.aborted, true);
+  assert.equal(response.headers.get('cache-control'), 'private, no-store');
+});
+
+test('caller cancellation is propagated to the artist reader', async () => {
+  const caller = new AbortController(); let signal;
+  const response = await loadRoute({ stallArtist: true, capture: options => {
+    signal = options.signal; queueMicrotask(() => caller.abort());
+  } })({ nextUrl: new URL('https://fixture?q=artist%3AYuka+Morii'), signal: caller.signal });
+  assert.equal(signal.aborted, true);
+  assert.equal(response.headers.get('cache-control'), 'private, no-store');
 });
 
 test('missing-image sentence routes to image discovery without spurious text', async () => {
