@@ -6337,3 +6337,21 @@ Local fixture proof alone is not production acceptance. Then require full normal
 hosted/exact review, NEW unlimited durable shadow and original coverage/activation
 guards, real source/consumer/app price/date checks and natural refresh. No physical/
 owner/source/price write, no percentage, no17-gap exception or stamp-hold release.
+
+# Reviewed generic Play stamp preparation — November25,2026
+
+Use [the current stamp checkpoint](../checkpoints/2026-11-25_current_main_reviewed_stamps.md),
+[generic identity V2](../contracts/GENERIC_PLAY_POKEMON_STAMP_IDENTITY_RULE_V2.md),
+[reviewed bridge numbers](../contracts/REVIEWED_GENERIC_PLAY_BRIDGE_NUMBER_V1.md) and
+[bounded coexistence V2](../contracts/VARIANT_COEXISTENCE_RULE_V2.md).
+PR1055 already owns the merged six-card pricing runtime and actual f79producer
+binding. This separate source preserves every current pricing file exactly.
+Nine real bridge/identity/staging previews passed read-only; no real staging or
+canonical write occurred. Two historical ordinary-base PROMOTED intakes remain
+unchanged and need separate successor intake. Keep existing GameStop identities,
+all32/old98/32-link holds and original149/regular29/JapaneseV3/V4 replay stops.
+This source grants no finish, owner, mapping, approval or publication authority.
+Require its own full hooks/hosted/review/release before admitting classification,
+and the separate exact owner/protected-reference/public-ID/executor/finish gates
+before canonical additions. Do not overwrite current pricing with the preserved
+0132combined candidate or its historical b186registry/V2compatibility descriptor.
