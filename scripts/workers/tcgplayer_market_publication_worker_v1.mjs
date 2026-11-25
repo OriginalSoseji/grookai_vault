@@ -1,6 +1,6 @@
 import {marketPipelineDatabaseConfigV1} from '../../backend/pricing/market_pipeline_database_config_v1.mjs';
 import {CROSS_TCG_MARKET_SCOPE_V2,readCrossTcgMarketBootstrapV3,assertCrossTcgMarketActivationV3} from '../../backend/pricing/cross_tcg_market_activation_guard_v3.mjs';
-import {TCGPLAYER_MARKET_PUBLICATION_POLICY_V3, evaluateTcgplayerMarketQualificationV3_4 as evaluateTcgplayerMarketQualificationV3} from '../../backend/pricing/tcgplayer_market_publication_policy_v3_4.mjs';
+import {TCGPLAYER_MARKET_PUBLICATION_POLICY_V3, evaluateTcgplayerMarketQualificationV3_5 as evaluateTcgplayerMarketQualificationV3} from '../../backend/pricing/tcgplayer_market_publication_policy_v3_5.mjs';
 import { execFile } from "node:child_process";
 import { createHash } from "node:crypto";
 import { createReadStream } from "node:fs";
@@ -13,9 +13,9 @@ import pg from "pg";
 import { writeMarketSnapshotBatchesV2 } from "../../backend/pricing/market_snapshot_batches_v2.mjs";
 import { hydrateTcgplayerEditionCandidateV1 } from "../../backend/pricing/tcgplayer_edition_identity_v1.mjs";
 import {
-  REVIEWED_SPECIAL_CANDIDATE_COLUMNS_V3 as REVIEWED_SPECIAL_CANDIDATE_COLUMNS_V2,
-  REVIEWED_SPECIAL_CANDIDATE_JOINS_V3 as REVIEWED_SPECIAL_CANDIDATE_JOINS_V2,
-} from "../../backend/pricing/tcgplayer_reviewed_special_candidate_evidence_v3.mjs";
+  REVIEWED_SPECIAL_CANDIDATE_COLUMNS_V4 as REVIEWED_SPECIAL_CANDIDATE_COLUMNS_V2,
+  REVIEWED_SPECIAL_CANDIDATE_JOINS_V4 as REVIEWED_SPECIAL_CANDIDATE_JOINS_V2,
+} from "../../backend/pricing/tcgplayer_reviewed_special_candidate_evidence_v4.mjs";
 import { readMarketActivationCoverageV2 } from "../../backend/pricing/market_activation_coverage_v2.mjs";
 import { marketSessionConnectionStringV1 } from "../../backend/pricing/market_scheduler_session_v1.mjs";
 import {
@@ -63,7 +63,7 @@ const DEFAULT_OUT_ROOT = path.join(
   "artifacts",
   "market_pricing_product_v1",
 );
-const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_33";
+const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_34";
 const PIPELINE_VERSION = "TCGPLAYER_MARKET_PIPELINE_V1";
 const SCHEMA_VERSION = "TCGPLAYER_MARKET_PUBLICATION_SCHEMA_V1";
 const SNAPSHOT_SCHEMA_VERSION = "MARKET_PRICE_PUBLICATION_SNAPSHOT_V1";

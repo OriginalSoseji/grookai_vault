@@ -1,0 +1,224 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sm1",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/sm1.master.json",
+  "master_index_sha256": "7ed3eff46f9289b2c9a21a120df4a495f563fcb19e4702c4539a4a8f9e4867e0",
+  "parents": [
+    {
+      "id": "221df55f-d7e3-43e6-a295-3877abef1637",
+      "set_id": "afe1197e-4b81-42e2-afcb-50143ffba2f2",
+      "gv_id": "GV-PK-SM1-11-LEAGUE-STAMP",
+      "name": "Decidueye",
+      "printed_coordinate": "11",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "league_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "378cd3c8-dc1d-4206-b528-9cb79fbce6e6",
+      "set_id": "afe1197e-4b81-42e2-afcb-50143ffba2f2",
+      "gv_id": "GV-PK-SM1-128-REGIONAL-CHAMPIONSHIPS-STAMP",
+      "name": "Professor Kukui",
+      "printed_coordinate": "128",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "regional_championships_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "901f9a7f-4ed7-4c65-a686-67792c70e6a9",
+      "set_id": "afe1197e-4b81-42e2-afcb-50143ffba2f2",
+      "gv_id": "GV-PK-SUM-135-EUROPE-CHAMPIONSHIPS-84A0874",
+      "name": "Ultra Ball",
+      "printed_coordinate": "135",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "europe_championships_staff_stamp",
+      "printed_identity_modifier": "europe_championships_staff_stamp"
+    },
+    {
+      "id": "2110d2bd-4041-4c1d-a581-9eed23faa44f",
+      "set_id": "afe1197e-4b81-42e2-afcb-50143ffba2f2",
+      "gv_id": "GV-PK-SUM-128-REGIONAL-CHAMPIONSHI-E790F12",
+      "name": "Professor Kukui",
+      "printed_coordinate": "128",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "regional_championships_staff_stamp",
+      "printed_identity_modifier": "regional_championships_staff_stamp"
+    },
+    {
+      "id": "3c39ca60-3503-4cbb-ab15-74f2715c0efb",
+      "set_id": "afe1197e-4b81-42e2-afcb-50143ffba2f2",
+      "gv_id": "GV-PK-SM1-41-LEAGUE-STAMP",
+      "name": "Primarina",
+      "printed_coordinate": "41",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "league_stamp",
+      "printed_identity_modifier": "league_stamp"
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "221df55f-d7e3-43e6-a295-3877abef1637",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-SM1-11-LEAGUE-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-02ffd650-c19f-4ccc-a3ec-f271e3e70aac",
+          "sha256": "5fe636a77005f1664305749957efc49f92b6c8bb2582529be65c4185fb71a56e",
+          "card_print_id": "221df55f-d7e3-43e6-a295-3877abef1637",
+          "finish_key": "reverse"
+        }
+      ]
+    },
+    {
+      "card_print_id": "378cd3c8-dc1d-4206-b528-9cb79fbce6e6",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-SM1-128-REGIONAL-CHAMPIONSHIPS-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-2ceba344-0b77-4ef5-84bf-e6465b4d5f05",
+          "sha256": "73ba7862d4084d17f60fa0cffd7078cf57087b0396907cdbeb813a669b12ebaa",
+          "card_print_id": "378cd3c8-dc1d-4206-b528-9cb79fbce6e6",
+          "finish_key": "reverse"
+        }
+      ]
+    },
+    {
+      "card_print_id": "901f9a7f-4ed7-4c65-a686-67792c70e6a9",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-SUM-135-EUROPE-CHAMPIONSHIPS-84A0874-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-539d2e1c-fcef-4aab-aa6f-fce72d41200a",
+          "sha256": "19033847fe6de24947cdd0c80f0c2025d977840db81ad1db91d1ba940c870cf4",
+          "card_print_id": "901f9a7f-4ed7-4c65-a686-67792c70e6a9",
+          "finish_key": "reverse"
+        }
+      ]
+    },
+    {
+      "card_print_id": "2110d2bd-4041-4c1d-a581-9eed23faa44f",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-SUM-128-REGIONAL-CHAMPIONSHI-E790F12-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-e42fad8c-8ad3-4c59-8e34-439526516b72",
+          "sha256": "d82d130be0069d44012388b8f5acf9decc820549129b1e55fbac9612bdc88880",
+          "card_print_id": "2110d2bd-4041-4c1d-a581-9eed23faa44f",
+          "finish_key": "reverse"
+        }
+      ]
+    },
+    {
+      "card_print_id": "3c39ca60-3503-4cbb-ab15-74f2715c0efb",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-SM1-41-LEAGUE-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-f8ea88b2-3fbb-41f8-83f6-e6756ec05938",
+          "sha256": "c0b5a3578a07f95247d6736302974976e6c9a12a33052643de0495a13d9550da",
+          "card_print_id": "3c39ca60-3503-4cbb-ab15-74f2715c0efb",
+          "finish_key": "reverse"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 5,
+    "printings": 5,
+    "finishes": {
+      "reverse": 5
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "afe1197e-4b81-42e2-afcb-50143ffba2f2",
+    "source_artifacts": [
+      {
+        "ref": "stamped-front-02ffd650-c19f-4ccc-a3ec-f271e3e70aac",
+        "sha256": "5fe636a77005f1664305749957efc49f92b6c8bb2582529be65c4185fb71a56e",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S696Special-Print.jpg",
+        "retrieved_at": "2026-11-24T08:43:33.418Z"
+      },
+      {
+        "ref": "stamped-front-2ceba344-0b77-4ef5-84bf-e6465b4d5f05",
+        "sha256": "73ba7862d4084d17f60fa0cffd7078cf57087b0396907cdbeb813a669b12ebaa",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S724Special-Print.jpg",
+        "retrieved_at": "2026-11-25T21:04:45.017Z"
+      },
+      {
+        "ref": "stamped-front-539d2e1c-fcef-4aab-aa6f-fce72d41200a",
+        "sha256": "19033847fe6de24947cdd0c80f0c2025d977840db81ad1db91d1ba940c870cf4",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S726Europe-Championships-StaffSpecial-Print.jpg",
+        "retrieved_at": "2026-11-25T21:04:56.269Z"
+      },
+      {
+        "ref": "stamped-front-e42fad8c-8ad3-4c59-8e34-439526516b72",
+        "sha256": "d82d130be0069d44012388b8f5acf9decc820549129b1e55fbac9612bdc88880",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S724StaffSpecial-Print.jpg",
+        "retrieved_at": "2026-11-25T21:04:44.738Z"
+      },
+      {
+        "ref": "stamped-front-f8ea88b2-3fbb-41f8-83f6-e6756ec05938",
+        "sha256": "c0b5a3578a07f95247d6736302974976e6c9a12a33052643de0495a13d9550da",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://doujkbm8mih0s.cloudfront.net/static/images/alt/large/sm1/41-Primarina-Reverse-Holo-League.jpg",
+        "retrieved_at": "2026-11-24T07:16:41.613Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "221df55f-d7e3-43e6-a295-3877abef1637",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "378cd3c8-dc1d-4206-b528-9cb79fbce6e6",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "901f9a7f-4ed7-4c65-a686-67792c70e6a9",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "2110d2bd-4041-4c1d-a581-9eed23faa44f",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "3c39ca60-3503-4cbb-ab15-74f2715c0efb",
+        "finish_key": "reverse"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/sm1.review.json",
+      "sha256": "43bf55e8c21e14f6322ae100f4f9975dfc1f47f4abb4486ccbc48bca61f9ea7e"
+    }
+  },
+  "fingerprint": "5856816a889ad8041e3e7dff2797b480a26f1a30a2de9f3ebcf78a24c530f376"
+}

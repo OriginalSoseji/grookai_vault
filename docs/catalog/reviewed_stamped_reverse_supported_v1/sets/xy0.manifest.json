@@ -1,0 +1,150 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "xy0",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/xy0.master.json",
+  "master_index_sha256": "49df7be31ec0221c3a4c638ea44ec059f722ba89e95e09922b395d8e1f7adf50",
+  "parents": [
+    {
+      "id": "82fabcf1-ea9b-4ffa-b414-288410568c43",
+      "set_id": "4abd996a-dce3-4be9-a60f-4a89cca4b43a",
+      "gv_id": "GV-PK-XY0-39-LEAGUE-STAMP",
+      "name": "Tierno",
+      "printed_coordinate": "39",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "league_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "e36d1d32-6c74-402e-992b-5e483654b4e6",
+      "set_id": "4abd996a-dce3-4be9-a60f-4a89cca4b43a",
+      "gv_id": "GV-PK-XY0-34-LEAGUE-STAMP",
+      "name": "Crushing Hammer",
+      "printed_coordinate": "34",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "league_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "f3cf0df6-1c7a-4833-a97e-cbd765e791c6",
+      "set_id": "4abd996a-dce3-4be9-a60f-4a89cca4b43a",
+      "gv_id": "GV-PK-XY0-36-LEAGUE-STAMP",
+      "name": "Pokémon Catcher",
+      "printed_coordinate": "36",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "league_stamp",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "82fabcf1-ea9b-4ffa-b414-288410568c43",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-XY0-39-LEAGUE-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-03848362-dc12-4874-a855-b4e69cba8dd0",
+          "sha256": "ac49fe1a1d2924f3ab89b85c062f67430f368ddf241da9430ae2f24ffeab4898",
+          "card_print_id": "82fabcf1-ea9b-4ffa-b414-288410568c43",
+          "finish_key": "reverse"
+        }
+      ]
+    },
+    {
+      "card_print_id": "e36d1d32-6c74-402e-992b-5e483654b4e6",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-XY0-34-LEAGUE-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-a244a0c2-861d-4b7e-ab4a-6e7dc3c6d492",
+          "sha256": "345f0c0835edfe49da7a16d61633dd7fdffb55a428632d932e1632defdea41fc",
+          "card_print_id": "e36d1d32-6c74-402e-992b-5e483654b4e6",
+          "finish_key": "reverse"
+        }
+      ]
+    },
+    {
+      "card_print_id": "f3cf0df6-1c7a-4833-a97e-cbd765e791c6",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-XY0-36-LEAGUE-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-a2785783-e70e-4457-a060-59908ea061a8",
+          "sha256": "5506a1cf0966bca17e9c00e37539469c43ab9a890c9924e2fa1ab6244dec701e",
+          "card_print_id": "f3cf0df6-1c7a-4833-a97e-cbd765e791c6",
+          "finish_key": "reverse"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 3,
+    "printings": 3,
+    "finishes": {
+      "reverse": 3
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "4abd996a-dce3-4be9-a60f-4a89cca4b43a",
+    "source_artifacts": [
+      {
+        "ref": "stamped-front-03848362-dc12-4874-a855-b4e69cba8dd0",
+        "sha256": "ac49fe1a1d2924f3ab89b85c062f67430f368ddf241da9430ae2f24ffeab4898",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://tcgplayer-cdn.tcgplayer.com/product/126201_400w.jpg",
+        "retrieved_at": "2026-11-25T21:17:52.941Z"
+      },
+      {
+        "ref": "stamped-front-a244a0c2-861d-4b7e-ab4a-6e7dc3c6d492",
+        "sha256": "345f0c0835edfe49da7a16d61633dd7fdffb55a428632d932e1632defdea41fc",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://tcgplayer-cdn.tcgplayer.com/product/126176_400w.jpg",
+        "retrieved_at": "2026-11-25T21:17:53.260Z"
+      },
+      {
+        "ref": "stamped-front-a2785783-e70e-4457-a060-59908ea061a8",
+        "sha256": "5506a1cf0966bca17e9c00e37539469c43ab9a890c9924e2fa1ab6244dec701e",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://tcgplayer-cdn.tcgplayer.com/product/177707_400w.jpg",
+        "retrieved_at": "2026-11-25T21:17:53.586Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "82fabcf1-ea9b-4ffa-b414-288410568c43",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "e36d1d32-6c74-402e-992b-5e483654b4e6",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "f3cf0df6-1c7a-4833-a97e-cbd765e791c6",
+        "finish_key": "reverse"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/xy0.review.json",
+      "sha256": "00cbc087f863515a8d4e81953512e994cba5836983291cfa7ff5bc33c313be2e"
+    }
+  },
+  "fingerprint": "f0b220f1726dc8cc380e872a40c2f20d1ab22257e170dd0e292c74b1387658d2"
+}

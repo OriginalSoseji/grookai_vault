@@ -1,0 +1,76 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "bw5",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/bw5.master.json",
+  "master_index_sha256": "db745856f815449db75b1211fb62bdd03975c7f295dfba186268a7e3a6af57ec",
+  "parents": [
+    {
+      "id": "6c619229-f946-4b9d-ad52-007b27cba252",
+      "set_id": "56c23b8d-904e-4c3a-b0fd-9562919f5694",
+      "gv_id": "GV-PK-BW5-94-LEAGUE-STAMP",
+      "name": "Enhanced Hammer",
+      "printed_coordinate": "94",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "league_stamp",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "6c619229-f946-4b9d-ad52-007b27cba252",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-BW5-94-LEAGUE-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-908e1510-c45e-437a-b91c-5808b27a6b9b",
+          "sha256": "ca7bc2b4d0600bd00e3cada739ef4cc26ba67c0fe3e24d05aee4673d0b4369df",
+          "card_print_id": "6c619229-f946-4b9d-ad52-007b27cba252",
+          "finish_key": "reverse"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "reverse": 1
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "56c23b8d-904e-4c3a-b0fd-9562919f5694",
+    "source_artifacts": [
+      {
+        "ref": "stamped-front-908e1510-c45e-437a-b91c-5808b27a6b9b",
+        "sha256": "ca7bc2b4d0600bd00e3cada739ef4cc26ba67c0fe3e24d05aee4673d0b4369df",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://cdn6966.templcdn.com/wp-content/uploads/2021/08/EN_S444Special-Print.jpg",
+        "retrieved_at": "2026-11-24T08:43:34.303Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "6c619229-f946-4b9d-ad52-007b27cba252",
+        "finish_key": "reverse"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/bw5.review.json",
+      "sha256": "14742a27f8c7b6eef84e1174d966652e4e5bfdff2e114f2290b0e8085a8accdb"
+    }
+  },
+  "fingerprint": "d489b98e5e9c8b15d7008b3e801cb084fde2e6e374227d95b78bb3048e7fbce9"
+}

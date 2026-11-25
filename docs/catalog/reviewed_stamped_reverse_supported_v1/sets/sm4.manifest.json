@@ -1,0 +1,113 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sm4",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/sm4.master.json",
+  "master_index_sha256": "8770bc03b51e4d174955d05ca8c77c52f66962a1196702cf48c8fb9ae9dc9c62",
+  "parents": [
+    {
+      "id": "9477cfc9-6226-4eb2-81e5-bbc8c7b37bf7",
+      "set_id": "e48229f9-c96e-4bef-90fe-4a9f99a28e9d",
+      "gv_id": "GV-PK-SM4-28-LEAGUE-STAMP",
+      "name": "Regice",
+      "printed_coordinate": "28",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "league_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "2adcfdda-3833-4a32-8c71-fe2e2d28c929",
+      "set_id": "e48229f9-c96e-4bef-90fe-4a9f99a28e9d",
+      "gv_id": "GV-PK-CIN-95-REGIONAL-CHAMPIONSHIPS-STAMP",
+      "name": "Gladion",
+      "printed_coordinate": "95",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "regional_championships_stamp",
+      "printed_identity_modifier": "regional_championships_stamp"
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "9477cfc9-6226-4eb2-81e5-bbc8c7b37bf7",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-SM4-28-LEAGUE-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-849e18c4-db13-4edc-b876-a9729d47912b",
+          "sha256": "b1367ff352f0b77ed7decff757d004f53afaeadc2361fee930245ec583fc3712",
+          "card_print_id": "9477cfc9-6226-4eb2-81e5-bbc8c7b37bf7",
+          "finish_key": "reverse"
+        }
+      ]
+    },
+    {
+      "card_print_id": "2adcfdda-3833-4a32-8c71-fe2e2d28c929",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-CIN-95-REGIONAL-CHAMPIONSHIPS-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-9874190c-c355-4e4d-a524-47695a636859",
+          "sha256": "9ca8690220c8ccafde81304db7fd9f163e9afdea877ce483e69aa6905de90618",
+          "card_print_id": "2adcfdda-3833-4a32-8c71-fe2e2d28c929",
+          "finish_key": "reverse"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 2,
+    "printings": 2,
+    "finishes": {
+      "reverse": 2
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "e48229f9-c96e-4bef-90fe-4a9f99a28e9d",
+    "source_artifacts": [
+      {
+        "ref": "stamped-front-849e18c4-db13-4edc-b876-a9729d47912b",
+        "sha256": "b1367ff352f0b77ed7decff757d004f53afaeadc2361fee930245ec583fc3712",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S780Special-Print.jpg",
+        "retrieved_at": "2026-11-24T08:43:34.869Z"
+      },
+      {
+        "ref": "stamped-front-9874190c-c355-4e4d-a524-47695a636859",
+        "sha256": "9ca8690220c8ccafde81304db7fd9f163e9afdea877ce483e69aa6905de90618",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S796Special-Print.jpg",
+        "retrieved_at": "2026-11-25T21:04:45.633Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "9477cfc9-6226-4eb2-81e5-bbc8c7b37bf7",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "2adcfdda-3833-4a32-8c71-fe2e2d28c929",
+        "finish_key": "reverse"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/sm4.review.json",
+      "sha256": "ca169035ef7a0c46c6b7eacac6143c1429d1410360970f6847ed2193b83f2745"
+    }
+  },
+  "fingerprint": "d01933058c643c74484f72b5d0f0dabe77786fdd4b335f2f03bc85f810672389"
+}

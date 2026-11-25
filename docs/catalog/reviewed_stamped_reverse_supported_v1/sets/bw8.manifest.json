@@ -1,0 +1,76 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "bw8",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/bw8.master.json",
+  "master_index_sha256": "371754078af86efe363285efc2ca346f0c7c730863978b2e5acbddcb0cf88e71",
+  "parents": [
+    {
+      "id": "d478d467-1c23-4826-86e4-983ff6a26fd4",
+      "set_id": "4de9739a-b4b7-47e3-89f4-12f99a33ef39",
+      "gv_id": "GV-PK-BW8-120-LEAGUE-STAMP",
+      "name": "Escape Rope",
+      "printed_coordinate": "120",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "league_stamp",
+      "printed_identity_modifier": "league_stamp"
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "d478d467-1c23-4826-86e4-983ff6a26fd4",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-BW8-120-LEAGUE-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-fd1a72bb-dea3-421c-b50d-4df8153b05f6",
+          "sha256": "e2b6d2329cfa6ea79f3dd2b90bc8602ab8c4b7cf92db82d6d2d801354f35f23d",
+          "card_print_id": "d478d467-1c23-4826-86e4-983ff6a26fd4",
+          "finish_key": "reverse"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "reverse": 1
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "4de9739a-b4b7-47e3-89f4-12f99a33ef39",
+    "source_artifacts": [
+      {
+        "ref": "stamped-front-fd1a72bb-dea3-421c-b50d-4df8153b05f6",
+        "sha256": "e2b6d2329cfa6ea79f3dd2b90bc8602ab8c4b7cf92db82d6d2d801354f35f23d",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://doujkbm8mih0s.cloudfront.net/static/images/alt/large/bw8/120-Escape-Rope-Reverse-Holo-League.jpg",
+        "retrieved_at": "2026-11-24T07:16:53.775Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "d478d467-1c23-4826-86e4-983ff6a26fd4",
+        "finish_key": "reverse"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/bw8.review.json",
+      "sha256": "f04fbab603e2caeb0294f711e35b31ab46447ca8566d6a5fc62377c9be46067c"
+    }
+  },
+  "fingerprint": "ac283f18088d6a39893f016cde76c0a1cd0aad8c43a0e3cd4758d81d437dbd89"
+}

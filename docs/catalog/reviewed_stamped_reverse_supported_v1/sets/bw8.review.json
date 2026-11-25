@@ -1,0 +1,16 @@
+{
+  "status": "verified_scope",
+  "master_index_sha256": "371754078af86efe363285efc2ca346f0c7c730863978b2e5acbddcb0cf88e71",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "bw8",
+  "scope": "verified_parent_families",
+  "reviewer": "assistant_individual_complete_original_source_image_reviews",
+  "reviewed_at": "2026-11-25T21:35:25.236Z",
+  "projection_sha256": "8317ddcfc943c436635410aad12ac3396e6a6586534d9da3d3fc5bfdace18b4c",
+  "production_execution_authority": false,
+  "whole_set_completion": false,
+  "scope_is_existing_explicit_printed_versions_and_reverse_only": true,
+  "other80_unproven_cases_excluded": true,
+  "original149_identity_holds_preserved": true
+}

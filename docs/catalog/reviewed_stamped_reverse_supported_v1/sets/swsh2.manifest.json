@@ -1,0 +1,76 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "swsh2",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/swsh2.master.json",
+  "master_index_sha256": "bec923f533e35aaccd615951a2770dcbf26fc14e87c853a9883c06f86d5d5fd0",
+  "parents": [
+    {
+      "id": "78414c88-5cd7-416b-afb5-b258d918540e",
+      "set_id": "71ebdec9-9eeb-4adc-b8ef-1e6e23e6c5ec",
+      "gv_id": "GV-PK-RCL-167-PROFESSOR-PROGRAM-STAMP",
+      "name": "Sonia",
+      "printed_coordinate": "167",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "professor_program_stamp",
+      "printed_identity_modifier": "professor_program_stamp"
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "78414c88-5cd7-416b-afb5-b258d918540e",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-RCL-167-PROFESSOR-PROGRAM-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-60fe9887-e104-411b-82a6-2b783d9ff55f",
+          "sha256": "b34d58352bf812a1d0d971f8896efeb1bac50ca630433d18a0ccd758ea8cfe98",
+          "card_print_id": "78414c88-5cd7-416b-afb5-b258d918540e",
+          "finish_key": "reverse"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "reverse": 1
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "71ebdec9-9eeb-4adc-b8ef-1e6e23e6c5ec",
+    "source_artifacts": [
+      {
+        "ref": "stamped-front-60fe9887-e104-411b-82a6-2b783d9ff55f",
+        "sha256": "b34d58352bf812a1d0d971f8896efeb1bac50ca630433d18a0ccd758ea8cfe98",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://cdn6966.templcdn.com/wp-content/uploads/2022/05/EN_S995Professor-ProgramSpecial-Print.jpg",
+        "retrieved_at": "2026-11-25T21:04:53.240Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "78414c88-5cd7-416b-afb5-b258d918540e",
+        "finish_key": "reverse"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/swsh2.review.json",
+      "sha256": "cd8567e2d64f025bdfee5c6e04d405f0d5dc27d982639edc44e36613fa048b2a"
+    }
+  },
+  "fingerprint": "d43863bedbd683eadafbd083b4f06e1e96b4e9209ab599a0f0f5854b055c59fd"
+}

@@ -1,0 +1,35 @@
+{
+  "version": "ENGLISH_MASTER_REVIEWED_STAMPED_REVERSE_SUPPORTED_V1",
+  "set_code": "xy0",
+  "source_index_fingerprint": "42cec699adcae7fff6fdc3cf1e364aebccb5f08d27f6bbeb4a051d7a600ed94f",
+  "positive_finish_scope": "exact_existing_stamped_reverse_facts_only",
+  "facts": [
+    {
+      "card_print_id": "82fabcf1-ea9b-4ffa-b414-288410568c43",
+      "existing_printing_id": "03848362-dc12-4874-a855-b4e69cba8dd0",
+      "finish_key": "reverse",
+      "printed_number": "39/39",
+      "printed_stamp": "POKÉMON LEAGUE rectangular Pokeball logo at illustration lower right",
+      "foil_observation": "Strong reflective silver/blue bands across body below the non-reflective artwork.",
+      "front_sha256": "ac49fe1a1d2924f3ab89b85c062f67430f368ddf241da9430ae2f24ffeab4898"
+    },
+    {
+      "card_print_id": "e36d1d32-6c74-402e-992b-5e483654b4e6",
+      "existing_printing_id": "a244a0c2-861d-4b7e-ab4a-6e7dc3c6d492",
+      "finish_key": "reverse",
+      "printed_number": "34/39",
+      "printed_stamp": "POKÉMON LEAGUE rectangular Pokeball logo at illustration lower right",
+      "foil_observation": "Strong reflective silver/blue bands across body below the separate artwork.",
+      "front_sha256": "345f0c0835edfe49da7a16d61633dd7fdffb55a428632d932e1632defdea41fc"
+    },
+    {
+      "card_print_id": "f3cf0df6-1c7a-4833-a97e-cbd765e791c6",
+      "existing_printing_id": "a2785783-e70e-4457-a060-59908ea061a8",
+      "finish_key": "reverse",
+      "printed_number": "36/39",
+      "printed_stamp": "POKÉMON LEAGUE rectangular Pokeball logo at illustration lower right",
+      "foil_observation": "Strong rainbow reflection across body below the separate illustration.",
+      "front_sha256": "5506a1cf0966bca17e9c00e37539469c43ab9a890c9924e2fa1ab6244dec701e"
+    }
+  ]
+}

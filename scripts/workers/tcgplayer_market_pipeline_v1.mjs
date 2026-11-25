@@ -7,6 +7,7 @@ import { promisify } from "node:util";
 import pg from "pg";
 
 import "../../backend/env.mjs";
+import {readLatestCompletedTcgcsvSourceRunV1} from "../../backend/pricing/tcgcsv_cached_source_reader_v1.mjs";
 import { evaluateTcgcsvCachedSourceContinuityV1 } from "../../backend/pricing/tcgcsv_cached_source_continuity_v1.mjs";
 import { isTcgcsvSourceBlockedErrorV1 } from "../../backend/pricing/tcgcsv_source_fetch_retry_policy_v1.mjs";
 
@@ -210,38 +211,10 @@ function databaseUrl() {
   return process.env.SUPABASE_DB_URL || process.env.DATABASE_URL || process.env.POSTGRES_URL || "";
 }
 
-function sslConfig(url) {
-  return /localhost|127\.0\.0\.1|\[::1\]/i.test(url)
-    ? false
-    : { rejectUnauthorized: false };
-}
-
 async function latestCompletedSourceRun() {
   const url = databaseUrl();
   if (!url) throw new Error("cached source continuity check requires a database URL");
-  const client = new Client({
-    connectionString: url,
-    ssl: sslConfig(url),
-    connectionTimeoutMillis: 15_000,
-    query_timeout: 30_000,
-    statement_timeout: 30_000,
-  });
-  await client.connect();
-  try {
-    const result = await client.query(
-      `select run_key, status, source_marker, finished_at, price_row_count, failed_count
-         from public.tcgcsv_source_sync_runs
-        where sync_mode = 'current_full_sync'
-          and status = 'completed'
-          and failed_count = 0
-          and finished_at is not null
-        order by finished_at desc, created_at desc, id desc
-        limit 1`,
-    );
-    return result.rows[0] ?? null;
-  } finally {
-    await client.end().catch(() => {});
-  }
+  return readLatestCompletedTcgcsvSourceRunV1({connectionString:url,environment:process.env,Client});
 }
 
 async function runPhase({

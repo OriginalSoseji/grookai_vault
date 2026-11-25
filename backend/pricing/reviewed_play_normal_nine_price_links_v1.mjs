@@ -33,10 +33,12 @@ export function reviewedPlayNormalNineCodeBindingV1() {
   }};
   for(const directory of ['backend/warehouse','backend/pricing','backend/catalog','backend/identity','backend/lib/contracts',
     'docs/contracts','docs/catalog/reviewed_play_normal_nine_v1','docs/catalog/generic_play_stamp_identity_evidence_v2',
-    'docs/catalog/stamp_identity_admission_hold_v1'])walk(directory);
+    'docs/catalog/stamp_identity_admission_hold_v1','docs/catalog/reviewed_stamped_reverse_supported_v1'])walk(directory);
   // Original evidence bytes are data dependencies, including binary originals.
   const sources='docs/catalog/generic_play_stamp_identity_evidence_v2/sources';
   for(const file of fs.readdirSync(path.join(root,sources)))add(sources+'/'+file);
+  for(const dir of ['fronts','product-fronts'])for(const file of fs.readdirSync(path.join(root,'docs/catalog/reviewed_stamped_reverse_supported_v1',dir)))
+    add('docs/catalog/reviewed_stamped_reverse_supported_v1/'+dir+'/'+file);
   for(const file of ['backend/env.mjs','backend/supabase_backend_client.mjs','docs/CONTRACT_INDEX.md',
     'docs/ops/GROOKAI_OPERATOR_PLAYBOOK_V1.md','scripts/audits/warehouse_atomic_batch_local_qualification_v1.mjs',
     'scripts/audits/reviewed_play_normal_nine_price_links_local_qualification_v1.mjs',
@@ -47,7 +49,13 @@ export function reviewedPlayNormalNineCodeBindingV1() {
     'tests/contracts/warehouse_transaction_context_v1.test.mjs',
     'tests/fixtures/generic_play_nine_intake_v1.json',
     'docs/checkpoints/identity/STAMP_BULK_ATOMIC_PROMOTION_20261125.md',
-    'tests/contracts/reviewed_play_normal_nine_publication_v1.test.mjs'])add(file);
+    'tests/contracts/reviewed_play_normal_nine_publication_v1.test.mjs',
+    'scripts/audits/reviewed_stamped_reverse_programme_v1.mjs',
+    'scripts/audits/reviewed_stamped_reverse_programme_local_qualification_v1.mjs',
+    'docs/checkpoints/identity/STAMP_REVERSE_SUPPORTED_BULK_20261125.md',
+    'tests/contracts/reviewed_stamped_reverse_authority_v1.test.mjs',
+    'tests/contracts/reviewed_stamped_reverse_registry_v1.test.mjs',
+    'tests/contracts/reviewed_stamped_reverse_publication_v1.test.mjs'])add(file);
   const result=[...files.values()].sort((a,b)=>a.file.localeCompare(b.file));return {files:result,fingerprint:hash(result)};
 }
 

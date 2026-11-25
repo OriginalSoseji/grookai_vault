@@ -1,0 +1,113 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sm6",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/sm6.master.json",
+  "master_index_sha256": "a53fb01e33d7825d04e4f2e2ee804853d45acc0459cc528f08be30295faee3a3",
+  "parents": [
+    {
+      "id": "a92cec8a-c6e7-4e99-a9dc-415434ebd1da",
+      "set_id": "2ac96af4-a5e2-479f-916c-7b52e13a8f3a",
+      "gv_id": "GV-PK-SM6-77-LEAGUE-STAMP",
+      "name": "Buzzwole",
+      "printed_coordinate": "77",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "league_stamp",
+      "printed_identity_modifier": "league_stamp"
+    },
+    {
+      "id": "fe844c0a-f858-419c-b4a8-199af27c13b1",
+      "set_id": "2ac96af4-a5e2-479f-916c-7b52e13a8f3a",
+      "gv_id": "GV-PK-SM6-80-LEAGUE-STAMP",
+      "name": "Guzzlord",
+      "printed_coordinate": "80",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "league_stamp",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "a92cec8a-c6e7-4e99-a9dc-415434ebd1da",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-SM6-77-LEAGUE-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-86e4c7e2-f1cd-457b-a941-40efe900c9ec",
+          "sha256": "48340c3bd6d6868ed2a385b8df7c8087af8b392e7ab011d7cd39e2e726a83f0f",
+          "card_print_id": "a92cec8a-c6e7-4e99-a9dc-415434ebd1da",
+          "finish_key": "reverse"
+        }
+      ]
+    },
+    {
+      "card_print_id": "fe844c0a-f858-419c-b4a8-199af27c13b1",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-SM6-80-LEAGUE-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-8d46002f-a78b-445b-bf78-6c07a59da381",
+          "sha256": "5876b3f8c4a4c6ce547d124af005fcd1bf8c5a6150a94c12fa687a552de69675",
+          "card_print_id": "fe844c0a-f858-419c-b4a8-199af27c13b1",
+          "finish_key": "reverse"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 2,
+    "printings": 2,
+    "finishes": {
+      "reverse": 2
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "2ac96af4-a5e2-479f-916c-7b52e13a8f3a",
+    "source_artifacts": [
+      {
+        "ref": "stamped-front-86e4c7e2-f1cd-457b-a941-40efe900c9ec",
+        "sha256": "48340c3bd6d6868ed2a385b8df7c8087af8b392e7ab011d7cd39e2e726a83f0f",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://doujkbm8mih0s.cloudfront.net/static/images/alt/large/sm6/77-Buzzwole-Reverse-Holo-League.jpg",
+        "retrieved_at": "2026-11-24T07:16:51.089Z"
+      },
+      {
+        "ref": "stamped-front-8d46002f-a78b-445b-bf78-6c07a59da381",
+        "sha256": "5876b3f8c4a4c6ce547d124af005fcd1bf8c5a6150a94c12fa687a552de69675",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S826Special-Print.jpg",
+        "retrieved_at": "2026-11-24T08:43:38.200Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "a92cec8a-c6e7-4e99-a9dc-415434ebd1da",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "fe844c0a-f858-419c-b4a8-199af27c13b1",
+        "finish_key": "reverse"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/sm6.review.json",
+      "sha256": "be034c428db5581d47c24e98b1225bf64f884fd644983888e89ede1042b063ad"
+    }
+  },
+  "fingerprint": "779f9ec2d1b1754f5937f1be67741974441bc794bc8964f6d129bc441493cc31"
+}

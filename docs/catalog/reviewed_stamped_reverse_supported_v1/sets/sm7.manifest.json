@@ -1,0 +1,150 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sm7",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/sm7.master.json",
+  "master_index_sha256": "3978ea5177dafb8545831b7a5cbc66f64273a5aa99af97880142b57a616ff724",
+  "parents": [
+    {
+      "id": "e4e1f266-d0ce-4987-8569-d6c371bbb329",
+      "set_id": "dbf43f0a-de0d-48da-9d78-295452e01d42",
+      "gv_id": "GV-PK-SM7-127-REGIONAL-CHAMPIONSHIPS-STAFF-STAMP",
+      "name": "Copycat",
+      "printed_coordinate": "127",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "regional_championships_staff_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "0266f535-054b-4f8d-b11a-c25eac4d3d9e",
+      "set_id": "dbf43f0a-de0d-48da-9d78-295452e01d42",
+      "gv_id": "GV-PK-SM7-8-CELESTIAL-STORM-STAMP",
+      "name": "Treecko",
+      "printed_coordinate": "8",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "celestial_storm_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "1a0c0952-7248-423c-b5c1-b443120ebe93",
+      "set_id": "dbf43f0a-de0d-48da-9d78-295452e01d42",
+      "gv_id": "GV-PK-SM7-95-LEAGUE-STAMP",
+      "name": "Metagross",
+      "printed_coordinate": "95",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "league_stamp",
+      "printed_identity_modifier": "league_stamp"
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "e4e1f266-d0ce-4987-8569-d6c371bbb329",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-SM7-127-REGIONAL-CHAMPIONSHIPS-STAFF-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-0c8f9a8f-f275-4d24-8444-075da680653c",
+          "sha256": "9e62a37613d49df1bd41dfc3d49611aadee4ad90385c08461a39173a4d17ad09",
+          "card_print_id": "e4e1f266-d0ce-4987-8569-d6c371bbb329",
+          "finish_key": "reverse"
+        }
+      ]
+    },
+    {
+      "card_print_id": "0266f535-054b-4f8d-b11a-c25eac4d3d9e",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-SM7-8-CELESTIAL-STORM-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-8a223d67-870d-4c35-9fc9-c436e95fe522",
+          "sha256": "5f6d02f6c4e9ae3acedacbde2ad472d05622f0ce453a0fa437ec17689603d9ef",
+          "card_print_id": "0266f535-054b-4f8d-b11a-c25eac4d3d9e",
+          "finish_key": "reverse"
+        }
+      ]
+    },
+    {
+      "card_print_id": "1a0c0952-7248-423c-b5c1-b443120ebe93",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-SM7-95-LEAGUE-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-f19015c2-1d4f-4d30-a6fa-ae8d00a71510",
+          "sha256": "f691847e13a292ff1565fb20b511a29963e29b49705e704b7c98c7f153019593",
+          "card_print_id": "1a0c0952-7248-423c-b5c1-b443120ebe93",
+          "finish_key": "reverse"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 3,
+    "printings": 3,
+    "finishes": {
+      "reverse": 3
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "dbf43f0a-de0d-48da-9d78-295452e01d42",
+    "source_artifacts": [
+      {
+        "ref": "stamped-front-0c8f9a8f-f275-4d24-8444-075da680653c",
+        "sha256": "9e62a37613d49df1bd41dfc3d49611aadee4ad90385c08461a39173a4d17ad09",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S846StaffSpecial-Print.jpg",
+        "retrieved_at": "2026-11-25T21:04:59.459Z"
+      },
+      {
+        "ref": "stamped-front-8a223d67-870d-4c35-9fc9-c436e95fe522",
+        "sha256": "5f6d02f6c4e9ae3acedacbde2ad472d05622f0ce453a0fa437ec17689603d9ef",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S834StampedSpecial-Print.jpg",
+        "retrieved_at": "2026-11-25T21:04:43.664Z"
+      },
+      {
+        "ref": "stamped-front-f19015c2-1d4f-4d30-a6fa-ae8d00a71510",
+        "sha256": "f691847e13a292ff1565fb20b511a29963e29b49705e704b7c98c7f153019593",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://doujkbm8mih0s.cloudfront.net/static/images/alt/large/sm7/95-Metagross-Reverse-Holo-League.jpg",
+        "retrieved_at": "2026-11-24T07:16:40.507Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "e4e1f266-d0ce-4987-8569-d6c371bbb329",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "0266f535-054b-4f8d-b11a-c25eac4d3d9e",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "1a0c0952-7248-423c-b5c1-b443120ebe93",
+        "finish_key": "reverse"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/sm7.review.json",
+      "sha256": "d304b785d577d7cb00c00ac666a4eb03f96ae5c511f52e8040147ab18688adc8"
+    }
+  },
+  "fingerprint": "f1a8574756603844f011f0dae72bacb85142e267129d6bae66fb1bc228a1f9c2"
+}

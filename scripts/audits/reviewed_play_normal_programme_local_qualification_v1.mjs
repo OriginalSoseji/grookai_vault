@@ -5,8 +5,8 @@ import {REVIEWED_PLAY_NORMAL_PROGRAMME_V1 as VERSION,PROGRAMME_QUALIFICATION_DAT
   prepareReviewedPlayNormalProgrammePlanV1,runReviewedPlayNormalProgrammeV1 as run}
   from '../../backend/warehouse/reviewed_play_normal_programme_v1.mjs';
 import {REVIEWED_PLAY_NORMAL_NINE_REGISTRY_V1 as registry} from '../../backend/pricing/reviewed_play_normal_nine_registry_v1.mjs';
-import {REVIEWED_SPECIAL_CANDIDATE_COLUMNS_V3,REVIEWED_SPECIAL_CANDIDATE_JOINS_V3} from '../../backend/pricing/tcgplayer_reviewed_special_candidate_evidence_v3.mjs';
-import {evaluateTcgplayerMarketQualificationV3_4 as qualify} from '../../backend/pricing/tcgplayer_market_publication_policy_v3_4.mjs';
+import {REVIEWED_SPECIAL_CANDIDATE_COLUMNS_V4 as REVIEWED_SPECIAL_CANDIDATE_COLUMNS_V3,REVIEWED_SPECIAL_CANDIDATE_JOINS_V4 as REVIEWED_SPECIAL_CANDIDATE_JOINS_V3} from '../../backend/pricing/tcgplayer_reviewed_special_candidate_evidence_v4.mjs';
+import {evaluateTcgplayerMarketQualificationV3_5 as qualify} from '../../backend/pricing/tcgplayer_market_publication_policy_v3_5.mjs';
 const out=path.resolve(process.argv[2]??'');assert.ok(process.argv[2]);assert.equal(fs.existsSync(out),false);fs.mkdirSync(out,{recursive:true});
 const database=process.argv[3]??PROGRAMME_QUALIFICATION_DATABASE_V1;assert.ok(PROGRAMME_QUALIFICATION_DATABASES_V1.includes(database));
 const config={host:'127.0.0.1',port:56230,user:'postgres',password:'postgres',database,connectionTimeoutMillis:10000,statement_timeout:45000,query_timeout:50000};

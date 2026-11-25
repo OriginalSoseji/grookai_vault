@@ -1,0 +1,187 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sm5",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/sm5.master.json",
+  "master_index_sha256": "e88a043017c28e368628d787956b3b78601460da8866ed381e133e7906b4abfd",
+  "parents": [
+    {
+      "id": "bb2dd389-8311-4566-9421-05439ea0b79c",
+      "set_id": "0ccab8fe-5cb3-4535-860b-c051d1f0cf73",
+      "gv_id": "GV-PK-SM5-9-LEAGUE-STAMP",
+      "name": "Torterra",
+      "printed_coordinate": "9",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "league_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "ea5a6060-72ab-49d9-ba0b-744430443335",
+      "set_id": "0ccab8fe-5cb3-4535-860b-c051d1f0cf73",
+      "gv_id": "GV-PK-SM5-23-LEAGUE-STAMP",
+      "name": "Infernape",
+      "printed_coordinate": "23",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "league_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "f7f3149c-2bfd-4b43-8f43-47476291c106",
+      "set_id": "0ccab8fe-5cb3-4535-860b-c051d1f0cf73",
+      "gv_id": "GV-PK-UPR-119A-REGIONAL-CHAMPIONSHI-E790F12",
+      "name": "Cynthia",
+      "printed_coordinate": "119a",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "regional_championships_staff_stamp",
+      "printed_identity_modifier": "regional_championships_staff_stamp"
+    },
+    {
+      "id": "c208f793-6be7-49f5-80ca-9f4170e2cc34",
+      "set_id": "0ccab8fe-5cb3-4535-860b-c051d1f0cf73",
+      "gv_id": "GV-PK-SM5-34-LEAGUE-STAMP",
+      "name": "Empoleon",
+      "printed_coordinate": "34",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "league_stamp",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "bb2dd389-8311-4566-9421-05439ea0b79c",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-SM5-9-LEAGUE-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-a505418d-2677-4a55-a328-8fedabe8c9d4",
+          "sha256": "7fc40c299ca0d85afcc983662309b37ce82963c53654e8b99ca156043cf9111d",
+          "card_print_id": "bb2dd389-8311-4566-9421-05439ea0b79c",
+          "finish_key": "reverse"
+        }
+      ]
+    },
+    {
+      "card_print_id": "ea5a6060-72ab-49d9-ba0b-744430443335",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-SM5-23-LEAGUE-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-c333bc00-345d-4a2f-b849-763a5e6bda27",
+          "sha256": "2015b8e5872e544938273abe66b3a66beca844cd20d814e18f90296d51326523",
+          "card_print_id": "ea5a6060-72ab-49d9-ba0b-744430443335",
+          "finish_key": "reverse"
+        }
+      ]
+    },
+    {
+      "card_print_id": "f7f3149c-2bfd-4b43-8f43-47476291c106",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-UPR-119A-REGIONAL-CHAMPIONSHI-E790F12-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-c74c195e-2d1d-44a3-9e3c-b1f280ec4622",
+          "sha256": "ec228ac5bdc184c7a8b69358ec6800dfe6c702042214dcbe67d2aabd816b523a",
+          "card_print_id": "f7f3149c-2bfd-4b43-8f43-47476291c106",
+          "finish_key": "reverse"
+        }
+      ]
+    },
+    {
+      "card_print_id": "c208f793-6be7-49f5-80ca-9f4170e2cc34",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-SM5-34-LEAGUE-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-ce31141e-b44e-4bb9-98c6-b768a43753d7",
+          "sha256": "2f3c03f55b297789cc699d297863a5e34f2f7bd8dbd91176818cb8cab118122b",
+          "card_print_id": "c208f793-6be7-49f5-80ca-9f4170e2cc34",
+          "finish_key": "reverse"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 4,
+    "printings": 4,
+    "finishes": {
+      "reverse": 4
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "0ccab8fe-5cb3-4535-860b-c051d1f0cf73",
+    "source_artifacts": [
+      {
+        "ref": "stamped-front-a505418d-2677-4a55-a328-8fedabe8c9d4",
+        "sha256": "7fc40c299ca0d85afcc983662309b37ce82963c53654e8b99ca156043cf9111d",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S797Special-Print.jpg",
+        "retrieved_at": "2026-11-24T08:43:36.141Z"
+      },
+      {
+        "ref": "stamped-front-c333bc00-345d-4a2f-b849-763a5e6bda27",
+        "sha256": "2015b8e5872e544938273abe66b3a66beca844cd20d814e18f90296d51326523",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S798Special-Print.jpg",
+        "retrieved_at": "2026-11-24T08:43:37.917Z"
+      },
+      {
+        "ref": "stamped-front-c74c195e-2d1d-44a3-9e3c-b1f280ec4622",
+        "sha256": "ec228ac5bdc184c7a8b69358ec6800dfe6c702042214dcbe67d2aabd816b523a",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S809StaffSpecial-Print.jpg",
+        "retrieved_at": "2026-11-25T21:05:00.271Z"
+      },
+      {
+        "ref": "stamped-front-ce31141e-b44e-4bb9-98c6-b768a43753d7",
+        "sha256": "2f3c03f55b297789cc699d297863a5e34f2f7bd8dbd91176818cb8cab118122b",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S801Special-Print.jpg",
+        "retrieved_at": "2026-11-24T08:43:36.423Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "bb2dd389-8311-4566-9421-05439ea0b79c",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "ea5a6060-72ab-49d9-ba0b-744430443335",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "f7f3149c-2bfd-4b43-8f43-47476291c106",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "c208f793-6be7-49f5-80ca-9f4170e2cc34",
+        "finish_key": "reverse"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/sm5.review.json",
+      "sha256": "b284affd068c43d8c72538041006e52b7960722ea975c24271e8305aa8d03ec3"
+    }
+  },
+  "fingerprint": "e9faf3728a73e1ce259a1fe61956415480b9d725ef7e952c00e0ad410fb758da"
+}

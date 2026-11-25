@@ -1,0 +1,44 @@
+{
+  "version": "ENGLISH_MASTER_REVIEWED_STAMPED_REVERSE_SUPPORTED_V1",
+  "set_code": "xy8",
+  "source_index_fingerprint": "42cec699adcae7fff6fdc3cf1e364aebccb5f08d27f6bbeb4a051d7a600ed94f",
+  "positive_finish_scope": "exact_existing_stamped_reverse_facts_only",
+  "facts": [
+    {
+      "card_print_id": "af2cdd9f-53fa-4a58-be3f-b9695f637acd",
+      "existing_printing_id": "2abfec8b-de27-423a-a474-6102cc9a3f5f",
+      "finish_key": "reverse",
+      "printed_number": "103/162",
+      "printed_stamp": "Pokemon League rectangular Pokeball logo in the illustration",
+      "foil_observation": "Reflective pink text field with vertical light bands.",
+      "front_sha256": "57000cb74a9707b114f4be98aff699952c7076f168d9c4447677105e6045fe1c"
+    },
+    {
+      "card_print_id": "5f82ad60-1a1e-4eaa-99fe-5ba9ba6d5b7b",
+      "existing_printing_id": "9b6677b3-29e4-4c28-9fd0-797488cfb46b",
+      "finish_key": "reverse",
+      "printed_number": "102",
+      "printed_stamp": "League/Organized Play logo overlay at illustration lower right",
+      "foil_observation": "Reflective Reverse foil/text-background treatment outside the illustration",
+      "front_sha256": "f975a2c978c545fb9106d94d7ec333832028b1ef792a8aa1349f8bafeed25723"
+    },
+    {
+      "card_print_id": "088833de-b996-464b-85a2-f0d8874e0fa4",
+      "existing_printing_id": "cdaa955c-baac-4cd7-ab92-1cbc2b3090b3",
+      "finish_key": "reverse",
+      "printed_number": "145/162",
+      "printed_stamp": "Championships CITY logo at right; no STAFF marking visible",
+      "foil_observation": "Reflective vertical bands across the stadium fields; exact source describes Mirror/Reverse.",
+      "front_sha256": "d198c389960cc34e1fd2768451a567b9503fac5401caf854fac5b69e6bdfae69"
+    },
+    {
+      "card_print_id": "d992dd6f-a0bd-4053-a564-094dbd2b8697",
+      "existing_printing_id": "e4087707-25cd-4a82-a32e-310596efb582",
+      "finish_key": "reverse",
+      "printed_number": "101",
+      "printed_stamp": "League/Organized Play logo overlay at illustration lower right",
+      "foil_observation": "Reflective Reverse foil/text-background treatment outside the illustration",
+      "front_sha256": "adb280a3066d6e0b4a2346d5f4a33cb5d97ec768bfff2811ea11ae4b87136c77"
+    }
+  ]
+}

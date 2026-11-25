@@ -24,7 +24,8 @@ import {readReviewedPlayNormalNineSourceV1,readReviewedPlayNormalNineMappingSche
 
 export const REVIEWED_PLAY_NORMAL_PROGRAMME_V1='REVIEWED_PLAY_NORMAL_PROGRAMME_V1';
 export const PROGRAMME_QUALIFICATION_DATABASE_V1='stamped_bulk_programme_qualification_v1';
-export const PROGRAMME_QUALIFICATION_DATABASES_V1=Object.freeze([PROGRAMME_QUALIFICATION_DATABASE_V1,'stamped_bulk_programme_release_qualification_v1']);
+export const PROGRAMME_QUALIFICATION_DATABASES_V1=Object.freeze([PROGRAMME_QUALIFICATION_DATABASE_V1,'stamped_bulk_programme_release_qualification_v1',
+  'stamped_bulk_programme_combined_release_qualification_v1']);
 const root=fileURLToPath(new URL('../../',import.meta.url));
 const same=(a,b,why)=>assert.equal(hash(a),hash(b),why);
 const rows=async(c,sql,args=[])=>(await c.query(sql,args)).rows;

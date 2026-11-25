@@ -1,0 +1,44 @@
+{
+  "version": "ENGLISH_MASTER_REVIEWED_STAMPED_REVERSE_SUPPORTED_V1",
+  "set_code": "sm8",
+  "source_index_fingerprint": "42cec699adcae7fff6fdc3cf1e364aebccb5f08d27f6bbeb4a051d7a600ed94f",
+  "positive_finish_scope": "exact_existing_stamped_reverse_facts_only",
+  "facts": [
+    {
+      "card_print_id": "e0972506-c36f-4501-957f-03ba29e272c1",
+      "existing_printing_id": "994585f5-3d80-4ab4-a829-984440ee3d3f",
+      "finish_key": "reverse",
+      "printed_number": "181",
+      "printed_stamp": "League/Organized Play logo overlay at illustration lower right",
+      "foil_observation": "Reflective Reverse foil/text-background treatment outside the illustration",
+      "front_sha256": "26afd8a225e483d67774eff9d33f32cb8373ca301f5069d274964f33abd310a0"
+    },
+    {
+      "card_print_id": "70ce3f64-1f8c-4d83-b664-5c36901a55c1",
+      "existing_printing_id": "b72a0dd1-bf80-46c3-917c-c3384f6a91be",
+      "finish_key": "reverse",
+      "printed_number": "75/214",
+      "printed_stamp": "Lost Thunder set logo at illustration lower right",
+      "foil_observation": "Yellow lightning-symbol reverse pattern across body/text field.",
+      "front_sha256": "e3fc68bdd5d94c9442046c92ba5072e515ccc27aba6325400058e2f6750707f8"
+    },
+    {
+      "card_print_id": "82f121fa-6153-4568-9042-130ae3dcfc1e",
+      "existing_printing_id": "de79fabf-866c-4153-b261-6796920833bb",
+      "finish_key": "reverse",
+      "printed_number": "108",
+      "printed_stamp": "League/Organized Play logo overlay at illustration lower right",
+      "foil_observation": "Reflective Reverse foil/text-background treatment outside the illustration",
+      "front_sha256": "4ca2bc56b6a8ea80ab6c72a84f4b5e7ae926b67aac4532ac46b1ddc6e71177b3"
+    },
+    {
+      "card_print_id": "207b5211-4ee2-43c5-ba7c-62a4faefd55b",
+      "existing_printing_id": "f54a23ca-ec4e-493a-a218-192eec5b29aa",
+      "finish_key": "reverse",
+      "printed_number": "14/214",
+      "printed_stamp": "Pokemon League rectangular Pokeball logo in the illustration",
+      "foil_observation": "Green reflective text field with grass-symbol Reverse pattern.",
+      "front_sha256": "cc7798954cd1879fcc2f1e7069fb2fee78d536321d025aed2892b52264ce1baa"
+    }
+  ]
+}

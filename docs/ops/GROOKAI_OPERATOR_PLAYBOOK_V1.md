@@ -1,3 +1,21 @@
+# Cached source fallback transport — November 25, 2026
+
+Follow the [TLS recovery checkpoint](../checkpoints/pricing/CACHED_SOURCE_TLS_RECOVERY_20261125.md).
+The market pipeline's cached-source outage fallback uses the shared verified
+database configuration and `tcgcsv_cached_source_reader_v1.mjs`. Require an
+authorized remote TLS socket and a verified explicit read-only transaction.
+Pooler startup options alone do not prove transaction safety. Supply the existing
+private database URL and approved CA through the established worker environment;
+never disable certificate verification to recover source continuity. Preserve
+the original source query, fields, ordering, timestamps and freshness rules.
+The scheduled health reader uses the same verified transport and confirms its
+actual read-only transaction before executing the unchanged health SQL.
+This source repair does not activate pricing or authorize replaying data batches.
+The checkpoint also records the pinned Node22/CA runtime handoff, protected code
+and data-output paths, server time budgets, rollback controls and unchanged daily
+schedule. Its historical Linux candidate remains inactive until final source,
+full-shadow, publication and real downstream acceptance gates pass.
+
 # Owner direction: complete pricing and stamps as one programme — November 25, 2026
 
 The owner directed completion of the whole repair and objected to repeated
@@ -6489,3 +6507,48 @@ The English Pokemon path uses9 exact parent mappings, not child-only links.
 Worker33/policyV3_4 adds only9 verified Normal facts to original75. One live
 condition source request verified NM9/LP9/MP3/HP0/DMG1; absent conditions stay
 unavailable. Never replace a missing condition with a percentage.
+
+## Supported existing stamped Reverse bulk repair — November25,2026
+
+The final integrated work continues in
+`C:/grookai_stamped_reverse_bulk_review_20261125` on
+`codex/stamped-reverse-bulk-review-20261125`, based on normally committed kernel
+source219e1216. The kernel component's genuine normal commit and push passed; do
+not open a small component PR or request a nine-card production decision while
+the complete source is being assembled. Keep its frozen source and receipts.
+
+Use [the54-case contract](../contracts/REVIEWED_STAMPED_REVERSE_PROGRAMME_V1.md)
+and [the current checkpoint](../checkpoints/identity/STAMP_REVERSE_SUPPORTED_BULK_20261125.md).
+The source authority validates54 retained existing parent/child identities,
+original individually inspected fronts and23 per-set Master scopes. Admission
+planning proves zero child inserts; an unverified existing child still cannot
+use the old warehouse no-op path. The bounded shared-executor review/link adapter
+and guarded prepare/preflight/rollback/apply/readback CLI are implemented. The
+frozen McDonald's executor must remain unchanged.
+
+Current read-only production evidence found no selected review history and no
+other owner of the53 proposed product IDs. Two selected mappings currently
+point at ordinary base products and need explicit compare-and-swap repair.
+Preserve their IDs, every other existing row, collector references and images.
+Worker34 requires the exact physical review, retained provenance/identity and
+product-link frame. It lifts only a sole stamp or broad Miscellaneous-group
+kind exclusion for these individually reviewed singles. Local whole rollback,
+true COMMIT acknowledgement-loss recovery and independent53-row/52-price SQL
+comparison passed; final complete-producer laboratory/release qualification
+and the exact production packet remain pending. Local tests are not apply
+authority. All other80 unproven Reverse cases and149 identity pairs stay held.
+
+Market identity review covers all51 images the53 products actually distribute.
+Two Staff products declare image_count0; their denied missing objects were not
+retried. Pichu's provider title45/106 is retained while structured Number045/100
+and its physical front agree. Friends in Sinnoh557102 has a null current quote;
+exact Europe Staff Ultra Ball remains without an established product. Preserve
+these genuine gaps. Current quote frames are frozen only in private preparation
+plans, never used to manufacture physical finish evidence.
+
+Continue all internal batches without another founder prompt. Consolidate any
+binding exact production decision after all prepared source/data packages are
+qualified. The original worker32 shadow continues under its unchanged source
+and guards. Any later SQL performance repair is a separately qualified exact
+migration, not permission to alter its running guard. Global publication,
+consumer/app parity and natural refresh remain independent acceptance gates.

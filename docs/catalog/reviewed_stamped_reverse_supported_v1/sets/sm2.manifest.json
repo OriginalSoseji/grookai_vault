@@ -1,0 +1,150 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sm2",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/sm2.master.json",
+  "master_index_sha256": "f9cb33936356ebe4f845a5d02b92c95570f44dbb76c4f7e9aa5c75a0e4719f99",
+  "parents": [
+    {
+      "id": "a9460dac-bb3a-4042-8e41-b6a1642d46dd",
+      "set_id": "adc1ebc9-11cf-4364-8193-2aafc07edef0",
+      "gv_id": "GV-PK-SM2-46-LEAGUE-STAMP",
+      "name": "Oricorio",
+      "printed_coordinate": "46",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "league_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "ab73ebdc-14b4-4a54-8e20-150a5c75a7c9",
+      "set_id": "adc1ebc9-11cf-4364-8193-2aafc07edef0",
+      "gv_id": "GV-PK-SM2-14-LEAGUE-STAMP",
+      "name": "Oricorio",
+      "printed_coordinate": "14",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "league_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "946bfee1-8d34-4626-bb4f-452d0677ef23",
+      "set_id": "adc1ebc9-11cf-4364-8193-2aafc07edef0",
+      "gv_id": "GV-PK-SM2-126-STAFF-STAMP",
+      "name": "Hala",
+      "printed_coordinate": "126",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "staff_stamp",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "a9460dac-bb3a-4042-8e41-b6a1642d46dd",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-SM2-46-LEAGUE-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-4efc1763-32c2-4311-a874-7b6e4b7876df",
+          "sha256": "e50b8ea7e117c987571ec0f925d44b719e617d106d246ae71dd83c77831cd78a",
+          "card_print_id": "a9460dac-bb3a-4042-8e41-b6a1642d46dd",
+          "finish_key": "reverse"
+        }
+      ]
+    },
+    {
+      "card_print_id": "ab73ebdc-14b4-4a54-8e20-150a5c75a7c9",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-SM2-14-LEAGUE-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-520a66c4-183e-46f2-9390-80001248778b",
+          "sha256": "69af9bb3cac1b974e5c97c391e240d925f19e089339a3236f020629ce2b8f771",
+          "card_print_id": "ab73ebdc-14b4-4a54-8e20-150a5c75a7c9",
+          "finish_key": "reverse"
+        }
+      ]
+    },
+    {
+      "card_print_id": "946bfee1-8d34-4626-bb4f-452d0677ef23",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-SM2-126-STAFF-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-bda0826f-db97-4599-8b96-cbc658aabb61",
+          "sha256": "7acb209cdae97970a04d461b5bae920876ac3dfb4e143cd1f4319e929a409bc7",
+          "card_print_id": "946bfee1-8d34-4626-bb4f-452d0677ef23",
+          "finish_key": "reverse"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 3,
+    "printings": 3,
+    "finishes": {
+      "reverse": 3
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "adc1ebc9-11cf-4364-8193-2aafc07edef0",
+    "source_artifacts": [
+      {
+        "ref": "stamped-front-4efc1763-32c2-4311-a874-7b6e4b7876df",
+        "sha256": "e50b8ea7e117c987571ec0f925d44b719e617d106d246ae71dd83c77831cd78a",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S734Special-Print.jpg",
+        "retrieved_at": "2026-11-24T08:43:35.153Z"
+      },
+      {
+        "ref": "stamped-front-520a66c4-183e-46f2-9390-80001248778b",
+        "sha256": "69af9bb3cac1b974e5c97c391e240d925f19e089339a3236f020629ce2b8f771",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S728Special-Print.jpg",
+        "retrieved_at": "2026-11-24T08:43:35.425Z"
+      },
+      {
+        "ref": "stamped-front-bda0826f-db97-4599-8b96-cbc658aabb61",
+        "sha256": "7acb209cdae97970a04d461b5bae920876ac3dfb4e143cd1f4319e929a409bc7",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S749StaffSpecial-Print.jpg",
+        "retrieved_at": "2026-11-25T21:04:56.848Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "a9460dac-bb3a-4042-8e41-b6a1642d46dd",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "ab73ebdc-14b4-4a54-8e20-150a5c75a7c9",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "946bfee1-8d34-4626-bb4f-452d0677ef23",
+        "finish_key": "reverse"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/sm2.review.json",
+      "sha256": "44095efbb7b321d37aa3a8cac614ba5a61fc2ae304f59feb0cc3add9b9440e39"
+    }
+  },
+  "fingerprint": "06be791da2e079639006cf2d88c85dd1ebe0f5b3f6c453630f0d96f35eccaef7"
+}

@@ -25,6 +25,7 @@ Purpose: coverage-accountable inventory of canon-affecting and ownership-affecti
 
 | path_name | source_files | canon_affecting | ownership_affecting | public_trust_affecting | runtime_status | transaction_mode | post_write_proof | risk_level | next_action |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `reviewed_stamped_reverse_programme_v1` | `backend/warehouse/reviewed_stamped_reverse_programme_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | high | Exact54 existing-printing reviews and53 product links through one RAW-first transaction; two existing links require full-row compare and swap. Per-set Master authority, retained-reference proofs, fresh source, qualified source release, exact owner decision, whole rollback and uncertain-commit readback are required. No printing/identity/owner/image mutation. |
 | `external_discovery_to_warehouse_bridge_v1` | `backend/warehouse/external_discovery_to_warehouse_bridge_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | medium | Keep on the shared executor boundary; do not allow ad hoc RAW candidate writes back in. |
 | `reviewed_play_normal_nine_price_links_v1` | `backend/pricing/reviewed_play_normal_nine_price_links_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | high | Internal exact-nine composition through the shared executor; original RAW/approval/identity/Normal-review chain, fixed product IDs, full current source and schema/producer must match. Production entry is only the complete release/decision-gated programme CLI. |
 | `warehouse_programme_founder_approval_v1` | `backend/warehouse/reviewed_play_normal_programme_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | high | Materialize only the explicit whole-programme owner decision into its18 newly created review-ready records. Exact plan/producer, actual founder entitlement, expiry, release gates and one outer transaction required; synthetic mode is loopback-lab-only. |
@@ -78,6 +79,7 @@ Purpose: coverage-accountable inventory of canon-affecting and ownership-affecti
 
 - `external_discovery_to_warehouse_bridge_v1`
 - `reviewed_play_normal_nine_price_links_v1`
+- `reviewed_stamped_reverse_programme_v1`
 - `warehouse_programme_founder_approval_v1`
 - `classification_apply_write_plan_v1`
 - `classification_apply_reclassification_result_v1`

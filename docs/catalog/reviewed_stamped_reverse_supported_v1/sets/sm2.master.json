@@ -1,0 +1,35 @@
+{
+  "version": "ENGLISH_MASTER_REVIEWED_STAMPED_REVERSE_SUPPORTED_V1",
+  "set_code": "sm2",
+  "source_index_fingerprint": "42cec699adcae7fff6fdc3cf1e364aebccb5f08d27f6bbeb4a051d7a600ed94f",
+  "positive_finish_scope": "exact_existing_stamped_reverse_facts_only",
+  "facts": [
+    {
+      "card_print_id": "a9460dac-bb3a-4042-8e41-b6a1642d46dd",
+      "existing_printing_id": "4efc1763-32c2-4311-a874-7b6e4b7876df",
+      "finish_key": "reverse",
+      "printed_number": "46/145",
+      "printed_stamp": "Pokemon League rectangular Pokeball logo in the illustration",
+      "foil_observation": "Yellow reflective text field with lightning-symbol Reverse pattern.",
+      "front_sha256": "e50b8ea7e117c987571ec0f925d44b719e617d106d246ae71dd83c77831cd78a"
+    },
+    {
+      "card_print_id": "ab73ebdc-14b4-4a54-8e20-150a5c75a7c9",
+      "existing_printing_id": "520a66c4-183e-46f2-9390-80001248778b",
+      "finish_key": "reverse",
+      "printed_number": "14/145",
+      "printed_stamp": "Pokemon League rectangular Pokeball logo in the illustration",
+      "foil_observation": "Red reflective text field with fire-symbol Reverse pattern.",
+      "front_sha256": "69af9bb3cac1b974e5c97c391e240d925f19e089339a3236f020629ce2b8f771"
+    },
+    {
+      "card_print_id": "946bfee1-8d34-4626-bb4f-452d0677ef23",
+      "existing_printing_id": "bda0826f-db97-4599-8b96-cbc658aabb61",
+      "finish_key": "reverse",
+      "printed_number": "126/145",
+      "printed_stamp": "Championships REGIONAL logo at art lower right and STAFF at lower left",
+      "foil_observation": "Silver reflective Pokeball-pattern text body below illustration.",
+      "front_sha256": "7acb209cdae97970a04d461b5bae920876ac3dfb4e143cd1f4319e929a409bc7"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv03.5",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/sv03.5.master.json",
+  "master_index_sha256": "4fdf78120705eb997d77cfd6cdbd2bae55b48bd0fec3e83b0ee65986bf00101b",
+  "parents": [
+    {
+      "id": "a828bea3-8870-4b80-9c1f-2f1a20eb71b6",
+      "set_id": "ef51e693-459f-43d1-a823-9146f387ab32",
+      "gv_id": "GV-PK-SV03-5-004-EB-GAMES-STAMP",
+      "name": "Charmander",
+      "printed_coordinate": "004",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "eb_games_stamp",
+      "printed_identity_modifier": "eb_games_stamp"
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "a828bea3-8870-4b80-9c1f-2f1a20eb71b6",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-SV03-5-004-EB-GAMES-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-69c254b3-0b2e-4a6a-b6b9-7028209966d3",
+          "sha256": "eb0a09d34cba32f54f9dafc62692882af09f24a431ee5df2300792070507072e",
+          "card_print_id": "a828bea3-8870-4b80-9c1f-2f1a20eb71b6",
+          "finish_key": "reverse"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "reverse": 1
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "ef51e693-459f-43d1-a823-9146f387ab32",
+    "source_artifacts": [
+      {
+        "ref": "stamped-front-69c254b3-0b2e-4a6a-b6b9-7028209966d3",
+        "sha256": "eb0a09d34cba32f54f9dafc62692882af09f24a431ee5df2300792070507072e",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://tcgplayer-cdn.tcgplayer.com/product/531251_400w.jpg",
+        "retrieved_at": "2026-11-25T21:17:52.605Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "a828bea3-8870-4b80-9c1f-2f1a20eb71b6",
+        "finish_key": "reverse"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/sv03.5.review.json",
+      "sha256": "d325a4c95b13dcf5dd9db89fb9fab886774038e1001269ee344f1b656caba3d7"
+    }
+  },
+  "fingerprint": "8e2242cb30471c13d416d660d52e91c34e86012c02d92db66752ca8525fdeff7"
+}

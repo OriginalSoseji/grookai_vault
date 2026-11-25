@@ -1,0 +1,76 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "swsh12.5",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/swsh12.5.master.json",
+  "master_index_sha256": "56580c971ead0e2c893f77b6339de3d7cbe42b46891959c35e17bf56e8945fe4",
+  "parents": [
+    {
+      "id": "ab7b0a26-2a90-49b5-adc7-886dd37881d0",
+      "set_id": "b9baecfd-0269-4c14-a06f-cf1e24e41fd7",
+      "gv_id": "GV-PK-SWSH12-5-131-PROFESSOR-PROGRAM-STAMP",
+      "name": "Friends in Sinnoh",
+      "printed_coordinate": "131",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "professor_program_stamp",
+      "printed_identity_modifier": "professor_program_stamp"
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "ab7b0a26-2a90-49b5-adc7-886dd37881d0",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-SWSH12-5-131-PROFESSOR-PROGRAM-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-1cc46697-5813-4d1c-ab5f-acb730e2d34c",
+          "sha256": "1e6e942b9e4f96dbd2ab813bb0a96c605e81860ae00fb01afee4c3b756b0521c",
+          "card_print_id": "ab7b0a26-2a90-49b5-adc7-886dd37881d0",
+          "finish_key": "reverse"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "reverse": 1
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "b9baecfd-0269-4c14-a06f-cf1e24e41fd7",
+    "source_artifacts": [
+      {
+        "ref": "stamped-front-1cc46697-5813-4d1c-ab5f-acb730e2d34c",
+        "sha256": "1e6e942b9e4f96dbd2ab813bb0a96c605e81860ae00fb01afee4c3b756b0521c",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://cdn6966.templcdn.com/wp-content/uploads/2026/07/EN_S1903Professor-CupSpecial-Print.png",
+        "retrieved_at": "2026-11-25T21:04:58.061Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "ab7b0a26-2a90-49b5-adc7-886dd37881d0",
+        "finish_key": "reverse"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/swsh12.5.review.json",
+      "sha256": "00cbf8cb827737b067aa099f445ce71087038d66cc974a52e789445f18043d67"
+    }
+  },
+  "fingerprint": "740fdfc74cd1bd019a8e4dea685273261f8e21f4ee2c7714b5f4037ee79c24b2"
+}

@@ -1,0 +1,44 @@
+{
+  "version": "ENGLISH_MASTER_REVIEWED_STAMPED_REVERSE_SUPPORTED_V1",
+  "set_code": "xy11",
+  "source_index_fingerprint": "42cec699adcae7fff6fdc3cf1e364aebccb5f08d27f6bbeb4a051d7a600ed94f",
+  "positive_finish_scope": "exact_existing_stamped_reverse_facts_only",
+  "facts": [
+    {
+      "card_print_id": "d27e6692-bbf1-44b7-b084-f980be9d4fe2",
+      "existing_printing_id": "0e04ae93-433f-435e-b283-a23dd1cc9365",
+      "finish_key": "reverse",
+      "printed_number": "65/114",
+      "printed_stamp": "Pokemon League rectangular Pokeball logo in the illustration",
+      "foil_observation": "Dark reflective text field with darkness-symbol Reverse pattern.",
+      "front_sha256": "ee2967d954b2433f87fa7c136c7c937c9771b29fc0a7514d2b082f8ceb4e4d95"
+    },
+    {
+      "card_print_id": "1969bc85-9936-43c5-9dee-54e28ebba19d",
+      "existing_printing_id": "1ec25470-61fa-4c25-97d4-bc7570837128",
+      "finish_key": "reverse",
+      "printed_number": "81/114",
+      "printed_stamp": "Pokemon League rectangular Pokeball logo in the illustration",
+      "foil_observation": "Pink reflective text field with fairy-symbol Reverse pattern.",
+      "front_sha256": "851d5978455711d572b6354ac9ac2b34e5b9df92a8b70014d81291c5c1ce097e"
+    },
+    {
+      "card_print_id": "348fcc3a-22b4-4f5b-af1d-73605d0a0281",
+      "existing_printing_id": "e8718721-c04e-4a8f-a295-eda42effc0a8",
+      "finish_key": "reverse",
+      "printed_number": "104/114",
+      "printed_stamp": "Championships REGIONAL logo at art lower right and STAFF at lower left",
+      "foil_observation": "Strong rainbow reflective body below illustration.",
+      "front_sha256": "1aac1494d607a4b7b4eef90bf4f02ba88dd1f545ebc30a715a62e94af61505b7"
+    },
+    {
+      "card_print_id": "5e1562ce-5de6-4804-b342-08aa40d8bda2",
+      "existing_printing_id": "ed5491ac-ca28-4005-8c3f-27f05be5bb59",
+      "finish_key": "reverse",
+      "printed_number": "25/114",
+      "printed_stamp": "Pokemon League rectangular Pokeball logo in the illustration",
+      "foil_observation": "Red reflective text field with fire-symbol Reverse pattern.",
+      "front_sha256": "905ae43064c165c81831d2e221662fcd77540246acecb7f5e059720d722e7355"
+    }
+  ]
+}

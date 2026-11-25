@@ -1,0 +1,35 @@
+{
+  "version": "ENGLISH_MASTER_REVIEWED_STAMPED_REVERSE_SUPPORTED_V1",
+  "set_code": "sm7",
+  "source_index_fingerprint": "42cec699adcae7fff6fdc3cf1e364aebccb5f08d27f6bbeb4a051d7a600ed94f",
+  "positive_finish_scope": "exact_existing_stamped_reverse_facts_only",
+  "facts": [
+    {
+      "card_print_id": "e4e1f266-d0ce-4987-8569-d6c371bbb329",
+      "existing_printing_id": "0c8f9a8f-f275-4d24-8444-075da680653c",
+      "finish_key": "reverse",
+      "printed_number": "127/168",
+      "printed_stamp": "Championships REGIONAL logo at art lower right and STAFF at lower left",
+      "foil_observation": "Reflective rainbow body with Pokeball pattern below artwork.",
+      "front_sha256": "9e62a37613d49df1bd41dfc3d49611aadee4ad90385c08461a39173a4d17ad09"
+    },
+    {
+      "card_print_id": "0266f535-054b-4f8d-b11a-c25eac4d3d9e",
+      "existing_printing_id": "8a223d67-870d-4c35-9fc9-c436e95fe522",
+      "finish_key": "reverse",
+      "printed_number": "8/168",
+      "printed_stamp": "Celestial Storm set logo at illustration lower right",
+      "foil_observation": "Green grass-symbol geometric foil pattern over the text/body field.",
+      "front_sha256": "5f6d02f6c4e9ae3acedacbde2ad472d05622f0ce453a0fa437ec17689603d9ef"
+    },
+    {
+      "card_print_id": "1a0c0952-7248-423c-b5c1-b443120ebe93",
+      "existing_printing_id": "f19015c2-1d4f-4d30-a6fa-ae8d00a71510",
+      "finish_key": "reverse",
+      "printed_number": "95",
+      "printed_stamp": "League/Organized Play logo overlay at illustration lower right",
+      "foil_observation": "Reflective Reverse foil/text-background treatment outside the illustration",
+      "front_sha256": "f691847e13a292ff1565fb20b511a29963e29b49705e704b7c98c7f153019593"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "version": "ENGLISH_MASTER_REVIEWED_STAMPED_REVERSE_SUPPORTED_V1",
+  "set_code": "sm1",
+  "source_index_fingerprint": "42cec699adcae7fff6fdc3cf1e364aebccb5f08d27f6bbeb4a051d7a600ed94f",
+  "positive_finish_scope": "exact_existing_stamped_reverse_facts_only",
+  "facts": [
+    {
+      "card_print_id": "221df55f-d7e3-43e6-a295-3877abef1637",
+      "existing_printing_id": "02ffd650-c19f-4ccc-a3ec-f271e3e70aac",
+      "finish_key": "reverse",
+      "printed_number": "11/149",
+      "printed_stamp": "Pokemon League rectangular Pokeball logo in the illustration",
+      "foil_observation": "Green reflective text field with grass-symbol Reverse pattern; independently corroborates the retained Decidueye lead.",
+      "front_sha256": "5fe636a77005f1664305749957efc49f92b6c8bb2582529be65c4185fb71a56e"
+    },
+    {
+      "card_print_id": "378cd3c8-dc1d-4206-b528-9cb79fbce6e6",
+      "existing_printing_id": "2ceba344-0b77-4ef5-84bf-e6465b4d5f05",
+      "finish_key": "reverse",
+      "printed_number": "128/149",
+      "printed_stamp": "Championships REGIONAL logo at art lower right; no STAFF marking visible",
+      "foil_observation": "Reflective silver Pokeball-pattern body below artwork.",
+      "front_sha256": "73ba7862d4084d17f60fa0cffd7078cf57087b0396907cdbeb813a669b12ebaa"
+    },
+    {
+      "card_print_id": "901f9a7f-4ed7-4c65-a686-67792c70e6a9",
+      "existing_printing_id": "539d2e1c-fcef-4aab-aa6f-fce72d41200a",
+      "finish_key": "reverse",
+      "printed_number": "135/149",
+      "printed_stamp": "Championships EUROPE logo at art lower right and STAFF at lower left",
+      "foil_observation": "Strong diagonal rainbow reflection and item pattern on silver text body.",
+      "front_sha256": "19033847fe6de24947cdd0c80f0c2025d977840db81ad1db91d1ba940c870cf4"
+    },
+    {
+      "card_print_id": "2110d2bd-4041-4c1d-a581-9eed23faa44f",
+      "existing_printing_id": "e42fad8c-8ad3-4c59-8e34-439526516b72",
+      "finish_key": "reverse",
+      "printed_number": "128/149",
+      "printed_stamp": "Championships REGIONAL logo at art lower right and STAFF at lower left",
+      "foil_observation": "Reflective silver body with Pokeball pattern; artwork distinct from patterned body.",
+      "front_sha256": "d82d130be0069d44012388b8f5acf9decc820549129b1e55fbac9612bdc88880"
+    },
+    {
+      "card_print_id": "3c39ca60-3503-4cbb-ab15-74f2715c0efb",
+      "existing_printing_id": "f8ea88b2-3fbb-41f8-83f6-e6756ec05938",
+      "finish_key": "reverse",
+      "printed_number": "41",
+      "printed_stamp": "League/Organized Play logo overlay at illustration lower right",
+      "foil_observation": "Reflective Reverse foil/text-background treatment outside the illustration",
+      "front_sha256": "c0b5a3578a07f95247d6736302974976e6c9a12a33052643de0495a13d9550da"
+    }
+  ]
+}
