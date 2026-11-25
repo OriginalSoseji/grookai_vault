@@ -1,3 +1,21 @@
+# Cached source fallback transport — November 25, 2026
+
+Follow the [TLS recovery checkpoint](../checkpoints/pricing/CACHED_SOURCE_TLS_RECOVERY_20261125.md).
+The market pipeline's cached-source outage fallback uses the shared verified
+database configuration and `tcgcsv_cached_source_reader_v1.mjs`. Require an
+authorized remote TLS socket and a verified explicit read-only transaction.
+Pooler startup options alone do not prove transaction safety. Supply the existing
+private database URL and approved CA through the established worker environment;
+never disable certificate verification to recover source continuity. Preserve
+the original source query, fields, ordering, timestamps and freshness rules.
+The scheduled health reader uses the same verified transport and confirms its
+actual read-only transaction before executing the unchanged health SQL.
+This source repair does not activate pricing or authorize replaying data batches.
+The checkpoint also records the pinned Node22/CA runtime handoff, protected code
+and data-output paths, server time budgets, rollback controls and unchanged daily
+schedule. Its historical Linux candidate remains inactive until final source,
+full-shadow, publication and real downstream acceptance gates pass.
+
 # Fifteen GameStop maintenance adapter — November 24, 2026
 
 Follow the [adapter checkpoint](../checkpoints/identity/GAMESTOP_REGISTRY_FIFTEEN_MAINTENANCE_ADAPTER_20261124.md).

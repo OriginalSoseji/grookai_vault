@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 import pg from "pg";
 
 import "../../backend/env.mjs";
+import {marketPipelineDatabaseConfigV1} from "../../backend/pricing/market_pipeline_database_config_v1.mjs";
 import {
   evaluateTcgplayerCurrentSourceHealthV1,
   TCGPLAYER_MARKET_HEALTH_POLICY_V1,
@@ -66,12 +67,6 @@ function connectionString() {
   );
 }
 
-function sslConfig(url) {
-  return /localhost|127\.0\.0\.1|\[::1\]/i.test(url)
-    ? false
-    : { rejectUnauthorized: false };
-}
-
 function stamp() {
   return new Date().toISOString().replace(/[:.]/g, "-");
 }
@@ -84,17 +79,23 @@ async function main() {
       "SUPABASE_DB_URL, DATABASE_URL, or POSTGRES_URL is required",
     );
   }
+  const config = marketPipelineDatabaseConfigV1(url, process.env, {readOnly:true,applicationName:"tcgplayer_market_health_v1"});
   const client = new Client({
-    connectionString: url,
-    ssl: sslConfig(url),
+    ...config,
     connectionTimeoutMillis: 15_000,
     query_timeout: 125_000,
     statement_timeout: 120_000,
   });
-  await client.connect();
-
   try {
+    await client.connect();
+    if (config.ssl !== false && client.connection?.stream?.authorized !== true) {
+      throw new Error("MARKET_HEALTH_VERIFIED_TLS_REQUIRED");
+    }
     await client.query("begin isolation level repeatable read read only");
+    const transactionMode = await client.query("show transaction_read_only");
+    if (transactionMode.rows[0]?.transaction_read_only !== "on") {
+      throw new Error("MARKET_HEALTH_READ_ONLY_TRANSACTION_REQUIRED");
+    }
     await client.query("set local lock_timeout = '3s'");
     const queryStartedAt = Date.now();
     // Fence run-local evidence before joining; never scan historical freshness indexes.
