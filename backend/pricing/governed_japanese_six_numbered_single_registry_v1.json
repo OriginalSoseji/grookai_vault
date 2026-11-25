@@ -1,7 +1,7 @@
 {
   "version": "GOVERNED_JAPANESE_SIX_NUMBERED_SINGLE_EVIDENCE_V1",
   "source_programme": "JAPANESE_REVIEWED_PRICE_LINKS_V4",
-  "expected_source_producer": "b1867d795a72229c1b1cd19bc4c0391e8bb32d9bdc58775b65e9c7b66d2a2a7e",
+  "expected_source_producer": "f79fd32f54a00385477845cfaf4a5a8cd5f77a2e621891fbe9dbcc6026011ce4",
   "source_finished_at": "2026-11-24T23:45:58.054Z",
   "metadata_ignored_fields": [
     "reviewed_at"
@@ -112,5 +112,5 @@
       "raw_import_id": "-308389119769339804"
     }
   ],
-  "fingerprint": "4aaaa1f697a20e7d70e90b07cd2b3cd7f89d9022364eef3339d35c98e1e908e9"
+  "fingerprint": "296dc1befc8a1f04b4521d0286028ec87505c838ec20317e85f572a85409c920"
 }

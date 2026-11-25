@@ -19,6 +19,13 @@ test('4916 exact prior reviewed provider identities select only existing verifie
  assert.equal(m.assertPriceLinkFactsV4(fixture(),{now}).existing_printings,4916);
  for(const t of m.REGISTRY.targets){const r=m.SNAPSHOT.reviews.find(x=>x.id===t.review_id),q=m.SNAPSHOT.source.prior_quotes.find(x=>x.id===t.prior_observation_id);assert.equal(r.evidence.source_observation_id,q.id);assert.equal(q.product_id,t.product_id);assert.equal(q.subtype_name,t.source_subtype);assert.equal(r.evidence.finish_key,t.finish_key);assert.ok(r.evidence.official_assertion_keys.length);}
 });
+test('existing mapping collision guard keeps exact split-part semantics in a set join',()=>{
+ const sql=m.PRINTING_MAPPING_STATE_SQL_V4;
+ assert.match(sql,/with product_ids as materialized\(select distinct unnest\(\$3::text\[\]\) product_id\)/);
+ assert.match(sql,/exists\(select 1 from product_ids p where split_part\(t\.external_id,':',1\)=p\.product_id\)/);
+ assert.doesNotMatch(sql,/split_part\([^)]*\)=any\(/);
+ assert.match(sql,/order by t\.id$/);
+});
 test('complete609-file producer, exact524 metadata and original source amounts are bound',()=>{
  assert.equal(code.files.length,609);assert.equal(new Set(code.files.map(x=>x.file)).size,609);assert.equal(m.assertPriceLinkSchemaV4(schema).schema_fingerprint,m.REGISTRY.schema_fingerprint);assert.equal(plan.code_fingerprint,code.fingerprint);
  assert.deepEqual(plan.expected,{printing_mapping_inserts:4916,raw_inserts:1});assert.ok(Object.values(plan.boundaries).every(x=>x===0));assert.equal(m.classifyPriceLinkStateV4(plan,fixture()),'before');assert.equal(m.classifyPriceLinkStateV4(plan,after()),'exact');

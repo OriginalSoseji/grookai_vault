@@ -1,6 +1,6 @@
 import registry from './governed_japanese_six_numbered_single_registry_v1.json' with {type:'json'};
 import {printingManifestHash as hash} from '../catalog/printing_completeness_gate_v1.mjs';
-const {fingerprint,...body}=registry;if(fingerprint!=='4aaaa1f697a20e7d70e90b07cd2b3cd7f89d9022364eef3339d35c98e1e908e9'||hash(body)!==fingerprint||registry.targets.length!==6)throw Error('Japanese six single-card registry drift');
+const {fingerprint,...body}=registry;if(fingerprint!=='296dc1befc8a1f04b4521d0286028ec87505c838ec20317e85f572a85409c920'||hash(body)!==fingerprint||registry.targets.length!==6)throw Error('Japanese six single-card registry drift');
 if(JSON.stringify(registry.targets.map(t=>t.product_id).sort((a,b)=>a-b))!==JSON.stringify([565980,566031,568027,568082,570022,587611]))throw Error('Six exact products required');const targets=new Map(registry.targets.map(t=>[t.product_id,t]));if(targets.size!==6)throw Error('Duplicate product');
 export const isReviewedJapaneseSixNumberedSingleV1=(row={})=>{const t=targets.get(Number(row?.source_product_id));return Number(row?.category_id)===85&&!!t&&row.finish_key===t.finish_key&&row.normalized_finish_key===t.finish_key&&row.source_subtype_name===t.source_subtype;};
 export function resolveGovernedJapaneseSixNumberedSingleV1(row={},options={}){if(!isReviewedJapaneseSixNumberedSingleV1(row))return null;const t=targets.get(Number(row.source_product_id));
