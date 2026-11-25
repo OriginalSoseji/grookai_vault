@@ -2,6 +2,22 @@
 
 Status: Active audit support document
 
+November25 local classification qualification: `applyClassificationWithinTransactionV1`
+is the original registered `classification_apply_write_plan_v1` write/proof body
+with caller-owned transaction control. The ordinary worker retains its wrapper.
+`executeStampedClassificationLocalV1` coordinates only new owned PostgreSQL17
+fixtures and rejects production before SQL; it grants no new runtime admission,
+founder approval, canonical mutation or production-controller authority. See
+`STAMPED_CHILD_CLASSIFICATION_LOCAL_V1.md` and the matching warehouse checkpoint.
+
+The separate `STAMPED_CHILD_CLASSIFICATION_V1` maintenance coordinator also
+reuses that registered classifier body; it adds no direct canonical writer or
+normal-runtime dispatch. Its operator CLI defaults production mutation off and
+binds the exact33 scope, original receipt, complete source/qualification, fresh
+rollback and three one-use owner-approved attempts. Independent failure records
+use the existing ledger API with programme/plan/run context and a maximum of one
+record per approved attempt. Preparation/readback are server-enforced read-only.
+
 Purpose: coverage-accountable inventory of canon-affecting and ownership-affecting write paths before additional enforcement changes.
 
 ## Classification Key

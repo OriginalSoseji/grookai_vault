@@ -6347,3 +6347,39 @@ apply and separate-connection readback. Current frame drift blocks that plan;
 never refresh it silently. No source/price/owner/canonical/publication write, no
 coverage exception, no original149 or regular29 repeat, and no stamp-hold
 clearance. Full corrected unlimited shadow/publication/app/refresh follow.
+
+## Stamped child image classification — November25,2026
+
+The33-image RAW intake is closed under its retained original executed source;
+never reuse its four attempts. The separate
+[classification checkpoint](../checkpoints/warehouse/STAMPED_CHILD_CLASSIFICATION_33_20261125.md)
+and [local contract](../contracts/STAMPED_CHILD_CLASSIFICATION_LOCAL_V1.md) own
+the next preparation. Source: `C:/grookai_stamped_child_classification_20261125`.
+The shared classifier write/proof body can run inside one caller-owned batch
+transaction, while the ordinary worker keeps its own per-candidate wrapper.
+The new prototype accepts only newly owned loopback PostgreSQL17 qualification
+databases. It has no production mode or image-promotion authority.
+
+Use the retained Node22/PostgreSQL17 runtime and synthetic-owner template;
+preserve existing labs, executed source and all failures. Evidence stays under
+`C:/grookai_vault_operator_artifacts/all_stamped_reverse_holos_20261124/`.
+Local rollback/apply/replay and lost-commit diagnosis are not production
+approval. Normal/full source checks, a bounded production controller, fresh
+exact plan and separate decision must precede production classification.
+Real metadata/image normalization, founder review and governed image-only
+promotion remain later. Review-ready metadata is not a normalized image asset
+or founder approval. Existing hold cohorts and original149 never-repeat stay.
+
+The successor [production-controller candidate](../contracts/STAMPED_CHILD_CLASSIFICATION_V1.md)
+has its own default-off CLI `backend/warehouse/run_stamped_child_classification_v1.mjs`.
+Use `prepare`/`readback` with verified TLS and server READ ONLY. Production
+`rollback`/`apply`/`replay` require fresh exact-source normal/hosted/controller
+qualification, explicit scoped flags and mechanical ACK, a separate owner
+decision and three frozen once-only run directories under
+`C:/grookai_vault_operator_artifacts/stamped_child_classification_runs_v1/`.
+Apply/replay require the matching production rollback under one hour old.
+Source, original intake rows, target matches, original image bytes, references
+or permissions drifting stops that plan. Preserve all failures and diagnose
+uncertain commits independently; never manufacture a receipt or retry a run.
+Controller qualifications use new named databases in the retained PostgreSQL17
+container and no production credentials. A local pass is not production approval.
