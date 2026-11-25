@@ -620,6 +620,7 @@ async def ocr_card_signals(request: Request):
         abbrev_text = None
         number_conf = 0.0
         total_conf = 0.0
+        number_scan_errors = []
         roi_text = ""
         set_region_text = None
         set_region_conf = 0.0
@@ -818,9 +819,20 @@ async def ocr_card_signals(request: Request):
                     if roi_thresh.mean() / 255.0 > 0.9:
                         roi_thresh = cv2.bitwise_not(roi_thresh)
                     roi_proc = cv2.dilate(roi_thresh, np.ones((2, 2), np.uint8), iterations=1)
-                    roi_text_local = pytesseract.image_to_string(
-                        roi_proc, config="--psm 7 -c tessedit_char_whitelist=0123456789/"
-                    ).strip()
+                    try:
+                        roi_text_local = pytesseract.image_to_string(
+                            roi_proc, config="--psm 7 -c tessedit_char_whitelist=0123456789/"
+                        ).strip()
+                    except pytesseract.TesseractError as error:
+                        if error.status != -8:
+                            raise
+                        number_scan_errors.append({
+                            "code": "number_region_engine_failure",
+                            "engine_exit_code": error.status,
+                            "region": {"x0": x0f, "x1": x1f, "y0": y0f, "y1": y1f},
+                        })
+                        debug_notes.append("number_scan:engine_exit:-8")
+                        continue
                     m_roi = regex.search(roi_text_local)
                     if m_roi:
                         score = len(m_roi.group(0)) + 10
@@ -1068,6 +1080,7 @@ async def ocr_card_signals(request: Request):
                 "engine": "pytesseract" if _OCR_AVAILABLE else "none",
                 "text_raw": debug_text_raw,
                 "notes": debug_notes,
+                **({"partial": True, "ocr_errors": number_scan_errors} if number_scan_errors else {}),
             },
         }
 
