@@ -4,6 +4,10 @@ import {
 
 const ALLOWED_FINISH_KEYS = new Set(['normal', 'holo', 'reverse']);
 const FINISH_SUFFIX = Object.freeze({normal:'STD',holo:'HOLO',reverse:'RH'});
+export function exactPrintingGvIdV1(parentGvId,finishKey) {
+  if(typeof parentGvId!=='string'||!parentGvId.startsWith('GV-')||!ALLOWED_FINISH_KEYS.has(finishKey))return null;
+  return `${parentGvId}-${FINISH_SUFFIX[finishKey]}`;
+}
 const PROOF_TYPES = new Set(['checked_checklist', 'official_printing', 'image_confirmed', 'exact_printing_mapping']);
 
 function hasProofEvidence(evidence) {

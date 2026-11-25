@@ -1,0 +1,48 @@
+{
+  "version": "ENGLISH_MASTER_REVIEWED_PLAY_NORMAL_NINE_V1",
+  "set_code": "sv06",
+  "index_fingerprint": "6748d694531a1276e77b8b4ec35815af3e9675c697f30c2e2fb4f22a348be867",
+  "positive_finish_scope": "normal_only_not_complete_foil_inventory",
+  "facts": [
+    {
+      "card_print_id": "109f4564-07a9-5779-af4f-7c12b3bf41d2",
+      "finish_key": "normal",
+      "source_product_id": 619153,
+      "printed_number": "111/167",
+      "printed_set_mark": "TWM",
+      "official_standard_observation": {
+        "official_row_literal": "Okidogi TWM 111 ■",
+        "page": 1,
+        "row_bbox": {
+          "x0": 12.5262,
+          "top": 703.9534,
+          "x1": 182.7684,
+          "bottom": 715.484
+        },
+        "standard_black_box_count": 1,
+        "additional_unspecified_foil_red_box_count": 0
+      },
+      "identity_front_sha256": "438fb3074e283f655f970d5e48eb42ade148a488dd8037f6a27acbc62ee896ec"
+    },
+    {
+      "card_print_id": "9c5caaee-9d14-59ee-a44c-0532bfae2511",
+      "finish_key": "normal",
+      "source_product_id": 623656,
+      "printed_number": "145/167",
+      "printed_set_mark": "TWM",
+      "official_standard_observation": {
+        "official_row_literal": "Carmine TWM 145 ■",
+        "page": 1,
+        "row_bbox": {
+          "x0": 212.0128,
+          "top": 365.5534,
+          "x1": 382.2551,
+          "bottom": 377.084
+        },
+        "standard_black_box_count": 1,
+        "additional_unspecified_foil_red_box_count": 0
+      },
+      "identity_front_sha256": "dd95c6991628d337432ae1b702ee67a90340fd90ca0fd798d3fb7f2d0cd6a9b4"
+    }
+  ]
+}

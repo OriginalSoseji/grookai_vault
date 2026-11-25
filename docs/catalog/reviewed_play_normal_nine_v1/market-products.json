@@ -1,0 +1,74 @@
+{
+  "version": "REVIEWED_PLAY_NORMAL_MARKET_PRODUCTS_V1",
+  "physical_evidence_fingerprint": "6748d694531a1276e77b8b4ec35815af3e9675c697f30c2e2fb4f22a348be867",
+  "category_id": 3,
+  "group_id": 22880,
+  "group_name": "Prize Pack Series Cards",
+  "role": "exact_product_identity_crosswalk_only_not_finish_or_price_authority",
+  "products": [
+    {
+      "product_id": 565473,
+      "category_id": 3,
+      "group_id": 22880,
+      "name": "Koraidon - 119/162",
+      "number": "119/162"
+    },
+    {
+      "product_id": 565482,
+      "category_id": 3,
+      "group_id": 22880,
+      "name": "Miraidon - 121/162",
+      "number": "121/162"
+    },
+    {
+      "product_id": 565488,
+      "category_id": 3,
+      "group_id": 22880,
+      "name": "Morpeko - 121/182",
+      "number": "121/182"
+    },
+    {
+      "product_id": 577579,
+      "category_id": 3,
+      "group_id": 22880,
+      "name": "Roaring Moon - 109/162",
+      "number": "109/162"
+    },
+    {
+      "product_id": 619051,
+      "category_id": 3,
+      "group_id": 22880,
+      "name": "Archaludon - 107/142",
+      "number": "107/142"
+    },
+    {
+      "product_id": 619068,
+      "category_id": 3,
+      "group_id": 22880,
+      "name": "Bouffalant - 119/142",
+      "number": "119/142"
+    },
+    {
+      "product_id": 619147,
+      "category_id": 3,
+      "group_id": 22880,
+      "name": "Night Stretcher - 061/064",
+      "number": "061/064"
+    },
+    {
+      "product_id": 619153,
+      "category_id": 3,
+      "group_id": 22880,
+      "name": "Okidogi - 111/167",
+      "number": "111/167"
+    },
+    {
+      "product_id": 623656,
+      "category_id": 3,
+      "group_id": 22880,
+      "name": "Carmine - 145/167",
+      "number": "145/167"
+    }
+  ],
+  "fingerprint": "85414864598cf3afc823bcf6001199904a8c81d05d7c15ae948ef606bf793076"
+}

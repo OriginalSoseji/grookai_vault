@@ -1,6 +1,8 @@
 import '../env.mjs';
 
 import pg from 'pg';
+import {assertWarehouseTransactionContextV1} from './transaction_context_v1.mjs';
+import {reviewedPlayNormalFinishSignalV1} from './reviewed_play_normal_authority_v1.mjs';
 
 import {
   VERSION_FINISH_DECISIONS,
@@ -347,6 +349,8 @@ function chooseSourceStrength(sourceSummary, bestHintConfidence, exactReferenceS
 }
 
 function deriveFinishSignals(candidate, normalizedHints) {
+  const reviewed=reviewedPlayNormalFinishSignalV1(candidate);
+  if(reviewed)return reviewed;
   const noteText = normalizeTextOrNull(candidate.notes)?.toLowerCase() ?? '';
   const nameText = normalizeTextOrNull(normalizedHints?.card_name)?.toLowerCase() ?? '';
   const combined = [noteText, nameText].filter(Boolean).join(' ');
@@ -963,7 +967,7 @@ function shouldProcessCandidate(candidate, evidenceRows, events, force) {
   return { shouldProcess: false, reason: 'already_processed_without_new_evidence' };
 }
 
-async function buildCandidateArtifacts(client, candidateId) {
+export async function buildCandidateArtifacts(client, candidateId) {
   const candidate = await fetchCandidate(client, candidateId);
   if (!candidate) {
     throw new Error(`candidate_not_found:${candidateId}`);
@@ -1009,7 +1013,7 @@ async function buildCandidateArtifacts(client, candidateId) {
   };
 }
 
-async function buildPackages(client, artifact) {
+export async function buildPackages(client, artifact) {
   const {
     candidate,
     evidenceRows,
@@ -1742,7 +1746,9 @@ async function insertWarehouseEvent(client, payload) {
   ]);
 }
 
-async function applyWritePlan(pool, buildResult) {
+export async function applyClassificationWithinTransactionV1(connection,buildResult,{serializable=true}={}) {
+  await assertWarehouseTransactionContextV1(connection,{serializable});
+
   const payloadSnapshot = {
     candidate_id: buildResult.candidate?.id ?? null,
     latest_evidence_at: buildResult.latestEvidenceAt ?? null,
@@ -1756,9 +1762,7 @@ async function applyWritePlan(pool, buildResult) {
       : [],
   };
 
-  const connection = await pool.connect();
-  try {
-    await connection.query('begin');
+
     const candidateStateProofStep =
       [...buildResult.writePlan]
         .reverse()
@@ -1926,13 +1930,18 @@ async function applyWritePlan(pool, buildResult) {
       },
     });
 
+
+}
+
+async function applyWritePlan(pool,buildResult) {
+  const connection=await pool.connect();
+  try {
+    await connection.query('begin');
+    await applyClassificationWithinTransactionV1(connection,buildResult,{serializable:false});
     await connection.query('commit');
-  } catch (error) {
-    await connection.query('rollback');
-    throw error;
-  } finally {
-    connection.release();
-  }
+  } catch(error) {
+    await connection.query('rollback');throw error;
+  } finally {connection.release();}
 }
 
 async function applyReclassificationResult(pool, buildResult) {

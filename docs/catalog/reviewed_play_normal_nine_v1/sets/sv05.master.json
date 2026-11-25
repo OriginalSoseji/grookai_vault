@@ -1,0 +1,68 @@
+{
+  "version": "ENGLISH_MASTER_REVIEWED_PLAY_NORMAL_NINE_V1",
+  "set_code": "sv05",
+  "index_fingerprint": "6748d694531a1276e77b8b4ec35815af3e9675c697f30c2e2fb4f22a348be867",
+  "positive_finish_scope": "normal_only_not_complete_foil_inventory",
+  "facts": [
+    {
+      "card_print_id": "98fff928-cd45-5ba9-a570-cf047eee0e80",
+      "finish_key": "normal",
+      "source_product_id": 565473,
+      "printed_number": "119/162",
+      "printed_set_mark": "TEF",
+      "official_standard_observation": {
+        "official_row_literal": "Koraidon TEF 119 ■",
+        "page": 1,
+        "row_bbox": {
+          "x0": 12.5262,
+          "top": 534.7534,
+          "x1": 182.7684,
+          "bottom": 546.284
+        },
+        "standard_black_box_count": 1,
+        "additional_unspecified_foil_red_box_count": 0
+      },
+      "identity_front_sha256": "36b90b80c30a270306441b711ee17d07f346c4b3d16c9f3e599fe09394d5a75d"
+    },
+    {
+      "card_print_id": "6ac579b0-5e93-5953-ae7f-0a72ae9e51f1",
+      "finish_key": "normal",
+      "source_product_id": 565482,
+      "printed_number": "121/162",
+      "printed_set_mark": "TEF",
+      "official_standard_observation": {
+        "official_row_literal": "Miraidon TEF 121 ■",
+        "page": 1,
+        "row_bbox": {
+          "x0": 12.5262,
+          "top": 602.4334,
+          "x1": 182.7684,
+          "bottom": 613.9639999999999
+        },
+        "standard_black_box_count": 1,
+        "additional_unspecified_foil_red_box_count": 0
+      },
+      "identity_front_sha256": "441e1ee17276c2f353d381931ac1ba4e5900df0eda97bbe929c0af18301ef145"
+    },
+    {
+      "card_print_id": "739b99ec-9bc9-574d-ace2-046dfba86f03",
+      "finish_key": "normal",
+      "source_product_id": 577579,
+      "printed_number": "109/162",
+      "printed_set_mark": "TEF",
+      "official_standard_observation": {
+        "official_row_literal": "Roaring Moon TEF 109 ■",
+        "page": 1,
+        "row_bbox": {
+          "x0": 212.0128,
+          "top": 196.35339999999997,
+          "x1": 382.2551,
+          "bottom": 207.88400000000001
+        },
+        "standard_black_box_count": 1,
+        "additional_unspecified_foil_red_box_count": 0
+      },
+      "identity_front_sha256": "120065f138c3105ab9445d26eca791a20a6581c31bfff467a69dff19206e350c"
+    }
+  ]
+}

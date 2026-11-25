@@ -12,7 +12,7 @@ const reviewFields = ['id','card_printing_id','review_status','public_visibility
   'evidence_sources_checked','evidence_sources_for_finish','expected_finish_keys','evidence','source_report_path','reviewed_by','reviewed_at'];
 const project = (row,fields) => Object.fromEntries(fields.map(field=>[field,row[field]]));
 
-function expectedRows(bundle) {
+export function expectedWarehousePrintingRowsV1(bundle) {
   const manifest=bundle.manifest, target=bundle.target;
   const child=buildPrintingAdmissionPlan(manifest,[]).inserts.find(row=>row.card_print_id===target.card_print_id&&row.finish_key===target.finish_key);
   assert.ok(child,'warehouse_target_not_in_admission_plan');
@@ -53,7 +53,7 @@ export async function prepareWarehousePrintingAdmission(client,bundle,target,{lo
   assert.ok(bundle,'warehouse_printing_authority_required');
   const parent=await readWarehousePrintingParent(client,target.card_print_id,{lock});
   const authority=assertWarehousePrintingAuthority(bundle,{target,parent});
-  const expected=expectedRows(bundle);
+  const expected=expectedWarehousePrintingRowsV1(bundle);
   const rows=async(sql,args)=>(await client.query(sql,args)).rows.map(row=>row.row);
   const siblings=await rows(`select to_jsonb(p) row from public.card_printings p
     where card_print_id=$1 or id=$2 or printing_gv_id=$3 order by id ${lock?'for update':''}`,

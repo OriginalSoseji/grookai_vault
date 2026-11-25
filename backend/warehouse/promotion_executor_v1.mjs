@@ -1,5 +1,7 @@
 import '../env.mjs';
 import assert from 'node:assert/strict';
+import {assertWarehouseTransactionContextV1} from './transaction_context_v1.mjs';
+import {assertWarehouseParentRegistryV1,applyWarehouseParentRegistryV1,verifyWarehouseParentRegistryV1} from './parent_registry_v1.mjs';
 import { prepareWarehousePrintingAdmission, applyWarehousePrintingAdmission, verifyWarehousePrintingAdmissionReadback } from './printing_admission_v1.mjs';
 import { printingManifestHash } from '../catalog/printing_completeness_gate_v1.mjs';
 import { assertWarehouseParentIdentity, assertWarehouseParentMutation, verifyWarehouseParentIdentity } from './parent_identity_v1.mjs';
@@ -1027,7 +1029,7 @@ function validateApprovedIdentityResolutionForExecution(approvedActionType, payl
   };
 }
 
-async function buildExecutionPlan(client, stage, candidate) {
+export async function buildExecutionPlan(client, stage, candidate) {
   const payload = asRecord(stage.frozen_payload);
   if (!payload) {
     throw new ExecutorError('staging_payload_missing');
@@ -1196,6 +1198,8 @@ export async function buildCreateCardPrintPlan(client, stage, candidate, payload
     identity_domain: parentIdentity.identity_domain, printed_identity_modifier: parentIdentity.printed_identity_modifier,
     variant_key: variantKey, name: cardName, number: canonicalNumber, gv_id: gvId, tcgplayer_id: tcgplayerId,
   };
+  const registryAdmission=payload?.write_plan?.parent_registry_admission??null;
+  if(registryAdmission)await assertWarehouseParentRegistryV1(client,registryAdmission,expectedParent);
   const existingRows = await fetchExistingCardPrints(client, setRow.id, numberPlain, variantKey);
   if (existingRows.length > 1) {
     throw new ExecutorError('duplicate_existing_card_prints', `${setRow.code}:${numberPlain}`);
@@ -1276,6 +1280,7 @@ export async function buildCreateCardPrintPlan(client, stage, candidate, payload
         variant_key: variantKey,
         name: cardName,
         rarity,
+        ...(registryAdmission?{parent_registry_admission:registryAdmission}:{}),
       tcgplayer_id: tcgplayerId,
       gv_id: gvId,
       image_source: normalizedFrontImagePath ? 'identity' : null,
@@ -1788,10 +1793,8 @@ async function buildEnrichCardPrintingImagePlan(client, stage, candidate, payloa
   throw new ExecutorError('child_image_target_already_has_distinct_images', targetCardPrintingId);
 }
 
-async function claimStageForExecution(pool, stageId, allowedStatuses = ['PENDING']) {
-  const connection = await pool.connect();
+export async function claimStageWithinTransactionV1(connection, stageId, allowedStatuses = ['PENDING']) {
   const claimedAt = new Date().toISOString();
-  let commitAttempted = false;
   const normalizedStatuses = Array.from(
     new Set(
       (allowedStatuses ?? [])
@@ -1799,70 +1802,82 @@ async function claimStageForExecution(pool, stageId, allowedStatuses = ['PENDING
         .filter(Boolean),
     ),
   );
+  if (normalizedStatuses.some(status => !['PENDING','FAILED'].includes(status))) {
+    throw new ExecutorError('invalid_claim_execution_status');
+  }
+  await assertWarehouseTransactionContextV1(connection);
+  if (normalizedStatuses.length === 0) {
+    return { claimed: false, reason: 'no_allowed_execution_statuses' };
+  }
+
+  const { rows } = await connection.query(
+    `
+      select
+        id,
+        candidate_id,
+        approved_action_type,
+        execution_status,
+        execution_attempts,
+        frozen_payload
+      from public.canon_warehouse_promotion_staging
+      where id = $1
+        and execution_status = any($2::text[])
+      for update skip locked
+    `,
+    [stageId, normalizedStatuses],
+  );
+
+  const stage = rows[0] ?? null;
+  if (!stage) {
+    return { claimed: false, reason: 'not_executable_or_locked' };
+  }
+
+  const attemptNumber = Number(stage.execution_attempts ?? 0) + 1;
+  await connection.query(
+    `
+      update public.canon_warehouse_promotion_staging
+      set
+        execution_status = 'RUNNING',
+        execution_attempts = execution_attempts + 1,
+        last_attempted_at = $2,
+        last_error = null
+      where id = $1
+    `,
+    [stageId, claimedAt],
+  );
+
+  const payload = asRecord(stage.frozen_payload);
+  await insertExecutorEvent(connection, {
+    candidateId: stage.candidate_id,
+    stagingId: stage.id,
+    eventType: 'PROMOTION_EXECUTION_STARTED',
+    action: 'EXECUTE',
+    previousState: 'STAGED_FOR_PROMOTION',
+    nextState: 'STAGED_FOR_PROMOTION',
+    metadata: {
+      staging_id: stage.id,
+      approved_action_type: stage.approved_action_type,
+      execution_attempt: attemptNumber,
+      payload_version: normalizeTextOrNull(payload?.payload_version),
+    },
+  });
+
+  return {claimed: true, attemptNumber, claimedAt};
+}
+
+async function claimStageForExecution(pool, stageId, allowedStatuses = ['PENDING']) {
+  const connection = await pool.connect();
+  let commitAttempted = false;
   try {
     await connection.query('begin');
-
-    if (normalizedStatuses.length === 0) {
+    const claim = await claimStageWithinTransactionV1(connection, stageId, allowedStatuses);
+    if (!claim.claimed) {
       await connection.query('rollback');
-      return { claimed: false, reason: 'no_allowed_execution_statuses' };
+      return claim;
     }
-
-    const { rows } = await connection.query(
-      `
-        select
-          id,
-          candidate_id,
-          approved_action_type,
-          execution_status,
-          execution_attempts,
-          frozen_payload
-        from public.canon_warehouse_promotion_staging
-        where id = $1
-          and execution_status = any($2::text[])
-        for update skip locked
-      `,
-      [stageId, normalizedStatuses],
-    );
-
-    const stage = rows[0] ?? null;
-    if (!stage) {
-      await connection.query('rollback');
-      return { claimed: false, reason: 'not_executable_or_locked' };
-    }
-
-    const attemptNumber = Number(stage.execution_attempts ?? 0) + 1;
-    await connection.query(
-      `
-        update public.canon_warehouse_promotion_staging
-        set
-          execution_status = 'RUNNING',
-          execution_attempts = execution_attempts + 1,
-          last_attempted_at = $2,
-          last_error = null
-        where id = $1
-      `,
-      [stageId, claimedAt],
-    );
-
-    const payload = asRecord(stage.frozen_payload);
-    await insertExecutorEvent(connection, {
-      candidateId: stage.candidate_id,
-      stagingId: stage.id,
-      eventType: 'PROMOTION_EXECUTION_STARTED',
-      action: 'EXECUTE',
-      previousState: 'STAGED_FOR_PROMOTION',
-      nextState: 'STAGED_FOR_PROMOTION',
-      metadata: {
-        staging_id: stage.id,
-        approved_action_type: stage.approved_action_type,
-        execution_attempt: attemptNumber,
-        payload_version: normalizeTextOrNull(payload?.payload_version),
-      },
-    });
-
     commitAttempted = true;
     await connection.query('commit');
-    return { claimed: true, attemptNumber, claimedAt };
+    return claim;
   } catch (error) {
     error.commit_uncertain = commitAttempted;
     error.rollback_uncertain = false;
@@ -1890,8 +1905,10 @@ export async function applyMutation(connection, plan) {
     case 'insert_card_print': {
       assertWarehouseParentMutation(plan.parent_identity, plan.mutation);
       await assertWarehouseParentIdentity(connection, plan.parent_identity, plan.mutation, {lock: true});
+      const assignedParentId=plan.mutation.parent_registry_admission?.planned_parent_id??null;
       const insertSql = `
         insert into public.card_prints (
+          ${assignedParentId?'id,':''}
           set_id,
           set_code,
           number,
@@ -1906,7 +1923,7 @@ export async function applyMutation(connection, plan) {
           identity_domain,
           printed_identity_modifier
         )
-        values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
+        values (${assignedParentId?'$14,':''}$1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
         on conflict do nothing
         returning id
       `;
@@ -1924,6 +1941,7 @@ export async function applyMutation(connection, plan) {
         plan.mutation.game_id,
         plan.mutation.identity_domain,
         plan.mutation.printed_identity_modifier,
+        ...(assignedParentId?[assignedParentId]:[]),
       ]);
       let cardPrintId = insertResult.rows[0]?.id ?? null;
 
@@ -1973,9 +1991,12 @@ export async function applyMutation(connection, plan) {
         };
       }
 
+      const registryIdentity=plan.mutation.parent_registry_admission
+        ?await applyWarehouseParentRegistryV1(connection,cardPrintId,plan.mutation.parent_registry_admission,plan.expected_parent):null;
       return {
         result_type: plan.result_type,
         promoted_card_print_id: cardPrintId,
+        ...(registryIdentity?{registry_identity_id:registryIdentity.id}:{}),
         promoted_card_printing_id: null,
         promoted_image_target_type:
           plan.mutation.image_path ? PROMOTED_IMAGE_TARGET_TYPES.CARD_PRINT : null,
@@ -2163,6 +2184,261 @@ export async function applyMutation(connection, plan) {
   }
 }
 
+// The outer programme owns BEGIN/COMMIT/ROLLBACK. All existing stage, founder,
+// frozen evidence, mutation and post-write proofs remain in this shared core.
+export async function executeClaimedStageWithinTransactionV1(connection, stageId, attemptNumber, {executedAt = new Date().toISOString()} = {}) {
+  assert.ok(Number.isSafeInteger(attemptNumber) && attemptNumber > 0, 'warehouse_execution_attempt_required');
+  assert.ok(Number.isFinite(Date.parse(executedAt)), 'warehouse_execution_timestamp_required');
+  await assertWarehouseTransactionContextV1(connection, {serializable: true});
+  const stage = await fetchStageRow(connection, stageId);
+  if (!stage) {
+    throw new ExecutorError('staging_row_not_found', stageId);
+  }
+  if (stage.execution_status !== 'RUNNING') {
+    throw new ExecutorError('staging_not_running', stage.execution_status);
+  }
+  if (Number(stage.execution_attempts) !== attemptNumber) {
+    throw new ExecutorError('staging_execution_attempt_changed', stage.id);
+  }
+  if (stage.approved_action_type === 'CREATE_CARD_PRINTING') {
+    await connection.query("set local lock_timeout='3s'");
+    await connection.query("set local statement_timeout='45s'");
+  }
+
+  const candidate = await fetchCandidateRow(connection, stage.candidate_id);
+  const plan = await buildExecutionPlan(connection, stage, candidate);
+  const payloadSnapshot = {
+    staging_id: stage.id,
+    candidate_id: candidate?.id ?? null,
+    approved_action_type: stage.approved_action_type,
+    execution_attempt: attemptNumber,
+    planned_result_type: plan.result_type,
+    mutation_type: plan.mutation?.type ?? null,
+    planned_card_print_id: plan.result_linkage?.promoted_card_print_id ?? null,
+    planned_card_printing_id: plan.result_linkage?.promoted_card_printing_id ?? null,
+    planned_image_target_id: plan.result_linkage?.promoted_image_target_id ?? null,
+  };
+  let mutationResult = null;
+  const proofs = [
+    {
+      name: 'stage_marked_succeeded',
+      contract_name: 'INGESTION_PIPELINE_CONTRACT_V1',
+      violation_type: 'post_write_stage_not_succeeded',
+      query: `
+        select execution_status
+        from public.canon_warehouse_promotion_staging
+        where id = $1
+        limit 1
+      `,
+      params: [stage.id],
+      evaluate(result) {
+        const status = normalizeTextOrNull(result.rows[0]?.execution_status);
+        return {
+          ok: status === 'SUCCEEDED',
+          reason: `Promotion executor expected stage ${stage.id} to be SUCCEEDED, found ${status ?? 'null'}.`,
+        };
+      },
+    },
+    {
+      name: 'candidate_marked_promoted',
+      contract_name: 'IDENTITY_PRECEDENCE_RULE_V1',
+      violation_type: 'post_write_candidate_not_promoted',
+      query: `
+        select state, current_staging_id
+        from public.canon_warehouse_candidates
+        where id = $1
+        limit 1
+      `,
+      params: [candidate.id],
+      evaluate(result) {
+        const row = result.rows[0] ?? null;
+        const state = normalizeTextOrNull(row?.state);
+        const currentStagingId = normalizeTextOrNull(row?.current_staging_id);
+        return {
+          ok: state === 'PROMOTED' && currentStagingId === stage.id,
+          reason:
+            `Promotion executor expected candidate ${candidate.id} to be PROMOTED with current_staging_id ${stage.id}, found ${state ?? 'null'}/${currentStagingId ?? 'null'}.`,
+        };
+      },
+    },
+  ];
+
+  await assertExecuteCanonWriteV1({
+    execution_name: 'promotion_executor_execute_claimed_stage_v1',
+    payload_snapshot: payloadSnapshot,
+    write_target: connection,
+    audit_target: connection,
+    ledger_target: connection,
+    transaction_control: 'external',
+    actor_type: 'system_worker',
+    actor_id: stage.founder_approved_by_user_id ?? null,
+    source_worker: WORKER_NAME,
+    source_system: 'warehouse',
+    contract_assertions: [
+      {
+        ok: Boolean(stage.id) && Boolean(candidate?.id),
+        contract_name: 'IDENTITY_CONTRACT_SUITE_V1',
+        violation_type: 'missing_stage_or_candidate_id',
+        reason: 'Promotion executor requires stage and candidate ids.',
+      },
+      {
+        ok: Boolean(stage.approved_action_type),
+        contract_name: 'IDENTITY_PRECEDENCE_RULE_V1',
+        violation_type: 'missing_approved_action_type',
+        reason: 'Promotion executor requires approved action type.',
+      },
+      {
+        ok: Boolean(plan.mutation?.type),
+        contract_name: 'GROOKAI_GUARDRAILS',
+        violation_type: 'missing_mutation_plan',
+        reason: 'Promotion executor buildExecutionPlan returned no mutation.',
+      },
+    ],
+    proofs: [
+      ...proofs,
+      {
+        name: 'promoted_card_print_exists',
+        contract_name: 'CARD_PRINT_IDENTITY_SUBSYSTEM_CONTRACT_V1',
+        violation_type: 'post_write_card_print_missing',
+        async run() {
+          if (!mutationResult?.promoted_card_print_id) {
+            return { ok: true };
+          }
+          if (plan.expected_parent) {
+            await verifyWarehouseParentIdentity(connection, mutationResult.promoted_card_print_id, plan.expected_parent);
+            if(plan.mutation.parent_registry_admission)await verifyWarehouseParentRegistryV1(connection,
+              mutationResult.promoted_card_print_id,plan.mutation.parent_registry_admission);
+            return {ok: true};
+          }
+          const result = await connection.query(
+            `
+              select id
+              from public.card_prints
+              where id = $1
+              limit 1
+            `,
+            [mutationResult.promoted_card_print_id],
+          );
+          return {
+            ok: Boolean(result.rows[0]?.id),
+            reason: `Promotion executor expected card_print ${mutationResult.promoted_card_print_id} to exist.`,
+          };
+        },
+      },
+      {
+        name: 'promoted_card_printing_exists',
+        contract_name: 'CARD_PRINT_IDENTITY_SUBSYSTEM_CONTRACT_V1',
+        violation_type: 'post_write_card_printing_missing',
+        async run() {
+          if (!mutationResult?.promoted_card_printing_id) {
+            return { ok: true };
+          }
+          if (plan.mutation.type === 'reviewed_printing_admission') {
+            await verifyWarehousePrintingAdmissionReadback(connection,
+              plan.mutation.admission.bundle, plan.mutation.admission.target,
+              plan.payload.write_plan.printing_admission_fingerprint);
+            return {ok:true};
+          }
+          const result = await connection.query(
+            `
+              select id
+              from public.card_printings
+              where id = $1
+              limit 1
+            `,
+            [mutationResult.promoted_card_printing_id],
+          );
+          return {
+            ok: Boolean(result.rows[0]?.id),
+            reason:
+              `Promotion executor expected card_printing ${mutationResult.promoted_card_printing_id} to exist.`,
+          };
+        },
+      },
+    ],
+    async write() {
+      mutationResult = await applyMutation(connection, plan);
+      payloadSnapshot.promotion_result_type = mutationResult.result_type;
+      payloadSnapshot.promoted_card_print_id = mutationResult.promoted_card_print_id;
+      payloadSnapshot.promoted_card_printing_id = mutationResult.promoted_card_printing_id;
+      payloadSnapshot.promoted_image_target_id = mutationResult.promoted_image_target_id;
+
+      const stagingUpdateResult = await connection.query(
+        `
+          update public.canon_warehouse_promotion_staging
+          set
+            execution_status = 'SUCCEEDED',
+            last_error = null,
+            last_attempted_at = $2,
+            executed_at = $2
+          where id = $1
+        `,
+        [stage.id, executedAt],
+      );
+      if (stagingUpdateResult.rowCount !== 1) {
+        throw new ExecutorError('staging_success_update_failed', stage.id);
+      }
+
+      // The candidate schema currently requires promoted_by_user_id on PROMOTED.
+      // Executor identity is recorded in warehouse events; founder approval identity is used
+      // here only as the linked user until a dedicated executor-actor column exists.
+      const candidateUpdateResult = await connection.query(
+        `
+          update public.canon_warehouse_candidates
+          set
+            state = 'PROMOTED',
+            promotion_result_type = $2,
+            promoted_card_print_id = $3,
+            promoted_card_printing_id = $4,
+            promoted_image_target_type = $5,
+            promoted_image_target_id = $6,
+            promoted_by_user_id = $7,
+            promoted_at = $8,
+            current_review_hold_reason = null
+          where id = $1
+            and state = 'STAGED_FOR_PROMOTION'
+            and current_staging_id = $9
+        `,
+        [
+          candidate.id,
+          mutationResult.result_type,
+          mutationResult.promoted_card_print_id,
+          mutationResult.promoted_card_printing_id,
+          mutationResult.promoted_image_target_type,
+          mutationResult.promoted_image_target_id,
+          stage.founder_approved_by_user_id,
+          executedAt,
+          stage.id,
+        ],
+      );
+      if (candidateUpdateResult.rowCount !== 1) {
+        throw new ExecutorError('candidate_promotion_update_failed', candidate.id);
+      }
+
+      await insertExecutorEvent(connection, {
+        candidateId: candidate.id,
+        stagingId: stage.id,
+        eventType: 'PROMOTION_EXECUTION_SUCCEEDED',
+        action: 'EXECUTE',
+        previousState: 'STAGED_FOR_PROMOTION',
+        nextState: 'PROMOTED',
+        metadata: {
+          staging_id: stage.id,
+          approved_action_type: stage.approved_action_type,
+          execution_attempt: attemptNumber,
+          promotion_result_type: mutationResult.result_type,
+          promoted_card_print_id: mutationResult.promoted_card_print_id,
+          promoted_card_printing_id: mutationResult.promoted_card_printing_id,
+          promoted_image_target_type: mutationResult.promoted_image_target_type,
+          promoted_image_target_id: mutationResult.promoted_image_target_id,
+        },
+      });
+    },
+  });
+
+  return {stage, candidate, plan, mutationResult};
+}
+
 async function executeClaimedStage(pool, stageId, attemptNumber) {
   const connection = await pool.connect();
   const executedAt = new Date().toISOString();
@@ -2171,246 +2447,8 @@ async function executeClaimedStage(pool, stageId, attemptNumber) {
   try {
     await connection.query('begin isolation level serializable');
 
-    const stage = await fetchStageRow(connection, stageId);
-    if (!stage) {
-      throw new ExecutorError('staging_row_not_found', stageId);
-    }
-    if (stage.execution_status !== 'RUNNING') {
-      throw new ExecutorError('staging_not_running', stage.execution_status);
-    }
-    if (stage.approved_action_type === 'CREATE_CARD_PRINTING') {
-      await connection.query("set local lock_timeout='3s'");
-      await connection.query("set local statement_timeout='45s'");
-    }
-
-    const candidate = await fetchCandidateRow(connection, stage.candidate_id);
-    const plan = await buildExecutionPlan(connection, stage, candidate);
-    const payloadSnapshot = {
-      staging_id: stage.id,
-      candidate_id: candidate?.id ?? null,
-      approved_action_type: stage.approved_action_type,
-      execution_attempt: attemptNumber,
-      planned_result_type: plan.result_type,
-      mutation_type: plan.mutation?.type ?? null,
-      planned_card_print_id: plan.result_linkage?.promoted_card_print_id ?? null,
-      planned_card_printing_id: plan.result_linkage?.promoted_card_printing_id ?? null,
-      planned_image_target_id: plan.result_linkage?.promoted_image_target_id ?? null,
-    };
-    let mutationResult = null;
-    const proofs = [
-      {
-        name: 'stage_marked_succeeded',
-        contract_name: 'INGESTION_PIPELINE_CONTRACT_V1',
-        violation_type: 'post_write_stage_not_succeeded',
-        query: `
-          select execution_status
-          from public.canon_warehouse_promotion_staging
-          where id = $1
-          limit 1
-        `,
-        params: [stage.id],
-        evaluate(result) {
-          const status = normalizeTextOrNull(result.rows[0]?.execution_status);
-          return {
-            ok: status === 'SUCCEEDED',
-            reason: `Promotion executor expected stage ${stage.id} to be SUCCEEDED, found ${status ?? 'null'}.`,
-          };
-        },
-      },
-      {
-        name: 'candidate_marked_promoted',
-        contract_name: 'IDENTITY_PRECEDENCE_RULE_V1',
-        violation_type: 'post_write_candidate_not_promoted',
-        query: `
-          select state, current_staging_id
-          from public.canon_warehouse_candidates
-          where id = $1
-          limit 1
-        `,
-        params: [candidate.id],
-        evaluate(result) {
-          const row = result.rows[0] ?? null;
-          const state = normalizeTextOrNull(row?.state);
-          const currentStagingId = normalizeTextOrNull(row?.current_staging_id);
-          return {
-            ok: state === 'PROMOTED' && currentStagingId === stage.id,
-            reason:
-              `Promotion executor expected candidate ${candidate.id} to be PROMOTED with current_staging_id ${stage.id}, found ${state ?? 'null'}/${currentStagingId ?? 'null'}.`,
-          };
-        },
-      },
-    ];
-
-    await assertExecuteCanonWriteV1({
-      execution_name: 'promotion_executor_execute_claimed_stage_v1',
-      payload_snapshot: payloadSnapshot,
-      write_target: connection,
-      audit_target: connection,
-      ledger_target: connection,
-      transaction_control: 'external',
-      actor_type: 'system_worker',
-      actor_id: stage.founder_approved_by_user_id ?? null,
-      source_worker: WORKER_NAME,
-      source_system: 'warehouse',
-      contract_assertions: [
-        {
-          ok: Boolean(stage.id) && Boolean(candidate?.id),
-          contract_name: 'IDENTITY_CONTRACT_SUITE_V1',
-          violation_type: 'missing_stage_or_candidate_id',
-          reason: 'Promotion executor requires stage and candidate ids.',
-        },
-        {
-          ok: Boolean(stage.approved_action_type),
-          contract_name: 'IDENTITY_PRECEDENCE_RULE_V1',
-          violation_type: 'missing_approved_action_type',
-          reason: 'Promotion executor requires approved action type.',
-        },
-        {
-          ok: Boolean(plan.mutation?.type),
-          contract_name: 'GROOKAI_GUARDRAILS',
-          violation_type: 'missing_mutation_plan',
-          reason: 'Promotion executor buildExecutionPlan returned no mutation.',
-        },
-      ],
-      proofs: [
-        ...proofs,
-        {
-          name: 'promoted_card_print_exists',
-          contract_name: 'CARD_PRINT_IDENTITY_SUBSYSTEM_CONTRACT_V1',
-          violation_type: 'post_write_card_print_missing',
-          async run() {
-            if (!mutationResult?.promoted_card_print_id) {
-              return { ok: true };
-            }
-            if (plan.expected_parent) {
-              await verifyWarehouseParentIdentity(connection, mutationResult.promoted_card_print_id, plan.expected_parent);
-              return {ok: true};
-            }
-            const result = await connection.query(
-              `
-                select id
-                from public.card_prints
-                where id = $1
-                limit 1
-              `,
-              [mutationResult.promoted_card_print_id],
-            );
-            return {
-              ok: Boolean(result.rows[0]?.id),
-              reason: `Promotion executor expected card_print ${mutationResult.promoted_card_print_id} to exist.`,
-            };
-          },
-        },
-        {
-          name: 'promoted_card_printing_exists',
-          contract_name: 'CARD_PRINT_IDENTITY_SUBSYSTEM_CONTRACT_V1',
-          violation_type: 'post_write_card_printing_missing',
-          async run() {
-            if (!mutationResult?.promoted_card_printing_id) {
-              return { ok: true };
-            }
-            if (plan.mutation.type === 'reviewed_printing_admission') {
-              await verifyWarehousePrintingAdmissionReadback(connection,
-                plan.mutation.admission.bundle, plan.mutation.admission.target,
-                plan.payload.write_plan.printing_admission_fingerprint);
-              return {ok:true};
-            }
-            const result = await connection.query(
-              `
-                select id
-                from public.card_printings
-                where id = $1
-                limit 1
-              `,
-              [mutationResult.promoted_card_printing_id],
-            );
-            return {
-              ok: Boolean(result.rows[0]?.id),
-              reason:
-                `Promotion executor expected card_printing ${mutationResult.promoted_card_printing_id} to exist.`,
-            };
-          },
-        },
-      ],
-      async write() {
-        mutationResult = await applyMutation(connection, plan);
-        payloadSnapshot.promotion_result_type = mutationResult.result_type;
-        payloadSnapshot.promoted_card_print_id = mutationResult.promoted_card_print_id;
-        payloadSnapshot.promoted_card_printing_id = mutationResult.promoted_card_printing_id;
-        payloadSnapshot.promoted_image_target_id = mutationResult.promoted_image_target_id;
-
-        const stagingUpdateResult = await connection.query(
-          `
-            update public.canon_warehouse_promotion_staging
-            set
-              execution_status = 'SUCCEEDED',
-              last_error = null,
-              last_attempted_at = $2,
-              executed_at = $2
-            where id = $1
-          `,
-          [stage.id, executedAt],
-        );
-        if (stagingUpdateResult.rowCount !== 1) {
-          throw new ExecutorError('staging_success_update_failed', stage.id);
-        }
-
-        // The candidate schema currently requires promoted_by_user_id on PROMOTED.
-        // Executor identity is recorded in warehouse events; founder approval identity is used
-        // here only as the linked user until a dedicated executor-actor column exists.
-        const candidateUpdateResult = await connection.query(
-          `
-            update public.canon_warehouse_candidates
-            set
-              state = 'PROMOTED',
-              promotion_result_type = $2,
-              promoted_card_print_id = $3,
-              promoted_card_printing_id = $4,
-              promoted_image_target_type = $5,
-              promoted_image_target_id = $6,
-              promoted_by_user_id = $7,
-              promoted_at = $8,
-              current_review_hold_reason = null
-            where id = $1
-              and state = 'STAGED_FOR_PROMOTION'
-              and current_staging_id = $9
-          `,
-          [
-            candidate.id,
-            mutationResult.result_type,
-            mutationResult.promoted_card_print_id,
-            mutationResult.promoted_card_printing_id,
-            mutationResult.promoted_image_target_type,
-            mutationResult.promoted_image_target_id,
-            stage.founder_approved_by_user_id,
-            executedAt,
-            stage.id,
-          ],
-        );
-        if (candidateUpdateResult.rowCount !== 1) {
-          throw new ExecutorError('candidate_promotion_update_failed', candidate.id);
-        }
-
-        await insertExecutorEvent(connection, {
-          candidateId: candidate.id,
-          stagingId: stage.id,
-          eventType: 'PROMOTION_EXECUTION_SUCCEEDED',
-          action: 'EXECUTE',
-          previousState: 'STAGED_FOR_PROMOTION',
-          nextState: 'PROMOTED',
-          metadata: {
-            staging_id: stage.id,
-            approved_action_type: stage.approved_action_type,
-            execution_attempt: attemptNumber,
-            promotion_result_type: mutationResult.result_type,
-            promoted_card_print_id: mutationResult.promoted_card_print_id,
-            promoted_card_printing_id: mutationResult.promoted_card_printing_id,
-            promoted_image_target_type: mutationResult.promoted_image_target_type,
-            promoted_image_target_id: mutationResult.promoted_image_target_id,
-          },
-        });
-      },
-    });
+    const {stage, candidate, plan, mutationResult} = await executeClaimedStageWithinTransactionV1(
+      connection, stageId, attemptNumber, {executedAt});
 
     commitAttempted = true;
     await connection.query('commit');

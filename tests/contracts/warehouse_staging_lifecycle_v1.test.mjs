@@ -61,6 +61,8 @@ for(const mode of ['claim_commit_unknown','claim_rollback_unknown','execution_ro
         if(phase===3&&q.startsWith('begin'))throw new Error('execution connection failed');
         if(phase===3&&mode==='execution_rollback_unknown'&&q==='rollback')throw new Error('lost execution rollback response');
         if(phase===4)throw new Error('failure ledger unavailable');
+        if(q.startsWith('select pg_current_xact_id()'))return {rows:[{xid:'123',isolation:'read committed',read_only:'off'}]};
+        if(q.startsWith('select pg_current_xact_id_if_assigned()'))return {rows:[{xid:'123'}]};
         if(q.startsWith('select'))return {rows:[stage]};
         return {rows:[],rowCount:1};
       }};

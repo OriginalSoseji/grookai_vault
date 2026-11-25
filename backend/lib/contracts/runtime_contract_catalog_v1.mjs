@@ -22,6 +22,18 @@ export const CONTRACT_RUNTIME_DRIFT_REFERENCES_V1 = [
 ];
 
 export const CONTRACT_RUNTIME_CATALOG_V1 = {
+  PRINTING_TRUTH_CONTRACT_V1: {
+    status:'Active',authority_class:'identity_frozen_canon',domain:'printing',canon_affecting:true,
+    conflict_behavior:'Only exact reviewed physical evidence can admit a printing; prices never establish a finish.',
+    enforcement_points:{worker:['backend/warehouse/printing_authority_v1.mjs','backend/warehouse/printing_admission_v1.mjs',
+      'backend/pricing/reviewed_play_normal_nine_price_links_v1.mjs'],
+      audit:['scripts/audits/warehouse_atomic_batch_local_qualification_v1.mjs'],
+      checkpoint:['docs/contracts/PRINTING_TRUTH_CONTRACT_V1.md'],
+      quarantine_behavior:'Missing or conflicting exact physical evidence blocks admission and price-link preparation.',
+      post_write_proof_query:'Exact Master manifest, original artifact bytes, verified review and whole-set/protected-reference readback.'},
+    current_enforcement_status:'enforced',gaps:'Unreviewed finish and identity frontiers remain held.',
+    next_action:'Qualify and release the complete bounded programme before production execution.',
+  },
   GROOKAI_GUARDRAILS: {
     status: 'Active',
     authority_class: 'stabilization_checkpoint',
@@ -402,14 +414,14 @@ export const CONTRACT_RUNTIME_CATALOG_V1 = {
     canon_affecting: true,
     conflict_behavior: 'Pricing mappings cannot override identity truth or staging boundaries.',
     enforcement_points: {
-      worker: [],
+      worker: ['backend/pricing/reviewed_play_normal_nine_price_links_v1.mjs'],
       audit: ['scripts/contracts/drift_audit_v1.sql'],
       checkpoint: ['CONTRACT_RUNTIME_LAYER_V1'],
       quarantine_behavior: 'Pricing-related mapping ambiguity blocks write rather than mutating canon mappings.',
       post_write_proof_query:
-        'No current post-write proof is supplied by the retired source-backed JustTCG discovery CLI.',
+        'The bounded reviewed Normal programme proves exact new mappings, original canonical/warehouse rows, current source and owner-reference digests. Retired JustTCG discovery supplies no write authority.',
     },
-    current_enforcement_status: 'audit_only',
+    current_enforcement_status: 'partially_enforced',
     gaps: 'Legacy source-backed JustTCG writes are retired; historical mapping debt and replacement execution remain separate.',
     next_action: 'Use reviewed Master Index evidence and a bounded applicable executor; do not count read-only discovery as write enforcement.',
   },

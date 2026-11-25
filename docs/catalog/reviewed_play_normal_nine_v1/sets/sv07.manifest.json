@@ -1,0 +1,137 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv07",
+  "scope": "base_release",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "repo:docs/catalog/reviewed_play_normal_nine_v1/sets/sv07.master.json",
+  "master_index_sha256": "d694f063a2ebc92226f3ae94e4ca902f96b987703a10274393cd0e6e94395fa4",
+  "parents": [
+    {
+      "id": "901fa56e-c9f7-5aeb-a9a7-f6505dd38248",
+      "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+      "gv_id": "GV-PK-SCR-107-PLAY-POKEMON-STAMP",
+      "name": "Archaludon",
+      "printed_coordinate": "107",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": "play_pokemon_stamp"
+    },
+    {
+      "id": "a7fb4aee-dccb-5b5e-a861-505a7e589f7e",
+      "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+      "gv_id": "GV-PK-SCR-119-PLAY-POKEMON-STAMP",
+      "name": "Bouffalant",
+      "printed_coordinate": "119",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": "play_pokemon_stamp"
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "901fa56e-c9f7-5aeb-a9a7-f6505dd38248",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-SCR-107-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series-six-checklist",
+          "sha256": "d9274b48889b139400fc0ac021f8d6c0f147e1d8b88d57d53f72dd02d6da727f",
+          "card_print_id": "901fa56e-c9f7-5aeb-a9a7-f6505dd38248",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "a7fb4aee-dccb-5b5e-a861-505a7e589f7e",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-SCR-119-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series-six-checklist",
+          "sha256": "d9274b48889b139400fc0ac021f8d6c0f147e1d8b88d57d53f72dd02d6da727f",
+          "card_print_id": "a7fb4aee-dccb-5b5e-a861-505a7e589f7e",
+          "finish_key": "normal"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [
+    {
+      "key": "901fa56e-c9f7-5aeb-a9a7-f6505dd38248|unspecified_official_foil",
+      "card_print_id": "901fa56e-c9f7-5aeb-a9a7-f6505dd38248",
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "source_ref": "official-series-six-checklist",
+      "reason": "The official red standard-set-foil marker does not establish a Holo, Reverse or specialty foil type; no foil fact admitted."
+    },
+    {
+      "key": "a7fb4aee-dccb-5b5e-a861-505a7e589f7e|unspecified_official_foil",
+      "card_print_id": "a7fb4aee-dccb-5b5e-a861-505a7e589f7e",
+      "status": "needs_review",
+      "scope": "outside_base_release",
+      "source_ref": "official-series-six-checklist",
+      "reason": "The official red standard-set-foil marker does not establish a Holo, Reverse or specialty foil type; no foil fact admitted."
+    }
+  ],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 2,
+    "printings": 2,
+    "finishes": {
+      "normal": 2
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+    "source_artifacts": [
+      {
+        "ref": "official-series-six-checklist",
+        "sha256": "d9274b48889b139400fc0ac021f8d6c0f147e1d8b88d57d53f72dd02d6da727f",
+        "kind": "checked_checklist",
+        "url_or_identifier": "repo:docs/catalog/generic_play_stamp_identity_evidence_v2/sources/series6.original.pdf",
+        "retrieved_at": "2026-11-25T17:16:58.481881+00:00"
+      },
+      {
+        "ref": "play-front-619051",
+        "sha256": "d6377742ee3bce0a41cb666582998718320de5bcf752c18324b3d1c9a169ea2a",
+        "kind": "image_confirmed",
+        "evidence_role": "printed_identity_only_not_foil",
+        "url_or_identifier": "https://product-images.tcgplayer.com/fit-in/1000x1000/619051.jpg",
+        "retrieved_at": "2026-11-25T17:16:58.481881+00:00"
+      },
+      {
+        "ref": "play-front-619068",
+        "sha256": "b8ea2c75da71cd205396c2ecec86f4bc7f001d923215577f095315363a9d325d",
+        "kind": "image_confirmed",
+        "evidence_role": "printed_identity_only_not_foil",
+        "url_or_identifier": "https://product-images.tcgplayer.com/fit-in/1000x1000/619068.jpg",
+        "retrieved_at": "2026-11-25T17:16:58.481881+00:00"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "901fa56e-c9f7-5aeb-a9a7-f6505dd38248",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "a7fb4aee-dccb-5b5e-a861-505a7e589f7e",
+        "finish_key": "normal"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "repo:docs/catalog/reviewed_play_normal_nine_v1/sets/sv07.review.json",
+      "sha256": "228e2bd257d6667f685f8393d2c6ea339eaea4124b45a312c8e6c18588949303"
+    }
+  },
+  "fingerprint": "5559ab0964216b4cec2ee1b0d02dfbe13b64974a50df857c132ade09407fd623"
+}

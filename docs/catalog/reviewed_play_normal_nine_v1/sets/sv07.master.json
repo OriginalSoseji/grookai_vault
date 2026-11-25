@@ -1,0 +1,48 @@
+{
+  "version": "ENGLISH_MASTER_REVIEWED_PLAY_NORMAL_NINE_V1",
+  "set_code": "sv07",
+  "index_fingerprint": "6748d694531a1276e77b8b4ec35815af3e9675c697f30c2e2fb4f22a348be867",
+  "positive_finish_scope": "normal_only_not_complete_foil_inventory",
+  "facts": [
+    {
+      "card_print_id": "901fa56e-c9f7-5aeb-a9a7-f6505dd38248",
+      "finish_key": "normal",
+      "source_product_id": 619051,
+      "printed_number": "107/142",
+      "printed_set_mark": "SCR",
+      "official_standard_observation": {
+        "official_row_literal": "Archaludon SCR 107 ■ ■",
+        "page": 1,
+        "row_bbox": {
+          "x0": 12.5262,
+          "top": 111.75339999999994,
+          "x1": 197.26530000000002,
+          "bottom": 123.28399999999999
+        },
+        "standard_black_box_count": 1,
+        "additional_unspecified_foil_red_box_count": 1
+      },
+      "identity_front_sha256": "d6377742ee3bce0a41cb666582998718320de5bcf752c18324b3d1c9a169ea2a"
+    },
+    {
+      "card_print_id": "a7fb4aee-dccb-5b5e-a861-505a7e589f7e",
+      "finish_key": "normal",
+      "source_product_id": 619068,
+      "printed_number": "119/142",
+      "printed_set_mark": "SCR",
+      "official_standard_observation": {
+        "official_row_literal": "Bouffalant SCR 119 ■ ■",
+        "page": 1,
+        "row_bbox": {
+          "x0": 12.5262,
+          "top": 145.59339999999997,
+          "x1": 197.26530000000002,
+          "bottom": 157.1239999999999
+        },
+        "standard_black_box_count": 1,
+        "additional_unspecified_foil_red_box_count": 1
+      },
+      "identity_front_sha256": "b8ea2c75da71cd205396c2ecec86f4bc7f001d923215577f095315363a9d325d"
+    }
+  ]
+}

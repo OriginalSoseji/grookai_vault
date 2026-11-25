@@ -1,0 +1,28 @@
+{
+  "version": "ENGLISH_MASTER_REVIEWED_PLAY_NORMAL_NINE_V1",
+  "set_code": "sv04",
+  "index_fingerprint": "6748d694531a1276e77b8b4ec35815af3e9675c697f30c2e2fb4f22a348be867",
+  "positive_finish_scope": "normal_only_not_complete_foil_inventory",
+  "facts": [
+    {
+      "card_print_id": "cdb5b846-3014-5c7f-a85d-3d8c5d66506e",
+      "finish_key": "normal",
+      "source_product_id": 565488,
+      "printed_number": "121/182",
+      "printed_set_mark": "PAR",
+      "official_standard_observation": {
+        "official_row_literal": "Morpeko PAR 121 ■",
+        "page": 1,
+        "row_bbox": {
+          "x0": 12.5262,
+          "top": 619.3534,
+          "x1": 182.7684,
+          "bottom": 630.884
+        },
+        "standard_black_box_count": 1,
+        "additional_unspecified_foil_red_box_count": 0
+      },
+      "identity_front_sha256": "23f4b8fc1c399fbfb3dc2780405380c4ac9d563cfc9209a9a0b21c40c1f354f6"
+    }
+  ]
+}

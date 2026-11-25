@@ -5,6 +5,8 @@ import { recordValidationFailureV1 } from './validate_write_v1.mjs';
 
 export const POST_WRITE_PROOF_MODES_V1 = {
   external_discovery_to_warehouse_bridge_v1: 'transactional_authoritative',
+  reviewed_play_normal_nine_price_links_v1: 'transactional_authoritative',
+  warehouse_programme_founder_approval_v1: 'transactional_authoritative',
   classification_apply_write_plan_v1: 'transactional_authoritative',
   classification_apply_reclassification_result_v1: 'transactional_authoritative',
   promotion_stage_create_stage_v1: 'transactional_authoritative',

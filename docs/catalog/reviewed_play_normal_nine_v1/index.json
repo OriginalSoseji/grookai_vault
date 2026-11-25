@@ -1,0 +1,811 @@
+{
+  "version": "REVIEWED_PLAY_NORMAL_NINE_V1",
+  "role": "new_row_proposals_and_exact_positive_normal_evidence",
+  "source_identity_registry": "7a9fac6bb539af6ba438d057d148f20be7ba3b79f848d1917267c212a4f935b5",
+  "source_reviewed_at": "2026-11-25T17:16:58.481881+00:00",
+  "source_reviewer": "Codex direct complete Poppler-rendered official PDF page inspection plus independent PDF glyph stroke-color/coordinate crosscheck",
+  "actual_absence_readonly_checked_at": "2026-11-25T19:38:02.880Z",
+  "absence_frame_sha256": "4f18de31e9d0e5ef167f35e118ef9cd06507622767613a2e0ad13f61d0778621",
+  "source_legend": {
+    "black_outline": "standard set",
+    "red_outline": "standard set foil"
+  },
+  "official_checklist": {
+    "file": "docs/catalog/generic_play_stamp_identity_evidence_v2/sources/series6.original.pdf",
+    "sha256": "d9274b48889b139400fc0ac021f8d6c0f147e1d8b88d57d53f72dd02d6da727f",
+    "page": 1
+  },
+  "evidence_projection_only": true,
+  "production_execution_authority": false,
+  "price_authority": false,
+  "whole_set_completion": false,
+  "normal_facts": 9,
+  "unspecified_foil_leads": 3,
+  "old32_and_298_identity_holds_preserved": true,
+  "targets": [
+    {
+      "product_id": 565473,
+      "base_card_print_id": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11",
+      "set_code": "sv05",
+      "parent": {
+        "id": "98fff928-cd45-5ba9-a570-cf047eee0e80",
+        "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+        "gv_id": "GV-PK-TEF-119-PLAY-POKEMON-STAMP",
+        "name": "Koraidon",
+        "printed_coordinate": "119",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "play_pokemon_stamp",
+        "printed_identity_modifier": "play_pokemon_stamp"
+      },
+      "proposed_identity_id": "86ff47d0-1a68-5ae1-aa04-4c0225f8cae9",
+      "identity": {
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv05",
+        "printed_number": "119",
+        "normalized_printed_name": "koraidon",
+        "source_name_raw": null,
+        "identity_payload": {
+          "variant_key_current": "play_pokemon_stamp"
+        },
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "identity_key_hash": "aed03595fc9fd24131a672525cc8b8b8f8335f55bdc9b3ba845a88f36232ee34"
+      },
+      "parent_registry_admission": {
+        "version": "WAREHOUSE_PARENT_REGISTRY_V1",
+        "scope": "new_reviewed_generic_play_parent_only",
+        "product_id": "565473",
+        "evidence_registry": "7a9fac6bb539af6ba438d057d148f20be7ba3b79f848d1917267c212a4f935b5",
+        "planned_parent_id": "98fff928-cd45-5ba9-a570-cf047eee0e80",
+        "planned_identity_id": "86ff47d0-1a68-5ae1-aa04-4c0225f8cae9",
+        "new_uuid_proposals_not_existing_records": true,
+        "target": {
+          "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+          "set_code": "sv05",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "identity_domain": "pokemon_eng_standard",
+          "variant_key": "play_pokemon_stamp",
+          "printed_identity_modifier": "play_pokemon_stamp",
+          "name": "Koraidon",
+          "number_plain": "119"
+        },
+        "identity": {
+          "identity_domain": "pokemon_eng_standard",
+          "set_code_identity": "sv05",
+          "printed_number": "119",
+          "normalized_printed_name": "koraidon",
+          "source_name_raw": null,
+          "identity_payload": {
+            "variant_key_current": "play_pokemon_stamp"
+          },
+          "identity_key_version": "pokemon_eng_standard:v1",
+          "identity_key_hash": "aed03595fc9fd24131a672525cc8b8b8f8335f55bdc9b3ba845a88f36232ee34"
+        },
+        "gv_id": "GV-PK-TEF-119-PLAY-POKEMON-STAMP",
+        "projection_definition_sha256": "1685f092aa774d5866ba9f47c19b57a26f96add0e72cd849695bf095e38427b4",
+        "existing_identity_updates": 0,
+        "existing_parent_updates": 0,
+        "fingerprint": "55e8254b9dd2ff0daa48a32d2a6bbf8ea05c2a9638685aa870b4da8f36788f3a"
+      },
+      "printing": {
+        "card_print_id": "98fff928-cd45-5ba9-a570-cf047eee0e80",
+        "finish_key": "normal",
+        "printing_gv_id": "GV-PK-TEF-119-PLAY-POKEMON-STAMP-STD",
+        "id": "fd16d7d2-62ad-5501-a0da-88c8b14d6c8d"
+      },
+      "printed_number": "119/162",
+      "printed_set_mark": "TEF",
+      "card_front_file": "docs/catalog/generic_play_stamp_identity_evidence_v2/sources/tcgplayer-565473.original.jpg",
+      "card_front_sha256": "36b90b80c30a270306441b711ee17d07f346c4b3d16c9f3e599fe09394d5a75d",
+      "observation": {
+        "official_row_literal": "Koraidon TEF 119 ■",
+        "page": 1,
+        "row_bbox": {
+          "x0": 12.5262,
+          "top": 534.7534,
+          "x1": 182.7684,
+          "bottom": 546.284
+        },
+        "standard_black_box_count": 1,
+        "additional_unspecified_foil_red_box_count": 0
+      },
+      "rows_are_new_proposals_not_existing_canonical_objects": true
+    },
+    {
+      "product_id": 565482,
+      "base_card_print_id": "90278a2b-971e-4000-9ffb-e127b11aaf0d",
+      "set_code": "sv05",
+      "parent": {
+        "id": "6ac579b0-5e93-5953-ae7f-0a72ae9e51f1",
+        "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+        "gv_id": "GV-PK-TEF-121-PLAY-POKEMON-STAMP",
+        "name": "Miraidon",
+        "printed_coordinate": "121",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "play_pokemon_stamp",
+        "printed_identity_modifier": "play_pokemon_stamp"
+      },
+      "proposed_identity_id": "4efcd2c9-9288-5b78-a1e4-c2292a487d27",
+      "identity": {
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv05",
+        "printed_number": "121",
+        "normalized_printed_name": "miraidon",
+        "source_name_raw": null,
+        "identity_payload": {
+          "variant_key_current": "play_pokemon_stamp"
+        },
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "identity_key_hash": "fe721af69402f217974466f71c138506803bf464baa8ab96f62254397c75fd2d"
+      },
+      "parent_registry_admission": {
+        "version": "WAREHOUSE_PARENT_REGISTRY_V1",
+        "scope": "new_reviewed_generic_play_parent_only",
+        "product_id": "565482",
+        "evidence_registry": "7a9fac6bb539af6ba438d057d148f20be7ba3b79f848d1917267c212a4f935b5",
+        "planned_parent_id": "6ac579b0-5e93-5953-ae7f-0a72ae9e51f1",
+        "planned_identity_id": "4efcd2c9-9288-5b78-a1e4-c2292a487d27",
+        "new_uuid_proposals_not_existing_records": true,
+        "target": {
+          "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+          "set_code": "sv05",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "identity_domain": "pokemon_eng_standard",
+          "variant_key": "play_pokemon_stamp",
+          "printed_identity_modifier": "play_pokemon_stamp",
+          "name": "Miraidon",
+          "number_plain": "121"
+        },
+        "identity": {
+          "identity_domain": "pokemon_eng_standard",
+          "set_code_identity": "sv05",
+          "printed_number": "121",
+          "normalized_printed_name": "miraidon",
+          "source_name_raw": null,
+          "identity_payload": {
+            "variant_key_current": "play_pokemon_stamp"
+          },
+          "identity_key_version": "pokemon_eng_standard:v1",
+          "identity_key_hash": "fe721af69402f217974466f71c138506803bf464baa8ab96f62254397c75fd2d"
+        },
+        "gv_id": "GV-PK-TEF-121-PLAY-POKEMON-STAMP",
+        "projection_definition_sha256": "1685f092aa774d5866ba9f47c19b57a26f96add0e72cd849695bf095e38427b4",
+        "existing_identity_updates": 0,
+        "existing_parent_updates": 0,
+        "fingerprint": "e27ff20fb8759e32983cf87a3abd1c107837d6b469bb370a89e3408eb93c5aa8"
+      },
+      "printing": {
+        "card_print_id": "6ac579b0-5e93-5953-ae7f-0a72ae9e51f1",
+        "finish_key": "normal",
+        "printing_gv_id": "GV-PK-TEF-121-PLAY-POKEMON-STAMP-STD",
+        "id": "c7b38152-d0e9-50d0-a7fe-e3ed7e935961"
+      },
+      "printed_number": "121/162",
+      "printed_set_mark": "TEF",
+      "card_front_file": "docs/catalog/generic_play_stamp_identity_evidence_v2/sources/tcgplayer-565482.original.jpg",
+      "card_front_sha256": "441e1ee17276c2f353d381931ac1ba4e5900df0eda97bbe929c0af18301ef145",
+      "observation": {
+        "official_row_literal": "Miraidon TEF 121 ■",
+        "page": 1,
+        "row_bbox": {
+          "x0": 12.5262,
+          "top": 602.4334,
+          "x1": 182.7684,
+          "bottom": 613.9639999999999
+        },
+        "standard_black_box_count": 1,
+        "additional_unspecified_foil_red_box_count": 0
+      },
+      "rows_are_new_proposals_not_existing_canonical_objects": true
+    },
+    {
+      "product_id": 565488,
+      "base_card_print_id": "c3e4974f-c021-4330-9663-7d94a74e4d9d",
+      "set_code": "sv04",
+      "parent": {
+        "id": "cdb5b846-3014-5c7f-a85d-3d8c5d66506e",
+        "set_id": "1e501229-9396-49cd-b3eb-e6658e722ee2",
+        "gv_id": "GV-PK-PAR-121-PLAY-POKEMON-STAMP",
+        "name": "Morpeko",
+        "printed_coordinate": "121",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "play_pokemon_stamp",
+        "printed_identity_modifier": "play_pokemon_stamp"
+      },
+      "proposed_identity_id": "af4a9056-34a9-59e5-ab30-c38848c85272",
+      "identity": {
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv04",
+        "printed_number": "121",
+        "normalized_printed_name": "morpeko",
+        "source_name_raw": null,
+        "identity_payload": {
+          "variant_key_current": "play_pokemon_stamp"
+        },
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "identity_key_hash": "9255b1d99892f2410fec7ed007302222298fc6ea77d17cd44d393dfba67d1ae2"
+      },
+      "parent_registry_admission": {
+        "version": "WAREHOUSE_PARENT_REGISTRY_V1",
+        "scope": "new_reviewed_generic_play_parent_only",
+        "product_id": "565488",
+        "evidence_registry": "7a9fac6bb539af6ba438d057d148f20be7ba3b79f848d1917267c212a4f935b5",
+        "planned_parent_id": "cdb5b846-3014-5c7f-a85d-3d8c5d66506e",
+        "planned_identity_id": "af4a9056-34a9-59e5-ab30-c38848c85272",
+        "new_uuid_proposals_not_existing_records": true,
+        "target": {
+          "set_id": "1e501229-9396-49cd-b3eb-e6658e722ee2",
+          "set_code": "sv04",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "identity_domain": "pokemon_eng_standard",
+          "variant_key": "play_pokemon_stamp",
+          "printed_identity_modifier": "play_pokemon_stamp",
+          "name": "Morpeko",
+          "number_plain": "121"
+        },
+        "identity": {
+          "identity_domain": "pokemon_eng_standard",
+          "set_code_identity": "sv04",
+          "printed_number": "121",
+          "normalized_printed_name": "morpeko",
+          "source_name_raw": null,
+          "identity_payload": {
+            "variant_key_current": "play_pokemon_stamp"
+          },
+          "identity_key_version": "pokemon_eng_standard:v1",
+          "identity_key_hash": "9255b1d99892f2410fec7ed007302222298fc6ea77d17cd44d393dfba67d1ae2"
+        },
+        "gv_id": "GV-PK-PAR-121-PLAY-POKEMON-STAMP",
+        "projection_definition_sha256": "1685f092aa774d5866ba9f47c19b57a26f96add0e72cd849695bf095e38427b4",
+        "existing_identity_updates": 0,
+        "existing_parent_updates": 0,
+        "fingerprint": "59fc79b146e7d46b88a97b6feb038645e6646dac0392eb21107a8c4516378484"
+      },
+      "printing": {
+        "card_print_id": "cdb5b846-3014-5c7f-a85d-3d8c5d66506e",
+        "finish_key": "normal",
+        "printing_gv_id": "GV-PK-PAR-121-PLAY-POKEMON-STAMP-STD",
+        "id": "7825fb9c-9ec6-5717-a65a-6106f5cdab2b"
+      },
+      "printed_number": "121/182",
+      "printed_set_mark": "PAR",
+      "card_front_file": "docs/catalog/generic_play_stamp_identity_evidence_v2/sources/tcgplayer-565488.original.jpg",
+      "card_front_sha256": "23f4b8fc1c399fbfb3dc2780405380c4ac9d563cfc9209a9a0b21c40c1f354f6",
+      "observation": {
+        "official_row_literal": "Morpeko PAR 121 ■",
+        "page": 1,
+        "row_bbox": {
+          "x0": 12.5262,
+          "top": 619.3534,
+          "x1": 182.7684,
+          "bottom": 630.884
+        },
+        "standard_black_box_count": 1,
+        "additional_unspecified_foil_red_box_count": 0
+      },
+      "rows_are_new_proposals_not_existing_canonical_objects": true
+    },
+    {
+      "product_id": 577579,
+      "base_card_print_id": "f8003028-e419-490b-8a31-b231ab79ec16",
+      "set_code": "sv05",
+      "parent": {
+        "id": "739b99ec-9bc9-574d-ace2-046dfba86f03",
+        "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+        "gv_id": "GV-PK-TEF-109-PLAY-POKEMON-STAMP",
+        "name": "Roaring Moon",
+        "printed_coordinate": "109",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "play_pokemon_stamp",
+        "printed_identity_modifier": "play_pokemon_stamp"
+      },
+      "proposed_identity_id": "adfba7d7-dee9-5a40-ad10-7b2d83ab38f9",
+      "identity": {
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv05",
+        "printed_number": "109",
+        "normalized_printed_name": "roaring moon",
+        "source_name_raw": null,
+        "identity_payload": {
+          "variant_key_current": "play_pokemon_stamp"
+        },
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "identity_key_hash": "c5c351dc4e0551230b40536fa53eea39eef1da979394c5f5a328b8ef01333372"
+      },
+      "parent_registry_admission": {
+        "version": "WAREHOUSE_PARENT_REGISTRY_V1",
+        "scope": "new_reviewed_generic_play_parent_only",
+        "product_id": "577579",
+        "evidence_registry": "7a9fac6bb539af6ba438d057d148f20be7ba3b79f848d1917267c212a4f935b5",
+        "planned_parent_id": "739b99ec-9bc9-574d-ace2-046dfba86f03",
+        "planned_identity_id": "adfba7d7-dee9-5a40-ad10-7b2d83ab38f9",
+        "new_uuid_proposals_not_existing_records": true,
+        "target": {
+          "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+          "set_code": "sv05",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "identity_domain": "pokemon_eng_standard",
+          "variant_key": "play_pokemon_stamp",
+          "printed_identity_modifier": "play_pokemon_stamp",
+          "name": "Roaring Moon",
+          "number_plain": "109"
+        },
+        "identity": {
+          "identity_domain": "pokemon_eng_standard",
+          "set_code_identity": "sv05",
+          "printed_number": "109",
+          "normalized_printed_name": "roaring moon",
+          "source_name_raw": null,
+          "identity_payload": {
+            "variant_key_current": "play_pokemon_stamp"
+          },
+          "identity_key_version": "pokemon_eng_standard:v1",
+          "identity_key_hash": "c5c351dc4e0551230b40536fa53eea39eef1da979394c5f5a328b8ef01333372"
+        },
+        "gv_id": "GV-PK-TEF-109-PLAY-POKEMON-STAMP",
+        "projection_definition_sha256": "1685f092aa774d5866ba9f47c19b57a26f96add0e72cd849695bf095e38427b4",
+        "existing_identity_updates": 0,
+        "existing_parent_updates": 0,
+        "fingerprint": "3fb47b4a12f0e3f4d6b81888f2f45f6f2bc4969ac84a1c791e09377291765d2b"
+      },
+      "printing": {
+        "card_print_id": "739b99ec-9bc9-574d-ace2-046dfba86f03",
+        "finish_key": "normal",
+        "printing_gv_id": "GV-PK-TEF-109-PLAY-POKEMON-STAMP-STD",
+        "id": "910185a9-29ea-5083-aac0-5b0a037afcb3"
+      },
+      "printed_number": "109/162",
+      "printed_set_mark": "TEF",
+      "card_front_file": "docs/catalog/generic_play_stamp_identity_evidence_v2/sources/tcgplayer-577579.original.jpg",
+      "card_front_sha256": "120065f138c3105ab9445d26eca791a20a6581c31bfff467a69dff19206e350c",
+      "observation": {
+        "official_row_literal": "Roaring Moon TEF 109 ■",
+        "page": 1,
+        "row_bbox": {
+          "x0": 212.0128,
+          "top": 196.35339999999997,
+          "x1": 382.2551,
+          "bottom": 207.88400000000001
+        },
+        "standard_black_box_count": 1,
+        "additional_unspecified_foil_red_box_count": 0
+      },
+      "rows_are_new_proposals_not_existing_canonical_objects": true
+    },
+    {
+      "product_id": 619051,
+      "base_card_print_id": "7bf55366-9a6b-466f-bd71-f617d626b5d9",
+      "set_code": "sv07",
+      "parent": {
+        "id": "901fa56e-c9f7-5aeb-a9a7-f6505dd38248",
+        "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+        "gv_id": "GV-PK-SCR-107-PLAY-POKEMON-STAMP",
+        "name": "Archaludon",
+        "printed_coordinate": "107",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "play_pokemon_stamp",
+        "printed_identity_modifier": "play_pokemon_stamp"
+      },
+      "proposed_identity_id": "7c80c3f3-fe98-5d11-a475-bace23987542",
+      "identity": {
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv07",
+        "printed_number": "107",
+        "normalized_printed_name": "archaludon",
+        "source_name_raw": null,
+        "identity_payload": {
+          "variant_key_current": "play_pokemon_stamp"
+        },
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "identity_key_hash": "9dc8885ff5b3aa25ad37bf480aa600d7832f93d56b4f6cdb2fa19893357f8d7a"
+      },
+      "parent_registry_admission": {
+        "version": "WAREHOUSE_PARENT_REGISTRY_V1",
+        "scope": "new_reviewed_generic_play_parent_only",
+        "product_id": "619051",
+        "evidence_registry": "7a9fac6bb539af6ba438d057d148f20be7ba3b79f848d1917267c212a4f935b5",
+        "planned_parent_id": "901fa56e-c9f7-5aeb-a9a7-f6505dd38248",
+        "planned_identity_id": "7c80c3f3-fe98-5d11-a475-bace23987542",
+        "new_uuid_proposals_not_existing_records": true,
+        "target": {
+          "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+          "set_code": "sv07",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "identity_domain": "pokemon_eng_standard",
+          "variant_key": "play_pokemon_stamp",
+          "printed_identity_modifier": "play_pokemon_stamp",
+          "name": "Archaludon",
+          "number_plain": "107"
+        },
+        "identity": {
+          "identity_domain": "pokemon_eng_standard",
+          "set_code_identity": "sv07",
+          "printed_number": "107",
+          "normalized_printed_name": "archaludon",
+          "source_name_raw": null,
+          "identity_payload": {
+            "variant_key_current": "play_pokemon_stamp"
+          },
+          "identity_key_version": "pokemon_eng_standard:v1",
+          "identity_key_hash": "9dc8885ff5b3aa25ad37bf480aa600d7832f93d56b4f6cdb2fa19893357f8d7a"
+        },
+        "gv_id": "GV-PK-SCR-107-PLAY-POKEMON-STAMP",
+        "projection_definition_sha256": "1685f092aa774d5866ba9f47c19b57a26f96add0e72cd849695bf095e38427b4",
+        "existing_identity_updates": 0,
+        "existing_parent_updates": 0,
+        "fingerprint": "36aa15546ee3617a8381065818c0b19f3c00c02c8b142de587e7d4bed2201316"
+      },
+      "printing": {
+        "card_print_id": "901fa56e-c9f7-5aeb-a9a7-f6505dd38248",
+        "finish_key": "normal",
+        "printing_gv_id": "GV-PK-SCR-107-PLAY-POKEMON-STAMP-STD",
+        "id": "ca1c9b7b-132d-5cdd-a88d-f34250585bc1"
+      },
+      "printed_number": "107/142",
+      "printed_set_mark": "SCR",
+      "card_front_file": "docs/catalog/generic_play_stamp_identity_evidence_v2/sources/tcgplayer-619051.original.jpg",
+      "card_front_sha256": "d6377742ee3bce0a41cb666582998718320de5bcf752c18324b3d1c9a169ea2a",
+      "observation": {
+        "official_row_literal": "Archaludon SCR 107 ■ ■",
+        "page": 1,
+        "row_bbox": {
+          "x0": 12.5262,
+          "top": 111.75339999999994,
+          "x1": 197.26530000000002,
+          "bottom": 123.28399999999999
+        },
+        "standard_black_box_count": 1,
+        "additional_unspecified_foil_red_box_count": 1
+      },
+      "rows_are_new_proposals_not_existing_canonical_objects": true
+    },
+    {
+      "product_id": 619068,
+      "base_card_print_id": "1dd005a1-ce85-4088-9cb1-99185d961506",
+      "set_code": "sv07",
+      "parent": {
+        "id": "a7fb4aee-dccb-5b5e-a861-505a7e589f7e",
+        "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+        "gv_id": "GV-PK-SCR-119-PLAY-POKEMON-STAMP",
+        "name": "Bouffalant",
+        "printed_coordinate": "119",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "play_pokemon_stamp",
+        "printed_identity_modifier": "play_pokemon_stamp"
+      },
+      "proposed_identity_id": "a45180f5-8f9b-536c-ac6e-f5384995ae1a",
+      "identity": {
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv07",
+        "printed_number": "119",
+        "normalized_printed_name": "bouffalant",
+        "source_name_raw": null,
+        "identity_payload": {
+          "variant_key_current": "play_pokemon_stamp"
+        },
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "identity_key_hash": "f5166ea059eb3409bf2a9eda561ed26267b20e6f30ba316b39a1a1627f275d8e"
+      },
+      "parent_registry_admission": {
+        "version": "WAREHOUSE_PARENT_REGISTRY_V1",
+        "scope": "new_reviewed_generic_play_parent_only",
+        "product_id": "619068",
+        "evidence_registry": "7a9fac6bb539af6ba438d057d148f20be7ba3b79f848d1917267c212a4f935b5",
+        "planned_parent_id": "a7fb4aee-dccb-5b5e-a861-505a7e589f7e",
+        "planned_identity_id": "a45180f5-8f9b-536c-ac6e-f5384995ae1a",
+        "new_uuid_proposals_not_existing_records": true,
+        "target": {
+          "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+          "set_code": "sv07",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "identity_domain": "pokemon_eng_standard",
+          "variant_key": "play_pokemon_stamp",
+          "printed_identity_modifier": "play_pokemon_stamp",
+          "name": "Bouffalant",
+          "number_plain": "119"
+        },
+        "identity": {
+          "identity_domain": "pokemon_eng_standard",
+          "set_code_identity": "sv07",
+          "printed_number": "119",
+          "normalized_printed_name": "bouffalant",
+          "source_name_raw": null,
+          "identity_payload": {
+            "variant_key_current": "play_pokemon_stamp"
+          },
+          "identity_key_version": "pokemon_eng_standard:v1",
+          "identity_key_hash": "f5166ea059eb3409bf2a9eda561ed26267b20e6f30ba316b39a1a1627f275d8e"
+        },
+        "gv_id": "GV-PK-SCR-119-PLAY-POKEMON-STAMP",
+        "projection_definition_sha256": "1685f092aa774d5866ba9f47c19b57a26f96add0e72cd849695bf095e38427b4",
+        "existing_identity_updates": 0,
+        "existing_parent_updates": 0,
+        "fingerprint": "d6f8ff7691c6448b89643517c6eb48de8a4461f390c1a79790dc3776ed9189fd"
+      },
+      "printing": {
+        "card_print_id": "a7fb4aee-dccb-5b5e-a861-505a7e589f7e",
+        "finish_key": "normal",
+        "printing_gv_id": "GV-PK-SCR-119-PLAY-POKEMON-STAMP-STD",
+        "id": "928c4ee1-371c-5762-a3bc-350d7e2dcd0e"
+      },
+      "printed_number": "119/142",
+      "printed_set_mark": "SCR",
+      "card_front_file": "docs/catalog/generic_play_stamp_identity_evidence_v2/sources/tcgplayer-619068.original.jpg",
+      "card_front_sha256": "b8ea2c75da71cd205396c2ecec86f4bc7f001d923215577f095315363a9d325d",
+      "observation": {
+        "official_row_literal": "Bouffalant SCR 119 ■ ■",
+        "page": 1,
+        "row_bbox": {
+          "x0": 12.5262,
+          "top": 145.59339999999997,
+          "x1": 197.26530000000002,
+          "bottom": 157.1239999999999
+        },
+        "standard_black_box_count": 1,
+        "additional_unspecified_foil_red_box_count": 1
+      },
+      "rows_are_new_proposals_not_existing_canonical_objects": true
+    },
+    {
+      "product_id": 619147,
+      "base_card_print_id": "29500623-96e6-4afd-8381-17edc14cf20f",
+      "set_code": "sv6pt5",
+      "parent": {
+        "id": "0f3003a9-c913-5a6f-ab6e-03bf85e81f30",
+        "set_id": "100c97f1-6611-4cf4-8310-9b9b79b377bb",
+        "gv_id": "GV-PK-SFA-061-PLAY-POKEMON-STAMP",
+        "name": "Night Stretcher",
+        "printed_coordinate": "061",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "play_pokemon_stamp",
+        "printed_identity_modifier": "play_pokemon_stamp"
+      },
+      "proposed_identity_id": "e9de78a6-5691-56b8-a658-daa64b0f9175",
+      "identity": {
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv6pt5",
+        "printed_number": "061",
+        "normalized_printed_name": "night stretcher",
+        "source_name_raw": null,
+        "identity_payload": {
+          "variant_key_current": "play_pokemon_stamp"
+        },
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "identity_key_hash": "eb8d52180aad89784b0dcd5590edc8fd1f306403e5d2b4d6285c8a49b7b5e3c3"
+      },
+      "parent_registry_admission": {
+        "version": "WAREHOUSE_PARENT_REGISTRY_V1",
+        "scope": "new_reviewed_generic_play_parent_only",
+        "product_id": "619147",
+        "evidence_registry": "7a9fac6bb539af6ba438d057d148f20be7ba3b79f848d1917267c212a4f935b5",
+        "planned_parent_id": "0f3003a9-c913-5a6f-ab6e-03bf85e81f30",
+        "planned_identity_id": "e9de78a6-5691-56b8-a658-daa64b0f9175",
+        "new_uuid_proposals_not_existing_records": true,
+        "target": {
+          "set_id": "100c97f1-6611-4cf4-8310-9b9b79b377bb",
+          "set_code": "sv6pt5",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "identity_domain": "pokemon_eng_standard",
+          "variant_key": "play_pokemon_stamp",
+          "printed_identity_modifier": "play_pokemon_stamp",
+          "name": "Night Stretcher",
+          "number_plain": "061"
+        },
+        "identity": {
+          "identity_domain": "pokemon_eng_standard",
+          "set_code_identity": "sv6pt5",
+          "printed_number": "061",
+          "normalized_printed_name": "night stretcher",
+          "source_name_raw": null,
+          "identity_payload": {
+            "variant_key_current": "play_pokemon_stamp"
+          },
+          "identity_key_version": "pokemon_eng_standard:v1",
+          "identity_key_hash": "eb8d52180aad89784b0dcd5590edc8fd1f306403e5d2b4d6285c8a49b7b5e3c3"
+        },
+        "gv_id": "GV-PK-SFA-061-PLAY-POKEMON-STAMP",
+        "projection_definition_sha256": "1685f092aa774d5866ba9f47c19b57a26f96add0e72cd849695bf095e38427b4",
+        "existing_identity_updates": 0,
+        "existing_parent_updates": 0,
+        "fingerprint": "3905e150ad298c40295771dc73938f2a30ad372ab53d918d7959f7ef9f45573c"
+      },
+      "printing": {
+        "card_print_id": "0f3003a9-c913-5a6f-ab6e-03bf85e81f30",
+        "finish_key": "normal",
+        "printing_gv_id": "GV-PK-SFA-061-PLAY-POKEMON-STAMP-STD",
+        "id": "1130189e-6288-5b6c-a883-544ba5a4ed71"
+      },
+      "printed_number": "061/064",
+      "printed_set_mark": "SFA",
+      "card_front_file": "docs/catalog/generic_play_stamp_identity_evidence_v2/sources/tcgplayer-619147.original.jpg",
+      "card_front_sha256": "871f9d45fb3c9a6675dffa0c0e7aac6fb84bdf9ee496a121260fdf726489a692",
+      "observation": {
+        "official_row_literal": "Night Stretcher SFA 061 ■ ■",
+        "page": 1,
+        "row_bbox": {
+          "x0": 212.0128,
+          "top": 636.2734,
+          "x1": 396.75190000000003,
+          "bottom": 647.804
+        },
+        "standard_black_box_count": 1,
+        "additional_unspecified_foil_red_box_count": 1
+      },
+      "rows_are_new_proposals_not_existing_canonical_objects": true
+    },
+    {
+      "product_id": 619153,
+      "base_card_print_id": "a524d59b-26b4-4be2-8839-338585171310",
+      "set_code": "sv06",
+      "parent": {
+        "id": "109f4564-07a9-5779-af4f-7c12b3bf41d2",
+        "set_id": "0471b152-bbd1-4660-ae4e-8c67540ae1ac",
+        "gv_id": "GV-PK-TWM-111-PLAY-POKEMON-STAMP",
+        "name": "Okidogi",
+        "printed_coordinate": "111",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "play_pokemon_stamp",
+        "printed_identity_modifier": "play_pokemon_stamp"
+      },
+      "proposed_identity_id": "617f9f5e-7549-5d2c-af02-7dbb82cd8ede",
+      "identity": {
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv06",
+        "printed_number": "111",
+        "normalized_printed_name": "okidogi",
+        "source_name_raw": null,
+        "identity_payload": {
+          "variant_key_current": "play_pokemon_stamp"
+        },
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "identity_key_hash": "00459c3b28e92d91d5c946dc128bb56a1199942b96b95a6a78b6dd14199a82e3"
+      },
+      "parent_registry_admission": {
+        "version": "WAREHOUSE_PARENT_REGISTRY_V1",
+        "scope": "new_reviewed_generic_play_parent_only",
+        "product_id": "619153",
+        "evidence_registry": "7a9fac6bb539af6ba438d057d148f20be7ba3b79f848d1917267c212a4f935b5",
+        "planned_parent_id": "109f4564-07a9-5779-af4f-7c12b3bf41d2",
+        "planned_identity_id": "617f9f5e-7549-5d2c-af02-7dbb82cd8ede",
+        "new_uuid_proposals_not_existing_records": true,
+        "target": {
+          "set_id": "0471b152-bbd1-4660-ae4e-8c67540ae1ac",
+          "set_code": "sv06",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "identity_domain": "pokemon_eng_standard",
+          "variant_key": "play_pokemon_stamp",
+          "printed_identity_modifier": "play_pokemon_stamp",
+          "name": "Okidogi",
+          "number_plain": "111"
+        },
+        "identity": {
+          "identity_domain": "pokemon_eng_standard",
+          "set_code_identity": "sv06",
+          "printed_number": "111",
+          "normalized_printed_name": "okidogi",
+          "source_name_raw": null,
+          "identity_payload": {
+            "variant_key_current": "play_pokemon_stamp"
+          },
+          "identity_key_version": "pokemon_eng_standard:v1",
+          "identity_key_hash": "00459c3b28e92d91d5c946dc128bb56a1199942b96b95a6a78b6dd14199a82e3"
+        },
+        "gv_id": "GV-PK-TWM-111-PLAY-POKEMON-STAMP",
+        "projection_definition_sha256": "1685f092aa774d5866ba9f47c19b57a26f96add0e72cd849695bf095e38427b4",
+        "existing_identity_updates": 0,
+        "existing_parent_updates": 0,
+        "fingerprint": "93d21dcd45fde7da5d0aa2d91d45f1e75774a35174f6d4541299a4bc9b76df6f"
+      },
+      "printing": {
+        "card_print_id": "109f4564-07a9-5779-af4f-7c12b3bf41d2",
+        "finish_key": "normal",
+        "printing_gv_id": "GV-PK-TWM-111-PLAY-POKEMON-STAMP-STD",
+        "id": "064c68aa-4a8e-565f-a277-b7b47b273e1e"
+      },
+      "printed_number": "111/167",
+      "printed_set_mark": "TWM",
+      "card_front_file": "docs/catalog/generic_play_stamp_identity_evidence_v2/sources/tcgplayer-619153.original.jpg",
+      "card_front_sha256": "438fb3074e283f655f970d5e48eb42ade148a488dd8037f6a27acbc62ee896ec",
+      "observation": {
+        "official_row_literal": "Okidogi TWM 111 ■",
+        "page": 1,
+        "row_bbox": {
+          "x0": 12.5262,
+          "top": 703.9534,
+          "x1": 182.7684,
+          "bottom": 715.484
+        },
+        "standard_black_box_count": 1,
+        "additional_unspecified_foil_red_box_count": 0
+      },
+      "rows_are_new_proposals_not_existing_canonical_objects": true
+    },
+    {
+      "product_id": 623656,
+      "base_card_print_id": "1a4f41a6-4e5f-45f9-ab3d-ecb3be9d5dd7",
+      "set_code": "sv06",
+      "parent": {
+        "id": "9c5caaee-9d14-59ee-a44c-0532bfae2511",
+        "set_id": "0471b152-bbd1-4660-ae4e-8c67540ae1ac",
+        "gv_id": "GV-PK-TWM-145-PLAY-POKEMON-STAMP",
+        "name": "Carmine",
+        "printed_coordinate": "145",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "play_pokemon_stamp",
+        "printed_identity_modifier": "play_pokemon_stamp"
+      },
+      "proposed_identity_id": "bbe13ec6-5401-5df4-adee-c412f2b8e268",
+      "identity": {
+        "identity_domain": "pokemon_eng_standard",
+        "set_code_identity": "sv06",
+        "printed_number": "145",
+        "normalized_printed_name": "carmine",
+        "source_name_raw": null,
+        "identity_payload": {
+          "variant_key_current": "play_pokemon_stamp"
+        },
+        "identity_key_version": "pokemon_eng_standard:v1",
+        "identity_key_hash": "0253dbc03cff8f5db6055cca77444ee114a29b5684331776adf356289b903e0f"
+      },
+      "parent_registry_admission": {
+        "version": "WAREHOUSE_PARENT_REGISTRY_V1",
+        "scope": "new_reviewed_generic_play_parent_only",
+        "product_id": "623656",
+        "evidence_registry": "7a9fac6bb539af6ba438d057d148f20be7ba3b79f848d1917267c212a4f935b5",
+        "planned_parent_id": "9c5caaee-9d14-59ee-a44c-0532bfae2511",
+        "planned_identity_id": "bbe13ec6-5401-5df4-adee-c412f2b8e268",
+        "new_uuid_proposals_not_existing_records": true,
+        "target": {
+          "set_id": "0471b152-bbd1-4660-ae4e-8c67540ae1ac",
+          "set_code": "sv06",
+          "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+          "identity_domain": "pokemon_eng_standard",
+          "variant_key": "play_pokemon_stamp",
+          "printed_identity_modifier": "play_pokemon_stamp",
+          "name": "Carmine",
+          "number_plain": "145"
+        },
+        "identity": {
+          "identity_domain": "pokemon_eng_standard",
+          "set_code_identity": "sv06",
+          "printed_number": "145",
+          "normalized_printed_name": "carmine",
+          "source_name_raw": null,
+          "identity_payload": {
+            "variant_key_current": "play_pokemon_stamp"
+          },
+          "identity_key_version": "pokemon_eng_standard:v1",
+          "identity_key_hash": "0253dbc03cff8f5db6055cca77444ee114a29b5684331776adf356289b903e0f"
+        },
+        "gv_id": "GV-PK-TWM-145-PLAY-POKEMON-STAMP",
+        "projection_definition_sha256": "1685f092aa774d5866ba9f47c19b57a26f96add0e72cd849695bf095e38427b4",
+        "existing_identity_updates": 0,
+        "existing_parent_updates": 0,
+        "fingerprint": "3bbc56574a4eb922b99d486b5963331906f9191243533350a758e6cf5ea07b73"
+      },
+      "printing": {
+        "card_print_id": "9c5caaee-9d14-59ee-a44c-0532bfae2511",
+        "finish_key": "normal",
+        "printing_gv_id": "GV-PK-TWM-145-PLAY-POKEMON-STAMP-STD",
+        "id": "1f983ba4-fe7f-500e-ae20-6bd003dc08fb"
+      },
+      "printed_number": "145/167",
+      "printed_set_mark": "TWM",
+      "card_front_file": "docs/catalog/generic_play_stamp_identity_evidence_v2/sources/tcgplayer-623656.original.jpg",
+      "card_front_sha256": "dd95c6991628d337432ae1b702ee67a90340fd90ca0fd798d3fb7f2d0cd6a9b4",
+      "observation": {
+        "official_row_literal": "Carmine TWM 145 ■",
+        "page": 1,
+        "row_bbox": {
+          "x0": 212.0128,
+          "top": 365.5534,
+          "x1": 382.2551,
+          "bottom": 377.084
+        },
+        "standard_black_box_count": 1,
+        "additional_unspecified_foil_red_box_count": 0
+      },
+      "rows_are_new_proposals_not_existing_canonical_objects": true
+    }
+  ],
+  "fingerprint": "6748d694531a1276e77b8b4ec35815af3e9675c697f30c2e2fb4f22a348be867"
+}

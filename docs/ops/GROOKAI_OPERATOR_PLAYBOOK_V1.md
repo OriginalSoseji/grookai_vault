@@ -1,3 +1,69 @@
+# Owner direction: complete pricing and stamps as one programme — November 25, 2026
+
+The owner directed completion of the whole repair and objected to repeated
+nine-card milestones and micro approvals. Continue the authorized implementation,
+research, tests, routine fixes and preparation without asking the owner to say
+"next step." Treat internal batches as implementation details. Consolidate the
+remaining catalogue identity, physical finish, image, mapping, runtime and
+publication work; preserve independent active writers and consumed repairs.
+
+Qualify the integrated repair source and complete, reviewable write packet.
+Where an existing binding exact-plan decision is explicitly required, present
+one consolidated programme decision covering its fully prepared subplans,
+counts, source, rollback and recovery, rather than prompting after each small
+chunk. This workflow direction does not fabricate physical proof, clear the
+identity-admission stop, approve an unknown future SQL plan, or revive consumed
+authority. Genuine missing provider quotes remain unavailable.
+
+The partial intake-only normal check was stopped at the owner's bulk-workflow
+correction. Retain its incomplete output as cancelled; it is not a failed test
+or a passed source release. Integrate the remaining repair before the next
+complete ordinary source qualification. No pricing writer was interrupted.
+The current operator programme/worklist is under
+`C:/grookai_vault_operator_artifacts/pricing_stamp_bulk_completion_20261125/`.
+
+# Shared bulk promotion and active identity — November 25, 2026
+
+Follow [the integrated checkpoint](../checkpoints/identity/STAMP_BULK_ATOMIC_PROMOTION_20261125.md)
+and [atomic batch contract](../contracts/WAREHOUSE_ATOMIC_PROMOTION_BATCH_V1.md).
+Use the existing executor's transaction cores for approved independent stages;
+the outer programme owns the single commit/rollback. Never fake a pool or
+suppress nested BEGIN/COMMIT statements. A real assigned XID must survive a
+second query, and mutation execution requires SERIALIZABLE isolation.
+
+The reviewed new-parent path also creates its one active canonical identity
+under the approved SQL identity projection. Preserve the two separate committed
+synthetic transaction labs and all failed harness attempts. Do not rerun a
+before-state qualification against them or invoke the consumed GameStop writer.
+The generic batch has no founder-approval creator or identity-hold bypass.
+Complete physical, per-set, mapping, source/release and consolidated programme
+decision gates before production. Local receipts do not constitute that closure.
+
+# Nine generic Play stamp warehouse intake — November 25, 2026
+
+Follow the [local intake checkpoint](../checkpoints/identity/GENERIC_PLAY_NINE_INTAKE_LOCAL_20261125.md)
+and [bounded contract](../contracts/GENERIC_PLAY_NINE_INTAKE_V1.md).
+Use the existing bridge through the exact-nine preparer; never replay a retired
+Prize Pack batch. Bouffalant619068 and Okidogi619153 need distinct successor
+intakes preserving their promoted ordinary-parent history. The other seven
+need one new RAW intake. No automatic founder approval belongs in this path.
+
+The write harness only accepts the owned loopback56230 database
+`generic_play_nine_intake_qualification_v1`. Preserve the successful RAW
+rollback/apply/readback/replay evidence and subsequent REVIEW_READY workflow
+fixture; never reset it or rerun the RAW harness against advanced records.
+`prepare_generic_play_nine_intake_fixture_v1.mjs` requires an empty separately
+restored schema. The intake and preparation qualification scripts each require
+a new exclusive output directory. The preparation worker route forbids HTTP
+and verifies that unapproved staging remains blocked. No production write
+route, canonical executor, finish admission or price publication is provided.
+Finish those separate bounded gates and the ordinary exact owner decision.
+The read-only preparation CLI accepts one absolute new output directory and
+requires the existing canonical environment/verified database CA in memory.
+It enforces read-only TLS, project maturity and all nine actual warehouse
+previews. It exports the preparation plan and historical whole-row digests,
+never historical owner notes; there is no apply argument.
+
 # Fifteen GameStop maintenance adapter — November 24, 2026
 
 Follow the [adapter checkpoint](../checkpoints/identity/GAMESTOP_REGISTRY_FIFTEEN_MAINTENANCE_ADAPTER_20261124.md).
@@ -6373,3 +6439,53 @@ Require its own full hooks/hosted/review/release before admitting classification
 and the separate exact owner/protected-reference/public-ID/executor/finish gates
 before canonical additions. Do not overwrite current pricing with the preserved
 0132combined candidate or its historical b186registry/V2compatibility descriptor.
+
+## Integrated bulk repair qualification — November25,2026
+
+The owner requested completion without nine-card milestones or micro approvals.
+Prepare the whole programme and keep internal safety batches internal. The
+current source branch includes the shared atomic transaction kernel, same-TX
+active identity admission, proposed new UUIDs and checked-in five-set positive
+Normal manifests under `docs/catalog/reviewed_play_normal_nine_v1`. These are
+evidence and proposals, not existing production rows or execution authority.
+The physical subset proves nine Normal printings; three untyped foil leads stay
+outside that subset. No provider quote supplies physical finish authority.
+
+Use `reviewed_play_normal_authority_v1` to bind the original PDF/front bytes and
+exact warehouse target. Its bounded classification signal requires the source
+marker, registry fingerprint and exact printed identity; arbitrary Normal text
+or price labels do not enable it. Existing single-stage execution and founder
+approval checks remain in force. Bulk plans require whole-set count, suppression,
+protected-row and dependency profiles at plan/precommit/independent readback.
+
+Retain all laboratories. `stamped_bulk_integrated_qualification_v1` proved nine
+parents plus nine active identities. `stamped_bulk_normal_qualification_r2` proved
+nine child printings plus nine verified reviews and nine negative-ID evidence
+receipts, each with seven real failure cases,449 protected relations, rollback,
+commit, independent readback and zero-write replay. The first Normal lab failed
+closed because the schema-only fixture lacked finish-key seed data; preserve it.
+R2 uses the exact Normal reference row from migration20260728010000. No production
+rows or real approvals were written. Do not repeat before-state harnesses against
+committed labs. Full programme source qualification, price-link/policy composition
+and the consolidated exact production decision are still pending.
+
+The complete composition is now implemented in
+`backend/warehouse/reviewed_play_normal_programme_v1.mjs`, with the private CLI
+`scripts/audits/reviewed_play_normal_programme_v1.mjs`. Use explicit
+`--mode=prepare|preflight|rollback|apply|readback`, a new private `--out-root`, and
+the exact frozen `--plan` for all later modes. Write modes additionally require
+the exact programme `--authority`, qualified `--release-gate` and scoped ACK;
+apply requires its matching actual `--rollback-receipt`. The proposed receipt is
+durably written before COMMIT. Readback uses `--receipt`; unknown outcomes never
+retry inserts. Production source/currency/amount/freshness/coverage/activation
+requirements remain unchanged.
+
+Retained complete local proof `programme-local-qualification-v1/run-attempt2`
+passed all8 negative cases and449-relation checks in one real transaction,
+including true full-COMMIT acknowledgement loss and independent zero-write
+readback. New current-main source12ce integration remains under final source
+qualification; no new production catalogue or pricing writes occurred here.
+The English Pokemon path uses9 exact parent mappings, not child-only links.
+Worker33/policyV3_4 adds only9 verified Normal facts to original75. One live
+condition source request verified NM9/LP9/MP3/HP0/DMG1; absent conditions stay
+unavailable. Never replace a missing condition with a percentage.
