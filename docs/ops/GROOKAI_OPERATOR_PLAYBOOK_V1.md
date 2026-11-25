@@ -6320,3 +6320,20 @@ apply and separate-connection readback. Current frame drift blocks that plan;
 never refresh it silently. No source/price/owner/canonical/publication write, no
 coverage exception, no original149 or regular29 repeat, and no stamp-hold
 clearance. Full corrected unlimited shadow/publication/app/refresh follow.
+
+## Six current Japanese single-card kind corrections
+
+Worker32/policyV3_3 extends the unchanged predecessor for exactly six reviewed
+Japanese singles whose titles contain Bundle or Box. Fixed product/group/number/
+CardType/parent/child/mapping facts and the full immutable V4 metadata digest
+are required. Only the canonical past reviewed_at audit timestamp may differ;
+it never refreshes a quote. Altered/missing evidence fails closed, including a
+changed harmless title that otherwise would publish. Other products/finishes and
+Japanese4/MTG38/Play75 decisions retain predecessor behavior.
+
+Keep this source unmerged until actual V3/V4 insertion and independent production
+metadata/audit readback match the six registry targets and original V4 producer.
+Local fixture proof alone is not production acceptance. Then require full normal/
+hosted/exact review, NEW unlimited durable shadow and original coverage/activation
+guards, real source/consumer/app price/date checks and natural refresh. No physical/
+owner/source/price write, no percentage, no17-gap exception or stamp-hold release.
