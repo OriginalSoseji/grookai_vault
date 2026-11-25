@@ -7,6 +7,7 @@ import pg from 'pg';
 
 import { derivePerfectOrderVariantIdentity } from '../identity/perfect_order_variant_identity_rule_v1.mjs';
 import { STAMPED_IDENTITY_RULE_V1 } from '../identity/stamped_identity_rule_v1.mjs';
+import { reviewedGenericPlayBridgeNumberV1 } from './reviewed_generic_play_bridge_number_v1.mjs';
 import {
   assertExecuteCanonWriteV1,
 } from '../lib/contracts/execute_canon_write_v1.mjs';
@@ -249,11 +250,17 @@ function extractBaseNameForBridge(row, stampedBatchEntry = null) {
 }
 
 function extractNumberPlainForBridge(row, stampedBatchEntry = null) {
+  const reviewed = reviewedGenericPlayBridgeNumberV1(row, stampedBatchEntry);
+  if (reviewed) return reviewed.numberPlain;
   return (
     normalizeNumberPlain(stampedBatchEntry?.number_plain) ??
     normalizeNumberPlain(row.normalized_number_plain) ??
     normalizeNumberPlain(extractPrintedNumber(row))
   );
+}
+
+function extractPrintedNumberForBridge(row, stampedBatchEntry = null) {
+  return reviewedGenericPlayBridgeNumberV1(row, stampedBatchEntry)?.printedNumber ?? extractPrintedNumber(row);
 }
 
 function extractVariantIdentity(row) {
@@ -350,7 +357,7 @@ function buildVariantSummary(sourcePayload) {
 function buildClaimedIdentityPayload(row, variantIdentity, canonicalSetCode, canonicalSetName, stampedBatchEntry = null) {
   const rarity = extractRarity(row);
   const baseName = extractBaseNameForBridge(row, stampedBatchEntry);
-  const printedNumber = extractPrintedNumber(row);
+  const printedNumber = extractPrintedNumberForBridge(row, stampedBatchEntry);
   const numberPlain = extractNumberPlainForBridge(row, stampedBatchEntry);
 
   return {
@@ -389,10 +396,11 @@ function buildClaimedIdentityPayload(row, variantIdentity, canonicalSetCode, can
 }
 
 function buildReferenceHintsPayload(row, variantIdentity, canonicalSetCode, canonicalSetName, stampedBatchEntry = null) {
+  const reviewedNumber = reviewedGenericPlayBridgeNumberV1(row, stampedBatchEntry);
   const sourcePayload = row.raw_payload ?? row.payload ?? {};
   const rarity = extractRarity(row);
   const baseName = extractBaseNameForBridge(row, stampedBatchEntry);
-  const printedNumber = extractPrintedNumber(row);
+  const printedNumber = extractPrintedNumberForBridge(row, stampedBatchEntry);
   const numberPlain = extractNumberPlainForBridge(row, stampedBatchEntry);
   const variantSummary = buildVariantSummary(sourcePayload);
 
@@ -417,9 +425,9 @@ function buildReferenceHintsPayload(row, variantIdentity, canonicalSetCode, cano
     rarity,
     tcgplayer_id: normalizeTextOrNull(row.tcgplayer_id ?? sourcePayload.tcgplayerId),
     normalized_name: normalizeTextOrNull(row.normalized_name),
-    normalized_number_left: normalizeTextOrNull(row.normalized_number_left),
+    normalized_number_left: reviewedNumber?.numberLeft ?? normalizeTextOrNull(row.normalized_number_left),
     normalized_number_plain: extractNumberPlainForBridge(row, stampedBatchEntry),
-    normalized_printed_total: normalizeNumberPlain(row.normalized_printed_total),
+    normalized_printed_total: reviewedNumber?.printedTotal ?? normalizeNumberPlain(row.normalized_printed_total),
     has_slash_number: row.has_slash_number === true,
     has_alpha_suffix_number: row.has_alpha_suffix_number === true,
     has_parenthetical_modifier: row.has_parenthetical_modifier === true,
@@ -436,6 +444,12 @@ function buildReferenceHintsPayload(row, variantIdentity, canonicalSetCode, cano
     variant_identity: variantIdentity ?? null,
     stamp_label: normalizeTextOrNull(variantIdentity?.stamp_label),
     source_card_snapshot: {
+      ...(reviewedNumber ? { original_discovery_number_fields: {
+        number_raw: row.number_raw ?? null,
+        normalized_number_left: row.normalized_number_left ?? null,
+        normalized_number_plain: row.normalized_number_plain ?? null,
+        normalized_printed_total: row.normalized_printed_total ?? null,
+      } } : {}),
       external_id: normalizeTextOrNull(sourcePayload._external_id ?? row.upstream_id),
       set_external_id: normalizeTextOrNull(sourcePayload._set_external_id ?? row.set_id),
       set_name: normalizeTextOrNull(sourcePayload.set_name),
@@ -466,7 +480,7 @@ function buildReferenceHintsPayload(row, variantIdentity, canonicalSetCode, cano
 
 function buildNotes(row, variantIdentity, canonicalSetName, stampedBatchEntry = null) {
   const baseName = extractBaseNameForBridge(row, stampedBatchEntry) ?? 'Unknown Card';
-  const printedNumber = extractPrintedNumber(row) ?? 'unknown-number';
+  const printedNumber = extractPrintedNumberForBridge(row, stampedBatchEntry) ?? 'unknown-number';
   const classificationReason = extractClassificationReason(row) ?? 'unknown';
   const suffix = variantIdentity?.illustration_category ? ` [${variantIdentity.illustration_category}]` : '';
 
@@ -669,8 +683,19 @@ function evaluateRows(rows, setContext, stampedBatchLookup = null) {
     const effectiveSetContext = resolveEffectiveSetContext(setContext, stampedBatchEntry);
 
     const baseName = extractBaseNameForBridge(row, stampedBatchEntry);
-    const printedNumber = extractPrintedNumber(row);
-    const numberPlain = extractNumberPlainForBridge(row, stampedBatchEntry);
+    let printedNumber;
+    let numberPlain;
+    try {
+      printedNumber = extractPrintedNumberForBridge(row, stampedBatchEntry);
+      numberPlain = extractNumberPlainForBridge(row, stampedBatchEntry);
+    } catch (error) {
+      blockedRows.push({
+        source_candidate_id: row.id,
+        reason: 'reviewed_generic_play_number_evidence_changed',
+        detail: error.message,
+      });
+      continue;
+    }
 
     if (!baseName || !printedNumber || !numberPlain || !effectiveSetContext.canonicalSetCode) {
       blockedRows.push({
@@ -748,6 +773,8 @@ function evaluateRows(rows, setContext, stampedBatchLookup = null) {
     unlabeledCollisionRows,
   };
 }
+
+export { evaluateRows as evaluateExternalDiscoveryBridgeRowsV1 };
 
 export async function insertCandidate(client, founderUserId, candidate) {
   const payloadSnapshot = {

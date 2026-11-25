@@ -53,3 +53,14 @@ The exact V3/V4 composition follows SQUARE_MAIN1055_PRODUCER_CONTINUITY_V1;
 its two declared test adaptations grant no Japanese execution authority.
 No passing read-only result, source check or composed fingerprint authorizes
 production migration application or publication activation.
+
+Following the independently verified stamp source release PR1059, new source
+qualification pins main d2713f63709845eda7123a73e7a5e9767a0b2e7e. Retain the1055
+evidence root with new versioned outputs: b30f115's genuine full normal success
+remains historical and must not qualify the later merged tree. The37 accepted
+stamp paths leave the615-file Japanese/Square composed producer exact. The
+original530 migration inventory, all six SQL hashes, both preview exclusions,
+read-only phases, market/natural-refresh requirements and separate production
+decision/apply/activation boundaries remain unchanged. Preserve every stamp
+identity/finish hold; this source integration neither executes the nine-parent
+programme nor republishes prices.

@@ -35,3 +35,14 @@ actual source/consumer/app amounts and natural refresh precede the separate
 exact-six read-only Square release packet, concrete source/SQL decision,
 single consumed intent and schema-before-server activation. No production SQL,
 Square provider mutation, native installation or main merge occurs in this step.
+
+The complete b30f115 source subsequently passed both unchanged full managed
+hooks and was pushed on November25. Before final release, accepted main advanced
+to d2713f63 through the independently deployed PR1059 stamp source release. The
+37 accepted paths merged cleanly. The complete615-file producer still matches
+341462c47c8fd104b2ad5967636b9135ddeacf70a7ea79ad0a9e85ed650ee914;
+all original609 bytes reconcile through the same two declared test adaptations.
+No SQL, pricing runtime, registry, preview exclusion or source-composition
+manifest changed in this integration. Only the current-main release pin and
+these explanatory instructions advance. Qualify the new complete tree through
+its own normal, hosted and review checks; do not inherit b30f115's success.
