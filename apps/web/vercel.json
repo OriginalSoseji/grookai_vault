@@ -24,7 +24,8 @@
   },
   "git": {
     "deploymentEnabled": {
-      "feat/square-bulk-price-release-main1046-20261124": false
+      "feat/square-bulk-price-release-main1046-20261124": false,
+      "codex/square-release-main1055-20261125": false
     }
   }
 }

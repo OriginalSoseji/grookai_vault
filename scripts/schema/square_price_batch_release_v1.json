@@ -3,8 +3,8 @@
   "project": "ycdxbpibncqcchqiihfz",
   "baseline": 524,
   "target": 530,
-  "main": "136d987981bffb338dc94c11e33ef882e78397d6",
-  "branch": "feat/square-bulk-price-release-main1046-20261124",
+  "main": "69a2ec80cb5b27f76fd65dabc1b9673704c079d8",
+  "branch": "codex/square-release-main1055-20261125",
   "inventorySha256": "847d5641683db2236dc9d8c0cdf13629a932c7ce6f2a7bedc35ee65bf919ab2d",
   "candidates": {
     "20261124230000_square_recovery_target_window_release_v3.sql": "c60f33c0637a0b95e01d0a8c0356a616f8a2082035d8887bd72ec6f3571c27a2",

@@ -41,3 +41,15 @@ reuse a consumed earlier baseline path. The six SQL payloads, canonical524
 requirement, both read-only phases, TLS/CLI pins, freshness, normal/hosted and
 independent Japanese-before-Square ordering remain unchanged. This context
 reconciliation grants no production application authority.
+
+The post-PR1055 composition pins accepted main69a2ec80cb5b27f76fd65dabc1b9673704c079d8
+and `bulk-authority-v1/current-main-1055-v1` for new source/market receipts and
+versioned release outputs. Both historical and current candidate branches have
+automatic Vercel previews disabled; no global preview setting changes. Fresh V4
+baseline output names use1055000 plus the new release-output version. The
+six SQL hashes and original complete530 inventory remain exact. This source
+context supersedes1050 for new releases while retaining every old receipt.
+The exact V3/V4 composition follows SQUARE_MAIN1055_PRODUCER_CONTINUITY_V1;
+its two declared test adaptations grant no Japanese execution authority.
+No passing read-only result, source check or composed fingerprint authorizes
+production migration application or publication activation.

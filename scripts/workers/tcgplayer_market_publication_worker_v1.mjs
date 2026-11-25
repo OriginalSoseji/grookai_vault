@@ -1,6 +1,6 @@
 import {marketPipelineDatabaseConfigV1} from '../../backend/pricing/market_pipeline_database_config_v1.mjs';
 import {CROSS_TCG_MARKET_SCOPE_V2,readCrossTcgMarketBootstrapV3,assertCrossTcgMarketActivationV3} from '../../backend/pricing/cross_tcg_market_activation_guard_v3.mjs';
-import {TCGPLAYER_MARKET_PUBLICATION_POLICY_V3, evaluateTcgplayerMarketQualificationV3_2 as evaluateTcgplayerMarketQualificationV3} from '../../backend/pricing/tcgplayer_market_publication_policy_v3_2.mjs';
+import {TCGPLAYER_MARKET_PUBLICATION_POLICY_V3, evaluateTcgplayerMarketQualificationV3_3 as evaluateTcgplayerMarketQualificationV3} from '../../backend/pricing/tcgplayer_market_publication_policy_v3_3.mjs';
 import { execFile } from "node:child_process";
 import { createHash } from "node:crypto";
 import { createReadStream } from "node:fs";
@@ -63,7 +63,7 @@ const DEFAULT_OUT_ROOT = path.join(
   "artifacts",
   "market_pricing_product_v1",
 );
-const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_30";
+const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_32";
 const PIPELINE_VERSION = "TCGPLAYER_MARKET_PIPELINE_V1";
 const SCHEMA_VERSION = "TCGPLAYER_MARKET_PUBLICATION_SCHEMA_V1";
 const SNAPSHOT_SCHEMA_VERSION = "MARKET_PRICE_PUBLICATION_SNAPSHOT_V1";

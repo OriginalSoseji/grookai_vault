@@ -9,7 +9,7 @@ import {execFileSync,spawnSync} from 'node:child_process';
 
 const root=fileURLToPath(new URL('../../',import.meta.url));
 const base='C:/grookai_vault_operator_artifacts/square_launch_readiness_20261122/hardening-v1/bulk-authority-v1';
-const artifactRoot=base+'/current-main-1050-v1';
+const artifactRoot=base+'/current-main-1055-v1';
 const sha=x=>createHash('sha256').update(x).digest('hex');
 const read=file=>JSON.parse(fs.readFileSync(file));
 const git=(...args)=>execFileSync('git',args,{cwd:root,encoding:'utf8',windowsHide:true}).trim();
@@ -17,7 +17,7 @@ const git=(...args)=>execFileSync('git',args,{cwd:root,encoding:'utf8',windowsHi
 export function validateSquareReleaseInvocationV1(args){
  assert.equal(args.length,2);const [phase,arg]=args;
  assert.ok(['AuditLinkedSchema','PrePush'].includes(phase));
- assert.match(arg??'',/^--out-dir=C:\/grookai_vault_operator_artifacts\/square_launch_readiness_20261122\/hardening-v1\/bulk-authority-v1\/current-main-1050-v1\/release-gate-v1-v[1-9][0-9]*$/);
+ assert.match(arg??'',/^--out-dir=C:\/grookai_vault_operator_artifacts\/square_launch_readiness_20261122\/hardening-v1\/bulk-authority-v1\/current-main-1055-v1\/release-gate-v1-v[1-9][0-9]*$/);
  return {phase,out:arg.slice(10)};
 }
 export function assertSquareReleaseInventoryV1(binding,actual){
@@ -81,8 +81,8 @@ export async function main(args=process.argv.slice(2)){
   const readback=market.sourceReadback;assert.equal(sha(fs.readFileSync(readback)),market.sourceReadbackSha256);
  }
  const branch=git('branch','--show-current'),vercel=read(root+'/apps/web/vercel.json');
- assert.deepEqual(vercel.git?.deploymentEnabled,{[release.branch]:false});assert.equal(branch,release.branch);
- const baselineDir=base+'/current-main-524-v1/starting-gate-v'+String(105000+Number(out.match(/v([0-9]+)$/)[1]));
+ assert.deepEqual(vercel.git?.deploymentEnabled,{'feat/square-bulk-price-release-main1046-20261124':false,[release.branch]:false});assert.equal(branch,release.branch);
+ const baselineDir=base+'/current-main-524-v1/starting-gate-v'+String(1055000+Number(out.match(/v([0-9]+)$/)[1]));
  assert.equal(fs.existsSync(baselineDir),false);
  execFileSync(process.execPath,['--use-system-ca',root+'/scripts/schema/verify_square_price_batch_baseline_v4.mjs','AuditLinkedSchema','--out-dir='+baselineDir],{cwd:root,stdio:'pipe',windowsHide:true,timeout:300000});
  const baseline=read(baselineDir+'/baseline.json');assert.equal(baseline.pass,true);assert.equal(baseline.currentLedger,524);

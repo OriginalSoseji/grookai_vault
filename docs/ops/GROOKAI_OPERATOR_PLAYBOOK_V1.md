@@ -1,3 +1,17 @@
+# Square source after PR1055 — November25,2026
+
+The [current-source composition contract](../contracts/SQUARE_MAIN1055_PRODUCER_CONTINUITY_V1.md)
+binds the original605/609 Japanese producer packages, two exact test-only
+adaptations and six unchanged Square SQL files. Source preparation uses
+`bulk-authority-v1/current-main-1055-v1`, accepted main69a2ec80, and its own
+normal/hosted receipts. Both Square candidate branches keep automatic Vercel
+deployments disabled. Historical source and consumed production data decisions
+are preserved. Do not replay the applied5,343 Japanese links or start another
+pricing run: the DB120 worker32 unlimited shadow is already running under the
+original locks. Require its genuine complete acceptance, guarded publication,
+actual source/consumer/app amounts and natural refresh before the separate
+exact-six Square release and schema-first activation.
+
 # Square source after PR1050 — November24,2026
 
 The [source continuity contract](../contracts/SQUARE_MAIN1050_PRODUCER_CONTINUITY_V1.md)
@@ -32,6 +46,41 @@ schema-first publication and separately qualified activation. Never repeat
 regular29 or149. The old raw missing13 stamp diagnostic does not establish
 global absence: preserve all four existing stamped parents/Normal facts and
 every approved alias; unresolved identities remain held under their own rules.
+# Fifteen GameStop maintenance adapter — November 24, 2026
+
+Follow the [adapter checkpoint](../checkpoints/identity/GAMESTOP_REGISTRY_FIFTEEN_MAINTENANCE_ADAPTER_20261124.md).
+The existing identity maintenance launcher discovers the new exact fifteen-row
+repair task. Default dry-run prepares/verifies only; explicit maintenance write
+mode also requires the exact bounded owner/source/plan/run authority. All actual
+production actions remain unapproved. `GAMESTOP_REGISTRY_RELEASE_CONFIG` references
+private operator JSON and existing env/CA files; never copy credentials into the
+checkout. Apply's audit row is atomic with the fifteen identities, and failures
+are persisted separately. Replays add zero identities and one audit row.
+
+The separately owned audited fixture keeps thirty synthetic copies and all old
+labs unchanged. Its replayable harness covers durable success/failure, original
+job preservation, a real pricing exclusion lock and audit-ID collision. Never
+reset it. Finish final-source normal/platform/hosted checks, then a fresh plan,
+owner decision, production rollback/apply and independent verification. No
+registry execution while a production pricing writer holds its locks.
+
+The frozen seventeen-printing pricing preparation cannot follow a newer source.
+The actual live-source change is retained in `competing-pricing-writer-v3.json`;
+do not restart the old shadow queue or carry its exception limits forward.
+
+# Fifteen GameStop registry entries — initial local milestone, November 24, 2026
+
+Follow the [local qualification checkpoint](../checkpoints/identity/GAMESTOP_REGISTRY_FIFTEEN_LOCAL_QUALIFICATION_20261124.md).
+`backend/catalog/gamestop_registry_fifteen_v1.mjs` and its frozen manifest implement
+only the exact fifteen-row registry qualification against the separately owned
+`gamestop_registry_fifteen_qualification_v1` PostgreSQL 17 fixture. The replayable
+SQL qualification harness is `scripts/audits/gamestop_registry_fifteen_local_qualification_v1.mjs`.
+Use a new exclusive output directory and a separately prepared before fixture;
+never reset the retained successful laboratory. The existing thirty synthetic
+copies, all old identity rows and original lab are retained. No new Docker image,
+volume or persistent container is needed. No production apply route is exposed.
+Source checks and a fresh production plan/rollback/release remain separate;
+the active pricing verification window must close before any registry execution.
 
 # Four retail-stamped Cosmos finishes — November 24, 2026
 
@@ -6365,3 +6414,36 @@ unchanged activation/coverage guards, real publication/source/consumer/app amoun
 and natural refresh remain required. Local fixtures or a merge do not finish
 global pricing or clear stamp admission.
 
+
+## Current-source Japanese price-link preparation — November24,2026
+
+V3/V4 preserve original427/4916 verified child/product matches and archived
+physical proofs. The daily source refreshed to2509 before V1/V2 execution; those
+old plans remain unapplied. Current evidence now freezes in each exact plan,
+independently of immutable physical source. Three products570051/571943/630237
+lost usable current Market quotes and may join only with explicit missing/null
+metadata; no stale/estimated quote can publish. Six kind holds remain.
+
+Use the V3/V4 contracts/CLIs, actual local/full normal/hosted/review qualification,
+new exact owner decisions and scoped ACK, own matching production rollback, one
+apply and separate-connection readback. Current frame drift blocks that plan;
+never refresh it silently. No source/price/owner/canonical/publication write, no
+coverage exception, no original149 or regular29 repeat, and no stamp-hold
+clearance. Full corrected unlimited shadow/publication/app/refresh follow.
+
+## Six current Japanese single-card kind corrections
+
+Worker32/policyV3_3 extends the unchanged predecessor for exactly six reviewed
+Japanese singles whose titles contain Bundle or Box. Fixed product/group/number/
+CardType/parent/child/mapping facts and the full immutable V4 metadata digest
+are required. Only the canonical past reviewed_at audit timestamp may differ;
+it never refreshes a quote. Altered/missing evidence fails closed, including a
+changed harmless title that otherwise would publish. Other products/finishes and
+Japanese4/MTG38/Play75 decisions retain predecessor behavior.
+
+Keep this source unmerged until actual V3/V4 insertion and independent production
+metadata/audit readback match the six registry targets and original V4 producer.
+Local fixture proof alone is not production acceptance. Then require full normal/
+hosted/exact review, NEW unlimited durable shadow and original coverage/activation
+guards, real source/consumer/app price/date checks and natural refresh. No physical/
+owner/source/price write, no percentage, no17-gap exception or stamp-hold release.
