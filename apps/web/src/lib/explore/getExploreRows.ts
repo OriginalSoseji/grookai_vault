@@ -3717,7 +3717,9 @@ async function fetchSpeciesFamilyRows(
   query: ResolverQuery,
   languageScope: PublicLanguageScope,
   selectClause: string,
+  signal?: AbortSignal,
 ) {
+  signal?.throwIfAborted();
   const tokens = getSpeciesSearchTokens(query);
   if (tokens.length === 0) {
     return [] as CardPrintLookupRow[];
@@ -3727,17 +3729,20 @@ async function fetchSpeciesFamilyRows(
   const speciesBySlug = new Map<string, DexSpeciesSearchRow>();
 
   for (const token of tokens) {
+    signal?.throwIfAborted();
     const safeToken = sanitizeSpeciesSearchToken(token);
     if (!safeToken) {
       continue;
     }
 
-    const { data, error } = await supabase
+    const request = supabase
       .from("v_grookai_dex_species_v1")
       .select("species_id,display_name,slug")
       .eq("active", true)
       .or(`display_name.ilike.${safeToken}%,slug.ilike.${safeToken}%`)
       .limit(8);
+    const { data, error } = await (signal ? request.abortSignal(signal) : request);
+    signal?.throwIfAborted();
 
     if (error) {
       throw new Error(error.message);
@@ -3772,7 +3777,9 @@ async function fetchSpeciesFamilyRows(
     .limit(SPECIES_FAMILY_SEARCH_LIMIT);
 
   mappingRequest = applyLanguageScopeQuery(mappingRequest, languageScope);
-  const { data: mappingRows, error: mappingError } = await mappingRequest;
+  signal?.throwIfAborted();
+  const { data: mappingRows, error: mappingError } = await (signal ? mappingRequest.abortSignal(signal) : mappingRequest);
+  signal?.throwIfAborted();
   if (mappingError) {
     throw new Error(mappingError.message);
   }
@@ -3814,10 +3821,13 @@ async function fetchSpeciesFamilyRows(
 
   const rowsById = new Map<string, CardPrintLookupRow>();
   for (const idChunk of chunkArray(cardPrintIds, 200)) {
-    const { data, error } = await supabase
+    signal?.throwIfAborted();
+    const request = supabase
       .from("v_card_prints_discovery_v1")
       .select(selectClause)
       .in("id", idChunk);
+    const { data, error } = await (signal ? request.abortSignal(signal) : request);
+    signal?.throwIfAborted();
 
     if (error) {
       throw new Error(error.message);
@@ -3991,6 +4001,7 @@ async function fetchLanguageScopedTextRows(
     query,
     languageScope,
     selectClause,
+    signal,
   );
   signal?.throwIfAborted();
   for (const row of speciesFamilyRows) {
@@ -5167,6 +5178,7 @@ export async function getExploreRowsForSmartStructuredTextSearch(
   let parentRows = await fetchLanguageScopedTextRows(
     query,
     options.languageScope ?? "all",
+    options.signal,
   );
 
   const exactSetCode = normalizeSetCode(options.exactSetCode);
