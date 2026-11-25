@@ -20,7 +20,7 @@ function load(source, imports = {}) {
   vm.runInNewContext(source, {module: testModule, exports: testModule.exports, require: id => {
     if (!(id in imports)) throw Error(`Unexpected import ${id}`);
     return imports[id];
-  }, URL, URLSearchParams, Map, Set, Date, Promise, setTimeout, clearTimeout, console, process, performance});
+  }, URL, URLSearchParams, Map, Set, Date, Promise, AbortController, AbortSignal, setTimeout, clearTimeout, console, process, performance});
   return testModule.exports;
 }
 

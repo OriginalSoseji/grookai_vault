@@ -406,7 +406,7 @@ export async function GET(request: NextRequest) {
     try {
       const catalog = await createServerComponentClient();
       const catalogStarted = performance.now();
-      searchSets = await readSearchSets(catalog, gameScope);
+      searchSets = await readSearchSets(catalog, gameScope, request.signal);
       searchTimings.catalog = performance.now() - catalogStarted;
       let candidate = resolveCatalogSetSearchIntent(rawQuery, gameScope, searchSets, [], collectorSetCodes);
       const ignoredOpeningWords: string[] = [];
@@ -415,7 +415,7 @@ export async function GET(request: NextRequest) {
         const alternative = resolveCatalogSetSearchIntent(rawQuery, gameScope, searchSets, ignored, collectorSetCodes);
         // Charizard is also the opening word of Charizard Half Deck. In
         // "Charizard Evolving", retain the card name and prefer Evolving Skies.
-        if (!alternative.matchedAlias || !await isExactCatalogCardName(catalog, candidate.matchedAlias, gameScope)) break;
+        if (!alternative.matchedAlias || !await isExactCatalogCardName(catalog, candidate.matchedAlias, gameScope, request.signal)) break;
         ignoredOpeningWords.push(candidate.matchedAlias);
         candidate = alternative;
       }
@@ -431,13 +431,13 @@ export async function GET(request: NextRequest) {
       let publishedNameMatch = false;
       if (playableNameScope && candidate.requiresCardNameCheck) {
         const publication = await getPokemonPlayables();
-        if (publication?.state === "ready") publishedNameMatch = await isPublishedPlayableCardNameQuery(catalog, query, publication.rows);
+        if (publication?.state === "ready") publishedNameMatch = await isPublishedPlayableCardNameQuery(catalog, query, publication.rows, request.signal);
       }
       // Without a possible set alias, playable text already filters the entire
       // published scope; a global name probe cannot improve its completeness.
       const cardNameQuery = Boolean(candidate.requiresCardNameCheck ||
         (!playableNameScope && !candidate.matchedAlias && !smartSearchIntent.artist && supportsCompleteNameSearch(query) && gameScope === "pokemon")) &&
-        (publishedNameMatch || await isCatalogCardNameQuery(catalog, query, gameScope, (page) => { namedFirstPage = page; }));
+        (publishedNameMatch || await isCatalogCardNameQuery(catalog, query, gameScope, (page) => { namedFirstPage = page; }, request.signal));
       searchTimings.name_check = performance.now() - nameCheckStarted;
       literalNameSearch = cardNameQuery && !smartSearchIntent.artist && supportsCompleteNameSearch(query);
       inlineSetIntent = candidate.requiresCardNameCheck && cardNameQuery

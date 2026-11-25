@@ -132,18 +132,21 @@ export function resolveCatalogSetSearchIntent(query: string, game: Game, sets: S
 }
 
 async function readCatalogCardName(client: Pick<SupabaseClient, "rpc">, query: string, game: Game,
-  retain?: (page: import("./completeNamedCardSearch").NamedCardFirstPage) => void) {
-  const { data, error } = await client.rpc(retain ? "search_game_card_prints_v5" : "search_game_card_prints_v4", {
+  retain?: (page: import("./completeNamedCardSearch").NamedCardFirstPage) => void, signal?: AbortSignal) {
+  signal?.throwIfAborted();
+  const request = client.rpc(retain ? "search_game_card_prints_v5" : "search_game_card_prints_v4", {
     game_code_in: game, q: query, set_code_in: null, number_in: null,
     illustrator_in: null, language_scope_in: "all", limit_in: retain ? NAMED_CARD_PAGE_SIZE : 1, offset_in: 0,
   });
+  const { data, error } = await (signal ? request.abortSignal(signal) : request);
   if (error) throw new Error(error.message);
+  signal?.throwIfAborted();
   if (retain) retain(retainNamedCardFirstPage({ query, gameScope: game, rows: data ?? [] }));
   return data?.[0]?.name as string | undefined;
 }
 
-export async function isExactCatalogCardName(client: Pick<SupabaseClient, "rpc">, query: string, game: Game) {
-  const name = await readCatalogCardName(client, query, game);
+export async function isExactCatalogCardName(client: Pick<SupabaseClient, "rpc">, query: string, game: Game, signal?: AbortSignal) {
+  const name = await readCatalogCardName(client, query, game, undefined, signal);
   return Boolean(name && words(name).join(" ") === words(query).join(" "));
 }
 
@@ -153,10 +156,10 @@ export async function isExactCatalogCardName(client: Pick<SupabaseClient, "rpc">
 // must not silently discard a real set constraint. Explicit connectors bypass
 // this ambiguity check at the caller, so "Chari from Dark" still selects a set.
 export async function isCatalogCardNameQuery(client: Pick<SupabaseClient, "rpc">, query: string, game: Game,
-  retain?: (page: import("./completeNamedCardSearch").NamedCardFirstPage) => void) {
+  retain?: (page: import("./completeNamedCardSearch").NamedCardFirstPage) => void, signal?: AbortSignal) {
   const nameQuery = getCompleteNameSearchQuery(query, game);
   if (!nameQuery) return false;
-  const name = await readCatalogCardName(client, nameQuery, game, retain);
+  const name = await readCatalogCardName(client, nameQuery, game, retain, signal);
   const fragments = words(nameQuery);
   const nameWords = words(name ?? "");
   return fragments.length > 0 && fragments.every((fragment) => nameWords.some((word) => word.includes(fragment)));
@@ -166,15 +169,18 @@ export async function isCatalogCardNameQuery(client: Pick<SupabaseClient, "rpc">
 // visible name inside that scope is sufficient evidence to preserve a name
 // such as Bloodmoon Ursaluna ex without the broader fuzzy name RPC.
 export async function isPublishedPlayableCardNameQuery(client: Pick<SupabaseClient, "from">, query: string,
-  members: ReadonlyArray<{card_print_id: string; gv_id: string}>) {
+  members: ReadonlyArray<{card_print_id: string; gv_id: string}>, signal?: AbortSignal) {
   const fragments = words(getCompleteNameSearchQuery(query, "pokemon"));
   if (!fragments.some(word => Array.from(word).length >= 3) || !members.length) return false;
   if (members.length > 20000) throw new Error("Playable name scope exceeds the publication bound");
   const expected = new Map(members.map(row => [row.card_print_id, row.gv_id]));
   const ids = [...expected.keys()];
   for (let offset = 0; offset < ids.length; offset += 200) {
-    const {data, error} = await client.from("card_prints").select("id,gv_id,name").in("id", ids.slice(offset, offset + 200));
+    signal?.throwIfAborted();
+    const request = client.from("card_prints").select("id,gv_id,name").in("id", ids.slice(offset, offset + 200));
+    const {data, error} = await (signal ? request.abortSignal(signal) : request);
     if (error) throw new Error(error.message);
+    signal?.throwIfAborted();
     if ((data ?? []).some(row => expected.has(row.id) && expected.get(row.id) === row.gv_id &&
       fragments.every(fragment => words(row.name ?? "").some(word => word.includes(fragment))))) return true;
   }
@@ -183,9 +189,12 @@ export async function isPublishedPlayableCardNameQuery(client: Pick<SupabaseClie
 
 // Request-scoped, caller-visible metadata; never cache one caller's visibility
 // globally or accept a truncated catalog as a complete set interpretation.
-export async function readSearchSets(client: Pick<SupabaseClient, "rpc">, game: Game): Promise<SearchSet[]> {
-  const { data, error } = await client.rpc("get_search_set_catalog_v1", { game_code_in: game });
+export async function readSearchSets(client: Pick<SupabaseClient, "rpc">, game: Game, signal?: AbortSignal): Promise<SearchSet[]> {
+  signal?.throwIfAborted();
+  const request = client.rpc("get_search_set_catalog_v1", { game_code_in: game });
+  const { data, error } = await (signal ? request.abortSignal(signal) : request);
   if (error) throw new Error(error.message);
+  signal?.throwIfAborted();
   if (data?.complete !== true || !Array.isArray(data.sets) || data.sets.length > 20000) {
     throw new Error("Set search catalog could not be read completely");
   }

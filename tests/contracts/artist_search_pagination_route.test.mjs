@@ -59,10 +59,14 @@ function loadRoute({ fail = false, fastSearchTimeout = false, softTimeout = fals
     '@/lib/pricing/getPublicPricingByCardIds': { PublicPricingSortUnavailableError: class extends Error {} },
     '@/lib/supabase/server': {
       createServerComponentClient: async () => ({
-        rpc: async (_name, args) => {
-          if (_name === 'get_search_set_catalog_v1') return {data:{complete:true,sets},error:catalogFail?{message:'offline'}:null};
-          if (exactCardName) assert.equal(args.q, exactCardName);
-          return {data: exactCardName ? [{name:exactCardName}] : partialCardNames[args.q] ? [{name:partialCardNames[args.q]}] : exactCardNames.includes(args.q) ? [{name:args.q}] : []};
+        rpc: (_name, args) => {
+          if (_name !== 'get_search_set_catalog_v1' && exactCardName) assert.equal(args.q, exactCardName);
+          const result = _name === 'get_search_set_catalog_v1'
+            ? {data:{complete:true,sets},error:catalogFail?{message:'offline'}:null}
+            : {data: exactCardName ? [{name:exactCardName}] : partialCardNames[args.q] ? [{name:partialCardNames[args.q]}] : exactCardNames.includes(args.q) ? [{name:args.q}] : []};
+          const request = Promise.resolve(result);
+          request.abortSignal = () => request;
+          return request;
         },
         from: (table) => {
           assert.equal(table, 'sets');
