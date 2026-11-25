@@ -235,9 +235,10 @@ export class SquareCommerceService {
   }
   for(const target of batch){
    const checkedThrough=new Date(this.now()).toISOString();
+   const needsAllocation=!target.allocation_state||target.allocation_state==='released';
    let targetFailed=false,failureStage;
    try{
-    if(catalogBlocked&&!target.allocation_state){result.skipped++;continue;}
+    if(catalogBlocked&&needsAllocation){result.skipped++;continue;}
     if(!catalogBlocked&&target.selected&&target.allocation_state!=='sold'&&(manual||read.automatic)&&this.config.catalogEnabled){
      try{
       failureStage='catalog';
@@ -247,8 +248,8 @@ export class SquareCommerceService {
      }catch(error){if(code(error)==='square_price_batch_pending'){
        if(target.instance_id===focusInstanceId)result.focusStatus='pending';
        // A batch may have started after our recovery read. Existing stock work
-       // remains reachable; no fresh unallocated unit can be published here.
-       if(!target.allocation_state){result.skipped++;continue;}
+       // remains reachable; released copies also need a fresh allocation.
+       if(needsAllocation){result.skipped++;continue;}
        await checkpoint('stock',target.id);const current=await this.stock(ownerId,connectionId,target.id);
        if(['withdrawn_review','stock_requires_review'].includes(current.status))review(target);
        result.skipped++;continue;

@@ -34,6 +34,28 @@ test('unresolved catalog uncertainty leaves existing stock reachable and never a
 test('an unresolved parent cannot create positive stock for a new unallocated target',async()=>{
  const h=harness({recovery:{status:'review',acknowledged:0},targets:[{id:randomUUID(),instance_id:randomUUID(),selected:true,allocation_state:null}]});const r=await h.run();assert.ok(!h.calls.includes('stock'));assert.ok(!h.calls.includes('single'));assert.equal(r.skipped,1);
 });
+for(const status of ['review','paused','pending'])test('a reselected released copy waits for unresolved '+status+' pricing before fresh stock',async()=>{
+ const recovery=status==='pending'?new SquareApiError('square_provider_unavailable'):{status,acknowledged:0};
+ const h=harness({recovery,targets:[{id:randomUUID(),instance_id:randomUUID(),selected:true,allocation_state:'released'}]});
+ const result=await h.run({focusInstanceId:h.targets[0].instance_id});
+ assert.equal(result.skipped,1);assert.equal(result.succeeded,0);assert.equal(result.focusStatus,'pending');
+ assert.ok(!h.calls.includes('stock'));assert.ok(!h.calls.includes('single'));assert.ok(!h.calls.includes('artwork'));
+});
+test('a racing price parent cannot reallocate a released copy after its old price is rejected',async()=>{
+ const h=harness({catalogError:new SquareApiError('square_price_batch_pending'),targets:[{id:randomUUID(),instance_id:randomUUID(),selected:true,allocation_state:'released'}]});
+ const result=await h.run({focusInstanceId:h.targets[0].instance_id});
+ assert.equal(h.calls.filter(x=>x==='single').length,1);assert.ok(!h.calls.includes('stock'));assert.ok(!h.calls.includes('artwork'));
+ assert.equal(result.focusStatus,'pending');assert.equal(result.skipped,1);assert.equal(result.failed,0);
+});
+test('resolved catalog pricing still allows the normal released-copy allocation flow',async()=>{
+ const h=harness({targets:[{id:randomUUID(),instance_id:randomUUID(),selected:true,allocation_state:'released'}]});
+ const result=await h.run({focusInstanceId:h.targets[0].instance_id});
+ assert.ok(h.calls.indexOf('single')<h.calls.indexOf('stock'));assert.equal(result.focusStatus,'ready');assert.equal(result.succeeded,1);
+});
+for(const state of ['active','preparing','withdrawing','review','sold'])test('unresolved pricing preserves existing '+state+' stock recovery and withdrawal',async()=>{
+ const h=harness({recovery:{status:'review',acknowledged:0},targets:[{id:randomUUID(),instance_id:randomUUID(),selected:false,allocation_state:state}]});
+ const result=await h.run();assert.equal(h.calls.filter(x=>x==='stock').length,1);assert.equal(result.skipped,1);assert.ok(!h.calls.includes('single'));
+});
 test('price-provider failure remains durable while continuing existing stock work; its failure is not a checked price count',async()=>{
  const h=harness({recovery:new SquareApiError('square_provider_unavailable')}),r=await h.run();assert.equal(h.calls.filter(x=>x==='stock').length,5);assert.equal(r.batchFailures,1);assert.equal(r.skipped,5);assert.equal(h.terminal().status,'failed');assert.equal(h.terminal().failed,0);assert.equal(r.errorCode,'square_provider_unavailable');
 });

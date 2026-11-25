@@ -59,6 +59,14 @@ Accepted external effects may finalize without clearing later copy changes,
 deselection, withdrawal, stock, sale or refund obligations. Catalog acknowledgement
 is never proof of positive stock, successful payment or POS readiness.
 
+A released copy needs a fresh stock allocation just like an unallocated copy.
+Both the initial unresolved-batch barrier and a racing catalog barrier must
+block that allocation until catalog pricing is reconciled. Preserve existing
+preparing/active/review/withdrawing/sold stock handling, deselection withdrawals
+and saved-operation readback. The authority permits release only after zero
+confirmed stock with no prepared/sending/uncertain stock operation, or after
+canceling an unsent allocation; no valid saved operation is lost by this gate.
+
 Database jsonb ordering must not change request bytes. Send the saved literal
 text and inspect receipts against that same text and original membership.
 Keep provider backoff/authentication handling on the existing leased path.
