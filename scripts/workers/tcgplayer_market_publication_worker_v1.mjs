@@ -1,6 +1,6 @@
 import {marketPipelineDatabaseConfigV1} from '../../backend/pricing/market_pipeline_database_config_v1.mjs';
-import {CROSS_TCG_MARKET_SCOPE_V2,readCrossTcgMarketBootstrapV2,assertCrossTcgMarketActivationV2} from '../../backend/pricing/cross_tcg_market_activation_guard_v2.mjs';
-import {TCGPLAYER_MARKET_PUBLICATION_POLICY_V2, evaluateTcgplayerMarketQualificationV2} from '../../backend/pricing/tcgplayer_market_publication_policy_v2.mjs';
+import {CROSS_TCG_MARKET_SCOPE_V2,readCrossTcgMarketBootstrapV3,assertCrossTcgMarketActivationV3} from '../../backend/pricing/cross_tcg_market_activation_guard_v3.mjs';
+import {TCGPLAYER_MARKET_PUBLICATION_POLICY_V3, evaluateTcgplayerMarketQualificationV3_3 as evaluateTcgplayerMarketQualificationV3} from '../../backend/pricing/tcgplayer_market_publication_policy_v3_3.mjs';
 import { execFile } from "node:child_process";
 import { createHash } from "node:crypto";
 import { createReadStream } from "node:fs";
@@ -10,19 +10,19 @@ import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
 
 import pg from "pg";
-import { writeMarketSnapshotBatchesV1 } from "../../backend/pricing/market_snapshot_batches_v1.mjs";
+import { writeMarketSnapshotBatchesV2 } from "../../backend/pricing/market_snapshot_batches_v2.mjs";
 import { hydrateTcgplayerEditionCandidateV1 } from "../../backend/pricing/tcgplayer_edition_identity_v1.mjs";
 import {
-  REVIEWED_SPECIAL_CANDIDATE_COLUMNS_V1,
-  REVIEWED_SPECIAL_CANDIDATE_JOINS_V1,
-} from "../../backend/pricing/tcgplayer_reviewed_special_candidate_evidence_v1.mjs";
+  REVIEWED_SPECIAL_CANDIDATE_COLUMNS_V2,
+  REVIEWED_SPECIAL_CANDIDATE_JOINS_V2,
+} from "../../backend/pricing/tcgplayer_reviewed_special_candidate_evidence_v2.mjs";
 import { readMarketActivationCoverageV2 } from "../../backend/pricing/market_activation_coverage_v2.mjs";
 import { marketSessionConnectionStringV1 } from "../../backend/pricing/market_scheduler_session_v1.mjs";
 import {
   createCandidateStreamReconcilerV1,
-  readMarketLedgerBatchesV1,
-  marketLedgerRowsV1,
-} from "../../backend/pricing/tcgplayer_market_streaming_v1.mjs";
+  readMarketLedgerBatchesV2,
+  marketLedgerRowsV2,
+} from "../../backend/pricing/tcgplayer_market_streaming_v2.mjs";
 
 import "../../backend/env.mjs";
 import {
@@ -63,7 +63,7 @@ const DEFAULT_OUT_ROOT = path.join(
   "artifacts",
   "market_pricing_product_v1",
 );
-const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_27";
+const WORKER_VERSION = "TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_32";
 const PIPELINE_VERSION = "TCGPLAYER_MARKET_PIPELINE_V1";
 const SCHEMA_VERSION = "TCGPLAYER_MARKET_PUBLICATION_SCHEMA_V1";
 const SNAPSHOT_SCHEMA_VERSION = "MARKET_PRICE_PUBLICATION_SNAPSHOT_V1";
@@ -410,11 +410,11 @@ async function candidateRows(client, {
       `select
          candidate.*,
          source_group.name as source_group_name,
-         ${REVIEWED_SPECIAL_CANDIDATE_COLUMNS_V1}
+         ${REVIEWED_SPECIAL_CANDIDATE_COLUMNS_V2}
        from public.v_tcgplayer_market_qualification_candidates_v8 candidate
        left join public.tcgcsv_source_groups source_group
          on source_group.group_id = candidate.group_id
-       ${REVIEWED_SPECIAL_CANDIDATE_JOINS_V1}
+       ${REVIEWED_SPECIAL_CANDIDATE_JOINS_V2}
        where candidate.card_printing_id = any($1::uuid[])
          and candidate.source_sync_run_id = $2
          and candidate.source_product_id = any($3::integer[])
@@ -497,11 +497,11 @@ async function candidateRows(client, {
       `select
          candidate.*,
          source_group.name as source_group_name,
-         ${REVIEWED_SPECIAL_CANDIDATE_COLUMNS_V1}
+         ${REVIEWED_SPECIAL_CANDIDATE_COLUMNS_V2}
        from public.v_tcgplayer_market_qualification_candidates_v8 candidate
        left join public.tcgcsv_source_groups source_group
          on source_group.group_id = candidate.group_id
-       ${REVIEWED_SPECIAL_CANDIDATE_JOINS_V1}
+       ${REVIEWED_SPECIAL_CANDIDATE_JOINS_V2}
        where candidate.source_sync_run_id = $1
          and candidate.source_product_id = any($2::integer[])
        order by candidate.source_product_id,
@@ -682,7 +682,7 @@ async function ensureRun(client, {
     [
       runKey,
       PIPELINE_VERSION,
-      TCGPLAYER_MARKET_PUBLICATION_POLICY_V2,
+      TCGPLAYER_MARKET_PUBLICATION_POLICY_V3,
       runMode,
       sourceRun.observed_on,
       sourceRun.id,
@@ -710,7 +710,7 @@ async function ensureRun(client, {
     run.git_commit_sha !== commitSha ||
     run.run_mode !== runMode ||
     run.source_sync_run_id !== sourceRun.id ||
-    run.policy_version !== TCGPLAYER_MARKET_PUBLICATION_POLICY_V2 ||
+    run.policy_version !== TCGPLAYER_MARKET_PUBLICATION_POLICY_V3 ||
     run.worker_version !== WORKER_VERSION
   ) {
     throw new Error(
@@ -1440,7 +1440,7 @@ async function evaluateProductionActivationGuard(client, run, publicationSet) {
       previousStatementTimeout,
     ]);
     const counts = result.rows[0];
-    const crossScopeGuard = await assertCrossTcgMarketActivationV2(client,{runId:run.id,workerVersion:WORKER_VERSION,counts});
+    const crossScopeGuard = await assertCrossTcgMarketActivationV3(client,{runId:run.id,workerVersion:WORKER_VERSION,counts});
     guardArtifact = {
       cross_tcg_scope_guard:crossScopeGuard,
       ...evaluateMtgPricingProductionActivationGuardV1({
@@ -1572,7 +1572,7 @@ async function artifactRows(client, runId) {
   );
   return {
     run: runResult.rows[0],
-    decisions: marketLedgerRowsV1(client, 'decisions', runId),
+    decisions: marketLedgerRowsV2(client, 'decisions', runId),
     reconciliation: runResult.rows[0]?.reconciliation ?? {},
   };
 }
@@ -1652,7 +1652,7 @@ async function runDryRun(client, args, sourceRun, runPlan) {
   const decisions = rows.map((row, index) =>
     buildDecision(
       { id: `dry-run-candidate-${index + 1}`, candidate_payload: row },
-      evaluateTcgplayerMarketQualificationV2(row, {
+      evaluateTcgplayerMarketQualificationV3(row, {
         now: new Date(evaluatedAt),
         freshnessHours: args.freshnessHours,
         suppressionHours: args.suppressionHours,
@@ -1673,7 +1673,7 @@ async function runDryRun(client, args, sourceRun, runPlan) {
 }
 
 async function runDurable(client, args, sourceRun, runPlan) {
-  if(args.runMode==='production')await readCrossTcgMarketBootstrapV2(client,WORKER_VERSION);
+  if(args.runMode==='production')await readCrossTcgMarketBootstrapV3(client,WORKER_VERSION);
   await client.query(
     "select pg_advisory_lock(hashtext('tcgplayer_market_publication_v1'))",
   );
@@ -1769,12 +1769,12 @@ async function runDurable(client, args, sourceRun, runPlan) {
       operation: async ({ phaseAttemptId }) => {
         const evaluatedAt = new Date().toISOString();
         let candidateCount = 0;
-        for await (const candidates of readMarketLedgerBatchesV1(client, 'candidates', run.id)) {
+        for await (const candidates of readMarketLedgerBatchesV2(client, 'candidates', run.id)) {
           candidateCount += candidates.length;
           const decisions = candidates.map((candidate) =>
             buildDecision(
               candidate,
-              evaluateTcgplayerMarketQualificationV2(
+              evaluateTcgplayerMarketQualificationV3(
                 candidate.candidate_payload,
                 {
                   now: new Date(evaluatedAt),
@@ -1820,7 +1820,7 @@ async function runDurable(client, args, sourceRun, runPlan) {
       phaseName: "build_publication",
       operation: async ({ phaseAttemptId }) => {
         publicationSet = await ensurePublicationSet(client, run);
-        await writeMarketSnapshotBatchesV1(client, {
+        await writeMarketSnapshotBatchesV2(client, {
           runId: run.id,
           expectedCount: Number(publicationSet.expected_snapshot_count),
           batchSize: args.batchSize,
@@ -1989,7 +1989,7 @@ async function main() {
       pipeline_version: PIPELINE_VERSION,
       worker_version: WORKER_VERSION,
       schema_version: SCHEMA_VERSION,
-      policy_version: TCGPLAYER_MARKET_PUBLICATION_POLICY_V2,
+      policy_version: TCGPLAYER_MARKET_PUBLICATION_POLICY_V3,
       run_key: runKey,
       run_mode: args.runMode,
       commit_sha: commitSha,
@@ -2060,7 +2060,7 @@ async function main() {
     const counts = await decisionSummary(decisions);
     const summary = {
       worker_version: WORKER_VERSION,
-      policy_version: TCGPLAYER_MARKET_PUBLICATION_POLICY_V2,
+      policy_version: TCGPLAYER_MARKET_PUBLICATION_POLICY_V3,
       run_key: runKey,
       run_mode: args.runMode,
       commit_sha: commitSha,
@@ -2115,7 +2115,7 @@ async function main() {
 
 // Importing the pipeline for isolated database tests must not start a CLI run.
 // The CLI retains its clean-tree, source-run and production activation guards.
-export { candidateRows, runDryRun, runDurable, latestSourceRun, parseArgs };
+export { candidateRows, runDryRun, runDurable, latestSourceRun, parseArgs, buildDecision };
 
 if (process.argv[1] && path.resolve(process.argv[1]) === __filename) main().catch(async (error) => {
   await persistMtgProductionWorkerFailure(error).catch((artifactError) => {

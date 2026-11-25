@@ -1,0 +1,24 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_RETAIL_COSMOS_ADDENDUM_V2",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sm6",
+  "status": "reviewed_finish_subset",
+  "whole_set_completion": false,
+  "base_master_ref": "docs/audits/english_master_index_publishable_v1/sets/sm6/printings.json",
+  "base_master_sha256": "f3e804a6c4108f99177eb322c4bc66dfba6a118d4368005cd05a5c14568bb121",
+  "facts": [
+    {
+      "card_print_id": "a1c485cc-8509-4b38-9ce5-91756f7ee335",
+      "name": "Fennekin",
+      "printed_number": "15/131",
+      "variant_key": "forbidden_light_stamp",
+      "printed_stamp": "Forbidden Light expansion logo overlay",
+      "finish_key": "cosmos",
+      "source_url": "https://pokumon.com/card/stamped-fennekin-15-131-toys-r-us-special-print/",
+      "human_page_sha256": "8865bf617db34aac887bb47ee114a75b65ab8eaf650322b3972c50d9f80a8a2d",
+      "physical_image_sha256": "850ffcdc478aea1cfbe82a5530d4024a5d3befbb85acc2caa79c6d8f79f9b9f4"
+    }
+  ],
+  "preservation": "All original Master facts remain retained. Existing stored Reverse is outside this positive Cosmos admission and is not rejected or verified by it."
+}

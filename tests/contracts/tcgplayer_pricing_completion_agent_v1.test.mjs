@@ -626,6 +626,9 @@ test('local V2 consumer uses hosted candidate evidence without database secrets'
   );
   assert.match(runner, /ollama_identity_candidate_queue\.jsonl/);
   assert.match(runner, /GrookaiOllamaPricingTriageV2/);
+  assert.match(runner, /mtg_tcgplayer_global_exact_review_queue_v1\.mjs/);
+  assert.match(runner, /mtg-global-exact-review-v1/);
+  assert.match(runner, /Ensure-MtgGlobalExactReviewQueue/);
   assert.doesNotMatch(runner, /\.env\.local|SUPABASE_DB_URL|DATABASE_URL|POSTGRES_URL/);
   assert.doesNotMatch(runner, /candidate_enrichment/);
   assert.match(runner, /if \(\$hasMutex\) \{[\s\S]*ollama\.exe stop[\s\S]*ReleaseMutex\(\)/);

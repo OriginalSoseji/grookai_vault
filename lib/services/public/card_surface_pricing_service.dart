@@ -16,6 +16,7 @@ class CardSurfacePricingData {
     this.provenanceId,
     this.proofPricedCopyCount,
     this.proofUnpricedCopyCount,
+    this.freshness = 'fresh',
   });
 
   final String cardPrintId;
@@ -32,15 +33,17 @@ class CardSurfacePricingData {
   final String? provenanceId;
   final int? proofPricedCopyCount;
   final int? proofUnpricedCopyCount;
+  final String freshness;
+
+  bool get isStale => freshness == 'stale';
 
   double? get visibleValue => marketClose;
 
-  String get compactLabel =>
-      primarySource == 'ebay'
-          ? 'eBay Active Listings'
-          : isFromPrice
-              ? 'From TCGPlayer Market'
-              : 'TCGPlayer Market';
+  String get compactLabel => primarySource == 'ebay'
+      ? 'eBay Active Listings'
+      : isFromPrice
+      ? 'From TCGPlayer Market'
+      : 'TCGPlayer Market';
 
   bool get hasVisibleValue => visibleValue != null;
 }
@@ -173,8 +176,8 @@ CardSurfacePricingData? cardSurfacePricingDataFromReadModelRow(
   final expectedSourceLabel = isEbayActiveListing
       ? 'eBay Active Listings'
       : isFromPrice
-          ? 'From TCGPlayer Market'
-          : 'TCGPlayer Market';
+      ? 'From TCGPlayer Market'
+      : 'TCGPlayer Market';
 
   if (cardPrintId == null ||
       (pricingScope != 'parent' && pricingScope != 'card_printing') ||
@@ -183,7 +186,7 @@ CardSurfacePricingData? cardSurfacePricingDataFromReadModelRow(
       marketClose <= 0 ||
       row['status'] != 'available' ||
       row['currency'] != 'USD' ||
-      row['freshness'] != 'fresh' ||
+      (row['freshness'] != 'fresh' && row['freshness'] != 'stale') ||
       (sourceName != 'tcgplayer' && !isEbayActiveListing) ||
       (isEbayActiveListing &&
           _cleanPricingValue(row['pricing_basis']) !=
@@ -209,6 +212,7 @@ CardSurfacePricingData? cardSurfacePricingDataFromReadModelRow(
     observedAt: observedAt,
     publishedAt: publishedAt,
     provenanceId: provenanceId,
+    freshness: row['freshness'] as String,
   );
 }
 

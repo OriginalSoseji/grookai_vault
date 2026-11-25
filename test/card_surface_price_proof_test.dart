@@ -2,8 +2,60 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:grookai_vault/services/public/card_surface_pricing_service.dart';
 import 'package:grookai_vault/widgets/card_surface_price.dart';
+import 'package:grookai_vault/services/public/market_price_updated_at.dart';
 
 void main() {
+  testWidgets('aggregate prices label the date as the latest included update', (
+    tester,
+  ) async {
+    final pricing = CardSurfacePricingData(
+      cardPrintId: 'parent-1',
+      pricingScope: 'vault_exact_total',
+      marketClose: 67,
+      freshness: 'stale',
+      observedAt: DateTime.utc(2026, 11, 23, 10),
+    );
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(body: CardSurfacePriceText(pricing: pricing)),
+      ),
+    );
+    await tester.longPress(find.text(r'$67.00'));
+    await tester.pumpAndSettle();
+    expect(
+      find.text(
+        'Includes last known prices · Latest included price update 2026-11-23 10:00 UTC',
+      ),
+      findsOneWidget,
+    );
+  });
+
+  testWidgets(
+    'old native prices retain their amount and expose the original source date',
+    (tester) async {
+      final pricing = CardSurfacePricingData(
+        cardPrintId: 'parent-1',
+        pricingScope: 'card_printing',
+        cardPrintingId: 'printing-1',
+        marketClose: 31,
+        freshness: 'stale',
+        observedAt: DateTime.utc(2020, 1, 1, 8),
+      );
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(body: CardSurfacePriceText(pricing: pricing)),
+        ),
+      );
+      expect(find.text(r'$31.00'), findsOneWidget);
+      await tester.longPress(find.text(r'$31.00'));
+      await tester.pumpAndSettle();
+      expect(
+        find.text('Last known price · Last updated 2020-01-01 08:00 UTC'),
+        findsOneWidget,
+      );
+    },
+  );
+
   testWidgets('shared price widget exposes stable source-to-render evidence', (
     tester,
   ) async {
@@ -154,6 +206,24 @@ void main() {
     expect(pricing, isNotNull);
     expect(pricing?.marketClose, 12.34);
     expect(pricing?.provenanceId, 'provenance-1');
+
+    final retained = cardSurfacePricingDataFromReadModelRow({
+      ...row,
+      'freshness': 'stale',
+      'observed_at': '2020-01-01T08:00:00.000Z',
+    });
+    expect(retained?.marketClose, 12.34);
+    expect(retained?.isStale, isTrue);
+    expect(retained?.provenanceId, 'provenance-1');
+    expect(
+      marketPriceUpdatedAt(retained?.observedAt),
+      'Last updated 2020-01-01 08:00 UTC',
+    );
+    expect(marketPriceUpdatedAt(null), 'Update time unavailable');
+    expect(
+      cardSurfacePricingDataFromReadModelRow({...row, 'freshness': 'unknown'}),
+      isNull,
+    );
 
     for (final field in <String>[
       'card_printing_id',

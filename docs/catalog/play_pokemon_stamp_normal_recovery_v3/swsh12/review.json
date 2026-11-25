@@ -1,0 +1,20 @@
+{
+  "version": "PLAY_STAMP_NORMAL_SOURCE_REVIEW_V3",
+  "status": "verified_scope",
+  "reviewer": "Codex original-PDF, independent-checklist and live-identity source review",
+  "reviewed_at": "2026-11-23T07:58:48.997Z",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "swsh12",
+  "scope": "verified_parent_families",
+  "master_index_sha256": "816056ac34a9eb81b2c4ada3d3d75c04173d4fe0da7892075f6e1e5754371505",
+  "projection_sha256": "552f68755eaa3e04ba83175a02d5f3898be48a70a9759b999b6955e9530dbfbb",
+  "complete_printing_inventory": false,
+  "execution_authority": false,
+  "review_notes": [
+    "Official archived source bytes, actual unedited Poppler rendering and black/red legend inspected; no re-dated original or substituted image.",
+    "Every selected exact set/number/name/Normal tuple independently agrees and current target identity was rechecked.",
+    "All targets are existing childless generic play_pokemon_stamp parents; other stamp families and foil patterns remain outside scope.",
+    "This source review grants no production execution approval."
+  ]
+}

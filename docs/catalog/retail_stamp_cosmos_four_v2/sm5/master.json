@@ -1,0 +1,24 @@
+{
+  "version": "ENGLISH_MASTER_INDEX_RETAIL_COSMOS_ADDENDUM_V2",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sm5",
+  "status": "reviewed_finish_subset",
+  "whole_set_completion": false,
+  "base_master_ref": "docs/audits/english_master_index_publishable_v1/sets/sm5/printings.json",
+  "base_master_sha256": "4304ff6be0503547af874f130a725a5c2034d6599fcfe417276f69c845d1ed12",
+  "facts": [
+    {
+      "card_print_id": "c254ec21-1cab-47a7-94f4-b29b6fe97b3b",
+      "name": "Heatran",
+      "printed_number": "88/156",
+      "variant_key": "ultra_prism_stamp",
+      "printed_stamp": "Ultra Prism expansion logo overlay",
+      "finish_key": "cosmos",
+      "source_url": "https://pokumon.com/card/cosmos-holofoil-heatran-88-156-gamestop-special-print/",
+      "human_page_sha256": "d45b48bb23e500c327fe8501655932ab06fe04481b08524f687b1d8fc0f9befb",
+      "physical_image_sha256": "1df1afb9a1b3a2c515f9ff82db87996c13b1b0e54e159e4f83bde1bbfb15edc8"
+    }
+  ],
+  "preservation": "All original Master facts remain retained. Existing stored Reverse is outside this positive Cosmos admission and is not rejected or verified by it."
+}

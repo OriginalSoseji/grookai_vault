@@ -1,3 +1,38 @@
+# Fifteen GameStop maintenance adapter — November 24, 2026
+
+The [maintenance adapter checkpoint](checkpoints/identity/GAMESTOP_REGISTRY_FIFTEEN_MAINTENANCE_ADAPTER_20261124.md)
+owns current preparation. The exact fifteen identities use the existing
+maintenance launcher, approved run/source/plan scope, pricing exclusion locks and
+durable outcome records. One operational audit row per write run is proposed
+separately from the fifteen canonical INSERTs. Preparation is not production
+authority; final source checks, fresh canonical plan/rollback and the applicable
+owner decision remain required. All original labs and closed releases stay retained.
+
+# Fifteen GameStop registry entries — initial local milestone, November 24, 2026
+
+The [local qualification checkpoint](checkpoints/identity/GAMESTOP_REGISTRY_FIFTEEN_LOCAL_QUALIFICATION_20261124.md)
+records the bounded missing-registry repair under the existing frozen identity
+law. That initial milestone exposes only local qualification. The separate
+adapter checkpoint above owns subsequent production-path preparation. Preserve
+all existing parent IDs, printings, reviews, owners, prices and
+the Play!/Prize Pack holds. Normal source checks and separate production gates
+remain outstanding. Do not reset old laboratories or replay consumed executors.
+
+# Current retained-price qualification — November24,2026
+
+The current retained-price source reconciles accepted PR1042/maine3080875, including
+worker30 mainf6e105f5 and selected-printing image confidence, while
+preserving the independently closed catalog main75fe32c0. Exact sourceMain and
+catalog closure are separately pinned; original migration bytes, worker30 policy
+and hard stamp-identity holds remain unchanged. Previous6389 andd1c05d0 source checks passed; both real main advances remain
+recorded and require the current exact combined-source qualification.
+
+The catalog523 release closed on main75fe32c0 with deployed acceptance and original
+control restoration. Follow [retained-price release V1](contracts/MARKET_PRICE_RETENTION_RELEASE_V1.md)
+for the sole older pending price migration and actual523 baseline. Both phases are
+read-only; exact production SQL approval remains separate. Earlier catalog release
+instructions below are retained historical boundaries, not an active merge hold.
+
 # Best of Game catalog covering-index correction V15 — November 23, 2026
 
 Follow [V15](contracts/BEST_OF_GAME_DISCOVERY_READ_REPAIR_V15.md). Production
@@ -177,6 +212,11 @@ Before any L2/L3 audit or implementation:
 - Source: enrichment/mapping audits above.
 
 ## 9. Pricing Engine V3 Contract
+- Owner display rule, November 23, 2026: retain the last qualified published
+  exact price even when old and transparently show its source update date.
+  [MARKET_PRICE_RETENTION_DISPLAY_V1](contracts/MARKET_PRICE_RETENTION_DISPLAY_V1.md)
+  supersedes age-based display withholding only; fresh-publication qualification,
+  identity, coverage and security gates remain unchanged.
 - Sources: price observations (eBay first). Listing intelligence includes skip reasons.
 - Condition curves: NM/LP/MP/HP/DMG; confidence derived from samples.
 - Snapshots: `card_print_price_curves` table; `card_print_latest_price_curve` view for latest per print.

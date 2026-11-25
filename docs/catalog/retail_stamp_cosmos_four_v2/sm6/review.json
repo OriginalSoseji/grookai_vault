@@ -1,0 +1,35 @@
+{
+  "status": "verified_positive_subset",
+  "reviewer": "Codex, source adjudication during owner-authorized all-stamped printing repair preparation",
+  "reviewed_at": "2026-11-24T09:08:58.762Z",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sm6",
+  "scope": "verified_finish_subset",
+  "master_index_sha256": "39ceba97b8bb20815245736cb97bad18475436c772cfa78680b9f7cfa30baebf",
+  "projection_sha256": "8afddde6c7d71cc79af379ae23851631136cb9dc1cba5f681a81135410c06277",
+  "production_execution_authority": false,
+  "whole_set_completion": false,
+  "decisions": [
+    "Only the exact existing stamped parent and documented Cosmos finish are admitted in this bounded working Master addendum.",
+    "The exact human-readable collector reference names Cosmos Holo and this expansion stamp. Pricing buckets and provider variant booleans are not used.",
+    "The separate Reverse child remains unchanged and unadjudicated; Cosmos presence does not establish another finish absence.",
+    "No parent, identity, old child, old review, image, mapping, pricing, owner or visibility update is proposed."
+  ],
+  "physical_image_review": {
+    "file": "be9b29c3-236d-44c7-a029-7ec4720f135e.jpg",
+    "sha256": "850ffcdc478aea1cfbe82a5530d4024a5d3befbb85acc2caa79c6d8f79f9b9f4",
+    "printed_name": "Fennekin",
+    "printed_number": "15/131",
+    "printed_stamp": "Forbidden Light expansion logo overlay",
+    "foil_observation": "Circular Cosmos foil reflections are visible in the illustration; the text field lacks the ordinary Reverse treatment."
+  },
+  "protected_outside_scope_children": [
+    {
+      "id": "be9b29c3-236d-44c7-a029-7ec4720f135e",
+      "printingGvId": "GV-PK-SM6-15-FORBIDDEN-LIGHT-STAMP-RH",
+      "finishKey": "reverse",
+      "beforeSha256": "87977bd097ba1c87f26c3b9c56515900e34c8ca5d729d9e1ffa67b6edbbd6813"
+    }
+  ]
+}
