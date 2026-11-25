@@ -6268,3 +6268,19 @@ unchanged activation/coverage guards, real publication/source/consumer/app amoun
 and natural refresh remain required. Local fixtures or a merge do not finish
 global pricing or clear stamp admission.
 
+
+## Current-source Japanese price-link preparation — November24,2026
+
+V3/V4 preserve original427/4916 verified child/product matches and archived
+physical proofs. The daily source refreshed to2509 before V1/V2 execution; those
+old plans remain unapplied. Current evidence now freezes in each exact plan,
+independently of immutable physical source. Three products570051/571943/630237
+lost usable current Market quotes and may join only with explicit missing/null
+metadata; no stale/estimated quote can publish. Six kind holds remain.
+
+Use the V3/V4 contracts/CLIs, actual local/full normal/hosted/review qualification,
+new exact owner decisions and scoped ACK, own matching production rollback, one
+apply and separate-connection readback. Current frame drift blocks that plan;
+never refresh it silently. No source/price/owner/canonical/publication write, no
+coverage exception, no original149 or regular29 repeat, and no stamp-hold
+clearance. Full corrected unlimited shadow/publication/app/refresh follow.
