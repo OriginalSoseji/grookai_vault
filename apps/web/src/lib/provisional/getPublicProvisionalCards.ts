@@ -296,6 +296,7 @@ export async function getPublicProvisionalCards(input?: {
   query?: string | null;
   setCode?: string | null;
   limit?: number;
+  signal?: AbortSignal;
 }): Promise<PublicProvisionalCard[]> {
   const requestedLimit =
     typeof input?.limit === "number" && Number.isFinite(input.limit) && input.limit > 0
@@ -306,7 +307,7 @@ export async function getPublicProvisionalCards(input?: {
 
   // SECURITY: DO NOT ACCESS WAREHOUSE DIRECTLY.
   // USE getPublicProvisionalCards (CONTRACT ENFORCED).
-  const { data, error } = await supabase
+  let request = supabase
     .from("canon_warehouse_candidates")
     .select(PUBLIC_PROVISIONAL_SELECT)
     .eq("submission_intent", "MISSING_CARD")
@@ -317,6 +318,9 @@ export async function getPublicProvisionalCards(input?: {
     .or("proposed_action_type.is.null,proposed_action_type.not.in.(ENRICH_CANON_IMAGE,ENRICH_CARD_PRINTING_IMAGE,CREATE_CARD_PRINTING,BLOCKED_NO_PROMOTION)")
     .order("created_at", { ascending: false })
     .limit(queryLimit);
+
+  if (input?.signal) request = request.abortSignal(input.signal);
+  const { data, error } = await request;
 
   if (error) {
     throw new Error(`Public provisional warehouse query failed: ${error.message}`);

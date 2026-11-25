@@ -1,0 +1,9 @@
+{
+  "scope": "Read-only comparison of filenames in the isolated integration worktree against supabase_migrations.schema_migrations; this is not a source-byte comparison, linked schema diff, migration replay, or apply authorization.",
+  "remote_versions": 519,
+  "local_versions": 519,
+  "remote_only": [],
+  "local_only": [],
+  "duplicate_local_versions": [],
+  "notes": "Versions of any numeric length were included, including the two historical eight-digit versions. The newest remote version was 20261123000500. The migration files are unchanged by this integration."
+}

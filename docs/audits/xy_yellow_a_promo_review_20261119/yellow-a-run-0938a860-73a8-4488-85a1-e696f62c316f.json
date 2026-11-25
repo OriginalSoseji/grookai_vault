@@ -1,0 +1,120 @@
+{
+  "version": "XY_YELLOW_A_PROMO_RARITY_APPLY_V1",
+  "run_id": "0938a860-73a8-4488-85a1-e696f62c316f",
+  "mode": "apply",
+  "package_fingerprint": "6d6277151ca1384f6bcd3bb9d607f8a348e85b892aaa752dfeb74a56f5aa19e5",
+  "writer_fingerprint": "5ed26e183d9ac04781732709c24cfb5e6ecc9b4d7df2d00673564bb2cedce1e4",
+  "started_at": "2026-11-19T21:50:02.575Z",
+  "status": "applied_and_verified",
+  "stages": [
+    {
+      "name": "frozen_sources_and_images_verified",
+      "at": "2026-11-19T21:50:08.337Z"
+    },
+    {
+      "name": "write_and_proofs_passed",
+      "at": "2026-11-19T21:50:16.096Z"
+    },
+    {
+      "name": "applied_and_verified",
+      "at": "2026-11-19T21:50:17.087Z"
+    }
+  ],
+  "sanity": {
+    "parents": 173837,
+    "sets": 3420,
+    "traits": 47409
+  },
+  "state": "pending",
+  "protected_before": {
+    "parent_other_fields": {
+      "rows": 2,
+      "digest": "01e5fde798f775e46caf7aa2e2023383"
+    },
+    "card_print_identity": {
+      "rows": 2,
+      "row_versions_1": "7179577386836988058",
+      "row_versions_2": "5504183559439162085"
+    },
+    "card_printings": {
+      "rows": 2,
+      "row_versions_1": "732794540857575645",
+      "row_versions_2": "7916784012923463843"
+    },
+    "external_mappings": {
+      "rows": 4,
+      "row_versions_1": "1102757075021126265",
+      "row_versions_2": "-4896513859357424659"
+    },
+    "external_mapping_aliases": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "card_print_species": {
+      "rows": 2,
+      "row_versions_1": "-3334154559565811940",
+      "row_versions_2": "2976486880236650088"
+    },
+    "card_print_cameos": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "card_print_traits": {
+      "rows": 2,
+      "row_versions_1": "3028024301670405185",
+      "row_versions_2": "7531507833453572563"
+    },
+    "card_print_image_faces": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "vault_item_instances": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "vault_items": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "card_print_price_curves": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "price_observations": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "market_prices": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "market_price_current_publication": {
+      "rows": 1,
+      "digest": "784d29d02aa0dff49fb6125dec6b8e4a"
+    },
+    "market_price_publication_snapshots": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "market_price_qualification_decisions": {
+      "rows": 0,
+      "row_versions_1": "0",
+      "row_versions_2": "0"
+    },
+    "sets": {
+      "rows": 1,
+      "digest": "75966b96c4b70cde547efbad67bfdca4"
+    }
+  },
+  "receipt_id": "176957",
+  "finished_at": "2026-11-19T21:50:17.006Z"
+}

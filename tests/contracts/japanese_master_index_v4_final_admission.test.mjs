@@ -3,7 +3,20 @@ import test from 'node:test';
 
 import {
   buildFinalAdmission,
+  assertionDispositionRows,
 } from '../../scripts/audits/japanese_master_index_v4/final_admission_v1.mjs';
+
+test('inactive historical evidence stays excluded even when its parent is admissible', () => {
+  const rows = assertionDispositionRows({
+    sourceAssertionUnion: [{ union_row_key: 'retired', assertion_lane: 'preserved_inactive_evidence', evidence_id: 'old', projected_candidate_key: 'parent', resolution_status: 'preserved_inactive_evidence' }],
+    cardRowsByKey: new Map([['parent', { final_disposition: 'master_admissible' }]]),
+    conflictIndexes: { unresolvedAssertions: new Map() },
+    futureRegistryKeys: new Set(),
+  });
+  assert.equal(rows[0].final_disposition, 'adjudicated_excluded');
+  assert.equal(rows[0].disposition_reason, 'inactive_historical_evidence');
+  assert.equal(rows[0].evidence_id, 'old');
+});
 
 function assertion({
   key,
@@ -132,6 +145,27 @@ function buildFixture({
   });
 }
 
+test('gap report counts active evidence separately from retained historical IDs', () => {
+  const source = assertion({ key: 'single', sourceId: 'community', sourceFamily: 'community' });
+  const item = candidate({ key: 'one', assertionKeys: ['single'], sourceIds: ['community'] });
+  item.baseline_evidence_ids = ['active', 'retired'];
+  item.active_baseline_evidence_ids = ['active'];
+  const result = buildFixture({ sourceAssertions: [source], identityCandidates: [item] });
+  const gap = result.datasets.master_source_gap_rows_v1.find((row) => row.subject_key === 'one');
+  assert.ok(gap);
+  assert.equal(gap.preserved_live_evidence_rows, 1);
+});
+
+test('older candidate artifacts without active-ID metadata retain their prior gap count', () => {
+  const source = assertion({ key: 'legacy', sourceId: 'community', sourceFamily: 'community' });
+  const item = candidate({ key: 'old', assertionKeys: ['legacy'], sourceIds: ['community'] });
+  item.baseline_evidence_ids = ['one', 'two'];
+  const result = buildFixture({ sourceAssertions: [source], identityCandidates: [item] });
+  const gap = result.datasets.master_source_gap_rows_v1.find((row) => row.subject_key === 'old');
+  assert.ok(gap);
+  assert.equal(gap.preserved_live_evidence_rows, 2);
+});
+
 test('official identity and two-source finish are master-admissible', () => {
   const official = assertion({
     key: 'official-1',
@@ -178,6 +212,101 @@ test('official identity and two-source finish are master-admissible', () => {
     'species-pikachu',
   );
   assert.equal(result.completion.all_static_admission_checks_pass, true);
+});
+
+test('mismatched source claims cannot grant official identity or finish authority', () => {
+  const official = assertion({ key: 'official', sourceId: 'official_jp_cards', sourceFamily: 'pokemon_card_official_jp', finishLabels: ['normal'] });
+  const spoofed = assertion({ key: 'spoofed', sourceId: 'pokeapi_species_names_only', sourceFamily: 'limitless_tcg_jp', finishLabels: ['normal'] });
+  const card = candidate({ key: 'card', assertionKeys: ['official', 'spoofed'], sourceIds: [official.source_id, spoofed.source_id] });
+  const result = buildFixture({
+    sourceAssertions: [official, spoofed], identityCandidates: [card],
+    printingCandidates: [{ printing_candidate_key: 'finish', identity_candidate_key: 'card', finish_key: 'normal', assertion_keys: ['official', 'spoofed'], candidate_kind: 'novel_printing_exact_finish' }],
+    familyProjectionRows: [{ candidate_key: 'card', projection_status: 'projected_exact', species_id: 'species-pikachu', projection_methods: ['exact_japanese_name'] }],
+  });
+  const printing = result.datasets.master_printing_fact_rows_v1[0];
+  assert.deepEqual(printing.independent_source_families, ['official_jp']);
+  assert.equal(printing.final_disposition, 'blocked');
+});
+
+test('an unrecognized or inconsistent assertion cannot claim an official family through candidate source IDs', () => {
+  for (const [sourceId, sourceFamily] of [
+    ['pokeapi_species_names_only', 'pokemon_card_official_jp'],
+    ['official_jp_cards', 'limitless_tcg_jp'],
+  ]) {
+    const source = assertion({ key: 'bad', sourceId, sourceFamily });
+    const card = candidate({ key: 'card', assertionKeys: ['bad'], sourceIds: [sourceId] });
+    const result = buildFixture({ sourceAssertions: [source], identityCandidates: [card] });
+    const row = result.datasets.master_card_resolution_rows_v1[0];
+    assert.equal(row.official_source_present, false, sourceId);
+    assert.equal(row.independent_source_count, 0, sourceId);
+  }
+});
+
+test('a false official claim cannot select the canonical Japanese spelling', () => {
+  const source = assertion({ key: 'bad-name', sourceId: 'pokeapi_species_names_only', sourceFamily: 'pokemon_card_official_jp', name: 'バクーダEX' });
+  const card = candidate({ key: 'card', assertionKeys: ['bad-name'], sourceIds: [source.source_id], name: 'バクーダex' });
+  const result = buildFixture({ sourceAssertions: [source], identityCandidates: [card] });
+  assert.equal(result.datasets.master_card_resolution_rows_v1[0].printed_name_ja, 'バクーダex');
+});
+
+test('a baseline-only recognized source key keeps its existing family', () => {
+  const card = candidate({ key: 'existing', assertionKeys: [], sourceIds: ['official_jp_cards'], kind: 'existing_parent', existingCardPrintId: 'parent' });
+  const result = buildFixture({ sourceAssertions: [], identityCandidates: [card] });
+  const row = result.datasets.master_card_resolution_rows_v1[0];
+  assert.deepEqual(row.independent_source_families, ['official_jp']);
+  assert.equal(row.official_source_present, true);
+});
+
+test('explicitly ineligible active baseline evidence cannot supply an official family', () => {
+  const card = candidate({ key: 'existing', assertionKeys: [], sourceIds: ['pokemon_card_official_jp'], kind: 'existing_parent', existingCardPrintId: 'parent' });
+  card.baseline_evidence_ids = ['stale'];
+  card.active_baseline_evidence_ids = ['stale'];
+  card.current_eligible_baseline_evidence_ids = [];
+  card.current_eligible_baseline_source_keys = [];
+  const result = buildFixture({ sourceAssertions: [], identityCandidates: [card] });
+  const row = result.datasets.master_card_resolution_rows_v1[0];
+  assert.equal(row.official_source_present, false);
+  assert.deepEqual(row.current_eligible_baseline_evidence_ids, []);
+  assert.deepEqual(row.active_baseline_evidence_ids, ['stale']);
+});
+
+test('valid fresh assertions still count when baseline eligibility is explicitly empty', () => {
+  const source = assertion({ key: 'official', sourceId: 'official_jp_cards', sourceFamily: 'pokemon_card_official_jp' });
+  const card = candidate({ key: 'card', assertionKeys: ['official'], sourceIds: [source.source_id] });
+  card.current_eligible_baseline_source_keys = [];
+  card.current_eligible_baseline_evidence_ids = [];
+  const result = buildFixture({ sourceAssertions: [source], identityCandidates: [card] });
+  assert.equal(result.datasets.master_card_resolution_rows_v1[0].official_source_present, true);
+});
+
+test('malformed explicit baseline eligibility fails closed', () => {
+  const card = candidate({ key: 'existing', assertionKeys: [], sourceIds: ['pokemon_card_official_jp'] });
+  card.current_eligible_baseline_source_keys = null;
+  card.current_eligible_baseline_evidence_ids = null;
+  const result = buildFixture({ sourceAssertions: [], identityCandidates: [card] });
+  const row = result.datasets.master_card_resolution_rows_v1[0];
+  assert.equal(row.official_source_present, false);
+  assert.deepEqual(row.current_eligible_baseline_evidence_ids, []);
+});
+
+test('a qualified baseline source keeps its recognized family', () => {
+  const card = candidate({ key: 'existing', assertionKeys: [], sourceIds: ['pokemon_card_official_jp'] });
+  card.current_eligible_baseline_source_keys = ['pokemon_card_official_jp'];
+  card.current_eligible_baseline_evidence_ids = ['current'];
+  const result = buildFixture({ sourceAssertions: [], identityCandidates: [card] });
+  const row = result.datasets.master_card_resolution_rows_v1[0];
+  assert.equal(row.official_source_present, true);
+  assert.deepEqual(row.current_eligible_baseline_evidence_ids, ['current']);
+});
+
+test('ineligible live evidence remains excluded in the assertion disposition', () => {
+  const rows = assertionDispositionRows({
+    sourceAssertionUnion: [{ union_row_key: 'stale', assertion_lane: 'preserved_live_evidence', current_identity_claims_eligible: false, evidence_id: 'old', projected_candidate_key: 'parent' }],
+    cardRowsByKey: new Map([['parent', { final_disposition: 'master_admissible' }]]),
+    conflictIndexes: { unresolvedAssertions: new Map() }, futureRegistryKeys: new Set(),
+  });
+  assert.equal(rows[0].final_disposition, 'adjudicated_excluded');
+  assert.equal(rows[0].disposition_reason, 'active_evidence_identity_claims_unqualified');
 });
 
 test('final admission independently rejects a composite presented as an exact numbered card', () => {

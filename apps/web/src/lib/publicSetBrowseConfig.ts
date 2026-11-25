@@ -192,6 +192,9 @@ export function getPublicSetBrowseGroup(
     return "legacy";
   }
 
+  // Promo family identity is more specific than the set-level launch date.
+  if (code === "swshp") return "swsh";
+  if (code === "svp") return "sv";
   if (typeof year !== "number") return "unknown";
   if (year >= 2023) return "sv";
   if (year >= 2020) return "swsh";

@@ -283,15 +283,33 @@ function sourceFamily(value) {
   return SOURCE_FAMILY_ALIASES.get(normalized) ?? null;
 }
 
+function qualifiedAssertionFamily(assertion) {
+  const idFamily = sourceFamily(assertion?.source_id);
+  const declaredFamily = sourceFamily(assertion?.source_family);
+  return idFamily && idFamily === declaredFamily ? idFamily : null;
+}
+
 function sourceFamiliesForCandidate(candidate, assertionByKey) {
+  const assertions = (candidate.assertion_keys ?? [])
+    .map((key) => assertionByKey.get(key))
+    .filter(Boolean);
+  // Candidate source IDs combine fresh assertions and retained baseline keys.
+  // Do not let an inconsistent fresh assertion bypass qualification through
+  // that combined list; preserve baseline-only source keys as before.
+  const inconsistentIds = new Set(assertions
+    .filter((row) => !qualifiedAssertionFamily(row))
+    .map((row) => normalizedName(row.source_id)));
+  const hasEligibleKeys = Object.hasOwn(candidate, 'current_eligible_baseline_source_keys');
+  const baselineKeys = hasEligibleKeys
+    ? Array.isArray(candidate.current_eligible_baseline_source_keys)
+      ? candidate.current_eligible_baseline_source_keys
+      : []
+    : (candidate.source_ids ?? []);
   return unique([
-    ...(candidate.source_ids ?? []).map(sourceFamily),
-    ...(candidate.assertion_keys ?? []).map(
-      (key) => sourceFamily(assertionByKey.get(key)?.source_id),
-    ),
-    ...(candidate.assertion_keys ?? []).map(
-      (key) => sourceFamily(assertionByKey.get(key)?.source_family),
-    ),
+    ...baselineKeys
+      .filter((id) => !inconsistentIds.has(normalizedName(id)))
+      .map(sourceFamily),
+    ...assertions.map(qualifiedAssertionFamily),
   ]);
 }
 
@@ -630,8 +648,7 @@ function cardResolutionRows({
     );
     const officialJapaneseNames = unique(
       assertions
-        .filter((row) => sourceFamily(row.source_id) === OFFICIAL_FAMILY
-          || sourceFamily(row.source_family) === OFFICIAL_FAMILY)
+        .filter((row) => qualifiedAssertionFamily(row) === OFFICIAL_FAMILY)
         .map((row) => normalizedText(row.printed_name))
         .filter(hasJapaneseScript),
     );
@@ -775,6 +792,21 @@ function cardResolutionRows({
       card_domain: family.domain,
       source_assertion_keys: unique(candidate.assertion_keys ?? []),
       baseline_evidence_ids: unique(candidate.baseline_evidence_ids ?? []),
+      active_baseline_evidence_ids: unique(
+        candidate.active_baseline_evidence_ids ?? candidate.baseline_evidence_ids ?? [],
+      ),
+      ...(Object.hasOwn(candidate, 'current_eligible_baseline_evidence_ids')
+        ? { current_eligible_baseline_evidence_ids: unique(
+          Array.isArray(candidate.current_eligible_baseline_evidence_ids)
+            ? candidate.current_eligible_baseline_evidence_ids : [],
+        ) }
+        : {}),
+      ...(Object.hasOwn(candidate, 'current_eligible_baseline_source_keys')
+        ? { current_eligible_baseline_source_keys: unique(
+          Array.isArray(candidate.current_eligible_baseline_source_keys)
+            ? candidate.current_eligible_baseline_source_keys : [],
+        ) }
+        : {}),
       source_ids: unique(candidate.source_ids ?? []),
       independent_source_families: families,
       independent_source_count: families.length,
@@ -878,10 +910,7 @@ function printingFactRows({
     const evidenceAssertions = unique(explicitKeys)
       .map((key) => assertionByKey.get(key))
       .filter(Boolean);
-    const families = unique(evidenceAssertions.flatMap((row) => [
-      sourceFamily(row.source_id),
-      sourceFamily(row.source_family),
-    ]));
+    const families = unique(evidenceAssertions.map(qualifiedAssertionFamily));
     const hasHumanReadable = families.some(
       (family) => HUMAN_READABLE_FAMILIES.has(family),
     );
@@ -935,7 +964,7 @@ function printingFactRows({
   ));
 }
 
-function assertionDispositionRows({
+export function assertionDispositionRows({
   sourceAssertionUnion,
   cardRowsByKey,
   conflictIndexes,
@@ -948,7 +977,14 @@ function assertionDispositionRows({
       : [];
     let disposition = 'blocked_working_candidate';
     let reason = 'candidate_not_master_admissible';
-    if (card?.final_disposition === 'master_admissible') {
+    if (row.assertion_lane === 'preserved_inactive_evidence') {
+      disposition = 'adjudicated_excluded';
+      reason = 'inactive_historical_evidence';
+    } else if (row.assertion_lane === 'preserved_live_evidence' &&
+        row.current_identity_claims_eligible === false) {
+      disposition = 'adjudicated_excluded';
+      reason = 'active_evidence_identity_claims_unqualified';
+    } else if (card?.final_disposition === 'master_admissible') {
       disposition = 'mapped_master_admissible';
       reason = 'candidate_satisfies_identity_and_family_admission';
     } else if (card?.final_disposition === 'adjudicated_excluded') {
@@ -1104,7 +1140,7 @@ function sourceGapRows({
       status: card.admission_status,
       source_family: null,
       assertion_count: card.source_assertion_keys.length,
-      preserved_live_evidence_rows: card.baseline_evidence_ids.length,
+      preserved_live_evidence_rows: card.active_baseline_evidence_ids.length,
       findings: card.disposition_reasons,
     });
   }

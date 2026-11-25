@@ -29,8 +29,9 @@ export async function fetchPokemonArtistRows(
   client: Pick<SupabaseClient, "from">,
   selectClause: string,
   artist: string,
-  options: { exact?: boolean; languageScope?: PublicLanguageScope; complete?: boolean; names?: string[] } = {},
+  options: { exact?: boolean; languageScope?: PublicLanguageScope; complete?: boolean; names?: string[]; signal?: AbortSignal } = {},
 ) {
+  options.signal?.throwIfAborted();
   // Parsed names identify contributors, whereas stored credits can name several.
   // Expand only known, whole contributor components; keep UI interpretation and
   // explicit exact-credit filters unchanged, and retain equality database reads.
@@ -58,9 +59,11 @@ export async function fetchPokemonArtistRows(
     const rows = [];
     let afterId: string | undefined;
     for (;;) {
+      options.signal?.throwIfAborted();
       let request = requestForPage().order("id", { ascending: true }).limit(500);
       if (afterId) request = request.gt("id", afterId);
-      const { data, error } = await request;
+      const { data, error } = await (options.signal ? request.abortSignal(options.signal) : request);
+      options.signal?.throwIfAborted();
       if (error) throw new Error(error.message);
       const page = data ?? [];
       rows.push(...page);
@@ -73,7 +76,9 @@ export async function fetchPokemonArtistRows(
     }
   }
   const request = requestForPage();
-  const { data, error } = await request.limit(250);
+  const limited = request.limit(250);
+  const { data, error } = await (options.signal ? limited.abortSignal(options.signal) : limited);
+  options.signal?.throwIfAborted();
   if (error) throw new Error(error.message);
   return data ?? [];
 }

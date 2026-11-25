@@ -287,6 +287,7 @@ function buildDegradedSearchResult(
 function isTimeoutLikeError(error: unknown) {
   const message = error instanceof Error ? error.message : String(error ?? "");
   return (
+    (error instanceof Error && error.name === "AbortError") ||
     message.includes("statement timeout") ||
     message.includes("canceling statement") ||
     message.includes("The operation was aborted") ||
@@ -294,9 +295,9 @@ function isTimeoutLikeError(error: unknown) {
   );
 }
 
-function withTimeout<T>(promise: Promise<T>, timeoutMs: number, fallback: T): Promise<T> {
+function withTimeout<T>(promise: Promise<T>, timeoutMs: number, fallback: T, onTimeout?: () => void): Promise<T> {
   return new Promise((resolve, reject) => {
-    const timeout = setTimeout(() => resolve(fallback), timeoutMs);
+    const timeout = setTimeout(() => { resolve(fallback); onTimeout?.(); }, timeoutMs);
     promise.then(
       (value) => {
         clearTimeout(timeout);
@@ -314,9 +315,17 @@ function getPublicProvisionalCardsFailClosed(input: {
   query: string;
   setCode: string;
   limit: number;
+  signal?: AbortSignal;
 }) {
+  const timeoutController = new AbortController();
+  const signal = input.signal
+    ? AbortSignal.any([input.signal, timeoutController.signal])
+    : timeoutController.signal;
   return withTimeout(
-    getPublicProvisionalCards(input).catch((error) => {
+    getPublicProvisionalCards({ ...input, signal }).then((rows) => ({
+      rows,
+      status: "available" as const,
+    })).catch((error) => {
       if (error instanceof Error && error.message.startsWith("SECURITY:")) {
         throw error;
       }
@@ -326,10 +335,11 @@ function getPublicProvisionalCardsFailClosed(input: {
           message: error instanceof Error ? error.message : "unknown",
         });
       }
-      return [];
+      return { rows: [], status: "unavailable" as const };
     }),
     1200,
-    [],
+    { rows: [], status: "unavailable" as const },
+    () => timeoutController.abort(),
   );
 }
 
@@ -371,7 +381,7 @@ export async function GET(request: NextRequest) {
   const hasRequestCredentials = Boolean(request.headers.get("authorization") || request.headers.get("cookie"));
   const rawQuery = request.nextUrl.searchParams.get("q") ?? "";
   if (rawQuery.length > 500) {
-    return NextResponse.json({ ok: false, error: "Search text must be 500 characters or fewer." }, { status: 400 });
+    return NextResponse.json({ ok: false, error: "Search text must be 500 characters or fewer." }, { status: 400, headers: { "Cache-Control": "private, no-store" } });
   }
   const resultLimit = parseResultLimit(request.nextUrl.searchParams.get("limit"));
   const selectedGameScope = normalizePublicGameScope(request.nextUrl.searchParams.get("game"));
@@ -396,7 +406,7 @@ export async function GET(request: NextRequest) {
     try {
       const catalog = await createServerComponentClient();
       const catalogStarted = performance.now();
-      searchSets = await readSearchSets(catalog, gameScope);
+      searchSets = await readSearchSets(catalog, gameScope, request.signal);
       searchTimings.catalog = performance.now() - catalogStarted;
       let candidate = resolveCatalogSetSearchIntent(rawQuery, gameScope, searchSets, [], collectorSetCodes);
       const ignoredOpeningWords: string[] = [];
@@ -405,7 +415,7 @@ export async function GET(request: NextRequest) {
         const alternative = resolveCatalogSetSearchIntent(rawQuery, gameScope, searchSets, ignored, collectorSetCodes);
         // Charizard is also the opening word of Charizard Half Deck. In
         // "Charizard Evolving", retain the card name and prefer Evolving Skies.
-        if (!alternative.matchedAlias || !await isExactCatalogCardName(catalog, candidate.matchedAlias, gameScope)) break;
+        if (!alternative.matchedAlias || !await isExactCatalogCardName(catalog, candidate.matchedAlias, gameScope, request.signal)) break;
         ignoredOpeningWords.push(candidate.matchedAlias);
         candidate = alternative;
       }
@@ -421,13 +431,13 @@ export async function GET(request: NextRequest) {
       let publishedNameMatch = false;
       if (playableNameScope && candidate.requiresCardNameCheck) {
         const publication = await getPokemonPlayables();
-        if (publication?.state === "ready") publishedNameMatch = await isPublishedPlayableCardNameQuery(catalog, query, publication.rows);
+        if (publication?.state === "ready") publishedNameMatch = await isPublishedPlayableCardNameQuery(catalog, query, publication.rows, request.signal);
       }
       // Without a possible set alias, playable text already filters the entire
       // published scope; a global name probe cannot improve its completeness.
       const cardNameQuery = Boolean(candidate.requiresCardNameCheck ||
         (!playableNameScope && !candidate.matchedAlias && !smartSearchIntent.artist && supportsCompleteNameSearch(query) && gameScope === "pokemon")) &&
-        (publishedNameMatch || await isCatalogCardNameQuery(catalog, query, gameScope, (page) => { namedFirstPage = page; }));
+        (publishedNameMatch || await isCatalogCardNameQuery(catalog, query, gameScope, (page) => { namedFirstPage = page; }, request.signal));
       searchTimings.name_check = performance.now() - nameCheckStarted;
       literalNameSearch = cardNameQuery && !smartSearchIntent.artist && supportsCompleteNameSearch(query);
       inlineSetIntent = candidate.requiresCardNameCheck && cardNameQuery
@@ -437,7 +447,7 @@ export async function GET(request: NextRequest) {
         inlineSetIntent.remainingQuery = removeSetPhrase(query, inlineSetIntent.matchedAlias, gameScope);
       }
     } catch {
-      return NextResponse.json({ ok: false, error: "Search could not verify the set filter. Please try again." }, { status: 503 });
+      return NextResponse.json({ ok: false, error: "Search could not verify the set filter. Please try again." }, { status: 503, headers: { "Cache-Control": "private, no-store" } });
     }
   }
   resolverQuery = normalizeQuery(query);
@@ -478,7 +488,7 @@ export async function GET(request: NextRequest) {
   const artistPaginationRequested = request.nextUrl.searchParams.get("pagination") === "1";
   const offsetText = request.nextUrl.searchParams.get("offset") ?? "0";
   if (completeSearch && artistPaginationRequested && (!/^\d+$/.test(offsetText) || !Number.isSafeInteger(Number(offsetText)))) {
-    return NextResponse.json({ ok: false, error: "Invalid search page offset" }, { status: 400 });
+    return NextResponse.json({ ok: false, error: "Invalid search page offset" }, { status: 400, headers: { "Cache-Control": "private, no-store" } });
   }
   const artistOffset = Number(offsetText);
 
@@ -582,7 +592,7 @@ export async function GET(request: NextRequest) {
         ok: false,
         error: "Missing search criteria",
       },
-      { status: 400 },
+      { status: 400, headers: { "Cache-Control": "private, no-store" } },
     );
   }
 
@@ -675,6 +685,10 @@ export async function GET(request: NextRequest) {
       !exactIllustrator &&
       !effectiveSmartSearchIntent.ownedState &&
       !isIdentityFilterActive(identityFilter);
+    const resolutionController = new AbortController();
+    const resolutionSignal = request.signal
+      ? AbortSignal.any([request.signal, resolutionController.signal])
+      : resolutionController.signal;
     const resolvedSearchPromise = playableRequested
       ? getExploreRowsForPlayableCards(playableMembers, {
           sortMode, textQuery: routedQuery, searchSets, exactSetCode: effectiveExactSetCode,
@@ -691,6 +705,7 @@ export async function GET(request: NextRequest) {
           smartSearchIntent: effectiveSmartSearchIntent, degraded: false}))
       : artistSearch && !effectiveSmartSearchIntent.cameoSubject
       ? getExploreRowsForArtistSearch(artistSearch, {
+          signal: resolutionSignal,
           searchSets,
           sortMode,
           exactArtist: Boolean(exactIllustrator),
@@ -716,6 +731,7 @@ export async function GET(request: NextRequest) {
         }))
       : completeCombinedSearch
       ? getExploreRowsForCombinedSearch({
+          signal: resolutionSignal,
           searchSets,
           namedFirstPage,
           searchTimings,
@@ -745,6 +761,7 @@ export async function GET(request: NextRequest) {
         }))
       : gameScope !== "pokemon"
       ? getExploreRowsForGameScopedTextSearch(routedQuery, gameScope, sortMode, {
+          signal: resolutionSignal,
           exactSetCode: effectiveExactSetCode,
           exactReleaseYear,
           exactIllustrator,
@@ -794,6 +811,7 @@ export async function GET(request: NextRequest) {
             languageScope,
             sortMode,
             includePricingDuringResolution,
+            resolutionSignal,
           ).then((rows) => ({
             rows,
             meta: canUseFastStructuredCollectorSearch
@@ -824,6 +842,7 @@ export async function GET(request: NextRequest) {
           }))
         : shouldUseStructuredTextExpansion
           ? getExploreRowsForGameScopedTextSearch(routedQuery, gameScope, sortMode, {
+              signal: resolutionSignal,
               exactSetCode: effectiveExactSetCode,
               exactReleaseYear,
               exactIllustrator,
@@ -862,19 +881,21 @@ export async function GET(request: NextRequest) {
               smartSearchIntent: effectiveSmartSearchIntent,
               degraded: false,
             }));
-    const [resolved, provisionalResults] = await Promise.all([
+    const [resolved, provisionalResult] = await Promise.all([
       withTimeout(
         resolvedSearchPromise,
         completeSearch ? 12000 : RESOLVER_RESPONSE_TIMEOUT_MS,
         buildDegradedSearchResult(query, effectiveSmartSearchIntent),
+        () => resolutionController.abort(),
       ),
       includeProvisional
         ? getPublicProvisionalCardsFailClosed({
             query: rawQuery,
             setCode: effectiveExactSetCode,
             limit: 12,
+            signal: request.signal,
           })
-        : Promise.resolve([]),
+        : Promise.resolve({ rows: [], status: "not_requested" as const }),
     ]);
     if (completeSearch && resolved.degraded) {
       return NextResponse.json({
@@ -951,7 +972,7 @@ export async function GET(request: NextRequest) {
     const canonicalResultIds = new Set(
       smartFilteredCanonicalResults.map((row) => normalizeOptionalText(row.id)).filter(Boolean),
     );
-    const provisionalResultsAfterCanonicalIdGuard = provisionalResults.filter((row) => {
+    const provisionalResultsAfterCanonicalIdGuard = provisionalResult.rows.filter((row) => {
       const promotedCardPrintId = normalizeOptionalText(
         (row as { promoted_card_print_id?: unknown }).promoted_card_print_id,
       );
@@ -977,6 +998,7 @@ export async function GET(request: NextRequest) {
         smart_search: responseSmartSearchIntent,
         rows: limitedCanonicalResults,
         provisional: provisionalResultsForResponse,
+        provisional_status: provisionalResult.status,
         meta: resolved.meta,
         limit: artistPage && !artistPaginationRequested ? limitedCanonicalResults.length : resultLimit,
         pagination: artistPage?.pagination,
@@ -991,7 +1013,7 @@ export async function GET(request: NextRequest) {
       {
         headers: {
           "Cache-Control":
-            playableRequested || hasRequestCredentials || pricingRequested || effectiveSmartSearchIntent.ownedState || gameScope !== "pokemon"
+            resolved.degraded || provisionalResult.status === "unavailable" || playableRequested || hasRequestCredentials || pricingRequested || effectiveSmartSearchIntent.ownedState || gameScope !== "pokemon"
               ? "private, no-store"
               : "public, s-maxage=120, stale-while-revalidate=300",
           "Server-Timing": `interpret;dur=${(interpretationFinishedAt - searchStartedAt).toFixed(1)}, resolve;dur=${(resolutionFinishedAt - interpretationFinishedAt).toFixed(1)}, finish;dur=${(performance.now() - resolutionFinishedAt).toFixed(1)}` +
@@ -1069,9 +1091,7 @@ export async function GET(request: NextRequest) {
         {
           status: valueSortRequested ? 503 : 200,
           headers: {
-            "Cache-Control": playableRequested || pricingRequested || effectiveSmartSearchIntent.ownedState
-              ? "private, no-store"
-              : "public, s-maxage=30, stale-while-revalidate=120",
+            "Cache-Control": "private, no-store",
           },
         },
       );
@@ -1089,7 +1109,7 @@ export async function GET(request: NextRequest) {
             }
           : {}),
       },
-      { status: 500 },
+      { status: 500, headers: { "Cache-Control": "private, no-store" } },
     );
   }
 }

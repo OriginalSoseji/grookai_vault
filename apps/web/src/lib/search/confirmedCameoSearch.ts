@@ -8,7 +8,9 @@ const SUBJECT = /^[\p{L}\p{N} .’'♀♂-]{1,64}$/u;
 export async function fetchConfirmedCameoGvIds(
   client: Pick<SupabaseClient, "from" | "rpc">,
   subject: string,
+  signal?: AbortSignal,
 ): Promise<string[]> {
+  signal?.throwIfAborted();
   if (typeof subject !== "string") return [];
   const name = subject.normalize("NFC").trim().replace(/\s+/g, " ");
   if (!SUBJECT.test(name)) return [];
@@ -16,10 +18,12 @@ export async function fetchConfirmedCameoGvIds(
     .replace(/[’']/g, "").replace(/♀/g, "-f").replace(/♂/g, "-m")
     .replace(/[^\p{L}\p{N}]+/gu, "-").replace(/^-|-$/g, "");
   const quote = (value: string) => `"${value.replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"`;
-  const species = await client.from("pokemon_species").select("national_dex_number")
+  const speciesRequest = client.from("pokemon_species").select("national_dex_number")
     .eq("active", true)
     .or(`slug.eq.${quote(slug)},canonical_name.ilike.${quote(name)},display_name.ilike.${quote(name)}`)
     .limit(3);
+  const species = await (signal ? speciesRequest.abortSignal(signal) : speciesRequest);
+  signal?.throwIfAborted();
   if (species.error) throw new Error(species.error.message);
   const matches = species.data ?? [];
   const numbers = new Set(matches.map((row) => row.national_dex_number));
@@ -29,9 +33,12 @@ export async function fetchConfirmedCameoGvIds(
   if (!Number.isInteger(ndex) || ndex < 1 || ndex > 99999) throw new Error("Invalid cameo species identity");
   const ids = new Set<string>();
   for (let offset = 0; offset <= 1000; offset += PAGE_SIZE) {
-    const { data, error } = await client.rpc("get_public_card_cameos_v2", {
+    signal?.throwIfAborted();
+    const request = client.rpc("get_public_card_cameos_v2", {
       p_pokemon_ndex: String(ndex), p_offset: offset,
     });
+    const { data, error } = await (signal ? request.abortSignal(signal) : request);
+    signal?.throwIfAborted();
     if (error) throw new Error(error.message);
     const page = (data ?? []) as Array<{ gv_id?: unknown; appearance_role?: unknown }>;
     if (!Array.isArray(page) || page.length > PAGE_SIZE) throw new Error("Invalid confirmed cameo page");

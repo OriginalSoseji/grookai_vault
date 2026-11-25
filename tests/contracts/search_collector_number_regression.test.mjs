@@ -14,7 +14,7 @@ const greninja={id:'greninja-081',gv_id:'GV-PK-MEP-081',name:'Mega Greninja ex',
 
 // Execute the real normalizer and collector lookup with an in-memory read-only
 // PostgREST fixture. Image/pricing enrichment is outside this lookup boundary.
-function harness(rows,{error=null}={}){
+function harness(rows,{error=null,onSignal=null}={}){
  const requests=[],operations=[];
  const client={from(table){
   assert.equal(table,'card_prints');
@@ -23,7 +23,7 @@ function harness(rows,{error=null}={}){
    in(field,values){operations.push({operator:'in',field,value:[...values]});filters.push(row=>values.includes(row[field]));return this;},
    ilike(field,pattern){operations.push({operator:'ilike',field,value:pattern});const value=new RegExp('^'+pattern.replace(/[.*+?^${}()|[\]\\]/g,'\\$&').replaceAll('%','.*').replaceAll('_','.')+'$','i');filters.push(row=>value.test(String(row[field]??'')));return this;},
    not(field,operator,pattern){assert.equal(operator,'ilike');const prefix=pattern.replaceAll('%','').toLowerCase();filters.push(row=>!String(row[field]??'').toLowerCase().startsWith(prefix));return this;},
-   limit(n){requests.push({table,filters:filters.length,limit:n});return Promise.resolve({data:rows.filter(row=>filters.every(f=>f(row))).slice(0,n),error});}};
+   limit(n){requests.push({table,filters:filters.length,limit:n});if(onSignal)return {abortSignal(signal){onSignal(signal);return new Promise((_,reject)=>signal.addEventListener('abort',()=>reject(signal.reason),{once:true}));}};return Promise.resolve({data:rows.filter(row=>filters.every(f=>f(row))).slice(0,n),error});}};
  }};
  const mocks={
   '@/lib/playables/getPokemonPlayables':{getPokemonPlayables:async()=>null},
@@ -56,8 +56,17 @@ function harness(rows,{error=null}={}){
  const {normalizeQuery}=load(path.join(sourceRoot,'lib/resolver/normalizeQuery.ts'));
  const api=load(lookupFile).collectorLookupForTest;
  return {requests,operations,query:raw=>api.buildResolverQuery(normalizeQuery(raw)),
-  lookup:(raw,scope='en')=>api.fetchCollectorScopedTextRows(api.buildResolverQuery(normalizeQuery(raw)),scope)};
+  lookup:(raw,scope='en',signal)=>api.fetchCollectorScopedTextRows(api.buildResolverQuery(normalizeQuery(raw)),scope,signal)};
 }
+
+test('collector lookup propagates cancellation to every active number request',async()=>{
+ const controller=new AbortController(),attached=[];
+ const h=harness([],{onSignal:signal=>attached.push(signal)});
+ const pending=h.lookup('mega greninja 081','en',controller.signal);
+ while(attached.length<4)await new Promise(resolve=>setImmediate(resolve));
+ controller.abort();await assert.rejects(pending,{name:'AbortError'});
+ assert.equal(attached.length,4);assert.ok(attached.every(signal=>signal===controller.signal&&signal.aborted));
+});
 
 for(const query of ['mega greninja 081','mega greninja 81','081 mega greninja','Mega Greninja ex #081']){
  test(`name plus collector number finds the canonical padded row: ${query}`,async()=>{

@@ -1,0 +1,33 @@
+{
+  "version": "XY_PROMO_EXACT_IMAGE_REVIEW_V1",
+  "recorded_at": "2026-11-19T05:25:41.300Z",
+  "scope": "two exact records only",
+  "rows": [
+    {
+      "gv_id": "GV-PK-PR-XY-XY177",
+      "number": "XY177",
+      "name": "Karen",
+      "artist": "You Iribi",
+      "product_id": 123438,
+      "product_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/123438_200w.jpg",
+      "product_image_sha256": "ed7f8b9c8425152d0c1cf37975ae3e115c2ec1254318fdb1e24fbda57b622a65",
+      "catalog_image_path": "warehouse-derived/self-hosted-images-v1/card_prints/xyp/gv-pk-pr-xy-xy177/bd65a7a0112aa9a1c5bbcd51.webp",
+      "catalog_image_sha256": "bd65a7a0112aa9a1c5bbcd5151279f3b0fb44817bc72f4a6a4156c29666a030a",
+      "visual_review": "The catalog image and mapped product image show matching artwork and name; the catalog image visibly shows the exact printed number and black PROMO-star symbol.",
+      "limits": "This reviews images of the card design, not an inspected physical copy, and does not authorize a global rarity synonym or any finish inference."
+    },
+    {
+      "gv_id": "GV-PK-PR-XY-XY198",
+      "number": "XY198",
+      "name": "M Camerupt-EX",
+      "artist": "5ban Graphics",
+      "product_id": 129898,
+      "product_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/129898_200w.jpg",
+      "product_image_sha256": "2894766346541e6a359d4a931d31ff1c9f3e539c00366468a77af1a7b7a9634b",
+      "catalog_image_path": "warehouse-derived/self-hosted-images-v1/card_prints/xyp/gv-pk-pr-xy-xy198/ec280350908612ede733be5f.webp",
+      "catalog_image_sha256": "ec280350908612ede733be5f211acd7357c339be35d97a24f453911eb61643c5",
+      "visual_review": "The catalog image and mapped product image show matching artwork and name; the catalog image visibly shows the exact printed number and black PROMO-star symbol.",
+      "limits": "This reviews images of the card design, not an inspected physical copy, and does not authorize a global rarity synonym or any finish inference."
+    }
+  ]
+}

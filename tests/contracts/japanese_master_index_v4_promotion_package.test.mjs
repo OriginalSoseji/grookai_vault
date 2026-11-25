@@ -6,6 +6,7 @@ import zlib from 'node:zlib';
 import {
   contentFingerprint,
 } from '../../scripts/audits/japanese_master_index_v4/deterministic_artifact_v1.mjs';
+import { buildPromotionLanes } from '../../scripts/audits/japanese_master_index_v4/promotion_package_v1.mjs';
 
 const REPORT_PATH =
   'docs/audits/japanese_master_index_v4/promotion_package/'
@@ -44,6 +45,27 @@ function loadRows(descriptor) {
   );
   return rows;
 }
+
+test('promotion and existing-parent review retain active and qualified evidence separately', () => {
+  const base = { jpn_set_key: 'set', printed_number: '1', printed_name_ja: 'ピカチュウ', missing_source_families: [], promotion_blockers: [] };
+  const reconciliationCards = [
+    { ...base, jpn_card_identity_key: 'novel', promotion_readiness: 'delta_candidate' },
+    { ...base, jpn_card_identity_key: 'existing', promotion_readiness: 'blocked_existing_review' },
+  ];
+  const metadata = { source_ids: ['pokemon_card_official_jp'], independent_source_families: [], source_assertion_keys: [], baseline_evidence_ids: ['old'], active_baseline_evidence_ids: ['old'], current_eligible_baseline_evidence_ids: [], current_eligible_baseline_source_keys: [], image_urls: [] };
+  const result = buildPromotionLanes({ reconciliationCards, reconciliationSets: [{ jpn_set_key: 'set', live_matches: [{ id: 'set-id', code: 'set' }] }], masterCards: [{ ...metadata, jpn_card_identity_key: 'novel' }, { ...metadata, jpn_card_identity_key: 'existing' }], masterSets: [], familyRows: [] });
+  assert.deepEqual(result.direct_card_candidates[0].source_evidence.active_baseline_evidence_ids, ['old']);
+  assert.deepEqual(result.direct_card_candidates[0].source_evidence.current_eligible_baseline_evidence_ids, []);
+  assert.deepEqual(result.existing_parent_review[0].current_eligible_baseline_source_keys, []);
+  assert.deepEqual(result.existing_parent_review[0].active_baseline_evidence_ids, ['old']);
+  const legacy = { ...metadata };
+  delete legacy.active_baseline_evidence_ids;
+  delete legacy.current_eligible_baseline_evidence_ids;
+  delete legacy.current_eligible_baseline_source_keys;
+  const legacyResult = buildPromotionLanes({ reconciliationCards, reconciliationSets: [{ jpn_set_key: 'set', live_matches: [{ id: 'set-id', code: 'set' }] }], masterCards: [{ ...legacy, jpn_card_identity_key: 'novel' }, { ...legacy, jpn_card_identity_key: 'existing' }], masterSets: [], familyRows: [] });
+  assert.equal(Object.hasOwn(legacyResult.direct_card_candidates[0].source_evidence, 'current_eligible_baseline_evidence_ids'), false);
+  assert.equal(Object.hasOwn(legacyResult.existing_parent_review[0], 'current_eligible_baseline_source_keys'), false);
+});
 
 test('promotion package is a verified no-write planning artifact', () => {
   const report = readJsonArtifact(REPORT_PATH);

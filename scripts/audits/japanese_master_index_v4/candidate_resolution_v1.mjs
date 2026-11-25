@@ -41,6 +41,46 @@ function normalizeEnglishName(value) {
   return normalizeAlias(value);
 }
 
+// A live source row may retain an English name from an older identity. It is
+// useful provenance, but cannot supply a current name or a cross-card species
+// mapping unless the unique active identity independently contains that name.
+function currentEvidenceEnglishNames(row, identitiesByCard) {
+  if (row.active !== true) return [];
+  const identities = (identitiesByCard.get(row.card_print_id) ?? [])
+    .filter((identity) => identity.is_active === true);
+  if (identities.length !== 1) return [];
+  const identity = identities[0];
+  if (!identity.card_print_identity_id ||
+      row.card_print_identity_id !== identity.card_print_identity_id) return [];
+  const current = identity.identity_payload?.card_name_en_candidates;
+  const claimed = row.evidence_subject?.card_name_en_candidates;
+  if (!Array.isArray(current) || !Array.isArray(claimed)) return [];
+  const admitted = new Set(current.filter((name) => typeof name === 'string')
+    .map(normalizeEnglishName).filter(Boolean));
+  return claimed.filter((name) => typeof name === 'string' &&
+    admitted.has(normalizeEnglishName(name)));
+}
+
+// Keep active rows as history, but do not count their source as support when
+// the identity anchor or an explicit English identity claim is inconsistent.
+function evidenceEligibleForCurrentSource(row, identitiesByCard) {
+  if (row.active !== true) return false;
+  const identities = (identitiesByCard.get(row.card_print_id) ?? [])
+    .filter((identity) => identity.is_active === true);
+  if (identities.length !== 1 || !identities[0].card_print_identity_id ||
+      row.card_print_identity_id !== identities[0].card_print_identity_id) return false;
+  const claimed = row.evidence_subject?.card_name_en_candidates;
+  if (claimed === undefined || claimed === null) return true;
+  if (!Array.isArray(claimed)) return false;
+  if (claimed.length === 0) return true;
+  const current = identities[0].identity_payload?.card_name_en_candidates;
+  if (!Array.isArray(current)) return false;
+  const admitted = new Set(current.filter((name) => typeof name === 'string')
+    .map(normalizeEnglishName).filter(Boolean));
+  return claimed.every((name) => typeof name === 'string' &&
+    Boolean(normalizeEnglishName(name)) && admitted.has(normalizeEnglishName(name)));
+}
+
 function assertionNumberCore(assertion) {
   const raw = numberCoreFromRaw(assertion.card_number_raw);
   if (raw !== null) return raw;
@@ -213,6 +253,7 @@ function resolutionPriority(method) {
 function buildFamilyMaps({
   parents,
   evidenceRows,
+  identitiesByCard,
   jpnSpeciesLinks,
   englishFamilyCards,
   englishFamilySpeciesLinks,
@@ -261,7 +302,7 @@ function buildFamilyMaps({
     if (!row.active) continue;
     const speciesIds = sortedSet(jpnSpeciesByCard.get(row.card_print_id));
     if (speciesIds.length !== 1) continue;
-    for (const name of row.evidence_subject?.card_name_en_candidates ?? []) {
+    for (const name of currentEvidenceEnglishNames(row, identitiesByCard)) {
       addMapSet(
         speciesByEnglishName,
         normalizeEnglishName(name),
@@ -426,6 +467,9 @@ function buildNovelCandidate({
     source_ids: unique(assertions.map((row) => row.source_id)),
     assertion_keys: assertionKeys,
     baseline_evidence_ids: [],
+    active_baseline_evidence_ids: [],
+    current_eligible_baseline_evidence_ids: [],
+    current_eligible_baseline_source_keys: [],
     resolution_notes: resolutionNotes,
   };
 }
@@ -776,6 +820,10 @@ export function buildJapaneseCandidateUnion({
     const parent = model.parent;
     const matched = matchedAssertionsByParent.get(parent.card_print_id) ?? [];
     const baselineEvidence = evidenceByCard.get(parent.card_print_id) ?? [];
+    const activeEvidence = baselineEvidence.filter((row) => row.active === true);
+    const eligibleEvidence = activeEvidence.filter((row) => (
+      evidenceEligibleForCurrentSource(row, identitiesByCard)
+    ));
     identityCandidates.push({
       candidate_key: `existing:${parent.card_print_id}`,
       candidate_kind: 'existing_parent',
@@ -793,18 +841,27 @@ export function buildJapaneseCandidateUnion({
         ...model.japaneseNames,
       ]),
       english_name_candidates: unique(
-        baselineEvidence.flatMap(
-          (row) => row.evidence_subject?.card_name_en_candidates ?? [],
+        activeEvidence.flatMap(
+          (row) => currentEvidenceEnglishNames(row, identitiesByCard),
         ),
       ),
       image_urls: model.imageUrls,
       source_ids: unique([
         ...matched.map((row) => row.source_id),
-        ...baselineEvidence.map((row) => row.source_key),
+        ...activeEvidence.map((row) => row.source_key),
       ]),
       assertion_keys: unique(matched.map((row) => row.assertion_key)),
       baseline_evidence_ids: unique(
         baselineEvidence.map((row) => row.evidence_id),
+      ),
+      active_baseline_evidence_ids: unique(
+        activeEvidence.map((row) => row.evidence_id),
+      ),
+      current_eligible_baseline_evidence_ids: unique(
+        eligibleEvidence.map((row) => row.evidence_id),
+      ),
+      current_eligible_baseline_source_keys: unique(
+        eligibleEvidence.map((row) => row.source_key),
       ),
       resolution_notes: model.registryKey
         ? []
@@ -1011,9 +1068,13 @@ export function buildJapaneseCandidateUnion({
   );
   const sourceAssertionUnion = [];
   for (const row of evidenceRows) {
+    const eligible = evidenceEligibleForCurrentSource(row, identitiesByCard);
     sourceAssertionUnion.push({
       union_row_key: `preserved:${row.evidence_id}`,
-      assertion_lane: 'preserved_live_evidence',
+      assertion_lane: row.active === true
+        ? 'preserved_live_evidence'
+        : 'preserved_inactive_evidence',
+      current_identity_claims_eligible: eligible,
       source_key: row.source_key,
       source_external_id: null,
       registry_key:
@@ -1034,7 +1095,10 @@ export function buildJapaneseCandidateUnion({
       evidence_id: row.evidence_id,
       projected_candidate_key: `existing:${row.card_print_id}`,
       projected_existing_card_print_id: row.card_print_id,
-      resolution_status: 'preserved_canonical_evidence',
+      resolution_status: row.active !== true
+        ? 'preserved_inactive_evidence'
+        : eligible ? 'preserved_canonical_evidence'
+          : 'preserved_unqualified_active_evidence',
     });
   }
   for (const assertion of assertions) {
@@ -1062,6 +1126,7 @@ export function buildJapaneseCandidateUnion({
   const familyMaps = buildFamilyMaps({
     parents,
     evidenceRows,
+    identitiesByCard,
     jpnSpeciesLinks,
     englishFamilyCards,
     englishFamilySpeciesLinks,
@@ -1310,6 +1375,8 @@ export const candidateResolutionInternals = Object.freeze({
   normalizeSetCode,
   normalizeJapaneseName,
   normalizeEnglishName,
+  currentEvidenceEnglishNames,
+  evidenceEligibleForCurrentSource,
   numberCoreFromRaw,
   assertionNumberCore,
   parentNumberCore,

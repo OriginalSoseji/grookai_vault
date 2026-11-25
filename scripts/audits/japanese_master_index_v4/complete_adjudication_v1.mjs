@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import fsp from 'node:fs/promises';
 import path from 'node:path';
 import zlib from 'node:zlib';
+import { hasCurrentProvenance, assertionDisposition } from './current_provenance_v1.mjs';
 
 import {
   contentFingerprint,
@@ -479,8 +480,7 @@ function enrichIdentityDisposition(classification, card, reconciliation, set) {
       numbering: Boolean(
         card.printed_number || card.governed_unnumbered_key,
       ),
-      provenance: card.independent_source_count > 0
-        || card.baseline_evidence_ids.length > 0,
+      provenance: hasCurrentProvenance(card),
       public_gv_id_input: promotionEligible && Boolean(card.printed_number),
       public_safe_copy: promotionEligible && Boolean(
         classification.resolved_display_name_en
@@ -761,26 +761,6 @@ const ASSERTION_DISPOSITION_MEANINGS = {
   unlinked_source_assertion_requires_adjudication:
     'assertion has no final candidate link and requires adjudication',
 };
-
-function assertionDisposition(identity, assertion) {
-  if (identity) {
-    const disposition =
-      ASSERTION_DISPOSITION_BY_IDENTITY[identity.disposition];
-    if (!disposition) {
-      throw new Error(
-        `Missing assertion disposition for ${identity.disposition}`,
-      );
-    }
-    return disposition;
-  }
-  if (assertion.final_disposition === 'conflict_blocked') {
-    return 'source_group_conflict';
-  }
-  if (assertion.final_disposition === 'adjudicated_excluded') {
-    return 'excluded_source_assertion';
-  }
-  return 'unlinked_source_assertion_requires_adjudication';
-}
 
 function classifyGap(row, identityByKey, printingByKey) {
   const identity = identityByKey.get(row.subject_key);
@@ -1217,7 +1197,9 @@ async function main() {
   const assertionRows = assertions.map((row) => {
     const identity = identityByKey.get(row.projected_candidate_key);
     const evidenceNeeded =
-      identity?.disposition === 'insufficient_evidence'
+      row.assertion_lane === 'preserved_inactive_evidence' ||
+      row.disposition_reason === 'active_evidence_identity_claims_unqualified' ? null
+        : identity?.disposition === 'insufficient_evidence'
         ? 'independent_corroborating_identity_source'
         : identity?.disposition === 'blocked_but_otherwise_admissible'
           ? 'second_independent_approved_bilingual_mapping_or_authoritative_name'
@@ -1231,7 +1213,7 @@ async function main() {
       record_key: row.assertion_key ?? row.union_row_key,
       source_key: row.source_key,
       subject_key: row.projected_candidate_key,
-      disposition: assertionDisposition(identity, row),
+      disposition: assertionDisposition(identity, row, ASSERTION_DISPOSITION_BY_IDENTITY),
       ...(evidenceNeeded ? { evidence_needed: evidenceNeeded } : {}),
     };
     return result;

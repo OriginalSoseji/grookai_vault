@@ -12,22 +12,39 @@ const fixture = Array.from({ length: 195 }, (_, index) => ({
   name: `Card ${index}`, artist: 'Yuka Morii', number: String(index),
 }));
 
-function loadRoute({ fail = false, sets = [], catalogFail = false, capture = () => {}, captureCollector = () => {}, collectorRows = fixture, captureRanked = () => {}, rankedRows, exactCardName, exactCardNames = [], partialCardNames = {}, rows = fixture } = {}) {
+function loadRoute({ fail = false, fastSearchTimeout = false, softTimeout = false, stallFast = false, stallArtist = false, stallCombined = false, stallProvisional = false, provisionalError = null, captureProvisional = () => {}, sets = [], catalogFail = false, capture = () => {}, captureCollector = () => {}, collectorRows = fixture, captureRanked = () => {}, rankedRows, exactCardName, exactCardNames = [], partialCardNames = {}, rows = fixture } = {}) {
   const cache = new Map();
   const mocks = {
     'server-only': {},
     '@/lib/playables/getPokemonPlayables': { getPokemonPlayables: async () => null },
     'next/server': { NextResponse: { json: (body, init) => Response.json(body, init) } },
     '@/lib/explore/getExploreRows': {
-      getExploreRowsForCombinedSearch: async (options) => { capture(options); return rows; },
+      getExploreRowsForCombinedSearch: async (options) => {
+        capture(options);
+        if (stallCombined) return new Promise((_, reject) => options.signal.addEventListener('abort', () => reject(options.signal.reason), { once: true }));
+        return rows;
+      },
+      getExploreRowsForSmartFilterDiscovery: async (options) => { capture(options); return rows; },
       getExploreRowsForArtistSearch: async (artist, options) => {
         capture({ ...options, artist });
+        if (stallArtist) return new Promise((_, reject) => options.signal.addEventListener('abort', () => reject(options.signal.reason), { once: true }));
         if (fail) throw new Error('canceling statement due to statement timeout');
         return rows;
       },
-      getExploreRowsForLanguageScopedTextSearch: async (...args) => { captureCollector(args); return collectorRows; },
+      getExploreRowsForLanguageScopedTextSearch: async (...args) => {
+        if (stallFast) { captureCollector(args); return new Promise((_, reject) => args[4].addEventListener('abort', () => reject(args[4].reason), { once: true })); }
+        if (fastSearchTimeout) throw new Error('canceling statement due to statement timeout');
+        if (softTimeout) return new Promise(() => {});
+        captureCollector(args);
+        return collectorRows;
+      },
     },
-    '@/lib/provisional/getPublicProvisionalCards': { getPublicProvisionalCards: async () => [] },
+    '@/lib/provisional/getPublicProvisionalCards': { getPublicProvisionalCards: async (input) => {
+      captureProvisional(input);
+      if (stallProvisional) return new Promise((_, reject) => input.signal.addEventListener('abort', () => reject(input.signal.reason), { once: true }));
+      if (provisionalError) throw new Error(provisionalError);
+      return [];
+    } },
     '@/lib/provisional/getPromotionTransitionState': {
       getPromotionTransitionStateForCanonicalCards: async () => new Map(),
       applyPromotionTransitionsToCanonicalRows: (rows) => rows,
@@ -42,10 +59,14 @@ function loadRoute({ fail = false, sets = [], catalogFail = false, capture = () 
     '@/lib/pricing/getPublicPricingByCardIds': { PublicPricingSortUnavailableError: class extends Error {} },
     '@/lib/supabase/server': {
       createServerComponentClient: async () => ({
-        rpc: async (_name, args) => {
-          if (_name === 'get_search_set_catalog_v1') return {data:{complete:true,sets},error:catalogFail?{message:'offline'}:null};
-          if (exactCardName) assert.equal(args.q, exactCardName);
-          return {data: exactCardName ? [{name:exactCardName}] : partialCardNames[args.q] ? [{name:partialCardNames[args.q]}] : exactCardNames.includes(args.q) ? [{name:args.q}] : []};
+        rpc: (_name, args) => {
+          if (_name !== 'get_search_set_catalog_v1' && exactCardName) assert.equal(args.q, exactCardName);
+          const result = _name === 'get_search_set_catalog_v1'
+            ? {data:{complete:true,sets},error:catalogFail?{message:'offline'}:null}
+            : {data: exactCardName ? [{name:exactCardName}] : partialCardNames[args.q] ? [{name:partialCardNames[args.q]}] : exactCardNames.includes(args.q) ? [{name:args.q}] : []};
+          const request = Promise.resolve(result);
+          request.abortSignal = () => request;
+          return request;
         },
         from: (table) => {
           assert.equal(table, 'sets');
@@ -63,8 +84,8 @@ function loadRoute({ fail = false, sets = [], catalogFail = false, capture = () 
     const code = ts.transpileModule(fs.readFileSync(file, 'utf8'), {
       compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, esModuleInterop: true },
     }).outputText;
-    vm.runInNewContext(code, { module, exports: module.exports, process, console, Error, performance,
-      setTimeout, clearTimeout, require: (id) => {
+    vm.runInNewContext(code, { module, exports: module.exports, process, console, Error, performance, AbortController, AbortSignal,
+      setTimeout: (callback, delay) => setTimeout(callback, (softTimeout && delay === 4200) || (stallCombined && delay === 12000) || (stallProvisional && delay === 1200) ? 1 : delay), clearTimeout, require: (id) => {
         if (Object.hasOwn(mocks, id)) return mocks[id];
         if (id.startsWith('@/') || id.startsWith('.')) {
           let target = id.startsWith('@/') ? path.join(web, id.slice(2)) : path.resolve(path.dirname(file), id);
@@ -79,6 +100,140 @@ function loadRoute({ fail = false, sets = [], catalogFail = false, capture = () 
   const get = load(path.join(web, 'app/api/resolver/search/route.ts')).GET;
   return request => get({headers:new Headers(),...request});
 }
+
+test('provisional lookup timeout aborts its request without losing canonical results', async () => {
+  let signal;
+  const response = await loadRoute({ stallProvisional: true, captureProvisional: input => { signal = input.signal; } })({
+    nextUrl: new URL('https://fixture?q=Pikachu&limit=5'),
+  });
+  assert.equal(response.status, 200);
+  assert.equal(signal.aborted, true);
+  assert.equal(response.headers.get('cache-control'), 'private, no-store');
+  const body = await response.json();
+  assert.ok(body.rows.length > 0);
+  assert.equal(body.provisional.length, 0);
+  assert.equal(body.provisional_status, 'unavailable');
+});
+
+test('failed provisional lookup preserves canonical rows and cannot be shared-cached', async () => {
+  const response = await loadRoute({ provisionalError: 'upstream unavailable' })({
+    nextUrl: new URL('https://fixture?q=Pikachu&limit=5'),
+  });
+  const body = await response.json();
+  assert.equal(response.status, 200);
+  assert.ok(body.rows.length > 0);
+  assert.equal(body.provisional_status, 'unavailable');
+  assert.equal(body.provisional.length, 0);
+  assert.equal(response.headers.get('cache-control'), 'private, no-store');
+});
+
+test('successful empty provisional lookup remains cacheable and distinct from unavailable', async () => {
+  const response = await loadRoute()({ nextUrl: new URL('https://fixture?q=Pikachu&limit=5') });
+  const body = await response.json();
+  assert.equal(body.provisional_status, 'available');
+  assert.equal(body.provisional.length, 0);
+  assert.match(response.headers.get('cache-control'), /^public/);
+});
+
+test('provisional security errors do not become successful partial results', async () => {
+  const response = await loadRoute({ provisionalError: 'SECURITY: test violation' })({
+    nextUrl: new URL('https://fixture?q=Pikachu&limit=5'),
+  });
+  assert.equal(response.status, 500);
+  assert.equal(response.headers.get('cache-control'), 'private, no-store');
+  assert.equal((await response.json()).ok, false);
+});
+
+test('caller cancellation reaches the optional provisional lookup', async () => {
+  const caller = new AbortController();
+  let signal;
+  await loadRoute({ stallProvisional: true, captureProvisional: input => {
+    signal = input.signal;
+    queueMicrotask(() => caller.abort());
+  } })({ nextUrl: new URL('https://fixture?q=Pikachu&limit=5'), signal: caller.signal });
+  assert.equal(signal.aborted, true);
+});
+
+test('timed-out searches are never cached as empty successful results', async () => {
+  for (const options of [{ fastSearchTimeout: true }, { softTimeout: true }]) {
+    const response = await loadRoute(options)({ nextUrl: new URL('https://fixture?q=Pikachu&limit=32') });
+    assert.equal(response.status, 200);
+    assert.equal(response.headers.get('cache-control'), 'private, no-store');
+    const payload = await response.json();
+    assert.equal(payload.sort_degraded_reason, 'resolver_timeout');
+    assert.equal(payload.source, options.softTimeout ? 'web_ranked_resolver_v2_degraded_soft_timeout' : 'web_ranked_resolver_v2_degraded_timeout');
+    assert.equal(payload.rows.length, 0);
+  }
+});
+
+test('complete-search soft timeout aborts the combined reader and returns a no-store failure', async () => {
+  let signal;
+  const response = await loadRoute({ stallCombined: true, capture: options => { signal = options.signal; } })({
+    nextUrl: new URL('https://fixture?q=WB+Kids+Stamp&pagination=1'),
+  });
+  assert.equal(response.status, 503);
+  assert.equal(response.headers.get('cache-control'), 'private, no-store');
+  assert.equal((await response.json()).sort_degraded_reason, 'resolver_timeout');
+  assert.equal(signal.aborted, true);
+});
+
+test('caller cancellation is propagated to the combined reader', async () => {
+  const caller = new AbortController();
+  let signal;
+  const response = await loadRoute({ stallCombined: true, capture: options => {
+    signal = options.signal;
+    queueMicrotask(() => caller.abort());
+  } })({ nextUrl: new URL('https://fixture?q=WB+Kids+Stamp&pagination=1'), signal: caller.signal });
+  assert.equal(response.status, 503);
+  assert.equal((await response.json()).sort_degraded_reason, 'resolver_timeout');
+  assert.equal(signal.aborted, true);
+});
+
+test('caller cancellation is propagated to the bounded Pokemon reader', async () => {
+  const caller = new AbortController(); let signal;
+  const response = await loadRoute({ stallFast: true, captureCollector: args => {
+    signal = args[4]; queueMicrotask(() => caller.abort());
+  } })({ nextUrl: new URL('https://fixture?q=Pikachu'), signal: caller.signal });
+  assert.equal(signal.aborted, true);
+  assert.equal(response.headers.get('cache-control'), 'private, no-store');
+});
+
+test('caller cancellation is propagated to the artist reader', async () => {
+  const caller = new AbortController(); let signal;
+  const response = await loadRoute({ stallArtist: true, capture: options => {
+    signal = options.signal; queueMicrotask(() => caller.abort());
+  } })({ nextUrl: new URL('https://fixture?q=artist%3AYuka+Morii'), signal: caller.signal });
+  assert.equal(signal.aborted, true);
+  assert.equal(response.headers.get('cache-control'), 'private, no-store');
+});
+
+test('missing-image sentence routes to image discovery without spurious text', async () => {
+  let options;
+  const response = await loadRoute({ capture: value => { options = value; } })({
+    nextUrl: new URL('https://fixture?q=all+cards+with+no+exact+image&limit=5'),
+  });
+  assert.equal(response.status, 200);
+  const data = await response.json();
+  assert.equal(data.smart_search.residualQuery, '');
+  assert.equal(data.smart_search.imageState, 'missing');
+  assert.equal(options.imageState, 'missing');
+  assert.ok(data.rows.length > 0);
+});
+
+test('explicit Sword and Shield promo family combines with Cosmos without selecting the expansion', async () => {
+  let options;
+  const sets = [{ id: 'expansion', code: 'swsh1', name: 'Sword & Shield' },
+    { id: 'promo', code: 'swshp', name: 'SWSH Black Star Promos' }];
+  const rows = [{ id: '1', gv_id: 'GV-PK-TEST-1', name: 'Cyndaquil', finish_key: 'cosmos' }];
+  const response = await loadRoute({ sets, rows, capture: value => { options = value; } })({
+    nextUrl: new URL('https://fixture?q=cosmos+holo+Sword+and+Shield+promos&limit=5'),
+  });
+  assert.equal(response.status, 200);
+  const data = await response.json();
+  assert.equal(options.exactSetCode, 'swshp');
+  assert.equal(options.finishKeys[0], 'cosmos');
+  assert.equal(data.rows.length, 1);
+});
 
 test('printed XY promo requests use the bounded collector reader through the actual route',async()=>{
  const row={id:'pikachu-xy124',gv_id:'GV-PK-PR-XY-XY124',name:'Pikachu-EX',number:'XY124',set_code:'xyp'};
@@ -284,6 +439,7 @@ test('route retains artist and finish with a set and refuses catalog-read failur
  assert.deepEqual(JSON.parse(JSON.stringify(options.finishKeys)),['reverse']);
  const failed=await loadRoute({catalogFail:true})({nextUrl:new URL('https://fixture?q=Mewtwo+from+30th+anniversary')});
  assert.equal(failed.status,503);
+ assert.equal(failed.headers.get('cache-control'),'private, no-store');
 });
 
 test('opening-word set filters retain artist and finish constraints', async () => {
@@ -313,6 +469,7 @@ test('oversized queries fail before accessing catalog services', async () => {
  const get=loadRoute({catalogFail:true});
  const response=await get({nextUrl:new URL('https://fixture?q='+encodeURIComponent('Mewtwo '+ '\t'.repeat(501)+'Base Set'))});
  assert.equal(response.status,400);
+ assert.equal(response.headers.get('cache-control'),'private, no-store');
  assert.match((await response.json()).error,/500 characters/);
 });
 

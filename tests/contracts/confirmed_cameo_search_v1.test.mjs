@@ -45,3 +45,32 @@ test('RPC failures, unknown roles and the projection paging ceiling fail closed'
   const rows = Array.from({ length: 1100 }, (_, n) => ({ gv_id: `GV-PK-TEST-${n}`, appearance_role: 'scene_subject' }));
   await assert.rejects(read(client({ rows }), 'Gengar'), /verified completely/);
 });
+
+test('cancelled species lookup aborts the request without starting cameo pages', async () => {
+  const controller = new AbortController(); let attached, pages = 0;
+  const c = { from() {
+    const q = { select() { return q; }, eq() { return q; }, or() { return q; }, limit() { return q; },
+      abortSignal(signal) { attached = signal; return new Promise((_, reject) => signal.addEventListener('abort', () => reject(signal.reason), { once: true })); } };
+    return q;
+  }, rpc() { pages++; throw new Error('unexpected cameo read'); } };
+  const pending = read(c, 'Gengar', controller.signal);
+  while (!attached) await new Promise(resolve => setImmediate(resolve));
+  controller.abort(); await assert.rejects(pending, { name: 'AbortError' });
+  assert.equal(attached, controller.signal); assert.equal(pages, 0);
+});
+
+test('cancelled cameo page aborts and does not return partial IDs', async () => {
+  const controller = new AbortController(); let attached, pages = 0;
+  const c = { from() {
+    const q = { select() { return q; }, eq() { return q; }, or() { return q; }, limit() { return q; },
+      abortSignal() { return Promise.resolve({ data: [{ national_dex_number: 94 }], error: null }); } };
+    return q;
+  }, rpc() {
+    pages++;
+    return { abortSignal(signal) { attached = signal; return new Promise((_, reject) => signal.addEventListener('abort', () => reject(signal.reason), { once: true })); } };
+  } };
+  const pending = read(c, 'Gengar', controller.signal);
+  while (!attached) await new Promise(resolve => setImmediate(resolve));
+  controller.abort(); await assert.rejects(pending, { name: 'AbortError' });
+  assert.equal(attached, controller.signal); assert.equal(pages, 1);
+});

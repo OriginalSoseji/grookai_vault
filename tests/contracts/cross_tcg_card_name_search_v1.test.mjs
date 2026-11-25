@@ -123,7 +123,7 @@ test("direct Pokemon identity, set aliases, and value sorts retain the complete 
   );
   assert.match(
     lookup,
-    /if \(query\.expectedSetCodes\.length > 0\)[\s\S]*?fetchCardRowsBySetCode\(setCode\)[\s\S]*?if \(tokens\.length === 0\) \{\s*return languageScopedSetRows/,
+    /if \(query\.expectedSetCodes\.length > 0\)[\s\S]*?fetchCardRowsBySetCode\(setCode, signal\)[\s\S]*?if \(tokens\.length === 0\) \{\s*return languageScopedSetRows/,
   );
   assert.match(
     setFetcher,
@@ -132,7 +132,7 @@ test("direct Pokemon identity, set aliases, and value sorts retain the complete 
   assert.doesNotMatch(setFetcher, /\.limit\(250\)/);
   assert.match(
     lookup,
-    /if \(useCompletePokemonPath\)[\s\S]*?fetchLanguageScopedTextRows\(query, languageScope\)/,
+    /if \(useCompletePokemonPath\)[\s\S]*?fetchLanguageScopedTextRows\(query, languageScope, signal\)/,
   );
   assert.match(
     lookup,

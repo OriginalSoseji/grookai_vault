@@ -1,0 +1,26 @@
+{
+  "version": "XY150_PROMO_RARITY_APPLY_V1",
+  "run_id": "b351453c-2ff7-4102-9406-8f2a4020790e",
+  "mode": "inspect",
+  "package_fingerprint": "328b9ad74f4822494f90a962421c6f47c1321e1c7ffa67f8c86c78355405f3f8",
+  "writer_fingerprint": "368c8b36e8a38c0f16bc69eda75905fc01197c1f14002958a8d35c07410c08e9",
+  "started_at": "2026-11-19T21:08:50.233Z",
+  "status": "preflight_passed",
+  "stages": [
+    {
+      "name": "frozen_sources_and_images_verified",
+      "at": "2026-11-19T21:08:55.538Z"
+    },
+    {
+      "name": "preflight_passed",
+      "at": "2026-11-19T21:08:55.616Z"
+    }
+  ],
+  "sanity": {
+    "parents": 173837,
+    "sets": 3420,
+    "traits": 47409
+  },
+  "state": "pending",
+  "finished_at": "2026-11-19T21:08:55.616Z"
+}

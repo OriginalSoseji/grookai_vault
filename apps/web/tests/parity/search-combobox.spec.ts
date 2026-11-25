@@ -141,6 +141,50 @@ test("actual search exposes valid expanded semantics and keyboard printing selec
   expect(target.searchParams.get("cards")).toBe("GV-PK-BASE-3");
 });
 
+test("Pokémon suggestions request only the selected game and language", async ({ page }) => {
+  await openSearch(page);
+  await page.goto("/explore?q=x&lang=ja");
+  const input = page.locator("main").getByLabel("Search cards, sets, numbers, or grookai ID", { exact: true });
+  await expect(input).toBeEnabled();
+  const request = page.waitForRequest(request => new URL(request.url()).pathname === "/api/search/suggestions" && new URL(request.url()).searchParams.get("q") === "Pikachu");
+  await input.fill("Pikachu");
+  const url = new URL((await request).url());
+  expect(url.searchParams.get("game")).toBe("pokemon");
+  expect(url.searchParams.get("lang")).toBe("ja");
+});
+
+test("changing games hides old suggestions until the new scope returns", async ({ page }) => {
+  const input = await openSearch(page);
+  await input.fill("Pikachu");
+  const options = page.getByRole("listbox", { name: "Card suggestions" }).getByRole("option");
+  await expect(options).toHaveCount(2);
+
+  let release!: () => void;
+  const gate = new Promise<void>(resolve => { release = resolve; });
+  await page.route("**/api/resolver/search?**", async route => {
+    const url = new URL(route.request().url());
+    if (url.searchParams.get("game") !== "mtg" || url.searchParams.get("q") !== "Pikachu") return route.continue();
+    await gate;
+    return route.fulfill({ json: { ok: true, canonical: [{ ...rows[0], id: "mtg-fixture", gv_id: "GV-MTG-FIXTURE-1", name: "Magic fixture" }] } }).catch(() => {});
+  });
+  try {
+    const request = page.waitForRequest(request => {
+      const url = new URL(request.url());
+      return url.pathname === "/api/resolver/search" && url.searchParams.get("game") === "mtg" && url.searchParams.get("q") === "Pikachu";
+    });
+    await page.locator("main").getByLabel("Trading card game").selectOption("mtg");
+    await input.focus();
+    await request;
+    await expect(input).toHaveAttribute("aria-busy", "true");
+    await expect(options).toHaveCount(0);
+    release();
+    await expect(options).toHaveCount(1);
+    await expect(options.first()).toContainText("Magic fixture");
+  } finally {
+    release();
+  }
+});
+
 test("Escape stays dismissed through a delayed response; arrows reopen and Tab dismisses", async ({ page }) => {
   let release!: () => void;
   const gate = new Promise<void>(resolve => { release = resolve; });
@@ -192,4 +236,119 @@ test("pointer selection preserves the printing and comparison context", async ({
   const target = new URL((await destination).url());
   expect(target.searchParams.get("printing")).toBe("GV-PK-BASE-1-RH");
   expect(target.searchParams.get("cards")).toBe("GV-PK-BASE-3");
+});
+
+test("search recovers from one incomplete resolver timeout", async ({ page }) => {
+  const requests: string[] = [];
+  await page.route("**/*", async (route) => {
+    const url = new URL(route.request().url());
+    if (!["127.0.0.1", "localhost"].includes(url.hostname)) return route.abort();
+    if (url.pathname === "/api/resolver/search") {
+      requests.push(url.toString());
+      if (requests.length === 1) return route.fulfill({ status: 503, json: {
+        ok: false, sort_degraded_reason: "resolver_timeout",
+        error: "Search timed out before the complete matching set could be checked. Please narrow your search or try again.",
+      } });
+      return route.fulfill({ json: { ok: true, rows, canonical: rows, provisional: [], pagination: { total_count: 2, has_more: false, next_offset: null } } });
+    }
+    if (url.pathname.startsWith("/api/")) return route.fulfill({ json: { ok: true, rows: [] } });
+    return route.continue();
+  });
+  await page.goto("/explore?q=Pikachu&finish=reverse");
+  await expect(page.getByText("Pikachu 1", { exact: true }).first()).toBeVisible();
+  expect(requests).toHaveLength(2);
+  expect(requests[1]).toBe(requests[0]);
+  expect(new URL(requests[0]).searchParams.get("finish")).toBe("reverse");
+  await expect(page.getByText("Search timed out before the complete matching set could be checked.", { exact: false })).toHaveCount(0);
+});
+
+test("a degraded search is shown as a timeout instead of no matches", async ({ page }) => {
+  await page.route("**/*", async (route) => {
+    const url = new URL(route.request().url());
+    if (!["127.0.0.1", "localhost"].includes(url.hostname)) return route.abort();
+    if (url.pathname === "/api/resolver/search") {
+      return route.fulfill({ json: {
+        ok: true, rows: [], provisional: [], sort_degraded_reason: "resolver_timeout",
+        meta: { resolverState: "NO_MATCH" }, source: "web_ranked_resolver_v2_degraded_timeout",
+      } });
+    }
+    if (url.pathname.startsWith("/api/")) return route.fulfill({ json: { ok: true, rows: [] } });
+    return route.continue();
+  });
+  await page.goto("/explore?q=Pikachu");
+  await expect(page.getByText("Search timed out before results could be checked. Please try again.")).toBeVisible();
+  await expect(page.getByText("No card match yet")).toHaveCount(0);
+  await expect(page.getByText("No results yet")).toHaveCount(0);
+});
+
+for (const canonicalRows of [[], rows]) {
+  test(`unavailable unconfirmed results are disclosed and retry preserves filters (${canonicalRows.length} canonical rows)`, async ({ page }) => {
+    const requests: string[] = [];
+    let recovered = false;
+    await page.route("**/*", async (route) => {
+      const url = new URL(route.request().url());
+      if (!["127.0.0.1", "localhost"].includes(url.hostname)) return route.abort();
+      if (url.pathname === "/api/resolver/search") {
+        requests.push(url.toString());
+        return route.fulfill({ json: {
+          ok: true, rows: canonicalRows, provisional: [],
+          provisional_status: recovered ? "available" : "unavailable",
+          smart_search: { originalQuery: "Pikachu", residualQuery: "Pikachu", finishKeys: ["reverse"], stampLabels: [], interpretedLabels: [], unrecognizedTerms: [], unappliedLabels: [] },
+          pagination: { total_count: canonicalRows.length, has_more: false, next_offset: null },
+        } });
+      }
+      if (url.pathname.startsWith("/api/")) return route.fulfill({ json: { ok: true, rows: [] } });
+      return route.continue();
+    });
+    await page.goto("/explore?q=Pikachu&finish=reverse&year_min=2022&year_max=2024");
+    const warning = page.getByRole("status").filter({ hasText: "Additional unconfirmed matches are temporarily unavailable" });
+    await expect(warning).toBeVisible();
+    if (canonicalRows.length) await expect(page.getByText("Pikachu 1", { exact: true }).first()).toBeVisible();
+    else {
+      await expect(page.getByText("Some results are unavailable")).toBeVisible();
+      await expect(page.getByText("No card match yet")).toHaveCount(0);
+      await expect(page.getByText("No recorded matches for all these filters.", { exact: false })).toHaveCount(0);
+    }
+    const original = requests[requests.length - 1];
+    recovered = true;
+    await warning.getByRole("button", { name: "Retry search" }).click();
+    await expect(warning).toHaveCount(0);
+    expect(requests[requests.length - 1]).toBe(original);
+  });
+}
+
+test("retry search repeats the same filtered request after both timeout attempts fail", async ({ page }) => {
+  const requests: string[] = [];
+  let allowSuccess = false;
+  await page.route("**/*", async (route) => {
+    const url = new URL(route.request().url());
+    if (!["127.0.0.1", "localhost"].includes(url.hostname)) return route.abort();
+    if (url.pathname === "/api/resolver/search") {
+      requests.push(url.toString());
+      if (!allowSuccess) return route.fulfill({ status: 503, json: {
+        ok: false, sort_degraded_reason: "resolver_timeout",
+        error: "Search timed out before the complete matching set could be checked. Please narrow your search or try again.",
+      } });
+      return route.fulfill({ json: { ok: true, rows, canonical: rows, provisional: [], pagination: { total_count: 2, has_more: false, next_offset: null } } });
+    }
+    if (url.pathname.startsWith("/api/")) return route.fulfill({ json: { ok: true, rows: [] } });
+    return route.continue();
+  });
+  await page.goto("/explore?q=Pikachu&finish=reverse&year_min=2022&year_max=2024");
+  const retry = page.getByRole("button", { name: "Retry search" });
+  await expect(retry).toBeVisible();
+  expect(requests.length).toBeGreaterThanOrEqual(2);
+  await expect(page.getByText("No card match yet")).toHaveCount(0);
+  const previousCount = requests.length;
+  const failedRequest = requests[requests.length - 1];
+  allowSuccess = true;
+  await retry.click();
+  await expect(page.getByText("Pikachu 1", { exact: true }).first()).toBeVisible();
+  expect(requests.length).toBeGreaterThan(previousCount);
+  expect(requests[requests.length - 1]).toBe(failedRequest);
+  const retried = new URL(requests[requests.length - 1]);
+  expect(retried.searchParams.get("finish")).toBe("reverse");
+  expect(retried.searchParams.get("year_min")).toBe("2022");
+  expect(retried.searchParams.get("year_max")).toBe("2024");
+  await expect(retry).toHaveCount(0);
 });

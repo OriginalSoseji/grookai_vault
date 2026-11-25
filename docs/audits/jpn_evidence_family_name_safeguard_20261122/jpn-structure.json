@@ -1,0 +1,33 @@
+{
+  "captured_at": "2026-11-22T22:41:43.478Z",
+  "scope": "Aggregate snapshot of active Japanese evidence structure only; no name matching, output equivalence, promotion authority or production writes.",
+  "sanity": {
+    "read_only": "on",
+    "parents": 173994,
+    "sets": 3421,
+    "traits": 47409
+  },
+  "elapsed_ms": 4899,
+  "rows": [
+    {
+      "reason": "both_name_arrays_present",
+      "evidence_rows": 109699,
+      "cards": 24497
+    },
+    {
+      "reason": "current_english_names_not_array",
+      "evidence_rows": 8505,
+      "cards": 6748
+    },
+    {
+      "reason": "evidence_english_names_not_array",
+      "evidence_rows": 13683,
+      "cards": 12291
+    },
+    {
+      "reason": "missing_or_multiple_active_identity",
+      "evidence_rows": 230,
+      "cards": 113
+    }
+  ]
+}

@@ -99,13 +99,15 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
   const compareCardsParam = buildCompareCardsParam(compareCards);
   const [query, setQuery] = useState(currentQuery);
   const [gameScope, setGameScope] = useState<PublicGameScope>(currentGameScope);
-  const [suggestions, setSuggestions] = useState<SearchSuggestion[]>([]);
+  const [suggestionBatch, setSuggestionBatch] = useState<{ key: string; items: SearchSuggestion[] } | null>(null);
   const [suggestionsLoading, setSuggestionsLoading] = useState(false);
   const [suggestionsOpen, setSuggestionsOpen] = useState(false);
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(-1);
   const formRef = useRef<HTMLFormElement>(null);
   const suggestionsDismissed = useRef(false);
   const listboxId = useId();
+  const suggestionKey = JSON.stringify([query.trim().replace(/\s+/g, " "), gameScope, currentLanguageScope]);
+  const suggestions = suggestionBatch?.key === suggestionKey ? suggestionBatch.items : [];
   const listboxOpen = suggestionsOpen && suggestions.length > 0;
 
   const dismissSuggestions = () => {
@@ -125,7 +127,7 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
   useEffect(() => {
     const normalizedQuery = query.trim().replace(/\s+/g, " ");
     if (normalizedQuery.length < SEARCH_SUGGESTION_MIN_QUERY_LENGTH) {
-      setSuggestions([]);
+      setSuggestionBatch(null);
       setSuggestionsLoading(false);
       setSuggestionsOpen(false);
       setActiveSuggestionIndex(-1);
@@ -133,6 +135,8 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
     }
 
     const controller = new AbortController();
+    const requestKey = JSON.stringify([normalizedQuery, gameScope, currentLanguageScope]);
+    setSuggestionsLoading(true);
     const timer = window.setTimeout(async () => {
       setSuggestionsLoading(true);
       try {
@@ -148,7 +152,7 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
         if (suggestionRequest.requestedNumber) {
           params.set("number", suggestionRequest.requestedNumber);
         }
-        if (gameScope !== "pokemon") params.set("game", gameScope);
+        params.set("game", gameScope);
         if (currentLanguageScope !== "all") params.set("lang", currentLanguageScope);
 
         const endpoint =
@@ -161,22 +165,23 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
         const payload = (await response.json()) as SuggestionResponse;
         if (controller.signal.aborted) return;
         if (!response.ok || !payload.ok) {
-          setSuggestions([]);
+          setSuggestionBatch(null);
           return;
         }
 
-        setSuggestions(
-          normalizeSearchSuggestions(
+        setSuggestionBatch({
+          key: requestKey,
+          items: normalizeSearchSuggestions(
             payload.canonical ?? payload.rows ?? [],
             SEARCH_SUGGESTION_LIMIT,
             normalizedQuery,
           ),
-        );
+        });
         // A delayed response must not reopen the menu over another control.
         setSuggestionsOpen(!suggestionsDismissed.current && document.activeElement === formRef.current?.querySelector('input[type="search"]'));
         setActiveSuggestionIndex(-1);
       } catch {
-        if (!controller.signal.aborted) setSuggestions([]);
+        if (!controller.signal.aborted) setSuggestionBatch(null);
       } finally {
         if (!controller.signal.aborted) setSuggestionsLoading(false);
       }
@@ -324,7 +329,7 @@ export default function PublicSearchForm({ variant }: PublicSearchFormProps) {
             onChange={(event) => {
               suggestionsDismissed.current = false;
               setQuery(event.target.value);
-              setSuggestions([]);
+              setSuggestionBatch(null);
               setSuggestionsLoading(event.target.value.trim().length >= SEARCH_SUGGESTION_MIN_QUERY_LENGTH);
               setSuggestionsOpen(true);
               setActiveSuggestionIndex(-1);

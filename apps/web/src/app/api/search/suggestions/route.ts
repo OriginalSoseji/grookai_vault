@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { createPublicServerClient } from "@/lib/supabase/publicServer";
 import { createServerComponentClient } from "@/lib/supabase/server";
 import { suggestionRequestIsPrivate, suggestionResponseHeaders } from "@/lib/search/suggestionAccess.mjs";
+import { resolveSuggestionScope } from "@/lib/search/suggestionScope";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -34,9 +35,11 @@ export async function GET(request: NextRequest) {
   const number = request.nextUrl.searchParams.get("number")?.trim() || null;
   const limit = parseLimit(request.nextUrl.searchParams.get("limit"));
   const safeQuery = query.replace(/[%_]/g, "").trim();
-  const requestedGame = request.nextUrl.searchParams.get("game")?.trim().toLowerCase() || "all";
-  const supportedGames = ["pokemon", "mtg", "one_piece"];
-  if (requestedGame !== "all" && !supportedGames.includes(requestedGame)) {
+  const scope = resolveSuggestionScope(
+    request.nextUrl.searchParams.get("game"),
+    request.nextUrl.searchParams.get("lang"),
+  );
+  if (!scope) {
     return NextResponse.json({ ok: false, rows: [], error: "Unsupported game." }, { status: 400 });
   }
   if (safeQuery.length < 2) {
@@ -48,12 +51,11 @@ export async function GET(request: NextRequest) {
     // Signed-in catalogs must keep their viewer context. Shared caching is only
     // allowed when the request contains neither an auth cookie nor a bearer.
     const supabase = privateRequest ? await createServerComponentClient() : createPublicServerClient(60);
-    const games = requestedGame === "all" ? supportedGames : [requestedGame];
-    const pages = await Promise.all(games.map(async (game) => {
+    const pages = await Promise.all(scope.games.map(async (game) => {
       const { data, error } = await supabase.rpc("search_game_card_prints_v4", {
         game_code_in: game, q: safeQuery.slice(0, 160), set_code_in: null,
         number_in: number?.replace(/^#/, "").split("/", 1)[0] || null,
-        illustrator_in: null, language_scope_in: "all", limit_in: limit, offset_in: 0,
+        illustrator_in: null, language_scope_in: scope.language, limit_in: limit, offset_in: 0,
       }).abortSignal(AbortSignal.timeout(3500));
       if (error) throw new Error(error.message);
       return (data ?? []) as CardPrintSuggestionRow[];

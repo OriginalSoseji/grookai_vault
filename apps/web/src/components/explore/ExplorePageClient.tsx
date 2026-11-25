@@ -52,6 +52,7 @@ import type { PublicProvisionalCard } from "@/lib/provisional/publicProvisionalT
 import type { SmartSearchIntent } from "@/lib/search/smartSearchIntent";
 import type { ArtistSearchPagination } from "@/lib/search/artistSearchPagination";
 import { getCollectorSearchSuggestions } from "@/lib/search/collectorSearchSuggestions";
+import { fetchResolverWithRetry } from "@/lib/search/fetchResolverWithRetry";
 import {
   VARIANT_FAMILY_DISCOVERY_COPY,
   type VariantOriginFamilyCopy,
@@ -537,6 +538,7 @@ export default function ExplorePageClient({
   const [pageError, setPageError] = useState<string | null>(null);
   const loadNextPage = useRef<(() => void) | null>(null);
   const [provisionalRows, setProvisionalRows] = useState<PublicProvisionalCard[]>([]);
+  const [provisionalUnavailable, setProvisionalUnavailable] = useState(false);
   const [resolverMeta, setResolverMeta] = useState<ResolverMeta | null>(null);
   const [smartSearchIntent, setSmartSearchIntent] = useState<SmartSearchIntent | null>(null);
   const [assistantPreview, setAssistantPreview] =
@@ -544,6 +546,7 @@ export default function ExplorePageClient({
   const [assistantPreviewLoading, setAssistantPreviewLoading] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [searchRetryRevision, setSearchRetryRevision] = useState(0);
   const [sortDegradedReason, setSortDegradedReason] = useState<string | null>(
     null,
   );
@@ -625,6 +628,7 @@ export default function ExplorePageClient({
         setLoading(true);
         setError(null);
         setSortDegradedReason(null);
+        setProvisionalUnavailable(false);
       }
 
       try {
@@ -699,31 +703,33 @@ export default function ExplorePageClient({
           params.set("identity", identityFilter);
         }
 
-        const response = await fetch(
-          `/api/resolver/search?${params.toString()}`,
-          {
-            signal: controller.signal,
-          },
-        );
-
-        const payload = (await response.json()) as {
+        const { response, payload } = await fetchResolverWithRetry<{
           ok: boolean;
           error?: string;
           rows?: ExploreRow[];
           canonical?: ExploreRow[];
           provisional?: PublicProvisionalCard[];
+          provisional_status?: "available" | "unavailable" | "not_requested";
           meta?: ResolverMeta;
           smart_search?: SmartSearchIntent;
           requested_sort?: SortMode;
           applied_sort?: SortMode | null;
           sort_degraded_reason?: string | null;
           pagination?: ArtistSearchPagination;
-        };
+        }>(
+          `/api/resolver/search?${params.toString()}`,
+          controller.signal,
+          fetch,
+          sortMode !== "value_high" && sortMode !== "value_low",
+        );
 
         if (controller.signal.aborted) return;
         setSortDegradedReason(payload.sort_degraded_reason ?? null);
         if (!response.ok || !payload.ok) {
           throw new Error(payload.error ?? "Search failed.");
+        }
+        if (payload.sort_degraded_reason === "resolver_timeout") {
+          throw new Error("Search timed out before results could be checked. Please try again.");
         }
 
         const nextRows = payload.canonical ?? payload.rows ?? [];
@@ -737,6 +743,9 @@ export default function ExplorePageClient({
           : null;
         if (append && !restoringView.current) setVisibleResultCount((current) => current + INITIAL_VISIBLE_RESULT_COUNT);
         setProvisionalRows(payload.provisional ?? []);
+        setProvisionalUnavailable((current) =>
+          (append && current) || payload.provisional_status === "unavailable",
+        );
         setResolverMeta(payload.meta ?? null);
         setSmartSearchIntent(payload.smart_search ?? null);
         setAssistantPreview(null);
@@ -790,6 +799,7 @@ export default function ExplorePageClient({
     identityFilter,
     shouldServerFilterByIdentity,
     effectiveCanViewPricing,
+    searchRetryRevision,
   ]);
 
   useEffect(() => {
@@ -1260,7 +1270,9 @@ export default function ExplorePageClient({
     smartSearchIntent,
     fallback: "Collector discovery",
   });
-  const emptyStateTitle = ownershipRequiresSignIn
+  const emptyStateTitle = provisionalUnavailable
+    ? "Some results are unavailable"
+    : ownershipRequiresSignIn
     ? "Sign in to search your vault"
     : ownershipState === "owned" && viewer.isAuthenticated
       ? "No owned cards match this search"
@@ -1273,7 +1285,9 @@ export default function ExplorePageClient({
             : isIdentityFilterActive(identityFilter)
               ? `No ${getIdentityFilterLabel(identityFilter).toLowerCase()} cards found`
               : "No results yet";
-  const emptyStateBody = ownershipRequiresSignIn
+  const emptyStateBody = provisionalUnavailable
+    ? "Additional unconfirmed matches could not be checked. Try the search again."
+    : ownershipRequiresSignIn
     ? "Sign in and run the same search again. grookai will use your active vault inventory instead of guessing ownership."
     : ownershipState === "owned" && viewer.isAuthenticated
       ? "These filters are valid, but none of your active vault cards match them yet."
@@ -1284,7 +1298,7 @@ export default function ExplorePageClient({
           : resolverMeta?.resolverState === "NO_MATCH" && normalizedQuery
             ? `Nothing matched "${normalizedQuery}". Try a card name plus set code, collector number, finish, or cameo subject.`
             : "Try a card name, set code, collector number, finish, trainer, or cameo subject.";
-  const emptyState = (
+  const emptyState = !error ? (
     <ProductState
       compact
       eyebrow="Search"
@@ -1313,7 +1327,7 @@ export default function ExplorePageClient({
         </div>
       )}
     />
-  );
+  ) : null;
   const loadingState = (
     <div className="rounded-[20px] border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950">
       <div className="flex items-center justify-between gap-3">
@@ -1642,7 +1656,28 @@ export default function ExplorePageClient({
             >
               Sign in to use value sorting
             </Link>
-          ) : null}
+          ) : (
+            <button
+              type="button"
+              className="mt-2 inline-flex font-semibold underline underline-offset-2"
+              onClick={() => setSearchRetryRevision((revision) => revision + 1)}
+            >
+              Retry search
+            </button>
+          )}
+        </div>
+      ) : null}
+
+      {!error && !loading && !isDiscoveryMode && provisionalUnavailable ? (
+        <div role="status" className="rounded-[16px] border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-950 shadow-sm dark:border-amber-300/20 dark:bg-amber-400/[0.12] dark:text-amber-100">
+          <p>Additional unconfirmed matches are temporarily unavailable. Your catalog results are still shown.</p>
+          <button
+            type="button"
+            className="mt-2 inline-flex font-semibold underline underline-offset-2"
+            onClick={() => setSearchRetryRevision((revision) => revision + 1)}
+          >
+            Retry search
+          </button>
         </div>
       ) : null}
 
@@ -1660,7 +1695,7 @@ export default function ExplorePageClient({
         </>
       ) : (
         <div className="gv-collector-search-results space-y-3">
-          {resolverSummary && displayRows.length === 0 ? (
+          {resolverSummary && displayRows.length === 0 && !provisionalUnavailable ? (
             <div
               className={`rounded-[16px] border px-4 py-3 text-sm shadow-sm ${resolverSummary.tone}`}
             >
@@ -1671,7 +1706,7 @@ export default function ExplorePageClient({
             </div>
           ) : null}
 
-          {smartSearchIntent ? <CombinedSearchFilters intent={smartSearchIntent} search={searchParams.toString()} empty={!loading && !error && rows.length === 0} /> : null}
+          {smartSearchIntent ? <CombinedSearchFilters intent={smartSearchIntent} search={searchParams.toString()} empty={!loading && !error && !provisionalUnavailable && rows.length === 0} /> : null}
           {interpretedLabels.length > 0 || residualQuery || unappliedLabels.length > 0 ? (
             <details className="gv-collector-disclosure" open={unappliedLabels.length > 0}>
               <summary>Search details{unappliedLabels.length > 0 ? " - some filters were not applied" : ""}</summary>
