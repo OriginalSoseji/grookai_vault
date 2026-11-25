@@ -2,7 +2,7 @@ import {createBackendClient} from '../supabase_backend_client.mjs';
 import {SquareCatalogService,squareEnvironmentConfig} from './service_v1.mjs';
 import {SquareCommerceService} from './commerce_service_v2.mjs';
 import {SquareApiError} from './client_v1.mjs';
-export function createSquareCommerceBackend({client,config=squareEnvironmentConfig()}={}){
+export function createSquareCommerceBackend({client,config=squareEnvironmentConfig(),clientFactory}={}){
  if(process.env.GV_USER_ACCESS_TOKEN)throw new SquareApiError('square_database_target_unqualified');
  if(!client){
   const target=process.env.SUPABASE_URL;
@@ -17,6 +17,7 @@ export function createSquareCommerceBackend({client,config=squareEnvironmentConf
     p_stage:data.stage,p_error_code:data.errorCode??null,p_database_code:data.databaseCode??null,p_target:data.targetId??null})
    :action==='defer'?await client.rpc('square_connection_defer_v1',{p_connection:data.connectionId,p_owner:data.ownerId,p_token:data.leaseToken,p_fence:data.fence,p_seconds:data.seconds})
    :action==='authorization_failed'?await client.rpc('square_connection_authorization_failed_v1',{p_connection:data.connectionId,p_owner:data.ownerId,p_token:data.leaseToken,p_fence:data.fence})
+   :action.startsWith('price_batch_')?await client.rpc('square_price_batch_service_v1',{p_action:action.slice(12),p_data:data})
    :await client.rpc('square_commerce_service_v2',{p_action:action,p_data:data});
   if(result.error){
    const error=new SquareApiError(/^square_[a-z_]{1,80}$/.test(result.error.message)?result.error.message:'square_state_unavailable');
@@ -25,6 +26,6 @@ export function createSquareCommerceBackend({client,config=squareEnvironmentConf
   }
   return result.data??{recorded:true};
  };
- const catalog=new SquareCatalogService({rpc,config});
+ const catalog=new SquareCatalogService({rpc,config,clientFactory});
  return Object.assign(catalog,{commerce:new SquareCommerceService({catalog,rpc,config})});
 }

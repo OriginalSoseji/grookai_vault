@@ -5,6 +5,7 @@ import {execFileSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
 import {printingManifestHash as hash} from '../../backend/catalog/printing_completeness_gate_v1.mjs';
 import * as m from '../../backend/pricing/japanese_reviewed_price_links_v2.mjs';
+import {assertSquareMain1050ProducerContinuityV1 as assertSourceComposition} from '../../scripts/lib/square_main1050_producer_continuity_v1.mjs';
 
 const schema=JSON.parse(fs.readFileSync(new URL('../../docs/catalog/japanese_reviewed_price_links_v2/schema524.json',import.meta.url))),now=Date.parse(m.SNAPSHOT.source.run.finished_at)+18*3600000,time=new Date(now).toISOString();
 const fixture=()=>({...structuredClone(m.SNAPSHOT),parent_mappings:[],printing_mappings:[],raw:[],prerequisite:{regular29_correct:29,regular29_audit_present:true}});
@@ -19,8 +20,8 @@ test('4916 exact prior reviewed provider identities select only existing verifie
  assert.deepEqual(m.assertPriceLinkFactsV2(fixture(),{now}),{existing_printings:4916,normal:2911,holo:2005,current_quotes:4916,prior_reviewed_provider_quotes:4916,approved_inbound_aliases:30,physical_writes:0});
  for(const t of m.REGISTRY.targets){const r=m.SNAPSHOT.reviews.find(x=>x.id===t.review_id),q=m.SNAPSHOT.source.prior_quotes.find(x=>x.id===t.prior_observation_id);assert.equal(r.evidence.source_observation_id,q.id);assert.equal(q.product_id,t.product_id);assert.equal(q.subtype_name,t.source_subtype);assert.equal(r.evidence.finish_key,t.finish_key);assert.ok(r.evidence.official_assertion_keys.length);}
 });
-test('complete600-file producer, exact524 metadata and original source amounts are bound',()=>{
- assert.equal(code.files.length,600);assert.equal(new Set(code.files.map(x=>x.file)).size,600);assert.equal(m.assertPriceLinkSchemaV2(schema).schema_fingerprint,m.REGISTRY.schema_fingerprint);assert.equal(plan.code_fingerprint,code.fingerprint);
+test('exact original600-file producer plus six pinned Square files, exact524 metadata and original source amounts are bound',()=>{
+ assert.equal(assertSourceComposition(code,'japaneseV2').historicalFiles,600);assert.equal(m.assertPriceLinkSchemaV2(schema).schema_fingerprint,m.REGISTRY.schema_fingerprint);assert.equal(plan.code_fingerprint,code.fingerprint);
  assert.deepEqual(plan.expected,{printing_mapping_inserts:4916,raw_inserts:1});assert.ok(Object.values(plan.boundaries).every(x=>x===0));assert.equal(m.classifyPriceLinkStateV2(plan,fixture()),'before');assert.equal(m.classifyPriceLinkStateV2(plan,after()),'exact');
 });
 for(const[name,mutate]of[
@@ -103,7 +104,7 @@ test('binding contract keeps physical truth, all stamp holds and global publicat
  const text=fs.readFileSync(new URL('../../docs/contracts/JAPANESE_REVIEWED_PRICE_LINKS_V2.md',import.meta.url),'utf8').toLowerCase();for(const phrase of['no production authority','4916 provider links','2005 Holo','2911 Normal','no upsert','regular29','32 stamp','36-hour','production rollback','not a full durable shadow','GROOKAI_PREFLIGHT_ACK=1'])assert.ok(text.includes(phrase.toLowerCase()),phrase);
 });
 
-test('frozen V1 products, parents and printings are excluded from this separate batch',async()=>{const first=await import('../../backend/pricing/japanese_reviewed_price_links_v1.mjs');for(const key of ['PRODUCTS','PARENTS','PRINTINGS','MAPPING_IDS'])assert.ok(m[key].every(x=>!first[key].includes(x)));assert.equal(first.priceLinkCodeBindingV1().files.length,594);});
+test('frozen V1 products, parents and printings are excluded from this separate batch',async()=>{const first=await import('../../backend/pricing/japanese_reviewed_price_links_v1.mjs');for(const key of ['PRODUCTS','PARENTS','PRINTINGS','MAPPING_IDS'])assert.ok(m[key].every(x=>!first[key].includes(x)));assert.equal(assertSourceComposition(first.priceLinkCodeBindingV1(),'japaneseV1').historicalFiles,594);});
 
 test('six known product-kind exclusions remain bound holds, never publication exceptions',()=>{
  assert.deepEqual(m.REGISTRY.publication_holds.map(h=>h.product_id),[565980,566031,568027,568082,570022,587611]);

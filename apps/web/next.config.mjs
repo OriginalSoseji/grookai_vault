@@ -3,7 +3,7 @@ import path from "path";
 import { createRequire } from "node:module";
 import { scanRuntimeTracePatterns } from "./src/lib/stores/scanRuntimeFiles.mjs";
 import { assertCollectorReleaseEnvironment } from "./src/lib/collectorRelease.mjs";
-import { collectorStaging, collectorFixtureLab, collectorHostedStaging, storefrontLocalTest, vendorBatchLocalTest, collectrImportLocalTest, receiptCloudLocalTest, salesTradeLocalTest, receiptDeliveryLocalTest, salesPaymentsLocalTest, squareLocalTest, vendorPricingLocalTest, squareOnboardingLocalTest, assertCollectorStagingTarget } from "./src/lib/collectorStaging.mjs";
+import { collectorStaging, collectorFixtureLab, collectorHostedStaging, storefrontLocalTest, vendorBatchLocalTest, collectrImportLocalTest, receiptCloudLocalTest, salesTradeLocalTest, receiptDeliveryLocalTest, salesPaymentsLocalTest, squareLocalTest, vendorPricingLocalTest, squareOnboardingLocalTest, squareScaleLocalTest, assertCollectorStagingTarget } from "./src/lib/collectorStaging.mjs";
 
 /**
  * Env contract reuse:
@@ -24,7 +24,7 @@ if (vendorPilot && (process.env.NEXT_PUBLIC_COLLECTOR_STAGING !== "true" || proc
   throw new Error("Vendor preview requires isolated staging, disabled telemetry and no payment configuration.");
 }
 const collectorPreview = process.env.NEXT_PUBLIC_COLLECTOR_PREVIEW_READ_ONLY === "true";
-if ((storefrontLocalTest || vendorBatchLocalTest || collectrImportLocalTest || receiptCloudLocalTest || salesTradeLocalTest || receiptDeliveryLocalTest || salesPaymentsLocalTest || squareLocalTest || vendorPricingLocalTest || squareOnboardingLocalTest) && (!collectorStaging || collectorPreview || process.env.VERCEL || process.env.VERCEL_ENV || process.env.GROOKAI_DISABLE_TELEMETRY !== "1")) {
+if ((storefrontLocalTest || vendorBatchLocalTest || collectrImportLocalTest || receiptCloudLocalTest || salesTradeLocalTest || receiptDeliveryLocalTest || salesPaymentsLocalTest || squareLocalTest || vendorPricingLocalTest || squareOnboardingLocalTest || squareScaleLocalTest) && (!collectorStaging || collectorPreview || process.env.VERCEL || process.env.VERCEL_ENV || process.env.GROOKAI_DISABLE_TELEMETRY !== "1")) {
   throw new Error("Storefront tests require isolated local staging with telemetry disabled and no Vercel target.");
 }
 if (!collectorPreview && !collectorStaging) {

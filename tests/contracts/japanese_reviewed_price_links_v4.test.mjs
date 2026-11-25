@@ -1,4 +1,5 @@
 import test from 'node:test';
+import {assertSquareMain1055ProducerContinuityV1} from '../../scripts/lib/square_main1055_producer_continuity_v1.mjs';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {execFileSync} from 'node:child_process';
@@ -27,7 +28,7 @@ test('existing mapping collision guard keeps exact split-part semantics in a set
  assert.match(sql,/order by t\.id$/);
 });
 test('complete609-file producer, exact524 metadata and original source amounts are bound',()=>{
- assert.equal(code.files.length,609);assert.equal(new Set(code.files.map(x=>x.file)).size,609);assert.equal(m.assertPriceLinkSchemaV4(schema).schema_fingerprint,m.REGISTRY.schema_fingerprint);assert.equal(plan.code_fingerprint,code.fingerprint);
+ assertSquareMain1055ProducerContinuityV1(code,'japaneseV4');assert.equal(m.assertPriceLinkSchemaV4(schema).schema_fingerprint,m.REGISTRY.schema_fingerprint);assert.equal(plan.code_fingerprint,code.fingerprint);
  assert.deepEqual(plan.expected,{printing_mapping_inserts:4916,raw_inserts:1});assert.ok(Object.values(plan.boundaries).every(x=>x===0));assert.equal(m.classifyPriceLinkStateV4(plan,fixture()),'before');assert.equal(m.classifyPriceLinkStateV4(plan,after()),'exact');
 });
 for(const[name,mutate]of[

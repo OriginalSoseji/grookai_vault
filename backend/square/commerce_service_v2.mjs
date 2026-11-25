@@ -177,7 +177,9 @@ export class SquareCommerceService {
    await detail();
    if(focusInstanceId)uuid(focusInstanceId);
    const result=await this.#processConnection(ownerId,connectionId,{maxTargets,manual,focusInstanceId,checkpoint});
-   await this.rpc('commerce_run_finish',{...runContext,result:{status:result.failed||result.artworkFailures?'failed':'succeeded',succeeded:result.succeeded,
+   await this.rpc('commerce_run_finish',{...runContext,result:{status:result.failed||result.artworkFailures||result.batchFailures?'failed':'succeeded',succeeded:result.succeeded,
+    // Batch outcomes have their own parent and receipt. They affect terminal
+    // status, never the legacy per-copy counters (including a25-target manual run).
     failed:result.failed+(result.artworkFailures??0),skipped:result.reviews+result.skipped+(result.orderReviews??0),errorCode:result.errorCode??''}});
    await detail({...result.errorDetail,errorCode:result.errorCode??null});
    return {...result,runId};
@@ -197,9 +199,27 @@ export class SquareCommerceService {
   // never be mistaken for permission to put the same physical unit back.
   await checkpoint('reconcile');const reconciled=await this.reconcile(ownerId,connectionId);
   if(this.config.commerceEnabled){await checkpoint('enroll');await this.enroll(ownerId,connectionId,focusInstanceId);}
+  let priceBatch={status:'idle',acknowledged:0},batchFailures=0,batchError;
+  const hasBatch=typeof this.catalog.syncPriceBatch==='function';
+  if(this.config.priceBatchEnabled===true&&!hasBatch)fail('square_configuration_unavailable');
+  const priceWork=async admit=>{
+   await checkpoint('catalog');
+   try{
+    const value=await this.catalog.syncPriceBatch(ownerId,connectionId,{admit});
+    if(!value||!['idle','deferred','cancelled','no_effect','synced','reconciled','review','paused'].includes(value.status)||
+       !Number.isSafeInteger(value.acknowledged)||value.acknowledged<0||value.acknowledged>25)fail('square_batch_unconfirmed');
+    return value;
+   }catch(error){batchFailures=1;batchError=code(error);return {status:'pending',acknowledged:0};}
+  };
+  // Discover saved parents even when admission is off and on manual/focused
+  // calls. Reconciliation above remains first; no batch grants stock authority.
+  if(hasBatch)priceBatch=await priceWork(false);
+  const catalogBlocked=['pending','review','paused'].includes(priceBatch.status);
   await checkpoint('read_targets');
+  const automaticRecoveryLimit=this.config.recoveryWindowEnabled===true&&!manual&&!focusInstanceId&&[2,5].includes(maxTargets)
+   ?{automaticRecoveryLimit:maxTargets}:{};
   const read=await this.catalog.withConnection(ownerId,connectionId,async({connection,context})=>({
-   automatic:connection.auto_sync,targets:await this.rpc('commerce_targets',{...context,focusInstanceId})}));
+   automatic:connection.auto_sync,targets:await this.rpc('commerce_targets',{...context,focusInstanceId,...automaticRecoveryLimit})}));
   if(!Array.isArray(read.targets))fail('square_targets_incomplete');
   const result={succeeded:0,failed:0,reviews:0,skipped:0,orderReviews:reconciled.orderReviews??0,adoptions:[],focusStatus:'pending'};
   const reviewTargets=new Set();
@@ -215,26 +235,37 @@ export class SquareCommerceService {
   }
   for(const target of batch){
    const checkedThrough=new Date(this.now()).toISOString();
+   const needsAllocation=!target.allocation_state||target.allocation_state==='released';
    let targetFailed=false,failureStage;
    try{
-    if(target.selected&&target.allocation_state!=='sold'&&(manual||read.automatic)&&this.config.catalogEnabled){
+    if(catalogBlocked&&needsAllocation){result.skipped++;continue;}
+    if(!catalogBlocked&&target.selected&&target.allocation_state!=='sold'&&(manual||read.automatic)&&this.config.catalogEnabled){
      try{
       failureStage='catalog';
       await checkpoint('catalog',target.id);
       const catalog=await this.catalog.sync(ownerId,connectionId,target.id,randomUUID());
       if(catalog.status==='adoption_required'){review(target);result.adoptions.push({...catalog,targetId:target.id});if(target.instance_id===focusInstanceId)result.focusStatus='review';continue;}
-     }catch(error){if(!target.allocation_state||code(error)==='square_connection_busy')throw error;targetFailed=true;failureStage='catalog';review(target);result.errorCode=code(error);
+     }catch(error){if(code(error)==='square_price_batch_pending'){
+       if(target.instance_id===focusInstanceId)result.focusStatus='pending';
+       // A batch may have started after our recovery read. Existing stock work
+       // remains reachable; released copies also need a fresh allocation.
+       if(needsAllocation){result.skipped++;continue;}
+       await checkpoint('stock',target.id);const current=await this.stock(ownerId,connectionId,target.id);
+       if(['withdrawn_review','stock_requires_review'].includes(current.status))review(target);
+       result.skipped++;continue;
+      }
+      if(!target.allocation_state||code(error)==='square_connection_busy')throw error;targetFailed=true;failureStage='catalog';review(target);result.errorCode=code(error);
       result.errorDetail={stage:'catalog',targetId:target.id,databaseCode:error.databaseCode};if(target.instance_id===focusInstanceId)result.focusStatus='review';}
     }
     if(target.allocation_state||((manual||read.automatic)&&this.config.commerceEnabled)){
      failureStage='stock';
      await checkpoint('stock',target.id);
      const value=await this.stock(ownerId,connectionId,target.id);
-     if(target.instance_id===focusInstanceId&&result.focusStatus!=='review')result.focusStatus=value.status==='ready'?'ready':'pending';
+     if(target.instance_id===focusInstanceId&&result.focusStatus!=='review')result.focusStatus=!catalogBlocked&&value.status==='ready'?'ready':'pending';
      if(['withdrawn_review','stock_requires_review'].includes(value.status))review(target);
     }
-    if(targetFailed)result.failed++;else result.succeeded++;
-    if(!targetFailed&&this.config.catalogEnabled&&typeof this.catalog.syncArtwork==='function'){
+    if(targetFailed)result.failed++;else if(catalogBlocked)result.skipped++;else result.succeeded++;
+    if(!catalogBlocked&&!targetFailed&&this.config.catalogEnabled&&typeof this.catalog.syncArtwork==='function'){
      // Optional imagery runs after stock. An image failure never undoes a ready unit or a completed sale.
      failureStage='catalog';await checkpoint('catalog',target.id);
      // The leased catalog reader gates new work on the current auto-sync setting,
@@ -249,6 +280,11 @@ export class SquareCommerceService {
    }
    finally{await checkpoint('target_checked',target.id);await this.catalog.withConnection(ownerId,connectionId,({context})=>this.rpc('target_checked',{...context,targetId:target.id,checkedThrough}));}
   }
+  // Focused/manual work has priority. Admit at most one price parent only after
+  // ordinary checks, and never admit a second after recovering an older parent.
+  if(hasBatch&&this.config.priceBatchEnabled===true&&!manual&&!focusInstanceId&&read.automatic&&priceBatch.status==='idle')priceBatch=await priceWork(true);
+  if(hasBatch){result.priceBatch=priceBatch;result.batchFailures=batchFailures;result.batchReview=priceBatch.status==='review';
+   if(batchError){result.errorCode=batchError;result.errorDetail={stage:'catalog',errorCode:batchError};}}
   return result;
  }
  async releaseStock(ownerId,connectionId,targetId,input){

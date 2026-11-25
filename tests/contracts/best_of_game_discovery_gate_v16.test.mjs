@@ -1,4 +1,4 @@
-import {assertRetainedPriceForwardInventoryV4} from '../helpers/retained_price_forward_inventory_v4.mjs';
+import {assertSquareForwardSourceV4} from './helpers/square_forward_source_v4.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -17,7 +17,7 @@ test('V16 preserves every521 historical migration and bounds the new definition-
   // V17 owns the complete current inventory; V16 still pins every historical byte.
   const successor=read('best_of_game_discovery_candidate_v17.json');
   assert.deepEqual(successor.history,{...b.history,...b.candidates});
-  assertRetainedPriceForwardInventoryV4(root,{...successor.history,...successor.candidates});
+  assertSquareForwardSourceV4(root,{...successor.history,...successor.candidates});
   assert.equal(b.canonicalRowWrites,0);assert.equal(b.operationalRowWrites,0);assert.equal(b.newIndexes,0);assert.deepEqual(b.changedViews,[]);
   assert.deepEqual(b.changedFunctions,['public.catalog_set_visible_to_request_v1(uuid)','public.catalog_card_print_visible_to_request_v1(uuid)','public.catalog_parent_gv_id_visible_to_request_v1(text)']);
   const sql=fs.readFileSync(root+'/supabase/migrations/'+Object.keys(b.candidates)[0],'utf8');assert.equal(sha(sql),b.candidateBundleSha256);
