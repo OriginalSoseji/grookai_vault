@@ -1,3 +1,30 @@
+# Thirty-three stamped child image originals — November 25, 2026
+
+Follow the [image intake checkpoint](../checkpoints/warehouse/STAMPED_CHILD_IMAGE_INTAKE_33_20261125.md)
+and [preparation boundary](../contracts/STAMPED_CHILD_IMAGE_INTAKE_V1.md).
+`scripts/audits/stamped_child_image_intake_prepare_v1.mjs --config <private-file>`
+can prepare only the 33 pinned raw image evidence targets. The private config
+references existing database env/verified CA files, the exact complete source
+fingerprint, the 33 retained original files keyed by printing ID and a new
+exclusive artifact output. Never copy credentials or founder identifiers into
+the checkout. The command verifies the real active founder entitlement and
+private bucket, but does not upload, mutate, approve, stage or promote anything.
+Its unapproved plan is not an executable production packet.
+
+The separate `backend/warehouse/run_stamped_child_image_intake_v1.mjs` operator
+command defaults to disabled writes. It requires the exact four named attempts,
+clean qualified source, pinned normal/hosted evidence and a separate owner
+decision, plus the explicit enable/mode flags and mechanical preflight ACK.
+Use one exclusive output directory per approved run under the fixed intake run
+root. Never retry a partial upload or uncertain commit; retain and independently
+diagnose it. `readback` uses server-enforced read-only transactions.
+Finish complete-source qualification before requesting production action.
+Actual raw intake, normalization,
+founder review and image-only canonical promotion are distinct gates. Keep all
+parent images and identity/finish holds exact; retain the extra Cinderace photo
+outside the frozen33. The GameStop15 programme is closed in the retained operator
+release closure, and its three writer attempts must never be repeated.
+
 # Fifteen GameStop maintenance adapter — November 24, 2026
 
 Follow the [adapter checkpoint](../checkpoints/identity/GAMESTOP_REGISTRY_FIFTEEN_MAINTENANCE_ADAPTER_20261124.md).

@@ -4,6 +4,8 @@ import { recordValidationFailureV1 } from './validate_write_v1.mjs';
 // LOCK: Proof mode must be explicit for every canon-affecting execution that uses the shared executor.
 
 export const POST_WRITE_PROOF_MODES_V1 = {
+  stamped_child_image_intake_sql_v1: 'transactional_authoritative',
+  stamped_child_image_intake_storage_v1: 'compensated_non_transactional',
   external_discovery_to_warehouse_bridge_v1: 'transactional_authoritative',
   classification_apply_write_plan_v1: 'transactional_authoritative',
   classification_apply_reclassification_result_v1: 'transactional_authoritative',
