@@ -22,6 +22,20 @@ export const CONTRACT_RUNTIME_DRIFT_REFERENCES_V1 = [
 ];
 
 export const CONTRACT_RUNTIME_CATALOG_V1 = {
+  STAMPED_CHILD_IMAGE_INTAKE_V1: {
+    status: 'Active', authority_class: 'ingestion', domain: 'warehouse', canon_affecting: true,
+    conflict_behavior: 'Only the exact33 source originals may enter raw image-backed intake; existing image, identity, founder, bucket, schema or source ambiguity blocks writes.',
+    enforcement_points: {
+      worker: ['backend/warehouse/stamped_child_image_intake_execution_v1.mjs'],
+      audit: ['tests/contracts/stamped_child_image_intake_v1.test.mjs'],
+      checkpoint: ['docs/contracts/STAMPED_CHILD_IMAGE_INTAKE_V1.md', 'docs/checkpoints/warehouse/STAMPED_CHILD_IMAGE_INTAKE_33_20261125.md'],
+      quarantine_behavior: 'No automatic approval or promotion. Partial raw objects are retained for diagnosis; failed named attempts are not retried.',
+      post_write_proof_query: 'Exact33 raw/candidate/evidence/event rows and immutable image bytes; original canonical rows, real founder entitlement and warehouse schema remain exact.',
+    },
+    current_enforcement_status: 'enforced',
+    gaps: 'The bounded protocol is prepared; local/source/hosted and production-adapter release qualification remain separate. No production intake is approved.',
+    next_action: 'Qualify the complete raw-intake/storage protocol and production adapter before an exact owner decision; preserve downstream founder image-review and promotion gates.',
+  },
   GROOKAI_GUARDRAILS: {
     status: 'Active',
     authority_class: 'stabilization_checkpoint',
