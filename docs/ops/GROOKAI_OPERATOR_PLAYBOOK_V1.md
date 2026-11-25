@@ -1148,6 +1148,24 @@ UTC producer, the hosted two-hour recovery workflow, reconciliation, activation
 guards, or zero-mismatch publication readback. Never treat a local dispatch
 receipt as proof that prices were published or visible in the app.
 
+## TCGPlayer full-scope shadow recovery — November 25, 2026
+
+Use the manual
+[`TCGPlayer Market Full-Scope Shadow` workflow](../../.github/workflows/tcgplayer-market-full-scope-shadow.yml)
+from the exact deployed `main` commit. Leave `resume_run_key` blank to start a
+new full-source shadow. If a phase fails, inspect its immutable artifact and
+resume with that run key only when dispatching the same producing commit SHA.
+When code has advanced, start a new run key; the worker rejects a cross-commit
+resume to preserve provenance.
+
+This workflow makes one attempt per dispatch, allows a 180-minute database
+query timeout and 240-minute phase timeout, and always runs in shadow mode with
+publication activation disabled and no row limit. It uploads phase summaries
+and pipeline state even after failure. Follow the
+[TCGPlayer Market pricing product runbook](../runbooks/TCGPLAYER_MARKET_PRICING_PRODUCT_V1.md)
+for source, coverage, publication, and downstream readback gates. A successful
+shadow is not publication approval or evidence that prices are live in the app.
+
 ## Square-reserved copy removal repair — November 14, 2026
 
 Read [the removal checkpoint](../checkpoints/SQUARE_VAULT_REMOVAL_20261114.md)

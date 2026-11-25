@@ -71,7 +71,7 @@ jobs:
             --mode=shadow \
             "--run-key=$TCGPLAYER_MARKET_SCHEDULE_RUN_KEY" \
             "--out-root=$TCGPLAYER_MARKET_SCHEDULE_OUT_ROOT" \
-            --max-attempts=2 \
+            --max-attempts=1 \
             "--expected-commit-sha=$TCGPLAYER_MARKET_SCHEDULE_EXPECTED_COMMIT_SHA"
 
       - name: Publish shadow summary

@@ -32,6 +32,8 @@ test('full-scope workflow is shadow-only and has no publication limit', () => {
 test('full-scope workflow preserves artifacts even when a phase fails', () => {
   assert.match(workflow, /timeout-minutes: 330/);
   assert.match(workflow, /SCHEDULE_MAX_ATTEMPTS: '1'/);
+  assert.match(workflow, /--max-attempts=1/);
+  assert.doesNotMatch(workflow, /--max-attempts=2/);
   assert.match(workflow, /DATABASE_TIMEOUT_MINUTES: '180'/);
   assert.match(workflow, /PHASE_TIMEOUT_MINUTES: '240'/);
   assert.match(workflow, /resume_run_key:/);
