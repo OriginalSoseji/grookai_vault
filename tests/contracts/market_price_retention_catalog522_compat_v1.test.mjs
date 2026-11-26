@@ -4,7 +4,7 @@ import {fileURLToPath} from 'node:url';
 import {spawnSync} from 'node:child_process';
 import test from 'node:test';
 import {assertRetainedPriceForwardHashesV3} from '../helpers/retained_price_forward_inventory_v3.mjs';
-import {assertRetainedPriceForwardInventoryV4} from '../helpers/retained_price_forward_inventory_v4.mjs';
+import {assertRetainedPriceForwardInventoryV4} from '../helpers/jungle_scoped_price_forward_inventory_v1.mjs';
 import {retainedPriceForwardCandidateV1} from '../helpers/retained_price_forward_inventory_v1.mjs';
 const root=fileURLToPath(new URL('../../',import.meta.url));
 const read=file=>JSON.parse(readFileSync(root+'/scripts/schema/'+file));

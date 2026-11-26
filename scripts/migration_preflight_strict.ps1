@@ -19,6 +19,9 @@ param(
 
   [string[]]$ExpectedLocalOnlyIds = @(),
 
+  # BEGIN JUNGLE_SCOPED_PRICE_LINEAGE_V1 PARAMETER
+  [switch]$JungleScopedPriceLineageReleaseV1,
+  # END JUNGLE_SCOPED_PRICE_LINEAGE_V1 PARAMETER
   [switch]$MarketPriceRetentionBaselineV1,
   [switch]$MarketPriceRetentionReleaseV1,
 
@@ -165,6 +168,19 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
+# BEGIN JUNGLE_SCOPED_PRICE_LINEAGE_V1 HANDLER
+if ($JungleScopedPriceLineageReleaseV1) {
+  $allowed = @('Phase','JungleScopedPriceLineageReleaseV1','AuditOutDir')
+  if ($Phase -eq 'PrePush') { $allowed += 'ExpectedLocalOnlyIds' }
+  if (@($PSBoundParameters.Keys | Where-Object { $_ -notin $allowed }).Count -gt 0 -or
+      ($Phase -eq 'PrePush' -and (($ExpectedLocalOnlyIds.Count -ne 1) -or ($ExpectedLocalOnlyIds[0] -cne '20261126193000'))) -or
+      [string]::IsNullOrWhiteSpace($AuditOutDir)) {
+    throw 'Jungle scoped lineage V1 admits only exact524 and sole ID20261126193000; no mixed scopes, audit pending IDs or target overrides.'
+  }
+  & node --use-system-ca (Join-Path $PSScriptRoot 'schema/verify_jungle_scoped_price_lineage_release_v1.mjs') $Phase "--out-dir=$AuditOutDir"
+  exit $LASTEXITCODE
+}
+# END JUNGLE_SCOPED_PRICE_LINEAGE_V1 HANDLER
 if ($MarketPriceRetentionReleaseV1) {
   $requested = @($ExpectedLocalOnlyIds | ForEach-Object { $_ -split ',' } | Sort-Object)
   if (@($PSBoundParameters.Keys | Where-Object { $_ -notin @('Phase','MarketPriceRetentionReleaseV1','ExpectedLocalOnlyIds','AuditOutDir') }).Count -gt 0 -or
