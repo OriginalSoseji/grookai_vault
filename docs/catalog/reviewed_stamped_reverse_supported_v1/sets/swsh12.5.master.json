@@ -1,0 +1,17 @@
+{
+  "version": "ENGLISH_MASTER_REVIEWED_STAMPED_REVERSE_SUPPORTED_V1",
+  "set_code": "swsh12.5",
+  "source_index_fingerprint": "42cec699adcae7fff6fdc3cf1e364aebccb5f08d27f6bbeb4a051d7a600ed94f",
+  "positive_finish_scope": "exact_existing_stamped_reverse_facts_only",
+  "facts": [
+    {
+      "card_print_id": "ab7b0a26-2a90-49b5-adc7-886dd37881d0",
+      "existing_printing_id": "1cc46697-5813-4d1c-ab5f-acb730e2d34c",
+      "finish_key": "reverse",
+      "printed_number": "131/159",
+      "printed_stamp": "PROFESSOR PROGRAM logo at art lower left; no rank or STAFF marking visible",
+      "foil_observation": "Pokeball/chevron pattern outside artwork; source explicitly describes this exact reference as Reverse.",
+      "front_sha256": "1e6e942b9e4f96dbd2ab813bb0a96c605e81860ae00fb01afee4c3b756b0521c"
+    }
+  ]
+}

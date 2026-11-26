@@ -1,0 +1,76 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "bw11",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/bw11.master.json",
+  "master_index_sha256": "56a2601b2478c2ead07306d386116a58367e70fd6d77e5dbd917c8453bbf1f96",
+  "parents": [
+    {
+      "id": "3e4a40eb-4766-4165-ac96-ae9620297553",
+      "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+      "gv_id": "GV-PK-BW11-109-LEAGUE-STAMP",
+      "name": "Bianca",
+      "printed_coordinate": "109",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "league_stamp",
+      "printed_identity_modifier": "league_stamp"
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "3e4a40eb-4766-4165-ac96-ae9620297553",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-BW11-109-LEAGUE-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-db133e2a-5a3f-4d4b-9e13-99d603f2dd1a",
+          "sha256": "dc774399961b44a375bd8ba8c3ff36a8a205dbc1aa2dc6327be6c1ed386cb1ba",
+          "card_print_id": "3e4a40eb-4766-4165-ac96-ae9620297553",
+          "finish_key": "reverse"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "reverse": 1
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+    "source_artifacts": [
+      {
+        "ref": "stamped-front-db133e2a-5a3f-4d4b-9e13-99d603f2dd1a",
+        "sha256": "dc774399961b44a375bd8ba8c3ff36a8a205dbc1aa2dc6327be6c1ed386cb1ba",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://doujkbm8mih0s.cloudfront.net/static/images/alt/large/bw11/109-Bianca-Reverse-Holo-League.jpg",
+        "retrieved_at": "2026-11-24T07:16:42.168Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "3e4a40eb-4766-4165-ac96-ae9620297553",
+        "finish_key": "reverse"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/bw11.review.json",
+      "sha256": "d038fac314dd67eb0cc669fa1a128e93c7986746769539a0d882d6eefb6c7a81"
+    }
+  },
+  "fingerprint": "84b6139caa7af62abf1d1152269e0a8d33db9817dbd12a1cb7923a169015a199"
+}

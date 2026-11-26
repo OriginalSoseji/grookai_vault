@@ -1,0 +1,3076 @@
+{
+  "bases": [
+    {
+      "id": "1a4f41a6-4e5f-45f9-ab3d-ecb3be9d5dd7",
+      "name": "Carmine",
+      "gv_id": "GV-PK-TWM-145",
+      "artist": "kantaro",
+      "number": "145",
+      "rarity": "Uncommon",
+      "set_id": "0471b152-bbd1-4660-ae4e-8c67540ae1ac",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "sv06",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/sv/sv06/145/high.webp",
+      "created_at": "2025-11-16T06:32:35.437741+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv06/gv-pk-twm-145/560e56a4d9a334ed648174c8.webp",
+      "updated_at": "2025-11-01T17:41:12.306422+00:00",
+      "ai_metadata": null,
+      "variant_key": "",
+      "external_ids": {},
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "145",
+      "tcgplayer_id": null,
+      "image_alt_url": null,
+      "printed_total": null,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": "H",
+      "data_quality_flags": {
+        "legacy_image_url": "https://images.pokemontcg.io/sv6/145_hires.png",
+        "pokemontcg_legacy": true
+      },
+      "print_identity_key": null,
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": null,
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "1dd005a1-ce85-4088-9cb1-99185d961506",
+      "name": "Bouffalant",
+      "gv_id": "GV-PK-SCR-119",
+      "artist": "GOSSAN",
+      "number": "119",
+      "rarity": "Rare",
+      "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "sv07",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/sv/sv07/119/high.webp",
+      "created_at": "2025-11-16T06:32:35.437741+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv07/gv-pk-scr-119/88f9e0871bb3d84f463eb67a.webp",
+      "updated_at": "2025-12-27T19:26:16.337401+00:00",
+      "ai_metadata": null,
+      "variant_key": "",
+      "external_ids": {},
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "119",
+      "tcgplayer_id": null,
+      "image_alt_url": null,
+      "printed_total": 142,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": "H",
+      "data_quality_flags": {
+        "legacy_image_url": "https://images.pokemontcg.io/sv7/119_hires.png",
+        "pokemontcg_legacy": true
+      },
+      "print_identity_key": "sv07:119/142",
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "29500623-96e6-4afd-8381-17edc14cf20f",
+      "name": "Night Stretcher",
+      "gv_id": "GV-PK-SFA-61",
+      "artist": "Toyste Beach",
+      "number": "61",
+      "rarity": "Uncommon",
+      "set_id": "100c97f1-6611-4cf4-8310-9b9b79b377bb",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "sv6pt5",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/sv/sv06.5/061/high.webp",
+      "created_at": "2025-11-16T06:32:35.437741+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv6pt5/gv-pk-sfa-61/09f634eafe15b8b265e8570e.webp",
+      "updated_at": "2025-11-01T17:43:41.115883+00:00",
+      "ai_metadata": null,
+      "variant_key": "",
+      "external_ids": {},
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "61",
+      "tcgplayer_id": null,
+      "image_alt_url": null,
+      "printed_total": null,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": null,
+      "data_quality_flags": {
+        "legacy_image_url": "https://images.pokemontcg.io/sv6pt5/61_hires.png",
+        "pokemontcg_legacy": true
+      },
+      "print_identity_key": null,
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": null,
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "7bf55366-9a6b-466f-bd71-f617d626b5d9",
+      "name": "Archaludon",
+      "gv_id": "GV-PK-SCR-107",
+      "artist": "Oswaldo KATO",
+      "number": "107",
+      "rarity": "Rare",
+      "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "sv07",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/sv/sv07/107/high.webp",
+      "created_at": "2025-11-16T06:32:35.437741+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv07/gv-pk-scr-107/6a15b6ae8db6d284dd6b6900.webp",
+      "updated_at": "2025-12-27T19:26:16.337401+00:00",
+      "ai_metadata": null,
+      "variant_key": "",
+      "external_ids": {},
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "107",
+      "tcgplayer_id": null,
+      "image_alt_url": null,
+      "printed_total": 142,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": "H",
+      "data_quality_flags": {
+        "legacy_image_url": "https://images.pokemontcg.io/sv7/107_hires.png",
+        "pokemontcg_legacy": true
+      },
+      "print_identity_key": "sv07:107/142",
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11",
+      "name": "Koraidon",
+      "gv_id": "GV-PK-TEF-119",
+      "artist": "Teeziro",
+      "number": "119",
+      "rarity": "Rare",
+      "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "sv05",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/sv/sv05/119/high.webp",
+      "created_at": "2025-12-18T18:34:26.451745+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv05/gv-pk-tef-119/58805a008e6c5a40bb712c63.webp",
+      "updated_at": "2025-12-27T19:26:16.337401+00:00",
+      "ai_metadata": {
+        "tcgdex": {
+          "legalities": {},
+          "flavor_text": null
+        }
+      },
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "sv05-119"
+      },
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "119",
+      "tcgplayer_id": null,
+      "image_alt_url": "https://assets.tcgdex.net/en/sv/sv05/119",
+      "printed_total": null,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": "H",
+      "data_quality_flags": null,
+      "print_identity_key": null,
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "90278a2b-971e-4000-9ffb-e127b11aaf0d",
+      "name": "Miraidon",
+      "gv_id": "GV-PK-TEF-121",
+      "artist": "GOSSAN",
+      "number": "121",
+      "rarity": "Rare",
+      "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "sv05",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/sv/sv05/121/high.webp",
+      "created_at": "2025-12-18T18:34:27.593642+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv05/gv-pk-tef-121/2aee7e17d0006869f75c8d91.webp",
+      "updated_at": "2025-12-27T19:26:16.337401+00:00",
+      "ai_metadata": {
+        "tcgdex": {
+          "legalities": {},
+          "flavor_text": null
+        }
+      },
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "sv05-121"
+      },
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "121",
+      "tcgplayer_id": null,
+      "image_alt_url": "https://assets.tcgdex.net/en/sv/sv05/121",
+      "printed_total": null,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": "H",
+      "data_quality_flags": null,
+      "print_identity_key": null,
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "a524d59b-26b4-4be2-8839-338585171310",
+      "name": "Okidogi",
+      "gv_id": "GV-PK-TWM-111",
+      "artist": "Souichirou Gunjima",
+      "number": "111",
+      "rarity": "Rare",
+      "set_id": "0471b152-bbd1-4660-ae4e-8c67540ae1ac",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "sv06",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/sv/sv06/111/high.webp",
+      "created_at": "2025-11-16T06:32:35.437741+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv06/gv-pk-twm-111/bb06258f4153cc088996758b.webp",
+      "updated_at": "2025-11-01T17:41:12.306422+00:00",
+      "ai_metadata": null,
+      "variant_key": "",
+      "external_ids": {},
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "111",
+      "tcgplayer_id": null,
+      "image_alt_url": null,
+      "printed_total": null,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": "H",
+      "data_quality_flags": {
+        "legacy_image_url": "https://images.pokemontcg.io/sv6/111_hires.png",
+        "pokemontcg_legacy": true
+      },
+      "print_identity_key": null,
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": null,
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "c3e4974f-c021-4330-9663-7d94a74e4d9d",
+      "name": "Morpeko",
+      "gv_id": "GV-PK-PAR-121",
+      "artist": "Cona Nitanda",
+      "number": "121",
+      "rarity": "Rare",
+      "set_id": "1e501229-9396-49cd-b3eb-e6658e722ee2",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "sv04",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/sv/sv04/121/high.webp",
+      "created_at": "2025-11-16T06:32:35.437741+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv04/gv-pk-par-121/8e8e8625a745fd2da634a5fe.webp",
+      "updated_at": "2025-12-27T19:26:16.337401+00:00",
+      "ai_metadata": null,
+      "variant_key": "",
+      "external_ids": {},
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "121",
+      "tcgplayer_id": null,
+      "image_alt_url": null,
+      "printed_total": 182,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": "G",
+      "data_quality_flags": {
+        "legacy_image_url": "https://images.pokemontcg.io/sv4/121_hires.png",
+        "pokemontcg_legacy": true
+      },
+      "print_identity_key": "sv04:121/182",
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "f8003028-e419-490b-8a31-b231ab79ec16",
+      "name": "Roaring Moon",
+      "gv_id": "GV-PK-TEF-109",
+      "artist": "hncl",
+      "number": "109",
+      "rarity": "Rare",
+      "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "sv05",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/sv/sv05/109/high.webp",
+      "created_at": "2025-12-18T18:34:22.642947+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv05/gv-pk-tef-109/3900119e8e817fc281c7ef62.webp",
+      "updated_at": "2025-12-27T19:26:16.337401+00:00",
+      "ai_metadata": {
+        "tcgdex": {
+          "legalities": {},
+          "flavor_text": null
+        }
+      },
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "sv05-109"
+      },
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "109",
+      "tcgplayer_id": null,
+      "image_alt_url": "https://assets.tcgdex.net/en/sv/sv05/109",
+      "printed_total": null,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": "H",
+      "data_quality_flags": null,
+      "print_identity_key": null,
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    }
+  ],
+  "baseIdentities": [
+    {
+      "id": "022899de-b61b-42b6-ac30-4908d8be54c6",
+      "is_active": true,
+      "created_at": "2026-04-03T18:02:50.808535+00:00",
+      "updated_at": "2026-04-03T22:45:49.508021+00:00",
+      "card_print_id": "7bf55366-9a6b-466f-bd71-f617d626b5d9",
+      "printed_number": "107",
+      "identity_domain": "pokemon_eng_standard",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 142,
+        "printed_set_abbrev": "SCR"
+      },
+      "identity_key_hash": "08d512cd8c10387d0d2afecea6e4be3956780dda487374d9d98d7c122e22d6f0",
+      "set_code_identity": "sv07",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "normalized_printed_name": "archaludon"
+    },
+    {
+      "id": "08e91675-2c26-4116-afaf-fcb3fab46734",
+      "is_active": true,
+      "created_at": "2026-06-15T05:13:03.711116+00:00",
+      "updated_at": "2026-06-15T05:13:03.711116+00:00",
+      "card_print_id": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11",
+      "printed_number": "119",
+      "identity_domain": "pokemon_eng_standard",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 162,
+        "printed_set_abbrev": "TEF",
+        "variant_key_current": "base"
+      },
+      "identity_key_hash": "606de7cb7df50eaa1832706507a6c86db14874b033944f6182569adad12cbe63",
+      "set_code_identity": "sv05",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "normalized_printed_name": "koraidon"
+    },
+    {
+      "id": "0a9185e7-b9c8-4f9c-af80-9743f89aa096",
+      "is_active": true,
+      "created_at": "2026-04-03T18:02:50.808535+00:00",
+      "updated_at": "2026-04-03T22:46:13.01399+00:00",
+      "card_print_id": "1a4f41a6-4e5f-45f9-ab3d-ecb3be9d5dd7",
+      "printed_number": "145",
+      "identity_domain": "pokemon_eng_standard",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 167,
+        "printed_set_abbrev": "TWM"
+      },
+      "identity_key_hash": "7baee2239b2a98e80aaefc69060b49428a3c0c5070ffeee4b0d6d4a63d53c090",
+      "set_code_identity": "sv06",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "normalized_printed_name": "carmine"
+    },
+    {
+      "id": "2a787dba-6dc0-45b6-91ca-84a3caa3c711",
+      "is_active": true,
+      "created_at": "2026-06-15T05:13:03.711116+00:00",
+      "updated_at": "2026-06-15T05:13:03.711116+00:00",
+      "card_print_id": "29500623-96e6-4afd-8381-17edc14cf20f",
+      "printed_number": "61",
+      "identity_domain": "pokemon_eng_standard",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 64,
+        "printed_set_abbrev": "SFA",
+        "variant_key_current": "base"
+      },
+      "identity_key_hash": "49939020a888d9e7de86d315a44a27903ac2bc92a61966d458aa4b5ef55d7de3",
+      "set_code_identity": "sv6pt5",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "normalized_printed_name": "night stretcher"
+    },
+    {
+      "id": "86b37441-72bc-4de1-b388-b5f3dec0e645",
+      "is_active": true,
+      "created_at": "2026-06-15T05:13:03.711116+00:00",
+      "updated_at": "2026-06-15T05:13:03.711116+00:00",
+      "card_print_id": "f8003028-e419-490b-8a31-b231ab79ec16",
+      "printed_number": "109",
+      "identity_domain": "pokemon_eng_standard",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 162,
+        "printed_set_abbrev": "TEF",
+        "variant_key_current": "base"
+      },
+      "identity_key_hash": "a8d4e3344c415505203fb91273e0faa0f91d62bcc55f5b791a1ce2e71e02fbc4",
+      "set_code_identity": "sv05",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "normalized_printed_name": "roaring moon"
+    },
+    {
+      "id": "99287258-a9de-4607-9076-3e00825a4209",
+      "is_active": true,
+      "created_at": "2026-04-03T18:02:50.808535+00:00",
+      "updated_at": "2026-04-03T22:45:57.698998+00:00",
+      "card_print_id": "1dd005a1-ce85-4088-9cb1-99185d961506",
+      "printed_number": "119",
+      "identity_domain": "pokemon_eng_standard",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 142,
+        "printed_set_abbrev": "SCR"
+      },
+      "identity_key_hash": "f423783d34e149b09924c5e574ed87dd02bac4667cf8509c9d9c748bb7df9e24",
+      "set_code_identity": "sv07",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "normalized_printed_name": "bouffalant"
+    },
+    {
+      "id": "9a544760-42a6-4a2e-9911-54dfdef27484",
+      "is_active": true,
+      "created_at": "2026-04-03T18:02:50.808535+00:00",
+      "updated_at": "2026-04-03T22:45:34.067548+00:00",
+      "card_print_id": "a524d59b-26b4-4be2-8839-338585171310",
+      "printed_number": "111",
+      "identity_domain": "pokemon_eng_standard",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 167,
+        "printed_set_abbrev": "TWM"
+      },
+      "identity_key_hash": "0cdc859531eef737ec78195de82e1d5759fc9567cdbe3be0234db70fc7275d15",
+      "set_code_identity": "sv06",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "normalized_printed_name": "okidogi"
+    },
+    {
+      "id": "be088c33-6a23-4a19-b729-e3d77f1b1a97",
+      "is_active": true,
+      "created_at": "2026-04-03T18:02:50.808535+00:00",
+      "updated_at": "2026-04-03T22:46:05.372541+00:00",
+      "card_print_id": "c3e4974f-c021-4330-9663-7d94a74e4d9d",
+      "printed_number": "121",
+      "identity_domain": "pokemon_eng_standard",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 182,
+        "printed_set_abbrev": "PAR"
+      },
+      "identity_key_hash": "6167b7a9a6571640db2ab53de061c8b930f4ba74eebc672c0da729f37f6906e2",
+      "set_code_identity": "sv04",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "normalized_printed_name": "morpeko"
+    },
+    {
+      "id": "c054f742-3234-4442-8f8e-7fcc6b0309aa",
+      "is_active": true,
+      "created_at": "2026-06-15T05:13:03.711116+00:00",
+      "updated_at": "2026-06-15T05:13:03.711116+00:00",
+      "card_print_id": "90278a2b-971e-4000-9ffb-e127b11aaf0d",
+      "printed_number": "121",
+      "identity_domain": "pokemon_eng_standard",
+      "source_name_raw": null,
+      "identity_payload": {
+        "printed_total": 162,
+        "printed_set_abbrev": "TEF",
+        "variant_key_current": "base"
+      },
+      "identity_key_hash": "d6e6d006db17e0329a3324f9987183287b0aa7826ae050e223e1eda6ea37acf7",
+      "set_code_identity": "sv05",
+      "identity_key_version": "pokemon_eng_standard:v1",
+      "normalized_printed_name": "miraidon"
+    }
+  ],
+  "baseAliases": [
+    {
+      "id": "bb584354-a040-4466-ba7c-387fcdc8344a",
+      "active": true,
+      "created_at": "2026-10-12T06:17:06.731906+00:00",
+      "retired_at": null,
+      "adjudicated_at": "2026-10-12T06:52:58.947795+00:00",
+      "evidence_reason": "Source-backed set authority selects the PokemonTCG coordinate already used by Grookai release metadata. Exact card identity fields bind the retained TCGdex parent as reversible provider lineage; canonical finish evidence remains authoritative.",
+      "legacy_set_code": "sv06.5",
+      "authority_status": "approved",
+      "authority_sources": [
+        "pokemon_tcg_api_set_coordinate",
+        "tcgdex_set_coordinate",
+        "grookai_release_metadata"
+      ],
+      "authority_decision": {
+        "finish_policy": "Use only verified canonical printing inventory; a legacy-only finish never qualifies an import",
+        "canonical_basis": "PokemonTCG set coordinate already used by Grookai release metadata",
+        "legacy_set_code": "sv06.5",
+        "identity_evidence": "Exact normalized name, printed number, variant and printed modifier inside this source-adjudicated set family",
+        "canonical_set_code": "sv6pt5",
+        "legacy_disposition": "Retain the alternate TCGdex coordinate and every downstream reference as provider lineage",
+        "classification_sha256": "87c1916e78103667c75a5b68e1bd235dd41257852597107b2298b1d6a69fa0b7",
+        "expected_overlap_count": 99,
+        "collision_matrix_sha256": "3d558f036afb0d0080819c6976b1343018c9750585ba4ada9f6383a16823cfc4"
+      },
+      "canonical_set_code": "sv6pt5",
+      "created_from_audit": "collectr_catalog_review_20261009",
+      "legacy_card_print_id": "c2572a85-d90f-4558-b67d-b6610cbe5361",
+      "canonical_card_print_id": "29500623-96e6-4afd-8381-17edc14cf20f"
+    }
+  ],
+  "sets": [
+    {
+      "id": "0471b152-bbd1-4660-ae4e-8c67540ae1ac",
+      "code": "sv06",
+      "game": "pokemon",
+      "name": "Twilight Masquerade",
+      "source": {
+        "tcgdex": {
+          "id": "sv06",
+          "raw": {
+            "id": "sv06",
+            "logo": "https://assets.tcgdex.net/en/sv/sv06/logo",
+            "name": "Twilight Masquerade",
+            "symbol": "https://assets.tcgdex.net/univ/sv/sv06/symbol",
+            "cardCount": {
+              "total": 226,
+              "official": 167
+            }
+          },
+          "name": "Twilight Masquerade",
+          "slug": null,
+          "total": null,
+          "series": null,
+          "symbols": null,
+          "releaseDate": null,
+          "printedTotal": null
+        },
+        "pokemonapi": {
+          "series": "Scarlet & Violet"
+        }
+      },
+      "logo_url": "https://assets.tcgdex.net/en/sv/sv06/logo",
+      "set_role": null,
+      "created_at": "2025-11-16T06:32:35.437741+00:00",
+      "symbol_url": "https://assets.tcgdex.net/univ/sv/sv06/symbol",
+      "updated_at": "2026-04-13T17:58:16.449538+00:00",
+      "release_date": "2024-05-24",
+      "printed_total": 167,
+      "hero_image_url": "https://assets.tcgdex.net/en/sv/sv06/logo.png",
+      "identity_model": "standard",
+      "last_synced_at": null,
+      "hero_image_source": "tcgdex",
+      "search_code_lower": "sv06",
+      "printed_set_abbrev": "TWM",
+      "identity_domain_default": "pokemon_eng_standard"
+    },
+    {
+      "id": "100c97f1-6611-4cf4-8310-9b9b79b377bb",
+      "code": "sv6pt5",
+      "game": "pokemon",
+      "name": "Shrouded Fable",
+      "source": {
+        "pokemonapi": {
+          "id": "sv6pt5",
+          "name": "Shrouded Fable",
+          "total": 99,
+          "images": {
+            "logo": "https://images.pokemontcg.io/sv6pt5/logo.png",
+            "symbol": "https://images.pokemontcg.io/sv6pt5/symbol.png"
+          },
+          "series": "Scarlet & Violet",
+          "ptcgoCode": "SFA",
+          "releaseDate": "2024/08/02",
+          "printedTotal": 64
+        }
+      },
+      "logo_url": "https://images.pokemontcg.io/sv6pt5/logo.png",
+      "set_role": null,
+      "created_at": "2025-11-16T06:32:35.437741+00:00",
+      "symbol_url": "https://images.pokemontcg.io/sv6pt5/symbol.png",
+      "updated_at": "2026-03-27T05:51:55.539+00:00",
+      "release_date": "2024-08-02",
+      "printed_total": 64,
+      "hero_image_url": null,
+      "identity_model": "standard",
+      "last_synced_at": null,
+      "hero_image_source": null,
+      "search_code_lower": "sv6pt5",
+      "printed_set_abbrev": "SFA",
+      "identity_domain_default": "pokemon_eng_standard"
+    },
+    {
+      "id": "1e501229-9396-49cd-b3eb-e6658e722ee2",
+      "code": "sv04",
+      "game": "pokemon",
+      "name": "Paradox Rift",
+      "source": {
+        "tcgdex": {
+          "id": "sv04",
+          "raw": {
+            "id": "sv04",
+            "logo": "https://assets.tcgdex.net/en/sv/sv04/logo",
+            "name": "Paradox Rift",
+            "symbol": "https://assets.tcgdex.net/univ/sv/sv04/symbol",
+            "cardCount": {
+              "total": 266,
+              "official": 182
+            }
+          },
+          "name": "Paradox Rift",
+          "slug": null,
+          "total": null,
+          "series": null,
+          "symbols": null,
+          "releaseDate": null,
+          "printedTotal": null
+        },
+        "pokemonapi": {
+          "series": "Scarlet & Violet"
+        }
+      },
+      "logo_url": null,
+      "set_role": null,
+      "created_at": "2025-11-19T22:08:24.425529+00:00",
+      "symbol_url": null,
+      "updated_at": "2026-03-26T22:05:54.659+00:00",
+      "release_date": "2023-11-03",
+      "printed_total": 182,
+      "hero_image_url": null,
+      "identity_model": "standard",
+      "last_synced_at": null,
+      "hero_image_source": null,
+      "search_code_lower": "sv04",
+      "printed_set_abbrev": "PAR",
+      "identity_domain_default": "pokemon_eng_standard"
+    },
+    {
+      "id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+      "code": "sv05",
+      "game": "pokemon",
+      "name": "Temporal Forces",
+      "source": {
+        "tcgdex": {
+          "id": "sv05",
+          "raw": {
+            "id": "sv05",
+            "name": "Temporal Forces",
+            "symbol": "https://assets.tcgdex.net/univ/sv/sv05/symbol",
+            "cardCount": {
+              "total": 218,
+              "official": 162
+            }
+          },
+          "name": "Temporal Forces",
+          "slug": null,
+          "total": null,
+          "series": null,
+          "symbols": null,
+          "releaseDate": null,
+          "printedTotal": null
+        },
+        "pokemonapi": {
+          "series": "Scarlet & Violet"
+        }
+      },
+      "logo_url": null,
+      "set_role": null,
+      "created_at": "2025-11-19T22:08:25.224409+00:00",
+      "symbol_url": null,
+      "updated_at": "2025-12-18T18:33:35.269+00:00",
+      "release_date": "2024-03-22",
+      "printed_total": 162,
+      "hero_image_url": null,
+      "identity_model": "standard",
+      "last_synced_at": null,
+      "hero_image_source": null,
+      "search_code_lower": "sv05",
+      "printed_set_abbrev": "TEF",
+      "identity_domain_default": "pokemon_eng_standard"
+    },
+    {
+      "id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+      "code": "sv07",
+      "game": "pokemon",
+      "name": "Stellar Crown",
+      "source": {
+        "tcgdex": {
+          "id": "sv07",
+          "raw": {
+            "id": "sv07",
+            "logo": "https://assets.tcgdex.net/en/sv/sv07/logo",
+            "name": "Stellar Crown",
+            "cardCount": {
+              "total": 175,
+              "official": 142
+            }
+          },
+          "name": "Stellar Crown",
+          "slug": null,
+          "total": null,
+          "series": null,
+          "symbols": null,
+          "releaseDate": null,
+          "printedTotal": null
+        },
+        "pokemonapi": {
+          "series": "Scarlet & Violet"
+        }
+      },
+      "logo_url": null,
+      "set_role": null,
+      "created_at": "2025-11-19T22:08:26.445576+00:00",
+      "symbol_url": null,
+      "updated_at": "2026-03-26T22:05:56.374+00:00",
+      "release_date": "2024-09-13",
+      "printed_total": 142,
+      "hero_image_url": null,
+      "identity_model": "standard",
+      "last_synced_at": null,
+      "hero_image_source": null,
+      "search_code_lower": "sv07",
+      "printed_set_abbrev": "SCR",
+      "identity_domain_default": "pokemon_eng_standard"
+    }
+  ],
+  "globalNameNumberParents": [
+    {
+      "id": "12e6eaf0-d294-4ffa-9f81-9a9eeace7ed8",
+      "name": "Koraidon",
+      "gv_id": "GV-PK-TEF-119-GAMESTOP-STAMP",
+      "artist": null,
+      "number": "119",
+      "rarity": "Promo",
+      "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "sv05",
+      "variants": null,
+      "image_res": null,
+      "image_url": null,
+      "created_at": "2026-10-01T20:17:07.023934+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/f7b52e40-833e-4f25-8805-15be3be82400/5edc15451f0072c59cdab89c1e43e0e1a5e78155401fd54c045aa43c38dcebad/front.jpg",
+      "updated_at": "2026-10-01T20:17:07.023934+00:00",
+      "ai_metadata": null,
+      "variant_key": "gamestop_stamp",
+      "external_ids": {},
+      "image_source": "identity",
+      "image_status": null,
+      "number_plain": "119",
+      "tcgplayer_id": "543954",
+      "image_alt_url": null,
+      "printed_total": null,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": null,
+      "data_quality_flags": null,
+      "print_identity_key": null,
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": null,
+      "representative_image_url": null,
+      "printed_identity_modifier": "gamestop_stamp"
+    },
+    {
+      "id": "1a4f41a6-4e5f-45f9-ab3d-ecb3be9d5dd7",
+      "name": "Carmine",
+      "gv_id": "GV-PK-TWM-145",
+      "artist": "kantaro",
+      "number": "145",
+      "rarity": "Uncommon",
+      "set_id": "0471b152-bbd1-4660-ae4e-8c67540ae1ac",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "sv06",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/sv/sv06/145/high.webp",
+      "created_at": "2025-11-16T06:32:35.437741+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv06/gv-pk-twm-145/560e56a4d9a334ed648174c8.webp",
+      "updated_at": "2025-11-01T17:41:12.306422+00:00",
+      "ai_metadata": null,
+      "variant_key": "",
+      "external_ids": {},
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "145",
+      "tcgplayer_id": null,
+      "image_alt_url": null,
+      "printed_total": null,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": "H",
+      "data_quality_flags": {
+        "legacy_image_url": "https://images.pokemontcg.io/sv6/145_hires.png",
+        "pokemontcg_legacy": true
+      },
+      "print_identity_key": null,
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": null,
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "1dd005a1-ce85-4088-9cb1-99185d961506",
+      "name": "Bouffalant",
+      "gv_id": "GV-PK-SCR-119",
+      "artist": "GOSSAN",
+      "number": "119",
+      "rarity": "Rare",
+      "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "sv07",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/sv/sv07/119/high.webp",
+      "created_at": "2025-11-16T06:32:35.437741+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv07/gv-pk-scr-119/88f9e0871bb3d84f463eb67a.webp",
+      "updated_at": "2025-12-27T19:26:16.337401+00:00",
+      "ai_metadata": null,
+      "variant_key": "",
+      "external_ids": {},
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "119",
+      "tcgplayer_id": null,
+      "image_alt_url": null,
+      "printed_total": 142,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": "H",
+      "data_quality_flags": {
+        "legacy_image_url": "https://images.pokemontcg.io/sv7/119_hires.png",
+        "pokemontcg_legacy": true
+      },
+      "print_identity_key": "sv07:119/142",
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "29500623-96e6-4afd-8381-17edc14cf20f",
+      "name": "Night Stretcher",
+      "gv_id": "GV-PK-SFA-61",
+      "artist": "Toyste Beach",
+      "number": "61",
+      "rarity": "Uncommon",
+      "set_id": "100c97f1-6611-4cf4-8310-9b9b79b377bb",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "sv6pt5",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/sv/sv06.5/061/high.webp",
+      "created_at": "2025-11-16T06:32:35.437741+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv6pt5/gv-pk-sfa-61/09f634eafe15b8b265e8570e.webp",
+      "updated_at": "2025-11-01T17:43:41.115883+00:00",
+      "ai_metadata": null,
+      "variant_key": "",
+      "external_ids": {},
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "61",
+      "tcgplayer_id": null,
+      "image_alt_url": null,
+      "printed_total": null,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": null,
+      "data_quality_flags": {
+        "legacy_image_url": "https://images.pokemontcg.io/sv6pt5/61_hires.png",
+        "pokemontcg_legacy": true
+      },
+      "print_identity_key": null,
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": null,
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "3bc59348-647c-479f-b34e-a8de579ade47",
+      "name": "Night Stretcher",
+      "gv_id": "GV-PK-WCD-2025-JP_RAGING_BOLT-22-SHROUDED_FABLE-61-NIGHT_STRETCHER",
+      "artist": null,
+      "number": "061/064",
+      "rarity": null,
+      "set_id": "0a255f98-5933-41a9-8829-0d31b92b22d0",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "wcd2025-jp-raging-bolt",
+      "variants": null,
+      "image_res": null,
+      "image_url": null,
+      "created_at": "2026-06-23T21:18:48.989559+00:00",
+      "image_hash": null,
+      "image_note": "Representative image from ordinary source card GV-PK-SFA-61 for World Championship Deck display continuity. This is not an exact 2025 JP Raging Bolt replica image and may omit World Championship back, border, and player signature treatment. Prepared by IMG-HOST-WH-09B-WORLD-CHAMPIONSHIP-REPRESENTATIVE-POINTER-DRY-RUN; exact WCD image remains uncataloged.",
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv6pt5/gv-pk-sfa-61/09f634eafe15b8b265e8570e.webp",
+      "updated_at": "2026-06-23T21:18:48.989559+00:00",
+      "ai_metadata": {
+        "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+        "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+        "exact_image_claim_allowed": false,
+        "world_championship_deck_replica": true
+      },
+      "variant_key": "world_championship_deck_replica",
+      "external_ids": {
+        "grookai": {
+          "deck_name": "JP Raging Bolt",
+          "deck_year": 2025,
+          "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/JP_Raging_Bolt_(TCG)",
+          "player_name": null,
+          "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+          "deck_quantity": 3,
+          "source_set_name": "Shrouded Fable",
+          "source_card_number": "61",
+          "source_card_print_id": "29500623-96e6-4afd-8381-17edc14cf20f",
+          "source_card_print_gv_id": "GV-PK-SFA-61",
+          "source_card_reference_kind": "tcg_id_template"
+        }
+      },
+      "image_source": "identity",
+      "image_status": "representative_shared",
+      "number_plain": "061",
+      "tcgplayer_id": null,
+      "image_alt_url": null,
+      "printed_total": 27,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": null,
+      "data_quality_flags": {
+        "source_image_truth": "exact_world_championship_deck_image_not_cataloged",
+        "ordinary_expansion_image_must_not_be_claimed_exact": true
+      },
+      "print_identity_key": "wcd2025-jp-raging-bolt:GV-PK-WCD-2025-JP_RAGING_BOLT-22-SHROUDED_FABLE-61-NIGHT_STRETCHER",
+      "printed_set_abbrev": "WCD2025",
+      "set_identity_model": "reprint_anthology",
+      "image_last_checked_at": null,
+      "representative_image_url": null,
+      "printed_identity_modifier": "2025 World Championships Deck: JP Raging Bolt"
+    },
+    {
+      "id": "490a9345-dd95-4696-876f-d98e76b45144",
+      "name": "Roaring Moon",
+      "gv_id": "GV-PK-WCD-2024-ANCIENT_TOOLBOX-01-TEMPORAL_FORCES-109-ROARING_MOON",
+      "artist": null,
+      "number": "109/162",
+      "rarity": null,
+      "set_id": "9db63a48-cd41-4160-af36-1af512eb12f7",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "wcd2024-ancient-toolbox",
+      "variants": null,
+      "image_res": null,
+      "image_url": null,
+      "created_at": "2026-06-23T21:18:48.989559+00:00",
+      "image_hash": null,
+      "image_note": "Representative image from ordinary source card GV-PK-TEF-109 for World Championship Deck display continuity. This is not an exact 2024 Ancient Toolbox replica image and may omit World Championship back, border, and player signature treatment. Prepared by IMG-HOST-WH-09B-WORLD-CHAMPIONSHIP-REPRESENTATIVE-POINTER-DRY-RUN; exact WCD image remains uncataloged.",
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv05/gv-pk-tef-109/3900119e8e817fc281c7ef62.webp",
+      "updated_at": "2026-06-23T21:18:48.989559+00:00",
+      "ai_metadata": {
+        "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+        "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+        "exact_image_claim_allowed": false,
+        "world_championship_deck_replica": true
+      },
+      "variant_key": "world_championship_deck_replica",
+      "external_ids": {
+        "grookai": {
+          "deck_name": "Ancient Toolbox",
+          "deck_year": 2024,
+          "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Ancient_Toolbox_(TCG)",
+          "player_name": null,
+          "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+          "deck_quantity": 4,
+          "source_set_name": "Temporal Forces",
+          "source_card_number": "109",
+          "source_card_print_id": "f8003028-e419-490b-8a31-b231ab79ec16",
+          "source_card_print_gv_id": "GV-PK-TEF-109",
+          "source_card_reference_kind": "tcg_id_template"
+        }
+      },
+      "image_source": "identity",
+      "image_status": "representative_shared",
+      "number_plain": "109",
+      "tcgplayer_id": null,
+      "image_alt_url": null,
+      "printed_total": 24,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": null,
+      "data_quality_flags": {
+        "source_image_truth": "exact_world_championship_deck_image_not_cataloged",
+        "ordinary_expansion_image_must_not_be_claimed_exact": true
+      },
+      "print_identity_key": "wcd2024-ancient-toolbox:GV-PK-WCD-2024-ANCIENT_TOOLBOX-01-TEMPORAL_FORCES-109-ROARING_MOON",
+      "printed_set_abbrev": "WCD2024",
+      "set_identity_model": "reprint_anthology",
+      "image_last_checked_at": null,
+      "representative_image_url": null,
+      "printed_identity_modifier": "2024 World Championships Deck: Ancient Toolbox"
+    },
+    {
+      "id": "4e254456-146a-4c0e-8b91-9e108e4b696c",
+      "name": "Bouffalant",
+      "gv_id": "GV-PK-PRC-119",
+      "artist": "Hiroki Asanuma",
+      "number": "119",
+      "rarity": "Uncommon",
+      "set_id": "90ad9e95-61b9-4869-9c7d-97f675f5e5c4",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "xy5",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/xy/xy5/119/high.webp",
+      "created_at": "2025-11-16T06:32:35.437741+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/xy5/gv-pk-prc-119/16a0df71856eb679a9a9d3a7.webp",
+      "updated_at": "2025-12-27T19:26:16.337401+00:00",
+      "ai_metadata": {
+        "tcgdex": {
+          "legalities": {},
+          "flavor_text": null
+        }
+      },
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "xy5-119"
+      },
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "119",
+      "tcgplayer_id": null,
+      "image_alt_url": "https://assets.tcgdex.net/en/xy/xy5/119",
+      "printed_total": null,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": null,
+      "data_quality_flags": {
+        "legacy_image_url": "https://images.pokemontcg.io/xy5/119_hires.png",
+        "pokemontcg_legacy": true
+      },
+      "print_identity_key": null,
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "72a480a9-0744-446c-9d52-d1c8ec38336a",
+      "name": "Night Stretcher",
+      "gv_id": "GV-PK-WCD-2025-FLUTTER_DEVO_GARDEVOIR-18-SHROUDED_FABLE-61-NIGHT_STRETCHER",
+      "artist": null,
+      "number": "061/064",
+      "rarity": null,
+      "set_id": "78d67071-b95c-4443-a4a7-abe92f576b4a",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "wcd2025-flutter-devo-gardevoir",
+      "variants": null,
+      "image_res": null,
+      "image_url": null,
+      "created_at": "2026-06-23T21:18:48.989559+00:00",
+      "image_hash": null,
+      "image_note": "Representative image from ordinary source card GV-PK-SFA-61 for World Championship Deck display continuity. This is not an exact 2025 Flutter Devo Gardevoir replica image and may omit World Championship back, border, and player signature treatment. Prepared by IMG-HOST-WH-09B-WORLD-CHAMPIONSHIP-REPRESENTATIVE-POINTER-DRY-RUN; exact WCD image remains uncataloged.",
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv6pt5/gv-pk-sfa-61/09f634eafe15b8b265e8570e.webp",
+      "updated_at": "2026-06-23T21:18:48.989559+00:00",
+      "ai_metadata": {
+        "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+        "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+        "exact_image_claim_allowed": false,
+        "world_championship_deck_replica": true
+      },
+      "variant_key": "world_championship_deck_replica",
+      "external_ids": {
+        "grookai": {
+          "deck_name": "Flutter Devo Gardevoir",
+          "deck_year": 2025,
+          "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Flutter_Devo_Gardevoir_(TCG)",
+          "player_name": null,
+          "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+          "deck_quantity": 2,
+          "source_set_name": "Shrouded Fable",
+          "source_card_number": "61",
+          "source_card_print_id": "29500623-96e6-4afd-8381-17edc14cf20f",
+          "source_card_print_gv_id": "GV-PK-SFA-61",
+          "source_card_reference_kind": "tcg_id_template"
+        }
+      },
+      "image_source": "identity",
+      "image_status": "representative_shared",
+      "number_plain": "061",
+      "tcgplayer_id": null,
+      "image_alt_url": null,
+      "printed_total": 26,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": null,
+      "data_quality_flags": {
+        "source_image_truth": "exact_world_championship_deck_image_not_cataloged",
+        "ordinary_expansion_image_must_not_be_claimed_exact": true
+      },
+      "print_identity_key": "wcd2025-flutter-devo-gardevoir:GV-PK-WCD-2025-FLUTTER_DEVO_GARDEVOIR-18-SHROUDED_FABLE-61-NIGHT_STRETCHER",
+      "printed_set_abbrev": "WCD2025",
+      "set_identity_model": "reprint_anthology",
+      "image_last_checked_at": null,
+      "representative_image_url": null,
+      "printed_identity_modifier": "2025 World Championships Deck: Flutter Devo Gardevoir"
+    },
+    {
+      "id": "7bf55366-9a6b-466f-bd71-f617d626b5d9",
+      "name": "Archaludon",
+      "gv_id": "GV-PK-SCR-107",
+      "artist": "Oswaldo KATO",
+      "number": "107",
+      "rarity": "Rare",
+      "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "sv07",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/sv/sv07/107/high.webp",
+      "created_at": "2025-11-16T06:32:35.437741+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv07/gv-pk-scr-107/6a15b6ae8db6d284dd6b6900.webp",
+      "updated_at": "2025-12-27T19:26:16.337401+00:00",
+      "ai_metadata": null,
+      "variant_key": "",
+      "external_ids": {},
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "107",
+      "tcgplayer_id": null,
+      "image_alt_url": null,
+      "printed_total": 142,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": "H",
+      "data_quality_flags": {
+        "legacy_image_url": "https://images.pokemontcg.io/sv7/107_hires.png",
+        "pokemontcg_legacy": true
+      },
+      "print_identity_key": "sv07:107/142",
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "880ba507-8ee6-4fad-aa16-34812f9131c7",
+      "name": "Night Stretcher",
+      "gv_id": "GV-PK-WCD-2024-ANCIENT_TOOLBOX-15-SHROUDED_FABLE-61-NIGHT_STRETCHER",
+      "artist": null,
+      "number": "061/064",
+      "rarity": null,
+      "set_id": "9db63a48-cd41-4160-af36-1af512eb12f7",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "wcd2024-ancient-toolbox",
+      "variants": null,
+      "image_res": null,
+      "image_url": null,
+      "created_at": "2026-06-23T21:18:48.989559+00:00",
+      "image_hash": null,
+      "image_note": "Representative image from ordinary source card GV-PK-SFA-61 for World Championship Deck display continuity. This is not an exact 2024 Ancient Toolbox replica image and may omit World Championship back, border, and player signature treatment. Prepared by IMG-HOST-WH-09B-WORLD-CHAMPIONSHIP-REPRESENTATIVE-POINTER-DRY-RUN; exact WCD image remains uncataloged.",
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv6pt5/gv-pk-sfa-61/09f634eafe15b8b265e8570e.webp",
+      "updated_at": "2026-06-23T21:18:48.989559+00:00",
+      "ai_metadata": {
+        "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+        "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+        "exact_image_claim_allowed": false,
+        "world_championship_deck_replica": true
+      },
+      "variant_key": "world_championship_deck_replica",
+      "external_ids": {
+        "grookai": {
+          "deck_name": "Ancient Toolbox",
+          "deck_year": 2024,
+          "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Ancient_Toolbox_(TCG)",
+          "player_name": null,
+          "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+          "deck_quantity": 2,
+          "source_set_name": "Shrouded Fable",
+          "source_card_number": "61",
+          "source_card_print_id": "29500623-96e6-4afd-8381-17edc14cf20f",
+          "source_card_print_gv_id": "GV-PK-SFA-61",
+          "source_card_reference_kind": "tcg_id_template"
+        }
+      },
+      "image_source": "identity",
+      "image_status": "representative_shared",
+      "number_plain": "061",
+      "tcgplayer_id": null,
+      "image_alt_url": null,
+      "printed_total": 24,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": null,
+      "data_quality_flags": {
+        "source_image_truth": "exact_world_championship_deck_image_not_cataloged",
+        "ordinary_expansion_image_must_not_be_claimed_exact": true
+      },
+      "print_identity_key": "wcd2024-ancient-toolbox:GV-PK-WCD-2024-ANCIENT_TOOLBOX-15-SHROUDED_FABLE-61-NIGHT_STRETCHER",
+      "printed_set_abbrev": "WCD2024",
+      "set_identity_model": "reprint_anthology",
+      "image_last_checked_at": null,
+      "representative_image_url": null,
+      "printed_identity_modifier": "2024 World Championships Deck: Ancient Toolbox"
+    },
+    {
+      "id": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11",
+      "name": "Koraidon",
+      "gv_id": "GV-PK-TEF-119",
+      "artist": "Teeziro",
+      "number": "119",
+      "rarity": "Rare",
+      "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "sv05",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/sv/sv05/119/high.webp",
+      "created_at": "2025-12-18T18:34:26.451745+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv05/gv-pk-tef-119/58805a008e6c5a40bb712c63.webp",
+      "updated_at": "2025-12-27T19:26:16.337401+00:00",
+      "ai_metadata": {
+        "tcgdex": {
+          "legalities": {},
+          "flavor_text": null
+        }
+      },
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "sv05-119"
+      },
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "119",
+      "tcgplayer_id": null,
+      "image_alt_url": "https://assets.tcgdex.net/en/sv/sv05/119",
+      "printed_total": null,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": "H",
+      "data_quality_flags": null,
+      "print_identity_key": null,
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "90278a2b-971e-4000-9ffb-e127b11aaf0d",
+      "name": "Miraidon",
+      "gv_id": "GV-PK-TEF-121",
+      "artist": "GOSSAN",
+      "number": "121",
+      "rarity": "Rare",
+      "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "sv05",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/sv/sv05/121/high.webp",
+      "created_at": "2025-12-18T18:34:27.593642+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv05/gv-pk-tef-121/2aee7e17d0006869f75c8d91.webp",
+      "updated_at": "2025-12-27T19:26:16.337401+00:00",
+      "ai_metadata": {
+        "tcgdex": {
+          "legalities": {},
+          "flavor_text": null
+        }
+      },
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "sv05-121"
+      },
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "121",
+      "tcgplayer_id": null,
+      "image_alt_url": "https://assets.tcgdex.net/en/sv/sv05/121",
+      "printed_total": null,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": "H",
+      "data_quality_flags": null,
+      "print_identity_key": null,
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "a524d59b-26b4-4be2-8839-338585171310",
+      "name": "Okidogi",
+      "gv_id": "GV-PK-TWM-111",
+      "artist": "Souichirou Gunjima",
+      "number": "111",
+      "rarity": "Rare",
+      "set_id": "0471b152-bbd1-4660-ae4e-8c67540ae1ac",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "sv06",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/sv/sv06/111/high.webp",
+      "created_at": "2025-11-16T06:32:35.437741+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv06/gv-pk-twm-111/bb06258f4153cc088996758b.webp",
+      "updated_at": "2025-11-01T17:41:12.306422+00:00",
+      "ai_metadata": null,
+      "variant_key": "",
+      "external_ids": {},
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "111",
+      "tcgplayer_id": null,
+      "image_alt_url": null,
+      "printed_total": null,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": "H",
+      "data_quality_flags": {
+        "legacy_image_url": "https://images.pokemontcg.io/sv6/111_hires.png",
+        "pokemontcg_legacy": true
+      },
+      "print_identity_key": null,
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": null,
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "b5795fdf-6e2c-4016-af5c-779aa607f96f",
+      "name": "Archaludon",
+      "gv_id": "GV-PK-SCR-107-GAMESTOP-STAMP",
+      "artist": null,
+      "number": "107",
+      "rarity": "Rare",
+      "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "sv07",
+      "variants": null,
+      "image_res": null,
+      "image_url": null,
+      "created_at": "2026-10-01T20:17:18.741918+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/87633e8b-dbdd-4ca5-828c-bd9e94e13c6d/0689a30d2da57c5f4453b0fee10c3efb2d6856c930e6189dcf083bdd6ef14d00/front.jpg",
+      "updated_at": "2026-10-01T20:17:18.741918+00:00",
+      "ai_metadata": null,
+      "variant_key": "gamestop_stamp",
+      "external_ids": {},
+      "image_source": "identity",
+      "image_status": null,
+      "number_plain": "107",
+      "tcgplayer_id": "576862",
+      "image_alt_url": null,
+      "printed_total": null,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": null,
+      "data_quality_flags": null,
+      "print_identity_key": null,
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": null,
+      "representative_image_url": null,
+      "printed_identity_modifier": "gamestop_stamp"
+    },
+    {
+      "id": "bae768ae-47f7-4313-a551-0209e8a7d960",
+      "name": "Night Stretcher",
+      "gv_id": "GV-PK-WCD-2025-PULT_BOMB-22-SHROUDED_FABLE-61-NIGHT_STRETCHER",
+      "artist": null,
+      "number": "061/064",
+      "rarity": null,
+      "set_id": "20d549f8-06ac-496e-afd3-28e5c86365db",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "wcd2025-pult-bomb",
+      "variants": null,
+      "image_res": null,
+      "image_url": null,
+      "created_at": "2026-06-23T21:18:48.989559+00:00",
+      "image_hash": null,
+      "image_note": "Representative image from ordinary source card GV-PK-SFA-61 for World Championship Deck display continuity. This is not an exact 2025 Pult Bomb replica image and may omit World Championship back, border, and player signature treatment. Prepared by IMG-HOST-WH-09B-WORLD-CHAMPIONSHIP-REPRESENTATIVE-POINTER-DRY-RUN; exact WCD image remains uncataloged.",
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv6pt5/gv-pk-sfa-61/09f634eafe15b8b265e8570e.webp",
+      "updated_at": "2026-06-23T21:18:48.989559+00:00",
+      "ai_metadata": {
+        "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+        "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+        "exact_image_claim_allowed": false,
+        "world_championship_deck_replica": true
+      },
+      "variant_key": "world_championship_deck_replica",
+      "external_ids": {
+        "grookai": {
+          "deck_name": "Pult Bomb",
+          "deck_year": 2025,
+          "package_id": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-09D-ROLLBACK-SQL-DRY-RUN",
+          "source_url": "https://bulbapedia.bulbagarden.net/wiki/Pult_Bomb_(TCG)",
+          "player_name": null,
+          "apply_family": "MASTER-INDEX-WORLD-CHAMPIONSHIP-DECKS-V1",
+          "deck_quantity": 3,
+          "source_set_name": "Shrouded Fable",
+          "source_card_number": "61",
+          "source_card_print_id": "29500623-96e6-4afd-8381-17edc14cf20f",
+          "source_card_print_gv_id": "GV-PK-SFA-61",
+          "source_card_reference_kind": "tcg_id_template"
+        }
+      },
+      "image_source": "identity",
+      "image_status": "representative_shared",
+      "number_plain": "061",
+      "tcgplayer_id": null,
+      "image_alt_url": null,
+      "printed_total": 28,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": null,
+      "data_quality_flags": {
+        "source_image_truth": "exact_world_championship_deck_image_not_cataloged",
+        "ordinary_expansion_image_must_not_be_claimed_exact": true
+      },
+      "print_identity_key": "wcd2025-pult-bomb:GV-PK-WCD-2025-PULT_BOMB-22-SHROUDED_FABLE-61-NIGHT_STRETCHER",
+      "printed_set_abbrev": "WCD2025",
+      "set_identity_model": "reprint_anthology",
+      "image_last_checked_at": null,
+      "representative_image_url": null,
+      "printed_identity_modifier": "2025 World Championships Deck: Pult Bomb"
+    },
+    {
+      "id": "c2572a85-d90f-4558-b67d-b6610cbe5361",
+      "name": "Night Stretcher",
+      "gv_id": "GV-PK-SFA-061",
+      "artist": "Toyste Beach",
+      "number": "061",
+      "rarity": "Uncommon",
+      "set_id": "406a7484-f633-415c-a1ef-abd79db5833b",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "sv06.5",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/sv/sv06.5/061/high.webp",
+      "created_at": "2026-03-27T03:49:34.810971+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv06.5/gv-pk-sfa-061/09f634eafe15b8b265e8570e.webp",
+      "updated_at": "2026-03-27T03:49:34.810971+00:00",
+      "ai_metadata": {
+        "tcgdex": {
+          "legalities": {},
+          "flavor_text": null
+        }
+      },
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "sv06.5-061"
+      },
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "061",
+      "tcgplayer_id": null,
+      "image_alt_url": "https://assets.tcgdex.net/en/sv/sv06.5/061",
+      "printed_total": null,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": "H",
+      "data_quality_flags": null,
+      "print_identity_key": "sv06.5:061:night-stretcher",
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": null,
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "c3e4974f-c021-4330-9663-7d94a74e4d9d",
+      "name": "Morpeko",
+      "gv_id": "GV-PK-PAR-121",
+      "artist": "Cona Nitanda",
+      "number": "121",
+      "rarity": "Rare",
+      "set_id": "1e501229-9396-49cd-b3eb-e6658e722ee2",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "sv04",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/sv/sv04/121/high.webp",
+      "created_at": "2025-11-16T06:32:35.437741+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv04/gv-pk-par-121/8e8e8625a745fd2da634a5fe.webp",
+      "updated_at": "2025-12-27T19:26:16.337401+00:00",
+      "ai_metadata": null,
+      "variant_key": "",
+      "external_ids": {},
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "121",
+      "tcgplayer_id": null,
+      "image_alt_url": null,
+      "printed_total": 182,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": "G",
+      "data_quality_flags": {
+        "legacy_image_url": "https://images.pokemontcg.io/sv4/121_hires.png",
+        "pokemontcg_legacy": true
+      },
+      "print_identity_key": "sv04:121/182",
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "f8003028-e419-490b-8a31-b231ab79ec16",
+      "name": "Roaring Moon",
+      "gv_id": "GV-PK-TEF-109",
+      "artist": "hncl",
+      "number": "109",
+      "rarity": "Rare",
+      "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "sv05",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/sv/sv05/109/high.webp",
+      "created_at": "2025-12-18T18:34:22.642947+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv05/gv-pk-tef-109/3900119e8e817fc281c7ef62.webp",
+      "updated_at": "2025-12-27T19:26:16.337401+00:00",
+      "ai_metadata": {
+        "tcgdex": {
+          "legalities": {},
+          "flavor_text": null
+        }
+      },
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "sv05-109"
+      },
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "109",
+      "tcgplayer_id": null,
+      "image_alt_url": "https://assets.tcgdex.net/en/sv/sv05/109",
+      "printed_total": null,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": "H",
+      "data_quality_flags": null,
+      "print_identity_key": null,
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    }
+  ],
+  "coordinateParents": [
+    {
+      "id": "12e6eaf0-d294-4ffa-9f81-9a9eeace7ed8",
+      "name": "Koraidon",
+      "gv_id": "GV-PK-TEF-119-GAMESTOP-STAMP",
+      "artist": null,
+      "number": "119",
+      "rarity": "Promo",
+      "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "sv05",
+      "variants": null,
+      "image_res": null,
+      "image_url": null,
+      "created_at": "2026-10-01T20:17:07.023934+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/f7b52e40-833e-4f25-8805-15be3be82400/5edc15451f0072c59cdab89c1e43e0e1a5e78155401fd54c045aa43c38dcebad/front.jpg",
+      "updated_at": "2026-10-01T20:17:07.023934+00:00",
+      "ai_metadata": null,
+      "variant_key": "gamestop_stamp",
+      "external_ids": {},
+      "image_source": "identity",
+      "image_status": null,
+      "number_plain": "119",
+      "tcgplayer_id": "543954",
+      "image_alt_url": null,
+      "printed_total": null,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": null,
+      "data_quality_flags": null,
+      "print_identity_key": null,
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": null,
+      "representative_image_url": null,
+      "printed_identity_modifier": "gamestop_stamp"
+    },
+    {
+      "id": "1a4f41a6-4e5f-45f9-ab3d-ecb3be9d5dd7",
+      "name": "Carmine",
+      "gv_id": "GV-PK-TWM-145",
+      "artist": "kantaro",
+      "number": "145",
+      "rarity": "Uncommon",
+      "set_id": "0471b152-bbd1-4660-ae4e-8c67540ae1ac",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "sv06",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/sv/sv06/145/high.webp",
+      "created_at": "2025-11-16T06:32:35.437741+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv06/gv-pk-twm-145/560e56a4d9a334ed648174c8.webp",
+      "updated_at": "2025-11-01T17:41:12.306422+00:00",
+      "ai_metadata": null,
+      "variant_key": "",
+      "external_ids": {},
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "145",
+      "tcgplayer_id": null,
+      "image_alt_url": null,
+      "printed_total": null,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": "H",
+      "data_quality_flags": {
+        "legacy_image_url": "https://images.pokemontcg.io/sv6/145_hires.png",
+        "pokemontcg_legacy": true
+      },
+      "print_identity_key": null,
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": null,
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "1dd005a1-ce85-4088-9cb1-99185d961506",
+      "name": "Bouffalant",
+      "gv_id": "GV-PK-SCR-119",
+      "artist": "GOSSAN",
+      "number": "119",
+      "rarity": "Rare",
+      "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "sv07",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/sv/sv07/119/high.webp",
+      "created_at": "2025-11-16T06:32:35.437741+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv07/gv-pk-scr-119/88f9e0871bb3d84f463eb67a.webp",
+      "updated_at": "2025-12-27T19:26:16.337401+00:00",
+      "ai_metadata": null,
+      "variant_key": "",
+      "external_ids": {},
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "119",
+      "tcgplayer_id": null,
+      "image_alt_url": null,
+      "printed_total": 142,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": "H",
+      "data_quality_flags": {
+        "legacy_image_url": "https://images.pokemontcg.io/sv7/119_hires.png",
+        "pokemontcg_legacy": true
+      },
+      "print_identity_key": "sv07:119/142",
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "29500623-96e6-4afd-8381-17edc14cf20f",
+      "name": "Night Stretcher",
+      "gv_id": "GV-PK-SFA-61",
+      "artist": "Toyste Beach",
+      "number": "61",
+      "rarity": "Uncommon",
+      "set_id": "100c97f1-6611-4cf4-8310-9b9b79b377bb",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "sv6pt5",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/sv/sv06.5/061/high.webp",
+      "created_at": "2025-11-16T06:32:35.437741+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv6pt5/gv-pk-sfa-61/09f634eafe15b8b265e8570e.webp",
+      "updated_at": "2025-11-01T17:43:41.115883+00:00",
+      "ai_metadata": null,
+      "variant_key": "",
+      "external_ids": {},
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "61",
+      "tcgplayer_id": null,
+      "image_alt_url": null,
+      "printed_total": null,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": null,
+      "data_quality_flags": {
+        "legacy_image_url": "https://images.pokemontcg.io/sv6pt5/61_hires.png",
+        "pokemontcg_legacy": true
+      },
+      "print_identity_key": null,
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": null,
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "7bf55366-9a6b-466f-bd71-f617d626b5d9",
+      "name": "Archaludon",
+      "gv_id": "GV-PK-SCR-107",
+      "artist": "Oswaldo KATO",
+      "number": "107",
+      "rarity": "Rare",
+      "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "sv07",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/sv/sv07/107/high.webp",
+      "created_at": "2025-11-16T06:32:35.437741+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv07/gv-pk-scr-107/6a15b6ae8db6d284dd6b6900.webp",
+      "updated_at": "2025-12-27T19:26:16.337401+00:00",
+      "ai_metadata": null,
+      "variant_key": "",
+      "external_ids": {},
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "107",
+      "tcgplayer_id": null,
+      "image_alt_url": null,
+      "printed_total": 142,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": "H",
+      "data_quality_flags": {
+        "legacy_image_url": "https://images.pokemontcg.io/sv7/107_hires.png",
+        "pokemontcg_legacy": true
+      },
+      "print_identity_key": "sv07:107/142",
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "8c988efc-2d6c-4388-83c5-cf8ace8a9c11",
+      "name": "Koraidon",
+      "gv_id": "GV-PK-TEF-119",
+      "artist": "Teeziro",
+      "number": "119",
+      "rarity": "Rare",
+      "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "sv05",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/sv/sv05/119/high.webp",
+      "created_at": "2025-12-18T18:34:26.451745+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv05/gv-pk-tef-119/58805a008e6c5a40bb712c63.webp",
+      "updated_at": "2025-12-27T19:26:16.337401+00:00",
+      "ai_metadata": {
+        "tcgdex": {
+          "legalities": {},
+          "flavor_text": null
+        }
+      },
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "sv05-119"
+      },
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "119",
+      "tcgplayer_id": null,
+      "image_alt_url": "https://assets.tcgdex.net/en/sv/sv05/119",
+      "printed_total": null,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": "H",
+      "data_quality_flags": null,
+      "print_identity_key": null,
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "90278a2b-971e-4000-9ffb-e127b11aaf0d",
+      "name": "Miraidon",
+      "gv_id": "GV-PK-TEF-121",
+      "artist": "GOSSAN",
+      "number": "121",
+      "rarity": "Rare",
+      "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "sv05",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/sv/sv05/121/high.webp",
+      "created_at": "2025-12-18T18:34:27.593642+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv05/gv-pk-tef-121/2aee7e17d0006869f75c8d91.webp",
+      "updated_at": "2025-12-27T19:26:16.337401+00:00",
+      "ai_metadata": {
+        "tcgdex": {
+          "legalities": {},
+          "flavor_text": null
+        }
+      },
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "sv05-121"
+      },
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "121",
+      "tcgplayer_id": null,
+      "image_alt_url": "https://assets.tcgdex.net/en/sv/sv05/121",
+      "printed_total": null,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": "H",
+      "data_quality_flags": null,
+      "print_identity_key": null,
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "a524d59b-26b4-4be2-8839-338585171310",
+      "name": "Okidogi",
+      "gv_id": "GV-PK-TWM-111",
+      "artist": "Souichirou Gunjima",
+      "number": "111",
+      "rarity": "Rare",
+      "set_id": "0471b152-bbd1-4660-ae4e-8c67540ae1ac",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "sv06",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/sv/sv06/111/high.webp",
+      "created_at": "2025-11-16T06:32:35.437741+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv06/gv-pk-twm-111/bb06258f4153cc088996758b.webp",
+      "updated_at": "2025-11-01T17:41:12.306422+00:00",
+      "ai_metadata": null,
+      "variant_key": "",
+      "external_ids": {},
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "111",
+      "tcgplayer_id": null,
+      "image_alt_url": null,
+      "printed_total": null,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": "H",
+      "data_quality_flags": {
+        "legacy_image_url": "https://images.pokemontcg.io/sv6/111_hires.png",
+        "pokemontcg_legacy": true
+      },
+      "print_identity_key": null,
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": null,
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "b5795fdf-6e2c-4016-af5c-779aa607f96f",
+      "name": "Archaludon",
+      "gv_id": "GV-PK-SCR-107-GAMESTOP-STAMP",
+      "artist": null,
+      "number": "107",
+      "rarity": "Rare",
+      "set_id": "ee1a5b54-f271-406e-a24e-4143eb882232",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "sv07",
+      "variants": null,
+      "image_res": null,
+      "image_url": null,
+      "created_at": "2026-10-01T20:17:18.741918+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/87633e8b-dbdd-4ca5-828c-bd9e94e13c6d/0689a30d2da57c5f4453b0fee10c3efb2d6856c930e6189dcf083bdd6ef14d00/front.jpg",
+      "updated_at": "2026-10-01T20:17:18.741918+00:00",
+      "ai_metadata": null,
+      "variant_key": "gamestop_stamp",
+      "external_ids": {},
+      "image_source": "identity",
+      "image_status": null,
+      "number_plain": "107",
+      "tcgplayer_id": "576862",
+      "image_alt_url": null,
+      "printed_total": null,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": null,
+      "data_quality_flags": null,
+      "print_identity_key": null,
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": null,
+      "representative_image_url": null,
+      "printed_identity_modifier": "gamestop_stamp"
+    },
+    {
+      "id": "c3e4974f-c021-4330-9663-7d94a74e4d9d",
+      "name": "Morpeko",
+      "gv_id": "GV-PK-PAR-121",
+      "artist": "Cona Nitanda",
+      "number": "121",
+      "rarity": "Rare",
+      "set_id": "1e501229-9396-49cd-b3eb-e6658e722ee2",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "sv04",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/sv/sv04/121/high.webp",
+      "created_at": "2025-11-16T06:32:35.437741+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv04/gv-pk-par-121/8e8e8625a745fd2da634a5fe.webp",
+      "updated_at": "2025-12-27T19:26:16.337401+00:00",
+      "ai_metadata": null,
+      "variant_key": "",
+      "external_ids": {},
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "121",
+      "tcgplayer_id": null,
+      "image_alt_url": null,
+      "printed_total": 182,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": "G",
+      "data_quality_flags": {
+        "legacy_image_url": "https://images.pokemontcg.io/sv4/121_hires.png",
+        "pokemontcg_legacy": true
+      },
+      "print_identity_key": "sv04:121/182",
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "f8003028-e419-490b-8a31-b231ab79ec16",
+      "name": "Roaring Moon",
+      "gv_id": "GV-PK-TEF-109",
+      "artist": "hncl",
+      "number": "109",
+      "rarity": "Rare",
+      "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+      "game_id": "b5819e3f-0b2b-48c1-bf9a-0c87a57ea9b5",
+      "set_code": "sv05",
+      "variants": null,
+      "image_res": null,
+      "image_url": "https://assets.tcgdex.net/en/sv/sv05/109/high.webp",
+      "created_at": "2025-12-18T18:34:22.642947+00:00",
+      "image_hash": null,
+      "image_note": null,
+      "image_path": "warehouse-derived/self-hosted-images-v1/card_prints/sv05/gv-pk-tef-109/3900119e8e817fc281c7ef62.webp",
+      "updated_at": "2025-12-27T19:26:16.337401+00:00",
+      "ai_metadata": {
+        "tcgdex": {
+          "legalities": {},
+          "flavor_text": null
+        }
+      },
+      "variant_key": "",
+      "external_ids": {
+        "tcgdex": "sv05-109"
+      },
+      "image_source": "identity",
+      "image_status": "exact",
+      "number_plain": "109",
+      "tcgplayer_id": null,
+      "image_alt_url": "https://assets.tcgdex.net/en/sv/sv05/109",
+      "printed_total": null,
+      "last_synced_at": null,
+      "identity_domain": "pokemon_eng_standard",
+      "regulation_mark": "H",
+      "data_quality_flags": null,
+      "print_identity_key": null,
+      "printed_set_abbrev": null,
+      "set_identity_model": "standard",
+      "image_last_checked_at": "2025-12-27T19:26:16.337401+00:00",
+      "representative_image_url": null,
+      "printed_identity_modifier": null
+    }
+  ],
+  "sourceRows": [
+    {
+      "id": "87c862d8-e22d-4301-88e6-f5522a8e6ebf",
+      "source": "justtcg",
+      "raw_import_id": "42066",
+      "upstream_id": "pokemon-prize-pack-series-cards-koraidon-rare",
+      "tcgplayer_id": "565473",
+      "set_id": "prize-pack-series-cards-pokemon",
+      "name_raw": "Koraidon",
+      "number_raw": "119/162",
+      "normalized_name": "Koraidon",
+      "normalized_number_left": "119",
+      "normalized_number_plain": "119",
+      "normalized_printed_total": "162",
+      "has_slash_number": true,
+      "has_alpha_suffix_number": false,
+      "has_parenthetical_modifier": false,
+      "match_status": "AMBIGUOUS",
+      "candidate_bucket": "PRINTED_IDENTITY_REVIEW",
+      "classifier_version": "CONTROLLED_GROWTH_INGESTION_PIPELINE_V1",
+      "resolved_set_code": null,
+      "card_print_id": null,
+      "payload": {
+        "_external_id": "pokemon-prize-pack-series-cards-koraidon-rare",
+        "_set_external_id": "prize-pack-series-cards-pokemon",
+        "name": "Koraidon",
+        "number": "119/162",
+        "rarity": "Rare",
+        "tcgplayerId": "565473",
+        "set_name": "Prize Pack Series Cards",
+        "variants": [
+          {
+            "printing": "Normal",
+            "condition": "Near Mint",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Lightly Played",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Moderately Played",
+            "language": "English"
+          }
+        ],
+        "classification": {
+          "classification_reason": null
+        },
+        "_grookai_ingestion_v1": {
+          "classification_reason": "set_mapping_missing"
+        }
+      },
+      "raw_payload": {
+        "_external_id": "pokemon-prize-pack-series-cards-koraidon-rare",
+        "_set_external_id": "prize-pack-series-cards-pokemon",
+        "name": "Koraidon",
+        "number": "119/162",
+        "rarity": "Rare",
+        "tcgplayerId": "565473",
+        "set_name": "Prize Pack Series Cards",
+        "variants": [
+          {
+            "printing": "Normal",
+            "condition": "Near Mint",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Lightly Played",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Moderately Played",
+            "language": "English"
+          }
+        ],
+        "classification": {
+          "classification_reason": null
+        },
+        "_grookai_ingestion_v1": {
+          "classification_reason": null
+        }
+      }
+    },
+    {
+      "id": "929ffee2-07dd-4570-8189-157a68745ab4",
+      "source": "justtcg",
+      "raw_import_id": "41950",
+      "upstream_id": "pokemon-prize-pack-series-cards-miraidon-rare",
+      "tcgplayer_id": "565482",
+      "set_id": "prize-pack-series-cards-pokemon",
+      "name_raw": "Miraidon",
+      "number_raw": "121/162",
+      "normalized_name": "Miraidon",
+      "normalized_number_left": "121",
+      "normalized_number_plain": "121",
+      "normalized_printed_total": "162",
+      "has_slash_number": true,
+      "has_alpha_suffix_number": false,
+      "has_parenthetical_modifier": false,
+      "match_status": "AMBIGUOUS",
+      "candidate_bucket": "PRINTED_IDENTITY_REVIEW",
+      "classifier_version": "CONTROLLED_GROWTH_INGESTION_PIPELINE_V1",
+      "resolved_set_code": null,
+      "card_print_id": null,
+      "payload": {
+        "_external_id": "pokemon-prize-pack-series-cards-miraidon-rare",
+        "_set_external_id": "prize-pack-series-cards-pokemon",
+        "name": "Miraidon",
+        "number": "121/162",
+        "rarity": "Rare",
+        "tcgplayerId": "565482",
+        "set_name": "Prize Pack Series Cards",
+        "variants": [
+          {
+            "printing": "Normal",
+            "condition": "Lightly Played",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Near Mint",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Moderately Played",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Damaged",
+            "language": "English"
+          }
+        ],
+        "classification": {
+          "classification_reason": null
+        },
+        "_grookai_ingestion_v1": {
+          "classification_reason": "set_mapping_missing"
+        }
+      },
+      "raw_payload": {
+        "_external_id": "pokemon-prize-pack-series-cards-miraidon-rare",
+        "_set_external_id": "prize-pack-series-cards-pokemon",
+        "name": "Miraidon",
+        "number": "121/162",
+        "rarity": "Rare",
+        "tcgplayerId": "565482",
+        "set_name": "Prize Pack Series Cards",
+        "variants": [
+          {
+            "printing": "Normal",
+            "condition": "Lightly Played",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Near Mint",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Moderately Played",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Damaged",
+            "language": "English"
+          }
+        ],
+        "classification": {
+          "classification_reason": null
+        },
+        "_grookai_ingestion_v1": {
+          "classification_reason": null
+        }
+      }
+    },
+    {
+      "id": "26eedc81-e174-45bf-9ab3-09cdbcc4e6bc",
+      "source": "justtcg",
+      "raw_import_id": "41883",
+      "upstream_id": "pokemon-prize-pack-series-cards-morpeko-rare",
+      "tcgplayer_id": "565488",
+      "set_id": "prize-pack-series-cards-pokemon",
+      "name_raw": "Morpeko",
+      "number_raw": "121/182",
+      "normalized_name": "Morpeko",
+      "normalized_number_left": "121",
+      "normalized_number_plain": "121",
+      "normalized_printed_total": "182",
+      "has_slash_number": true,
+      "has_alpha_suffix_number": false,
+      "has_parenthetical_modifier": false,
+      "match_status": "AMBIGUOUS",
+      "candidate_bucket": "PRINTED_IDENTITY_REVIEW",
+      "classifier_version": "CONTROLLED_GROWTH_INGESTION_PIPELINE_V1",
+      "resolved_set_code": null,
+      "card_print_id": null,
+      "payload": {
+        "_external_id": "pokemon-prize-pack-series-cards-morpeko-rare",
+        "_set_external_id": "prize-pack-series-cards-pokemon",
+        "name": "Morpeko",
+        "number": "121/182",
+        "rarity": "Rare",
+        "tcgplayerId": "565488",
+        "set_name": "Prize Pack Series Cards",
+        "variants": [
+          {
+            "printing": "Holofoil",
+            "condition": "Moderately Played",
+            "language": "English"
+          },
+          {
+            "printing": "Holofoil",
+            "condition": "Near Mint",
+            "language": "English"
+          },
+          {
+            "printing": "Holofoil",
+            "condition": "Lightly Played",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Near Mint",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Lightly Played",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Moderately Played",
+            "language": "English"
+          }
+        ],
+        "classification": {
+          "classification_reason": null
+        },
+        "_grookai_ingestion_v1": {
+          "classification_reason": "set_mapping_missing"
+        }
+      },
+      "raw_payload": {
+        "_external_id": "pokemon-prize-pack-series-cards-morpeko-rare",
+        "_set_external_id": "prize-pack-series-cards-pokemon",
+        "name": "Morpeko",
+        "number": "121/182",
+        "rarity": "Rare",
+        "tcgplayerId": "565488",
+        "set_name": "Prize Pack Series Cards",
+        "variants": [
+          {
+            "printing": "Holofoil",
+            "condition": "Moderately Played",
+            "language": "English"
+          },
+          {
+            "printing": "Holofoil",
+            "condition": "Near Mint",
+            "language": "English"
+          },
+          {
+            "printing": "Holofoil",
+            "condition": "Lightly Played",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Near Mint",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Lightly Played",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Moderately Played",
+            "language": "English"
+          }
+        ],
+        "classification": {
+          "classification_reason": null
+        },
+        "_grookai_ingestion_v1": {
+          "classification_reason": null
+        }
+      }
+    },
+    {
+      "id": "241965db-7ece-4e75-aa6a-2a489ad1a5ab",
+      "source": "justtcg",
+      "raw_import_id": "41918",
+      "upstream_id": "pokemon-prize-pack-series-cards-roaring-moon-rare",
+      "tcgplayer_id": "577579",
+      "set_id": "prize-pack-series-cards-pokemon",
+      "name_raw": "Roaring Moon",
+      "number_raw": "109/162",
+      "normalized_name": "Roaring Moon",
+      "normalized_number_left": "109",
+      "normalized_number_plain": "109",
+      "normalized_printed_total": "162",
+      "has_slash_number": true,
+      "has_alpha_suffix_number": false,
+      "has_parenthetical_modifier": false,
+      "match_status": "AMBIGUOUS",
+      "candidate_bucket": "PRINTED_IDENTITY_REVIEW",
+      "classifier_version": "CONTROLLED_GROWTH_INGESTION_PIPELINE_V1",
+      "resolved_set_code": null,
+      "card_print_id": null,
+      "payload": {
+        "_external_id": "pokemon-prize-pack-series-cards-roaring-moon-rare",
+        "_set_external_id": "prize-pack-series-cards-pokemon",
+        "name": "Roaring Moon",
+        "number": "109/162",
+        "rarity": "Rare",
+        "tcgplayerId": "577579",
+        "set_name": "Prize Pack Series Cards",
+        "variants": [
+          {
+            "printing": "Holofoil",
+            "condition": "Moderately Played",
+            "language": "English"
+          },
+          {
+            "printing": "Holofoil",
+            "condition": "Near Mint",
+            "language": "English"
+          },
+          {
+            "printing": "Holofoil",
+            "condition": "Lightly Played",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Moderately Played",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Lightly Played",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Near Mint",
+            "language": "English"
+          }
+        ],
+        "classification": {
+          "classification_reason": null
+        },
+        "_grookai_ingestion_v1": {
+          "classification_reason": "set_mapping_missing"
+        }
+      },
+      "raw_payload": {
+        "_external_id": "pokemon-prize-pack-series-cards-roaring-moon-rare",
+        "_set_external_id": "prize-pack-series-cards-pokemon",
+        "name": "Roaring Moon",
+        "number": "109/162",
+        "rarity": "Rare",
+        "tcgplayerId": "577579",
+        "set_name": "Prize Pack Series Cards",
+        "variants": [
+          {
+            "printing": "Holofoil",
+            "condition": "Moderately Played",
+            "language": "English"
+          },
+          {
+            "printing": "Holofoil",
+            "condition": "Near Mint",
+            "language": "English"
+          },
+          {
+            "printing": "Holofoil",
+            "condition": "Lightly Played",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Moderately Played",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Lightly Played",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Near Mint",
+            "language": "English"
+          }
+        ],
+        "classification": {
+          "classification_reason": null
+        },
+        "_grookai_ingestion_v1": {
+          "classification_reason": null
+        }
+      }
+    },
+    {
+      "id": "1758e2a3-5877-439a-b8bc-21f3f96b439e",
+      "source": "justtcg",
+      "raw_import_id": "42024",
+      "upstream_id": "pokemon-prize-pack-series-cards-archaludon-rare",
+      "tcgplayer_id": "619051",
+      "set_id": "prize-pack-series-cards-pokemon",
+      "name_raw": "Archaludon",
+      "number_raw": "107/142",
+      "normalized_name": "Archaludon",
+      "normalized_number_left": "107",
+      "normalized_number_plain": "107",
+      "normalized_printed_total": "142",
+      "has_slash_number": true,
+      "has_alpha_suffix_number": false,
+      "has_parenthetical_modifier": false,
+      "match_status": "AMBIGUOUS",
+      "candidate_bucket": "PRINTED_IDENTITY_REVIEW",
+      "classifier_version": "CONTROLLED_GROWTH_INGESTION_PIPELINE_V1",
+      "resolved_set_code": null,
+      "card_print_id": null,
+      "payload": {
+        "_external_id": "pokemon-prize-pack-series-cards-archaludon-rare",
+        "_set_external_id": "prize-pack-series-cards-pokemon",
+        "name": "Archaludon",
+        "number": "107/142",
+        "rarity": "Rare",
+        "tcgplayerId": "619051",
+        "set_name": "Prize Pack Series Cards",
+        "variants": [
+          {
+            "printing": "Holofoil",
+            "condition": "Lightly Played",
+            "language": "English"
+          },
+          {
+            "printing": "Holofoil",
+            "condition": "Near Mint",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Lightly Played",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Near Mint",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Moderately Played",
+            "language": "English"
+          }
+        ],
+        "classification": {
+          "classification_reason": null
+        },
+        "_grookai_ingestion_v1": {
+          "classification_reason": "set_mapping_missing"
+        }
+      },
+      "raw_payload": {
+        "_external_id": "pokemon-prize-pack-series-cards-archaludon-rare",
+        "_set_external_id": "prize-pack-series-cards-pokemon",
+        "name": "Archaludon",
+        "number": "107/142",
+        "rarity": "Rare",
+        "tcgplayerId": "619051",
+        "set_name": "Prize Pack Series Cards",
+        "variants": [
+          {
+            "printing": "Holofoil",
+            "condition": "Lightly Played",
+            "language": "English"
+          },
+          {
+            "printing": "Holofoil",
+            "condition": "Near Mint",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Lightly Played",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Near Mint",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Moderately Played",
+            "language": "English"
+          }
+        ],
+        "classification": {
+          "classification_reason": null
+        },
+        "_grookai_ingestion_v1": {
+          "classification_reason": null
+        }
+      }
+    },
+    {
+      "id": "8c624cc3-7a2d-4dde-a84b-6321bd5e6451",
+      "source": "justtcg",
+      "raw_import_id": "42027",
+      "upstream_id": "pokemon-prize-pack-series-cards-bouffalant-rare",
+      "tcgplayer_id": "619068",
+      "set_id": "prize-pack-series-cards-pokemon",
+      "name_raw": "Bouffalant",
+      "number_raw": "119/142",
+      "normalized_name": "Bouffalant",
+      "normalized_number_left": "119",
+      "normalized_number_plain": "119",
+      "normalized_printed_total": "142",
+      "has_slash_number": true,
+      "has_alpha_suffix_number": false,
+      "has_parenthetical_modifier": false,
+      "match_status": "AMBIGUOUS",
+      "candidate_bucket": "PRINTED_IDENTITY_REVIEW",
+      "classifier_version": "CONTROLLED_GROWTH_INGESTION_PIPELINE_V1",
+      "resolved_set_code": null,
+      "card_print_id": null,
+      "payload": {
+        "_external_id": "pokemon-prize-pack-series-cards-bouffalant-rare",
+        "_set_external_id": "prize-pack-series-cards-pokemon",
+        "name": "Bouffalant",
+        "number": "119/142",
+        "rarity": "Rare",
+        "tcgplayerId": "619068",
+        "set_name": "Prize Pack Series Cards",
+        "variants": [
+          {
+            "printing": "Holofoil",
+            "condition": "Near Mint",
+            "language": "English"
+          },
+          {
+            "printing": "Holofoil",
+            "condition": "Lightly Played",
+            "language": "English"
+          },
+          {
+            "printing": "Holofoil",
+            "condition": "Moderately Played",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Lightly Played",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Near Mint",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Moderately Played",
+            "language": "English"
+          }
+        ],
+        "classification": {
+          "classification_reason": null
+        },
+        "_grookai_ingestion_v1": {
+          "classification_reason": "set_mapping_missing"
+        }
+      },
+      "raw_payload": {
+        "_external_id": "pokemon-prize-pack-series-cards-bouffalant-rare",
+        "_set_external_id": "prize-pack-series-cards-pokemon",
+        "name": "Bouffalant",
+        "number": "119/142",
+        "rarity": "Rare",
+        "tcgplayerId": "619068",
+        "set_name": "Prize Pack Series Cards",
+        "variants": [
+          {
+            "printing": "Holofoil",
+            "condition": "Near Mint",
+            "language": "English"
+          },
+          {
+            "printing": "Holofoil",
+            "condition": "Lightly Played",
+            "language": "English"
+          },
+          {
+            "printing": "Holofoil",
+            "condition": "Moderately Played",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Lightly Played",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Near Mint",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Moderately Played",
+            "language": "English"
+          }
+        ],
+        "classification": {
+          "classification_reason": null
+        },
+        "_grookai_ingestion_v1": {
+          "classification_reason": null
+        }
+      }
+    },
+    {
+      "id": "264e75aa-5027-4654-ad11-92d26af24f86",
+      "source": "justtcg",
+      "raw_import_id": "41580",
+      "upstream_id": "pokemon-prize-pack-series-cards-night-stretcher-uncommon",
+      "tcgplayer_id": "619147",
+      "set_id": "prize-pack-series-cards-pokemon",
+      "name_raw": "Night Stretcher",
+      "number_raw": "061/064",
+      "normalized_name": "Night Stretcher",
+      "normalized_number_left": "061",
+      "normalized_number_plain": "61",
+      "normalized_printed_total": "064",
+      "has_slash_number": true,
+      "has_alpha_suffix_number": false,
+      "has_parenthetical_modifier": false,
+      "match_status": "AMBIGUOUS",
+      "candidate_bucket": "PRINTED_IDENTITY_REVIEW",
+      "classifier_version": "CONTROLLED_GROWTH_INGESTION_PIPELINE_V1",
+      "resolved_set_code": null,
+      "card_print_id": null,
+      "payload": {
+        "_external_id": "pokemon-prize-pack-series-cards-night-stretcher-uncommon",
+        "_set_external_id": "prize-pack-series-cards-pokemon",
+        "name": "Night Stretcher",
+        "number": "061/064",
+        "rarity": "Uncommon",
+        "tcgplayerId": "619147",
+        "set_name": "Prize Pack Series Cards",
+        "variants": [
+          {
+            "printing": "Holofoil",
+            "condition": "Moderately Played",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Damaged",
+            "language": "English"
+          },
+          {
+            "printing": "Holofoil",
+            "condition": "Lightly Played",
+            "language": "English"
+          },
+          {
+            "printing": "Holofoil",
+            "condition": "Near Mint",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Near Mint",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Lightly Played",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Moderately Played",
+            "language": "English"
+          }
+        ],
+        "classification": {
+          "classification_reason": null
+        },
+        "_grookai_ingestion_v1": {
+          "classification_reason": "set_mapping_missing"
+        }
+      },
+      "raw_payload": {
+        "_external_id": "pokemon-prize-pack-series-cards-night-stretcher-uncommon",
+        "_set_external_id": "prize-pack-series-cards-pokemon",
+        "name": "Night Stretcher",
+        "number": "061/064",
+        "rarity": "Uncommon",
+        "tcgplayerId": "619147",
+        "set_name": "Prize Pack Series Cards",
+        "variants": [
+          {
+            "printing": "Holofoil",
+            "condition": "Moderately Played",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Damaged",
+            "language": "English"
+          },
+          {
+            "printing": "Holofoil",
+            "condition": "Lightly Played",
+            "language": "English"
+          },
+          {
+            "printing": "Holofoil",
+            "condition": "Near Mint",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Near Mint",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Lightly Played",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Moderately Played",
+            "language": "English"
+          }
+        ],
+        "classification": {
+          "classification_reason": null
+        },
+        "_grookai_ingestion_v1": {
+          "classification_reason": null
+        }
+      }
+    },
+    {
+      "id": "0637765d-c767-447b-a2eb-e68fef8a3428",
+      "source": "justtcg",
+      "raw_import_id": "42033",
+      "upstream_id": "pokemon-prize-pack-series-cards-okidogi-rare",
+      "tcgplayer_id": "619153",
+      "set_id": "prize-pack-series-cards-pokemon",
+      "name_raw": "Okidogi",
+      "number_raw": "111/167",
+      "normalized_name": "Okidogi",
+      "normalized_number_left": "111",
+      "normalized_number_plain": "111",
+      "normalized_printed_total": "167",
+      "has_slash_number": true,
+      "has_alpha_suffix_number": false,
+      "has_parenthetical_modifier": false,
+      "match_status": "AMBIGUOUS",
+      "candidate_bucket": "PRINTED_IDENTITY_REVIEW",
+      "classifier_version": "CONTROLLED_GROWTH_INGESTION_PIPELINE_V1",
+      "resolved_set_code": null,
+      "card_print_id": null,
+      "payload": {
+        "_external_id": "pokemon-prize-pack-series-cards-okidogi-rare",
+        "_set_external_id": "prize-pack-series-cards-pokemon",
+        "name": "Okidogi",
+        "number": "111/167",
+        "rarity": "Rare",
+        "tcgplayerId": "619153",
+        "set_name": "Prize Pack Series Cards",
+        "variants": [
+          {
+            "printing": "Normal",
+            "condition": "Lightly Played",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Near Mint",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Moderately Played",
+            "language": "English"
+          }
+        ],
+        "classification": {
+          "classification_reason": null
+        },
+        "_grookai_ingestion_v1": {
+          "classification_reason": "set_mapping_missing"
+        }
+      },
+      "raw_payload": {
+        "_external_id": "pokemon-prize-pack-series-cards-okidogi-rare",
+        "_set_external_id": "prize-pack-series-cards-pokemon",
+        "name": "Okidogi",
+        "number": "111/167",
+        "rarity": "Rare",
+        "tcgplayerId": "619153",
+        "set_name": "Prize Pack Series Cards",
+        "variants": [
+          {
+            "printing": "Normal",
+            "condition": "Lightly Played",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Near Mint",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Moderately Played",
+            "language": "English"
+          }
+        ],
+        "classification": {
+          "classification_reason": null
+        },
+        "_grookai_ingestion_v1": {
+          "classification_reason": null
+        }
+      }
+    },
+    {
+      "id": "4eadec18-0d87-4a46-989e-192aa91a1d6d",
+      "source": "justtcg",
+      "raw_import_id": "42085",
+      "upstream_id": "pokemon-prize-pack-series-cards-carmine-uncommon",
+      "tcgplayer_id": "623656",
+      "set_id": "prize-pack-series-cards-pokemon",
+      "name_raw": "Carmine",
+      "number_raw": "103/131",
+      "normalized_name": "Carmine",
+      "normalized_number_left": "103",
+      "normalized_number_plain": "103",
+      "normalized_printed_total": "131",
+      "has_slash_number": true,
+      "has_alpha_suffix_number": false,
+      "has_parenthetical_modifier": false,
+      "match_status": "AMBIGUOUS",
+      "candidate_bucket": "PRINTED_IDENTITY_REVIEW",
+      "classifier_version": "CONTROLLED_GROWTH_INGESTION_PIPELINE_V1",
+      "resolved_set_code": null,
+      "card_print_id": null,
+      "payload": {
+        "_external_id": "pokemon-prize-pack-series-cards-carmine-uncommon",
+        "_set_external_id": "prize-pack-series-cards-pokemon",
+        "name": "Carmine",
+        "number": "103/131",
+        "rarity": "Uncommon",
+        "tcgplayerId": "623656",
+        "set_name": "Prize Pack Series Cards",
+        "variants": [
+          {
+            "printing": "Normal",
+            "condition": "Lightly Played",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Near Mint",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Moderately Played",
+            "language": "English"
+          }
+        ],
+        "classification": {
+          "classification_reason": null
+        },
+        "_grookai_ingestion_v1": {
+          "classification_reason": "set_mapping_missing"
+        }
+      },
+      "raw_payload": {
+        "_external_id": "pokemon-prize-pack-series-cards-carmine-uncommon",
+        "_set_external_id": "prize-pack-series-cards-pokemon",
+        "name": "Carmine",
+        "number": "103/131",
+        "rarity": "Uncommon",
+        "tcgplayerId": "623656",
+        "set_name": "Prize Pack Series Cards",
+        "variants": [
+          {
+            "printing": "Normal",
+            "condition": "Lightly Played",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Near Mint",
+            "language": "English"
+          },
+          {
+            "printing": "Normal",
+            "condition": "Moderately Played",
+            "language": "English"
+          }
+        ],
+        "classification": {
+          "classification_reason": null
+        },
+        "_grookai_ingestion_v1": {
+          "classification_reason": null
+        }
+      }
+    }
+  ],
+  "intakes": [
+    {
+      "id": "166e1d22-91e3-422d-b683-222c4875dcd6",
+      "tcgplayer_id": "619153",
+      "state": "PROMOTED",
+      "promoted_card_print_id": "a524d59b-26b4-4be2-8839-338585171310",
+      "source_candidate_id": "0637765d-c767-447b-a2eb-e68fef8a3428",
+      "submission_type": "EXTERNAL_DISCOVERY_BRIDGE_V1",
+      "promoted_card_printing_id": null,
+      "notes": "Synthetic preserved historical intake fixture",
+      "submitted_by_user_id": "00000000-0000-4000-a000-000000000901"
+    },
+    {
+      "id": "dccffe38-99c2-4a84-85c0-b36cb4694d36",
+      "tcgplayer_id": "619068",
+      "state": "PROMOTED",
+      "promoted_card_print_id": "1dd005a1-ce85-4088-9cb1-99185d961506",
+      "source_candidate_id": "8c624cc3-7a2d-4dde-a84b-6321bd5e6451",
+      "submission_type": "EXTERNAL_DISCOVERY_BRIDGE_V1",
+      "promoted_card_printing_id": null,
+      "notes": "Synthetic preserved historical intake fixture",
+      "submitted_by_user_id": "00000000-0000-4000-a000-000000000901"
+    }
+  ]
+}

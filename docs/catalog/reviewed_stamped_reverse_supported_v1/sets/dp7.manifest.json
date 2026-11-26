@@ -1,0 +1,76 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "dp7",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/dp7.master.json",
+  "master_index_sha256": "0d212410e07e2b71454648c189e6460c4ed07bd9837dc4372ff7d7bef2ffe864",
+  "parents": [
+    {
+      "id": "2dc89c4c-af29-4140-8091-063efba4f943",
+      "set_id": "bfe8a89a-951b-4e14-a5d2-450aae4b737c",
+      "gv_id": "GV-PK-DP7-45-PLATINUM-STAMPED-BURGER-KING-2009",
+      "name": "Pichu",
+      "printed_coordinate": "45",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "platinum_stamped_burger_king_2009",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "2dc89c4c-af29-4140-8091-063efba4f943",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-DP7-45-PLATINUM-STAMPED-BURGER-KING-2009-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-b9e96adc-c77c-4d10-aee7-4bc889b06c08",
+          "sha256": "baa2632ac981834b52163a826656748319966c86557a4f68be1d7e844c4e446c",
+          "card_print_id": "2dc89c4c-af29-4140-8091-063efba4f943",
+          "finish_key": "reverse"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "reverse": 1
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "bfe8a89a-951b-4e14-a5d2-450aae4b737c",
+    "source_artifacts": [
+      {
+        "ref": "stamped-front-b9e96adc-c77c-4d10-aee7-4bc889b06c08",
+        "sha256": "baa2632ac981834b52163a826656748319966c86557a4f68be1d7e844c4e446c",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://cdn6966.templcdn.com/wp-content/uploads/2021/07/EN_S234Burger-KingSpecial-Print.jpg",
+        "retrieved_at": "2026-11-25T21:04:45.921Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "2dc89c4c-af29-4140-8091-063efba4f943",
+        "finish_key": "reverse"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/dp7.review.json",
+      "sha256": "a3eca4db193bc13cc89ab580d6e1170a1df38194e66bb327e508de2da1fa6826"
+    }
+  },
+  "fingerprint": "f6fece10bc3af6e0cf033c829826049dc2f13680111c1f2db12026b3845680f1"
+}

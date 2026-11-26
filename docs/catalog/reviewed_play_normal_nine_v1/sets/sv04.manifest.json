@@ -1,0 +1,83 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv04",
+  "scope": "base_release",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "repo:docs/catalog/reviewed_play_normal_nine_v1/sets/sv04.master.json",
+  "master_index_sha256": "701d14002d8c19ff97504a9cd23a0c2779b41738a4a423832e0eb17ea8585e89",
+  "parents": [
+    {
+      "id": "cdb5b846-3014-5c7f-a85d-3d8c5d66506e",
+      "set_id": "1e501229-9396-49cd-b3eb-e6658e722ee2",
+      "gv_id": "GV-PK-PAR-121-PLAY-POKEMON-STAMP",
+      "name": "Morpeko",
+      "printed_coordinate": "121",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": "play_pokemon_stamp"
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "cdb5b846-3014-5c7f-a85d-3d8c5d66506e",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-PAR-121-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series-six-checklist",
+          "sha256": "d9274b48889b139400fc0ac021f8d6c0f147e1d8b88d57d53f72dd02d6da727f",
+          "card_print_id": "cdb5b846-3014-5c7f-a85d-3d8c5d66506e",
+          "finish_key": "normal"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "normal": 1
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "1e501229-9396-49cd-b3eb-e6658e722ee2",
+    "source_artifacts": [
+      {
+        "ref": "official-series-six-checklist",
+        "sha256": "d9274b48889b139400fc0ac021f8d6c0f147e1d8b88d57d53f72dd02d6da727f",
+        "kind": "checked_checklist",
+        "url_or_identifier": "repo:docs/catalog/generic_play_stamp_identity_evidence_v2/sources/series6.original.pdf",
+        "retrieved_at": "2026-11-25T17:16:58.481881+00:00"
+      },
+      {
+        "ref": "play-front-565488",
+        "sha256": "23f4b8fc1c399fbfb3dc2780405380c4ac9d563cfc9209a9a0b21c40c1f354f6",
+        "kind": "image_confirmed",
+        "evidence_role": "printed_identity_only_not_foil",
+        "url_or_identifier": "https://product-images.tcgplayer.com/fit-in/1000x1000/565488.jpg",
+        "retrieved_at": "2026-11-25T17:16:58.481881+00:00"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "cdb5b846-3014-5c7f-a85d-3d8c5d66506e",
+        "finish_key": "normal"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "repo:docs/catalog/reviewed_play_normal_nine_v1/sets/sv04.review.json",
+      "sha256": "5a2f51525cc02dddb73dd032b056b6125954fb199bbfe78765953a0091223461"
+    }
+  },
+  "fingerprint": "637dc225d42298fce63b643e4e8022de1cfd0385ce0e8faea63b13ccad52b54c"
+}

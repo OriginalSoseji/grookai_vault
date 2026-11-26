@@ -1,0 +1,35 @@
+{
+  "version": "ENGLISH_MASTER_REVIEWED_STAMPED_REVERSE_SUPPORTED_V1",
+  "set_code": "xy10",
+  "source_index_fingerprint": "42cec699adcae7fff6fdc3cf1e364aebccb5f08d27f6bbeb4a051d7a600ed94f",
+  "positive_finish_scope": "exact_existing_stamped_reverse_facts_only",
+  "facts": [
+    {
+      "card_print_id": "14b036bd-6a83-4315-945a-128aff964a58",
+      "existing_printing_id": "8212ddef-b2d0-498f-94f2-5ffada2852f7",
+      "finish_key": "reverse",
+      "printed_number": "10/124",
+      "printed_stamp": "Pokemon League rectangular Pokeball logo in the illustration",
+      "foil_observation": "Red reflective text field with fire-symbol Reverse pattern.",
+      "front_sha256": "d6f0914ebd19bdc092bc3d4d9b6511848c554815fe8bb5dfcd84de96865e3d75"
+    },
+    {
+      "card_print_id": "ff3f5494-4b17-4a82-8536-dd5007af57c6",
+      "existing_printing_id": "85822b82-0646-4740-97d0-29fcf99630a0",
+      "finish_key": "reverse",
+      "printed_number": "13/124",
+      "printed_stamp": "Pokemon League rectangular Pokeball logo in the illustration",
+      "foil_observation": "Red reflective text field with fire-symbol Reverse pattern.",
+      "front_sha256": "951954a3d03ae6cda652503a2b3b6d5f4073e12cb950525cf00bfc738f10b68f"
+    },
+    {
+      "card_print_id": "1f4e1aa0-85d9-4447-985d-99f4cc135f59",
+      "existing_printing_id": "cdc4b935-9984-4041-8a14-c94d9c4d1b60",
+      "finish_key": "reverse",
+      "printed_number": "12/124",
+      "printed_stamp": "Pokemon League rectangular Pokeball logo in the illustration",
+      "foil_observation": "Red reflective text field with fire-symbol Reverse pattern.",
+      "front_sha256": "92244b14a4e5c9cdbf441508933dd815e19b82110bb81a544a1a1deb4fa2e96c"
+    }
+  ]
+}

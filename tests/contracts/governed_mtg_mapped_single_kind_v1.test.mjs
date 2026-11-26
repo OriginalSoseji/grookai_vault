@@ -11,7 +11,7 @@ function fixture(t){return{category_id:1,group_id:t.group_id,source_product_id:t
 for(const target of registry.targets)test('verified MTG single '+target.product_id+' '+target.source_name+' preserves its real price and exact finish lineage',()=>{
  const row=fixture(target),original=structuredClone(row),before=prior(row,{now}),result=qualify(row,{now});
  assert.equal(before.decision,'exclude');assert.deepEqual(before.reason_codes,['unsupported_product_kind']);assert.ok(proof(row));assert.equal(result.decision,'publish');assert.equal(result.eligible,true);assert.equal(result.policy_version,'TCGPLAYER_MARKET_PUBLICATION_POLICY_V1_3');
- const decision=buildDecision({id,candidate_payload:row},result,{id,run_key:'local-fixture'},id,now.toISOString());assert.equal(decision.market_price,row.market_price);assert.equal(decision.market_price,1.23);assert.equal(decision.code_version,'TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_32');assert.equal(decision.mtg_printing_mapping_id,target.mapping_id);assert.equal(decision.card_printing_id,target.printing_id);assert.equal(result.evidence.governed_mtg_single_card_evidence.source_body_sha256,target.scryfall.source_body_sha256);assert.deepEqual(row,original);
+ const decision=buildDecision({id,candidate_payload:row},result,{id,run_key:'local-fixture'},id,now.toISOString());assert.equal(decision.market_price,row.market_price);assert.equal(decision.market_price,1.23);assert.equal(decision.code_version,'TCGPLAYER_MARKET_PUBLICATION_WORKER_V1_34');assert.equal(decision.mtg_printing_mapping_id,target.mapping_id);assert.equal(decision.card_printing_id,target.printing_id);assert.equal(result.evidence.governed_mtg_single_card_evidence.source_body_sha256,target.scryfall.source_body_sha256);assert.deepEqual(row,original);
 });
 
 test('missing or changed exact mapping, physical identity or source product never gains kind authority',()=>{
@@ -36,5 +36,5 @@ test('the four already governed Japanese admissions retain complete predecessor 
 });
 
 test('worker32 uses the bounded evaluator and retains complete V3 shadow/coverage enforcement',()=>{
- const worker=fs.readFileSync(new URL('../../scripts/workers/tcgplayer_market_publication_worker_v1.mjs',import.meta.url),'utf8');assert.match(worker,/WORKER_V1_32/);assert.match(worker,/evaluateTcgplayerMarketQualificationV3_3 as evaluateTcgplayerMarketQualificationV3/);assert.match(worker,/assertCrossTcgMarketActivationV3/);
+ const worker=fs.readFileSync(new URL('../../scripts/workers/tcgplayer_market_publication_worker_v1.mjs',import.meta.url),'utf8');assert.match(worker,/WORKER_V1_34/);assert.match(worker,/evaluateTcgplayerMarketQualificationV3_5 as evaluateTcgplayerMarketQualificationV3/);assert.match(worker,/assertCrossTcgMarketActivationV3/);
 });

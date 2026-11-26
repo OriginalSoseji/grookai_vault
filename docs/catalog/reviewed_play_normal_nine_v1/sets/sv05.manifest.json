@@ -1,0 +1,157 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv05",
+  "scope": "base_release",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "repo:docs/catalog/reviewed_play_normal_nine_v1/sets/sv05.master.json",
+  "master_index_sha256": "4e543fb6176c2c104aa25ad1948f906868ddd3539578b7ae0e513ed9a41498dd",
+  "parents": [
+    {
+      "id": "98fff928-cd45-5ba9-a570-cf047eee0e80",
+      "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+      "gv_id": "GV-PK-TEF-119-PLAY-POKEMON-STAMP",
+      "name": "Koraidon",
+      "printed_coordinate": "119",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": "play_pokemon_stamp"
+    },
+    {
+      "id": "6ac579b0-5e93-5953-ae7f-0a72ae9e51f1",
+      "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+      "gv_id": "GV-PK-TEF-121-PLAY-POKEMON-STAMP",
+      "name": "Miraidon",
+      "printed_coordinate": "121",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": "play_pokemon_stamp"
+    },
+    {
+      "id": "739b99ec-9bc9-574d-ace2-046dfba86f03",
+      "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+      "gv_id": "GV-PK-TEF-109-PLAY-POKEMON-STAMP",
+      "name": "Roaring Moon",
+      "printed_coordinate": "109",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": "play_pokemon_stamp"
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "98fff928-cd45-5ba9-a570-cf047eee0e80",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-TEF-119-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series-six-checklist",
+          "sha256": "d9274b48889b139400fc0ac021f8d6c0f147e1d8b88d57d53f72dd02d6da727f",
+          "card_print_id": "98fff928-cd45-5ba9-a570-cf047eee0e80",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "6ac579b0-5e93-5953-ae7f-0a72ae9e51f1",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-TEF-121-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series-six-checklist",
+          "sha256": "d9274b48889b139400fc0ac021f8d6c0f147e1d8b88d57d53f72dd02d6da727f",
+          "card_print_id": "6ac579b0-5e93-5953-ae7f-0a72ae9e51f1",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "739b99ec-9bc9-574d-ace2-046dfba86f03",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-TEF-109-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series-six-checklist",
+          "sha256": "d9274b48889b139400fc0ac021f8d6c0f147e1d8b88d57d53f72dd02d6da727f",
+          "card_print_id": "739b99ec-9bc9-574d-ace2-046dfba86f03",
+          "finish_key": "normal"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 3,
+    "printings": 3,
+    "finishes": {
+      "normal": 3
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "53ebedef-ab76-4a6f-aae9-29b344512790",
+    "source_artifacts": [
+      {
+        "ref": "official-series-six-checklist",
+        "sha256": "d9274b48889b139400fc0ac021f8d6c0f147e1d8b88d57d53f72dd02d6da727f",
+        "kind": "checked_checklist",
+        "url_or_identifier": "repo:docs/catalog/generic_play_stamp_identity_evidence_v2/sources/series6.original.pdf",
+        "retrieved_at": "2026-11-25T17:16:58.481881+00:00"
+      },
+      {
+        "ref": "play-front-565473",
+        "sha256": "36b90b80c30a270306441b711ee17d07f346c4b3d16c9f3e599fe09394d5a75d",
+        "kind": "image_confirmed",
+        "evidence_role": "printed_identity_only_not_foil",
+        "url_or_identifier": "https://product-images.tcgplayer.com/fit-in/1000x1000/565473.jpg",
+        "retrieved_at": "2026-11-25T17:16:58.481881+00:00"
+      },
+      {
+        "ref": "play-front-565482",
+        "sha256": "441e1ee17276c2f353d381931ac1ba4e5900df0eda97bbe929c0af18301ef145",
+        "kind": "image_confirmed",
+        "evidence_role": "printed_identity_only_not_foil",
+        "url_or_identifier": "https://product-images.tcgplayer.com/fit-in/1000x1000/565482.jpg",
+        "retrieved_at": "2026-11-25T17:16:58.481881+00:00"
+      },
+      {
+        "ref": "play-front-577579",
+        "sha256": "120065f138c3105ab9445d26eca791a20a6581c31bfff467a69dff19206e350c",
+        "kind": "image_confirmed",
+        "evidence_role": "printed_identity_only_not_foil",
+        "url_or_identifier": "https://product-images.tcgplayer.com/fit-in/1000x1000/577579.jpg",
+        "retrieved_at": "2026-11-25T17:16:58.481881+00:00"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "98fff928-cd45-5ba9-a570-cf047eee0e80",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "6ac579b0-5e93-5953-ae7f-0a72ae9e51f1",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "739b99ec-9bc9-574d-ace2-046dfba86f03",
+        "finish_key": "normal"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "repo:docs/catalog/reviewed_play_normal_nine_v1/sets/sv05.review.json",
+      "sha256": "39a869aaea671281ce07d4645c3c4fab91d79d38b91dd30d15712e5445be5063"
+    }
+  },
+  "fingerprint": "41e9eb50e98a22b2d300e2bb2fe12175ebcd824cfc083f72b52c1f9dfd8e856f"
+}

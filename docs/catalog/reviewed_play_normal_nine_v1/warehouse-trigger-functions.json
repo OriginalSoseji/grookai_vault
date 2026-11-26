@@ -1,0 +1,102 @@
+{
+  "version": "REVIEWED_PLAY_NORMAL_WAREHOUSE_EFFECTS_V1",
+  "observed_at": "2026-11-25T20:23:49.342Z",
+  "project_ref": "ycdxbpibncqcchqiihfz",
+  "tables": [
+    "raw_imports",
+    "canon_warehouse_candidates",
+    "canon_warehouse_candidate_events",
+    "canon_warehouse_promotion_staging",
+    "card_prints",
+    "card_print_identity",
+    "card_printings",
+    "card_printing_truth_reviews",
+    "external_mappings"
+  ],
+  "triggers": [
+    {
+      "relation": "canon_warehouse_candidate_events",
+      "name": "trg_canon_warehouse_events_block_delete",
+      "type": 11,
+      "enabled": "O",
+      "definition": "CREATE TRIGGER trg_canon_warehouse_events_block_delete BEFORE DELETE ON canon_warehouse_candidate_events FOR EACH ROW EXECUTE FUNCTION trg_canon_warehouse_events_insert_only_v1()",
+      "function_definition": "CREATE OR REPLACE FUNCTION public.trg_canon_warehouse_events_insert_only_v1()\n RETURNS trigger\n LANGUAGE plpgsql\n SET search_path TO 'public'\nAS $function$\nbegin\n  raise exception 'canon_warehouse_candidate_events is insert-only';\nend;\n$function$\n",
+      "function_sha256": "8b6e3b3d4ac26e1cf47b4a7b555bdbed36c2d0f7d9013d8abff46a6744ea264d"
+    },
+    {
+      "relation": "canon_warehouse_candidate_events",
+      "name": "trg_canon_warehouse_events_block_update",
+      "type": 19,
+      "enabled": "O",
+      "definition": "CREATE TRIGGER trg_canon_warehouse_events_block_update BEFORE UPDATE ON canon_warehouse_candidate_events FOR EACH ROW EXECUTE FUNCTION trg_canon_warehouse_events_insert_only_v1()",
+      "function_definition": "CREATE OR REPLACE FUNCTION public.trg_canon_warehouse_events_insert_only_v1()\n RETURNS trigger\n LANGUAGE plpgsql\n SET search_path TO 'public'\nAS $function$\nbegin\n  raise exception 'canon_warehouse_candidate_events is insert-only';\nend;\n$function$\n",
+      "function_sha256": "8b6e3b3d4ac26e1cf47b4a7b555bdbed36c2d0f7d9013d8abff46a6744ea264d"
+    },
+    {
+      "relation": "canon_warehouse_candidates",
+      "name": "trg_canon_warehouse_candidates_transition_guard",
+      "type": 19,
+      "enabled": "O",
+      "definition": "CREATE TRIGGER trg_canon_warehouse_candidates_transition_guard BEFORE UPDATE ON canon_warehouse_candidates FOR EACH ROW EXECUTE FUNCTION trg_canon_warehouse_candidates_transition_guard_v1()",
+      "function_definition": "CREATE OR REPLACE FUNCTION public.trg_canon_warehouse_candidates_transition_guard_v1()\n RETURNS trigger\n LANGUAGE plpgsql\n SET search_path TO 'public'\nAS $function$\ndeclare\n  v_staging_status text;\n  v_success_count integer;\nbegin\n  if new.state = old.state then\n    return new;\n  end if;\n\n  case old.state\n    when 'RAW' then\n      if new.state not in ('NORMALIZED', 'ARCHIVED') then\n        raise exception 'illegal_candidate_state_transition';\n      end if;\n    when 'NORMALIZED' then\n      if new.state not in ('CLASSIFIED', 'ARCHIVED') then\n        raise exception 'illegal_candidate_state_transition';\n      end if;\n    when 'CLASSIFIED' then\n      if new.state not in ('REVIEW_READY', 'ARCHIVED') then\n        raise exception 'illegal_candidate_state_transition';\n      end if;\n    when 'REVIEW_READY' then\n      if new.state not in ('APPROVED_BY_FOUNDER', 'REJECTED', 'ARCHIVED') then\n        raise exception 'illegal_candidate_state_transition';\n      end if;\n    when 'APPROVED_BY_FOUNDER' then\n      if new.state not in ('REVIEW_READY', 'STAGED_FOR_PROMOTION', 'REJECTED', 'ARCHIVED') then\n        raise exception 'illegal_candidate_state_transition';\n      end if;\n    when 'STAGED_FOR_PROMOTION' then\n      if new.state not in ('REVIEW_READY', 'PROMOTED', 'ARCHIVED') then\n        raise exception 'illegal_candidate_state_transition';\n      end if;\n    when 'REJECTED' then\n      if new.state not in ('ARCHIVED') then\n        raise exception 'illegal_candidate_state_transition';\n      end if;\n    when 'PROMOTED' then\n      raise exception 'illegal_candidate_state_transition';\n    when 'ARCHIVED' then\n      raise exception 'illegal_candidate_state_transition';\n    else\n      raise exception 'illegal_candidate_state_transition';\n  end case;\n\n  if new.state = 'APPROVED_BY_FOUNDER'\n     and (new.founder_approved_by_user_id is null or new.founder_approved_at is null) then\n    raise exception 'founder_approval_required';\n  end if;\n\n  if old.state = 'STAGED_FOR_PROMOTION' and new.state = 'REVIEW_READY' then\n    if old.current_staging_id is null then\n      raise exception 'review_ready_requires_current_staging_id';\n    end if;\n\n    select s.execution_status\n      into v_staging_status\n    from public.canon_warehouse_promotion_staging s\n    where s.id = old.current_staging_id\n      and s.candidate_id = old.id;\n\n    if not found then\n      raise exception 'invalid_current_staging_id';\n    end if;\n\n    if v_staging_status <> 'FAILED' then\n      raise exception 'review_ready_requires_failed_staging';\n    end if;\n\n    if new.current_staging_id is not null then\n      raise exception 'review_ready_requires_null_current_staging_id';\n    end if;\n  end if;\n\n  if old.state = 'APPROVED_BY_FOUNDER' and new.state = 'REVIEW_READY' and new.current_staging_id is not null then\n    raise exception 'review_ready_requires_null_current_staging_id';\n  end if;\n\n  if new.state = 'STAGED_FOR_PROMOTION' then\n    if new.current_staging_id is null then\n      raise exception 'current_staging_id_required';\n    end if;\n\n    select s.execution_status\n      into v_staging_status\n    from public.canon_warehouse_promotion_staging s\n    where s.id = new.current_staging_id\n      and s.candidate_id = new.id;\n\n    if not found then\n      raise exception 'invalid_current_staging_id';\n    end if;\n\n    if v_staging_status not in ('PENDING', 'RUNNING', 'FAILED', 'SUCCEEDED') then\n      raise exception 'invalid_staging_status';\n    end if;\n  end if;\n\n  if new.state = 'PROMOTED' then\n    if new.current_staging_id is null then\n      raise exception 'current_staging_id_required';\n    end if;\n\n    select s.execution_status\n      into v_staging_status\n    from public.canon_warehouse_promotion_staging s\n    where s.id = new.current_staging_id\n      and s.candidate_id = new.id;\n\n    if not found then\n      raise exception 'invalid_current_staging_id';\n    end if;\n\n    if v_staging_status <> 'SUCCEEDED' then\n      raise exception 'promoted_requires_succeeded_staging';\n    end if;\n\n    select count(*)\n      into v_success_count\n    from public.canon_warehouse_promotion_staging s\n    where s.candidate_id = new.id\n      and s.execution_status = 'SUCCEEDED';\n\n    if v_success_count <> 1 then\n      raise exception 'promoted_requires_exactly_one_successful_staging';\n    end if;\n  end if;\n\n  return new;\nend;\n$function$\n",
+      "function_sha256": "5f52b9caec0b4c4b20239d00c1cc9b0d06663908a4e60aa0d6e50a6b297fbb99"
+    },
+    {
+      "relation": "canon_warehouse_candidates",
+      "name": "trg_canon_warehouse_candidates_updated_at",
+      "type": 19,
+      "enabled": "O",
+      "definition": "CREATE TRIGGER trg_canon_warehouse_candidates_updated_at BEFORE UPDATE ON canon_warehouse_candidates FOR EACH ROW EXECUTE FUNCTION trg_canon_warehouse_set_updated_at_v1()",
+      "function_definition": "CREATE OR REPLACE FUNCTION public.trg_canon_warehouse_set_updated_at_v1()\n RETURNS trigger\n LANGUAGE plpgsql\n SET search_path TO 'public'\nAS $function$\nbegin\n  new.updated_at := now();\n  return new;\nend;\n$function$\n",
+      "function_sha256": "120c984ff6cb9ce34b3f01979a2d9322f6bdece97bb90b731becaa432598c3da"
+    },
+    {
+      "relation": "canon_warehouse_promotion_staging",
+      "name": "trg_staging_payload_immutable",
+      "type": 19,
+      "enabled": "O",
+      "definition": "CREATE TRIGGER trg_staging_payload_immutable BEFORE UPDATE ON canon_warehouse_promotion_staging FOR EACH ROW EXECUTE FUNCTION trg_staging_payload_immutability_v1()",
+      "function_definition": "CREATE OR REPLACE FUNCTION public.trg_staging_payload_immutability_v1()\n RETURNS trigger\n LANGUAGE plpgsql\n SET search_path TO 'public'\nAS $function$\nbegin\n  if new.frozen_payload is distinct from old.frozen_payload then\n    raise exception 'frozen_payload is immutable';\n  end if;\n\n  if new.approved_action_type is distinct from old.approved_action_type then\n    raise exception 'approved_action_type is immutable';\n  end if;\n\n  return new;\nend;\n$function$\n",
+      "function_sha256": "cf456f70d7a321de0c08004af86a1129f8c23f53e0cae9ea7808f4b77bec0191"
+    },
+    {
+      "relation": "canon_warehouse_promotion_staging",
+      "name": "trg_staging_success_immutable",
+      "type": 27,
+      "enabled": "O",
+      "definition": "CREATE TRIGGER trg_staging_success_immutable BEFORE DELETE OR UPDATE ON canon_warehouse_promotion_staging FOR EACH ROW EXECUTE FUNCTION trg_staging_success_immutable()",
+      "function_definition": "CREATE OR REPLACE FUNCTION public.trg_staging_success_immutable()\n RETURNS trigger\n LANGUAGE plpgsql\n SET search_path TO 'public'\nAS $function$\nbegin\n  if old.execution_status = 'SUCCEEDED' then\n    raise exception 'Cannot modify SUCCEEDED staging row';\n  end if;\n\n  if tg_op = 'DELETE' then\n    return old;\n  end if;\n\n  return new;\nend;\n$function$\n",
+      "function_sha256": "196ef6f9819037652bb5664e3acba81006837bacaaf7fde980d3975610213f6b"
+    },
+    {
+      "relation": "card_print_identity",
+      "name": "trg_card_print_identity_updated_at",
+      "type": 19,
+      "enabled": "O",
+      "definition": "CREATE TRIGGER trg_card_print_identity_updated_at BEFORE UPDATE ON card_print_identity FOR EACH ROW EXECUTE FUNCTION set_timestamp_updated_at()",
+      "function_definition": "CREATE OR REPLACE FUNCTION public.set_timestamp_updated_at()\n RETURNS trigger\n LANGUAGE plpgsql\n SET search_path TO 'public'\nAS $function$\n    begin\n      new.updated_at = now();\n      return new;\n    end;\n    $function$\n",
+      "function_sha256": "2f5f45ebd419dceb0bbc3d773b3f08abbbb6615224ac06b20b23365f0a065cf9"
+    },
+    {
+      "relation": "card_printing_truth_reviews",
+      "name": "trg_card_printing_truth_reviews_updated_at_v1",
+      "type": 19,
+      "enabled": "O",
+      "definition": "CREATE TRIGGER trg_card_printing_truth_reviews_updated_at_v1 BEFORE UPDATE ON card_printing_truth_reviews FOR EACH ROW EXECUTE FUNCTION set_card_printing_truth_reviews_updated_at_v1()",
+      "function_definition": "CREATE OR REPLACE FUNCTION public.set_card_printing_truth_reviews_updated_at_v1()\n RETURNS trigger\n LANGUAGE plpgsql\n SET search_path TO 'pg_catalog'\nAS $function$\nbegin\n  new.updated_at = now();\n  return new;\nend;\n$function$\n",
+      "function_sha256": "b4780c68612934064cb1b5555c924743639b9e674d2a3ee179494c5c40fac175"
+    },
+    {
+      "relation": "card_prints",
+      "name": "trg_card_prints_assign_set_identity_model",
+      "type": 23,
+      "enabled": "O",
+      "definition": "CREATE TRIGGER trg_card_prints_assign_set_identity_model BEFORE INSERT OR UPDATE OF set_id, set_identity_model ON card_prints FOR EACH ROW EXECUTE FUNCTION card_prints_assign_set_identity_model()",
+      "function_definition": "CREATE OR REPLACE FUNCTION public.card_prints_assign_set_identity_model()\n RETURNS trigger\n LANGUAGE plpgsql\n SET search_path TO 'public'\nAS $function$\nbegin\n  new.set_identity_model := public.resolve_set_identity_model(new.set_id);\n  return new;\nend;\n$function$\n",
+      "function_sha256": "036e298a7608d1466b2f610c4d6ca3c49fc655edcb295256417044ece26454b9"
+    }
+  ],
+  "no_direct_recursive_dml": true,
+  "productionWrites": 0,
+  "fingerprint": "ecdcd531f5f219dd7269daa8ce959a5d99fd8f4c0cf034ac908fca625e6e4d52"
+}

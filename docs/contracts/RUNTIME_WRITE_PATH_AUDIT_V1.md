@@ -25,12 +25,15 @@ Purpose: coverage-accountable inventory of canon-affecting and ownership-affecti
 
 | path_name | source_files | canon_affecting | ownership_affecting | public_trust_affecting | runtime_status | transaction_mode | post_write_proof | risk_level | next_action |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `reviewed_stamped_reverse_programme_v1` | `backend/warehouse/reviewed_stamped_reverse_programme_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | high | Exact54 existing-printing reviews and53 product links through one RAW-first transaction; two existing links require full-row compare and swap. Per-set Master authority, retained-reference proofs, fresh source, qualified source release, exact owner decision, whole rollback and uncertain-commit readback are required. No printing/identity/owner/image mutation. |
 | `external_discovery_to_warehouse_bridge_v1` | `backend/warehouse/external_discovery_to_warehouse_bridge_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | medium | Keep on the shared executor boundary; do not allow ad hoc RAW candidate writes back in. |
+| `reviewed_play_normal_nine_price_links_v1` | `backend/pricing/reviewed_play_normal_nine_price_links_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | high | Internal exact-nine composition through the shared executor; original RAW/approval/identity/Normal-review chain, fixed product IDs, full current source and schema/producer must match. Production entry is only the complete release/decision-gated programme CLI. |
+| `warehouse_programme_founder_approval_v1` | `backend/warehouse/reviewed_play_normal_programme_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | high | Materialize only the explicit whole-programme owner decision into its18 newly created review-ready records. Exact plan/producer, actual founder entitlement, expiry, release gates and one outer transaction required; synthetic mode is loopback-lab-only. |
 | `classification_apply_write_plan_v1` | `backend/warehouse/classification_worker_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | medium | Keep candidate locking and evidence freshness checks inside the executor-backed boundary. |
 | `classification_apply_reclassification_result_v1` | `backend/warehouse/classification_worker_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | medium | Keep reclassification update + event append inside the executor-backed boundary. |
 | `promotion_stage_create_stage_v1` | `backend/warehouse/promotion_stage_worker_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | high | Keep the stage handoff on the shared executor; do not split proof authority back out. |
 | `alias_mapping_execution_v1` | `backend/warehouse/promotion_executor_v1.mjs`, `backend/warehouse/staging_reconciliation_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | high | Keep both executor and reconciliation alias callers on the shared executor path. |
-| `promotion_executor_execute_claimed_stage_v1` | `backend/warehouse/promotion_executor_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | high | Keep the highest-risk canon mutation lane behind the shared executor. |
+| `promotion_executor_execute_claimed_stage_v1` | `backend/warehouse/promotion_executor_v1.mjs`, `backend/warehouse/atomic_promotion_batch_v1.mjs`, `backend/warehouse/parent_registry_v1.mjs`, `backend/warehouse/transaction_context_v1.mjs` | yes | no | no | enforced | transactional_authoritative | yes | high | Keep batch and single-stage canonical/active-identity changes on the same shared executor with explicit external transactions, original founder/evidence proofs and exact registry readback. |
 | `gv_id_assignment_worker_v1` | `backend/warehouse/gv_id_assignment_worker_v1.mjs` | yes | no | yes | enforced | compensated_non_transactional | yes | medium | Keep compensated proof mode explicit until the architecture is ready for managed transactions. |
 | `source_image_enrichment_worker_v1` | `backend/images/source_image_enrichment_worker_v1.mjs` | yes | no | yes | enforced | transactional_authoritative | yes | medium | Keep exact-image protection and representative-only writes on the shared executor. |
 | `promote_source_backed_justtcg_mapping_v1` | `backend/pricing/promote_source_backed_justtcg_mapping_v1.mjs` | no | no | no | review_only | not_applicable | no | low | Preserve review evidence. Apply and historical batch replay are retired; fresh writes require reviewed Master Index authority and an applicable bounded executor. |
@@ -75,6 +78,9 @@ Purpose: coverage-accountable inventory of canon-affecting and ownership-affecti
 ### Runtime-enforced in this pass
 
 - `external_discovery_to_warehouse_bridge_v1`
+- `reviewed_play_normal_nine_price_links_v1`
+- `reviewed_stamped_reverse_programme_v1`
+- `warehouse_programme_founder_approval_v1`
 - `classification_apply_write_plan_v1`
 - `classification_apply_reclassification_result_v1`
 - `promotion_stage_create_stage_v1`

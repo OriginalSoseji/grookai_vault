@@ -1,0 +1,17 @@
+{
+  "version": "ENGLISH_MASTER_REVIEWED_STAMPED_REVERSE_SUPPORTED_V1",
+  "set_code": "bw8",
+  "source_index_fingerprint": "42cec699adcae7fff6fdc3cf1e364aebccb5f08d27f6bbeb4a051d7a600ed94f",
+  "positive_finish_scope": "exact_existing_stamped_reverse_facts_only",
+  "facts": [
+    {
+      "card_print_id": "d478d467-1c23-4826-86e4-983ff6a26fd4",
+      "existing_printing_id": "fd1a72bb-dea3-421c-b50d-4df8153b05f6",
+      "finish_key": "reverse",
+      "printed_number": "120",
+      "printed_stamp": "League/Organized Play logo overlay at illustration lower right",
+      "foil_observation": "Reflective Reverse foil/text-background treatment outside the illustration",
+      "front_sha256": "e2b6d2329cfa6ea79f3dd2b90bc8602ab8c4b7cf92db82d6d2d801354f35f23d"
+    }
+  ]
+}

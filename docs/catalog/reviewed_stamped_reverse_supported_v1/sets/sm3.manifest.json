@@ -1,0 +1,113 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sm3",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/sm3.master.json",
+  "master_index_sha256": "b6ae5f91c392470fc3997d9b68258bf860eca8a6675d94174ff93a14c0a42e71",
+  "parents": [
+    {
+      "id": "2602ebdc-50e1-42e9-8f32-a95c92dbf669",
+      "set_id": "d36cd65f-559a-48a8-a00b-01eab632b7df",
+      "gv_id": "GV-PK-SM3-94-LEAGUE-STAMP",
+      "name": "Diancie",
+      "printed_coordinate": "94",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "league_stamp",
+      "printed_identity_modifier": "league_stamp"
+    },
+    {
+      "id": "4c7d3780-98fc-43ce-9c7f-1f940dd7b975",
+      "set_id": "d36cd65f-559a-48a8-a00b-01eab632b7df",
+      "gv_id": "GV-PK-SM3-87-LEAGUE-STAMP",
+      "name": "Darkrai",
+      "printed_coordinate": "87",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "league_stamp",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "2602ebdc-50e1-42e9-8f32-a95c92dbf669",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-SM3-94-LEAGUE-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-7057f5a4-dc49-4dd0-88c1-e389a726b93f",
+          "sha256": "374618cf50e88d228f95bc838fe0c80d80db4c9b90de3bfa358bb201ba3b663e",
+          "card_print_id": "2602ebdc-50e1-42e9-8f32-a95c92dbf669",
+          "finish_key": "reverse"
+        }
+      ]
+    },
+    {
+      "card_print_id": "4c7d3780-98fc-43ce-9c7f-1f940dd7b975",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-SM3-87-LEAGUE-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-f1218374-66d1-405d-8246-a90dbfdd4971",
+          "sha256": "f6a38c29ea8e0a478afabae6d2250f7bf6c53a12cda261c8209a307ba6c60005",
+          "card_print_id": "4c7d3780-98fc-43ce-9c7f-1f940dd7b975",
+          "finish_key": "reverse"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 2,
+    "printings": 2,
+    "finishes": {
+      "reverse": 2
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "d36cd65f-559a-48a8-a00b-01eab632b7df",
+    "source_artifacts": [
+      {
+        "ref": "stamped-front-7057f5a4-dc49-4dd0-88c1-e389a726b93f",
+        "sha256": "374618cf50e88d228f95bc838fe0c80d80db4c9b90de3bfa358bb201ba3b663e",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://doujkbm8mih0s.cloudfront.net/static/images/alt/large/sm3/94-Diancie-Reverse-Holo-League.jpg",
+        "retrieved_at": "2026-11-24T07:16:41.067Z"
+      },
+      {
+        "ref": "stamped-front-f1218374-66d1-405d-8246-a90dbfdd4971",
+        "sha256": "f6a38c29ea8e0a478afabae6d2250f7bf6c53a12cda261c8209a307ba6c60005",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S768Special-Print.jpg",
+        "retrieved_at": "2026-11-24T08:43:33.710Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "2602ebdc-50e1-42e9-8f32-a95c92dbf669",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "4c7d3780-98fc-43ce-9c7f-1f940dd7b975",
+        "finish_key": "reverse"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/sm3.review.json",
+      "sha256": "e1ee1936cd19479cded4613f8187f3a8b0d208dc702f7c94c32dd8f0d4e011ef"
+    }
+  },
+  "fingerprint": "8b518f6ab66d697a2ce85762a182f55ff76a6297aa6d1453d213cfc4a2b551e3"
+}

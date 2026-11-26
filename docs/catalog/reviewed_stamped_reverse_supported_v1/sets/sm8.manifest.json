@@ -1,0 +1,187 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sm8",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/sm8.master.json",
+  "master_index_sha256": "d27696b4f0a7d5ea3a294aba7f0db9981158fa98dfd6820fafc9e81a9e414885",
+  "parents": [
+    {
+      "id": "e0972506-c36f-4501-957f-03ba29e272c1",
+      "set_id": "43ba9733-4a91-42f1-9ae0-cf3a1d535b38",
+      "gv_id": "GV-PK-SM8-181-LEAGUE-STAMP",
+      "name": "Lost Blender",
+      "printed_coordinate": "181",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "league_stamp",
+      "printed_identity_modifier": "league_stamp"
+    },
+    {
+      "id": "70ce3f64-1f8c-4d83-b664-5c36901a55c1",
+      "set_id": "43ba9733-4a91-42f1-9ae0-cf3a1d535b38",
+      "gv_id": "GV-PK-SM8-75-LOST-THUNDER-STAMP",
+      "name": "Mareep",
+      "printed_coordinate": "75",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "lost_thunder_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "82f121fa-6153-4568-9042-130ae3dcfc1e",
+      "set_id": "43ba9733-4a91-42f1-9ae0-cf3a1d535b38",
+      "gv_id": "GV-PK-SM8-108-LEAGUE-STAMP",
+      "name": "Naganadel",
+      "printed_coordinate": "108",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "league_stamp",
+      "printed_identity_modifier": "league_stamp"
+    },
+    {
+      "id": "207b5211-4ee2-43c5-ba7c-62a4faefd55b",
+      "set_id": "43ba9733-4a91-42f1-9ae0-cf3a1d535b38",
+      "gv_id": "GV-PK-SM8-14-LEAGUE-STAMP",
+      "name": "Jumpluff",
+      "printed_coordinate": "14",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "league_stamp",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "e0972506-c36f-4501-957f-03ba29e272c1",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-SM8-181-LEAGUE-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-994585f5-3d80-4ab4-a829-984440ee3d3f",
+          "sha256": "26afd8a225e483d67774eff9d33f32cb8373ca301f5069d274964f33abd310a0",
+          "card_print_id": "e0972506-c36f-4501-957f-03ba29e272c1",
+          "finish_key": "reverse"
+        }
+      ]
+    },
+    {
+      "card_print_id": "70ce3f64-1f8c-4d83-b664-5c36901a55c1",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-SM8-75-LOST-THUNDER-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-b72a0dd1-bf80-46c3-917c-c3384f6a91be",
+          "sha256": "e3fc68bdd5d94c9442046c92ba5072e515ccc27aba6325400058e2f6750707f8",
+          "card_print_id": "70ce3f64-1f8c-4d83-b664-5c36901a55c1",
+          "finish_key": "reverse"
+        }
+      ]
+    },
+    {
+      "card_print_id": "82f121fa-6153-4568-9042-130ae3dcfc1e",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-SM8-108-LEAGUE-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-de79fabf-866c-4153-b261-6796920833bb",
+          "sha256": "4ca2bc56b6a8ea80ab6c72a84f4b5e7ae926b67aac4532ac46b1ddc6e71177b3",
+          "card_print_id": "82f121fa-6153-4568-9042-130ae3dcfc1e",
+          "finish_key": "reverse"
+        }
+      ]
+    },
+    {
+      "card_print_id": "207b5211-4ee2-43c5-ba7c-62a4faefd55b",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-SM8-14-LEAGUE-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-f54a23ca-ec4e-493a-a218-192eec5b29aa",
+          "sha256": "cc7798954cd1879fcc2f1e7069fb2fee78d536321d025aed2892b52264ce1baa",
+          "card_print_id": "207b5211-4ee2-43c5-ba7c-62a4faefd55b",
+          "finish_key": "reverse"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 4,
+    "printings": 4,
+    "finishes": {
+      "reverse": 4
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "43ba9733-4a91-42f1-9ae0-cf3a1d535b38",
+    "source_artifacts": [
+      {
+        "ref": "stamped-front-994585f5-3d80-4ab4-a829-984440ee3d3f",
+        "sha256": "26afd8a225e483d67774eff9d33f32cb8373ca301f5069d274964f33abd310a0",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://doujkbm8mih0s.cloudfront.net/static/images/alt/large/sm8/181-Lost-Blender-Reverse-Holo-League.jpg",
+        "retrieved_at": "2026-11-24T07:16:54.925Z"
+      },
+      {
+        "ref": "stamped-front-b72a0dd1-bf80-46c3-917c-c3384f6a91be",
+        "sha256": "e3fc68bdd5d94c9442046c92ba5072e515ccc27aba6325400058e2f6750707f8",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S857StampedSpecial-Print.jpg",
+        "retrieved_at": "2026-11-25T21:04:51.417Z"
+      },
+      {
+        "ref": "stamped-front-de79fabf-866c-4153-b261-6796920833bb",
+        "sha256": "4ca2bc56b6a8ea80ab6c72a84f4b5e7ae926b67aac4532ac46b1ddc6e71177b3",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://doujkbm8mih0s.cloudfront.net/static/images/alt/large/sm8/108-Naganadel-Reverse-Holo-League.jpg",
+        "retrieved_at": "2026-11-24T07:16:48.186Z"
+      },
+      {
+        "ref": "stamped-front-f54a23ca-ec4e-493a-a218-192eec5b29aa",
+        "sha256": "cc7798954cd1879fcc2f1e7069fb2fee78d536321d025aed2892b52264ce1baa",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S852Special-Print.jpg",
+        "retrieved_at": "2026-11-24T08:43:33.183Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "e0972506-c36f-4501-957f-03ba29e272c1",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "70ce3f64-1f8c-4d83-b664-5c36901a55c1",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "82f121fa-6153-4568-9042-130ae3dcfc1e",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "207b5211-4ee2-43c5-ba7c-62a4faefd55b",
+        "finish_key": "reverse"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/sm8.review.json",
+      "sha256": "9c673fb4ee90043c71510e1449af2765462c9ab7ead7442b639a7b294448c461"
+    }
+  },
+  "fingerprint": "136a53288563a1af08d678e26008af76b03aea745340b0a1396f1abda69bab48"
+}

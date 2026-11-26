@@ -1,0 +1,120 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv06",
+  "scope": "base_release",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "repo:docs/catalog/reviewed_play_normal_nine_v1/sets/sv06.master.json",
+  "master_index_sha256": "26d4797db87c2b621143e7933db9d93c851eb66174ed5b456d0f705696a7382f",
+  "parents": [
+    {
+      "id": "109f4564-07a9-5779-af4f-7c12b3bf41d2",
+      "set_id": "0471b152-bbd1-4660-ae4e-8c67540ae1ac",
+      "gv_id": "GV-PK-TWM-111-PLAY-POKEMON-STAMP",
+      "name": "Okidogi",
+      "printed_coordinate": "111",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": "play_pokemon_stamp"
+    },
+    {
+      "id": "9c5caaee-9d14-59ee-a44c-0532bfae2511",
+      "set_id": "0471b152-bbd1-4660-ae4e-8c67540ae1ac",
+      "gv_id": "GV-PK-TWM-145-PLAY-POKEMON-STAMP",
+      "name": "Carmine",
+      "printed_coordinate": "145",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "play_pokemon_stamp",
+      "printed_identity_modifier": "play_pokemon_stamp"
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "109f4564-07a9-5779-af4f-7c12b3bf41d2",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-TWM-111-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series-six-checklist",
+          "sha256": "d9274b48889b139400fc0ac021f8d6c0f147e1d8b88d57d53f72dd02d6da727f",
+          "card_print_id": "109f4564-07a9-5779-af4f-7c12b3bf41d2",
+          "finish_key": "normal"
+        }
+      ]
+    },
+    {
+      "card_print_id": "9c5caaee-9d14-59ee-a44c-0532bfae2511",
+      "finish_key": "normal",
+      "printing_gv_id": "GV-PK-TWM-145-PLAY-POKEMON-STAMP-STD",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "checked_checklist",
+          "source_ref": "official-series-six-checklist",
+          "sha256": "d9274b48889b139400fc0ac021f8d6c0f147e1d8b88d57d53f72dd02d6da727f",
+          "card_print_id": "9c5caaee-9d14-59ee-a44c-0532bfae2511",
+          "finish_key": "normal"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 2,
+    "printings": 2,
+    "finishes": {
+      "normal": 2
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "0471b152-bbd1-4660-ae4e-8c67540ae1ac",
+    "source_artifacts": [
+      {
+        "ref": "official-series-six-checklist",
+        "sha256": "d9274b48889b139400fc0ac021f8d6c0f147e1d8b88d57d53f72dd02d6da727f",
+        "kind": "checked_checklist",
+        "url_or_identifier": "repo:docs/catalog/generic_play_stamp_identity_evidence_v2/sources/series6.original.pdf",
+        "retrieved_at": "2026-11-25T17:16:58.481881+00:00"
+      },
+      {
+        "ref": "play-front-619153",
+        "sha256": "438fb3074e283f655f970d5e48eb42ade148a488dd8037f6a27acbc62ee896ec",
+        "kind": "image_confirmed",
+        "evidence_role": "printed_identity_only_not_foil",
+        "url_or_identifier": "https://product-images.tcgplayer.com/fit-in/1000x1000/619153.jpg",
+        "retrieved_at": "2026-11-25T17:16:58.481881+00:00"
+      },
+      {
+        "ref": "play-front-623656",
+        "sha256": "dd95c6991628d337432ae1b702ee67a90340fd90ca0fd798d3fb7f2d0cd6a9b4",
+        "kind": "image_confirmed",
+        "evidence_role": "printed_identity_only_not_foil",
+        "url_or_identifier": "https://product-images.tcgplayer.com/fit-in/1000x1000/623656.jpg",
+        "retrieved_at": "2026-11-25T17:16:58.481881+00:00"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "109f4564-07a9-5779-af4f-7c12b3bf41d2",
+        "finish_key": "normal"
+      },
+      {
+        "card_print_id": "9c5caaee-9d14-59ee-a44c-0532bfae2511",
+        "finish_key": "normal"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "repo:docs/catalog/reviewed_play_normal_nine_v1/sets/sv06.review.json",
+      "sha256": "6ab95f8a6903d63d921b560a5238198e3add0d5559fcc2659785f88719ddab1a"
+    }
+  },
+  "fingerprint": "18633e70449fa0546d4f8b0b3122f2f64e75ff44fd3594d52a96faa1095a375d"
+}

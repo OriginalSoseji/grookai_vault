@@ -1,0 +1,28 @@
+{
+  "version": "ENGLISH_MASTER_REVIEWED_PLAY_NORMAL_NINE_V1",
+  "set_code": "sv6pt5",
+  "index_fingerprint": "6748d694531a1276e77b8b4ec35815af3e9675c697f30c2e2fb4f22a348be867",
+  "positive_finish_scope": "normal_only_not_complete_foil_inventory",
+  "facts": [
+    {
+      "card_print_id": "0f3003a9-c913-5a6f-ab6e-03bf85e81f30",
+      "finish_key": "normal",
+      "source_product_id": 619147,
+      "printed_number": "061/064",
+      "printed_set_mark": "SFA",
+      "official_standard_observation": {
+        "official_row_literal": "Night Stretcher SFA 061 ■ ■",
+        "page": 1,
+        "row_bbox": {
+          "x0": 212.0128,
+          "top": 636.2734,
+          "x1": 396.75190000000003,
+          "bottom": 647.804
+        },
+        "standard_black_box_count": 1,
+        "additional_unspecified_foil_red_box_count": 1
+      },
+      "identity_front_sha256": "871f9d45fb3c9a6675dffa0c0e7aac6fb84bdf9ee496a121260fdf726489a692"
+    }
+  ]
+}

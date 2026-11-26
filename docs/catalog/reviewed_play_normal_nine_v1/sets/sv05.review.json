@@ -1,0 +1,16 @@
+{
+  "status": "verified_scope",
+  "master_index_sha256": "4e543fb6176c2c104aa25ad1948f906868ddd3539578b7ae0e513ed9a41498dd",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "sv05",
+  "scope": "base_release",
+  "reviewer": "Codex direct complete Poppler-rendered official PDF page inspection plus independent PDF glyph stroke-color/coordinate crosscheck; retained V2 individual Play-stamp front observations",
+  "reviewed_at": "2026-11-25T17:16:58.481881+00:00",
+  "projection_sha256": "c3bc977002efaf9350fb0dce1f3c01712b4acc0d3865aa3c5765759d5dd8af28",
+  "production_execution_authority": false,
+  "whole_set_completion": false,
+  "finish_inventory_complete": false,
+  "fronts_are_identity_only_evidence": true,
+  "remaining_untyped_foil_leads": 0
+}

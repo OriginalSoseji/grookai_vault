@@ -4,6 +4,7 @@ import pg from 'pg';
 import fs from 'node:fs';
 import { prepareWarehousePrintingAdmission } from './printing_admission_v1.mjs';
 import { readWarehouseParentIdentity } from './parent_identity_v1.mjs';
+import { freezeReviewedPlayParentRegistryV1 } from './parent_registry_v1.mjs';
 import { printingManifestHash } from '../catalog/printing_completeness_gate_v1.mjs';
 import { auditWarehouseCandidateIdentitySlotV1 } from '../identity/identity_slot_audit_v1.mjs';
 import {
@@ -1058,9 +1059,16 @@ export async function buildPromotionWritePlanSnapshot(client, {
       image_alt_url: null,
     };
 
+    let parentRegistryAdmission=null;
+    if(candidate.reference_hints_payload?.generic_play_nine_intake) {
+      try{parentRegistryAdmission=await freezeReviewedPlayParentRegistryV1(client,{candidate,parent:payload});}
+      catch(error){return buildBlockedWritePlan(error.message,['Reviewed current-law active parent registry admission']);}
+    }
+
     return {
       status: 'READY',
       parent_identity: parentIdentity,
+      ...(parentRegistryAdmission?{parent_registry_admission:parentRegistryAdmission}:{}),
       reason: 'Promotion would create one canonical parent row from the frozen write plan.',
       actions: {
         card_prints: {
@@ -1434,7 +1442,7 @@ function findCurrentStagingRow(artifact) {
   return artifact.stagingRows.find((row) => row.id === currentStagingId) ?? null;
 }
 
-async function fetchArtifacts(client, candidateId) {
+export async function fetchArtifacts(client, candidateId) {
   const [candidate, evidenceRows, eventRows, stagingRows] = await Promise.all([
     fetchCandidateRow(client, candidateId),
     fetchEvidenceRows(client, candidateId),

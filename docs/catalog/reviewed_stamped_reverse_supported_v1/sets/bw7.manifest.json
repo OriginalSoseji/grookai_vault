@@ -1,0 +1,76 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "bw7",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/bw7.master.json",
+  "master_index_sha256": "31a4c5f11cadb086f0c218e9164caa5fca7d3f14cfd07a524f32f9ec53104d78",
+  "parents": [
+    {
+      "id": "06c987ab-ae8e-45a9-a6e9-fd4d2cd1313c",
+      "set_id": "4260e7d2-8b35-4741-860a-116b08d897cc",
+      "gv_id": "GV-PK-BW7-134-LEAGUE-STAMP",
+      "name": "Skyla",
+      "printed_coordinate": "134",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "league_stamp",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "06c987ab-ae8e-45a9-a6e9-fd4d2cd1313c",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-BW7-134-LEAGUE-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-f800b94d-3d7a-4c3e-8750-55946547cbee",
+          "sha256": "4ccf2f6d7c86b893571285013de2ee89d40a8eb168f8a6ecb4d16c529e2d51d5",
+          "card_print_id": "06c987ab-ae8e-45a9-a6e9-fd4d2cd1313c",
+          "finish_key": "reverse"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "reverse": 1
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "4260e7d2-8b35-4741-860a-116b08d897cc",
+    "source_artifacts": [
+      {
+        "ref": "stamped-front-f800b94d-3d7a-4c3e-8750-55946547cbee",
+        "sha256": "4ccf2f6d7c86b893571285013de2ee89d40a8eb168f8a6ecb4d16c529e2d51d5",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://cdn6966.templcdn.com/wp-content/uploads/2021/08/EN_S472Special-Print.jpg",
+        "retrieved_at": "2026-11-24T08:43:31.991Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "06c987ab-ae8e-45a9-a6e9-fd4d2cd1313c",
+        "finish_key": "reverse"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/bw7.review.json",
+      "sha256": "eb8bc04ca899931fc1ceceb224ab0c87f4acf394ca035fd585657455519fc7b5"
+    }
+  },
+  "fingerprint": "a8b9a7bfdf1ae84556558ad2ff440eb4d654d78e7b3190620565a53cf8bdc366"
+}

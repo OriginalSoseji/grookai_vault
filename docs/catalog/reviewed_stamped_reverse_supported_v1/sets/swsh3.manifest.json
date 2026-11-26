@@ -1,0 +1,76 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "swsh3",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/swsh3.master.json",
+  "master_index_sha256": "07cfe2a4ade9ef79c64f0346a81748f684f7423d807bfe8c4939e38ee5de5430",
+  "parents": [
+    {
+      "id": "443b3924-6b8b-4323-8a4a-69e5e9bfba5e",
+      "set_id": "b9aebbf0-31c9-40d3-a878-f1d8a1c44f14",
+      "gv_id": "GV-PK-DAA-110-THANK-YOU-STAMP",
+      "name": "Hydreigon",
+      "printed_coordinate": "110",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "thank_you_stamp",
+      "printed_identity_modifier": "thank_you_stamp"
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "443b3924-6b8b-4323-8a4a-69e5e9bfba5e",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-DAA-110-THANK-YOU-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-83b2d05e-a2ec-406a-beac-23cecf903009",
+          "sha256": "ad9b4fb6320b679b7dcf5e6a83305c795ba3db966d7ad3aa4f46e0082632defd",
+          "card_print_id": "443b3924-6b8b-4323-8a4a-69e5e9bfba5e",
+          "finish_key": "reverse"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 1,
+    "printings": 1,
+    "finishes": {
+      "reverse": 1
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "b9aebbf0-31c9-40d3-a878-f1d8a1c44f14",
+    "source_artifacts": [
+      {
+        "ref": "stamped-front-83b2d05e-a2ec-406a-beac-23cecf903009",
+        "sha256": "ad9b4fb6320b679b7dcf5e6a83305c795ba3db966d7ad3aa4f46e0082632defd",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S975Thank-YouSpecial-Print.jpg",
+        "retrieved_at": "2026-11-25T21:04:47.000Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "443b3924-6b8b-4323-8a4a-69e5e9bfba5e",
+        "finish_key": "reverse"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/swsh3.review.json",
+      "sha256": "ac0171937cd44481f35f57ccf1079f7934a047cea56ad578f4cb4f32bb40ef3c"
+    }
+  },
+  "fingerprint": "2a268f994e0fab2cb439e6f6197c1d45bcdf8adbd2463db334be8285b89ea57c"
+}

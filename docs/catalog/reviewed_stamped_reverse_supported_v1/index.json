@@ -1,0 +1,1834 @@
+{
+  "version": "REVIEWED_STAMPED_REVERSE_SUPPORTED_V1",
+  "role": "exact_individual_stamped_reverse_evidence_for_existing_child_review",
+  "source_input_fingerprint": "290013a687d680325f48998b93975cd22a277a6b7d616cbe6c0d071ac6dd7f23",
+  "source_reviewed_at": "2026-11-25T21:35:25.236Z",
+  "source_reviewer": "assistant_individual_complete_original_source_image_reviews",
+  "evidence_projection_only": true,
+  "production_execution_authority": false,
+  "price_authority": false,
+  "whole_set_completion": false,
+  "existing_positive_reverse_facts": 54,
+  "original134_nonpositive_cases": 80,
+  "held149_pairs_preserved": true,
+  "source_provenance_corrections": [
+    {
+      "printing_id": "f9d41c8b-1626-42dd-b340-46acb36a4a7d",
+      "field": "source_retrieved_at",
+      "retained_input_value": "2026-11-24T08:43:36.987Z",
+      "actual_capture_value": "2026-11-25T03:52:06.925Z",
+      "reason": "The replacement seller image inherited the earlier small scan retrieval timestamp in the private preparation. Actual retained seller capture supplies the corrected timestamp; image and physical observations are unchanged.",
+      "capture_sha256": "ba4fdf92db28bccfe342d791e0d4509997b54fd6abaf81bf3416d8f11b2a3634"
+    }
+  ],
+  "set_counts": {
+    "bw11": 1,
+    "bw5": 1,
+    "bw7": 1,
+    "bw8": 1,
+    "dp7": 1,
+    "sm1": 5,
+    "sm2": 3,
+    "sm3": 2,
+    "sm4": 2,
+    "sm5": 4,
+    "sm6": 2,
+    "sm7": 3,
+    "sm8": 4,
+    "sv03.5": 1,
+    "swsh1": 2,
+    "swsh12.5": 1,
+    "swsh2": 1,
+    "swsh3": 1,
+    "xy0": 3,
+    "xy10": 3,
+    "xy11": 4,
+    "xy8": 4,
+    "xy9": 4
+  },
+  "targets": [
+    {
+      "parent": {
+        "id": "221df55f-d7e3-43e6-a295-3877abef1637",
+        "set_id": "afe1197e-4b81-42e2-afcb-50143ffba2f2",
+        "gv_id": "GV-PK-SM1-11-LEAGUE-STAMP",
+        "name": "Decidueye",
+        "printed_coordinate": "11",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "sm1",
+      "printing": {
+        "id": "02ffd650-c19f-4ccc-a3ec-f271e3e70aac",
+        "card_print_id": "221df55f-d7e3-43e6-a295-3877abef1637",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-SM1-11-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/02ffd650-c19f-4ccc-a3ec-f271e3e70aac.jpg",
+      "card_front_sha256": "5fe636a77005f1664305749957efc49f92b6c8bb2582529be65c4185fb71a56e",
+      "observation": {
+        "sha256": "5fe636a77005f1664305749957efc49f92b6c8bb2582529be65c4185fb71a56e",
+        "source_url": "https://pokumon.com/card/decidueye-11-149-pokemon-league-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S696Special-Print.jpg",
+        "source_retrieved_at": "2026-11-24T08:43:33.418Z",
+        "printed_name_observed": "Decidueye",
+        "printed_number_observed": "11/149",
+        "printed_stamp_observed": "Pokemon League rectangular Pokeball logo in the illustration",
+        "foil_observation": "Green reflective text field with grass-symbol Reverse pattern; independently corroborates the retained Decidueye lead.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "82fabcf1-ea9b-4ffa-b414-288410568c43",
+        "set_id": "4abd996a-dce3-4be9-a60f-4a89cca4b43a",
+        "gv_id": "GV-PK-XY0-39-LEAGUE-STAMP",
+        "name": "Tierno",
+        "printed_coordinate": "39",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "xy0",
+      "printing": {
+        "id": "03848362-dc12-4874-a855-b4e69cba8dd0",
+        "card_print_id": "82fabcf1-ea9b-4ffa-b414-288410568c43",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-XY0-39-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/03848362-dc12-4874-a855-b4e69cba8dd0.jpg",
+      "card_front_sha256": "ac49fe1a1d2924f3ab89b85c062f67430f368ddf241da9430ae2f24ffeab4898",
+      "observation": {
+        "sha256": "ac49fe1a1d2924f3ab89b85c062f67430f368ddf241da9430ae2f24ffeab4898",
+        "source_url": "https://www.tcgplayer.com/product/126201/pokemon-league-and-championship-cards-tierno-39-39-pokemon-league",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/126201_400w.jpg",
+        "source_retrieved_at": "2026-11-25T21:17:52.941Z",
+        "printed_name_observed": "Tierno",
+        "printed_number_observed": "39/39",
+        "printed_stamp_observed": "POKÉMON LEAGUE rectangular Pokeball logo at illustration lower right",
+        "foil_observation": "Strong reflective silver/blue bands across body below the non-reflective artwork.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "e4e1f266-d0ce-4987-8569-d6c371bbb329",
+        "set_id": "dbf43f0a-de0d-48da-9d78-295452e01d42",
+        "gv_id": "GV-PK-SM7-127-REGIONAL-CHAMPIONSHIPS-STAFF-STAMP",
+        "name": "Copycat",
+        "printed_coordinate": "127",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "regional_championships_staff_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "sm7",
+      "printing": {
+        "id": "0c8f9a8f-f275-4d24-8444-075da680653c",
+        "card_print_id": "e4e1f266-d0ce-4987-8569-d6c371bbb329",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-SM7-127-REGIONAL-CHAMPIONSHIPS-STAFF-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/0c8f9a8f-f275-4d24-8444-075da680653c.jpg",
+      "card_front_sha256": "9e62a37613d49df1bd41dfc3d49611aadee4ad90385c08461a39173a4d17ad09",
+      "observation": {
+        "sha256": "9e62a37613d49df1bd41dfc3d49611aadee4ad90385c08461a39173a4d17ad09",
+        "source_url": "https://pokumon.com/card/staff-copycat-127-168-regional-championships-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S846StaffSpecial-Print.jpg",
+        "source_retrieved_at": "2026-11-25T21:04:59.459Z",
+        "printed_name_observed": "Copycat",
+        "printed_number_observed": "127/168",
+        "printed_stamp_observed": "Championships REGIONAL logo at art lower right and STAFF at lower left",
+        "foil_observation": "Reflective rainbow body with Pokeball pattern below artwork.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "d27e6692-bbf1-44b7-b084-f980be9d4fe2",
+        "set_id": "76e9acd1-5d8d-49ba-8614-ffbf4ef95ba5",
+        "gv_id": "GV-PK-XY11-65-LEAGUE-STAMP",
+        "name": "Yveltal",
+        "printed_coordinate": "65",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "xy11",
+      "printing": {
+        "id": "0e04ae93-433f-435e-b283-a23dd1cc9365",
+        "card_print_id": "d27e6692-bbf1-44b7-b084-f980be9d4fe2",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-XY11-65-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/0e04ae93-433f-435e-b283-a23dd1cc9365.jpg",
+      "card_front_sha256": "ee2967d954b2433f87fa7c136c7c937c9771b29fc0a7514d2b082f8ceb4e4d95",
+      "observation": {
+        "sha256": "ee2967d954b2433f87fa7c136c7c937c9771b29fc0a7514d2b082f8ceb4e4d95",
+        "source_url": "https://pokumon.com/card/yveltal-65-114-pokemon-league-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2021/08/EN_S674Special-Print.jpg",
+        "source_retrieved_at": "2026-11-24T08:43:36.692Z",
+        "printed_name_observed": "Yveltal",
+        "printed_number_observed": "65/114",
+        "printed_stamp_observed": "Pokemon League rectangular Pokeball logo in the illustration",
+        "foil_observation": "Dark reflective text field with darkness-symbol Reverse pattern.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "ab7b0a26-2a90-49b5-adc7-886dd37881d0",
+        "set_id": "b9baecfd-0269-4c14-a06f-cf1e24e41fd7",
+        "gv_id": "GV-PK-SWSH12-5-131-PROFESSOR-PROGRAM-STAMP",
+        "name": "Friends in Sinnoh",
+        "printed_coordinate": "131",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "professor_program_stamp",
+        "printed_identity_modifier": "professor_program_stamp"
+      },
+      "set_code": "swsh12.5",
+      "printing": {
+        "id": "1cc46697-5813-4d1c-ab5f-acb730e2d34c",
+        "card_print_id": "ab7b0a26-2a90-49b5-adc7-886dd37881d0",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-SWSH12-5-131-PROFESSOR-PROGRAM-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/1cc46697-5813-4d1c-ab5f-acb730e2d34c.jpg",
+      "card_front_sha256": "1e6e942b9e4f96dbd2ab813bb0a96c605e81860ae00fb01afee4c3b756b0521c",
+      "observation": {
+        "sha256": "1e6e942b9e4f96dbd2ab813bb0a96c605e81860ae00fb01afee4c3b756b0521c",
+        "source_url": "https://pokumon.com/card/professor-cup-friends-in-sinnoh-131-159-reverse-holo-professor-cup-promo-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2026/07/EN_S1903Professor-CupSpecial-Print.png",
+        "source_retrieved_at": "2026-11-25T21:04:58.061Z",
+        "printed_name_observed": "Friends in Sinnoh",
+        "printed_number_observed": "131/159",
+        "printed_stamp_observed": "PROFESSOR PROGRAM logo at art lower left; no rank or STAFF marking visible",
+        "foil_observation": "Pokeball/chevron pattern outside artwork; source explicitly describes this exact reference as Reverse.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "1969bc85-9936-43c5-9dee-54e28ebba19d",
+        "set_id": "76e9acd1-5d8d-49ba-8614-ffbf4ef95ba5",
+        "gv_id": "GV-PK-XY11-81-LEAGUE-STAMP",
+        "name": "Xerneas",
+        "printed_coordinate": "81",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "xy11",
+      "printing": {
+        "id": "1ec25470-61fa-4c25-97d4-bc7570837128",
+        "card_print_id": "1969bc85-9936-43c5-9dee-54e28ebba19d",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-XY11-81-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/1ec25470-61fa-4c25-97d4-bc7570837128.jpg",
+      "card_front_sha256": "851d5978455711d572b6354ac9ac2b34e5b9df92a8b70014d81291c5c1ce097e",
+      "observation": {
+        "sha256": "851d5978455711d572b6354ac9ac2b34e5b9df92a8b70014d81291c5c1ce097e",
+        "source_url": "https://pokumon.com/card/xerneas-81-114-pokemon-league-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2021/08/EN_S676Special-Print.jpg",
+        "source_retrieved_at": "2026-11-24T08:43:32.579Z",
+        "printed_name_observed": "Xerneas",
+        "printed_number_observed": "81/114",
+        "printed_stamp_observed": "Pokemon League rectangular Pokeball logo in the illustration",
+        "foil_observation": "Pink reflective text field with fairy-symbol Reverse pattern.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "af2cdd9f-53fa-4a58-be3f-b9695f637acd",
+        "set_id": "c14c7dbe-3868-4314-8c8d-727d5050fc54",
+        "gv_id": "GV-PK-XY8-103-LEAGUE-STAMP",
+        "name": "Florges",
+        "printed_coordinate": "103",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "xy8",
+      "printing": {
+        "id": "2abfec8b-de27-423a-a474-6102cc9a3f5f",
+        "card_print_id": "af2cdd9f-53fa-4a58-be3f-b9695f637acd",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-XY8-103-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/2abfec8b-de27-423a-a474-6102cc9a3f5f.jpg",
+      "card_front_sha256": "57000cb74a9707b114f4be98aff699952c7076f168d9c4447677105e6045fe1c",
+      "observation": {
+        "sha256": "57000cb74a9707b114f4be98aff699952c7076f168d9c4447677105e6045fe1c",
+        "source_url": "https://pokumon.com/card/florges-103-162-pokemon-league-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2021/08/EN_S637Special-Print.jpg",
+        "source_retrieved_at": "2026-11-24T08:43:35.817Z",
+        "printed_name_observed": "Florges",
+        "printed_number_observed": "103/162",
+        "printed_stamp_observed": "Pokemon League rectangular Pokeball logo in the illustration",
+        "foil_observation": "Reflective pink text field with vertical light bands.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "378cd3c8-dc1d-4206-b528-9cb79fbce6e6",
+        "set_id": "afe1197e-4b81-42e2-afcb-50143ffba2f2",
+        "gv_id": "GV-PK-SM1-128-REGIONAL-CHAMPIONSHIPS-STAMP",
+        "name": "Professor Kukui",
+        "printed_coordinate": "128",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "regional_championships_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "sm1",
+      "printing": {
+        "id": "2ceba344-0b77-4ef5-84bf-e6465b4d5f05",
+        "card_print_id": "378cd3c8-dc1d-4206-b528-9cb79fbce6e6",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-SM1-128-REGIONAL-CHAMPIONSHIPS-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/2ceba344-0b77-4ef5-84bf-e6465b4d5f05.jpg",
+      "card_front_sha256": "73ba7862d4084d17f60fa0cffd7078cf57087b0396907cdbeb813a669b12ebaa",
+      "observation": {
+        "sha256": "73ba7862d4084d17f60fa0cffd7078cf57087b0396907cdbeb813a669b12ebaa",
+        "source_url": "https://pokumon.com/card/professor-kukui-128-149-regional-championships-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S724Special-Print.jpg",
+        "source_retrieved_at": "2026-11-25T21:04:45.017Z",
+        "printed_name_observed": "Professor Kukui",
+        "printed_number_observed": "128/149",
+        "printed_stamp_observed": "Championships REGIONAL logo at art lower right; no STAFF marking visible",
+        "foil_observation": "Reflective silver Pokeball-pattern body below artwork.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "a9460dac-bb3a-4042-8e41-b6a1642d46dd",
+        "set_id": "adc1ebc9-11cf-4364-8193-2aafc07edef0",
+        "gv_id": "GV-PK-SM2-46-LEAGUE-STAMP",
+        "name": "Oricorio",
+        "printed_coordinate": "46",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "sm2",
+      "printing": {
+        "id": "4efc1763-32c2-4311-a874-7b6e4b7876df",
+        "card_print_id": "a9460dac-bb3a-4042-8e41-b6a1642d46dd",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-SM2-46-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/4efc1763-32c2-4311-a874-7b6e4b7876df.jpg",
+      "card_front_sha256": "e50b8ea7e117c987571ec0f925d44b719e617d106d246ae71dd83c77831cd78a",
+      "observation": {
+        "sha256": "e50b8ea7e117c987571ec0f925d44b719e617d106d246ae71dd83c77831cd78a",
+        "source_url": "https://pokumon.com/card/oricorio-46-145-pokemon-league-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S734Special-Print.jpg",
+        "source_retrieved_at": "2026-11-24T08:43:35.153Z",
+        "printed_name_observed": "Oricorio",
+        "printed_number_observed": "46/145",
+        "printed_stamp_observed": "Pokemon League rectangular Pokeball logo in the illustration",
+        "foil_observation": "Yellow reflective text field with lightning-symbol Reverse pattern.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "ab73ebdc-14b4-4a54-8e20-150a5c75a7c9",
+        "set_id": "adc1ebc9-11cf-4364-8193-2aafc07edef0",
+        "gv_id": "GV-PK-SM2-14-LEAGUE-STAMP",
+        "name": "Oricorio",
+        "printed_coordinate": "14",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "sm2",
+      "printing": {
+        "id": "520a66c4-183e-46f2-9390-80001248778b",
+        "card_print_id": "ab73ebdc-14b4-4a54-8e20-150a5c75a7c9",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-SM2-14-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/520a66c4-183e-46f2-9390-80001248778b.jpg",
+      "card_front_sha256": "69af9bb3cac1b974e5c97c391e240d925f19e089339a3236f020629ce2b8f771",
+      "observation": {
+        "sha256": "69af9bb3cac1b974e5c97c391e240d925f19e089339a3236f020629ce2b8f771",
+        "source_url": "https://pokumon.com/card/oricorio-14-145-pokemon-league-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S728Special-Print.jpg",
+        "source_retrieved_at": "2026-11-24T08:43:35.425Z",
+        "printed_name_observed": "Oricorio",
+        "printed_number_observed": "14/145",
+        "printed_stamp_observed": "Pokemon League rectangular Pokeball logo in the illustration",
+        "foil_observation": "Red reflective text field with fire-symbol Reverse pattern.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "901f9a7f-4ed7-4c65-a686-67792c70e6a9",
+        "set_id": "afe1197e-4b81-42e2-afcb-50143ffba2f2",
+        "gv_id": "GV-PK-SUM-135-EUROPE-CHAMPIONSHIPS-84A0874",
+        "name": "Ultra Ball",
+        "printed_coordinate": "135",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "europe_championships_staff_stamp",
+        "printed_identity_modifier": "europe_championships_staff_stamp"
+      },
+      "set_code": "sm1",
+      "printing": {
+        "id": "539d2e1c-fcef-4aab-aa6f-fce72d41200a",
+        "card_print_id": "901f9a7f-4ed7-4c65-a686-67792c70e6a9",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-SUM-135-EUROPE-CHAMPIONSHIPS-84A0874-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/539d2e1c-fcef-4aab-aa6f-fce72d41200a.jpg",
+      "card_front_sha256": "19033847fe6de24947cdd0c80f0c2025d977840db81ad1db91d1ba940c870cf4",
+      "observation": {
+        "sha256": "19033847fe6de24947cdd0c80f0c2025d977840db81ad1db91d1ba940c870cf4",
+        "source_url": "https://pokumon.com/card/europe-championships-staff-ultra-ball-135-149-international-championships-europe-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S726Europe-Championships-StaffSpecial-Print.jpg",
+        "source_retrieved_at": "2026-11-25T21:04:56.269Z",
+        "printed_name_observed": "Ultra Ball",
+        "printed_number_observed": "135/149",
+        "printed_stamp_observed": "Championships EUROPE logo at art lower right and STAFF at lower left",
+        "foil_observation": "Strong diagonal rainbow reflection and item pattern on silver text body.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "ea41895f-2dfb-4db1-b220-22ad4a06e3e9",
+        "set_id": "57b761d5-7ad4-4490-9f15-340123540e2c",
+        "gv_id": "GV-PK-XY9-2-LEAGUE-STAMP",
+        "name": "Bayleef",
+        "printed_coordinate": "2",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "xy9",
+      "printing": {
+        "id": "54749853-9f48-4c9c-b540-4e12abfd7005",
+        "card_print_id": "ea41895f-2dfb-4db1-b220-22ad4a06e3e9",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-XY9-2-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/54749853-9f48-4c9c-b540-4e12abfd7005.jpg",
+      "card_front_sha256": "cdf5c711b8599ea0f4ae8493ecd4d09bad45d12418d6b0d3ef9db9a1a479d2b0",
+      "observation": {
+        "sha256": "cdf5c711b8599ea0f4ae8493ecd4d09bad45d12418d6b0d3ef9db9a1a479d2b0",
+        "source_url": "https://pokumon.com/card/bayleef-2-122-pokemon-league-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2021/08/EN_S644Special-Print.jpg",
+        "source_retrieved_at": "2026-11-24T08:43:37.621Z",
+        "printed_name_observed": "Bayleef",
+        "printed_number_observed": "2/122",
+        "printed_stamp_observed": "Pokemon League rectangular Pokeball logo in the illustration",
+        "foil_observation": "Green reflective text field with grass-symbol Reverse pattern.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "78414c88-5cd7-416b-afb5-b258d918540e",
+        "set_id": "71ebdec9-9eeb-4adc-b8ef-1e6e23e6c5ec",
+        "gv_id": "GV-PK-RCL-167-PROFESSOR-PROGRAM-STAMP",
+        "name": "Sonia",
+        "printed_coordinate": "167",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "professor_program_stamp",
+        "printed_identity_modifier": "professor_program_stamp"
+      },
+      "set_code": "swsh2",
+      "printing": {
+        "id": "60fe9887-e104-411b-82a6-2b783d9ff55f",
+        "card_print_id": "78414c88-5cd7-416b-afb5-b258d918540e",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-RCL-167-PROFESSOR-PROGRAM-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/60fe9887-e104-411b-82a6-2b783d9ff55f.jpg",
+      "card_front_sha256": "b34d58352bf812a1d0d971f8896efeb1bac50ca630433d18a0ccd758ea8cfe98",
+      "observation": {
+        "sha256": "b34d58352bf812a1d0d971f8896efeb1bac50ca630433d18a0ccd758ea8cfe98",
+        "source_url": "https://pokumon.com/card/professor-program-sonia-167-192-professor-program-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2022/05/EN_S995Professor-ProgramSpecial-Print.jpg",
+        "source_retrieved_at": "2026-11-25T21:04:53.240Z",
+        "printed_name_observed": "Sonia",
+        "printed_number_observed": "167/192",
+        "printed_stamp_observed": "PROFESSOR PROGRAM logo at illustration lower left",
+        "foil_observation": "Reflective Pokeball/chevron body below artwork with strong rainbow bands.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "a828bea3-8870-4b80-9c1f-2f1a20eb71b6",
+        "set_id": "ef51e693-459f-43d1-a823-9146f387ab32",
+        "gv_id": "GV-PK-SV03-5-004-EB-GAMES-STAMP",
+        "name": "Charmander",
+        "printed_coordinate": "004",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "eb_games_stamp",
+        "printed_identity_modifier": "eb_games_stamp"
+      },
+      "set_code": "sv03.5",
+      "printing": {
+        "id": "69c254b3-0b2e-4a6a-b6b9-7028209966d3",
+        "card_print_id": "a828bea3-8870-4b80-9c1f-2f1a20eb71b6",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-SV03-5-004-EB-GAMES-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/69c254b3-0b2e-4a6a-b6b9-7028209966d3.jpg",
+      "card_front_sha256": "eb0a09d34cba32f54f9dafc62692882af09f24a431ee5df2300792070507072e",
+      "observation": {
+        "sha256": "eb0a09d34cba32f54f9dafc62692882af09f24a431ee5df2300792070507072e",
+        "source_url": "https://www.tcgplayer.com/product/531251/pokemon-miscellaneous-cards-and-products-charmander-004-165-ebgames-exclusive",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/531251_400w.jpg",
+        "source_retrieved_at": "2026-11-25T21:17:52.605Z",
+        "printed_name_observed": "Charmander",
+        "printed_number_observed": "004/165",
+        "printed_stamp_observed": "EB GAMES logo across illustration lower right",
+        "foil_observation": "Fire-symbol/geometric Reverse pattern is visible across body outside the illustration.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "2602ebdc-50e1-42e9-8f32-a95c92dbf669",
+        "set_id": "d36cd65f-559a-48a8-a00b-01eab632b7df",
+        "gv_id": "GV-PK-SM3-94-LEAGUE-STAMP",
+        "name": "Diancie",
+        "printed_coordinate": "94",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": "league_stamp"
+      },
+      "set_code": "sm3",
+      "printing": {
+        "id": "7057f5a4-dc49-4dd0-88c1-e389a726b93f",
+        "card_print_id": "2602ebdc-50e1-42e9-8f32-a95c92dbf669",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-SM3-94-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/7057f5a4-dc49-4dd0-88c1-e389a726b93f.jpg",
+      "card_front_sha256": "374618cf50e88d228f95bc838fe0c80d80db4c9b90de3bfa358bb201ba3b663e",
+      "observation": {
+        "sha256": "374618cf50e88d228f95bc838fe0c80d80db4c9b90de3bfa358bb201ba3b663e",
+        "source_url": "https://pokecardvalues.co.uk/cards/diancie-94-147-reverse-holo-league-promo-burning-shadows/sm3-94-3-41/",
+        "source_image_url": "https://doujkbm8mih0s.cloudfront.net/static/images/alt/large/sm3/94-Diancie-Reverse-Holo-League.jpg",
+        "source_retrieved_at": "2026-11-24T07:16:41.067Z",
+        "printed_name_observed": "Diancie",
+        "printed_number_observed": "94",
+        "printed_stamp_observed": "League/Organized Play logo overlay at illustration lower right",
+        "foil_observation": "Reflective Reverse foil/text-background treatment outside the illustration",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "dd289def-2712-4132-8db8-88567594de58",
+        "set_id": "57b761d5-7ad4-4490-9f15-340123540e2c",
+        "gv_id": "GV-PK-XY9-1-LEAGUE-STAMP",
+        "name": "Chikorita",
+        "printed_coordinate": "1",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "xy9",
+      "printing": {
+        "id": "71f0319c-8ecf-4ae5-87b5-d178dfda9c6c",
+        "card_print_id": "dd289def-2712-4132-8db8-88567594de58",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-XY9-1-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/71f0319c-8ecf-4ae5-87b5-d178dfda9c6c.jpg",
+      "card_front_sha256": "6e7ea84ae6047d96da281998773a5190f1222a02dea769042492de479b669729",
+      "observation": {
+        "sha256": "6e7ea84ae6047d96da281998773a5190f1222a02dea769042492de479b669729",
+        "source_url": "https://pokumon.com/card/chikorita-1-122-pokemon-league-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2021/08/EN_S643Special-Print.jpg",
+        "source_retrieved_at": "2026-11-24T08:43:37.348Z",
+        "printed_name_observed": "Chikorita",
+        "printed_number_observed": "1/122",
+        "printed_stamp_observed": "Pokemon League rectangular Pokeball logo in the illustration",
+        "foil_observation": "Green reflective text field with grass-symbol Reverse pattern.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "14b036bd-6a83-4315-945a-128aff964a58",
+        "set_id": "cb7bc9cb-6a87-443e-b6fa-9dd2513b0a3a",
+        "gv_id": "GV-PK-XY10-10-LEAGUE-STAMP",
+        "name": "Fennekin",
+        "printed_coordinate": "10",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "xy10",
+      "printing": {
+        "id": "8212ddef-b2d0-498f-94f2-5ffada2852f7",
+        "card_print_id": "14b036bd-6a83-4315-945a-128aff964a58",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-XY10-10-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/8212ddef-b2d0-498f-94f2-5ffada2852f7.jpg",
+      "card_front_sha256": "d6f0914ebd19bdc092bc3d4d9b6511848c554815fe8bb5dfcd84de96865e3d75",
+      "observation": {
+        "sha256": "d6f0914ebd19bdc092bc3d4d9b6511848c554815fe8bb5dfcd84de96865e3d75",
+        "source_url": "https://pokumon.com/card/fennekin-10-124-pokemon-league-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2021/08/EN_S655Special-Print.jpg",
+        "source_retrieved_at": "2026-11-24T08:43:32.295Z",
+        "printed_name_observed": "Fennekin",
+        "printed_number_observed": "10/124",
+        "printed_stamp_observed": "Pokemon League rectangular Pokeball logo in the illustration",
+        "foil_observation": "Red reflective text field with fire-symbol Reverse pattern.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "443b3924-6b8b-4323-8a4a-69e5e9bfba5e",
+        "set_id": "b9aebbf0-31c9-40d3-a878-f1d8a1c44f14",
+        "gv_id": "GV-PK-DAA-110-THANK-YOU-STAMP",
+        "name": "Hydreigon",
+        "printed_coordinate": "110",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "thank_you_stamp",
+        "printed_identity_modifier": "thank_you_stamp"
+      },
+      "set_code": "swsh3",
+      "printing": {
+        "id": "83b2d05e-a2ec-406a-beac-23cecf903009",
+        "card_print_id": "443b3924-6b8b-4323-8a4a-69e5e9bfba5e",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-DAA-110-THANK-YOU-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/83b2d05e-a2ec-406a-beac-23cecf903009.jpg",
+      "card_front_sha256": "ad9b4fb6320b679b7dcf5e6a83305c795ba3db966d7ad3aa4f46e0082632defd",
+      "observation": {
+        "sha256": "ad9b4fb6320b679b7dcf5e6a83305c795ba3db966d7ad3aa4f46e0082632defd",
+        "source_url": "https://pokumon.com/card/thank-you-hydreigon-110-189-thank-you-campaign-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S975Thank-YouSpecial-Print.jpg",
+        "source_retrieved_at": "2026-11-25T21:04:47.000Z",
+        "printed_name_observed": "Hydreigon",
+        "printed_number_observed": "110/189",
+        "printed_stamp_observed": "Thank You script at illustration lower left",
+        "foil_observation": "Dark textured geometric reverse pattern on the body outside the artwork.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "9477cfc9-6226-4eb2-81e5-bbc8c7b37bf7",
+        "set_id": "e48229f9-c96e-4bef-90fe-4a9f99a28e9d",
+        "gv_id": "GV-PK-SM4-28-LEAGUE-STAMP",
+        "name": "Regice",
+        "printed_coordinate": "28",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "sm4",
+      "printing": {
+        "id": "849e18c4-db13-4edc-b876-a9729d47912b",
+        "card_print_id": "9477cfc9-6226-4eb2-81e5-bbc8c7b37bf7",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-SM4-28-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/849e18c4-db13-4edc-b876-a9729d47912b.jpg",
+      "card_front_sha256": "b1367ff352f0b77ed7decff757d004f53afaeadc2361fee930245ec583fc3712",
+      "observation": {
+        "sha256": "b1367ff352f0b77ed7decff757d004f53afaeadc2361fee930245ec583fc3712",
+        "source_url": "https://pokumon.com/card/regice-28-111-pokemon-league-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S780Special-Print.jpg",
+        "source_retrieved_at": "2026-11-24T08:43:34.869Z",
+        "printed_name_observed": "Regice",
+        "printed_number_observed": "28/111",
+        "printed_stamp_observed": "Pokemon League rectangular Pokeball logo in the illustration",
+        "foil_observation": "Blue reflective text field with water-symbol Reverse pattern.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "ff3f5494-4b17-4a82-8536-dd5007af57c6",
+        "set_id": "cb7bc9cb-6a87-443e-b6fa-9dd2513b0a3a",
+        "gv_id": "GV-PK-XY10-13-LEAGUE-STAMP",
+        "name": "Delphox",
+        "printed_coordinate": "13",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "xy10",
+      "printing": {
+        "id": "85822b82-0646-4740-97d0-29fcf99630a0",
+        "card_print_id": "ff3f5494-4b17-4a82-8536-dd5007af57c6",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-XY10-13-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/85822b82-0646-4740-97d0-29fcf99630a0.jpg",
+      "card_front_sha256": "951954a3d03ae6cda652503a2b3b6d5f4073e12cb950525cf00bfc738f10b68f",
+      "observation": {
+        "sha256": "951954a3d03ae6cda652503a2b3b6d5f4073e12cb950525cf00bfc738f10b68f",
+        "source_url": "https://pokumon.com/card/delphox-13-124-pokemon-league-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2021/08/EN_S657Special-Print.jpg",
+        "source_retrieved_at": "2026-11-24T08:43:38.480Z",
+        "printed_name_observed": "Delphox",
+        "printed_number_observed": "13/124",
+        "printed_stamp_observed": "Pokemon League rectangular Pokeball logo in the illustration",
+        "foil_observation": "Red reflective text field with fire-symbol Reverse pattern.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "a92cec8a-c6e7-4e99-a9dc-415434ebd1da",
+        "set_id": "2ac96af4-a5e2-479f-916c-7b52e13a8f3a",
+        "gv_id": "GV-PK-SM6-77-LEAGUE-STAMP",
+        "name": "Buzzwole",
+        "printed_coordinate": "77",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": "league_stamp"
+      },
+      "set_code": "sm6",
+      "printing": {
+        "id": "86e4c7e2-f1cd-457b-a941-40efe900c9ec",
+        "card_print_id": "a92cec8a-c6e7-4e99-a9dc-415434ebd1da",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-SM6-77-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/86e4c7e2-f1cd-457b-a941-40efe900c9ec.jpg",
+      "card_front_sha256": "48340c3bd6d6868ed2a385b8df7c8087af8b392e7ab011d7cd39e2e726a83f0f",
+      "observation": {
+        "sha256": "48340c3bd6d6868ed2a385b8df7c8087af8b392e7ab011d7cd39e2e726a83f0f",
+        "source_url": "https://pokecardvalues.co.uk/cards/buzzwole-77-131-reverse-holo-league-promo-forbidden-light/sm6-77-3-41/",
+        "source_image_url": "https://doujkbm8mih0s.cloudfront.net/static/images/alt/large/sm6/77-Buzzwole-Reverse-Holo-League.jpg",
+        "source_retrieved_at": "2026-11-24T07:16:51.089Z",
+        "printed_name_observed": "Buzzwole",
+        "printed_number_observed": "77",
+        "printed_stamp_observed": "League/Organized Play logo overlay at illustration lower right",
+        "foil_observation": "Reflective Reverse foil/text-background treatment outside the illustration",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "0266f535-054b-4f8d-b11a-c25eac4d3d9e",
+        "set_id": "dbf43f0a-de0d-48da-9d78-295452e01d42",
+        "gv_id": "GV-PK-SM7-8-CELESTIAL-STORM-STAMP",
+        "name": "Treecko",
+        "printed_coordinate": "8",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "celestial_storm_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "sm7",
+      "printing": {
+        "id": "8a223d67-870d-4c35-9fc9-c436e95fe522",
+        "card_print_id": "0266f535-054b-4f8d-b11a-c25eac4d3d9e",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-SM7-8-CELESTIAL-STORM-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/8a223d67-870d-4c35-9fc9-c436e95fe522.jpg",
+      "card_front_sha256": "5f6d02f6c4e9ae3acedacbde2ad472d05622f0ce453a0fa437ec17689603d9ef",
+      "observation": {
+        "sha256": "5f6d02f6c4e9ae3acedacbde2ad472d05622f0ce453a0fa437ec17689603d9ef",
+        "source_url": "https://pokumon.com/card/stamped-treecko-8-168-toys-r-us-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S834StampedSpecial-Print.jpg",
+        "source_retrieved_at": "2026-11-25T21:04:43.664Z",
+        "printed_name_observed": "Treecko",
+        "printed_number_observed": "8/168",
+        "printed_stamp_observed": "Celestial Storm set logo at illustration lower right",
+        "foil_observation": "Green grass-symbol geometric foil pattern over the text/body field.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "fe844c0a-f858-419c-b4a8-199af27c13b1",
+        "set_id": "2ac96af4-a5e2-479f-916c-7b52e13a8f3a",
+        "gv_id": "GV-PK-SM6-80-LEAGUE-STAMP",
+        "name": "Guzzlord",
+        "printed_coordinate": "80",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "sm6",
+      "printing": {
+        "id": "8d46002f-a78b-445b-bf78-6c07a59da381",
+        "card_print_id": "fe844c0a-f858-419c-b4a8-199af27c13b1",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-SM6-80-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/8d46002f-a78b-445b-bf78-6c07a59da381.jpg",
+      "card_front_sha256": "5876b3f8c4a4c6ce547d124af005fcd1bf8c5a6150a94c12fa687a552de69675",
+      "observation": {
+        "sha256": "5876b3f8c4a4c6ce547d124af005fcd1bf8c5a6150a94c12fa687a552de69675",
+        "source_url": "https://pokumon.com/card/guzzlord-80-131-pokemon-league-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S826Special-Print.jpg",
+        "source_retrieved_at": "2026-11-24T08:43:38.200Z",
+        "printed_name_observed": "Guzzlord",
+        "printed_number_observed": "80/131",
+        "printed_stamp_observed": "Pokemon League rectangular Pokeball logo in the illustration",
+        "foil_observation": "Dark reflective text field with darkness-symbol Reverse pattern.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "6c619229-f946-4b9d-ad52-007b27cba252",
+        "set_id": "56c23b8d-904e-4c3a-b0fd-9562919f5694",
+        "gv_id": "GV-PK-BW5-94-LEAGUE-STAMP",
+        "name": "Enhanced Hammer",
+        "printed_coordinate": "94",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "bw5",
+      "printing": {
+        "id": "908e1510-c45e-437a-b91c-5808b27a6b9b",
+        "card_print_id": "6c619229-f946-4b9d-ad52-007b27cba252",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-BW5-94-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/908e1510-c45e-437a-b91c-5808b27a6b9b.jpg",
+      "card_front_sha256": "ca7bc2b4d0600bd00e3cada739ef4cc26ba67c0fe3e24d05aee4673d0b4369df",
+      "observation": {
+        "sha256": "ca7bc2b4d0600bd00e3cada739ef4cc26ba67c0fe3e24d05aee4673d0b4369df",
+        "source_url": "https://pokumon.com/card/enhanced-hammer-94-108-pokemon-league-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2021/08/EN_S444Special-Print.jpg",
+        "source_retrieved_at": "2026-11-24T08:43:34.303Z",
+        "printed_name_observed": "Enhanced Hammer",
+        "printed_number_observed": "94/108",
+        "printed_stamp_observed": "Pokemon League rectangular Pokeball logo in the illustration",
+        "foil_observation": "Silver reflective text field below the illustration; the actual overlay says Pokemon League. This is not equivalence proof for the separate generic Play parent.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "2adcfdda-3833-4a32-8c71-fe2e2d28c929",
+        "set_id": "e48229f9-c96e-4bef-90fe-4a9f99a28e9d",
+        "gv_id": "GV-PK-CIN-95-REGIONAL-CHAMPIONSHIPS-STAMP",
+        "name": "Gladion",
+        "printed_coordinate": "95",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "regional_championships_stamp",
+        "printed_identity_modifier": "regional_championships_stamp"
+      },
+      "set_code": "sm4",
+      "printing": {
+        "id": "9874190c-c355-4e4d-a524-47695a636859",
+        "card_print_id": "2adcfdda-3833-4a32-8c71-fe2e2d28c929",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-CIN-95-REGIONAL-CHAMPIONSHIPS-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/9874190c-c355-4e4d-a524-47695a636859.jpg",
+      "card_front_sha256": "9ca8690220c8ccafde81304db7fd9f163e9afdea877ce483e69aa6905de90618",
+      "observation": {
+        "sha256": "9ca8690220c8ccafde81304db7fd9f163e9afdea877ce483e69aa6905de90618",
+        "source_url": "https://pokumon.com/card/gladion-95-111-regional-championships-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S796Special-Print.jpg",
+        "source_retrieved_at": "2026-11-25T21:04:45.633Z",
+        "printed_name_observed": "Gladion",
+        "printed_number_observed": "95/111",
+        "printed_stamp_observed": "Championships REGIONAL logo at art lower right; no STAFF marking visible",
+        "foil_observation": "Reflective silver body with Pokeball pattern below artwork.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "e0972506-c36f-4501-957f-03ba29e272c1",
+        "set_id": "43ba9733-4a91-42f1-9ae0-cf3a1d535b38",
+        "gv_id": "GV-PK-SM8-181-LEAGUE-STAMP",
+        "name": "Lost Blender",
+        "printed_coordinate": "181",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": "league_stamp"
+      },
+      "set_code": "sm8",
+      "printing": {
+        "id": "994585f5-3d80-4ab4-a829-984440ee3d3f",
+        "card_print_id": "e0972506-c36f-4501-957f-03ba29e272c1",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-SM8-181-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/994585f5-3d80-4ab4-a829-984440ee3d3f.jpg",
+      "card_front_sha256": "26afd8a225e483d67774eff9d33f32cb8373ca301f5069d274964f33abd310a0",
+      "observation": {
+        "sha256": "26afd8a225e483d67774eff9d33f32cb8373ca301f5069d274964f33abd310a0",
+        "source_url": "https://pokecardvalues.co.uk/cards/lost-blender-181-214-reverse-holo-league-promo-lost-thunder/sm8-181-3-41/",
+        "source_image_url": "https://doujkbm8mih0s.cloudfront.net/static/images/alt/large/sm8/181-Lost-Blender-Reverse-Holo-League.jpg",
+        "source_retrieved_at": "2026-11-24T07:16:54.925Z",
+        "printed_name_observed": "Lost Blender",
+        "printed_number_observed": "181",
+        "printed_stamp_observed": "League/Organized Play logo overlay at illustration lower right",
+        "foil_observation": "Reflective Reverse foil/text-background treatment outside the illustration",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "5f82ad60-1a1e-4eaa-99fe-5ba9ba6d5b7b",
+        "set_id": "c14c7dbe-3868-4314-8c8d-727d5050fc54",
+        "gv_id": "GV-PK-XY8-102-LEAGUE-STAMP",
+        "name": "Floette",
+        "printed_coordinate": "102",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": "league_stamp"
+      },
+      "set_code": "xy8",
+      "printing": {
+        "id": "9b6677b3-29e4-4c28-9fd0-797488cfb46b",
+        "card_print_id": "5f82ad60-1a1e-4eaa-99fe-5ba9ba6d5b7b",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-XY8-102-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/9b6677b3-29e4-4c28-9fd0-797488cfb46b.jpg",
+      "card_front_sha256": "f975a2c978c545fb9106d94d7ec333832028b1ef792a8aa1349f8bafeed25723",
+      "observation": {
+        "sha256": "f975a2c978c545fb9106d94d7ec333832028b1ef792a8aa1349f8bafeed25723",
+        "source_url": "https://pokecardvalues.co.uk/cards/floette-102-162-reverse-holo-league-promo-breakthrough/xy8-102-3-41/",
+        "source_image_url": "https://doujkbm8mih0s.cloudfront.net/static/images/alt/large/xy8/102-Floette-Reverse-Holo-League.jpg",
+        "source_retrieved_at": "2026-11-24T07:16:45.001Z",
+        "printed_name_observed": "Floette",
+        "printed_number_observed": "102",
+        "printed_stamp_observed": "League/Organized Play logo overlay at illustration lower right",
+        "foil_observation": "Reflective Reverse foil/text-background treatment outside the illustration",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "907cc7cc-8689-45e5-a382-533bc15aa1e0",
+        "set_id": "57b761d5-7ad4-4490-9f15-340123540e2c",
+        "gv_id": "GV-PK-XY9-3-LEAGUE-STAMP",
+        "name": "Meganium",
+        "printed_coordinate": "3",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "xy9",
+      "printing": {
+        "id": "9b7c5228-1086-4064-b752-45d43c689552",
+        "card_print_id": "907cc7cc-8689-45e5-a382-533bc15aa1e0",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-XY9-3-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/9b7c5228-1086-4064-b752-45d43c689552.jpg",
+      "card_front_sha256": "d5176fc3176938e532e185c104296b05acb582fde0dc20cdc00b4d7660a9e4e3",
+      "observation": {
+        "sha256": "d5176fc3176938e532e185c104296b05acb582fde0dc20cdc00b4d7660a9e4e3",
+        "source_url": "https://pokumon.com/card/meganium-3-122-pokemon-league-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2021/08/EN_S645Special-Print.jpg",
+        "source_retrieved_at": "2026-11-24T08:43:34.589Z",
+        "printed_name_observed": "Meganium",
+        "printed_number_observed": "3/122",
+        "printed_stamp_observed": "Pokemon League rectangular Pokeball logo in the illustration",
+        "foil_observation": "Green reflective text field with grass-symbol Reverse pattern.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "e36d1d32-6c74-402e-992b-5e483654b4e6",
+        "set_id": "4abd996a-dce3-4be9-a60f-4a89cca4b43a",
+        "gv_id": "GV-PK-XY0-34-LEAGUE-STAMP",
+        "name": "Crushing Hammer",
+        "printed_coordinate": "34",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "xy0",
+      "printing": {
+        "id": "a244a0c2-861d-4b7e-ab4a-6e7dc3c6d492",
+        "card_print_id": "e36d1d32-6c74-402e-992b-5e483654b4e6",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-XY0-34-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/a244a0c2-861d-4b7e-ab4a-6e7dc3c6d492.jpg",
+      "card_front_sha256": "345f0c0835edfe49da7a16d61633dd7fdffb55a428632d932e1632defdea41fc",
+      "observation": {
+        "sha256": "345f0c0835edfe49da7a16d61633dd7fdffb55a428632d932e1632defdea41fc",
+        "source_url": "https://www.tcgplayer.com/product/126176/pokemon-league-and-championship-cards-crushing-hammer-34-39-pokemon-league",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/126176_400w.jpg",
+        "source_retrieved_at": "2026-11-25T21:17:53.260Z",
+        "printed_name_observed": "Crushing Hammer",
+        "printed_number_observed": "34/39",
+        "printed_stamp_observed": "POKÉMON LEAGUE rectangular Pokeball logo at illustration lower right",
+        "foil_observation": "Strong reflective silver/blue bands across body below the separate artwork.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "f3cf0df6-1c7a-4833-a97e-cbd765e791c6",
+        "set_id": "4abd996a-dce3-4be9-a60f-4a89cca4b43a",
+        "gv_id": "GV-PK-XY0-36-LEAGUE-STAMP",
+        "name": "Pokémon Catcher",
+        "printed_coordinate": "36",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "xy0",
+      "printing": {
+        "id": "a2785783-e70e-4457-a060-59908ea061a8",
+        "card_print_id": "f3cf0df6-1c7a-4833-a97e-cbd765e791c6",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-XY0-36-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/a2785783-e70e-4457-a060-59908ea061a8.jpg",
+      "card_front_sha256": "5506a1cf0966bca17e9c00e37539469c43ab9a890c9924e2fa1ab6244dec701e",
+      "observation": {
+        "sha256": "5506a1cf0966bca17e9c00e37539469c43ab9a890c9924e2fa1ab6244dec701e",
+        "source_url": "https://www.tcgplayer.com/product/177707/pokemon-league-and-championship-cards-pokemon-catcher-36-39-pokemon-league",
+        "source_image_url": "https://tcgplayer-cdn.tcgplayer.com/product/177707_400w.jpg",
+        "source_retrieved_at": "2026-11-25T21:17:53.586Z",
+        "printed_name_observed": "Pokémon Catcher",
+        "printed_number_observed": "36/39",
+        "printed_stamp_observed": "POKÉMON LEAGUE rectangular Pokeball logo at illustration lower right",
+        "foil_observation": "Strong rainbow reflection across body below the separate illustration.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "bb2dd389-8311-4566-9421-05439ea0b79c",
+        "set_id": "0ccab8fe-5cb3-4535-860b-c051d1f0cf73",
+        "gv_id": "GV-PK-SM5-9-LEAGUE-STAMP",
+        "name": "Torterra",
+        "printed_coordinate": "9",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "sm5",
+      "printing": {
+        "id": "a505418d-2677-4a55-a328-8fedabe8c9d4",
+        "card_print_id": "bb2dd389-8311-4566-9421-05439ea0b79c",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-SM5-9-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/a505418d-2677-4a55-a328-8fedabe8c9d4.jpg",
+      "card_front_sha256": "7fc40c299ca0d85afcc983662309b37ce82963c53654e8b99ca156043cf9111d",
+      "observation": {
+        "sha256": "7fc40c299ca0d85afcc983662309b37ce82963c53654e8b99ca156043cf9111d",
+        "source_url": "https://pokumon.com/card/torterra-9-156-pokemon-league-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S797Special-Print.jpg",
+        "source_retrieved_at": "2026-11-24T08:43:36.141Z",
+        "printed_name_observed": "Torterra",
+        "printed_number_observed": "9/156",
+        "printed_stamp_observed": "Pokemon League rectangular Pokeball logo in the illustration",
+        "foil_observation": "Green reflective text field with grass-symbol Reverse pattern.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "84281b25-af69-4b26-9957-d0cf26220992",
+        "set_id": "57b761d5-7ad4-4490-9f15-340123540e2c",
+        "gv_id": "GV-PK-XY9-110-STATE-CHAMPIONSHIPS-STAFF-STAMP",
+        "name": "Reverse Valley",
+        "printed_coordinate": "110",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "state_championships_staff_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "xy9",
+      "printing": {
+        "id": "b3274435-dccb-4919-a1f3-9a6b239f3f0c",
+        "card_print_id": "84281b25-af69-4b26-9957-d0cf26220992",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-XY9-110-STATE-CHAMPIONSHIPS-STAFF-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/b3274435-dccb-4919-a1f3-9a6b239f3f0c.jpg",
+      "card_front_sha256": "16c41faa2091bb2bbd0e3faa0429c77811243b814bff9324f31b764e84410584",
+      "observation": {
+        "sha256": "16c41faa2091bb2bbd0e3faa0429c77811243b814bff9324f31b764e84410584",
+        "source_url": "https://pokumon.com/card/staff-reverse-valley-110-122-state-championships-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2021/08/EN_S654StaffSpecial-Print.jpg",
+        "source_retrieved_at": "2026-11-25T21:04:53.527Z",
+        "printed_name_observed": "Reverse Valley",
+        "printed_number_observed": "110/122",
+        "printed_stamp_observed": "Championships STATE PROVINCE TERRITORY logo at right and STAFF at left",
+        "foil_observation": "Reflective rainbow bands across stadium fields; exact source describes Mirror/Reverse.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "70ce3f64-1f8c-4d83-b664-5c36901a55c1",
+        "set_id": "43ba9733-4a91-42f1-9ae0-cf3a1d535b38",
+        "gv_id": "GV-PK-SM8-75-LOST-THUNDER-STAMP",
+        "name": "Mareep",
+        "printed_coordinate": "75",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "lost_thunder_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "sm8",
+      "printing": {
+        "id": "b72a0dd1-bf80-46c3-917c-c3384f6a91be",
+        "card_print_id": "70ce3f64-1f8c-4d83-b664-5c36901a55c1",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-SM8-75-LOST-THUNDER-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/b72a0dd1-bf80-46c3-917c-c3384f6a91be.jpg",
+      "card_front_sha256": "e3fc68bdd5d94c9442046c92ba5072e515ccc27aba6325400058e2f6750707f8",
+      "observation": {
+        "sha256": "e3fc68bdd5d94c9442046c92ba5072e515ccc27aba6325400058e2f6750707f8",
+        "source_url": "https://pokumon.com/card/stamped-mareep-75-214-toys-r-us-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S857StampedSpecial-Print.jpg",
+        "source_retrieved_at": "2026-11-25T21:04:51.417Z",
+        "printed_name_observed": "Mareep",
+        "printed_number_observed": "75/214",
+        "printed_stamp_observed": "Lost Thunder set logo at illustration lower right",
+        "foil_observation": "Yellow lightning-symbol reverse pattern across body/text field.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "2dc89c4c-af29-4140-8091-063efba4f943",
+        "set_id": "bfe8a89a-951b-4e14-a5d2-450aae4b737c",
+        "gv_id": "GV-PK-DP7-45-PLATINUM-STAMPED-BURGER-KING-2009",
+        "name": "Pichu",
+        "printed_coordinate": "45",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "platinum_stamped_burger_king_2009",
+        "printed_identity_modifier": null
+      },
+      "set_code": "dp7",
+      "printing": {
+        "id": "b9e96adc-c77c-4d10-aee7-4bc889b06c08",
+        "card_print_id": "2dc89c4c-af29-4140-8091-063efba4f943",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-DP7-45-PLATINUM-STAMPED-BURGER-KING-2009-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/b9e96adc-c77c-4d10-aee7-4bc889b06c08.jpg",
+      "card_front_sha256": "baa2632ac981834b52163a826656748319966c86557a4f68be1d7e844c4e446c",
+      "observation": {
+        "sha256": "baa2632ac981834b52163a826656748319966c86557a4f68be1d7e844c4e446c",
+        "source_url": "https://pokumon.com/card/burger-king-pichu-45-100-burger-king-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2021/07/EN_S234Burger-KingSpecial-Print.jpg",
+        "source_retrieved_at": "2026-11-25T21:04:45.921Z",
+        "printed_name_observed": "Pichu",
+        "printed_number_observed": "45/100",
+        "printed_stamp_observed": "PLATINUM overlay at illustration lower right",
+        "foil_observation": "Reflective body behind attack text and header; artwork remains separate.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "946bfee1-8d34-4626-bb4f-452d0677ef23",
+        "set_id": "adc1ebc9-11cf-4364-8193-2aafc07edef0",
+        "gv_id": "GV-PK-SM2-126-STAFF-STAMP",
+        "name": "Hala",
+        "printed_coordinate": "126",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "staff_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "sm2",
+      "printing": {
+        "id": "bda0826f-db97-4599-8b96-cbc658aabb61",
+        "card_print_id": "946bfee1-8d34-4626-bb4f-452d0677ef23",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-SM2-126-STAFF-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/bda0826f-db97-4599-8b96-cbc658aabb61.jpg",
+      "card_front_sha256": "7acb209cdae97970a04d461b5bae920876ac3dfb4e143cd1f4319e929a409bc7",
+      "observation": {
+        "sha256": "7acb209cdae97970a04d461b5bae920876ac3dfb4e143cd1f4319e929a409bc7",
+        "source_url": "https://pokumon.com/card/staff-hala-126-145-regional-championships-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S749StaffSpecial-Print.jpg",
+        "source_retrieved_at": "2026-11-25T21:04:56.848Z",
+        "printed_name_observed": "Hala",
+        "printed_number_observed": "126/145",
+        "printed_stamp_observed": "Championships REGIONAL logo at art lower right and STAFF at lower left",
+        "foil_observation": "Silver reflective Pokeball-pattern text body below illustration.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "ea5a6060-72ab-49d9-ba0b-744430443335",
+        "set_id": "0ccab8fe-5cb3-4535-860b-c051d1f0cf73",
+        "gv_id": "GV-PK-SM5-23-LEAGUE-STAMP",
+        "name": "Infernape",
+        "printed_coordinate": "23",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "sm5",
+      "printing": {
+        "id": "c333bc00-345d-4a2f-b849-763a5e6bda27",
+        "card_print_id": "ea5a6060-72ab-49d9-ba0b-744430443335",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-SM5-23-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/c333bc00-345d-4a2f-b849-763a5e6bda27.jpg",
+      "card_front_sha256": "2015b8e5872e544938273abe66b3a66beca844cd20d814e18f90296d51326523",
+      "observation": {
+        "sha256": "2015b8e5872e544938273abe66b3a66beca844cd20d814e18f90296d51326523",
+        "source_url": "https://pokumon.com/card/infernape-23-156-pokemon-league-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S798Special-Print.jpg",
+        "source_retrieved_at": "2026-11-24T08:43:37.917Z",
+        "printed_name_observed": "Infernape",
+        "printed_number_observed": "23/156",
+        "printed_stamp_observed": "Pokemon League rectangular Pokeball logo in the illustration",
+        "foil_observation": "Red reflective text field with fire-symbol Reverse pattern.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "f7f3149c-2bfd-4b43-8f43-47476291c106",
+        "set_id": "0ccab8fe-5cb3-4535-860b-c051d1f0cf73",
+        "gv_id": "GV-PK-UPR-119A-REGIONAL-CHAMPIONSHI-E790F12",
+        "name": "Cynthia",
+        "printed_coordinate": "119a",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "regional_championships_staff_stamp",
+        "printed_identity_modifier": "regional_championships_staff_stamp"
+      },
+      "set_code": "sm5",
+      "printing": {
+        "id": "c74c195e-2d1d-44a3-9e3c-b1f280ec4622",
+        "card_print_id": "f7f3149c-2bfd-4b43-8f43-47476291c106",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-UPR-119A-REGIONAL-CHAMPIONSHI-E790F12-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/c74c195e-2d1d-44a3-9e3c-b1f280ec4622.jpg",
+      "card_front_sha256": "ec228ac5bdc184c7a8b69358ec6800dfe6c702042214dcbe67d2aabd816b523a",
+      "observation": {
+        "sha256": "ec228ac5bdc184c7a8b69358ec6800dfe6c702042214dcbe67d2aabd816b523a",
+        "source_url": "https://pokumon.com/card/staff-cynthia-119a-156-regional-championships-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S809StaffSpecial-Print.jpg",
+        "source_retrieved_at": "2026-11-25T21:05:00.271Z",
+        "printed_name_observed": "Cynthia",
+        "printed_number_observed": "119a/156",
+        "printed_stamp_observed": "Championships REGIONAL logo at art lower right and STAFF at lower left",
+        "foil_observation": "Reflective rainbow Pokeball-pattern body below artwork; printed letter suffix a retained.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "088833de-b996-464b-85a2-f0d8874e0fa4",
+        "set_id": "c14c7dbe-3868-4314-8c8d-727d5050fc54",
+        "gv_id": "GV-PK-XY8-145-CITY-CHAMPIONSHIPS-STAMP",
+        "name": "Parallel City",
+        "printed_coordinate": "145",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "city_championships_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "xy8",
+      "printing": {
+        "id": "cdaa955c-baac-4cd7-ab92-1cbc2b3090b3",
+        "card_print_id": "088833de-b996-464b-85a2-f0d8874e0fa4",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-XY8-145-CITY-CHAMPIONSHIPS-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/cdaa955c-baac-4cd7-ab92-1cbc2b3090b3.jpg",
+      "card_front_sha256": "d198c389960cc34e1fd2768451a567b9503fac5401caf854fac5b69e6bdfae69",
+      "observation": {
+        "sha256": "d198c389960cc34e1fd2768451a567b9503fac5401caf854fac5b69e6bdfae69",
+        "source_url": "https://pokumon.com/card/parallel-city-145-162-city-championships-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2021/08/EN_S641Special-Print.jpg",
+        "source_retrieved_at": "2026-11-25T21:04:44.327Z",
+        "printed_name_observed": "Parallel City",
+        "printed_number_observed": "145/162",
+        "printed_stamp_observed": "Championships CITY logo at right; no STAFF marking visible",
+        "foil_observation": "Reflective vertical bands across the stadium fields; exact source describes Mirror/Reverse.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "1f4e1aa0-85d9-4447-985d-99f4cc135f59",
+        "set_id": "cb7bc9cb-6a87-443e-b6fa-9dd2513b0a3a",
+        "gv_id": "GV-PK-XY10-12-LEAGUE-STAMP",
+        "name": "Braixen",
+        "printed_coordinate": "12",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "xy10",
+      "printing": {
+        "id": "cdc4b935-9984-4041-8a14-c94d9c4d1b60",
+        "card_print_id": "1f4e1aa0-85d9-4447-985d-99f4cc135f59",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-XY10-12-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/cdc4b935-9984-4041-8a14-c94d9c4d1b60.jpg",
+      "card_front_sha256": "92244b14a4e5c9cdbf441508933dd815e19b82110bb81a544a1a1deb4fa2e96c",
+      "observation": {
+        "sha256": "92244b14a4e5c9cdbf441508933dd815e19b82110bb81a544a1a1deb4fa2e96c",
+        "source_url": "https://pokumon.com/card/braixen-12-124-pokemon-league-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2021/08/EN_S656Special-Print.jpg",
+        "source_retrieved_at": "2026-11-24T08:43:32.903Z",
+        "printed_name_observed": "Braixen",
+        "printed_number_observed": "12/124",
+        "printed_stamp_observed": "Pokemon League rectangular Pokeball logo in the illustration",
+        "foil_observation": "Red reflective text field with fire-symbol Reverse pattern.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "c208f793-6be7-49f5-80ca-9f4170e2cc34",
+        "set_id": "0ccab8fe-5cb3-4535-860b-c051d1f0cf73",
+        "gv_id": "GV-PK-SM5-34-LEAGUE-STAMP",
+        "name": "Empoleon",
+        "printed_coordinate": "34",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "sm5",
+      "printing": {
+        "id": "ce31141e-b44e-4bb9-98c6-b768a43753d7",
+        "card_print_id": "c208f793-6be7-49f5-80ca-9f4170e2cc34",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-SM5-34-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/ce31141e-b44e-4bb9-98c6-b768a43753d7.jpg",
+      "card_front_sha256": "2f3c03f55b297789cc699d297863a5e34f2f7bd8dbd91176818cb8cab118122b",
+      "observation": {
+        "sha256": "2f3c03f55b297789cc699d297863a5e34f2f7bd8dbd91176818cb8cab118122b",
+        "source_url": "https://pokumon.com/card/empoleon-34-156-pokemon-league-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S801Special-Print.jpg",
+        "source_retrieved_at": "2026-11-24T08:43:36.423Z",
+        "printed_name_observed": "Empoleon",
+        "printed_number_observed": "34/156",
+        "printed_stamp_observed": "Pokemon League rectangular Pokeball logo in the illustration",
+        "foil_observation": "Blue reflective text field with water-symbol Reverse pattern.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "0476703f-787a-413d-9d84-ba8199956d12",
+        "set_id": "865570b1-12ba-4d7b-94e7-13c7e4dc0657",
+        "gv_id": "GV-PK-SWSH1-14-LEAGUE-STAMP",
+        "name": "Rillaboom",
+        "printed_coordinate": "14",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "swsh1",
+      "printing": {
+        "id": "d2cd2149-4839-4868-afcc-084969c51667",
+        "card_print_id": "0476703f-787a-413d-9d84-ba8199956d12",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-SWSH1-14-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/d2cd2149-4839-4868-afcc-084969c51667.jpg",
+      "card_front_sha256": "ad04db825d6e91a6b53d3d778ddef9c0b96441275b140034f5351bef6cfa16bb",
+      "observation": {
+        "sha256": "ad04db825d6e91a6b53d3d778ddef9c0b96441275b140034f5351bef6cfa16bb",
+        "source_url": "https://pokumon.com/card/rillaboom-014-202-pokemon-league-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S934Special-Print.jpg",
+        "source_retrieved_at": "2026-11-24T08:43:31.680Z",
+        "printed_name_observed": "Rillaboom",
+        "printed_number_observed": "014/202",
+        "printed_stamp_observed": "Pokemon League rectangular Pokeball logo in the illustration",
+        "foil_observation": "Green text field with grass symbols and geometric Reverse pattern.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "3e4a40eb-4766-4165-ac96-ae9620297553",
+        "set_id": "91077bb0-569a-4e29-96b8-2dca2a7d41d0",
+        "gv_id": "GV-PK-BW11-109-LEAGUE-STAMP",
+        "name": "Bianca",
+        "printed_coordinate": "109",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": "league_stamp"
+      },
+      "set_code": "bw11",
+      "printing": {
+        "id": "db133e2a-5a3f-4d4b-9e13-99d603f2dd1a",
+        "card_print_id": "3e4a40eb-4766-4165-ac96-ae9620297553",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-BW11-109-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/db133e2a-5a3f-4d4b-9e13-99d603f2dd1a.jpg",
+      "card_front_sha256": "dc774399961b44a375bd8ba8c3ff36a8a205dbc1aa2dc6327be6c1ed386cb1ba",
+      "observation": {
+        "sha256": "dc774399961b44a375bd8ba8c3ff36a8a205dbc1aa2dc6327be6c1ed386cb1ba",
+        "source_url": "https://pokecardvalues.co.uk/cards/bianca-109-113-reverse-holo-league-promo-legendary-treasures/bw11-109-3-41/",
+        "source_image_url": "https://doujkbm8mih0s.cloudfront.net/static/images/alt/large/bw11/109-Bianca-Reverse-Holo-League.jpg",
+        "source_retrieved_at": "2026-11-24T07:16:42.168Z",
+        "printed_name_observed": "Bianca",
+        "printed_number_observed": "109",
+        "printed_stamp_observed": "League/Organized Play logo overlay at illustration lower right",
+        "foil_observation": "Reflective Reverse foil/text-background treatment outside the illustration",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "82f121fa-6153-4568-9042-130ae3dcfc1e",
+        "set_id": "43ba9733-4a91-42f1-9ae0-cf3a1d535b38",
+        "gv_id": "GV-PK-SM8-108-LEAGUE-STAMP",
+        "name": "Naganadel",
+        "printed_coordinate": "108",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": "league_stamp"
+      },
+      "set_code": "sm8",
+      "printing": {
+        "id": "de79fabf-866c-4153-b261-6796920833bb",
+        "card_print_id": "82f121fa-6153-4568-9042-130ae3dcfc1e",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-SM8-108-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/de79fabf-866c-4153-b261-6796920833bb.jpg",
+      "card_front_sha256": "4ca2bc56b6a8ea80ab6c72a84f4b5e7ae926b67aac4532ac46b1ddc6e71177b3",
+      "observation": {
+        "sha256": "4ca2bc56b6a8ea80ab6c72a84f4b5e7ae926b67aac4532ac46b1ddc6e71177b3",
+        "source_url": "https://pokecardvalues.co.uk/cards/naganadel-108-214-reverse-holo-league-promo-lost-thunder/sm8-108-3-41/",
+        "source_image_url": "https://doujkbm8mih0s.cloudfront.net/static/images/alt/large/sm8/108-Naganadel-Reverse-Holo-League.jpg",
+        "source_retrieved_at": "2026-11-24T07:16:48.186Z",
+        "printed_name_observed": "Naganadel",
+        "printed_number_observed": "108",
+        "printed_stamp_observed": "League/Organized Play logo overlay at illustration lower right",
+        "foil_observation": "Reflective Reverse foil/text-background treatment outside the illustration",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "d992dd6f-a0bd-4053-a564-094dbd2b8697",
+        "set_id": "c14c7dbe-3868-4314-8c8d-727d5050fc54",
+        "gv_id": "GV-PK-XY8-101-LEAGUE-STAMP",
+        "name": "Flabébé",
+        "printed_coordinate": "101",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": "league_stamp"
+      },
+      "set_code": "xy8",
+      "printing": {
+        "id": "e4087707-25cd-4a82-a32e-310596efb582",
+        "card_print_id": "d992dd6f-a0bd-4053-a564-094dbd2b8697",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-XY8-101-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/e4087707-25cd-4a82-a32e-310596efb582.jpg",
+      "card_front_sha256": "adb280a3066d6e0b4a2346d5f4a33cb5d97ec768bfff2811ea11ae4b87136c77",
+      "observation": {
+        "sha256": "adb280a3066d6e0b4a2346d5f4a33cb5d97ec768bfff2811ea11ae4b87136c77",
+        "source_url": "https://pokecardvalues.co.uk/cards/flabebe-101-162-reverse-holo-league-promo-breakthrough/xy8-101-3-41/",
+        "source_image_url": "https://doujkbm8mih0s.cloudfront.net/static/images/alt/large/xy8/101-Flabebe-Reverse-Holo-League.jpg",
+        "source_retrieved_at": "2026-11-24T07:16:54.358Z",
+        "printed_name_observed": "Flabébé",
+        "printed_number_observed": "101",
+        "printed_stamp_observed": "League/Organized Play logo overlay at illustration lower right",
+        "foil_observation": "Reflective Reverse foil/text-background treatment outside the illustration",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "2110d2bd-4041-4c1d-a581-9eed23faa44f",
+        "set_id": "afe1197e-4b81-42e2-afcb-50143ffba2f2",
+        "gv_id": "GV-PK-SUM-128-REGIONAL-CHAMPIONSHI-E790F12",
+        "name": "Professor Kukui",
+        "printed_coordinate": "128",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "regional_championships_staff_stamp",
+        "printed_identity_modifier": "regional_championships_staff_stamp"
+      },
+      "set_code": "sm1",
+      "printing": {
+        "id": "e42fad8c-8ad3-4c59-8e34-439526516b72",
+        "card_print_id": "2110d2bd-4041-4c1d-a581-9eed23faa44f",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-SUM-128-REGIONAL-CHAMPIONSHI-E790F12-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/e42fad8c-8ad3-4c59-8e34-439526516b72.jpg",
+      "card_front_sha256": "d82d130be0069d44012388b8f5acf9decc820549129b1e55fbac9612bdc88880",
+      "observation": {
+        "sha256": "d82d130be0069d44012388b8f5acf9decc820549129b1e55fbac9612bdc88880",
+        "source_url": "https://pokumon.com/card/staff-professor-kukui-128-149-regional-championships-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S724StaffSpecial-Print.jpg",
+        "source_retrieved_at": "2026-11-25T21:04:44.738Z",
+        "printed_name_observed": "Professor Kukui",
+        "printed_number_observed": "128/149",
+        "printed_stamp_observed": "Championships REGIONAL logo at art lower right and STAFF at lower left",
+        "foil_observation": "Reflective silver body with Pokeball pattern; artwork distinct from patterned body.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "348fcc3a-22b4-4f5b-af1d-73605d0a0281",
+        "set_id": "76e9acd1-5d8d-49ba-8614-ffbf4ef95ba5",
+        "gv_id": "GV-PK-XY11-104-STAFF-STAMP",
+        "name": "Pokémon Ranger",
+        "printed_coordinate": "104",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "staff_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "xy11",
+      "printing": {
+        "id": "e8718721-c04e-4a8f-a295-eda42effc0a8",
+        "card_print_id": "348fcc3a-22b4-4f5b-af1d-73605d0a0281",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-XY11-104-STAFF-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/e8718721-c04e-4a8f-a295-eda42effc0a8.jpg",
+      "card_front_sha256": "1aac1494d607a4b7b4eef90bf4f02ba88dd1f545ebc30a715a62e94af61505b7",
+      "observation": {
+        "sha256": "1aac1494d607a4b7b4eef90bf4f02ba88dd1f545ebc30a715a62e94af61505b7",
+        "source_url": "https://pokumon.com/card/staff-pokemon-ranger-104-114-regional-championships-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2021/08/EN_S678StaffSpecial-Print.jpg",
+        "source_retrieved_at": "2026-11-25T21:04:46.218Z",
+        "printed_name_observed": "Pokémon Ranger",
+        "printed_number_observed": "104/114",
+        "printed_stamp_observed": "Championships REGIONAL logo at art lower right and STAFF at lower left",
+        "foil_observation": "Strong rainbow reflective body below illustration.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "5e1562ce-5de6-4804-b342-08aa40d8bda2",
+        "set_id": "76e9acd1-5d8d-49ba-8614-ffbf4ef95ba5",
+        "gv_id": "GV-PK-XY11-25-LEAGUE-STAMP",
+        "name": "Volcanion",
+        "printed_coordinate": "25",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "xy11",
+      "printing": {
+        "id": "ed5491ac-ca28-4005-8c3f-27f05be5bb59",
+        "card_print_id": "5e1562ce-5de6-4804-b342-08aa40d8bda2",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-XY11-25-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/ed5491ac-ca28-4005-8c3f-27f05be5bb59.jpg",
+      "card_front_sha256": "905ae43064c165c81831d2e221662fcd77540246acecb7f5e059720d722e7355",
+      "observation": {
+        "sha256": "905ae43064c165c81831d2e221662fcd77540246acecb7f5e059720d722e7355",
+        "source_url": "https://pokumon.com/card/volcanion-25-114-pokemon-league-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2021/08/EN_S670Special-Print.jpg",
+        "source_retrieved_at": "2026-11-24T08:43:34.002Z",
+        "printed_name_observed": "Volcanion",
+        "printed_number_observed": "25/114",
+        "printed_stamp_observed": "Pokemon League rectangular Pokeball logo in the illustration",
+        "foil_observation": "Red reflective text field with fire-symbol Reverse pattern.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "4c7d3780-98fc-43ce-9c7f-1f940dd7b975",
+        "set_id": "d36cd65f-559a-48a8-a00b-01eab632b7df",
+        "gv_id": "GV-PK-SM3-87-LEAGUE-STAMP",
+        "name": "Darkrai",
+        "printed_coordinate": "87",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "sm3",
+      "printing": {
+        "id": "f1218374-66d1-405d-8246-a90dbfdd4971",
+        "card_print_id": "4c7d3780-98fc-43ce-9c7f-1f940dd7b975",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-SM3-87-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/f1218374-66d1-405d-8246-a90dbfdd4971.jpg",
+      "card_front_sha256": "f6a38c29ea8e0a478afabae6d2250f7bf6c53a12cda261c8209a307ba6c60005",
+      "observation": {
+        "sha256": "f6a38c29ea8e0a478afabae6d2250f7bf6c53a12cda261c8209a307ba6c60005",
+        "source_url": "https://pokumon.com/card/darkrai-87-147-pokemon-league-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S768Special-Print.jpg",
+        "source_retrieved_at": "2026-11-24T08:43:33.710Z",
+        "printed_name_observed": "Darkrai",
+        "printed_number_observed": "87/147",
+        "printed_stamp_observed": "Pokemon League rectangular Pokeball logo in the illustration",
+        "foil_observation": "Dark reflective text field with darkness-symbol Reverse pattern.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "1a0c0952-7248-423c-b5c1-b443120ebe93",
+        "set_id": "dbf43f0a-de0d-48da-9d78-295452e01d42",
+        "gv_id": "GV-PK-SM7-95-LEAGUE-STAMP",
+        "name": "Metagross",
+        "printed_coordinate": "95",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": "league_stamp"
+      },
+      "set_code": "sm7",
+      "printing": {
+        "id": "f19015c2-1d4f-4d30-a6fa-ae8d00a71510",
+        "card_print_id": "1a0c0952-7248-423c-b5c1-b443120ebe93",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-SM7-95-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/f19015c2-1d4f-4d30-a6fa-ae8d00a71510.jpg",
+      "card_front_sha256": "f691847e13a292ff1565fb20b511a29963e29b49705e704b7c98c7f153019593",
+      "observation": {
+        "sha256": "f691847e13a292ff1565fb20b511a29963e29b49705e704b7c98c7f153019593",
+        "source_url": "https://pokecardvalues.co.uk/cards/metagross-95-168-reverse-holo-league-promo-celestial-storm/sm7-95-3-41/",
+        "source_image_url": "https://doujkbm8mih0s.cloudfront.net/static/images/alt/large/sm7/95-Metagross-Reverse-Holo-League.jpg",
+        "source_retrieved_at": "2026-11-24T07:16:40.507Z",
+        "printed_name_observed": "Metagross",
+        "printed_number_observed": "95",
+        "printed_stamp_observed": "League/Organized Play logo overlay at illustration lower right",
+        "foil_observation": "Reflective Reverse foil/text-background treatment outside the illustration",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "207b5211-4ee2-43c5-ba7c-62a4faefd55b",
+        "set_id": "43ba9733-4a91-42f1-9ae0-cf3a1d535b38",
+        "gv_id": "GV-PK-SM8-14-LEAGUE-STAMP",
+        "name": "Jumpluff",
+        "printed_coordinate": "14",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "sm8",
+      "printing": {
+        "id": "f54a23ca-ec4e-493a-a218-192eec5b29aa",
+        "card_print_id": "207b5211-4ee2-43c5-ba7c-62a4faefd55b",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-SM8-14-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/f54a23ca-ec4e-493a-a218-192eec5b29aa.jpg",
+      "card_front_sha256": "cc7798954cd1879fcc2f1e7069fb2fee78d536321d025aed2892b52264ce1baa",
+      "observation": {
+        "sha256": "cc7798954cd1879fcc2f1e7069fb2fee78d536321d025aed2892b52264ce1baa",
+        "source_url": "https://pokumon.com/card/jumpluff-14-214-pokemon-league-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S852Special-Print.jpg",
+        "source_retrieved_at": "2026-11-24T08:43:33.183Z",
+        "printed_name_observed": "Jumpluff",
+        "printed_number_observed": "14/214",
+        "printed_stamp_observed": "Pokemon League rectangular Pokeball logo in the illustration",
+        "foil_observation": "Green reflective text field with grass-symbol Reverse pattern.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "06c987ab-ae8e-45a9-a6e9-fd4d2cd1313c",
+        "set_id": "4260e7d2-8b35-4741-860a-116b08d897cc",
+        "gv_id": "GV-PK-BW7-134-LEAGUE-STAMP",
+        "name": "Skyla",
+        "printed_coordinate": "134",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "bw7",
+      "printing": {
+        "id": "f800b94d-3d7a-4c3e-8750-55946547cbee",
+        "card_print_id": "06c987ab-ae8e-45a9-a6e9-fd4d2cd1313c",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-BW7-134-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/f800b94d-3d7a-4c3e-8750-55946547cbee.jpg",
+      "card_front_sha256": "4ccf2f6d7c86b893571285013de2ee89d40a8eb168f8a6ecb4d16c529e2d51d5",
+      "observation": {
+        "sha256": "4ccf2f6d7c86b893571285013de2ee89d40a8eb168f8a6ecb4d16c529e2d51d5",
+        "source_url": "https://pokumon.com/card/skyla-134-149-pokemon-league-special-print/",
+        "source_image_url": "https://cdn6966.templcdn.com/wp-content/uploads/2021/08/EN_S472Special-Print.jpg",
+        "source_retrieved_at": "2026-11-24T08:43:31.991Z",
+        "printed_name_observed": "Skyla",
+        "printed_number_observed": "134/149",
+        "printed_stamp_observed": "Pokemon League rectangular Pokeball logo in the illustration",
+        "foil_observation": "Silver reflective text field below the illustration.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "3c39ca60-3503-4cbb-ab15-74f2715c0efb",
+        "set_id": "afe1197e-4b81-42e2-afcb-50143ffba2f2",
+        "gv_id": "GV-PK-SM1-41-LEAGUE-STAMP",
+        "name": "Primarina",
+        "printed_coordinate": "41",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": "league_stamp"
+      },
+      "set_code": "sm1",
+      "printing": {
+        "id": "f8ea88b2-3fbb-41f8-83f6-e6756ec05938",
+        "card_print_id": "3c39ca60-3503-4cbb-ab15-74f2715c0efb",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-SM1-41-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/f8ea88b2-3fbb-41f8-83f6-e6756ec05938.jpg",
+      "card_front_sha256": "c0b5a3578a07f95247d6736302974976e6c9a12a33052643de0495a13d9550da",
+      "observation": {
+        "sha256": "c0b5a3578a07f95247d6736302974976e6c9a12a33052643de0495a13d9550da",
+        "source_url": "https://pokecardvalues.co.uk/cards/primarina-41-149-reverse-holo-league-promo-sun-moon/sm1-41-3-41/",
+        "source_image_url": "https://doujkbm8mih0s.cloudfront.net/static/images/alt/large/sm1/41-Primarina-Reverse-Holo-League.jpg",
+        "source_retrieved_at": "2026-11-24T07:16:41.613Z",
+        "printed_name_observed": "Primarina",
+        "printed_number_observed": "41",
+        "printed_stamp_observed": "League/Organized Play logo overlay at illustration lower right",
+        "foil_observation": "Reflective Reverse foil/text-background treatment outside the illustration",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "dc87c217-ec89-4db0-9e25-d23af1d1bfb9",
+        "set_id": "865570b1-12ba-4d7b-94e7-13c7e4dc0657",
+        "gv_id": "GV-PK-SWSH1-34-LEAGUE-STAMP",
+        "name": "Cinderace",
+        "printed_coordinate": "34",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": null
+      },
+      "set_code": "swsh1",
+      "printing": {
+        "id": "f9d41c8b-1626-42dd-b340-46acb36a4a7d",
+        "card_print_id": "dc87c217-ec89-4db0-9e25-d23af1d1bfb9",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-SWSH1-34-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/f9d41c8b-1626-42dd-b340-46acb36a4a7d.jpg",
+      "card_front_sha256": "b5dc83d9b2091a986a6ec916b64641ee7abe305e76ff0ec381bdd7d227620e4f",
+      "observation": {
+        "sha256": "b5dc83d9b2091a986a6ec916b64641ee7abe305e76ff0ec381bdd7d227620e4f",
+        "source_url": "https://www.ebay.com/itm/227004689128",
+        "source_image_url": "https://i.ebayimg.com/images/g/lfYAAeSwyGho3uOo/s-l1200.jpg",
+        "source_retrieved_at": "2026-11-25T03:52:06.925Z",
+        "printed_name_observed": "Cinderace",
+        "printed_number_observed": "034/202",
+        "printed_stamp_observed": "A rectangular Pokemon League Pokeball logo at the lower right of the illustration.",
+        "foil_observation": "Fire Energy-symbol/geometric reverse pattern across the body/title fields; the artwork remains visually distinct from the patterned body.",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    },
+    {
+      "parent": {
+        "id": "d478d467-1c23-4826-86e4-983ff6a26fd4",
+        "set_id": "4de9739a-b4b7-47e3-89f4-12f99a33ef39",
+        "gv_id": "GV-PK-BW8-120-LEAGUE-STAMP",
+        "name": "Escape Rope",
+        "printed_coordinate": "120",
+        "identity_domain": "pokemon_eng_standard",
+        "variant_key": "league_stamp",
+        "printed_identity_modifier": "league_stamp"
+      },
+      "set_code": "bw8",
+      "printing": {
+        "id": "fd1a72bb-dea3-421c-b50d-4df8153b05f6",
+        "card_print_id": "d478d467-1c23-4826-86e4-983ff6a26fd4",
+        "finish_key": "reverse",
+        "printing_gv_id": "GV-PK-BW8-120-LEAGUE-STAMP-RH"
+      },
+      "card_front_file": "docs/catalog/reviewed_stamped_reverse_supported_v1/fronts/fd1a72bb-dea3-421c-b50d-4df8153b05f6.jpg",
+      "card_front_sha256": "e2b6d2329cfa6ea79f3dd2b90bc8602ab8c4b7cf92db82d6d2d801354f35f23d",
+      "observation": {
+        "sha256": "e2b6d2329cfa6ea79f3dd2b90bc8602ab8c4b7cf92db82d6d2d801354f35f23d",
+        "source_url": "https://pokecardvalues.co.uk/cards/escape-rope-120-135-reverse-holo-league-promo-plasma-storm/bw8-120-3-41/",
+        "source_image_url": "https://doujkbm8mih0s.cloudfront.net/static/images/alt/large/bw8/120-Escape-Rope-Reverse-Holo-League.jpg",
+        "source_retrieved_at": "2026-11-24T07:16:53.775Z",
+        "printed_name_observed": "Escape Rope",
+        "printed_number_observed": "120",
+        "printed_stamp_observed": "League/Organized Play logo overlay at illustration lower right",
+        "foil_observation": "Reflective Reverse foil/text-background treatment outside the illustration",
+        "review_method": "Individual complete original source image inspection; original bytes retained."
+      },
+      "existing_rows_are_retained_not_new_proposals": true
+    }
+  ],
+  "fingerprint": "42cec699adcae7fff6fdc3cf1e364aebccb5f08d27f6bbeb4a051d7a600ed94f"
+}

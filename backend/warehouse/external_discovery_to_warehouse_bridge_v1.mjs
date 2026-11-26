@@ -776,7 +776,9 @@ function evaluateRows(rows, setContext, stampedBatchLookup = null) {
 
 export { evaluateRows as evaluateExternalDiscoveryBridgeRowsV1 };
 
-export async function insertCandidate(client, founderUserId, candidate) {
+export async function insertCandidate(client, founderUserId, candidate, {candidateId: plannedCandidateId = null} = {}) {
+  if(plannedCandidateId!==null&&!/^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/.test(plannedCandidateId))
+    throw new Error('Invalid explicitly planned RAW warehouse candidate UUID');
   const payloadSnapshot = {
     founder_user_id: founderUserId,
     source_candidate_id: candidate.row?.id ?? null,
@@ -790,6 +792,7 @@ export async function insertCandidate(client, founderUserId, candidate) {
 
   const insertCandidateSql = `
     insert into public.canon_warehouse_candidates (
+      ${plannedCandidateId?'id,':''}
       submitted_by_user_id,
       intake_channel,
       submission_type,
@@ -801,6 +804,7 @@ export async function insertCandidate(client, founderUserId, candidate) {
       reference_hints_payload
     )
     values (
+      ${plannedCandidateId?'$6,':''}
       $1,
       'MANUAL',
       'EXTERNAL_DISCOVERY_BRIDGE_V1',
@@ -920,6 +924,7 @@ export async function insertCandidate(client, founderUserId, candidate) {
         candidate.tcgplayer_id,
         JSON.stringify(candidate.claimed_identity_payload),
         JSON.stringify(candidate.reference_hints_payload),
+        ...(plannedCandidateId?[plannedCandidateId]:[]),
       ]);
 
       candidateId = candidateResult.rows[0]?.id ?? null;

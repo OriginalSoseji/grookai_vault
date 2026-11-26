@@ -1,0 +1,113 @@
+{
+  "version": "PRINTING_COMPLETENESS_GATE_V1",
+  "game": "pokemon",
+  "language": "en",
+  "set_code": "swsh1",
+  "scope": "verified_parent_families",
+  "identity_policy_version": "POKEMON_EN_PHYSICAL_V1",
+  "master_index_ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/swsh1.master.json",
+  "master_index_sha256": "ac0b5223ac7bb3b32fefd76e53074d31aafee1f8799976cd8661a454187cb299",
+  "parents": [
+    {
+      "id": "0476703f-787a-413d-9d84-ba8199956d12",
+      "set_id": "865570b1-12ba-4d7b-94e7-13c7e4dc0657",
+      "gv_id": "GV-PK-SWSH1-14-LEAGUE-STAMP",
+      "name": "Rillaboom",
+      "printed_coordinate": "14",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "league_stamp",
+      "printed_identity_modifier": null
+    },
+    {
+      "id": "dc87c217-ec89-4db0-9e25-d23af1d1bfb9",
+      "set_id": "865570b1-12ba-4d7b-94e7-13c7e4dc0657",
+      "gv_id": "GV-PK-SWSH1-34-LEAGUE-STAMP",
+      "name": "Cinderace",
+      "printed_coordinate": "34",
+      "identity_domain": "pokemon_eng_standard",
+      "variant_key": "league_stamp",
+      "printed_identity_modifier": null
+    }
+  ],
+  "printings": [
+    {
+      "card_print_id": "0476703f-787a-413d-9d84-ba8199956d12",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-SWSH1-14-LEAGUE-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-d2cd2149-4839-4868-afcc-084969c51667",
+          "sha256": "ad04db825d6e91a6b53d3d778ddef9c0b96441275b140034f5351bef6cfa16bb",
+          "card_print_id": "0476703f-787a-413d-9d84-ba8199956d12",
+          "finish_key": "reverse"
+        }
+      ]
+    },
+    {
+      "card_print_id": "dc87c217-ec89-4db0-9e25-d23af1d1bfb9",
+      "finish_key": "reverse",
+      "printing_gv_id": "GV-PK-SWSH1-34-LEAGUE-STAMP-RH",
+      "review_status": "verified",
+      "evidence": [
+        {
+          "kind": "image_confirmed",
+          "source_ref": "stamped-front-f9d41c8b-1626-42dd-b340-46acb36a4a7d",
+          "sha256": "b5dc83d9b2091a986a6ec916b64641ee7abe305e76ff0ec381bdd7d227620e4f",
+          "card_print_id": "dc87c217-ec89-4db0-9e25-d23af1d1bfb9",
+          "finish_key": "reverse"
+        }
+      ]
+    }
+  ],
+  "unresolved_variants": [],
+  "suppressed_printing_facts": [],
+  "expected": {
+    "parents": 2,
+    "printings": 2,
+    "finishes": {
+      "reverse": 2
+    }
+  },
+  "authority": {
+    "version": "MASTER_INDEX_PRINTING_AUTHORITY_V1",
+    "status": "verified_scope",
+    "set_id": "865570b1-12ba-4d7b-94e7-13c7e4dc0657",
+    "source_artifacts": [
+      {
+        "ref": "stamped-front-d2cd2149-4839-4868-afcc-084969c51667",
+        "sha256": "ad04db825d6e91a6b53d3d778ddef9c0b96441275b140034f5351bef6cfa16bb",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S934Special-Print.jpg",
+        "retrieved_at": "2026-11-24T08:43:31.680Z"
+      },
+      {
+        "ref": "stamped-front-f9d41c8b-1626-42dd-b340-46acb36a4a7d",
+        "sha256": "b5dc83d9b2091a986a6ec916b64641ee7abe305e76ff0ec381bdd7d227620e4f",
+        "kind": "image_confirmed",
+        "evidence_role": "exact_printed_identity_and_individually_reviewed_reverse_surface",
+        "url_or_identifier": "https://i.ebayimg.com/images/g/lfYAAeSwyGho3uOo/s-l1200.jpg",
+        "retrieved_at": "2026-11-25T03:52:06.925Z"
+      }
+    ],
+    "protected_facts": [
+      {
+        "card_print_id": "0476703f-787a-413d-9d84-ba8199956d12",
+        "finish_key": "reverse"
+      },
+      {
+        "card_print_id": "dc87c217-ec89-4db0-9e25-d23af1d1bfb9",
+        "finish_key": "reverse"
+      }
+    ],
+    "forbidden_facts": [],
+    "conflicts": [],
+    "review": {
+      "ref": "repo:docs/catalog/reviewed_stamped_reverse_supported_v1/sets/swsh1.review.json",
+      "sha256": "acb0d60dff371bd1d04744f71b616205b624b3fe9b9b5d4add9e1374dc3d775f"
+    }
+  },
+  "fingerprint": "1023eb10178b0c0fa80111b39aa0dff46aa07b8094c0f9d0496c1fdebdad02b7"
+}

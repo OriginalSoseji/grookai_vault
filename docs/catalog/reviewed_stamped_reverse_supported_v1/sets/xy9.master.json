@@ -1,0 +1,44 @@
+{
+  "version": "ENGLISH_MASTER_REVIEWED_STAMPED_REVERSE_SUPPORTED_V1",
+  "set_code": "xy9",
+  "source_index_fingerprint": "42cec699adcae7fff6fdc3cf1e364aebccb5f08d27f6bbeb4a051d7a600ed94f",
+  "positive_finish_scope": "exact_existing_stamped_reverse_facts_only",
+  "facts": [
+    {
+      "card_print_id": "ea41895f-2dfb-4db1-b220-22ad4a06e3e9",
+      "existing_printing_id": "54749853-9f48-4c9c-b540-4e12abfd7005",
+      "finish_key": "reverse",
+      "printed_number": "2/122",
+      "printed_stamp": "Pokemon League rectangular Pokeball logo in the illustration",
+      "foil_observation": "Green reflective text field with grass-symbol Reverse pattern.",
+      "front_sha256": "cdf5c711b8599ea0f4ae8493ecd4d09bad45d12418d6b0d3ef9db9a1a479d2b0"
+    },
+    {
+      "card_print_id": "dd289def-2712-4132-8db8-88567594de58",
+      "existing_printing_id": "71f0319c-8ecf-4ae5-87b5-d178dfda9c6c",
+      "finish_key": "reverse",
+      "printed_number": "1/122",
+      "printed_stamp": "Pokemon League rectangular Pokeball logo in the illustration",
+      "foil_observation": "Green reflective text field with grass-symbol Reverse pattern.",
+      "front_sha256": "6e7ea84ae6047d96da281998773a5190f1222a02dea769042492de479b669729"
+    },
+    {
+      "card_print_id": "907cc7cc-8689-45e5-a382-533bc15aa1e0",
+      "existing_printing_id": "9b7c5228-1086-4064-b752-45d43c689552",
+      "finish_key": "reverse",
+      "printed_number": "3/122",
+      "printed_stamp": "Pokemon League rectangular Pokeball logo in the illustration",
+      "foil_observation": "Green reflective text field with grass-symbol Reverse pattern.",
+      "front_sha256": "d5176fc3176938e532e185c104296b05acb582fde0dc20cdc00b4d7660a9e4e3"
+    },
+    {
+      "card_print_id": "84281b25-af69-4b26-9957-d0cf26220992",
+      "existing_printing_id": "b3274435-dccb-4919-a1f3-9a6b239f3f0c",
+      "finish_key": "reverse",
+      "printed_number": "110/122",
+      "printed_stamp": "Championships STATE PROVINCE TERRITORY logo at right and STAFF at left",
+      "foil_observation": "Reflective rainbow bands across stadium fields; exact source describes Mirror/Reverse.",
+      "front_sha256": "16c41faa2091bb2bbd0e3faa0429c77811243b814bff9324f31b764e84410584"
+    }
+  ]
+}

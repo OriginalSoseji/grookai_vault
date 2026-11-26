@@ -1,0 +1,26 @@
+{
+  "version": "ENGLISH_MASTER_REVIEWED_STAMPED_REVERSE_SUPPORTED_V1",
+  "set_code": "sm6",
+  "source_index_fingerprint": "42cec699adcae7fff6fdc3cf1e364aebccb5f08d27f6bbeb4a051d7a600ed94f",
+  "positive_finish_scope": "exact_existing_stamped_reverse_facts_only",
+  "facts": [
+    {
+      "card_print_id": "a92cec8a-c6e7-4e99-a9dc-415434ebd1da",
+      "existing_printing_id": "86e4c7e2-f1cd-457b-a941-40efe900c9ec",
+      "finish_key": "reverse",
+      "printed_number": "77",
+      "printed_stamp": "League/Organized Play logo overlay at illustration lower right",
+      "foil_observation": "Reflective Reverse foil/text-background treatment outside the illustration",
+      "front_sha256": "48340c3bd6d6868ed2a385b8df7c8087af8b392e7ab011d7cd39e2e726a83f0f"
+    },
+    {
+      "card_print_id": "fe844c0a-f858-419c-b4a8-199af27c13b1",
+      "existing_printing_id": "8d46002f-a78b-445b-bf78-6c07a59da381",
+      "finish_key": "reverse",
+      "printed_number": "80/131",
+      "printed_stamp": "Pokemon League rectangular Pokeball logo in the illustration",
+      "foil_observation": "Dark reflective text field with darkness-symbol Reverse pattern.",
+      "front_sha256": "5876b3f8c4a4c6ce547d124af005fcd1bf8c5a6150a94c12fa687a552de69675"
+    }
+  ]
+}
