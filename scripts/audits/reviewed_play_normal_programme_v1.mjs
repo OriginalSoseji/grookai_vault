@@ -22,7 +22,7 @@ const sha=bytes=>createHash('sha256').update(bytes).digest('hex');
 const started={version:VERSION,mode,started_at:new Date().toISOString(),production_write_requested:['rollback','apply'].includes(mode),
  automatic_retry_allowed:false,source_root:root};durable('STARTED.json',started);
 const url=process.env.SUPABASE_DB_URL||process.env.DATABASE_URL||process.env.POSTGRES_URL;
-const secrets=[url,process.env.SUPABASE_SECRET_KEY,process.env.SUPABASE_SERVICE_ROLE_KEY,process.env.GV_USER_ACCESS_TOKEN];
+const secrets=[url,process.env.SUPABASE_SECRET_KEY,process.env.GV_USER_ACCESS_TOKEN];
 try{if(url){secrets.push(new URL(url).password,decodeURIComponent(new URL(url).password));}}catch{}
 const redact=text=>secrets.filter(Boolean).reduce((value,secret)=>value.replaceAll(secret,'[REDACTED]'),String(text));
 let client,plan,result;const report={...started,pass:false,committed:false,commit_uncertain:false,rollback_uncertain:false};

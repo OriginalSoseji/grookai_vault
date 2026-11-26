@@ -10,9 +10,11 @@ import{evaluateTcgplayerMarketQualificationV3_5 as qualify}from'../../backend/pr
 const out=path.resolve(process.argv[2]??'');assert.ok(process.argv[2]);assert.equal(fs.existsSync(out),false);fs.mkdirSync(out,{recursive:true});
 const rollbackOnly=process.argv[3]==='--rollback-only';assert.ok(!process.argv[3]||rollbackOnly||process.argv[3]==='--complete');
 const database=process.argv[4]??REVIEWED_STAMPED_REVERSE_QUALIFICATION_DB_V1;assert.ok(REVIEWED_STAMPED_REVERSE_QUALIFICATION_DATABASES_V1.includes(database));
-const config={host:'127.0.0.1',port:56230,user:'postgres',password:'postgres',database,connectionTimeoutMillis:10000,statement_timeout:45000,query_timeout:50000};
+const portArg=process.argv[5]??'--port=56230';assert.match(portArg,/^--port=[1-9][0-9]{3,4}$/);assert.ok(process.argv.length<=6);
+const port=Number(portArg.slice('--port='.length));assert.ok(port>=1024&&port<=65535);
+const config={host:'127.0.0.1',port,user:'postgres',password:'postgres',database,connectionTimeoutMillis:10000,statement_timeout:45000,query_timeout:50000};
 const c=new pg.Client(config),independent=new pg.Client(config),actor='00000000-0000-4000-a000-000000000901';
-const report={version:VERSION,startedAt:new Date().toISOString(),pass:false,database,productionWrites:0,actualOwnerDecision:false,negativeCases:[]};
+const report={version:VERSION,startedAt:new Date().toISOString(),pass:false,database,localEndpoint:{host:'127.0.0.1',port},productionWrites:0,actualOwnerDecision:false,negativeCases:[]};
 const save=(name,value)=>{const fd=fs.openSync(path.join(out,name),'wx');try{fs.writeFileSync(fd,JSON.stringify(value,null,2)+'\n');fs.fsyncSync(fd);}finally{fs.closeSync(fd);}};
 let httpCalls=0;globalThis.fetch=async()=>{httpCalls++;throw Error('HTTP prohibited in source-backed local qualification');};
 const quote=s=>'"'+s.replaceAll('"','""')+'"';let relations;
