@@ -59,6 +59,9 @@ The goal is clarity without destructive churn:
 
 ## Current Key Docs
 
+- [Founder Manual Approval Workflow Contract](contracts/FOUNDER_MANUAL_APPROVAL_WORKFLOW_CONTRACT_V1.md)
+- [Founder Manual Approval Runbook](ops/FOUNDER_MANUAL_APPROVAL_RUNBOOK_V1.md)
+- [Founder Manual Review Packet Template](templates/FOUNDER_MANUAL_REVIEW_PACKET_V1.md)
 - [Grookai Operator Playbook](ops/GROOKAI_OPERATOR_PLAYBOOK_V1.md)
 - [Ruflo Codex Integration](ops/RUFLO_CODEX_INTEGRATION_20261015.md)
 - [Ruflo All-Agents Integration Plan](plans/RUFLO_ALL_AGENTS_INTEGRATION_PLAN_20261016.md)
