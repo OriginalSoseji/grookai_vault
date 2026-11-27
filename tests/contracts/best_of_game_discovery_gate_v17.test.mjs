@@ -1,4 +1,4 @@
-import {assertRetainedPriceForwardInventoryV4} from '../helpers/retained_price_forward_inventory_v4.mjs';
+import {assertRetainedPriceForwardInventoryV4} from '../helpers/jungle_scoped_price_forward_inventory_v1.mjs';
 import test from'node:test';import assert from'node:assert/strict';import fs from'node:fs';import{createHash}from'node:crypto';import{fileURLToPath}from'node:url';import{spawnSync}from'node:child_process';import{stripVTControlCharacters}from'node:util';
 const root=fileURLToPath(new URL('../../',import.meta.url)),read=f=>JSON.parse(fs.readFileSync(root+'/scripts/schema/'+f,'utf8')),sha=x=>createHash('sha256').update(x).digest('hex');
 test('V17 preserves all522 historical bytes and admits exactly one guarded catalog body',()=>{

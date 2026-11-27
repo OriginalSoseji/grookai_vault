@@ -26,8 +26,8 @@ test('existing mapping collision guard keeps exact split-part semantics in a set
  assert.doesNotMatch(sql,/split_part\([^)]*\)=any\(/);
  assert.match(sql,/order by t\.id$/);
 });
-test('complete609-file producer, exact524 metadata and original source amounts are bound',()=>{
- assert.equal(code.files.length,609);assert.equal(new Set(code.files.map(x=>x.file)).size,609);assert.equal(m.assertPriceLinkSchemaV4(schema).schema_fingerprint,m.REGISTRY.schema_fingerprint);assert.equal(plan.code_fingerprint,code.fingerprint);
+test('complete610-file producer, exact524 metadata and original source amounts are bound',()=>{
+ assert.equal(code.files.length,610);assert.equal(new Set(code.files.map(x=>x.file)).size,610);assert.equal(m.assertPriceLinkSchemaV4(schema).schema_fingerprint,m.REGISTRY.schema_fingerprint);assert.equal(plan.code_fingerprint,code.fingerprint);
  assert.deepEqual(plan.expected,{printing_mapping_inserts:4916,raw_inserts:1});assert.ok(Object.values(plan.boundaries).every(x=>x===0));assert.equal(m.classifyPriceLinkStateV4(plan,fixture()),'before');assert.equal(m.classifyPriceLinkStateV4(plan,after()),'exact');
 });
 for(const[name,mutate]of[

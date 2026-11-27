@@ -1,9 +1,13 @@
+import {validateInventory,CANDIDATE} from '../../scripts/schema/jungle_scoped_price_lineage_release_policy_v1.mjs';
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import {createHash} from 'node:crypto';import {fileURLToPath} from 'node:url';import {spawnSync} from 'node:child_process';
 import {validatePriceReleaseInvocationV1,assertPriceReleaseInventoryV1,assertPriceReleaseHostedV1} from '../../scripts/schema/verify_market_price_retention_release_v1.mjs';
 const root=fileURLToPath(new URL('../../',import.meta.url)),out='C:/grookai_vault_operator_artifacts/pricing_retention_release_523_20261123/release-gate-v1-contract-negative';
 const candidate={'20261124010000_market_price_retention_display_v1.sql':'bf85f532b45f88abf181f4e943c82493c440d4d7a034154b4a9f13df6139d03e'};
 test('final price inventory requires all523 original hashes plus the unchanged sole candidate',()=>{
  const b=JSON.parse(fs.readFileSync(root+'/scripts/schema/best_of_game_discovery_candidate_v17.json')),history={...b.history,...b.candidates},actual=Object.fromEntries(fs.readdirSync(root+'/supabase/migrations').filter(f=>/^\d+.*\.sql$/.test(f)).map(f=>[f,createHash('sha256').update(fs.readFileSync(root+'/supabase/migrations/'+f)).digest('hex')]));
+ const binding=JSON.parse(fs.readFileSync(root+'/scripts/schema/jungle_scoped_price_lineage_release_v1.json'));
+ validateInventory(binding.history,actual);assert.throws(()=>assertPriceReleaseInventoryV1(history,candidate,actual));
+ delete actual[CANDIDATE]; // Test the unchanged historical gate using its own exact524 fixture.
  assertPriceReleaseInventoryV1(history,candidate,actual);
  for(const file of [Object.keys(history)[0],...Object.keys(b.candidates),...Object.keys(candidate)]){const missing={...actual};delete missing[file];assert.throws(()=>assertPriceReleaseInventoryV1(history,candidate,missing));assert.throws(()=>assertPriceReleaseInventoryV1(history,candidate,{...actual,[file]:'0'.repeat(64)}));}
  assert.throws(()=>assertPriceReleaseInventoryV1(history,candidate,{...actual,'20261124050000_unreviewed.sql':'0'.repeat(64)}));assert.throws(()=>assertPriceReleaseInventoryV1(history,{},actual));

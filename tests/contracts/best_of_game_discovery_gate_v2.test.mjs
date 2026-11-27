@@ -1,4 +1,4 @@
-import {assertRetainedPriceForwardInventoryV4} from '../helpers/retained_price_forward_inventory_v4.mjs';
+import {assertRetainedPriceForwardInventoryV4} from '../helpers/jungle_scoped_price_forward_inventory_v1.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
