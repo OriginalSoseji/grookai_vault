@@ -426,6 +426,7 @@ function buildNovelCandidate({
     source_ids: unique(assertions.map((row) => row.source_id)),
     assertion_keys: assertionKeys,
     baseline_evidence_ids: [],
+    active_baseline_evidence_ids: [],
     resolution_notes: resolutionNotes,
   };
 }
@@ -776,6 +777,7 @@ export function buildJapaneseCandidateUnion({
     const parent = model.parent;
     const matched = matchedAssertionsByParent.get(parent.card_print_id) ?? [];
     const baselineEvidence = evidenceByCard.get(parent.card_print_id) ?? [];
+    const activeEvidence = baselineEvidence.filter((row) => row.active === true);
     identityCandidates.push({
       candidate_key: `existing:${parent.card_print_id}`,
       candidate_kind: 'existing_parent',
@@ -793,18 +795,21 @@ export function buildJapaneseCandidateUnion({
         ...model.japaneseNames,
       ]),
       english_name_candidates: unique(
-        baselineEvidence.flatMap(
+        activeEvidence.flatMap(
           (row) => row.evidence_subject?.card_name_en_candidates ?? [],
         ),
       ),
       image_urls: model.imageUrls,
       source_ids: unique([
         ...matched.map((row) => row.source_id),
-        ...baselineEvidence.map((row) => row.source_key),
+        ...activeEvidence.map((row) => row.source_key),
       ]),
       assertion_keys: unique(matched.map((row) => row.assertion_key)),
       baseline_evidence_ids: unique(
         baselineEvidence.map((row) => row.evidence_id),
+      ),
+      active_baseline_evidence_ids: unique(
+        activeEvidence.map((row) => row.evidence_id),
       ),
       resolution_notes: model.registryKey
         ? []
@@ -1013,7 +1018,9 @@ export function buildJapaneseCandidateUnion({
   for (const row of evidenceRows) {
     sourceAssertionUnion.push({
       union_row_key: `preserved:${row.evidence_id}`,
-      assertion_lane: 'preserved_live_evidence',
+      assertion_lane: row.active === true
+        ? 'preserved_live_evidence'
+        : 'preserved_inactive_evidence',
       source_key: row.source_key,
       source_external_id: null,
       registry_key:
@@ -1034,7 +1041,9 @@ export function buildJapaneseCandidateUnion({
       evidence_id: row.evidence_id,
       projected_candidate_key: `existing:${row.card_print_id}`,
       projected_existing_card_print_id: row.card_print_id,
-      resolution_status: 'preserved_canonical_evidence',
+      resolution_status: row.active === true
+        ? 'preserved_canonical_evidence'
+        : 'preserved_inactive_evidence',
     });
   }
   for (const assertion of assertions) {

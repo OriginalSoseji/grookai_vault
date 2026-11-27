@@ -261,6 +261,30 @@ test('candidate resolver conservatively joins existing Japanese identities', () 
   );
 });
 
+test('inactive evidence remains in the audit baseline but cannot supply current candidate names or sources', () => {
+  const input = fixture();
+  input.evidenceRows.push({
+    evidence_id: 'evidence-retired',
+    card_print_id: 'parent-1',
+    source_key: 'retired-source',
+    active: false,
+    evidence_subject: { card_name_en_candidates: ['Wrong historical name'] },
+  });
+  const result = buildJapaneseCandidateUnion(input);
+  const parent = result.identityCandidates.find((row) => row.existing_card_print_id === 'parent-1');
+  assert.ok(parent);
+  assert.ok(parent.english_name_candidates.includes('Bulbasaur'));
+  assert.ok(!parent.english_name_candidates.includes('Wrong historical name'));
+  assert.ok(parent.source_ids.includes('preserved-source'));
+  assert.ok(!parent.source_ids.includes('retired-source'));
+  assert.ok(parent.baseline_evidence_ids.includes('evidence-1'));
+  assert.ok(parent.baseline_evidence_ids.includes('evidence-retired'));
+  assert.deepEqual(parent.active_baseline_evidence_ids, ['evidence-1']);
+  const historical = result.sourceAssertionUnion.find((row) => row.evidence_id === 'evidence-retired');
+  assert.equal(historical.assertion_lane, 'preserved_inactive_evidence');
+  assert.equal(historical.resolution_status, 'preserved_inactive_evidence');
+});
+
 test('multipart source cannot join a single parent by number, name or identical image', () => {
   for(const legacy of [true,false]) {
     const input=fixture();
