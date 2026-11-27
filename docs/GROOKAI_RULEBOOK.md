@@ -273,6 +273,17 @@ Before any L2/L3 audit or implementation:
 ## 15. Contract Index
 - `docs/CONTRACT_INDEX.md`: Authoritative index of all Grookai Vault contracts and their status.
 
+## Founder Manual Approval Workflow
+
+- Use the existing Founder Operations queue for owner-requested phone approvals
+  and batches of independent manual decisions, including images and other items.
+- Follow [FOUNDER_MANUAL_APPROVAL_WORKFLOW_CONTRACT_V1](contracts/FOUNDER_MANUAL_APPROVAL_WORKFLOW_CONTRACT_V1.md):
+  one task per independent decision, a clickable copy of the evidence, explicit
+  review-only or execution meaning, and readback of actual founder decisions.
+- Apply the [runbook](ops/FOUNDER_MANUAL_APPROVAL_RUNBOOK_V1.md) and
+  [packet template](templates/FOUNDER_MANUAL_REVIEW_PACKET_V1.md). Manual review
+  does not require paid AI access; domain staging and execution gates still apply.
+
 ## Preflight Gate V1
 - Mechanical preflight gate for destructive workers. See `docs/PREFLIGHT_GATE_V1.md`.
 - Example:

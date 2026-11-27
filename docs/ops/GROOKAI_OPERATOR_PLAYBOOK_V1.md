@@ -1,3 +1,23 @@
+# Manual founder approvals from the phone — November 27, 2026
+
+Use the existing Founder Operations queue for batches of independent decisions
+or whenever the founder requests manual phone review. Follow the
+[workflow contract](../contracts/FOUNDER_MANUAL_APPROVAL_WORKFLOW_CONTRACT_V1.md),
+[runbook](FOUNDER_MANUAL_APPROVAL_RUNBOOK_V1.md), and
+[packet template](../templates/FOUNDER_MANUAL_REVIEW_PACKET_V1.md).
+This applies to images, data/mapping proposals, documents, policy exceptions,
+release plans, and other bounded items. Publish one frozen task per independent
+decision with a clickable copy of the original evidence and a clear explanation
+of what approval authorizes. Link the queue and report the exact remaining count
+after independent readback. Manual review does not require paid AI access.
+
+Review-only tasks have execution disabled and no executor; approval records
+only that review. Read actual founder decisions on continuation, preserve their
+version/fingerprint and provenance, and continue through the applicable domain
+gates. Do not submit decisions on the founder's behalf or infer publication from
+review approval. Executable outcomes use the existing registered workflow and
+advance already-approved stages without repeated permission requests.
+
 # Cached source fallback transport — November 25, 2026
 
 Follow the [TLS recovery checkpoint](../checkpoints/pricing/CACHED_SOURCE_TLS_RECOVERY_20261125.md).
