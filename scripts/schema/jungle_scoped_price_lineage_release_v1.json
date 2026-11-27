@@ -2,7 +2,7 @@
   "version": "JUNGLE_SCOPED_PRICE_LINEAGE_RECOVERY_RELEASE_V1",
   "project": "ycdxbpibncqcchqiihfz",
   "reviewFingerprint": "e9d96dc6c133db707064c820bc0cefb61409409ff4def3b4a43fada7f8ab63f7",
-  "sourceMain": "5ea38433d4b18262ab7fa2936aeae0dcc24e3285",
+  "sourceMain": "a9e515177f258bce2c332f044b5212462b5b2451",
   "history": {
     "20251127041609_legacy_remote_stub.sql": "ababbd7ad5c178f04e9bdbb008bb57c35c31582532247ec7f12bc48845cecfb6",
     "20251130090000_legacy_stub.sql": "a9b560ddc9e4fccf3587c0c9fef6187e89ca15ebe3a87f0144fb9c8e082dcb48",
