@@ -66,7 +66,7 @@ void main() {
           findsOneWidget,
         );
       }
-      expect(repository.queries, ['']);
+      expect(repository.queries, isEmpty);
       expect(repository.finishLoads, 0);
       final listener = tester.widget<ReorderableDelayedDragStartListener>(
         find.byType(ReorderableDelayedDragStartListener),
@@ -134,7 +134,7 @@ void main() {
       await nav.switchView(tester, 'checklist');
       expect(tester.widget<TextField>(searchField).controller!.text, 'reverse');
       expect(find.text('2. Eevee'), findsOneWidget);
-      expect(repository.queries, ['', 'catalog']);
+      expect(repository.queries, ['catalog']);
     },
   );
 

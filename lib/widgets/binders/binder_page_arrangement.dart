@@ -22,6 +22,7 @@ class BinderPageArrangement extends StatefulWidget {
     required this.onMove,
     this.gridPreferences,
     this.allowReorder = true,
+    this.movesSaved = false,
     this.revealSlotKey,
     this.revealVersion = 0,
     this.onInspect,
@@ -30,6 +31,7 @@ class BinderPageArrangement extends StatefulWidget {
   final void Function(int from, int to) onMove;
   final BinderGridPreferences? gridPreferences;
   final bool allowReorder;
+  final bool movesSaved;
 
   /// View-only request. Locating never selects a card for moving.
   final String? revealSlotKey;
@@ -561,7 +563,7 @@ class _BinderPageArrangementState extends State<BinderPageArrangement> {
     _applyMove(
       from,
       to,
-      '${resolveBinderCatalogCardIdentity(moved.card).displayName} · ${moved.finish.label} moved to pocket ${to + 1}. Order is not saved yet.',
+      '${resolveBinderCatalogCardIdentity(moved.card).displayName} · ${moved.finish.label} moved to pocket ${to + 1}. ${widget.movesSaved ? 'Layout saved on this device.' : 'Order is not saved yet.'}',
     );
   }
 

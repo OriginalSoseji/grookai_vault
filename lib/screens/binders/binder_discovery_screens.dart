@@ -130,6 +130,7 @@ class _BinderExternalProjectionScreenState
   bool _loading = true;
   bool _loadingMoreChecklist = false;
   bool _busy = false;
+  bool _showChecklist = false;
 
   bool get _isViewLink => widget.viewToken != null;
   bool get _featureAvailable => _isViewLink
@@ -628,41 +629,105 @@ class _BinderExternalProjectionScreenState
                     ),
                   ],
                   const SizedBox(height: 20),
-                  Text(
-                    'Checklist',
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  if (checklist == null || checklist.items.isEmpty)
-                    const Text('No public checklist details are available.')
-                  else
-                    for (final item in checklist.items)
-                      _PublicBinderChecklistTile(
-                        item: item,
-                        showSafetyActions:
-                            !_isViewLink &&
-                            _repository.currentUserId != null &&
-                            item.publicContributionActions.isNotEmpty,
-                        busy: _busy,
-                        onShowSafetyActions: () =>
-                            _showPublicContributionActions(item),
+                  SegmentedButton<bool>(
+                    segments: const <ButtonSegment<bool>>[
+                      ButtonSegment<bool>(
+                        value: false,
+                        label: Text('Contents'),
+                        icon: Icon(Icons.collections_bookmark_outlined),
                       ),
-                  if (checklist?.hasMore ?? false)
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8),
-                      child: OutlinedButton(
-                        onPressed: _loadingMoreChecklist
-                            ? null
-                            : _loadMoreChecklist,
-                        child: Text(
-                          _loadingMoreChecklist
-                              ? 'Loading more…'
-                              : 'Load more checklist cards',
+                      ButtonSegment<bool>(
+                        value: true,
+                        label: Text('Checklist'),
+                        icon: Icon(Icons.checklist_rounded),
+                      ),
+                    ],
+                    selected: <bool>{_showChecklist},
+                    onSelectionChanged: (selection) =>
+                        setState(() => _showChecklist = selection.single),
+                  ),
+                  const SizedBox(height: 16),
+                  if (!_showChecklist) ...[
+                    Text(
+                      'Contents',
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    if (checklist == null ||
+                        !checklist.items.any((item) => item.activeQuantity > 0))
+                      const Text(
+                        'No shared cards are visible in this page yet. '
+                        'Only cards members chose to share with this audience '
+                        'appear here.',
+                      )
+                    else
+                      for (final item in checklist.items.where(
+                        (item) => item.activeQuantity > 0,
+                      ))
+                        _PublicBinderChecklistTile(
+                          item: item,
+                          contentsMode: true,
+                          showSafetyActions:
+                              !_isViewLink &&
+                              _repository.currentUserId != null &&
+                              item.publicContributionActions.isNotEmpty,
+                          busy: _busy,
+                          onShowSafetyActions: () =>
+                              _showPublicContributionActions(item),
+                        ),
+                    if (checklist?.hasMore ?? false)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8),
+                        child: OutlinedButton(
+                          onPressed: _loadingMoreChecklist
+                              ? null
+                              : _loadMoreChecklist,
+                          child: Text(
+                            _loadingMoreChecklist
+                                ? 'Loading more…'
+                                : 'Load more shared cards',
+                          ),
                         ),
                       ),
+                  ] else ...[
+                    Text(
+                      'Checklist',
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.w800,
+                      ),
                     ),
+                    const SizedBox(height: 8),
+                    if (checklist == null || checklist.items.isEmpty)
+                      const Text('No public checklist details are available.')
+                    else
+                      for (final item in checklist.items)
+                        _PublicBinderChecklistTile(
+                          item: item,
+                          showSafetyActions:
+                              !_isViewLink &&
+                              _repository.currentUserId != null &&
+                              item.publicContributionActions.isNotEmpty,
+                          busy: _busy,
+                          onShowSafetyActions: () =>
+                              _showPublicContributionActions(item),
+                        ),
+                    if (checklist?.hasMore ?? false)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8),
+                        child: OutlinedButton(
+                          onPressed: _loadingMoreChecklist
+                              ? null
+                              : _loadMoreChecklist,
+                          child: Text(
+                            _loadingMoreChecklist
+                                ? 'Loading more…'
+                                : 'Load more checklist cards',
+                          ),
+                        ),
+                      ),
+                  ],
                   if (_checklistError != null) ...[
                     const SizedBox(height: 8),
                     Text(
@@ -1412,12 +1477,14 @@ class _BinderLegacyConversionScreenState
 class _PublicBinderChecklistTile extends StatelessWidget {
   const _PublicBinderChecklistTile({
     required this.item,
+    this.contentsMode = false,
     required this.showSafetyActions,
     required this.busy,
     required this.onShowSafetyActions,
   });
 
   final BinderChecklistItem item;
+  final bool contentsMode;
   final bool showSafetyActions;
   final bool busy;
   final VoidCallback onShowSafetyActions;
@@ -1448,6 +1515,8 @@ class _PublicBinderChecklistTile extends StatelessWidget {
               onPressed: busy ? null : onShowSafetyActions,
               icon: const Icon(Icons.more_vert_rounded),
             )
+          : contentsMode
+          ? const Text('Shared')
           : Icon(
               item.isSatisfied
                   ? Icons.check_circle_rounded
