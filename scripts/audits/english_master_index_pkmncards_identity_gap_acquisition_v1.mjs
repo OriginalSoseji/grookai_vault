@@ -1,13 +1,14 @@
 import fs from 'node:fs/promises';
 import https from 'node:https';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
+import { exactSourceCardName, exactSourceSetName, createSourceIdentityEvidence, writeEvidenceRun } from './pkmncards_identity_match_v1.mjs';
 
 import {
   markdownTable,
   normalizeNumber,
-  normalizeText,
 } from './verified_master_set_index_v1/shared.mjs';
 
 const GAP_FACTS_PATH = 'docs/audits/english_master_index_source_exhaustion_v1/english_master_index_remaining_gap_facts_v1.json';
@@ -66,46 +67,12 @@ function decodeHtml(value) {
     .replace(/&gt;/g, '>');
 }
 
-function stripAccents(value) {
-  return String(value ?? '').normalize('NFKD').replace(/[\u0300-\u036f]/g, '');
-}
-
-function comparable(value) {
-  return normalizeText(stripAccents(value))
-    .replace(/\bstar\b/g, 'star')
-    .replace(/[★☆]/g, ' star ')
-    .replace(/\{star\}/g, ' star ')
-    .replace(/\([^)]*\)/g, ' ')
-    .replace(/\bteam aqua s\b/g, 'team aqua')
-    .replace(/\bteam magma s\b/g, 'team magma')
-    .replace(/\bgalactic s\b/g, 'galactic')
-    .replace(/\bboss s orders\b/g, 'boss orders')
-    .replace(/\bbosss orders\b/g, 'boss orders')
-    .replace(/\bprofessor s research\b/g, 'professor research')
-    .replace(/\be4\s+lv\s+x\b/g, '4 lv x')
-    .replace(/\s+/g, ' ')
-    .trim();
-}
-
 function namesCompatible(expected, actual) {
-  const left = comparable(expected);
-  const right = comparable(actual);
-  if (!left || !right) return false;
-  return left === right || left.includes(right) || right.includes(left);
+  return exactSourceCardName(expected, actual);
 }
 
 function setCompatible(expected, actual) {
-  const left = comparable(expected);
-  const right = comparable(actual);
-  if (!left || !right) return false;
-  const compactLeft = left.replace(/\b(black star|promos|promo)\b/g, ' ').replace(/\s+/g, ' ').trim();
-  const compactRight = right.replace(/\b(black star|promos|promo)\b/g, ' ').replace(/\s+/g, ' ').trim();
-  return left === right
-    || left.includes(right)
-    || right.includes(left)
-    || compactLeft === compactRight
-    || compactLeft.includes(compactRight)
-    || compactRight.includes(compactLeft);
+  return exactSourceSetName(expected, actual);
 }
 
 function cardSearchName(fact) {
@@ -188,8 +155,7 @@ function sourceSetCompatible(fact, actual) {
 }
 
 function titleCandidateNameCompatible(fact, actual) {
-  const cardName = String(fact.card_name ?? '').replace(/\{star\}/gi, 'star').replace(/_/g, '');
-  return namesCompatible(cardName, actual);
+  return namesCompatible(fact.card_name, actual);
 }
 
 function fetchText(url, options) {
@@ -278,7 +244,7 @@ function parseTitle(title) {
   };
 }
 
-function validateCandidate(fact, parsed) {
+export function validateCandidate(fact, parsed) {
   if (!parsed) return { ok: false, reason: 'title_unparseable' };
   const cardOk = titleCandidateNameCompatible(fact, parsed.card_name);
   const setOk = sourceSetCompatible(fact, parsed.set_name);
@@ -358,19 +324,7 @@ async function main() {
     }
 
     if (accepted) {
-      const record = {
-        source_key: 'pkmncards_identity_gap',
-        source_kind: 'collector_reference',
-        source_url: accepted.url,
-        set_key: fact.set_key,
-        set_name: fact.set_name,
-        card_number: fact.card_number,
-        card_name: fact.card_name,
-        finish_key: null,
-        evidence_type: 'card_identity',
-        evidence_label: `PKMNCards card page: ${accepted.title}`,
-        notes: 'Exact card identity evidence accepted because PKMNCards matched set, card number, and card name.',
-      };
+      const record = createSourceIdentityEvidence(fact, accepted, setAliasesForFact(fact));
       const rows = recordsBySet.get(fact.set_key) ?? [];
       rows.push(record);
       recordsBySet.set(fact.set_key, rows);
@@ -385,22 +339,9 @@ async function main() {
     });
   }
 
-  if (!options.dryRun) {
-    await fs.rm(FIXTURE_DIR, { recursive: true, force: true });
-    await fs.mkdir(FIXTURE_DIR, { recursive: true });
-    for (const [setKey, records] of recordsBySet) {
-      await fs.writeFile(path.join(FIXTURE_DIR, `${setKey}.json`), `${JSON.stringify({
-        source_key: `pkmncards_identity_gap_${setKey}`,
-        source_kind: 'collector_reference',
-        source_url: 'https://pkmncards.com/',
-        set_key: setKey,
-        set_name: records[0]?.set_name,
-        retrieved_at: generatedAt,
-        raw_snapshot_ref: `pkmncards_identity_gap:${setKey}:${generatedAt}`,
-        records,
-      }, null, 2)}\n`);
-    }
-  }
+  const fixtureFilesWritten = !options.dryRun
+    ? (await writeEvidenceRun(FIXTURE_DIR, recordsBySet, generatedAt)).length
+    : 0;
 
   const byStatus = {};
   for (const row of results) byStatus[row.status] = (byStatus[row.status] ?? 0) + 1;
@@ -425,7 +366,7 @@ async function main() {
     summary: {
       attempted_facts: facts.length,
       records_generated: [...recordsBySet.values()].reduce((sum, rows) => sum + rows.length, 0),
-      fixture_files_written: recordsBySet.size,
+      fixture_files_written: fixtureFilesWritten,
       by_status: byStatus,
     },
     results,
@@ -470,4 +411,6 @@ async function main() {
   console.log(JSON.stringify(report.summary, null, 2));
 }
 
-await main();
+if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(fileURLToPath(import.meta.url))) {
+  await main();
+}
