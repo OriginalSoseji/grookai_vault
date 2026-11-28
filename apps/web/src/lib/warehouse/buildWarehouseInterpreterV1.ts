@@ -1,4 +1,5 @@
 import "server-only";
+import { buildExistingChildImageInterpreterV1 } from "../../../../../backend/warehouse/existing_child_image_interpreter_v1.mjs";
 
 import type {
   FounderPromotionReviewModel,
@@ -563,6 +564,19 @@ export function buildWarehouseInterpreterV1(
       "HIGH",
     );
   }
+
+  // An exact, already classified child-image target is not a new stamped card.
+  // Keep generic stamp identity handling for cases without this resolved proof.
+  const existingChildImage = buildExistingChildImageInterpreterV1({
+    candidate: input.candidate,
+    classificationPackage: input.latestClassificationPackage,
+    metadataPackage: latestMetadataExtractionPackage,
+    canonContext,
+    hasFrontEvidence,
+    evidenceGaps: uniqueText([...evidenceGapsBase, ...ambiguityNotes]),
+    variantIdentity,
+  });
+  if (existingChildImage) return existingChildImage;
 
   if (
     hasReadyStampPrintedModifier &&

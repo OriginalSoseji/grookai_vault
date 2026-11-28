@@ -2,6 +2,11 @@
 
 This is the official documentation system for Grookai Vault.
 
+The [reviewed stamped image publication contract](contracts/REVIEWED_STAMPED_IMAGE_PUBLICATION_V1.md)
+and [current preparation checkpoint](checkpoints/warehouse/REVIEWED_STAMPED_IMAGES_20261127.md)
+govern the original 33 manually confirmed League Reverse images. Source release
+and the separate executable Founder Operations decision remain required.
+
 The goal is clarity without destructive churn:
 - use explicit buckets for new docs
 - keep older high-value docs discoverable

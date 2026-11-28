@@ -283,6 +283,14 @@ Before any L2/L3 audit or implementation:
 - Apply the [runbook](ops/FOUNDER_MANUAL_APPROVAL_RUNBOOK_V1.md) and
   [packet template](templates/FOUNDER_MANUAL_REVIEW_PACKET_V1.md). Manual review
   does not require paid AI access; domain staging and execution gates still apply.
+- The original 33 manually reviewed League Reverse images follow
+  [REVIEWED_STAMPED_IMAGE_PREPARATION_V1](contracts/REVIEWED_STAMPED_IMAGE_PREPARATION_V1.md).
+  Read-only metadata and byte-identical asset preparation create no promotion
+  approval or publication authority. Preserve the original review-only tasks and
+  use the existing governed pipeline for a separately qualified executable outcome.
+  That composition follows [REVIEWED_STAMPED_IMAGE_PUBLICATION_V1](contracts/REVIEWED_STAMPED_IMAGE_PUBLICATION_V1.md):
+  real command authority, immutable copies, fresh complete rollback, one atomic
+  image-only apply, independent verification and no automatic canonical retry.
 
 ## Preflight Gate V1
 - Mechanical preflight gate for destructive workers. See `docs/PREFLIGHT_GATE_V1.md`.

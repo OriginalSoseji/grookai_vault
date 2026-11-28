@@ -107,3 +107,12 @@ pricing, Vault data, public visibility, updates, deletes, or another target.
 Catalog candidates that cannot produce this complete package remain
 review-only. A review-only item is never converted into write authority by an
 executor.
+
+`reviewed_stamped_image_publication_v1` composes the original 33 manually reviewed
+League Reverse images through immutable private Storage, a full rollback
+rehearsal, shared atomic warehouse staging/execution and independent private and
+public readback. Its separate runtime scope, exact source/state/byte guards,
+one-attempt policy and real founder command are defined in
+[REVIEWED_STAMPED_IMAGE_PUBLICATION_V1](REVIEWED_STAMPED_IMAGE_PUBLICATION_V1.md).
+It creates no new printing identity or physical truth and broadens no earlier
+review-only approval or catalog-writer authority.

@@ -23,6 +23,7 @@ import {
   validatePokemonTcgplayerMappingOutcomePackageV1,
   validatePokemonTcgplayerMappingWriterResultV1,
 } from "../../backend/operations/pokemon_tcgplayer_mapping_outcome_v1.mjs";
+import { createReviewedStampedImageOutcomeHandlersV1 } from "./reviewed_stamped_image_outcome_handlers_v1.mjs";
 
 const ROOT = path.resolve(import.meta.dirname, "../..");
 
@@ -64,8 +65,9 @@ function transientFailureClass(error) {
   return "registered_workflow_stage_failed";
 }
 
-function buildStageHandlers({ headSha, outDir }) {
+function buildStageHandlers({ headSha, outDir, command, leaseToken }) {
   return Object.freeze({
+    ...createReviewedStampedImageOutcomeHandlersV1({ headSha, outDir, command, leaseToken }),
     async verify_frozen_scope_v1({ stage, workflow }) {
       return {
         reconciled: true,
@@ -258,7 +260,7 @@ async function main() {
     const execution = await executeFounderOutcomeWorkflowV1({
       workflow,
       registry: FOUNDER_OUTCOME_WORKFLOW_RECIPE_REGISTRY_V1,
-      handlers: buildStageHandlers({ headSha, outDir: options.outDir }),
+      handlers: buildStageHandlers({ headSha, outDir: options.outDir, command, leaseToken }),
       completedStageKeys: progress?.completed_stage_keys ?? [],
       stageAttemptCounts: (progress?.receipts ?? [])
         .filter((receipt) => receipt?.status === "started")

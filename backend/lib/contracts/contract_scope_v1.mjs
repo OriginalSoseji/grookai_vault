@@ -7,6 +7,12 @@ import {
 // LOCK: Contract scope is required for canon-affecting execution and must stay local to the write path.
 
 export const CONTRACT_EXECUTION_SCOPES_V1 = {
+  reviewed_stamped_image_publication_v1: {
+    execution_name:'reviewed_stamped_image_publication_v1',canon_affecting:true,
+    active_contracts:['GROOKAI_GUARDRAILS','NO_ASSUMPTION_RULE','INGESTION_PIPELINE_CONTRACT_V1',
+      'REVIEWED_STAMPED_IMAGE_PUBLICATION_V1'],
+    checkpoints:['CONTRACT_RUNTIME_LAYER_V1','PRODUCTION_READINESS_GATE_V1'],
+  },
   reviewed_stamped_reverse_programme_v1: {
     execution_name:'reviewed_stamped_reverse_programme_v1',canon_affecting:true,
     active_contracts:['GROOKAI_GUARDRAILS','NO_ASSUMPTION_RULE','IDENTITY_PRECEDENCE_RULE_V1',

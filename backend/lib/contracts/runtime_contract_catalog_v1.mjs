@@ -22,6 +22,18 @@ export const CONTRACT_RUNTIME_DRIFT_REFERENCES_V1 = [
 ];
 
 export const CONTRACT_RUNTIME_CATALOG_V1 = {
+  REVIEWED_STAMPED_IMAGE_PUBLICATION_V1: {
+    status:'Active',authority_class:'ingestion',domain:'warehouse',canon_affecting:true,
+    conflict_behavior:'Only the exact33 reviewed existing image targets may proceed under the real frozen Founder Operations outcome.',
+    enforcement_points:{worker:['backend/warehouse/reviewed_stamped_image_publication_v1.mjs',
+      'scripts/workers/reviewed_stamped_image_outcome_handlers_v1.mjs'],
+      audit:['scripts/audits/reviewed_stamped_image_publication_local_qualification_v1.mjs'],
+      checkpoint:['docs/contracts/REVIEWED_STAMPED_IMAGE_PUBLICATION_V1.md'],
+      quarantine_behavior:'Source, authority, review, state, schema, byte or rollback drift stops the outcome without a canonical retry.',
+      post_write_proof_query:'Exact actual approval and durable receipt roundtrips, original full-row preservation, shared atomic receipt and independent private/public image readback.'},
+    current_enforcement_status:'enforced',gaps:'Production source release and the real execution decision remain pending.',
+    next_action:'Finish exact source qualification before publishing the executable phone outcome.',
+  },
   PRINTING_TRUTH_CONTRACT_V1: {
     status:'Active',authority_class:'identity_frozen_canon',domain:'printing',canon_affecting:true,
     conflict_behavior:'Only exact reviewed physical evidence can admit a printing; prices never establish a finish.',

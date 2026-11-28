@@ -6572,3 +6572,12 @@ qualified. The original worker32 shadow continues under its unchanged source
 and guards. Any later SQL performance repair is a separately qualified exact
 migration, not permission to alter its running guard. Global publication,
 consumer/app parity and natural refresh remain independent acceptance gates.
+
+The original 33 manually confirmed League Reverse images use
+[REVIEWED_STAMPED_IMAGE_PUBLICATION_V1](../contracts/REVIEWED_STAMPED_IMAGE_PUBLICATION_V1.md).
+Keep the 31 review-only phone tasks and two sealed chat facts unchanged. After
+exact source qualification, present one complete executable outcome covering
+immutable copies, rollback, atomic image publication and independent readback.
+Only its real founder decision may materialize candidate approvals. Public
+runner artifacts contain counters and hashes; private review and receipt data
+stay in the warehouse and retained operator evidence.
