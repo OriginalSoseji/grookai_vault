@@ -30,6 +30,13 @@ const STOP_REASONS = new Set([
 // plan payloads cannot add executable behavior.
 export const FOUNDER_OUTCOME_WORKFLOW_RECIPE_REGISTRY_V1 = Object.freeze([
   Object.freeze({
+    workflow_key: "reviewed_stamped_image_publication_v1",
+    stage_handlers: Object.freeze(["verify_reviewed_image_scope_v1", "upload_reviewed_image_assets_v1",
+      "rollback_reviewed_image_publication_v1", "apply_reviewed_image_publication_v1"]),
+    max_stages: 4,
+    allowed_modes: Object.freeze(["read_only", "storage_write", "canonical_write", "publication"]),
+  }),
+  Object.freeze({
     workflow_key: "operations_outcome_contract_proof_v1",
     stage_handlers: Object.freeze([
       "verify_frozen_scope_v1",

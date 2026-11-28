@@ -6,6 +6,7 @@ Status: Active runtime support document
 
 | Execution Path | File / Surface | Current Behavior | Canon-Affecting? | Runtime Scope |
 | --- | --- | --- | --- | --- |
+| `reviewed_stamped_image_publication_v1` | `backend/warehouse/reviewed_stamped_image_publication_v1.mjs` | Materializes the real 33-image outcome's candidate approvals/metadata and durable receipt; shared staging/executor perform image changes | Yes | `reviewed_stamped_image_publication_v1` |
 | `external_discovery_to_warehouse_bridge_v1` | [backend/warehouse/external_discovery_to_warehouse_bridge_v1.mjs](/C:/grookai_vault/backend/warehouse/external_discovery_to_warehouse_bridge_v1.mjs) | Inserts founder-routed warehouse candidates and candidate events | Yes | `external_discovery_to_warehouse_bridge_v1` |
 | `classification_apply_write_plan_v1` | [backend/warehouse/classification_worker_v1.mjs](/C:/grookai_vault/backend/warehouse/classification_worker_v1.mjs) | Mutates `canon_warehouse_candidates` and appends events during first classification | Yes | `classification_apply_write_plan_v1` |
 | `classification_apply_reclassification_result_v1` | [backend/warehouse/classification_worker_v1.mjs](/C:/grookai_vault/backend/warehouse/classification_worker_v1.mjs) | Mutates candidate summaries during reclassification | Yes | `classification_apply_reclassification_result_v1` |
@@ -24,6 +25,7 @@ Only contracts that are actually in runtime scope are listed below.
 
 | Contract Name | Status | Authority Level | Domain | Canon-Affecting? | Enforcement Points | Current Status | Gaps | Required Next Action |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `REVIEWED_STAMPED_IMAGE_PUBLICATION_V1` | Active | Ingestion | Warehouse images | Yes | worker: exact outcome authority, immutable assets and shared transaction; audit: owned whole-image qualification; checkpoint: publication contract | Enforced bounded implementation | Production release and real decision pending | Qualify exact source and publish the complete phone outcome before production writes |
 | `GROOKAI_GUARDRAILS` | Active | Stabilization / Checkpoint | Governance | Yes | worker: `execute_canon_write_v1`; audit: `drift_audit_v1.sql`; checkpoint: `CONTRACT_RUNTIME_LAYER_V1` | Enforced | No migration scope yet | Extend later to canon-affecting migration replay |
 | `NO_ASSUMPTION_RULE` | Active | Stabilization / Checkpoint | Governance | Yes | worker: `execute_canon_write_v1`; audit: `drift_audit_v1.sql` | Enforced | Human repair flow is still manual | Add explicit repair workflow later |
 | `IDENTITY_CONTRACT_SUITE_V1` | Frozen | Identity / Frozen Canon | Identity | Yes | DB: `card_print_identity`; worker: promotion + gv_id; audit: identity drift queries | Partially enforced | 11,852 live rows still missing active identity | Finish backfill before stricter DB enforcement |
